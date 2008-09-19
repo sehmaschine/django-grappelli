@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/base.css{% endblock %}" />
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+<script>
+
+function ShowNav() {
+    document.getElementById('navigation').setAttribute("style", "display: block;");
+}
+function HideNav() {
+    document.getElementById('navigation').setAttribute("style", "display: none;");
+}
+
+</script>
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+
+<!-- Container -->
+<div id="container">
+
+    {% if not is_popup %}
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+                {% comment %}<h1>vonautomatisch werkstaetten</h1>
+                <ul id="navigation" class="menu" onmouseover="ShowNav();" onmouseout="HideNav();">
+                    <li><a href="/admin/"><strong>Main Admin</strong></a></li>
+                    <li><a href="/configuration_admin/"><strong>Configuration</strong></a></li>
+                    <li><a href="/blog_admin/"><strong>Blog</strong></a></li>
+                    <li><a href="/gallery_admin/"><strong>Image Galleries</strong></a></li>
+                </ul>{% endcomment %}
+                <ul>
+                    <li>Grappelli</li>
+                    <li onmouseover="ShowNav();" onmouseout="HideNav();"><a href="#">Navigation</a>
+                        <ul id="navigation" class="menu">
+                            <li><a href="/admin/"><strong>Main Admin</strong></a></li>
+                            <li><a href="/configuration_admin/"><strong>Configuration</strong></a></li>
+                            <li><a href="/blog_admin/"><strong>Blog</strong></a></li>
+                            <li><a href="/gallery_admin/"><strong>Image Galleries</strong></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% comment %}{% endcomment %}{% if user.is_authenticated and user.is_staff %}
+            <div id="user-tools">
+                <ul>
+                    <li>
+                        <strong>{% if user.first_name %}{{ user.first_name|escape }}{% else %}{{ user.username }}{% endif %}</strong>
+                    </li>
+                    {% block userlinks %}
+                    <li>
+                        <a href="doc/">{% trans 'Documentation' %}</a>
+                    </li>
+                    <li>
+                        <a href="password_change/">{% trans 'Change password' %}</a>
+                    </li>
+                    <li>
+                        <a href="logout/">{% trans 'Log out' %}</a>
+                    </li>
+                    {% endblock %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% block nav-global %}{% endblock %}
+    </div>
+    <!-- END Header -->
+    {% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title|escape }}{% endif %}</div>{% endblock %}
+    {% endif %}
+
+        {% if messages %}
+        <ul class="messagelist">{% for message in messages %}<li>{{ message|escape }}</li>{% endfor %}</ul>
+        {% endif %}
+
+    <!-- Content -->
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block pretitle %}{% endblock %}
+        {% block content_title %}{% if title %}<h1>{{ title|escape }}</h1>{% endif %}{% endblock %}
+        {% block content %}
+        {% block object-tools %}{% endblock %}
+        {{ content }}
+        {% endblock %}
+        {% block sidebar %}{% endblock %}
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>
