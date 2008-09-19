@@ -80,7 +80,7 @@ tinyMCE.init({
     theme_advanced_styles: "[all] clearfix=clearfix;[p] small=small;[img] Image left-aligned=img_left;[img] Image left-aligned (nospace)=img_left_nospacetop;[img] Image right-aligned=img_right;[img] Image right-aligned (nospace)=img_right_nospacetop;[img] Image Block=img_block;[img] Image Block (nospace)=img_block_nospacetop;[div] column span-2=column span-2;[div] column span-4=column span-4;[div] column span-8=column span-8",
     width: '700',
     height: '200',
-    plugins: "advimage,advlink,fullscreen,visualchars,paste,media,template,searchreplace,inlinepopups",
+    plugins: "advimage,advlink,fullscreen,visualchars,paste,media,template,searchreplace",
     advimage_styles: "Linksbündig neben Text=img_left;Rechtsbündig neben Text=img_right;Eigener Bildblock=img_block",
     advlink_styles: "intern=internal;extern=external",
     advimage_update_dimensions_onchange: true,

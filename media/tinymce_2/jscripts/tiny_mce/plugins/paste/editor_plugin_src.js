@@ -2,7 +2,7 @@
  * $Id: editor_plugin_src.js 919 2008-09-08 20:31:23Z spocke $
  *
  * @author Moxiecode
- * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
+ * @copyright Copyright Â© 2004-2008, Moxiecode Systems AB, All rights reserved.
  */
 
 (function() {
@@ -21,7 +21,7 @@
 						ed.windowManager.open({
 							file : url + '/pastetext.htm',
 							width : 450,
-							height : 400,
+							height : 450,
 							inline : 1
 						}, {
 							plugin_url : url
@@ -38,7 +38,7 @@
 						ed.windowManager.open({
 							file : url + '/pasteword.htm',
 							width : 450,
-							height : 400,
+							height : 450,
 							inline : 1
 						}, {
 							plugin_url : url
