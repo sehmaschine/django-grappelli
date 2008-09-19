@@ -1,0 +1,56 @@
+/* -----------------------------------------------------------------------
+
+   Django Admin Interface - vonautomatisch Theme
+   
+   * Copyright (c) 2008. vonautomatisch werkstaetten
+   * http://www.vonautomatisch.at
+
+----------------------------------------------------------------------- */
+
+/* changelists.css
+----------------------------------------------------------------------- */
+
+#changelist.filtered, #changelist-filter {
+    background: #fff !important;
+    border: none !important;
+}
+#changelist.filtered div.xfull,
+#changelist .paginator,
+#changelist #toolbar { margin-right:170px !important; }
+#changelist #toolbar {
+    border: 1px solid #ddd;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+}
+#changelist .xfull {
+    border: 1px solid #ddd;
+    border-top: none !important;
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-bottomright: 5px;
+}
+.change-list #changelist .xfull ul.toplinks {
+    border-bottom:none !important;
+}
+#changelist ul.toplinks {
+    border: none !important;
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-bottomright: 5px;
+}
+#changelist .paginator {
+    border: 1px solid #ddd !important;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-topright: 5px;
+}
+#changelist-filter {
+    border: 1px solid #ddd !important;
+    -moz-border-radius: 5px !important;
+}
+#changelist-filter h2 {
+    -moz-border-radius-topleft: 5px !important;
+}
+#changelist table {
+    position: relative; margin: 0; left: 0.5px !important;
+    border: 1px solid #ddd !important;
+    -moz-border-radius: 5px !important;
+}

@@ -1,0 +1,7 @@
+/* This file contains the CSS data for the editable area(iframe) of TinyMCE */
+/* You can extend this CSS by adding your own CSS file with the the content_css option */
+
+/* Import other styles */
+@import url('content_base_flatpage.css');
+@import url('content_typo.css');
+@import url('content_grid_flatpage.css');

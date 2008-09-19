@@ -1,0 +1,40 @@
+/* -- Headlines, Listings & Paragraphs ---------- */
+
+h2 {
+	margin: 10px 0 5px 0; padding: 0;
+	font-size: 17px; line-height: 17px;
+	color: #333333 !important;
+}
+h3 {
+	margin: 10px 0 5px 0; padding: 0;
+	font-size: 15px; line-height: 15px;
+	color: #333333 !important;
+}
+h4 {
+	margin: 10px 0 5px 0; padding: 0;
+	font-size: 12px; line-height: 12px;
+	color: #333333 !important;
+}
+
+ol, ul { margin: 10px 0; padding: 2px 0 2px 20px; list-style-position: inside; }
+ol li, ul li { margin: 0; padding: 0; }
+
+p { margin: 10px 0 !important; padding: 0; min-height: 16px !important; }
+
+div { margin: 0; padding: 2px 0;}
+
+
+/* -- Images ---------- */
+
+img { float: none; border: none !important; }
+
+img.img_left { float: left !important; margin: 14px 20px 14px 0; }
+img.img_right { float: right !important; margin: 14px 0 14px 20px; border: none; }
+img.img_block { display: block; float: none !important; clear: both !important; margin: 14px 0 !important; border: none; }
+
+img.img_left_nospacetop { float: left !important; margin: 2px 20px 14px 0; }
+img.img_right_nospacetop { float: right !important; margin: 2px 0 14px 20px; border: none; }
+img.img_block_nospacetop { display: block; float: none !important; clear: both !important; margin: 2px 0 14px 0 !important; border: none; }
+
+
+

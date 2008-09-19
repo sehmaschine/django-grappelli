@@ -1,0 +1,84 @@
+.filebrowser table td { font-size: 10px; }
+.filebrowser table a { font-size: 11px; }
+.filebrowser thead th.sorted a { padding-right: 13px; }
+.filebrowser td { padding: 9px 10px 7px 10px !important; }
+.filebrowser td.fb_icon { padding: 6px 5px 5px 5px !important; }
+
+table a.fb_deletelink, table a.fb_renamelink, table a.fb_selectlink, table a.fb_makethumblink, table a.fb_imagegeneratorlink {
+    cursor: pointer;
+    display: block; padding: 0; margin: 0;
+    width: 23px; height: 17px;
+    background-color: transparent;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+}
+
+table .fb_deletelink:link, table .fb_deletelink:visited {
+    width: 15px;
+    background-image: url('../img/filebrowser_icon_delete.gif');
+}
+table .fb_deletelink:hover, table .fb_deletelink:active { background-image: url('../img/filebrowser_icon_delete_hover.gif'); }
+table .fb_renamelink:link, table .fb_renamelink:visited {
+    width: 14px;
+    background-image: url('../img/filebrowser_icon_rename.gif');
+}
+table .fb_renamelink:hover, table .fb_renamelink:active { background-image: url('../img/filebrowser_icon_rename_hover.gif'); }
+table .fb_selectlink:link, table .fb_selectlink:visited { background-image: url('../img/filebrowser_icon_select.gif'); }
+table .fb_selectlink:hover, table .fb_selectlink:active { background-image: url('../img/filebrowser_icon_select_hover.gif'); }
+table .fb_makethumblink:link, table .fb_makethumblink:visited {
+    width: 50px; height: 29px;
+    background-image: url('../img/filebrowser_icon_makethumb.gif');
+}
+table .fb_makethumblink:hover, table .fb_makethumblink:active { background-image: url('../img/filebrowser_icon_makethumb_hover.gif'); }
+table .fb_imagegeneratorlink:link, table .fb_imagegeneratorlink:visited { background-image: url('../img/filebrowser_icon_imagegenerator.gif'); }
+table .fb_imagegeneratorlink:hover, table .fb_imagegeneratorlink:active { background-image: url('../img/filebrowser_icon_imagegenerator_hover.gif'); }
+
+
+/* Object Tools Basics (For Filebrowser without Grappelli)
+----------------------------------------------------------------------- */
+.object-tools {
+    position:relative; float:right;
+    font-weight:bold; font-family:Arial,Helvetica,sans-serif; text-transform: none;
+    margin-top: -23px; margin-bottom:-10px; padding:0;
+}
+.form-row .object-tools { margin-top:5px; margin-bottom:5px; float:none; }
+.object-tools li { display:block; float:left; color: #ccc; font-size: 12px !important; line-height: 12px !important; padding: 0; background: none !important; }
+.object-tools li:hover { background:none !important; }
+.object-tools a {
+    display: block; float: left;
+    margin: -3px 0 0 15px; padding: 3px 0 2px 22px !important;
+    font-size: 12px !important; line-height: 12px !important;
+    background-color: #fff !important;
+    background-position: 0 0 !important;
+    background-repeat: no-repeat;
+}
+.object-tools a:link, .object-tools a:visited {
+    color: #659DC2 !important;
+}
+.object-tools a:hover, .object-tools a:active {
+    color: #555 !important;
+}
+
+
+/* Object Tools - Links
+----------------------------------------------------------------------- */
+.object-tools .fb_makedirectorylink:link, .object-tools .fb_makedirectorylink:visited {
+    padding-left: 28px !important;
+    background-image: url('../img/filebrowser_object-tools_icon_makedirectory.gif') !important;
+}
+.object-tools .fb_makedirectorylink:hover, .object-tools .fb_makedirectorylink:active { background-image: url('../img/filebrowser_object-tools_icon_makedirectory_hover.gif') !important; }
+.object-tools .fb_multipleuploadlink:link, .object-tools .fb_multipleuploadlink:visited {
+    padding-left: 24px !important;
+    background-image: url('../img/filebrowser_object-tools_icon_multipleupload.gif') !important;
+}
+.object-tools .fb_multipleuploadlink:hover, .object-tools .fb_multipleuploadlink:active { background-image: url('../img/filebrowser_object-tools_icon_multipleupload_hover.gif') !important; }
+.object-tools .fb_imagegeneratorlink:link, .object-tools .fb_imagegeneratorlink:visited {
+    padding-left: 26px !important;
+    background-image: url('../img/filebrowser_object-tools_icon_imagegenerator.gif') !important;
+}
+.object-tools .fb_imagegeneratorlink:hover, .object-tools .fb_imagegeneratorlink:active { background-image: url('../img/filebrowser_object-tools_icon_imagegenerator_hover.gif') !important; }
+.object-tools .fb_makethumbslink:link, .object-tools .fb_makethumbslink:visited {
+    padding-left: 28px !important;
+    background-image: url('../img/filebrowser_object-tools_icon_makethumb.gif') !important;
+}
+.object-tools .fb_makethumbslink:hover, .object-tools .fb_makethumbslink:active { background-image: url('../img/filebrowser_object-tools_icon_makethumb_hover.gif') !important; }

@@ -1,0 +1,20 @@
+/*
+    DJANGO Admin
+    by Wilson Miner wilson@lawrence.com
+*/
+
+@import url('grappelli_reset.css');
+
+/* Block IE 5 */
+@import "null.css?\"\{";
+
+/* Import other styles */
+@import url('global.css');
+@import url('layout.css');
+
+/* Import vonautomatisch Theme */
+@import url('../css_grappelli/grappelli.css');
+@import url('../css_grappelli/grappelli_fieldsets.css');
+
+/* Import patch for IE 6 Windows */
+/*\*/ @import "patch-iewin.css"; /**/
