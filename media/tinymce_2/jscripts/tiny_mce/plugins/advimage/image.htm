@@ -17,7 +17,7 @@
 			<ul>
 				<li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{#advimage_dlg.tab_general}</a></span></li>
 				<li id="appearance_tab"><span><a href="javascript:mcTabs.displayTab('appearance_tab','appearance_panel');" onmousedown="return false;">{#advimage_dlg.tab_appearance}</a></span></li>
-				<!-- <li id="advanced_tab"><span><a href="javascript:mcTabs.displayTab('advanced_tab','advanced_panel');" onmousedown="return false;">{#advimage_dlg.tab_advanced}</a></span></li> -->
+                <li id="advanced_tab" style="display: none;"><span><a href="javascript:mcTabs.displayTab('advanced_tab','advanced_panel');" onmousedown="return false;">{#advimage_dlg.tab_advanced}</a></span></li>
 			</ul>
 		</div>
 
@@ -36,10 +36,10 @@
 									</tr>
 								  </table></td>
 							</tr>
-							<tr>
-								<td><label for="src_list">{#advimage_dlg.image_list}</label></td>
-								<td><select id="src_list" name="src_list" onchange="document.getElementById('src').value=this.options[this.selectedIndex].value;document.getElementById('alt').value=this.options[this.selectedIndex].text;document.getElementById('title').value=this.options[this.selectedIndex].text;ImageDialog.showPreviewImage(this.options[this.selectedIndex].value);"></select></td>
-							</tr>
+                            <tr style="display: none;">
+                                <td><label for="src_list">{#advimage_dlg.image_list}</label></td>
+                                <td><select id="src_list" name="src_list" onchange="document.getElementById('src').value=this.options[this.selectedIndex].value;document.getElementById('alt').value=this.options[this.selectedIndex].text;document.getElementById('title').value=this.options[this.selectedIndex].text;ImageDialog.showPreviewImage(this.options[this.selectedIndex].value);"></select></td>
+                            </tr>
 							<tr> 
 								<td class="column1"><label id="altlabel" for="alt">{#advimage_dlg.alt}</label></td> 
 								<td colspan="2"><input id="alt" name="alt" type="text" value="" /></td> 
@@ -51,10 +51,10 @@
 						</table>
 				</fieldset>
 
-                <!-- <fieldset>
+                <fieldset style="display: none;">
                     <legend>{#advimage_dlg.preview}</legend>
                     <div id="prev"></div>
-                </fieldset> -->
+                </fieldset>
 			</div>
 
 			<div id="appearance_panel" class="panel">
@@ -62,7 +62,7 @@
 					<legend>{#advimage_dlg.tab_appearance}</legend>
 
 					<table border="0" cellpadding="4" cellspacing="0">
-                        <!-- <tr> 
+                        <tr style="display: none;">
                             <td class="column1"><label id="alignlabel" for="align">{#advimage_dlg.align}</label></td> 
                             <td><select id="align" name="align" onchange="ImageDialog.updateStyle('align');ImageDialog.changeAppearance();"> 
                                     <option value="">{#not_set}</option> 
@@ -85,56 +85,56 @@
                                     erat volutpat.
                                 </div>
                             </td>
-                        </tr> -->
+                        </tr>
 
-						<tr>
-							<td class="column1"><label id="widthlabel" for="width">{#advimage_dlg.dimensions}</label></td>
-							<td nowrap="nowrap">
-								<input name="width" type="text" id="width" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeHeight();" /> x 
-								<input name="height" type="text" id="height" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeWidth();" /> px
-							</td>
-						</tr>
+                        <tr>
+                            <td class="column1"><label id="widthlabel" for="width">{#advimage_dlg.dimensions}</label></td>
+                            <td nowrap="nowrap">
+                                <input name="width" type="text" id="width" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeHeight();" /> x 
+                                <input name="height" type="text" id="height" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeWidth();" /> px
+                            </td>
+                        </tr>
 
-						<tr>
-							<td>&nbsp;</td>
-							<td><table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input id="constrain" type="checkbox" name="constrain" class="checkbox" /></td>
-										<td><label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label></td>
-									</tr>
-								</table></td>
-						</tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td><input id="constrain" type="checkbox" name="constrain" class="checkbox" /></td>
+                                        <td><label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label></td>
+                                    </tr>
+                                </table></td>
+                        </tr>
 
-                        <!-- <tr>
+                        <tr style="display: none;">
                             <td class="column1"><label id="vspacelabel" for="vspace">{#advimage_dlg.vspace}</label></td> 
                             <td><input name="vspace" type="text" id="vspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" />
                             </td>
-                        </tr> -->
+                        </tr>
 
-                        <!-- <tr> 
+                        <tr style="display: none;">
                             <td class="column1"><label id="hspacelabel" for="hspace">{#advimage_dlg.hspace}</label></td> 
                             <td><input name="hspace" type="text" id="hspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" /></td> 
-                        </tr> -->
+                        </tr>
 
-                        <!-- <tr>
+                        <tr style="display: none;">
                             <td class="column1"><label id="borderlabel" for="border">{#advimage_dlg.border}</label></td> 
                             <td><input id="border" name="border" type="text" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" /></td> 
-                        </tr> -->
+                        </tr>
 
 						<tr>
 							<td><label for="class_list">{#class_name}</label></td>
 							<td colspan="2"><select id="class_list" name="class_list" class="mceEditableSelect"></select></td>
 						</tr>
 
-                        <!-- <tr>
+                        <tr style="display: none;">
                             <td class="column1"><label id="stylelabel" for="style">{#advimage_dlg.style}</label></td> 
                             <td colspan="2"><input id="style" name="style" type="text" value="" onchange="ImageDialog.changeAppearance();" /></td> 
-                        </tr> -->
+                        </tr>
 
-						<!-- <tr>
-							<td class="column1"><label id="classeslabel" for="classes">{#advimage_dlg.classes}</label></td> 
-							<td colspan="2"><input id="classes" name="classes" type="text" value="" onchange="selectByValue(this.form,'classlist',this.value,true);" /></td> 
-						</tr> -->
+                        <tr style="display: none;">
+                            <td class="column1"><label id="classeslabel" for="classes">{#advimage_dlg.classes}</label></td> 
+                            <td colspan="2"><input id="classes" name="classes" type="text" value="" onchange="selectByValue(this.form,'classlist',this.value,true);" /></td> 
+                        </tr>
 					</table>
 				</fieldset>
 			</div>

@@ -579,6 +579,10 @@ ul.messagelist li {
     -moz-border-radius: 5px;
     background: #cc3d3d !important;
 }
+body.login .errornote {
+    margin: 0 -1px !important;
+    -moz-border-radius: 0;
+}
 .errors ul.errorlist { margin: 0 !important; }
 .errorlist li {
     display:block; margin:0; padding:2px 5px 2px 130px;

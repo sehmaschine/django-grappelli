@@ -60,7 +60,7 @@ tinyMCE.init({
     language: "en",
     skin: "o2k7",
     browsers: "gecko",
-    dialog_type: "modal",
+    dialog_type: "window",
     object_resizing: true,
     cleanup_on_startup: true,
     forced_root_block: "p",
@@ -72,7 +72,7 @@ tinyMCE.init({
     theme_advanced_toolbar_location: "top",
     theme_advanced_toolbar_align: "left",
     theme_advanced_statusbar_location: "none",
-    theme_advanced_buttons1: "formatselect,styleselect,bold,italic,underline,bullist,numlist,undo,redo,link,unlink,image,code,template,visualchars,fullscreen,pasteword,media,search,replace,charmap",
+    theme_advanced_buttons1: "formatselect,styleselect,bold,italic,underline,bullist,numlist,undo,redo,link,unlink,image,code,template,pasteword,media,youtube,charmap,visualchars,fullscreen",
     theme_advanced_buttons2: "",
     theme_advanced_buttons3: "",
     theme_advanced_path: false,
@@ -80,15 +80,39 @@ tinyMCE.init({
     theme_advanced_styles: "[all] clearfix=clearfix;[p] small=small;[img] Image left-aligned=img_left;[img] Image left-aligned (nospace)=img_left_nospacetop;[img] Image right-aligned=img_right;[img] Image right-aligned (nospace)=img_right_nospacetop;[img] Image Block=img_block;[img] Image Block (nospace)=img_block_nospacetop;[div] column span-2=column span-2;[div] column span-4=column span-4;[div] column span-8=column span-8",
     width: '700',
     height: '200',
-    plugins: "advimage,advlink,fullscreen,visualchars,paste,media,template,searchreplace",
-    advimage_styles: "Linksbündig neben Text=img_left;Rechtsbündig neben Text=img_right;Eigener Bildblock=img_block",
-    advlink_styles: "intern=internal;extern=external",
+    plugins: "advimage,advlink,fullscreen,visualchars,paste,media,template,searchreplace,youtube",
+    theme_advanced_styles: "Image left-aligned=img_left;Image left-aligned (nospace)=img_left_nospacetop;Image right-aligned=img_right;Image right-aligned (nospace)=img_right_nospacetop;Image Block=img_block",
     advimage_update_dimensions_onchange: true,
+    advlink_styles: "intern=internal;extern=external",
     file_browser_callback: "CustomFileBrowser",
-    cleanup_callback : "CustomCleanup",
+    //cleanup_callback : "CustomCleanup",
     indentation : '10px',
     fix_list_elements : true,
     relative_urls: false,
+    remove_script_host : true,
+    accessibility_warnings : false,
+    template_templates : [
+        {
+            title : "2 Columns (300px / 300px)",
+            src : "tinymce/snippets/2col_symm.html",
+            description : "Symmetrical 2 Columns."
+        },
+        {
+            title : "2 Columns (420px / 140px)",
+            src : "tinymce/snippets/2col_asymm_left.html",
+            description : "Asymmetrical 2 Columns: big left, small right."
+        },
+        {
+            title : "2 Columns (140px / 420px)",
+            src : "tinymce/snippets/2col_asymm_right.html",
+            description : "Asymmetrical 2 Columns: small left, big right."
+        },
+        {
+            title : "3 Columns (300px / 300px)",
+            src : "tinymce/snippets/3col_symm.html",
+            description : "3 Columns."
+        },
+    ],
     valid_elements : "" +
     "-p," + 
     "a[href|target=_blank|class]," +

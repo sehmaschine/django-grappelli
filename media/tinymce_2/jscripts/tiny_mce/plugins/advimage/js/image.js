@@ -37,26 +37,26 @@ var ImageDialog = {
 			nl.longdesc.value = dom.getAttrib(n, 'longdesc');
 			nl.insert.value = ed.getLang('update');
 
-			if (/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/.test(dom.getAttrib(n, 'onmouseover')))
-				nl.onmouseoversrc.value = dom.getAttrib(n, 'onmouseover').replace(/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/, '$1');
+            if (/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/.test(dom.getAttrib(n, 'onmouseover')))
+             nl.onmouseoversrc.value = dom.getAttrib(n, 'onmouseover').replace(/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/, '$1');
+            
+            if (/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/.test(dom.getAttrib(n, 'onmouseout')))
+             nl.onmouseoutsrc.value = dom.getAttrib(n, 'onmouseout').replace(/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/, '$1');
 
-			if (/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/.test(dom.getAttrib(n, 'onmouseout')))
-				nl.onmouseoutsrc.value = dom.getAttrib(n, 'onmouseout').replace(/^\s*this.src\s*=\s*\'([^\']+)\';?\s*$/, '$1');
-
-			if (ed.settings.inline_styles) {
-				// Move attribs to styles
-				if (dom.getAttrib(n, 'align'))
-					this.updateStyle('align');
-
-				if (dom.getAttrib(n, 'hspace'))
-					this.updateStyle('hspace');
-
-				if (dom.getAttrib(n, 'border'))
-					this.updateStyle('border');
-
-				if (dom.getAttrib(n, 'vspace'))
-					this.updateStyle('vspace');
-			}
+            if (ed.settings.inline_styles) {
+             // Move attribs to styles
+             if (dom.getAttrib(n, 'align'))
+                 this.updateStyle('align');
+            
+             if (dom.getAttrib(n, 'hspace'))
+                 this.updateStyle('hspace');
+            
+             if (dom.getAttrib(n, 'border'))
+                 this.updateStyle('border');
+            
+             if (dom.getAttrib(n, 'vspace'))
+                 this.updateStyle('vspace');
+            }
 		}
 
 		// Setup browse button
@@ -74,9 +74,9 @@ var ImageDialog = {
 		if (isVisible('outbrowser'))
 			document.getElementById('onmouseoutsrc').style.width = '260px';
 
-		// If option enabled default contrain proportions to checked
-		if (ed.getParam("advimage_constrain_proportions", true))
-			f.constrain.checked = true;
+        // If option enabled default contrain proportions to checked
+        if (ed.getParam("advimage_constrain_proportions", true))
+            f.constrain.checked = true;
 
 		// Check swap image if valid data
 		if (nl.onmouseoversrc.value || nl.onmouseoutsrc.value)
@@ -124,22 +124,22 @@ var ImageDialog = {
 		if (tinymce.isWebKit)
 			ed.getWin().focus();
 
-		if (!ed.settings.inline_styles) {
-			args = {
-				vspace : nl.vspace.value,
-				hspace : nl.hspace.value,
-				border : nl.border.value,
-				align : getSelectValue(f, 'align')
-			};
-		} else {
-			// Remove deprecated values
-			args = {
-				vspace : '',
-				hspace : '',
-				border : '',
-				align : ''
-			};
-		}
+        if (!ed.settings.inline_styles) {
+         args = {
+             vspace : nl.vspace.value,
+             hspace : nl.hspace.value,
+             border : nl.border.value,
+             align : getSelectValue(f, 'align')
+         };
+        } else {
+         // Remove deprecated values
+         args = {
+             vspace : '',
+             hspace : '',
+             border : '',
+             align : ''
+         };
+        }
 
 		tinymce.extend(args, {
 			src : nl.src.value,
@@ -330,7 +330,7 @@ var ImageDialog = {
 
 	changeHeight : function() {
 		var f = document.forms[0], tp, t = this;
-
+        
 		if (!f.constrain.checked || !t.preloadImg) {
 			return;
 		}
@@ -344,7 +344,7 @@ var ImageDialog = {
 
 	changeWidth : function() {
 		var f = document.forms[0], tp, t = this;
-
+        
 		if (!f.constrain.checked || !t.preloadImg) {
 			return;
 		}
