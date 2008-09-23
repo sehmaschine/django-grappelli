@@ -50,11 +50,11 @@ function resizeInputs() {
 	var el = document.getElementById('htmlSource');
 
 	if (!tinymce.isIE) {
-		 wHeight = self.innerHeight - 65;
-		 wWidth = self.innerWidth - 16;
+		 wHeight = self.innerHeight - 105;
+		 wWidth = self.innerWidth - 18;
 	} else {
-		 wHeight = document.body.clientHeight - 70;
-		 wWidth = document.body.clientWidth - 16;
+		 wHeight = document.body.clientHeight - 110;
+		 wWidth = document.body.clientWidth - 18;
 	}
 
 	el.style.height = Math.abs(wHeight) + 'px';

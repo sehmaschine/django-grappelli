@@ -56,6 +56,7 @@ function CustomCleanup(type, value) {
 
 tinyMCE.init({
     mode: "textareas",
+    //elements: "summary, body",
     theme: "advanced",
     language: "en",
     skin: "o2k7",
@@ -94,22 +95,22 @@ tinyMCE.init({
     template_templates : [
         {
             title : "2 Columns (300px / 300px)",
-            src : "tinymce/snippets/2col_symm.html",
+            src : "/tinymce-templates/snippets/2col/",
             description : "Symmetrical 2 Columns."
         },
         {
             title : "2 Columns (420px / 140px)",
-            src : "tinymce/snippets/2col_asymm_left.html",
+            src : "/tinymce-templates/snippets/2col_left/",
             description : "Asymmetrical 2 Columns: big left, small right."
         },
         {
             title : "2 Columns (140px / 420px)",
-            src : "tinymce/snippets/2col_asymm_right.html",
+            src : "/tinymce-templates/snippets/2col_right/",
             description : "Asymmetrical 2 Columns: small left, big right."
         },
         {
             title : "3 Columns (300px / 300px)",
-            src : "tinymce/snippets/3col_symm.html",
+            src : "/tinymce-templates/snippets/3col/",
             description : "3 Columns."
         },
     ],

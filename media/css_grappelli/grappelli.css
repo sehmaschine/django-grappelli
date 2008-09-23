@@ -6,7 +6,7 @@
    Based on Django Admin Interface
    * http://www.djangoproject.com
    
-   Developed for Mozilla Firefox 3.0+ / using CSS 3 Specifications
+   Developed for Mozilla Firefox 3.0.1+ / using CSS 3 Specifications
    
    * See README for instructions on how to use Grappelli.
    * For credits and origins, see AUTHORS.
@@ -16,35 +16,35 @@
      See LICENSE for more info.
 
 ----------------------------------------------------------------------- */
-@import url('../css_grappelli/grappelli_fieldsets.css');
+@import url('grappelli_fieldsets.css');
 
 
 /* Page Structures
 ----------------------------------------------------------------------- */
 #container { z-index: 900; }
-#content { margin:20px 15px; }
-#content-related { float:right; width:18em; position:relative; margin-right:-38em; }
-#content-related-extended { float:right; width:18em; position:relative; margin-right:-19em; }
+/*#content { margin: 20px 15px; }*/
+#content-related { float: right; width: 18em; position: relative; margin-right: -38em; }
+#content-related-extended { float: right; width: 18em; position: relative; margin-right: -19em; }
 
 
 /* Global Definitions (Typography, Tables)
 ----------------------------------------------------------------------- */
 
-body { font-family:Arial,"Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,sans-serif; }
+body { font-family: Arial, sans-serif; }
 
 /*  Global Defaults ----------------------- */
 h1 {
-    margin: 5px 0 10px;
-    font-size:15px !important;
+    margin: 20px 0 10px;
+    font-size: 15px;
 }
 
 a:link img.preview, a:visited img.preview {
     padding: 5px;
     border: 1px solid #79a5c1;
     -moz-border-radius: 3px;
-    background: #fff !important;
+    background: #fff;
 }
-a:hover img.preview, a:active img.preview { border-color:#777; }
+a:hover img.preview, a:active img.preview { border-color: #777; }
 
 /* Tables  ----------------------- */
 fieldset table {
@@ -53,7 +53,7 @@ fieldset table {
 }
 td, th {
     padding: 7px 15px 6px 10px;
-    font-family: Arial,"Lucida Grande", Verdana, sans-serif; color: #666;
+    font-family: Arial, sans-serif; color: #666;
 }
 .module tbody tr:last-child td, .module tbody tr:last-child th { border-bottom: none; }
 

@@ -21,242 +21,199 @@
 			</ul>
 		</div>
 
-		<div class="panel_wrapper">
-			<div id="general_panel" class="panel current">
-				<fieldset>
-					<legend>{#advlink_dlg.general_props}</legend>
+        <div class="panel_wrapper">
+            <div id="general_panel" class="panel current">
+                <fieldset class="module">
+                    <legend>{#advlink_dlg.general_props}</legend>
+                    <div class="form-row first">
+                        <label id="hreflabel" for="href">{#advlink_dlg.url}</label>
+                        <input id="href" name="href" type="text" class="mceFocus" value="" onchange="selectByValue(this.form,'linklisthref',this.value);" />
+                        <div id="hrefbrowsercontainer">&nbsp;</div>
+                    </div>
+                    <div id="linklisthrefrow" class="form-row">
+                        <label for="linklisthref">{#advlink_dlg.list}</label>
+                        <div id="linklisthrefcontainer">&nbsp;</div>
+                    </div>
+                    <div class="form-row">
+                        <label for="anchorlist">{#advlink_dlg.anchor_names}</label>
+                        <div id="anchorlistcontainer">&nbsp;</div>
+                    </div>
+                    <div class="form-row">
+                        <label id="targetlistlabel" for="targetlist">{#advlink_dlg.target}</label>
+                        <div id="targetlistcontainer">&nbsp;</div>
+                    </div>
+                    <div class="form-row">
+                        <label id="titlelabel" for="title">{#advlink_dlg.titlefield}</label>
+                        <input id="title" name="title" type="text" value="" />
+                    </div>
+                    <div class="form-row last">
+                        <label id="classlabel" for="classlist">{#class_name}</label>
+                        <select id="classlist" name="classlist" onchange="changeClass();">
+                            <option value="" selected>{#not_set}</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </div>
 
-					<table border="0" cellpadding="4" cellspacing="0">
-						<tr>
-						  <td nowrap="nowrap"><label id="hreflabel" for="href">{#advlink_dlg.url}</label></td>
-						  <td><table border="0" cellspacing="0" cellpadding="0">
-								<tr>
-								  <td><input id="href" name="href" type="text" class="mceFocus" value="" onchange="selectByValue(this.form,'linklisthref',this.value);" /></td>
-								  <td id="hrefbrowsercontainer">&nbsp;</td>
-								</tr>
-							  </table></td>
-						</tr>
-						<tr id="linklisthrefrow">
-							<td class="column1"><label for="linklisthref">{#advlink_dlg.list}</label></td>
-							<td colspan="2" id="linklisthrefcontainer">&nbsp;</td>
-						</tr>
-						<tr>
-							<td class="column1"><label for="anchorlist">{#advlink_dlg.anchor_names}</label></td>
-							<td colspan="2" id="anchorlistcontainer">&nbsp;</td>
-						</tr>
-						<tr>
-							<td><label id="targetlistlabel" for="targetlist">{#advlink_dlg.target}</label></td>
-							<td id="targetlistcontainer">&nbsp;</td>
-						</tr>
-						<tr>
-							<td nowrap="nowrap"><label id="titlelabel" for="title">{#advlink_dlg.titlefield}</label></td>
-							<td><input id="title" name="title" type="text" value="" /></td>
-						</tr>
-						<tr>
-							<td><label id="classlabel" for="classlist">{#class_name}</label></td>
-							<td>
-								 <select id="classlist" name="classlist" onchange="changeClass();">
-									<option value="" selected>{#not_set}</option>
-								 </select>
-							</td>
-						</tr>
-					</table>
-				</fieldset>
-			</div>
+            <div id="popup_panel" class="panel">
+                <fieldset class="module">
+                    <legend>{#advlink_dlg.popup_props}</legend>
+                    <div class="form-row first">
+                        <label id="ispopuplabel" for="ispopup">{#advlink_dlg.popup}</label>
+                        <input type="checkbox" id="ispopup" name="ispopup" class="radio" onclick="setPopupControlsDisabled(!this.checked);buildOnClick();" />
+                    </div>
+                    <div class="form-row">
+                        <label for="popupurl">{#advlink_dlg.popup_url}</label>
+                        <input type="text" name="popupurl" id="popupurl" value="" onchange="buildOnClick();" />
+                        <div id="popupurlbrowsercontainer">&nbsp;</div>
+                    </div>
+                    <div class="form-row">
+                        <label for="popupname">{#advlink_dlg.popup_name}</label>
+                        <input type="text" name="popupname" id="popupname" value="" onchange="buildOnClick();" />
+                    </div>
+                    <div class="form-row">
+                        <label>{#advlink_dlg.popup_size}</label>
+                        <input type="text" id="popupwidth" class="number" name="popupwidth" value="" onchange="buildOnClick();" /> x
+                        <input type="text" id="popupheight" class="number" name="popupheight" value="" onchange="buildOnClick();" /> px
+                    </div>
+                    <div class="form-row">
+                        <label>{#advlink_dlg.popup_position}</label>
+                        <input type="text" id="popupleft" class="number" name="popupleft" value="" onchange="buildOnClick();" /> /&nbsp;                              
+                        <input type="text" id="popuptop" class="number" name="popuptop" value="" onchange="buildOnClick();" /> (c /c = center)
+                    </div>
+                    <div class="form-row combine">
+                        <label id="popuplocationlabel" for="popuplocation">{#advlink_dlg.popup_location}</label>
+                        <input type="checkbox" id="popuplocation" name="popuplocation" class="checkbox" onchange="buildOnClick();" />
+                    </div>
+                    <div class="form-row combine">
+                        <label id="popupscrollbarslabel" for="popupscrollbars">{#advlink_dlg.popup_scrollbars}</label>
+                        <input type="checkbox" id="popupscrollbars" name="popupscrollbars" class="checkbox" onchange="buildOnClick();" />
+                    </div>
+                    <div class="form-row">
+                        <label id="popupmenubarlabel" for="popupmenubar">{#advlink_dlg.popup_menubar}</label>
+                        <input type="checkbox" id="popupmenubar" name="popupmenubar" class="checkbox" onchange="buildOnClick();" />
+                    </div>
+                    <div class="form-row">
+                        <label id="popupresizablelabel" for="popupresizable">{#advlink_dlg.popup_resizable}</label>
+                        <input type="checkbox" id="popupresizable" name="popupresizable" class="checkbox" onchange="buildOnClick();" />
+                    </div>
+                    <div class="form-row combine">
+                        <label id="popuptoolbarlabel" for="popuptoolbar">{#advlink_dlg.popup_toolbar}</label>
+                        <input type="checkbox" id="popuptoolbar" name="popuptoolbar" class="checkbox" onchange="buildOnClick();" />
+                        <input type="checkbox" id="popupdependent" name="popupdependent" class="checkbox additional" onchange="buildOnClick();" />
+                        <label id="popupdependentlabel" class="additional" for="popupdependent">{#advlink_dlg.popup_dependent}</label>
+                    </div>
+                    <div class="form-row">
+                        <label id="popupstatuslabel" for="popupstatus">{#advlink_dlg.popup_statusbar}</label>
+                        <input type="checkbox" id="popupstatus" name="popupstatus" class="checkbox" onchange="buildOnClick();" />
+                    </div>
+                    <div class="form-row">
+                        <label id="popupreturnlabel" for="popupreturn">{#advlink_dlg.popup_return}</label>
+                        <input type="checkbox" id="popupreturn" name="popupreturn" class="checkbox" onchange="buildOnClick();" checked="checked" />
+                    </div>
+                </fieldset>
+            </div>
 
-			<div id="popup_panel" class="panel">
-				<fieldset>
-					<legend>{#advlink_dlg.popup_props}</legend>
+            <div id="advanced_panel" class="panel">
+                <fieldset class="module">
+                    <legend>{#advlink_dlg.advanced_props}</legend>
+                    <div class="form-row first last">
+                        <label id="idlabel" for="id">{#advlink_dlg.id}</label>
+                        <input id="id" name="id" type="text" value="" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="stylelabel" for="style">{#advlink_dlg.style}</label>
+                        <input type="text" id="style" name="style" value="" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="classeslabel" for="classes">{#advlink_dlg.classes}</label>
+                        <input type="text" id="classes" name="classes" value="" onchange="selectByValue(this.form,'classlist',this.value,true);" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="targetlabel" for="target">{#advlink_dlg.target_name}</label>
+                        <input type="text" id="target" name="target" value="" onchange="selectByValue(this.form,'targetlist',this.value,true);" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="dirlabel" for="dir">{#advlink_dlg.langdir}</label>
+                        <select id="dir" name="dir"> 
+                            <option value="">{#not_set}</option> 
+                            <option value="ltr">{#advlink_dlg.ltr}</option> 
+                            <option value="rtl">{#advlink_dlg.rtl}</option> 
+                        </select>
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="hreflanglabel" for="hreflang">{#advlink_dlg.target_langcode}</label>
+                        <input type="text" id="hreflang" name="hreflang" value="" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="langlabel" for="lang">{#advlink_dlg.langcode}</label>
+                        <input id="lang" name="lang" type="text" value="" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="charsetlabel" for="charset">{#advlink_dlg.encoding}</label>
+                        <input type="text" id="charset" name="charset" value="" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="typelabel" for="type">{#advlink_dlg.mime}</label>
+                        <input type="text" id="type" name="type" value="" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="rellabel" for="rel">{#advlink_dlg.rel}</label>
+                        <select id="rel" name="rel"> 
+                            <option value="">{#not_set}</option> 
+                            <option value="lightbox">Lightbox</option> 
+                            <option value="alternate">Alternate</option> 
+                            <option value="designates">Designates</option> 
+                            <option value="stylesheet">Stylesheet</option> 
+                            <option value="start">Start</option> 
+                            <option value="next">Next</option> 
+                            <option value="prev">Prev</option> 
+                            <option value="contents">Contents</option> 
+                            <option value="index">Index</option> 
+                            <option value="glossary">Glossary</option> 
+                            <option value="copyright">Copyright</option> 
+                            <option value="chapter">Chapter</option> 
+                            <option value="subsection">Subsection</option> 
+                            <option value="appendix">Appendix</option> 
+                            <option value="help">Help</option> 
+                            <option value="bookmark">Bookmark</option>
+                            <option value="nofollow">No Follow</option>
+                            <option value="tag">Tag</option>
+                        </select>
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="revlabel" for="rev">{#advlink_dlg.rev}</label>
+                        <select id="rev" name="rev"> 
+                            <option value="">{#not_set}</option> 
+                            <option value="alternate">Alternate</option> 
+                            <option value="designates">Designates</option> 
+                            <option value="stylesheet">Stylesheet</option> 
+                            <option value="start">Start</option> 
+                            <option value="next">Next</option> 
+                            <option value="prev">Prev</option> 
+                            <option value="contents">Contents</option> 
+                            <option value="index">Index</option> 
+                            <option value="glossary">Glossary</option> 
+                            <option value="copyright">Copyright</option> 
+                            <option value="chapter">Chapter</option> 
+                            <option value="subsection">Subsection</option> 
+                            <option value="appendix">Appendix</option> 
+                            <option value="help">Help</option> 
+                            <option value="bookmark">Bookmark</option> 
+                        </select>
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="tabindexlabel" for="tabindex">{#advlink_dlg.tabindex}</label>
+                        <input type="text" id="tabindex" name="tabindex" value="" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="accesskeylabel" for="accesskey">{#advlink_dlg.accesskey}</label>
+                        <input type="text" id="accesskey" name="accesskey" value="" />
+                    </div>    
+                </fieldset>
+            </div>
 
-					<input type="checkbox" id="ispopup" name="ispopup" class="radio" onclick="setPopupControlsDisabled(!this.checked);buildOnClick();" />
-					<label id="ispopuplabel" for="ispopup">{#advlink_dlg.popup}</label>
-
-					<table border="0" cellpadding="0" cellspacing="4">
-						<tr>
-							<td nowrap="nowrap"><label for="popupurl">{#advlink_dlg.popup_url}</label>&nbsp;</td>
-							<td>
-								<table border="0" cellspacing="0" cellpadding="0">
-									<tr>
-										<td><input type="text" name="popupurl" id="popupurl" value="" onchange="buildOnClick();" /></td>
-										<td id="popupurlbrowsercontainer">&nbsp;</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<td nowrap="nowrap"><label for="popupname">{#advlink_dlg.popup_name}</label>&nbsp;</td>
-							<td><input type="text" name="popupname" id="popupname" value="" onchange="buildOnClick();" /></td>
-						</tr>
-						<tr>
-							<td nowrap="nowrap"><label>{#advlink_dlg.popup_size}</label>&nbsp;</td>
-							<td nowrap="nowrap">
-								<input type="text" id="popupwidth" name="popupwidth" value="" onchange="buildOnClick();" /> x
-								<input type="text" id="popupheight" name="popupheight" value="" onchange="buildOnClick();" /> px
-							</td>
-						</tr>
-						<tr>
-							<td nowrap="nowrap" id="labelleft"><label>{#advlink_dlg.popup_position}</label>&nbsp;</td>
-							<td nowrap="nowrap">
-								<input type="text" id="popupleft" name="popupleft" value="" onchange="buildOnClick();" /> /                                
-								<input type="text" id="popuptop" name="popuptop" value="" onchange="buildOnClick();" /> (c /c = center)
-							</td>
-						</tr>
-					</table>
-
-					<fieldset>
-						<legend>{#advlink_dlg.popup_opts}</legend>
-
-						<table border="0" cellpadding="0" cellspacing="4">
-							<tr>
-								<td><input type="checkbox" id="popuplocation" name="popuplocation" class="checkbox" onchange="buildOnClick();" /></td>
-								<td nowrap="nowrap"><label id="popuplocationlabel" for="popuplocation">{#advlink_dlg.popup_location}</label></td>
-								<td><input type="checkbox" id="popupscrollbars" name="popupscrollbars" class="checkbox" onchange="buildOnClick();" /></td>
-								<td nowrap="nowrap"><label id="popupscrollbarslabel" for="popupscrollbars">{#advlink_dlg.popup_scrollbars}</label></td>
-							</tr>
-							<tr>
-								<td><input type="checkbox" id="popupmenubar" name="popupmenubar" class="checkbox" onchange="buildOnClick();" /></td>
-								<td nowrap="nowrap"><label id="popupmenubarlabel" for="popupmenubar">{#advlink_dlg.popup_menubar}</label></td>
-								<td><input type="checkbox" id="popupresizable" name="popupresizable" class="checkbox" onchange="buildOnClick();" /></td>
-								<td nowrap="nowrap"><label id="popupresizablelabel" for="popupresizable">{#advlink_dlg.popup_resizable}</label></td>
-							</tr>
-							<tr>
-								<td><input type="checkbox" id="popuptoolbar" name="popuptoolbar" class="checkbox" onchange="buildOnClick();" /></td>
-								<td nowrap="nowrap"><label id="popuptoolbarlabel" for="popuptoolbar">{#advlink_dlg.popup_toolbar}</label></td>
-								<td><input type="checkbox" id="popupdependent" name="popupdependent" class="checkbox" onchange="buildOnClick();" /></td>
-								<td nowrap="nowrap"><label id="popupdependentlabel" for="popupdependent">{#advlink_dlg.popup_dependent}</label></td>
-							</tr>
-							<tr>
-								<td><input type="checkbox" id="popupstatus" name="popupstatus" class="checkbox" onchange="buildOnClick();" /></td>
-								<td nowrap="nowrap"><label id="popupstatuslabel" for="popupstatus">{#advlink_dlg.popup_statusbar}</label></td>
-								<td><input type="checkbox" id="popupreturn" name="popupreturn" class="checkbox" onchange="buildOnClick();" checked="checked" /></td>
-								<td nowrap="nowrap"><label id="popupreturnlabel" for="popupreturn">{#advlink_dlg.popup_return}</label></td>
-							</tr>
-						</table>
-					</fieldset>
-				</fieldset>
-			</div>
-
-			<div id="advanced_panel" class="panel">
-			<fieldset>
-					<legend>{#advlink_dlg.advanced_props}</legend>
-
-					<table border="0" cellpadding="0" cellspacing="4">
-						<tr>
-							<td class="column1"><label id="idlabel" for="id">{#advlink_dlg.id}</label></td> 
-							<td><input id="id" name="id" type="text" value="" /></td> 
-						</tr>
-
-                        <!-- <tr>
-                            <td><label id="stylelabel" for="style">{#advlink_dlg.style}</label></td>
-                            <td><input type="text" id="style" name="style" value="" /></td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="classeslabel" for="classes">{#advlink_dlg.classes}</label></td>
-                            <td><input type="text" id="classes" name="classes" value="" onchange="selectByValue(this.form,'classlist',this.value,true);" /></td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="targetlabel" for="target">{#advlink_dlg.target_name}</label></td>
-                            <td><input type="text" id="target" name="target" value="" onchange="selectByValue(this.form,'targetlist',this.value,true);" /></td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td class="column1"><label id="dirlabel" for="dir">{#advlink_dlg.langdir}</label></td> 
-                            <td>
-                                <select id="dir" name="dir"> 
-                                        <option value="">{#not_set}</option> 
-                                        <option value="ltr">{#advlink_dlg.ltr}</option> 
-                                        <option value="rtl">{#advlink_dlg.rtl}</option> 
-                                </select>
-                            </td> 
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="hreflanglabel" for="hreflang">{#advlink_dlg.target_langcode}</label></td>
-                            <td><input type="text" id="hreflang" name="hreflang" value="" /></td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td class="column1"><label id="langlabel" for="lang">{#advlink_dlg.langcode}</label></td> 
-                            <td>
-                                <input id="lang" name="lang" type="text" value="" />
-                            </td> 
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="charsetlabel" for="charset">{#advlink_dlg.encoding}</label></td>
-                            <td><input type="text" id="charset" name="charset" value="" /></td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="typelabel" for="type">{#advlink_dlg.mime}</label></td>
-                            <td><input type="text" id="type" name="type" value="" /></td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="rellabel" for="rel">{#advlink_dlg.rel}</label></td>
-                            <td><select id="rel" name="rel"> 
-                                    <option value="">{#not_set}</option> 
-                                    <option value="lightbox">Lightbox</option> 
-                                    <option value="alternate">Alternate</option> 
-                                    <option value="designates">Designates</option> 
-                                    <option value="stylesheet">Stylesheet</option> 
-                                    <option value="start">Start</option> 
-                                    <option value="next">Next</option> 
-                                    <option value="prev">Prev</option> 
-                                    <option value="contents">Contents</option> 
-                                    <option value="index">Index</option> 
-                                    <option value="glossary">Glossary</option> 
-                                    <option value="copyright">Copyright</option> 
-                                    <option value="chapter">Chapter</option> 
-                                    <option value="subsection">Subsection</option> 
-                                    <option value="appendix">Appendix</option> 
-                                    <option value="help">Help</option> 
-                                    <option value="bookmark">Bookmark</option>
-                                    <option value="nofollow">No Follow</option>
-                                    <option value="tag">Tag</option>
-                                </select> 
-                            </td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="revlabel" for="rev">{#advlink_dlg.rev}</label></td>
-                            <td><select id="rev" name="rev"> 
-                                    <option value="">{#not_set}</option> 
-                                    <option value="alternate">Alternate</option> 
-                                    <option value="designates">Designates</option> 
-                                    <option value="stylesheet">Stylesheet</option> 
-                                    <option value="start">Start</option> 
-                                    <option value="next">Next</option> 
-                                    <option value="prev">Prev</option> 
-                                    <option value="contents">Contents</option> 
-                                    <option value="index">Index</option> 
-                                    <option value="glossary">Glossary</option> 
-                                    <option value="copyright">Copyright</option> 
-                                    <option value="chapter">Chapter</option> 
-                                    <option value="subsection">Subsection</option> 
-                                    <option value="appendix">Appendix</option> 
-                                    <option value="help">Help</option> 
-                                    <option value="bookmark">Bookmark</option> 
-                                </select> 
-                            </td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="tabindexlabel" for="tabindex">{#advlink_dlg.tabindex}</label></td>
-                            <td><input type="text" id="tabindex" name="tabindex" value="" /></td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <td><label id="accesskeylabel" for="accesskey">{#advlink_dlg.accesskey}</label></td>
-                            <td><input type="text" id="accesskey" name="accesskey" value="" /></td>
-                        </tr> -->
-						
-					</table>
-				</fieldset>
-			</div>
-
+            <!-- Not Edited -->
 			<div id="events_panel" class="panel">
 			<fieldset>
 					<legend>{#advlink_dlg.event_props}</legend>
@@ -326,9 +283,9 @@
 			</div>
 		</div>
 
-		<div class="mceActionPanel">
+		<div class="mceActionPanel submit-row">
 			<div style="float: left">
-				<input type="submit" id="insert" name="insert" value="{#insert}" />
+				<input type="submit" id="insert" class="default" name="insert" value="{#insert}" />
 			</div>
 
 			<div style="float: right">

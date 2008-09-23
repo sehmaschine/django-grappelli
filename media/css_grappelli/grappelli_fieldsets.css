@@ -27,7 +27,7 @@
     background:#fff url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x;
  }
 #content-main .module { background:#fafafa url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x; }
-
+#recent-actions-module p { color: #999; font-size: 11px; font-style: italic; }
 .module h2, .module caption {
     padding:8px 5px 7px 10px;
     font-size:12px; color:#666;

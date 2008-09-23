@@ -17,53 +17,27 @@
     
     <div class="panel_wrapper">
         <div id="general_panel" class="panel current">
-            <fieldset>
+            <fieldset class="module">
                 <legend>General</legend>
-                <table class="properties">
-                    <tr>
-                        <td class="column1"><label id="youtubeIDlabel" for="youtubeID">{#youtube_dlg.ytID}</label></td>
-                        <td colspan="2">
-                            <table border="0" cellspacing="0" cellpadding="0">
-                                <tr> 
-                                    <td>
-                                        <input id="youtubeID" name="youtubeID" type="text" class="text" size="10" value="" /></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="column1"><label id="youtubeIDlabel" for="youtubeID">{#youtube_dlg.ytW}</label></td>
-                        <td colspan="2">
-                            <table border="0" cellspacing="0" cellpadding="0">
-                                <tr> 
-                                    <td>
-                                        <input id="youtubeWidth" name="youtubeWidth" type="text" class="text" size="2" value="350" /></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="column1"><label id="youtubeIDlabel" for="youtubeID">{#youtube_dlg.ytH}</label></td>
-                        <td colspan="2">
-                            <table border="0" cellspacing="0" cellpadding="0">
-                                <tr> 
-                                    <td>
-                                        <input id="youtubeHeight" name="youtubeHeight" type="text" class="text" size="2" value="300" /></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    
-                </table>
+                <div class="form-row first">
+                    <label id="youtubeIDlabel" for="youtubeID">{#youtube_dlg.ytID}</label>
+                    <input id="youtubeID" name="youtubeID" type="text" class="text" size="10" value="" />
+                </div>
+                <div class="form-row combine">
+                    <label id="youtubeIDlabel" for="youtubeID">{#youtube_dlg.ytW}</label>
+                    <input id="youtubeWidth" name="youtubeWidth" type="text" class="text" size="2" value="350" />
+                </div>
+                <div class="form-row">
+                    <label id="youtubeIDlabel" for="youtubeID">{#youtube_dlg.ytH}</label>
+                   <input id="youtubeHeight" name="youtubeHeight" type="text" class="text" size="2" value="300" />
+                </div>
             </fieldset>
         </div>
     </div>
     
-    <div class="mceActionPanel">
+    <div class="mceActionPanel submit-row">
         <div style="float: left">
-            <input type="submit" id="insert" name="insert" value="{#insert}"  onclick="YouTubeDialog.insert();" />
+            <input type="submit" id="insert" class="default" name="insert" value="{#insert}"  onclick="YouTubeDialog.insert();" />
         </div>
 
         <div style="float: right">

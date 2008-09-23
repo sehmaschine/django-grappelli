@@ -21,122 +21,92 @@
 			</ul>
 		</div>
 
-		<div class="panel_wrapper">
-			<div id="general_panel" class="panel current">
-				<fieldset>
-						<legend>{#advimage_dlg.general}</legend>
-
-						<table class="properties">
-							<tr>
-								<td class="column1"><label id="srclabel" for="src">{#advimage_dlg.src}</label></td>
-								<td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
-									<tr> 
-									  <td><input name="src" type="text" id="src" value="" class="mceFocus" onchange="ImageDialog.showPreviewImage(this.value);" /></td> 
-									  <td id="srcbrowsercontainer">&nbsp;</td>
-									</tr>
-								  </table></td>
-							</tr>
-                            <tr style="display: none;">
-                                <td><label for="src_list">{#advimage_dlg.image_list}</label></td>
-                                <td><select id="src_list" name="src_list" onchange="document.getElementById('src').value=this.options[this.selectedIndex].value;document.getElementById('alt').value=this.options[this.selectedIndex].text;document.getElementById('title').value=this.options[this.selectedIndex].text;ImageDialog.showPreviewImage(this.options[this.selectedIndex].value);"></select></td>
-                            </tr>
-							<tr> 
-								<td class="column1"><label id="altlabel" for="alt">{#advimage_dlg.alt}</label></td> 
-								<td colspan="2"><input id="alt" name="alt" type="text" value="" /></td> 
-							</tr> 
-							<tr> 
-								<td class="column1"><label id="titlelabel" for="title">{#advimage_dlg.title}</label></td> 
-								<td colspan="2"><input id="title" name="title" type="text" value="" /></td> 
-							</tr>
-						</table>
-				</fieldset>
+        <div class="panel_wrapper">
+            <div id="general_panel" class="panel current">
+                <fieldset class="module properties">
+                    <legend>{#advimage_dlg.general}</legend>
+                    <div class="form-row">
+                        <label id="srclabel" for="src" class="required">{#advimage_dlg.src}</label>
+                        <input name="src" type="text" id="src" value="" class="mceFocus" onchange="ImageDialog.showPreviewImage(this.value);" />
+                        <div id="srcbrowsercontainer">&nbsp;</div>
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label for="src_list">{#advimage_dlg.image_list}</label>
+                        <select id="src_list" name="src_list" onchange="document.getElementById('src').value=this.options[this.selectedIndex].value;document.getElementById('alt').value=this.options[this.selectedIndex].text;document.getElementById('title').value=this.options[this.selectedIndex].text;ImageDialog.showPreviewImage(this.options[this.selectedIndex].value);"></select>
+                    </div>
+                    <div class="form-row">
+                        <label id="altlabel" for="alt">{#advimage_dlg.alt}</label>
+                        <input id="alt" name="alt" type="text" value="" />
+                    </div>
+                    <div class="form-row">
+                        <label id="titlelabel" for="title">{#advimage_dlg.title}</label>
+                        <input id="title" name="title" type="text" value="" />
+                    </div>
+                </fieldset>
 
                 <fieldset style="display: none;">
                     <legend>{#advimage_dlg.preview}</legend>
                     <div id="prev"></div>
                 </fieldset>
-			</div>
+            </div>
 
-			<div id="appearance_panel" class="panel">
-				<fieldset>
-					<legend>{#advimage_dlg.tab_appearance}</legend>
-
-					<table border="0" cellpadding="4" cellspacing="0">
-                        <tr style="display: none;">
-                            <td class="column1"><label id="alignlabel" for="align">{#advimage_dlg.align}</label></td> 
-                            <td><select id="align" name="align" onchange="ImageDialog.updateStyle('align');ImageDialog.changeAppearance();"> 
-                                    <option value="">{#not_set}</option> 
-                                    <option value="baseline">{#advimage_dlg.align_baseline}</option>
-                                    <option value="top">{#advimage_dlg.align_top}</option>
-                                    <option value="middle">{#advimage_dlg.align_middle}</option>
-                                    <option value="bottom">{#advimage_dlg.align_bottom}</option>
-                                    <option value="text-top">{#advimage_dlg.align_texttop}</option>
-                                    <option value="text-bottom">{#advimage_dlg.align_textbottom}</option>
-                                    <option value="left">{#advimage_dlg.align_left}</option>
-                                    <option value="right">{#advimage_dlg.align_right}</option>
-                                </select> 
-                            </td>
-                            <td rowspan="6" valign="top">
-                                <div class="alignPreview">
-                                    <img id="alignSampleImg" src="img/sample.gif" alt="{#advimage_dlg.example_img}" />
-                                    Lorem ipsum, Dolor sit amet, consectetuer adipiscing loreum ipsum edipiscing elit, sed diam
-                                    nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Loreum ipsum
-                                    edipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                                    erat volutpat.
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="column1"><label id="widthlabel" for="width">{#advimage_dlg.dimensions}</label></td>
-                            <td nowrap="nowrap">
-                                <input name="width" type="text" id="width" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeHeight();" /> x 
-                                <input name="height" type="text" id="height" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeWidth();" /> px
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td><table border="0" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td><input id="constrain" type="checkbox" name="constrain" class="checkbox" /></td>
-                                        <td><label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label></td>
-                                    </tr>
-                                </table></td>
-                        </tr>
-
-                        <tr style="display: none;">
-                            <td class="column1"><label id="vspacelabel" for="vspace">{#advimage_dlg.vspace}</label></td> 
-                            <td><input name="vspace" type="text" id="vspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" />
-                            </td>
-                        </tr>
-
-                        <tr style="display: none;">
-                            <td class="column1"><label id="hspacelabel" for="hspace">{#advimage_dlg.hspace}</label></td> 
-                            <td><input name="hspace" type="text" id="hspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" /></td> 
-                        </tr>
-
-                        <tr style="display: none;">
-                            <td class="column1"><label id="borderlabel" for="border">{#advimage_dlg.border}</label></td> 
-                            <td><input id="border" name="border" type="text" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" /></td> 
-                        </tr>
-
-						<tr>
-							<td><label for="class_list">{#class_name}</label></td>
-							<td colspan="2"><select id="class_list" name="class_list" class="mceEditableSelect"></select></td>
-						</tr>
-
-                        <tr style="display: none;">
-                            <td class="column1"><label id="stylelabel" for="style">{#advimage_dlg.style}</label></td> 
-                            <td colspan="2"><input id="style" name="style" type="text" value="" onchange="ImageDialog.changeAppearance();" /></td> 
-                        </tr>
-
-                        <tr style="display: none;">
-                            <td class="column1"><label id="classeslabel" for="classes">{#advimage_dlg.classes}</label></td> 
-                            <td colspan="2"><input id="classes" name="classes" type="text" value="" onchange="selectByValue(this.form,'classlist',this.value,true);" /></td> 
-                        </tr>
-					</table>
-				</fieldset>
+            <div id="appearance_panel" class="panel">
+                <fieldset class="module">
+                    <legend>{#advimage_dlg.tab_appearance}</legend>
+                    <div class="form-row" style="display:none">
+                        <label id="alignlabel" for="align">{#advimage_dlg.align}</label>
+                        <select id="align" name="align" onchange="ImageDialog.updateStyle('align');ImageDialog.changeAppearance();"> 
+                            <option value="">{#not_set}</option> 
+                            <option value="baseline">{#advimage_dlg.align_baseline}</option>
+                            <option value="top">{#advimage_dlg.align_top}</option>
+                            <option value="middle">{#advimage_dlg.align_middle}</option>
+                            <option value="bottom">{#advimage_dlg.align_bottom}</option>
+                            <option value="text-top">{#advimage_dlg.align_texttop}</option>
+                            <option value="text-bottom">{#advimage_dlg.align_textbottom}</option>
+                            <option value="left">{#advimage_dlg.align_left}</option>
+                            <option value="right">{#advimage_dlg.align_right}</option>
+                        </select>
+                        <br clear="all">
+                        <div class="alignPreview">
+                            <img id="alignSampleImg" src="img/sample.gif" alt="{#advimage_dlg.example_img}" />
+                            Lorem ipsum, Dolor sit amet, consectetuer adipiscing loreum ipsum edipiscing elit, sed diam
+                            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Loreum ipsum
+                            edipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+                            erat volutpat.
+                        </div>
+                    </div>
+                    <div class="form-row first">
+                        <label id="widthlabel" for="width">{#advimage_dlg.dimensions}</label>
+                        <input name="width" type="text" id="width" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeHeight();" /> x 
+                        <input name="height" type="text" id="height" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeWidth();" /> px
+                        <input id="constrain" type="checkbox" name="constrain" class="checkbox" />
+                        <label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label>
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="vspacelabel" for="vspace">{#advimage_dlg.vspace}</label>
+                        <input name="vspace" type="text" id="vspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="hspacelabel" for="hspace">{#advimage_dlg.hspace}</label>
+                        <input name="hspace" type="text" id="hspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="borderlabel" for="border">{#advimage_dlg.border}</label>
+                        <input id="border" name="border" type="text" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" />
+                    </div>
+                    <div class="form-row last">
+                        <label for="class_list">{#class_name}</label>
+                        <select id="class_list" name="class_list" class="mceEditableSelect"></select>
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="stylelabel" for="style">{#advimage_dlg.style}</label>
+                        <input id="style" name="style" type="text" value="" onchange="ImageDialog.changeAppearance();" />
+                    </div>
+                    <div class="form-row" style="display:none">
+                        <label id="classeslabel" for="classes">{#advimage_dlg.classes}</label>
+                        <input id="classes" name="classes" type="text" value="" onchange="selectByValue(this.form,'classlist',this.value,true);" />
+                    </div>
+                </fieldset>
 			</div>
 
 			<div id="advanced_panel" class="panel">
@@ -224,9 +194,9 @@
 			</div>
 		</div>
 
-		<div class="mceActionPanel">
+		<div class="mceActionPanel submit-row">
 			<div style="float: left">
-				<input type="submit" id="insert" name="insert" value="{#insert}" />
+				<input type="submit" id="insert" class="default" name="insert" value="{#insert}" />
 			</div>
 
 			<div style="float: right">

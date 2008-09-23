@@ -30,14 +30,18 @@ var DateTimeShortcuts = {
             if (inp.getAttribute('type') == 'text' && inp.className.match(/vTimeField/)) {
                 // remove text "Time"
                 txt_time = inp.previousSibling;
-                inp.parentNode.removeChild(txt_time);
+                if (txt_time.nodeName == "#text") {
+                    inp.parentNode.removeChild(txt_time);
+                }
                 
                 DateTimeShortcuts.addClock(inp);
             }
             else if (inp.getAttribute('type') == 'text' && inp.className.match(/vDateField/)) {
                 // remove text "Date"
                 txt_date = inp.previousSibling;
-                inp.parentNode.removeChild(txt_date);
+                if (txt_date.nodeName == "#text") {
+                    inp.parentNode.removeChild(txt_date);
+                }
                 
                 DateTimeShortcuts.addCalendar(inp);
             }
