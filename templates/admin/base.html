@@ -54,14 +54,16 @@ function HideNav() {
                         <strong>{% if user.first_name %}{{ user.first_name|escape }}{% else %}{{ user.username }}{% endif %}</strong>
                     </li>
                     {% block userlinks %}
+                    {% url django-admindocs-docroot as docsroot %}{% if docsroot %}
                     <li>
-                        <a href="doc/">{% trans 'Documentation' %}</a>
+                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a href="{ root_path }}password_change/">{% trans 'Change password' %}</a>
                     </li>
                     <li>
-                        <a href="password_change/">{% trans 'Change password' %}</a>
-                    </li>
-                    <li>
-                        <a href="logout/">{% trans 'Log out' %}</a>
+                        <a href="{{ root_path }}logout/">{% trans 'Log out' %}</a>
                     </li>
                     {% endblock %}
                 </ul>
