@@ -23,7 +23,7 @@
 .module {
     margin-bottom: 5px;
     border:1px solid #ddd;
-    -moz-border-radius: 5px;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background:#fff url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x;
  }
 #content-main .module { background:#fafafa url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x; }
@@ -32,8 +32,8 @@
     padding:8px 5px 7px 10px;
     font-size:12px; color:#666;
     border-bottom: 1px solid #ddd;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
     background:transparent url(../img_grappelli/bg_module_reverse.gif) top left repeat-x;
 }
 .module h3 { margin-bottom: 0; }
@@ -45,16 +45,16 @@
     padding:5px 10px !important;
     border-bottom:1px solid #eaeaea !important;
     border-top:1px solid #fff;
-    -moz-border-radius-bottomleft: 0;
-    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
 }
 .inline-related .form-row { -moz-border-radius: 0; }
 .form-row.last { border-bottom:none; }
 fieldset > div:first-child, fieldset * > div:first-child { border-top: none !important; }
 fieldset > div:last-child {
     border-bottom: none !important;
-    -moz-border-radius-bottomleft: 5px !important;
-    -moz-border-radius-bottomright: 5px !important;
+    -moz-border-radius-bottomleft: 5px !important; -webkit-border-bottom-left-radius: 5px !important;
+    -moz-border-radius-bottomright: 5px !important; -webkit-border-bottom-right-radius: 5px !important;
 }
 
 
@@ -85,7 +85,7 @@ fieldset.collapsed h2.collapse-toggle, fieldset.collapse-open h2.collapse-toggle
     margin: 0; padding: 8px 5px 7px 40px !important;
     font-size: 12px; line-height: 13px; font-weight: bold; color: #a1a8ab;
     border: 1px solid #d5dfe3;
-    -moz-border-radius: 5px;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
     cursor: pointer;
 }
 
@@ -95,8 +95,8 @@ fieldset.collapse-open h2.collapse-toggle {
     color:#666;
     border: none;
     border-bottom: 1px solid #ddd;
-    -moz-border-radius-bottomleft: 0 !important;
-    -moz-border-radius-bottomright: 0 !important;
+    -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0 !important;
+    -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0 !important;
     background:transparent url(../img_grappelli/icon_fieldset_close.gif) 0 0 no-repeat;
 }
 
@@ -107,9 +107,9 @@ fieldset.collapse-open h2.collapse-toggle {
 .inline-group {
     margin: 0 1px !important; padding: 0 !important;
     border: 3px solid #ddd;
-    -moz-border-radius: 7px;
+    -moz-border-radius: 7px; -webkit-border-radius: 7px;
     outline: 1px solid #bebebe;
-    -moz-outline-radius: 7px;
+    -moz-outline-radius: 7px; -webkit-outline-radius: 7px;
     background: #ddd url(../img_grappelli/bg_inline-group_reverse.gif) 0 0 repeat-x !important;
 }
 .inline-group.collapsed { background: url(../img_grappelli/bg_inline-group.gif) 0 0 repeat-x !important; }
@@ -122,13 +122,13 @@ fieldset.collapse-open h2.collapse-toggle {
     margin: 0; padding: 6px 5px 6px 38px;
     color: #fafafa; font-size: 12px; line-height: 13px !important; font-weight: bold;
     border: 1px solid #aaacad;
-    -moz-border-radius: 5px;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
     cursor: pointer !important;
 }
 .inline-group.collapsed h3.collapse-toggle { background: transparent url(../img_grappelli/icon_inline-group_open.gif) 0 0 no-repeat; }
 .inline-group.collapsed h3.collapse-toggle:hover { background: transparent url(../img_grappelli/icon_inline-group_hover.gif) 0 0 no-repeat !important; }
 .inline-group h3.collapse-toggle {
-    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
     background: transparent url(../img_grappelli/icon_inline-group_close.gif) 0 0 no-repeat;
 }
 
@@ -140,7 +140,7 @@ fieldset.collapse-open h2.collapse-toggle {
     position: relative; display: block !important;
     margin: 1px 0 !important; padding: 0;
     border: none;
-    -moz-border-radius: 5px;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: transparent url(../img_grappelli/bg_inline-related_reverse.gif) top left repeat-x !important;
 }
 .inline-related.collapsed { background: transparent url(../img_grappelli/bg_inline-related.gif) 0 0 repeat-x !important; }
@@ -154,18 +154,18 @@ fieldset.collapse-open h2.collapse-toggle {
 .inline-related fieldset {
     margin: 0 !important;
     border-color: #bbb !important;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
 .inline-related fieldset + fieldset { margin: -1px 0 0 0 !important; }
 .inline-related h2 + * + fieldset {
     border-top: none;
-    -moz-border-radius-topleft: 0 !important;
-    -moz-border-radius-topright: 0 !important;
+    -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
+    -moz-border-radius-topright: 0 !important; -webkit-border-top-right-radius: 0 !important;
 }
 .inline-related fieldset.collapse-closed {
-    -moz-border-radius-topleft: 5px !important;
-    -moz-border-radius-topright: 5px !important;
+    -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
+    -moz-border-radius-topright: 5px !important; -webkit-border-top-right-radius: 5px !important;
 }
 
 /* Inline-Related H2 ----------------------- */
@@ -174,8 +174,8 @@ fieldset.collapse-open h2.collapse-toggle {
     font-size: 11px !important; line-height: 15px !important; font-weight: bold; color: #666 !important; text-align: left;
     border: 1px solid #bbb;
     border-bottom: 1px solid #ddd;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
     background: transparent;
 }
 .inline-related h2.collapse-toggle {
@@ -184,7 +184,7 @@ fieldset.collapse-open h2.collapse-toggle {
 }
 .inline-related.collapsed h2.collapse-toggle {
     border: 1px solid #ccc !important;
-    -moz-border-radius: 5px !important;
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
     background: transparent url(../img_grappelli/icon_inline-related_open.gif) 0 0 no-repeat !important;
 }
 .inline-related.collapsed h2.collapse-toggle:hover { background:transparent url(../img_grappelli/icon_inline-related_hover.gif) 0 0 no-repeat !important; }
@@ -199,9 +199,9 @@ fieldset.collapse-open h2.collapse-toggle {
 .inline-related fieldset h2 {
     margin: 0 !important; padding:5px 5px 5px 8px !important;
     font-size:11px !important; text-align:left; font-weight:bold; color:#666 !important;
-    -moz-border-radius: 5px;
-    -moz-border-radius-bottomleft: 0;
-    -moz-border-radius-bottomright: 0;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
     border: none;
     border-bottom: 1px solid #ddd !important;
     background:transparent !important;
@@ -209,7 +209,7 @@ fieldset.collapse-open h2.collapse-toggle {
 .inline-related fieldset h2.collapse-toggle {
     padding:5px 5px 5px 37px !important;
     border: 1px solid #bbb !important;
-    -moz-border-radius: 5px;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
     cursor: pointer !important;
 }
 
@@ -221,8 +221,8 @@ fieldset.collapse-open h2.collapse-toggle {
 .inline-related fieldset.collapse-open h2.collapse-toggle {
     border: none !important;
     border-bottom: 1px solid #ddd !important;
-    -moz-border-radius-bottomleft: 0 !important;
-    -moz-border-radius-bottomright: 0 !important;
+    -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0 !important;
+    -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0 !important;
     background:transparent url(../img_grappelli/icon_inline-related_fieldset_close.gif) 0 0 no-repeat !important;
 }
 

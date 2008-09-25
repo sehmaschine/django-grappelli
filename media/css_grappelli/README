@@ -1,19 +1,18 @@
 Grappelli Readme
 ----------------------------------------------------------------
 
-* Web:    code.google.com/p/django-grappelli/
+*   Web: code.google.com/p/django-grappelli/
 
-Welcome to Grappelli! This skin provides a nice-looking & useable
+Welcome to Grappelli! This skin provides a fresh & useable
 surface for the powerfull Django Admin Interface. Furthermore it 
 expands some functions of the Django Admin Interface and 
-outlines future development possibilities. Therefor it is made
-for Mozilla Firefox 3.0+ (that gives the opportunity to use some
-CSS3 Specifications which are really practical and are going to be
-implemented in future browser-developments for sure). To cut down
-efforts support for other browsers (versions) is not guaranteed.
-The main features and characteristics of Grappelli are:
-
-* ...
+outlines future development possibilities. Therefor Grappelli
+is made for Mozilla Firefox 3+ (but also should work with
+Safari 3+).
+That gives the opportunity to use some CSS3 specifications which
+are really practical and are going to be implemented in future
+browser-developments for sure. To cut down efforts support for
+other browsers (versions) is not guaranteed.
 
 
 Setup instructions
@@ -22,108 +21,48 @@ Setup instructions
 Here's how you set up Grappelli on your site.
 
 Grappelli consist of the original Django Admin Interface CSS &
-images and the Gappelli-specific CSS and images. It comes as a
-package - all you have to do is to move it to the space where
+images and the Gappelli-specific CSS & images. It comes as a
+package - all you have to do is to move it to the location where
 your Django Admin Styles situated. If you need to deacivate 
 Grappelli just open the Django Admins 'base.css' and comment out
 the included 'grappelli.css'. You will get your administration
 interface delivered without the Grappelli styles.
 
-1) Upload the "blueprint" folder in this folder to your server, 
-   and place it in whatever folder you'd like. A good choice 
-   would be your CSS folder.
+There are several ways of installing Grappelli, depending on the
+location of your media-files and templates. Basically, you just
+have to replace the following Django directories:
 
-2) Add the following three lines to every <head> section of your
-   site. Make sure the three href paths are correct (here, BP is in my CSS folder):
+A) /admin/media/
+B) /admin/templates/
 
-   <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
-   <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"> 
-   <!--[if IE]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
-	
-	 Remember to include trailing slashes (" />") in these lines if you're using XHTML.
-
-3) For development, add the .showgrid class to any container or column
-   to see the underlying grid. Check out the 'plugins' directory for
-   more advanced functionality.
+1) Download Grappelli Media-Files:
    
+   Go to your admin-media directory and delete all
+   Django media-files (including .svn).
+   
+   Then checkout the Grappelli media-files:
+   svn checkout http://django-grappelli.googlecode.com/svn/trunk/media/
 
-How to use Blueprint
+2) Download Grappelli Templates-Files:
+   
+   Go to your admin-templates directory and delete all
+   Django template-files (including .svn).
+   
+   Then checkout the Grappelli template-files:
+   svn checkout http://django-grappelli.googlecode.com/svn/trunk/templates/
+
+
+Media Files in Grappelli
 ----------------------------------------------------------------
 
-Here's a quick primer on how to use the CSS in Blueprint:
-* code.google.com/p/blueprintcss/wiki/Tutorial
+CSS) The Grappelli stylesheets can be found in /media/css_grappelli/
+     grappelli.css contains most of the skin
+     grappelli_fieldsets.css contains the declarations for the
+     collapsible elements.
 
-Another tutorial on the Blueprint CSS:
-* blueflavor.com/blog/design/blueprintcss_101.php
+IMG) The Grappelli images can be found in /media/img_grappelli/
 
-How to customize BP with the compressor script:
-* jdclayton.com/blueprints_compress_a_walkthrough.html
-
-How to use a grid in a layout:
-* subtraction.com/archives/2007/0318_oh_yeeaahh.php
-
-How to use a baseline in your typography:
-* alistapart.com/articles/settingtypeontheweb
-
-
-Files in Blueprint
-----------------------------------------------------------------
-
-The framework has a few files you should check out. Every file
-in the 'src' directory contains lots of (hopefully) clarifying 
-comments.
-
-Compressed files (these go in the HTML):
-
-* blueprint/screen.css
-* blueprint/print.css
-* blueprint/ie.css
-
-Source files:
-
-* blueprint/src/reset.css
-  This file resets CSS values that browsers tend to set for you.
-
-* blueprint/src/grid.css
-  This file sets up the grid (it's true). It has a lot of classes
-  you apply to divs to set up any sort of column-based grid.
-
-* blueprint/src/typography.css
-  This file sets some default typography. It also has a few
-  methods for some really fancy stuff to do with your text.
-
-* blueprint/src/forms.css
-  Includes some minimal styling of forms.
-
-* blueprint/src/print.css
-  This file sets some default print rules, so that printed versions
-  of your site looks better than they usually would. It should be 
-  included on every page.
-
-* blueprint/src/ie.css
-  Includes every hack for our beloved IE6 and 7.
-
-Scripts:
-
-* lib/compress.rb
-  A Ruby script for compressing and customizing your CSS. Set a
-  custom namespace, column count, widths, output paths, multiple 
-  projects, and semantic class names. See commenting in compress.rb 
-  or run $ruby compress.rb -h for more information.
-
-* lib/validate.rb
-  Validates the Blueprint core files with the W3C CSS validator.
-
-Other:
-
-* blueprint/plugins/
-  Contains additional functionality in the form of simple plugins
-  for Blueprint. See individual readme files in the directory
-  of each plugin for further instructions.
-
-* tests/
-  Contains html files which tests most aspects of Blueprint.
-  Open tests/index.html for further instructions.
+Currently there are no compressed files available.
 
 
 Also
@@ -131,10 +70,7 @@ Also
 
 * For credits and origins, see AUTHORS.
 * For license instructions, see LICENSE.
-* For the latest updates, see CHANGELOG.
 
 To post bugs and issues, use our Google Code site:
-* code.google.com/p/blueprintcss/issues/list
+* code.google.com/p/django-grappelli/
 
-Questions, comments and suggestions goes to
-to olav at bjorkoy dot com. Thanks!
