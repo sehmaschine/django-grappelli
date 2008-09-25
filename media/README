@@ -1,0 +1,76 @@
+Grappelli Readme
+----------------------------------------------------------------
+
+*   Web: code.google.com/p/django-grappelli/
+
+Welcome to Grappelli! This skin provides a fresh & useable
+surface for the powerfull Django Admin Interface. Furthermore it 
+expands some functions of the Django Admin Interface and 
+outlines future development possibilities. Therefor Grappelli
+is made for Mozilla Firefox 3+ (but also should work with
+Safari 3+).
+That gives the opportunity to use some CSS3 specifications which
+are really practical and are going to be implemented in future
+browser-developments for sure. To cut down efforts support for
+other browsers (versions) is not guaranteed.
+
+
+Setup instructions
+----------------------------------------------------------------
+
+Here's how you set up Grappelli on your site.
+
+Grappelli consist of the original Django Admin Interface CSS &
+images and the Gappelli-specific CSS & images. It comes as a
+package - all you have to do is to move it to the location where
+your Django Admin Styles situated. If you need to deacivate 
+Grappelli just open the Django Admins 'base.css' and comment out
+the included 'grappelli.css'. You will get your administration
+interface delivered without the Grappelli styles.
+
+There are several ways of installing Grappelli, depending on the
+location of your media-files and templates. Basically, you just
+have to replace the following Django directories:
+
+A) /admin/media/
+B) /admin/templates/
+
+1) Download Grappelli Media-Files:
+   
+   Go to your admin-media directory and delete all
+   Django media-files (including .svn).
+   
+   Then checkout the Grappelli media-files:
+   svn checkout http://django-grappelli.googlecode.com/svn/trunk/media/
+
+2) Download Grappelli Templates-Files:
+   
+   Go to your admin-templates directory and delete all
+   Django template-files (including .svn).
+   
+   Then checkout the Grappelli template-files:
+   svn checkout http://django-grappelli.googlecode.com/svn/trunk/templates/
+
+
+Media Files in Grappelli
+----------------------------------------------------------------
+
+CSS) The Grappelli stylesheets can be found in /media/css_grappelli/
+     grappelli.css contains most of the skin
+     grappelli_fieldsets.css contains the declarations for the
+     collapsible elements.
+
+IMG) The Grappelli images can be found in /media/img_grappelli/
+
+Currently there are no compressed files available.
+
+
+Also
+----------------------------------------------------------------
+
+* For credits and origins, see AUTHORS.
+* For license instructions, see LICENSE.
+
+To post bugs and issues, use our Google Code site:
+* code.google.com/p/django-grappelli/
+
