@@ -256,7 +256,7 @@
 .o2k7Skin span.mce_code {background:url(/media/admin/tinymce_setup/img/buttons/code.gif); background-position:0 0}
 .o2k7Skin span.hr {background-position:-360px 0}
 .o2k7Skin span.visualaid {background-position:-660px 0}
-.o2k7Skin span.charmap {background-position:-240px 0}
+.o2k7Skin span.mce_charmap {background:url(/media/admin/tinymce_setup/img/buttons/charmap.gif); background-position:0 0}
 .o2k7Skin span.paste {background-position:-560px 0}
 .o2k7Skin span.copy {background-position:-700px 0}
 .o2k7Skin span.cut {background-position:-680px 0}
@@ -283,10 +283,11 @@
 .o2k7Skin span.insertlayer {background-position:-260px -20px}
 .o2k7Skin span.movebackward {background-position:-280px -20px}
 .o2k7Skin span.moveforward {background-position:-300px -20px}
-.o2k7Skin span.media {background-position:-320px -20px}
+.o2k7Skin span.mce_media {background:url(/media/admin/tinymce_setup/img/buttons/media.gif); background-position:0 0}
 .o2k7Skin span.nonbreaking {background-position:-340px -20px}
 .o2k7Skin span.pastetext {background-position:-360px -20px}
-.o2k7Skin span.pasteword {background-position:-380px -20px}
+
+.o2k7Skin span.mce_pasteword {background:url(/media/admin/tinymce_setup/img/buttons/pasteword.gif); background-position:0 0}
 .o2k7Skin span.selectall {background-position:-400px -20px}
 .o2k7Skin span.preview {background-position:-420px -20px}
 .o2k7Skin span.print {background-position:-440px -20px}
