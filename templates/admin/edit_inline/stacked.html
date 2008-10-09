@@ -17,6 +17,8 @@
   <ul class="inline-item-tools">
       {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</li>{% endif %}
       {% if inline_admin_form.show_url %}<li><a href="/r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/">View on site</a></li>{% endif %}
+      <li><a href="javascript://" class="uphandler">Move Up</a></li>
+      <li><a href="javascript://" class="downhandler">Move Down</a></li>
   </ul>
 
   {% for fieldset in inline_admin_form %}
