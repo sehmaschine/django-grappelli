@@ -1,11 +1,17 @@
 {% load i18n %}
-<div class="inline-group" name="inlinegroup">
+<div class="inline-group {% if inline_admin_formset.opts.sortable %}sortable{% endif %}" name="inlinegroup">
 {{ inline_admin_formset.formset.management_form }}
 <h3 class="header">{{ inline_admin_formset.opts.verbose_name_plural|title }}</h3>
+<ul class="inline-item-tools">
+    <li><a href="javascript://" class="openhandler" title="Open All Items"></a></li>
+    <li><a href="javascript://" class="closehandler" title="Close All Items"></a></li>
+    <li><a href="javascript://" class="addhandler" title="Add Item"></a></li>
+</ul>
 {{ inline_admin_formset.formset.non_form_errors }}
 
+<div class="items">
 {% for inline_admin_form in inline_admin_formset %}
-<div class="inline-related {% if forloop.last %}last-related{% endif %}" name="inlinerelated">
+<div class="inline-related" name="inlinerelated">
   {% comment %}<h2><b>{{ inline_admin_formset.opts.verbose_name|title }}:</b>&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% else %} #{{ forloop.counter }}{% endif %}
     {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<span class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</span>{% endif %}{% endcomment %}
   {% comment %}<h2><b>{{ inline_admin_formset.opts.verbose_name|title }}:</b>&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% else %} #{{ forloop.counter }}{% endif %}</h2>{% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<span class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</span>{% endif %}
@@ -13,22 +19,28 @@
   <p><a href="/r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/">View on site</a></p>
   {% endif %}
   {% endcomment %}
-  <h2><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}:</b>&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% else %}none{% endif %}</h2>
+  <h2><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h2>
   <ul class="inline-item-tools">
-      {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</li>{% endif %}
-      {% if inline_admin_form.show_url %}<li><a href="/r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/">View on site</a></li>{% endif %}
-      <li><a href="javascript://" class="uphandler">Move Up</a></li>
-      <li><a href="javascript://" class="downhandler">Move Down</a></li>
+      {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="deletelink" title="Delete Item"></a></li>{% endif %}
+      {% if inline_admin_form.show_url %}<li><a href="/r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="viewsitelink" title="View on Site"></a></li>{% endif %}
+     {% if inline_admin_formset.opts.sortable %} <li><a href="javascript://" class="draghandler" title="Move Item"></a></li>{% endif %}
   </ul>
-
   {% for fieldset in inline_admin_form %}
     {% include "admin/includes/fieldset.html" %}
   {% endfor %}
   {{ inline_admin_form.pk_field.field }}
 </div>
 {% endfor %}
+</div>
+<div class="predelete-items">
+</div>
 
 {# <ul class="tools"> #}
 {#   <li><a class="add" href="">Add another {{ inline_admin_formset.opts.verbose_name|title }}</a></li> #}
 {# </ul> #}
+</div>
+
+
+<div class="sortablehelper">
+    <h2><b>Sortable Helper</b></h2>
 </div>

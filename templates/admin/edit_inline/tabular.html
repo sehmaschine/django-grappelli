@@ -1,29 +1,34 @@
 {% load i18n %}
-<div class="inline-group" name="inlinegrouptabular">
+<div class="inline-group {% if inline_admin_formset.opts.sortable %}sortable{% endif %}" name="inlinegrouptabular">
 <h3 class="header">{{ inline_admin_formset.opts.verbose_name_plural|capfirst|escape }}</h3>
+<ul class="inline-item-tools">
+    <li><a href="javascript://" class="addhandler" title="Add Item"></a></li>
+</ul>
+
   <div class="tabular inline-related {% if forloop.last %}last-related{% endif %}" name="inlinerelatedtabular">
 {{ inline_admin_formset.formset.management_form }}
 <fieldset class="module">
    {% comment %}<h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst|escape }}</h2>{% endcomment %}
    {{ inline_admin_formset.formset.non_form_errors }}
-   <table>
+   {{ inline_admin_formset.opts.model.opts.order_with_respect_to }}
+   <table{% if inline_admin_formset.opts.opts.order_with_respect_to %} class="sortable"{% endif %}>
      <thead><tr>
      {% for field in inline_admin_formset.fields %}
        {% if not field.is_hidden %}
-         <th {% if forloop.first %}colspan="2"{% endif %}>{{ field.label|capfirst|escape }}</th>
+         <th>{{ field.label|capfirst|escape }}</th>
         {% endif %}
      {% endfor %}
-     {% if inline_admin_formset.formset.can_delete %}<th>{% trans "Delete" %}?</th>{% endif %}
+     <th>&nbsp;</th>
      </tr></thead>
-   
+     
      {% for inline_admin_form in inline_admin_formset %}
-                   
-        <tr class="{% cycle row1,row2 %} {% if inline_admin_form.original or inline_admin_form.show_url %}has_original{% endif %}">
-
-        <td class="original">{% if inline_admin_form.original or inline_admin_form.show_url %}<p>
-          {% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}
-          {% if inline_admin_form.show_url %}<a href="/r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/">View on site</a>{% endif %}
-            </p>{% endif %}
+        {% if inline_admin_form.form.non_field_errors %}
+        <tr><td colspan="{{ inline_admin_form.field_count }}">{{ inline_admin_form.form.non_field_errors }}</td></tr>
+        {% endif %}
+        <tbody class="item row1">
+        <tr>
+        <td class="original" colspan="{{ inline_admin_form.field_count }}">
+          <p><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</p>
           {{ inline_admin_form.pk_field.field }}
           {% spaceless %}
           {% for fieldset in inline_admin_form %}
@@ -35,24 +40,29 @@
           {% endfor %}
           {% endspaceless %}
         </td>
-
+        <td class="inline-item-tools">
+            <ul class="inline-item-tools">
+                {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="deletelink" title="Delete Item"></a></li>{% endif %}
+                {% if inline_admin_form.show_url %}<li><a href="/r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="viewsitelink" title="View on Site"></a></li>{% endif %}
+               {% if inline_admin_formset.opts.sortable %} <li><a href="javascript://" class="draghandler" title="Move Item"></a></li>{% endif %}
+            </ul>
+        </td>
+        </tr>
+        <tr>
         {% for fieldset in inline_admin_form %}
           {% for line in fieldset %}
             {% for field in line %}
-              <td class="{{ field.field.name }}">
-              {{ field.field.errors.as_ul }}
+              <td class="{{ field.field.name }} {% if field.field.errors %} error{% endif %}">
               {{ field.field }}
+              {{ field.field.errors.as_ul }}
               </td>
             {% endfor %}
           {% endfor %}
         {% endfor %}
-                
-        {% if inline_admin_formset.formset.can_delete %}<td class="delete">{% if inline_admin_form.original %}{{ inline_admin_form.deletion_field.field }}{% endif %}</td>{% endif %}
-        
+        <td></td>
         </tr>
-
+        </tbody>
      {% endfor %}
-   
    </table>
    
 </fieldset>
@@ -63,3 +73,8 @@
   {# </ul> #}
   
 </div>
+
+<div class="sortablehelper">
+    <h2><b>Sortable Helper</b></h2>
+</div>
+
