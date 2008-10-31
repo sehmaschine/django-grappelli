@@ -25,7 +25,7 @@
 
 /* Layout */
 .o2k7Skin table.mceLayout {
-    border: 1px solid #ddd;/* border-color: #dbdbdb #e5e5e5 #e5e5e5 #dbdbdb;*/
+    border: 1px solid #ddd;
     -moz-border-radius: 5px !important;
 }
 .errors .o2k7Skin table.mceLayout {
@@ -71,9 +71,7 @@
 }
 
 .o2k7Skin a.mceButtonEnabled {
-    border:1px solid;/* border-color: #c7c7c7 #a9a9a9 #a9a9a9 #c7c7c7 !important;*/
-    /*border-color: #f5f5f5 #b8b8b8 #b8b8b8 #f5f5f5 !important;*/
-    /*border-color: #faf9f7 #bdbab7 #bdbab7 #f0eeeb !important;*/
+    border:1px solid;
     border-color: #cfccc8 #bdbab7 #bdbab7 #cfccc8 !important;
     -moz-border-radius: 4px !important;
 }
@@ -86,7 +84,6 @@
     background:url(../img_grappelli/buttons/iconback_hover.gif);
 }
 .o2k7Skin a.mceButtonActive, .o2k7Skin a.mceButtonSelected {
-    /*border-color: #c7c7c7 #fafafa #fafafa #c7c7c7 !important;*/
     border-color: #c7c5c2 #f0eeeb #f0eeeb #c7c5c2 !important;
     background:url(../img_grappelli/buttons/iconback_selected.gif);
 }
@@ -169,7 +166,6 @@
     padding: 0 0 4px 0;
     min-width: 109px !important;
     border:1px solid #a9a9a9;
-    /*border-top: 1px solid #c7c7c7;*/
     -moz-border-radius-bottomleft: 4px !important;
     -moz-border-radius-bottomright: 4px !important;
 }
@@ -185,10 +181,6 @@
     height:20px;
 }
 .o2k7Skin .mceMenu a {position:relative;padding:3px 0 4px 0}
-/*.o2k7Skin .mceMenu a:last-child {
-    -moz-border-radius-bottomleft: 4px !important;
-    -moz-border-radius-bottomright: 4px !important;
-}*/
 .o2k7Skin .mceMenu .mceText {position:relative; display:block; font-family:"Helvetica Neue",Arial; color:#333; cursor:default; margin:0; padding:0 25px 0 5px; display:block}
 .o2k7Skin .mceMenu span.mceText, .o2k7Skin .mceMenu .mcePreview {font-size:11px}
 .o2k7Skin .mceMenu pre.mceText {font-family:"Helvetica Neue",Arial;}
@@ -229,15 +221,15 @@
 .o2k7Skin .mce_div span.mceText {font-weight:normal; font-size: 11px}
 
 /* Theme */
-.o2k7Skin span.mce_bold {background:url(/media/admin/tinymce_setup/img/buttons/bold.gif); background-position:0 0}
-.o2k7Skin span.mce_italic {background:url(/media/admin/tinymce_setup/img/buttons/italic.gif); background-position:0 0}
-.o2k7Skin span.mce_underline {background:url(/media/admin/tinymce_setup/img/buttons/underline.gif); background-position:0 0}
+.o2k7Skin span.mce_bold {background:url(../img/buttons/bold.gif); background-position:0 0}
+.o2k7Skin span.mce_italic {background:url(../img/buttons/italic.gif); background-position:0 0}
+.o2k7Skin span.mce_underline {background:url(../img/buttons/underline.gif); background-position:0 0}
 .o2k7Skin span.mce_strikethrough {background-position:-120px 0}
-.o2k7Skin span.mce_undo {background:url(/media/admin/tinymce_setup/img/buttons/undo.gif); background-position:0 0}
-.o2k7Skin span.mce_redo {background:url(/media/admin/tinymce_setup/img/buttons/redo.gif); background-position:0 0}
+.o2k7Skin span.mce_undo {background:url(../img/buttons/undo.gif); background-position:0 0}
+.o2k7Skin span.mce_redo {background:url(../img/buttons/redo.gif); background-position:0 0}
 .o2k7Skin span.cleanup {background-position:-40px 0}
-.o2k7Skin span.mce_bullist {background:url(/media/admin/tinymce_setup/img/buttons/bullist.gif); background-position:0 0}
-.o2k7Skin span.mce_numlist {background:url(/media/admin/tinymce_setup/img/buttons/numlist.gif); background-position:0 0}
+.o2k7Skin span.mce_bullist {background:url(../img/buttons/bullist.gif); background-position:0 0}
+.o2k7Skin span.mce_numlist {background:url(../img/buttons/numlist.gif); background-position:0 0}
 .o2k7Skin span.justifyleft {background-position:-460px 0}
 .o2k7Skin span.justifyright {background-position:-480px 0}
 .o2k7Skin span.justifycenter {background-position:-420px 0}
@@ -245,18 +237,18 @@
 .o2k7Skin span.anchor {background-position:-200px 0}
 .o2k7Skin span.indent {background-position:-400px 0}
 .o2k7Skin span.outdent {background-position:-540px 0}
-.o2k7Skin span.mce_link {background:url(/media/admin/tinymce_setup/img/buttons/link.gif); background-position:0 0}
-.o2k7Skin span.mce_unlink {background:url(/media/admin/tinymce_setup/img/buttons/unlink.gif); background-position:0 0}
+.o2k7Skin span.mce_link {background:url(../img/buttons/link.gif); background-position:0 0}
+.o2k7Skin span.mce_unlink {background:url(../img/buttons/unlink.gif); background-position:0 0}
 .o2k7Skin span.sub {background-position:-600px 0}
 .o2k7Skin span.sup {background-position:-620px 0}
 .o2k7Skin span.removeformat {background-position:-580px 0}
 .o2k7Skin span.newdocument {background-position:-520px 0}
-.o2k7Skin span.mce_image {background:url(/media/admin/tinymce_setup/img/buttons/image.gif); background-position:0 0}
+.o2k7Skin span.mce_image {background:url(../img/buttons/image.gif); background-position:0 0}
 .o2k7Skin span.help {background-position:-340px 0}
-.o2k7Skin span.mce_code {background:url(/media/admin/tinymce_setup/img/buttons/code.gif); background-position:0 0}
+.o2k7Skin span.mce_code {background:url(../img/buttons/code.gif); background-position:0 0}
 .o2k7Skin span.hr {background-position:-360px 0}
 .o2k7Skin span.visualaid {background-position:-660px 0}
-.o2k7Skin span.mce_charmap {background:url(/media/admin/tinymce_setup/img/buttons/charmap.gif); background-position:0 0}
+.o2k7Skin span.mce_charmap {background:url(../img/buttons/charmap.gif); background-position:0 0}
 .o2k7Skin span.paste {background-position:-560px 0}
 .o2k7Skin span.copy {background-position:-700px 0}
 .o2k7Skin span.cut {background-position:-680px 0}
@@ -272,7 +264,7 @@
 .o2k7Skin span.rtl {background-position:-40px -20px}
 .o2k7Skin span.emotions {background-position:-60px -20px}
 .o2k7Skin span.fullpage {background-position:-80px -20px}
-.o2k7Skin span.mce_fullscreen {background:url(/media/admin/tinymce_setup/img/buttons/fullscreen.gif); background-position:0 0}
+.o2k7Skin span.mce_fullscreen {background:url(../img/buttons/fullscreen.gif); background-position:0 0}
 .o2k7Skin span.iespell {background-position:-120px -20px}
 .o2k7Skin span.insertdate {background-position:-140px -20px}
 .o2k7Skin span.inserttime {background-position:-160px -20px}
@@ -283,11 +275,11 @@
 .o2k7Skin span.insertlayer {background-position:-260px -20px}
 .o2k7Skin span.movebackward {background-position:-280px -20px}
 .o2k7Skin span.moveforward {background-position:-300px -20px}
-.o2k7Skin span.mce_media {background:url(/media/admin/tinymce_setup/img/buttons/media.gif); background-position:0 0}
+.o2k7Skin span.mce_media {background:url(../img/buttons/media.gif); background-position:0 0}
 .o2k7Skin span.nonbreaking {background-position:-340px -20px}
 .o2k7Skin span.pastetext {background-position:-360px -20px}
 
-.o2k7Skin span.mce_pasteword {background:url(/media/admin/tinymce_setup/img/buttons/pasteword.gif); background-position:0 0}
+.o2k7Skin span.mce_pasteword {background:url(../img/buttons/pasteword.gif); background-position:0 0}
 .o2k7Skin span.selectall {background-position:-400px -20px}
 .o2k7Skin span.preview {background-position:-420px -20px}
 .o2k7Skin span.print {background-position:-440px -20px}
@@ -309,8 +301,8 @@
 .o2k7Skin span.table_props {background-position:-980px -20px}
 .o2k7Skin span.row_props {background-position:-780px -20px}
 .o2k7Skin span.split_cells {background-position:-800px -20px}
-.o2k7Skin span.mce_template {background:url(/media/admin/tinymce_setup/img/buttons/template.gif); background-position:0 0}
-.o2k7Skin span.mce_visualchars {background:url(/media/admin/tinymce_setup/img/buttons/visualchars.gif); background-position:0 0}
+.o2k7Skin span.mce_template {background:url(../img/buttons/template.gif); background-position:0 0}
+.o2k7Skin span.mce_visualchars {background:url(../img/buttons/visualchars.gif); background-position:0 0}
 .o2k7Skin span.abbr {background-position:-860px -20px}
 .o2k7Skin span.acronym {background-position:-880px -20px}
 .o2k7Skin span.attribs {background-position:-900px -20px}
