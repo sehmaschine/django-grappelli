@@ -1,3 +1,14 @@
+// $(document).ready(function(){
+//     $('.vDateField').datepicker();
+//     $('.vTimeField').clockpick({
+//         starthour: 0,
+//         endhour: 23,
+//         showminutes: true,
+//         minutedivisions: 4,
+//         military: true,
+//     });
+// });
+
 // Inserts shortcut buttons after all of the following:
 //     <input type="text" class="vDateField">
 //     <input type="text" class="vTimeField">
@@ -28,21 +39,9 @@ var DateTimeShortcuts = {
         for (i=0; i<inputs.length; i++) {
             var inp = inputs[i];
             if (inp.getAttribute('type') == 'text' && inp.className.match(/vTimeField/)) {
-                // remove text "Time"
-                txt_time = inp.previousSibling;
-                if (txt_time.nodeName == "#text") {
-                    inp.parentNode.removeChild(txt_time);
-                }
-                
                 DateTimeShortcuts.addClock(inp);
             }
             else if (inp.getAttribute('type') == 'text' && inp.className.match(/vDateField/)) {
-                // remove text "Date"
-                txt_date = inp.previousSibling;
-                if (txt_date.nodeName == "#text") {
-                    inp.parentNode.removeChild(txt_date);
-                }
-                
                 DateTimeShortcuts.addCalendar(inp);
             }
         }
@@ -134,6 +133,7 @@ var DateTimeShortcuts = {
     // Add calendar widget to a given field.
     addCalendar: function(inp) {
         var num = DateTimeShortcuts.calendars.length;
+
         DateTimeShortcuts.calendarInputs[num] = inp;
 
         // Shortcut links (calendar icon and "Today" link)
@@ -247,7 +247,7 @@ var DateTimeShortcuts = {
         DateTimeShortcuts.calendars[num].drawNextMonth();
     },
     handleCalendarCallback: function(num) {
-        return "function(y, m, d) { DateTimeShortcuts.calendarInputs["+num+"].value = y+'-'+m+'-'+d; document.getElementById(DateTimeShortcuts.calendarDivName1+"+num+").style.display='none';}";
+        return "function(y, m, d) { DateTimeShortcuts.calendarInputs["+num+"].value = y+'-'+(m<10?'0':'')+m+'-'+(d<10?'0':'')+d; document.getElementById(DateTimeShortcuts.calendarDivName1+"+num+").style.display='none';}";
     },
     handleCalendarQuickLink: function(num, offset) {
        var d = new Date();
@@ -263,3 +263,4 @@ var DateTimeShortcuts = {
 }
 
 addEvent(window, 'load', DateTimeShortcuts.init);
+
