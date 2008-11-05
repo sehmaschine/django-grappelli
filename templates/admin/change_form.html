@@ -3,13 +3,13 @@
 
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="../../../jsi18n/"></script>
+{{ media }}
 {% if inline_admin_formsets %}
 <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-inline.packed.js"></script>
 <script type="text/javascript" src="{% admin_media_prefix %}js/admin/StackedInline.js"></script>
 <script type="text/javascript" src="{% admin_media_prefix %}js/admin/TabularInline.js"></script>
 <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsedInlineFieldsets.js"></script>
 {% endif %}
-{{ media }}
 {% endblock %}
 
 {% block stylesheet %}{% admin_media_prefix %}css/forms.css{% endblock %}

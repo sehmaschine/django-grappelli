@@ -9,19 +9,13 @@
 {{ media }}
 
 <script type="text/javascript">
-
-function ToggleFilterset(e) {
-    parent_class = e.parentNode.getAttribute('class');
-    if (parent_class == "filterset collapse-open") {
-        e.parentNode.setAttribute('class', 'filterset collapse-closed');
-        e.nextSibling.nextSibling.setAttribute('style', 'display: none;');
-    }
-    if (parent_class == "filterset collapse-closed") {
-        e.parentNode.setAttribute('class', 'filterset collapse-open');
-        e.nextSibling.nextSibling.setAttribute('style', 'display: block;');
-    }
-}
-
+$(document).ready(function(){
+   $('.filterset h3').click(function() {
+       $(this).parent().toggleClass('collapse-closed');
+       $(this).parent().toggleClass('collapse-open');
+       $(this).next().next().toggle();
+   });
+});
 </script>
 
 {% endblock %}

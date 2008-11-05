@@ -9,23 +9,22 @@
 {% block extrahead %}{% endblock %}
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 <script>
-
-function ShowNav() {
-    document.getElementById('navigation').setAttribute("style", "display: block;");
-}
-function HideNav() {
-    document.getElementById('navigation').setAttribute("style", "display: none;");
-}
-
+$(document).ready(function(){
+   $('#toggle_navigation').hover(
+       function () {
+           $("#navigation").show();
+       }, 
+       function () {
+           $("#navigation").hide();
+       }
+   );
+});
 </script>
 </head>
 {% load i18n %}
-
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
-
 <!-- Container -->
 <div id="container">
-
     {% if not is_popup %}
     <!-- Header -->
     <div id="header">
@@ -59,11 +58,11 @@ function HideNav() {
     <!-- END Header -->
     {% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title|escape }}{% endif %}</div>{% endblock %}
     {% endif %}
-
-        {% if messages %}
-        <ul class="messagelist">{% for message in messages %}<li>{{ message|escape }}</li>{% endfor %}</ul>
-        {% endif %}
-
+    <!-- Messages -->
+    {% if messages %}
+    <ul class="messagelist">{% for message in messages %}<li>{{ message|escape }}</li>{% endfor %}</ul>
+    {% endif %}
+    <!-- END Messages -->
     <!-- Content -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">
         {% block pretitle %}{% endblock %}
@@ -76,10 +75,8 @@ function HideNav() {
         <br class="clear" />
     </div>
     <!-- END Content -->
-
     {% block footer %}<div id="footer"></div>{% endblock %}
 </div>
 <!-- END Container -->
-
 </body>
 </html>
