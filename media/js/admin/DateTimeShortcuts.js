@@ -1,11 +1,6 @@
 // $(document).ready(function(){
-//     $('.vDateField').datepicker();
-//     $('.vTimeField').clockpick({
-//         starthour: 0,
-//         endhour: 23,
-//         showminutes: true,
-//         minutedivisions: 4,
-//         military: true,
+//     $('.vDateField').each(function() {
+//        $(this).prev().val(''); 
 //     });
 // });
 
@@ -48,6 +43,8 @@ var DateTimeShortcuts = {
     },
     // Add clock widget to a given field
     addClock: function(inp) {
+        inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
+        
         var num = DateTimeShortcuts.clockInputs.length;
         DateTimeShortcuts.clockInputs[num] = inp;
 
@@ -132,6 +129,8 @@ var DateTimeShortcuts = {
     },
     // Add calendar widget to a given field.
     addCalendar: function(inp) {
+        inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
+        
         var num = DateTimeShortcuts.calendars.length;
 
         DateTimeShortcuts.calendarInputs[num] = inp;
@@ -263,4 +262,7 @@ var DateTimeShortcuts = {
 }
 
 addEvent(window, 'load', DateTimeShortcuts.init);
+
+
+
 
