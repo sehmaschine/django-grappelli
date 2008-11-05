@@ -43,7 +43,9 @@ var DateTimeShortcuts = {
     },
     // Add clock widget to a given field
     addClock: function(inp) {
-        inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
+        if (inp.previousSibling.nodeValue) {
+            inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
+        }
         
         var num = DateTimeShortcuts.clockInputs.length;
         DateTimeShortcuts.clockInputs[num] = inp;
@@ -129,7 +131,9 @@ var DateTimeShortcuts = {
     },
     // Add calendar widget to a given field.
     addCalendar: function(inp) {
-        inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
+        if (inp.previousSibling.nodeValue) {
+            inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
+        }
         
         var num = DateTimeShortcuts.calendars.length;
 
