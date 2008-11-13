@@ -563,8 +563,23 @@ width:auto !important;
 }
 
 #changelist .paginator span {
-    margin-right: 10px;
-    color: #cc3d3d !important;
+    margin-right: 0 !important;
+    color: #666 !important;
+}
+.paginator a.end {
+    border-width: 1px !important;
+}
+.paginator a:link, .paginator a:visited {
+    padding: 4px 8px !important;
+    font-size: 12px; font-weight: bold;
+    border: 1px solid #ccc;
+    border-color: #ccc #ddd #ddd #ccc !important;
+    -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    background: #fff;
+}
+.paginator a:hover, .paginator a:active {
+    color: #fff !important;
+    background: #65a6c2 !important;
 }
 #changelist table + .paginator, #changelist #toolbartable + .paginator {
     margin-top: -1px;
