@@ -88,7 +88,7 @@ $(document).ready(function(){
         items: 'tbody.item',
         handle: '.draghandler',
         placeholder: 'placeholder',
-        tolerance: 'intersect',
+        tolerance: 'guess',
         containment: 'table',
         start: function(e, ui) {
             temp_html = ""

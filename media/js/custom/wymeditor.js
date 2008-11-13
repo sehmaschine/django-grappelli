@@ -1,10 +1,12 @@
 $(document).ready(function() {
     //$('head', document).append('<link rel="stylesheet" type="text/css" media="screen" href="/media/admin/wymeditor/wymeditor/skins/default/screen.css" />');
     $("textarea").wymeditor({
-        skinPath: "/media/admin/wymeditor/wymeditor/skins/sehmaschine/",
+        //skinPath: "/media/admin/wymeditor/wymeditor/skins/sehmaschine/",
+        skinPath: "/media/admin/wymeditor/wymeditor/skins/default/",
         lang: "en",
-        updateSelector: "input:submit",
-        updateEvent: "click",
+        logoHtml: '',
+        //updateSelector: "input:submit",
+        //updateEvent: "click",
         toolsItems: [
             {'name': 'Bold', 'title': 'Strong', 'css': 'wym_tools_strong'}, 
             {'name': 'Italic', 'title': 'Emphasis', 'css': 'wym_tools_emphasis'},
@@ -27,43 +29,5 @@ $(document).ready(function() {
             {'name': 'external', 'title': 'Link » extern', 'expr': 'a'},
             {'name': 'summary', 'title': 'Paragraph » Summary', 'expr': 'p'}
         ],
-        dialogImageHtml:  "<body class='wym_dialog wym_dialog_image'"
-            + " onload='WYMeditor.INIT_DIALOG(" + WYMeditor.INDEX + ")'"
-            + ">"
-            + "<form>"
-            + "<fieldset>"
-            + "<input type='hidden' class='wym_dialog_type' value='"
-            + WYMeditor.DIALOG_IMAGE
-            + "' />"
-            + "<legend>{Image}</legend>"
-            + "<div class='row'>"
-            + "<label>{URL}</label>"
-            + "<input type='text' class='wym_src' value='' size='40' />"
-            + "</div>"
-            + "<div class='row'>"
-            + "<label>{Alternative_Text}</label>"
-            + "<input type='text' class='wym_alt' value='' size='40' />"
-            + "</div>"
-            + "<div class='row'>"
-            + "<label>{Title}</label>"
-            + "<input type='text' class='wym_title' value='' size='40' />"
-            + "</div>"
-            + "<div class='row'>"
-            + "<label>Class</label>"
-            + "<select class='wym_class'>"
-            + "<option value='img_left'>Linksbündig</option>"
-            + "<option value='img_right'>Rechtsbündig</option>"
-            + "<option value='img_block'>Gesamte Breite</option>"
-            + "</select>"
-            + "</div>"
-            + "<div class='row row-indent'>"
-            + "<input class='wym_submit' type='button'"
-            + " value='{Submit}' />"
-            + "<input class='wym_cancel' type='button'"
-            + "value='{Cancel}' />"
-            + "</div>"
-            + "</fieldset>"
-            + "</form>"
-            + "</body>",
     });
 });
