@@ -1,6 +1,6 @@
 {% load i18n %}
 <div class="inline-group {% if inline_admin_formset.opts.sortable %}sortable{% endif %}" name="inlinegrouptabular">
-<h3 class="header">{{ inline_admin_formset.opts.verbose_name_plural|capfirst|escape }}</h3>
+<h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
 <ul class="inline-item-tools">
     <li><a href="javascript://" class="addhandler" title="Add Item"></a></li>
 </ul>
@@ -15,7 +15,7 @@
      <thead><tr>
      {% for field in inline_admin_formset.fields %}
        {% if not field.is_hidden %}
-         <th>{{ field.label|capfirst|escape }}</th>
+         <th>{{ field.label|capfirst }}</th>
         {% endif %}
      {% endfor %}
      <th>&nbsp;</th>
@@ -30,6 +30,7 @@
         <td class="original" colspan="{{ inline_admin_form.field_count }}">
           <p><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</p>
           {{ inline_admin_form.pk_field.field }}
+          {{ inline_admin_form.fk_field.field }} 
           {% spaceless %}
           {% for fieldset in inline_admin_form %}
             {% for line in fieldset %}
@@ -43,7 +44,7 @@
         <td class="inline-item-tools">
             <ul class="inline-item-tools">
                 {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="deletelink" title="Delete Item"></a></li>{% endif %}
-                {% if inline_admin_form.show_url %}<li><a href="/r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="viewsitelink" title="View on Site"></a></li>{% endif %}
+                {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="viewsitelink" title="View on Site"></a></li>{% endif %}
                {% if inline_admin_formset.opts.sortable %} <li><a href="javascript://" class="draghandler" title="Move Item"></a></li>{% endif %}
             </ul>
         </td>
@@ -52,7 +53,8 @@
         {% for fieldset in inline_admin_form %}
           {% for line in fieldset %}
             {% for field in line %}
-              <td class="{{ field.field.name }} {% if field.field.errors %} error{% endif %}">
+              {% comment %}<td class="{{ field.field.name }} {% if field.field.errors %} error{% endif %}">{% endcomment %}
+              <td class="{% if field.field.errors %} error{% endif %}">
               {{ field.field }}
               {{ field.field.errors.as_ul }}
               </td>

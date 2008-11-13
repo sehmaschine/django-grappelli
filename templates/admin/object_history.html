@@ -2,7 +2,13 @@
 {% load i18n %}
 
 {% block breadcrumbs %}
-<div class="breadcrumbs"><a href="../../../../">{% trans 'Home' %}</a> &rsaquo; <a href="../../">{{ module_name }}</a> &rsaquo; <a href="../">{{ object|truncatewords:"18" }}</a> &rsaquo; {% trans 'History' %}</div>
+<div class="breadcrumbs"> 
+    <a href="../../../../">{% trans 'Home' %}</a> &rsaquo;
+    <a href="../../../">{{ app_label|capfirst }}</a> &rsaquo;
+    <a href="../../">{{ module_name }}</a> &rsaquo; 
+    <a href="../">{{ object|truncatewords:"18" }}</a> &rsaquo;
+    {% trans 'History' %}
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -21,8 +27,8 @@
         <tbody>
         {% for action in action_list %}
         <tr>
-            <th scope="row">{{ action.action_time|date:_("DATE_WITH_TIME_FULL") }}</th>
-            <td>{{ action.user.username }}{% if action.user.first_name %} ({{ action.user.first_name }} {{ action.user.last_name }}){% endif %}</td>
+            <th scope="row">{{ action.action_time|date:_("DATETIME_FORMAT") }}</th>
+            <td>{{ action.user.username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>
             <td>{{ action.change_message }}</td>
         </tr>
         {% endfor %}
