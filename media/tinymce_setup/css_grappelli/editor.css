@@ -1,22 +1,22 @@
 /* Reset */
 .o2k7Skin table, .o2k7Skin tbody, .o2k7Skin a, .o2k7Skin img, .o2k7Skin tr, .o2k7Skin div, .o2k7Skin td, .o2k7Skin iframe, .o2k7Skin span, .o2k7Skin *, .o2k7Skin .text {border:0; margin:0; padding:0; background:transparent; white-space:nowrap; text-decoration:none; font-weight:normal; cursor:default; color:#000; vertical-align:baseline; width:auto; border-collapse:separate; text-align:left}
 .o2k7Skin a:hover, .o2k7Skin a:link, .o2k7Skin a:visited, .o2k7Skin a:active {text-decoration:none; font-weight:normal; cursor:default; color:#000}
-.o2k7Skin table td {vertical-align:middle}
+.o2k7Skin table td {padding: 0 !important;vertical-align:middle;}
 
 /* Containers */
 
 .o2k7Skin table {
-    background: #dbdad8 url(../img_grappelli/bg_table.gif) 0 0 repeat-x;
+    background: #dbdad8 url(../img_grappelli/bg_table.gif) 0 0 repeat-x !important;
 }
 .o2k7Skin iframe {
-    display:block;
+    display:block !important;
     margin-bottom: 7px !important;
     /*border: 1px solid #e4f;*/
-    border-top: 1px solid #c6c6c6;
-    border-bottom: 1px solid #ddd;
-    background:#fff;
+    border-top: 1px solid #c6c6c6 !important;
+    border-bottom: 1px solid #ddd !important;
+    background:#fff !important;
 }
-.o2k7Skin .mceToolbar {height:30px}
+.o2k7Skin .mceToolbar {height:30px !important}
 
 /* External */
 .o2k7Skin .mceExternalToolbar {position:absolute; border:1px solid #ccc; border-bottom:0; display:none}
@@ -25,7 +25,7 @@
 
 /* Layout */
 .o2k7Skin table.mceLayout {
-    border: 1px solid #ddd;
+    border: 1px solid #ddd !important;
     -moz-border-radius: 5px !important;
 }
 .errors .o2k7Skin table.mceLayout {
@@ -37,12 +37,12 @@
     -moz-border-radius: 0 !important;
 }
 .o2k7Skin table.mceLayout td {border:none !important;}
-.o2k7Skin table.mceLayout tr.mceFirst td {padding-left: 0px;}
-.o2k7Skin table.mceLayout tr.mceLast td {border-bottom:1px solid #ccc}
+.o2k7Skin table.mceLayout tr.mceFirst td {padding-left: 0px !important;}
+.o2k7Skin table.mceLayout tr.mceLast td {border-bottom:1px solid #ccc !important}
 .o2k7Skin table.mceToolbar, .o2k7Skin tr.mceFirst .mceToolbar tr td, .o2k7Skin tr.mceLast .mceToolbar tr td {border:0; margin:0; padding:0}
 .o2k7Skin .mceIframeContainer {
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
+    border-top:1px solid #ccc !important;
+    border-bottom:1px solid #ccc !important;
 }
 .o2k7Skin .mceStatusbar {display:block; font-family:"Helvetica Neue",Arial; font-size:10px; line-height:16px; overflow:visible; color:#000; height:20px;}
 .o2k7Skin .mceStatusbar div {float:left; padding:2px;}
@@ -102,13 +102,13 @@
 /* ListBox */
 .o2k7Skin .mceListBox, .o2k7Skin .mceListBox a {display:block}
 .o2k7Skin .mceListBox .mceText {
-    padding:1px 0 2px 4px;
+    padding:1px 0 2px 4px !important;
     width:90px; height:19px;
     border:1px solid; border-color: #bdbab7 #cfccc8 #cfccc8 #bdbab7 !important;
     -moz-border-radius-topleft: 4px !important;
     -moz-border-radius-bottomleft: 4px !important;
     background:#fafafa;
-    font-family:"Helvetica Neue",Arial; font-size:11px !important; line-height:20px; text-align:left;
+    color: #666 !important; font-family:Arial, sans-serif; font-size:11px !important; line-height:20px; text-align:left;
     overflow:hidden;
 }
 /*.o2k7Skin .mceListBox .open {width:14px; height:22px; background:url(/media/admin/tinymce_3.0/jscripts/tiny_mce/themes/advanced/skins/o2k7/img/button_bg.png) -66px 0; margin-right:2px}*/

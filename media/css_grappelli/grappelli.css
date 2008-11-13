@@ -10,7 +10,6 @@
    
    * See README for instructions on how to use Grappelli.
    * For credits and origins, see AUTHORS.
-   * This is a compressed file. See the sources in the 'src' directory.
    
    * Copyright (c) 2008, vonautomatisch werkstaetten. All rights reserved.
      See LICENSE for more info.
@@ -18,294 +17,1109 @@
 ----------------------------------------------------------------------- */
 @import url('grappelli_fieldsets.css');
 
-#container{z-index:0}
-#content-related{position:relative; float:right; margin-right:-38em; width:18em}
-#content-related-extended{position:relative; float:right; margin-right:-19em; width:18em}
 
-body{font-family:Arial,sans-serif}
+/* Page Structures
+----------------------------------------------------------------------- */
+#container {
+    z-index: 0;
+}
+#content-related {
+    position: relative !important; float: right !important;
+    margin-right: -38em !important;
+    width: 18em !important;
+}
+#content-related-extended {
+    position: relative !important; float: right !important;
+    margin-right: -19em !important;
+    width: 18em !important;
+}
 
-h1{margin:20px 0 10px; font-size:15px}
 
-a:link img.preview, a:visited img.preview{padding:5px; border:1px solid #79a5c1; -moz-border-radius:3px; -webkit-border-radius:3px; background:#fff}
-a:hover img.preview, a:active img.preview{border-color:#777}
+/* Global Definitions (Typography, Tables)
+----------------------------------------------------------------------- */
 
-fieldset table{border:none; -moz-border-radius:5px !important; -webkit-border-radius:5px !important}
-td, th{padding:7px 15px 6px 10px; color:#666; font-family:Arial,sans-serif}
+body {
+    font-family: Arial, sans-serif !important;
+}
 
-.module tbody tr:last-child td, .module tbody tr:last-child th{border-bottom:none}
+/*  Global Defaults ----------------------- */
+h1 {
+    margin: 20px 0 10px !important;
+    font-size: 15px !important;
+}
 
-fieldset td, fieldset th{-moz-border-radius:5px !important}
-fieldset tr:first-child td, fieldset tr:first-child th{border-top:1px solid #ddd !important}
-fieldset tr:last-child td, fieldset tr:last-child th{border:none !important}
-fieldset thead th, fieldset tfoot td{padding:4px 10px 3px; border-left:1px solid #ddd; border-bottom:1px solid #ddd; background:transparent url(../img_grappelli/bg_fieldset_reverse.gif) 0 0 repeat-x !important}
+a:link img.preview, a:visited img.preview {
+    padding: 5px;
+    border: 1px solid #79a5c1;
+    -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    background: #fff;
+}
+a:hover img.preview, a:active img.preview {
+    border-color: #777;
+}
 
-.row1{-moz-border-radius:5px; -webkit-border-radius:5px; background:#f7f7f7}
-.row2{-moz-border-radius:5px; -webkit-border-radius:5px; background:#fff}
-tr.rowsort{-moz-border-radius:0; -webkit-border-radius:0; background:#D6E0EC; cursor:move}
-td.photo_gallery{width:180px}
+/* Links ----------------------- */
+a { outline: none; }
+a:link, a:visited {
+    color: #659dc2 !important; text-decoration: none;
+}
+a:hover, a:active {
+    color: #555 !important;
+}
 
-thead th a:link, thead th a:visited{margin:-4px -10px -3px; padding:4px 10px 3px !important}
+a img {
+    border: none;
+}
 
-a{outline:none}
-a:link, a:visited{color:#598fb3; text-decoration:none}
-a:hover, a:active{color:#555 !important}
-a img{border:none}
+a.addlink, a.changelink {
+    position: relative; top: 0;
+    margin-left: 10px; padding: 1px 0 0 14px;
+    vertical-align: top !important;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+a.addlink:link, a.addlink:visited {
+    background-image: url(../img_grappelli/icon_addlink.gif) !important;
+}
+a.addlink:hover, a.addlink:active {
+    background-image: url(../img_grappelli/icon_addlink_hover.gif) !important;
+}
+a.changelink:link, a.changelink:visited {
+    background-image: url(../img_grappelli/icon_changelink.gif) !important;
+}
+a.changelink:hover, a.changelink:active {
+    background-image: url(../img_grappelli/icon_changelink_hover.gif) !important;
+}
 
-a.addlink, a.changelink{position:relative; top:0; margin-left:10px; padding:1px 0 0 14px; vertical-align:top !important; background-position:0 50%; background-repeat:no-repeat; background-color:transparent}
-a.addlink:link, a.addlink:visited{background-image:url(../img_grappelli/icon_addlink.gif) !important}
-a.addlink:hover, a.addlink:active{background-image:url(../img_grappelli/icon_addlink_hover.gif) !important}
-a.changelink:link, a.changelink:visited{background-image:url(../img_grappelli/icon_changelink.gif) !important}
-a.changelink:hover, a.changelink:active{background-image:url(../img_grappelli/icon_changelink_hover.gif) !important}
-a.deletelink:link, a.deletelink:visited{padding:3px 0 2px 21px !important; color:#cc3d3d; font-weight:bold; background-image:url(../img_grappelli/icon_deletelink.gif) !important}
-a.deletelink:hover, a.deletelink:active{background-image:url(../img_grappelli/icon_deletelink_hover.gif) !important}
-a.add-another img{width:0; height:0}
-a.add-another:link, a.add-another:visited{position:relative; margin-left:3px; padding:0 6px; width:10px !important; height:8px !important; vertical-align:top !important; color:#cc3d3d; font-weight:bold; background:transparent url(../img_grappelli/icon_add-another.gif) 50% 50% no-repeat !important}
-a.add-another:hover, a.add-another:active{color:#333; background:url(../img_grappelli/icon_add-another_hover.gif) center center no-repeat !important}
-.inline-group a.add-another{top:2px !important}
-a.fb_show img{width:0; height:0}
-a.fb_show:link, a.fb_show:visited{position:relative; padding:7px 14px; line-height:0 !important; border:none; background:transparent url(../filebrowser/img/filebrowser_icon_show.gif) 2px 3px no-repeat !important}
-a.fb_show:hover, a.fb_show:active{background-image:url(../filebrowser/img/filebrowser_icon_show_hover.gif) !important}
-a.related-lookup img{width:0; height:0}
-a.related-lookup:link, a.related-lookup:visited{position:relative; padding:6px 9px; line-height:0 !important; border:none; background:transparent url(../img_grappelli/icon_searchbox.gif) 5px 5px no-repeat !important}
-a.related-lookup:hover, a.related-lookup:active{background-image:url(../img_grappelli/icon_searchbox_hover.gif) !important}
-a.related-lookup+strong{color:#555 !important}
+a.deletelink:link, a.deletelink:visited {
+    padding: 3px 0 2px 21px !important;
+    color: #cc3d3d !important; font-weight: bold;
+    background-image: url(../img_grappelli/icon_deletelink.gif) !important;
+}
+a.deletelink:hover, a.deletelink:active {
+    color: #555 !important; 
+    background-image: url(../img_grappelli/icon_deletelink_hover.gif) !important;
+}
 
-div.breadcrumbs{padding:3px 8px 3px 15px; background:#eee url(../img_grappelli/bg_breadcrumbs.gif) 0 0 repeat-x; font-size:11px; text-align:left; border-top:1px solid #ccc; border-bottom:1px solid #ccc}
+a.add-another img {
+    width: 0; height: 0;
+}
+a.add-another:link, a.add-another:visited {
+    position: relative;
+    margin-left: 3px; padding: 0 6px;
+    width: 10px !important; height: 8px !important;
+    vertical-align: top !important;
+    color: #cc3d3d; font-weight: bold;
+    background: transparent url(../img_grappelli/icon_add-another.gif) 50% 50% no-repeat !important;
+}
+a.add-another:hover, a.add-another:active {
+    color: #333;
+    background: url(../img_grappelli/icon_add-another_hover.gif) center center no-repeat !important;
+}
+.inline-group a.add-another {
+    top: 2px !important;
+}
 
-#header{z-index:1000; height:30px; color:#ddd; background:#383531 url(../img_grappelli/bg_header.gif) 0 0 repeat-x !important}
-#header a:link, #header a:visited{color:#659dc2 !important; text-decoration:none}
-#header a:hover, #header a:active{color:#999 !important}
+a.fb_show img {
+    width: 0; height: 0;
+}
+a.fb_show:link, a.fb_show:visited {
+    position: relative;
+    padding: 7px 14px;
+    line-height: 0 !important;
+    border: none;
+    background: transparent url(../filebrowser/img/filebrowser_icon_show.gif) 2px 3px no-repeat !important;
+}
+a.fb_show:hover, a.fb_show:active {
+    background-image: url(../filebrowser/img/filebrowser_icon_show_hover.gif) !important;
+}
 
-#branding{padding:0 !important; width:100%}
+a.related-lookup img {
+    width: 0; height: 0;
+}
+a.related-lookup:link, a.related-lookup:visited {
+    position: relative;
+    padding: 6px 9px;
+    line-height: 0 !important;
+    border: none;
+    background: transparent url(../img_grappelli/icon_searchbox.gif) 5px 5px no-repeat !important;
+}
+a.related-lookup:hover, a.related-lookup:active {
+    background-image: url(../img_grappelli/icon_searchbox_hover.gif) !important;
+    }
+a.related-lookup + strong {
+    color: #555 !important;
+}
 
-#branding ul{float:left; clear:both; margin:0 5px !important; padding:0}
-#branding>ul{position:absolute; z-index:901}
-#branding ul li{position:relative; float:left; padding:7px 10px 3px; height:20px; color:#ddd; font-size:11px !important; font-weight:bold; border-left:1px solid #47433f; border-right:1px solid #36332f; background:none; list-style-type:none !important}
-#branding ul.menu{display:none; position:absolute; top:30px; left:-6px; margin:0; width:200px; border:1px solid #4d4843; background:#383531; -moz-border-radius-bottomleft:5px; -webkit-border-bottom-left-radius:5px; -moz-border-radius-bottomright:5px; -webkit-border-bottom-right-radius:5px}
-#branding ul.menu li{float:none; margin:0 !important; padding:0 !important; height:auto; border:none; border-bottom:1px solid #4d4d4d}
-#branding ul.menu li a:link, #branding ul.menu li a:visited{display:block; padding:5px 30px 5px 10px !important; background:#383531}
-#branding ul.menu li a:hover{color:#eee !important; background:#598fb3}
-#branding ul.menu li:last-child a{-moz-border-radius-bottomleft:3px; -webkit-border-bottom-left-radius:3px; -moz-border-radius-bottomright:3px; -webkit-border-bottom-right-radius:3px}
-#user-tools{position:relative; float:right !important; top:0; right:0 !important; margin:0; padding:0; text-align:left}
-#branding ul li:first-child{border-left:none}
-#branding ul li:last-child{border-right:none; border-bottom:none}
+/* Tables  ----------------------- */
+fieldset table {
+    border: none;
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
+}
+td, th {
+    padding: 7px 15px 6px 10px !important;
+    color: #666 !important; font-family: Arial, sans-serif !important;
+}
 
-#content-related h3, #content-related-extended h3{padding-bottom:5px; color:#666; font-size:11px; border-bottom:1px solid #eee}
-#content-related h4, #content-related-extended h4{font-size:11px}
-#content-related .module h2, #content-related-extended .module h2{color:#666; background:#f5f5f5 url(../img_grappelli/bg_fieldset.gif) 0 100% repeat-x}
+.module tbody tr:last-child td, .module tbody tr:last-child th {
+    border-bottom: none;
+}
 
-.dashboard .module table tr{margin-top:0 !important}
-.dashboard .module table td a{padding-right:0}
+/*fieldset td, fieldset th {
+    -moz-border-radius: 5px !important;
+}*/
+fieldset tr:first-child td, fieldset tr:first-child th {
+    border-top: 1px solid #ddd !important;
+}
+fieldset tr:last-child td, fieldset tr:last-child th {
+    border: none !important;
+}
+fieldset thead th, fieldset tfoot td {
+    padding: 4px 10px 3px;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background:transparent url(../img_grappelli/bg_fieldset_reverse.gif) 0 0 repeat-x !important;
+}
 
-.module ul.menulist{margin:0; padding:0}
-ul.menulist li{margin:0; padding:3px 10px; border-bottom:1px solid #eee; list-style-type:none}
-ul.menulist:last-child li:last-child{margin-bottom:5px; border-bottom:none}
-ul.menulist li a{padding-left:11px}
-ul.menulist li a:link, ul.menulist li a:visited{background:transparent url(../img_grappelli/icon_menulist.gif) 0 50% no-repeat}
-ul.menulist li a:hover, ul.menulist li a:active{color:#555; background:transparent url(../img_grappelli/icon_menulist_hover.gif) 0 50% no-repeat}
+.row1 {
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #f7f7f7 !important;
+}
+.row2 {
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #fff;
+}
+tr.rowsort {
+    -moz-border-radius: 0; -webkit-border-radius: 0;
+    background: #D6E0EC;
+    cursor: move;
+}
+td.photo_gallery {
+    width: 180px;
+}
 
-.module ul.actionlist{color:#666}
-ul.actionlist li{margin:5px 0 -1px; padding-left:15px; line-height:12px; background:none}
-ul.actionlist li a{margin-left:-14px; padding-left:13px; background-position:0 center; background-repeat:no-repeat}
-ul.actionlist li.addlink a:link, ul.actionlist li.addlink a:visited{background-image:url(../img_grappelli/icon_actionlist-addlink.gif)}
-ul.actionlist li.addlink a:hover, ul.actionlist li.addlink a:active{background-image:url(../img_grappelli/icon_actionlist-addlink_hover.gif)}
-ul.actionlist li.changelink a:link, ul.actionlist li.changelink a:visited{background-image:url(../img_grappelli/icon_actionlist-changelink.gif)}
-ul.actionlist li.changelink a:hover, ul.actionlist li.changelink a:active{background-image:url(../img_grappelli/icon_actionlist-changelink_hover.gif)}
-ul.actionlist li.deletelink{text-decoration:line-through; background:url(../img_grappelli/icon_actionlist-deletelink_hover.gif) 1px 5px no-repeat}
+/* Sortable Tables ----------------------- */
+thead th a:link, thead th a:visited {
+    margin: -4px -10px -3px; padding: 4px 10px 3px !important;
+    color: #a1a8ab !important;
+}
 
-#changelist thead th{padding:4px 10px 3px; background:transparent url(../img_grappelli/bg_th.gif) 0 0 repeat-x !important}
-#changelist thead th a{background:transparent url(../img_grappelli/bg_th-sortable.gif) 0 0 repeat-x !important}
-#changelist thead th.ascending a, #changelist thead th a:hover{background:transparent url(../img_grappelli/bg_th_ascending.gif) 0 0 repeat-x !important}
-#changelist thead th.ascending a:after{content:url(../img_grappelli/icon_th_ascending.gif)}
-#changelist thead th.descending a{background:transparent url(../img_grappelli/bg_th_descending.gif) 0 0 repeat-x !important}
-#changelist thead th.descending a:after{content:url(../img_grappelli/icon_th_descending.gif)}
-#changelist table tbody th, #changelist table tbody td{border-left:1px solid #ddd !important}
-#changelist table tbody th:first-child, #changelist table tbody td:first-child{border-left:none !important}
-#changelist table tr.row1, #changelist table tr.row2{-moz-border-radius:0 !important}
-#changelist table tbody tr:last-child th, #changelist table tbody tr:last-child td{border-bottom:1px solid #eee !important}
+/* Breadcrumbs
+----------------------------------------------------------------------- */
+div.breadcrumbs {
+    padding: 3px 8px 3px 15px !important;
+    font-size: 11px !important; text-align: left !important;
+    border-top: 1px solid #ccc !important;
+    border-bottom: 1px solid #ccc !important;
+    background: #eee url(../img_grappelli/bg_breadcrumbs.gif) 0 0 repeat-x !important;
+}
 
-#changelist #toolbar{padding:2px 4px 8px 0 !important; height:22px; border-bottom:1px solid #ddd !important; -moz-border-radius-topleft:5px !important; -webkit-border-top-left-radius:5px !important; background:#E7EDF4 url(../img_grappelli/bg_toolbar.gif) 0 0 repeat-x !important}
-#changelist #toolbar form #searchbar{width:200px}
-#changelist #toolbar form span{margin-left:5px}
-#changelist #toolbar input[type=image]{border:none !important}
-#changelist-search label{display:block; position:relative; float:left; margin:6px 8px 0; width:15px !important; height:15px !important; background:transparent url('../img_grappelli/icon_searchbox_hover.gif') 50% 50% no-repeat !important}
-#changelist-search label img{display:none !important}
 
-#changelist-filter{margin:0 -1px 0 0 !important; border-right:1px solid #ddd !important; border-bottom:1px solid #ddd !important; -moz-border-radius:5px; -webkit-border-radius:5px; -moz-border-radius-topleft:0; -webkit-border-top-left-radius:0}
-#changelist-filter h2{margin:0 !important; padding:13px 5px 5px 10px !important; font-size:12px !important; -moz-border-radius-topleft:0 !important; -webkit-border-top-left-radius:0 !important; background:#eee url(../img_grappelli/bg_toolbar.gif) 0 0 repeat-x !important}
-#changelist-filter h2+.filterset{margin-top:0 !important; border-top:none !important}
-#changelist-filter .filterset{border-top:1px solid #ddd}
-#changelist-filter .filterset.collapse-closed{background:transparent url(../img_grappelli/bg_filterset.gif) 0 0 repeat-x}
-#changelist-filter .filterset.collapse-closed:hover{background:transparent url(../img_grappelli/bg_filterset_hover.gif) 0 0 repeat-x}
-#changelist-filter .filterset.collapse-open{background:#f9f9f9 url(../img_grappelli/bg_filterset_reverse.gif) 0 0 repeat-x !important}
-#changelist-filter .filterset h3{margin:0; padding:5px 10px !important; font-size:11px !important; line-height:14px !important; cursor:pointer}
-#changelist-filter .filterset.collapse-closed h3{color:#a1a8ab}
-#changelist-filter .filterset.collapse-closed:hover h3, #changelist-filter .filterset.collapse-open h3{color:#666}
-#changelist-filter .filterset.collapse-closed ul{display:none}
-#changelist-filter .filterset.collapse-open ul{display:block}
-#changelist-filter ul{margin:0 !important; padding:1px 0 7px !important}
-#changelist-filter ul li{margin:0 !important; padding:0 !important}
-#changelist-filter ul li:last-child{border-bottom:none}
-#changelist-filter ul li:hover, #changelist-filter ul li.selected{border-left:none}
-#changelist-filter ul li a{display:block; margin:0; padding:1px 0 1px 10px !important; color:#aaa; line-height:13px !important; background:#f9f9f9}
-#changelist-filter ul li:hover a, #changelist-filter ul li.selected a{padding-left:10px !important; color:#666 !important; font-size:11px}
-#changelist-filter ul li.selected a{font-weight:bold}
 
-.filebrowser #changelist-filter{background:#f9f9f9}
-.filebrowser #changelist-filter h3{margin:0; padding:5px 10px 4px !important; font-size:11px !important; border-top:1px solid #ddd; background:#f9f9f9 url(../img_grappelli/bg_filterset_reverse.gif) 0 0 repeat-x !important}
-.filebrowser #changelist-filter h2+h3{border-top:none}
-.filebrowser #changelist-filter ul{margin:-1px 0 0}
+/* Header, Branding & Navigation
+----------------------------------------------------------------------- */
+#header {
+    z-index: 1000;
+    height: 30px;
+    color: #ddd;
+    background: #383531 url(../img_grappelli/bg_header.gif) 0 0 repeat-x !important;
+}
+#header a:link, #header a:visited {
+    color: #659dc2 !important; text-decoration: none !important;
+}
+#header a:hover, #header a:active {
+    color: #999 !important;
+}
 
-.change-list #changelist .xfull ul.toplinks{position:relative; clear:right !important; border-bottom:1px solid #ddd !important; background:transparent url(../img_grappelli/bg_toplinks.gif) 0 0 repeat-x !important}
-.change-list ul.toplinks li{padding:5px 0 5px 20px !important; width:auto !important; color:#666; line-height:13px}
-.change-list ul.toplinks li:first-child{margin-left:11px !important}
+#branding {
+    padding: 0 !important;
+    width: 100%;
+}
 
-#changelist .paginator{color:#666; border-top:none !important; border-bottom:none !important; -moz-border-radius-bottomleft:5px; -webkit-border-bottom-left-radius:5px; background:#fff url(../img_grappelli/bg_paginator.gif) 0 0 repeat-x scroll !important; overflow:hidden}
+#branding ul {
+    float: left; clear: both;
+    margin: 0 5px !important; padding: 0;
+}
+#branding>ul {
+    position: absolute; z-index: 901;
+}
+#branding ul li {
+    position: relative; float: left;
+    padding: 7px 10px 3px;
+    height: 20px;
+    color: #ddd; font-size: 11px !important; font-weight: bold;
+    border-left: 1px solid #47433f;
+    border-right: 1px solid #36332f;
+    background: none;
+    list-style-type: none !important;
+}
 
-#changelist .paginator span{margin-right:10px; color:#cc3d3d !important}
-#changelist table+.paginator, #changelist #toolbartable+.paginator{margin-top:-1px; border-top:1px solid #ddd !important}
+#branding ul.menu {
+    display: none;
+    position: absolute; top: 30px; left: -6px;
+    margin: 0;
+    width: 200px;
+    border: 1px solid #4d4843;
+    background:#383531;
+    -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+}
+#branding ul.menu li {
+    float: none;
+    margin: 0 !important; padding: 0 !important;
+    height: auto;
+    border: none;
+    border-bottom: 1px solid #4d4d4d;
+}
+#branding ul.menu li a:link, #branding ul.menu li a:visited {
+    display: block;
+    padding: 5px 30px 5px 10px !important;
+    background:#383531;
+}
+#branding ul.menu li a:hover { color: #eee !important; background: #598fb3; }
+#branding ul.menu li:last-child a {
+    -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px;
+}
+#user-tools { 
+    position: relative; float: right !important; top: 0 !important; right: 0 !important;
+    margin: 0 !important; padding: 0 !important;
+    text-align: left !important;
+}
+#branding ul li:first-child {
+    border-left: none;
+}
+#branding ul li:last-child {
+    border-right: none; border-bottom: none;
+}
 
-img[src^="/media/admin/img/admin/icon-no.gif"]{padding:5px; width:0; height:0; background:url(../img_grappelli/icon_no.gif) 0 50% no-repeat !important}
-img[src^="/media/admin/img/admin/icon-yes.gif"]{padding:5px; width:0; height:0; background:url(../img_grappelli/icon_yes.gif) 0 50% no-repeat !important}
 
-.object-tools{position:relative; float:right; margin-top:-23px; margin-bottom:-10px; padding:0; font-family:Arial,Helvetica,sans-serif; font-weight:bold; text-transform:none}
-.form-row .object-tools{float:none; margin-top:5px; margin-bottom:5px}
-.object-tools li{display:block; float:left; padding:0; color:#ccc; font-size:12px !important; line-height:12px !important; background:none !important}
-.object-tools li:hover{background:none !important}
-.object-tools a{display:block; float:left; margin:-3px 0 0 15px; padding:3px 0 2px 22px !important; font-size:12px !important; line-height:12px !important; background-color:#fff !important; background-position:0 0 !important; background-repeat:no-repeat}
-.object-tools a:link, .object-tools a:visited{color:#659DC2 !important; background-image:url(../img_grappelli/icon_object-tools_defaultlink.gif) !important}
-.object-tools a:hover, .object-tools a:active{color:#555 !important; background-image:url(../img_grappelli/icon_object-tools_defaultlink_hover.gif) !important}
-.object-tools a.addlink:link, .object-tools a.addlink:visited{background-image:url(../img_grappelli/icon_object-tools_addlink.gif) !important}
-.object-tools a.addlink:hover, .object-tools a.addlink:active{background-image:url(../img_grappelli/icon_object-tools_addlink_hover.gif) !important}
-.object-tools a.historylink:link, .object-tools a.historylink:visited{background-image:url(../img_grappelli/icon_object-tools_historylink.gif) !important}
-.object-tools a.historylink:hover, .object-tools a.historylink:active{background-image:url(../img_grappelli/icon_object-tools_historylink_hover.gif) !important}
-.object-tools a.viewsitelink:link, .object-tools a.viewsitelink:visited{background-image:url(../img_grappelli/icon_object-tools_viewsitelink.gif) !important}
-.object-tools a.viewsitelink:hover, .object-tools a.viewsitelink:active{background-image:url(../img_grappelli/icon_object-tools_viewsitelink_hover.gif) !important}
+/* Sidebar
+----------------------------------------------------------------------- */
+#content-related h3, #content-related-extended h3 {
+    padding-bottom: 5px;
+    color: #666; font-size: 11px;
+    border-bottom: 1px solid #eee;
+}
+#content-related h4, #content-related-extended h4 {
+    font-size: 11px;
+}
+#content-related .module h2, #content-related-extended .module h2 {
+    color: #666;
+    background: #f5f5f5 url(../img_grappelli/bg_fieldset.gif) 0 100% repeat-x;
+}
 
-table#change-history{-moz-border-radius:5px; -webkit-border-radius:5px; border:none !important; background:#f7f7f7}
-table#change-history thead th{padding:7px 15px 6px 10px; background:url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x}
-table#change-history tbody td{background:#f7f7f7 url(../img/admin/dashboard-table-bg.gif) 0 0 repeat-x}
+/* Dashboard ----------------------- */
+.dashboard .module table tr {
+    margin-top: 0 !important;
+}
+.dashboard .module table td a {
+    padding-right: 0;
+}
 
-label{margin:7px 0 0; width:150px !important; color:#666 !important; font-size:11px !important; cursor:pointer !important}
-.required label, label.required, .form-row .required label, .form-row label.required{color:#666 !important}
+/* Navigation Module ----------------------- */
+.module ul.menulist {
+    margin: 0; padding: 0;
+}
+ul.menulist li {
+    margin: 0; padding: 3px 10px;
+    border-bottom: 1px solid #eee;
+    list-style-type: none;
+}
+ul.menulist:last-child li:last-child {
+    margin-bottom: 5px;
+    border-bottom: none;
+}
+ul.menulist li a {
+    padding-left: 11px;
+}
+ul.menulist li a:link, ul.menulist li a:visited {
+    background: transparent url(../img_grappelli/icon_menulist.gif) 0 50% no-repeat;
+}
+ul.menulist li a:hover, ul.menulist li a:active {
+    color: #555;
+    background: transparent url(../img_grappelli/icon_menulist_hover.gif) 0 50% no-repeat;
+}
 
-fieldset.collapse-open label{width:120px !important; color:#666; font-size:11px}
+/* Recent Actions Module ----------------------- */
+.module ul.actionlist {
+    color: #666;
+}
+ul.actionlist li {
+    margin: 5px 0 -1px; padding-left: 15px;
+    line-height: 12px;
+    background: none;
+}
+ul.actionlist li a {
+    margin-left: -14px; padding-left: 13px;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+}
 
-form ul.radiolist label{float:none; display:block; margin-left:0 !important; width:30px !important}
+ul.actionlist li.addlink a:link, ul.actionlist li.addlink a:visited {
+    background-image:url(../img_grappelli/icon_actionlist-addlink.gif);
+}
+ul.actionlist li.addlink a:hover, ul.actionlist li.addlink a:active {
+    background-image:url(../img_grappelli/icon_actionlist-addlink_hover.gif);
+}
+ul.actionlist li.changelink a:link, ul.actionlist li.changelink a:visited {
+    background-image:url(../img_grappelli/icon_actionlist-changelink.gif);
+}
+ul.actionlist li.changelink a:hover, ul.actionlist li.changelink a:active {
+    background-image:url(../img_grappelli/icon_actionlist-changelink_hover.gif);
+}
 
-.aligned label{float:left; padding:6px 10px 3px 0; width:120px !important}
-.aligned .vCheckboxLabel{position:relative; top:2px !important; margin-left:10px !important; padding:0 !important}
-.colM .aligned .vLargeTextField, .colM .aligned .vXMLLargeTextField{width:610px}
-form .aligned p, form .aligned ul{margin-left:0; padding-left:0}
-ul.radiolist, ul.checkboxlist{margin-bottom:0 !important; padding-left:54px !important}
-form .aligned table p{margin-left:0; padding-left:0}
-form .aligned p.help{margin:2px 0 0 131px !important; padding:0 !important}
-form .aligned input+label+p.help{margin:2px 0 0 154px !important; padding:0 !important}
-td p.help{margin-bottom:3px !important; padding:0 !important}
+ul.actionlist li.deletelink {
+    text-decoration: line-through;
+    background:url(../img_grappelli/icon_actionlist-deletelink_hover.gif) 1px 5px no-repeat;
+}
 
-.form-row label+input+p.help{margin:5px 0 0 130px !important; padding:0 !important}
-.form-row label+input+p.help input[type=checkbox]{position:relative; top:-2px; margin:0 3px 0 0 !important}
-.form-row label+p{position:relative; float:none; left:0; margin:6px 0 !important; padding:0 !important}
-.form-row label+p+label{display:none}
-.form-row label+p+label+p{position:relative; float:none; left:131px}
-.form-row label+p.help{margin:7px 0 5px !important}
-.form-row label+p.datetime{margin:0 !important}
 
-.checkbox-row p.help{margin-left:0; padding-left:0 !important}
+/* Changelist
+----------------------------------------------------------------------- */
+/*#changelist.filtered { min-height: 20px; }*/
 
-.submit-row{margin:5px 0; padding:5px 7px; text-align:right; border:1px solid #ddd !important; -moz-border-radius:5px; -webkit-border-radius:5px; background:white url(../img_grappelli/bg_paginator.gif) 0 100% repeat-x !important}
-.submit-row input{margin:0 0 0 5px}
-.submit-row p{margin-top:5px !important}
+/* REPRODUCE ERROR .change-list #changelist.filtered table, .change-list #changelist.filtered .paginator, #changelist.filtered #toolbar, #changelist.filtered div.xfull {
+margin-right:0 !important;
+width:auto !important;
+}*/
 
-.vDateField, .vTimeField{margin-left:0 !important}
-input, textarea, select{margin:2px 0; padding:3px; vertical-align:middle; color:#666; font-family:Arial,Verdana,sans-serif; font-size:11px; font-weight:normal; border:1px solid #bbb; border-color:#ccc #ddd #ddd #ccc !important; -moz-border-radius:3px; -webkit-border-radius:3px}
-select{min-width:108px}
-option{padding-right:30px; border-bottom:1px dotted #ddd}
-option:last-child{border-bottom:none}
-input[type=text], textarea{width:554px}
-input.vDateField, input.vTimeField{width:100px !important}
-input[type=checkbox]{margin:0 0 0 130px}
-.inline-item-tools input[type=checkbox]{margin-left:0 !important}
-textarea{vertical-align:top !important}
-input[type=text], input[type=password]{padding:5px 3px 4px !important}
-input[type=submit], input[type=button], .submit-row input{padding:3px 4px 4px !important; height:24px; color:#555; font-weight:bold; line-height:16px; border:1px solid #bbb; border-color:#ddd #bbb #bbb #ddd !important; -moz-border-radius:5px; -webkit-border-radius:5px; background:transparent url(../img_grappelli/bg_submit-default-button.gif) 0 0 repeat-x; cursor:pointer}
-input[type=submit]:hover, input[type=button]:hover, input[type=submit]:active, input[type=button]:active{background:transparent url(../img_grappelli/bg_submit-default-button_hover.gif) 0 0 repeat-x}
-input[type=submit].default, .submit-row input.default{color:#fff !important; font-weight:bold; border:1px solid #719fbd !important; border-color:#719fbd #53748a #53748a #719fbd !important; -moz-border-radius:5px; -webkit-border-radius:5px; background:transparent url(../img_grappelli/bg_submit-default.gif) 0 0 repeat-x !important}
-input[type=submit].default:hover, input[type=submit].default:active{background-image:url(../img_grappelli/bg_submit-default_hover.gif) !important}
+/* Changelist Tables ----------------------- */
+#changelist thead th {
+    padding: 4px 10px 3px !important;
+    background: transparent url(../img_grappelli/bg_th.gif) 0 0 repeat-x !important;
+}
+#changelist thead th a {
+    background: transparent url(../img_grappelli/bg_th-sortable.gif) 0 0 repeat-x !important;
+}
+#changelist thead th.ascending a, #changelist thead th a:hover {
+    background: transparent url(../img_grappelli/bg_th_ascending.gif) 0 0 repeat-x !important;
+}
+#changelist thead th.ascending a:after {
+    content: url(../img_grappelli/icon_th_ascending.gif);
+}
+#changelist thead th.descending a {
+    background: transparent url(../img_grappelli/bg_th_descending.gif) 0 0 repeat-x !important;
+}
+#changelist thead th.descending a:after {
+    content: url(../img_grappelli/icon_th_descending.gif);
+}
+#changelist thead th.sorted a {
+    color: #6d6e6f !important;
+}
 
-ul.messagelist li{font-size:11px}
-ul.messagelist li{display:block; padding-left:30px; font-size:11px; font-weight:bold; border-bottom:1px solid #d6d6d6; background:#eef0c5 url(../img_grappelli/icon_yes.gif) 15px 50% no-repeat}
-.errornote{margin-bottom:5px; padding:4px 5px 4px 10px; color:#f7f7f7; font-size:11px !important; font-weight:bold; border:none; -moz-border-radius:5px; -webkit-border-radius:5px; background:#cc3d3d !important}
-body.login .errornote{margin:0 -1px !important; -moz-border-radius:0; -webkit-border-radius:0}
-.errors ul.errorlist{margin:0 !important}
-.errorlist li{display:block; margin:0; padding:2px 5px 2px 130px; color:#cc3d3d; font-size:11px !important; font-weight:bold; border:none !important; background:none !important}
-td ul.errorlist{margin:0 !important; padding:0 !important}
-td ul.errorlist li{margin:0 !important}
-.error{background:transparent !important}
-.error input, .error select, .errors input, .errors select{border:1px solid #e09999 !important; border-color:#e09999 #eba9a9 #eba9a9 #e09999}
-.description{padding:10px 0 10px 10px; border-bottom:1px dotted #ddd; border-top:1px solid #fff; color:#999; font-size:11px; background:#f7f7f7}
+#changelist table tbody th, #changelist table tbody td {
+    border-left: 1px solid #ddd !important;
+}
+#changelist table tbody th:first-child, #changelist table tbody td:first-child {
+    border-left: none !important;
+}
+#changelist table tr.row1, #changelist table tr.row2 {
+    -moz-border-radius: 0 !important;
+}
+#changelist table tbody tr:last-child th, #changelist table tbody tr:last-child td {
+    border-bottom: 1px solid #eee !important;
+}
 
-.selector{float:left; width:600px}
-.selector select{width:280px; height:200px}
-.selector input{position:relative; top:-10px; width:221px !important}
-.selector h2{padding:8px 5px 7px 8px !important; font-size:12px; line-height:13px !important; font-weight:bold; background:#f7f7f7 url(../img_grappelli/bg_module_reverse.gif) 0 100% repeat-x !important}
-.selector .selector-filter{padding:2px !important; height:26px; background:url(../img_grappelli/bg_fieldset.gif) 0 0 repeat-x !important}
-.selector .selector-filter img{display:none}
-.selector-filter:before{content:url('../img_grappelli/icon_searchbox_selector.gif')}
-.selector-filter+select{-moz-border-radius-topleft:0 !important; -webkit-border-top-left-radius:0 !important; -moz-border-radius-topright:0 !important; -webkit-border-top-right-radius:0 !important}
-.selector h2+select{display:none; position:relative; top:-1px; margin-top:-1px !important; border-top:none !important; -moz-border-radius-topleft:0 !important; -webkit-border-top-left-radius:0 !important; -moz-border-radius-topright:0 !important; -webkit-border-top-right-radius:0 !important}
-.selector ul.selector-chooser{float:left; margin:80px -1px 0 1px !important; padding:0; background:none !important}
-a.selector-add, a.selector-remove{display:block; width:16px; height:16px; background-position:0 0; background-repeat:no-repeat}
-a.selector-add:link, a.selector-add:visited{background-image:url('../img_grappelli/icon_selector-add.gif')}
-a.selector-add:hover, a.selector-add:active{background-image:url('../img_grappelli/icon_selector-add_hover.gif')}
-a.selector-remove:link, a.selector-remove:visited{background-image:url('../img_grappelli/icon_selector-remove.gif')}
-a.selector-remove:hover, a.selector-remove:active{background-image:url('../img_grappelli/icon_selector-remove_hover.gif')}
-a.selector-chooseall, a.selector-clearall{display:block; margin-left:7px !important; padding:0 !important; font-weight:bold; text-align:left !important; background:none !important}
-a.selector-chooseall:link, a.selector-chooseall:visited, a.selector-clearall:link, a.selector-clearall:visited{color:#598fb3 !important}
-a.selector-chooseall:hover, a.selector-chooseall:active, a.selector-clearall:hover, a.selector-clearall:active{color:#555 !important}
-a[id^="calendarlink"] img, a[id^="clocklink"] img{display:none !important}
-a[id^="calendarlink"], a[id^="clocklink"]{margin-right:15px; padding:2px 10px 3px !important; background:transparent 50% 50% no-repeat}
-a[id^="calendarlink"]:link, a[id^="calendarlink"]:visited{background-image:url('../img_grappelli/icon_calendar.gif') !important}
-a[id^="calendarlink"]:hover, a[id^="calendarlink"]:active{background-image:url('../img_grappelli/icon_calendar_hover.gif') !important}
-a[id^="clocklink"]:link, a[id^="clocklink"]:visited{background-image:url('../img_grappelli/icon_clock.gif') !important}
-a[id^="clocklink"]:hover, a[id^="clocklink"]:active{background-image:url('../img_grappelli/icon_clock_hover.gif') !important}
+/* Changelist Toolbar (Search) ----------------------- */
+#changelist #toolbar {
+    padding: 2px 4px 8px 0 !important;
+    height: 22px;
+    border-bottom: 1px solid #ddd !important;
+    -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
+    background:#E7EDF4 url(../img_grappelli/bg_toolbar.gif) 0 0 repeat-x !important;
+}
+#changelist #toolbar form #searchbar { width: 200px; }
+#changelist #toolbar form span { margin-left: 5px; }
 
-p.datetime br{display:none !important}
-.vDateField{margin-left:0}
+#changelist #toolbar input[type=image] { border: none !important; }
+#changelist-search label {
+    display: block; position: relative; float: left;
+    margin: 6px 8px 0;
+    width: 15px !important; height: 15px !important;
+    background: transparent url('../img_grappelli/icon_searchbox_hover.gif') 50% 50% no-repeat !important;
+}
+#changelist-search label img {
+    display: none !important;
+}
 
-.calendarbox, .clockbox{position:absolute !important; z-index:900; margin:5px auto; font-size:11px; text-align:center; border:2px solid #aaacad !important; -moz-border-radius:5px !important; -webkit-border-radius:5px !important; background:#aaacad !important}
-.clockbox{width:auto}
-.calendar{margin:0; padding:0}
-.calendar table{margin:0; padding:0; width:100% !important; border-collapse:collapse; background:#fff !important}
-.calendar caption, .calendarbox h2, .clockbox h2{margin:0; font-size:11px !important; text-align:center; border-top:none; -moz-border-radius-topleft:3px !important; -webkit-border-top-left-radius:3px !important; -moz-border-radius-topright:3px !important; -webkit-border-top-right-radius:3px !important; background:#C9DBED url(../img_grappelli/bg_fieldset.gif) 0 100% repeat-x !important}
-.calendar td{background:#fff !important}
-.calendar td a:hover, .timelist a:hover{background:#e2ecf0 !important}
-.calendar-shortcuts{padding:3px 0 4px; color:#ccc; font-size:10px; line-height:11px; font-weight:bold; border-top:1px solid #eee}
+/* Changelist-Filter ----------------------- */
+#changelist-filter {
+    margin: 0 -1px 0 0 !important;
+    border-right: 1px solid #ddd !important;
+    border-bottom: 1px solid #ddd !important;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+}
+#changelist-filter h2 {
+    margin: 0 !important; padding: 13px 5px 5px 10px !important;
+    font-size: 12px !important;
+    -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
+    background: #eee url(../img_grappelli/bg_toolbar.gif) 0 0 repeat-x !important;
+}
+#changelist-filter h2 + .filterset {
+    margin-top: 0 !important;
+    border-top: none !important;
+}
 
-.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next{position:absolute; display:block; color:#555 !important; font-weight:bold; font-size:11px !important}
-.calendarbox .calendarnav-previous{padding:9px 12px 7px 10px !important; -moz-border-radius-topleft:3px !important; -webkit-border-top-left-radius:3px !important; background:transparent url(../img_grappelli/icon_calendernav-previous.gif) 0 100% repeat-x !important}
-.calendarbox .calendarnav-next{padding:9px 10px 7px 12px !important; -moz-border-radius-topright:3px !important; -webkit-border-top-right-radius:3px !important; background:transparent url(../img_grappelli/icon_calendernav-next.gif) 0 100% repeat-x !important}
-.calendarnav-previous:hover{background:transparent url(../img_grappelli/icon_calendernav-previous_hover.gif) 0 100% repeat-x !important}
-.calendarnav-next:hover{background:transparent url(../img_grappelli/icon_calendernav-next_hover.gif) 0 100% repeat-x !important}
+#changelist-filter .filterset {
+    border-top: 1px solid #ddd;
+}
+#changelist-filter .filterset.collapse-closed {
+    background: transparent url(../img_grappelli/bg_filterset.gif) 0 0 repeat-x;
+}
+#changelist-filter .filterset.collapse-closed:hover {
+    background: transparent url(../img_grappelli/bg_filterset_hover.gif) 0 0 repeat-x;
+}
+#changelist-filter .filterset.collapse-open {
+    background: #f9f9f9 url(../img_grappelli/bg_filterset_reverse.gif) 0 0 repeat-x !important;
+}
 
-.calendar-cancel{margin:0 !important; padding:2px !important; font-size:11px; border-top:1px solid #ddd; -moz-border-radius-bottomleft:3px !important; -webkit-border-bottom-left-radiust:3px !important; -moz-border-radius-bottomright:3px !important; -webkit-border-bottom-right-radiust:3px !important; background:transparent url(../img_grappelli/bg_calender-cancel.gif) 0 0 repeat-x !important}
-.calendar-cancel:hover{background:transparent url(../img_grappelli/bg_calender-cancel_hover.gif) 0 0 repeat-x !important}
-.calendar-cancel a{color:#CC3434 !important; font-weight:bold !important}
-ul.timelist, .timelist li{background:#fff}
+#changelist-filter .filterset h3 {
+    margin: 0; padding: 5px 10px !important;
+    font-size: 11px !important; line-height: 14px !important;
+    cursor: pointer;
+}
+#changelist-filter .filterset.collapse-closed h3 {
+    color: #a1a8ab;
+}
+#changelist-filter .filterset.collapse-closed:hover h3, #changelist-filter .filterset.collapse-open h3 {
+    color: #666;
+}
 
-.inline-group .tabular td.original p{padding:5px 10px 10px 12px !important; font-size:11px !important}
+#changelist-filter .filterset.collapse-closed ul {
+    display: none;
+}
+#changelist-filter .filterset.collapse-open ul {
+    display: block;
+}
+#changelist-filter ul {
+    margin: 0 !important; padding: 1px 0 7px !important;
+}
+#changelist-filter ul li {
+    margin: 0 !important; padding: 0 !important;
+}
+#changelist-filter ul li:last-child {
+    border-bottom: none;
+}
+#changelist-filter ul li:hover, #changelist-filter ul li.selected {
+    border-left: none;
+}
+#changelist-filter ul li a {
+    display: block;
+    margin: 0; padding: 1px 0 1px 10px !important;
+    color: #aaa !important; line-height: 13px !important;
+    background: #f9f9f9;
+}
+#changelist-filter ul li:hover a, #changelist-filter ul li.selected a {
+    padding-left: 10px !important;
+    color: #666 !important; font-size: 11px;
+}
+#changelist-filter ul li.selected a {
+    font-weight: bold;
+}
 
-body.login{background:#fff !important}
-.login #container{border:none !important; -moz-border-radius:5px !important; -webkit-border-radius:5px !important; background:#fafafa url(../img_grappelli/bg_toolbar.gif) 0 0 repeat-x !important}
-.login #container #branding ul li{border-right:none !important}
-.login #container #branding ul li:last-child{display:none !important}
-.login #container form{margin:0; padding:0}
-.login #container #content{margin:0; padding:0; border:1px solid #ddd !important; -moz-border-radius-bottomleft:5px !important; -webkit-border-bottom-left-radius:5px !important; -moz-border-radius-bottomright:5px !important; -webkit-border-bottom-right-radius:5px !important; background:#fff !important}
-.login #container .submit-row{clear:both; margin:0; padding:5px 10px; border:none !important}
-.login #container #footer{display:none !important}
-.login #container label{margin:4px 0 0 15px; padding:0; width:100px !important; font-weight:bold; text-align:left; background:transparent !important}
-.login #container input[type=text], .login #container input[type=password]{width:201px !important}
-.login #container input[type=submit]{margin:0 !important}
-.login #container .form-row{float:none !important; padding:5px 0 !important; background:#fafafa}
-.login #container #header{-moz-border-radius-topleft:5px !important; -webkit-border-top-left-radius:5px !important; -moz-border-radius-topright:5px !important; -webkit-border-top-right-radius:5px !important}
+/* Changelist-Filter Filebrowser----------------------- */
+.filebrowser #changelist-filter {
+    background: #f9f9f9;
+}
+.filebrowser #changelist-filter h3 {
+    margin: 0; padding: 5px 10px 4px !important;
+    font-size: 11px !important;
+    border-top: 1px solid #ddd;
+    background: #f9f9f9 url(../img_grappelli/bg_filterset_reverse.gif) 0 0 repeat-x !important;
+}
+.filebrowser #changelist-filter h2 + h3 {
+    border-top: none;
+}
+.filebrowser #changelist-filter ul {
+    margin: -1px 0 0;
+}
+
+/* Date Drilldown (Toplinks) ----------------------- */
+.change-list #changelist .xfull ul.toplinks {
+    position: relative; clear: right !important;
+    border-bottom: 1px solid #ddd !important;
+    background: transparent url(../img_grappelli/bg_toplinks.gif) 0 0 repeat-x !important;
+}
+.change-list ul.toplinks li {
+    padding: 5px 0 5px 20px !important;
+    width: auto !important;
+    color: #666; line-height: 13px;
+}
+.change-list ul.toplinks li:first-child {
+    margin-left: 11px !important;
+}
+
+/* Paginator ----------------------- */
+#changelist .paginator {
+    color:#666;
+    border-top: none !important;
+    border-bottom: none !important;
+    -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    background: #fff url(../img_grappelli/bg_paginator.gif) 0 0 repeat-x scroll !important;
+    overflow: hidden;
+}
+
+#changelist .paginator span {
+    margin-right: 10px;
+    color: #cc3d3d !important;
+}
+#changelist table + .paginator, #changelist #toolbartable + .paginator {
+    margin-top: -1px;
+    border-top: 1px solid #ddd !important;
+}
+
+/* Yes / No Icon Imagehack ----------------------- */
+img[src^="/media/admin/img/admin/icon-no.gif"] {
+    padding: 5px;
+    width: 0; height: 0;
+    background: url(../img_grappelli/icon_no.gif) 0 50% no-repeat !important;
+}
+img[src^="/media/admin/img/admin/icon-yes.gif"] {
+    padding: 5px;
+    width: 0; height: 0;
+    background: url(../img_grappelli/icon_yes.gif) 0 50% no-repeat !important;
+}
+
+
+/* Object Tools & History
+----------------------------------------------------------------------- */
+.object-tools {
+    position: relative; float: right;
+    margin-top: -23px; margin-bottom: -10px; padding: 0;
+    font-family: Arial,Helvetica,sans-serif; font-weight: bold; text-transform: none;
+}
+.form-row .object-tools {
+    float: none;
+    margin-top: 5px; margin-bottom: 5px;
+}
+.object-tools li {
+    display: block; float: left;
+    margin: -7px 0 0 5px !important; padding: 0 !important;
+    height: 21px !important;
+    border: 1px solid #ddd;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: url(../img_grappelli/bg_object-tools.gif) 0 0 repeat-x !important;
+    /*background: #f2f2f2 !important;*/
+    vertical-align: middle;
+}
+.object-tools li:hover {
+    border: 1px solid #5f94b8;
+    background: url(../img_grappelli/bg_object-tools_hover.gif) 0 0 repeat-x !important;
+    /*background: #659dc3 !important;*/
+}
+.object-tools a {
+    display: block; float: left;
+    margin: -1px; padding: 6px 10px 4px !important;
+    font-size: 11px !important; line-height: 12px !important;
+    background: none !important;
+    vertical-align: middle;
+}
+.object-tools a:link, .object-tools a:visited {
+    color: #666 !important;
+}
+.object-tools a:hover, .object-tools a:active {
+    color: #fff !important;
+}
+.object-tools a.addlink {
+    background-image: none !important;
+}
+/*.object-tools a.addlink:link, .object-tools a.addlink:visited {
+    background-image: url(../img_grappelli/icon_object-tools_addlink.gif) !important;
+}
+.object-tools a.addlink:hover, .object-tools a.addlink:active {
+    background-image: url(../img_grappelli/icon_object-tools_addlink_hover.gif) !important;
+}
+*/
+
+table#change-history {
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    border: none !important;
+    background: #f7f7f7;
+}
+table#change-history thead th {
+    padding: 7px 15px 6px 10px;
+    background: url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x;
+}
+table#change-history tbody td {
+    background:#f7f7f7 url(../img/admin/dashboard-table-bg.gif) 0 0 repeat-x;
+}
+
+
+/* Forms
+-----------------------------------------------------------------------
+   Moved to grappelli_fieldsets.css:
+   Form-Rows, Collapsed Fieldsets, Modules, Inline-Item Tools,
+   H2 in Fieldsets/Inline-Related/Inline-Related>Fieldsets, x unsorted
+----------------------------------------------------------------------- */
+
+/* Labels ----------------------- */
+label {
+    margin: 7px 0 0;
+    width: 150px !important;
+    color: #666 !important; font-size: 11px !important;
+    cursor: pointer !important;
+}
+.required label, label.required, .form-row .required label, .form-row label.required {
+    color: #666 !important;
+}
+
+fieldset.collapse-open label {
+    width: 120px !important;
+    color: #666;
+    font-size: 11px;
+}
+
+/*  Radio Buttons ----------------------- */
+form ul.radiolist label {
+    float: none; display: block;
+    margin-left: 0 !important;
+    width: 30px !important;
+}
+
+/*  Aligned Fieldsets ----------------------- */
+.aligned label {
+    float: left;
+    padding: 1px 10px 3px 0 !important;
+    width: 120px !important;
+}
+.aligned .vCheckboxLabel {
+    position: relative; top: 2px !important;
+    margin-left: 10px !important; padding: 0 !important;
+}
+.colM .aligned .vLargeTextField, .colM .aligned .vXMLLargeTextField {
+    width: 610px;
+}
+form .aligned p, form .aligned ul {
+    margin-left: 0; padding-left: 0;
+}
+ul.radiolist, ul.checkboxlist {
+    margin-bottom: 0 !important; padding-left: 54px !important;
+}
+form .aligned table p {
+    margin-left: 0; padding-left: 0;
+}
+form .aligned p.help {
+    margin: 2px 0 0 131px !important; padding: 0 !important;
+}
+form .aligned input + label + p.help {
+    margin: 2px 0 0 154px !important; padding: 0 !important;
+}
+td p.help {
+    margin-bottom: 3px !important; padding: 0 !important;
+}
+
+/* Filebrowser - Upload ----------------------- */
+.form-row label + input + p.help {
+    margin: 5px 0 0 130px !important; padding: 0 !important;
+}
+.form-row label + input + p.help input[type=checkbox] {
+    position: relative; top: -2px; margin: 0 3px 0 0 !important;
+}
+.form-row label + p {
+    position: relative; float: none; left: 0;
+    margin: 6px 0 !important; padding: 0 !important;
+}
+.form-row label + p + label {
+    display: none;
+}
+.form-row label + p + label + p {
+    position: relative; float: none; left: 131px;
+}
+.form-row label + p.help {
+    margin: 7px 0 5px !important;
+}
+.form-row label + p.datetime {
+    margin: 0 !important;
+}
+
+.checkbox-row p.help {
+    margin-left: 0; padding-left: 0 !important;
+}
+
+/* Submit Row ----------------------- */
+.submit-row {
+    margin: 5px 0; padding: 5px 7px;
+    text-align: right;
+    border: 1px solid #ddd !important;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background:white url(../img_grappelli/bg_paginator.gif) 0 100% repeat-x !important;
+}
+.submit-row input {
+    margin: 0 0 0 5px;
+}
+.submit-row p {
+    margin-top: 5px !important;
+}
+
+/* Custom Fields ----------------------- */
+.vDateField, .vTimeField {
+    margin-left: 0 !important;
+}
+
+/* Form Defaults ----------------------- */
+input, textarea, select {
+    margin: 2px 0; padding: 3px;
+    vertical-align: middle;
+    color: #666 !important; font-family: Arial, sans-serif !important; font-size: 11px !important; font-weight: normal;
+    border: 1px solid #bbb;
+    border-color: #ccc #ddd #ddd #ccc !important;
+    -moz-border-radius: 3px; -webkit-border-radius: 3px;
+}
+select {
+    min-width: 108px;
+}
+option {
+    padding-right: 30px;
+    border-bottom: 1px dotted #ddd;
+}
+option:last-child {
+    border-bottom: none;
+}
+
+input[type=text], textarea {
+    width: 554px;
+}
+input.vDateField, input.vTimeField {
+    width: 100px !important;
+}
+
+input[type=checkbox] {
+    margin: 0 0 0 130px;
+}
+
+.inline-item-tools input[type=checkbox] {
+    margin-left: 0 !important;
+}
+
+textarea {
+    vertical-align: top !important;
+}
+input[type=text], input[type=password] {
+    padding: 5px 3px 4px !important;
+}
+
+/* Form Buttons ----------------------- */
+input[type=submit], input[type=button], .submit-row input {
+    padding: 3px 4px 4px !important;
+    height: 24px;
+    color: #555; font-weight: bold; line-height: 16px;
+    border: 1px solid #bbb;
+    border-color: #ddd #bbb #bbb #ddd !important;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background:transparent url(../img_grappelli/bg_submit-default-button.gif) 0 0 repeat-x;
+    cursor: pointer;
+}
+input[type=submit]:hover, input[type=button]:hover, input[type=submit]:active, input[type=button]:active { 
+    background: transparent url(../img_grappelli/bg_submit-default-button_hover.gif) 0 0 repeat-x;
+}
+input[type=submit].default, .submit-row input.default {
+    color: #fff !important; font-weight: bold;
+    border: 1px solid #719fbd !important;
+    border-color: #719fbd #53748a #53748a #719fbd !important;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: transparent url(../img_grappelli/bg_submit-default.gif) 0 0 repeat-x !important;
+}
+input[type=submit].default:hover, input[type=submit].default:active {
+    background-image: url(../img_grappelli/bg_submit-default_hover.gif) !important;
+}
+
+/* Messages & Errors  ----------------------- */
+ul.messagelist li {
+    font-size: 11px;
+}
+ul.messagelist li {
+    display: block; padding-left: 30px;
+    font-size: 11px; font-weight: bold;
+    border-bottom: 1px solid #d6d6d6;
+    background: #eef0c5 url(../img_grappelli/icon_yes.gif) 15px 50% no-repeat;
+}
+.errornote {
+    margin-bottom: 5px; padding: 4px 5px 4px 10px;
+    color: #f7f7f7; font-size: 11px !important; font-weight: bold;
+    border: none;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #cc3d3d !important;
+}
+body.login .errornote {
+    margin: 0 -1px !important;
+    -moz-border-radius: 0; -webkit-border-radius: 0;
+}
+.errors ul.errorlist {
+    margin: 0 !important;
+}
+.errorlist li {
+    display: block;
+    margin: 0; padding: 2px 5px 2px 130px;
+    color: #cc3d3d; font-size: 11px !important; font-weight: bold;
+    border: none !important;
+    background: none !important;
+}
+td ul.errorlist {
+    margin: 0 !important; padding: 0 !important;
+}
+td ul.errorlist li {
+    margin: 0 !important;
+}
+.error {
+    background: transparent !important;
+}
+.error input, .error select, .errors input, .errors select {
+    border: 1px solid #e09999 !important;
+    border-color: #e09999 #eba9a9 #eba9a9 #e09999;
+}
+.description {
+    padding: 10px 0 10px 10px;
+    border-bottom: 1px dotted #ddd;
+    border-top: 1px solid #fff;
+    color: #999; font-size: 11px;
+    background: #f7f7f7;
+}
+
+
+/* Widgets (Selector=
+----------------------------------------------------------------------- */
+
+/* Selector ----------------------- */
+.selector {
+    float: left;
+    width: 600px;
+}
+.selector select {
+    width: 280px; height: 200px;
+}
+.selector input {
+    position: relative; top: -10px;
+    width: 221px !important;
+}
+.selector h2 {
+    padding: 8px 5px 7px 8px !important;
+    font-size: 12px; line-height: 13px !important; font-weight: bold;
+    background: #f7f7f7 url(../img_grappelli/bg_module_reverse.gif) 0 100% repeat-x !important;
+}
+.selector .selector-filter {
+    padding: 2px !important;
+    height: 26px;
+    background: url(../img_grappelli/bg_fieldset.gif) 0 0 repeat-x !important;
+}
+.selector .selector-filter img {
+    display: none;
+}
+.selector-filter:before {
+    content: url('../img_grappelli/icon_searchbox_selector.gif');
+}
+.selector-filter + select {
+    -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
+    -moz-border-radius-topright: 0 !important; -webkit-border-top-right-radius: 0 !important;
+}
+.selector h2 + select {
+    display: none; position: relative; top: -1px;
+    margin-top: -1px !important;
+    border-top: none !important;
+    -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
+    -moz-border-radius-topright: 0 !important; -webkit-border-top-right-radius: 0 !important;
+}
+.selector ul.selector-chooser {
+    float: left;
+    margin: 80px -1px 0 1px !important; padding: 0;
+    background: none !important;
+}
+
+a.selector-add, a.selector-remove {
+    display: block;
+    width: 16px; height: 16px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+a.selector-add:link, a.selector-add:visited {
+    background-image: url('../img_grappelli/icon_selector-add.gif');
+}
+a.selector-add:hover, a.selector-add:active {
+    background-image: url('../img_grappelli/icon_selector-add_hover.gif');
+}
+a.selector-remove:link, a.selector-remove:visited {
+    background-image: url('../img_grappelli/icon_selector-remove.gif');
+}
+a.selector-remove:hover, a.selector-remove:active {
+    background-image: url('../img_grappelli/icon_selector-remove_hover.gif');
+}
+a.selector-chooseall, a.selector-clearall {
+    display: block;
+    margin-left: 7px !important; padding: 0 !important;
+    font-weight: bold; text-align: left !important;
+    background: none !important;
+}
+a.selector-chooseall:link, a.selector-chooseall:visited, a.selector-clearall:link, a.selector-clearall:visited {
+    color: #598fb3 !important;
+}
+a.selector-chooseall:hover, a.selector-chooseall:active, a.selector-clearall:hover, a.selector-clearall:active {
+    color: #555 !important;
+}
+
+/* Date & Time----------------------- */
+a[id^="calendarlink"] img, a[id^="clocklink"] img {
+    display: none !important;
+}
+a[id^="calendarlink"], a[id^="clocklink"] {
+    margin-right: 15px; padding: 2px 10px 3px !important;
+    background: transparent 50% 50% no-repeat;
+}
+a[id^="calendarlink"]:link, a[id^="calendarlink"]:visited {
+    background-image: url('../img_grappelli/icon_calendar.gif') !important;
+}
+a[id^="calendarlink"]:hover, a[id^="calendarlink"]:active {
+    background-image: url('../img_grappelli/icon_calendar_hover.gif') !important;
+}
+a[id^="clocklink"]:link, a[id^="clocklink"]:visited {
+    background-image: url('../img_grappelli/icon_clock.gif') !important;
+}
+a[id^="clocklink"]:hover, a[id^="clocklink"]:active {
+    background-image: url('../img_grappelli/icon_clock_hover.gif') !important;
+}
+
+p.datetime br { display: none !important; }
+.vDateField { margin-left: 0; }
+
+/* Calendars & Clocks ----------------------- */
+.calendarbox, .clockbox {
+    position: absolute !important; z-index: 900;
+    margin: 5px auto;
+    font-size: 11px; text-align: center;
+    border: 2px solid #aaacad !important;
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
+    background: #aaacad !important;
+}
+.clockbox {
+    width: auto;
+}
+.calendar {
+    margin:0; padding: 0;
+}
+.calendar table {
+    margin: 0; padding: 0;
+    width: 100% !important;
+    border-collapse: collapse;
+    background: #fff !important;
+}
+.calendar caption, .calendarbox h2, .clockbox h2 {
+    margin: 0;
+    font-size: 11px !important; text-align: center;
+    border-top: none;
+    -moz-border-radius-topleft: 3px !important; -webkit-border-top-left-radius: 3px !important;
+    -moz-border-radius-topright: 3px !important; -webkit-border-top-right-radius: 3px !important;
+    background: #C9DBED url(../img_grappelli/bg_fieldset.gif) 0 100% repeat-x !important;
+}
+.calendar td {
+   background: #fff !important;
+}
+.calendar td a:hover, .timelist a:hover { background: #e2ecf0 !important; }
+.calendar-shortcuts {
+    padding: 3px 0 4px;
+    color: #ccc; font-size: 10px; line-height: 11px; font-weight: bold;
+    border-top: 1px solid #eee;
+}
+
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next {
+    position: absolute; display: block;
+    color: #555 !important; font-weight: bold; font-size: 11px !important;
+}
+.calendarbox .calendarnav-previous {
+    padding: 9px 12px 7px 10px !important;
+    -moz-border-radius-topleft: 3px !important; -webkit-border-top-left-radius: 3px !important;
+    background: transparent url(../img_grappelli/icon_calendernav-previous.gif) 0 100% repeat-x !important;
+}
+.calendarbox .calendarnav-next {
+    padding: 9px 10px 7px 12px !important;
+    -moz-border-radius-topright: 3px !important; -webkit-border-top-right-radius: 3px !important;
+    background: transparent url(../img_grappelli/icon_calendernav-next.gif) 0 100% repeat-x !important;
+}
+.calendarnav-previous:hover {
+    background: transparent url(../img_grappelli/icon_calendernav-previous_hover.gif) 0 100% repeat-x !important;
+}
+.calendarnav-next:hover {
+    background: transparent url(../img_grappelli/icon_calendernav-next_hover.gif) 0 100% repeat-x !important;
+}
+
+.calendar-cancel {
+    margin: 0 !important; padding: 2px !important;
+    font-size: 11px;
+    border-top: 1px solid #ddd;
+    -moz-border-radius-bottomleft: 3px !important; -webkit-border-bottom-left-radiust: 3px !important;
+    -moz-border-radius-bottomright: 3px !important; -webkit-border-bottom-right-radiust: 3px !important;
+    background: transparent url(../img_grappelli/bg_calender-cancel.gif) 0 0 repeat-x !important;
+}
+.calendar-cancel:hover {
+    background: transparent url(../img_grappelli/bg_calender-cancel_hover.gif) 0 0 repeat-x !important;
+}
+.calendar-cancel a {
+    color:#CC3434 !important; font-weight: bold !important;
+}
+ul.timelist, .timelist li {
+    background: #fff;
+}
+
+.inline-group .tabular td.original p {
+    padding: 5px 10px 10px 12px !important;
+    font-size: 11px !important;
+}
+
+
+/* Login
+----------------------------------------------------------------------- */
+
+body.login { background: #fff !important; }
+.login #container {
+    border: none !important;
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
+    background:#fafafa url(../img_grappelli/bg_toolbar.gif) 0 0 repeat-x !important;
+}
+.login #container #branding ul li {
+    border-right: none !important;
+}
+.login #container #branding ul li:last-child {
+    display: none !important;
+}
+.login #container form {
+    margin: 0; padding: 0;
+}
+.login #container #content {
+    margin: 0; padding: 0;
+    border: 1px solid #ddd !important;
+    -moz-border-radius-bottomleft: 5px !important; -webkit-border-bottom-left-radius: 5px !important;
+    -moz-border-radius-bottomright: 5px !important; -webkit-border-bottom-right-radius: 5px !important;
+    background: #fff !important;
+}
+.login #container .submit-row {
+    clear: both; margin: 0; padding: 5px 10px;
+    border: none !important;
+}
+.login #container #footer {
+    display: none !important;
+}
+
+.login #container label {
+    margin: 4px 0 0 15px; padding: 0;
+    width: 100px !important;
+    font-weight: bold; text-align: left;
+    background:transparent !important;
+}
+.login #container input[type=text], .login #container input[type=password] {
+    width: 201px !important;
+}
+.login #container input[type=submit] {
+    margin: 0 !important;
+}
+
+.login #container .form-row {
+    float: none !important;
+    padding: 5px 0 !important;
+    background: #fafafa;
+}
+
+.login #container #header {
+    -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
+    -moz-border-radius-topright: 5px !important; -webkit-border-top-right-radius: 5px !important;
+}
 

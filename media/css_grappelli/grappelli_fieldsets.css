@@ -10,130 +10,588 @@
    
    * See README for instructions on how to use Grappelli.
    * For credits and origins, see AUTHORS.
-   * This is a compressed file. See the sources in the 'src' directory.
    
    * Copyright (c) 2008, vonautomatisch werkstaetten. All rights reserved.
      See LICENSE for more info.
 
 ----------------------------------------------------------------------- */
 
-.module{margin-bottom:5px; border:1px solid #ddd; -moz-border-radius:5px; -webkit-border-radius:5px; background:#fff url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x}
-#content-main .module{background:#fafafa url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x}
-#recent-actions-module p{color:#999; font-size:11px; font-style:italic}
-.module h2, .module caption{padding:8px 5px 7px 10px; font-size:12px; color:#666; border-bottom:1px solid #ddd; -moz-border-radius-topleft:5px; -webkit-border-top-left-radius:5px; -moz-border-radius-topright:5px; -webkit-border-top-right-radius:5px; background:transparent url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x}
-.module h3{margin-bottom:0}
 
-.form-row{padding:5px 10px !important; border-bottom:1px solid #eaeaea !important; border-top:1px solid #fff; -moz-border-radius-bottomleft:0; -webkit-border-bottom-left-radius:0; -moz-border-radius-bottomright:0; -webkit-border-bottom-right-radius:0}
-.inline-related .form-row{-moz-border-radius:0; -webkit-border-radius:0}
-.form-row.last{border-bottom:none}
-fieldset >div:first-child, fieldset * >div:first-child{border-top:none !important}
-fieldset >div:last-child{border-bottom:none !important; -moz-border-radius-bottomleft:5px !important; -webkit-border-bottom-left-radius:5px !important; -moz-border-radius-bottomright:5px !important; -webkit-border-bottom-right-radius:5px !important}
+/* Modules
+----------------------------------------------------------------------- */
+.module {
+    margin-bottom: 5px;
+    border: 1px solid #ddd !important;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #fff url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x;
+ }
+#content-main .module {
+    background: #fafafa url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x;
+}
+.tabular.inline-related .module {
+    border: none !important;
+    background: #ddd !important;
+}
+#recent-actions-module p {
+    color: #999; font-size: 11px; font-style: italic;
+}
+.module h2, .module caption {
+    padding: 8px 5px 7px 10px !important;
+    font-size: 12px !important; color: #666 !important;
+    border-bottom: 1px solid #ddd;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+    background: transparent url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x !important;
+}
+.module h3 {
+    margin-bottom: 0;
+}
 
-h2.collapse-toggle, h3.collapse-toggle{display:block !important; background-color:transparent !important; background-position:0 0 !important; background-repeat:no-repeat !important}
-a.collapse-toggle:link, a.collapse-toggle:visited{color:#95ADCD}
 
-fieldset.collapsed{display:block !important; border:none !important; background:transparent url(../img_grappelli/bg_fieldset.gif) bottom left repeat-x !important}
-fieldset.collapsed:hover{background:transparent url(../img_grappelli/bg_fieldset_hover.gif) bottom left repeat-x !important}
+/* Form-Rows
+----------------------------------------------------------------------- */
+.form-row {
+    padding: 5px 10px !important;
+    border-bottom: 1px solid #eaeaea !important;
+    border-top: 1px solid #fff;
+    -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
+}
+.inline-related .form-row {
+    -moz-border-radius: 0; -webkit-border-radius: 0;
+}
+.form-row.last {
+    border-bottom: none;
+}
+fieldset > div:first-child, fieldset * > div:first-child {
+    border-top: none !important;
+}
+fieldset > div:last-child {
+    border-bottom: none !important;
+    -moz-border-radius-bottomleft: 5px !important; -webkit-border-bottom-left-radius: 5px !important;
+    -moz-border-radius-bottomright: 5px !important; -webkit-border-bottom-right-radius: 5px !important;
+}
 
-fieldset h2{margin:0; padding:8px 5px 7px 10px !important; color:#666; font-size:12px; line-height:13px; font-weight:bold}
-fieldset.collapsed h2.collapse-toggle, fieldset.collapse-open h2.collapse-toggle{display:block !important; margin:0; padding:8px 5px 7px 40px !important; color:#a1a8ab; font-size:12px; line-height:13px; font-weight:bold; border:1px solid #d5dfe3; -moz-border-radius:5px; -webkit-border-radius:5px; cursor:pointer}
-fieldset.collapsed.collapse-closed h2.collapse-toggle{background-image:url(../img_grappelli/icon_fieldset_open.gif)}
-fieldset.collapse-closed h2.collapse-toggle:hover{background-image:url(../img_grappelli/icon_fieldset_hover.gif)}
-fieldset.collapse-open h2.collapse-toggle{color:#666; border:none; border-bottom:1px solid #ddd; -moz-border-radius-bottomleft:0 !important; -webkit-border-bottom-left-radius:0 !important; -moz-border-radius-bottomright:0 !important; -webkit-border-bottom-right-radius:0 !important; background-image:url(../img_grappelli/icon_fieldset_close.gif)}
 
-.inline-group{position:relative; margin:0 1px 7px !important; padding:0 !important; border:3px solid #ddd; -moz-border-radius:7px; -webkit-border-radius:7px; outline:1px solid #bebebe; -moz-outline-radius:7px; -webkit-outline-radius:7px; background:#ddd url(../img_grappelli/bg_inline-group_reverse.gif) 0 0 repeat-x !important}
-.inline-group.collapsed{background:url(../img_grappelli/bg_inline-group.gif) 0 0 repeat-x !important}
-.inline-group.collapsed:hover{background:url(../img_grappelli/bg_inline-group_reverse.gif) 0 0 repeat-x !important}
-.inline-group.collapse-open{-moz-border-radius:7px !important}
-.inline-group .form-row{padding-left:8px !important; background:#fafafa !important}
-.inline-group .inline-related fieldset.collapse-open+fieldset .form-row{-moz-border-radius:5px; -webkit-border-radius:5px}
-.inline-group .inline-related fieldset.collapse-closed+fieldset .form-row{-moz-border-radius:5px; -webkit-border-radius:5px}
-.inline-group h3.collapse-toggle{margin:0; padding:6px 5px 6px 38px; color:#fafafa; font-size:12px; line-height:13px !important; font-weight:bold; border:1px solid #aaacad; -moz-border-radius:5px; -webkit-border-radius:5px; cursor:pointer !important}
-.inline-group.collapsed h3.collapse-toggle{background-image:url(../img_grappelli/icon_inline-group_open.gif)}
-.inline-group.collapsed h3.collapse-toggle:hover{background-image:url(../img_grappelli/icon_inline-group_hover.gif) !important}
-.inline-group h3.collapse-toggle{-moz-border-radius-bottomleft:5px; -webkit-border-bottom-left-radius:5px; background-image:url(../img_grappelli/icon_inline-group_close.gif)}
+/* Collapsable Basics
+----------------------------------------------------------------------- */
 
-.inline-group.collapsed .inline-related{display:none !important}
-.inline-related{position:relative; display:block; margin:1px 0 !important; padding:0; border:none; -moz-border-radius:5px; -webkit-border-radius:5px; background:transparent url(../img_grappelli/bg_inline-related_reverse.gif) 0 0 repeat-x !important}
-.inline-related.collapsed{background:transparent url(../img_grappelli/bg_inline-related.gif) 0 0 repeat-x !important}
-.inline-related.collapsed:hover{background:transparent url(../img_grappelli/bg_inline-related_hover.gif) 0 0 repeat-x !important}
-.inline-group h3+.inline-related{margin-top:2px !important}
-.inline-group >.inline-related:last-child{margin-bottom:0 !important}
-.inline-related.collapsed fieldset{display:none !important}
-.inline-related fieldset{margin:0 !important; display:block !important; border-color:#bbb !important; -moz-border-radius-topleft:5px; -webkit-border-top-left-radius:5px; -moz-border-radius-topright:5px; -webkit-border-top-right-radius:5px}
-.inline-related fieldset+fieldset{margin:-1px 0 0 0 !important}
-.inline-related h2+*+fieldset{border-top:none; -moz-border-radius-topleft:0 !important; -webkit-border-top-left-radius:0 !important; -moz-border-radius-topright:0 !important; -webkit-border-top-right-radius:0 !important}
-.inline-related fieldset.collapse-closed{-moz-border-radius-topleft:5px !important; -webkit-border-top-left-radius:5px !important; -moz-border-radius-topright:5px !important; -webkit-border-top-right-radius:5px !important}
-.inline-related h2{margin:0 !important; padding:5px 5px 4px 37px !important; color:#666 !important; font-size:11px !important; line-height:15px !important; font-weight:bold; text-align:left; border:1px solid #bbb; border-bottom:1px solid #ddd; -moz-border-radius-topleft:5px; -webkit-border-top-left-radius:5px; -moz-border-radius-topright:5px; -webkit-border-top-right-radius:5px; background-color:transparent}
-.inline-related h2.collapse-toggle{margin:0 !important; padding:5px 5px 4px 37px !important; cursor:pointer}
-.inline-related.collapsed h2.collapse-toggle{border:1px solid #ccc !important; -moz-border-radius:5px !important; -webkit-border-radius:5px !important; background-image:url(../img_grappelli/icon_inline-related_open.gif) !important}
-.inline-related.collapsed h2.collapse-toggle:hover{background-image:url(../img_grappelli/icon_inline-related_hover.gif) !important}
-.inline-related h2.collapse-toggle{background-image:url(../img_grappelli/icon_inline-related_close.gif) !important}
-.inline-related h2 b{display:inline !important; color:#a1a8ab !important; font-weight:bold !important}
-.inline-related fieldset h2{margin:0 !important; padding:5px 5px 5px 8px !important; color:#666 !important; font-size:11px !important; font-weight:bold; text-align:left; -moz-border-radius:5px; -webkit-border-radius:5px; -moz-border-radius-bottomleft:0; -webkit-border-bottom-left-radius:0; -moz-border-radius-bottomright:0; -webkit-border-bottom-right-radius:0; border:none; border-bottom:1px solid #ddd !important; background-color:transparent !important}
-.inline-related fieldset h2.collapse-toggle{padding:5px 5px 5px 37px !important; border:1px solid #bbb !important; -moz-border-radius:5px; -webkit-border-radius:5px; cursor:pointer !important}
-.inline-related fieldset.collapse-closed h2.collapse-toggle{color:#a1a8ab !important; background-image:url(../img_grappelli/icon_inline-related_fieldset_open.gif) !important}
-.inline-related fieldset.collapse-closed h2.collapse-toggle:hover{background-image:url(../img_grappelli/icon_inline-related_fieldset_hover.gif) !important}
-.inline-related fieldset.collapse-open h2.collapse-toggle{border:none !important; border-bottom:1px solid #ddd !important; -moz-border-radius-bottomleft:0 !important; -webkit-border-bottom-left-radius:0 !important; -moz-border-radius-bottomright:0 !important; -webkit-border-bottom-right-radius:0 !important; background-image:url(../img_grappelli/icon_inline-related_fieldset_close.gif) !important}
+h2.collapse-toggle, h3.collapse-toggle, h4.collapse-toggle {
+    display: block !important;
+    background-color: transparent !important;
+    background-position: 0 0 !important;
+    background-repeat: no-repeat !important;
+}
+a.collapse-toggle:link, a.collapse-toggle:visited {
+    color:#95ADCD;
+}
 
-ul.inline-item-tools{display:block !important; position:absolute; top:0; right:10px; margin:0; padding:0}
-ul.inline-item-tools li{float:left; margin:0 0 0 15px; padding:3px 0; font-weight:bold !important; background:transparent !important; list-style-type:none !important; vertical-align:bottom !important}
-ul.inline-item-tools >li:first-child{border-left:none !important}
-ul.inline-item-tools li label{position:relative; top:2px; margin-left:5px; font-weight:bold !important}
-ul.inline-item-tools li.delete label{color:#CC3434 !important}
-ul.inline-item-tools li input{float:none !important; margin:0 !important; padding:0 !important}
-ul.inline-item-tools li:hover{background:none !important}
-ul.inline-item-tools a{position:relative; top:1px; float:none !important; display:block; padding:3px 0 2px !important; width:15px; height:15px; font-size:11px !important; line-height:13px !important; background-position:100% 50% !important; background-repeat:no-repeat}
-h3.collapse-toggle+ul.inline-item-tools{position:absolute; top:0; right:10px; display:block !important; margin:0; padding:0}
-ul.inline-item-tools a.draghandler:link, ul.inline-item-tools a.draghandler:visited{background-image:url(../img_grappelli/icon_inline-item-tools_draghandler.gif)}
-ul.inline-item-tools a.draghandler:hover, ul.inline-item-tools a.draghandler:active{background-image:url(../img_grappelli/icon_inline-item-tools_draghandler_hover.gif)}
-.predelete-items a.draghandler, .predelete-item a.draghandler{cursor:default !important; background-image:none !important}
-ul.inline-item-tools a.viewsitelink:link, ul.inline-item-tools a.viewsitelink:visited{margin:0 -1px; width:17px; background-image:url(../img_grappelli/icon_inline-item-tools_viewsitelink.gif)}
-ul.inline-item-tools a.viewsitelink:hover, ul.inline-item-tools a.viewsitelink:active{background-image:url(../img_grappelli/icon_inline-item-tools_viewsitelink_hover.gif)}
-ul.inline-item-tools a.deletelink:link, ul.inline-item-tools a.deletelink:visited{padding-left:0 !important; background-image:url(../img_grappelli/icon_inline-item-tools_deletelink.gif) !important}
-ul.inline-item-tools a.deletelink:hover, ul.inline-item-tools a.deletelink:active{background-image:url(../img_grappelli/icon_inline-item-tools_deletelink_hover.gif) !important}
-ul.inline-item-tools a.addhandler:link, ul.inline-item-tools a.addhandler:visited{background-image:url(../img_grappelli/icon_inline-item-tools_addhandler.gif)}
-ul.inline-item-tools a.addhandler:hover, ul.inline-item-tools a.addhandler:active{background-image:url(../img_grappelli/icon_inline-item-tools_addhandler_hover.gif)}
-ul.inline-item-tools a.openhandler:link, ul.inline-item-tools a.openhandler:visited{background-image:url(../img_grappelli/icon_inline-item-tools_openhandler.gif)}
-ul.inline-item-tools a.openhandler:hover, ul.inline-item-tools a.openhandler:active{background-image:url(../img_grappelli/icon_inline-item-tools_openhandler_hover.gif)}
-ul.inline-item-tools a.closehandler:link, ul.inline-item-tools a.closehandler:visited{background-image:url(../img_grappelli/icon_inline-item-tools_closehandler.gif)}
-ul.inline-item-tools a.closehandler:hover, ul.inline-item-tools a.closehandler:active{background-image:url(../img_grappelli/icon_inline-item-tools_closehandler_hover.gif)}
 
-.inline-group.collapsed .items{display:none}
-.inline-group .items, .inline-group .tabular{margin-top:4px !important}
-.placeholder{margin:5px 0; height:26px}
-tbody.placeholder{background:#ddd !important; height:40px !important}
-.sortablehelper{position:absolute; top:-1000px; display:block; margin:0; padding:0; color:#666 !important; border:1px solid #bebebe; -moz-border-radius:5px; -webkit-border-radius:5px; background:#fff}
-.inline-related.tabular .sortablehelper{margin:0 -1px}
-.sortablehelper h2{margin:0 !important; padding:5px 0 4px 37px; font-size:11px; line-height:15px; border-bottom:none !important}
-.inline-related.tabular .sortablehelper h2{border:none !important}
-.inline-related.tabular table{width:100% !important; border-right:1px solid #ddd; border-collapse:separate; border-spacing:0}
-.inline-related.tabular table thead tr th{color:#999 !important}
-.inline-related.tabular td{-moz-border-radius:0 !important; padding:7px 0 6px 10px}
-.inline-related.tabular tbody tr:first-child td{border-top:1px solid #fff !important}
-.inline-related.tabular tbody tr:last-child td{border-bottom:1px solid #eaeaea !important}
-.inline-related.tabular thead+tbody tr:first-child td{border-top:1px solid #ddd !important}
-.inline-related.tabular tbody:last-child tr:last-child td{border-bottom:none !important}
-.inline-related.tabular td.original{padding:0 !important; width:auto !important; vertical-align:middle}
-.inline-related.tabular td.original p{margin:-12px 0 0 0 !important; padding:0 0 0 10px !important; border:none !important}
-.inline-related.tabular td.original p b{color:#a1a8ab}
-.inline-related.tabular td.inline-item-tools{padding:1px 10px !important; width:auto; text-align:right}
-.inline-related.tabular td.inline-item-tools ul.inline-item-tools{position:relative; float:right; clear:both !important; top:0; right:0}
-.inline-related.tabular table tbody tr:last-child td:last-child{width:100%}
-.tabular .module input[type=text], .tabular .module textarea{width:150px}
-.inline-related.tabular table .errorlist li{padding-left:0}
+/* Collapsed Fieldsets
+----------------------------------------------------------------------- */
 
-.predelete-items >div:first-child{margin-top:4px !important}
-.predelete-items .inline-related, .predelete-items .inline-related.collapsed:hover{background:transparent url(../img_grappelli/bg_inline-related_predelete_reverse.gif) 0 0 repeat-x !important}
-.predelete-items .inline-related.collapsed{background:transparent url(../img_grappelli/bg_inline-related_predelete_open.gif) 0 0 repeat-x !important}
-.predelete-items .inline-related fieldset, .predelete-items .inline-related .form-row, tbody.predelete-item td{background:#faebeb !important}
-.inline-related.tabular tbody.predelete-item tr:first-child td{border-top:1px solid #faf5f5 !important; border-bottom:1px solid #ebe4e4 !important}
-.predelete-items .inline-related .form-row{border-top-color:#faf5f5 !important; border-bottom-color:#ebe4e4 !important}
-.predelete-items .inline-related.collapsed h2.collapse-toggle{background-image:url(../img_grappelli/icon_inline-related_predelete_open.gif) !important}
-.predelete-items .inline-related.collapsed h2.collapse-toggle:hover{background-image:url(../img_grappelli/icon_inline-related_predelete_hover.gif) !important}
-.predelete-items .inline-related h2.collapse-toggle{background-image:url(../img_grappelli/icon_inline-related_predelete_close.gif) !important}
-.predelete-items .inline-related fieldset.collapsed{background:transparent url(../img_grappelli/bg_inline-related_predelete_fieldset.gif) 0 0 repeat-x !important}
-.predelete-items .inline-related fieldset.collapsed:hover, .predelete-items .inline-related fieldset.module.collapse-open{background:transparent url(../img_grappelli/bg_inline-related_predelete_fieldset_hover.gif) 0 0 repeat-x !important}
-.predelete-items .inline-related fieldset.collapse-closed h2.collapse-toggle{background-image:url(../img_grappelli/icon_inline-related_predelete_fieldset_open.gif) !important}
-.predelete-items .inline-related fieldset.collapse-closed h2.collapse-toggle:hover{background-image:url(../img_grappelli/icon_inline-related_predelete_fieldset_hover.gif) !important}
-.predelete-items .inline-related fieldset.collapse-open h2.collapse-toggle{background-image:url(../img_grappelli/icon_inline-related_predelete_fieldset_close.gif) !important}
+fieldset.collapsed {
+    display: block !important;
+    border: none !important;
+    background: transparent url(../img_grappelli/bg_fieldset.gif) 0 100% repeat-x !important;
+}
+fieldset.collapsed:hover {
+    background: transparent url(../img_grappelli/bg_fieldset_hover.gif) 0 100% repeat-x !important;
+}
+
+/* H2 in Fieldsets ----------------------- */
+fieldset h2 {
+    margin: 0; padding: 8px 5px 7px 10px !important;
+    color: #666; font-size: 12px !important; line-height: 13px !important; font-weight: bold !important;
+}
+fieldset.collapsed h2.collapse-toggle, fieldset.collapse-open h2.collapse-toggle {
+    display: block !important;
+    margin: 0; padding: 8px 5px 7px 40px !important;
+    color: #a1a8ab !important;
+    border: 1px solid #d5dfe3;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    cursor: pointer;
+}
+
+fieldset.collapsed.collapse-closed h2.collapse-toggle {
+    background-image: url(../img_grappelli/icon_fieldset_open.gif) !important;
+}
+fieldset.collapse-closed h2.collapse-toggle:hover {
+    background-image: url(../img_grappelli/icon_fieldset_hover.gif) !important;
+}
+fieldset.collapse-open h2.collapse-toggle {
+    color: #666 !important;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0 !important;
+    -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0 !important;
+    background-image: url(../img_grappelli/icon_fieldset_close.gif) !important;
+}
+
+
+/* Inline Groups
+----------------------------------------------------------------------- */
+
+.inline-group {
+    position: relative;
+    margin: 0 1px 7px !important; padding: 0 !important;
+    border: 3px solid #ddd !important;
+    -moz-border-radius: 7px; -webkit-border-radius: 7px;
+    outline: 1px solid #bebebe;
+    -moz-outline-radius: 7px; -webkit-outline-radius: 7px;
+    background: #ddd url(../img_grappelli/bg_inline-group_reverse.gif) 0 0 repeat-x !important;
+}
+.inline-group.collapsed {
+    background: url(../img_grappelli/bg_inline-group.gif) 0 0 repeat-x !important;
+}
+.inline-group.collapsed:hover {
+    background: url(../img_grappelli/bg_inline-group_reverse.gif) 0 0 repeat-x !important;
+}
+.inline-group.collapse-open {
+    -moz-border-radius: 7px !important;
+}
+.inline-group .form-row {
+    padding-left: 8px !important;
+    background: #fafafa !important;
+}
+.inline-group .inline-related fieldset.collapse-open + fieldset .form-row {
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+.inline-group .inline-related fieldset.collapse-closed + fieldset .form-row {
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+
+/* H2 in Inline-Groups ----------------------- */
+.inline-group h2 {
+    padding: 6px 5px 6px 10px !important;
+    font-size: 12px !important; line-height: 13px !important; font-weight: bold;
+}
+.inline-group h2.collapse-toggle {
+    margin: 0; padding: 6px 5px 6px 38px !important;
+    color: #fafafa; font-size: 12px; line-height: 13px !important; font-weight: bold;
+    border: 1px solid #aaacad;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    cursor: pointer !important;
+}
+.inline-group.collapsed h2.collapse-toggle {
+    background-image: url(../img_grappelli/icon_inline-group_open.gif) !important;
+}
+.inline-group.collapsed h2.collapse-toggle:hover {
+    background-image: url(../img_grappelli/icon_inline-group_hover.gif) !important;
+}
+.inline-group h2.collapse-toggle {
+    -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    background-image: url(../img_grappelli/icon_inline-group_close.gif) !important;
+}
+
+
+/* Inline-Related H2 + Fieldset
+----------------------------------------------------------------------- */
+
+.inline-group.collapsed .inline-related {
+    display: none !important;
+}
+
+.inline-related {
+    position: relative; display: block;
+    margin: 1px 0 !important; padding: 0;
+    border: none;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: transparent url(../img_grappelli/bg_inline-related_reverse.gif) 0 0 repeat-x !important;
+}
+.inline-related.collapsed, .inline-related fieldset.collapsed {
+    background: transparent url(../img_grappelli/bg_inline-related.gif) 0 0 repeat-x !important;
+}
+.inline-related.collapsed:hover, .inline-related fieldset.collapsed:hover {
+    background: transparent url(../img_grappelli/bg_inline-related_hover.gif) 0 0 repeat-x !important;
+}
+
+.inline-group h2 + .inline-related {
+    margin-top: 2px !important;
+}
+.inline-group > .inline-related:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Inline-Related Fieldsets ----------------------- */
+.inline-related.collapsed fieldset {
+    display: none !important;
+}
+.inline-related fieldset {
+    margin: 0 !important; display: block !important;
+    border-color: #bbb !important;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+.inline-related fieldset + fieldset {
+    margin: -1px 0 0 0 !important;
+}
+.inline-related h3 + * + fieldset {
+    border-top: none !important;
+    -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
+    -moz-border-radius-topright: 0 !important; -webkit-border-top-right-radius: 0 !important;
+}
+.inline-related fieldset.collapse-closed {
+    -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
+    -moz-border-radius-topright: 5px !important; -webkit-border-top-right-radius: 5px !important;
+}
+
+/* Inline-Related H3 ----------------------- */
+.inline-related h3 {
+    margin: 0 !important; padding: 5px 5px 4px 37px !important;
+    color: #666 !important; font-size: 11px !important; line-height: 15px !important; font-weight: bold; text-align: left;
+    border: 1px solid #bbb;
+    border-bottom: 1px solid #ddd !important;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+    background-color: transparent;
+}
+.inline-related h3.collapse-toggle {
+    margin: 0 !important; padding: 5px 5px 4px 37px !important;
+    cursor: pointer;
+}
+.inline-related.collapsed h3.collapse-toggle {
+    border: 1px solid #ccc !important;
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
+    background-image: url(../img_grappelli/icon_inline-related_open.gif) !important;
+}
+.inline-related.collapsed h3.collapse-toggle:hover {
+    background-image: url(../img_grappelli/icon_inline-related_hover.gif) !important;
+}
+.inline-related h3.collapse-toggle {
+    background-image: url(../img_grappelli/icon_inline-related_close.gif) !important;
+}
+
+.inline-related h3 b {
+    display: inline !important;
+    color: #a1a8ab !important; font-weight: bold !important;
+}
+
+
+/* Inline-Related Fieldset + H2
+----------------------------------------------------------------------- */
+
+.inline-related fieldset h2 {
+    margin: 0 !important; padding: 5px 5px 5px 8px !important;
+    color: #666 !important; font-size: 11px !important; font-weight: bold; text-align: left;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
+    border: none;
+    border-bottom: 1px solid #ddd !important;
+    background-color: transparent !important;
+}
+.inline-related fieldset h2.collapse-toggle {
+    padding: 5px 5px 5px 37px !important;
+    border: 1px solid #bbb !important;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    cursor: pointer !important;
+}
+.inline-related fieldset.collapsed h2.collapse-toggle {
+    
+}
+
+.inline-related fieldset.collapse-closed h2.collapse-toggle {
+    color: #a1a8ab !important;
+    border: 1px solid #ccc !important;
+    background-image: url(../img_grappelli/icon_inline-related_fieldset_open.gif) !important;
+}
+.inline-related fieldset.collapse-closed h2.collapse-toggle:hover {
+    background-image: url(../img_grappelli/icon_inline-related_fieldset_hover.gif) !important;
+}
+.inline-related fieldset.collapse-open h2.collapse-toggle {
+    border: none !important;
+    border-bottom: 1px solid #ddd !important;
+    -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0 !important;
+    -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0 !important;
+    background-image: url(../img_grappelli/icon_inline-related_fieldset_close.gif) !important;
+}
+
+
+/* Inline-Item Tools
+----------------------------------------------------------------------- */
+
+ul.inline-item-tools {
+    display: block !important;
+    position:absolute; top: 0; right: 10px;
+    margin: 0; padding: 0;
+}
+ul.inline-item-tools li {
+    float: left; margin: 0 0 0 15px; padding: 3px 0;
+    font-weight: bold !important;
+    background: transparent !important;
+    list-style-type: none !important;
+    vertical-align: bottom !important;
+}
+ul.inline-item-tools > li:first-child {
+    border-left: none !important;
+}
+ul.inline-item-tools li label {
+    position: relative; top: 2px;
+    margin-left: 5px;
+    font-weight: bold !important;
+}
+ul.inline-item-tools li.delete label {
+    color: #CC3434 !important;
+}
+ul.inline-item-tools li input {
+    float:none !important;
+    margin: 0 !important; padding: 0 !important;
+}
+ul.inline-item-tools li:hover {
+    background: none !important;
+}
+ul.inline-item-tools a {
+    position: relative; top: 1px; float: none !important; display: block;
+    padding: 3px 0 2px !important;
+    width: 15px; height: 15px;
+    font-size: 11px !important; line-height: 13px !important;
+    background-position: 100% 50% !important;
+    background-repeat: no-repeat;
+}
+
+h3.collapse-toggle + ul.inline-item-tools {
+    position: absolute; top: 0; right: 10px; display: block !important;
+    margin: 0; padding: 0;
+}
+
+/* Inline Item Tools - Actions ----------------------- */
+ul.inline-item-tools a.draghandler:link, ul.inline-item-tools a.draghandler:visited {
+    background-image: url(../img_grappelli/icon_inline-item-tools_draghandler.gif);
+}
+ul.inline-item-tools a.draghandler:hover, ul.inline-item-tools a.draghandler:active {
+    background-image: url(../img_grappelli/icon_inline-item-tools_draghandler_hover.gif);
+}
+.predelete-items a.draghandler, .predelete-item a.draghandler {
+    cursor: default !important;
+    background-image: none !important;
+}
+
+ul.inline-item-tools a.viewsitelink:link, ul.inline-item-tools a.viewsitelink:visited {
+    margin: 0 -1px; width: 17px;
+    background-image: url(../img_grappelli/icon_inline-item-tools_viewsitelink.gif);
+}
+ul.inline-item-tools a.viewsitelink:hover, ul.inline-item-tools a.viewsitelink:active {
+    background-image: url(../img_grappelli/icon_inline-item-tools_viewsitelink_hover.gif);
+}
+
+ul.inline-item-tools a.deletelink:link, ul.inline-item-tools a.deletelink:visited {
+    padding-left: 0 !important;
+    background-image: url(../img_grappelli/icon_inline-item-tools_deletelink.gif) !important;
+}
+ul.inline-item-tools a.deletelink:hover, ul.inline-item-tools a.deletelink:active {
+    background-image: url(../img_grappelli/icon_inline-item-tools_deletelink_hover.gif) !important;
+}
+
+ul.inline-item-tools a.addhandler:link, ul.inline-item-tools a.addhandler:visited {
+    background-image: url(../img_grappelli/icon_inline-item-tools_addhandler.gif);
+}
+ul.inline-item-tools a.addhandler:hover, ul.inline-item-tools a.addhandler:active {
+    background-image: url(../img_grappelli/icon_inline-item-tools_addhandler_hover.gif);
+}
+
+ul.inline-item-tools a.openhandler:link, ul.inline-item-tools a.openhandler:visited {
+    background-image: url(../img_grappelli/icon_inline-item-tools_openhandler.gif);
+}
+ul.inline-item-tools a.openhandler:hover, ul.inline-item-tools a.openhandler:active {
+    background-image: url(../img_grappelli/icon_inline-item-tools_openhandler_hover.gif);
+}
+
+ul.inline-item-tools a.closehandler:link, ul.inline-item-tools a.closehandler:visited {
+    background-image: url(../img_grappelli/icon_inline-item-tools_closehandler.gif);
+}
+ul.inline-item-tools a.closehandler:hover, ul.inline-item-tools a.closehandler:active {
+    background-image: url(../img_grappelli/icon_inline-item-tools_closehandler_hover.gif);
+}
+
+
+
+/* Inline-Related Tabular
+----------------------------------------------------------------------- */
+
+.inline-related.tabular table {
+    width: 100% !important;
+    border-right: 1px solid #ddd;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.inline-related.tabular table thead tr th {
+    color: #999 !important;
+    border-top: 1px solid #bbb !important;
+    border-bottom: 1px solid #bbb !important;
+    -moz-border-radius-topright: 0 !important; -webkit-border-top-right-radius: 0 !important;
+    -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
+    background: #fafafa url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x !important;
+}
+.inline-related.tabular table thead tr th:first-child {
+    -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
+    -moz-border-radius-bottomleft: 5px !important; -webkit-border-bottom-left-radius: 5px !important;
+}
+.inline-related.tabular table thead tr th:last-child {
+    -moz-border-radius-topright: 5px !important; -webkit-border-top-right-radius: 5px !important;
+    -moz-border-radius-bottomright: 5px !important; -webkit-border-bottom-right-radius: 5px !important;
+}
+.inline-related.tabular td, 
+.inline-related.tabular td {
+    -moz-border-radius: 0 !important; -webkit-border-radius: 0 !important;
+    padding: 7px 0 6px 10px;
+    background: #f7f7f7;
+}
+.inline-related.tabular tbody tr:first-child td {
+    border-top: 1px solid #bbb !important;
+    border-bottom: 1px solid #eaeaea !important;
+}
+.inline-related.tabular tbody tr:last-child td {
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #bbb !important;
+}
+.inline-related.tabular tbody.placeholder tr:first-child td {
+    border-top: none !important;
+}
+.inline-related.tabular tbody.placeholder tr:last-child td {
+    border-bottom: none !important;
+}
+.inline-related.tabular th:first-child, 
+.inline-related.tabular td:first-child {
+    -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0 !important;
+    border-left: 1px solid #bbb !important;
+}
+.inline-related.tabular th:last-child, 
+.inline-related.tabular td:last-child {
+    -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0 !important;
+    border-right: 1px solid #bbb !important;
+}
+.inline-related.tabular tbody tr:first-child td:first-child {
+    -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
+}
+.inline-related.tabular tbody tr:first-child td:last-child {
+    -moz-border-radius-topright: 5px !important; -webkit-border-top-right-radius: 5px !important;
+}
+.inline-related.tabular tbody tr:last-child td:first-child {
+    -moz-border-radius-bottomleft: 5px !important; -webkit-border-bottom-left-radius: 5px !important;
+}
+.inline-related.tabular tbody tr:last-child td:last-child {
+    -moz-border-radius-bottomright: 5px !important; -webkit-border-bottom-right-radius: 5px !important;
+}
+.inline-related.tabular td.original {
+    padding: 0 !important;
+    width: auto !important;
+    vertical-align: middle;
+}
+.inline-related.tabular td.original p {
+    margin: -12px 0 0 0 !important; padding: 0 0 0 10px !important;
+    border: none !important;
+}
+.inline-related.tabular td.original p b {
+    color: #a1a8ab;
+}
+.inline-related.tabular td.inline-item-tools {
+    padding: 1px 10px !important;
+    width: auto; height: 26px !important;
+    text-align: right;
+}
+.inline-related.tabular td.inline-item-tools ul.inline-item-tools {
+    position: relative; float: right; clear: both !important; top: 0; right: 0;
+}
+.inline-related.tabular table tbody tr:last-child td:last-child {
+    width: 100%;
+    -moz-border-radius-bottomright: 5px !important; -webkit-border-bottom-right-radius: 5px !important;
+}
+.tabular .module input[type=text], .tabular .module textarea {
+    width: 150px;
+}
+.inline-related.tabular table .errorlist li {
+    padding-left: 0;
+}
+
+/* UI Sortable: Placeholder & Sortable Helper ----------------------- */
+.inline-group.collapsed .items {
+    display: none;
+}
+.inline-group .items, .inline-group .tabular {
+    margin-top: 4px !important;
+}
+.placeholder {
+    margin: 5px 0;
+    height: 26px;
+}
+tbody.placeholder td {
+    background: #ddd !important;
+    height: 40px !important;
+}
+.inline-related.tabular tbody.placeholder td, 
+.inline-related.tabular tbody.placeholder td {
+    border: none !important;
+    background: none !important;
+}
+
+.sortablehelper {
+    position:absolute; top: -1000px; display: block;
+    margin: 0; padding: 0;
+    color: #666 !important;
+}
+.inline-related.tabular .sortablehelper {
+    /*margin: 0 -1px;*/ padding: 0 !important;
+}
+.inline-group .items .sortablehelper h2, 
+.inline-related.tabular table .sortablehelper h2 {
+    margin: 0 !important; padding: 5px 0 4px 37px;
+    font-size: 11px; line-height: 15px;
+    border: 1px solid #bebebe !important;
+    border-bottom: 1px solid #bebebe !important;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #fff !important;
+}
+
+
+/* Inline-Related Predelete
+----------------------------------------------------------------------- */
+
+.predelete-items > div:first-child {
+    margin-top: 4px !important;
+}
+.predelete-items .inline-related, .predelete-items .inline-related.collapsed:hover {
+    background: transparent url(../img_grappelli/bg_inline-related_predelete_reverse.gif) 0 0 repeat-x !important;
+}
+.predelete-items .inline-related.collapsed {
+    background: transparent url(../img_grappelli/bg_inline-related_predelete_open.gif) 0 0 repeat-x !important;
+}
+.predelete-items .inline-related fieldset, .predelete-items .inline-related .form-row, tbody.predelete-item td {
+    background: #faebeb !important;
+}
+.predelete-items .inline-related .form-row {
+    border-top-color: #faf5f5 !important;
+    border-bottom-color: #ebe4e4 !important;
+}
+.inline-related.tabular tbody.predelete-item tr:first-child td {
+    border-bottom-color: #ebe4e4 !important;
+}
+.inline-related.tabular tbody.predelete-item tr:last-child td {
+    border-top-color: #faf5f5 !important;
+}
+
+.predelete-items .inline-related.collapsed h3.collapse-toggle {
+    background-image: url(../img_grappelli/icon_inline-related_predelete_open.gif) !important;
+}
+.predelete-items .inline-related.collapsed h3.collapse-toggle:hover {
+    background-image: url(../img_grappelli/icon_inline-related_predelete_hover.gif) !important;
+}
+.predelete-items .inline-related h3.collapse-toggle {
+    background-image: url(../img_grappelli/icon_inline-related_predelete_close.gif) !important;
+}
+
+.predelete-items .inline-related fieldset.collapsed { 
+    background: transparent url(../img_grappelli/bg_inline-related_predelete_fieldset.gif) 0 0 repeat-x !important;
+}
+.predelete-items .inline-related fieldset.collapsed:hover, .predelete-items .inline-related fieldset.module.collapse-open {
+    background: transparent url(../img_grappelli/bg_inline-related_predelete_fieldset_hover.gif) 0 0 repeat-x !important;
+}
+.predelete-items .inline-related fieldset.collapse-closed h2.collapse-toggle {
+    background-image: url(../img_grappelli/icon_inline-related_predelete_fieldset_open.gif) !important;
+}
+.predelete-items .inline-related fieldset.collapse-closed h2.collapse-toggle:hover {
+    background-image: url(../img_grappelli/icon_inline-related_predelete_fieldset_hover.gif) !important;
+    }
+.predelete-items .inline-related fieldset.collapse-open h2.collapse-toggle {
+    background-image: url(../img_grappelli/icon_inline-related_predelete_fieldset_close.gif) !important;
+}
