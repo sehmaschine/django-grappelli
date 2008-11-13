@@ -492,6 +492,7 @@ ul.inline-item-tools a.closehandler:hover, ul.inline-item-tools a.closehandler:a
 }
 .inline-related.tabular td.inline-item-tools ul.inline-item-tools {
     position: relative; float: right; clear: both !important; top: 0; right: 0;
+    padding-right: 0 !important;
 }
 .inline-related.tabular table tbody tr:last-child td:last-child {
     width: 100%;
