@@ -520,23 +520,6 @@ width:auto !important;
     font-weight: bold;
 }
 
-/* Changelist-Filter Filebrowser----------------------- */
-.filebrowser #changelist-filter {
-    background: #f9f9f9;
-}
-.filebrowser #changelist-filter h3 {
-    margin: 0; padding: 5px 10px 4px !important;
-    font-size: 11px !important;
-    border-top: 1px solid #ddd;
-    background: #f9f9f9 url(../img_grappelli/bg_filterset_reverse.gif) 0 0 repeat-x !important;
-}
-.filebrowser #changelist-filter h2 + h3 {
-    border-top: none;
-}
-.filebrowser #changelist-filter ul {
-    margin: -1px 0 0;
-}
-
 /* Date Drilldown (Toplinks) ----------------------- */
 .change-list #changelist .xfull ul.toplinks {
     position: relative; clear: right !important;
@@ -613,41 +596,40 @@ img[src^="/media/admin/img/admin/icon-yes.gif"] {
 .object-tools li {
     display: block; float: left;
     margin: -7px 0 0 5px !important; padding: 0 !important;
-    height: 21px !important;
-    border: 1px solid #ddd;
-    -moz-border-radius: 5px; -webkit-border-radius: 5px;
-    background: url(../img_grappelli/bg_object-tools.gif) 0 0 repeat-x !important;
-    /*background: #f2f2f2 !important;*/
-    vertical-align: middle;
 }
 .object-tools li:hover {
-    border: 1px solid #5f94b8;
-    background: url(../img_grappelli/bg_object-tools_hover.gif) 0 0 repeat-x !important;
-    /*background: #659dc3 !important;*/
 }
 .object-tools a {
     display: block; float: left;
-    margin: -1px; padding: 6px 10px 4px !important;
+    margin: 0; padding: 5px 10px !important;
     font-size: 11px !important; line-height: 12px !important;
-    background: none !important;
+    height: 11px !important;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
     vertical-align: middle;
 }
 .object-tools a:link, .object-tools a:visited {
     color: #666 !important;
+    border: 1px solid #ddd;
+    background: url(../img_grappelli/bg_object-tools.gif) 0 0 repeat-x !important;
 }
 .object-tools a:hover, .object-tools a:active {
     color: #fff !important;
+    border: 1px solid #5f94b8;
+    background: url(../img_grappelli/bg_object-tools_hover.gif) 0 0 repeat-x !important;
 }
-.object-tools a.addlink {
-    background-image: none !important;
+
+/* Focused Buttons (also for filebrowser) ----------------------- */
+.object-tools a.addlink:link, .object-tools a.addlink:visited, 
+.object-tools .fb_multipleuploadlink:link, .object-tools .fb_multipleuploadlink:visited {
+    color: #fff !important;
+    border: 1px solid #787878;
+    background: url(../img_grappelli/bg_object-tools_focus.gif) 0 0 repeat-x !important;
 }
-/*.object-tools a.addlink:link, .object-tools a.addlink:visited {
-    background-image: url(../img_grappelli/icon_object-tools_addlink.gif) !important;
+.object-tools a.addlink:hover, .object-tools a.addlink:active, 
+.object-tools .fb_multipleuploadlink:hover, .object-tools .fb_multipleuploadlink:active {
+    border: 1px solid #5f94b8;
+    background: url(../img_grappelli/bg_object-tools_hover.gif) 0 0 repeat-x !important;
 }
-.object-tools a.addlink:hover, .object-tools a.addlink:active {
-    background-image: url(../img_grappelli/icon_object-tools_addlink_hover.gif) !important;
-}
-*/
 
 table#change-history {
     -moz-border-radius: 5px; -webkit-border-radius: 5px;

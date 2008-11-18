@@ -78,8 +78,8 @@ a:hover {color:#2B6FB6;}
     padding: 0px 10px 0 0;
 }
 .tabs a { text-decoration: none; }
-.tabs a:link, .tabs a:visited, .tabs a:hover { color: #666; font-weight: bold; }
-.tabs .current a, .tabs .current a:link, .tabs .current a:visited { color: #444; font-weight: bold; }
+.tabs a:link, .tabs a:visited, .tabs a:hover { color: #666 !important; font-weight: bold; }
+.tabs .current a, .tabs .current a:link, .tabs .current a:visited { color: #444 !important; font-weight: bold; }
 
 
 /* Panels
