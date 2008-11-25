@@ -6,8 +6,9 @@
 {{ media }}
 {% if inline_admin_formsets %}
 <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-inline.packed.js"></script>
-<script type="text/javascript" src="{% admin_media_prefix %}js/admin/StackedInline.js"></script>
-<script type="text/javascript" src="{% admin_media_prefix %}js/admin/TabularInline.js"></script>
+{# <script type="text/javascript" src="{% admin_media_prefix %}js/admin/StackedInline.js"></script> #}
+{# <script type="text/javascript" src="{% admin_media_prefix %}js/admin/TabularInline.js"></script> #}
+<script type="text/javascript" src="{% admin_media_prefix %}js/admin/Inline.js"></script>
 <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsedInlineFieldsets.js"></script>
 {% endif %}
 {% endblock %}
@@ -33,8 +34,8 @@
 {% block content %}<div id="content-main">
 {% block object-tools %}
 {% if change %}{% if not is_popup %}
-  <ul class="object-tools"><li><a href="history/" class="historylink">{% trans "History" %}</a></li>
-  {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif%}
+  <ul class="object-tools"><li><a href="history/">{% trans "History" %}</a></li>
+  {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="focus">{% trans "View on site" %}</a></li>{% endif%}
   </ul>
 {% endif %}{% endif %}
 {% endblock %}

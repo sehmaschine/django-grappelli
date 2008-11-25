@@ -1,82 +1,78 @@
 {% load i18n %}
-<div class="inline-group {% if inline_admin_formset.opts.sortable %}sortable{% endif %}" name="inlinegrouptabular">
-<h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
-<ul class="inline-item-tools">
-    <li><a href="javascript://" class="addhandler" title="Add Item"></a></li>
-</ul>
 
-  <div class="tabular inline-related {% if forloop.last %}last-related{% endif %}" name="inlinerelatedtabular">
-{{ inline_admin_formset.formset.management_form }}
-<fieldset class="module">
-   {% comment %}<h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst|escape }}</h2>{% endcomment %}
-   {{ inline_admin_formset.formset.non_form_errors }}
-   {{ inline_admin_formset.opts.model.opts.order_with_respect_to }}
-   <table{% if inline_admin_formset.opts.opts.order_with_respect_to %} class="sortable"{% endif %}>
-     <thead><tr>
-     {% for field in inline_admin_formset.fields %}
-       {% if not field.is_hidden %}
-         <th>{{ field.label|capfirst }}</th>
-        {% endif %}
-     {% endfor %}
-     <th>&nbsp;</th>
-     </tr></thead>
-     
-     {% for inline_admin_form in inline_admin_formset %}
-        {% if inline_admin_form.form.non_field_errors %}
-        <tr><td colspan="{{ inline_admin_form.field_count }}">{{ inline_admin_form.form.non_field_errors }}</td></tr>
-        {% endif %}
-        <tbody class="item row1">
-        <tr>
-        <td class="original" colspan="{{ inline_admin_form.field_count }}">
-          <p><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</p>
-          {{ inline_admin_form.pk_field.field }}
-          {{ inline_admin_form.fk_field.field }} 
-          {% spaceless %}
-          {% for fieldset in inline_admin_form %}
-            {% for line in fieldset %}
-              {% for field in line %}
-                {% if field.is_hidden %} {{ field.field }} {% endif %}
-              {% endfor %}
+<div class="inline-group {% if inline_admin_formset.opts.sortable %}sortable{% endif %}" name="inlinegrouptabular">
+
+    <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
+    <ul class="inline-item-tools">
+        <li><a href="javascript://" class="addhandler" title="Add Item"></a></li>
+    </ul>
+    
+    {{ inline_admin_formset.formset.management_form }}
+    {{ inline_admin_formset.formset.non_form_errors }}
+    {{ inline_admin_formset.opts.model.opts.order_with_respect_to }}
+    
+    <div class="legend">
+        {% for field in inline_admin_formset.fields %}
+            {% if not field.is_hidden %}
+                <div class="form-cell {{ field.label|lower }}">{{ field.label|capfirst }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+        
+    <div class="items">
+        {% for inline_admin_form in inline_admin_formset %}
+        <div class="tabular inline-related {% if forloop.last %}last-related{% endif %}" name="inlinerelatedtabular">
+            
+            {% if inline_admin_form.form.non_field_errors %}
+                <div>{{ inline_admin_form.form.non_field_errors }}</div>
+            {% endif %}
+            
+            <h3><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</h3>
+            
+            {% spaceless %}
+            {% for fieldset in inline_admin_form %}
+                {% for line in fieldset %}
+                    {% for field in line %}
+                        {% if field.is_hidden %} {{ field.field }} {% endif %}
+                    {% endfor %}
+                {% endfor %}
             {% endfor %}
-          {% endfor %}
-          {% endspaceless %}
-        </td>
-        <td class="inline-item-tools">
+            {% endspaceless %}
+            
             <ul class="inline-item-tools">
                 {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="deletelink" title="Delete Item"></a></li>{% endif %}
                 {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="viewsitelink" title="View on Site"></a></li>{% endif %}
-               {% if inline_admin_formset.opts.sortable %} <li><a href="javascript://" class="draghandler" title="Move Item"></a></li>{% endif %}
+                {% if inline_admin_formset.opts.sortable %} <li><a href="javascript://" class="draghandler" title="Move Item"></a></li>{% endif %}
             </ul>
-        </td>
-        </tr>
-        <tr>
-        {% for fieldset in inline_admin_form %}
-          {% for line in fieldset %}
-            {% for field in line %}
-              {% comment %}<td class="{{ field.field.name }} {% if field.field.errors %} error{% endif %}">{% endcomment %}
-              <td class="{% if field.field.errors %} error{% endif %}">
-              {{ field.field }}
-              {{ field.field.errors.as_ul }}
-              </td>
+            
+            <fieldset class="module">
+            {% for fieldset in inline_admin_form %}
+                {% for line in fieldset %}
+                    {% for field in line %}
+                        {% comment %}<td class="{{ field.field.name }} {% if field.field.errors %} error{% endif %}">{% endcomment %}
+                        <div class="form-cell {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
+                            {{ field.field }}
+                            {{ field.field.errors.as_ul }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
             {% endfor %}
-          {% endfor %}
+            </fieldset>
+            
+            {{ inline_admin_form.pk_field.field }}
+            {{ inline_admin_form.fk_field.field }}
+        
+        </div>
         {% endfor %}
-        <td></td>
-        </tr>
-        </tbody>
-     {% endfor %}
-   </table>
-   
-</fieldset>
-  </div>
-  
-  {# <ul class="tools"> #}
-  {#   <li><a class="add" href="">Add another {{ inline_admin_formset.opts.verbose_name|title }}</a></li> #}
-  {# </ul> #}
+    
+    </div>
+    
+    <div class="predelete-items"> </div>
+    <div class="add-item" style="display: none;"> </div>
   
 </div>
 
 <div class="sortablehelper">
-    <h2><b>Sortable Helper</b></h2>
+    <h3><b>Sortable Helper</b></h3>
 </div>
 
