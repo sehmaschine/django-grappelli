@@ -7,18 +7,22 @@ $(document).ready(function(){
     /// In case of an Error, empty extra items are moved to the end of
     /// the list (just before predeleted items).
     
+    /// ADDHANDLER
     $('div[name="inlinegrouptabular"] a.addhandler').bind("click", function(){
-        clone_item = $(this).parent().parent().parent().find('.items tr:last')
-        new_item = $(clone_item).clone(true).insertAfter($(clone_item));
-        /// remove 1 from length because of the table-header
-        items = $(this).parent().parent().parent().find('.items tr').length - 1;
+        new_item = $(this).parent().parent().parent().find('.items div[name="inlinerelatedtabular"]:last').clone(true).appendTo($(this).parent().parent().parent().children('.items'));
+        new_item = $(this).parent().parent().parent().find('.items div[name="inlinerelatedtabular"]:last');
+        items = $(this).parent().parent().parent().find('div[name="inlinerelatedtabular"]').length;
+        /// change header
+        header = new_item.find('h3:first').text().split("#");
+        new_header = "<b>" + header[0] + "#" + parseInt(items) + "</b>";
+        new_item.find('h3:first').html(new_header);
         /// replace IDs, NAMEs, HREFs & FORs ...
         new_html = new_item.html().replace(/-\d+-/g, "-" + parseInt(items - 1) + "-");
         new_item.html(new_html);
         /// reset all form-fields
         new_item.find(':input').val('');
         /// set TOTAL_FORMS to number of items
-        new_item.parent().parent().parent().parent().find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
+        new_item.parent().parent().find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
         /// FILEBROWSER SPECIFIC: remove image preview
         new_item.find('img.preview').each(function(i) {
             $(this).attr('src', '');
@@ -32,12 +36,25 @@ $(document).ready(function(){
         new_item.find('a.viewsitelink').remove();
     });
     
-    // REORDER TBODIES
-    $('div[name="inlinegrouptabular"].sortable table').each(function(i) {
+    /// DELETELINK
+    $('div[name="inlinegrouptabular"] input[name*="DELETE"]').hide();
+    $('div[name="inlinerelatedtabular"] a.deletelink').bind("click", function(){
+        $(this).prev('input').attr('checked', !$(this).prev('input').attr('checked'));
+        delete_item = $(this).parent().parent().parent();
+        if (delete_item.parent().hasClass('predelete-items')) {
+            new_item = delete_item.clone(true).appendTo(delete_item.parent().prev());
+        } else {
+            new_item = delete_item.clone(true).appendTo(delete_item.parent().next());
+        }
+        delete_item.remove();
+    });
+    
+    // REORDER
+    $('div[name="inlinegrouptabular"].sortable').each(function(i) {
         items = new Array();
         predeleted_items_count = $(this).find('input[name*="DELETE"]:checked').length;
         empty_counter = $(this).find('input[value][id*="order"]').length - predeleted_items_count;
-        $(this).find('tbody').each(function(i) {
+        $(this).find('div.inline-related').each(function(i) {
             /// if order field is not set (which is for empty items), set the counter
             /// so that these fields are shown before the predeleted_items
             if ($(this).find('input[id*="order"]').val()) {
@@ -50,59 +67,31 @@ $(document).ready(function(){
             items[parseInt(order_value)] = $(this);
         });
         items.sort();
-        $(this).children('tbody').remove();
+        $(this).children('div.inline-related').remove();
         for (var i = 0; i < items.length; i++) {
             predelete_flag = $(items[i]).find('input[name*="DELETE"]:checked').length;
             if (predelete_flag) {
-                $(items[i]).removeClass('item');
-                $(items[i]).addClass('predelete-item');
+                $(this).children('.predelete-items').append(items[i]);
+            } else {
+                $(this).children('.items').append(items[i]);
             }
-            $(this).append(items[i]);
-        } 
-    });
-    
-    /// DELETELINK
-    $('div[name="inlinegrouptabular"] input[name*="DELETE"]').hide();
-    $('div[name="inlinegrouptabular"] a.deletelink').bind("click", function(){
-        $(this).prev('input').attr('checked', !$(this).prev('input').attr('checked'));
-        delete_item = $(this).parent().parent().parent().parent().parent(); // tbody
-        if (delete_item.hasClass('item')) {
-            // append to end of table
-            new_item = delete_item.clone(true).appendTo(delete_item.parent());
-        } else {
-            // insertAfter last item (before the first predelete-item)
-            new_item = delete_item.clone(true).insertAfter(delete_item.parent().find('tbody.item:last'));
         }
-        new_item.toggleClass('item');
-        new_item.toggleClass('predelete-item');
-        delete_item.remove(); // important: remove before insertAfter
     });
-    
-    function Hinweis () {
-        alert("xxx");
-    };
     
     /// DRAG & DROP
-    $('div[name="inlinegrouptabular"].sortable').sortable({
+    $('div[name="inlinegrouptabular"].sortable .items').sortable({
         axis: 'y',
-        items: 'tbody.item',
+        items: 'div.inline-related',
         handle: '.draghandler',
         placeholder: 'placeholder',
-        tolerance: 'guess',
-        containment: 'table',
-        start: function(e, ui) {
-            temp_html = ""
-            ui.item.find('tr:last td').each(function() {
-               temp_html += "<td></td>" 
-            });
-            $('tbody.placeholder').html("<tr>" + temp_html + "</tr>");
-        },
-        //forcePlacehholderSize: true,
+        tolerance: 'intersect',
+        //containment: 'parent',
         helper: function(e, el) {
-            $("div.sortablehelper").find('h2:first').text(el.find('p:first').text());
+            $("div.sortablehelper").find('h3:first').text(el.find('h3:first').text());
             return $("div.sortablehelper")
                 .clone()
-                .width(el.width() + 'px');
+                .width(el.width() + 'px')
+                .height(el.height() + 'px');
         },
         update: function(e, ui) {
             /// remove display:block, generated by UI sortable
@@ -112,10 +101,10 @@ $(document).ready(function(){
     
     // set ORDER_FIELDS on submit
     $("form").submit(function() {
-        $('div[name="inlinegrouptabular"].sortable').each(function() {
+        $('div[name="inlinegroup"].sortable').each(function() {
             counter = 0;
-            predelete_counter = $(this).find('tbody').length - $(this).find('input[name*="DELETE"]:checked').length;;
-            $(this).find('tbody').each(function(i) {
+            predelete_counter = $(this).find('div.inline-related').length - $(this).find('input[name*="DELETE"]:checked').length;;
+            $(this).find('div.inline-related').each(function(i) {
                 input_values = "";
                 fields = $(this).find(':input:not([name*="order"])').serializeArray();
                 $.each(fields, function(i, field) {
@@ -137,7 +126,6 @@ $(document).ready(function(){
             });
         });
     });
-    
     
     
 });

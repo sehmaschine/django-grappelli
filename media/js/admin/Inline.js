@@ -7,7 +7,7 @@ $(document).ready(function(){
     /// In case of an Error, empty extra items are moved to the end of
     /// the list (just before predeleted items).
     
-    /// BUTTONS
+    /// BUTTONS (STACKED INLINE)
     $('div[name="inlinegroup"] a.closehandler').bind("click", function(){
         $(this).parent().parent().parent().find('div[name="inlinerelated"]').addClass('collapsed');
     });
@@ -15,28 +15,48 @@ $(document).ready(function(){
         $(this).parent().parent().parent().removeClass('collapsed');
         $(this).parent().parent().parent().find('div[name="inlinerelated"]').removeClass('collapsed');
     });
+
+    /// ADDHANDLER
+    // $('div.inline-group a.addhandler').bind("click", function(){
+    //     new_item = $(this).parent().parent().parent().find('div.items div.inline-related:last').clone(true).appendTo($(this).parent().parent().parent().children('.items'));
+    //     items = $(this).parent().parent().parent().find('div.inline-related').length;
+    //     /// change header
+    //     new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
+    //     /// replace IDs, NAMEs, HREFs & FORs ...
+    //     new_html = new_item.html().replace(/-\d+-/g, "-" + parseInt(items - 1) + "-");
+    //     new_item.html(new_html);
+    //     /// reset all form-fields
+    //     new_item.find(':input').val('');
+    //     /// set TOTAL_FORMS to number of items
+    //     new_item.parent().parent().find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
+    //     /// FILEBROWSER SPECIFIC: remove image preview
+    //     new_item.find('img.preview').each(function(i) {
+    //         $(this).attr('src', '');
+    //         $(this).parent().parent().hide();
+    //     });
+    //     /// remove error-lists and error-classes
+    //     new_item.find('ul.errorlist').remove();
+    //     new_item.find('div[class*="errors"]').removeClass("errors");
+    //     /// remove delete-button and button view on site
+    //     new_item.find('a.deletelink').remove();
+    //     new_item.find('a.viewsitelink').remove();
+    //     /// add collapse-functionality
+    //     new_item.find('h3.collapse-toggle').bind("click", function(e){
+    //         $(this).parent().toggleClass('collapsed');
+    //     });
+    // });
     
     /// ADDHANDLER
-    $('div[name="inlinegroup"] a.addhandler').bind("click", function(){
-        new_item = $(this).parent().parent().parent().find('.items div[name="inlinerelated"]:last').clone(true).appendTo($(this).parent().parent().parent().children('.items'));
-        new_item = $(this).parent().parent().parent().find('.items div[name="inlinerelated"]:last');
-        items = $(this).parent().parent().parent().find('div[name="inlinerelated"]').length;
+    $('div.inline-group a.addhandler').bind("click", function(){
+        new_item = $(this).parent().parent().parent().find('div.items div.inline-related:last').clone(true).appendTo($(this).parent().parent().parent().children('.items'));
+        items = $(this).parent().parent().parent().find('div.inline-related').length;
         /// change header
-        header = new_item.find('h3:first').text().split("#");
-        new_header = "<b>" + header[0] + "#" + parseInt(items) + "</b>";
-        new_item.find('h3:first').html(new_header);
+        new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
         /// replace IDs, NAMEs, HREFs & FORs ...
         new_html = new_item.html().replace(/-\d+-/g, "-" + parseInt(items - 1) + "-");
         new_item.html(new_html);
-        /// reset all form-fields
-        new_item.find(':input').val('');
         /// set TOTAL_FORMS to number of items
         new_item.parent().parent().find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
-        /// FILEBROWSER SPECIFIC: remove image preview
-        new_item.find('img.preview').each(function(i) {
-            $(this).attr('src', '');
-            $(this).parent().parent().hide();
-        });
         /// remove error-lists and error-classes
         new_item.find('ul.errorlist').remove();
         new_item.find('div[class*="errors"]').removeClass("errors");
@@ -50,8 +70,8 @@ $(document).ready(function(){
     });
     
     /// DELETELINK
-    $('div[name="inlinegroup"] input[name*="DELETE"]').hide();
-    $('div[name="inlinerelated"] a.deletelink').bind("click", function(){
+    $('div.inline-group input[name*="DELETE"]').hide();
+    $('div.inline-related a.deletelink').bind("click", function() {
         $(this).prev('input').attr('checked', !$(this).prev('input').attr('checked'));
         delete_item = $(this).parent().parent().parent();
         if (delete_item.parent().hasClass('predelete-items')) {
@@ -62,8 +82,8 @@ $(document).ready(function(){
         delete_item.remove();
     });
     
-    // REORDER
-    $('div[name="inlinegroup"].sortable').each(function(i) {
+    /// REORDER
+    $('div.sortable').each(function(i) {
         items = new Array();
         predeleted_items_count = $(this).find('input[name*="DELETE"]:checked').length;
         empty_counter = $(this).find('input[value][id*="order"]').length - predeleted_items_count;
@@ -91,16 +111,17 @@ $(document).ready(function(){
         }
     });
     
-    // hide all ORDER inputs and their parent DIV
-    // $('div[name="inlinerelated"] input[name*="order"]').hide();
-    // $('div[name="inlinerelated"] input[name*="order"]').parent().hide();
+    /// hide all ORDER inputs and their parent DIV
+    //$('div[name="inlinerelated"] input[name*="order"]').hide();
+    $('div.inline-group div.form-row.order').hide();
+    $('div.inline-group div.form-cell.order').hide();
     
     /// DRAG & DROP
-    $('div[name="inlinegroup"] a.draghandler').mousedown(function(){
-        // close all inline-related fieldsets before sorting
+    $('div[name="inlinegroup"] a.draghandler').mousedown(function() {
+        // close all inline-related fieldsets before sorting (only STACKED INLINE)
         $(this).parent().parent().parent().parent().children('div.inline-related').addClass('collapsed');
     });
-    $('div[name="inlinegroup"].sortable .items').sortable({
+    $('div.sortable .items').sortable({
         axis: 'y',
         items: 'div.inline-related',
         handle: '.draghandler',
@@ -121,9 +142,9 @@ $(document).ready(function(){
     
     // set ORDER_FIELDS on submit
     $("form").submit(function() {
-        $('div[name="inlinegroup"].sortable').each(function() {
+        $('div.sortable').each(function() {
             counter = 0;
-            predelete_counter = $(this).find('div.inline-related').length - $(this).find('input[name*="DELETE"]:checked').length;;
+            predelete_counter = $(this).find('div.inline-related').length - $(this).find('input[name*="DELETE"]:checked').length;
             //order_values = "INITIAL FORMS: " + $(this).find('input[id*="INITIAL_FORMS"]').val() + " / ";
             //order_values = order_values + "TOTAL FORMS: " + $(this).find('input[id*="TOTAL_FORMS"]').val() + " / ";
             //order_values = order_values + "ORDER: "
