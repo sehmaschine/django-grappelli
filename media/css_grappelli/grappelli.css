@@ -597,8 +597,6 @@ img[src^="/media/admin/img/admin/icon-yes.gif"] {
     display: block; float: left;
     margin: -7px 0 0 5px !important; padding: 0 !important;
 }
-.object-tools li:hover {
-}
 .object-tools a {
     display: block; float: left;
     margin: 0; padding: 5px 10px !important;
@@ -619,14 +617,12 @@ img[src^="/media/admin/img/admin/icon-yes.gif"] {
 }
 
 /* Focused Buttons (also for filebrowser) ----------------------- */
-.object-tools a.addlink:link, .object-tools a.addlink:visited, 
-.object-tools .fb_multipleuploadlink:link, .object-tools .fb_multipleuploadlink:visited {
+.object-tools a.focus:link, .object-tools a.focus:visited {
     color: #fff !important;
     border: 1px solid #787878;
     background: url(../img_grappelli/bg_object-tools_focus.gif) 0 0 repeat-x !important;
 }
-.object-tools a.addlink:hover, .object-tools a.addlink:active, 
-.object-tools .fb_multipleuploadlink:hover, .object-tools .fb_multipleuploadlink:active {
+.object-tools a.focus:hover, .object-tools a.focus:active {
     border: 1px solid #5f94b8;
     background: url(../img_grappelli/bg_object-tools_hover.gif) 0 0 repeat-x !important;
 }
@@ -868,10 +864,10 @@ td ul.errorlist li {
     border-color: #e09999 #eba9a9 #eba9a9 #e09999;
 }
 .description {
-    padding: 10px 0 10px 10px;
+    padding: 10px 0 10px 10px !important;
     border-bottom: 1px dotted #ddd;
     border-top: 1px solid #fff;
-    color: #999; font-size: 11px;
+    color: #999 !important; font-size: 11px !important;
     background: #f7f7f7;
 }
 
@@ -1008,7 +1004,11 @@ p.datetime br { display: none !important; }
     -moz-border-radius-topright: 3px !important; -webkit-border-top-right-radius: 3px !important;
     background: #C9DBED url(../img_grappelli/bg_fieldset.gif) 0 100% repeat-x !important;
 }
+.calendar th {
+   padding: 2px 3px !important;
+}
 .calendar td {
+   padding: 0 !important;
    background: #fff !important;
 }
 .calendar td a:hover, .timelist a:hover { background: #e2ecf0 !important; }
