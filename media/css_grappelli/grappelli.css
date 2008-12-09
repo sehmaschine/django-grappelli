@@ -830,9 +830,9 @@ ul.messagelist li {
     background: #eef0c5 url(../img_grappelli/icon_yes.gif) 15px 50% no-repeat;
 }
 .errornote {
-    margin-bottom: 5px; padding: 4px 5px 4px 10px;
-    color: #f7f7f7; font-size: 11px !important; font-weight: bold;
-    border: none;
+    margin-bottom: 5px !important; padding: 4px 5px 4px 10px !important;
+    color: #f7f7f7 !important; font-size: 11px !important; font-weight: bold;
+    border: none !important;
     -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #cc3d3d !important;
 }
@@ -841,12 +841,12 @@ body.login .errornote {
     -moz-border-radius: 0; -webkit-border-radius: 0;
 }
 .errors ul.errorlist {
-    margin: 0 !important;
+    margin: 0 !important; padding: 0 !important;
 }
-.errorlist li {
+ul.errorlist li {
     display: block;
-    margin: 0; padding: 2px 5px 2px 130px;
-    color: #cc3d3d; font-size: 11px !important; font-weight: bold;
+    margin: 0 !important; padding: 2px 5px 2px 130px !important;
+    color: #cc3d3d !important; font-size: 11px !important; font-weight: bold;
     border: none !important;
     background: none !important;
 }
@@ -856,7 +856,7 @@ td ul.errorlist {
 td ul.errorlist li {
     margin: 0 !important;
 }
-.error {
+.error, .errors {
     background: transparent !important;
 }
 .error input, .error select, .errors input, .errors select {
