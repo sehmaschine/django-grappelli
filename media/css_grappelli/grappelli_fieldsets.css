@@ -39,6 +39,12 @@
     -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
     background: transparent url(../img_grappelli/bg_module_reverse.gif) 0 0 repeat-x !important;
 }
+.module caption a {
+    color: #666 !important;
+}
+.module caption a:hover {
+    color: #659DC2 !important;
+}
 .module h3 {
     margin-bottom: 0;
 }
