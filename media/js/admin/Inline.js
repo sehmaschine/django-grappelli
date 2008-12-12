@@ -15,36 +15,6 @@ $(document).ready(function(){
         $(this).parent().parent().parent().removeClass('collapsed');
         $(this).parent().parent().parent().find('div[name="inlinerelated"]').removeClass('collapsed');
     });
-
-    /// ADDHANDLER
-    // $('div.inline-group a.addhandler').bind("click", function(){
-    //     new_item = $(this).parent().parent().parent().find('div.items div.inline-related:last').clone(true).appendTo($(this).parent().parent().parent().children('.items'));
-    //     items = $(this).parent().parent().parent().find('div.inline-related').length;
-    //     /// change header
-    //     new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
-    //     /// replace IDs, NAMEs, HREFs & FORs ...
-    //     new_html = new_item.html().replace(/-\d+-/g, "-" + parseInt(items - 1) + "-");
-    //     new_item.html(new_html);
-    //     /// reset all form-fields
-    //     new_item.find(':input').val('');
-    //     /// set TOTAL_FORMS to number of items
-    //     new_item.parent().parent().find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
-    //     /// FILEBROWSER SPECIFIC: remove image preview
-    //     new_item.find('img.preview').each(function(i) {
-    //         $(this).attr('src', '');
-    //         $(this).parent().parent().hide();
-    //     });
-    //     /// remove error-lists and error-classes
-    //     new_item.find('ul.errorlist').remove();
-    //     new_item.find('div[class*="errors"]').removeClass("errors");
-    //     /// remove delete-button and button view on site
-    //     new_item.find('a.deletelink').remove();
-    //     new_item.find('a.viewsitelink').remove();
-    //     /// add collapse-functionality
-    //     new_item.find('h3.collapse-toggle').bind("click", function(e){
-    //         $(this).parent().toggleClass('collapsed');
-    //     });
-    // });
     
     /// ADDHANDLER
     $('div.inline-group a.addhandler').bind("click", function(){
@@ -145,12 +115,9 @@ $(document).ready(function(){
         $('div.sortable').each(function() {
             counter = 0;
             predelete_counter = $(this).find('div.inline-related').length - $(this).find('input[name*="DELETE"]:checked').length;
-            //order_values = "INITIAL FORMS: " + $(this).find('input[id*="INITIAL_FORMS"]').val() + " / ";
-            //order_values = order_values + "TOTAL FORMS: " + $(this).find('input[id*="TOTAL_FORMS"]').val() + " / ";
-            //order_values = order_values + "ORDER: "
             $(this).find('div.inline-related').each(function(i) {
                 input_values = "";
-                fields = $(this).find(':input:not([name*="order"])').serializeArray();
+                fields = $(this).children('fieldset').find(':input:not([name*="order"])').serializeArray();
                 $.each(fields, function(i, field) {
                     input_values += field.value;
                 });
@@ -167,14 +134,8 @@ $(document).ready(function(){
                     $(this).find('input[id*="order"]').val(counter);
                     counter = counter + 1;
                 }
-                //$(this).find('input[id*="order"]').val(i);
-                //order_values = order_values + $(this).find('input[id*="order"]').val() + " / ";
             });
-            //$(this).find('input[id*="TOTAL_FORMS"]').val(counter);
-            //order_values = order_values + "NEW TOTAL FORMS: " + $(this).find('input[id*="TOTAL_FORMS"]').val();
         });
-        //alert(order_values);
-        //return false;
     });
     
 });
