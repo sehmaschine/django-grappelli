@@ -850,6 +850,9 @@ ul.errorlist li {
     border: none !important;
     background: none !important;
 }
+.form-cell ul.errorlist li {
+    padding-left: 0 !important;
+}
 td ul.errorlist {
     margin: 0 !important; padding: 0 !important;
 }
