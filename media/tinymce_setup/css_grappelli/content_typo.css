@@ -1,57 +1,64 @@
 /* -- Headlines, Listings & Paragraphs ---------- */
 
+h2, h3, h4, p, ol, ul, code, pre, blockquote, div {
+    padding: 15px 5px 5px;
+    background-color: #fff;
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+}
+
 h2 {
-    margin: 15px 0 10px 0; padding: 10px 0 0;
+    margin: 20px 0 10px 0;
     font-size: 17px; line-height: 21px;
     color: #333333 !important;
-    background: url(../img_grappelli/content/typo_h2.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_h2.png);
 }
 h3 {
-    margin: 15px 0 10px 0; padding: 10px 0 0;
+    margin: 20px 0 10px 0;
     font-size: 15px; line-height: 19px;
     color: #333333 !important;
-    background: url(../img_grappelli/content/typo_h3.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_h3.png);
 }
 h4 {
-    margin: 15px 0 10px 0; padding: 10px 0 0;
+    margin: 20px 0 10px 0;
     font-size: 12px; line-height: 16px;
     color: #333333 !important;
-    background: url(../img_grappelli/content/typo_h4.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_h4.png);
 }
 
 ol, ul {
-    margin: 15px 0 0 15px; padding: 10px 0 0 20px;
+    margin: 10px 0 0 20px; padding-left: 20px;
     list-style-position: outside;
 }
 ol {
-    background: url(../img_grappelli/content/typo_ol.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_ol.png);
 }
 ul {
     list-style-type: disc;
-    background: url(../img_grappelli/content/typo_ul.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_ul.png);
 }
 ol li, ul li { margin: 0; padding: 0; }
 
 p {
-    margin: 15px 0 !important; padding: 10px 0 0;
+    margin: 10px 0 !important;
     min-height: 16px !important;
-    background: url(../img_grappelli/content/typo_p.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_p.png);
 }
 
 code {
-    margin: 15px 0 !important; padding: 10px 0 0;
+    margin: 10px 0 !important;
     min-height: 16px !important;
-    background: url(../img_grappelli/content/typo_code.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_code.png);
 }
 pre {
-    margin: 15px 0 !important; padding: 10px 0 0 !important;
+    margin: 10px 0 !important; padding: 15px 5px 5px !important;
     min-height: 16px !important;
-    background: url(../img_grappelli/content/typo_pre.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_pre.png);
 }
 blockquote {
-    margin: 15px 0 !important; padding: 5px 15px 0;
+    margin: 10px 0 !important; padding: 15px 20px 5px;
     min-height: 16px !important;
-    background: url(../img_grappelli/content/typo_blockquote.png) 0 0 no-repeat;
+    background-image: url(../img_grappelli/content/typo_blockquote.png);
 }
 
 div { margin: 0; padding: 2px 0;}
