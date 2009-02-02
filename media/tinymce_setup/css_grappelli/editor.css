@@ -26,15 +26,15 @@
 /* Layout */
 .o2k7Skin table.mceLayout {
     border: 1px solid #ddd !important;
-    -moz-border-radius: 5px !important;
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
 }
 .errors .o2k7Skin table.mceLayout {
     border: 1px solid #e09999 !important;
     border-color: #e09999 #eba9a9 #eba9a9 #e09999;
-    -moz-border-radius: 5px !important;
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
 }
 #mce_fullscreen_container table.mceLayout {
-    -moz-border-radius: 0 !important;
+    -moz-border-radius: 0 !important; -webkit-border-radius: 0 !important;
 }
 .o2k7Skin table.mceLayout td {border:none !important;}
 .o2k7Skin table.mceLayout tr.mceFirst td {padding-left: 0px !important;}
@@ -44,7 +44,7 @@
     border-top:1px solid #ccc !important;
     border-bottom:1px solid #ccc !important;
 }
-.o2k7Skin .mceStatusbar {display:block; font-family:"Helvetica Neue",Arial; font-size:10px; line-height:16px; overflow:visible; color:#000; height:20px;}
+.o2k7Skin .mceStatusbar {display:block; font-family:Arial; font-size:10px; line-height:16px; overflow:visible; color:#000; height:20px;}
 .o2k7Skin .mceStatusbar div {float:left; padding:2px;}
 .o2k7Skin .mceStatusbar a.mceResize {display:block; float:right; background:url(/media/admin/tinymce/jscripts/tiny_mce/themes/advanced/img/icons.gif) -800px 0; width:20px; height:20px; cursor:se-resize}
 .o2k7Skin .mceStatusbar a:hover {text-decoration:underline}
@@ -73,7 +73,7 @@
 .o2k7Skin a.mceButtonEnabled {
     border:1px solid;
     border-color: #cfccc8 #bdbab7 #bdbab7 #cfccc8 !important;
-    -moz-border-radius: 4px !important;
+    -moz-border-radius: 4px !important; -webkit-border-radius: 4px !important;
 }
 
 
@@ -89,7 +89,7 @@
 }
 .o2k7Skin .mceButtonDisabled {
     border:1px solid; border-color: #d1cfcb #f0eeeb #f0eeeb #d1cfcb !important;
-    -moz-border-radius: 4px !important;
+    -moz-border-radius: 4px !important; -webkit-border-radius: 4px !important;
     background: transparent;
 }
 .o2k7Skin .mceButtonDisabled span {
@@ -105,8 +105,8 @@
     padding:1px 0 2px 4px !important;
     width:90px; height:19px;
     border:1px solid; border-color: #bdbab7 #cfccc8 #cfccc8 #bdbab7 !important;
-    -moz-border-radius-topleft: 4px !important;
-    -moz-border-radius-bottomleft: 4px !important;
+    -moz-border-radius-topleft: 4px !important; -webkit-border-top-left-radius: 4px !important;
+    -moz-border-radius-bottomleft: 4px !important; -webkit-border-bottom-left-radius: 4px !important;
     background:#fafafa;
     color: #666 !important; font-family:Arial, sans-serif; font-size:11px !important; line-height:20px; text-align:left;
     overflow:hidden;
@@ -117,8 +117,8 @@
     width:14px; height:22px;
     border:1px solid; border-color: #cfccc8 #bdbab7 #bdbab7 #cfccc8 !important;
     border-left: none;
-    -moz-border-radius-topright: 4px !important;
-    -moz-border-radius-bottomright: 4px !important;
+    -moz-border-radius-topright: 4px !important; -webkit-border-top-right-radius: 4px !important;
+    -moz-border-radius-bottomright: 4px !important; -webkit-border-bottom-right-radius: 4px !important;
     background:url(../img_grappelli/buttons/selectback.gif);
 }
 .o2k7Skin table.mceListBoxEnabled:hover .mceText, .o2k7Skin .mceListBoxHover .mceText, .o2k7Skin .mceListBoxSelected .mceText {
@@ -129,13 +129,13 @@
     background:url(../img_grappelli/buttons/selectback_hover.gif);
 }
 .o2k7Skin .mceListBoxSelected .mceText, .o2k7Skin .mceListBoxSelected .mceOpen {
-    -moz-border-radius-bottomleft: 0 !important;
-    -moz-border-radius-bottomright: 0 !important;
+    -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0 !important;
+    -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0 !important;
 }
 .o2k7Skin .mceListBoxDisabled .mceText {color:gray}
 .o2k7Skin .mceListBoxMenu {overflow:auto; overflow-x:hidden;}
 .o2k7Skin .mceOldBoxModel .mceListBox .mceText {height:22px}
-.o2k7Skin select.mceListBox {font-family:"Helvetica Neue",Arial; font-size:11px !important; border:1px solid #b3c7e1; background:#FFF;}
+.o2k7Skin select.mceListBox {font-family:Arial; font-size:11px !important; border:1px solid #b3c7e1; background:#FFF;}
 
 /* SplitButton */
 .o2k7Skin .mceSplitButton, .o2k7Skin .mceSplitButton a, .o2k7Skin .mceSplitButton span {display:block; height:22px}
@@ -154,7 +154,7 @@
 .o2k7Skin .mceColorSplitMenu td {padding:2px}
 .o2k7Skin .mceColorSplitMenu a {display:block; width:9px; height:9px; overflow:hidden; border:1px solid #808080}
 .o2k7Skin .mceColorSplitMenu td.mceMoreColors {padding:1px 3px 1px 1px}
-.o2k7Skin .mceColorSplitMenu a.mceMoreColors {width:100%; height:auto; text-align:center; font-family:"Helvetica Neue",Arial; font-size:11px; line-height:20px; border:1px solid #FFF}
+.o2k7Skin .mceColorSplitMenu a.mceMoreColors {width:100%; height:auto; text-align:center; font-family:Arial; font-size:11px; line-height:20px; border:1px solid #FFF}
 .o2k7Skin .mceColorSplitMenu a.mceMoreColors:hover {border:1px solid #0A246A; background-color:#B6BDD2}
 .o2k7Skin a.mceMoreColors:hover {border:1px solid #0A246A}
 .o2k7Skin .mceColorPreview {position:absolute; top:15px; left:2px; width:16px; height:4px; overflow:hidden}
@@ -163,27 +163,43 @@
 /* Menu */
 .o2k7Skin .mceMenu {
     position:absolute; left:0; top:0px; z-index:1000;
-    padding: 0 0 4px 0;
+    padding: 0;
     min-width: 109px !important;
     border:1px solid #a9a9a9;
-    -moz-border-radius-bottomleft: 4px !important;
-    -moz-border-radius-bottomright: 4px !important;
+    -moz-border-radius-bottomleft: 4px !important; -webkit-border-bottom-left-radius: 4px !important;
+    -moz-border-radius-bottomright: 4px !important; -webkit-border-bottom-right-radius: 4px !important;
 }
-.o2k7Skin .noIcons span.mceIcon {width:0;}
+.o2k7Skin .noIcons span.mceIcon { display: none; width:0;}
 .o2k7Skin .noIcons a .mceText {padding-left:4px; width: 64px;}
 .o2k7Skin .mceMenu table {
-    -moz-border-radius-bottomleft: 4px !important;
-    -moz-border-radius-bottomright: 4px !important;
+    width: 100% !important;
+    -moz-border-radius-bottomleft: 2px !important; -webkit-border-bottom-left-radius: 2px !important;
+    -moz-border-radius-bottomright: 2px !important; -webkit-border-bottom-right-radius: 2px !important;
     background:#fefefe;
 }
-.o2k7Skin .mceMenu a, .o2k7Skin .mceMenu span, .o2k7Skin .mceMenu {display:block}
+.o2k7Skin .mceMenu a, .o2k7Skin .mceMenu span, .o2k7Skin .mceMenu {
+    display:block;
+    width: auto !important;
+    cursor: pointer;
+}
 .o2k7Skin .mceMenu td {
     height:20px;
+    border-bottom: 1px solid #CFCCC8;
 }
+.o2k7Skin .mceMenu tr.mceLast td {
+    border-bottom: none !important;
+}
+
+.o2k7Skin .mceMenu tr.mceLast td a {
+    border-bottom: none ;
+    -moz-border-radius-bottomleft: 2px !important; -webkit-border-bottom-left-radius: 2px !important;
+    -moz-border-radius-bottomright: 2px !important; -webkit-border-bottom-right-radius: 2px !important;
+}
+
 .o2k7Skin .mceMenu a {position:relative;padding:3px 0 4px 0}
-.o2k7Skin .mceMenu .mceText {position:relative; display:block; font-family:"Helvetica Neue",Arial; color:#333; cursor:default; margin:0; padding:0 25px 0 5px; display:block}
+.o2k7Skin .mceMenu .mceText {position:relative; display:block; font-family:Arial; color:#333; margin:0; padding:0 25px 0 5px; display:block}
 .o2k7Skin .mceMenu span.mceText, .o2k7Skin .mceMenu .mcePreview {font-size:11px}
-.o2k7Skin .mceMenu pre.mceText {font-family:"Helvetica Neue",Arial;}
+.o2k7Skin .mceMenu pre.mceText {font-family:Arial;}
 .o2k7Skin .mceMenu .mceIcon {position:absolute; top:0; left:0; width:22px;}
 .o2k7Skin .mceMenu .mceMenuItemEnabled a:hover, .o2k7Skin .mceMenu .mceMenuItemActive {
     background-color:#e6eff5;
@@ -191,8 +207,7 @@
 .o2k7Skin td.mceMenuItemSeparator {background:#DDD; height:1px}
 .o2k7Skin .mceMenuItemTitle a {
     border:0;
-    background:#d8d8d8;
-    border-bottom:1px solid #ccc;
+    background:transparent url(../../img_grappelli/bg_inline-related_predelete_open.gif) repeat-x scroll 0 0 !important;
 }
 .o2k7Skin .mceMenuItemTitle span.mceText {color:#666; font-weight:normal; padding-left:4px}
 .o2k7Skin .mceMenuItemDisabled .mceText {color:#888}
@@ -211,7 +226,7 @@
 .o2k7Skin .mce_formatPreview a {font-size:11px}
 .o2k7Skin .mce_p span.mceText { font-weight:normal; font-size: 11px }
 .o2k7Skin .mce_address span.mceText {font-style:italic}
-.o2k7Skin .mce_pre span.mceText {font-family:"Helvetica Neue",Arial;}
+.o2k7Skin .mce_pre span.mceText {font-family:Arial;}
 .o2k7Skin .mce_h1 span.mceText {font-weight:normal; font-size: 11px}
 .o2k7Skin .mce_h2 span.mceText {font-weight:normal; font-size: 11px}
 .o2k7Skin .mce_h3 span.mceText {font-weight:normal; font-size: 11px}

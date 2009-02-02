@@ -1,25 +1,58 @@
 /* -- Headlines, Listings & Paragraphs ---------- */
 
 h2 {
-	margin: 10px 0 5px 0; padding: 0;
-	font-size: 17px; line-height: 17px;
-	color: #333333 !important;
+    margin: 15px 0 10px 0; padding: 10px 0 0;
+    font-size: 17px; line-height: 21px;
+    color: #333333 !important;
+    background: url(../img_grappelli/content/typo_h2.png) 0 0 no-repeat;
 }
 h3 {
-	margin: 10px 0 5px 0; padding: 0;
-	font-size: 15px; line-height: 15px;
-	color: #333333 !important;
+    margin: 15px 0 10px 0; padding: 10px 0 0;
+    font-size: 15px; line-height: 19px;
+    color: #333333 !important;
+    background: url(../img_grappelli/content/typo_h3.png) 0 0 no-repeat;
 }
 h4 {
-	margin: 10px 0 5px 0; padding: 0;
-	font-size: 12px; line-height: 12px;
-	color: #333333 !important;
+    margin: 15px 0 10px 0; padding: 10px 0 0;
+    font-size: 12px; line-height: 16px;
+    color: #333333 !important;
+    background: url(../img_grappelli/content/typo_h4.png) 0 0 no-repeat;
 }
 
-ol, ul { margin: 10px 0; padding: 2px 0 2px 20px; list-style-position: inside; }
+ol, ul {
+    margin: 15px 0 0 15px; padding: 10px 0 0 20px;
+    list-style-position: outside;
+}
+ol {
+    background: url(../img_grappelli/content/typo_ol.png) 0 0 no-repeat;
+}
+ul {
+    list-style-type: disc;
+    background: url(../img_grappelli/content/typo_ul.png) 0 0 no-repeat;
+}
 ol li, ul li { margin: 0; padding: 0; }
 
-p { margin: 10px 0 !important; padding: 0; min-height: 16px !important; }
+p {
+    margin: 15px 0 !important; padding: 10px 0 0;
+    min-height: 16px !important;
+    background: url(../img_grappelli/content/typo_p.png) 0 0 no-repeat;
+}
+
+code {
+    margin: 15px 0 !important; padding: 10px 0 0;
+    min-height: 16px !important;
+    background: url(../img_grappelli/content/typo_code.png) 0 0 no-repeat;
+}
+pre {
+    margin: 15px 0 !important; padding: 10px 0 0 !important;
+    min-height: 16px !important;
+    background: url(../img_grappelli/content/typo_pre.png) 0 0 no-repeat;
+}
+blockquote {
+    margin: 15px 0 !important; padding: 5px 15px 0;
+    min-height: 16px !important;
+    background: url(../img_grappelli/content/typo_blockquote.png) 0 0 no-repeat;
+}
 
 div { margin: 0; padding: 2px 0;}
 

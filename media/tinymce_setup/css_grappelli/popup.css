@@ -226,9 +226,12 @@ span#srcbrowser, span#hrefbrowser { position: relative; top: -25px; margin-botto
 
 /* Charmap
 ----------------------------------------------------------------------- */
+#charmap td {
+    padding: 0 !important;
+}
 table.charmap { border: none; text-align: center; border-collapse: collapse; }
 td.charmap {
-    padding: 0;
+    padding: 0 !important;
     width: 18px; height: 18px;
     border: 1px solid #AAA;
     text-align: center;
