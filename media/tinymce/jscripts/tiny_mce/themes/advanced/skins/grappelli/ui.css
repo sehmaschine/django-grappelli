@@ -1,0 +1,457 @@
+/* -----------------------------------------------------------------------
+
+   Grappelli Skin - Tiny MCE
+   * based on Tiny MCE http://tinymce.moxiecode.com/
+      
+   Grappelli Skin - Django Admin Interface
+   * http://code.google.com/p/django-grappelli/
+   
+   Based on Django Admin Interface
+   * http://www.djangoproject.com
+   
+   Developed for Mozilla Firefox 3.0+ / using CSS 3 Specifications
+   
+   * See README for instructions on how to use Grappelli.
+   * For credits and origins, see AUTHORS.
+   * This is a compressed file. See the sources in the 'src' directory.
+   
+   * Copyright (c) 2009, vonautomatisch werkstaetten. All rights reserved.
+     See LICENSE for more info.
+
+----------------------------------------------------------------------- */
+
+
+
+/* Reset
+----------------------------------------------------------------------- */
+
+.grappelliSkin table, .grappelliSkin tbody, .grappelliSkin tr, .grappelliSkin td, 
+.grappelliSkin div, .grappelliSkin iframe, 
+.grappelliSkin a, .grappelliSkin img, .grappelliSkin span, 
+.grappelliSkin *, .grappelliSkin .text {
+    margin: 0; padding: 0;
+    width: auto;
+    font-family: Arial, sans-serif; font-size: 11px; line-height: 15px; font-weight: normal;
+    text-decoration: none; text-align: left; white-space: nowrap;
+    border: none;
+    border-collapse: separate;
+    background: transparent;
+    vertical-align: baseline;
+    cursor: default;
+}
+.grappelliSkin a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.grappelliSkin table td {
+    padding: 0 !important;
+    vertical-align: middle;
+}
+
+
+
+/* Containers
+----------------------------------------------------------------------- */
+
+.grappelliSkin table {
+    background: transparent;
+}
+.grappelliSkin iframe {
+    display: block;
+    position: relative; top: 0;
+    margin: 0 0 -1px; padding-top: 0;
+    border-top: 1px solid #c6c6c6;
+    border-bottom: 1px solid #c6c6c6;
+}
+.grappelliSkin .mceToolbar {
+    height: 30px;
+}
+.grappelliSkin td.mceToolbar.advanced_icons {
+    border-top: 1px solid #ccc !important;
+}
+.grappelliSkin td.mceIframeContainer {
+    margin-top: 0; padding-top: 0;
+    height: auto !important;
+    vertical-align: top !important;
+}
+
+
+
+/* External (not defined yet)
+----------------------------------------------------------------------- */
+
+
+
+/* Layout
+----------------------------------------------------------------------- */
+
+.grappelliSkin table.mceLayout {
+    height: auto !important;
+    border: 1px solid #ddd;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #dbdad8 url('img/bg-table.gif') 0 0 repeat-x;
+}
+.errors .grappelliSkin table.mceLayout {
+    border: 1px solid #e09999;
+    border-color: #e09999 #eba9a9 #eba9a9 #e09999;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+#mce_fullscreen_container {
+    height: 100% !important;
+    background: #dbdad8;
+}
+#mce_fullscreen_container table.mceLayout {
+    height: 100% !important;
+    -moz-border-radius: 0; -webkit-border-radius: 0;
+}
+.grappelliSkin table.mceLayout td {
+    border: none !important;
+}
+.grappelliSkin table.mceLayout tr.mceFirst td {
+    padding-left: 0;
+}
+.grappelliSkin table.mceToolbar {
+    margin-left: 3px;
+}
+
+/* Additional Toolbar-Rows */
+
+.grappelliSkin table.mceToolbar + table.mceToolbar {
+    margin-top: 1px;
+    height: 28px;
+    background: transparent;
+}
+.grappelliSkin span.mceIcon, .grappelliSkin img.mceIcon {
+    display: block;
+    width: 20px; height: 20px;
+}
+
+
+
+/* Buttons
+----------------------------------------------------------------------- */
+
+.grappelliSkin .mceButton {
+    display: block;
+    margin-right: 2px;
+    width: 23px; height: 23px !important;
+    background: url('img/buttons/bg-mceButton.gif');
+}
+.grappelliSkin .mceButton span, .grappelliSkin .mceListBox .mceOpen {
+    cursor: pointer;
+}
+
+.grappelliSkin a.mceButtonEnabled {
+    border: 1px solid;
+    border-color: #cfccc8 #bdbab7 #bdbab7 #cfccc8;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px;
+}
+.grappelliSkin a.mceButtonEnabled:hover {
+    border-color: #c7c5c2 #f0eeeb #f0eeeb #c7c5c2 !important;
+    background:url('img/buttons/bg-mceButton-hover.gif');
+}
+.grappelliSkin a.mceButtonActive, .grappelliSkin a.mceButtonSelected {
+    border-color: #c7c5c2 #f0eeeb #f0eeeb #c7c5c2;
+    background:url('img/buttons/bg-mceButton-selected.gif');
+}
+.grappelliSkin .mceButtonDisabled {
+    border: 1px solid;
+    border-color: #d1cfcb #f0eeeb #f0eeeb #d1cfcb;
+    -moz-border-radius: 4px; -webkit-border-radius: 4px;
+    background: transparent;
+}
+.grappelliSkin .mceButtonDisabled span {
+    -moz-opacity: 0.4;
+}
+
+
+/* Buttons In Additional Toolbar-Rows */
+
+.grappelliSkin table.mceToolbar + table.mceToolbar a.mceButtonEnabled {
+    border-color: #c4c1be #b0adab #b0adab #c4c1be !important;
+}
+.grappelliSkin table.mceToolbar + table.mceToolbar a.mceButtonActive, 
+.grappelliSkin table.mceToolbar + table.mceToolbar a.mceButtonSelected {
+    border-color: #c7c5c2 #f0eeeb #f0eeeb #c7c5c2 !important;
+}
+
+
+
+/* Separator
+----------------------------------------------------------------------- */
+
+.grappelliSkin .mceSeparator {
+    display: block;
+    width: 3px; height: 22px;
+}
+
+
+
+/* Listbox
+----------------------------------------------------------------------- */
+
+.grappelliSkin table.mceListBox {
+    background: transparent;
+}
+
+.grappelliSkin .mceListBox, .grappelliSkin .mceListBox a {
+    display: block;
+}
+.grappelliSkin .mceListBox .mceText {
+    position: relative;
+    padding: 2px 0 0 4px !important;
+    width: 90px; height: 21px;
+    border: 1px solid;
+    border-color: #bdbab7 #cfccc8 #cfccc8 #bdbab7;
+    -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+    background: #fafafa;
+    color: #666 !important; font-size: 11px !important; line-height: 20px;
+    overflow: hidden;
+}
+
+.grappelliSkin .mceListBox .mceOpen {
+    margin-right: 4px;
+    width: 14px; height: 23px;
+    border: 1px solid;
+    border-color: #cfccc8 #bdbab7 #bdbab7 #cfccc8 !important;
+    border-left: none;
+    -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+    background: url('img/menu/icon-mceOpen.gif');
+}
+.grappelliSkin table.mceListBoxEnabled:hover .mceText, 
+.grappelliSkin .mceListBoxHover .mceText, 
+.grappelliSkin .mceListBoxSelected .mceText {
+    background: #fff;
+}
+.grappelliSkin table.mceListBoxEnabled:hover .mceOpen, 
+.grappelliSkin .mceListBoxHover .mceOpen, 
+.grappelliSkin .mceListBoxSelected .mceOpen {
+    border-color: #bdbab7 #cfccc8 #cfccc8 #bdbab7 !important;
+    background: url('img/menu/icon-mceOpen-hover.gif');
+}
+.grappelliSkin .mceListBoxSelected .mceText, 
+.grappelliSkin .mceListBoxSelected .mceOpen {
+    -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0 !important;
+    -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0 !important;
+}
+
+.grappelliSkin .mceListBoxMenu {
+    overflow: auto;
+    overflow-x: hidden;
+}
+.grappelliSkin .mceOldBoxModel .mceListBox .mceText {
+    height: 23px;
+}
+
+
+
+/* SplitButton (not defined yet)
+----------------------------------------------------------------------- */
+/* ColorSplitButton (not defined yet)
+----------------------------------------------------------------------- */
+
+
+
+/* Menu
+----------------------------------------------------------------------- */
+
+.grappelliSkin .mceMenu {
+    position: absolute; left: 0; top: -1px; z-index: 1000;
+    padding: 0;
+    min-width: 109px !important;
+    border: 1px solid #a9a9a9;
+    -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+}
+.grappelliSkin .mceMenu table {
+    width: 100% !important;
+    -moz-border-radius-topright: 2px; -webkit-border-top-right-radius: 2px;
+    -moz-border-radius-bottomleft: 2px; -webkit-border-bottom-left-radius: 2px;
+    -moz-border-radius-bottomright: 2px; -webkit-border-bottom-right-radius: 2px;
+    background: #e5e3e1;
+}
+
+.grappelliSkin .mceMenu.mceDropDown {
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
+    border: 2px solid #a9a9a9;
+}
+.grappelliSkin .mceMenu.mceDropDown table {
+    -moz-border-radius: 2px !important; -webkit-border-radius: 2px !important;
+}
+.grappelliSkin .mceMenu a, .grappelliSkin .mceMenu span, .grappelliSkin .mceMenu {
+    display: block;
+    width: auto !important;
+    cursor: pointer;
+}
+.grappelliSkin .mceMenu td {
+    height: 18px;
+    border-bottom: 1px solid #CFCCC8;
+}
+.grappelliSkin .mceMenu tr.mceFirst td a {
+    -moz-border-radius-topright: 2px; -webkit-border-top-right-radius: 2px;
+}
+.grappelliSkin .mceMenu.mceDropDown tr.mceFirst td a {
+    -moz-border-radius-topleft: 2px; -webkit-border-top-left-radius: 2px;
+}
+.grappelliSkin tr.mceMenuItemSeparator + tr.mceFirst td a {
+    border-top: none !important;
+    -moz-border-radius: 0 !important; -webkit-border-radius: 0 !important;
+}
+.grappelliSkin .mceMenu tr.mceLast td {
+    border-bottom: none !important;
+}
+.grappelliSkin .mceMenu tr.mceLast td a {
+    border-bottom: none;
+    -moz-border-radius-bottomleft: 2px; -webkit-border-bottom-left-radius: 2px;
+    -moz-border-radius-bottomright: 2px; -webkit-border-bottom-right-radius: 2px;
+}
+
+.grappelliSkin .mceMenu a {
+    position: relative;
+    padding: 4px 0 3px;
+    color: #666 !important;
+}
+.grappelliSkin .mceMenu .mceText {
+    position: relative; display: block;
+    margin: 0; padding: 0 25px 0 4px;
+}
+.grappelliSkin .mceMenu .mceIcon {
+    display: none;
+    width: 0; height: 0;
+}
+.grappelliSkin .mceMenu .mceMenuItemEnabled a:hover,
+.grappelliSkin .mceMenu .mceMenuItemEnabled a:active, 
+.grappelliSkin .mceMenu .mceMenuItemActive {
+    background-color: #e6eff5;
+}
+.grappelliSkin .mceMenuItemSelected a {
+    background-color: #fff;
+}
+.grappelliSkin td.mceMenuItemSeparator {
+    height: 2px;
+    border: none;
+    background: #a9a9a9;
+}
+
+.grappelliSkin .mceMenuItemTitle a {
+    border: 0;
+    background: transparent url('img/menu/bg-mceMenuItemTitle.gif') repeat-x scroll 0 0 !important;
+}
+
+.grappelliSkin .mceMenuItemTitle span.mceText {
+    padding-left: 4px;
+    color: #666;
+}
+.grappelliSkin .mceMenuItemDisabled .mceText {
+    color: #999;
+}
+
+
+
+/* Language Specific Content Additions
+----------------------------------------------------------------------- */
+
+.grappelliSkin .mceMenuItemTitle span.mceText[title="Format"]:before, 
+.grappelliSkin .mceMenuItemTitle span.mceText[title="Style"]:before {
+    content: "Reset ";
+}
+.grappelliSkin .mceMenuItemTitle span.mceText[title="Format "]:after, 
+.grappelliSkin .mceMenuItemTitle span.mceText[title="Stil"]:after {
+    content: " zurücksetzen";
+}
+
+
+
+/* Statusbar: Progress, Resize
+----------------------------------------------------------------------- */
+
+.grappelliSkin td.mceStatusbar > div {
+    display: none;
+}
+
+.grappelliSkin .mcePlaceHolder {
+    position: relative; left: 130px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #e1edf5 url('img/icons/icon-mceResize.png') 50% 100% no-repeat;
+    cursor: s-resize;
+}
+
+.grappelliSkin a.mceResize { 
+    display: block;
+    width: 100%; height: 15px;
+    border-top: 1px solid #c6c6c6;
+    -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px;
+    background-image: url('img/icons/icon-mceResize.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    cursor: s-resize;
+}
+.grappelliSkin a.mceResize:link, .grappelliSkin a.mceResize:visited { 
+    background-color: transparent;
+}
+.grappelliSkin a.mceResize:hover, .grappelliSkin a.mceResize:active { 
+    background-color: #e1edf5;
+}
+
+
+
+/* Formats
+----------------------------------------------------------------------- */
+
+.grappelliSkin .mce_formatPreview a { /*apply specific styles here*/ }
+.grappelliSkin .mce_p span.mceText { /*apply specific styles here*/ }
+.grappelliSkin .mce_pre span.mceText { /*apply specific styles here*/ }
+.grappelliSkin .mce_h1 span.mceText { /*apply specific styles here*/ }
+.grappelliSkin .mce_h2 span.mceText { /*apply specific styles here*/ }
+.grappelliSkin .mce_h3 span.mceText { /*apply specific styles here*/ }
+.grappelliSkin .mce_h4 span.mceText { /*apply specific styles here*/ }
+.grappelliSkin .mce_h5 span.mceText { /*apply specific styles here*/ }
+.grappelliSkin .mce_h6 span.mceText { /*apply specific styles here*/ }
+.grappelliSkin .mce_div span.mceText { /*apply specific styles here*/ }
+
+
+
+/* Toolbar: Theme & Plugins Defaults
+----------------------------------------------------------------------- */
+
+.grappelliSkin .mceToolbar span {
+    /*width: 100%; */height: 100%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+
+
+/* Button Icons
+----------------------------------------------------------------------- */
+
+.grappelliSkin span.mce_bold { background-image: url('img/buttons/bold.png'); }
+.grappelliSkin span.mce_italic { background-image: url('img/buttons/italic.png'); }
+.grappelliSkin span.mce_underline { background-image: url('img/buttons/underline.png'); }
+.grappelliSkin span.mce_undo { background-image: url('img/buttons/undo.png'); }
+.grappelliSkin span.mce_redo { background-image: url('img/buttons/redo.png'); }
+.grappelliSkin span.mce_bullist { background-image: url('img/buttons/bullist.png'); }
+.grappelliSkin span.mce_numlist { background-image: url('img/buttons/numlist.png'); }
+.grappelliSkin span.mce_blockquote { background-image: url('img/buttons/blockquote.png'); }
+.grappelliSkin span.mce_link { background-image: url('img/buttons/link.png'); }
+.grappelliSkin span.mce_unlink { background-image: url('img/buttons/unlink.png'); }
+.grappelliSkin span.mce_image { background-image: url('img/buttons/image.png'); }
+.grappelliSkin span.mce_code { background-image: url('img/buttons/code.png'); }
+.grappelliSkin span.mce_charmap { background-image: url('img/buttons/charmap.png'); }
+
+.grappelliSkin span.mce_fullscreen { background-image: url('img/buttons/fullscreen.png'); }
+.grappelliSkin span.mce_media { background-image: url('img/buttons/media.png'); }
+.grappelliSkin span.mce_pasteword { background-image: url('img/buttons/pasteword.png'); }
+.grappelliSkin span.mce_template { background-image: url('img/buttons/template.png'); }
+.grappelliSkin span.mce_table { background-image: url('img/buttons/table.png'); }
+.grappelliSkin span.mce_search { background-image: url('img/buttons/search.png'); }
+.grappelliSkin span.mce_cleanup { background-image: url('img/buttons/cleanup.png'); }
+
+.grappelliSkin span.mce_grappelli_adv { background-image: url('img/buttons/show_advanced.png'); }
+.grappelliSkin span.mce_grappelli_documentstructure { background-image: url('img/buttons/visualchars.png'); }
+
