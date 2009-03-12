@@ -18,12 +18,12 @@ $(document).ready(function(){
     
     /// ADDHANDLER
     $('div.inline-group a.addhandler').bind("click", function(){
-        new_item = $(this).parent().parent().parent().find('div.items div.inline-related:last').clone(true).appendTo($(this).parent().parent().parent().children('.items'));
-        items = $(this).parent().parent().parent().find('div.inline-related').length;
+        var new_item = $(this).parent().parent().parent().find('div.items div.inline-related:last').clone(true).appendTo($(this).parent().parent().parent().children('.items'));
+        var items = $(this).parent().parent().parent().find('div.inline-related').length;
         /// change header
         new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
         /// replace IDs, NAMEs, HREFs & FORs ...
-        new_html = new_item.html().replace(/-\d+-/g, "-" + parseInt(items - 1) + "-");
+        var new_html = new_item.html().replace(/-\d+-/g, "-" + parseInt(items - 1) + "-");
         new_item.html(new_html);
         /// set TOTAL_FORMS to number of items
         new_item.parent().parent().find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
@@ -43,27 +43,27 @@ $(document).ready(function(){
     $('div.inline-group input[name*="DELETE"]').hide();
     $('div.inline-related a.deletelink').bind("click", function() {
         $(this).prev('input').attr('checked', !$(this).prev('input').attr('checked'));
-        delete_item = $(this).parent().parent().parent();
+        var delete_item = $(this).parent().parent().parent();
         if (delete_item.parent().hasClass('predelete-items')) {
-            new_item = delete_item.clone(true).appendTo(delete_item.parent().prev());
+            var new_item = delete_item.clone(true).appendTo(delete_item.parent().prev());
         } else {
-            new_item = delete_item.clone(true).appendTo(delete_item.parent().next());
+            var new_item = delete_item.clone(true).appendTo(delete_item.parent().next());
         }
         delete_item.remove();
     });
     
     /// REORDER
     $('div.sortable').each(function(i) {
-        items = new Array();
-        predeleted_items_count = $(this).find('input[name*="DELETE"]:checked').length;
-        empty_counter = $(this).find('input[value][id*="order"]').length - predeleted_items_count;
+        var items = new Array();
+        var predeleted_items_count = $(this).find('input[name*="DELETE"]:checked').length;
+        var empty_counter = $(this).find('input[value][id*="order"]').length - predeleted_items_count;
         $(this).find('div.inline-related').each(function(i) {
             /// if order field is not set (which is for empty items), set the counter
             /// so that these fields are shown before the predeleted_items
             if ($(this).find('input[id*="order"]').val()) {
-                order_value = $(this).find('input[id*="order"]').val();
+                var order_value = $(this).find('input[id*="order"]').val();
             } else {
-                order_value = empty_counter;
+                var order_value = empty_counter;
                 empty_counter++;
             }
             $(this).find('input[id*="order"]').val(order_value);
@@ -72,7 +72,7 @@ $(document).ready(function(){
         items.sort();
         $(this).children('div.inline-related').remove();
         for (var i = 0; i < items.length; i++) {
-            predelete_flag = $(items[i]).find('input[name*="DELETE"]:checked').length;
+            var predelete_flag = $(items[i]).find('input[name*="DELETE"]:checked').length;
             if (predelete_flag) {
                 $(this).children('.predelete-items').append(items[i]);
             } else {
@@ -113,15 +113,15 @@ $(document).ready(function(){
     // set ORDER_FIELDS on submit
     $("form").submit(function() {
         $('div.sortable').each(function() {
-            counter = 0;
-            predelete_counter = $(this).find('div.inline-related').length - $(this).find('input[name*="DELETE"]:checked').length;
+            var counter = 0;
+            var predelete_counter = $(this).find('div.inline-related').length - $(this).find('input[name*="DELETE"]:checked').length;
             $(this).find('div.inline-related').each(function(i) {
-                input_values = "";
-                fields = $(this).children('fieldset').find(':input:not([name*="order"])').serializeArray();
+                var input_values = "";
+                var fields = $(this).children('fieldset').find(':input:not([name*="order"])').serializeArray();
                 $.each(fields, function(i, field) {
                     input_values += field.value;
                 });
-                predelete_flag = $(this).find('input[name*="DELETE"]:checked').length;
+                var predelete_flag = $(this).find('input[name*="DELETE"]:checked').length;
                 if (input_values == "") {
                     /// clear order-field for empty items
                     $(this).find('input[id*="order"]').val('');
