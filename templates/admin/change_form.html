@@ -6,17 +6,12 @@
 {{ media }}
 {% if inline_admin_formsets %}
 <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-inline.packed.js"></script>
-{# <script type="text/javascript" src="{% admin_media_prefix %}js/admin/StackedInline.js"></script> #}
-{# <script type="text/javascript" src="{% admin_media_prefix %}js/admin/TabularInline.js"></script> #}
 <script type="text/javascript" src="{% admin_media_prefix %}js/admin/Inline.js"></script>
 <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsedInlineFieldsets.js"></script>
 {% endif %}
 {% endblock %}
 
 {% block stylesheet %}{% admin_media_prefix %}css/forms.css{% endblock %}
-{% block extrastyle %}
-{# <link rel="stylesheet" href="{% admin_media_prefix %}css_grappelli/greybox.css" type="text/css" media="screen" /> #}
-{% endblock %}
 
 {% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
 
