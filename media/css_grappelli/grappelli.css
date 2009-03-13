@@ -875,12 +875,12 @@ td ul.errorlist li {
 }
 
 
-/* Widgets (Selector=
+/* Widgets (Selector)
 ----------------------------------------------------------------------- */
 
 /* Selector ----------------------- */
 .selector {
-    float: left;
+    float: left; overflow: hidden;
     width: 600px;
 }
 .selector select {
@@ -888,15 +888,17 @@ td ul.errorlist li {
 }
 .selector input {
     position: relative; top: -10px;
-    width: 221px !important;
+    width: 220px !important;
 }
-.selector h2 {
+.selector h2, 
+.inline-related fieldset .selector-available h2, .inline-related fieldset .selector-chosen h2 {
     padding: 8px 5px 7px 8px !important;
     font-size: 12px; line-height: 13px !important; font-weight: bold;
+    border: 1px solid #ccc;
     background: #f7f7f7 url(../img_grappelli/bg_module_reverse.gif) 0 100% repeat-x !important;
 }
 .selector .selector-filter {
-    padding: 2px !important;
+    padding: 2px 2px 0 !important;
     height: 26px;
     background: url(../img_grappelli/bg_fieldset.gif) 0 0 repeat-x !important;
 }

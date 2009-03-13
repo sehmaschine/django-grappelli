@@ -467,6 +467,7 @@ ul.inline-item-tools a.closehandler {
     display: table-cell;
     padding: 5px 0 5px 10px;
     width: 158px;
+    vertical-align: top;
 }
 
 .inline-related.tabular .module {
