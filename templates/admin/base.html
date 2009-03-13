@@ -7,6 +7,7 @@
 <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.2.6.pack.js"></script>
 {% block extrastyle %}{% endblock %}
 {% block extrahead %}{% endblock %}
+<script type="text/javascript">{% load generic %}{% get_generic_relation_list %}</script>
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 <script>
 $(document).ready(function(){
