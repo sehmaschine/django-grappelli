@@ -82,7 +82,6 @@ tinyMCE.init({
     // callbackss
     file_browser_callback: "CustomFileBrowser",
     //cleanup_callback : "CleanupCallback",
-    execcommand_callback : "myCustomExecCommandHandler",
     
     // theme_advanced
     theme_advanced_toolbar_location: "top",
@@ -104,25 +103,6 @@ tinyMCE.init({
     plugins: "advimage,advlink,fullscreen,paste,media,searchreplace,grappelli,grappelli_contextmenu,template",
     advimage_update_dimensions_onchange: true,
     
-    // table-div plugin
-    table_styles: "24=column span-24;23=column span-23;22=column span-22;21=column span-21;20=column span-20;19=column span-19;18=column span-18;17=column span-17;16=column span-16;15=column span-15;14=column span-14;13=column span-13;12=column span-12;11=column span-11;10=column span-10;9=column span-9;8=column span-8;7=column span-7;6=column span-6;5=column span-5;4=column span-4;3=column span-3;2=column span-2;1=column span-1",
-    
-    // grid-plugin
-    grid_templates: [
-        {
-            title: "2 Unterteilungen, symmetrisch",
-            columns: 2,
-            description: "2 Unterteilungen über die gesamte Breite mit jeweils 2 Unterbereichen.",
-            src: '<table class="column span-12 last"><tr><td class="column span-6"><p></p></td><td class="column span-6 last"><p></p></td></tr></table>'
-        },
-        {
-            title : "4 Unterteilungen, symmetrisch",
-            columns: 4,
-            description: "4 Unterteilungen über die gesamte Breite mit jeweils 4 Unterbereichen.",
-            src: '<table class="column span-12 last"><tr><td class="column span-3"><p></p></td><td class="column span-3"><p></p></td><td class="column span-3"><p></p></td><td class="column span-3 last"><p></p></td></tr></table>'
-        },
-    ],
-    
     // grappelli settings
     grappelli_adv_hidden: false,
     grappelli_show_documentstructure: 'on',
@@ -141,7 +121,7 @@ tinyMCE.init({
         },
     ],
     
-    elements
+    // elements
     valid_elements : ""
     + "-p,"
     + "a[href|target=_blank|class],"
