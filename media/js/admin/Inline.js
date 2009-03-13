@@ -33,6 +33,13 @@ $(document).ready(function(){
         /// remove delete-button and button view on site
         new_item.find('a.deletelink').remove();
         new_item.find('a.viewsitelink').remove();
+        /// tinymce
+        new_item.find('span.mceEditor').each(function(e) {
+            var id = this.id.split('_parent')[0];
+            $(this).remove();
+            new_item.find('#' + id).css('display', '');
+            tinyMCE.execCommand("mceAddControl", true, id);
+        });
         /// add collapse-functionality
         new_item.find('h3.collapse-toggle').bind("click", function(e){
             $(this).parent().toggleClass('collapsed');
