@@ -73,9 +73,9 @@ function GenericObject(i, objectIdEl) {
                     self.lookupText.text(''); // Clear out the `loading...` text
                     if (item.objectText) {
                         if (item.objectText.length > CHAR_MAX_LENGTH) {
-                            self.lookupText.text(item.objectText.substr(0, CHAR_MAX_LENGTH) + " ...");
+                            self.lookupText.text(decodeURI(item.objectText.substr(0, CHAR_MAX_LENGTH) + " ..."));
                         } else {
-                            self.lookupText.text(item.objectText);
+                            self.lookupText.text(decodeURI(item.objectText));
                         }
                     }
             });
