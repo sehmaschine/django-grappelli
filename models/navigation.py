@@ -42,8 +42,7 @@ class NavigationItem(models.Model):
     link = models.CharField(_('Link'), max_length=200, help_text=_('The Link should be relative, e.g. /admin/blog/.'))
     category = models.CharField(_('Category'), max_length=1, choices=ITEM_CATEGORY_CHOICES)
     
-    # groups/users
-    groups = models.ManyToManyField('auth.Group', verbose_name=_('Groups'), blank=True)
+    # users
     users = models.ManyToManyField('auth.User', limit_choices_to={'is_staff': True}, verbose_name=_('Users'), blank=True)
     
     # order

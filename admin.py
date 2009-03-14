@@ -14,9 +14,8 @@ class NavigationItemInline(admin.StackedInline):
         ('', {
             'fields': ('title', 'link', 'category',)
         }),
-        (_('Groups/Users'), {
-            'classes': 'collapse-open',
-            'fields': ('groups', 'users',),
+        ('', {
+            'fields': ('users',),
         }),
     )
     
