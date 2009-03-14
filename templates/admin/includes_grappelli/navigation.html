@@ -1,43 +1,13 @@
 <div id="content-related-extended">
     <div class="module">
         <h2>Navigation</h2>
-        <h3>Medienverwaltung</h3>
+        {% for object in object_list %}
+        {% ifchanged object.navigation %}
+        {% if not forloop.first %}</ul>{% endif %}
+        <h3>{{ object.navigation }}</h3>
         <ul class="menulist">
-            <li><a href="/admin/filebrowser/"><strong>FileBrowser</strong></a></li>
-        </ul>
-        <h3>Inhalte</h3>
-        <ul class="menulist">
-            <li><a href="/admin/"><strong>Alle Inhalte</strong></a></li>
-            <li><a href="/main_admin/"><strong>Filme/Stars/Trailer/Galerien</strong></a></li>
-            <li><a href="/container_admin/"><strong>Übersichtsseiten/Seitenleisten</strong></a></li>
-            <li><a href="/festivals_admin/"><strong>Spezialprogramme/Festivals/...</strong></a></li>
-            <li><a href="/games_admin/"><strong>Gewinnspiele/Promos/...</strong></a></li>
-            <li><a href="/cinema_admin/"><strong>Kinos/Kinoprogramm</strong></a></li>
-            <li><a href="/blog_admin/"><strong>Blog/Aktuelles Heft</strong></a></li>
-            <li><a href="/user_admin/"><strong>User/Kommentare</strong></a></li>
-            <li><a href="/newsletter_admin/"><strong>Newsletter</strong></a></li>
-        </ul>
-        <h3>Abfragen/Funktionen</h3>
-        <ul class="menulist">
-            <li><a href="/admin/gewinnspielabfrage/"><strong>Gewinnspielabfrage</strong></a></li>
-            <li><a href="/admin/statistik/{% now "Y" %}/alle/"><strong>Statistik</strong></a></li>
-            <li><a href="/admin/gewinnspielabfrage/"><strong>Filmbilder generieren</strong></a></li>
-        </ul>
-        <h3>Weitere Inhalte</h3>
-        <ul class="menulist">
-            <li><a href="/help_admin/"><strong>Hilfe/CMS-Hilfe</strong></a></li>
-            <li><a href="/configuration_admin/"><strong>Konfiguration</strong></a></li>
-        </ul>
-        <h3>Extern</h3>
-        <ul class="menulist">
-            <li><a href="http://skip-daskinomagazin.createsend.com" target="_blank">Newsletter/Reporting</a></li>
-            <li><a href="http://skip.projectpath.com" target="_blank">Projektmanagement</a></li>
-        </ul>
-        <h3>Intern/Dokumentation</h3>
-        <ul class="menulist">
-            <li><a href="/admin/admin_help/">CMS-Hilfe/FAQ</a></li>
-            <li><a href="http://trac.dedhost-sil-076.sil.at/trac/skip" target="_blank">Tickets/Source-Code</a></li>
-            <li><a href="/admin/doc/">Techn. Dokumentation (en)</a></li>
-        </ul>
+        {% endifchanged %}
+        <li><a href="{{ object.link }}" class="{{ object.category }}">{{ object }}</a></li>
+        {% endfor %}
     </div>
 </div>

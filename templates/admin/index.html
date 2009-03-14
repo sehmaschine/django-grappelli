@@ -1,5 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load i18n %}
+{% load navigation %}
 
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
 
@@ -66,6 +67,6 @@
 </div>
 
 {% block extendedsidebar %}
-{% include "admin/includes_grappelli/navigation.html" %}
+{% get_navigation request.user %}
 {% endblock %}
 {% endblock %}
