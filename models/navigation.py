@@ -27,7 +27,7 @@ class Navigation(models.Model):
         ordering = ['order',]
     
     def __unicode__(self):
-        return u"%s" % (self.name)
+        return u"%s" % (self.title)
         
     save = transaction.commit_on_success(models.Model.save)
     
@@ -56,7 +56,7 @@ class NavigationItem(models.Model):
         ordering = ['order']
     
     def __unicode__(self):
-        return u"%s" % (self.name)
+        return u"%s" % (self.title)
         
     save = transaction.commit_on_success(models.Model.save)
     
