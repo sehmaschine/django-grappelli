@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from django.db import models
+from django.db import models, transaction
 from django.utils.translation import ugettext as _
 
-from django-grappelli.fields import PositionField
+from grappelli.fields import PositionField
 
 ITEM_CATEGORY_CHOICES = (
     ('1', _('internal')),
@@ -18,7 +18,7 @@ class Navigation(models.Model):
     title = models.CharField(_('Title'), max_length=30)
     
     # order
-    order = models.PositionField(_('Order'))
+    order = PositionField(_('Order'))
     
     class Meta:
         app_label = "grappelli"
@@ -47,7 +47,7 @@ class NavigationItem(models.Model):
     users = models.ManyToManyField('auth.User', limit_choices_to={'is_staff': True}, verbose_name=_('Users'), blank=True)
     
     # order
-    order = models.PositionField(_('Order'), unique_for_field='navigation')
+    order = PositionField(_('Order'), unique_for_field='navigation')
     
     class Meta:
         app_label = "grappelli"
