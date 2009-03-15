@@ -46,7 +46,7 @@ class NavigationItem(models.Model):
     users = models.ManyToManyField('auth.User', limit_choices_to={'is_staff': True}, verbose_name=_('Users'), blank=True)
     
     # order
-    order = PositionField(_('Order'), unique_for_field='navigation')
+    order = PositionField(unique_for_field='navigation')
     
     class Meta:
         app_label = "grappelli"
