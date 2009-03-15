@@ -23,6 +23,7 @@ $(document).ready(function(){
 </script>
 </head>
 {% load i18n %}
+{% load shortcuts %}
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
 <!-- Container -->
 <div id="container">
@@ -30,7 +31,7 @@ $(document).ready(function(){
     <!-- Header -->
     <div id="header">
         <div id="branding">
-            {% include "admin/includes_grappelli/shortcuts.html" %}
+            {% get_shortcuts request.user request.path title %}
             {% if user.is_authenticated and user.is_staff %}
             <div id="user-tools">
                 <ul>

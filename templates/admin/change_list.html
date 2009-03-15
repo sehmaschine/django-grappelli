@@ -29,9 +29,12 @@ $(document).ready(function(){
 {% block content %}
 <div id="content-main">
 {% block object-tools %}
+<ul class="object-tools">
 {% if has_add_permission %}
-<ul class="object-tools"><li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li></ul>
+{% comment %}<li><a href="reorder/{% if is_popup %}?_popup=1{% endif %}">{% trans "Reorder" %}</a></li>{% endcomment %}
+<li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
 {% endif %}
+</ul>
 {% endblock %}
 <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
 {% block search %}{% search_form cl %}{% endblock %}

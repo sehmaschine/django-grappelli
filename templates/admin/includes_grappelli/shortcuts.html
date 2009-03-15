@@ -1,17 +1,29 @@
+{% load i18n %}
 <ul>
-    <li>Skip WebWorld</li>
-    <li id="toggle_navigation"><a href="javascript://">Navigation</a>
+    <li>{{ admin_title }}</li>
+    <li id="toggle_navigation"><a href="javascript://">{% trans "Shortcuts" %}</a>
         <ul id="navigation" class="menu">
-            <li><a href="/admin/filebrowser/"><strong>FileBrowser</strong></a></li>
-            <li><a href="/admin/"><strong>Alle Inhalte</strong></a></li>
-            <li><a href="/main_admin/"><strong>Filme/Stars/Trailer/Galerien</strong></a></li>
-            <li><a href="/container_admin/"><strong>Übersichtsseiten/Seitenleisten</strong></a></li>
-            <li><a href="/festivals_admin/"><strong>Spezialprogramme/Festivals/...</strong></a></li>
-            <li><a href="/games_admin/"><strong>Gewinnspiele/Promos/...</strong></a></li>
-            <li><a href="/cinema_admin/"><strong>Kinos/Kinoprogramm</strong></a></li>
-            <li><a href="/blog_admin/"><strong>Blog/Aktuelles Heft</strong></a></li>
-            <li><a href="/user_admin/"><strong>User/Kommentare</strong></a></li>
-            <li><a href="/newsletter_admin/"><strong>Newsletter</strong></a></li>
+            {% if object_list %}
+            {% for object in object_list %}
+            <li><a href="{{ object.link }}"><strong>{{ object }}</strong></a></li>
+            {% endfor %}
+            {% else %}
+            <li>{% trans "No Items Found." %}</li>
+            {% endif %}
         </ul>
+    </li>
+    {% if is_allowed %}
+    {% if is_shortcut %}
+    <li>
+        <a href="/grappelli/shortcut/remove/?path={{ path }}" class="shortcut_remove">Remove</a>
+    </li>
+    {% else %}
+    <li>
+        <a href="/grappelli/shortcut/add/?path={{ path }}&title={{ title }}" class="shortcut_add">Add</a>
+    </li>
+    {% endif %}
+    {% endif %}
+    <li>
+        <a href="/admin/grappelli/shortcut/{{ user.id }}/" class="shortcut_manage">{% trans "Manage Shortcuts" %}</a>
     </li>
 </ul>
