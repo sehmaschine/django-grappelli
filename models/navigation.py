@@ -52,7 +52,7 @@ class NavigationItem(models.Model):
         app_label = "grappelli"
         verbose_name = _('Navigation Item')
         verbose_name_plural = _('Navigation Items')
-        ordering = ['order']
+        ordering = ['navigation', 'order']
     
     def __unicode__(self):
         return u"%s" % (self.title)
