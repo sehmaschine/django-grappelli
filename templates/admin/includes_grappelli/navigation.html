@@ -1,6 +1,8 @@
+{% load i18n %}
 <div id="content-related-extended">
     <div class="module">
         <h2>Navigation</h2>
+        {% if object_list %}
         {% for object in object_list %}
         {% ifchanged object.navigation %}
         {% if not forloop.first %}</ul>{% endif %}
@@ -9,5 +11,8 @@
         {% endifchanged %}
         <li><a href="{{ object.link }}" class="{{ object.category }}">{{ object }}</a></li>
         {% endfor %}
+        {% else %}
+        <h3>{% trans "No Items Found." %}</h3>
+        {% endif %}
     </div>
 </div>
