@@ -1,0 +1,33 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia %}
+{% load i18n %}
+
+{% block stylesheet %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
+{% block coltype %}colSM{% endblock %}
+{% block bodyclass %}dashboard{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="../">{% trans "Home" %}</a> &rsaquo; {% trans "Help" %}</div>{% endblock %}
+
+{% block content %}
+<div id="content-main" class="help">
+    <p>{% trans "This section should explain the handling of the Admin-Interface/CMS. Permissions provided, you can change/add entries to this Section." %}</p>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<div id="content-related" style="float: left !important;">
+    {% for help in menu %}
+    <div class="module">
+        <table>
+            <caption class="caption" style="padding-left:5px !important; width:100%;">{{ help }}</caption>
+            {% for helpitem in help.helpitem_set.all %}
+            <tr class="collapse">
+                <th scope="row" style="padding-left:5px !important;"><a href="{{ helpitem.id }}/">{{ helpitem }}</a></th>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
