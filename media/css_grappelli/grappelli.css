@@ -295,9 +295,9 @@ div.breadcrumbs {
     display: none;
     position: absolute; top: 30px; left: -6px;
     margin: 0;
-    width: 242px;
+    width: 251px;
     border: 1px solid #4d4843;
-    background:#383531;
+    background: #383531;
     -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
@@ -308,10 +308,13 @@ div.breadcrumbs {
     border: none;
     border-bottom: 1px solid #4d4d4d;
 }
+#branding ul.menu li.no-entries {
+    padding: 5px 30px 5px 10px !important;
+}
 #branding ul.menu li a:link, #branding ul.menu li a:visited {
     display: block;
     padding: 5px 30px 5px 10px !important;
-    background:#383531;
+    background: #383531;
 }
 #branding ul.menu li a:hover { color: #eee !important; background: #598fb3; }
 #branding ul.menu li:last-child a {
