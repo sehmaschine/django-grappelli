@@ -1,8 +1,8 @@
 {% load i18n %}
 <ul>
     <li>{{ admin_title }}</li>
-    <li id="toggle_shortcuts"><a href="javascript://">{% trans "Shortcuts" %}</a>
-        <ul id="shortcuts" class="menu">
+    <li id="toggle_bookmarks"><a href="javascript://">{% trans "Bookmarks" %}</a>
+        <ul id="bookmarks" class="menu">
             {% if object_list %}
             {% for object in object_list %}
             <li><a href="{{ object.link }}"><strong>{{ object }}</strong></a></li>
@@ -14,18 +14,18 @@
     </li>
     
     {% if is_allowed %}
-    {% if is_shortcut %}
-    <li class="shortcut-action">
-        <a href="/grappelli/shortcut/remove/?path={{ path }}" class="shortcut-remove"> </a>
+    {% if is_bookmark %}
+    <li class="bookmark-action">
+        <a href="/grappelli/bookmark/remove/?path={{ path }}" class="bookmarks-remove"> </a>
     </li>
     {% else %}
-    <li class="shortcut-action">
-        <a href="/grappelli/shortcut/add/?path={{ path }}&title={{ title }}" class="shortcut-add"> </a>
+    <li class="bookmark-action">
+        <a href="/grappelli/bookmark/add/?path={{ path }}&title={{ title }}" class="bookmarks-add"> </a>
     </li>
     {% endif %}
     {% endif %}
     <li class="shortcut-action manage">
-        <a href="/admin/grappelli/shortcut/{{ user.id }}/" class="shortcut-manage"> </a>
+        <a href="/admin/grappelli/bookmark/{{ user.id }}/" class="bookmarks-manage"> </a>
     </li>
     <li> </li>
 </ul>
