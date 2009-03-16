@@ -19,7 +19,7 @@ def add_bookmark(request):
             except Bookmark.DoesNotExist:
                 bookmark = Bookmark(user=request.user)
                 bookmark.save()
-            bookmarkitem = ShortcutItem(bookmark=bookmark, title=request.GET.get('title'), link=request.GET.get('path'))
+            bookmarkitem = BookmarkItem(bookmark=bookmark, title=request.GET.get('title'), link=request.GET.get('path'))
             bookmarkitem.save()
             msg = _('Site was added to Bookmarks.')
         else:

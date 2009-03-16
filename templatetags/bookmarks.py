@@ -1,6 +1,6 @@
 from django import template
 
-from grappelli.models.bookmarks import BookmarkItem
+from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.settings import *
 
 register = template.Library()
@@ -8,6 +8,11 @@ register = template.Library()
 def get_bookmarks(user, path, title):
     
     object_list = BookmarkItem.objects.filter(bookmark__user=user)
+    
+    try:
+        bookmark = Bookmark.objects.get(user=user)
+    except Bookmark.DoesNotExist:
+        bookmark = ""
     
     # check whether or not this site is already stored as a shortcut
     try:
@@ -34,6 +39,7 @@ def get_bookmarks(user, path, title):
         'title': title,
         'is_bookmark': is_bookmark,
         'is_allowed': is_allowed,
+        'bookmark': bookmark,
         'admin_title': ADMIN_TITLE,
     }
     
