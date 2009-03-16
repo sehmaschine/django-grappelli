@@ -15,16 +15,16 @@
     
     {% if is_allowed %}
     {% if is_bookmark %}
-    <li class="bookmark-action">
+    <li class="action bookmark">
         <a href="/grappelli/bookmark/remove/?path={{ path }}" class="bookmark-remove"> </a>
     </li>
     {% else %}
-    <li class="bookmark-action">
+    <li class="action bookmark">
         <a href="/grappelli/bookmark/add/?path={{ path }}&title={{ title }}" class="bookmark-add"> </a>
     </li>
     {% endif %}
     {% endif %}
-    <li class="bookmark-action manage">
+    <li class="action bookmark manage">
         <a href="/admin/grappelli/bookmark/{{ user.id }}/" class="bookmark-manage"> </a>
     </li>
     <li> </li>

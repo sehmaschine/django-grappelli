@@ -35,6 +35,10 @@ $(document).ready(function(){
             {% if user.is_authenticated and user.is_staff %}
             <div id="user-tools">
                 <ul>
+                    <li> </li>
+                    <li class="action help">
+                        <a href="" class="help"> </a>
+                    </li>
                     <li>
                         <strong>{% firstof user.first_name user.username %}</strong>
                     </li>
