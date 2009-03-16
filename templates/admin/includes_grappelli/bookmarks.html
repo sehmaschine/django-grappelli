@@ -8,7 +8,7 @@
             <li><a href="{{ object.link }}"><strong>{{ object }}</strong></a></li>
             {% endfor %}
             {% else %}
-            <li>{% trans "No Items Found." %}</li>
+            <li class="no-entries">{% trans "No Items Found." %}</li>
             {% endif %}
         </ul>
     </li>
@@ -16,16 +16,16 @@
     {% if is_allowed %}
     {% if is_bookmark %}
     <li class="bookmark-action">
-        <a href="/grappelli/bookmark/remove/?path={{ path }}" class="bookmarks-remove"> </a>
+        <a href="/grappelli/bookmark/remove/?path={{ path }}" class="bookmark-remove"> </a>
     </li>
     {% else %}
     <li class="bookmark-action">
-        <a href="/grappelli/bookmark/add/?path={{ path }}&title={{ title }}" class="bookmarks-add"> </a>
+        <a href="/grappelli/bookmark/add/?path={{ path }}&title={{ title }}" class="bookmark-add"> </a>
     </li>
     {% endif %}
     {% endif %}
-    <li class="shortcut-action manage">
-        <a href="/admin/grappelli/bookmark/{{ user.id }}/" class="bookmarks-manage"> </a>
+    <li class="bookmark-action manage">
+        <a href="/admin/grappelli/bookmark/{{ user.id }}/" class="bookmark-manage"> </a>
     </li>
     <li> </li>
 </ul>
