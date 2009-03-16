@@ -9,7 +9,7 @@
         <h3>{{ object.navigation }}</h3>
         <ul class="menulist">
         {% endifchanged %}
-        <li><a href="{{ object.link }}" class="{{ object.category }}">{{ object }}</a></li>
+        <li><a href="{{ object.link }}" class="{{ object.get_category_display }}">{{ object }}</a></li>
         {% endfor %}
         {% else %}
         <h3>{% trans "No Items Found." %}</h3>
