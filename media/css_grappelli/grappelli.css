@@ -254,12 +254,48 @@ div.breadcrumbs {
     background: none;
     list-style-type: none !important;
 }
+#branding ul li#toggle_bookmarks {
+    padding-right: 120px;
+    border-right: 1px dashed #36332f;
+}
+#branding ul li.bookmark-action {
+    padding: 0;
+    width: 29px; height: 100%;
+    border-left: none;
+    border-right: 1px dashed #36332f;
+}
+#branding ul li.bookmark-action.manage {
+    border-right: 1px solid #36332f;
+}
+#branding ul li.bookmark-action a {
+    position: relative; display: block;
+    width: 29px; height: 30px;
+}
+
+#branding ul li.bookmark-action a.bookmark-add:link, #branding ul li.bookmark-action a.bookmark-add:visited {
+    background: transparent url(../img_grappelli/icon_bookmark-add.png) 50% 50% no-repeat;
+}
+#branding ul li.bookmark-action a.bookmark-add:hover, #branding ul li.bookmark-action a.bookmark-add:active {
+    background: #524d49 url(../img_grappelli/icon_bookmark-add_hover.png) 50% 50% no-repeat;
+}
+#branding ul li.bookmark-action a.bookmark-remove:link, #branding ul li.bookmark-action a.bookmark-remove:visited {
+    background: #524d49 url(../img_grappelli/icon_bookmark-remove.png) 50% 50% no-repeat;
+}
+#branding ul li.bookmark-action a.bookmark-remove:hover, #branding ul li.bookmark-action a.bookmark-remove:active {
+    background: transparent url(../img_grappelli/icon_bookmark-remove_hover.png) 50% 50% no-repeat;
+}
+#branding ul li.bookmark-action a.bookmark-manage:link, #branding ul li.bookmark-action a.bookmark-manage:visited {
+    background: transparent url(../img_grappelli/icon_bookmark-manage.png) 50% 50% no-repeat;
+}
+#branding ul li.bookmark-action a.bookmark-manage:hover, #branding ul li.bookmark-action a.bookmark-manage:active {
+    background: transparent url(../img_grappelli/icon_bookmark-manage_hover.png) 50% 50% no-repeat;
+}
 
 #branding ul.menu {
     display: none;
     position: absolute; top: 30px; left: -6px;
     margin: 0;
-    width: 200px;
+    width: 242px;
     border: 1px solid #4d4843;
     background:#383531;
     -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
@@ -293,6 +329,16 @@ div.breadcrumbs {
 #branding ul li:last-child {
     border-right: none; border-bottom: none;
 }
+
+#branding ul.actionlist {
+    position: relative; top: -17px; left: 50px;
+    margin: 0;
+}
+#branding ul.actionlist li {
+    border: none;
+    margin: 0; padding: 0;
+}
+
 
 
 /* Sidebar
@@ -334,11 +380,25 @@ ul.menulist:last-child li:last-child {
 ul.menulist li a {
     padding-left: 11px;
 }
-ul.menulist li a:link, ul.menulist li a:visited {
+ul.menulist li a.internal, 
+ul.menulist li a.external {
+    font-weight: bold;
+}
+ul.menulist li a:link, ul.menulist li a:visited, 
+ul.menulist li a.internal:link, ul.menulist li a.internal:visited {
     background: transparent url(../img_grappelli/icon_menulist.gif) 0 50% no-repeat;
 }
-ul.menulist li a:hover, ul.menulist li a:active {
+ul.menulist li a:hover, ul.menulist li a:active, 
+ul.menulist li a.internal:hover, ul.menulist li a.internal:active {
     color: #555;
+    background: transparent url(../img_grappelli/icon_menulist_hover.gif) 0 50% no-repeat;
+}
+ul.menulist li a.external:link, ul.menulist li a.external:visited {
+    color: #aaa !important;
+    background: transparent url(../img_grappelli/icon_menulist-external.gif) 0 50% no-repeat;
+}
+ul.menulist li a.external:hover, ul.menulist li a.external:active {
+    color: #555 !important;
     background: transparent url(../img_grappelli/icon_menulist_hover.gif) 0 50% no-repeat;
 }
 
@@ -431,7 +491,7 @@ width:auto !important;
     background:#E7EDF4 url(../img_grappelli/bg_toolbar.gif) 0 0 repeat-x !important;
 }
 #changelist #toolbar form #searchbar { width: 200px; }
-#changelist #toolbar form span { margin-left: 5px; }
+#changelist #toolbar form span { position: relative; top: 1px; margin-left: 5px; }
 
 #changelist #toolbar input[type=image] { border: none !important; }
 #changelist-search label {
