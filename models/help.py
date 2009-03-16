@@ -35,6 +35,7 @@ class HelpItem(models.Model):
     
     help = models.ForeignKey(Help)
     title = models.CharField(_('Title'), max_length=200)
+    link = models.CharField(_('Link'), max_length=200, help_text=_('The Link should be relative, e.g. /admin/blog/.'))
     body = models.TextField(_('Body'))
     
     # order

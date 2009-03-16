@@ -83,7 +83,7 @@ class HelpItemInline(admin.StackedInline):
     sortable = True
     fieldsets = (
         ('', {
-            'fields': ('title', 'body',)
+            'fields': ('title', 'link', 'body',)
         }),
     )
 
