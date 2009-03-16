@@ -24,6 +24,7 @@ $(document).ready(function(){
 </head>
 {% load i18n %}
 {% load bookmarks %}
+{% load help %}
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
 <!-- Container -->
 <div id="container">
@@ -36,9 +37,7 @@ $(document).ready(function(){
             <div id="user-tools">
                 <ul>
                     <li> </li>
-                    <li class="action help">
-                        <a href="" class="help"> </a>
-                    </li>
+                    {% get_help request.path %}
                     <li>
                         <strong>{% firstof user.first_name user.username %}</strong>
                     </li>
