@@ -258,36 +258,45 @@ div.breadcrumbs {
     padding-right: 120px;
     border-right: 1px dashed #36332f;
 }
-#branding ul li.bookmark-action {
+#branding ul li.action {
     padding: 0;
     width: 29px; height: 100%;
+}
+#branding ul li.action.bookmark {
     border-left: none;
     border-right: 1px dashed #36332f;
 }
-#branding ul li.bookmark-action.manage {
+#branding ul li.action.manage {
     border-right: 1px solid #36332f;
 }
-#branding ul li.bookmark-action a {
+#branding ul li.action a {
     position: relative; display: block;
     width: 29px; height: 30px;
 }
 
-#branding ul li.bookmark-action a.bookmark-add:link, #branding ul li.bookmark-action a.bookmark-add:visited {
+#branding ul li.action a.help:link, #branding ul li.action a.help:visited {
+    background: transparent url(../img_grappelli/icon_branding-help.png) 50% 50% no-repeat;
+}
+#branding ul li.action a.help:hover, #branding ul li.action a.help:active {
+    background: transparent url(../img_grappelli/icon_branding-help_hover.png) 50% 50% no-repeat;
+}
+
+#branding ul li.action a.bookmark-add:link, #branding ul li.action a.bookmark-add:visited {
     background: transparent url(../img_grappelli/icon_bookmark-add.png) 50% 50% no-repeat;
 }
-#branding ul li.bookmark-action a.bookmark-add:hover, #branding ul li.bookmark-action a.bookmark-add:active {
+#branding ul li.action a.bookmark-add:hover, #branding ul li.action a.bookmark-add:active {
     background: #524d49 url(../img_grappelli/icon_bookmark-add_hover.png) 50% 50% no-repeat;
 }
-#branding ul li.bookmark-action a.bookmark-remove:link, #branding ul li.bookmark-action a.bookmark-remove:visited {
+#branding ul li.action a.bookmark-remove:link, #branding ul li.action a.bookmark-remove:visited {
     background: #524d49 url(../img_grappelli/icon_bookmark-remove.png) 50% 50% no-repeat;
 }
-#branding ul li.bookmark-action a.bookmark-remove:hover, #branding ul li.bookmark-action a.bookmark-remove:active {
+#branding ul li.action a.bookmark-remove:hover, #branding ul li.action a.bookmark-remove:active {
     background: transparent url(../img_grappelli/icon_bookmark-remove_hover.png) 50% 50% no-repeat;
 }
-#branding ul li.bookmark-action a.bookmark-manage:link, #branding ul li.bookmark-action a.bookmark-manage:visited {
+#branding ul li.action a.bookmark-manage:link, #branding ul li.action a.bookmark-manage:visited {
     background: transparent url(../img_grappelli/icon_bookmark-manage.png) 50% 50% no-repeat;
 }
-#branding ul li.bookmark-action a.bookmark-manage:hover, #branding ul li.bookmark-action a.bookmark-manage:active {
+#branding ul li.action a.bookmark-manage:hover, #branding ul li.action a.bookmark-manage:active {
     background: transparent url(../img_grappelli/icon_bookmark-manage_hover.png) 50% 50% no-repeat;
 }
 
