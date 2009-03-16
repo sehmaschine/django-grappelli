@@ -1,20 +1,20 @@
 from django import template
 
-from grappelli.models.shortcuts import ShortcutItem
+from grappelli.models.bookmarks import BookmarkItem
 from grappelli.settings import *
 
 register = template.Library()
 
-def get_shortcuts(user, path, title):
+def get_bookmarks(user, path, title):
     
-    object_list = ShortcutItem.objects.filter(shortcut__user=user)
+    object_list = BookmarkItem.objects.filter(bookmark__user=user)
     
     # check whether or not this site is already stored as a shortcut
     try:
-        ShortcutItem.objects.get(shortcut__user=user, link=path)
-        is_shortcut = True
-    except ShortcutItem.DoesNotExist:
-        is_shortcut = False
+        BookmarkItem.objects.get(bookmark__user=user, link=path)
+        is_bookmark = True
+    except BookmarkItem.DoesNotExist:
+        is_bookmark = False
         
     # it's not allowed to store an add_form
     try:
@@ -32,11 +32,11 @@ def get_shortcuts(user, path, title):
         'user': user,
         'path': path,
         'title': title,
-        'is_shortcut': is_shortcut,
+        'is_bookmark': is_bookmark,
         'is_allowed': is_allowed,
         'admin_title': ADMIN_TITLE,
     }
     
 
-register.inclusion_tag('admin/includes_grappelli/shortcuts.html')(get_shortcuts)
+register.inclusion_tag('admin/includes_grappelli/bookmarks.html')(get_bookmarks)
 
