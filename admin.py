@@ -105,7 +105,23 @@ class HelpOptions(admin.ModelAdmin):
         ]
     
 
+class HelpItemOptions(admin.ModelAdmin):
+    list_display = ('order', 'title',)
+    list_display_links = ('title',)
+    fieldsets = (
+        ('', {
+            'fields': ('help', 'title', 'link', 'body',)
+        }),
+    )
+    class Media:
+        js = [
+            '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/media/admin/tinymce_setup/tinymce_setup.js',
+        ]
+
+
 admin.site.register(Navigation, NavigationOptions)
 admin.site.register(Bookmark, BookmarkOptions)
 admin.site.register(Help, HelpOptions)
+admin.site.register(HelpItem, HelpItemOptions)
 
