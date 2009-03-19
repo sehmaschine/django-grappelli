@@ -874,6 +874,9 @@ input[type=text], textarea {
 input.vDateField, input.vTimeField {
     width: 100px !important;
 }
+input.vDateField + span, input.vTimeField + span {
+    color: #ccc; font-size: 11px;
+}
 
 input[type=checkbox], input[type=radio] {
     margin: 0 0 2px 130px;
