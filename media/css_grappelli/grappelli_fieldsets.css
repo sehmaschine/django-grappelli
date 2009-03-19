@@ -226,14 +226,20 @@ fieldset.collapse-open h2.collapse-toggle {
     -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
     -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
-.inline-related fieldset + fieldset {
-    margin: -1px 0 0 0 !important;
-}
 .inline-related h3 + * + fieldset {
     border-top: none !important;
     -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
     -moz-border-radius-topright: 0 !important; -webkit-border-top-right-radius: 0 !important;
 }
+.inline-related fieldset + fieldset {
+    margin: -1px 0 0 0 !important;
+    border-top-color:  #ddd !important;
+}
+.inline-related fieldset + fieldset > .form-row {
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+
 .inline-related fieldset.collapse-closed {
     -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
     -moz-border-radius-topright: 5px !important; -webkit-border-top-right-radius: 5px !important;

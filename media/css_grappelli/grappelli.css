@@ -856,6 +856,10 @@ select {
     padding: 3px 3px 3px 0 !important;
     min-width: 100px; height: 24px;
 }
+select[multiple=multiple] {
+    padding-left: 1px !important;
+    height: 160px !important;
+}
 option {
     padding-right: 30px;
     border-bottom: 1px dotted #ddd;
