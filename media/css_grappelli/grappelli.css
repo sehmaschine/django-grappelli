@@ -136,20 +136,22 @@ a.fb_show:hover, a.fb_show:active {
 }
 
 a.related-lookup img {
+    display: none;
     width: 0; height: 0;
 }
 a.related-lookup:link, a.related-lookup:visited {
-    position: relative;
-    padding: 6px 9px;
+    position: relative; top: 1px;
+    padding: 6px 12px 5px;
     line-height: 0 !important;
     border: none;
     background: transparent url(../img_grappelli/icon_searchbox.gif) 5px 5px no-repeat !important;
 }
 a.related-lookup:hover, a.related-lookup:active {
-    background-image: url(../img_grappelli/icon_searchbox_hover.gif) !important;
-    }
+    background: url(../img_grappelli/icon_searchbox_hover.gif) 5px 5px no-repeat !important;
+}
 a.related-lookup + strong {
-    color: #555 !important;
+    position: relative; top: 1px; left: -6px;
+    color: #555 !important; font-size: 11px; font-weight: bold;
 }
 
 /* Tables  ----------------------- */
@@ -537,15 +539,7 @@ width:auto !important;
 
 #changelist-filter .filterset {
     border-top: 1px solid #ddd;
-}
-#changelist-filter .filterset.collapse-closed {
-    background: transparent url(../img_grappelli/bg_filterset.gif) 0 0 repeat-x;
-}
-#changelist-filter .filterset.collapse-closed:hover {
-    background: transparent url(../img_grappelli/bg_filterset_hover.gif) 0 0 repeat-x;
-}
-#changelist-filter .filterset.collapse-open {
-    background: #f9f9f9 url(../img_grappelli/bg_filterset_reverse.gif) 0 0 repeat-x !important;
+    background: #f9f9f9;
 }
 
 #changelist-filter .filterset h3 {
@@ -553,11 +547,18 @@ width:auto !important;
     font-size: 11px !important; line-height: 14px !important;
     cursor: pointer;
 }
+
 #changelist-filter .filterset.collapse-closed h3 {
     color: #a1a8ab;
+    background: #e1ecf0 url(../img_grappelli/bg_filterset.gif) 0 0 repeat-x;
 }
-#changelist-filter .filterset.collapse-closed:hover h3, #changelist-filter .filterset.collapse-open h3 {
+#changelist-filter .filterset.collapse-closed:hover h3 {
     color: #666;
+    background: #ebebeb url(../img_grappelli/bg_filterset_hover.gif) 0 0 repeat-x;
+}
+#changelist-filter .filterset.collapse-open h3 {
+    color: #666;
+    background: #f9f9f9 url(../img_grappelli/bg_filterset_reverse.gif) 0 0 repeat-x;
 }
 
 #changelist-filter .filterset.collapse-closed ul {
@@ -750,8 +751,8 @@ form ul.radiolist label {
     padding: 1px 10px 3px 0 !important;
     width: 120px !important;
 }
-.aligned .vCheckboxLabel {
-    position: relative; top: 2px !important;
+.aligned .vCheckboxLabel, .aligned .vCheckboxLabel {
+    position: relative; top: 1px !important;
     margin-left: 10px !important; padding: 0 !important;
 }
 .colM .aligned .vLargeTextField, .colM .aligned .vXMLLargeTextField {
@@ -826,15 +827,34 @@ td p.help {
 
 /* Form Defaults ----------------------- */
 input, textarea, select {
-    margin: 2px 0; padding: 3px;
+    margin: 2px 0;
     vertical-align: middle;
-    color: #666 !important; font-family: Arial, sans-serif !important; font-size: 11px !important; font-weight: normal;
+    color: #666 !important; font-family: Arial, sans-serif !important; font-size: 11px !important; font-weight: bold !important;
     border: 1px solid #bbb;
     border-color: #ccc #ddd #ddd #ccc !important;
     -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
+input {
+    height: 13px;
+}
+input[type=text], input[type=password] {
+    padding: 5px 3px 4px !important;
+}
+
+input.vForeignKeyRawIdAdminField, input.vIntegerField, input.vPositiveSmallIntegerField {
+    width: 100px !important;
+}
+input.vManyToManyRawIdAdminField {
+    width: 100px !important;
+}
+
+textarea {
+    vertical-align: top !important;
+    padding: 3px !important;
+}
 select {
-    min-width: 108px;
+    padding: 3px 3px 3px 0 !important;
+    min-width: 100px; height: 24px;
 }
 option {
     padding-right: 30px;
@@ -851,20 +871,22 @@ input.vDateField, input.vTimeField {
     width: 100px !important;
 }
 
-input[type=checkbox] {
-    margin: 0 0 0 130px;
+input[type=checkbox], input[type=radio] {
+    margin: 0 0 2px 130px;
 }
 
-.inline-item-tools input[type=checkbox] {
+.inline-group .tabular input[type=checkbox], .inline-group .tabular input[type=radios] {
+    margin: 7px 0 0;
+}
+
+/*.inline-item-tools input[type=checkbox], .inline-item-tools input[type=radio] {
     margin-left: 0 !important;
-}
+}*/
 
-textarea {
-    vertical-align: top !important;
-}
-input[type=text], input[type=password] {
-    padding: 5px 3px 4px !important;
-}
+
+
+
+
 
 /* Form Buttons ----------------------- */
 input[type=submit], input[type=button], .submit-row input {
