@@ -9,7 +9,7 @@ function GenericObject(i, objectIdEl) {
     this.objectId; // Store the id of the object (object_id) we want to look up
     
     // The lookup link
-    this.lookupLink = $('<a class="related-lookup"></a>');
+    this.lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
     this.lookupLink.click(function() {
         if (self.contentTypeEl.value) {
             self.showRelatedObjectLookupPopup(this);
@@ -19,7 +19,7 @@ function GenericObject(i, objectIdEl) {
     this.lookupLink.attr('id', 'lookup_'+this.objectIdEl.id);
     
     // The inline text element to store the display of the actual object
-    this.lookupText = $('<strong style="margin-left: 5px"></strong>');
+    this.lookupText = $('&nbsp;<strong></strong>');
     
     var self = this;
     this.__init__ = function() {
