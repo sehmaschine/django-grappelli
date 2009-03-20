@@ -22,17 +22,26 @@ $(document).ready(function(){
 });
 </script>
 </head>
+
+<!-- Loading -->
 {% load i18n %}
 {% load bookmarks %}
 {% load help %}
+
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+
 <!-- Container -->
 <div id="container">
     {% if not is_popup %}
+    
     <!-- Header -->
     <div id="header">
         <div id="branding">
+            {% if title %}
             {% get_bookmarks request.user request.path title %}
+            {% else %}
+            {% get_bookmarks request.user request.path "" %}
+            {% endif %}
             {% if user.is_authenticated and user.is_staff %}
             <div id="user-tools">
                 <ul>
@@ -60,14 +69,17 @@ $(document).ready(function(){
         </div>
         {% block nav-global %}{% endblock %}
     </div>
-    <!-- END Header -->
+    
+    <!-- Breadcrumbs -->
     {% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>{% endblock %}
+    
     {% endif %}
+    
     <!-- Messages -->
     {% if messages %}
     <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
     {% endif %}
-    <!-- END Messages -->
+    
     <!-- Content -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">
         {% block pretitle %}{% endblock %}
@@ -79,9 +91,9 @@ $(document).ready(function(){
         {% block sidebar %}{% endblock %}
         <br class="clear" />
     </div>
-    <!-- END Content -->
+    
+    <!-- Footer -->
     {% block footer %}<div id="footer"></div>{% endblock %}
 </div>
-<!-- END Container -->
 </body>
 </html>

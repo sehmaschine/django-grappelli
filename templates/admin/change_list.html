@@ -10,11 +10,15 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-   $('.filterset h3').click(function() {
-       $(this).parent().toggleClass('collapse-closed');
-       $(this).parent().toggleClass('collapse-open');
-       $(this).next().next().toggle();
-   });
+    $('.filterset h3').click(function() {
+        $(this).parent().toggleClass('collapse-closed');
+        $(this).parent().toggleClass('collapse-open');
+        $(this).next().next().toggle();
+    });
+    $('input.search-fields-verbose').click(function() {
+        $(this).val("");
+        $(this).removeClass("search-fields-verbose");
+    });
 });
 </script>
 
