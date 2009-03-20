@@ -504,7 +504,7 @@ width:auto !important;
     -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
     background:#E7EDF4 url(../img_grappelli/bg_toolbar.gif) 0 0 repeat-x !important;
 }
-#changelist #toolbar form #searchbar { width: 200px; }
+#changelist #toolbar form #searchbar { width: 400px; }
 #changelist #toolbar form span { position: relative; top: 1px; margin-left: 5px; }
 
 #changelist #toolbar input[type=image] { border: none !important; }
@@ -572,6 +572,11 @@ width:auto !important;
 }
 #changelist-filter ul li {
     margin: 0 !important; padding: 0 !important;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #eaeaea;
+}
+#changelist-filter ul li:first-child {
+    border-top: none;
 }
 #changelist-filter ul li:last-child {
     border-bottom: none;
@@ -581,7 +586,7 @@ width:auto !important;
 }
 #changelist-filter ul li a {
     display: block;
-    margin: 0; padding: 1px 0 1px 10px !important;
+    margin: 0; padding: 1px 0 2px 10px !important;
     color: #aaa !important; line-height: 13px !important;
     background: #f9f9f9;
 }
@@ -594,18 +599,20 @@ width:auto !important;
 }
 
 /* Date Drilldown (Toplinks) ----------------------- */
+.change-list #changelist .xfull {
+    margin-right: 191px !important;
+}
+
 .change-list #changelist .xfull ul.toplinks {
     position: relative; clear: right !important;
+    padding: 5px 0 2px 31px !important;
     border-bottom: 1px solid #ddd !important;
-    background: transparent url(../img_grappelli/bg_toplinks.gif) 0 0 repeat-x !important;
+    background: #f0f0f0 url(../img_grappelli/bg_toplinks.gif) 0 0 repeat-x !important;
 }
 .change-list ul.toplinks li {
-    padding: 5px 0 5px 20px !important;
+    padding: 0 15px 3px 0 !important;
     width: auto !important;
     color: #666; line-height: 13px;
-}
-.change-list ul.toplinks li:first-child {
-    margin-left: 11px !important;
 }
 
 /* Paginator ----------------------- */
@@ -778,7 +785,7 @@ td p.help {
 }
 
 /* Filebrowser - Upload ----------------------- */
-.form-row label + input + p.help {
+.form-row label + input[type=file] + p.help {
     margin: 5px 0 0 130px !important; padding: 0 !important;
 }
 .form-row label + input + p.help input[type=checkbox] {
@@ -829,7 +836,7 @@ td p.help {
 input, textarea, select {
     margin: 2px 0;
     vertical-align: middle;
-    color: #666 !important; font-family: Arial, sans-serif !important; font-size: 11px !important; font-weight: bold !important;
+    color: #666 !important; font-family: Arial, sans-serif !important; font-size: 12px !important; font-weight: bold !important;
     border: 1px solid #bbb;
     border-color: #ccc #ddd #ddd #ccc !important;
     -moz-border-radius: 3px; -webkit-border-radius: 3px;
@@ -837,9 +844,14 @@ input, textarea, select {
 input {
     height: 13px;
 }
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=file] {
     padding: 5px 3px 4px !important;
 }
+input[type=file] {
+    height: auto !important;
+}
+
+input.search-fields-verbose { color: #999 !important; font-size: 11px !important; font-weight: normal !important; }
 
 input.vForeignKeyRawIdAdminField, input.vIntegerField, input.vPositiveSmallIntegerField {
     width: 100px !important;
@@ -974,6 +986,7 @@ td ul.errorlist li {
     color: #999 !important; font-size: 11px !important;
     background: #f7f7f7;
 }
+/*p.help {  }*/
 
 
 /* Widgets (Selector)
