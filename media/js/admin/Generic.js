@@ -94,7 +94,7 @@ function GenericObject(i, objectIdEl) {
         } else {
             href = triggeringLink.href + '?pop=1';
         }
-        win = window.open(href, name, 'height=500,width=800,resizable=yes,scrollbars=yes');
+        win = window.open(href, name, 'height=600,width=900,resizable=yes,scrollbars=yes');
         
         // TODO: This apparently doesn't work in safari...
         $(win).bind('beforeunload', function() {
