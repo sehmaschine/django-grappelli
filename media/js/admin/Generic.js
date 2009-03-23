@@ -67,7 +67,7 @@ function GenericObject(i, objectIdEl) {
         // Call the server for an update, but only if everything is good to go
         if (this.objectIdEl.value && this.contentTypeId) {
             self.lookupText.text('loading...');
-            $.getJSON('/admin/obj_lookup/', {object_id: this.objectIdEl.value, content_type: this.contentTypeId},
+            $.getJSON('/grappelli/obj_lookup/', {object_id: this.objectIdEl.value, content_type: this.contentTypeId},
                 function(data) {
                     item = data[0];
                     self.lookupText.text(''); // Clear out the `loading...` text
