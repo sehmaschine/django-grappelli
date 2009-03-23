@@ -10,4 +10,7 @@ urlpatterns = patterns('',
     (r'^help/(?P<object_id>\d+)/$', 'grappelli.views.help.detail'),
     (r'^help', 'grappelli.views.help.help'),
     
+    # GENERIC
+    (r'^obj_lookup/$', 'grappelli.views.generic.generic_lookup'),
+    
 )
