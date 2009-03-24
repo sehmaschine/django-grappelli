@@ -10,7 +10,7 @@ class Bookmark(models.Model):
     Bookmark.
     """
     
-    user = models.ForeignKey('auth.User', limit_choices_to={'is_staff': True}, verbose_name=_('User'))
+    user = models.ForeignKey('auth.User', limit_choices_to={'is_staff': True}, verbose_name=_('User'), related_name="admin_bookmark_set")
     
     class Meta:
         app_label = "grappelli"

@@ -43,7 +43,7 @@ class NavigationItem(models.Model):
     category = models.CharField(_('Category'), max_length=1, choices=ITEM_CATEGORY_CHOICES)
     
     # users
-    users = models.ManyToManyField('auth.User', limit_choices_to={'is_staff': True}, verbose_name=_('Users'), blank=True)
+    users = models.ManyToManyField('auth.User', limit_choices_to={'is_staff': True}, verbose_name=_('Users'), blank=True, related_name="admin_navigation_set")
     
     # order
     order = PositionField(unique_for_field='navigation')
