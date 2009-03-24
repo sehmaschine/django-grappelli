@@ -13,4 +13,7 @@ urlpatterns = patterns('',
     # GENERIC
     (r'^obj_lookup/$', 'grappelli.views.generic.generic_lookup'),
     
+    # FOREIGNKEY LOOKUP
+    (r'^related_lookup/$', 'grappelli.views.related.related_lookup'),
+    
 )
