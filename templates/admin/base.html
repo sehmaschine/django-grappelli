@@ -37,9 +37,10 @@ $(document).ready(function(){
     <!-- Header -->
     <div id="header">
         <div id="branding">
-            {% if title %}
+            {% if title and request.user.is_authenticated %}
             {% get_bookmarks request.user request.path title %}
-            {% else %}
+            {% endif %}
+            {% if request.user.is_authenticated and not title %}
             {% get_bookmarks request.user request.path "" %}
             {% endif %}
             {% if user.is_authenticated and user.is_staff %}
