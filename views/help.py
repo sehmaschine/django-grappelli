@@ -8,7 +8,7 @@ from grappelli.models.help import Help, HelpItem
 def detail(request, object_id):
     
     obj = get_object_or_404(HelpItem, pk=object_id)
-    menu = Help.objects.filter(helpitem__isnull=False)
+    menu = Help.objects.filter(helpitem__isnull=False).distinct()
     
     return render_to_response('grappelli/help/help_detail.html', {
         'object': obj,
@@ -20,7 +20,7 @@ detail = staff_member_required(detail)
 
 def help(request):
     
-    menu = Help.objects.filter(helpitem__isnull=False)
+    menu = Help.objects.filter(helpitem__isnull=False).distinct()
     
     return render_to_response('grappelli/help/help.html', {
         'menu': menu,
