@@ -34,7 +34,6 @@ var CollapsedFiltersets = {
             // doesn't have any errors. (Collapsing shouldn't apply in the case
             // of error messages.)
             if (fs.className.match(CollapsedFiltersets.collapse_re)) {
-                alert(fs);
                 collapsed_seen = true;
                 // Give it an additional class, used by CSS to hide it.
                 fs.className += ' ' + CollapsedFiltersets.collapsed_class;

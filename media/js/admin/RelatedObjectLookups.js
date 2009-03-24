@@ -33,6 +33,7 @@ function dismissRelatedLookupPopup(win, chosenId) {
         elem.value += ',' + chosenId;
     } else {
         document.getElementById(name).value = chosenId;
+        document.getElementById(name).focus();
     }
     win.close();
 }
@@ -90,7 +91,7 @@ $(document).ready(function(){
         }
     });
     
-    $("input.vForeignKeyRawIdAdminField").change(function() {
+    $("input.vForeignKeyRawIdAdminField").bind("change focus", function() {
         link = $(this).next();
         text = $(this).next().next();
         var app_label = link.attr('href').split('/')[3];
