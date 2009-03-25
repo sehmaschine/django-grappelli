@@ -40,6 +40,11 @@ $(document).ready(function(){
             new_item.find('#' + id).css('display', '');
             tinyMCE.execCommand("mceAddControl", true, id);
         });
+        /// foreignkey lookups
+        new_item.find("strong").text("");
+        new_item.find("input.vForeignKeyRawIdAdminField").bind("change focus", function() {
+            RelatedLookup($(this));
+        });
         /// add collapse-functionality
         new_item.find('h3.collapse-toggle').bind("click", function(e){
             $(this).parent().toggleClass('collapsed');

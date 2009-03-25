@@ -77,10 +77,31 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
     win.close();
 }
 
-
 // ADDED: SHOW OBJECT_REPR WHEN FOREIGNKEY CHANGES
 var ADMIN_MEDIA_URL = '/admin/media/';
 var CHAR_MAX_LENGTH = 30;
+
+function RelatedLookup(obj) {
+    link = obj.next();
+    text = obj.next().next();
+    var app_label = link.attr('href').split('/')[3];
+    var model_name= link.attr('href').split('/')[4];
+    
+    text.text('loading ...');
+    
+    // get object
+    $.get('/grappelli/related_lookup/', {object_id: obj.val(), app_label: app_label, model_name: model_name}, function(data) {
+        item = data;
+        text.text('');
+        if (item) {
+            if (item.length > CHAR_MAX_LENGTH) {
+                text.text(decodeURI(item.substr(0, CHAR_MAX_LENGTH) + " ..."));
+            } else {
+                text.text(decodeURI(item));
+            }
+        }
+    });
+}
 
 $(document).ready(function(){
     
@@ -92,25 +113,7 @@ $(document).ready(function(){
     });
     
     $("input.vForeignKeyRawIdAdminField").bind("change focus", function() {
-        link = $(this).next();
-        text = $(this).next().next();
-        var app_label = link.attr('href').split('/')[3];
-        var model_name= link.attr('href').split('/')[4];
-        
-        text.text('loading ...');
-        
-        // get object
-        $.get('/grappelli/related_lookup/', {object_id: $(this).val(), app_label: app_label, model_name: model_name}, function(data) {
-            item = data;
-            text.text('');
-            if (item) {
-                if (item.length > CHAR_MAX_LENGTH) {
-                    text.text(decodeURI(item.substr(0, CHAR_MAX_LENGTH) + " ..."));
-                } else {
-                    text.text(decodeURI(item));
-                }
-            }
-        });
+        RelatedLookup($(this));
     });
 });
 
