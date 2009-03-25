@@ -11,16 +11,19 @@ def related_lookup(request):
             object_id = request.GET.get('object_id')
             app_label = request.GET.get('app_label')
             model_name = request.GET.get('model_name')
-            try:
-                model = models.get_model(app_label, model_name)
-                obj = model.objects.get(pk=object_id)
-                obj = unicode(obj)
-            except:
-                obj = "Not Found"
+            if object_id:
+                try:
+                    model = models.get_model(app_label, model_name)
+                    obj = model.objects.get(pk=object_id)
+                    obj = unicode(obj)
+                except:
+                    obj = "Not Found"
+            else:
+                obj = ""
         else:
-            obj = "Not Found"
+            obj = "Error"
     else:
-        obj = "Not Found"
+        obj = "Error"
     
     return HttpResponse(obj, mimetype='text/plain; charset=utf-8')
     
