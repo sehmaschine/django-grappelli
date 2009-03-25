@@ -82,8 +82,8 @@ var ADMIN_MEDIA_URL = '/admin/media/';
 var CHAR_MAX_LENGTH = 30;
 
 function RelatedLookup(obj) {
-    link = obj.next();
-    text = obj.next().next();
+    var link = obj.next();
+    var text = obj.next().next();
     var app_label = link.attr('href').split('/')[3];
     var model_name= link.attr('href').split('/')[4];
     
@@ -91,7 +91,7 @@ function RelatedLookup(obj) {
     
     // get object
     $.get('/grappelli/related_lookup/', {object_id: obj.val(), app_label: app_label, model_name: model_name}, function(data) {
-        item = data;
+        var item = data;
         text.text('');
         if (item) {
             if (item.length > CHAR_MAX_LENGTH) {
@@ -112,9 +112,13 @@ $(document).ready(function(){
         }
     });
     
-    $("input.vForeignKeyRawIdAdminField").bind("change focus", function() {
+    $("input.vForeignKeyRawIdAdminField").bind("change", function() {
         RelatedLookup($(this));
     });
+    $("input.vForeignKeyRawIdAdminField").bind("focus", function() {
+        RelatedLookup($(this));
+    });
+    
 });
 
 
