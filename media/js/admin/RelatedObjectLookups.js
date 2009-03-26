@@ -31,6 +31,7 @@ function dismissRelatedLookupPopup(win, chosenId) {
     var elem = document.getElementById(name);
     if (elem.className.indexOf('vManyToManyRawIdAdminField') != -1 && elem.value) {
         elem.value += ',' + chosenId;
+        document.getElementById(name).focus();
     } else {
         document.getElementById(name).value = chosenId;
         document.getElementById(name).focus();
@@ -103,6 +104,28 @@ function RelatedLookup(obj) {
     });
 }
 
+function M2MLookup(obj) {
+    var link = obj.next();
+    var text = obj.next().next();
+    var app_label = link.attr('href').split('/')[2];
+    var model_name= link.attr('href').split('/')[3];
+    
+    text.text('loading ...');
+    
+    // get object
+    $.get('/grappelli/m2m_lookup/', {object_id: obj.val(), app_label: app_label, model_name: model_name}, function(data) {
+        var item = data;
+        text.text('');
+        if (item) {
+            if (item.length > CHAR_MAX_LENGTH) {
+                text.text(decodeURI(item.substr(0, CHAR_MAX_LENGTH) + " ..."));
+            } else {
+                text.text(decodeURI(item));
+            }
+        }
+    });
+}
+
 $(document).ready(function(){
     
     // change related-lookups in order to get the right URL.
@@ -118,11 +141,25 @@ $(document).ready(function(){
         }
     });
     
+    $("input.vManyToManyRawIdAdminField").each(function() {
+        // insert empty text-elements after all empty foreignkeys
+        if ($(this).val() == "") {
+            $(this).next().after('&nbsp;<strong>xxx</strong>');
+        }
+    });
+    
     $("input.vForeignKeyRawIdAdminField").bind("change", function() {
         RelatedLookup($(this));
     });
     $("input.vForeignKeyRawIdAdminField").bind("focus", function() {
         RelatedLookup($(this));
+    });
+    
+    $("input.vManyToManyRawIdAdminField").bind("change", function() {
+        M2MLookup($(this));
+    });
+    $("input.vManyToManyRawIdAdminField").bind("focus", function() {
+        M2MLookup($(this));
     });
     
 });
