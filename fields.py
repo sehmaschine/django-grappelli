@@ -269,3 +269,6 @@ class PositionField(models.IntegerField):
         %%(position_field)s = (%%(position_field)s %(plus_or_minus)s 1)""" % {
             'plus_or_minus': plus_or_minus
         }
+        
+
+
