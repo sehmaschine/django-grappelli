@@ -5,6 +5,9 @@
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/base.css{% endblock %}" />
 {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
 <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript">
+    var ADMIN_URL = "/{{ ADMIN_URL }}/";
+</script>
 {% block extrastyle %}{% endblock %}
 {% block extrahead %}{% endblock %}
 <script type="text/javascript">{% load generic %}{% get_generic_relation_list %}</script>

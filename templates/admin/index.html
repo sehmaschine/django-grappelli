@@ -5,7 +5,6 @@
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
-
 {% block bodyclass %}dashboard{% endblock %}
 
 {% block breadcrumbs %}<div class="breadcrumbs">{% trans "Home" %}</div>{% endblock %}
@@ -24,13 +23,13 @@
             {% else %}
                 <th scope="row">{{ model.name }}</th>
             {% endif %}
-
+            
             {% if model.perms.add %}
                 <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
             {% else %}
                 <td>&nbsp;</td>
             {% endif %}
-
+            
             {% if model.perms.change %}
                 <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
             {% else %}
@@ -69,4 +68,5 @@
 {% block extendedsidebar %}
 {% get_navigation request.user %}
 {% endblock %}
+
 {% endblock %}
