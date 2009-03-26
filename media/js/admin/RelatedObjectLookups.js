@@ -84,8 +84,8 @@ var CHAR_MAX_LENGTH = 30;
 function RelatedLookup(obj) {
     var link = obj.next();
     var text = obj.next().next();
-    var app_label = link.attr('href').split('/')[3];
-    var model_name= link.attr('href').split('/')[4];
+    var app_label = link.attr('href').split('/')[2];
+    var model_name= link.attr('href').split('/')[3];
     
     text.text('loading ...');
     
@@ -104,6 +104,12 @@ function RelatedLookup(obj) {
 }
 
 $(document).ready(function(){
+    
+    // change related-lookups in order to get the right URL.
+    $('a.related-lookup').each(function() {
+       href = $(this).attr('href').replace('../../../', ADMIN_URL);
+       $(this).attr('href', href);
+    });
     
     $("input.vForeignKeyRawIdAdminField").each(function() {
         // insert empty text-elements after all empty foreignkeys
