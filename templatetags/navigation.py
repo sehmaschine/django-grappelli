@@ -9,7 +9,7 @@ def get_navigation(user):
     if user.is_superuser:
         object_list = NavigationItem.objects.all()
     else:
-        object_list = user.navigationitem_set.all()
+        object_list = user.admin_navigation_set.all()
     
     # render template
     return {
