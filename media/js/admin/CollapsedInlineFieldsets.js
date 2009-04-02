@@ -14,9 +14,13 @@ $(document).ready(function(){
     });
     
     /// INLINEGROUPS (STACKED & TABULAR)
-    $('div.inline-group').each(function() {
-        /// inlinegroups are closed by default
+    $('div.inline-group.collapse-closed').each(function() {
+        /// close inline-group
         $(this).addClass("collapsed");
+        /// add collapse-class to the first headline
+        $(this).find('h2:first').attr("class", "collapse-toggle");
+    });
+    $('div.inline-group.collapse-open').each(function() {
         /// add collapse-class to the first headline
         $(this).find('h2:first').attr("class", "collapse-toggle");
     });

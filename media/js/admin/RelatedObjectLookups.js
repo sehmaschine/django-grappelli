@@ -78,8 +78,6 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
     win.close();
 }
 
-// ADDED: SHOW OBJECT_REPR WHEN FOREIGNKEY CHANGES
-var ADMIN_MEDIA_URL = '/admin/media/';
 var CHAR_MAX_LENGTH = 30;
 
 function RelatedLookup(obj) {
@@ -126,6 +124,99 @@ function M2MLookup(obj) {
     });
 }
 
+function GenericLookup(obj) {
+    var link = obj.next();
+    var text = obj.next().next();
+    var app_label = link.attr('href').split('/')[2];
+    var model_name= link.attr('href').split('/')[3];
+    
+    text.text('loading ...');
+    
+    // get object
+    $.get('/grappelli/related_lookup/', {object_id: obj.val(), app_label: app_label, model_name: model_name}, function(data) {
+        var item = data;
+        text.text('');
+        if (item) {
+            if (item.length > CHAR_MAX_LENGTH) {
+                text.text(decodeURI(item.substr(0, CHAR_MAX_LENGTH) + " ..."));
+            } else {
+                text.text(decodeURI(item));
+            }
+        }
+    });
+}
+
+function RelatedHandler(obj) {
+    // related lookup handler
+    obj.bind("change", function() {
+        RelatedLookup($(this));
+    });
+    obj.bind("focus", function() {
+        RelatedLookup($(this));
+    });
+}
+
+function M2MHandler(obj) {
+    // related lookup handler
+    obj.bind("change", function() {
+        M2MLookup($(this));
+    });
+    obj.bind("focus", function() {
+        M2MLookup($(this));
+    });
+}
+
+function InitObjectID(obj) {
+    obj.each(function() {
+        var ct = $(this).parent().prev().find(':input[name*="content_type"]').val();
+        if (ct) {
+            var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+            lookupLink.attr('id', 'lookup_'+this.id);
+            lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[ct] + '/?t=id');
+            lookupLink.attr('onclick', 'return showRelatedObjectLookupPopup(this);');
+            var lookupText = '<strong>&nbsp;</strong>';
+            $(this).after(lookupText).after(lookupLink);
+            if ($(this).val() != "") {
+                var lookupText = GenericLookup($(this));
+            }
+        }
+    });
+}
+
+function InitContentType(obj) {
+    obj.bind("change", function() {
+        if ($(this).val()) {
+            var href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + "/?t=id";
+            var lookupLink = $(this).parent().next().find('a.related-lookup');
+            var obj_id = $(this).parent().next().find('input[name*="object_id"]');
+            if (lookupLink.attr('href')) {
+                lookupLink.attr('href', href);
+            } else {
+                var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+                lookupLink.attr('id', 'lookup_'+obj_id.attr('id'));
+                lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + '/?t=id');
+                lookupLink.attr('onclick', 'return showRelatedObjectLookupPopup(this);');
+                var lookupText = '<strong>&nbsp;</strong>';
+                $(this).parent().next().find('input[name*="object_id"]').after(lookupText).after(lookupLink);
+            }
+        } else {
+            $(this).parent().next().find('input[name*="object_id"]').val('');
+            $(this).parent().next().find('a.related-lookup').remove();
+            $(this).parent().next().find('strong').remove();
+        }
+    });
+}
+
+function GenericHandler(obj) {
+    // related lookup handler
+    obj.bind("change", function() {
+        GenericLookup($(this));
+    });
+    obj.bind("focus", function() {
+        GenericLookup($(this));
+    });
+}
+
 $(document).ready(function(){
     
     // change related-lookups in order to get the right URL.
@@ -134,6 +225,7 @@ $(document).ready(function(){
        $(this).attr('href', href);
     });
     
+    // related lookup setup
     $("input.vForeignKeyRawIdAdminField").each(function() {
         // insert empty text-elements after all empty foreignkeys
         if ($(this).val() == "") {
@@ -141,26 +233,19 @@ $(document).ready(function(){
         }
     });
     
+    // m2m lookup setup
     $("input.vManyToManyRawIdAdminField").each(function() {
         // insert empty text-elements after all empty foreignkeys
         if ($(this).val() == "") {
-            $(this).next().after('&nbsp;<strong>xxx</strong>');
+            $(this).next().after('&nbsp;<strong>&nbsp;</strong>');
         }
     });
     
-    $("input.vForeignKeyRawIdAdminField").bind("change", function() {
-        RelatedLookup($(this));
-    });
-    $("input.vForeignKeyRawIdAdminField").bind("focus", function() {
-        RelatedLookup($(this));
-    });
-    
-    $("input.vManyToManyRawIdAdminField").bind("change", function() {
-        M2MLookup($(this));
-    });
-    $("input.vManyToManyRawIdAdminField").bind("focus", function() {
-        M2MLookup($(this));
-    });
+    RelatedHandler($("input.vForeignKeyRawIdAdminField"));
+    M2MHandler($("input.vManyToManyRawIdAdminField"));
+    InitObjectID($('input[name*="object_id"]'));
+    InitContentType($(':input[name*="content_type"]'));
+    GenericHandler($('input[name*="object_id"]'));
     
 });
 

@@ -7,69 +7,12 @@ $(document).ready(function(){
     /// In case of an Error, empty extra items are moved to the end of
     /// the list (just before predeleted items).
     
-    /// BUTTONS (STACKED INLINE)
-    $('div[name="inlinegroup"] a.closehandler').bind("click", function(){
-        $(this).parent().parent().parent().find('div[name="inlinerelated"]').addClass('collapsed');
-    });
-    $('div[name="inlinegroup"] a.openhandler').bind("click", function(){
-        $(this).parent().parent().parent().removeClass('collapsed');
-        $(this).parent().parent().parent().find('div[name="inlinerelated"]').removeClass('collapsed');
-    });
-    
-    /// ADDHANDLER
-    $('div.inline-group a.addhandler').bind("click", function(){
-        var new_item = $(this).parent().parent().parent().find('div.items div.inline-related:last').clone(true).appendTo($(this).parent().parent().parent().children('.items'));
-        var items = $(this).parent().parent().parent().find('div.inline-related').length;
-        /// change header
-        new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
-        /// replace IDs, NAMEs, HREFs & FORs ...
-        var new_html = new_item.html().replace(/-\d+-/g, "-" + parseInt(items - 1) + "-");
-        new_item.html(new_html);
-        /// set TOTAL_FORMS to number of items
-        new_item.parent().parent().find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
-        /// remove error-lists and error-classes
-        new_item.find('ul.errorlist').remove();
-        new_item.find('div[class*="errors"]').removeClass("errors");
-        /// remove delete-button and button view on site
-        new_item.find('a.deletelink').remove();
-        new_item.find('a.viewsitelink').remove();
-        /// tinymce
-        new_item.find('span.mceEditor').each(function(e) {
-            var id = this.id.split('_parent')[0];
-            $(this).remove();
-            new_item.find('#' + id).css('display', '');
-            tinyMCE.execCommand("mceAddControl", true, id);
-        });
-        /// foreignkey lookups
-        new_item.find("strong").text("");
-        new_item.find("input.vForeignKeyRawIdAdminField").bind("change focus", function() {
-            RelatedLookup($(this));
-        });
-        /// add collapse-functionality
-        new_item.find('h3.collapse-toggle').bind("click", function(e){
-            $(this).parent().toggleClass('collapsed');
-        });
-    });
-    
-    /// DELETELINK
-    $('div.inline-group input[name*="DELETE"]').hide();
-    $('div.inline-related a.deletelink').bind("click", function() {
-        $(this).prev('input').attr('checked', !$(this).prev('input').attr('checked'));
-        var delete_item = $(this).parent().parent().parent();
-        if (delete_item.parent().hasClass('predelete-items')) {
-            var new_item = delete_item.clone(true).appendTo(delete_item.parent().prev());
-        } else {
-            var new_item = delete_item.clone(true).appendTo(delete_item.parent().next());
-        }
-        delete_item.remove();
-    });
-    
-    /// REORDER
-    $('div.sortable').each(function(i) {
+    /// REORDER ON STARTUP (IMPORTANT IN CASE OF ERRORS)
+    $('div.inline-tabular.sortable').each(function(i) {
         var items = new Array();
         var predeleted_items_count = $(this).find('input[name*="DELETE"]:checked').length;
         var empty_counter = $(this).find('input[value][id*="order"]').length - predeleted_items_count;
-        $(this).find('div.inline-related').each(function(i) {
+        $('div.fieldset', this).each(function(i) {
             /// if order field is not set (which is for empty items), set the counter
             /// so that these fields are shown before the predeleted_items
             if ($(this).find('input[id*="order"]').val()) {
@@ -82,54 +25,103 @@ $(document).ready(function(){
             items[parseInt(order_value)] = $(this);
         });
         items.sort();
-        $(this).children('div.inline-related').remove();
-        for (var i = 0; i < items.length; i++) {
-            var predelete_flag = $(items[i]).find('input[name*="DELETE"]:checked').length;
-            if (predelete_flag) {
-                $(this).children('.predelete-items').append(items[i]);
-            } else {
-                $(this).children('.items').append(items[i]);
-            }
+        //$('div.fieldset', this).remove();
+        // for (var i = 0; i < items.length; i++) {
+        //     var predelete_flag = $(items[i]).find('input[name*="DELETE"]:checked').length;
+        //     if (predelete_flag) {
+        //         $('.predelete-items', this).append(items[i]);
+        //     } else {
+        //         $('.items', this).append(items[i]);
+        //     }
+        // }
+    });
+    
+    /// HACK: CHANGE HEIGHT OF INLINE-ITEM TOOLS FOR TABULAR INLINES
+    $('div.inline-tabular.sortable ul.inline-item-tools:not(:first)').each(function(){
+        height = "height:" + $(this).parent().height() + "px !important;";
+        $(this).attr('style', height);
+    });
+    
+    function new_item_cleanup(new_item) {
+        /// remove error-lists and error-classes
+        new_item.find('ul.errorlist').remove();
+        new_item.find('div[class*="errors"]').removeClass("errors");
+        /// remove delete-button and button view on site
+        new_item.find('a.deletelink').remove();
+        new_item.find('a.viewsitelink').remove();
+        /// clear all form-fields (within form-cells)
+        new_item.find(':input').val('');
+        /// tinymce: does not make sense with tabular inlines
+        new_item.find("strong").text("");
+        /// fk and generic handlers
+        RelatedHandler(new_item.find("input.vForeignKeyRawIdAdminField"));
+        M2MHandler(new_item.find("input.vManyToManyRawIdAdminField"));
+        InitObjectID(new_item.find('input[name*="object_id"]'));
+        InitContentType(new_item.find(':input[name*="content_type"]'));
+        GenericHandler(new_item.find('input[name*="object_id"]'));
+        return new_item;
+    }
+    
+    /// ADDHANDLER
+    $('div.inline-tabular a.addhandler').bind("click", function(){
+        var inlinegroup = $(this).parents('div.inline-tabular');
+        var new_item = inlinegroup.find('div.fieldset:last').clone(true).appendTo('div.items', inlinegroup);
+        var items = inlinegroup.find('div.fieldset').length;
+        /// set TOTAL_FORMS to number of items
+        inlinegroup.find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
+        /// replace IDs, NAMEs, HREFs & FORs ...
+        var new_html = new_item.html().replace(/-\d+-/g, "-" + parseInt(items - 1) + "-");
+        new_item.html(new_html);
+        /// do cleanup
+        new_item = new_item_cleanup(new_item);
+    });
+    
+    /// DELETEHANDLER
+    $('div.inline-tabular input[name*="DELETE"]').hide();
+    $('div.inline-tabular a.deletelink').bind("click", function() {
+        $(this).prev('input').attr('checked', !$(this).prev('input').attr('checked'));
+        var delete_item = $(this).parents('div.fieldset');
+        if (delete_item.parent().hasClass('predelete-items')) {
+            /// move from predelete-items to items
+            var new_item = delete_item.clone(true).appendTo(delete_item.parent().prev());
+        } else {
+            /// move from items to predelete-items
+            var new_item = delete_item.clone(true).appendTo(delete_item.parent().next());
         }
+        delete_item.remove();
     });
     
     /// hide all ORDER inputs and their parent DIV
-    //$('div[name="inlinerelated"] input[name*="order"]').hide();
-    $('div.inline-group div.form-row.order').hide();
-    $('div.inline-group div.form-cell.order').hide();
+    //$('div.inline-tabular div.form-cell.order').hide();
     
     /// DRAG & DROP
-    $('div[name="inlinegroup"] a.draghandler').mousedown(function() {
-        // close all inline-related fieldsets before sorting (only STACKED INLINE)
-        $(this).parent().parent().parent().parent().children('div.inline-related').addClass('collapsed');
-    });
-    $('div.sortable .items').sortable({
+    $('div.inline-tabular.sortable div.items').sortable({
         axis: 'y',
-        items: 'div.inline-related',
+        items: '.fieldset',
         handle: '.draghandler',
         placeholder: 'placeholder',
+        forcePlaceholderSize: true,
         tolerance: 'intersect',
+        appendTo: 'body',
+        opacity: 0.8,
+        cursor: 'move',
         helper: function(e, el) {
-            $("div.sortablehelper").find('h3:first').text(el.find('h3:first').text());
+            //$("div.sortablehelper").find('h3:first').text(el.find('h3:first').text());
             return $("div.sortablehelper")
                 .clone()
                 .width(el.width() + 'px')
                 .height(el.height() + 'px');
         },
-        update: function(e, ui) {
-            /// remove display:block, generated by UI sortable
-            $(this).removeAttr('style');
-        }
     });
     
     // set ORDER_FIELDS on submit
     $("form").submit(function() {
-        $('div.sortable').each(function() {
+        $('div.inline-tabular.sortable').each(function() {
             var counter = 0;
-            var predelete_counter = $(this).find('div.inline-related').length - $(this).find('input[name*="DELETE"]:checked').length;
-            $(this).find('div.inline-related').each(function(i) {
+            var predelete_counter = $(this).find('div.fieldset').length - $(this).find('input[name*="DELETE"]:checked').length;
+            $(this).find('div.fieldset').each(function(i) {
                 var input_values = "";
-                var fields = $(this).children('fieldset').find(':input:not([name*="order"])').serializeArray();
+                var fields = $(this).find(':input:not([name*="order"])').serializeArray();
                 $.each(fields, function(i, field) {
                     input_values += field.value;
                 });

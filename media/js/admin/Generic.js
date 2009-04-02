@@ -19,7 +19,7 @@ function GenericObject(i, objectIdEl) {
     this.lookupLink.attr('id', 'lookup_'+this.objectIdEl.id);
     
     // The inline text element to store the display of the actual object
-    this.lookupText = $('&nbsp;<strong></strong>');
+    this.lookupText = $('<strong>&nbsp;</strong>');
     
     var self = this;
     this.__init__ = function() {
