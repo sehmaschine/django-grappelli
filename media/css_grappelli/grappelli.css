@@ -11,7 +11,7 @@
    * See README for instructions on how to use Grappelli.
    * For credits and origins, see AUTHORS.
    
-   * Copyright (c) 2008, vonautomatisch werkstaetten. All rights reserved.
+   * Copyright (c) 2008-2009, vonautomatisch werkstaetten. All rights reserved.
      See LICENSE for more info.
 
 ----------------------------------------------------------------------- */
@@ -153,6 +153,9 @@ a.related-lookup + strong {
     position: relative; top: 1px; left: -6px;
     color: #555 !important; font-size: 11px; font-weight: bold;
 }
+/*.inline-related.tabular a.related-lookup + strong {
+    display: none;
+}*/
 
 /* Tables  ----------------------- */
 fieldset table {
@@ -841,6 +844,9 @@ input, textarea, select {
     border-color: #ccc #ddd #ddd #ccc !important;
     -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
+input:focus, textarea:focus, select:focus {
+    border-color: #999 #bbb #bbb #999 !important;
+}
 input {
     height: 13px;
 }
@@ -894,18 +900,12 @@ input[type=checkbox], input[type=radio] {
     margin: 0 0 2px 130px;
 }
 
-.inline-group .tabular input[type=checkbox], .inline-group .tabular input[type=radios] {
-    margin: 7px 0 0;
+.inline-tabular .module input[type=text], .inline-tabular .module textarea {
+    width: 150px;
 }
-
-/*.inline-item-tools input[type=checkbox], .inline-item-tools input[type=radio] {
-    margin-left: 0 !important;
-}*/
-
-
-
-
-
+.inline-group.inline-tabular input[type=checkbox], .inline-group.inline-tabular input[type=radio] {
+    margin: 6px 0 0;
+}
 
 /* Form Buttons ----------------------- */
 input[type=submit], input[type=button], .submit-row input {
