@@ -2,50 +2,37 @@ $(document).ready(function(){
     
     /// INLINE ELEMENTS
     /// collapsible elements for stacked inlines
-    $('div[name="inlinerelated"]').each(function(i) {
-        /// inlines are closed by default
+    $('div.inline-stacked div.inline-related').each(function(i) {
         $(this).addClass("collapsed");
-        /// add collapse-class to the first headline
         $(this).find('h3:first').attr("class", "collapse-toggle");
     });
-    $('div[name="inlinerelated"] h3.collapse-toggle').bind("click", function(){
-        /// add collapse-handler
+    $('div.inline-stacked div.inline-related h3.collapse-toggle').bind("click", function(){
         $(this).parent().toggleClass('collapsed');
     });
     
     /// INLINEGROUPS (STACKED & TABULAR)
     $('div.inline-group.collapse-closed').each(function() {
-        /// close inline-group
         $(this).addClass("collapsed");
-        /// add collapse-class to the first headline
         $(this).find('h2:first').attr("class", "collapse-toggle");
     });
     $('div.inline-group.collapse-open').each(function() {
-        /// add collapse-class to the first headline
         $(this).find('h2:first').attr("class", "collapse-toggle");
     });
-    $('div[name="inlinegroup"] h2.collapse-toggle').bind("click", function(){
-        /// add collapse-handler for stacked inlines
-        $(this).parent().toggleClass('collapsed');
-    });
-    $('div[name="inlinegrouptabular"] h2.collapse-toggle').bind("click", function(){
-        /// add collapse-handler for tabular inlines
+    $('div.inline-group h2.collapse-toggle').bind("click", function(){
         $(this).parent().toggleClass('collapsed');
     });
     
     /// OPEN STACKEDINLINE WITH ERRORS
-    $('div[name="inlinerelated"]').find('div[class*="errors"]:first').each(function(){
-        /// open inline element
+    $('div.inline-stacked div.inline-related').find('div[class*="errors"]:first').each(function(){
         $(this).parent().parent().toggleClass("collapsed");
     });
-    $('div[name="inlinegroup"]').find('div[class*="errors"]:first').each(function(){
+    $('div.inline-stacked').find('div[class*="errors"]:first').each(function(){
         /// open inline group
         $(this).parent().parent().parent().parent().toggleClass("collapsed");
     });
     
     /// OPEN TABULARINLINE WITH ERRORS
-    $('div[name="inlinerelatedtabular"]').find('div[class*="error"]:first').each(function(i) {
-        /// open inline group
+    $('div.inline-tabular').find('div[class*="error"]:first').each(function(i) {
         $(this).parent().parent().parent().parent().toggleClass("collapsed");
     });
     

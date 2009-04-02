@@ -25,15 +25,15 @@ $(document).ready(function(){
             items[parseInt(order_value)] = $(this);
         });
         items.sort();
-        //$('div.fieldset', this).remove();
-        // for (var i = 0; i < items.length; i++) {
-        //     var predelete_flag = $(items[i]).find('input[name*="DELETE"]:checked').length;
-        //     if (predelete_flag) {
-        //         $('.predelete-items', this).append(items[i]);
-        //     } else {
-        //         $('.items', this).append(items[i]);
-        //     }
-        // }
+        $('div.fieldset', this).remove();
+        for (var i = 0; i < items.length; i++) {
+            var predelete_flag = $(items[i]).find('input[name*="DELETE"]:checked').length;
+            if (predelete_flag) {
+                $('.predelete-items', this).append(items[i]);
+            } else {
+                $('.items', this).append(items[i]);
+            }
+        }
     });
     
     /// HACK: CHANGE HEIGHT OF INLINE-ITEM TOOLS FOR TABULAR INLINES
@@ -92,18 +92,18 @@ $(document).ready(function(){
     });
     
     /// hide all ORDER inputs and their parent DIV
-    //$('div.inline-tabular div.form-cell.order').hide();
+    $('div.inline-tabular div.form-cell.order').hide();
     
     /// DRAG & DROP
     $('div.inline-tabular.sortable div.items').sortable({
         axis: 'y',
         items: '.fieldset',
         handle: '.draghandler',
-        placeholder: 'placeholder',
-        forcePlaceholderSize: true,
+        //placeholder: 'placeholder',
+        //forcePlaceholderSize: true,
+        //forceHelperSize: true,
         tolerance: 'intersect',
         appendTo: 'body',
-        opacity: 0.8,
         cursor: 'move',
         helper: function(e, el) {
             //$("div.sortablehelper").find('h3:first').text(el.find('h3:first').text());
