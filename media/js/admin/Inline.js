@@ -40,6 +40,8 @@ $(document).ready(function(){
         var inlinegroup = $(this).parents('div.inline-group');
         var new_item = inlinegroup.find('div.inline-related:last').clone(true).insertAfter('div.inline-related:last', inlinegroup);
         var items = inlinegroup.find('div.inline-related').length;
+        /// change header
+        new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
         /// set TOTAL_FORMS to number of items
         inlinegroup.find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
         /// replace IDs, NAMEs, HREFs & FORs ...
