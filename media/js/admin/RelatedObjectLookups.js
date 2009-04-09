@@ -187,8 +187,8 @@ function InitContentType(obj) {
     obj.bind("change", function() {
         if ($(this).val()) {
             var href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + "/?t=id";
-            var lookupLink = $(this).parent().next().find('a.related-lookup');
-            var obj_id = $(this).parent().next().find('input[name*="object_id"]');
+            var lookupLink = $(this).closest('div[class*="content_type"]').next().find('a.related-lookup');
+            var obj_id = $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]');
             if (lookupLink.attr('href')) {
                 lookupLink.attr('href', href);
             } else {
@@ -197,12 +197,12 @@ function InitContentType(obj) {
                 lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + '/?t=id');
                 lookupLink.attr('onclick', 'return showRelatedObjectLookupPopup(this);');
                 var lookupText = '<strong>&nbsp;</strong>';
-                $(this).parent().next().find('input[name*="object_id"]').after(lookupText).after(lookupLink);
+                $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]').after(lookupText).after(lookupLink);
             }
         } else {
-            $(this).parent().next().find('input[name*="object_id"]').val('');
-            $(this).parent().next().find('a.related-lookup').remove();
-            $(this).parent().next().find('strong').remove();
+            $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]').val('');
+            $(this).closest('div[class*="content_type"]').next().find('a.related-lookup').remove();
+            $(this).closest('div[class*="content_type"]').next().find('strong').remove();
         }
     });
 }
