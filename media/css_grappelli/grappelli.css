@@ -1010,11 +1010,14 @@ td ul.errorlist li {
     font-size: 12px; line-height: 13px !important; font-weight: bold;
     border: 1px solid #ccc;
     background: #f7f7f7 url(../img_grappelli/bg_module_reverse.gif) 0 100% repeat-x !important;
+    display: none;
 }
 .selector .selector-filter {
-    padding: 2px 2px 0 !important;
+    padding: 5px 5px 5px 2px !important;
     height: 26px;
-    background: url(../img_grappelli/bg_fieldset.gif) 0 0 repeat-x !important;
+    border-top: 1px solid #ccc !important;
+    /*background: url(../img_grappelli/bg_fieldset.gif) 0 0 repeat-x !important;*/
+    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
 }
 .selector .selector-filter img {
     display: none;
@@ -1023,8 +1026,8 @@ td ul.errorlist li {
     content: url('../img_grappelli/icon_searchbox_selector.gif');
 }
 .selector-filter + select {
-    -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
-    -moz-border-radius-topright: 0 !important; -webkit-border-top-right-radius: 0 !important;
+    -moz-border-radius-topleft: 5px !important; -webkit-border-top-left-radius: 5px !important;
+    -moz-border-radius-topright: 0px !important; -webkit-border-top-right-radius: 0px !important;
 }
 .selector h2 + select {
     display: none; position: relative; top: -1px;
@@ -1059,9 +1062,10 @@ a.selector-remove:hover, a.selector-remove:active {
 }
 a.selector-chooseall, a.selector-clearall {
     display: block;
-    margin-left: 7px !important; padding: 0 !important;
+    margin-left: 0px !important; padding: 0 !important;
     font-weight: bold; text-align: left !important;
     background: none !important;
+    width: 250px !important;
 }
 a.selector-chooseall:link, a.selector-chooseall:visited, a.selector-clearall:link, a.selector-clearall:visited {
     color: #598fb3 !important;
@@ -1069,6 +1073,7 @@ a.selector-chooseall:link, a.selector-chooseall:visited, a.selector-clearall:lin
 a.selector-chooseall:hover, a.selector-chooseall:active, a.selector-clearall:hover, a.selector-clearall:active {
     color: #555 !important;
 }
+
 
 /* Date & Time----------------------- */
 a[id^="calendarlink"] img, a[id^="clocklink"] img {

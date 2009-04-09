@@ -165,7 +165,7 @@ fieldset.collapse-open h2.collapse-toggle {
 
 /* H2 in Inline-Groups ----------------------- */
 .inline-group h2 {
-    padding: 7px 5px 4px 10px !important;
+    padding: 7px 5px 6px 10px !important;
     font-size: 12px !important; line-height: 13px !important; font-weight: bold;
     background: transparent !important;
 }
@@ -478,11 +478,12 @@ ul.inline-item-tools a.closehandler {
 }
 
 .inline-tabular .inline-related {
-    display: table;
+    /*display: table;*/
     width: 100% !important;
-    border-collapse: separate;
-    border-spacing: 0 2px;
+    /*border-collapse: separate;
+    border-spacing: 0 2px;*/
     background: transparent !important;
+    display: table-row-group;
 }
 .inline-tabular .inline-related:last-child {
     margin-bottom: -3px !important;
@@ -494,7 +495,9 @@ ul.inline-item-tools a.closehandler {
 }
 .inline-tabular .items, 
 .inline-tabular .predelete-items {
-    display: table-row-group;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0 2px;
 }
 
 .inline-tabular .fieldset.module {
@@ -504,7 +507,7 @@ ul.inline-item-tools a.closehandler {
 .inline-tabular .form-cell {
     display: table-cell; overflow: hidden;
     padding: 3px 10px;
-    max-width: 300px; height: 100%;
+    max-width: 600px; height: 100%;
     vertical-align: top;
     white-space: nowrap;
     border-top: 1px solid #bbb;
@@ -527,7 +530,7 @@ ul.inline-item-tools a.closehandler {
     -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
     -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
 }
-.inline-tabular .fieldset .form-cell:last-child {
+.inline-tabular .fieldset .form-cell.inline-item-tools {
     position: relative;
     padding: 0;
     width: 100%; height: 100%;
@@ -536,9 +539,6 @@ ul.inline-item-tools a.closehandler {
     -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
     -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
-
-
-
 
 /* UI Sortable: Placeholder & Sortable Helper ----------------------- */
 .inline-group.collapsed .items {
@@ -550,38 +550,42 @@ ul.inline-item-tools a.closehandler {
     height: 40px !important;
 }
 .inline-tabular .placeholder {
-    display: table-row;
+    display: table-row-group;
     border-spacing: 0 !important;
 }
 .inline-tabular .placeholder div {
-    display: table-cell;
+    display: table-row;
     height: 30px !important;
     border-spacing: 0 !important;
 }
 
 .sortablehelper {
-    position: absolute; top: -1000px; display: block;
+    position: absolute; top: -1000px; left: 19px; display: block;
     margin: 0; padding: 0;
     color: #666 !important;
 }
 
-/*.inline-group .items */.sortablehelper h3 {
-    margin: 0 -1px 0 0 !important; padding: 5px 0 4px 37px;
+.sortablehelper h3 {
+    margin: 0 !important; padding: 5px 0 4px 37px;
     color: #fff; font-size: 12px; line-height: 15px;
-    border: 1px solid #bebebe !important;
-    border-bottom: 1px solid #bebebe !important;
     -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #65a3c2 !important;
 }
-/*.inline-group[name="inlinegrouptabular"] .items */.sortablehelper h3 {
-    padding-left: 10px !important;
-}
+
 
 
 /* Inline-Related Predelete
 ----------------------------------------------------------------------- */
 
-.predelete-items .inline-related, .predelete-items .inline-related.collapsed:hover {
+.inline-tabular .predelete .form-cell {
+	background: #faebeb !important;
+}
+
+.inline-stacked .predelete {
+	background: #faebeb !important;
+}
+
+/*.predelete-items .inline-related, .predelete-items .inline-related.collapsed:hover {
     background: transparent url(../img_grappelli/bg_inline-related_predelete_reverse.gif) 0 0 repeat-x !important;
 }
 .predelete-items .inline-related.collapsed {
@@ -620,4 +624,4 @@ ul.inline-item-tools a.closehandler {
     }
 .predelete-items .inline-related fieldset.collapse-open h2.collapse-toggle {
     background-image: url(../img_grappelli/icon_inline-related_predelete_fieldset_close.gif) !important;
-}
+}*/
