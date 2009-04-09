@@ -168,7 +168,7 @@ function M2MHandler(obj) {
 
 function InitObjectID(obj) {
     obj.each(function() {
-        var ct = $(this).parent().prev().find(':input[name*="content_type"]').val();
+        var ct = $(this).closest('div[class*="object_id"]').prev().find(':input[name*="content_type"]').val();
         if (ct) {
             var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
             lookupLink.attr('id', 'lookup_'+this.id);
