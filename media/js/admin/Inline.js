@@ -6,9 +6,18 @@ $(document).ready(function(){
     });
     
     /// HACK: CHANGE HEIGHT OF INLINE-ITEM TOOLS FOR TABULAR INLINES
-    $('div.inline-tabular.sortable ul.inline-item-tools:not(:first)').each(function(){
+    $('div.inline-tabular ul.inline-item-tools:not(:first)').each(function(){
         height = "height:" + $(this).parent().height() + "px !important;";
         $(this).attr('style', height);
+    });
+    
+    // BUTTONS (STACKED INLINE)
+    $('div.inline-stacked a.closehandler').bind("click", function(){
+        $(this).parents('div.inline-stacked').find('div.inline-related').addClass('collapsed');
+    });
+    $('div.inline-stacked a.openhandler').bind("click", function(){
+        $(this).parents('div.inline-stacked').removeClass('collapsed');
+        $(this).parents('div.inline-stacked').find('div.inline-related').removeClass('collapsed');
     });
     
     /// function for cleaning up added items
