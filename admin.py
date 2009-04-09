@@ -9,9 +9,10 @@ from grappelli.models.help import Help, HelpItem
 
 
 class NavigationItemInline(admin.StackedInline):
+    
     model = NavigationItem
     extra = 1
-    sortable = True
+    classes = ('collapse-open',)
     fieldsets = (
         ('', {
             'fields': ('title', 'link', 'category',)
@@ -19,25 +20,37 @@ class NavigationItemInline(admin.StackedInline):
         ('', {
             'fields': ('users',),
         }),
+        ('', {
+            'fields': ('order',),
+        }),
     )
     
 
 class NavigationOptions(admin.ModelAdmin):
-    save_as = True
+    
+    # List Options
     list_display = ('order', 'title',)
     list_display_links = ('title',)
+    
+    # Fieldsets
     fieldsets = (
         ('', {
             'fields': ('title', 'order',)
         }),
     )
+    
+    # Misc
+    save_as = True
+    
+    # Inlines
     inlines = [NavigationItemInline]
     
 
 class BookmarkItemInline(admin.TabularInline):
+    
     model = BookmarkItem
     extra = 1
-    sortable = True
+    classes = ('collapse-open',)
     fieldsets = (
         ('', {
             'fields': ('title', 'link', 'order',)
@@ -46,14 +59,22 @@ class BookmarkItemInline(admin.TabularInline):
     
 
 class BookmarkOptions(admin.ModelAdmin):
-    save_as = True
+    
+    # List Options
     list_display = ('user',)
     list_display_links = ('user',)
+    
+    # Fieldsets
     fieldsets = (
         ('', {
             'fields': ('user',)
         }),
     )
+    
+    # Misc
+    save_as = True
+    
+    # Inlines
     inlines = [BookmarkItemInline]
     
     def has_change_permission(self, request, obj=None):
@@ -63,7 +84,6 @@ class BookmarkOptions(admin.ModelAdmin):
         if obj is not None and not request.user.is_superuser and request.user.id != obj.author.id:
             return False
         return True
-        
     
     def save_model(self, request, obj, form, change):
         if not request.user.is_superuser:
@@ -78,26 +98,37 @@ class BookmarkOptions(admin.ModelAdmin):
     
 
 class HelpItemInline(admin.StackedInline):
+    
     model = HelpItem
     extra = 1
-    sortable = True
+    classes = ('collapse-open',)
     fieldsets = (
         ('', {
-            'fields': ('title', 'link', 'body',)
+            'fields': ('title', 'link', 'body', 'order',)
         }),
     )
-
+    
 
 class HelpOptions(admin.ModelAdmin):
-    save_as = True
+    
+    # List Options
     list_display = ('order', 'title',)
     list_display_links = ('title',)
+    
+    # Fieldsets
     fieldsets = (
         ('', {
             'fields': ('title', 'order',)
         }),
     )
+    
+    # Misc
+    save_as = True
+    
+    # Inlines
     inlines = [HelpItemInline]
+    
+    # Media
     class Media:
         js = [
             '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
@@ -106,19 +137,25 @@ class HelpOptions(admin.ModelAdmin):
     
 
 class HelpItemOptions(admin.ModelAdmin):
+    
+    # List Options
     list_display = ('order', 'title',)
     list_display_links = ('title',)
+    
+    # Fieldsets
     fieldsets = (
         ('', {
-            'fields': ('help', 'title', 'link', 'body',)
+            'fields': ('help', 'title', 'link', 'body', 'order',)
         }),
     )
+    
+    # Media
     class Media:
         js = [
             '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
             '/media/admin/tinymce_setup/tinymce_setup.js',
         ]
-
+    
 
 admin.site.register(Navigation, NavigationOptions)
 admin.site.register(Bookmark, BookmarkOptions)

@@ -64,7 +64,7 @@ class PositionField(models.IntegerField):
 
     def pre_save(self, model_instance, add):
         current, updated = self._get_instance_cache(model_instance)
-
+        
         # existing instance, position not modified; no cleanup required
         if current is not None and updated is None:
             self._reset_instance_cache(model_instance, current)
