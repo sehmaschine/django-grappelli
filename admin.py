@@ -24,6 +24,7 @@ class NavigationItemInline(admin.StackedInline):
             'fields': ('order',),
         }),
     )
+    filter_horizontal = ('users',)
     
 
 class NavigationOptions(admin.ModelAdmin):
