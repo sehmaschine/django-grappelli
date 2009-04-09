@@ -33,7 +33,7 @@ $(document).ready(function(){
     
     /// OPEN TABULARINLINE WITH ERRORS
     $('div.inline-tabular').find('div[class*="error"]:first').each(function(i) {
-        $(this).parent().parent().parent().parent().toggleClass("collapsed");
+        $(this).parents('div.inline-tabular').removeClass("collapsed");
     });
     
 });
