@@ -24,11 +24,8 @@ $(document).ready(function(){
     
     /// OPEN STACKEDINLINE WITH ERRORS
     $('div.inline-stacked div.inline-related').find('div[class*="errors"]:first').each(function(){
-        $(this).parent().parent().toggleClass("collapsed");
-    });
-    $('div.inline-stacked').find('div[class*="errors"]:first').each(function(){
-        /// open inline group
-        $(this).parent().parent().parent().parent().toggleClass("collapsed");
+        $(this).parents('div.inline-related').removeClass("collapsed");
+        $(this).parents('div.inline-stacked').removeClass("collapsed");
     });
     
     /// OPEN TABULARINLINE WITH ERRORS
