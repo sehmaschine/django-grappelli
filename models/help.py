@@ -5,7 +5,6 @@ from django.utils.translation import ugettext as _
 
 from grappelli.fields import PositionField
 
-
 class Help(models.Model):
     """
     Help Entry.
@@ -49,6 +48,10 @@ class HelpItem(models.Model):
     
     def __unicode__(self):
         return u"%s" % (self.title)
+    
+    def get_body(self):
+        body = self.body.replace('<h2>', '</div><div class="module"><h2>')
+        return body
     
     save = transaction.commit_on_success(models.Model.save)
     
