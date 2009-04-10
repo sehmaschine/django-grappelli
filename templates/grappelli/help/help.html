@@ -3,6 +3,7 @@
 {% load i18n %}
 
 {% block stylesheet %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
+{% block extrastyle %}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css_grappelli/grappelli_help.css" />{% endblock %}
 {% block coltype %}colSM{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}
 {% block breadcrumbs %}<div class="breadcrumbs"><a href="/admin/">{% trans "Home" %}</a> &rsaquo; {% trans "Help" %}</div>{% endblock %}

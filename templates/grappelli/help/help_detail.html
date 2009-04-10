@@ -2,13 +2,30 @@
 {% load i18n %}
 
 {% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css_grappelli/grappelli_help.css" />
+<script>
+$(document).ready(function(){
+    if ($('div.help div.module').length > 1) {
+        $('div.help div.module:first').remove();
+    }
+    // $('div.module').each(function() {
+    //     $(this).find('h2 ~ h3:first').each(function() {
+    //         $(this).attr('style', 'margin-top: 10px !important;');
+    //     });
+    // });
+});
+</script>
+{% endblock %}
 {% block coltype %}colSM{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}
 {% block breadcrumbs %}<div class="breadcrumbs"><a href="/admin/">{% trans "Home" %}</a> &rsaquo; <a href="/grappelli/help/">{% trans "Help" %}</a> &rsaquo; {{ object.title }}</div>{% endblock %}
 
 {% block content %}
 <div id="content-main" class="help">
-    {{ object.body|safe }}
+    <div class="module">
+    {{ object.get_body|safe }}
+    </div>
 </div>
 {% endblock %}
 
