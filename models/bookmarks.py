@@ -30,7 +30,7 @@ class BookmarkItem(models.Model):
     """
     
     bookmark = models.ForeignKey(Bookmark)
-    title = models.CharField(_('Title'), max_length=30)
+    title = models.CharField(_('Title'), max_length=80)
     link = models.CharField(_('Link'), max_length=200, help_text=_('The Link should be relative, e.g. /admin/blog/.'))
     
     # order
