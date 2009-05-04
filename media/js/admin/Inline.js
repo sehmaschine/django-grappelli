@@ -46,7 +46,8 @@ $(document).ready(function(){
     /// ADDHANDLER
     $('div.inline-group a.addhandler').bind("click", function(){
         var inlinegroup = $(this).parents('div.inline-group');
-        var new_item = inlinegroup.find('div.inline-related:last').clone(true).insertAfter('div.inline-related:last', inlinegroup);
+        //var new_item = inlinegroup.find('div.inline-related:last').clone(true).insertAfter('div.inline-related:last', inlinegroup);
+        var new_item = inlinegroup.find('div.inline-related:last').clone(true).appendTo(inlinegroup.find('div.items:first'));
         var items = inlinegroup.find('div.inline-related').length;
         /// change header
         new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
