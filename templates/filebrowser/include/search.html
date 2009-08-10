@@ -1,0 +1,31 @@
+{% load i18n adminmedia fb_tags %}
+<div class="search-results">
+    <p>{% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %}</p>
+    <span class="quiet">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</span>
+    <a href="?{% if cl.is_popup %}pop=1{% endif %}" class="align-right">{% blocktrans with cl.full_result_count as full_result_count %}Clear Restrictions{% endblocktrans %}</a></strong>
+</div>
+<h2 class="collapse-toggle collapse-open">{% trans 'Search' %}xx</h2>
+<div id="toolbar">
+    <form id="changelist-search" action="." method="get">
+        <div><!-- DIV needed for valid HTML -->
+        <label for="searchbar"><img src="{% admin_media_prefix %}img/admin/icon_searchbox.png" alt="Search" /></label>
+        <input type="text" size="40" name="q" value="{{ q }}" id="searchbar" />
+        {% if query.filter_type %}<input type="hidden" name="filter_type" value="{{ query.filter_type }}" />{% endif %}
+        {% if query.filter_date %}<input type="hidden" name="filter_date" value="{{ query.filter_date }}" />{% endif %}
+        {% if query.o %}<input type="hidden" name="o" value="{{ query.o }}" />{% endif %}
+        {% if query.ot %}<input type="hidden" name="ot" value="{{ query.ot }}" />{% endif %}
+        {% if query.pop %}<input type="hidden" name="pop" value="{{ query.pop }}" />{% endif %}
+        {% if query.type %}<input type="hidden" name="type" value="{{ query.type }}" />{% endif %}
+        <input type="submit" value="{% trans "Go" %}" />
+        
+        <p class="help"><strong>Search for:</strong> Filename</p>
+        {% if results_var.results_total %}
+        {% if query.filter_type or query.filter_date or query.q %}
+        <span class="small quiet">{% blocktrans count results_var.results_current as counter %}{{ counter }} Item found{% plural %}{{ counter }} Items found{% endblocktrans %}
+        (<strong><a href="{% query_string "" "filter_date,filter_type,q" %}">{% blocktrans count results_var.results_total as counter %}{{ counter }} Item total{% plural %}{{ counter }} Items total{% endblocktrans %}</a></strong>)</span>
+        {% endif %}
+        {% endif %}
+        </div>
+    </form>
+</div>
+<script type="text/javascript">document.getElementById("searchbar").focus();</script>

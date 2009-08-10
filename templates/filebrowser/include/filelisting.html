@@ -1,0 +1,122 @@
+{% load i18n adminmedia fb_tags fb_versions %}
+<tr class="{% cycle 'row1' 'row2' %}">
+    
+    <!-- FILESELECT FOR FILEBROWSEFIELD -->
+    {% ifequal query.pop '1' %}
+    {% if results_var.select_total %}
+    <td class="fb_icon">
+        {% selectable file.filetype query.type %}
+        {% if selectable %}
+        <a href="javascript://" onclick="FileSubmit('{{ file.url_save }}', '{{ file.url_thumbnail }}', '{{ file.filetype }}');" class="fb_selectlink" title="{% trans 'Select' %}"></a>
+        {% else %}
+        <img src="{{ settings_var.URL_FILEBROWSER_MEDIA }}img/filebrowser_icon_select_disabled.gif" width="23" height="17" />
+        {% endif %}
+    </td>
+    {% endif %}
+    {% endifequal %}
+    
+    <!-- FILESELECT FOR RTE/TINYMCE -->
+    {% ifequal query.pop '2' %}
+    {% if results_var.select_total %}
+    <td class="fb_icon">
+        {% selectable file.filetype query.type %}
+        {% if selectable %}
+        <a href="javascript:FileBrowserDialogue.fileSubmit('{{ file.url_save }}');" class="fb_selectlink" title="{% trans 'Select File' %}"></a>
+        {% else %}
+        <img src="{{ settings_var.URL_FILEBROWSER_MEDIA }}img/filebrowser_icon_select_disabled.gif" width="23" height="17" />
+        {% endif %}
+    </td>
+    {% endif %}
+    {% endifequal %}
+    
+    <!-- FILESELECT FOR CKEDITOR (FORMER "FCKEDITOR") -->
+    {% ifequal query.pop '3' %}
+    {% if results_var.select_total %}
+    <td class="fb_icon">
+        {% selectable file.filetype query.type %}
+        {% if selectable %}
+        <a href="#" onclick="OpenFile(ProtectPath('{{ file.url_save }}'));return false;" class="fb_selectlink" title="{% trans 'Select File' %}"></a>
+        {% else %}
+        <img src="{{ settings_var.URL_FILEBROWSER_MEDIA }}img/filebrowser_icon_select_disabled.gif" width="23" height="17" />
+        {% endif %}
+    </td>
+    {% endif %}
+    {% endifequal %}
+    
+    <!-- SHOW VERSIONS -->
+    {% if results_var.images_total %}
+    <td class="fb_icon">
+        {% ifequal file.filetype 'Image' %}<a href="{% url fb_versions %}{% query_string %}&amp;filename={{ file.filename }}" class="fb_showversionslink" title="{% trans 'Show Versions' %}"></a>{% endifequal %}
+    </td>
+    {% endif %}
+    
+    <!-- FILEICON -->
+    <td class="fb_icon"><img src="{{ settings_var.URL_FILEBROWSER_MEDIA }}img/filebrowser_type_{{ file.filetype|lower }}.gif" /></td>
+    
+    <!-- THUMBNAIL -->
+    {% if results_var.images_total %}
+    <td class="fb_icon">
+        {% ifequal file.filetype 'Image' %}
+        <a href="{{ file.url_full }}"><img src="{% version file.path settings_var.ADMIN_THUMBNAIL %}" title="{% trans 'View Image' %}" /></a>
+        {% endifequal %}
+    </td>
+    {% endif %}
+    
+    <!-- FILENAME/DIMENSIONS -->
+    {% ifequal file.filetype 'Folder' %}
+    <td><b><a href="{% url fb_browse %}{% query_string "" "dir" %}&amp;dir={{ file.path_relative_directory|urlencode }}">{{ file.filename }}</a></b></td>
+    {% else %}
+    <td><b><a href="{{ file.url_full }}">{{ file.filename }}</a></b>{% if file.dimensions %}<br /><span class="tiny">{{ file.dimensions.0 }} x {{ file.dimensions.1 }} px</span>{% endif %}</td>
+    {% endifequal %}
+    
+    <!-- RENAME -->
+    <td class="fb_icon"><a href="{% url fb_rename %}{% query_string %}&amp;filename={{ file.filename }}" class="fb_renamelink" title="{% trans 'Rename' %}"></a></td>
+    
+    <!-- SIZE -->
+    <td>{{ file.filesize|filesizeformat }}</td>
+    
+    <!-- DATE -->
+    <td>{{ file.datetime|date:"N j, Y" }}</td>
+    
+    <!-- DELETE -->
+    {% if results_var.delete_total %}
+    <td class="fb_icon">
+        {% ifnotequal file.filetype 'Folder' %}
+        <a href="{% url fb_delete %}{% query_string %}&amp;filename={{ file.filename }}&amp;filetype={{ file.filetype }}" class="fb_deletelink" onclick="return confirm('{% trans "Are you sure you want to delete this file?" %}');" title="{% trans 'Delete File' %}"></a>
+        {% else %}
+        {% if file.is_empty %}
+        <a href="{% url fb_delete %}{% query_string %}&amp;filename={{ file.filename }}&amp;filetype={{ file.filetype }}" class="fb_deletelink" onclick="return confirm('{% trans "Are you sure you want to delete this Folder?" %}');" title="{% trans 'Delete Folder' %}"></a>
+        {% endif %}
+        {% endifnotequal %}
+    </td>
+    {% endif %}
+    
+    <!-- DEBUG -->
+    {% if settings_var.DEBUG %}
+    <td>
+        <strong>Filename</strong> {{ file.filename }}<br />
+        <strong>Filetype</strong> {{ file.filetype }}<br />
+        <strong>Filesize</strong> {{ file.filesize }}<br />
+        <strong>Extension</strong> {{ file.extension }}<br />
+        <strong>Date</strong> {{ file.date }}<br />
+        <strong>Datetime Object</strong> {{ file.datetime }}<br /><br />
+        <strong>Relative Path</strong> {{ file.path_relative }}<br />
+        <strong>Full Path</strong> {{ file.path_full }}<br />
+        <strong>Relative URL</strong> {{ file.url_relative }}<br />
+        <strong>Full URL</strong> {{ file.url_full }}<br /><br />
+        <strong>URL for FileBrowseField</strong> {{ file.url_save }}<br />
+        <strong>Thumbnail URL</strong> {{ file.url_thumbnail }}
+        {% ifequal file.filetype 'Image' %}<br /><br />
+        <strong>Dimensions</strong> {{ file.dimensions }}<br />
+        <strong>Width</strong> {{ file.width }}<br />
+        <strong>Height</strong> {{ file.height }}<br />
+        <strong>Orientation</strong> {{ file.orientation }}
+        {% endifequal %}
+        {% ifequal file.filetype 'Folder' %}<br /><br />
+        <strong>Is Empty</strong> {{ file.is_empty }}
+        {% endifequal %}
+    </td>
+    {% endif %}
+    
+</tr>
+ 

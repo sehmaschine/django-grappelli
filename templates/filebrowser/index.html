@@ -1,0 +1,139 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n adminmedia fb_tags %}
+
+<!-- EXTRAHEAD -->
+{% block extrahead %}
+    {{ block.super }}
+    <!-- FileBrowseField -->
+    {% ifequal query.pop '1' %}
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_FileBrowseField.js"></script>
+    {% endifequal %}
+    <!-- TinyMCE -->
+    {% ifequal query.pop '2' %}
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_TINYMCE }}tiny_mce_popup.js"></script>
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_TinyMCE.js"></script>
+    {% if query.mce_rdomain %}<script language="javascript">document.domain = "{{ query.mce_rdomain }}"</script>{% endif %}
+    {% endifequal %}
+    <!-- CKeditor (former "FCKeditor") -->
+    {% ifequal query.pop '3' %}
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_CKeditor.js"></script>
+    {% endifequal %}
+    {{ media }}
+    
+    {% if not actions_on_top and not actions_on_bottom %}
+    <style>
+        #changelist table thead th:first-child {width: inherit}
+    </style>
+    {% endif %}
+    
+    <script type="text/javascript">
+        function HorizontalOverflow() {
+            var TableWidth = $('table').outerWidth();
+            var ContentWidth = $('.changelist-content').outerWidth();
+            if (TableWidth > ContentWidth) {
+                $('#changelist.module.filtered').css({
+                    'padding-right' : 227
+                });
+                $('.changelist-content').css({
+                    'min-width' : TableWidth+'px'
+                });
+                $('#changelist-filter').css({
+                    'border-right' : '15px solid #fff'
+                });
+            }
+            if (TableWidth < ContentWidth) {
+                $('#changelist.module.filtered').css({
+                    'padding-right' : 212
+                });
+                $('.changelist-content').css({
+                    'min-width' : auto
+                });
+                $('#changelist-filter').css({
+                    'border-right' : 0
+                });
+            }
+        };
+        $(window).resize(function(){
+            HorizontalOverflow();
+        });
+        window.onload = function () {
+            HorizontalOverflow();
+        }
+        $(document).ready(function(){
+            
+            // TICKET #11447: td containing a.add-another need.nowrap
+            $('table').find('a.add-another').parent('td').addClass('nowrap');
+            
+            $('.filterset h3').click(function() {
+                $(this).parent().toggleClass('collapse-closed');
+                $(this).parent().toggleClass('collapse-open');
+                $(this).next().next().toggle();
+            });
+            $('input.search-fields-verbose').click(function() {
+                $(this).val("");
+                $(this).removeClass("search-fields-verbose");
+            });
+        });
+    </script>
+    
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block coltype %}flex{% endblock %}
+{% block bodyclass %}change-list filebrowser{% if query.pop %} popup{% endif %}{% endblock %}
+
+<!-- EXTRASTYLE -->
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/changelist.css" />
+    <link rel="stylesheet" type="text/css" href="{{ settings_var.URL_FILEBROWSER_MEDIA }}css/filebrowser.css" />
+    {% if query.pop %}
+    <style type="text/css">
+    #header { display: none; }
+    </style>
+    {% endif %}
+{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}{% include "filebrowser/include/breadcrumbs.html" %}{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+<div id="content-main">
+    {% block object-tools %}
+    <ul class="object-tools">
+        <li><a href="{% url fb_mkdir %}{% query_string %}">{% trans "New Folder" %}</a></li>
+        <li><a href="{% url fb_upload %}{% query_string %}" class="focus">{% trans "Upload" %}</a></li>
+    </ul>
+    {% endblock %}
+    <div class="module filtered" id="changelist">
+        <div class="changelist-content">
+            <div class="result-list-container">
+                <div class="result-list">
+                    <table cellspacing="0">
+                        {% if results_var.results_current %}
+                            {% include "filebrowser/include/tableheader.html" %}
+                        {% endif %}
+                        <tbody>
+                        {% for file in files %}
+                            {% include "filebrowser/include/filelisting.html" %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% include "filebrowser/include/paginator.html" %}
+            </div>
+        </div>
+        
+        <div id="changelist-filter">
+            {% include "filebrowser/include/toolbar.html" %}
+            <div class="module filter">
+                {% include "filebrowser/include/filter.html" %}
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

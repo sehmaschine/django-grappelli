@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n adminmedia fb_tags %}
+
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}change-form{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css-development/forms.css" />
+    <link rel="stylesheet" type="text/css" href="{{ settings_var.URL_FILEBROWSER_MEDIA }}css/filebrowser.css" />
+    {% if query.pop %}
+    <style type="text/css">
+    #header { display: none; }
+    </style>
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}{% include "filebrowser/include/breadcrumbs.html" %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <form action="{% query_string "" "filter_date,filter_type,q" %}" method="post">
+    <div>
+        {% if form.errors %}<p class="errornote">{% trans 'Please correct the following errors.' %}</p>{% endif %}
+        <fieldset class="module aligned">
+        <div class="form-row {% if form.dir_name.errors %}errors{% endif %}">
+            {% if form.name.errors %}<ul class="errorlist">{{ form.name.errors }}</ul>{% endif %}
+            <label class="required" for="id_dir_name">{{ form.name.label }}</label>
+            {{ form.name }}
+            {% if file_extension %}<b>{{ file_extension }}</b>{% endif %}
+            {% if form.name.help_text %}<p class="help">{{ form.name.help_text|safe }}</p>{% endif %}
+        </div>
+        </fieldset>
+        <div class="submit-row">
+            <input type="submit" value="{% trans 'Submit' %}" class="default" />
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock %}

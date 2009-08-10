@@ -1,0 +1,17 @@
+{% load i18n %}
+{% if not results_var.results_current %}
+<p class="paginator" style="background: #fff !important; border-bottom: 1px solid #ddd !important;">
+<span class="error"><strong>{% trans "No Items Found." %}</strong></span>
+</p>
+{% endif %}
+<p class="paginator">
+{% if results_var.results_total %}
+    <strong>{% blocktrans count results_var.results_total as counter %}{{ counter }} Item{% plural %}{{ counter }} Items{% endblocktrans %}</strong>&nbsp;
+    {% for count in counter.items %}
+        {% trans count.0 %}:
+        <strong>{{ count.1 }}</strong>&nbsp;
+    {% endfor %}
+{% else %}
+    <strong>{% trans "No Items." %}</strong>
+{% endif %}
+</p>
