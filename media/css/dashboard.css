@@ -1,0 +1,135 @@
+
+
+
+/*  Dashboard
+------------------------------------------------------------------------------------------------------ */
+
+.dashboard #content {
+    width: 500px;
+}
+
+
+
+/*  Dashboard Table Settings
+------------------------------------------------------------------------------------------------------ */
+
+.dashboard .module table {
+    border-right: none;
+}
+.dashboard .module table th {
+    width: 100%;
+}
+
+.dashboard .module table td {
+    white-space: nowrap;
+}
+
+.dashboard .module table td a {
+    display: block;
+    padding-right: 0;
+}
+
+
+
+/*  Navigation & Recent Actions (Content-Related & Content-Related-Extended)
+------------------------------------------------------------------------------------------------------ */
+
+#content-related, #content-related-extended {
+    color: #444; font-size: 11px;
+}
+
+#content-related h3, #content-related-extended h3, 
+#content-related h4, #content-related-extended h4 {
+    padding: 5px 10px;
+    font-size: 11px;
+}
+
+#content-related p, 
+#content-related-extended p {
+    border-top: 1px solid #ddd;
+    padding: 3px 10px 8px;
+    color: #999; font-style: italic;
+}
+
+.module ul.menulist, 
+.module ul.actionlist {
+    margin: 0; padding: 0;
+    border-top: 1px solid #ddd;
+    list-style-type: none;
+}
+.module ul.actionlist {
+    padding-bottom: 3px;
+}
+ul.menulist li:last-child {
+    border-bottom-color: #ddd;
+}
+ul.menulist:last-child li:last-child, 
+ul.actionlist:last-child li:last-child {
+    margin-bottom: 5px;
+    border-bottom: none;
+}
+
+
+/*  Navigation ................................................... */
+
+ul.menulist li {
+    margin: 0; padding: 3px 10px 3px 9px;
+    border-bottom: 1px solid #eee;
+    list-style-type: none;
+}
+ul.menulist li a {
+    padding-left: 12px;
+    font-weight: bold;
+    background-color: transparent;
+    background-position: 2px 50%;
+    background-repeat: no-repeat;
+}
+ul.menulist li a.external {
+    background-position: 0 3px;
+}
+ul.menulist li a.internal:link, ul.menulist li a.internal:visited {
+    background-image: url('../img/icons/icon-menulist_internal.png');
+}
+ul.menulist li a.internal:hover, ul.menulist li a.internal:active {
+    color: #666;
+    background-image: url('../img/icons/icon-menulist_internal-hover.png');
+}
+ul.menulist li a.external:link, ul.menulist li a.external:visited {
+    color: #83c3d9;
+    background-image: url('../img/icons/icon-menulist_external.png');
+}
+ul.menulist li a.external:hover, ul.menulist li a.external:active {
+    color: #666;
+    background-image: url('../img/icons/icon-menulist_external-hover.png');
+}
+
+
+/*  Recent Actions ................................................... */
+
+ul.actionlist li {
+    margin: 5px 0 -1px; padding-left: 25px;
+    line-height: 12px;
+}
+ul.actionlist li a {
+    margin-left: -14px; padding-left: 13px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+}
+
+ul.actionlist li.addlink a:link, ul.actionlist li.addlink a:visited {
+    background-image:url('../img/icons/icon-actionlist_addlink.png');
+}
+ul.actionlist li.addlink a:hover, ul.actionlist li.addlink a:active {
+    background-image:url('../img/icons/icon-actionlist_addlink-hover.png');
+}
+ul.actionlist li.changelink a:link, ul.actionlist li.changelink a:visited {
+    background-image:url('../img/icons/icon-actionlist_changelink.png');
+}
+ul.actionlist li.changelink a:hover, ul.actionlist li.changelink a:active {
+    background-image:url('../img/icons/icon-actionlist_changelink-hover.png');
+}
+
+ul.actionlist li.deletelink {
+    color: #666; text-decoration: line-through;
+    background: url('../img/icons/icon-actionlist_deletelink.png') 11px 5px no-repeat;
+}

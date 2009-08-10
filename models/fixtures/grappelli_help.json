@@ -1,0 +1,21 @@
+[
+    {
+        "pk": 1,
+        "model": "grappelli.help",
+        "fields": {
+            "order": 0,
+            "title": "Admin-Interface"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "grappelli.helpitem",
+        "fields": {
+            "body": "<p>This is just a test entry.</p>",
+            "order": 0,
+            "link": "/admin/",
+            "help": 1,
+            "title": "Main Admin"
+        }
+    }
+]

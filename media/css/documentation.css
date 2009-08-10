@@ -1,0 +1,40 @@
+
+
+
+/*  Content-Main RTE
+------------------------------------------------------------------------------------------------------ */
+
+.documentation #content-main.rte .module {
+    padding: 0 10px 10px;
+}
+.documentation #content-main.rte .module>h2 {
+    margin: 0 -10px 10px;
+}
+
+
+
+/*  Content-Related
+------------------------------------------------------------------------------------------------------ */
+
+.documentation #content-related a {
+    font-weight: bold;
+}
+.documentation #content-related ul li {
+    padding: 3px 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.documentation #content-related ul li:last-child {
+    border-bottom: none;
+}
+
+
+
+/*  Table
+------------------------------------------------------------------------------------------------------ */
+
+.documentation table.docutils {
+    border: 1px solid #d4d4d4;
+}
+.documentation table.docutils tbody tr td {
+    background: #f4f4f4;
+}

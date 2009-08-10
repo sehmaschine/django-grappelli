@@ -1,0 +1,10 @@
+[
+	{
+		"pk": 1,
+		"model": "grappelli.Bookmark",
+		"fields": {
+			"order": 0,
+			"title": "Media Management"
+		}
+	},
+]
