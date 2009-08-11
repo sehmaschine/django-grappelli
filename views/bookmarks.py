@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
 from django.shortcuts import HttpResponse, render_to_response
 from django.http import HttpResponseRedirect
@@ -78,7 +78,11 @@ def get_bookmark(request):
     if request.method == 'GET':
         if request.GET.get('path'):
             object_list = BookmarkItem.objects.filter(bookmark__user=request.user).order_by('order')
-            bookmark = Bookmark.objects.get(user=request.user)
+            try:
+                bookmark = Bookmark.objects.get(user=request.user)
+            except Bookmark.DoesNotExist:
+                bookmark = Bookmark(user=request.user)
+                bookmark.save()
             try:
                 BookmarkItem.objects.get(bookmark__user=request.user, link=request.GET.get('path'))
                 is_bookmark = True
