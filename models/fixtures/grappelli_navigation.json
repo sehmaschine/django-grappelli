@@ -44,7 +44,7 @@
         }
     },
     {
-        "pk": 1,
+        "pk": 2,
         "model": "grappelli.NavigationItem",
         "fields": {
             "category": "1",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "pk": 2,
+        "pk": 3,
         "model": "grappelli.NavigationItem",
         "fields": {
             "category": "1",
@@ -68,7 +68,7 @@
         }
     },
     {
-        "pk": 1,
+        "pk": 4,
         "model": "grappelli.NavigationItem",
         "fields": {
             "category": "2",
@@ -80,7 +80,7 @@
         }
     },
     {
-        "pk": 1,
+        "pk": 5,
         "model": "grappelli.NavigationItem",
         "fields": {
             "category": "1",
@@ -92,7 +92,7 @@
         }
     },
     {
-        "pk": 2,
+        "pk": 6,
         "model": "grappelli.NavigationItem",
         "fields": {
             "category": "1",
