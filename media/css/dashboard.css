@@ -107,7 +107,7 @@ ul.menulist li a.external:hover, ul.menulist li a.external:active {
 /*  Recent Actions ................................................... */
 
 ul.actionlist li {
-    margin: 5px 0 -1px; padding-left: 25px;
+    margin: 5px 0 0; padding: 2px 10px 0 25px;
     line-height: 12px;
 }
 ul.actionlist li a {
