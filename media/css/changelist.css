@@ -307,33 +307,32 @@ ul.date_hierarchy {
 /*  Unknown, Yes & No Workaround
 ------------------------------------------------------------------------------------------------------ */
 
-img[src^="/media/admin/img/admin/icon-unknown.gif"] {
+img[src$="img/admin/icon-unknown.gif"] {
     padding: 5px;
     width: 0; height: 0;
-    background: url('../img/icons/icon-unknown.png') 0 50% no-repeat !important;
+    background: url('../img/icons/icon-unknown.png') 0 50% no-repeat;
 }
-img[src^="/media/admin/img/admin/icon-no.gif"] {
+img[src$="img/admin/icon-no.gif"] {
     padding: 5px;
     width: 0; height: 0;
-    background: url('../img/icons/icon-no.png') 0 50% no-repeat !important;
+    background: url('../img/icons/icon-no.png') 0 50% no-repeat;
 }
-img[src^="/media/admin/img/admin/icon-yes.gif"] {
+img[src$="img/admin/icon-yes.gif"] {
     padding: 5px;
     width: 0; height: 0;
-    background: url('../img/icons/icon-yes.png') 0 50% no-repeat !important;
+    background: url('../img/icons/icon-yes.png') 0 50% no-repeat;
 }
 
-.change-list form table img[src^="/media/admin/img/admin/icon-unknown.gif"] {
+.change-list form table img[src$="img/admin/icon-unknown.gif"] {
     position: relative; top: 2px;
     vertical-align: top;
 }
-.change-list form table img[src^="/media/admin/img/admin/icon-no.gif"] {
+.change-list form table img[src$="img/admin/icon-no.gif"] {
     position: relative; top: 3px;
     vertical-align: top;
 }
-.change-list form table img[src^="/media/admin/img/admin/icon-yes.gif"] {
+.change-list form table img[src$="img/admin/icon-yes.gif"] {
     position: relative; top: 2px;
     vertical-align: top;
 }
-
 
