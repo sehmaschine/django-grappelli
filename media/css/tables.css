@@ -49,6 +49,7 @@ thead th a {
     position: relative; display: block;
     margin: -5px -10px -4px; padding: 5px 10px 4px;
     height: 100% !important;
+    white-space: nowrap;
 }
 thead th a:link, thead th a:visited {
     color: #83c3d9;
