@@ -73,6 +73,15 @@
                     $('div.changelist-content form').submit();
                 }
             });
+            
+            // HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
+            {% if is_popup %}
+            $('div.actions').hide();
+            $('p.submit-row').hide();
+            $('input.action-select').parent().hide();
+            $('input#action-toggle').parent().hide();
+            {% endif %}
+            
         });
     </script>
 
@@ -80,8 +89,8 @@
 
 {% block bodyclass %}change-list{% endblock %}
 
+{% block breadcrumbs %}
 {% if not is_popup %}
-    {% block breadcrumbs %}
     <div class="breadcrumbs">
         <a href="../../">{% trans "Home" %}</a>
         &rsaquo;
@@ -89,8 +98,8 @@
         &rsaquo;
         {{ cl.opts.verbose_name_plural|capfirst }}
     </div>
-    {% endblock %}
 {% endif %}
+{% endblock %}
 
 {% block coltype %}flex{% endblock %}
 
@@ -118,6 +127,7 @@
         <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
             <div class="changelist-content">
                 <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
                 {% if cl.formset %}
                     {{ cl.formset.management_form }}
                 {% endif %}
