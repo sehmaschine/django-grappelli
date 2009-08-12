@@ -267,7 +267,7 @@ div.breadcrumbs {
     border-bottom: 1px solid #ccc;
     background: #e6e6e6;
 }
-body.filebrowser.popup div.breadcrumbs {
+body.popup div.breadcrumbs {
     top: 0;
 }
 
@@ -286,6 +286,9 @@ ul.messagelist li {
     border-bottom: 1px solid #ddd;
     background: #fcfce7 url('../img/icons/icon-yes.png') 15px 50% no-repeat;
 }
+body.popup .breadcrumbs + ul.messagelist {
+    top: 24px;
+}
 
 
 
@@ -302,9 +305,14 @@ ul.messagelist li {
 #content {
     margin: 80px 15px;
 }
-body.filebrowser.popup #content {
+body.popup #content {
+    margin-top: 0;
+}
+body.popup .breadcrumbs + #content, 
+body.popup ul.messagelist + #content {
     margin-top: 50px;
 }
+
 #content-main {
     float: left;
     width: 100%;
