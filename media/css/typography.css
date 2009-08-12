@@ -182,7 +182,6 @@ ul li { list-style-type: none; padding: 1px 0; }
 ul.plainlist { margin-left: 0; }
 ul.plainlist li { list-style-type: none; }
 li ul { margin-bottom: 0; }
-li, dt, dd { font-size: 11px; line-height: 14px; }
 dt {
     font-weight: bold;
     margin-top: 4px;
