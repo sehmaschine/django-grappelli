@@ -68,6 +68,7 @@ $(document).ready(function(){
         <div class="branding">&nbsp;</div>
         <!-- Title -->
         {% include "admin/includes_grappelli/title.html" %}
+        {% if user.is_authenticated and user.is_staff %}
         <!-- Bookmarks -->
         <ul id="bookmarks">
             <li id="toggle-bookmarks-listing" class="enabled"><a href="javascript://">{% trans "Bookmarks" %}</a></li>
@@ -84,7 +85,6 @@ $(document).ready(function(){
                 <a href="#" class="bookmark-manage"> </a>
             </li>
         </ul>
-        {% if user.is_authenticated and user.is_staff %}
         <ul id="user-tools">
             <!-- Username -->
             <li><strong>{% firstof user.first_name user.username %}</strong></li>
