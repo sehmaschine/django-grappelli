@@ -223,10 +223,10 @@ table input[type=checkbox], table input[type=radio] {
 
 /*  Radiolists & Checkboxlists ................................................... */
 
-ul.radiolist, ul.checkboxlist {
+#content ul.radiolist, #content ul.checkboxlist {
     position: relative; display: inline-block; float: none;
     margin: 4px 0 5px; padding: 0;
-    line-height: 14px;
+    line-height: 14px; font-weight: normal;
 }
 ul.inline li {
     float: left;

@@ -177,11 +177,18 @@ h1 + p { margin: 0 0 15px; }
 /*  Listings
 ------------------------------------------------------------------------------------------------------ */
 
-p + ul { margin: 5px 0 15px; }
 ul li { list-style-type: none; padding: 1px 0; }
 ul.plainlist { margin-left: 0; }
 ul.plainlist li { list-style-type: none; }
-li ul { margin-bottom: 0; }
+#content ul {
+    font-weight: bold;
+}
+#content p + ul, 
+#content ul + ul { margin: 0 0 15px; }
+#content li ul {
+    margin: 5px 0 0 15px;
+    font-weight: normal;
+}
 dt {
     font-weight: bold;
     margin-top: 4px;
