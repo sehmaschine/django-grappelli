@@ -82,7 +82,7 @@ class BookmarkOptions(admin.ModelAdmin):
         has_class_permission = super(BookmarkOptions, self).has_change_permission(request, obj)
         if not has_class_permission:
             return False
-        if obj is not None and not request.user.is_superuser and request.user.id != obj.author.id:
+        if obj is not None and not request.user.is_superuser and request.user.id != obj.user.id:
             return False
         return True
     
