@@ -1,7 +1,7 @@
-{% load adminmedia %}
-{% load i18n %}
-{% load search_fields %}
+{% load adminmedia i18n search_fields %}
+
 {% if cl.search_fields %}
+
 {% if show_result_count %}
 <div class="module results">
     <h2>{% trans 'Results' %}</h2>
@@ -14,6 +14,7 @@
     </div>
 </div>
 {% endif %}
+
 <div class="module search">
     <h2>{% trans 'Search' %}</h2>
     <div id="toolbar">
@@ -25,9 +26,12 @@
                 <input type="submit" value="" />
             </div>
             {% if not cl.query %}
+            {% get_search_fields_verbose cl.opts as search_fields_verbose %}
+            {% if search_fields_verbose %}
                 <div class="form-row">
-                    <p class="help"><strong>Search for:</strong> {% get_search_fields_verbose cl.opts %}</p>
+                    <p class="help"><strong>Search for:</strong> {{ search_fields_verbose }}</p>
                 </div>
+            {% endif %}
             {% endif %}
         </div>
         {% for pair in cl.params.items %}
@@ -37,4 +41,5 @@
     </div>
 </div>
 <script type="text/javascript">document.getElementById("searchbar").focus();</script>
+
 {% endif %}
