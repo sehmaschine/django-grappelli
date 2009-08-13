@@ -3,13 +3,15 @@
 from django import template
 from django.contrib import admin
 from django.db import models
+import re
 
 register = template.Library()
 
 class GetSearchFields(template.Node):
     
-    def __init__(self, opts):
+    def __init__(self, opts, var_name):
         self.opts = template.Variable(opts)
+        self.var_name = var_name
     
     def render(self, context):
         opts = str(self.opts.resolve(context)).split('.')
@@ -19,17 +21,21 @@ class GetSearchFields(template.Node):
         except:
             field_list = ""
         
-        return ", ".join(field_list)
+        context[self.var_name] = ", ".join(field_list)
+        return ""
     
 
 def do_get_search_fields_verbose(parser, token):
     
     try:
-        # split_contents() knows not to split quoted strings.
-        tag_name, opts = token.split_contents()
-    except ValueError:
-        raise template.TemplateSyntaxError, "%r tag requires exactly one argument" % token.contents.split()[0]
-    return GetSearchFields(opts)
+        tag, arg = token.contents.split(None, 1)
+    except:
+        raise template.TemplateSyntaxError, "%s tag requires arguments" % token.contents.split()[0]
+    m = re.search(r'(.*?) as (\w+)', arg)
+    if not m:
+        raise template.TemplateSyntaxError, "%r tag had invalid arguments" % tag
+    opts, var_name = m.groups()
+    return GetSearchFields(opts, var_name)
     
 
 register.tag('get_search_fields_verbose', do_get_search_fields_verbose)
