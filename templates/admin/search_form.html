@@ -1,45 +1,47 @@
 {% load adminmedia i18n grp_tags %}
 
 {% if cl.search_fields %}
-
-{% if show_result_count %}
-<div class="module results">
-    <h2>{% trans 'Results' %}</h2>
-    <div class="form-row">
-        <p>{% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %}</p>
-        <span class="full-result-count quiet">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</span>
-    </div>
-    <div class="form-row narrow">
-        <a href="?{% if cl.is_popup %}pop=1{% endif %}">{% blocktrans with cl.full_result_count as full_result_count %}show all{% endblocktrans %}</a></strong>
-    </div>
-</div>
-{% endif %}
-
-<div class="module search">
-    <h2>{% trans 'Search' %}</h2>
-    <div id="toolbar">
-        <form id="changelist-search" action="" method="get">
-        <div><!-- DIV needed for valid HTML -->
-            <div class="form-row">
-                {% comment %}<label for="searchbar">&nbsp;</label>{% endcomment %}
-                <input type="text" size="40" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" {% if not cl.query %}class="search-fields-verbose"{% endif %} />
-                <input type="submit" value="" />
-            </div>
-            {% if not cl.query %}
-            {% get_search_fields_verbose cl.opts as search_fields_verbose %}
-            {% if search_fields_verbose %}
-                <div class="form-row">
-                    <p class="help"><strong>Search for:</strong> {{ search_fields_verbose }}</p>
-                </div>
-            {% endif %}
-            {% endif %}
+    
+    <!-- Results -->
+    {% if show_result_count %}
+    <div class="module results">
+        <h2>{% trans 'Results' %}</h2>
+        <div class="form-row">
+            <p>{% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %}</p>
+            <span class="full-result-count quiet">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</span>
         </div>
-        {% for pair in cl.params.items %}
-            {% ifnotequal pair.0 search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endifnotequal %}
-        {% endfor %}
-        </form>
+        <div class="form-row narrow">
+            <a href="?{% if cl.is_popup %}pop=1{% endif %}">{% blocktrans with cl.full_result_count as full_result_count %}show all{% endblocktrans %}</a></strong>
+        </div>
     </div>
-</div>
-<script type="text/javascript">document.getElementById("searchbar").focus();</script>
+    {% endif %}
+    
+    <!-- Search Form -->
+    <div class="module search">
+        <h2>{% trans 'Search' %}</h2>
+        <div id="toolbar">
+            <form id="changelist-search" action="" method="get">
+            <div><!-- DIV needed for valid HTML -->
+                <div class="form-row">
+                    {% comment %}<label for="searchbar">&nbsp;</label>{% endcomment %}
+                    <input type="text" size="40" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" {% if not cl.query %}class="search-fields-verbose"{% endif %} />
+                    <input type="submit" value="" />
+                </div>
+                {% if not cl.query %}
+                {% get_search_fields_verbose cl.opts as search_fields_verbose %}
+                {% if search_fields_verbose %}
+                    <div class="form-row">
+                        <p class="help"><strong>Search for:</strong> {{ search_fields_verbose }}</p>
+                    </div>
+                {% endif %}
+                {% endif %}
+            </div>
+            {% for pair in cl.params.items %}
+                {% ifnotequal pair.0 search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endifnotequal %}
+            {% endfor %}
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">document.getElementById("searchbar").focus();</script>
 
 {% endif %}

@@ -1,95 +1,43 @@
 {% extends "admin/base_site.html" %}
 
+<!-- LOADING -->
 {% load adminmedia admin_list i18n %}
 
-{% block stylesheets %}
-    {{ block.super }}
+<!-- STYLES -->
+{% block extrastyle %}
     <link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/changelist.css" />
-{% endblock %}
-
-{% block extrahead %}
-    <script type="text/javascript" src="{% admin_media_prefix %}js/getElementsBySelector.js"></script>
-    {% if cl.formset %}
-        <script type="text/javascript" src="../../jsi18n/"></script>
-    {% endif %}
-    {# <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsedFiltersets.js"></script> #}
-    {{ media }}
     {% if not actions_on_top and not actions_on_bottom %}
     <style>
         #changelist table thead th:first-child {width: inherit}
     </style>
     {% endif %}
-    
-    <script type="text/javascript">
-        function HorizontalOverflow() {
-            var TableWidth = $('table').outerWidth();
-            var ContentWidth = $('.changelist-content').outerWidth();
-            if (TableWidth > ContentWidth) {
-                $('#changelist.module.filtered').css({
-                    'padding-right' : 227
-                });
-                $('.changelist-content').css({
-                    'min-width' : TableWidth+1+'px'
-                });
-                $('#changelist-filter').css({
-                    'border-right' : '15px solid #fff'
-                });
-            }
-            if (TableWidth < ContentWidth) {
-                $('#changelist.module.filtered').css({
-                    'padding-right' : 210
-                });
-                $('.changelist-content').css({
-                    'min-width' : auto
-                });
-                $('#changelist-filter').css({
-                    'border-right' : 0
-                });
-            }
-        };
-        $(window).resize(function(){
-            HorizontalOverflow();
-        });
-        window.onload = function () {
-            HorizontalOverflow();
-        }
-        $(document).ready(function(){
-            
-            // TICKET #11447: td containing a.add-another need.nowrap
-            $('table').find('a.add-another').parent('td').addClass('nowrap');
-            
-            $('.filterset h3').click(function() {
-                $(this).parent().toggleClass('collapse-closed');
-                $(this).parent().toggleClass('collapse-open');
-                $(this).next().next().toggle();
-            });
-            $('input.search-fields-verbose').click(function() {
-                $(this).val("");
-                $(this).removeClass("search-fields-verbose");
-            });
-            
-            // SUBMIT FORM WITHOUT "RUN"-BUTTON
-            $('div.actions select').change(function(){
-                if ($(this).val()) {
-                    $('div.changelist-content form').submit();
-                }
-            });
-            
-            // HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
-            {% if is_popup %}
-            $('div.actions').hide();
-            $('p.submit-row').hide();
-            $('input.action-select').parent().hide();
-            $('input#action-toggle').parent().hide();
-            {% endif %}
-            
-        });
-    </script>
-
 {% endblock %}
 
+<!-- JAVASCRIPTS -->
+{% block extrahead %}
+    <script type="text/javascript" src="{% admin_media_prefix %}js/getElementsBySelector.js"></script>
+    {% if cl.formset %}
+        <script type="text/javascript" src="../../jsi18n/"></script>
+    {% endif %}
+    <script type="text/javascript" src="{% admin_media_prefix %}js/admin/Changelist.js"></script>
+    {% if is_popup %}
+    <script type="text/javascript">
+        // HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
+        $('div.actions').hide();
+        $('p.submit-row').hide();
+        $('input.action-select').parent().hide();
+        $('input#action-toggle').parent().hide();
+    </script>
+    {% endif %}
+{% endblock %}
+
+{% block media %}{{ media }}{% endblock %}
+
+<!-- COLTYPE/BODYCLASS-- >
+{% block coltype %}flex{% endblock %}
 {% block bodyclass %}change-list{% endblock %}
 
+<!-- BREADCRUMBS -- >
 {% block breadcrumbs %}
 {% if not is_popup %}
     <div class="breadcrumbs">
@@ -102,10 +50,11 @@
 {% endif %}
 {% endblock %}
 
-{% block coltype %}flex{% endblock %}
-
+<!-- CONTENT -->
 {% block content %}
     <div id="content-main">
+        
+        <!-- Object-Tools -->
         {% block object-tools %}
             {% if has_add_permission %}
                 <ul class="object-tools">
@@ -118,6 +67,7 @@
             {% endif %}
         {% endblock %}
         
+        <!-- Errors -->
         {% if cl.formset.errors %}
             <p class="errornote">
             {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
@@ -125,13 +75,20 @@
             <ul class="errorlist">{% for error in cl.formset.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
         {% endif %}
         
+        <!-- Changelist -->
         <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
             <div class="changelist-content">
                 <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                
+                <!-- Popup Hidden Field -->
                 {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+                
+                <!-- Management Form -->
                 {% if cl.formset %}
                     {{ cl.formset.management_form }}
                 {% endif %}
+                
+                <!-- Results -->
                 <div class="result-list-container">
                     {% block result_list %}
                         {% if action_form and actions_on_top and cl.full_result_count and cl.result_count %}{% admin_actions %}{% endif %}
@@ -140,6 +97,8 @@
                     {% endblock %}
                     {% block pagination %}{% pagination cl %}{% endblock %}
                 </div>
+                
+                <!-- Submit-Row -->
                 {% if cl.formset and cl.result_count %}
                     <p class="submit-row">
                         <input type="submit" name="_save" class="default" value="{% trans 'Save' %}"/>
@@ -148,15 +107,23 @@
                 </form>
             </div>
             
+            <!-- Sidebar -->
             {% block filters %}
                 {% if cl.has_filters %}
                     <div id="changelist-filter">
+                        
+                        <!-- Search -->
                         {% block search %}{% search_form cl %}{% endblock %}
+                        
+                        <!-- Date Hierarchy -->
                         {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+                        
+                        <!-- Filter -->
                         <div class="module filter">
                             <h2>{% trans 'Filter' %}</h2>
                             {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
                         </div>
+                        
                     </div>
                 {% endif %}
             {% endblock %}
