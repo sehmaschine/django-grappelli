@@ -153,8 +153,8 @@ class HelpItemOptions(admin.ModelAdmin):
     # Media
     class Media:
         js = [
-            '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/media/admin/tinymce_setup/tinymce_setup.js',
+            'admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            'admin/tinymce_setup/tinymce_setup.js',
         ]
     
 
