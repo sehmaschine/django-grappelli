@@ -31,7 +31,7 @@ class do_get_generic_objects(template.Node):
 def get_generic_relation_list(parser, token):
     """
     Returns a list of installed applications and models.
-    
+    Needed for lookup of generic relationships.
     """
     
     tokens = token.contents.split()
@@ -43,6 +43,9 @@ register.tag('get_generic_relation_list', get_generic_relation_list)
 # CONTEXT-SENSITIVE HELP
 
 def get_help(path):
+    """
+    Context Sensitive Help (currently not implemented).
+    """
     
     try:
         helpitem = HelpItem.objects.get(link=path)
@@ -57,6 +60,9 @@ register.inclusion_tag('admin/includes_grappelli/help.html')(get_help)
 # NAVIGATION
 
 def get_navigation(user):
+    """
+    User-related Navigation/Sidebar on the Admin Index Page.
+    """
     
     if user.is_superuser:
         object_list = NavigationItem.objects.all()
@@ -89,6 +95,9 @@ class GetSearchFields(template.Node):
     
 
 def do_get_search_fields_verbose(parser, token):
+    """
+    Get search_fields_verbose in order to display on the Changelist.
+    """
     
     try:
         tag, arg = token.contents.split(None, 1)
