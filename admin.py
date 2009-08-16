@@ -26,6 +26,9 @@ class NavigationItemInline(admin.StackedInline):
     )
     filter_horizontal = ('users',)
     
+    # Grappelli Options
+    allow_add = True
+    
 
 class NavigationOptions(admin.ModelAdmin):
     
@@ -57,6 +60,9 @@ class BookmarkItemInline(admin.TabularInline):
             'fields': ('title', 'link', 'order',)
         }),
     )
+    
+    # Grappelli Options
+    allow_add = True
     
 
 class BookmarkOptions(admin.ModelAdmin):
@@ -108,6 +114,9 @@ class HelpItemInline(admin.StackedInline):
             'fields': ('title', 'link', 'body', 'order',)
         }),
     )
+    
+    # Grappelli Options
+    allow_add = True
     
 
 class HelpOptions(admin.ModelAdmin):
