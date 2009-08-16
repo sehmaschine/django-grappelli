@@ -16,29 +16,27 @@
 
 <!-- JAVASCRIPTS / EXTRAHEAD -->
 {% block javascripts %}
-<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="{% admin_media_prefix %}js/admin/Bookmarks.js"></script>
-<script type="text/javascript">
-    // Admin URL
-    var ADMIN_URL = "/{% get_admin_url %}/";
-    // Generic Relations
-    {% get_generic_relation_list %}
-    // Get Bookmarks
-    $(document).ready(function(){
-        $.ajax({
-            type: "GET",
-            url: '{% url grp_bookmark_get %}',
-            data: "path=" + window.location.pathname,
-            dataType: "html",
-            success: function(data){
-                $('ul#bookmarks').replaceWith(data);
-            }
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}js/admin/Bookmarks.js"></script>
+    <script type="text/javascript">
+        // Admin URL
+        var ADMIN_URL = "/{% get_admin_url %}/";
+        // Generic Relations
+        {% get_generic_relation_list %}
+        // Get Bookmarks
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: '{% url grp_bookmark_get %}',
+                data: "path=" + window.location.pathname,
+                dataType: "html",
+                success: function(data){
+                    $('ul#bookmarks').replaceWith(data);
+                }
+            });
         });
-    });
-</script>
+    </script>
 {% endblock %}
-<!-- MEDIA -->
-{% block media %}{% endblock %}
 {% block extrahead %}{% endblock %}
 
 </head>

@@ -14,10 +14,11 @@
 {% endblock %}
 
 <!-- JAVASCRIPTS -->
-{% block extrahead %}
-    <script type="text/javascript" src="{% admin_media_prefix %}js/getElementsBySelector.js"></script>
+{% block javascripts %}
+    {{ block.super }}
     {% if cl.formset %}
         <script type="text/javascript" src="../../jsi18n/"></script>
+        {{ media }}
     {% endif %}
     <script type="text/javascript" src="{% admin_media_prefix %}js/admin/Changelist.js"></script>
     {% if is_popup %}
@@ -30,8 +31,6 @@
     </script>
     {% endif %}
 {% endblock %}
-
-{% block media %}{{ media }}{% endblock %}
 
 <!-- COLTYPE/BODYCLASS-- >
 {% block coltype %}flex{% endblock %}

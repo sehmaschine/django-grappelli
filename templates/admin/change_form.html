@@ -4,16 +4,15 @@
 {% load i18n admin_modify adminmedia %}
 
 <!-- JAVASCRIPTS -->
-{% block extrahead %}
+{% block javascripts %}
+    {{ block.super }}
     <script type="text/javascript" src="../../../jsi18n/"></script>
+    {{ media }}
     {% if inline_admin_formsets %}
         <script type="text/javascript" src="{% admin_media_prefix %}js/admin/Inline.js"></script>
         <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsedInlineFieldsets.js"></script>
     {% endif %}
 {% endblock %}
-
-<!-- MEDIA -->
-{% block media %}{{ media }}{% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->
 {% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
