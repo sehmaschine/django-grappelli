@@ -5,7 +5,7 @@
     <ul class="inline-item-tools">
         <li><a href="javascript://" class="openhandler" title="Open All Items"></a></li>
         <li><a href="javascript://" class="closehandler" title="Close All Items"></a></li>
-        <li><a href="javascript://" class="addhandler" title="Add Item"></a></li>
+        {% if inline_admin_formset.opts.allow_add %}<li><a href="javascript://" class="addhandler" title="Add Item"></a></li>{% endif %}
     </ul>
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}

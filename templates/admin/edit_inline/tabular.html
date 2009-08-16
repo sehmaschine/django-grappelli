@@ -3,7 +3,7 @@
 <div class="inline-group inline-tabular{% if inline_admin_formset.opts.sortable %} sortable{% endif %}{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}" name="inlinegrouptabular">
     <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
     <ul class="inline-item-tools">
-        <li><a href="javascript://" class="addhandler" title="Add Item"></a></li>
+        {% if inline_admin_formset.opts.allow_add %}<li><a href="javascript://" class="addhandler" title="Add Item"></a></li>{% endif %}
     </ul>
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}
