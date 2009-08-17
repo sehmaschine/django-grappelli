@@ -293,7 +293,7 @@ input.vManyToManyRawIdAdminField,
 .inline-tabular input.vTextField {
     width: 230px;
 }
-.inline-tabular select {
+.inline-tabular .form-cell>select {
     max-width: 230px;
 }
 

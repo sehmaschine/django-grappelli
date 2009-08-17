@@ -20,10 +20,11 @@
     width: 698px;
 }
 
-.selector h2, 
+.selector h2, .inline-group .selector h2, 
 .inline-related fieldset .selector-available h2, .inline-related fieldset .selector-chosen h2 {
     padding: 7px 5px 6px 7px;
     font-size: 12px; line-height: 13px; font-weight: bold;
+    border: none;
     border-bottom: 1px solid #d0d0d0;
     background: transparent;
 }
