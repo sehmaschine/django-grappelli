@@ -34,12 +34,20 @@ var DateTimeShortcuts = {
                 DateTimeShortcuts.addCalendar(inp);
             }
         }
+        
+        // Grappelli: remove text
+        $('p.datetime')
+            .contents()
+            .filter(function(){
+                return this.nodeType === 3;
+            })
+            .each(function(){
+                this.nodeValue = "";
+            });
+        
     },
     // Add clock widget to a given field
     addClock: function(inp) {
-        if (inp.previousSibling.nodeValue) {
-            inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
-        }
         
         var num = DateTimeShortcuts.clockInputs.length;
         DateTimeShortcuts.clockInputs[num] = inp;
@@ -125,9 +133,6 @@ var DateTimeShortcuts = {
     },
     // Add calendar widget to a given field.
     addCalendar: function(inp) {
-        // if (inp.previousSibling.nodeValue) {
-        //     inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
-        // }
         
         var num = DateTimeShortcuts.calendars.length;
         
