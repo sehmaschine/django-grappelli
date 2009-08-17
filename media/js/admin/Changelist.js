@@ -21,7 +21,7 @@ function HorizontalOverflow() {
             'padding-right': 210
         });
         $('.changelist-content').css({
-            'min-width': auto
+            'min-width': 'auto'
         });
         $('#changelist-filter').css({
             'border-right': 0
