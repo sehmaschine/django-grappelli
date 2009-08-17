@@ -87,6 +87,7 @@ td p.help {
 fieldset .field-box {
     float: left;
     margin-right: 45px;
+    white-space: nowrap;
 }
 
 
