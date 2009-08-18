@@ -375,12 +375,12 @@ body.popup ul.messagelist + #content {
     margin-top: 5px; margin-bottom: 5px;
 }
 .object-tools li {
-    display: block; float: left;
+    float: left;
     margin: 0 0 0 5px; padding: 0;
 }
 .object-tools a {
-    display: block; float: left;
-    margin: 0; padding: 6px 10px 4px;
+    display: block;
+    margin: 0; padding: 5px 10px;
     height: 16px;
     font-size: 11px;
     -moz-border-radius: 5px; -webkit-border-radius: 5px;
