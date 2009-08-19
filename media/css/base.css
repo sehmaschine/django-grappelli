@@ -520,12 +520,8 @@ div.breadcrumbs {
     border-bottom: 1px solid #ccc;
     text-align: left;
 }
-
-/* ACTION ICONS */
-
-.addlink {
-    padding-left: 12px;
-    background: url(../img/admin/icon_addlink.gif) 0 .2em no-repeat;
+body.popup div.breadcrumbs {
+    top: 0;
 }
 
 .changelink {
@@ -574,6 +570,9 @@ a.deletelink:hover {
     padding: 0 0 0 8px;
     margin-left: 2px;
     height: 16px;
+}
+body.popup .breadcrumbs + ul.messagelist {
+    top: 24px;
 }
 
 .object-tools li:hover {
@@ -633,9 +632,12 @@ table#change-history tbody th {
 #content {
     margin: 10px 15px;
 }
-
-#header {
-    width: 100%;
+body.popup #content {
+    margin-top: 0;
+}
+body.popup .breadcrumbs + #content, 
+body.popup ul.messagelist + #content {
+    margin-top: 50px;
 }
 
 #content-main {
@@ -704,28 +706,14 @@ table#change-history tbody th {
 #header a:hover {
     text-decoration: underline;
 }
-
-#branding h1 {
-    padding: 0 10px;
-    font-size: 18px;
-    margin: 8px 0;
-    font-weight: normal;
-    color: #f4f379;
+.object-tools li {
+    float: left;
+    margin: 0 0 0 5px; padding: 0;
 }
-
-#branding h2 {
-    padding: 0 10px;
-    font-size: 14px;
-    margin: -8px 0 8px 0;
-    font-weight: normal;
-    color: #ffc;
-}
-
-#user-tools {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1.2em 10px;
+.object-tools a {
+    display: block;
+    margin: 0; padding: 5px 10px;
+    height: 16px;
     font-size: 11px;
     text-align: right;
 }

@@ -1,31 +1,32 @@
 {% load i18n %}
-<ul>
-    <li>{{ admin_title }}</li>
-    <li id="toggle_bookmarks"><a href="javascript://">{% trans "Bookmarks" %}</a>
-        <ul id="bookmarks" class="menu">
+
+<ul id="bookmarks">
+    <li id="toggle-bookmarks-listing" class="enabled"><a href="javascript://">{% trans "Bookmarks" %}</a>
+        <ul id="bookmarks-listing">
             {% if object_list %}
             {% for object in object_list %}
             <li><a href="{{ object.link }}"><strong>{{ object }}</strong></a></li>
             {% endfor %}
             {% else %}
-            <li class="no-entries">{% trans "No Items Found." %}</li>
+            <li class="no-entries"><p>{% trans "No Bookmarks Found" %}</p></li>
             {% endif %}
         </ul>
     </li>
-    
-    {% if is_allowed %}
-    {% if is_bookmark %}
-    <li class="action bookmark">
-        <a href="/grappelli/bookmark/remove/?path={{ path }}" class="bookmark-remove"> </a>
+    <li class="action bookmark-add{% if not is_bookmark %} active{% endif %}">
+        {% if not is_bookmark %}<a href="javascript://" id="toggle-bookmark-add" class="bookmark-add"> </a>{% else %}&nbsp;{% endif %}
+        <div id="bookmark-add">
+            <form action="{% url grp_bookmark_add %}" method="POST">
+                <input id="bookmark-path" name="path" type="hidden" value="" />
+                <input id="bookmark-title" name="title" type="text" value="" />
+                <button id="bookmark-add-cancel">{% trans "Cancel" %}</button>
+                <input type="submit" value='{% trans "Save Bookmark" %}' id="bookmark-save" class="default" />
+            </form>
+        </div>
     </li>
-    {% else %}
-    <li class="action bookmark">
-        <a href="/grappelli/bookmark/add/?path={{ path }}&title={{ title }}" class="bookmark-add"> </a>
+    <li class="action bookmark-remove{% if is_bookmark %} active{% endif %}">
+        {% if is_bookmark %}<a href="{% url grp_bookmark_remove %}?path={{ path }}" class="bookmark-remove"> </a>{% else %}&nbsp;{% endif %}
     </li>
-    {% endif %}
-    {% endif %}
-    <li class="action bookmark manage">
+    <li class="action bookmark-manage">
         <a href="/admin/grappelli/bookmark/{{ bookmark.id }}/" class="bookmark-manage"> </a>
     </li>
-    <li> </li>
 </ul>

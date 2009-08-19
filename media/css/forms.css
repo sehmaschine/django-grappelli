@@ -1,328 +1,439 @@
-@import url('base.css');
-@import url('widgets.css');
 
-/* FORM ROWS */
+
+
+/* Basic Settings, Fieldsets, Form-Rows
+------------------------------------------------------------------------------------------------------ */
+
+form {
+    margin: 0; padding: 0;
+}
+
+fieldset {
+    margin: 0; padding: 0;
+}
+fieldset > div:last-child {
+    border-bottom: none !important;
+    -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+}
 
 .form-row {
     overflow: hidden;
-    padding: 8px 12px;
-    font-size: 11px;
-    border-bottom: 1px solid #eee;
+    padding: 8px 15px;
+    line-height: 18px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+.form-row:first-child {
+    border-top: none;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+.inline-related .form-row {
+    padding: 5px 11px;
+}
+.form-row.last, 
+.form-row:last-child {
+    border-bottom: none !important;
 }
 
-.form-row img, .form-row input {
-    vertical-align: middle;
-}
 
-form .form-row p {
-    padding-left: 0;
-    font-size: 11px;
-}
 
-/* FORM LABELS */
-
-form h4 {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-}
+/* Labels & Other Typographic Elements in Forms
+------------------------------------------------------------------------------------------------------ */
 
 label {
-    font-weight: normal !important;
-    color: #666;
-    font-size: 12px;
+    margin: 5px 0 -5px;
+    width: 150px;
+    color: #444; font-size: 11px; line-height: 14px;
+    cursor: pointer;
+}
+.required label, label.required, 
+.form-row .required label, .form-row label.required {
+    font-weight: bold;
+}
+fieldset.collapse-open label {
+    width: 120px;
 }
 
-.required label, label.required {
-    font-weight: bold !important;
-    color: #333 !important;
-}
 
-/* RADIO BUTTONS */
-
-form ul.radiolist li {
-    list-style-type: none;
-}
-
-form ul.radiolist label {
-    float: none;
-    display: inline;
-}
-
-form ul.inline {
-    margin-left: 0;
-    padding: 0;
-}
-
-form ul.inline li {
-    float: left;
-    padding-right: 7px;
-}
-
-/* ALIGNED FIELDSETS */
+/*  Aligned Fieldsets ................................................... */
 
 .aligned label {
-    display: block;
-    padding: 3px 10px 0 0;
-    float: left;
-    width: 8em;
+    display: block; float: left;
+    padding: 0 10px 6px 0;
+    width: 120px;
 }
-
-.colMS .aligned .vLargeTextField, .colMS .aligned .vXMLLargeTextField {
-    width: 350px;
+.aligned .vCheckboxLabel {
+    display: inline; float: none; clear: both;
+    margin: 0 0 0 10px; padding: 0;
 }
 
 form .aligned p, form .aligned ul {
-    margin-left: 7em;
-    padding-left: 30px;
+    margin-left: 0; padding-left: 0;
 }
-
 form .aligned table p {
-    margin-left: 0;
-    padding-left: 0;
+    margin-left: 0; padding-left: 0;
 }
-
 form .aligned p.help {
-    padding-left: 38px;
+    margin: 2px 0 0 131px; padding: 0;
 }
-
-.aligned .vCheckboxLabel {
-    float: none !important;
-    display: inline;
-    padding-left: 4px;
+form .aligned input + label + p.help {
+    margin: 0 0 0 154px; padding: 0;
 }
-
-.colM .aligned .vLargeTextField, .colM .aligned .vXMLLargeTextField {
-    width: 610px;
+td p.help {
+    margin-bottom: 3px; padding: 0;
 }
-
-.checkbox-row p.help {
-    margin-left: 0;
-    padding-left: 0 !important;
-}
-
 fieldset .field-box {
     float: left;
-    margin-right: 20px;
+    margin-right: 45px;
+    white-space: nowrap;
 }
 
-/* WIDE FIELDSETS */
 
-.wide label {
-    width: 15em !important;
+/* Filebrowser - Upload ................................................... */
+
+.form-row label + input[type=file] + p.help {
+    margin: 5px 0 0 130px; padding: 0;
 }
-
-form .wide p {
-    margin-left: 15em;
+.form-row label + p {
+    position: relative; float: none; left: 0;
+    margin: 6px 0; padding: 0;
 }
-
-form .wide p.help {
-    padding-left: 38px;
-}
-
-.colM fieldset.wide .vLargeTextField, .colM fieldset.wide .vXMLLargeTextField {
-    width: 450px;
-}
-
-/* COLLAPSED FIELDSETS */
-
-fieldset.collapsed * {
+.form-row label + p + label {
     display: none;
 }
-
-fieldset.collapsed h2, fieldset.collapsed {
-    display: block !important;
+.form-row label + p + label + p {
+    position: relative; float: none; left: 131px;
+}
+.form-row label + p.help {
+    margin: 7px 0 5px;
+}
+.checkbox-row p.help {
+    margin-left: 0; padding-left: 0;
 }
 
-fieldset.collapsed h2 {
-    background-image: url(../img/admin/nav-bg.gif);
-    background-position: bottom left;
-    color: #999;
+
+
+/* Form Fields
+------------------------------------------------------------------------------------------------------ */
+
+input, textarea, select, button {
+    margin: 0;
+    vertical-align: middle;
+    color: #666; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;
+    border: 1px solid #bbb;
+    border-color: #ccc #ddd #ddd #ccc;
+    -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    outline: none;
+}
+input:focus, textarea:focus, select:focus {
+    border-color: #999 #bbb #bbb #999;
 }
 
-fieldset.collapsed .collapse-toggle {
-    padding: 3px 5px !important;
-    background: transparent;
-    display: inline !important;
+
+/*  Text, Password ................................................... */
+
+input[type=text], input[type=password] {
+    padding: 5px 3px 4px;
+    height: 14px;
+}
+/*  Webkit browser hack: apply same horizontal padding as in moz browsers
+    Moz Browsers have a default horizontal padding of 3px in input[type=submit] */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type=text], input[type=password] {
+        padding: 0 3px 4px;
+        height: 19px;
+        line-height: 25px !important;
+    }
 }
 
-/* MONOSPACE TEXTAREAS */
 
+/*  File ................................................... */
+
+input[type=file] {
+    height: auto;
+    border: none;
+}
+.inline-tabular input[type=file] {
+    position: relative; top: 2px;
+    margin-bottom: -2px;
+}
+
+
+/*  Date & Time ................................................... */
+
+.vDateField, .vTimeField {
+    margin-left: 0;
+}
+p.datetime input.vTimeField {
+    margin-left: 13px;
+}
+
+
+/*  Textarea ................................................... */
+
+textarea {
+    vertical-align: top;
+    padding: 3px;
+}
 fieldset.monospace textarea {
     font-family: "Bitstream Vera Sans Mono",Monaco,"Courier New",Courier,monospace;
 }
 
-/* SUBMIT ROW */
+
+/*  Select ................................................... */
+
+select {
+    padding: 4px 3px 4px 0;
+    height: 25px;
+}
+select[multiple=multiple] {
+    padding-left: 1px;
+    height: 160px;
+}
+option {
+    padding-right: 30px;
+    border-bottom: 1px dotted #ddd;
+}
+option:last-child {
+    border-bottom: none;
+}
+
+
+/*  Checkbox, Radio ................................................... */
+
+input[type=checkbox], input[type=radio] {
+    position: relative;
+    margin: 0 0 0 130px;
+    vertical-align: top;
+}
+input[type=checkbox] {
+    top: 2px;
+}
+table input[type=checkbox], table input[type=radio] {
+    margin-left: 0;
+}
+.inline-group.inline-tabular input[type=checkbox], .inline-group.inline-tabular input[type=radio] {
+    margin: 4px 0 -4px;
+}
+.form-row label + input + p.help input[type=checkbox] {
+    position: relative; top: -2px; margin: 0 3px 0 0;
+}
+
+
+/*  Radiolists & Checkboxlists ................................................... */
+
+#content ul.radiolist, #content ul.checkboxlist {
+    position: relative; display: inline-block; float: none;
+    margin: 4px 0 5px; padding: 0;
+    line-height: 14px; font-weight: normal;
+}
+ul.inline li {
+    float: left;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+ul.radiolist label, ul.checkboxlist label {
+    float: none; display: inline;
+    padding-right: 0;
+}
+ul.radiolist label input, ul.checkboxlist label input {
+    position: relative;
+    margin: 0 2px 0 0 !important;
+    vertical-align: top;
+}
+.inline-group ul.inline li {
+    display: inline-block; float: none;
+}
+
+
+/*  Changelist Form Fields ................................................... */
+
+.change-list form table input[type=text], 
+.change-list form table input[type=password], 
+.change-list form table input[type=file], 
+.change-list form table select, 
+.change-list form table textarea {
+    position: relative;
+    top: -5px;
+    margin-bottom: -9px;
+    vertical-align: top;
+}
+
+.change-list form table input[type=radio], 
+.change-list form table input[type=checkbox] {
+    position: relative; top: 1px;
+}
+
+
+
+/* Form Fields Widths
+------------------------------------------------------------------------------------------------------ */
+
+input[type=text], input[type=password], 
+input.vDateField, input.vTimeField {
+    width: 100px;
+}
+select {
+    min-width: 108px;
+}
+
+input.vTextField, input.vURLField, input.vFileBrowseField, textarea, 
+.vLargeTextField, .vXMLLargeTextField {
+    width: 692px;
+}
+
+input.vForeignKeyRawIdAdminField, input.vIntegerField, input.vPositiveSmallIntegerField, 
+input.vManyToManyRawIdAdminField, 
+.inline-tabular input[type=text], .inline-tabular textarea {
+    width: 100px;
+}
+
+.inline-tabular input.vTextField {
+    width: 230px;
+}
+.inline-tabular .form-cell>select {
+    max-width: 230px;
+}
+
+
+
+/* Submit Row
+------------------------------------------------------------------------------------------------------ */
 
 .submit-row {
-    padding: 5px 7px;
+    margin: 20px 0 10px;
+}
+.change-form .submit-row {
     text-align: right;
-    background: white url(../img/admin/nav-bg.gif) 0 100% repeat-x;
-    border: 1px solid #ccc;
-    margin: 5px 0;
-    overflow: hidden;
 }
-
-.submit-row input {
-    margin: 0 0 0 5px;
+.submit-row a {
+    font-weight: bold;
 }
-
-.submit-row p {
-    margin: 0.3em;
+.submit-row:first-child {
+    margin-top: 3px;
 }
-
-.submit-row p.deletelink-box {
-    float: left;
-}
-
-.submit-row .deletelink {
-    background: url(../img/admin/icon_deletelink.gif) 0 50% no-repeat;
-    padding-left: 14px;
-}
-
-/* CUSTOM FORM FIELDS */
-
-.vSelectMultipleField {
-    vertical-align: top !important;
-}
-
-.vCheckboxField {
-    border: none;
-}
-
-.vDateField, .vTimeField {
-    margin-right: 2px;
-}
-
-.vURLField {
-    width: 30em;
-}
-
-.vLargeTextField, .vXMLLargeTextField {
-    width: 48em;
-}
-
-.flatpages-flatpage #id_content {
-    height: 40.2em;
-}
-
-.module table .vPositiveSmallIntegerField {
-    width: 2.2em;
-}
-
-.vTextField {
-    width: 20em;
-}
-
-.vIntegerField {
-    width: 5em;
-}
-
-.vForeignKeyRawIdAdminField {
-    width: 5em;
-}
-
-/* INLINES */
-
-.inline-group {
-    padding: 0;
-    border: 1px solid #ccc;
-    margin: 10px 0;
-}
-
-.inline-group .aligned label {
-    width: 8em;
-}
-
-.inline-related {
-    position: relative;
-}
-
-.inline-related h3 {
-    margin: 0;
-    color: #666;
-    padding: 3px 5px;
-    font-size: 11px;
-    background: #e1e1e1 url(../img/admin/nav-bg.gif) top left repeat-x;
-    border-bottom: 1px solid #ddd;
-}
-
-.inline-related h3 span.delete {
-    padding-left: 20px;
-    position: absolute;
-    top: 2px;
-    right: 10px;
-}
-
-.inline-related h3 span.delete label {
+.submit-row input + input {
     margin-left: 2px;
-    font-size: 11px;
 }
 
-.inline-related fieldset {
-    margin: 0;
-    background: #fff;
-    border: none;
-}
 
-.inline-related fieldset.module h3 {
-    margin: 0;
-    padding: 2px 5px 3px 5px;
-    font-size: 11px;
-    text-align: left;
-    font-weight: bold;
-    background: #bcd;
+/*  Submit, Delete & Cancel Buttons ................................................... */
+
+input[type=submit], input[type=button], button {
+    margin-top: 0; margin-bottom: 0; padding: 4px 5px 5px;
+    width: auto; height: 25px;
     color: #fff;
-}
-
-.inline-related.tabular fieldset.module table {
-    width: 100%;
-}
-
-.last-related fieldset {
     border: none;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #acd7e5;
+    cursor: pointer;
+}
+/*  Webkit browser hack: apply same horizontal padding as in moz browsers
+    Moz Browsers have a default horizontal padding of 3px in input[type=submit] */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type=submit], input[type=button], button {
+        padding: 5px 8px 4px;
+    }
 }
 
-.inline-group .tabular tr.has_original td {
-    padding-top: 2em;
+.submit-row p.deletelink-box, 
+.submit-row p.cancellink-box {
+    position: relative; float: left;
+    margin-right: 8px;
+}
+.submit-row a.deletelink, 
+.submit-row a.cancellink {
+    display: block;
+    padding: 5px 7px 4px;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 
-.inline-group .tabular tr td.original {
-    padding: 2px 0 0 0;
-    width: 0;
-    _position: relative;
+input[type=submit].default, input[type=button].default, button.default {
+    background: #309bbf;
 }
-
-.inline-group .tabular th.original {
-    width: 0px;
-    padding: 0;
+.submit-row a.deletelink:link, .submit-row a.deletelink:visited {
+    color: #fff;
+    background: #bf3030;
 }
-
-.inline-group .tabular td.original p {
-    position: absolute;
-    left: 0;
-    height: 1.1em;
-    padding: 2px 7px;
-    overflow: hidden;
-    font-size: 9px;
-    font-weight: bold;
+.submit-row a.cancellink:link, .submit-row a.cancellink:visited {
     color: #666;
-    _width: 700px;
+    background: #ddd;
 }
 
-.inline-group ul.tools {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+input[type=submit]:hover, input[type=submit]:active, 
+input[type=submit].default:hover, input[type=submit].default:active, 
+input[type=button]:hover, input[type=button]:active, 
+button:hover, button:active, 
+.submit-row a.deletelink:hover, .submit-row a.deletelink:active, 
+.submit-row a.cancellink:hover, .submit-row a.cancellink:active { 
+    color: #fff;
+    background: #444;
 }
 
-.inline-group ul.tools li {
-    display: inline;
-    padding: 0 5px;
+
+
+/* Changelist
+------------------------------------------------------------------------------------------------------ */
+
+#changelist .submit-row {
+    text-align: left;
 }
 
-.inline-group ul.tools a.add {
-    background: url(../img/admin/icon_addlink.gif) 0 50% no-repeat;
-    padding-left: 14px;
+#changelist #toolbar form #searchbar {
+    width: 144px;
 }
+#changelist-search input[type=submit] {
+    margin-left: 6px;
+    background: transparent url('../img/icons/icon-related_lookup.png') 50% 50% no-repeat;
+}
+#changelist-search input[type=submit]:hover {
+    background: transparent url('../img/icons/icon-related_lookup-hover.png') 50% 50% no-repeat;
+}
+
+
+
+/* Errors & Form Fields in Errors
+------------------------------------------------------------------------------------------------------ */
+
+.errornote {
+    margin-bottom: 5px; padding: 4px 5px 4px 10px;
+    color: #f7f7f7; font-size: 11px; font-weight: bold;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #bf3030;
+}
+
+ul.errorlist {
+    margin: -4px 0 4px;
+    color: #bf3030; font-size: 11px; line-height: 16px; font-weight: bold;
+}
+ul.errorlist li {
+    padding: 0 5px 0 130px;
+}
+
+.form-cell ul.errorlist {
+    margin: 3px 0 -3px; padding-left: 0;
+}
+.form-cell ul.errorlist li {
+    padding-left: 0;
+}
+
+td ul.errorlist {
+    margin: -9px 0 6px;
+}
+td ul.errorlist li {
+    padding-left: 0;
+}
+
+.error input, .error select, .errors input, .errors select {
+    border: 1px solid #bf3030;
+}
+.description {
+    padding: 10px 0 9px 15px;
+    border-bottom: 1px solid #d4d4d4;
+    border-top: 1px solid #fff;
+    color: #999; font-size: 11px;
+}
+
 

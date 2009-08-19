@@ -1,506 +1,326 @@
-/* SELECTOR (FILTER INTERFACE) */
+
+
+
+/*  Selectors
+------------------------------------------------------------------------------------------------------ */
 
 .selector {
-    width: 580px;
-    float: left;
-}
-
-.selector select {
-    width: 270px;
-    height: 17.2em;
+    position: relative; float: left; overflow: hidden;
+    width: 700px;
 }
 
 .selector-available, .selector-chosen {
     float: left;
-    width: 270px;
-    text-align: center;
-    margin-bottom: 5px;
-}
-
-.selector-available h2, .selector-chosen h2 {
+    width: 338px;
     border: 1px solid #ccc;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #ddd;
+}
+.stacked .selector-available, .stacked .selector-chosen {
+    width: 698px;
 }
 
-.selector .selector-available h2 {
-    background: white url(../img/admin/nav-bg.gif) bottom left repeat-x;
-    color: #666;
+.selector h2, .inline-group .selector h2, 
+.inline-related fieldset .selector-available h2, .inline-related fieldset .selector-chosen h2 {
+    padding: 7px 5px 6px 7px;
+    font-size: 12px; line-height: 13px; font-weight: bold;
+    border: none;
+    border-bottom: 1px solid #d0d0d0;
+    background: transparent;
 }
 
 .selector .selector-filter {
-    background: white;
-    border: 1px solid #ccc;
-    border-width: 0 1px;
-    padding: 3px;
-    color: #999;
-    font-size: 10px;
-    margin: 0;
-    text-align: left;
+    padding: 3px 5px 2px 2px;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+    background: url('../img/icons/icon-searchbox.png') 6px 50% no-repeat;
+}
+.selector h2 + .selector-filter {
+    -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
+}
+.selector .selector-filter input[type=text] {
+    position: relative;
+    margin: 0 0 0 25px;
+    width: 292px;
+}
+.selector.stacked .selector-filter input[type=text] {
+    width: 652px;
+}
+.selector .selector-filter img {
+    display: none;
 }
 
-.selector .selector-chosen .selector-filter {
-    padding: 4px 5px;
+.selector select[multiple=multiple] {
+    margin: 0; padding-left: 3px;
+    width: 338px; height: 200px;
+    border-top: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
+    border-left: none;
+    -moz-border-radius: 0; -webkit-border-radius: 0;
 }
-
-.selector .selector-available input {
-    width: 230px;
+.selector.stacked select[multiple=multiple] {
+    width: 698px;
+}
+.selector h2 + select {
+    display: none; position: relative; top: -1px;
+    border-top: none;
 }
 
 .selector ul.selector-chooser {
     float: left;
-    width: 22px;
-    height: 50px;
-    background: url(../img/admin/chooser-bg.gif) top center no-repeat;
-    margin: 8em 3px 0 3px;
-    padding: 0;
+    margin: 110px 2px 0; padding: 0;
 }
-
-.selector-chooser li {
-    margin: 0;
-    padding: 3px;
-    list-style-type: none;
+.selector.stacked ul.selector-chooser {
+    margin: 4px 0 0 334px;
 }
-
-.selector select {
-    margin-bottom: 5px;
-    margin-top: 0;
+.selector.stacked ul.selector-chooser li {
+    float: left;
 }
-
-.selector-add, .selector-remove {
-    width: 16px;
-    height: 16px;
+a.selector-add, a.selector-remove {
     display: block;
-    text-indent: -3000px;
+    width: 16px; height: 16px;
+    color: transparent;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
 }
-
-.selector-add {
-    background: url(../img/admin/selector-add.gif) top center no-repeat;
-    margin-bottom: 2px;
+a.selector-add:link, a.selector-add:visited {
+    background-image: url('../img/icons/icon-selector_add-m2m_horizontal.png');
 }
-
-.selector-remove {
-    background: url(../img/admin/selector-remove.gif) top center no-repeat;
+a.selector-add:hover, a.selector-add:active {
+    background-image: url('../img/icons/icon-selector_add-m2m_horizontal-hover.png');
 }
-
+a.selector-remove:link, a.selector-remove:visited {
+    background-image: url('../img/icons/icon-selector_remove-m2m_horizontal.png');
+}
+a.selector-remove:hover, a.selector-remove:active {
+    background-image: url('../img/icons/icon-selector_remove-m2m_horizontal-hover.png');
+}
+.stacked a.selector-add:link, .stacked a.selector-add:visited {
+    background-image: url('../img/icons/icon-selector_add-m2m_vertical.png');
+}
+.stacked a.selector-add:hover, .stacked a.selector-add:active {
+    background-image: url('../img/icons/icon-selector_add-m2m_vertical-hover.png');
+}
+.stacked a.selector-remove:link, .stacked a.selector-remove:visited {
+    background-image: url('../img/icons/icon-selector_remove-m2m_vertical.png');
+}
+.stacked a.selector-remove:hover, .stacked a.selector-remove:active {
+    background-image: url('../img/icons/icon-selector_remove-m2m_vertical-hover.png');
+}
 a.selector-chooseall, a.selector-clearall {
     display: block;
-    width: 6em;
-    text-align: left;
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: bold;
-    color: #666;
-    padding: 3px 0 3px 18px;
-}
-
-a.selector-chooseall:hover, a.selector-clearall:hover {
-    color: #036;
-}
-
-a.selector-chooseall {
-    width: 7em;
-    background: url(../img/admin/selector-addall.gif) left center no-repeat;
-}
-
-a.selector-clearall {
-    background: url(../img/admin/selector-removeall.gif) left center no-repeat;
+    margin: 0; padding: 2px 7px;
+    font-size: 11px; line-height: 13px; font-weight: bold;
+    border-top: 1px solid #e4e4e4;
 }
 
 
-/* STACKED SELECTORS */
 
-.stacked {
-    float: left;
-    width: 500px;
-}
-
-.stacked select {
-    width: 480px;
-    height: 10.1em;
-}
-
-.stacked .selector-available, .stacked .selector-chosen {
-    width: 480px;
-}
-
-.stacked .selector-available {
-    margin-bottom: 0;
-}
-
-.stacked .selector-available input {
-    width: 442px;
-}
-
-.stacked ul.selector-chooser {
-    height: 22px;
-    width: 50px;
-    margin: 0 0 3px 40%;
-    background: url(../img/admin/chooser_stacked-bg.gif) top center no-repeat;
-}
-
-.stacked .selector-chooser li {
-    float: left;
-    padding: 3px 3px 3px 5px;
-}
-
-.stacked .selector-chooseall, .stacked .selector-clearall {
-    display: none;
-}
-
-.stacked .selector-add {
-    background-image: url(../img/admin/selector_stacked-add.gif);
-}
-
-.stacked .selector-remove {
-    background-image: url(../img/admin/selector_stacked-remove.gif);
-}
-
-
-/* DATE AND TIME */
-
-p.datetime {
-    line-height: 20px;
-    margin: 0;
-    padding: 0;
-    color: #666;
-    font-size: 11px;
-    font-weight: bold;
-}
-
-.datetime span {
-    font-size: 11px;
-    color: #ccc;
-    font-weight: normal;
-    white-space: nowrap;
-}
-
-table p.datetime {
-    font-size: 10px;
-    margin-left: 0;
-    padding-left: 0;
-}
-
-/* FILE UPLOADS */
+/*  File Uploads
+------------------------------------------------------------------------------------------------------ */
 
 p.file-upload {
-    line-height: 20px;
-    margin: 0;
-    padding: 0;
-    color: #666;
-    font-size: 11px;
-    font-weight: bold;
+    margin: 0; padding: 0;
+    color: #666; font-size: 11px; line-height: 20px; font-weight: bold;
 }
-
 .file-upload a {
     font-weight: normal;
 }
-
 .file-upload .deletelink {
     margin-left: 5px;
 }
 
-/* CALENDARS & CLOCKS */
 
-.calendarbox, .clockbox {
-    margin: 5px auto;
-    font-size: 11px;
-    width: 16em;
-    text-align: center;
-    background: white;
-    position: relative;
+
+/*  Date & Time
+------------------------------------------------------------------------------------------------------ */
+
+p.datetime {
+    margin: 0; padding: 0;
+    color: #666; font-size: 11px;
+}
+p.datetime br {
+    display: none;
 }
 
-.clockbox {
-    width: auto;
+input.vDateField + span, input.vTimeField + span {
+    position: relative; top: -1px;
+    display: inline-block;
+    vertical-align: middle;
+    color: #ccc; font-size: 11px; line-height: 11px;
+}
+input.vDateField + span a:first-child, 
+input.vTimeField + span a:first-child {
+    position: relative; top: 1px;
 }
 
-.calendar {
+.form-row label + p.datetime {
     margin: 0;
-    padding: 0;
 }
+.change-list form table input.vDateField + span, 
+.change-list form table input.vTimeField + span {
+    vertical-align: baseline;
+}
+
+a[id^="calendarlink"] img, a[id^="clocklink"] img {
+    display: none;
+}
+a[id^="calendarlink"], a[id^="clocklink"] {
+    margin-right: 0; padding: 2px 10px 3px 8px;
+    background: transparent 50% 50% no-repeat;
+}
+a[id^="calendarlink"]:link, a[id^="calendarlink"]:visited {
+    background-image: url('../img/icons/icon-calendar.png');
+}
+a[id^="calendarlink"]:hover, a[id^="calendarlink"]:active {
+    background-image: url('../img/icons/icon-calendar-hover.png');
+}
+a[id^="clocklink"]:link, a[id^="clocklink"]:visited {
+    background-image: url('../img/icons/icon-clock.png');
+}
+a[id^="clocklink"]:hover, a[id^="clocklink"]:active {
+    background-image: url('../img/icons/icon-clock-hover.png');
+}
+
+
+
+/*  Calendarbox & Clockbox
+------------------------------------------------------------------------------------------------------ */
+
+.module.calendarbox, .module.clockbox {
+    position: absolute;
+    margin: 5px;
+    width: 180px;
+    font-size: 11px; text-align: center;
+    border: 2px solid #444;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #444;
+    -moz-box-shadow: 0 0 20px #999; -webkit-box-shadow: 0 0 20px #999;
+}
+.clockbox {
+    width: 120px;
+}
+
+
+/*  Table & Headings ................................................... */
 
 .calendar table {
-    margin: 0;
-    padding: 0;
+    width: 100%;
     border-collapse: collapse;
-    background: white;
-    width: 99%;
+    background: #fff;
 }
-
-.calendar caption, .calendarbox h2 {
-    margin: 0;
-    font-size: 11px;
-    text-align: center;
-    border-top: none;
-}
-
-.calendar th {
-    font-size: 10px;
-    color: #666;
-    padding: 2px 3px;
-    text-align: center;
-    background: #e1e1e1 url(../img/admin/nav-bg.gif) 0 50% repeat-x;
-    border-bottom: 1px solid #ddd;
-}
-
-.calendar td {
-    font-size: 11px;
-    text-align: center;
-    padding: 0;
-    border-top: 1px solid #eee;
+.module .calendar caption, .module .calendarbox h2, .module .clockbox h2 {
+    margin: 0; padding: 6px 0 7px;
+    color: #fff; font-size: 11px; font-weight: bold; text-align: center;
     border-bottom: none;
+    -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px;
+    background: #444 !important;
+}
+
+.calendar th, .calendar td {
+    font-size: 11px; text-align: center;
+}
+.calendar th {
+    padding: 2px 3px;
+    font-size: 10px;
+    border-bottom: 1px solid #c4c4c4;
+    background: #ddd;
+}
+.calendar td {
+    padding: 0;
+    background: #fff;
 }
 
 .calendar td.selected a {
-    background: #C9DBED;
+    background: #444;
 }
-
 .calendar td.nonday {
-    background: #efefef;
+    background: #eee;
 }
-
 .calendar td.today a {
-    background: #ffc;
+    background: #fff;
 }
 
 .calendar td a, .timelist a {
     display: block;
-    font-weight: bold;
-    padding: 4px;
-    text-decoration: none;
+    padding: 2px 0;
+    width: 100%; height: 100%;
+    font-weight: bold; text-align: center;
     color: #444;
 }
 
-.calendar td a:hover, .timelist a:hover {
-    background: #5b80b2;
-    color: white;
+.calendar td a:hover, .calendar td a:active, 
+.timelist a:hover, .timelist a:active {
+    color: #fff;
+    background: #309bbf;
 }
 
-.calendar td a:active, .timelist a:active {
-    background: #036;
-    color: white;
+
+/*  Calendar Navigation ................................................... */
+
+a.calendarnav-previous, a.calendarnav-next {
+    position: absolute; display: block;
+    padding: 5px;
+    width: 18px; height: 18px;
+    color: transparent;
+    background-color: #444;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+a.calendarnav-previous {
+    left: 0;
+    border-right: 1px solid #525252;
+    -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+    background-image: url('../img/icons/icon-calendarnav_previous.png');
+}
+a.calendarnav-next {
+    right: 0;
+    border-left: 1px solid #525252;
+    -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+    background-image: url('../img/icons/icon-calendarnav_next.png');
+}
+a.calendarnav-previous:hover, a.calendarnav-previous:active, 
+a.calendarnav-next:hover, a.calendarnav-next:active {
+    background-color: #309bbf;
 }
 
-.calendarnav {
-    font-size: 10px;
-    text-align: center;
-    color: #ccc;
-    margin: 0;
-    padding: 1px 3px;
-}
 
-.calendarnav a:link, #calendarnav a:visited, #calendarnav a:hover {
-    color: #999;
-}
+/*  Shortcuts & Cancel ................................................... */
 
 .calendar-shortcuts {
-    background: white;
-    font-size: 10px;
-    line-height: 11px;
-    border-top: 1px solid #eee;
     padding: 3px 0 4px;
-    color: #ccc;
+    color: #c4c4c4; font-size: 10px; line-height: 11px; font-weight: bold;
+    border-top: 1px solid #c4c4c4;
+    background: #ddd;
 }
-
-.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next {
-    display: block;
-    position: absolute;
-    font-weight: bold;
-    font-size: 12px;
-    background: #C9DBED url(../img/admin/default-bg.gif) bottom left repeat-x;
-    padding: 1px 4px 2px 4px;
-    color: white;
-}
-
-.calendarnav-previous:hover, .calendarnav-next:hover {
-    background: #036;
-}
-
-.calendarnav-previous {
-    top: 0;
-    left: 0;
-}
-
-.calendarnav-next {
-    top: 0;
-    right: 0;
-}
-
 .calendar-cancel {
-    margin: 0 !important;
-    padding: 0;
-    font-size: 10px;
-    background: #e1e1e1 url(../img/admin/nav-bg.gif) 0 50% repeat-x;
-    border-top: 1px solid #ddd;
-}
-
-.calendar-cancel a {
-    padding: 2px;
-    color: #999;
-}
-
-ul.timelist, .timelist li {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.timelist a {
-    padding: 2px;
-}
-
-/* INLINE ORDERER */
-
-ul.orderer {
-    position: relative;
-    padding: 0 !important;
-    margin: 0 !important;
-    list-style-type: none;
-}
-
-ul.orderer li {
-    list-style-type: none;
-    display: block;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #bbb;
-    border-width: 0 1px 1px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    background: #e2e2e2 url(../img/admin/nav-bg-grabber.gif) repeat-y;
-}
-
-ul.orderer li:hover {
-    cursor: move;
-    background-color: #ddd;
-}
-
-ul.orderer li a.selector {
-    margin-left: 12px;
-    overflow: hidden;
-    width: 83%;
-    font-size: 10px !important;
-    padding: 0.6em 0;
-}
-
-ul.orderer li a:link, ul.orderer li a:visited {
-    color: #333;
-}
-
-ul.orderer li .inline-deletelink {
-    position: absolute;
-    right: 4px;
-    margin-top: 0.6em;
-}
-
-ul.orderer li.selected {
-    background-color: #f8f8f8;
-    border-right-color: #f8f8f8;
-}
-
-ul.orderer li.deleted {
-    background: #bbb url(../img/admin/deleted-overlay.gif);
-}
-
-ul.orderer li.deleted a:link, ul.orderer li.deleted a:visited {
-    color: #888;
-}
-
-ul.orderer li.deleted .inline-deletelink {
-    background-image: url(../img/admin/inline-restore.png);
-}
-
-ul.orderer li.deleted:hover, ul.orderer li.deleted a.selector:hover {
-    cursor: default;
-}
-
-/* EDIT INLINE */
-
-.inline-deletelink {
-    display: block;
-    text-indent: -9999px;
-    background: transparent url(../img/admin/inline-delete.png) no-repeat;
-    width: 15px;
-    height: 15px;
-    margin: 0.4em 0;
-    border: 0px none;
-}
-
-.inline-deletelink:hover {
-    background-position: -15px 0;
-    cursor: pointer;
-}
-
-.editinline button.addlink {
-    border: 0px none;
-    color: #5b80b2;
-    font-size: 100%;
-    cursor: pointer;
-}
-
-.editinline button.addlink:hover {
-    color: #036;
-    cursor: pointer;
-}
-
-.editinline table .help {
-    text-align: right;
-    float: right;
-    padding-left: 2em;
-}
-
-.editinline tfoot .addlink {
-    white-space: nowrap;
-}
-
-.editinline table thead th:last-child {
-    border-left: none;
-}
-
-.editinline tr.deleted {
-    background: #ddd url(../img/admin/deleted-overlay.gif);
-}
-
-.editinline tr.deleted .inline-deletelink {
-    background-image: url(../img/admin/inline-restore.png);
-}
-
-.editinline tr.deleted td:hover {
-    cursor: default;
-}
-
-.editinline tr.deleted td:first-child {
-    background-image: none !important;
-}
-
-/* EDIT INLINE - STACKED */
-
-.editinline-stacked {
-    min-width: 758px;
-}
-
-.editinline-stacked .inline-object {
-    margin-left: 210px;
-    background: white;
-}
-
-.editinline-stacked .inline-source {
-    float: left;
-    width: 200px;
-    background: #f8f8f8;
-}
-
-.editinline-stacked .inline-splitter {
-    float: left;
-    width: 9px;
-    background: #f8f8f8 url(../img/admin/inline-splitter-bg.gif) 50% 50% no-repeat;
-    border-right: 1px solid #ccc;
-}
-
-.editinline-stacked .controls {
-    clear: both;
-    background: #e1e1e1 url(../img/admin/nav-bg.gif) top left repeat-x;
-    padding: 3px 4px;
+    margin: 0; padding: 2px 0 0;
     font-size: 11px;
-    border-top: 1px solid #ddd;
+    -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+    background: #444;
 }
+
+.calendar-cancel a:link, .calendar-cancel a:visited {
+    color: #d94141; font-weight: bold;
+}
+.calendar-cancel a:hover, .calendar-cancel a:active {
+    color: #fff;
+}
+
+
+/*  Timelist ................................................... */
+
+ul.timelist, ul.timelist li {
+    padding: 0;
+    background: #fff;
+}
+ul.timelist li +li {
+    border-top: 1px solid #e4e4e4;
+}
+
 

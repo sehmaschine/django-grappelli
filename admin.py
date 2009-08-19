@@ -26,6 +26,9 @@ class NavigationItemInline(admin.StackedInline):
     )
     filter_horizontal = ('users',)
     
+    # Grappelli Options
+    allow_add = True
+    
 
 class NavigationOptions(admin.ModelAdmin):
     
@@ -58,6 +61,9 @@ class BookmarkItemInline(admin.TabularInline):
         }),
     )
     
+    # Grappelli Options
+    allow_add = True
+    
 
 class BookmarkOptions(admin.ModelAdmin):
     
@@ -82,7 +88,7 @@ class BookmarkOptions(admin.ModelAdmin):
         has_class_permission = super(BookmarkOptions, self).has_change_permission(request, obj)
         if not has_class_permission:
             return False
-        if obj is not None and not request.user.is_superuser and request.user.id != obj.author.id:
+        if obj is not None and not request.user.is_superuser and request.user.id != obj.user.id:
             return False
         return True
     
@@ -108,6 +114,9 @@ class HelpItemInline(admin.StackedInline):
             'fields': ('title', 'link', 'body', 'order',)
         }),
     )
+    
+    # Grappelli Options
+    allow_add = True
     
 
 class HelpOptions(admin.ModelAdmin):
@@ -153,8 +162,8 @@ class HelpItemOptions(admin.ModelAdmin):
     # Media
     class Media:
         js = [
-            '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/media/admin/tinymce_setup/tinymce_setup.js',
+            'admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            'admin/tinymce_setup/tinymce_setup.js',
         ]
     
 

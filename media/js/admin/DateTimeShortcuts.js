@@ -1,9 +1,3 @@
-// $(document).ready(function(){
-//     $('.vDateField').each(function() {
-//        $(this).prev().val(''); 
-//     });
-// });
-
 // Inserts shortcut buttons after all of the following:
 //     <input type="text" class="vDateField">
 //     <input type="text" class="vTimeField">
@@ -29,7 +23,7 @@ var DateTimeShortcuts = {
                 break;
             }
         }
-
+        
         var inputs = document.getElementsByTagName('input');
         for (i=0; i<inputs.length; i++) {
             var inp = inputs[i];
@@ -40,16 +34,24 @@ var DateTimeShortcuts = {
                 DateTimeShortcuts.addCalendar(inp);
             }
         }
+        
+        // Grappelli: remove text
+        $('p.datetime')
+            .contents()
+            .filter(function(){
+                return this.nodeType === 3;
+            })
+            .each(function(){
+                this.nodeValue = "";
+            });
+        
     },
     // Add clock widget to a given field
     addClock: function(inp) {
-        if (inp.previousSibling.nodeValue) {
-            inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
-        }
         
         var num = DateTimeShortcuts.clockInputs.length;
         DateTimeShortcuts.clockInputs[num] = inp;
-
+        
         // Shortcut links (clock icon and "Now" link)
         var shortcuts_span = document.createElement('span');
         inp.parentNode.insertBefore(shortcuts_span, inp.nextSibling);
@@ -64,7 +66,7 @@ var DateTimeShortcuts = {
         shortcuts_span.appendChild(now_link);
         shortcuts_span.appendChild(document.createTextNode('\240|\240'));
         shortcuts_span.appendChild(clock_link);
-
+        
         // Create clock link div
         //
         // Markup looks like:
@@ -78,7 +80,7 @@ var DateTimeShortcuts = {
         //     </ul>
         //     <p class="calendar-cancel"><a href="#">Cancel</a></p>
         // </div>
-
+        
         var clock_box = document.createElement('div');
         clock_box.style.display = 'none';
         clock_box.style.position = 'absolute';
@@ -86,7 +88,7 @@ var DateTimeShortcuts = {
         clock_box.setAttribute('id', DateTimeShortcuts.clockDivName + num);
         document.body.appendChild(clock_box);
         addEvent(clock_box, 'click', DateTimeShortcuts.cancelEventPropagation);
-
+        
         quickElement('h2', clock_box, gettext('Choose a time'));
         time_list = quickElement('ul', clock_box, '');
         time_list.className = 'timelist';
@@ -94,7 +96,7 @@ var DateTimeShortcuts = {
         quickElement("a", quickElement("li", time_list, ""), gettext("Midnight"), "href", "javascript:DateTimeShortcuts.handleClockQuicklink(" + num + ", '00:00:00');")
         quickElement("a", quickElement("li", time_list, ""), gettext("6 a.m."), "href", "javascript:DateTimeShortcuts.handleClockQuicklink(" + num + ", '06:00:00');")
         quickElement("a", quickElement("li", time_list, ""), gettext("Noon"), "href", "javascript:DateTimeShortcuts.handleClockQuicklink(" + num + ", '12:00:00');")
-
+        
         cancel_p = quickElement('p', clock_box, '');
         cancel_p.className = 'calendar-cancel';
         quickElement('a', cancel_p, gettext('Cancel'), 'href', 'javascript:DateTimeShortcuts.dismissClock(' + num + ');');
@@ -102,7 +104,7 @@ var DateTimeShortcuts = {
     openClock: function(num) {
         var clock_box = document.getElementById(DateTimeShortcuts.clockDivName+num)
         var clock_link = document.getElementById(DateTimeShortcuts.clockLinkName+num)
-    
+        
         // Recalculate the clockbox position
         // is it left-to-right or right-to-left layout ?
         if (getStyle(document.body,'direction')!='rtl') {
@@ -116,7 +118,7 @@ var DateTimeShortcuts = {
             clock_box.style.left = findPosX(clock_link) - 110 + 'px';
         }
         clock_box.style.top = findPosY(clock_link) - 30 + 'px';
-    
+        
         // Show the clock box
         clock_box.style.display = 'block';
         addEvent(window, 'click', function() { DateTimeShortcuts.dismissClock(num); return true; });
@@ -131,14 +133,11 @@ var DateTimeShortcuts = {
     },
     // Add calendar widget to a given field.
     addCalendar: function(inp) {
-        if (inp.previousSibling.nodeValue) {
-            inp.previousSibling.deleteData(0, inp.previousSibling.nodeValue.length); // GRAPPELLI
-        }
         
         var num = DateTimeShortcuts.calendars.length;
-
+        
         DateTimeShortcuts.calendarInputs[num] = inp;
-
+        
         // Shortcut links (calendar icon and "Today" link)
         var shortcuts_span = document.createElement('span');
         inp.parentNode.insertBefore(shortcuts_span, inp.nextSibling);
@@ -153,7 +152,7 @@ var DateTimeShortcuts = {
         shortcuts_span.appendChild(today_link);
         shortcuts_span.appendChild(document.createTextNode('\240|\240'));
         shortcuts_span.appendChild(cal_link);
-
+        
         // Create calendarbox div.
         //
         // Markup looks like:
@@ -178,20 +177,20 @@ var DateTimeShortcuts = {
         cal_box.setAttribute('id', DateTimeShortcuts.calendarDivName1 + num);
         document.body.appendChild(cal_box);
         addEvent(cal_box, 'click', DateTimeShortcuts.cancelEventPropagation);
-
+        
         // next-prev links
         var cal_nav = quickElement('div', cal_box, '');
         var cal_nav_prev = quickElement('a', cal_nav, '<', 'href', 'javascript:DateTimeShortcuts.drawPrev('+num+');');
         cal_nav_prev.className = 'calendarnav-previous';
         var cal_nav_next = quickElement('a', cal_nav, '>', 'href', 'javascript:DateTimeShortcuts.drawNext('+num+');');
         cal_nav_next.className = 'calendarnav-next';
-
+        
         // main box
         var cal_main = quickElement('div', cal_box, '', 'id', DateTimeShortcuts.calendarDivName2 + num);
         cal_main.className = 'calendar';
         DateTimeShortcuts.calendars[num] = new Calendar(DateTimeShortcuts.calendarDivName2 + num, DateTimeShortcuts.handleCalendarCallback(num));
         DateTimeShortcuts.calendars[num].drawCurrent();
-
+        
         // calendar shortcuts
         var shortcuts = quickElement('div', cal_box, '');
         shortcuts.className = 'calendar-shortcuts';
@@ -200,7 +199,7 @@ var DateTimeShortcuts = {
         quickElement('a', shortcuts, gettext('Today'), 'href', 'javascript:DateTimeShortcuts.handleCalendarQuickLink(' + num + ', 0);');
         shortcuts.appendChild(document.createTextNode('\240|\240'));
         quickElement('a', shortcuts, gettext('Tomorrow'), 'href', 'javascript:DateTimeShortcuts.handleCalendarQuickLink(' + num + ', +1);');
-
+        
         // cancel bar
         var cancel_p = quickElement('p', cal_box, '');
         cancel_p.className = 'calendar-cancel';
@@ -209,20 +208,20 @@ var DateTimeShortcuts = {
     openCalendar: function(num) {
         var cal_box = document.getElementById(DateTimeShortcuts.calendarDivName1+num)
         var cal_link = document.getElementById(DateTimeShortcuts.calendarLinkName+num)
-	var inp = DateTimeShortcuts.calendarInputs[num];
-
-	// Determine if the current value in the input has a valid date.
-	// If so, draw the calendar with that date's year and month.
-	if (inp.value) {
-	    var date_parts = inp.value.split('-');
-	    var year = date_parts[0];
-	    var month = parseFloat(date_parts[1]);
-	    if (year.match(/\d\d\d\d/) && month >= 1 && month <= 12) {
-		DateTimeShortcuts.calendars[num].drawDate(month, year);
-	    }
-	}
-
+    var inp = DateTimeShortcuts.calendarInputs[num];
     
+    // Determine if the current value in the input has a valid date.
+    // If so, draw the calendar with that date's year and month.
+    if (inp.value) {
+        var date_parts = inp.value.split('-');
+        var year = date_parts[0];
+        var month = parseFloat(date_parts[1]);
+        if (year.match(/\d\d\d\d/) && month >= 1 && month <= 12) {
+        DateTimeShortcuts.calendars[num].drawDate(month, year);
+        }
+    }
+    
+
         // Recalculate the clockbox position
         // is it left-to-right or right-to-left layout ?
         if (getStyle(document.body,'direction')!='rtl') {
