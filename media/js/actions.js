@@ -7,7 +7,7 @@ var Actions = {
                 Actions.checker(selectAll.checked);
             });
         }
-        var changelistTable = document.getElementsBySelector('#changelist table')[0];
+        var changelistTable = $('#changelist table').get(0);
         if (changelistTable) {
             addEvent(changelistTable, 'click', function(e) {
                 if (!e) { var e = window.event; }
@@ -23,6 +23,7 @@ var Actions = {
     toggleRow: function(tr, checked) {
         if (checked && tr.className.indexOf('selected') == -1) {
             tr.className += ' selected';
+            console.log('test');
         } else if (!checked) {
             tr.className = tr.className.replace(' selected', '');
         }  
