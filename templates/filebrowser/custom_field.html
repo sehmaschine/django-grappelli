@@ -1,0 +1,27 @@
+{% load fb_versions %}
+<input id="{{ final_attrs.id }}" type="text" class="vFileBrowseField" name="{{ final_attrs.name }}" value="{{ value }}" />
+<a href="javascript:FileBrowser.show('{{ final_attrs.id }}', '{% url fb_browse %}?pop=1{% if final_attrs.directory %}&amp;dir={{ final_attrs.directory }}{% endif %}{% if final_attrs.format %}&amp;type={{ final_attrs.format }}{% endif %}');" class="fb_show">
+    <img src="{{ final_attrs.search_icon }}" alt="" />
+</a>
+{% ifequal value.filetype "Image" %}
+<p class="help" id="help_{{ final_attrs.id }}">
+    <a href="{{ value.url_full }}" target="_blank" id="link_{{ final_attrs.id }}">
+        <img id="image_{{ final_attrs.id }}" src="{% version value.path final_attrs.ADMIN_THUMBNAIL %}" class="preview" />
+    </a>
+</p>
+{% else %}
+<p class="help" id="help_{{ final_attrs.id }}" style="display: none;">
+    <a href="javascript://" target="_self" id="link_{{ final_attrs.id }}">
+        <img id="image_{{ final_attrs.id }}" class="preview" src="" />
+    </a>
+</p>
+{% endifequal %}
+{% if final_attrs.DEBUG %}
+<p>
+    <strong>Path</strong> {{ value.path }}<br />
+    <strong>FileType</strong> {{ value.filetype }}<br /><br />
+    <strong>Directory</strong> {{ final_attrs.directory }}<br />
+    <strong>Extensions</strong> {{ final_attrs.extensions }}<br />
+    <strong>Format</strong> {{ final_attrs.format }}
+</p>
+{% endif %}

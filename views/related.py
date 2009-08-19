@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 from django.http import HttpResponse
 from django.db import models
-
 
 def related_lookup(request):
     

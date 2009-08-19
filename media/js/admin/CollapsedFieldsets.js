@@ -13,6 +13,7 @@ $(document).ready(function(){
         $(this).parent().toggleClass('collapse-closed');
         $(this).parent().toggleClass('collapse-open');
     });
+    
     /// OPEN FIELDSETS WITH ERRORS
     $('fieldset[class*="collapse-closed"]').children('div[class*="errors"]').each(function(i) {
         $(this).parent().toggleClass("collapsed");

@@ -1,0 +1,30 @@
+{% load i18n fb_tags %}
+<thead>
+    <tr>
+    <!-- SELECT -->
+    {% ifequal query.pop '1' %}{% if results_var.select_total %}<th></th>{% endif %}{% endifequal %}
+    {% ifequal query.pop '2' %}{% if results_var.select_total %}<th></th>{% endif %}{% endifequal %}
+    {% ifequal query.pop '3' %}{% if results_var.select_total %}<th></th>{% endif %}{% endifequal %}
+    <!-- SHOW VERSIONS -->
+    {% if results_var.images_total %}<th>&nbsp;</th>{% endif %}
+    <!-- FILETYPE -->
+    {% ifequal query.o 'filetype_checked' %}<th class="sorted {{ query.ot }}ending"><a href="{% query_string "" "o,ot" %}&amp;ot={% ifequal query.ot 'desc' %}asc{% else %}desc{% endifequal %}&amp;o=filetype_checked"></a></th>{% endifequal %}
+    {% ifnotequal query.o 'filetype_checked' %}<th><a href="{% query_string "" "o,ot" %}&amp;ot=asc&amp;o=filetype_checked">&nbsp;</a></th>{% endifnotequal %}
+    <!-- THUMB -->
+    {% if results_var.images_total %}<th>&nbsp;</th>{% endif %}
+    <!-- FILENAME / DIMENSIONS  -->
+    {% ifequal query.o 'filename_lower' %}<th class="sorted {{ query.ot }}ending"><a href="{% query_string "" "o,ot" %}&amp;ot={% ifequal query.ot 'desc' %}asc{% else %}desc{% endifequal %}&amp;o=filename_lower">{% trans 'Filename' %}</a></th>{% endifequal %}
+    {% ifnotequal query.o 'filename_lower' %}<th><a href="{% query_string "" "o,ot" %}&amp;ot=asc&amp;o=filename_lower">{% trans 'Filename' %}</a></th>{% endifnotequal %}
+    <!-- RENAME -->
+    <th>&nbsp;</th>
+    <!-- SIZE -->
+    {% ifequal query.o 'filesize' %}<th class="sorted {{ query.ot }}ending"><a href="{% query_string "" "o,ot" %}&amp;ot={% ifequal query.ot 'desc' %}asc{% else %}desc{% endifequal %}&amp;o=filesize">{% trans 'Size' %}</a></th>{% endifequal %}
+    {% ifnotequal query.o 'filesize' %}<th><a href="{% query_string "" "o,ot" %}&amp;ot=asc&amp;o=filesize">{% trans 'Size' %}</a></th>{% endifnotequal %}
+    <!-- DATE -->
+    {% ifequal query.o 'date' %}<th class="sorted {{ query.ot }}ending"><a href="{% query_string "" "o,ot" %}&amp;ot={% ifequal query.ot 'desc' %}asc{% else %}desc{% endifequal %}&amp;o=date">{% trans 'Date' %}</a></th>{% endifequal %}
+    {% ifnotequal query.o 'date' %}<th><a href="{% query_string "" "o,ot" %}&amp;ot=asc&amp;o=date">{% trans 'Date' %}</a></th>{% endifnotequal %}
+    <!-- DELETE -->
+    {% if results_var.delete_total %}<th>&nbsp;</th>{% endif %}
+    {% if settings_var.DEBUG %}<th>Debug</th>{% endif %}
+    </tr>
+</thead>

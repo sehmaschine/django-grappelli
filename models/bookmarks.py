@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 from django.db import models, transaction
 from django.utils.translation import ugettext as _
@@ -20,7 +20,7 @@ class Bookmark(models.Model):
     
     def __unicode__(self):
         return u"%s" % (self.user)
-        
+    
     save = transaction.commit_on_success(models.Model.save)
     
 
@@ -44,7 +44,7 @@ class BookmarkItem(models.Model):
     
     def __unicode__(self):
         return u"%s" % (self.title)
-        
+    
     save = transaction.commit_on_success(models.Model.save)
     
 

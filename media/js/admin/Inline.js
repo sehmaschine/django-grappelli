@@ -5,19 +5,22 @@ $(document).ready(function(){
         $(this).parents('div.inline-related').addClass('predelete');
     });
     
-    /// HACK: CHANGE HEIGHT OF INLINE-ITEM TOOLS FOR TABULAR INLINES
-    $('div.inline-tabular ul.inline-item-tools:not(:first)').each(function(){
-        height = "height:" + $(this).parent().height() + "px !important;";
-        $(this).attr('style', height);
-    });
-    
     // BUTTONS (STACKED INLINE)
     $('div.inline-stacked a.closehandler').bind("click", function(){
+        $(this).parents('div.inline-stacked').addClass('collapsed');
+        $(this).parents('div.inline-stacked').addClass('collapse-closed');
+        $(this).parents('div.inline-stacked').removeClass('collapse-open');
         $(this).parents('div.inline-stacked').find('div.inline-related').addClass('collapsed');
+        $(this).parents('div.inline-stacked').find('div.inline-related').addClass('collapse-closed');
+        $(this).parents('div.inline-stacked').find('div.inline-related').removeClass('collapse-open');
     });
     $('div.inline-stacked a.openhandler').bind("click", function(){
         $(this).parents('div.inline-stacked').removeClass('collapsed');
+        $(this).parents('div.inline-stacked').removeClass('collapse-closed');
+        $(this).parents('div.inline-stacked').addClass('collapse-open');
         $(this).parents('div.inline-stacked').find('div.inline-related').removeClass('collapsed');
+        $(this).parents('div.inline-stacked').find('div.inline-related').removeClass('collapse-closed');
+        $(this).parents('div.inline-stacked').find('div.inline-related').addClass('collapse-open');
     });
     
     /// function for cleaning up added items
@@ -75,31 +78,6 @@ $(document).ready(function(){
         $(this).prev(':checkbox').attr('checked', !$(this).prev(':checkbox').attr('checked'));
         $(this).parents('div.inline-related').toggleClass('predelete');
     });
-    
-    /// DRAG & DROP
-    // $('div.inline-group.sortable div.items').sortable({
-    //     axis: 'y',
-    //     items: '.inline-related',
-    //     handle: '.draghandler',
-    //     placeholder: 'placeholder',
-    //     //forcePlaceholderSize: true,
-    //     tolerance: 'intersect',
-    //     appendTo: 'body',
-    //     cursor: 'move',
-    //     start: function(event, ui) {
-    //         $('div.placeholder').html('<div>&nbsp;</div>');
-    //     },
-    //     helper: function(e, el) {
-    //         $("div.sortablehelper").find('h3:first').text(el.find('h3:first').text());
-    //         return $("div.sortablehelper")
-    //             .clone()
-    //             .width(el.width() + 'px')
-    //             .height(el.height() + 'px');
-    //     },
-    //     update: function(e, ui) {
-    //         $(this).removeAttr('style');
-    //     }
-    // });
     
 });
 

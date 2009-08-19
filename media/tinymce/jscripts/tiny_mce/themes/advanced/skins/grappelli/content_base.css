@@ -12,23 +12,23 @@ body#tinymce, body#tinymce td, body#tinymce pre, body#tinymce ol, body#tinymce u
     white-space: normal;
 }
 body#tinymce {
-    margin: 0; padding: 10px !important;
+    margin: 0; padding: 10px 10px 10px 0 !important;
     width: 620px;
-    background-color: #fff;
+    background-color: #eee;
 }
 body#tinymce.fullscreen {
-    width: 620px !important; /* Use this to apply the actual page-width an guarantee a wysiwyg content-structure */
+    width: 620px !important; /* Use this to apply the actual page-width and guarantee a wysiwyg content-structure */
 }
 
 a:link, a:visited, a:hover, a:active {
     padding: 0;
-    color: #5B80B2 !important;
+    color: #309bbf !important;
     text-decoration: none !important;
 }
 
 a.external:link, a.external:visited, a.external:hover, a.external:active {
     padding: 0;
-    color: #5B80B2 !important;
+    color: #309bbf !important;
     text-decoration: underline !important;
 }
 

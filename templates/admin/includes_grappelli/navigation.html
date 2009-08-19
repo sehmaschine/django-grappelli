@@ -2,7 +2,7 @@
 
 <div id="content-related-extended">
     <div class="module">
-        <h2>Navigation</h2>
+        <h2>{% trans "Navigation" %}</h2>
         {% if object_list %}
         {% for object in object_list %}
         {% ifchanged object.navigation %}
@@ -10,7 +10,7 @@
         <h3>{{ object.navigation }}</h3>
         <ul class="menulist">
         {% endifchanged %}
-        <li><a href="{{ object.link }}" class="{{ object.get_category_display }}">{{ object }}</a></li>
+        <li><a href="{{ object.link }}" class="{{ object.get_category_display }}"{% ifequal object.get_category_display "external" %} target="_blank"{% endifequal %}>{{ object }}</a></li>
         {% endfor %}
         {% else %}
         <h3>{% trans "No Items Found." %}</h3>

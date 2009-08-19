@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 from django.shortcuts import render_to_response
 from django.http import Http404, HttpResponse
@@ -32,7 +32,6 @@ def get_obj(content_type_id, object_id):
         'object_id': object_id
     }
     
-
 def generic_lookup(request):
     
     if request.method == 'GET':

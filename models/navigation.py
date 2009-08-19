@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 from django.db import models, transaction
 from django.utils.translation import ugettext as _

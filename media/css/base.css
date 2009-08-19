@@ -1,636 +1,309 @@
-/*
-    DJANGO Admin styles
-*/
+/* ------------------------------------------------------------------------------------------------------
 
-/* Import Grappelli Styles */
-@import url('../css_grappelli/grappelli.css');
+   Grappelli 2.0
+   * http://code.google.com/p/django-grappelli/
+   
+   Based on Django Admin Interface
+   * http://www.djangoproject.com
+   
+   Developed for Mozilla Firefox 3.0.1+ & Safari 3.5+ / using CSS 3 Specifications
+   
+   * See README for instructions on how to use Grappelli.
+   * For credits and origins, see AUTHORS.
+   
+   * Copyright (c) 2008-2009, vonautomatisch werkstaetten. All rights reserved.
+     See LICENSE for more info.
+
+------------------------------------------------------------------------------------------------------ */
+@import url('reset.css');
+@import url('typography.css');
+@import url('modules.css');
+@import url('tables.css');
+@import url('forms.css');
+@import url('widgets.css');
+
+/*  Loads background-gradients for webkit browsers (Safari etc.)
+    Comment out the following css-import if you want to use Grappelli without gradients */
+@import url('webkit-gradients.css');
+
+
+
+/*  Body
+------------------------------------------------------------------------------------------------------ */
 
 body {
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
-    color: #333;
+    margin: 0; padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 12px; line-height: 16px;
+    color: #444;
     background: #fff;
 }
 
-/* LINKS */
 
-a:link, a:visited {
-    color: #5b80b2;
-    text-decoration: none;
+
+/*  Header
+------------------------------------------------------------------------------------------------------ */
+
+#header {
+    position: fixed; top: 0; z-index: 1100;
+    width: 100%; height: 30px;
+    color: #eee; font-size: 11px; line-height: 14px; font-weight: bold;
+    background: #333;
+}
+#header a:hover, #header a:active {
+    color: #ddd;
 }
 
-a:hover {
-    color: #036;
-}
-
-a img {
-    border: none;
-}
-
-a.section:link, a.section:visited {
-    color: white;
-    text-decoration: none;
-}
-
-/* GLOBAL DEFAULTS */
-
-p, ol, ul, dl {
-    margin: .2em 0 .8em 0;
-}
-
-p {
-    padding: 0;
-    line-height: 140%;
-}
-
-h1,h2,h3,h4,h5 {
-    font-weight: bold;
-}
-
-h1 {
-    font-size: 18px;
-    color: #666;
-    padding: 0 6px 0 0;
-    margin: 0 0 .2em 0;
-}
-
-h2 {
-    font-size: 16px;
-    margin: 1em 0 .5em 0;
-}
-
-h2.subhead {
-    font-weight: normal;
-    margin-top: 0;
-}
-
-h3 {
-    font-size: 14px;
-    margin: .8em 0 .3em 0;
-    color: #666;
-    font-weight: bold;
-}
-
-h4 {
-    font-size: 12px;
-    margin: 1em 0 .8em 0;
-    padding-bottom: 3px;
-}
-
-h5 {
-    font-size: 10px;
-    margin: 1.5em 0 .5em 0;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-ul li {
-    list-style-type: square;
-    padding: 1px 0;
-}
-
-ul.plainlist {
-    margin-left: 0 !important;
-}
-
-ul.plainlist li {
-    list-style-type: none;
-}
-
-li ul {
-    margin-bottom: 0;
-}
-
-li, dt, dd {
-    font-size: 11px;
-    line-height: 14px;
-}
-
-dt {
-    font-weight: bold;
-    margin-top: 4px;
-}
-
-dd {
-    margin-left: 0;
-}
-
-form {
-    margin: 0;
-    padding: 0;
-}
-
-fieldset {
-    margin: 0;
-    padding: 0;
-}
-
-blockquote {
-    font-size: 11px;
-    color: #777;
-    margin-left: 2px;
-    padding-left: 10px;
-    border-left: 5px solid #ddd;
-}
-
-code, pre {
-    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
-    background: inherit;
-    color: #666;
-    font-size: 11px;
-}
-
-pre.literal-block {
-    margin: 10px;
-    background: #eee;
-    padding: 6px 8px;
-}
-
-code strong {
-    color: #930;
-}
-
-hr {
-    clear: both;
-    color: #eee;
-    background-color: #eee;
-    height: 1px;
-    border: none;
-    margin: 0;
-    padding: 0;
-    font-size: 1px;
-    line-height: 1px;
-}
-
-/* TEXT STYLES & MODIFIERS */
-
-.small {
-    font-size: 11px;
-}
-
-.tiny {
-    font-size: 10px;
-}
-
-p.tiny {
-    margin-top: -2px;
-}
-
-.mini {
-    font-size: 9px;
-}
-
-p.mini {
-    margin-top: -3px;
-}
-
-.help, p.help {
-    font-size: 10px !important;
-    color: #999;
-}
-
-p img, h1 img, h2 img, h3 img, h4 img, td img {
-    vertical-align: middle;
-}
-
-.quiet, a.quiet:link, a.quiet:visited {
-    color: #999 !important;
-    font-weight: normal !important;
-}
-
-.quiet strong {
-    font-weight: bold !important;
-}
-
-.float-right {
-    float: right;
-}
-
-.float-left {
-    float: left;
-}
-
-.clear {
-    clear: both;
-}
-
-.align-left {
-    text-align: left;
-}
-
-.align-right {
-    text-align: right;
-}
-
-.example {
-    margin: 10px 0;
-    padding: 5px 10px;
-    background: #efefef;
-}
-
-.nowrap {
-    white-space: nowrap;
-}
-
-/* TABLES */
-
-table {
-    border-collapse: collapse;
-    border-color: #ccc;
-}
-
-td, th {
-    font-size: 11px;
-    line-height: 13px;
-    border-bottom: 1px solid #eee;
-    vertical-align: top;
-    padding: 5px;
-    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
-}
-
-th {
-    text-align: left;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-thead th,
-tfoot td {
-    color: #666;
-    padding: 2px 5px;
-    font-size: 11px;
-    background: #e1e1e1 url(../img/admin/nav-bg.gif) top left repeat-x;
-    border-left: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-}
-
-tfoot td {
-    border-bottom: none;
-    border-top: 1px solid #ddd;
-}
-
-thead th:first-child,
-tfoot td:first-child {
-    border-left: none !important;
-}
-
-thead th.optional {
-    font-weight: normal !important;
-}
-
-fieldset table {
-    border-right: 1px solid #eee;
-}
-
-tr.row-label td {
-    font-size: 9px;
-    padding-top: 2px;
-    padding-bottom: 0;
-    border-bottom: none;
-    color: #666;
-    margin-top: -1px;
-}
-
-tr.alt {
-    background: #f6f6f6;
-}
-
-.row1 {
-    background: #EDF3FE;
-}
-
-.row2 {
-    background: white;
-}
-
-/* SORTABLE TABLES */
-
-thead th a:link, thead th a:visited {
-    color: #666;
-    display: block;
-}
-
-table thead th.sorted {
-    background-position: bottom left !important;
-}
-
-table thead th.sorted a {
-    padding-right: 13px;
-}
-
-table thead th.ascending a {
-    background: url(../img/admin/arrow-down.gif) right .4em no-repeat;
-}
-
-table thead th.descending a {
-    background: url(../img/admin/arrow-up.gif) right .4em no-repeat;
-}
-
-/* ORDERABLE TABLES */
-
-table.orderable tbody tr td:hover {
-    cursor: move;
-}
-
-table.orderable tbody tr td:first-child {
-    padding-left: 14px;
-    background-image: url(../img/admin/nav-bg-grabber.gif);
-    background-repeat: repeat-y;
-}
-
-table.orderable-initalized .order-cell, body>tr>td.order-cell {
+body.filebrowser.popup #header {
     display: none;
 }
 
-/* FORM DEFAULTS */
 
-input, textarea, select {
-    margin: 2px 0;
-    padding: 2px 3px;
-    vertical-align: middle;
-    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
-    font-weight: normal;
+
+/*  Branding, Bookmarks & User-Tools
+------------------------------------------------------------------------------------------------------ */
+
+.branding, .admin-title, #bookmarks li, #user-tools li {
+    margin: 0; padding: 8px 10px;
+}
+.branding {
+    display: none;
+    position: relative; float: right;
+    width: 10px;
+    border-left: 1px solid #343434;
+    background: url('../img/grappelli-icon.png') 50% 50% no-repeat;
+    background-color: #262626;
+}
+.admin-title {
+    position: relative; float: left;
+    padding-left: 15px;
+    padding-right: 10px;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #262626;
+}
+
+#header ul li {
+    position: relative; float: left;
+}
+
+
+/*  Bookmarks ................................................... */
+
+ul#bookmarks {
+    position: relative; float: left;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #404040;
+}
+ul#bookmarks li {
+    padding: 8px 10px;
+}
+ul#bookmarks li:last-child {
+    border-right: 1px solid #262626;
+}
+
+ul#bookmarks li#toggle-bookmarks-listing {
+    width: 175px;
+    cursor: pointer;
+}
+ul#bookmarks li#toggle-bookmarks-listing:hover>a {
+    color: #eee;
+}
+ul#bookmarks li.action {
+    padding: 3px 0 2px;
+}
+ul#bookmarks li.action:last-child {
+    padding-right: 5px;
+}
+
+
+/*  Bookmarks Actions ................................................... */
+
+ul#bookmarks li.action a {
+    position: relative; display: block;
+    margin: 0;
+    width: 18px; height: 22px;
+    border: 1px solid transparent;
+    -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+ul#bookmarks li.action {
+    width: 20px; height: 24px;
+    background-position: 50% 9px;
+    background-repeat: no-repeat;
+}
+ul#bookmarks li.action.bookmark-add {
+    background-image: url('../img/icons/icon-bookmark_add-inactive.png');
+}
+ul#bookmarks li.action.bookmark-remove {
+    background-image: url('../img/icons/icon-bookmark_remove-inactive.png');
+}
+ul#bookmarks li.action.active {
+    background-image: none;
+}
+
+ul#bookmarks li.action.bookmark-add.active a:link, ul#bookmarks li.action.bookmark-add.active a:visited {
+    background-image: url('../img/icons/icon-bookmark_add.png');
+}
+ul#bookmarks li.action.bookmark-add.active a:hover, ul#bookmarks li.action.bookmark-add.active a:active {
+    background-image: url('../img/icons/icon-bookmark_add-hover.png');
+}
+ul#bookmarks li.action.bookmark-remove.active a:link, ul#bookmarks li.action.bookmark-remove.active a:visited {
+     background-image: url('../img/icons/icon-bookmark_remove.png');
+}
+ul#bookmarks li.action.bookmark-remove.active a:hover, ul#bookmarks li.action.bookmark-remove.active a:active {
+    background-image: url('../img/icons/icon-bookmark_remove-hover.png');
+}
+ul#bookmarks li.action a.bookmark-manage:link, ul#bookmarks li.action a.bookmark-manage:visited {
+    background-image: url('../img/icons/icon-bookmark_manage.png');
+}
+ul#bookmarks li.action a.bookmark-manage:hover, ul#bookmarks li.action a.bookmark-manage:active {
+    background-image: url('../img/icons/icon-bookmark_manage-hover.png');
+}
+
+
+/*  Bookmarks Listing ................................................... */
+
+ul#bookmarks-listing {
+    display: none;
+    position: absolute; z-index: 1000; top: 30px; left: -1px; float: none;
+    margin: 0;
+    width: 260px;
+    border: 1px solid #404040;
+    -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+    background: #333;
+    -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
+}
+ul#bookmarks-listing li {
+    float: none;
+    padding: 0;
+    border-bottom: 1px solid #4d4d4d;
+}
+ul#bookmarks-listing li:last-child {
+    border: none;
+}
+
+ul#bookmarks li p {
+    padding: 5px 10px;
+}
+
+ul#bookmarks-listing li a:link, ul#bookmarks-listing li a:visited {
+    display: block;
+    padding: 5px 30px 5px 10px;
+    background: #333;
+}
+ul#bookmarks-listing li a:hover, ul#bookmarks-listing li a:active {
+    color: #eee;
+    background: #309bbf;
+}
+ul#bookmarks-listing li:last-child a {
+    -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px;
+}
+
+
+/*  Add Bookmark ................................................... */
+
+#bookmark-add {
+    display: none;
+    position: absolute; z-index: 1000; top: 30px; left: -196px;
+    margin: 0; padding: 10px;
+    width: 240px;
+    border: 1px solid #404040;
+    -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+    background: #333;
+    -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
+}
+#bookmark-add input[type=text] {
+    margin-bottom: 10px;
+    width: 234px;
+    border: none;
+}
+#bookmark-add input[type=submit], 
+#bookmark-add-cancel {
+    position: relative;
+    height: 25px;
     font-size: 11px;
 }
-
-textarea {
-    vertical-align: top !important;
-}
-
-input[type=text], input[type=password], textarea, select, .vTextField {
-    border: 1px solid #ccc;
-}
-
-/* FORM BUTTONS */
-
-.button, input[type=submit], input[type=button], .submit-row input {
-    background: white url(../img/admin/nav-bg.gif) bottom repeat-x;
-    padding: 3px;
-    color: black;
-    border: 1px solid #bbb;
-    border-color: #ddd #aaa #aaa #ddd;
-}
-
-.button:active, input[type=submit]:active, input[type=button]:active {
-    background-image: url(../img/admin/nav-bg-reverse.gif);
-    background-position: top;
-}
-
-.button.default, input[type=submit].default, .submit-row input.default {
-    border: 2px solid #5b80b2;
-    background: #7CA0C7 url(../img/admin/default-bg.gif) bottom repeat-x;
-    font-weight: bold;
-    color: white;
+#bookmark-add input[type=submit] {
     float: right;
 }
-
-.button.default:active, input[type=submit].default:active {
-    background-image: url(../img/admin/default-bg-reverse.gif);
-    background-position: top;
+#bookmark-add-cancel {
+    float: left;
+    background: #444;
+}
+#bookmark-add input[type=submit]:hover, 
+#bookmark-add-cancel:hover {
+    background: #666;
 }
 
-/* MODULES */
 
-.module {
-    border: 1px solid #ccc;
-    margin-bottom: 5px;
-    background: white;
+/*  User Tools ................................................... */
+
+#user-tools {
+    position: absolute;
+/*    right: 31px;*/
+    right: -1px;
+    border-left: 1px solid #262626;
+}
+#user-tools li {
+    border-left: 1px solid #404040;
+    border-right: 1px solid #262626;
 }
 
-.module p, .module ul, .module h3, .module h4, .module dl, .module pre {
-    padding-left: 10px;
-    padding-right: 10px;
-}
 
-.module blockquote {
-    margin-left: 12px;
-}
 
-.module ul, .module ol {
-    margin-left: 1.5em;
-}
-
-.module h3 {
-    margin-top: .6em;
-}
-
-.module h2, .module caption, .inline-group h2 {
-    margin: 0;
-    padding: 2px 5px 3px 5px;
-    font-size: 11px;
-    text-align: left;
-    font-weight: bold;
-    background: #7CA0C7 url(../img/admin/default-bg.gif) top left repeat-x;
-    color: white;
-}
-
-.module table {
-    border-collapse: collapse;
-}
-
-/* MESSAGES & ERRORS */
-
-ul.messagelist {
-    padding: 0 0 5px 0;
-    margin: 0;
-}
-
-ul.messagelist li {
-    font-size: 12px;
-    display: block;
-    padding: 4px 5px 4px 25px;
-    margin: 0 0 3px 0;
-    border-bottom: 1px solid #ddd;
-    color: #666;
-    background: #ffc url(../img/admin/icon_success.gif) 5px .3em no-repeat;
-}
-
-.errornote {
-    font-size: 12px !important;
-    display: block;
-    padding: 4px 5px 4px 25px;
-    margin: 0 0 3px 0;
-    border: 1px solid red;
-    color: red;
-    background: #ffc url(../img/admin/icon_error.gif) 5px .3em no-repeat;
-}
-
-ul.errorlist {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.errorlist li {
-    font-size: 12px !important;
-    display: block;
-    padding: 4px 5px 4px 25px;
-    margin: 0 0 3px 0;
-    border: 1px solid red;
-    color: white;
-    background: red url(../img/admin/icon_alert.gif) 5px .3em no-repeat;
-}
-
-td ul.errorlist {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-td ul.errorlist li {
-    margin: 0 !important;
-}
-
-.errors {
-    background: #ffc;
-}
-
-.errors input, .errors select {
-    border: 1px solid red;
-}
-
-div.system-message {
-    background: #ffc;
-    margin: 10px;
-    padding: 6px 8px;
-    font-size: .8em;
-}
-
-div.system-message p.system-message-title {
-    padding: 4px 5px 4px 25px;
-    margin: 0;
-    color: red;
-    background: #ffc url(../img/admin/icon_error.gif) 5px .3em no-repeat;
-}
-
-.description {
-    font-size: 12px;
-    padding: 5px 0 0 12px;
-}
-
-/* BREADCRUMBS */
+/*  Breadcrumbs
+------------------------------------------------------------------------------------------------------ */
 
 div.breadcrumbs {
-    background: white url(../img/admin/nav-bg-reverse.gif) 0 -10px repeat-x;
-    padding: 2px 8px 3px 8px;
-    font-size: 11px;
-    color: #999;
-    border-top: 1px solid white;
+    position: fixed; top: 30px; z-index: 1000;
+    width: 100%;
+    padding: 3px 8px 3px 15px;
+    color: #666; font-size: 11px; font-weight: normal; text-align: left;
+    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    text-align: left;
+    background: #e6e6e6;
 }
 body.popup div.breadcrumbs {
     top: 0;
 }
 
-.changelink {
-    padding-left: 12px;
-    background: url(../img/admin/icon_changelink.gif) 0 .2em no-repeat;
+
+
+/*  Messages
+------------------------------------------------------------------------------------------------------ */
+
+ul.messagelist {
+    position: relative; top: 54px; z-index: 1001;
 }
-
-.deletelink {
-    padding-left: 12px;
-    background: url(../img/admin/icon_deletelink.gif) 0 .25em no-repeat;
-}
-
-a.deletelink:link, a.deletelink:visited {
-    color: #CC3434;
-}
-
-a.deletelink:hover {
-    color: #993333;
-}
-
-/* OBJECT TOOLS */
-
-.object-tools {
-    font-size: 10px;
-    font-weight: bold;
-    font-family: Arial,Helvetica,sans-serif;
-    padding-left: 0;
-    float: right;
-    position: relative;
-    margin-top: -2.4em;
-    margin-bottom: -2em;
-}
-
-.form-row .object-tools {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    float: none;
-    height: 2em;
-    padding-left: 3.5em;
-}
-
-.object-tools li {
+ul.messagelist li {
     display: block;
-    float: left;
-    background: url(../img/admin/tool-left.gif) 0 0 no-repeat;
-    padding: 0 0 0 8px;
-    margin-left: 2px;
-    height: 16px;
+    font-size: 11px; font-weight: bold;
+    padding: 5px 0 5px 30px;
+    border-bottom: 1px solid #ddd;
+    background: #fcfce7 url('../img/icons/icon-yes.png') 15px 50% no-repeat;
 }
 body.popup .breadcrumbs + ul.messagelist {
     top: 24px;
 }
 
-.object-tools li:hover {
-    background: url(../img/admin/tool-left_over.gif) 0 0 no-repeat;
-}
 
-.object-tools a:link, .object-tools a:visited {
-    display: block;
-    float: left;
-    color: white;
-    padding: .1em 14px .1em 8px;
-    height: 14px;
-    background: #999 url(../img/admin/tool-right.gif) 100% 0 no-repeat;
-}
 
-.object-tools a:hover, .object-tools li:hover a {
-    background: #5b80b2 url(../img/admin/tool-right_over.gif) 100% 0 no-repeat;
-}
-
-.object-tools a.viewsitelink, .object-tools a.golink {
-    background: #999 url(../img/admin/tooltag-arrowright.gif) top right no-repeat;
-    padding-right: 28px;
-}
-
-.object-tools a.viewsitelink:hover, .object-tools a.golink:hover {
-    background: #5b80b2 url(../img/admin/tooltag-arrowright_over.gif) top right no-repeat;
-}
-
-.object-tools a.addlink {
-    background: #999 url(../img/admin/tooltag-add.gif) top right no-repeat;
-    padding-right: 28px;
-}
-
-.object-tools a.addlink:hover {
-    background: #5b80b2 url(../img/admin/tooltag-add_over.gif) top right no-repeat;
-}
-
-/* OBJECT HISTORY */
-
-table#change-history {
-    width: 100%;
-}
-
-table#change-history tbody th {
-    width: 16em;
-}
-
-/* PAGE STRUCTURE */
+/*  Container, Content & Footer
+------------------------------------------------------------------------------------------------------ */
 
 #container {
+    z-index: 0;
     position: relative;
     width: 100%;
     min-width: 760px;
     padding: 0;
 }
-
 #content {
-    margin: 10px 15px;
+    margin: 80px 15px;
 }
 body.popup #content {
     margin-top: 0;
@@ -644,67 +317,62 @@ body.popup ul.messagelist + #content {
     float: left;
     width: 100%;
 }
-
 #content-related {
-    float: right;
+    position: relative; float: right;
+    margin-right: -38em;
     width: 18em;
-    position: relative;
-    margin-right: -19em;
 }
-
+#content-related-extended {
+    position: relative; float: right;
+    margin-right: -19em;
+    width: 18em;
+}
 #footer {
     clear: both;
     padding: 10px;
 }
 
-/* COLUMN TYPES */
+
+
+/*  Column Types
+------------------------------------------------------------------------------------------------------ */
 
 .colMS {
     margin-right: 20em !important;
 }
-
 .colSM {
     margin-left: 20em !important;
 }
-
 .colSM #content-related {
     float: left;
     margin-right: 0;
     margin-left: -19em;
 }
-
 .colSM #content-main {
     float: right;
 }
-
 .popup .colM {
     width: 95%;
 }
-
 .subcol {
     float: left;
     width: 46%;
     margin-right: 15px;
 }
 
-.dashboard #content {
-    width: 500px;
+
+
+/*  Object Tools
+------------------------------------------------------------------------------------------------------ */
+
+.object-tools {
+    position: relative; float: right; z-index: 800;
+    margin: -36px 0 -35px; padding: 0;
+    font-weight: bold;
 }
-
-/* HEADER */
-
-#header {
-    background: #417690;
-    color: #ffc;
-    overflow: hidden;
-}
-
-#header a:link, #header a:visited {
-    color: white;
-}
-
-#header a:hover {
-    text-decoration: underline;
+.form-row .object-tools {
+    float: none;
+    margin-top: 5px; margin-bottom: 5px;
 }
 .object-tools li {
     float: left;
@@ -715,23 +383,24 @@ body.popup ul.messagelist + #content {
     margin: 0; padding: 5px 10px;
     height: 16px;
     font-size: 11px;
-    text-align: right;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
-
-/* SIDEBAR */
-
-#content-related h3 {
-    font-size: 12px;
+.object-tools a:link, .object-tools a:visited {
     color: #666;
-    margin-bottom: 3px;
+    background: #ddd;
+}
+.object-tools a:hover, .object-tools a:active {
+    color: #fff;
+    background: #444;
 }
 
-#content-related h4 {
-    font-size: 11px;
-}
 
-#content-related .module h2 {
-    background: #eee url(../img/admin/nav-bg.gif) bottom left repeat-x;
-    color: #666;
-}
+/*  Focused Buttons ................................................... */
 
+.object-tools a.focus:link, .object-tools a.focus:visited {
+    color: #fff;
+    background: #444;
+}
+.object-tools a.focus:hover, .object-tools a.focus:active {
+    background: #309bbf;
+}

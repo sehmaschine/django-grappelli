@@ -19,41 +19,6 @@ function CustomFileBrowser(field_name, url, type, win) {
     return false;
 }
 
-function CustomCleanup(type, value) {
-    switch (type) {
-        case "get_from_editor":
-            // remove multiple spaces
-            value = value.replace(/\s{2,}/g, "&nbsp;");
-            // remove multiple breaks
-            value = value.replace(/(\<br \/\>){2,}/g, "<br />");
-            // remove empty paragraphs
-            value = value.replace(/\<p\>\s+\<\/p\>/g, "");
-            value = value.replace(/\<p\>\<br \/\>\s\<\/p\>/g, "");
-            value = value.replace(/\<p\>\s\<br \/\>\<\/p\>/g, "");
-            // remove empty headlines
-            value = value.replace(/\<h1\>\s+\<\/h1\>/g, "");
-            value = value.replace(/\<h2\>\s+\<\/h2\>/g, "");
-            value = value.replace(/\<h3\>\s+\<\/h3\>/g, "");
-            value = value.replace(/\<h4\>\s+\<\/h4\>/g, "");
-            value = value.replace(/\<h1\>(\&nbsp\;)+\<\/h1\>/g, "");
-            value = value.replace(/\<h2\>(\&nbsp\;)+\<\/h2\>/g, "");
-            value = value.replace(/\<h3\>(\&nbsp\;)+\<\/h3\>/g, "");
-            value = value.replace(/\<h4\>(\&nbsp\;)+\<\/h4\>/g, "");
-            // remove headlines with breaks
-            value = value.replace(/\<h1\>\<br \/\>\<\/h1\>/g, "");
-            value = value.replace(/\<h2\>\<br \/\>\<\/h2\>/g, "");
-            value = value.replace(/\<h3\>\<br \/\>\<\/h3\>/g, "");
-            value = value.replace(/\<h4\>\<br \/\>\<\/h4\>/g, "");
-            // remove empty listelements
-            value = value.replace(/\<li\>\s+\<\/li\>/g, "");
-            value = value.replace(/\<li\>\s+\<br \/\>\<\/li\>/g, "");
-            value = value.replace(/\<li\>\<br \/\>\<\/li\>/g, "");
-            value = value.replace(/\<ol\>\s+\<\/ol\>/g, "");
-            value = value.replace(/\<ul\>\s+\<\/ul\>/g, "");
-    }
-    return value;
-}
-
 
 tinyMCE.init({
     
@@ -81,7 +46,6 @@ tinyMCE.init({
     
     // callbackss
     file_browser_callback: "CustomFileBrowser",
-    //cleanup_callback : "CleanupCallback",
     
     // theme_advanced
     theme_advanced_toolbar_location: "top",
@@ -158,7 +122,23 @@ tinyMCE.init({
     + "strong/b/p/div/em/i/td[%itrans|#text],"
     + "body[%btrans|#text]",
     
-
+    
+    // custom cleanup
+    // setup: function(ed) {
+    //     // Gets executed before DOM to HTML string serialization
+    //     ed.onBeforeGetContent.add(function(ed, o) {
+    //         // State get is set when contents is extracted from editor
+    //         if (o.get) {
+    //             // Remove empty paragraphs (because this is bad)
+    //             tinymce.each(ed.dom.select('p', o.node), function(n) {
+    //                 alert(n.firstChild);
+    //                 ed.dom.remove(n);
+    //             });
+    //             // Remove douple spaces
+    //             // o.content = o.content.replace(/<(strong|b)([^>]*)>/g, '');
+    //         }
+    //     });
+    // }
     
 });
 

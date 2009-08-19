@@ -1,0 +1,34 @@
+{% load i18n fb_tags %}
+
+<h2>{% trans "Filter" %}</h2>
+{% if query.filter_date %}
+<div class="filterset collapse-open">
+{% else %}
+<div class="filterset collapse-closed">
+{% endif %}
+<h3 class="form-row">{% trans "By Date" %}</h3>
+<ul>
+     {% if query.filter_date %}<li class="form-row narrow">{% else %}<li class="form-row narrow selected">{% endif %}<a href="{% query_string "" "filter_date" %}">{% trans "Any Date" %}</a></li>
+     {% ifequal query.filter_date 'today' %}<li class="form-row narrow selected">{% else %}<li class="form-row narrow">{% endifequal %}
+     <a href="{% query_string "" "filter_date" %}&amp;filter_date=today">{% trans "Today" %}</a></li>
+     {% ifequal query.filter_date 'past7days' %}<li class="form-row narrow selected">{% else %}<li class="form-row narrow">{% endifequal %}
+     <a href="{% query_string "" "filter_date" %}&amp;filter_date=past7days">{% trans "Past 7 days" %}</a></li>
+     {% ifequal query.filter_date 'thismonth' %}<li class="form-row narrow selected">{% else %}<li class="form-row narrow">{% endifequal %}
+     <a href="{% query_string "" "filter_date" %}&amp;filter_date=thismonth">{% trans "Past 30 days" %}</a></li>
+     {% ifequal query.filter_date 'thisyear' %}<li class="form-row narrow selected">{% else %}<li class="form-row narrow">{% endifequal %}
+     <a href="{% query_string "" "filter_date" %}&amp;filter_date=thisyear">{% trans "This year" %}</a></li>
+</ul>
+</div>
+{% if query.filter_type %}
+<div class="filterset collapse-open">
+{% else %}
+<div class="filterset collapse-closed">
+{% endif %}
+<h3 class="form-row">{% trans "By Type" %}</h3>
+<ul>
+    {% if query.filter_type %}<li class="form-row narrow">{% else %}<li class="form-row narrow selected">{% endif %}<a href="{% query_string "" "filter_type" %}">{% trans "All" %}</a></li>
+    {% for extension in settings_var.EXTENSIONS %}
+    {% ifequal query.filter_type extension %}<li class="form-row narrow selected">{% else %}<li class="form-row narrow">{% endifequal %}<a href="{% query_string "" "filter_type" %}&amp;filter_type={{ extension }}">{% trans extension %}</a></li>
+    {% endfor %}
+</ul>
+</div>

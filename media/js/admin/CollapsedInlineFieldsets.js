@@ -8,6 +8,8 @@ $(document).ready(function(){
     });
     $('div.inline-stacked div.inline-related h3.collapse-toggle').bind("click", function(){
         $(this).parent().toggleClass('collapsed');
+        $(this).parent().toggleClass('collapse-closed');
+        $(this).parent().toggleClass('collapse-open');
     });
     
     /// INLINEGROUPS (STACKED & TABULAR)
@@ -20,15 +22,17 @@ $(document).ready(function(){
     });
     $('div.inline-group h2.collapse-toggle').bind("click", function(){
         $(this).parent().toggleClass('collapsed');
+        $(this).parent().toggleClass('collapse-closed');
+        $(this).parent().toggleClass('collapse-open');
     });
     
-    /// OPEN STACKEDINLINE WITH ERRORS
+    /// OPEN STACKEDINLINE WITH ERRORS (onload)
     $('div.inline-stacked div.inline-related').find('div[class*="errors"]:first').each(function(){
         $(this).parents('div.inline-related').removeClass("collapsed");
         $(this).parents('div.inline-stacked').removeClass("collapsed");
     });
     
-    /// OPEN TABULARINLINE WITH ERRORS
+    /// OPEN TABULARINLINE WITH ERRORS (onload)
     $('div.inline-tabular').find('div[class*="error"]:first').each(function(i) {
         $(this).parents('div.inline-tabular').removeClass("collapsed");
     });

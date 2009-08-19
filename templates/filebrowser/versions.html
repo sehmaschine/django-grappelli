@@ -1,0 +1,158 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n adminmedia fb_tags fb_versions %}
+
+<!-- EXTRAHEAD -->
+{% block extrahead %}
+    {{ block.super }}
+    
+    <!-- FileBrowseField -->
+    {% ifequal query.pop '1' %}
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_FileBrowseField.js"></script>
+    {% endifequal %}
+    
+    <!-- TinyMCE -->
+    {% ifequal query.pop '2' %}
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_TINYMCE }}tiny_mce_popup.js"></script>
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_TinyMCE.js"></script>
+    {% if query.mce_rdomain %}<script language="javascript">document.domain = "{{ query.mce_rdomain }}"</script>{% endif %}
+    {% endifequal %}
+    
+    <!-- CKeditor (former "FCKeditor") -->
+    {% ifequal query.pop '3' %}
+    <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_CKeditor.js"></script>
+    {% endifequal %}
+    
+    {{ media }}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block coltype %}colM{% endblock %}
+{% block bodyclass %}change-list filebrowser{% endblock %}
+
+<!-- EXTRASTYLE -->
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css-development/changelists.css" />
+    <link rel="stylesheet" type="text/css" href="{{ settings_var.URL_FILEBROWSER_MEDIA }}css/filebrowser.css" />
+    {% if query.pop %}
+    <style type="text/css">
+    #header { display: none; }
+    </style>
+    {% endif %}
+{% endblock %}
+
+<!-- BREADCRBUMBS -->
+{% block breadcrumbs %}{% include "filebrowser/include/breadcrumbs.html" %}{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+<div id="content-main">
+    <div class="module" id="changelist">
+        <div class="changelist-content">
+        <table cellspacing="0">
+            <thead>
+                <tr>
+                
+                <!-- Select -->
+                {% ifequal query.pop '1' %}<th></th>{% endifequal %}
+                {% ifequal query.pop '2' %}<th></th>{% endifequal %}
+                {% ifequal query.pop '3' %}<th></th>{% endifequal %}
+                
+                <!-- Filename/Dimensions  -->
+                <th>{% trans 'Name' %}</th>
+                
+                <!-- Version -->
+                <th>{% trans 'Image Version' %}</th>
+                
+                <!-- Debug -->
+                {% if settings_var.DEBUG %}<th>{% trans "Debug" %}</th>{% endif %}
+                
+                </tr>
+            </thead>
+            <tbody>
+            {% for version in settings_var.ADMIN_VERSIONS %}
+                {% version_object original version as image_version %}
+                <tr class="{% cycle 'row1' 'row2' %}">
+                
+                <!-- Fileselect for FileBrowseField -->
+                {% ifequal query.pop '1' %}
+                <td class="fb_icon">
+                    {% selectable image_version.filetype query.type %}
+                    {% if selectable %}
+                    <a href="javascript://" onclick="FileSubmit('{{ image_version.url_save }}', '{{ image_version.url_thumbnail }}', '{{ image_version.filetype }}');" class="fb_selectlink" title="{% trans 'Select' %}"></a>
+                    {% else %}
+                    <img src="{{ settings_var.URL_FILEBROWSER_MEDIA }}img/filebrowser_icon_select_disabled.gif" width="23" height="17" />
+                    {% endif %}
+                </td>
+                {% endifequal %}
+                
+                <!-- Fileselect for RTE/TinyMCE -->
+                {% ifequal query.pop '2' %}
+                <td class="fb_icon">
+                    {% selectable image_version.filetype query.type %}
+                    {% if selectable %}
+                    <a href="javascript:FileBrowserDialogue.fileSubmit('{{ image_version.url_save }}');" class="fb_selectlink" title="{% trans 'Select File' %}"></a>
+                    {% else %}
+                    <img src="{{ settings_var.URL_FILEBROWSER_MEDIA }}img/filebrowser_icon_select_disabled.gif" width="23" height="17" />
+                    {% endif %}
+                </td>
+                {% endifequal %}
+                
+                <!-- Fileselect for CKeditor (former "FCKeditor") -->
+                {% ifequal query.pop '3' %}
+                <td class="fb_icon">
+                    {% selectable image_version.filetype query.type %}
+                    {% if selectable %}
+                    <a href="#" onclick="OpenFile(ProtectPath('{{ image_version.url_save }}'));return false;" class="fb_selectlink" title="{% trans 'Select File' %}"></a>
+                    {% else %}
+                    <img src="{{ settings_var.URL_FILEBROWSER_MEDIA }}img/filebrowser_icon_select_disabled.gif" width="23" height="17" />
+                    {% endif %}
+                </td>
+                {% endifequal %}
+                
+                <!-- Filename / Dimensions  -->
+                <td>
+                    {% version_setting version %}
+                    <strong>{{ version_setting.verbose_name }}</strong><br />
+                    {% if version_setting.width %}{% trans "Width" %}: {{ version_setting.width }}px<br />{% endif %}
+                    {% if version_setting.height %}{% trans "Height" %}: {{ version_setting.height }}px{% endif %}
+                </td>
+                
+                <!-- Version -->
+                <th><img src="{{ image_version.url_full }}" /></th>
+                
+                <!-- Debug -->
+                {% if settings_var.DEBUG %}
+                <td>
+                    <strong>Filename</strong> {{ image_version.filename }}<br />
+                    <strong>Filetype</strong> {{ image_version.filetype }}<br />
+                    <strong>Filesize</strong> {{ image_version.filesize }}<br />
+                    <strong>Extension</strong> {{ image_version.extension }}<br />
+                    <strong>Date</strong> {{ image_version.date }}<br />
+                    <strong>Datetime Object</strong> {{ image_version.datetime }}<br /><br />
+                    
+                    <strong>Relative Path</strong> {{ image_version.path_relative }}<br />
+                    <strong>Full Path</strong> {{ image_version.path_full }}<br />
+                    <strong>Relative URL</strong> {{ image_version.url_relative }}<br />
+                    <strong>Full URL</strong> {{ image_version.url_full }}<br /><br />
+                    
+                    <strong>URL for FileBrowseField</strong> {{ image_version.url_save }}<br />
+                    <strong>Thumbnail URL</strong> {{ image_version.url_thumbnail }}<br /><br />
+                    
+                    <strong>Dimensions</strong> {{ image_version.dimensions }}<br />
+                    <strong>Width</strong> {{ image_version.width }}<br />
+                    <strong>Height</strong> {{ image_version.height }}<br />
+                    <strong>Orientation</strong> {{ image_version.orientation }}
+                </td>
+                {% endif %}
+                
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
