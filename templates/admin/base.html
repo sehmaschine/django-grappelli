@@ -21,21 +21,14 @@
     <script type="text/javascript" src="{% admin_media_prefix %}js/admin/Bookmarks.js"></script>
     <script type="text/javascript">
         // Admin URL
-        var ADMIN_URL = "/{% get_admin_url %}/";
+        var ADMIN_URL = "/{% get_admin_url %}/"; // deprecated
+
+        $.extend($.grappelli.urls, {
+            admin: '/{% get_admin_url %}/',
+            bookmarks: '{% url grp_bookmark_get %}',
+        });
         // Generic Relations
         {% get_generic_relation_list %}
-        // Get Bookmarks
-        $(document).ready(function(){
-            $.ajax({
-                type: "GET",
-                url: '{% url grp_bookmark_get %}',
-                data: "path=" + window.location.pathname,
-                dataType: "html",
-                success: function(data){
-                    $('ul#bookmarks').replaceWith(data);
-                }
-            });
-        });
     </script>
 {% endblock %}
 {% block extrahead %}{% endblock %}
