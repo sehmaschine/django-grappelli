@@ -18,7 +18,7 @@ class NavigationItemInline(admin.StackedInline):
             'fields': ('title', 'link', 'category',)
         }),
         ('', {
-            'fields': ('users',),
+            'fields': ('groups', 'users',),
         }),
         ('', {
             'fields': ('order',),

@@ -6,6 +6,8 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.contrib import admin
 from django.db import models
+from django.db.models import Q
+from django.contrib.auth.models import Group
 
 from grappelli.models.help import HelpItem
 from grappelli.models.navigation import Navigation, NavigationItem
@@ -67,7 +69,7 @@ def get_navigation(user):
     if user.is_superuser:
         object_list = NavigationItem.objects.all()
     else:
-        object_list = user.admin_navigation_set.all()
+        object_list = NavigationItem.objects.filter(Q(groups=user.groups.all()) | Q(users=user)).distinct()
     
     return { 'object_list': object_list }
     

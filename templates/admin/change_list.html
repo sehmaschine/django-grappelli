@@ -75,7 +75,7 @@
         {% endif %}
         
         <!-- Changelist -->
-        <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+        <div class="module{% if cl.has_filters or cl.search_fields or cl.date_hierarchy %} filtered{% endif %}" id="changelist">
             <div class="changelist-content">
                 <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>
                 
@@ -108,7 +108,7 @@
             
             <!-- Sidebar -->
             {% block filters %}
-                {% if cl.has_filters %}
+                {% if cl.has_filters or cl.search_fields or cl.date_hierarchy %}
                     <div id="changelist-filter">
                         
                         <!-- Search -->
@@ -117,11 +117,13 @@
                         <!-- Date Hierarchy -->
                         {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
                         
+                        {% if cl.has_filters %}
                         <!-- Filter -->
                         <div class="module filter">
                             <h2>{% trans 'Filter' %}</h2>
                             {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
                         </div>
+                        {% endif %}
                         
                     </div>
                 {% endif %}

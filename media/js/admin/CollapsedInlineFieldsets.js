@@ -37,4 +37,18 @@ $(document).ready(function(){
         $(this).parents('div.inline-tabular').removeClass("collapsed");
     });
     
+    /// FIELDSETS WITHIN STACKED INLINES
+    $('div.inline-related').find('fieldset[class*="collapse-closed"]').each(function() {
+        $(this).addClass("collapsed");
+        $(this).find('h4:first').addClass("collapse-toggle");
+    });
+    $('div.inline-related').find('fieldset[class*="collapse-open"]').each(function() {
+        $(this).find('h4:first').addClass("collapse-toggle");
+    });
+    $('h4.collapse-toggle').bind("click", function(e){
+        $(this).parent().toggleClass('collapsed');
+        $(this).parent().toggleClass('collapse-closed');
+        $(this).parent().toggleClass('collapse-open');
+    });
+    
 });
