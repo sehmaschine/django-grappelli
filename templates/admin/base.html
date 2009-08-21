@@ -10,22 +10,33 @@
 <!-- STYLESHEETS / EXTRASTYLE -->
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}jquery/custom-theme/jquery-ui-1.7.2.custom.css" />
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
 {% endblock %}
 {% block extrastyle %}{% endblock %}
 
 <!-- JAVASCRIPTS / EXTRAHEAD -->
+
+{% comment %}
+
+jQuery UI theme: 
+
+http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&fsDefault=12px&cornerRadius=4px&bgColorHeader=333333&bgTextureHeader=05_inset_soft.png&bgImgOpacityHeader=30&borderColorHeader=aaaaaa&fcHeader=eeeeee&iconColorHeader=eeeeee&bgColorContent=eeeeee&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=222222&bgColorDefault=e6e6e6&bgTextureDefault=02_glass.png&bgImgOpacityDefault=75&borderColorDefault=d3d3d3&fcDefault=555555&iconColorDefault=888888&bgColorHover=d7dee0&bgTextureHover=02_glass.png&bgImgOpacityHover=75&borderColorHover=309BBF&fcHover=309BBF&iconColorHover=309BBF&bgColorActive=f0f0f0&bgTextureActive=04_highlight_hard.png&bgImgOpacityActive=80&borderColorActive=aaaaaa&fcActive=212121&iconColorActive=454545&bgColorHighlight=ffffee&bgTextureHighlight=02_glass.png&bgImgOpacityHighlight=55&borderColorHighlight=fcefa1&fcHighlight=363636&iconColorHighlight=309BBF&bgColorError=fef1ec&bgTextureError=05_inset_soft.png&bgImgOpacityError=95&borderColorError=BF3030&fcError=BF3030&iconColorError=BF3030&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
+{% endcomment %}
+
 {% block javascripts %}
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery.grappelli.js"></script>
     <script type="text/javascript">
         // Admin URL
-        var ADMIN_URL = "/{% get_admin_url %}/"; // deprecated
-
-        $.extend($.grappelli.urls, {
-            admin: '/{% get_admin_url %}/',
-            bookmarks: '{% url grp_bookmark_get %}',
+        var ADMIN_URL = "/{% get_admin_url %}/";
+        {% block javascripts.init  %}
+        $(function(){
+            $('#bookmarks').gBookmarks({url: '{% url grp_bookmark_get %}'});
         });
+        {% endblock %}
+        
         // Generic Relations
         {% get_generic_relation_list %}
     </script>
