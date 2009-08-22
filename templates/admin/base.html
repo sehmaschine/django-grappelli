@@ -34,6 +34,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
         {% block javascripts.init  %}
         $(function(){
             $('#bookmarks').gBookmarks({url: '{% url grp_bookmark_get %}'});
+            $('.changelist-content').gChangelist();
         });
         {% endblock %}
         

@@ -38,7 +38,6 @@ function dismissRelatedLookupPopup(win, chosenId) {
     }
     win.close();
 }
-
 function showAddAnotherPopup(triggeringLink) {
     var name = triggeringLink.id.replace(/^add_/, '');
     name = name.replace(/\./g, '___');
