@@ -226,7 +226,7 @@
 ------------------------------------------------------------------------------------------------------ */
 
 #changelist .results p {
-    margin: 5px 0 0;
+    margin: 5px 0 2px;
     font-weight: bold; line-height: 12px;
 }
 #changelist .results span.full-result-count {
