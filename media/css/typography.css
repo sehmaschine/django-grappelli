@@ -173,6 +173,10 @@ a.fb_show:hover, a.fb_show:active {
 p { padding: 0; }
 h1 + p { margin: 0 0 15px; }
 
+.object-history p {
+    padding: 5px 10px;
+}
+
 
 /*  Listings
 ------------------------------------------------------------------------------------------------------ */
