@@ -63,8 +63,8 @@ var DateTimeShortcuts = {
         clock_link.id = DateTimeShortcuts.clockLinkName + num;
         quickElement('img', clock_link, '', 'src', DateTimeShortcuts.admin_media_prefix + 'img/admin/icon_clock.gif', 'alt', gettext('Clock'));
         shortcuts_span.appendChild(document.createTextNode('\240'));
-        shortcuts_span.appendChild(now_link);
-        shortcuts_span.appendChild(document.createTextNode('\240|\240'));
+        //shortcuts_span.appendChild(now_link);
+        //shortcuts_span.appendChild(document.createTextNode('\240|\240'));
         shortcuts_span.appendChild(clock_link);
         
         // Create clock link div
@@ -149,8 +149,8 @@ var DateTimeShortcuts = {
         cal_link.id = DateTimeShortcuts.calendarLinkName + num;
         quickElement('img', cal_link, '', 'src', DateTimeShortcuts.admin_media_prefix + 'img/admin/icon_calendar.gif', 'alt', gettext('Calendar'));
         shortcuts_span.appendChild(document.createTextNode('\240'));
-        shortcuts_span.appendChild(today_link);
-        shortcuts_span.appendChild(document.createTextNode('\240|\240'));
+        //shortcuts_span.appendChild(today_link);
+        //shortcuts_span.appendChild(document.createTextNode('\240|\240'));
         shortcuts_span.appendChild(cal_link);
         
         // Create calendarbox div.
