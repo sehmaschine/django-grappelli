@@ -30,6 +30,8 @@
             'simUploadLimit'    : 1,
             'width'             : 300,
             'height'            : 30,
+            'hideButton'        : false,
+            'wmode'             : 'transparent',
             translations        : {
                                   browseButton: '{% trans "BROWSE" %}',
                                   error: '{% trans "An Error occured" %}',
@@ -41,6 +43,7 @@
         });
         $('input:submit').click(function(){
             $('#id_file').uploadifyUpload();
+            return false;
         });
     });
     </script>
@@ -69,6 +72,7 @@
 <!-- CONTENT -->
 {% block content %}
 <div id="content-main">
+    <form>
     <div>
         <fieldset class="module aligned">
         <div class="form-row">
@@ -76,7 +80,7 @@
         </div>
         </fieldset>
         
-        <fieldset class="module aligned collapse">
+        <fieldset class="module aligned collapse-closed">
         <h2>{% trans "Help" %}</h2>
         <div class="form-row" >
             {% for extension in settings_var.EXTENSIONS.items %}
@@ -108,5 +112,6 @@
         </div>
         
     </div>
+    </form>
 </div>
 {% endblock %}
