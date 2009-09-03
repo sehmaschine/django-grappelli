@@ -212,9 +212,9 @@ a[id^="clocklink"]:hover, a[id^="clocklink"]:active {
     border-collapse: collapse;
     background: #fff;
 }
-.module .calendar caption, .module .calendarbox h2, .module .clockbox h2 {
+.module .calendar caption, .module .calendarbox h2, .clockbox.module h2 {
     margin: 0; padding: 6px 0 7px;
-    color: #fff; font-size: 11px; font-weight: bold; text-align: center;
+    color: #fff; font-size: 12px; font-weight: bold; text-align: center;
     border-bottom: none;
     -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px;
     -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px;
