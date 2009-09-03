@@ -19,10 +19,6 @@ h1 {
     font-size: 16px; line-height: 20px;
 }
 h2 { font-size: 16px; }
-h2.subhead {
-    margin-top: 0;
-    font-weight: normal;
-}
 h3 { font-size: 14px; }
 h4 { font-size: 12px; }
 h5 { font-size: 10px; }
@@ -205,7 +201,7 @@ dd { margin-left: 0; }
 ------------------------------------------------------------------------------------------------------ */
 
 blockquote {
-    margin-left: 2px; padding-left: 10px;
+    margin-left: 2px; padding-left: 4px;
     color: #777; font-size: 11px;
     border-left: 5px solid #ddd;
 }
@@ -216,7 +212,7 @@ code, pre {
 }
 
 pre.literal-block {
-    margin: 10px; padding: 6px 8px;
+    margin-top: 10px; padding: 6px 8px;
     background: #eee;
 }
 
@@ -229,24 +225,6 @@ hr {
     color: #eee; font-size: 1px; line-height: 1px;
     border: none;
     background-color: #eee;
-}
-
-
-
-/*  RTE (Rich Text Edited) - Documentation & Help
------------------------------------------------------------------------------------------------------- */
-
-.rte h3 {
-    margin: 20px 0 10px;
-}
-.rte p {
-    margin: 10px 0;
-}
-.rte ul, .rte ol {
-    margin: 10px 0; padding: 0 0 0 18px;
-}
-.rte ul li, .rte ol li {
-    margin: 0; padding: 0;
 }
 
 
