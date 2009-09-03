@@ -5,6 +5,19 @@
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/documentation.css" />
 {% endblock %}
+{% block extrahead %}
+<script>
+$(document).ready(function(){
+    // Correct the position of anchors (because "#header" & "#breadcrumbs" have a "position:fixed")
+    $('#content-related a').click(function(){
+        var myReference = "#content-main " + $(this).attr('href');
+        var targetOffset = $(myReference).offset().top;
+        $('html,body').scrollTop(targetOffset - 52);
+        return(false);
+    });
+});
+</script>
+{% endblock %}
 {% block bodyclass %}documentation{% endblock %}
 {% block coltype %}colSM{% endblock %}
 {% block breadcrumbs %}<div class="breadcrumbs"><a href="../../">Home</a> &rsaquo; <a href="../">Documentation</a> &rsaquo; filters</div>{% endblock %}

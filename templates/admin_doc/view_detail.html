@@ -10,9 +10,9 @@
 {% block title %}View: {{ name }}{% endblock %}
 
 {% block content %}
-
 <h1>{{ name }}</h1>
 
+<div id="content-main" class="rte">
 <h2 class="subhead">{{ summary }}</h2>
 
 <p>{{ body }}</p>
@@ -27,5 +27,6 @@
 <p>{{ meta.Templates }}</p>
 {% endif %}
 
-<p class="small"><a href="../">&lsaquo; Back to Views Documentation</a></p>
+<a href="../" class="back">&lsaquo; Back to Views Documentation</a>
+</div>
 {% endblock %}
