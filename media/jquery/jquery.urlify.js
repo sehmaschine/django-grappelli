@@ -132,5 +132,3 @@
         return URLify.apply(this, arguments);
     };
 })(jQuery);
-
-var URLify = $.urlify; // TODO: REMOVE
