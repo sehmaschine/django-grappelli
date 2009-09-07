@@ -237,3 +237,63 @@ $.widget('ui.gChangelist', {
         }
     }
 });
+
+
+// STACKED INLINES
+
+$.widget('ui.gStackedInline', {
+    _init: function(){
+        var ui = this;
+        ui.element.find('.inline-related')
+            .addClass("collapsed")
+            .find('h3:first-child')
+                .addClass('collapse-toggle')
+                .bind("click", function(){
+                    var p = $(this).parent();
+                    console.log(p);
+                    if (!p.hasClass('collapsed') && !p.hasClass('collapse-closed')) {
+                        p.addClass('collapsed')
+                         .addClass('collapse-closed')
+                         .removeClass('collapse-open');
+                    }
+                    else {
+                        p.removeClass('collapsed')
+                         .removeClass('collapse-closed')
+                         .addClass('collapse-open');
+                    }
+                });
+
+        /// INLINEGROUPS (STACKED & TABULAR)
+        ui.element.filter('.inline-group')
+            .filter('.collapse-closed').addClass("collapsed").end()
+            .find('h2:first-child').addClass("collapse-toggle")
+            .bind("click", function(){
+                $(this).parent()
+                    .toggleClass('collapsed')
+                    .toggleClass('collapse-closed')
+                    .toggleClass('collapse-open');
+                });
+
+        /// OPEN STACKEDINLINE WITH ERRORS (onload)
+        ui.element.filter('.inline-stacked').find('.inline-related div[class*="errors"]:first').each(function(){
+            $(this).parents('div.inline-related').removeClass("collapsed").end()
+                   .parents('div.inline-stacked').removeClass("collapsed");
+        });
+
+        /// OPEN TABULARINLINE WITH ERRORS (onload)
+        ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
+            $(this).parents('div.inline-tabular').removeClass("collapsed");
+        });
+
+        // FIELDSETS WITHIN STACKED INLINES
+        ui.element.find('.inline-related').find('fieldset[class*="collapse-closed"]')
+            .addClass("collapsed").find('h4:first').addClass("collapse-toggle").end()
+            .find('fieldset[class*="collapse-open"] h4:first').addClass("collapse-toggle")
+            .bind("click", function(e){
+                $(this).parent()
+                    .toggleClass('collapsed')
+                    .toggleClass('collapse-closed')
+                    .toggleClass('collapse-open');
+        });
+    }
+});

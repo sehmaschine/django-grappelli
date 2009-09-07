@@ -28,13 +28,13 @@ function showRelatedObjectLookupPopup(triggeringLink) {
 
 function dismissRelatedLookupPopup(win, chosenId) {
     var name = win.name.replace(/___/g, '.');
-    var elem = document.getElementById(name);
+    var elem = $('#'+name);
     if (elem.className.indexOf('vManyToManyRawIdAdminField') != -1 && elem.value) {
         elem.value += ',' + chosenId;
-        document.getElementById(name).focus();
+        $('#'+name).focus();
     } else {
-        document.getElementById(name).value = chosenId;
-        document.getElementById(name).focus();
+        $('#'+name).value = chosenId;
+        $('#'+name).focus();
     }
     win.close();
 }
@@ -58,7 +58,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
     newId = html_unescape(newId);
     newRepr = html_unescape(newRepr);
     var name = win.name.replace(/___/g, '.');
-    var elem = document.getElementById(name);
+    var elem = $('#'+ name);
     if (elem) {
         if (elem.nodeName == 'SELECT') {
             var o = new Option(newRepr, newId);
@@ -69,7 +69,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         }
     } else {
         var toId = name + "_to";
-        elem = document.getElementById(toId);
+        elem = $('#'+ toId);
         var o = new Option(newRepr, newId);
         SelectBox.add_to_cache(toId, o);
         SelectBox.redisplay(toId);
@@ -216,7 +216,7 @@ function GenericHandler(obj) {
     });
 }
 
-$(document).ready(function(){
+$(function(){
     
     // change related-lookups in order to get the right URL.
     $('a.related-lookup').each(function() {
