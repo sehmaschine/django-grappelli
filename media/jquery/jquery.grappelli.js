@@ -1,3 +1,7 @@
+if (typeof(gettext) == 'undefined') {
+    function gettext(i) { return i; };
+}
+
 $(function(){
     // Always focus first field of a form OR the search input
     $('form .form-row:eq(0)')
