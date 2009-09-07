@@ -32,7 +32,13 @@
             <tr>
                 <th scope="row">{{ action.action_time|date:_("DATETIME_FORMAT") }}</th>
                 <td>{{ action.user.username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>
-                <td>{{ action.change_message }}</td>
+                <td>
+                {% ifequal forloop.counter 1 %}
+                    {% trans "Created object" %}
+                {% else %}
+                    {{ action.change_message }}
+                {% endifequal %}
+                </td>
             </tr>
             {% endfor %}
             </tbody>
