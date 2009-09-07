@@ -2,7 +2,7 @@
 .datetime img  { cursor: pointer; }
 input.vDateField { width: 80px; }
 input.vTimeField { width: 60px; }
-
+.ui-dialog-content #content { margin:0; }
 
 /*  Selectors
 ------------------------------------------------------------------------------------------------------ */

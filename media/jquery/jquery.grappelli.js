@@ -13,6 +13,19 @@ $(function(){
     });
 });
 
+
+$('.object-tools a[href=history/]').bind('click.grappelli', function(){
+    $('<div />').hide().appendTo('body')
+        .load($(this).attr('href') +' #content', {}, function(html, rsStatus){
+            $(this).dialog({
+                width:  700,
+                title:  $(this).find('h1:first').hide().text(),
+                height: 300        
+            }).show();
+        })
+    return false;
+});
+
 // DATETIME PICKER
 
 $.datepicker.setDefaults({
