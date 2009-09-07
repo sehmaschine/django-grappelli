@@ -1,11 +1,15 @@
 <script type="text/javascript">
 {% for field in prepopulated_fields %}
-    document.getElementById("{{ field.field.auto_id }}").onchange = function() { this._changed = true; };
+    $("#{{ field.field.auto_id }}").bind('change.grappelli', function() { 
+        $(this).data('changed', true); 
+    });
     {% for dependency in field.dependencies %}
-    document.getElementById("{{ dependency.auto_id }}").onkeyup = function() {
-        var e = document.getElementById("{{ field.field.auto_id }}");
-        if (!e._changed) { e.value = URLify({% for innerdep in field.dependencies %}document.getElementById("{{ innerdep.auto_id }}").value{% if not forloop.last %} + ' ' + {% endif %}{% endfor %}, {{ field.field.field.max_length|default_if_none:"50" }}); }
-    }
+    $("#{{ dependency.auto_id }}").bind('keyup.grappelli', function() {
+        var e = $("#{{ field.field.auto_id }}");
+        if (e.data('changed')) { 
+            e.val($.urlify({% for innerdep in field.dependencies %}$("#{{ innerdep.auto_id }}").value{% if not forloop.last %} + ' ' + {% endif %}{% endfor %}, {{ field.field.field.max_length|default_if_none:"50" }})); 
+        }
+    });
     {% endfor %}
 {% endfor %}
 </script>
