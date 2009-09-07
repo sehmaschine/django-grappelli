@@ -1,9 +1,9 @@
 var SelectBox = {
-    cache: new Object(),
+    cache: {},
     init: function(id) {
-        var box = document.getElementById(id);
+        var box = $('#'+ id).get(0);
         var node;
-        SelectBox.cache[id] = new Array();
+        SelectBox.cache[id] = [];
         var cache = SelectBox.cache[id];
         for (var i = 0; (node = box.options[i]); i++) {
             cache.push({value: node.value, text: node.text, displayed: 1});
@@ -11,12 +11,11 @@ var SelectBox = {
     },
     redisplay: function(id) {
         // Repopulate HTML select box from cache
-        var box = document.getElementById(id);
-        box.options.length = 0; // clear all options
+        var box = $('#'+ id).find('option').remove().end();
         for (var i = 0, j = SelectBox.cache[id].length; i < j; i++) {
             var node = SelectBox.cache[id][i];
             if (node.displayed) {
-                box.options[box.options.length] = new Option(node.text, node.value, false, false);
+                $('<option />').val(node.value).text(node.text).appendTo(box);
             }
         }
     },
@@ -63,28 +62,24 @@ var SelectBox = {
         return false;
     },
     move: function(from, to) {
-        var from_box = document.getElementById(from);
-        var to_box = document.getElementById(to);
-        var option;
-        for (var i = 0; (option = from_box.options[i]); i++) {
-            if (option.selected && SelectBox.cache_contains(from, option.value)) {
-                SelectBox.add_to_cache(to, {value: option.value, text: option.text, displayed: 1});
-                SelectBox.delete_from_cache(from, option.value);
+        $('#'+ from).find('option').each(function(){
+            var $opt = $(this);
+            if ($opt.attr('selected') && SelectBox.cache_contains(from, $opt.val())) {
+                SelectBox.add_to_cache(to, {value: $opt.val(), text: $opt.text(), displayed: 1});
+                SelectBox.delete_from_cache(from, $opt.val());
             }
-        }
+        });
         SelectBox.redisplay(from);
         SelectBox.redisplay(to);
     },
     move_all: function(from, to) {
-        var from_box = document.getElementById(from);
-        var to_box = document.getElementById(to);
-        var option;
-        for (var i = 0; (option = from_box.options[i]); i++) {
-            if (SelectBox.cache_contains(from, option.value)) {
-                SelectBox.add_to_cache(to, {value: option.value, text: option.text, displayed: 1});
-                SelectBox.delete_from_cache(from, option.value);
+        $('#'+ from).find('option').each(function(){
+            var $opt = $(this);
+            if (SelectBox.cache_contains(from, $opt.val())) {
+                SelectBox.add_to_cache(to, {value: $opt.val(), text: $opt.text(), displayed: 1});
+                SelectBox.delete_from_cache(from, $opt.val());
             }
-        }
+        });
         SelectBox.redisplay(from);
         SelectBox.redisplay(to);
     },
@@ -96,16 +91,11 @@ var SelectBox = {
                 if (a > b) return 1;
                 if (a < b) return -1;
             }
-            catch (e) {
-                // silently fail on IE 'unknown' exception
-            }
+            catch (e) {} // silently fail on IE 'unknown' exception
             return 0;
         } );
     },
     select_all: function(id) {
-        var box = document.getElementById(id);
-        for (var i = 0; i < box.options.length; i++) {
-            box.options[i].selected = 'selected';
-        }
+        $('#'+ id +' option').attr('selected', 'selected');
     }
 }
