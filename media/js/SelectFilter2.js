@@ -6,89 +6,111 @@ Different than SelectFilter because this is coupled to the admin framework.
 Requires core.js, SelectBox.js and addevent.js.
 */
 
-function findForm(node) {
-    // returns the node of the form containing the given node
-    if (node.tagName.toLowerCase() != 'form') {
-        return findForm(node.parentNode);
-    }
-    return node;
-}
-
 var SelectFilter = {
     init: function(field_id, field_name, is_stacked, admin_media_prefix) {
-        var from_box = document.getElementById(field_id);
-        from_box.id += '_from'; // change its ID
-        from_box.className = 'filtered';
+        var el = $('#'+ field_id).addClass('filtered');
+
+        el.attr({id: el.attr('id') +'_from', name: el.attr('name') + '_old'})
+          .bind('dblclick', function(){
+              SelectBox.move(field_id + '_from', field_id + '_to');
+          })
+          .parents('form').bind('submit.grappelli', function() { 
+              SelectBox.select_all(field_id + '_to'); 
+          }).end();
 
         // Remove <p class="info">, because it just gets in the way.
-        var ps = from_box.parentNode.getElementsByTagName('p');
-        for (var i=0; i<ps.length; i++) {
-            from_box.parentNode.removeChild(ps[i]);
-        }
+        el.parent().find('p').remove();
 
-        // <div class="selector"> or <div class="selector stacked">
-        var selector_div = quickElement('div', from_box.parentNode);
-        selector_div.className = is_stacked ? 'selector stacked' : 'selector';
+        var ui = {
+            // <div class="selector"> or <div class="selector stacked">
+            selector_div: $('<div />').appendTo(el.parent()).addClass(is_stacked ? 'selector stacked' : 'selector'),
+            // <div class="selector-available">
+            selector_available: $('<div />').addClass('selector-available'),
+            // <ul class="selector-chooser">
+            selector_chooser: $('<ul />').addClass('selector-chooser'),
+            // <div class="selector-chosen">
+            selector_chosen: $('<div />').addClass('selector-chosen')
+        };
 
-        // <div class="selector-available">
-        field_id_from = field_id + '_from'
-        var selector_available = quickElement('div', selector_div, '');
-        selector_available.className = 'selector-available';
-        quickElement('h2', selector_available, interpolate(gettext('Available %s'), [field_name]));
-        var filter_p = quickElement('p', selector_available, '');
-        filter_p.className = 'selector-filter';
-        quickElement('img', filter_p, '', 'src', admin_media_prefix + 'img/admin/selector-search.gif');
-        filter_p.appendChild(document.createTextNode(' '));
-        var filter_input = quickElement('input', filter_p, '', 'type', 'text');
-        filter_input.id = field_id_from + '_input';
-        selector_available.appendChild(from_box);
-        var choose_all = quickElement('a', selector_available, gettext('Choose all'), 'href', 'javascript: (function(){ SelectBox.move_all("' + field_id + '_from", "' + field_id + '_to"); })()');
-        choose_all.className = 'selector-chooseall';
+        ui.selector_available.appendTo(ui.selector_div);
 
-        // <ul class="selector-chooser">
-        var selector_chooser = quickElement('ul', selector_div, '');
-        selector_chooser.className = 'selector-chooser';
-        var add_link = quickElement('a', quickElement('li', selector_chooser, ''), gettext('Add'), 'href', 'javascript: (function(){ SelectBox.move("' + field_id + '_from","' + field_id + '_to");})()');
-        add_link.className = 'selector-add';
-        var remove_link = quickElement('a', quickElement('li', selector_chooser, ''), gettext('Remove'), 'href', 'javascript: (function(){ SelectBox.move("' + field_id + '_to","' + field_id + '_from");})()');
-        remove_link.className = 'selector-remove';
+        $('<h2 />').appendTo(ui.selector_available)
+            .text(interpolate(gettext('Available %s'), [field_name]));
 
-        // <div class="selector-chosen">
-        field_id_to = field_id + '_to'
-        var selector_chosen = quickElement('div', selector_div, '');
-        selector_chosen.className = 'selector-chosen';
-        quickElement('h2', selector_chosen, interpolate(gettext('Chosen %s'), [field_name]));
-        var filter_p = quickElement('p', selector_chosen, '');
-        filter_p.className = 'selector-filter';
-        quickElement('img', filter_p, '', 'src', admin_media_prefix + 'img/admin/selector-search.gif');
-        filter_p.appendChild(document.createTextNode(' '));
-        var filter_input_to = quickElement('input', filter_p, '', 'type', 'text');
-        filter_input_to.id = field_id_to + '_input';
-        //var selector_filter = quickElement('p', selector_chosen, gettext('Select your choice(s) and click '));
-        //selector_filter.className = 'selector-filter';
-        //quickElement('img', selector_filter, '', 'src', admin_media_prefix + (is_stacked ? 'img/admin/selector_stacked-add.gif':'img/admin/selector-add.gif'), 'alt', 'Add');
-        var to_box = quickElement('select', selector_chosen, '', 'id', field_id_to, 'multiple', 'multiple', 'size', from_box.size, 'name', from_box.getAttribute('name'));
-        to_box.className = 'filtered';
-        var clear_all = quickElement('a', selector_chosen, gettext('Clear all'), 'href', 'javascript: (function() { SelectBox.move_all("' + field_id + '_to", "' + field_id + '_from");})()');
-        clear_all.className = 'selector-clearall';
+        var p = $('<p>&nbsp;</p>').appendTo(ui.selector_available).addClass('selector-filter');
 
-        from_box.setAttribute('name', from_box.getAttribute('name') + '_old');
+        $('<img src="'+ admin_media_prefix  +'img/admin/selector-search.gif" />').prependTo(p);
+        $('<input type="text" />').appendTo(p).attr('id', field_id + '_from_input')
+            .bind('keydown', function(e){
+                SelectFilter.filter_key_up(e, field_id, '_from');
+            })
+            .bind('keyup', function(e){
+                SelectFilter.filter_key_down(e, field_id, '_from');
+            });
+
+        el.appendTo(ui.selector_available);
+
+        $('<a href="#" />').appendTo(ui.selector_available).text(gettext('Choose all')).addClass('selector-chooseall')
+            .bind('click.grappelli', function(){
+                SelectBox.move_all(field_id +'_from',field_id +'_to');
+                return false;
+            });
+
+        ui.selector_chooser.appendTo(ui.selector_div);
+        
+        $('<li><a href="#" class="selector-add" /></li>').appendTo(ui.selector_chooser)
+            .find('a').text(gettext('Add'))
+            .bind('click.grappelli', function(){
+                SelectBox.move(field_id + '_from', field_id + '_to');
+                return false;
+            });
+        
+        $('<li><a href="#" class="selector-remove" /></li>').appendTo(ui.selector_chooser)
+            .find('a').text(gettext('Remove'))
+            .bind('click.grappelli', function(){
+                SelectBox.move(field_id + '_to', field_id + '_from');
+                return false;
+            });
+
+        ui.selector_chosen.appendTo(ui.selector_div);
+
+        $('<h2 />').appendTo(ui.selector_chosen)
+            .text(interpolate(gettext('Chosen %s'), [field_name]));
+        
+        var p = $('<p>&nbsp;</p>').appendTo(ui.selector_chosen).addClass('selector-filter');
+
+        $('<img src="'+ admin_media_prefix  +'img/admin/selector-search.gif" />').prependTo(p);
+        $('<input type="text" />').appendTo(p).attr('id', field_id + '_to_input')
+            .bind('keydown', function(e){
+                SelectFilter.filter_key_up(e, field_id, '_to');
+            })
+            .bind('keyup', function(e){
+                SelectFilter.filter_key_down(e, field_id, '_to');
+            });
+
+        // to_box
+        $('<select multiple="multiple" class="filtered" />').appendTo(ui.selector_chosen)
+            .attr({id: field_id + '_to', size: el.attr('size'), name: el.attr('name')})
+            .bind('dblclick.grappelli', function(){
+                SelectBox.move(field_id + '_to', field_id + '_from');
+            });
+
+        $('<a href="#" class="selector-clearall" />').appendTo(ui.selector_chosen)
+            .text(gettext('Clear all'))
+            .bind('click.grappelli', function(){
+                SelectBox.move_all(field_id +'_to', field_id +'_from');
+                return false;
+            });
+
 
         // Set up the JavaScript event handlers for the select box filter interface
-        addEvent(filter_input, 'keyup', function(e) { SelectFilter.filter_key_up(e, field_id, '_from'); });
-        addEvent(filter_input, 'keydown', function(e) { SelectFilter.filter_key_down(e, field_id, '_from'); });
-        addEvent(filter_input_to, 'keyup', function(e) { SelectFilter.filter_key_up(e, field_id, '_to'); });
-        addEvent(filter_input_to, 'keydown', function(e) { SelectFilter.filter_key_down(e, field_id, '_to'); });
-        addEvent(from_box, 'dblclick', function() { SelectBox.move(field_id + '_from', field_id + '_to'); });
-        addEvent(to_box, 'dblclick', function() { SelectBox.move(field_id + '_to', field_id + '_from'); });
-        addEvent(findForm(from_box), 'submit', function() { SelectBox.select_all(field_id + '_to'); });
         SelectBox.init(field_id + '_from');
         SelectBox.init(field_id + '_to');
         // Move selected from_box options to to_box
         SelectBox.move(field_id + '_from', field_id + '_to');
     },
     filter_key_up: function(event, field_id, type) {
-        from = document.getElementById(field_id + type);
+        from = $('#'+ field_id + type).get(0);
         // don't submit form if user pressed Enter
         if ((event.which && event.which == 13) || (event.keyCode && event.keyCode == 13)) {
             from.selectedIndex = 0;
@@ -97,12 +119,13 @@ var SelectFilter = {
             return false;
         }
         var temp = from.selectedIndex;
-        SelectBox.filter(field_id + type, document.getElementById(field_id + type + '_input').value);
+
+        SelectBox.filter(field_id + type, $('#'+ field_id + type + '_input').val());
         from.selectedIndex = temp;
         return true;
     },
     filter_key_down: function(event, field_id, type) {
-        from = document.getElementById(field_id + type);
+        from = $('#'+ field_id + type);
         // right arrow -- move across
         if ((event.which && event.which == 39) || (event.keyCode && event.keyCode == 39)) {
             var old_index = from.selectedIndex;
