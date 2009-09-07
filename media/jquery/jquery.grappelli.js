@@ -23,7 +23,7 @@ $.datepicker.setDefaults({
 $.widget('ui.gTimeField', {
     _init: function() {
         var ui = this;
-        var picker = $('<div class="clockbox module"><h2 /><ul class="timelist" /><p class="clock-cancel"><a href="#" /></p></div>')
+        var picker = $('<div class="clockbox module"><h2 class="clock-title" /><ul class="timelist" /><p class="clock-cancel"><a href="#" /></p></div>')
             .appendTo('body')
             .find('h2').text(gettext('Choose a time')).end()
             .find('a').text(gettext('Cancel')).end()
@@ -49,12 +49,19 @@ $.widget('ui.gTimeField', {
                     var pos = $(this).offset();
                     if (picker.is(':visible')) {
                         picker.hide();
+                        $('body').unbind('click.gTimeField');
                     }
                     else {
                         $('.clockbox.module:visible').hide();
                         picker.show().css({
                             top: pos.top - picker.height()/2,
                             left: pos.left + 20
+                        });
+                        $('body').bind('click.gTimeField', function(e){
+                            var target = $(e.originalTarget);
+                            if (!target.hasClass('clock-title')) {
+                               picker.hide(); 
+                            }
                         });
                     }
                 })
@@ -63,6 +70,9 @@ $.widget('ui.gTimeField', {
                 }, function(){
                     $(this).attr('src', $(this).attr('src').replace('-hover.png', '.png'));
                 }).parent().click(function(){ return false; })
+        $('input, textarea, select').bind('focus.gTimeField', function(){
+            $('.clockbox.module:visible').hide();
+        });
     }         
 });
 
