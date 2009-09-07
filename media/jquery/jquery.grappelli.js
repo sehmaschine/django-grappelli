@@ -9,6 +9,35 @@ $(function(){
     });
 });
 
+// DATETIME PICKER
+
+$.datepicker.setDefaults({
+    dateFormat:      'yy-mm-dd',
+    buttonImageOnly: true,
+    showOn:          'button',
+    showButtonPanel: true, 
+    closeText:       'Cancel',
+    buttonImage:     ADMIN_MEDIA_PREFIX +'img/icons/icon-calendar.png'
+});
+
+$.widget('ui.gDatetimeField', {
+    _init: function() {
+        var ui = this;
+        ui.element.html(ui.element.find('input'));
+        
+        ui.element.find('.vDateField').datepicker(ui.options.datepicker);
+        ui.element.find('img').wrap('<span />').wrap('<a />')
+            .hover(function(){
+                $(this).attr('src', $(this).attr('src').replace('.png', '-hover.png'));
+            }, function(){
+                $(this).attr('src', $(this).attr('src').replace('-hover.png', '.png'));
+            }).parent().click(function(){ return false; });
+
+
+        //ui.element.find('.vTimeField').datepicker(ui.options.timepicker);
+    }
+});
+
 // ACTIONS
 
 $.widget('ui.gActions', {
