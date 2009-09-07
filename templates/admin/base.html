@@ -26,7 +26,6 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 
 {% block javascripts %}
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
     <script type="text/javascript">
         // Admin URL
         var ADMIN_URL = "/{% get_admin_url %}/";
@@ -44,7 +43,6 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
         // Generic Relations
         {% get_generic_relation_list %}
     </script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery.grappelli.js"></script>
 {% endblock %}
 {% block extrahead %}{% endblock %}
 
@@ -82,7 +80,8 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     
     <!-- FOOTER -->
     {% block footer %}<div id="footer"></div>{% endblock %}
-    
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery.grappelli.js"></script>
 </div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 .ui-datepicker { margin:4px 0 0 0; }
 .datetime img  { cursor: pointer; }
+input.vDateField { width: 80px; }
+input.vTimeField { width: 60px; }
 
 
 /*  Selectors
@@ -168,6 +170,56 @@ input.vTimeField + span a:first-child {
 
 
 
+/*  Calendarbox & Clockbox
+------------------------------------------------------------------------------------------------------ */
+
+.module.calendarbox, .module.clockbox {
+    position: absolute;
+    margin: 5px;
+    width: 180px;
+    font-size: 11px; text-align: center;
+    border: 2px solid #444;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #444;
+    -moz-box-shadow: 0 0 20px #999; -webkit-box-shadow: 0 0 20px #999;
+}
+.clockbox {
+    width: 120px;
+}
+
+
+/*  Table & Headings ................................................... */
+
+.clockbox.module h2 {
+    -moz-border-radius-topleft:3px;
+    -moz-border-radius-topright:3px;
+    background:#444;
+    border-bottom:medium none;
+    color:#FFF;
+    font-size:12px;
+    font-weight:bold;
+    margin:0;
+    padding:6px 0 7px;
+    text-align:center;
+}
+/* Cancel ................................................... */
+
+.clock-cancel {
+    margin: 0; padding: 2px 0 0;
+    font-size: 11px;
+    -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+    background: #444;
+}
+
+.clock-cancel a:link, .clock-cancel a:visited {
+    color: #d94141; font-weight: bold;
+}
+.clock-cancel a:hover, .clock-cancel a:active {
+    color: #fff;
+}
+
+
 /*  Timelist ................................................... */
 
 ul.timelist, ul.timelist li {
@@ -176,6 +228,19 @@ ul.timelist, ul.timelist li {
 }
 ul.timelist li +li {
     border-top: 1px solid #e4e4e4;
+}
+.timelist a:hover, .timelist a:active {
+    background:#309BBF;
+    color:#FFF;
+}
+.timelist a {
+    color:#444;
+    display:block;
+    font-weight:bold;
+    height:100%;
+    padding:2px 0;
+    text-align:center;
+    width:100%;
 }
 
 

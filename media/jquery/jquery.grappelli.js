@@ -16,25 +16,93 @@ $.datepicker.setDefaults({
     buttonImageOnly: true,
     showOn:          'button',
     showButtonPanel: true, 
-    closeText:       'Cancel',
+    closeText:       gettext('Cancel'),
     buttonImage:     ADMIN_MEDIA_PREFIX +'img/icons/icon-calendar.png'
 });
+
+$.widget('ui.gTimeField', {
+    _init: function() {
+        var ui = this;
+        var picker = $('<div class="clockbox module"><h2 /><ul class="timelist" /><p class="clock-cancel"><a href="#" /></p></div>')
+            .appendTo('body')
+            .find('h2').text(gettext('Choose a time')).end()
+            .find('a').text(gettext('Cancel')).end()
+            .css({ display:  'none', position: 'absolute'});
+
+        $.each(ui.options.buttons, function(){
+            var button = this;
+            $('<li><a href="#"></a></li>').find('a')
+                .text(button.label).bind('click.grappelli', function(e){
+                    button.callback.apply(this, [e, ui]);
+                    picker.hide();
+                    return false;
+                }).end()
+                .appendTo(picker.find('.timelist'));
+        });
+
+        $('<span><a href="#"><img src="'+ ui.options.buttonImage +'" /></a></span>')
+            .insertAfter(ui.element)
+            .find('img')
+                .attr('alt', gettext('Clock'))
+                .attr('title', gettext('Clock')).wrap('<span />').wrap('<a />')
+                .bind('click.grappelli', function(){
+                    var pos = $(this).offset();
+                    if (picker.is(':visible')) {
+                        picker.hide();
+                    }
+                    else {
+                        $('.clockbox.module:visible').hide();
+                        picker.show().css({
+                            top: pos.top - picker.height()/2,
+                            left: pos.left + 20
+                        });
+                    }
+                })
+                .hover(function(){
+                    $(this).attr('src', $(this).attr('src').replace('.png', '-hover.png'));
+                }, function(){
+                    $(this).attr('src', $(this).attr('src').replace('-hover.png', '.png'));
+                }).parent().click(function(){ return false; })
+    }         
+});
+
+$.ui.gTimeField.defaults = {
+    buttonImage:     ADMIN_MEDIA_PREFIX +'img/icons/icon-clock.png',
+    buttons: [
+        {label: 'Maintenant', callback: function(e, ui){ 
+            return ui.element.val(new Date().getHourMinuteSecond()); 
+        }},
+        {label: 'Minuit', callback: function(e, ui){ 
+            return ui.element.val('00:00:00'); 
+        }},
+        {label: '06:00', callback: function(e, ui){ 
+            return ui.element.val('06:00:00'); 
+        }},
+        {label: 'Midi', callback: function(e, ui){ 
+            return ui.element.val('12:00:00'); 
+        }}
+    ]
+};
 
 $.widget('ui.gDatetimeField', {
     _init: function() {
         var ui = this;
         ui.element.html(ui.element.find('input'));
-        
+       
+        // Datepicker
+
         ui.element.find('.vDateField').datepicker(ui.options.datepicker);
-        ui.element.find('img').wrap('<span />').wrap('<a />')
+        ui.element.find('img')
+            .attr('alt', gettext('Calendar'))
+            .attr('title', gettext('Calendar')).wrap('<span />').wrap('<a />')
             .hover(function(){
                 $(this).attr('src', $(this).attr('src').replace('.png', '-hover.png'));
             }, function(){
                 $(this).attr('src', $(this).attr('src').replace('-hover.png', '.png'));
             }).parent().click(function(){ return false; });
 
-
-        //ui.element.find('.vTimeField').datepicker(ui.options.timepicker);
+        // Timepicker
+        ui.element.find('.vTimeField').gTimeField(ui.options.timepicker);
     }
 });
 
