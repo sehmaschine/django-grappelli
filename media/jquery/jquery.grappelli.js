@@ -251,19 +251,165 @@ $.widget('ui.gChangelist', {
     }
 });
 
+// INLINE GROUP 
 
-// STACKED INLINES
-
-$.widget('ui.gStackedInline', {
+$.widget('ui.gInlineGroup', {
     _init: function(){
         var ui = this;
+        ui.element.find('input[name*="DELETE"]').hide();
+        if (ui.options.collapsibleGroups) {
+            ui._makeCollapsibleGroups();
+        }
+        else {
+            ui.element.filter('.collapse-closed')
+                .removeClass('collapse-closed collapsed')
+                .addClass('collapse-op');
+        }
+
+        
+        /// function for cleaning up added items
+        function new_item_cleanup(new_item) {
+            /// remove error-lists and error-classes
+            new_item.find('ul.errorlist').remove();
+            new_item.find('div[class*="errors"]').removeClass("errors");
+            /// remove delete-button
+            /// temporary deactivated, because reordering does not work
+            /// new_item.find('a.deletelink').remove();
+            /// new_item.find('a.viewsitelink').remove();
+            /// tinymce
+            new_item.find('span.mceEditor').each(function(e) {
+                var id = this.id.split('_parent')[0];
+                $(this).remove();
+                new_item.find('#' + id).css('display', '');
+                tinyMCE.execCommand("mceAddControl", true, id);
+            });
+            /// clear all form-fields (within form-cells)
+            new_item.find(':input').val('');
+            /// clear related/generic lookups
+            new_item.find("strong").text("");
+            return new_item;
+        }
+        
+        /// ADDHANDLER
+        ui.element.find('a.addhandler').bind('click.gInlineGroup', function(){
+            var inlinegroup = $(this).parents('div.inline-group');
+            //var new_item = inlinegroup.find('div.inline-related:last').clone(true).insertAfter('div.inline-related:last', inlinegroup);
+            var new_item = inlinegroup.find('div.inline-related:last').clone(true).appendTo(inlinegroup.find('div.items:first'));
+            var items = inlinegroup.find('div.inline-related').length;
+            /// change header
+            new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
+            /// set TOTAL_FORMS to number of items
+            inlinegroup.find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
+            /// replace IDs, NAMEs, HREFs & FORs ...
+            new_item.find(':input,span,table,iframe,label').each(function() {
+                if ($(this).attr('id')) {
+                    $(this).attr('id', $(this).attr('id').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
+                }
+                if ($(this).attr('name')) {
+                    $(this).attr('name', $(this).attr('name').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
+                }
+                if ($(this).attr('for')) {
+                    $(this).attr('for', $(this).attr('for').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
+                }
+            });
+            /// do cleanup
+            new_item = new_item_cleanup(new_item);
+            return false;
+        });
+        
+        /// DELETEHANDLER
+        ui.element.find('a.deletelink').bind("click.gInlineGroup", function() {
+            var cp = $(this).prev(':checkbox');
+            cp.attr('checked', !cp.attr('checked'));
+            $(this).parents('div.inline-related').toggleClass('predelete');
+            return false;
+        });
+
+    },
+    // INLINEGROUPS (STACKED & TABULAR)
+    _makeCollapsibleGroups: function() {
+        var ui = this;
+        ui.element.filter('.collapse-closed').addClass("collapsed").end()
+            .find('h2:first-child').addClass("collapse-toggle")
+            .bind("click.gInlineGroup", function(){
+                $(this).parent()
+                    .toggleClass('collapsed')
+                    .toggleClass('collapse-closed')
+                    .toggleClass('collapse-open');
+                });
+    }
+});
+
+$.ui.gInlineGroup.defaults = {
+    collapsibleInlines: true,
+    collapsibleGroups:  true,
+};
+
+// INLINE STACKED 
+
+$.widget('ui.gInlineStacked', {
+    _init: function(){
+        var ui = this;
+
+        if (ui.options.collapsible) {
+            ui._makeCollapsible();
+        }
+        else {
+            ui.element.find('.inline-related').removeClass("collapsed")
+        }
+
+        // FIELDSETS WITHIN STACKED INLINES
+        /* OBSOLETE ?
+        ui.element.find('.inline-related').find('fieldset[class*="collapse-closed"]')
+            .addClass("collapsed").find('h4:first').addClass("collapse-toggle").end()
+            .find('fieldset[class*="collapse-open"] h4:first').addClass("collapse-toggle")
+            .bind("click", function(e){
+                $(this).parent()
+                    .toggleClass('collapsed')
+                    .toggleClass('collapse-closed')
+                    .toggleClass('collapse-open');
+        });
+        */
+    },
+    _makeCollapsible: function() {
+        var ui = this;
+        
+        // BUTTONS (STACKED INLINE)
+        ui.element.find('a.closehandler').bind("click", function(){
+            $(this).parents('div.inline-stacked')
+                .addClass('collapsed collapse-closed')
+                .removeClass('collapse-open')
+                .find('div.inline-related')
+                    .removeClass('collapse-open')
+                    .addClass('collapsed collapse-closed');
+        });
+        ui.element.find('a.openhandler').bind("click", function(){
+            $(this).parents('div.inline-stacked')
+                .removeClass('collapsed collapse-closed')
+                .addClass('collapse-open')
+                .find('div.inline-related')
+                    .removeClass('collapsed collapse-closed')
+                    .addClass('collapse-open');
+        });
+
+        /// OPEN STACKEDINLINE WITH ERRORS (onload)
+        ui.element.filter('.inline-stacked').find('.inline-related div[class*="errors"]:first').each(function(){
+            $(this).parents('div.inline-related').removeClass("collapsed").end()
+                   .parents('div.inline-stacked').removeClass("collapsed");
+        });
+        
+        /// OPEN STACKEDINLINE WITH ERRORS (onload)
+        ui.element.filter('.inline-stacked').find('.inline-related div[class*="errors"]:first').each(function(){
+            $(this).parents('div.inline-related').removeClass("collapsed").end()
+                   .parents('div.inline-stacked').removeClass("collapsed");
+        });
+
         ui.element.find('.inline-related')
             .addClass("collapsed")
             .find('h3:first-child')
                 .addClass('collapse-toggle')
                 .bind("click", function(){
                     var p = $(this).parent();
-                    console.log(p);
                     if (!p.hasClass('collapsed') && !p.hasClass('collapse-closed')) {
                         p.addClass('collapsed')
                          .addClass('collapse-closed')
@@ -275,22 +421,21 @@ $.widget('ui.gStackedInline', {
                          .addClass('collapse-open');
                     }
                 });
+    },
+});
+$.ui.gInlineStacked.defaults = {
+    collapsible: true,
+};
 
-        /// INLINEGROUPS (STACKED & TABULAR)
-        ui.element.filter('.inline-group')
-            .filter('.collapse-closed').addClass("collapsed").end()
-            .find('h2:first-child').addClass("collapse-toggle")
-            .bind("click", function(){
-                $(this).parent()
-                    .toggleClass('collapsed')
-                    .toggleClass('collapse-closed')
-                    .toggleClass('collapse-open');
-                });
+// INLINE TABULAR
 
-        /// OPEN STACKEDINLINE WITH ERRORS (onload)
-        ui.element.filter('.inline-stacked').find('.inline-related div[class*="errors"]:first').each(function(){
-            $(this).parents('div.inline-related').removeClass("collapsed").end()
-                   .parents('div.inline-stacked').removeClass("collapsed");
+$.widget('ui.gInlineTabular', {
+    _init: function(){
+        var ui = this;
+
+        /// add predelete class (only necessary in case of errors)
+        ui.element.find('input[name*="DELETE"]:checked').each(function(i) {
+            $(this).parents('div.inline-related').addClass('predelete');
         });
 
         /// OPEN TABULARINLINE WITH ERRORS (onload)
@@ -298,15 +443,49 @@ $.widget('ui.gStackedInline', {
             $(this).parents('div.inline-tabular').removeClass("collapsed");
         });
 
-        // FIELDSETS WITHIN STACKED INLINES
-        ui.element.find('.inline-related').find('fieldset[class*="collapse-closed"]')
-            .addClass("collapsed").find('h4:first').addClass("collapse-toggle").end()
-            .find('fieldset[class*="collapse-open"] h4:first').addClass("collapse-toggle")
-            .bind("click", function(e){
-                $(this).parent()
-                    .toggleClass('collapsed')
-                    .toggleClass('collapse-closed')
-                    .toggleClass('collapse-open');
+        // Autodiscover if sortable
+        if (ui.element.find('.order').get(0)) {
+            ui._makeSortable();
+        }
+        ui._refresh();
+    },
+    _makeSortable: function() {
+        var ui = this;
+        //ui.element.find('.order').hide();
+        ui.element.find('.items').sortable({
+            axis: 'y',
+            cursor: 'move',
+            forcePlaceholderSize: true,
+            helper: 'clone',
+            opacity: 0.7,
+            items: '.inline-related',
+            appendTo: ui.element.find('.items'),
+            update: function(e, inst){
+                ui._refresh();
+            }
+        });
+    },
+    _refresh: function() {
+        var index = 1;
+        var ui = this;
+        ui.element.find('.order input[type=text]').each(function(){
+            if ($(this).parents('.inline-related').hasClass('has_original')) {
+                $(this).val(index);
+                index++;
+            }
+            else {
+                var tools = $(this).parents('.module').find('ul.inline-item-tools');
+                if (tools.get(0)) {
+                    if (!tools.find('.deletelink').get(0)) {
+                        $('<li><a title="Delete Item" class="deletelink" href="#"/></li>').appendTo(tools)
+                            .find('a').bind('click.grappelli', function(){
+                                $(this).parents('.inline-related').remove();
+                                return false;
+                            });
+                    }
+                }
+            }
         });
     }
 });
+

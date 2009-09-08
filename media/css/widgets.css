@@ -3,6 +3,12 @@
 input.vDateField { width: 80px; }
 input.vTimeField { width: 60px; }
 .ui-dialog-content #content { margin:0; }
+.ui-sortable .inline-related { cursor: pointer; }
+.ui-sortable .inline-related.ui-sortable-helper { cursor: move!important; }
+#change-history tbody tr th + td + td:first-letter {
+    text-transform:capitalize;
+}
+
 
 /*  Selectors
 ------------------------------------------------------------------------------------------------------ */
