@@ -266,6 +266,11 @@ $.widget('ui.gInlineGroup', {
                 .removeClass('collapse-closed collapsed')
                 .addClass('collapse-op');
         }
+
+        // Prevent fields of inserted rows from triggering errors if un-edited
+        ui.element.parents('form').bind('submit.gInlineGroup', function(){
+            ui.element.find('.inline-related:not(.has_original):not(.has_modifications) div.order :text').val('');
+        });
  
         /// ADD HANDLER
         ui.element.find('a.addhandler').bind('click.gInlineGroup', function(){
@@ -276,8 +281,11 @@ $.widget('ui.gInlineGroup', {
             var header    = newitem.find('h3:first');
             
             // update new item's header (inline-stacked only)
-            if (header.get(0)) {
+            if (header.get(0) && container.hasClass('inline-stacked')) {
                 header.html("<b>" + $.trim(header.text()).replace(/(\d+)$/, count) + "</b>");
+            }
+            else {
+                header.remove(); // fix layout bug in inline-tabular
             }
             
             /// set TOTAL_FORMS to number of items
@@ -310,20 +318,17 @@ $.widget('ui.gInlineGroup', {
             });
         });
 
-        // Destroy datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
-        el.find('.vDateField').unbind('keydown keypress setData getData focus')
-            .removeClass('hasDatepicker').next().remove();
-        el.find('.vTimeField').unbind('remove setData getData focus').next().remove();
-        // Reinitialize datetime picker
-        el.find('.datetime').gDatetimeField();
+        // Destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
+        el.find('.vDateField').unbind().removeClass('hasDatepicker')
+            .next().remove().end().end()
+            .find('.vTimeField').unbind().next().remove().end().end()
+            .find('.datetime').gDatetimeField();
+
 
        /// remove error-lists and error-classes
-        el.find('ul.errorlist').remove();
-        el.find('div[class*="errors"]').removeClass("errors");
-        /// remove delete-button
-        /// temporary deactivated, because reordering does not work
-        /// el.find('a.deletelink').remove();
-        /// el.find('a.viewsitelink').remove();
+        el.find('ul.errorlist').remove().end()
+          .find('.errors, .error').removeClass("errors error");
+
         /// tinymce
         el.find('span.mceEditor').each(function(e) {
             var id = this.id.split('_parent')[0];
@@ -331,10 +336,18 @@ $.widget('ui.gInlineGroup', {
             el.find('#' + id).css('display', '');
             tinyMCE.execCommand("mceAddControl", true, id);
         });
-        /// clear all form-fields (within form-cells)
-        el.find(':input').val('');
-        /// clear related/generic lookups
-        el.find("strong").text("");
+        
+        el.find(':input').val('').end() // clear all form-fields (within form-cells)
+          .find("strong").text('');     // clear related/generic lookups
+
+        // Little trick to prevent validation on un-edited fields
+        el.find('input, textarea').bind('keypress.gInlineGroup', function(){
+              el.addClass('has_modifications');
+          }).end()
+          .find('select, :radio, :checkbox').bind('keypress.gInlineGroup', function(){
+              el.addClass('has_modifications');
+          });
+
         return el;
     },
 
@@ -436,6 +449,8 @@ $.widget('ui.gInlineTabular', {
     _init: function(){
         var ui = this;
 
+        ui.element.find('.inline-related h3:first').remove(); // fix layout bug
+
         /// add predelete class (only necessary in case of errors)
         ui.element.find('input[name*="DELETE"]:checked').each(function(i) {
             $(this).parents('div.inline-related').addClass('predelete');
@@ -450,6 +465,11 @@ $.widget('ui.gInlineTabular', {
         if (ui.element.find('.order').get(0)) {
             ui._makeSortable();
         }
+
+        ui.element.find('.addhandler').bind('click.gInlineTabular', function(){
+            ui._refresh();
+        });
+
         ui._refresh();
     },
     _makeSortable: function() {
@@ -472,11 +492,10 @@ $.widget('ui.gInlineTabular', {
         var index = 1;
         var ui = this;
         ui.element.find('.order input[type=text]').each(function(){
-            if ($(this).parents('.inline-related').hasClass('has_original')) {
-                $(this).val(index);
-                index++;
-            }
-            else {
+            $(this).val(index);
+            index++;
+            
+            if (!$(this).parents('.inline-related').hasClass('has_original')) {
                 var tools = $(this).parents('.module').find('ul.inline-item-tools');
                 if (tools.get(0)) {
                     if (!tools.find('.deletelink').get(0)) {
