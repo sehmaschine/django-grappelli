@@ -375,9 +375,18 @@ $.widget('ui.gInlineGroup', {
     },
     
     _makeSortable: function() {
-        var ui = this;
+        var ui   = this;
+        var grip = $('<span class="ui-icon ui-icon-grip-dotted-vertical" />');
         //ui.element.find('.order').hide();
-        ui.element.find('.items').sortable({
+        if (ui.element.hasClass('inline-stacked')) {
+            grip.prependTo(ui.element.find('.items .inline-related h3:first-child'));
+        }
+        else if (ui.element.hasClass('inline-tabular')) {
+            grip.prependTo(ui.element.find('.items div.inline-item-tools'));
+        }
+        console.log(ui.element);
+        ui.element.find('.items')
+            .sortable({
             axis: 'y',
             cursor: 'move',
             forcePlaceholderSize: true,
@@ -389,6 +398,7 @@ $.widget('ui.gInlineGroup', {
                 ui._refresh();
             }
         });
+        //
     },
     _refreshOrder: function() {
         var index = 1;

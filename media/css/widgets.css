@@ -1,3 +1,4 @@
+/* HAINEAULT'S CSS -- SORRY I'LL CLEAN UP :| */
 .ui-datepicker { margin:4px 0 0 0; }
 .datetime img  { cursor: pointer; }
 input.vDateField { width: 80px; }
@@ -5,8 +6,13 @@ input.vTimeField { width: 60px; }
 .ui-dialog-content #content { margin:0; }
 .ui-sortable .inline-related { cursor: pointer; }
 .ui-sortable .inline-related.ui-sortable-helper { cursor: move!important; }
-#change-history tbody tr th + td + td:first-letter {
-    text-transform:capitalize;
+
+.inline-related h3:first-child .ui-icon {
+    float:right;
+}
+.inline-related .inline-item-tools .ui-icon {
+    float:right;
+    margin:10px 5px 0 0;
 }
 
 
@@ -172,6 +178,9 @@ input.vTimeField + span a:first-child {
 .change-list form table input.vDateField + span, 
 .change-list form table input.vTimeField + span {
     vertical-align: baseline;
+}
+#change-history tbody tr th + td + td:first-letter {
+    text-transform:capitalize;
 }
 
 
