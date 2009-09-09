@@ -304,6 +304,16 @@ $.widget('ui.gInlineGroup', {
             return false;
         });
 
+        // Autodiscover if sortable
+        //if (ui.element.find('.order').get(0)) {
+            ui._makeSortable();
+        //}
+
+        ui.element.find('.addhandler').bind('click.gInlineGroup', function(){
+            ui._refreshOrder();
+        });
+
+        ui._refreshOrder();
     },
 
     _initializeItem: function(el, count){
@@ -362,6 +372,44 @@ $.widget('ui.gInlineGroup', {
                     .toggleClass('collapse-closed')
                     .toggleClass('collapse-open');
                 });
+    },
+    
+    _makeSortable: function() {
+        var ui = this;
+        //ui.element.find('.order').hide();
+        ui.element.find('.items').sortable({
+            axis: 'y',
+            cursor: 'move',
+            forcePlaceholderSize: true,
+            helper: 'clone',
+            opacity: 0.7,
+            items: '.inline-related',
+            appendTo: ui.element.find('.items'),
+            update: function(e, inst){
+                ui._refresh();
+            }
+        });
+    },
+    _refreshOrder: function() {
+        var index = 1;
+        var ui = this;
+        ui.element.find('.order input[type=text]').each(function(){
+            $(this).val(index);
+            index++;
+            
+            if (!$(this).parents('.inline-related').hasClass('has_original')) {
+                var tools = $(this).parents('.module').find('ul.inline-item-tools');
+                if (tools.get(0)) {
+                    if (!tools.find('.deletelink').get(0)) {
+                        $('<li><a title="Delete Item" class="deletelink" href="#"/></li>').appendTo(tools)
+                            .find('a').bind('click.grappelli', function(){
+                                $(this).parents('.inline-related').remove();
+                                return false;
+                            });
+                    }
+                }
+            }
+        });
     }
 });
 
@@ -460,54 +508,6 @@ $.widget('ui.gInlineTabular', {
         ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
             $(this).parents('div.inline-tabular').removeClass("collapsed");
         });
-
-        // Autodiscover if sortable
-        if (ui.element.find('.order').get(0)) {
-            ui._makeSortable();
-        }
-
-        ui.element.find('.addhandler').bind('click.gInlineTabular', function(){
-            ui._refresh();
-        });
-
-        ui._refresh();
     },
-    _makeSortable: function() {
-        var ui = this;
-        //ui.element.find('.order').hide();
-        ui.element.find('.items').sortable({
-            axis: 'y',
-            cursor: 'move',
-            forcePlaceholderSize: true,
-            helper: 'clone',
-            opacity: 0.7,
-            items: '.inline-related',
-            appendTo: ui.element.find('.items'),
-            update: function(e, inst){
-                ui._refresh();
-            }
-        });
-    },
-    _refresh: function() {
-        var index = 1;
-        var ui = this;
-        ui.element.find('.order input[type=text]').each(function(){
-            $(this).val(index);
-            index++;
-            
-            if (!$(this).parents('.inline-related').hasClass('has_original')) {
-                var tools = $(this).parents('.module').find('ul.inline-item-tools');
-                if (tools.get(0)) {
-                    if (!tools.find('.deletelink').get(0)) {
-                        $('<li><a title="Delete Item" class="deletelink" href="#"/></li>').appendTo(tools)
-                            .find('a').bind('click.grappelli', function(){
-                                $(this).parents('.inline-related').remove();
-                                return false;
-                            });
-                    }
-                }
-            }
-        });
-    }
 });
 
