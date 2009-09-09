@@ -96,16 +96,16 @@ $.widget('ui.gTimeField', {
 $.ui.gTimeField.defaults = {
     buttonImage:     ADMIN_MEDIA_PREFIX +'img/icons/icon-clock.png',
     buttons: [
-        {label: 'Maintenant', callback: function(e, ui){ 
+        {label: gettext("Now"), callback: function(e, ui){ 
             return ui.element.val(new Date().getHourMinuteSecond()); 
         }},
-        {label: 'Minuit', callback: function(e, ui){ 
+        {label: gettext("Midnight"), callback: function(e, ui){ 
             return ui.element.val('00:00:00'); 
         }},
-        {label: '06:00', callback: function(e, ui){ 
+        {label: gettext("6 a.m."), callback: function(e, ui){ 
             return ui.element.val('06:00:00'); 
         }},
-        {label: 'Midi', callback: function(e, ui){ 
+        {label: gettext("Noon"), callback: function(e, ui){ 
             return ui.element.val('12:00:00'); 
         }}
     ]
