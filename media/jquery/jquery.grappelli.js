@@ -114,6 +114,7 @@ $.ui.gTimeField.defaults = {
 $.widget('ui.gDatetimeField', {
     _init: function() {
         var ui = this;
+        console.log(this.element);
         ui.element.html(ui.element.find('input'));
        
         // Datepicker
@@ -265,55 +266,25 @@ $.widget('ui.gInlineGroup', {
                 .removeClass('collapse-closed collapsed')
                 .addClass('collapse-op');
         }
-
-        
-        /// function for cleaning up added items
-        function new_item_cleanup(new_item) {
-            /// remove error-lists and error-classes
-            new_item.find('ul.errorlist').remove();
-            new_item.find('div[class*="errors"]').removeClass("errors");
-            /// remove delete-button
-            /// temporary deactivated, because reordering does not work
-            /// new_item.find('a.deletelink').remove();
-            /// new_item.find('a.viewsitelink').remove();
-            /// tinymce
-            new_item.find('span.mceEditor').each(function(e) {
-                var id = this.id.split('_parent')[0];
-                $(this).remove();
-                new_item.find('#' + id).css('display', '');
-                tinyMCE.execCommand("mceAddControl", true, id);
-            });
-            /// clear all form-fields (within form-cells)
-            new_item.find(':input').val('');
-            /// clear related/generic lookups
-            new_item.find("strong").text("");
-            return new_item;
-        }
-        
-        /// ADDHANDLER
+ 
+        /// ADD HANDLER
         ui.element.find('a.addhandler').bind('click.gInlineGroup', function(){
-            var inlinegroup = $(this).parents('div.inline-group');
-            //var new_item = inlinegroup.find('div.inline-related:last').clone(true).insertAfter('div.inline-related:last', inlinegroup);
-            var new_item = inlinegroup.find('div.inline-related:last').clone(true).appendTo(inlinegroup.find('div.items:first'));
-            var items = inlinegroup.find('div.inline-related').length;
-            /// change header
-            new_item.find('h3:first').html("<b>" + new_item.find('h3:first').text().split("#")[0] + "#" + parseInt(items) + "</b>");
+            var container = $(this).parents('div.inline-group');
+            var lastitem  = container.find('div.inline-related:last');
+            var newitem   = lastitem.clone(true).appendTo(container.find('div.items:first'));
+            var count     = parseInt(container.find('div.inline-related').length, 10);
+            var header    = newitem.find('h3:first');
+            
+            // update new item's header (inline-stacked only)
+            if (header.get(0)) {
+                header.html("<b>" + $.trim(header.text()).replace(/(\d+)$/, count) + "</b>");
+            }
+            
             /// set TOTAL_FORMS to number of items
-            inlinegroup.find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
-            /// replace IDs, NAMEs, HREFs & FORs ...
-            new_item.find(':input,span,table,iframe,label').each(function() {
-                if ($(this).attr('id')) {
-                    $(this).attr('id', $(this).attr('id').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
-                }
-                if ($(this).attr('name')) {
-                    $(this).attr('name', $(this).attr('name').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
-                }
-                if ($(this).attr('for')) {
-                    $(this).attr('for', $(this).attr('for').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
-                }
-            });
-            /// do cleanup
-            new_item = new_item_cleanup(new_item);
+            container.find('input[id*="TOTAL_FORMS"]').val(count);
+
+            ui._initializeItem(newitem, count);
+
             return false;
         });
         
@@ -326,7 +297,48 @@ $.widget('ui.gInlineGroup', {
         });
 
     },
-    // INLINEGROUPS (STACKED & TABULAR)
+
+    _initializeItem: function(el, count){
+
+        /// replace IDs, NAMEs, HREFs & FORs ...
+        el.find(':input,span,table,iframe,label').each(function() {
+            var $el = $(this);
+            $.each(['id', 'name', 'for'], function(i, k){
+                if ($el.attr(k)) {
+                    $el.attr(k, $el.attr(k).replace(/-\d+-/g, '-'+  (count - 1) +'-'));
+                }
+            });
+        });
+
+        // Destroy datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
+        el.find('.vDateField').unbind('keydown keypress setData getData focus')
+            .removeClass('hasDatepicker').next().remove();
+        el.find('.vTimeField').unbind('remove setData getData focus').next().remove();
+        // Reinitialize datetime picker
+        el.find('.datetime').gDatetimeField();
+
+       /// remove error-lists and error-classes
+        el.find('ul.errorlist').remove();
+        el.find('div[class*="errors"]').removeClass("errors");
+        /// remove delete-button
+        /// temporary deactivated, because reordering does not work
+        /// el.find('a.deletelink').remove();
+        /// el.find('a.viewsitelink').remove();
+        /// tinymce
+        el.find('span.mceEditor').each(function(e) {
+            var id = this.id.split('_parent')[0];
+            $(this).remove();
+            el.find('#' + id).css('display', '');
+            tinyMCE.execCommand("mceAddControl", true, id);
+        });
+        /// clear all form-fields (within form-cells)
+        el.find(':input').val('');
+        /// clear related/generic lookups
+        el.find("strong").text("");
+        return el;
+    },
+
+    // INLINE GROUPS (STACKED & TABULAR)
     _makeCollapsibleGroups: function() {
         var ui = this;
         ui.element.filter('.collapse-closed').addClass("collapsed").end()
@@ -391,18 +403,9 @@ $.widget('ui.gInlineStacked', {
                     .removeClass('collapsed collapse-closed')
                     .addClass('collapse-open');
         });
-
-        /// OPEN STACKEDINLINE WITH ERRORS (onload)
-        ui.element.filter('.inline-stacked').find('.inline-related div[class*="errors"]:first').each(function(){
-            $(this).parents('div.inline-related').removeClass("collapsed").end()
-                   .parents('div.inline-stacked').removeClass("collapsed");
-        });
         
         /// OPEN STACKEDINLINE WITH ERRORS (onload)
-        ui.element.filter('.inline-stacked').find('.inline-related div[class*="errors"]:first').each(function(){
-            $(this).parents('div.inline-related').removeClass("collapsed").end()
-                   .parents('div.inline-stacked').removeClass("collapsed");
-        });
+        $('.inline-related:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
 
         ui.element.find('.inline-related')
             .addClass("collapsed")
