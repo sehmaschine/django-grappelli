@@ -393,7 +393,7 @@ $.widget('ui.gInlineGroup', {
             items: '.inline-related',
             appendTo: ui.element.find('.items'),
             update: function(e, inst){
-                ui._refresh();
+                ui._refreshOrder();
             }
         });
         //
