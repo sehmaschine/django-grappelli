@@ -114,7 +114,6 @@ $.ui.gTimeField.defaults = {
 $.widget('ui.gDatetimeField', {
     _init: function() {
         var ui = this;
-        console.log(this.element);
         ui.element.html(ui.element.find('input'));
        
         // Datepicker
@@ -384,7 +383,6 @@ $.widget('ui.gInlineGroup', {
         else if (ui.element.hasClass('inline-tabular')) {
             grip.prependTo(ui.element.find('.items div.inline-item-tools'));
         }
-        console.log(ui.element);
         ui.element.find('.items')
             .sortable({
             axis: 'y',
