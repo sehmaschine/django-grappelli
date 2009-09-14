@@ -213,7 +213,7 @@
     font-size: 11px; line-height: 13px; font-weight: bold;
 }
 #changelist-filter a:link, #changelist-filter a:visited {
-    color: #83c3d9;
+    color: #59afcc;
 }
 #changelist-filter a:hover, #changelist-filter a:active, 
 #changelist-filter .selected a {
