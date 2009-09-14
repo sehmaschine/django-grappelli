@@ -37,6 +37,22 @@ fieldset > div:last-child {
     border-bottom: none !important;
 }
 
+.inline-related .module h4 + .form-row {
+    padding: 5px 9px;
+}
+.inline-related .module.collapse-open .form-row {
+    margin: -1px 1px 1px;
+    border: 1px solid #d4d4d4;
+    background: #eee;
+}
+.inline-related .module.collapse-open h4 + .form-row {
+    border-top-color: #fff;
+}
+.inline-related .module.collapse-open .form-row:last-child {
+    border-bottom: 1px solid #d4d4d4 !important;
+}
+
+
 
 
 /* Labels & Other Typographic Elements in Forms
@@ -264,6 +280,10 @@ ul.radiolist label input, ul.checkboxlist label input {
 .change-list form table input[type=radio], 
 .change-list form table input[type=checkbox] {
     position: relative; top: 1px;
+}
+.change-list form table thead input[type=radio], 
+.change-list form table thead input[type=checkbox] {
+    top: 0;
 }
 
 
