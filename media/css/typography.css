@@ -18,6 +18,9 @@ h1 {
     margin: 26px 0 10px;
     font-size: 16px; line-height: 20px;
 }
+.pretitle + h1 {
+    margin-top: 0;
+}
 h2 { font-size: 16px; }
 h3 { font-size: 14px; }
 h4 { font-size: 12px; }
@@ -35,6 +38,9 @@ a {
 
 a:link, a:visited { color: #309bbf; }
 a:hover, a:active { color: #444; }
+
+a.inverse:link, a.inverse:visited { color: #444 !important; }
+a.inverse:hover, a.inverse:active { color: #309bbf !important; }
 
 
 /*  Images in Links ........................................... */
@@ -57,6 +63,16 @@ a:hover img.preview, a:active img.preview {
 /*  Section ........................................... */
 
 a.section:link, a.section:visited { color: #fff; }
+
+
+/*  Pretitle ........................................... */
+
+.pretitle {
+    margin: -16px 0 0;
+}
+.pretitle a {
+    font-size: 11px; line-height: 15px; font-weight: bold;
+}
 
 
 
