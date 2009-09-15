@@ -4,7 +4,7 @@
     
     <!-- Results -->
     {% if show_result_count %}
-    <div class="module results">
+    <div class="module results" style="margin-bottom: 3px;">
         <h2>{% trans 'Results' %}</h2>
         <div class="form-row">
             <p>{% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %}</p>
@@ -14,7 +14,7 @@
     {% endif %}
     
     <!-- Search Form -->
-    <div class="module search">
+    <div class="module search" style="margin-bottom: 3px;">
         <h2>{% trans 'Search' %}</h2>
         <div id="toolbar">
             <form id="changelist-search" action="" method="get">

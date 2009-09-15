@@ -119,7 +119,7 @@
                         
                         {% if cl.has_filters %}
                         <!-- Filter -->
-                        <div class="module filter">
+                        <div class="module filter" style="margin-bottom: 0 !important;">
                             <h2>{% trans 'Filter' %}</h2>
                             {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
                         </div>
