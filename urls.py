@@ -18,6 +18,6 @@ urlpatterns = patterns('',
     
     # FOREIGNKEY LOOKUP
     url(r'^related_lookup/$', 'grappelli.views.related.related_lookup', name="grp_related_lookup"),
-    url(r'^m2m_lookup/$', 'grappelli.views.related.m2m_lookup', name="grp_m2m_lookup"),
+    url(r'^m2m_lookup/$', 'grappelli.views.related.m2m_lookup', name="grp_m2m_lookup")
     
 )
