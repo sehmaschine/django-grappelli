@@ -9,7 +9,8 @@
         $('#bookmarks').gBookmarks({url: '{% url grp_bookmark_get %}'});
         $('.changelist-content').gChangelist();
         $('#changelist').gActions();
-        $('.datetime').gDatetimeField();
+        $('input.vTimeField').gTimeField();
+        $('input.vDateField').gDateField();
         $('.inline-group').gInlineGroup();
         $('.inline-stacked').gInlineStacked();
         $('.inline-tabular').gInlineTabular();

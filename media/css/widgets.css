@@ -1,8 +1,4 @@
 /* HAINEAULT'S CSS -- SORRY I'LL CLEAN UP :| */
-.ui-datepicker { margin:4px 0 0 0; }
-.datetime img  { cursor: pointer; }
-input.vDateField { width: 80px; }
-input.vTimeField { width: 60px; }
 .ui-dialog-content #content { margin:0; }
 .ui-sortable .inline-related { cursor: pointer; }
 .ui-sortable .inline-related.ui-sortable-helper { cursor: move!important; }
@@ -153,12 +149,21 @@ p.file-upload {
 /*  Date & Time
 ------------------------------------------------------------------------------------------------------ */
 
+.ui-datepicker { margin:4px 0 0 0; }
+
+input.vDateField { width: 80px; }
+input.vTimeField { width: 60px; }
+input.vDateField + span { cursor: pointer; }
+input.vTimeField + span { cursor: pointer; }
+
 p.datetime {
     margin: 0; padding: 0;
     color: #666; font-size: 11px;
 }
-p.datetime br {
-    display: none;
+
+p.datetime .spacer {
+    border-right:1px solid #ccc;
+    margin:0 8px;
 }
 
 input.vDateField + span, input.vTimeField + span {
@@ -166,6 +171,8 @@ input.vDateField + span, input.vTimeField + span {
     display: inline-block;
     vertical-align: middle;
     color: #ccc; font-size: 11px; line-height: 11px;
+    width:23px;
+    height:18px;
 }
 input.vDateField + span a:first-child, 
 input.vTimeField + span a:first-child {
