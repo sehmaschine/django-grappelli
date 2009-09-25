@@ -30,6 +30,7 @@ tinyMCE.init({
     skin: "grappelli",
     browsers: "gecko",
     dialog_type: "window",
+    editor_deselector : "mceNoEditor",
     
     // general settings
     width: '700',
