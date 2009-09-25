@@ -311,7 +311,9 @@ input.vM2MAutocompleteRawIdAdminField {
 input[type=text], input[type=password], 
 input.vDateField, input.vTimeField, 
 .change-list form table .vAutocompleteSearchField, 
-.change-list form table .vM2MAutocompleteSearchField {
+.change-list form table .vM2MAutocompleteSearchField, 
+.inline-tabular .vAutocompleteSearchField, 
+.inline-tabular .vM2MAutocompleteSearchField {
     width: 100px;
 }
 select {
