@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import re
 from django import http, template
 from django.contrib.admin import ModelAdmin
@@ -91,7 +93,10 @@ class GrappelliSite(AdminSite):
                     app_list = [d for d in app_list if d.get('app_label') != app]
                 except:
                     pass
-            group['applications'] = application_list
+            if len(application_list):
+                group['applications'] = application_list
+            else:
+                group['applications'] = ""
         
         context = {
             'title': _('Site administration'),
