@@ -68,6 +68,10 @@ $(document).ready(function(){
                 $(this).attr('for', $(this).attr('for').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
             }
         });
+        /// remove calendars and clocks, re-init
+        $('a[id^="calendarlink"]').parent().remove();
+        $('a[id^="clocklink"]').parent().remove();
+        DateTimeShortcuts.init();
         /// do cleanup
         new_item = new_item_cleanup(new_item);
     });
