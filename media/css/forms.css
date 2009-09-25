@@ -264,6 +264,23 @@ ul.radiolist label input, ul.checkboxlist label input {
 }
 
 
+/*  Autocomplete Fields ................................................... */
+
+.vAutocompleteSearchField, 
+.vM2MAutocompleteSearchField {
+    background: #eaf5f8;
+}
+
+input.vAutocompleteRawIdAdminField, 
+input.vM2MAutocompleteRawIdAdminField {
+    margin: 0 !important; padding: 0;
+    width: 0 !important; height: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+
 /*  Changelist Form Fields ................................................... */
 
 .change-list form table input[type=text], 
@@ -292,7 +309,9 @@ ul.radiolist label input, ul.checkboxlist label input {
 ------------------------------------------------------------------------------------------------------ */
 
 input[type=text], input[type=password], 
-input.vDateField, input.vTimeField {
+input.vDateField, input.vTimeField, 
+.change-list form table .vAutocompleteSearchField, 
+.change-list form table .vM2MAutocompleteSearchField {
     width: 100px;
 }
 select {
@@ -300,7 +319,9 @@ select {
 }
 
 input.vTextField, input.vURLField, input.vFileBrowseField, textarea, 
-.vLargeTextField, .vXMLLargeTextField {
+.vLargeTextField, .vXMLLargeTextField, 
+.change-form .vAutocompleteSearchField, 
+.change-form .vM2MAutocompleteSearchField {
     width: 692px;
 }
 
@@ -313,8 +334,44 @@ input.vManyToManyRawIdAdminField,
 .inline-tabular input.vTextField {
     width: 230px;
 }
-.inline-tabular .form-cell>select {
+.inline-tabular .form-cell>select, 
+.change-list form table select {
     max-width: 230px;
+}
+
+
+
+/* Autocomplete Results
+------------------------------------------------------------------------------------------------------ */
+
+.ac_results ul {
+    margin-top: -1px; padding: 0;
+    width: 214px !important;
+    border: 1px solid #999;
+    border-color: #999 #bbb #bbb #999;
+    -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    background: #fff;
+    -moz-box-shadow: 0 1px 5px #999; -webkit-box-shadow: 0 0 5px #999;
+    overflow: auto !important;
+}
+.ac_results ul li {
+    padding: 3px 3px 2px;
+    color: #888; font-weight: bold;
+    border-bottom: 1px solid #e8e8e8;
+    cursor: pointer;
+}
+.ac_results ul li:first-child {
+    -moz-border-radius-topleft: 2px; -webkit-border-top-left-radius: 2px;
+    -moz-border-radius-topright: 2px; -webkit-border-top-right-radius: 2px;
+}
+.ac_results ul li:last-child {
+    border-bottom: none;
+    -moz-border-radius-bottomleft: 2px; -webkit-border-bottom-left-radius: 2px;
+    -moz-border-radius-bottomright: 2px; -webkit-border-bottom-right-radius: 2px;
+}
+.ac_results ul li:hover {
+    color: #666;
+    background: #eaf5f8;
 }
 
 
