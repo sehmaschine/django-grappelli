@@ -27,13 +27,14 @@
     {% if app_list or group_list %}
         {% if group_list %}
             {% for group in group_list %}
-            <div class="group-collapsible collapse-open">
-                {% if group.name %}<h2><a href="?group={{ group.name }}" class="inverse">{{ group.name }}</a></h2>{% endif %}
+            {% if group.applications %}
+            <div class="group-collapsible {% if group.classes%}{{ group.classes}}{% else %}collapse-open{% endif%}">
+                {% if group.name %}<h2>{{ group.name }}</h2>{% endif %}
                 {% if group.show_apps %}
                     {% for app in group.applications %}
-                    <div class="module" id="{{ app.name|lower }}">
+                    <div class="module" id="app_{{ app.name|lower }}">
                         <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
-                            {% if group.show_apps %}<caption><a href="{{ app.app_url }}" class="section">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></caption>{% endif %}
+                            {% if group.show_apps %}<caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>{% endif %}
                             {% for model in app.models %}
                             <tr>
                             {% if model.perms.change %}
@@ -41,13 +42,13 @@
                             {% else %}
                                 <th scope="row">{{ model.name }}</th>
                             {% endif %}
-
+                            
                             {% if model.perms.add %}
                                 <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
                             {% else %}
                                 <td>&nbsp;</td>
                             {% endif %}
-
+                            
                             {% if model.perms.change %}
                                 <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
                             {% else %}
@@ -59,7 +60,7 @@
                     </div>
                     {% endfor %}
                 {% else %}
-                    <div class="module" id="{{ app.name|lower }}">
+                    <div class="module" id="app_{{ app.name|lower }}">
                         {% for app in group.applications %}
                         <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
                             {% for model in app.models %}
@@ -69,13 +70,13 @@
                             {% else %}
                                 <th scope="row">{{ model.name }}</th>
                             {% endif %}
-
+                            
                             {% if model.perms.add %}
                                 <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
                             {% else %}
                                 <td>&nbsp;</td>
                             {% endif %}
-
+                            
                             {% if model.perms.change %}
                                 <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
                             {% else %}
@@ -88,14 +89,15 @@
                     </div>
                 {% endif %}
             </div>
+            {% endif %}
             {% endfor %}
         {% endif %}
         {% if app_list %}
             <div class="group-collapsible">
                {% for app in app_list %}
-               <div class="module" id="{{ app.name|lower }}">
+               <div class="module" id="app_{{ app.name|lower }}">
                    <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
-                       <caption><a href="{{ app.app_url }}" class="section">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></caption>
+                       <caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>
                        {% for model in app.models %}
                        <tr>
                        {% if model.perms.change %}
@@ -103,13 +105,13 @@
                        {% else %}
                            <th scope="row">{{ model.name }}</th>
                        {% endif %}
-
+                       
                        {% if model.perms.add %}
                            <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
                        {% else %}
                            <td>&nbsp;</td>
                        {% endif %}
-
+                       
                        {% if model.perms.change %}
                            <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
                        {% else %}
