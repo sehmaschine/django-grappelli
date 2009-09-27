@@ -7,10 +7,6 @@ $(function(){
     $('form .form-row:eq(0)')
         .find('input, select, textarea, button').eq(0)
         .add('#searchbar').focus();
-
-    $('.module.filter .filterset h3.form-row').bind('click.grappelli', function(){
-        $(this).next().toggle();
-    });
 });
 
 
