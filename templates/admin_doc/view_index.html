@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/documentation.css" />
 {% endblock %}
 {% block extrahead %}
-<script>
-$(document).ready(function(){
+<script type="text/javascript">
+$(function(){
     // Correct the position of anchors (because "#header" & "#breadcrumbs" have a "position:fixed")
     $('#content-related a').click(function(){
         var myReference = "#content-main " + $(this).attr('href');

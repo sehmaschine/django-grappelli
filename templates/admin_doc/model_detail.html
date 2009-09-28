@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/documentation.css" />
 {% endblock %}
 {% block extrahead %}
-<script>
-$(document).ready(function(){
+<script type="text/javascript">
+$(function(){
     // Assign width of table.model to parent .module
     $('#content-main .module').each(function(){
         var childWidth = $('#content-main .module').children("table").outerWidth();
