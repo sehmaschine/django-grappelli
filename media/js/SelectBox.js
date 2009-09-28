@@ -1,3 +1,4 @@
+/*
 var SelectBox = {
     cache: {},
     init: function(id) {
@@ -99,3 +100,4 @@ var SelectBox = {
         $('#'+ id +' option').attr('selected', 'selected');
     }
 }
+*/

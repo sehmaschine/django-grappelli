@@ -34,7 +34,6 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 </head>
 
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
-
 <!-- CONTAINER -->
 <div id="container">
     
@@ -65,8 +64,17 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     
     <!-- FOOTER -->
     {% block footer %}<div id="footer"></div>{% endblock %}
+
+    {# this will only be for development mode, a single minified file will be used for distribution. #}
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery.grappelli.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.grappelli.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gTimeField.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gDateField.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gChangelist.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gBookmarks.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gInlines.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gSelectFilter.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gActions.js"></script>
 </div>
 </body>
 </html>
