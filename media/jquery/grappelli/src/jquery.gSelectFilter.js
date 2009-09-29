@@ -135,7 +135,6 @@ $.widget('ui.gSelectFilter', {
     
     _add_to_cache: function(cid, option) {
         var ui = this;
-        console.log(cid);
         ui._cache[cid].push({value: option.value, text: option.text, displayed: 1});
     },
     
@@ -187,7 +186,6 @@ $.widget('ui.gSelectFilter', {
     _filter_key_up: function(e, cid) {
         var ui = this;
         from = ui.dom.select[cid].get(0);
-        console.log(from)
         // don't submit form if user pressed Enter
         if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
             from.selectedIndex = 0;
