@@ -51,9 +51,9 @@ $.widget('ui.gInlineGroup', {
         });
 
         // Autodiscover if sortable
-        //if (ui.element.find('.order').get(0)) {
+        if (ui.element.find('.order').get(0)) {
             ui._makeSortable();
-        //}
+        }
 
         ui.element.find('.addhandler').bind('click.gInlineGroup', function(){
             ui._refreshOrder();

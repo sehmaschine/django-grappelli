@@ -1,5 +1,5 @@
 if (typeof(gettext) == 'undefined') {
-    function gettext(i) { return i; };
+    function gettext(i) { return i; }; // temporary
 }
 $(function(){
     // Always focus first field of a form OR the search input
