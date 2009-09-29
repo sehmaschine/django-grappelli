@@ -3,10 +3,14 @@
 <!-- LOADING -->
 {% load i18n grp_tags %}
 
-<!-- STYLES -->
+<!-- STYLES & SCRIPTS -->
 {% block stylesheets %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />
+{% endblock %}
+{% block javascripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsibleGroup.js"></script>
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->
@@ -19,38 +23,111 @@
 <!-- CONTENT -->
 {% block content %}
 <div id="content-main">
-{% if app_list %}
-    {% for app in app_list %}
-        <div class="module">
-        <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
-        <caption><a href="{{ app.app_url }}" class="section">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></caption> 
-        {% for model in app.models %}
-            <tr>
-            {% if model.perms.change %}
-                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
-            {% else %}
-                <th scope="row">{{ model.name }}</th>
+    
+    {% if app_list or group_list %}
+        {% if group_list %}
+            {% for group in group_list %}
+            {% if group.applications %}
+            <div class="group-collapsible {% if group.classes%}{{ group.classes}}{% else %}collapse-open{% endif%}">
+                {% if group.name %}<h2>{{ group.name }}</h2>{% endif %}
+                {% if group.show_apps %}
+                    {% for app in group.applications %}
+                    <div class="module" id="app_{{ app.name|lower }}">
+                        <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+                            {% if group.show_apps %}<caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>{% endif %}
+                            {% for model in app.models %}
+                            <tr>
+                            {% if model.perms.change %}
+                                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                            {% else %}
+                                <th scope="row">{{ model.name }}</th>
+                            {% endif %}
+                            
+                            {% if model.perms.add %}
+                                <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                            
+                            {% if model.perms.change %}
+                                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="module" id="app_{{ app.name|lower }}">
+                        {% for app in group.applications %}
+                        <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+                            {% for model in app.models %}
+                            <tr>
+                            {% if model.perms.change %}
+                                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                            {% else %}
+                                <th scope="row">{{ model.name }}</th>
+                            {% endif %}
+                            
+                            {% if model.perms.add %}
+                                <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                            
+                            {% if model.perms.change %}
+                                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
             {% endif %}
-            
-            {% if model.perms.add %}
-                <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
-            {% else %}
-                <td>&nbsp;</td>
-            {% endif %}
-            
-            {% if model.perms.change %}
-                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
-            {% else %}
-                <td>&nbsp;</td>
-            {% endif %}
-            </tr>
-        {% endfor %}
-        </table>
-        </div>
-    {% endfor %}
-{% else %}
-    <p>{% trans "You don't have permission to edit anything." %}</p>
-{% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if app_list %}
+            <div class="group-collapsible">
+               {% for app in app_list %}
+               <div class="module" id="app_{{ app.name|lower }}">
+                   <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+                       <caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>
+                       {% for model in app.models %}
+                       <tr>
+                       {% if model.perms.change %}
+                           <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                       {% else %}
+                           <th scope="row">{{ model.name }}</th>
+                       {% endif %}
+                       
+                       {% if model.perms.add %}
+                           <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+                       {% else %}
+                           <td>&nbsp;</td>
+                       {% endif %}
+                       
+                       {% if model.perms.change %}
+                           <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                       {% else %}
+                           <td>&nbsp;</td>
+                       {% endif %}
+                       </tr>
+                       {% endfor %}
+                   </table>
+               </div>
+               {% endfor %}
+           </div>
+        {% endif %}
+    {% else %}
+        <p>{% trans "You don't have permission to edit anything." %}</p>
+    {% endif %}
+    
 </div>
 {% endblock %}
 

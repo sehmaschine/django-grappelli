@@ -49,4 +49,3 @@ def m2m_lookup(request):
     obj_text = ", ".join(obj_text)
     
     return HttpResponse(obj_text, mimetype='text/plain; charset=utf-8')
-

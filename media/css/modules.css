@@ -14,7 +14,8 @@
     -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
     background-color: #e6e6e6;
 }
-.inline-related h3 {
+.inline-related h3, 
+.inline-related h4 {
     -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
     -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
 }
@@ -125,8 +126,7 @@ fieldset.collapse-open h2.collapse-toggle {
 
 .inline-group {
     position: relative;
-    margin: 6px 0 7px;
-    padding: 2px;
+    margin: 6px 0 7px; padding: 2px;
     border: 2px solid #b3b3b3;
     -moz-border-radius: 7px; -webkit-border-radius: 7px;
     background: #fff;
@@ -180,6 +180,21 @@ fieldset.collapse-open h2.collapse-toggle {
     border: none;
 }
 
+.inline-related .module.collapse-closed, 
+.inline-related .module.collapse-open {
+    margin: 1px -1px -1px;
+    border: 1px solid;
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-topright: 0;
+}
+.inline-related .module.collapse-closed, 
+.inline-related .module.collapse-closed:hover, 
+.inline-related .module.collapse-open {
+    border-color: #c4c4c4;
+    border-top-color: #e0e0e0;
+    background: #fff !important;
+}
+
 .inline-related h3 + * + .module {
     border-top: 1px solid #fff;
     -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
@@ -200,6 +215,25 @@ fieldset.collapse-open h2.collapse-toggle {
 .inline-related.collapse-closed h3.collapse-toggle:hover, 
 .inline-related h3.collapse-toggle {
     background-color: #e0ebca;
+    background-image: url('../img/icons/icon_fieldset_collapse-open.png');
+}
+
+
+/*  H4 in Inline-Related > Fieldset ................................................... */
+
+.inline-related fieldset h4 {
+    margin: 1px; padding: 5px 5px 4px 9px;
+    color: #444; font-size: 11px; line-height: 15px; font-weight: bold;
+}
+.inline-related fieldset.collapse-closed h4.collapse-toggle {
+    border: 1px solid #d4d4d4;
+    background-color: #d6ebf2;
+    background-image: url('../img/icons/icon_fieldset_collapse-closed.png');
+}
+.inline-related fieldset.collapse-closed h4.collapse-toggle:hover, 
+.inline-related h4.collapse-toggle {
+    border: 1px solid #d4d4d4;
+    background-color: #c0e1ec;
     background-image: url('../img/icons/icon_fieldset_collapse-open.png');
 }
 
@@ -249,7 +283,6 @@ fieldset.collapse-open h2.collapse-toggle {
 .inline-tabular .form-cell {
     display: table-cell; overflow: hidden;
     padding: 5px 10px;
-/*    max-width: 600px;*/
     height: 100%;
     vertical-align: top;
     white-space: nowrap;

@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if show and choices %}
-<div class="module date-hierarchy">
+<div class="module date-hierarchy" style="margin-bottom: 3px;">
     <h2>{% trans 'Date Hierarchy' %}</h2>
     <ul class="date_hierarchy">
         {% if back %}<li class="form-row narrow date-back"><a href="{{ back.link }}">&lsaquo; {{ back.title }}</a></li>{% endif %}
