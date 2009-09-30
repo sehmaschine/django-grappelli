@@ -42,32 +42,32 @@ $.widget('ui.gSelectFilter', {
         ui.dom.chosen.append(ui.dom.title2, ui.dom.filter2, ui.dom.select.chosen, ui.dom.clearall);
 
         ui.dom.choseall.bind('click.gSelectFilter', function(){
-            ui._move_all('avail', 'chosen');
+            ui._move_all('avail');
             return false;
         });
         
         ui.dom.clearall.bind('click.gSelectFilter', function(){
-            ui._move_all('chosen', 'avail');
+            ui._move_all('chosen');
             return false;
         });
         
         $('<li><a href="#" class="selector-add" /></li>').appendTo(ui.dom.chooser)
             .find('a').text(gettext('Add'))
             .bind('click.grappelli', function(){
-                ui._move('avail', 'chosen');
+                ui._move('avail');
                 return false;
             });
         
         $('<li><a href="#" class="selector-remove" /></li>').appendTo(ui.dom.chooser)
             .find('a').text(gettext('Remove'))
             .bind('click.grappelli', function(){
-                ui._move('chosen', 'avail');
+                ui._move('chosen');
                 return false;
             });
 
         ui.element.attr({ id: id +'_from', name: ui.options.name + '_old'})
             .bind('dblclick.gSelectFilter', function(){
-                ui._move('avail', 'chosen');
+                ui._move('avail');
             })
             .parents('form').bind('submit.gSelectFilter', function() { 
                 ui._select_all('chosen'); 
@@ -81,7 +81,7 @@ $.widget('ui.gSelectFilter', {
             .bind('keydown', function(e){ ui._filter_key_up(e, 'chosen'); })
             .bind('keyup',   function(e){ ui._filter_key_down(e, 'chosen'); });
 
-            ui._move('avail', 'chosen');
+            ui._move('avail');
     },
 
     // Repopulate HTML select box from cache
@@ -91,6 +91,7 @@ $.widget('ui.gSelectFilter', {
 
         for (var x = 0, y = cids.length; x < y; x++) {
             var cid = cids[x];
+            ui._sort(cid);
             ui.dom.select[cid].find('option').remove();
             for (var i = 0, j = ui._cache[cid].length; i < j; i++) {
                 var node = ui._cache[cid][i];
@@ -99,24 +100,6 @@ $.widget('ui.gSelectFilter', {
                 }
             }
         }
-    },
-
-    // Redisplay the HTML select box, displaying only the choices containing ALL
-    // the words in text. (It's an AND search.)
-    filter: function(cid, text) {
-        var tokens = text.toLowerCase().split(/\s+/);
-        var node, token;
-        var ui  = this;
-
-        for (var i = 0; (node = ui._cache[cid][i]); i++) {
-            node.displayed = 1;
-            for (var j = 0; (token = tokens[j]); j++) {
-                if (node.text.toLowerCase().indexOf(token) == -1) {
-                    node.displayed = 0;
-                }
-            }
-        }
-        ui._redraw(cid);
     },
     
     _delete_from_cache: function(cid, value) {
@@ -153,25 +136,18 @@ $.widget('ui.gSelectFilter', {
         ui.dom.select[cid].find('option').each(function(){
             var $opt = $(this);
             if ($opt.attr('selected') == true && ui._cache_contains(cid, $opt.val())) {
-                ui._add_to_cache('chosen', {value: $opt.val(), text: $opt.text(), displayed: 1});
-                ui._delete_from_cache('avail', $opt.val());
-            }
-        });
-        ui._redraw();
-    },
-    _move_all: function(cid) {
-        var ui = this;
-        ui.dom.select[cid].find('option').each(function(){
-            var $opt = $(this);
-            if (ui._cache_contains(cid, $opt.val())) {
                 ui._add_to_cache((cid == 'avail' && 'chosen' || 'avail'), {value: $opt.val(), text: $opt.text(), displayed: 1});
                 ui._delete_from_cache(cid, $opt.val());
             }
         });
         ui._redraw();
     },
+    _move_all: function(cid) {
+        this.dom.select[cid].find('option').attr('selected', 'true');
+        this._move(cid);
+    },
     _sort: function(cid) {
-        this.cache[cid].sort( function(a, b) {
+        this._cache[cid].sort( function(a, b) {
             a = a.text.toLowerCase();
             b = b.text.toLowerCase();
             try {
@@ -220,5 +196,23 @@ $.widget('ui.gSelectFilter', {
             from.selectedIndex = (from.selectedIndex == 0) ? from.length - 1 : from.selectedIndex - 1;
         }
         return true;
+    },
+
+    // Redisplay the HTML select box, displaying only the choices containing ALL
+    // the words in text. (It's an AND search.)
+    filter: function(cid, text) {
+        var tokens = text.toLowerCase().split(/\s+/);
+        var node, token;
+        var ui  = this;
+
+        for (var i = 0; (node = ui._cache[cid][i]); i++) {
+            node.displayed = 1;
+            for (var j = 0; (token = tokens[j]); j++) {
+                if (node.text.toLowerCase().indexOf(token) == -1) {
+                    node.displayed = 0;
+                }
+            }
+        }
+        ui._redraw(cid);
     }
 });
