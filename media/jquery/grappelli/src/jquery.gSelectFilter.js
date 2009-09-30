@@ -33,7 +33,8 @@ $.widget('ui.gSelectFilter', {
         
         // Fill cache and remove <p class="info">, because it just gets in the way.
         ui.element.parent().find('p').remove().end().addClass('filtered').find('option').each(function(){
-            ui._cache['avail'].push({value: $(this).val(), text: $(this).text(), displayed: 1});
+            ui._cache[($(this).is(':selected') && 'chosen' || 'avail')]
+                .push({value: $(this).val(), text: $(this).text(), displayed: 1});
         });
 
         ui.dom.wrapper.append(ui.dom.available, ui.dom.chooser, ui.dom.chosen);
@@ -80,6 +81,7 @@ $.widget('ui.gSelectFilter', {
             .bind('keydown', function(e){ ui._filter_key_up(e, 'chosen'); })
             .bind('keyup',   function(e){ ui._filter_key_down(e, 'chosen'); });
 
+            ui._move('avail', 'chosen');
     },
 
     // Repopulate HTML select box from cache
