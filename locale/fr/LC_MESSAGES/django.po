@@ -357,7 +357,7 @@ msgstr ""
 #: templates/filebrowser/include/search.html:7
 #: templates/filebrowser/include/toolbar.html:19
 msgid "Search"
-msgstr ""
+msgstr "Rechercher"
 
 #: templates/admin/submit_line.html:6
 msgid "Save as new"
@@ -365,11 +365,11 @@ msgstr ""
 
 #: templates/admin/submit_line.html:7
 msgid "Save and add another"
-msgstr ""
+msgstr "Sauvegarder et ajouter un autre"
 
 #: templates/admin/submit_line.html:8
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Sauvegarder et continuer la modification"
 
 #: templates/admin/auth/user/add_form.html:6
 msgid ""
