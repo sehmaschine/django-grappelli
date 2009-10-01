@@ -12,7 +12,7 @@ $.widget('ui.gBookmarks', {
         $("li#toggle-bookmarks-listing.enabled")
             .live("mouseover", function(){ ui.show("#bookmarks-listing:hidden"); });
         
-        $('#toggle-bookmark-add').live("click", function() { return ui._add(); });
+        $('#toggle-bookmark-add').live("click", function() { return ui.add(); });
         $('#bookmark-add-cancel').live("click", function() { return ui.cancel(); });
         ui.element.load(url);
     },
