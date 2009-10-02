@@ -8,7 +8,6 @@ from django.conf import settings
 from grappelli.models.navigation import Navigation, NavigationItem
 from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.models.help import Help, HelpItem
-from grappelli.models.admin import AdminContentType, AdminGroup, AdminGroupItem
 
 
 class NavigationItemInline(admin.StackedInline):
