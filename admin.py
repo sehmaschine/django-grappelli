@@ -2,10 +2,13 @@
 
 from django.contrib import admin
 from django.utils.translation import ugettext as _
+from django import forms
+from django.conf import settings
 
 from grappelli.models.navigation import Navigation, NavigationItem
 from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.models.help import Help, HelpItem
+from grappelli.models.admin import AdminContentType, AdminGroup, AdminGroupItem
 
 
 class NavigationItemInline(admin.StackedInline):
@@ -28,7 +31,7 @@ class NavigationItemInline(admin.StackedInline):
     
     # Grappelli Options
     allow_add = True
-    
+
 
 class NavigationOptions(admin.ModelAdmin):
     
@@ -48,7 +51,7 @@ class NavigationOptions(admin.ModelAdmin):
     
     # Inlines
     inlines = [NavigationItemInline]
-    
+
 
 class BookmarkItemInline(admin.TabularInline):
     
@@ -63,7 +66,7 @@ class BookmarkItemInline(admin.TabularInline):
     
     # Grappelli Options
     allow_add = True
-    
+
 
 class BookmarkOptions(admin.ModelAdmin):
     
@@ -102,7 +105,7 @@ class BookmarkOptions(admin.ModelAdmin):
         if request.user.is_superuser:
             return Bookmark.objects.all()
         return Bookmark.objects.filter(user=request.user)
-    
+
 
 class HelpItemInline(admin.StackedInline):
     
@@ -117,7 +120,7 @@ class HelpItemInline(admin.StackedInline):
     
     # Grappelli Options
     allow_add = True
-    
+
 
 class HelpOptions(admin.ModelAdmin):
     
@@ -141,10 +144,10 @@ class HelpOptions(admin.ModelAdmin):
     # Media
     class Media:
         js = [
-            '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/media/admin/tinymce_setup/tinymce_setup.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce/jscripts/tiny_mce/tiny_mce.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
         ]
-    
+
 
 class HelpItemOptions(admin.ModelAdmin):
     
@@ -162,13 +165,53 @@ class HelpItemOptions(admin.ModelAdmin):
     # Media
     class Media:
         js = [
-            'admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            'admin/tinymce_setup/tinymce_setup.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce/jscripts/tiny_mce/tiny_mce.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
         ]
+
+
+class AdminGroupItemForm(forms.ModelForm):
     
+    def __init__(self, *args, **kwargs):
+        super(AdminGroupItemForm, self).__init__(*args, **kwargs)
+        qs = AdminContentType.objects.all()
+        qs.query.group_by = ['app_label']
+        self.fields['app'].queryset = qs
+
+
+class AdminGroupItemInline(admin.TabularInline):
+    form = AdminGroupItemForm
+    
+    model = AdminGroupItem
+    extra = 1
+    
+    # Grappelli Options
+    allow_add = True
+
+
+class AdminGroupOptions(admin.ModelAdmin):
+    
+    # List Options
+    list_display = ('order', 'title',)
+    list_display_links = ('title',)
+    
+    # Fieldsets
+    fieldsets = (
+        ('', {
+            'fields': ('title', 'classes', 'order',)
+        }),
+    )
+    
+    # Misc
+    save_as = True
+    
+    # Inlines
+    inlines = [AdminGroupItemInline]
+
 
 admin.site.register(Navigation, NavigationOptions)
 admin.site.register(Bookmark, BookmarkOptions)
 admin.site.register(Help, HelpOptions)
 admin.site.register(HelpItem, HelpItemOptions)
+admin.site.register(AdminGroup, AdminGroupOptions)
 
