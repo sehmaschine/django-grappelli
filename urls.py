@@ -18,6 +18,15 @@ urlpatterns = patterns('',
     
     # FOREIGNKEY LOOKUP
     url(r'^related_lookup/$', 'grappelli.views.related.related_lookup', name="grp_related_lookup"),
-    url(r'^m2m_lookup/$', 'grappelli.views.related.m2m_lookup', name="grp_m2m_lookup")
-    
+    url(r'^m2m_lookup/$', 'grappelli.views.related.m2m_lookup', name="grp_m2m_lookup"),
+
+    # AUTOCOMPLETE LOOKUP 
+    url(r'^autocomplete/(?P<app_label>\w+)/(?P<model_name>\w+)/(?P<search_fields>[,\w]+)/$', 
+        'grappelli.views.autocomplete.autocomplete_lookup', name="grp_autocomplete_lookup"),
+#   url(r'^autocomplete_lookup/$', 'grappelli.views.autocomplete.autocomplete_lookup', name="grp_autocomplete_lookup"),
+    url(r'^autocomplete_lookup_id/$', 'grappelli.views.autocomplete.autocomplete_lookup_id', name="grp_autocomplete_lookup_id"),
+   
+    # M2M AUTOCOMPLETE LOOKUP
+    url(r'^m2m_autocomplete_lookup/$', 'grappelli.views.autocomplete.m2m_autocomplete_lookup', name="grp_m2m_autocomplete_lookup"),
+    url(r'^m2m_autocomplete_lookup_id/$', 'grappelli.views.autocomplete.m2m_autocomplete_lookup_id', name="grp_m2m_autocomplete_lookup_id"),    
 )
