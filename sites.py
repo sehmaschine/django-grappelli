@@ -59,7 +59,12 @@ class GrappelliSite(AdminSite):
                 # Check whether user has any perm for this module.
                 # If so, add the module to the model_list.
                 if True in perms.values():
+                    try:
+                        order = model_admin.order
+                    except:
+                        order = 0
                     model_dict = {
+                        'order': order,
                         'name': capfirst(model._meta.verbose_name_plural),
                         'admin_url': mark_safe('%s/%s/' % (app_label, model.__name__.lower())),
                         'perms': perms,
@@ -79,9 +84,11 @@ class GrappelliSite(AdminSite):
         app_list = app_dict.values()
         app_list.sort(lambda x, y: cmp(x['name'], y['name']))
         
-        # Sort the models alphabetically within each app.
+        # First: Sort the models alphabetically within each app.
+        # Second: Sort the models according to their order-attribute.
         for app in app_list:
             app['models'].sort(lambda x, y: cmp(x['name'], y['name']))
+            app['models'].sort(lambda x, y: cmp(x['order'], y['order']))
         
         # Assign Apps to Groups
         for group in self.apps:
