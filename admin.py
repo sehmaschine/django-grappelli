@@ -169,48 +169,9 @@ class HelpItemOptions(admin.ModelAdmin):
         ]
 
 
-class AdminGroupItemForm(forms.ModelForm):
-    
-    def __init__(self, *args, **kwargs):
-        super(AdminGroupItemForm, self).__init__(*args, **kwargs)
-        qs = AdminContentType.objects.all()
-        qs.query.group_by = ['app_label']
-        self.fields['app'].queryset = qs
-
-
-class AdminGroupItemInline(admin.TabularInline):
-    form = AdminGroupItemForm
-    
-    model = AdminGroupItem
-    extra = 1
-    
-    # Grappelli Options
-    allow_add = True
-
-
-class AdminGroupOptions(admin.ModelAdmin):
-    
-    # List Options
-    list_display = ('order', 'title',)
-    list_display_links = ('title',)
-    
-    # Fieldsets
-    fieldsets = (
-        ('', {
-            'fields': ('title', 'classes', 'order',)
-        }),
-    )
-    
-    # Misc
-    save_as = True
-    
-    # Inlines
-    inlines = [AdminGroupItemInline]
-
-
 admin.site.register(Navigation, NavigationOptions)
 admin.site.register(Bookmark, BookmarkOptions)
 admin.site.register(Help, HelpOptions)
 admin.site.register(HelpItem, HelpItemOptions)
-admin.site.register(AdminGroup, AdminGroupOptions)
+
 
