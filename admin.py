@@ -50,6 +50,9 @@ class NavigationOptions(admin.ModelAdmin):
     
     # Inlines
     inlines = [NavigationItemInline]
+    
+    # Grappelli Options
+    order = 0
 
 
 class BookmarkItemInline(admin.TabularInline):
@@ -85,6 +88,9 @@ class BookmarkOptions(admin.ModelAdmin):
     
     # Inlines
     inlines = [BookmarkItemInline]
+    
+    # Grappelli Options
+    order = 1
     
     def has_change_permission(self, request, obj=None):
         has_class_permission = super(BookmarkOptions, self).has_change_permission(request, obj)
@@ -140,6 +146,9 @@ class HelpOptions(admin.ModelAdmin):
     # Inlines
     inlines = [HelpItemInline]
     
+    # Grappelli Options
+    order = 2
+    
     # Media
     class Media:
         js = [
@@ -160,6 +169,9 @@ class HelpItemOptions(admin.ModelAdmin):
             'fields': ('help', 'title', 'link', 'body', 'order',)
         }),
     )
+    
+    # Grappelli Options
+    order = 3
     
     # Media
     class Media:
