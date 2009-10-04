@@ -4,13 +4,24 @@
 <script type="text/javascript">
 $(function(){
     $('#m2m_lookup_{{ name }}').gFacelist({
-        
+        autocomplete: {
+            backend:     '/grappelli/autocomplete/{{ app_label }}/{{ model_name }}/{{ search_fields }}/',
+            related_url: '{{ related_url }}{{ url|safe }}',
+            listFormat:  '{{ list_format|default:"{id:d} - {label:s}" }}',
+            inputFormat: '{{ input_format|default:"{label:s}" }}',
+            highlight:   true,
+            browse:      false,
+            throbber:    false,
+            minChars:    1,
+            maxResults:  20,
+        }
     });
 });
 </script>
 <style>
 .ui-gFacelist-wrapper {
-    margin-left:130px;
+    float:left;
+    margin-right:11px;
 }
 .ui-gFacelist-facelist {
     border-color:#ccc #ddd #ddd #ccc;

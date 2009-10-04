@@ -53,20 +53,21 @@ $.widget('ui.gAutocomplete', {
             var key = $.ui.keyCode;
             var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 8, 9];
             switch(kc) {
-                case key.UP:     return ui._select('prev');
-                case key.DOWN:   return ui._select('next');
-                case key.ENTER:  return ui._choose();
-                case key.ESCAPE: return ui._cancel();
+                case key.UP:     return ui._select('prev'); break;
+                case key.DOWN:   return ui._select('next'); break;
+                case key.ENTER:  ui._choose(); return false; break;
+                case key.ESCAPE: return ui._cancel(); break;
                 default:
                 return true;
                 break;
             }
         });
+
+        ui._bind(ui.dom.input, 'blur', function(){ ui._hideList(); });
         ui.dom.input.delayedObserver(function(e){
             var kc = e.keyCode || 0;
             var key = $.ui.keyCode;
             var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9];
-            //console.log(kc);
             switch(kc) {
                 default:
                 // Option: minChar
@@ -75,12 +76,14 @@ $.widget('ui.gAutocomplete', {
                         ui._autocomplete();
                     }
                 }
+                else {
+                    ui.dom.wrapper.hide();
+                    ui._selected().removeClass('selected');
+                }
                 return true;
                 break;
             }
         }, ui.options.delay);
-
-        //ui.dom.input.val('el').trigger('keypress');
     },
     _createElement: function(type, options) {
         var ui = this;
@@ -99,10 +102,28 @@ $.widget('ui.gAutocomplete', {
     },
     _callback: function(e, ui) {
     },
+    _hideList: function() {
+        var ui = this;
+        if (ui.dom.wrapper.is(':visible')){
+            ui.dom.wrapper.hide();
+            $('html').unbind('click.gAutocomplete');
+        }
+    },
+    _showList: function(){
+        var ui = this;
+        if (ui.dom.wrapper.is(':hidden')){
+            ui.dom.wrapper.show();
+            $('html').bind('click.gAutocomplete', function(e){
+                if (!$(e.target).hasClass('ui-gAutocomplete-autocomplete')) {
+                    ui._hideList();
+                }
+            });
+        }
+    },
     _select: function(which) {
         var ui = this;
-        ui.dom.wrapper.show();
-        var selected = ui.dom.results.find('li.selected');
+        ui._showList();
+        var selected = ui._selected();
         if (selected.length > 0) {
             var li = selected.removeClass('selected')[(which == 'prev' && 'prevOrLast' || 'nextOrFirst')]();
         }
@@ -113,17 +134,26 @@ $.widget('ui.gAutocomplete', {
         ui._choose(true);
         return true;
     },
+    _selected: function() {
+        return this.dom.results.find('li.selected');
+    },
     _autocomplete: function() {
         var ui  = this;
         var url = ui.options.backend +'?q='+ ui.dom.input.val();
         var lr  = ++ui._lastRequest;
+
+        // Option: maxResults
         if (ui.options.maxResults) {
             url = url + '&limit='+ ui.options.maxResults;
         }
-        ui.dom.wrapper.show();
-        //ui.results.find('li:not(:contains('+ ui.dom.input.val() +'))').hide();
+        // Option: throbber
+        if (ui.options.throbber) {
+            ui.dom.input.addClass('searching');
+        }
+        ui._showList();
         $.getJSON(url, function(json, responseStatus){
             // process the request only if it's successful and it's the last sent (avoid race conditions)
+            ui.dom.input.removeClass('searching');
             if (responseStatus == 'success' && lr == ui._lastRequest) {
                 ui._results = json;
                 ui._redraw();
@@ -139,19 +169,18 @@ $.widget('ui.gAutocomplete', {
         }
         else {
             ui.element.val($(node).data('json').id);
-            ui.dom.wrapper.hide();
+            ui._hideList();
         }
         return false;
     },
     _cancel: function() {
         var ui = this;
         ui.dom.results.find('.selected').removeClass('selected');
-        ui.dom.wrapper.hide();
         if (ui.dom.input.data('sticky')) {
             ui.dom.input.val(ui.dom.input.data('sticky'));
             ui.dom.input.data('sticky', false);
         }
-        ui.dom.wrapper.hide();
+        ui._hideList();
         return false;
     },
     _redraw: function() {
@@ -168,7 +197,7 @@ $.widget('ui.gAutocomplete', {
             }
             
             ui.dom.results.find('.selected').removeClass('selected');
-            ui.dom.wrapper.show();
+            ui._showList();
             
             ui._bind(li, 'mouseover', function() { $(this).addClass('selected').siblings().removeClass('selected'); });
             ui._bind(li, 'click',     function() { 
@@ -180,13 +209,12 @@ $.widget('ui.gAutocomplete', {
 });
 
 $.ui.gAutocomplete.defaults = {
-    highlight: true,
-    browse:   true,
-  //mustMatch: false,
-  //matchContains: true,
-  //cacheLength: 20,
-    minChars: 2,
-    delay:    0.5,
+    highlight:  true,
+    browse:     true,
+    throbber:   true,
+    delay:      0.5,
+    minChars:   2,
+    maxResults: 20,
     browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
 };
 

@@ -21,6 +21,7 @@
     cursor:pointer;
     padding:2px 4px;
     border-top:1px dotted #ddd;
+    color:#999;
     
 }
 .ui-gAutocomplete-result:first-child {
@@ -33,7 +34,7 @@
     color:HighlightText;
 }
 .ui-gAutocomplete-result b {
-    color:#309BBF;
+    color:#000;
 }
 .ui-gAutocomplete-browse {
     display:block;
@@ -67,6 +68,11 @@ a.ui-gAutocomplete-browse:focus {
 }
 .vAutocompleteSearchField:focus {
     background-color:#eaf5f8;
+}
+.vAutocompleteSearchField.searching {
+    background-image:url({{ admin_media_prefix }}img/input-throbber.gif);
+    background-position:99.5% 50%;
+    background-repeat:no-repeat;
 }
 a:focus {
     border:1px dotted #309bbf;

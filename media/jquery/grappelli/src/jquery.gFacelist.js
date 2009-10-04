@@ -10,7 +10,7 @@ $.widget('ui.gFacelist', {
             clear:    ui._button('clear',       {href: '#', title: 'Clear'}),
             add:      ui._button('add',         {href: '#', title: 'Add'}),
             message:  ui._createElement('span', {ns: 'message'}).text('No item selected'),
-            input:    ui._createElement('input',{ns: 'search'}).addClass('vM2MAutocompleteSearchField').width(100)
+            input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}}).addClass('vM2MAutocompleteSearchField').width(100)
         };
 
         ui.element.parent().find('p.help').remove();
@@ -36,12 +36,10 @@ $.widget('ui.gFacelist', {
             switch(e.keyCode) {
                 case $.ui.keyCode.ENTER:    
                     ui._addItem(); 
-                    return false; 
                 break;
                 case $.ui.keyCode.BACKSPACE:
                     if (!ui.dom.input.val().length) {
                         ui.dom.input.parent().prev().remove();
-                        return false; 
                     }
                 break;
             }
@@ -51,10 +49,11 @@ $.widget('ui.gFacelist', {
             switch(e.keyCode) {
                 case $.ui.keyCode.ESCAPE:   
                     ui.dom.input.val(''); 
-                    return false; 
                 break;
             }
         });
+
+        ui.dom.input.gAutocomplete(ui.options.autocomplete)
     },
     _addItem: function() {
         var ui = this;
@@ -100,6 +99,7 @@ $.ui.gFacelist.defaults = {
     browse:   true,
     minChars: 2,
     delay:    0.5,
+    searchMaxlength: 10,
     buttonIcon: { // see http://jqueryui.com/themeroller/ for available icons
         browse: 'search', 
         clear:  'closethick',
