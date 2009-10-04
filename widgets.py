@@ -97,9 +97,9 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
             "all": (settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/jquery.autocomplete.css',)
         }
         js = (
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/lib/jquery.bgiframe.min.js',
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/lib/jquery.ajaxQueue.js',
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/jquery.autocomplete.js',
+            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery.strings.js',
+            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery.delayedObserver.js',
+            settings.ADMIN_MEDIA_PREFIX + 'jquery/grappelli/src/jquery.gFacelist.js',
         )
     
     def label_for_value(self, value):
@@ -107,9 +107,20 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
         obj = self.rel.to._default_manager.get(**{key: value})
         return truncate_words(obj, 14)
     
-    def __init__(self, rel, search_fields, attrs=None):
-        self.search_fields = search_fields
-        super(M2MAutocompleteSearchInput, self).__init__(rel, attrs)
+    def __init__(self, field, fieldAdmin, attrs=None):
+        if hasattr(fieldAdmin, 'facelist') and field.name in fieldAdmin.facelist:
+            options = fieldAdmin.facelist[field.name]
+            self.search_fields = options['search_fields']
+        
+            if 'input_format' in options:
+                self.input_format = options['input_format']
+            else:
+                self.input_format = '{label:s}'
+            if 'list_format' in options:
+                self.list_format = options['list_format']
+            else:
+                self.list_format = '{id:d} - {label:s}'
+            super(M2MAutocompleteSearchInput, self).__init__(field.rel, attrs)
     
     def render(self, name, value, attrs=None):
         if attrs is None:

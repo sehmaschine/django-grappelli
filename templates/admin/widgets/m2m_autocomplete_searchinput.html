@@ -1,4 +1,84 @@
 {% load i18n %}
+
+<textarea id="m2m_lookup_{{ name }}" class="vM2MAutocompleteSearchField mceNoEditor" style="display:none;" /></textarea>
+<script type="text/javascript">
+$(function(){
+    $('#m2m_lookup_{{ name }}').gFacelist({
+        
+    });
+});
+</script>
+<style>
+.ui-gFacelist-wrapper {
+    margin-left:130px;
+}
+.ui-gFacelist-facelist {
+    border-color:#ccc #ddd #ddd #ccc;
+    border-style:solid;
+    border-width:1px!important;
+    background-color:#fff;
+    padding:3px;
+    -moz-border-radius-topRight:0;
+    -moz-border-radius-topleft:0;
+    -webkit-border-radius-topRight:0;
+    -webkit-border-radius-topleft:0;
+}
+.ui-gFacelist-facelist input:focus,
+.ui-gFacelist-facelist.focus { background-color:#eaf5f8; }
+.ui-gFacelist-facelist input {
+    border:0;
+    padding:5px 3px;
+    margin:3px;
+    background:#fff;
+}
+.ui-gFacelist-item {
+    background:#309bbf;
+    color:#fff;
+    padding:4px;
+    margin:3px 0 3px 5px;
+    float:left;
+    cursor:pointer;
+}
+.ui-gFacelist-item:hover {
+    background:#444;
+}
+.ui-gFacelist-toolbar {
+    background-color:#ccc;
+    border-bottom:0;
+    height:22px;
+}
+.ui-gFacelist-toolbar a {
+    background-color:#c25;
+    display:block;
+    height:20px;
+    margin:0;
+    text-indent:-1000px;
+    width:20px;
+    border:0;
+    float:left;
+    padding:2px 0 0 2px;
+    border-right:1px solid #ddd!important;
+    cursor:pointer;
+    -moz-border-radius-topRight:3px;
+    -moz-border-radius-topleft:3px;
+    -webkit-border-radius-topRight:3px;
+    -webkit-border-radius-topleft:3px;
+}
+.ui-gFacelist-toolbar a span {
+    margin:0;
+}
+.ui-gFacelist-message {
+    margin:4px 0 0 7px;
+    float:left;
+    color:#999;
+    display:block;
+    font-size:0.9em;
+    font-weight:bold;
+}
+</style>
+
+
+{% comment %}
 {% spaceless %}
 <textarea id="m2m_lookup_{{ name }}" class="vM2MAutocompleteSearchField mceNoEditor" style="display:none;" />{{ label }}xxx <a href="">x</a></textarea>
 <a href="{{ related_url }}{{ url|safe }}" class="related-lookup" id="lookup_id_{{ name }}" onclick="return showRelatedObjectLookupPopup(this);">
@@ -58,3 +138,4 @@ $(document).ready(function() {
     M2MAutocompleteHandler($("#id_{{ name }}"));
 });
 </script>
+{% endcomment %}
