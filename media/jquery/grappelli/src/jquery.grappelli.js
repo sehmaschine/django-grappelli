@@ -2,6 +2,12 @@ if (typeof(gettext) == 'undefined') {
     function gettext(i) { return i; }; // temporary
 }
 $(function(){
+
+    $('.module.collapse').addClass('collapse-closed').add('.module.collapse-open').find('h2')
+        .bind('click.grappelli', function(){
+            $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
+        });
+
     // Always focus first field of a form OR the search input
     $('form .form-row:eq(0)')
         .find('input, select, textarea, button').eq(0)
