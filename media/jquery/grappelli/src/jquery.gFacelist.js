@@ -31,8 +31,8 @@ $.widget('ui.gFacelist', {
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
         ui.dom.ac = ui.dom.wrapper.find('.ui-gAutocomplete-autocomplete');
         ui.dom.ac
-            .bind('focus.gFacelist', function(){ console.log('test2');ui.dom.facelist.addClass('focus'); })
-            .bind('blur.gFacelist',  function(){ console.log('test3');ui.dom.facelist.removeClass('focus'); })
+            .bind('focus.gFacelist', function(){ ui.dom.facelist.addClass('focus'); })
+            .bind('blur.gFacelist',  function(){ ui.dom.facelist.removeClass('focus'); })
             
 
         ui._bind(ui.dom.wrapper, 'click', function(e){ 
