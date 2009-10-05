@@ -51,7 +51,7 @@ $.widget('ui.gAutocomplete', {
                 position: 'absolute'
             });
         
-        ui._bind(ui.dom.input, 'keypress', function(e){
+        ui._bind(ui.dom.input, 'keydown', function(e){
             var kc = e.keyCode || 0;
             var key = $.ui.keyCode;
             var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 8, 9];
@@ -174,6 +174,7 @@ $.widget('ui.gAutocomplete', {
             ui.element.val($(node).data('json').id);
             ui._hideList();
         }
+        ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky}));
         return false;
     },
     _cancel: function() {

@@ -4,6 +4,8 @@
 <script type="text/javascript">
 $(function(){
     $('#m2m_lookup_{{ name }}').gFacelist({
+        clearAll: true,
+        browse: true,
         autocomplete: {
             backend:     '/grappelli/autocomplete/{{ app_label }}/{{ model_name }}/{{ search_fields }}/',
             related_url: '{{ related_url }}{{ url|safe }}',

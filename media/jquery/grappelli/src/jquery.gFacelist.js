@@ -4,37 +4,37 @@ $.widget('ui.gFacelist', {
 
         // erh..
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
+        ui.element.parent().find('p.help').remove();
 
         ui.dom = {
             wrapper:  ui._createElement('div',  {ns: 'wrapper'}).width(700),
             toolbar:  ui._createElement('div',  {ns: 'toolbar'}).addClass('ui-corner-top ui-state-default'),
             facelist: ui._createElement('ul',   {ns: 'facelist'}).addClass('ui-helper-clearfix'),
-            browse:   ui._button('browse',      {href: '#', title: 'Browse'}),
-            clear:    ui._button('clear',       {href: '#', title: 'Clear all'}),
-            message:  ui._createElement('span', {ns: 'message'}).text('No item selected'),
-            input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}}).addClass('vM2MAutocompleteSearchField').width(100)
+            input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}})
+                        .addClass('vM2MAutocompleteSearchField').width(100)
         };
 
-
-        ui.element.parent().find('p.help').remove();
         ui.dom.input.wrap('<li />').parent().appendTo(ui.dom.facelist);
+        ui.dom.wrapper.append(ui.dom.toolbar, ui.dom.facelist).insertAfter(ui.element)
 
-        ui.dom.wrapper
-            .append(ui.dom.toolbar)
-            .append(ui.dom.facelist)
-            .insertAfter(ui.element)
-
-        ui.dom.toolbar
-            .append(ui.dom.browse)
-            .append(ui.dom.clear)
-            .append(ui.dom.message);
+        if (ui.options.browse) {
+            ui.dom.browse = ui._button('browse', {href: '#', title: 'Browse'}),
+            ui.dom.toolbar.append(ui.dom.browse)
+        }
+        if (ui.options.clear) {
+            ui.dom.clear = ui._button('clear', {href: '#', title: 'Clear all'}),
+            ui.dom.toolbar.append(ui.dom.clear)
+        }
+        if (ui.options.message) {
+            ui.dommessage = ui._createElement('span', {ns: 'message'}).text('No item selected');
+            ui.dom.toolbar.append(ui.dom.message);
+        }
         
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
         ui.dom.ac = ui.dom.wrapper.find('.ui-gAutocomplete-autocomplete');
         ui.dom.ac
             .bind('focus.gFacelist', function(){ ui.dom.facelist.addClass('focus'); })
             .bind('blur.gFacelist',  function(){ ui.dom.facelist.removeClass('focus'); })
-            
 
         ui._bind(ui.dom.wrapper, 'click', function(e){ 
             if (!$(e.target).hasClass('ui-gAutocomplete-autocomplete')) {
@@ -49,17 +49,22 @@ $.widget('ui.gFacelist', {
                         ui.dom.input.parent().prev().remove();
                     }
                 break;
+                case $.ui.keyCode.ENTER:    
+                    return false;
+                break;
             }
         });
 
         ui._bind(ui.dom.ac, 'keyup', function(e){
             switch(e.keyCode) {
-                case $.ui.keyCode.ENTER:    
-                    ui._addItem(); 
-                break;
                 case $.ui.keyCode.ESCAPE:   
                     ui.dom.ac.val(''); 
                 break;
+            }
+        });
+        ui._bind(ui.dom.input, 'complete', function(e){
+            if (e.originalEvent.sticky) {
+                ui._addItem(); 
             }
         });
 
@@ -109,9 +114,8 @@ $.widget('ui.gFacelist', {
 });
 $.ui.gFacelist.defaults = {
     browse:   true,
-    minChars: 2,
-    delay:    0.5,
-    searchMaxlength: 10,
+    clearAll: true,
+    message:  true,
     buttonIcon: { // see http://jqueryui.com/themeroller/ for available icons
         browse: 'search', 
         clear:  'closethick',
