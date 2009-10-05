@@ -13,13 +13,9 @@ $.widget('ui.gFacelist', {
             input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}}).addClass('vM2MAutocompleteSearchField').width(100)
         };
 
+
         ui.element.parent().find('p.help').remove();
         ui.dom.input.wrap('<li />').parent().appendTo(ui.dom.facelist);
-
-        // Field focus logic
-        ui._bind(ui.dom.input,   'focus', function(){ ui.dom.facelist.addClass('focus'); });
-        ui._bind(ui.dom.input,   'blur',  function(){ ui.dom.facelist.removeClass('focus'); });
-        ui._bind(ui.dom.wrapper, 'click', function(){ ui.dom.input.addClass('focus').focus(); });
 
         ui.dom.wrapper
             .append(ui.dom.toolbar)
@@ -32,38 +28,53 @@ $.widget('ui.gFacelist', {
             .append(ui.dom.add)
             .append(ui.dom.message);
         
-        ui._bind(ui.dom.input, 'keypress', function(e){
+        ui.dom.input.gAutocomplete(ui.options.autocomplete);
+        ui.dom.ac = ui.dom.wrapper.find('.ui-gAutocomplete-autocomplete');
+        ui.dom.ac
+            .bind('focus.gFacelist', function(){ console.log('test2');ui.dom.facelist.addClass('focus'); })
+            .bind('blur.gFacelist',  function(){ console.log('test3');ui.dom.facelist.removeClass('focus'); })
+            
+
+        ui._bind(ui.dom.wrapper, 'click', function(e){ 
+            if (!$(e.target).hasClass('ui-gAutocomplete-autocomplete')) {
+                $(this).find('input').focus(); 
+            }
+        });
+                          
+        ui._bind(ui.dom.ac, 'keydown', function(e){
             switch(e.keyCode) {
-                case $.ui.keyCode.ENTER:    
-                    ui._addItem(); 
-                break;
                 case $.ui.keyCode.BACKSPACE:
-                    if (!ui.dom.input.val().length) {
+                    if (!ui.dom.ac.val().length) {
                         ui.dom.input.parent().prev().remove();
                     }
                 break;
             }
         });
 
-        ui._bind(ui.dom.input, 'keyup', function(e){
+        ui._bind(ui.dom.ac, 'keyup', function(e){
             switch(e.keyCode) {
+                case $.ui.keyCode.ENTER:    
+                    ui._addItem(); 
+                break;
                 case $.ui.keyCode.ESCAPE:   
-                    ui.dom.input.val(''); 
+                    ui.dom.ac.val(''); 
                 break;
             }
         });
 
-        ui.dom.input.gAutocomplete(ui.options.autocomplete)
     },
     _addItem: function() {
         var ui = this;
-        var val = ui.dom.input.val();
+        var val = ui.dom.ac.val();
         if (val != '') {
             var label = $('<span />').text(val);
-            ui.dom.input.val('');
+            ui.dom.ac.val('');
             return ui._createElement('li', {ns: 'item'})
                     .html(label)
                     .addClass('ui-corner-all')
+                    .bind('click.gFacelist', function(){
+                        $(this).remove();
+                    })
                     .insertBefore(ui.dom.input.parent());
         }
     },

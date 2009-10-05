@@ -22,9 +22,12 @@ $.widget('ui.gAutocomplete', {
         };
         //<a href="{{ related_url }}{{ url|safe }}" class="related-lookup" title="Browse"><span>Browse</span></a>
         ui.element.bind('focus', function(){
-            $(this).trigger($.Event({type:'keypress', keyCode: 9}));
+            ui.dom.input.focus();
         });
         ui.dom.input.insertAfter(ui.element.hide());
+        if (ui.options.width) {
+            ui.dom.input.width(ui.options.width)
+        }
         var width = ui.dom.input.width() 
                         + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) 
                         + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
@@ -55,7 +58,7 @@ $.widget('ui.gAutocomplete', {
             switch(kc) {
                 case key.UP:     return ui._select('prev'); break;
                 case key.DOWN:   return ui._select('next'); break;
-                case key.ENTER:  ui._choose(); return false; break;
+                case key.ENTER:  ui._choose(); e.preventDefault(); break;
                 case key.ESCAPE: return ui._cancel(); break;
                 default:
                 return true;
@@ -200,7 +203,7 @@ $.widget('ui.gAutocomplete', {
             ui._showList();
             
             ui._bind(li, 'mouseover', function() { $(this).addClass('selected').siblings().removeClass('selected'); });
-            ui._bind(li, 'click',     function() { 
+            ui._bind(li, 'click', function() { 
                 $(this).addClass('selected').siblings().removeClass('selected');
                 ui._choose();
             });
@@ -215,6 +218,7 @@ $.ui.gAutocomplete.defaults = {
     delay:      0.5,
     minChars:   2,
     maxResults: 20,
+    width:      false,
     browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
 };
 
