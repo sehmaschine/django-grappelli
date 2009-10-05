@@ -2,8 +2,9 @@ $.widget('ui.gFacelist', {
     _init: function(){
         var ui = this;
 
-        // erh..
+        // erh.. jquery < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
+
         ui.element.parent().find('p.help').remove();
 
         ui.dom = {
@@ -26,7 +27,7 @@ $.widget('ui.gFacelist', {
             ui.dom.toolbar.append(ui.dom.clear)
         }
         if (ui.options.message) {
-            ui.dommessage = ui._createElement('span', {ns: 'message'}).text('No item selected');
+            ui.dom.message = ui._createElement('span', {ns: 'message'}).text('No item selected');
             ui.dom.toolbar.append(ui.dom.message);
         }
         
@@ -65,23 +66,33 @@ $.widget('ui.gFacelist', {
         ui._bind(ui.dom.input, 'complete', function(e){
             if (e.originalEvent.sticky) {
                 ui._addItem(); 
+                ui._message(); 
             }
         });
 
+    },
+    _message: function(msg) {
+        var ui = this;
+        if (!msg && ui.options.message) {
+            var count = ui.dom.facelist.find('.ui-gFacelist-item').length;
+            var msg = count > 1 && '{0:d} selected messages' || '{0:d} selected message';
+            ui.dom.message.text($.format(msg, count));
+        }
     },
     _addItem: function() {
         var ui = this;
         var val = ui.dom.ac.val();
         if (val != '') {
             var label = $('<span />').text(val);
-            ui.dom.ac.val('');
-            return ui._createElement('li', {ns: 'item'})
+            var button = ui._createElement('li', {ns: 'item'})
                     .html(label)
                     .addClass('ui-corner-all')
                     .bind('click.gFacelist', function(){
                         $(this).remove();
                     })
                     .insertBefore(ui.dom.input.parent());
+            ui.dom.ac.val('');
+            return button;
         }
     },
     _button: function(ns, attr) {

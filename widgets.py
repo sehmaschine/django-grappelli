@@ -16,15 +16,11 @@ class AutocompleteSearchInput(ForeignKeyRawIdWidget):
     # Set in subclass to render the widget with a different template
     widget_template = None
     
-    class Media:
-        css = {
-            "all": (settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/jquery.autocomplete.css',)
-        }
-        js = (
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery.strings.js',
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery.delayedObserver.js',
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/grappelli/src/jquery.gAutocomplete.js',
-        )
+#   class Media:
+       #css = {
+       #    "all": (settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/jquery.autocomplete.css',)
+       #}
+       #js = (,)
     
     def label_for_value(self, value):
         key = self.rel.get_related_field().name
@@ -92,15 +88,11 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
     # Set in subclass to render the widget with a different template
     widget_template = None
     
-    class Media:
-        css = {
-            "all": (settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/jquery.autocomplete.css',)
-        }
-        js = (
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery.strings.js',
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery.delayedObserver.js',
-            settings.ADMIN_MEDIA_PREFIX + 'jquery/grappelli/src/jquery.gFacelist.js',
-        )
+#   class Media:
+       #css = {
+       #    "all": (settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/jquery.autocomplete.css',)
+       #}
+       #js = (,)
     
     def label_for_value(self, value):
         key = self.rel.get_related_field().name
