@@ -2,13 +2,15 @@ $.widget('ui.gFacelist', {
     _init: function(){
         var ui = this;
 
+        // erh..
+        ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
+
         ui.dom = {
             wrapper:  ui._createElement('div',  {ns: 'wrapper'}).width(700),
             toolbar:  ui._createElement('div',  {ns: 'toolbar'}).addClass('ui-corner-top ui-state-default'),
             facelist: ui._createElement('ul',   {ns: 'facelist'}).addClass('ui-helper-clearfix'),
             browse:   ui._button('browse',      {href: '#', title: 'Browse'}),
-            clear:    ui._button('clear',       {href: '#', title: 'Clear'}),
-            add:      ui._button('add',         {href: '#', title: 'Add'}),
+            clear:    ui._button('clear',       {href: '#', title: 'Clear all'}),
             message:  ui._createElement('span', {ns: 'message'}).text('No item selected'),
             input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}}).addClass('vM2MAutocompleteSearchField').width(100)
         };
@@ -25,7 +27,6 @@ $.widget('ui.gFacelist', {
         ui.dom.toolbar
             .append(ui.dom.browse)
             .append(ui.dom.clear)
-            .append(ui.dom.add)
             .append(ui.dom.message);
         
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
@@ -115,6 +116,14 @@ $.ui.gFacelist.defaults = {
         browse: 'search', 
         clear:  'closethick',
         add:    'plusthick'
+    },
+    autocomplete: {
+        highlight:  true,
+        browse:     false,
+        throbber:   false,
+        minChars:   1,
+        maxResults: 20,
+        width:      100
     }
 };
 
