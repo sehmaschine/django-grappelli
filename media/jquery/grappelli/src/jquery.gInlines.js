@@ -186,8 +186,9 @@ $.widget('ui.gInlineStacked', {
     },
     _makeCollapsible: function() {
         var ui = this;
+
         
-        // BUTTONS (STACKED INLINE)
+        // COLLAPSE OPEN/CLOSE ALL BUTTONS
         ui.element.find('a.closehandler').bind("click", function(){
             $(this).parents('div.inline-stacked')
                 .addClass('collapsed collapse-closed')
@@ -225,6 +226,10 @@ $.widget('ui.gInlineStacked', {
                          .addClass('collapse-open');
                     }
                 });
+        if (ui.element.hasClass('collapse-open-items')) {
+            ui.element.find('.inline-related.collapse-closed.collapsed')
+                .removeClass('collapse-closed collapsed').addClass('collapse-open');
+        }
     },
 });
 $.ui.gInlineStacked.defaults = {
