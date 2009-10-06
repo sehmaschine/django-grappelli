@@ -29,23 +29,23 @@ class DjangoFieldsAdmin(admin.ModelAdmin):
             'fields': ('char_test', 'text_test', 'slug_test', 'boolean_test', 'nboolean_test')
         }),
         ('Date and Time (collapse-open)', {
-            'classes': ('collapse-open',),
+            'classes': 'collapse-open',
             'fields': ('datetime_test', 'time_test', 'date_test')
         }),
         ('Networking (collapsed)', {
-            'classes': ('collapse',),
+            'classes': 'collapse-closed',
             'fields': ('url_test', 'email_test', 'ip_test')
         }),
         ('Numbers', {
-            'classes': ('collapse',),
+            'classes': 'collapse-open',
             'fields': ('decimal_test', 'integer_test', 'pinteger_test', 'psinteger_test', 'sinteger_test')
         }),
         ('Uploads', {
-            'classes': ('collapse',),
+            'classes': ('collapse-open',),
             'fields': ('file_test', 'image_test', )
         }),
         ('Relationships', {
-            'classes': ('collapse',),
+            'classes': ('collapse-open',),
             'fields': ('fk_test', 'm2m_test', 'ooo_test')
         }),
     )
@@ -95,7 +95,7 @@ admin.site.register(GrappelliFields, GrappelliFieldsAdmin)
 
 class DjangoTabularFieldsInline(admin.TabularInline):
     model = DjangoFields
-    classes = ('collapse-open',),
+    classes = ('collapse-open',)
     allow_add = True
     extra = 1
     fieldsets = (
@@ -130,18 +130,18 @@ class DjangoTabularFieldsInline(admin.TabularInline):
 
 class GrappelliTabularFieldsInline(admin.TabularInline):
     model = GrappelliFields 
-    classes = ('collapse-open',),
+    classes = ('collapse-open',)
     allow_add = True
     extra = 1
 
 class DjangoStackedFieldsInline(admin.StackedInline):
     model = DjangoFields
-    classes = ('collapse-open',),
+    classes = ('collapse-open',)
     allow_add = True
 
 class GrappelliStackedFieldsInline(admin.StackedInline):
     model = GrappelliFields 
-    classes = ('collapse-open',),
+    classes = ('collapse-open',)
     allow_add = True
 
 class InlineStackedTestAdmin(admin.ModelAdmin):
