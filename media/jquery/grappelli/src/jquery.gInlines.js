@@ -4,14 +4,7 @@ $.widget('ui.gInlineGroup', {
     _init: function(){
         var ui = this;
         ui.element.find('input[name*="DELETE"]').hide();
-        if (ui.options.collapsibleGroups) {
-            ui._makeCollapsibleGroups();
-        }
-        else {
-            ui.element.filter('.collapse-closed')
-                .removeClass('collapse-closed collapsed')
-                .addClass('collapse-op');
-        }
+        ui._makeCollapsibleGroups();
 
         // Prevent fields of inserted rows from triggering errors if un-edited
         ui.element.parents('form').bind('submit.gInlineGroup', function(){
@@ -107,17 +100,17 @@ $.widget('ui.gInlineGroup', {
         return el;
     },
 
-    // INLINE GROUPS (STACKED & TABULAR)
+    // INLINE GROUPS COLLAPSE (STACKED & TABULAR)
     _makeCollapsibleGroups: function() {
         var ui = this;
-        ui.element.filter('.collapse-closed').addClass("collapsed").end()
-            .find('h2:first-child').addClass("collapse-toggle")
-            .bind("click.gInlineGroup", function(){
-                $(this).parent()
-                    .toggleClass('collapsed')
-                    .toggleClass('collapse-closed')
-                    .toggleClass('collapse-open');
-                });
+        if (ui.element.hasClass('collapse-closed') || ui.element.hasClass('collapse-open')) {
+            ui.element.find(' > h2').addClass('collapse-toggle')
+                .bind("click.gInlineGroup", function(){
+                    $(this).parent()
+                        .toggleClass('collapse-closed')
+                        .toggleClass('collapse-open');
+                    });
+        }
     },
     
     _makeSortable: function() {
@@ -169,8 +162,6 @@ $.widget('ui.gInlineGroup', {
 });
 
 $.ui.gInlineGroup.defaults = {
-    collapsibleInlines: true,
-    collapsibleGroups:  true,
 };
 
 // INLINE STACKED 
@@ -178,13 +169,7 @@ $.ui.gInlineGroup.defaults = {
 $.widget('ui.gInlineStacked', {
     _init: function(){
         var ui = this;
-
-        if (ui.options.collapsible) {
-            ui._makeCollapsible();
-        }
-        else {
-            ui.element.find('.inline-related').removeClass("collapsed")
-        }
+        ui._makeCollapsible();
 
         // FIELDSETS WITHIN STACKED INLINES
         /* OBSOLETE ?
