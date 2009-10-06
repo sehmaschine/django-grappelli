@@ -51,7 +51,8 @@ class DjangoFields(models.Model):
     url_test       = models.URLField(u"URLField", max_length=255, blank=True, verify_exists=False)
     # XMLField
     fk_test        = models.ForeignKey(User, verbose_name=u"ForeignKey", blank=True)
-    inline_test    = models.ForeignKey('InlineTabularTest', verbose_name=u"ForeignKey (inline)", blank=True)
+    inline_test    = models.ForeignKey('InlineTabularTest', verbose_name=u"ForeignKey (inline tabular)", blank=True, null=True)
+    inline_test2   = models.ForeignKey('InlineStackedTest', verbose_name=u"ForeignKey (inline stacked)", blank=True, null=True)
     m2m_test       = models.ManyToManyField(User, verbose_name=u"ManyToManyField", blank=True, related_name='many_to_many')
     ooo_test       = models.OneToOneField(User, verbose_name=u"OneToOneField", blank=True, related_name='one_to_one')
 
@@ -81,7 +82,8 @@ class GrappelliFields(models.Model):
     fk_test     = models.ForeignKey(User, verbose_name=u"FK Autocomplete", blank=True)
     m2m_test    = models.ManyToManyField(User, verbose_name=u"M2M Autocomplete", blank=True, related_name="m2m_user")
     char_test   = models.CharField(u"Char Field", max_length=255, blank=True)
-    inline_test = models.ForeignKey('InlineTabularTest', verbose_name=u"ForeignKey (inline)", blank=True)
+    inline_test = models.ForeignKey('InlineTabularTest', verbose_name=u"ForeignKey (inline tabular)", blank=True, null=True)
+    inline_test2   = models.ForeignKey('InlineStackedTest', verbose_name=u"ForeignKey (inline stacked)", blank=True, null=True)
     date_added  = models.DateField(u"DateField", auto_now_add=True, auto_now=True, blank=True, null=True)
 
     def __unicode__(self):
