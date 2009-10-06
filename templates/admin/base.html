@@ -26,23 +26,34 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 {% endcomment %}
 
 {% block javascripts %}
-<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
-{#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.8.1.alpha.min.js"></script>#}
-<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
-<script type="text/javascript">
-    var ADMIN_URL = "/{% get_admin_url %}/";
-    var ADMIN_MEDIA_PREFIX = "{% admin_media_prefix %}";
-    var BOOKMARKS_URL = "{% url grp_bookmark_get %}";
-    {% get_generic_relation_list %}
-    $(function(){
-      {% block javascripts.init  %}
-        {% include "admin/init.js"  %}
-      {% endblock %}
-    });
-</script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
+    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.8.1.alpha.min.js"></script>#}
+    <script type="text/javascript">
+        var ADMIN_URL = "/{% get_admin_url %}/";
+        var ADMIN_MEDIA_PREFIX = "{% admin_media_prefix %}";
+        var BOOKMARKS_URL = "{% url grp_bookmark_get %}";
+        {% get_generic_relation_list %}
+        $(function(){
+          {% block javascripts.init  %}{% include "admin/init.js"  %}{% endblock %}
+        });
+    </script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
+    {# this will only be for development mode, a single minified file will be used for distribution. #}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.grappelli.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gTimeField.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gDateField.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gChangelist.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gBookmarks.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gInlines.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gSelectFilter.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gActions.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gAutocomplete.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gFacelist.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery.strings.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery.delayedObserver.js"></script>
+    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.min.js"></script>#}
 {% endblock %}
 {% block extrahead %}{% endblock %}
-
 </head>
 
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
@@ -76,24 +87,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     
     <!-- FOOTER -->
     {% block footer %}<div id="footer"></div>{% endblock %}
-
-    {# this will only be for development mode, a single minified file will be used for distribution. #}
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.grappelli.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gTimeField.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gDateField.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gChangelist.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gBookmarks.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gInlines.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gSelectFilter.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gActions.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gAutocomplete.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gFacelist.js"></script>
-    
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery.strings.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery.delayedObserver.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/ui.shadow.js"></script>
-    
-    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.min.js"></script>#}
 </div>
 </body>
 </html>
+

@@ -1,5 +1,12 @@
-// test
-
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  Package: Grappelli
+ *
+ *  Todo:
+ *
+ *   - Caching
+ *
+ *
+ * */
 $.fn.prevOrLast = function() {
     return $(this).prev().length > 0 && $(this).prev() || $(this).parent().children(':last');
 };
@@ -15,7 +22,8 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         ui.dom = {
             wrapper: ui._createElement('div',   {ns: 'wrapper'}).addClass('ui-corner-bottom').hide(), 
-            results: ui._createElement('ul',    {ns: 'results'}), 
+            shadow:  ui._createElement('div',   {ns: 'shadow'}).addClass('ui-widget-shadow'), 
+            results: ui._createElement('ul',    {ns: 'results'}).addClass('ui-shadow'), 
             input:   ui._createElement('input', {ns: 'autocomplete', attr:{type: 'text'}}).addClass('vAutocompleteSearchField'), 
             browse:  ui._createElement('a',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}).addClass('ui-corner-left ui-state-default')
                                                                 .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>'), 
@@ -45,6 +53,7 @@ $.widget('ui.gAutocomplete', {
         }
         ui.dom.wrapper.width(width)
             .append(ui.dom.results)
+            .append(ui.dom.shadow.height(400).width(600))
             .insertAfter(ui.dom.input)
             .css({
                 left: ui.dom.input.position().left, 

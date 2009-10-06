@@ -45,7 +45,7 @@ $.widget('ui.gBookmarks', {
 });
 
 $.ui.gBookmarks.defaults = {
-    url: '/grappelli/bookmark/get/',
+    url: BOOKMARKS_URL,
     effects: false
 };
 

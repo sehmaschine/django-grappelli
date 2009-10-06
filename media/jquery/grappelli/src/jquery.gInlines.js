@@ -19,13 +19,13 @@ $.widget('ui.gInlineGroup', {
         });
  
         /// ADD HANDLER
-        ui.element.find('a.addhandler').bind('click.gInlineGroup', function(){
+        ui.element.find('a.addhandler').bind('click.gInlineGroup', function(e){
             var container = $(this).parents('div.inline-group');
             var lastitem  = container.find('div.inline-related:last');
             var newitem   = lastitem.clone(true).appendTo(container.find('div.items:first'));
             var count     = parseInt(container.find('div.inline-related').length, 10);
             var header    = newitem.find('h3:first');
-            
+            e.preventDefault();
             // update new item's header (inline-stacked only)
             if (header.get(0) && container.hasClass('inline-stacked')) {
                 header.html("<b>" + $.trim(header.text()).replace(/(\d+)$/, count) + "</b>");
@@ -38,7 +38,6 @@ $.widget('ui.gInlineGroup', {
             container.find('input[id*="TOTAL_FORMS"]').val(count);
 
             ui._initializeItem(newitem, count);
-
             return false;
         });
         
@@ -75,11 +74,12 @@ $.widget('ui.gInlineGroup', {
         });
 
         // Destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
-        el.find('.vDateField').unbind().removeClass('hasDatepicker')
+        el.find('.vDateField').unbind().removeClass('hasDatepicker').val('')
             .next().remove().end().end()
-            .find('.vTimeField').unbind().next().remove().end().end()
-            .find('.datetime').gDatetimeField();
-
+            .find('.vTimeField').unbind().val('').next().remove();
+        
+        el.find('.vDateField').gDateField();
+        el.find('.vTimeField').gTimeField();
 
        /// remove error-lists and error-classes
         el.find('ul.errorlist').remove().end()

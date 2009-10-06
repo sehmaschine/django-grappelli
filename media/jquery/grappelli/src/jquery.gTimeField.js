@@ -3,59 +3,70 @@
 $.widget('ui.gTimeField', {
     _init: function() {
         var ui = this;
-        var picker = $('<div class="clockbox module"><h2 class="clock-title" /><ul class="timelist" /><p class="clock-cancel"><a href="#" /></p></div>')
-            .appendTo('body')
+        ui.dom = {
+            picker: $('<div class="clockbox module"><h2 class="clock-title" /><ul class="timelist" /><p class="clock-cancel"><a href="#" /></p></div>'),
+            button: $('<button class="ui-timepicker-trigger" type="button" />'),
+        };
+        ui.dom.picker.appendTo('body')
             .find('h2').text(gettext('Choose a time')).end()
             .find('a').text(gettext('Cancel')).end()
             .css({ display:  'none', position: 'absolute'});
 
-        var button = $('<img />')
-                        .attr('src', ui.options.buttonImage)
-                        .attr('alt', gettext('Clock'))
-                        .wrap('<a href="#" />')
-                            .attr('title', gettext('Clock'))
-                            .insertAfter(ui.element)
-                            .bind('click.grappelli', function(){
-                                var pos = $(this).offset();
-                                if (picker.is(':visible')) {
-                                    picker.hide();
-                                    $('body').unbind('click.gTimeField');
-                                }
-                                else {
-                                    $('.clockbox.module:visible').hide();
-                                    picker.show().css({
-                                        top: pos.top - picker.height()/2,
-                                        left: pos.left + 20
-                                    });
-                                    $('body').bind('click.gTimeField', function(e){
-                                        var target = $(e.originalTarget);
-                                        if (!target.hasClass('clock-title')) {
-                                           picker.hide(); 
-                                        }
-                                    });
-                                }
-                            })
-                            .parent().click(function(){ return false; })
+        ui.dom.button
+            .bind('click.grappelli', function(){
+                ui.toggle(this);
+            })
+            .insertAfter(ui.element);
 
         $.each(ui.options.buttons, function(){
             var button = this;
             $('<li><a href="#"></a></li>').find('a')
                 .text(button.label).bind('click.grappelli', function(e){
                     button.callback.apply(this, [e, ui]);
-                    picker.hide();
+                    ui.dom.picker.hide();
                     return false;
                 }).end()
-                .appendTo(picker.find('.timelist'));
+                .appendTo(ui.dom.picker.find('.timelist'));
         });
 
         $('input, textarea, select').bind('focus.gTimeField', function(){
             $('.clockbox.module:visible').hide();
         });
-    }         
+    },
+    toggle: function(at) {
+        var ui = this;
+        if (ui.dom.picker.is(':visible')) {
+            ui.hide();
+        }
+        else {
+            ui.show(at);
+        }
+    },
+    show: function(at) {
+        var pos = $(at).offset();
+        var ui = this;
+        $('.clockbox.module:visible').hide();
+        ui.dom.picker.show().css({
+            top: pos.top - ui.dom.picker.height()/2,
+            left: pos.left + 20
+        });
+        $('body').bind('click.gTimeField', function(e){
+            var target = $(e.originalTarget);
+            if (!target.hasClass('.clock-title') && !target.hasClass('ui-timepicker-trigger')) {
+               ui.hide(); 
+            }
+        });
+    },
+    hide: function() {
+        var ui = this;
+        if (ui.dom.picker.is(':visible')) {
+            ui.dom.picker.hide();
+            $('body').unbind('click.gTimeField');
+        }
+    }
 });
 
 $.ui.gTimeField.defaults = {
-    buttonImage:     ADMIN_MEDIA_PREFIX +'img/icons/icon-clock.png',
     buttons: [
         {label: gettext("Now"), callback: function(e, ui){ 
             return ui.element.val(new Date().getHourMinuteSecond()); 

@@ -166,17 +166,26 @@ p.datetime .spacer {
     margin:0 8px;
 }
 
-input.vDateField + span, input.vTimeField + span {
+input.vDateField + button, input.vTimeField + button {
     position: relative; top: -1px;
     display: inline-block;
     vertical-align: middle;
-    color: #ccc; font-size: 11px; line-height: 11px;
+    color: #eee; 
+    font-size: 0px; 
     width:23px;
     height:18px;
+    border:0;
+    text-indent:-1000px;
 }
-input.vDateField + span a:first-child, 
-input.vTimeField + span a:first-child {
-    position: relative; top: 1px; left: 4px;
+input.vDateField + button {
+    background:transparent url(../img/icons/icon-calendar.png) no-repeat 50% 50%;
+}
+input.vTimeField + button {
+    background:transparent url(../img/icons/icon-clock.png) no-repeat 50% 50%;
+}
+input.vDateField + button, 
+input.vTimeField + button {
+    position: relative; top: 1px; left: 2px;
 }
 
 .form-row label + p.datetime {
