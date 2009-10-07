@@ -205,9 +205,6 @@ $.widget('ui.gInlineStacked', {
                     .removeClass('collapsed collapse-closed')
                     .addClass('collapse-open');
         });
-        
-        /// OPEN STACKEDINLINE WITH ERRORS (onload)
-        $('.inline-related:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
 
         ui.element.find('.inline-related')
             .addClass("collapsed")
@@ -230,6 +227,9 @@ $.widget('ui.gInlineStacked', {
             ui.element.find('.inline-related.collapse-closed.collapsed')
                 .removeClass('collapse-closed collapsed').addClass('collapse-open');
         }
+        
+        /// OPEN STACKEDINLINE WITH ERRORS (onload)
+        $('.inline-related:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
     },
 });
 $.ui.gInlineStacked.defaults = {
