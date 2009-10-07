@@ -279,8 +279,8 @@ ul.timelist li +li {
 
 .ui-gAutocomplete-wrapper {
     background:#f7fafb;
-    border:1px solid #e0e0e0;
-    border-color:#eaf5f8 #bbb #ddd #ccc;
+    border:1px solid #e0e0e0!important;
+    border-color:#eaf5f8 #bbb #ddd #ccc!important;
     margin-top:-2px;
 }
 
@@ -291,8 +291,8 @@ ul.timelist li +li {
 }
 .ui-gAutocomplete-result {
     cursor:pointer;
-    padding:2px 4px;
-    border-top:1px dotted #ddd;
+    padding:2px 4px!important;
+    border-top:1px dotted #ddd!important;
     color:#999;
     
 }
@@ -364,12 +364,16 @@ a.ui-gAutocomplete-browse:focus {
     float:left;
     margin-right:11px;
 }
+.ui-gFacelist-wrapper + .add-another {
+    margin-left:20px;
+
+}
 .ui-gFacelist-facelist {
-    border-color:#ccc #ddd #ddd #ccc;
-    border-style:solid;
-    border-width:1px!important;
+    border-color:#ccc #ddd #ddd #ccc!important;
+    border-style:solid!important;
+    border-width:0 1px 1px 1px!important;
     background-color:#fff;
-    padding:3px;
+    padding:3px!important;
     -moz-border-radius-topRight:0;
     -moz-border-radius-topleft:0;
     -webkit-border-radius-topRight:0;
@@ -386,8 +390,8 @@ a.ui-gAutocomplete-browse:focus {
 .ui-gFacelist-item {
     background:#309bbf;
     color:#fff;
-    padding:4px;
-    margin:3px 0 3px 5px;
+    padding:4px!important;
+    margin:3px 0 3px 5px!important;
     float:left;
     cursor:pointer;
 }
@@ -416,6 +420,9 @@ a.ui-gAutocomplete-browse:focus {
     -webkit-border-radius-topRight:3px;
     -webkit-border-radius-topleft:3px;
 }
+.ui-gFacelist-toolbar span {
+    margin:3px 5px;
+}
 .ui-gFacelist-toolbar a span {
     margin:0;
 }
@@ -435,4 +442,7 @@ a.ui-gAutocomplete-browse:focus {
 }
 .ui-gFacelist-wrapper .ui-gAutocomplete-wrapper ul {
     margin:0!important;
+}
+.vM2MAutocompleteRawIdAdminField + a.add-another {
+    margin-left:4px;
 }
