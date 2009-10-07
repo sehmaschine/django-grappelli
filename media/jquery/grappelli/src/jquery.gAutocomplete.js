@@ -90,11 +90,18 @@ $.widget('ui.gAutocomplete', {
                 else {
                     ui.dom.wrapper.hide();
                     ui._selected().removeClass('selected');
+                    if ($(this).val().length == 0) {
+                        ui._setVal('');
+                    }
                 }
                 return true;
                 break;
             }
         }, ui.options.delay);
+    },
+    _setVal: function(val) {
+        return $('input[name='+ this.element.attr('id') +']').val(val); // lol wut ?
+     // return this.element.val(val); // should be this, but it doesn't work ..
     },
     _createElement: function(type, options) {
         var ui = this;
@@ -176,8 +183,7 @@ $.widget('ui.gAutocomplete', {
         var node = ui.dom.results.find('.selected');
         if (node.data('json')) {
             ui.dom.input.val($.format(ui.options.inputFormat, node.data('json')));
-            $('input[name='+ ui.element.attr('id') +']').val(node.data('json').id); // lol wut ?
-            // ui.element.val($(node).data('json').id); // should be this, but it doesn't submit ..
+            ui._setVal(node.data('json').id);
             if (nonSticky) {
                 ui.dom.input.data('sticky', ui.dom.input.val());
             }
