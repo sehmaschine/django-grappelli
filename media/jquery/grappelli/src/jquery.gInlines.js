@@ -186,7 +186,6 @@ $.widget('ui.gInlineStacked', {
     },
     _makeCollapsible: function() {
         var ui = this;
-
         
         // COLLAPSE OPEN/CLOSE ALL BUTTONS
         ui.element.find('a.closehandler').bind("click", function(){

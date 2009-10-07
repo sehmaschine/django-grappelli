@@ -1,9 +1,8 @@
 {% load i18n %}
-
-<textarea id="m2m_lookup_{{ name }}" class="vM2MAutocompleteSearchField mceNoEditor" style="display:none;" /></textarea>
+<input id="{{ name }}" class="vM2MAutocompleteSearchField mceNoEditor" />
 <script type="text/javascript">
 $(function(){
-    $('#m2m_lookup_{{ name }}').gFacelist({
+    $('#{{ name }}').gFacelist({
         clearAll: true,
         browse: true,
         autocomplete: {

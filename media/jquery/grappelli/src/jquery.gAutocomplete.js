@@ -91,7 +91,7 @@ $.widget('ui.gAutocomplete', {
                     ui.dom.wrapper.hide();
                     ui._selected().removeClass('selected');
                     if ($(this).val().length == 0) {
-                        ui._setVal('');
+                        ui._setVal();
                     }
                 }
                 return true;
@@ -100,8 +100,15 @@ $.widget('ui.gAutocomplete', {
         }, ui.options.delay);
     },
     _setVal: function(val) {
-        return $('input[name='+ this.element.attr('id') +']').val(val); // lol wut ?
-     // return this.element.val(val); // should be this, but it doesn't work ..
+        var ui = this;
+        if (val) {
+            ui.element.val(val.id);
+            ui.dom.input.val($.format(ui.options.inputFormat, val));
+        }
+        else {
+            ui.element.val('');
+            ui.dom.input.val('');
+        }
     },
     _createElement: function(type, options) {
         var ui = this;
@@ -182,9 +189,8 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         var node = ui.dom.results.find('.selected');
         if (node.data('json')) {
-            ui.dom.input.val($.format(ui.options.inputFormat, node.data('json')));
-            ui._setVal(node.data('json').id);
-            if (nonSticky) {
+            ui._setVal(node.data('json'));
+            if (nonSticky) { // remember value in case of cancel
                 ui.dom.input.data('sticky', ui.dom.input.val());
             }
             else {
