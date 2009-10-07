@@ -5,7 +5,7 @@ $.widget('ui.gFacelist', {
         // erh.. jquery < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
 
-        ui.element.parent().find('p.help').remove();
+        ui.element.hide().parent().find('p.help').remove();
 
         ui.dom = {
             wrapper:  ui._createElement('div',  {ns: 'wrapper'}).width(700),
