@@ -1,7 +1,6 @@
 {% load i18n %}
 {% spaceless %}
 <input type="text" id="lookup_{{ name }}" value="{{ label }}" class="vAutocompleteSearchField" style="display:none;" />
-
 {%comment%}
 <a href="{{ related_url }}{{ url|safe }}" class="related-lookup" id="lookup_id_{{ name }}" onclick="return showRelatedObjectLookupPopup(this);"><img src="{{ admin_media_prefix }}img/admin/selector-search.gif" width="16" height="16" alt="{% trans "Lookup" %}" /></a>
 {% endcomment %}
@@ -17,6 +16,8 @@
 
 .ui-gAutocomplete-results {
     z-index:1000;
+    box-shadow: #666 0.3em 0.3em 0.3em;
+    -moz-box-shadow: #666 0.3em 0.3em 0.3em;
 }
 .ui-gAutocomplete-result {
     cursor:pointer;
@@ -64,7 +65,7 @@ a.ui-gAutocomplete-browse:focus {
     margin:3px 0 0 2px;
 }
 .vAutocompleteSearchField {
-    background:#fff;
+    background-color:#eaf5f8;
     margin-right:8px;
 }
 .vAutocompleteSearchField:focus {

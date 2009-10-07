@@ -22,8 +22,7 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         ui.dom = {
             wrapper: ui._createElement('div',   {ns: 'wrapper'}).addClass('ui-corner-bottom').hide(), 
-            shadow:  ui._createElement('div',   {ns: 'shadow'}).addClass('ui-widget-shadow'), 
-            results: ui._createElement('ul',    {ns: 'results'}).addClass('ui-shadow'), 
+            results: ui._createElement('ul',    {ns: 'results'}), 
             input:   ui._createElement('input', {ns: 'autocomplete', attr:{type: 'text'}}).addClass('vAutocompleteSearchField'), 
             browse:  ui._createElement('a',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}).addClass('ui-corner-left ui-state-default')
                                                                 .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>'), 
@@ -46,19 +45,18 @@ $.widget('ui.gAutocomplete', {
                 .bind('click.browse', function(){
                     return showRelatedObjectLookupPopup(this);      
                 });
-            ui.dom.input.css({marginLeft: '-22px', paddingLeft: '24px'}).width(w - 22)
+            ui.dom.input.css({marginLeft: '-22px', paddingLeft: '24px', width: w - 22 +'px'})
                 .bind('focus.browse', function(){ ui.dom.browse.addClass('focus'); })
                 .bind('blur.browse',  function(){ ui.dom.browse.removeClass('focus'); });
             width = width - 23;
         }
-        ui.dom.wrapper.width(width)
+        ui.dom.wrapper
             .append(ui.dom.results)
-            .append(ui.dom.shadow.height(400).width(600))
             .insertAfter(ui.dom.input)
             .css({
                 left: ui.dom.input.position().left, 
                 position: 'absolute'
-            });
+            }).width(width);
         
         ui._bind(ui.dom.input, 'keydown', function(e){
             var kc = e.keyCode || 0;
@@ -75,7 +73,7 @@ $.widget('ui.gAutocomplete', {
             }
         });
 
-        ui._bind(ui.dom.input, 'blur', function(){ ui._hideList(); });
+        //ui._bind(ui.dom.input, 'blur', function(){ ui._hideList(); });
         ui.dom.input.delayedObserver(function(e){
             var kc = e.keyCode || 0;
             var key = $.ui.keyCode;
@@ -176,10 +174,12 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         var node = ui.dom.results.find('.selected');
         ui.dom.input.val($.format(ui.options.inputFormat, $(node).data('json')));
+        console.log(node, nonSticky);
         if (nonSticky) {
             ui.dom.input.data('sticky', ui.dom.input.val());
         }
         else {
+            console.log($(node).data('json'));
             ui.element.val($(node).data('json').id);
             ui._hideList();
         }
@@ -215,6 +215,7 @@ $.widget('ui.gAutocomplete', {
             ui._bind(li, 'mouseover', function() { $(this).addClass('selected').siblings().removeClass('selected'); });
             ui._bind(li, 'click', function() { 
                 $(this).addClass('selected').siblings().removeClass('selected');
+                console.log(this);
                 ui._choose();
             });
         });
