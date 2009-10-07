@@ -337,17 +337,20 @@ a.ui-gAutocomplete-browse:focus {
     height:15px;
     margin:3px 0 0 2px;
 }
-.vAutocompleteSearchField {
+.ui-gAutocomplete-autocomplete {
     background-color:#eaf5f8;
     margin-right:8px;
 }
-.vAutocompleteSearchField:focus {
+.ui-gAutocomplete-autocomplete:focus {
     background-color:#eaf5f8;
 }
-.vAutocompleteSearchField.searching {
+.ui-gAutocomplete-autocomplete.searching {
     background-image:url({{ admin_media_prefix }}img/input-throbber.gif);
     background-position:99.5% 50%;
     background-repeat:no-repeat;
+}
+.ui-gAutocomplete-autocomplete.no-match {
+    color:#bf3030;
 }
 .ui-gAutocomplete-shadow {
     position:relative;

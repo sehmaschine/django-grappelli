@@ -222,18 +222,21 @@ $.widget('ui.gAutocomplete', {
                 else {
                     li.text(txt);
                 }
-                
+                ui.dom.input.removeClass('no-match');
                 ui.dom.results.find('.selected').removeClass('selected');
                 ui._bind(li, 'mouseover', function() { ui._shiftSelection(this); });
                 ui._bind(li, 'click',     function() { ui._shiftSelection(this)._choose(); });
                 ui._showList();
             });
         }
-        else if (ui.options.create) {
-            var li  = ui._createElement('li', {ns: 'result'}).data('create', true);
-            li.text(ui.options.createText);
-            ui.dom.results.html(li);
-            ui._showList();
+        else {
+            ui.dom.input.addClass('no-match');
+             if (ui.options.create) {
+                var li  = ui._createElement('li', {ns: 'result'}).data('create', true);
+                li.text(ui.options.createText);
+                ui.dom.results.html(li);
+                ui._showList();
+             }
         }
     },
     _shiftSelection: function(el) {
