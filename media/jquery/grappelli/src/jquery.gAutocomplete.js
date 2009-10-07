@@ -41,7 +41,7 @@ $.widget('ui.gAutocomplete', {
                         + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
         if (ui.options.browse) {
             var w = ui.dom.input.width();
-            ui.dom.browse.insertBefore(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id').slice(7))
+            ui.dom.browse.insertBefore(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, function(){ $(this).removeClass('ui-state-hover'); })
                 .bind('click.browse', function(){
                     return showRelatedObjectLookupPopup(this);      
@@ -66,7 +66,7 @@ $.widget('ui.gAutocomplete', {
             switch(kc) {
                 case key.UP:     return ui._select('prev'); break;
                 case key.DOWN:   return ui._select('next'); break;
-                case key.ENTER:  ui._choose(); e.preventDefault(); break;
+                case key.ENTER:  e.preventDefault(); return ui._choose(); break;
                 case key.ESCAPE: return ui._cancel(); break;
                 default:
                 return true;
@@ -174,16 +174,23 @@ $.widget('ui.gAutocomplete', {
     _choose: function(nonSticky) {
         var ui = this;
         var node = ui.dom.results.find('.selected');
-        ui.dom.input.val($.format(ui.options.inputFormat, $(node).data('json')));
-        console.log(node, nonSticky);
-        if (nonSticky) {
-            ui.dom.input.data('sticky', ui.dom.input.val());
-        }
-        else {
-            console.log($(node).data('json'), ui.element);
-            $('input[name='+ ui.element.attr('id') +']').val($(node).data('json').id); // lol wut ?
+        if (node.data('json')) {
+            ui.dom.input.val($.format(ui.options.inputFormat, node.data('json')));
+            $('input[name='+ ui.element.attr('id') +']').val(node.data('json').id); // lol wut ?
             // ui.element.val($(node).data('json').id); // should be this, but it doesn't submit ..
-            ui._hideList();
+            if (nonSticky) {
+                ui.dom.input.data('sticky', ui.dom.input.val());
+            }
+            else {
+                ui._hideList();
+            }
+        }
+        else if (node.data('create') && !nonSticky) {
+            // create object ..
+            if (ui.element.nextAll('.add-another').length) {
+                ui.element.nextAll('.add-another').trigger('click');
+            }
+            // ui._hideList();
         }
         ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky}));
         return false;
@@ -203,23 +210,31 @@ $.widget('ui.gAutocomplete', {
         var rs = ui.options.maxResults && ui._results.slice(0, ui.options.maxResults) || ui._results;
         ui.dom.results.empty();
 
-        $.each(rs, function(){
-            var txt = $.format(ui.options.listFormat, this);
-            var li  = ui._createElement('li', {ns: 'result'}).data('json', this).appendTo(ui.dom.results)
-            
-            // Option: highlight
-            if (ui.options.highlight) {
-                li.html(txt.replace(new RegExp("("+ ui.dom.input.val() +")", "gi"),'<b>$1</b>'));
-            }
-            else {
-                li.text(txt);
-            }
-            
-            ui.dom.results.find('.selected').removeClass('selected');
-            ui._bind(li, 'mouseover', function() { ui._shiftSelection(this); });
-            ui._bind(li, 'click',     function() { ui._shiftSelection(this)._choose(); });
+        if (rs.length > 0) {
+            $.each(rs, function(){
+                var txt = $.format(ui.options.listFormat, this);
+                var li  = ui._createElement('li', {ns: 'result'}).data('json', this).appendTo(ui.dom.results)
+                
+                // Option: highlight
+                if (ui.options.highlight) {
+                    li.html(txt.replace(new RegExp("("+ ui.dom.input.val() +")", "gi"),'<b>$1</b>'));
+                }
+                else {
+                    li.text(txt);
+                }
+                
+                ui.dom.results.find('.selected').removeClass('selected');
+                ui._bind(li, 'mouseover', function() { ui._shiftSelection(this); });
+                ui._bind(li, 'click',     function() { ui._shiftSelection(this)._choose(); });
+                ui._showList();
+            });
+        }
+        else if (ui.options.create) {
+            var li  = ui._createElement('li', {ns: 'result'}).data('create', true);
+            li.text(ui.options.createText);
+            ui.dom.results.html(li);
             ui._showList();
-        });
+        }
     },
     _shiftSelection: function(el) {
         $(el).addClass('selected').siblings().removeClass('selected');
@@ -236,5 +251,7 @@ $.ui.gAutocomplete.defaults = {
     maxResults: 20,
     width:      false,
     browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
+    create:     true,
+    createText: 'Create a new object',
 };
 

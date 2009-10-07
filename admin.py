@@ -1,11 +1,28 @@
 # coding: utf-8
 
 from django.contrib import admin
+from django.db import models
 from django.utils.translation import ugettext as _
 
 from grappelli.models.navigation import Navigation, NavigationItem
 from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.models.help import Help, HelpItem
+from grappelli.widgets import AutocompleteSearchInput, M2MAutocompleteSearchInput
+
+
+class GrappelliModelAdmin(admin.ModelAdmin):
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        """
+        Overrides the default widget for Foreignkey fields if they are
+        specified in the related_search_fields class attribute.
+        """
+        if isinstance(db_field, models.ForeignKey) and hasattr(self, 'autocomplete') and db_field.name in self.autocomplete:
+            kwargs['widget'] = AutocompleteSearchInput(db_field, self)
+       
+        if isinstance(db_field, models.ManyToManyField) and hasattr(self, 'facelist') and db_field.name in self.facelist:
+            kwargs['widget'] = M2MAutocompleteSearchInput(db_field, self)
+       
+        return super(GrappelliModelAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
 
 class NavigationItemInline(admin.StackedInline):

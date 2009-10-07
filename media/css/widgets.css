@@ -324,6 +324,9 @@ ul.timelist li +li {
     border-color:#999 #bbb #bbb #999;
     border-right:1px solid #ccc;
 }
+.errors .ui-gAutocomplete-browse {
+    border-color:#bf3030 #bbb #bf3030 #bf3030;
+}
 a.ui-gAutocomplete-browse:focus {
     border-style:solid;
 }
