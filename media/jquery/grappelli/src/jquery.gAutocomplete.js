@@ -27,10 +27,11 @@ $.widget('ui.gAutocomplete', {
             browse:  ui._createElement('a',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}).addClass('ui-corner-left ui-state-default')
                                                                 .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>'), 
         };
-        //<a href="{{ related_url }}{{ url|safe }}" class="related-lookup" title="Browse"><span>Browse</span></a>
+        
         ui.element.bind('focus', function(){
             ui.dom.input.focus();
         });
+
         ui.dom.input.insertAfter(ui.element.hide());
         if (ui.options.width) {
             ui.dom.input.width(ui.options.width)
@@ -179,8 +180,9 @@ $.widget('ui.gAutocomplete', {
             ui.dom.input.data('sticky', ui.dom.input.val());
         }
         else {
-            console.log($(node).data('json'));
-            ui.element.val($(node).data('json').id);
+            console.log($(node).data('json'), ui.element);
+            $('input[name='+ ui.element.attr('id') +']').val($(node).data('json').id); // lol wut ?
+            // ui.element.val($(node).data('json').id); // should be this, but it doesn't submit ..
             ui._hideList();
         }
         ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky}));
@@ -205,20 +207,23 @@ $.widget('ui.gAutocomplete', {
             var txt = $.format(ui.options.listFormat, this);
             var li  = ui._createElement('li', {ns: 'result'}).data('json', this).appendTo(ui.dom.results)
             
+            // Option: highlight
             if (ui.options.highlight) {
                 li.html(txt.replace(new RegExp("("+ ui.dom.input.val() +")", "gi"),'<b>$1</b>'));
             }
+            else {
+                li.text(txt);
+            }
             
             ui.dom.results.find('.selected').removeClass('selected');
+            ui._bind(li, 'mouseover', function() { ui._shiftSelection(this); });
+            ui._bind(li, 'click',     function() { ui._shiftSelection(this)._choose(); });
             ui._showList();
-            
-            ui._bind(li, 'mouseover', function() { $(this).addClass('selected').siblings().removeClass('selected'); });
-            ui._bind(li, 'click', function() { 
-                $(this).addClass('selected').siblings().removeClass('selected');
-                console.log(this);
-                ui._choose();
-            });
         });
+    },
+    _shiftSelection: function(el) {
+        $(el).addClass('selected').siblings().removeClass('selected');
+        return this;
     }
 });
 

@@ -1,98 +1,11 @@
 {% load i18n %}
 {% spaceless %}
-<input type="text" id="lookup_{{ name }}" value="{{ label }}" class="vAutocompleteSearchField" style="display:none;" />
-{%comment%}
-<a href="{{ related_url }}{{ url|safe }}" class="related-lookup" id="lookup_id_{{ name }}" onclick="return showRelatedObjectLookupPopup(this);"><img src="{{ admin_media_prefix }}img/admin/selector-search.gif" width="16" height="16" alt="{% trans "Lookup" %}" /></a>
-{% endcomment %}
-{% endspaceless %}
-<style>
-
-.ui-gAutocomplete-wrapper {
-    background:#f7fafb;
-    border:1px solid #e0e0e0;
-    border-color:#eaf5f8 #bbb #ddd #ccc;
-    margin-top:-2px;
-}
-
-.ui-gAutocomplete-results {
-    z-index:1000;
-    box-shadow: #666 0.3em 0.3em 0.3em;
-    -moz-box-shadow: #666 0.3em 0.3em 0.3em;
-}
-.ui-gAutocomplete-result {
-    cursor:pointer;
-    padding:2px 4px;
-    border-top:1px dotted #ddd;
-    color:#999;
-    
-}
-.ui-gAutocomplete-result:first-child {
-    cursor:pointer;
-    padding:2px 4px;
-    border:0;
-}
-.ui-gAutocomplete-result.selected {
-    background:Highlight;
-    color:HighlightText;
-}
-.ui-gAutocomplete-result b {
-    color:#000;
-}
-.ui-gAutocomplete-browse {
-    display:block;
-    background-color:#ddd;
-    width:20px;
-    height:23px;
-    position:relative;
-    float:left;
-    border:1px solid #ccc;
-    border-color:#ccc #ddd #ddd #ccc;
-    border-right:1px solid #ddd;
-    z-index:100;
-}
-.ui-gAutocomplete-browse.focus {
-    border-color:#999 #bbb #bbb #999;
-    border-right:1px solid #ccc;
-}
-a.ui-gAutocomplete-browse:focus {
-    border-style:solid;
-}
-.ui-gAutocomplete-browse span {
-    text-indent: -1000px;
-    display:block;
-    width:15px;
-    height:15px;
-    margin:3px 0 0 2px;
-}
-.vAutocompleteSearchField {
-    background-color:#eaf5f8;
-    margin-right:8px;
-}
-.vAutocompleteSearchField:focus {
-    background-color:#eaf5f8;
-}
-.vAutocompleteSearchField.searching {
-    background-image:url({{ admin_media_prefix }}img/input-throbber.gif);
-    background-position:99.5% 50%;
-    background-repeat:no-repeat;
-}
-a:focus {
-    border:1px dotted #309bbf;
-}
-.ui-gAutocomplete-shadow {
-    position:relative;
-    z-index:100;
-}
-</style>
-
+<input type="text" id="{{ name }}" value="{{ label }}" class="vAutocompleteSearchField" />
 <script type="text/javascript">
 $(function() {
-    $("#lookup_{{ name }}").show();
-  //lookup by search-fields
-  //need to use "bind" for cloning elements
-    $("#lookup_{{ name }}").gAutocomplete({
-        // TODO: fix url lookup
-//      backend: '{# url grp_autocomplete_lookup app_labe=app_label,model_name=model_name,search_fields=search_fields #}', // don't know why it doesn't work ..
+    $("#{{ name }}").gAutocomplete({
+        // TODO: fix url lookup.. don't know why it doesn't work 
+//      backend:     '{# url grp_autocomplete_lookup app_labe=app_label,model_name=model_name,search_fields=search_fields #}', 
         backend:     '/grappelli/autocomplete/{{ app_label }}/{{ model_name }}/{{ search_fields }}/',
         related_url: '{{ related_url }}{{ url|safe }}',
         listFormat:  '{{ list_format|default:"{id:d} - {label:s}" }}',
@@ -100,9 +13,13 @@ $(function() {
         highlight:   true,
         minChars:    1,
         maxResults:  20,
-//      mustMatch: false,
-//      matchContains: true,
-        });
+    });
+});
+</script>
+{% endspaceless %}
+{%comment%}
+<script type="text/javascript">
+$(function() {
  //   ability to delete values by deleting the search-field
 //  $("#lookup_{{ name }}").bind("change", function() {
 //      if ($(this).val() == "") {
@@ -132,3 +49,5 @@ $(function() {
 //  AutocompleteHandler($("#id_{{ name }}"));
 });
 </script>
+<a href="{{ related_url }}{{ url|safe }}" class="related-lookup" id="lookup_id_{{ name }}" onclick="return showRelatedObjectLookupPopup(this);"><img src="{{ admin_media_prefix }}img/admin/selector-search.gif" width="16" height="16" alt="{% trans "Lookup" %}" /></a>
+{% endcomment %}

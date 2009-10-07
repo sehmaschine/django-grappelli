@@ -275,3 +275,78 @@ ul.timelist li +li {
 }
 
 
+/*  FK Autocomplete ............................................ */
+
+.ui-gAutocomplete-wrapper {
+    background:#f7fafb;
+    border:1px solid #e0e0e0;
+    border-color:#eaf5f8 #bbb #ddd #ccc;
+    margin-top:-2px;
+}
+
+.ui-gAutocomplete-results {
+    z-index:1000;
+    box-shadow: #666 0.3em 0.3em 0.3em; /* CSS3+ */
+    -moz-box-shadow: #666 0.3em 0.3em 0.3em; /* FF 3.5+ */
+}
+.ui-gAutocomplete-result {
+    cursor:pointer;
+    padding:2px 4px;
+    border-top:1px dotted #ddd;
+    color:#999;
+    
+}
+.ui-gAutocomplete-result:first-child {
+    cursor:pointer;
+    padding:2px 4px;
+    border:0;
+}
+.ui-gAutocomplete-result.selected {
+    background:Highlight;
+    color:HighlightText;
+}
+.ui-gAutocomplete-result b {
+    color:#000;
+}
+.ui-gAutocomplete-browse {
+    display:block;
+    background-color:#ddd;
+    width:20px;
+    height:23px;
+    position:relative;
+    float:left;
+    border:1px solid #ccc;
+    border-color:#ccc #ddd #ddd #ccc;
+    border-right:1px solid #ddd;
+    z-index:100;
+}
+.ui-gAutocomplete-browse.focus {
+    border-color:#999 #bbb #bbb #999;
+    border-right:1px solid #ccc;
+}
+a.ui-gAutocomplete-browse:focus {
+    border-style:solid;
+}
+.ui-gAutocomplete-browse span {
+    text-indent: -1000px;
+    display:block;
+    width:15px;
+    height:15px;
+    margin:3px 0 0 2px;
+}
+.vAutocompleteSearchField {
+    background-color:#eaf5f8;
+    margin-right:8px;
+}
+.vAutocompleteSearchField:focus {
+    background-color:#eaf5f8;
+}
+.vAutocompleteSearchField.searching {
+    background-image:url({{ admin_media_prefix }}img/input-throbber.gif);
+    background-position:99.5% 50%;
+    background-repeat:no-repeat;
+}
+.ui-gAutocomplete-shadow {
+    position:relative;
+    z-index:100;
+}
