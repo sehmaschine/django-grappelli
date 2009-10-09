@@ -8,3 +8,4 @@ $('input.vDateField').gDateField();
 $('.inline-group').gInlineGroup();
 $('.inline-stacked').gInlineStacked();
 $('.inline-tabular').gInlineTabular();
+$('input[name*="object_id"]').gRelated({url: '{% url grp_related_lookup %}'});

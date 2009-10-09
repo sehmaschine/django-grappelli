@@ -294,7 +294,7 @@ ul.timelist li +li {
     padding:2px 4px!important;
     border-top:1px dotted #ddd!important;
     color:#999;
-    
+    font-weight:bold;
 }
 .ui-gAutocomplete-result:first-child {
     cursor:pointer;
