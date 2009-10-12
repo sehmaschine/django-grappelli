@@ -56,7 +56,7 @@
     
     <!-- MESSAGES -->
     {% if messages %}
-    <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+    <ul class="messagelist">{% for message in messages %}<li{% ifequal message|slice:":5" "Error"%} class="error"{% endifequal %}>{{ message }}</li>{% endfor %}</ul>
     {% endif %}
     
     <!-- CONTENT -->
