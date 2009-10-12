@@ -14,11 +14,10 @@ urlpatterns = patterns('',
     url(r'^help', 'grappelli.views.help.help', name="grp_help"),
     
     # GENERIC
-    url(r'^obj_lookup/$', 'grappelli.views.generic.generic_lookup', name="grp_generic_lookup"),
-    
+    url(r'^lookup/obj/$',     'grappelli.views.generic.generic_lookup', name="grp_generic_lookup"),
     # FOREIGNKEY LOOKUP
-    url(r'^related_lookup/$', 'grappelli.views.related.related_lookup', name="grp_related_lookup"),
-    url(r'^m2m_lookup/$', 'grappelli.views.related.m2m_lookup', name="grp_m2m_lookup"),
+    url(r'^lookup/related/$', 'grappelli.views.related.related_lookup', name="grp_related_lookup"),
+    url(r'^lookup/m2m/$',     'grappelli.views.related.m2m_lookup',     name="grp_m2m_lookup"),
 
     # AUTOCOMPLETE LOOKUP 
     url(r'^autocomplete/(?P<app_label>\w+)/(?P<model_name>\w+)/(?P<search_fields>[,\w]+)/$', 

@@ -1,20 +1,11 @@
-$.popup = function(name, href, options) {
-    var arr = [];
-    var opt = $.extend({width:  600, height: 920, resizable: true, scrollbars: true}, options);
-    $.each(opt, function(k, v){ arr.push(k +'='+ v); });
-    var win  = window.open(href, name, arr.join(','));
-    win.name = name;
-    win.focus();
-    return win;
-};
-
 $.widget('ui.gRelated', {
     _url: function(k) {
-        return this.options.get_url(k);
+        return this.options.getURL(k);
     },
     _browse: function(link) {
         var link = $(link);
-        var name = link.data('id').replace(/\./g, '___'); // IE doesn't like periods in the window name, so convert temporarily.
+        // IE doesn't like periods in the window name, so convert temporarily.
+        var name = link.data('id').replace(/\./g, '___'); 
         var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
         this._win = $.popup(name, href, {
                     height: 600 , width: 920, resizable: true, scrollbars: true});
@@ -26,29 +17,29 @@ $.widget('ui.gRelated', {
         ui.dom = {
             object_id:    ui.element,
             content_type: $('#'+ ui.element.attr('id').replace('object_id', 'content_type')),
+            link: $('<a class="related-lookup" />'),
+            text: $('<strong />'),
         };
 
-        ui.dom.content_type.bind('change.gRelated', function() {
+        ui.dom.content_type.bind('change.gRelated, keyup.gRelated', function() {
             var $el = $(this);
             var href = ui._url($el.val());
+            ui.dom.object_id.val('');
+            ui.dom.text.text('');
             if ($el.val()) {
                 var link = ui.dom.object_id.next('.related-lookup');
                 if (link.get(0)) {
                     link.attr('href', href);
                 }
                 else {
-                    $('<a class="related-lookup">&nbsp;&nbsp;</a>')
-                        .insertAfter(ui.dom.object_id)
-                        .after('<strong>&nbsp;</strong>')
+                    ui.dom.link.insertAfter(ui.dom.object_id)
+                        .after(ui.dom.text)
                         .bind('click.gRelated', function(e){
                             e.preventDefault();
                             return ui._browse(this);
                         })
                         .data('id', ui.dom.object_id.attr('id'))
-                        .attr({
-                            id: 'lookup_'+ ui.dom.object_id.attr('id'),
-                            href: href,
-                        });
+                        .attr({id: 'lookup_'+ ui.dom.object_id.attr('id'), href: href});
                 }
             } 
             else {
@@ -57,35 +48,29 @@ $.widget('ui.gRelated', {
             }
         });
 
-        
-//      $('input.vForeignKeyRawIdAdminField')
-//          .bind('change.gRelated', function(e) { ui._relatedLookup(e, this); })
-//          .bind('focus.gRelated',  function(e) { ui._relatedLookup(e, this); });
-
-//      $('input.vManyToManyRawIdAdminField')
-//          .bind('change.gRelated', function(e) { ui._relatedLookup(e, this); })
-//          .bind('focus.gRelated',  function(e) { ui._m2mLookup(e, this); });
-        //InitObjectID($('input[name*="object_id"]'));
-        //InitContentType($(':input[name*="content_type"]'));
-        //GenericLookup($('input[name*="object_id"]'));
+        ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
+            ui._relatedLookup(e);
+        });
     },
-    _relatedLookup: function(obj){
-        var link = obj.next();
-        var text = obj.next().next();
-        var app_label = link.attr('href').split('/')[2];
-        var model_name= link.attr('href').split('/')[3];
+    _relatedLookup: function(e){
+        var ui   = this;
+        var text = ui.dom.text;
+        var app_label  = ui.dom.link.attr('href').split('/')[2];
+        var model_name = ui.dom.link.attr('href').split('/')[3];
         
-        text.text('loading ...');
+        ui.dom.text.text('loading ...');
         
         // get object
-        $.get(ui.options.url, {object_id: obj.val(), app_label: app_label, model_name: model_name}, function(data) {
+        $.get(ui.options.url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
             var item = data;
-            text.text('');
+            ui.dom.text.text('');
             if (item) {
-                if (item.length > CHAR_MAX_LENGTH) {
-                    text.text(decodeURI(item.substr(0, CHAR_MAX_LENGTH) + " ..."));
+                var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
+                if (item.length > tl) {
+                    var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
+                    ui.dom.text.text(txt);
                 } else {
-                    text.text(decodeURI(item));
+                    ui.dom.text.text(decodeURI(item));
                 }
             }
         });
@@ -94,8 +79,11 @@ $.widget('ui.gRelated', {
 });
 
 $.ui.gRelated.defaults = {
+    maxTextLength: 32,
+    maxTextSuffix: ' ...',
     url: '/grappelli/related_lookup/',
-    get_url: function(k) {
+    m2mUrl: '/grappelli/related_lookup/',
+    getURL: function(k) {
         return MODEL_URL_ARRAY[k] && ADMIN_URL + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
     }
 };
@@ -106,3 +94,51 @@ function dismissRelatedLookupPopup(win, id) {
     el.val((el.hasClass('vManyToManyRawIdAdminField') && el.val())? el.val() += ',' + id: id).focus();
     win.close();
 }
+
+function showAddAnotherPopup(link) {
+    var link = $(link);
+    var name = link.attr('id').replace(/^add_/, '').replace(/\./g, '___');
+    var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
+    win = $.popup(name, href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+    win.focus();
+    return false;
+}
+function dismissAddAnotherPopup(win, newId, newRepr) {
+    // newId and newRepr are expected to have previously been escaped by
+    // django.utils.html.escape.
+    console.log(newId, newRepr);
+    newId = html_unescape(newId);
+    newRepr = html_unescape(newRepr);
+    var name = win.name.replace(/___/g, '.');
+    var elem = $('#'+ name);
+    if (elem) {
+        if (elem.nodeName == 'SELECT') {
+            var o = new Option(newRepr, newId);
+            elem.options[elem.options.length] = o;
+            o.selected = true;
+        } else if (elem.nodeName == 'INPUT') {
+            elem.value = newId;
+        }
+    } else {
+        var toId = name + "_to";
+        elem = $('#'+ toId);
+        var o = new Option(newRepr, newId);
+        SelectBox.add_to_cache(toId, o);
+        SelectBox.redisplay(toId);
+    }
+    win.close();
+}
+  
+$.unescapeHTML = function(str) {
+    var div = $('<div />').html(str.replace(/<\/?[^>]+>/gi, ''));
+    return div.get(0) ? div.text(): '';
+};
+
+
+/* changes
+ * - max length of related lookup text now include the suffix ( ...)
+ * - suffix ( ...) of related lookup text is now configurable (maxTextSuffix)
+ * - max length of related lookup text is now configurable (maxTextLength)
+ * - unescape now works on all characters instead of a limited subset
+ *
+ * */

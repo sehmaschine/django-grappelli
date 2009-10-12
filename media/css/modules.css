@@ -49,10 +49,10 @@
 
 /*  Collapsible Modules ................................................... */
 
-.module.collapsed {
+.module.collapse-closed {
     border: 1px solid #d4d4d4;
 }
-.module.collapsed:hover, .module.collapse-open {
+.module.collapse-closed:hover, .module.collapse-open {
     border: 1px solid #c4c4c4;
 }
 

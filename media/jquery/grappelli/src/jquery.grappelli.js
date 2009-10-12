@@ -1,12 +1,23 @@
 if (typeof(gettext) == 'undefined') {
-    function gettext(i) { return i; }; // temporary
+    function gettext(i) { return i; }; // TODO: temporary fix
 }
-$(function(){
 
-    $('.module.collapse').addClass('collapse-closed').add('.module.collapse-open').find('h2')
-        .bind('click.grappelli', function(){
-            $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
-        });
+$.popup = function(name, href, options) {
+    var arr = [];
+    var opt = $.extend({width:  600, height: 920, resizable: true, scrollbars: true}, options);
+    $.each(opt, function(k, v){ arr.push(k +'='+ v); });
+    var win  = window.open(href, name, arr.join(','));
+    win.name = name;
+    win.focus();
+    return win;
+};
+
+$(function(){
+    
+    // Fieldset collapse
+    $('.collapse-closed h2, .collapse-open h2').addClass('collapse-toggle').bind('click.grappelli', function(){
+        $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
+    });
 
     // Always focus first field of a form OR the search input
     $('form .form-row:eq(0)')
