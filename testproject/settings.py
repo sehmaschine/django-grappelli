@@ -73,6 +73,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'grappelli.middleware.JavaScript404Patch',
 )
 
 ROOT_URLCONF = 'testproject.urls'

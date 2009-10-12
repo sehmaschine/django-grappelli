@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 #        verbose_name_plural = u'Basic Models'
 
 
-
 class InlineStackedTest(models.Model):
     char_test = models.CharField(u"Char Field", max_length=255, blank=True)
     date_added  = models.DateField(u"DateField", auto_now_add=True, auto_now=True, blank=True, null=True)
@@ -64,30 +63,25 @@ class DjangoFields(models.Model):
         verbose_name_plural = u'Django Field tests'
 
 
-#class DjangoFields(models.Model):
-#    fk_test   = models.ForeignKey(User, verbose_name=u"Foreign Key", blank=True)
-#    char_test = models.CharField(u"Char Field", max_length=255, blank=True)
-#    url_test  = models.URLField(u"URL Field", max_length=255, blank=True, verify_exists=False)
-#    text_test = models.TextField(u"Text Field", blank=True)
-#
-#    class Meta:
-#        verbose_name = u'Django Field test'
-#        verbose_name_plural = u'Django Field tests'
-#
-#    def __unicode__(self):
-#        return u'%s' % self.char_test
-
+from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.models import ContentType
 
 class GrappelliFields(models.Model):
-    fk_test     = models.ForeignKey(User, verbose_name=u"FK Autocomplete", blank=True)
-    m2m_test    = models.ManyToManyField(User, verbose_name=u"M2M Autocomplete", blank=True, related_name="m2m_user")
-    char_test   = models.CharField(u"Char Field", max_length=255, blank=True)
+    test_name   = models.CharField(u"Test name", max_length=255, default="test")
+    fk_test     = models.ForeignKey(User, verbose_name=u"FK Autocomplete")
+    m2m_test    = models.ManyToManyField(User, verbose_name=u"M2M Autocomplete", blank=True, null=True, related_name="m2m_user")
+
+    content_type = models.ForeignKey(ContentType, blank=True, null=True, related_name="content_type")
+    object_id = models.PositiveIntegerField(blank=True, null=True)
+    content_object = generic.GenericForeignKey("content_type", "object_id")
+
+    # Needed for inline tests
     inline_test = models.ForeignKey('InlineTabularTest', verbose_name=u"ForeignKey (inline tabular)", blank=True, null=True)
     inline_test2   = models.ForeignKey('InlineStackedTest', verbose_name=u"ForeignKey (inline stacked)", blank=True, null=True)
     date_added  = models.DateField(u"DateField", auto_now_add=True, auto_now=True, blank=True, null=True)
 
     def __unicode__(self):
-        return u'%s' % self.char_test
+        return u'%s - %s' % (self.test_name, self.fk_test)
 
     class Meta:
         verbose_name = u'Grappelli Field test'
