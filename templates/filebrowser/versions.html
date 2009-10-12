@@ -3,24 +3,36 @@
 <!-- LOADING -->
 {% load i18n adminmedia fb_tags fb_versions %}
 
-<!-- EXTRAHEAD -->
-{% block extrahead %}
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+    <link rel="stylesheet" type="text/css" href="{{ settings_var.URL_FILEBROWSER_MEDIA }}css/filebrowser.css" />
+    {% if query.pop %}
+    <style type="text/css">
+        #header { display: none; }
+    </style>
+    {% endif %}
+{% endblock %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
     {{ block.super }}
     
-    <!-- FileBrowseField -->
     {% ifequal query.pop '1' %}
+    <!-- FileBrowseField -->
     <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_FileBrowseField.js"></script>
     {% endifequal %}
     
-    <!-- TinyMCE -->
     {% ifequal query.pop '2' %}
+    <!-- TinyMCE -->
     <script language="javascript" type="text/javascript" src="{{ settings_var.URL_TINYMCE }}tiny_mce_popup.js"></script>
     <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_TinyMCE.js"></script>
     {% if query.mce_rdomain %}<script language="javascript">document.domain = "{{ query.mce_rdomain }}"</script>{% endif %}
     {% endifequal %}
     
-    <!-- CKeditor (former "FCKeditor") -->
     {% ifequal query.pop '3' %}
+    <!-- CKeditor (former "FCKeditor") -->
     <script language="javascript" type="text/javascript" src="{{ settings_var.URL_FILEBROWSER_MEDIA }}js/FB_CKeditor.js"></script>
     {% endifequal %}
     
@@ -29,19 +41,7 @@
 
 <!-- COLTYPE/BODYCLASS -->
 {% block coltype %}colM{% endblock %}
-{% block bodyclass %}change-list filebrowser{% endblock %}
-
-<!-- EXTRASTYLE -->
-{% block extrastyle %}
-    {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css-development/changelists.css" />
-    <link rel="stylesheet" type="text/css" href="{{ settings_var.URL_FILEBROWSER_MEDIA }}css/filebrowser.css" />
-    {% if query.pop %}
-    <style type="text/css">
-    #header { display: none; }
-    </style>
-    {% endif %}
-{% endblock %}
+{% block bodyclass %}change-list filebrowser{% if query.pop %} popup{% endif %}{% endblock %}
 
 <!-- BREADCRBUMBS -->
 {% block breadcrumbs %}{% include "filebrowser/include/breadcrumbs.html" %}{% endblock %}
