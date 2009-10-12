@@ -98,7 +98,7 @@ function dismissRelatedLookupPopup(win, id) {
 function showAddAnotherPopup(link) {
     var link = $(link);
     var name = link.attr('id').replace(/^add_/, '').replace(/\./g, '___');
-    var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
+    var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
     win = $.popup(name, href, {height: 600 , width: 920, resizable: true, scrollbars: true});
     win.focus();
     return false;
@@ -106,25 +106,22 @@ function showAddAnotherPopup(link) {
 function dismissAddAnotherPopup(win, newId, newRepr) {
     // newId and newRepr are expected to have previously been escaped by
     // django.utils.html.escape.
-    console.log(newId, newRepr);
-    newId = html_unescape(newId);
-    newRepr = html_unescape(newRepr);
-    var name = win.name.replace(/___/g, '.');
-    var elem = $('#'+ name);
-    if (elem) {
-        if (elem.nodeName == 'SELECT') {
-            var o = new Option(newRepr, newId);
-            elem.options[elem.options.length] = o;
-            o.selected = true;
-        } else if (elem.nodeName == 'INPUT') {
-            elem.value = newId;
+    var $el  = $('#'+ win.name.replace(/___/g, '.'));
+    if ($el.get(0)) {
+        if ($el.get(0).nodeName == 'SELECT') {
+            var select = $el;
+            var t = $el.attr('id').split(/(\-\d+\-)/); // account for related inlines
+            if (t.length === 3) {
+                var select = $('select[id^="'+ t[0] +'"][id$="'+ t[2] +'"]');
+            }
+            $('<option />').attr('selected', true)
+                .val(newId).appendTo(select)
+                .text($.unescapeHTML(newRepr));
+
+        } else if ($el.get(0).nodeName == 'INPUT') {
+            $el.val(newId);
         }
-    } else {
-        var toId = name + "_to";
-        elem = $('#'+ toId);
-        var o = new Option(newRepr, newId);
-        SelectBox.add_to_cache(toId, o);
-        SelectBox.redisplay(toId);
+        $el.focus();
     }
     win.close();
 }
@@ -140,5 +137,6 @@ $.unescapeHTML = function(str) {
  * - suffix ( ...) of related lookup text is now configurable (maxTextSuffix)
  * - max length of related lookup text is now configurable (maxTextLength)
  * - unescape now works on all characters instead of a limited subset
- *
+ * - when adding a related object, it is now added in all other inlines selects as well
+ * - 
  * */

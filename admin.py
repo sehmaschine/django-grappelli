@@ -9,6 +9,36 @@ from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.models.help import Help, HelpItem
 from grappelli.widgets import AutocompleteSearchInput, M2MAutocompleteSearchInput
 
+# Lots of code duplication here ..
+
+class GrappelliTabularInline(admin.TabularInline):
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        """
+        Overrides the default widget for Foreignkey fields if they are
+        specified in the related_search_fields class attribute.
+        """
+        if isinstance(db_field, models.ForeignKey) and hasattr(self, 'autocomplete') and db_field.name in self.autocomplete:
+            kwargs['widget'] = AutocompleteSearchInput(db_field, self)
+       
+        if isinstance(db_field, models.ManyToManyField) and hasattr(self, 'facelist') and db_field.name in self.facelist:
+            kwargs['widget'] = M2MAutocompleteSearchInput(db_field, self)
+       
+        return super(GrappelliTabularInline, self).formfield_for_dbfield(db_field, **kwargs)
+
+class GrappelliStackedInline(admin.StackedInline):
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        """
+        Overrides the default widget for Foreignkey fields if they are
+        specified in the related_search_fields class attribute.
+        """
+        if isinstance(db_field, models.ForeignKey) and hasattr(self, 'autocomplete') and db_field.name in self.autocomplete:
+            kwargs['widget'] = AutocompleteSearchInput(db_field, self)
+       
+        if isinstance(db_field, models.ManyToManyField) and hasattr(self, 'facelist') and db_field.name in self.facelist:
+            kwargs['widget'] = M2MAutocompleteSearchInput(db_field, self)
+       
+        return super(GrappelliStackedInline, self).formfield_for_dbfield(db_field, **kwargs)
+
 
 class GrappelliModelAdmin(admin.ModelAdmin):
     def formfield_for_dbfield(self, db_field, **kwargs):
