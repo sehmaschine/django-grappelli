@@ -1,4 +1,7 @@
-// BOOKMARKS
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gBookmarks
+ *  Package: Grappelli
+ */
 
 $.widget('ui.gBookmarks', {
          

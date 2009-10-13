@@ -6,7 +6,16 @@ from django.utils.safestring import mark_safe
 from django.utils.text import truncate_words
 from django.template.loader import render_to_string
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget, ManyToManyRawIdWidget
+from django.forms.widgets import TextInput
 from django.utils.translation import ugettext as _
+
+class AutoSlugFieldInput(TextInput):
+    """
+    An Auto SlugField Widget.
+    """
+    def __init__(self, field, fieldAdmin, attrs={'clas': 'ui-gAutoSlugField vTextField'}):
+        super(AutoSlugFieldInput, self).__init__(attrs)
+
 
 class AutocompleteSearchInput(ForeignKeyRawIdWidget):
     """
@@ -15,12 +24,6 @@ class AutocompleteSearchInput(ForeignKeyRawIdWidget):
     
     # Set in subclass to render the widget with a different template
     widget_template = None
-    
-#   class Media:
-       #css = {
-       #    "all": (settings.ADMIN_MEDIA_PREFIX + 'jquery/jquery-autocomplete/jquery.autocomplete.css',)
-       #}
-       #js = (,)
     
     def label_for_value(self, value):
         key = self.rel.get_related_field().name

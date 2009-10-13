@@ -1,4 +1,7 @@
-// CHANGELIST
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gChangelist
+ *  Package: Grappelli
+ */
 
 $.widget('ui.gChangelist', {
     _init: function() {

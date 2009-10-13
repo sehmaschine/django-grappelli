@@ -110,10 +110,9 @@
         return downcoded;
     }
 
-
-    var URLify = function(s, num_chars) {
+    var slugify = function(s, num_chars) {
         // changes, e.g., "Petty theft" to "petty_theft"
-        // remove all these words from the string before urlifying
+        // remove all these words from the string before slugifying
         s = downcode(s);
         removelist = ["a", "an", "as", "at", "before", "but", "by", "for", "from",
                       "is", "in", "into", "like", "of", "off", "on", "onto", "per",
@@ -126,9 +125,17 @@
         s = s.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
         s = s.replace(/[-\s]+/g, '-');   // convert spaces to hyphens
         s = s.toLowerCase();             // convert to lowercase
-        return s.substring(0, num_chars);// trim to first num_chars chars
+        return s.substring(0, num_chars || 255);// trim to first num_chars chars
     }
-    $.urlify = function(){
-        return URLify.apply(this, arguments);
+    $.slugify = function(){
+        return slugify.apply(this, arguments);
+    };
+    $.fn.slugify = function(text, length) {
+        if ($(this).is(':input')) {
+            $(this).val($.slugify($(this).val()));
+        }
+        else {
+            $(this).text($.slugify($(this).text()));
+        }
     };
 })(jQuery);

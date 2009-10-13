@@ -1,4 +1,7 @@
-// TIME PICKER
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gTimeField
+ *  Package: Grappelli
+ */
 
 $.widget('ui.gTimeField', {
     _init: function() {

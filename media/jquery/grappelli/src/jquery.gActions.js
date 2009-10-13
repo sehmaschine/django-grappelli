@@ -1,4 +1,7 @@
-// ACTIONS
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gActions
+ *  Package: Grappelli
+ */
 
 $.widget('ui.gActions', {
     _init: function() {

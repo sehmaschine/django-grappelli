@@ -1,5 +1,11 @@
-// Binding to old SelectFilter calls.. cannot be removed because the calls are
-// hardcoded into django's source..
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gRelated
+ *  Package: Grappelli
+ *
+ *  Binding to old SelectFilter calls.. cannot be removed because the calls are
+ *  hardcoded into django's source..
+ */
+
 var SelectFilter = { 
     init: function(id, name, stacked, admin_media_prefix){ 
         $('#'+id).gSelectFilter({stacked: stacked, name: name});

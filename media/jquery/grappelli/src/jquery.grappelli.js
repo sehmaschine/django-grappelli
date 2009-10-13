@@ -1,3 +1,7 @@
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  Package: Grappelli
+ */
+
 if (typeof(gettext) == 'undefined') {
     function gettext(i) { return i; }; // TODO: temporary fix
 }

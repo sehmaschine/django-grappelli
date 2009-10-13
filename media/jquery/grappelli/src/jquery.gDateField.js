@@ -1,4 +1,7 @@
-// DATE PICKER
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gDateField
+ *  Package: Grappelli
+ */
 
 $.datepicker.setDefaults({
     dateFormat:      'yy-mm-dd',

@@ -1,4 +1,7 @@
-// INLINE GROUP 
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gInlineGroup, gInlineStacked, gInlineTabular
+ *  Package: Grappelli
+ */
 
 $.widget('ui.gInlineGroup', {
     _init: function(){

@@ -7,7 +7,7 @@ from django.utils.translation import ugettext as _
 from grappelli.models.navigation import Navigation, NavigationItem
 from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.models.help import Help, HelpItem
-from grappelli.widgets import AutocompleteSearchInput, M2MAutocompleteSearchInput
+from grappelli.widgets import AutocompleteSearchInput, M2MAutocompleteSearchInput, AutoSlugFieldInput
 
 # Lots of code duplication here ..
 
@@ -35,13 +35,18 @@ class GrappelliStackedInline(admin.StackedInline):
             kwargs['widget'] = AutocompleteSearchInput(db_field, self)
        
         if isinstance(db_field, models.ManyToManyField) and hasattr(self, 'facelist') and db_field.name in self.facelist:
-            kwargs['widget'] = M2MAutocompleteSearchInput(db_field, self)
+            kwargs['widget_attrs'] = M2MAutocompleteSearchInput(db_field, self)
        
         return super(GrappelliStackedInline, self).formfield_for_dbfield(db_field, **kwargs)
 
 
 class GrappelliModelAdmin(admin.ModelAdmin):
     def formfield_for_dbfield(self, db_field, **kwargs):
+        if isinstance(db_field, models.SlugField) and hasattr(self, 'auto_slugfield') and db_field.name in self.auto_slugfield:
+            if self.auto_slugfield[db_field.name] == True:
+                kwargs['widget'] = AutoSlugFieldInput(db_field, self, {'class': 'ui-gAutoSlugField vTextField'})
+            else:
+                kwargs['widget'] = AutoSlugFieldInput(db_field, self, {'class': 'ui-gAutoSlugField vTextField', 'rel': self.auto_slugfield[db_field.name]})
         """
         Overrides the default widget for Foreignkey fields if they are
         specified in the related_search_fields class attribute.

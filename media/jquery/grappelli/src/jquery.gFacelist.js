@@ -1,3 +1,8 @@
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gFacelist
+ *  Package: Grappelli
+ */
+
 $.widget('ui.gFacelist', {
     _init: function(){
         var ui = this;

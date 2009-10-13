@@ -1,3 +1,8 @@
+/*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gRelated
+ *  Package: Grappelli
+ */
+
 $.widget('ui.gRelated', {
     _url: function(k) {
         return this.options.getURL(k);
@@ -133,10 +138,5 @@ $.unescapeHTML = function(str) {
 
 
 /* changes
- * - max length of related lookup text now include the suffix ( ...)
- * - suffix ( ...) of related lookup text is now configurable (maxTextSuffix)
- * - max length of related lookup text is now configurable (maxTextLength)
- * - unescape now works on all characters instead of a limited subset
- * - when adding a related object, it is now added in all other inlines selects as well
  * - 
  * */

@@ -1,8 +1,7 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
+ *  widget:  gAutocomplete
  *  Package: Grappelli
- *
  *  Todo:
- *
  *   - Caching
  *
  *
