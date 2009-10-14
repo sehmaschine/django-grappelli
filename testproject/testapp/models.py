@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 #    name = models.CharField(max_length=255)
 #
 #    def __unicode__(self):
@@ -49,11 +50,11 @@ class DjangoFields(models.Model):
     time_test      = models.TimeField(u"TimeField", blank=True)
     url_test       = models.URLField(u"URLField", max_length=255, blank=True, verify_exists=False)
     # XMLField
-    fk_test        = models.ForeignKey(User, verbose_name=u"ForeignKey", blank=True)
+    fk_test        = models.ForeignKey(Site, verbose_name=u"ForeignKey", blank=True)
     inline_test    = models.ForeignKey('InlineTabularTest', verbose_name=u"ForeignKey (inline tabular)", blank=True, null=True)
     inline_test2   = models.ForeignKey('InlineStackedTest', verbose_name=u"ForeignKey (inline stacked)", blank=True, null=True)
-    m2m_test       = models.ManyToManyField(User, verbose_name=u"ManyToManyField", blank=True, related_name='many_to_many')
-    ooo_test       = models.OneToOneField(User, verbose_name=u"OneToOneField", blank=True, related_name='one_to_one')
+    m2m_test       = models.ManyToManyField(Site, verbose_name=u"ManyToManyField", blank=True, related_name='many_to_many')
+    ooo_test       = models.OneToOneField(Site, verbose_name=u"OneToOneField", blank=True, related_name='one_to_one')
 
     def __unicode__(self):
         return u'%s' % self.char_test
@@ -68,8 +69,10 @@ from django.contrib.contenttypes.models import ContentType
 
 class GrappelliFields(models.Model):
     test_name   = models.CharField(u"Test name", max_length=255, default="test")
-    fk_test     = models.ForeignKey(User, verbose_name=u"FK Autocomplete")
-    m2m_test    = models.ManyToManyField(User, verbose_name=u"M2M Autocomplete", blank=True, null=True, related_name="m2m_user")
+    fk_test     = models.ForeignKey(Site, verbose_name=u"FK Autocomplete")
+    m2m_test    = models.ManyToManyField(Site, verbose_name=u"M2M Autocomplete", blank=True, null=True, related_name="m2m_site")
+    char_test   = models.CharField(u"CharField", max_length=255, blank=True)
+    slug_test   = models.SlugField(u"SlugField", max_length=50)
 
     content_type = models.ForeignKey(ContentType, blank=True, null=True, related_name="content_type")
     object_id = models.PositiveIntegerField(blank=True, null=True)

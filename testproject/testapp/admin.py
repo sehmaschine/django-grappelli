@@ -7,7 +7,7 @@ admin_site = admin.AdminSite()
 #if hasattr(admin.site, 'disable_action'):
 #    admin.site.disable_action('delete_selected')
 
-from grappelli.admin import GrappelliModelAdmin
+from grappelli.admin import GrappelliModelAdmin, GrappelliStackedInline, GrappelliTabularInline
 from testapp.models import GrappelliFields, DjangoFields, InlineTabularTest, InlineStackedTest
 
 # -- User -- Overriding grappelli test
@@ -57,6 +57,9 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
         (None, {
             'fields': ('test_name',)
         }),
+        ('Auto SlugField', {
+            'fields': ( 'char_test', 'slug_test',)
+        }),
         ('Autocomplete', {
             'fields': ('fk_test', 'm2m_test',)
         }),
@@ -64,6 +67,10 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
             'fields': ('content_type', 'object_id',)
         }),
     )
+    auto_slugfield = {
+        'slug_test': 'char_test'
+       #'slug_test': True
+    }
     autocomplete = {
         'fk_test': {
             'search_fields': ('username', 'first_name', 'last_name'),
@@ -82,11 +89,6 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
 #        'm2m': ('name',),
 #    }
 admin.site.register(GrappelliFields, GrappelliFieldsAdmin)
-
-
-
-
-
 
 
 class DjangoTabularFieldsInline(admin.TabularInline):
@@ -135,7 +137,7 @@ class DjangoStackedFieldsInline(admin.StackedInline):
     classes = ('collapse-open collapse-open-items',)
     allow_add = True
 
-class GrappelliStackedFieldsInline(admin.StackedInline):
+class GrappelliStackedFieldsInline(GrappelliStackedInline):
     model = GrappelliFields 
     classes = ('collapse-closed',)
     allow_add = True
@@ -146,18 +148,6 @@ class GrappelliStackedFieldsInline(admin.StackedInline):
             'list_format':   '{id:d} - {label:s}',  # optional
         }
     }
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        """
-        Overrides the default widget for Foreignkey fields if they are
-        specified in the related_search_fields class attribute.
-        """
-        if isinstance(db_field, models.ForeignKey) and hasattr(self, 'autocomplete') and db_field.name in self.autocomplete:
-            kwargs['widget'] = AutocompleteSearchInput(db_field, self)
-       
-        if isinstance(db_field, models.ManyToManyField) and hasattr(self, 'facelist') and db_field.name in self.facelist:
-            kwargs['widget'] = M2MAutocompleteSearchInput(db_field, self)
-       
-        return super(GrappelliStackedFieldsInline, self).formfield_for_dbfield(db_field, **kwargs)
 
 class InlineStackedTestAdmin(admin.ModelAdmin):
     list_display = ('__unicode__',)
