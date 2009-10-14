@@ -6,7 +6,10 @@
 
 $.widget('ui.gAutoSlugField', {
     _refresh: function(e, el) {
-        this.element.val($.slugify(el.val()));
+        var val = $.slugify(el.val());
+        if (val != '') {
+            this.element.val(val);
+        }
     },
     _init: function() {
         var ui = this;
@@ -15,8 +18,12 @@ $.widget('ui.gAutoSlugField', {
                 ui._refresh(e, $(this));
             });
         }
-        ui.element.bind('keyup.gAutoSlugField', function(e) {
-            ui._refresh(e, $(this));
-        });
-   }
+         ui.element.delayedObserver(function(e) {
+             ui._refresh(e, $(this));
+         }, ui.options.delay);
+    }
 });
+
+$.ui.gAutoSlugField.defaults = {
+    delay: 0.8
+};
