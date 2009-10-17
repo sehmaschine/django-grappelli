@@ -42,7 +42,7 @@ def add_bookmark(request):
     request.user.message_set.create(message=msg)
     return HttpResponseRedirect(next)
 add_bookmark = staff_member_required(add_bookmark)
-    
+
 
 def remove_bookmark(request):
     """
@@ -68,7 +68,7 @@ def remove_bookmark(request):
     request.user.message_set.create(message=msg)
     return HttpResponseRedirect(next)
 remove_bookmark = staff_member_required(remove_bookmark)
-    
+
 
 def get_bookmark(request):
     """
@@ -102,5 +102,5 @@ def get_bookmark(request):
         'admin_title': ADMIN_TITLE,
         'path': request.GET.get('path', ''),
     })
-    
+get_bookmark = staff_member_required(get_bookmark)
 

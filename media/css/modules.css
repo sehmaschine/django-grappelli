@@ -395,12 +395,12 @@ ul.inline-item-tools li:last-child {
 
 .inline-related h3 + ul.inline-item-tools, 
 .inline-related.collapse-closed h3:hover + ul.inline-item-tools {
-    top: 0; right: -1px;
+    top: 0; right: 4px;
 }
 .inline-related h3 + ul.inline-item-tools li, 
 .inline-related.collapse-closed h3:hover + ul.inline-item-tools li {
-    top: 3px;
-    width: 29px; height: 24px;
+    top: 2px;
+    width: 20px; height: 24px;
 }
 
 
@@ -466,10 +466,10 @@ ul.inline-item-tools a.draghandler:hover, ul.inline-item-tools a.draghandler:act
 }
 
 ul.inline-item-tools a.viewsitelink:link, ul.inline-item-tools a.viewsitelink:visited {
-    background-image: url(../img_grappelli/icon_inline-item-tools_viewsitelink.png);
+    background-image: url('../img/icons/icon-inline_item_tools-viewsitelink.png');
 }
 ul.inline-item-tools a.viewsitelink:hover, ul.inline-item-tools a.viewsitelink:active {
-    background-image: url(../img_grappelli/icon_inline-item-tools_viewsitelink_hover.png);
+    background-image: url('../img/icons/icon-inline_item_tools-viewsitelink-hover.png');
 }
 
 ul.inline-item-tools a.deletelink:link, ul.inline-item-tools a.deletelink:visited, 

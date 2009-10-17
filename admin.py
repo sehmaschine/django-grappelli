@@ -3,6 +3,8 @@
 from django.contrib import admin
 from django.db import models
 from django.utils.translation import ugettext as _
+from django import forms
+from django.conf import settings
 
 from grappelli.models.navigation import Navigation, NavigationItem
 from grappelli.models.bookmarks import Bookmark, BookmarkItem
@@ -80,7 +82,7 @@ class NavigationItemInline(admin.StackedInline):
     
     # Grappelli Options
     allow_add = True
-    
+
 
 class NavigationOptions(admin.ModelAdmin):
     
@@ -101,6 +103,9 @@ class NavigationOptions(admin.ModelAdmin):
     # Inlines
     inlines = [NavigationItemInline]
     
+    # Grappelli Options
+    order = 0
+
 
 class BookmarkItemInline(admin.TabularInline):
     
@@ -115,7 +120,7 @@ class BookmarkItemInline(admin.TabularInline):
     
     # Grappelli Options
     allow_add = True
-    
+
 
 class BookmarkOptions(admin.ModelAdmin):
     
@@ -136,6 +141,9 @@ class BookmarkOptions(admin.ModelAdmin):
     # Inlines
     inlines = [BookmarkItemInline]
     
+    # Grappelli Options
+    order = 1
+    
     def has_change_permission(self, request, obj=None):
         has_class_permission = super(BookmarkOptions, self).has_change_permission(request, obj)
         if not has_class_permission:
@@ -154,7 +162,7 @@ class BookmarkOptions(admin.ModelAdmin):
         if request.user.is_superuser:
             return Bookmark.objects.all()
         return Bookmark.objects.filter(user=request.user)
-    
+
 
 class HelpItemInline(admin.StackedInline):
     
@@ -169,7 +177,7 @@ class HelpItemInline(admin.StackedInline):
     
     # Grappelli Options
     allow_add = True
-    
+
 
 class HelpOptions(admin.ModelAdmin):
     
@@ -190,13 +198,16 @@ class HelpOptions(admin.ModelAdmin):
     # Inlines
     inlines = [HelpItemInline]
     
+    # Grappelli Options
+    order = 2
+    
     # Media
     class Media:
         js = [
-            '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/media/admin/tinymce_setup/tinymce_setup.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce/jscripts/tiny_mce/tiny_mce.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
         ]
-    
+
 
 class HelpItemOptions(admin.ModelAdmin):
     
@@ -211,16 +222,20 @@ class HelpItemOptions(admin.ModelAdmin):
         }),
     )
     
+    # Grappelli Options
+    order = 3
+    
     # Media
     class Media:
         js = [
-            'admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            'admin/tinymce_setup/tinymce_setup.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce/jscripts/tiny_mce/tiny_mce.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
         ]
-    
+
 
 admin.site.register(Navigation, NavigationOptions)
 admin.site.register(Bookmark, BookmarkOptions)
 admin.site.register(Help, HelpOptions)
 admin.site.register(HelpItem, HelpItemOptions)
+
 
