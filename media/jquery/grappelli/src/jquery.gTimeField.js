@@ -35,6 +35,10 @@ $.widget('ui.gTimeField', {
         $('input, textarea, select').bind('focus.gTimeField', function(){
             $('.clockbox.module:visible').hide();
         });
+        
+        if (ui.options.mask) {
+            ui.element.mask(ui.options.mask);
+        }
     },
     toggle: function(at) {
         var ui = this;
@@ -70,6 +74,7 @@ $.widget('ui.gTimeField', {
 });
 
 $.ui.gTimeField.defaults = {
+    mask: '99:99:99', // set to false to disable
     buttons: [
         {label: gettext("Now"), callback: function(e, ui){ 
             return ui.element.val(new Date().getHourMinuteSecond()); 

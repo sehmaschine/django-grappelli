@@ -222,20 +222,15 @@ $.widget('ui.gInlineStacked', {
     },
     _makeCollapsible: function() {
         var ui = this;
-        return false;  
         // COLLAPSE OPEN/CLOSE ALL BUTTONS
         ui.element.find('a.closehandler').bind("click", function(){
             $(this).parents('div.inline-stacked')
-                .addClass('collapsed collapse-closed')
-                .removeClass('collapse-open')
                 .find('div.inline-related')
                     .removeClass('collapse-open')
                     .addClass('collapsed collapse-closed');
         });
         ui.element.find('a.openhandler').bind("click", function(){
             $(this).parents('div.inline-stacked')
-                .removeClass('collapsed collapse-closed')
-                .addClass('collapse-open')
                 .find('div.inline-related')
                     .removeClass('collapsed collapse-closed')
                     .addClass('collapse-open');

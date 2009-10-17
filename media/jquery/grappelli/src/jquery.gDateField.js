@@ -15,8 +15,14 @@ $.datepicker.setDefaults({
 $.widget('ui.gDateField', {
     _init: function() {
         var ui = this;
-        ui.element.datepicker(ui.options.datepicker)
-            .parent().find('br').replaceWith('<span class="spacer" />').end();
+        ui.element.datepicker()
+            .parent().find('br').replaceWith('<span class="spacer" />');
+        if (ui.options.mask) {
+            ui.element.mask(ui.options.mask);
+        }
     }
 });
 
+$.ui.gDateField.defaults = {
+    mask: '9999-99-99', // set to false to disable
+};
