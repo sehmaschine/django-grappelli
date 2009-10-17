@@ -102,17 +102,50 @@ $.widget('ui.gInlineGroup', {
 
         return el;
     },
+    
+    open: function() {
+        return this.element.data('collapsed', false)
+            .removeClass('collapse-closed')
+            .addClass('collapse-open')
+    },
+
+    close: function() {
+        return this.element.data('collapsed', true)
+            .removeClass('collapse-open')
+            .addClass('collapse-closed')
+    },
+
+    toggle: function() {
+        return this.is_open() && this.close() || this.open();
+    },
+
+    is_closed: function() {
+        return this.element.data('collapsed');
+    },
+
+    is_open: function() {
+        return !this.is_closed();
+    },
+
+    is_collapsable: function() {
+        return this.element.hasClass('collapse-closed') || this.element.hasClass('collapse-open');
+    },
 
     // INLINE GROUPS COLLAPSE (STACKED & TABULAR)
     _makeCollapsibleGroups: function() {
         var ui = this;
-        if (ui.element.hasClass('collapse-closed') || ui.element.hasClass('collapse-open')) {
+        if (ui.is_collapsable()) {
+            if (ui.element.hasClass('collapse-closed')) {
+                ui.close();
+            } 
+            else {
+                ui.open();
+            }
+            
             ui.element.find(' > h2').addClass('collapse-toggle')
                 .bind("click.gInlineGroup", function(){
-                    $(this).parent()
-                        .toggleClass('collapse-closed')
-                        .toggleClass('collapse-open');
-                    });
+                    ui.toggle();
+                });
         }
     },
     
@@ -189,7 +222,7 @@ $.widget('ui.gInlineStacked', {
     },
     _makeCollapsible: function() {
         var ui = this;
-        
+        return false;  
         // COLLAPSE OPEN/CLOSE ALL BUTTONS
         ui.element.find('a.closehandler').bind("click", function(){
             $(this).parents('div.inline-stacked')

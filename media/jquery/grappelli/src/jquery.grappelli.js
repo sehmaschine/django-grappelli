@@ -19,7 +19,7 @@ $.popup = function(name, href, options) {
 $(function(){
     
     // Fieldset collapse
-    $('.collapse-closed h2, .collapse-open h2').addClass('collapse-toggle').bind('click.grappelli', function(){
+    $('.module.collapse-closed h2, .module.collapse-open h2').addClass('collapse-toggle').bind('click.grappelli', function(){
         $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
     });
 
