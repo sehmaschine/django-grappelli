@@ -2,8 +2,9 @@
  *  Package: Grappelli
  */
 
+// Fail silently if gettext is unavailable
 if (typeof(gettext) == 'undefined') {
-    function gettext(i) { return i; }; // TODO: temporary fix
+    function gettext(i) { return i; };
 }
 
 $.popup = function(name, href, options) {

@@ -1,6 +1,7 @@
 # coding: utf-8
 
 from django.conf.urls.defaults import *
+from django.conf import settings
 
 urlpatterns = patterns('',
     
@@ -28,4 +29,12 @@ urlpatterns = patterns('',
     # M2M AUTOCOMPLETE LOOKUP
     url(r'^m2m_autocomplete_lookup/$', 'grappelli.views.autocomplete.m2m_autocomplete_lookup', name="grp_m2m_autocomplete_lookup"),
     url(r'^m2m_autocomplete_lookup_id/$', 'grappelli.views.autocomplete.m2m_autocomplete_lookup_id', name="grp_m2m_autocomplete_lookup_id"),    
+    
 )
+
+# JavaScript I18N
+if settings.USE_I18N == True and 'django.core.context_processors.i18n' in settings.TEMPLATE_CONTEXT_PROCESSORS:
+    urlpatterns += patterns('',
+        url(r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog', name="i18n-js"),
+    )
+    
