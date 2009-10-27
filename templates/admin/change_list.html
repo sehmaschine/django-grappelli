@@ -111,6 +111,17 @@
                 {% if cl.has_filters or cl.search_fields or cl.date_hierarchy %}
                     <div id="changelist-filter">
                         
+                        <!-- Results -->
+                        {% ifnotequal cl.result_count cl.full_result_count %}
+                        <div class="module results">
+                            <h2>{% trans 'Results' %}</h2>
+                            <div class="form-row">
+                                <p>{% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %}</p>
+                                <a href="?{% if cl.is_popup %}pop=1{% endif %}">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
+                            </div>
+                        </div>
+                        {% endifnotequal %}
+                        
                         <!-- Search -->
                         {% block search %}{% search_form cl %}{% endblock %}
                         
@@ -119,7 +130,7 @@
                         
                         {% if cl.has_filters %}
                         <!-- Filter -->
-                        <div class="module filter" style="margin-bottom: 0 !important;">
+                        <div class="module filter">
                             <h2>{% trans 'Filter' %}</h2>
                             {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
                         </div>
