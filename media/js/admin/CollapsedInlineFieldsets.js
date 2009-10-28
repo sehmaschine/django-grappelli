@@ -28,13 +28,19 @@ $(document).ready(function(){
     
     /// OPEN STACKEDINLINE WITH ERRORS (onload)
     $('div.inline-stacked div.inline-related').find('div[class*="errors"]:first').each(function(){
+        $(this).parents('div.inline-related').removeClass("collapse-closed");
         $(this).parents('div.inline-related').removeClass("collapsed");
+        $(this).parents('div.inline-related').addClass("collapse-open");
+        $(this).parents('div.inline-stacked').removeClass("collapse-closed");
         $(this).parents('div.inline-stacked').removeClass("collapsed");
+        $(this).parents('div.inline-stacked').addClass("collapse-open");
     });
     
     /// OPEN TABULARINLINE WITH ERRORS (onload)
     $('div.inline-tabular').find('div[class*="error"]:first').each(function(i) {
+        $(this).parents('div.inline-tabular').removeClass("collapse-closed");
         $(this).parents('div.inline-tabular').removeClass("collapsed");
+        $(this).parents('div.inline-tabular').addClass("collapse-open");
     });
     
     /// FIELDSETS WITHIN STACKED INLINES
