@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import urllib
+
 from django.shortcuts import HttpResponse, render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.decorators import staff_member_required
@@ -15,18 +17,18 @@ def add_bookmark(request):
     
     if request.method == 'POST':
         if request.POST.get('path') and request.POST.get('title'):
-            next = request.POST.get('path')
+            next = urllib.unquote(request.POST.get('path'))
             try:
                 bookmark = Bookmark.objects.get(user=request.user)
             except Bookmark.DoesNotExist:
                 bookmark = Bookmark(user=request.user)
                 bookmark.save()
             try:
-                bookmarkitem = BookmarkItem.objects.get(bookmark=bookmark, link=request.POST.get('path'))
+                bookmarkitem = BookmarkItem.objects.get(bookmark=bookmark, link=urllib.unquote(request.POST.get('path')))
                 msg = _('Site is already bookmarked.')
             except BookmarkItem.DoesNotExist:
                 try:
-                    bookmarkitem = BookmarkItem(bookmark=bookmark, title=request.POST.get('title'), link=request.POST.get('path'))
+                    bookmarkitem = BookmarkItem(bookmark=bookmark, title=request.POST.get('title'), link=urllib.unquote(request.POST.get('path')))
                     bookmarkitem.save()
                     msg = _('Site was added to Bookmarks.')
                 except:
@@ -51,9 +53,9 @@ def remove_bookmark(request):
     
     if request.GET:
         if request.GET.get('path'):
-            next = request.GET.get('path')
+            next = urllib.unquote(request.GET.get('path'))
             try:
-                bookmarkitem = BookmarkItem.objects.get(bookmark__user=request.user, link=request.GET.get('path'))
+                bookmarkitem = BookmarkItem.objects.get(bookmark__user=request.user, link=urllib.unquote(request.GET.get('path')))
                 bookmarkitem.delete()
                 msg = _('Site was removed from Bookmarks.')
             except BookmarkItem.DoesNotExist:
@@ -78,13 +80,14 @@ def get_bookmark(request):
     if request.method == 'GET':
         if request.GET.get('path'):
             object_list = BookmarkItem.objects.filter(bookmark__user=request.user).order_by('order')
+            print urllib.unquote(request.GET.get('path'))
             try:
                 bookmark = Bookmark.objects.get(user=request.user)
             except Bookmark.DoesNotExist:
                 bookmark = Bookmark(user=request.user)
                 bookmark.save()
             try:
-                BookmarkItem.objects.get(bookmark__user=request.user, link=request.GET.get('path'))
+                BookmarkItem.objects.get(bookmark__user=request.user, link=urllib.unquote(request.GET.get('path')))
                 is_bookmark = True
             except BookmarkItem.DoesNotExist:
                 is_bookmark = False
