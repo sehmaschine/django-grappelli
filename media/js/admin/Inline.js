@@ -57,7 +57,7 @@ $(document).ready(function(){
         /// set TOTAL_FORMS to number of items
         inlinegroup.find('input[id*="TOTAL_FORMS"]').val(parseInt(items));
         /// replace IDs, NAMEs, HREFs & FORs ...
-        new_item.find(':input,span,table,iframe,label').each(function() {
+        new_item.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
             if ($(this).attr('id')) {
                 $(this).attr('id', $(this).attr('id').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
             }
@@ -66,6 +66,9 @@ $(document).ready(function(){
             }
             if ($(this).attr('for')) {
                 $(this).attr('for', $(this).attr('for').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
+            }
+            if ($(this).attr('href')) {
+                $(this).attr('href', $(this).attr('href').replace(/-\d+-/g, "-" + parseInt(items - 1) + "-"));
             }
         });
         /// remove calendars and clocks, re-init

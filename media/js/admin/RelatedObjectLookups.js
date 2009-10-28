@@ -32,6 +32,9 @@ function dismissRelatedLookupPopup(win, chosenId) {
     if (elem.className.indexOf('vManyToManyRawIdAdminField') != -1 && elem.value) {
         elem.value += ',' + chosenId;
         document.getElementById(name).focus();
+    } else if (elem.className.indexOf('vM2MAutocompleteRawIdAdminField') != -1 && elem.value) {
+        elem.value += ',' + chosenId;
+        document.getElementById(name).focus();
     } else {
         document.getElementById(name).value = chosenId;
         document.getElementById(name).focus();
@@ -243,9 +246,42 @@ $(document).ready(function(){
     
     RelatedHandler($("input.vForeignKeyRawIdAdminField"));
     M2MHandler($("input.vManyToManyRawIdAdminField"));
+    
     InitObjectID($('input[name*="object_id"]'));
     InitContentType($(':input[name*="content_type"]'));
     GenericHandler($('input[name*="object_id"]'));
+    
+    // $("input.vForeignKeyRawIdAdminField").autocomplete('/grappelli/autocomplete_lookup/', {
+    //     highlight: false,
+    //     mustMatch: false,
+    //     matchContains: true,
+    //     cacheLength: 20,
+    //     minChars: 2,
+    //     extraParams: {
+    //         'app_label': function() {
+    //             return "xxx";
+    //         },
+    //         'model_name': function() {
+    //             return "yyy";
+    //         },
+    //     }
+    // }).result(function(event, data, formatted) {
+    //     if (data) {
+    //         $(this).val(data[1]);
+    //     }
+    // });
+    // 
+    // $("input.vForeignKeyRawIdAdminField").setOptions({
+    //     extraParams: {
+    //         'app_label': function() {
+    //             return $(this).attr('id');
+    //         },
+    //         'model_name': function() {
+    //             return "bbb";
+    //         },
+    //     }
+    // });
+    
     
 });
 
