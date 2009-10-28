@@ -7,7 +7,7 @@ $(document).ready(function(){
     });
     $('#toggle-bookmark-add').live("click", function() {
         $("input#bookmark-title").val($('h1').text());
-        $("input#bookmark-path").val(window.location.pathname);
+        $("input#bookmark-path").val(escape(window.location.pathname + window.location.search));
         $("#bookmark-add").show();
         $("#toggle-bookmarks-listing").removeClass('enabled');
     });
