@@ -28,7 +28,7 @@
             $.ajax({
                 type: "GET",
                 url: '{% url grp_bookmark_get %}',
-                data: "path=" + window.location.pathname,
+                data: "path=" + escape(window.location.pathname + window.location.search),
                 dataType: "html",
                 success: function(data){
                     $('ul#bookmarks').replaceWith(data);
