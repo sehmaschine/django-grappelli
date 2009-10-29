@@ -50,7 +50,7 @@ a img {
     outline: none;
 }
 a:link img.preview, a:visited img.preview {
-    padding: 5px;
+    margin-top: 5px; padding: 5px;
     border: 1px solid #309bbf;
     -moz-border-radius: 3px; -webkit-border-radius: 3px;
     background: #fff;
@@ -139,11 +139,11 @@ a.add-another:hover, a.add-another:active {
 
 .vAutocompleteRawIdAdminField + a.add-another, 
 .vM2MAutocompleteRawIdAdminField + a.add-another {
-    margin-left: -8px;
+    /*margin-left: -8px;*/
 }
 #changelist .result-list .vAutocompleteRawIdAdminField + a.add-another, 
 #changelist .result-list .vM2MAutocompleteRawIdAdminField + a.add-another {
-    margin-left: -9px;
+    /*margin-left: -9px;*/
 }
 
 
