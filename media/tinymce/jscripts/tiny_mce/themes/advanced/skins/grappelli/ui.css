@@ -63,12 +63,22 @@
     border-top: 1px solid #fff;
     border-bottom: 1px solid #d4d4d4;
 }
+.predelete .grappelliSkin iframe {
+    border-top: 1px solid #ffe5e5;
+    border-bottom: 1px solid #e5caca;
+}
 .grappelliSkin td.mceToolbar {
     padding-bottom: 5px;
     border-bottom: 1px solid #d4d4d4;
 }
+.predelete .grappelliSkin td.mceToolbar {
+    border-bottom: 1px solid #e5caca;
+}
 .grappelliSkin td.mceToolbar.advanced_icons {
     border-top: 1px solid #ccc !important;
+}
+.predelete .grappelliSkin td.mceToolbar.advanced_icons {
+    border-top: 1px solid #ffe5e5 !important;
 }
 .grappelliSkin td.mceIframeContainer {
     margin-top: 0; padding-top: 0;
@@ -90,6 +100,9 @@
     height: auto !important;
     -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #eee;
+}
+.predelete .grappelliSkin table.mceLayout {
+    background: transparent !important;
 }
 #mce_fullscreen_container {
     height: 100% !important;
@@ -148,6 +161,9 @@
     border-color: #d4d4d4 #fff #fff #d4d4d4;
     -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: transparent;
+}
+.predelete .grappelliSkin .mceButtonDisabled {
+    border-color: #e5caca #ffe5e5 #ffe5e5 #e5caca;
 }
 .grappelliSkin .mceButtonDisabled span {
     opacity: 0.4;
@@ -363,6 +379,9 @@
     background: #d6ebf2 url('img/icons/icon-mceResize.png') 50% 100% no-repeat;
     cursor: s-resize;
 }
+.predelete .grappelliSkin .mcePlaceHolder {
+    border: 1px solid #e5caca;
+}
 .inline-tabular .grappelliSkin .mcePlaceHolder, 
 .inline-stacked .grappelliSkin .mcePlaceHolder {
     left: 0;
@@ -371,7 +390,7 @@
 .grappelliSkin a.mceResize { 
     display: block;
     width: 100%; height: 20px;
-    border: 1px solid #eee;
+    border: 1px solid transparent;
     border-top-color: #fff;
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
     -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px;
@@ -381,12 +400,20 @@
     background-repeat: no-repeat;
     cursor: s-resize;
 }
+.predelete .grappelliSkin a.mceResize { 
+    border-top-color: #ffe5e5;
+}
 .grappelliSkin a.mceResize:link, .grappelliSkin a.mceResize:visited { 
     background-color: transparent;
 }
 .grappelliSkin a.mceResize:hover, .grappelliSkin a.mceResize:active { 
     border-color: #d4d4d4;
     border-top-color: #ebebeb;
+    background-color: #d6ebf2;
+}
+.predelete .grappelliSkin a.mceResize:hover, .predelete .grappelliSkin a.mceResize:active { 
+    border-color: #e5caca;
+    border-top-color: #ffe5e5;
     background-color: #d6ebf2;
 }
 

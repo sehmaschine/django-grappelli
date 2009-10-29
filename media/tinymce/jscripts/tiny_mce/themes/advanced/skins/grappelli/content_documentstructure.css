@@ -2,12 +2,11 @@
 
 body#tinymce {
     width: 630px; /* 10px more than body#tinymce in content_base.css to provide equal line-breaks */
-    background-color: #ebe9e6;
-    background: #eee;
 }
 body#tinymce.fullscreen {
     padding-left: 10px !important;
     width: 630px !important; /* 10px more than body#tinymce.fullscreen in content_base.css to provide equal line-breaks */
+    background: #eee;
 }
 
 /* -- Typographic Elements ---------- */
