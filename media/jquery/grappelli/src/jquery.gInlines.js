@@ -259,7 +259,7 @@ $.widget('ui.gInlineStacked', {
         }
         
         /// OPEN STACKEDINLINE WITH ERRORS (onload)
-        $('.inline-related:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
+        $('.inline-group:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
     },
 });
 $.ui.gInlineStacked.defaults = {
