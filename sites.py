@@ -125,7 +125,10 @@ class GrappelliSite(AdminSite):
         # set template and title
         # clear app_list
         if request.GET.get("g"):
-            title = group_list[int(request.GET.get("g"))]['title']
+            try:
+                title = group_list[int(request.GET.get("g"))]['title']
+            except:
+                title = _('Site administration')
             try:
                 group_template = group_list[int(request.GET.get("g"))]['template']
             except:
@@ -133,7 +136,10 @@ class GrappelliSite(AdminSite):
             tpl = group_template or self.group_template or "admin/index_group.html"
             custom_app_list = []
         elif request.GET.get("c"):
-            title = self.collections[int(request.GET.get("c"))]['title']
+            try:
+                title = self.collections[int(request.GET.get("c"))]['title']
+            except:
+                title = _('Site administration')
             try:
                 collection_template = self.collections[int(request.GET.get("c"))]['template']
             except:
