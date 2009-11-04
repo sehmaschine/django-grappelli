@@ -40,7 +40,8 @@ class GrappelliSite(AdminSite):
         self.app_name = app_name
         self._actions = {'delete_selected': actions.delete_selected}
         self._global_actions = self._actions.copy()
-        self.groups = []
+        self.groups = {}
+        self.collections = {}
         self.group_template = ""
         self.collection_template = ""
     
