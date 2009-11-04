@@ -20,9 +20,12 @@
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}<div class="breadcrumbs">{% trans "Home" %}</div>{% endblock %}
 
+{% block pretitle %}<p class="pretitle"><a href=".">{% trans "Site Administration" %}</a></p>{% endblock %}
+
 <!-- CONTENT -->
 {% block content %}
 <div id="content-main">
+    
     {% if app_list or group_list %}
         {% if group_list %}
             {% for k,v in group_list.items %}

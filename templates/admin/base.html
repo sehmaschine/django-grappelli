@@ -20,7 +20,7 @@
     <script type="text/javascript" src="{% admin_media_prefix %}js/admin/Bookmarks.js"></script>
     <script type="text/javascript">
         // Admin URL
-        var ADMIN_URL = "/{% get_admin_url %}/";
+        var ADMIN_URL = "{% get_admin_url %}";
         // Generic Relations
         {% get_generic_relation_list %}
         // Get Bookmarks

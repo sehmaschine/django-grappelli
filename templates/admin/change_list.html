@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load adminmedia admin_list i18n %}
+{% load adminmedia admin_list i18n grp_tags %}
 
 <!-- STYLES -->
 {% block extrastyle %}
@@ -40,7 +40,7 @@
 {% block breadcrumbs %}
 {% if not is_popup %}
     <div class="breadcrumbs">
-        <a href="../../">{% trans "Home" %}</a>
+        <a href="{{ request.session.grappelli.home }}">{% trans "Home" %}</a>
         &rsaquo;
         <a href="../">{{ app_label|capfirst }}</a>
         &rsaquo;
