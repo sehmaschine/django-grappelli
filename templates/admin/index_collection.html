@@ -29,7 +29,7 @@
     {% if group_list %}
         {% for k,v in group_list.items %}
         {% if v.applications %}
-        <div id="group_{{ k }}" class="group-collapsible {% if v.collection_classes %}{% for class in v.collection_classes %}{{ class }} {% endfor %}{% else %}collapse-open{% endif%}">
+        <div id="group_{{ k }}" class="group-collapsible {% if v.classes %}{% for class in v.classes %}{{ class }} {% endfor %}{% else %}collapse-open{% endif%}">
             {% if v.name %}<h2>{{ v.name }}</h2>{% endif %}
             {% if v.show_apps %}
                 {% for app in v.applications %}
