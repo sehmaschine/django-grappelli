@@ -21,11 +21,11 @@ urlpatterns = patterns('',
     url(r'^m2m_lookup/$', 'grappelli.views.related.m2m_lookup', name="grp_m2m_lookup")
     
     # AUTOCOMPLETE LOOKUP
-    url(r'^autocomplete_lookup/$', 'grappelli.views.related.autocomplete_lookup', name="grp_autocomplete_lookup"),
-    url(r'^autocomplete_lookup_id/$', 'grappelli.views.related.autocomplete_lookup_id', name="grp_autocomplete_lookup_id"),
+    #url(r'^autocomplete_lookup/$', 'grappelli.views.related.autocomplete_lookup', name="grp_autocomplete_lookup"),
+    #url(r'^autocomplete_lookup_id/$', 'grappelli.views.related.autocomplete_lookup_id', name="grp_autocomplete_lookup_id"),
     
     # M2M AUTOCOMPLETE LOOKUP
-    url(r'^m2m_autocomplete_lookup/$', 'grappelli.views.related.m2m_autocomplete_lookup', name="grp_m2m_autocomplete_lookup"),
-    url(r'^m2m_autocomplete_lookup_id/$', 'grappelli.views.related.m2m_autocomplete_lookup_id', name="grp_m2m_autocomplete_lookup_id"),
+    #url(r'^m2m_autocomplete_lookup/$', 'grappelli.views.related.m2m_autocomplete_lookup', name="grp_m2m_autocomplete_lookup"),
+    #url(r'^m2m_autocomplete_lookup_id/$', 'grappelli.views.related.m2m_autocomplete_lookup_id', name="grp_m2m_autocomplete_lookup_id"),
     
 )
