@@ -80,7 +80,7 @@ def get_bookmark(request):
     if request.method == 'GET':
         if request.GET.get('path'):
             object_list = BookmarkItem.objects.filter(bookmark__user=request.user).order_by('order')
-            print urllib.unquote(request.GET.get('path'))
+            #print urllib.unquote(request.GET.get('path'))
             try:
                 bookmark = Bookmark.objects.get(user=request.user)
             except Bookmark.DoesNotExist:
