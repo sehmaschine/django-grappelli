@@ -173,7 +173,7 @@ function InitObjectID(obj) {
             var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
             lookupLink.attr('id', 'lookup_'+this.id);
             lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[ct] + '/?t=id');
-            lookupLink.attr('onclick', 'return showRelatedObjectLookupPopup(this);');
+            lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
             var lookupText = '<strong>&nbsp;</strong>';
             $(this).after(lookupText).after(lookupLink);
             if ($(this).val() != "") {
@@ -195,7 +195,7 @@ function InitContentType(obj) {
                 var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
                 lookupLink.attr('id', 'lookup_'+obj_id.attr('id'));
                 lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + '/?t=id');
-                lookupLink.attr('onclick', 'return showRelatedObjectLookupPopup(this);');
+                lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
                 var lookupText = '<strong>&nbsp;</strong>';
                 $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]').after(lookupText).after(lookupLink);
             }
