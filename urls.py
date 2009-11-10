@@ -33,8 +33,7 @@ urlpatterns = patterns('',
 )
 
 # JavaScript I18N
-if settings.USE_I18N == True and 'django.core.context_processors.i18n' in settings.TEMPLATE_CONTEXT_PROCESSORS:
-    urlpatterns += patterns('',
-        url(r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog', name="i18n-js"),
-    )
+urlpatterns += patterns('',
+    url(r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog', name="i18n-js"),
+)
     
