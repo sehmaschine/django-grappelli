@@ -1,0 +1,56 @@
+{% extends "admin/index.html" %}
+
+<!-- LOADING -->
+{% load i18n grp_tags %}
+
+<!-- BREADCRUMBS -->
+{% if not is_popup %}
+    {% block breadcrumbs %}
+    <div class="breadcrumbs"><a href="../">
+    {% trans "Home" %}</a> &rsaquo;
+    {% for app in app_list %}
+        {% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}
+    {% endfor %}
+    </div>
+    {% endblock %}
+{% endif %}
+
+<!-- CONTENT -->
+{% block content %}
+<div id="content-main">
+    <div id="apps_init">
+    {% if app_list %}
+        {% for app in app_list %}
+            <div class="module" id="{{ app.name|lower }}">
+            <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+            <caption><a href="{{ app.app_url }}" class="section">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></caption>
+            {% for model in app.models %}
+                <tr>
+                {% if model.perms.change %}
+                    <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                {% else %}
+                    <th scope="row">{{ model.name }}</th>
+                {% endif %}
+                
+                {% if model.perms.add %}
+                    <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+                {% else %}
+                    <td>&nbsp;</td>
+                {% endif %}
+                
+                {% if model.perms.change %}
+                    <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                {% else %}
+                    <td>&nbsp;</td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+            </table>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}
+
+<!-- SIDEBAR, EXTENDED SIDEBAR -->
+{% block sidebar %}{% endblock %}
