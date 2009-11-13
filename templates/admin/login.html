@@ -1,0 +1,44 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n %}
+
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/login.css" />
+{% endblock %}
+
+<!-- BODYCLASS -->
+{% block bodyclass %}login{% endblock %}
+{% block content_title %}{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    {% if error_message %}
+        <p class="errornote">{{ error_message }}</p>
+    {% endif %}
+    
+    <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+        <div id="content-main">
+            <div class="form-row">
+                <label for="id_username" class="required">{% trans 'Username:' %}</label> <input type="text" name="username" id="id_username" />
+            </div>
+            <div class="form-row">
+                <label for="id_password" class="required">{% trans 'Password:' %}</label> <input type="password" name="password" id="id_password" />
+                <input type="hidden" name="this_is_the_login_form" value="1" />
+            </div>
+        </div>
+        <div class="submit-row">
+            <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
+        </div>
+    </form>
+    
+    <script type="text/javascript">
+        document.getElementById('id_username').focus()
+    </script>
+    
+{% endblock %}

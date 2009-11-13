@@ -1,0 +1,162 @@
+
+
+
+/*  Basic Table Settings
+------------------------------------------------------------------------------------------------------ */
+
+table {
+    margin: 0; padding: 0;
+    border-spacing: none;
+}
+td, th {
+    font-size: 11px; line-height: 15px;
+    vertical-align: top;
+    padding: 5px 10px;
+}
+th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+tr.alt th, tr.alt td {
+    background: #f4f4f4;
+}
+.row1 th, .row1 td {
+    background: #f4f4f4;
+}
+.row2 th, .row2 td {
+    background: #fff;
+}
+
+
+/*  Thead ................................................... */
+
+thead th,
+tfoot td {
+    color: #aaa;
+    padding: 5px 10px;
+    font-size: 11px; line-height: 12px;
+    border-left: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+    background: #eee;
+}
+thead th.sorted {
+    border-bottom: 1px solid #ccc;
+    background: #e0e0e0;
+}
+thead th a {
+    position: relative; display: block;
+    margin: -5px -10px -4px; padding: 5px 10px 4px;
+    height: 100% !important;
+    white-space: nowrap;
+}
+thead th a:link, thead th a:visited {
+    color: #59afcc;
+    border-top: 1px solid #fff;
+}
+thead th a:hover, thead th a:active, 
+thead th.sorted a {
+    color: #444;
+}
+thead th.sorted a {
+    border-top: 1px solid #ececec;
+}
+thead th.ascending a:after {
+    content: url('../img/icons/icon-th-ascending.png');
+}
+thead th.descending a:after {
+    content: url('../img/icons/icon-th-descending.png');
+}
+
+
+/*  Tbody ................................................... */
+
+tbody th, tbody td {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tfoot td {
+    border-bottom: none;
+    border-top: 1px solid #d4d4d4;
+}
+
+thead th:first-child,
+tfoot td:first-child {
+    border-left: none;
+}
+
+thead th.optional {
+    font-weight: normal !important;
+}
+
+fieldset table {
+    border-right: 1px solid #eee;
+}
+
+tr.row-label td {
+    font-size: 9px;
+    padding-top: 2px;
+    padding-bottom: 0;
+    border-bottom: none;
+    color: #666;
+    margin-top: -1px;
+}
+
+
+
+/*  Table Xfull
+------------------------------------------------------------------------------------------------------ */
+
+table.xfull {
+    width: 100%;
+}
+
+
+/*  Orderable Tables
+------------------------------------------------------------------------------------------------------ */
+
+table.orderable tbody tr td:hover {
+    cursor: move;
+}
+
+table.orderable tbody tr td:first-child {
+    padding-left: 14px;
+    background-image: url(../img/admin/nav-bg-grabber.gif);
+    background-repeat: repeat-y;
+}
+
+table.orderable-initalized .order-cell, body>tr>td.order-cell {
+    display: none;
+}
+
+
+
+/*  Change History
+------------------------------------------------------------------------------------------------------ */
+
+table#change-history {
+    width: 100%;
+}
+table#change-history tbody th {
+    width: 150px;
+}
+table#change-history thead th:first-child {
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+}
+table#change-history thead th:last-child {
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+
+
+
+/*  Overrides
+------------------------------------------------------------------------------------------------------ */
+
+tbody th:first-child, tbody td:first-child {
+    border-left: none;
+}
+tbody tr:last-child td, tbody tr:last-child th {
+    border-bottom: none;
+}
