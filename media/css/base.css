@@ -286,6 +286,12 @@ ul.messagelist li {
     border-bottom: 1px solid #ddd;
     background: #fcfce7 url('../img/icons/icon-yes.png') 15px 50% no-repeat;
 }
+ul.messagelist.success li {
+	background: #C0E1C0 url('../img/icons/icon-yes.png') 15px 50% no-repeat;
+}
+ul.messagelist.error li {
+	background: #E1C0C0 url('../img/icons/icon-yes.png') 15px 50% no-repeat;
+}
 body.popup .breadcrumbs + ul.messagelist {
     top: 24px;
 }
