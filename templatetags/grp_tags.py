@@ -109,7 +109,6 @@ def do_get_search_fields_verbose(parser, token):
         raise template.TemplateSyntaxError, "%r tag had invalid arguments" % tag
     opts, var_name = m.groups()
     return GetSearchFields(opts, var_name)
-    
 
 register.tag('get_search_fields_verbose', do_get_search_fields_verbose)
 
@@ -134,17 +133,6 @@ def get_admin_url():
     return ADMIN_URL
     
 register.simple_tag(get_admin_url)
-
-
-# SESSION_URL
-def get_session_url():
-    """
-    Returns the URL for the Admin-Interface.
-    """
-    
-    return ADMIN_URL
-    
-register.simple_tag(get_session_url)
 
 
 # GRAPPELLI MESSAGING SYSTEM
