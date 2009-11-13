@@ -40,10 +40,8 @@
 {% block breadcrumbs %}
 {% if not is_popup %}
     <div class="breadcrumbs">
-        <a href="{{ request.session.grappelli.home }}">{% trans "Home" %}</a>
-        &rsaquo;
-        <a href="../">{{ app_label|capfirst }}</a>
-        &rsaquo;
+        <a href="{% if request.session.grappelli.home %}{{ request.session.grappelli.home }}{% else %}{% get_admin_url %}{% endif %}">{% trans "Home" %}</a> &rsaquo;
+        <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
         {{ cl.opts.verbose_name_plural|capfirst }}
     </div>
 {% endif %}
