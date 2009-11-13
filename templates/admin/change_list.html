@@ -75,7 +75,7 @@
         <!-- Changelist -->
         <div class="module{% if cl.has_filters or cl.search_fields or cl.date_hierarchy %} filtered{% endif %}" id="changelist">
             <div class="changelist-content">
-                <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %} 
                 
                 <!-- Popup Hidden Field -->
                 {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
