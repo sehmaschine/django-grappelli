@@ -6,8 +6,8 @@ from django.utils.translation import ugettext as _
 from grappelli.fields import PositionField
 
 ITEM_CATEGORY_CHOICES = (
-    ('1', _('internal')),
-    ('2', _('external')),
+    ('1', 'internal'),
+    ('2', 'external'),
 )
 
 class Navigation(models.Model):
