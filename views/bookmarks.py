@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 
+# imports
 import urllib
 
+# django imports
 from django.shortcuts import HttpResponse, render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.translation import ugettext as _
 
+# grappelli imports
 from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.settings import ADMIN_TITLE, ADMIN_URL
+
 
 def add_bookmark(request):
     """
@@ -25,23 +29,26 @@ def add_bookmark(request):
                 bookmark.save()
             try:
                 bookmarkitem = BookmarkItem.objects.get(bookmark=bookmark, link=urllib.unquote(request.POST.get('path')))
-                msg = _('Site is already bookmarked.')
+                msg = ['error', _('Site is already bookmarked.')]
             except BookmarkItem.DoesNotExist:
                 try:
                     bookmarkitem = BookmarkItem(bookmark=bookmark, title=request.POST.get('title'), link=urllib.unquote(request.POST.get('path')))
                     bookmarkitem.save()
-                    msg = _('Site was added to Bookmarks.')
+                    msg = ['success', _('Site was added to Bookmarks.')]
                 except:
-                    msg = _('Error: Site could not be added to Bookmarks.')
+                    msg = ['error', _('Site could not be added to Bookmarks.')]
         else:
-            msg = _('Error: Site could not be added to Bookmarks.')
+            msg = ['error', _('Site could not be added to Bookmarks.')]
             next = request.POST.get('path')
     else:
-        msg = _('Error: Site could not be added to Bookmarks.')
+        msg = ['error', _('Site could not be added to Bookmarks.')]
         next = ADMIN_URL
     
     # MESSAGE & REDIRECT
-    request.user.message_set.create(message=msg)
+    if not request.session.get('grappelli'):
+        request.session['grappelli'] = {}
+    request.session['grappelli']['message'] = msg
+    request.session.modified = True
     return HttpResponseRedirect(next)
 add_bookmark = staff_member_required(add_bookmark)
 
@@ -57,17 +64,20 @@ def remove_bookmark(request):
             try:
                 bookmarkitem = BookmarkItem.objects.get(bookmark__user=request.user, link=urllib.unquote(request.GET.get('path')))
                 bookmarkitem.delete()
-                msg = _('Site was removed from Bookmarks.')
+                msg = ['success', _('Site was removed from Bookmarks.')]
             except BookmarkItem.DoesNotExist:
-                msg = _('Error: Site could not be removed from Bookmarks.')
+                msg = ['error', _('Site could not be removed from Bookmarks.')]
         else:
-            msg = _('Error: Site could not be removed from Bookmarks.')
+            msg = ['error', _('Site could not be removed from Bookmarks.')]
             next = ADMIN_URL
     else:
-        msg = _('Error: Site could not be removed from Bookmarks.')
+        msg = ['error', _('Site could not be removed from Bookmarks.')]
     
     # MESSAGE & REDIRECT
-    request.user.message_set.create(message=msg)
+    if not request.session.get('grappelli'):
+        request.session['grappelli'] = {}
+    request.session['grappelli']['message'] = msg
+    request.session.modified = True
     return HttpResponseRedirect(next)
 remove_bookmark = staff_member_required(remove_bookmark)
 

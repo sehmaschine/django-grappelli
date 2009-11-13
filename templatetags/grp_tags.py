@@ -1,7 +1,9 @@
 # coding: utf-8
 
+# imports
 import re
 
+# django imports
 from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.contrib import admin
@@ -9,6 +11,7 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import Group
 
+# grappelli imports
 from grappelli.models.help import HelpItem
 from grappelli.models.navigation import Navigation, NavigationItem
 from grappelli.settings import *
@@ -132,6 +135,7 @@ def get_admin_url():
     
 register.simple_tag(get_admin_url)
 
+
 # SESSION_URL
 def get_session_url():
     """
@@ -142,16 +146,23 @@ def get_session_url():
     
 register.simple_tag(get_session_url)
 
-# ADMIN INDEX PAGE
-def get_apps():
+
+# GRAPPELLI MESSAGING SYSTEM
+def get_messages(session):
     """
-    App-Listing for the Admin Index Page.
+    Get Success and Error Messages.
     """
     
-    from grappelli.settings import ADMIN_APPS
+    try:
+        msg = session['grappelli']['message']
+        del session['grappelli']['message']
+    except:
+        msg = ""
     
-    return { 'object_list': ADMIN_APPS }
+    return {
+        'message': msg
+    }
     
-register.inclusion_tag('admin/includes_grappelli/admin.html')(get_apps)
+register.inclusion_tag('admin/includes_grappelli/messages.html')(get_messages)
 
 
