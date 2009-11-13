@@ -114,7 +114,7 @@
                         <div class="module results">
                             <h2>{% trans 'Results' %}</h2>
                             <div class="form-row">
-                                <p>{% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %}</p>
+                                <p>{% blocktrans with cl.result_count as counter %}{{ counter }} found{% endblocktrans %}</p>
                                 <a href="?{% if cl.is_popup %}pop=1{% endif %}">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
                             </div>
                         </div>
