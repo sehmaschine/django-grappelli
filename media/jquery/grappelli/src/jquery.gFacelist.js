@@ -7,7 +7,7 @@ $.widget('ui.gFacelist', {
     _init: function(){
         var ui = this;
 
-        // erh.. jquery < 1.8 fix: http://dev.jqueryui.com/ticket/4366
+        // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
 
         ui.element.hide().parent().find('p.help').remove();
@@ -37,6 +37,23 @@ $.widget('ui.gFacelist', {
         }
         
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
+        // hide selected items
+        ui.dom.input.bind('redrawn', function(e){
+            var rs = ui.dom.input.gAutocomplete('results');
+            var ids = $.makeArray(ui.dom.facelist.find('.ui-gFacelist-item').map(function(){
+                return $(this).data('json').id
+            }));
+            var div = $(this).nextAll('div');
+            div.find('li').each(function(){
+                if ($.inArray($(this).data('json').id, ids) >= 0) {
+                    $(this).hide();
+                }
+            });
+            if (div.find('li:visible').length < 1) {
+                ui.dom.facelist.find('.ui-gAutocomplete-autocomplete').addClass('no-match');
+            }
+        });
+
         ui.dom.ac = ui.dom.wrapper.find('.ui-gAutocomplete-autocomplete');
         ui.dom.ac
             .bind('focus.gFacelist', function(){ ui.dom.facelist.addClass('focus'); })
@@ -70,7 +87,7 @@ $.widget('ui.gFacelist', {
         });
         ui._bind(ui.dom.input, 'complete', function(e){
             if (e.originalEvent.sticky) {
-                ui._addItem(); 
+                ui._addItem(e.originalEvent.data); 
                 ui._message(); 
             }
         });
@@ -84,13 +101,14 @@ $.widget('ui.gFacelist', {
             ui.dom.message.text($.format(msg, count));
         }
     },
-    _addItem: function() {
+    _addItem: function(data) {
         var ui = this;
         var val = ui.dom.ac.val();
         if (val != '') {
             var label = $('<span />').text(val);
             var button = ui._createElement('li', {ns: 'item'})
                     .html(label)
+                    .data('json', data)
                     .addClass('ui-corner-all')
                     .bind('click.gFacelist', function(){
                         $(this).remove();

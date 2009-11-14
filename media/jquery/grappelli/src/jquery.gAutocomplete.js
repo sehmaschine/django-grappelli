@@ -184,6 +184,9 @@ $.widget('ui.gAutocomplete', {
             }
         });
     },
+    results: function() {
+        return this._results;         
+    },
     _choose: function(nonSticky) {
         var ui = this;
         var node = ui.dom.results.find('.selected');
@@ -203,7 +206,7 @@ $.widget('ui.gAutocomplete', {
             }
             // ui._hideList();
         }
-        ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky}));
+        ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky, data: node.data('json')}));
         return false;
     },
     _cancel: function() {
@@ -219,6 +222,7 @@ $.widget('ui.gAutocomplete', {
     _redraw: function() {
         var ui = this;
         var rs = ui.options.maxResults && ui._results.slice(0, ui.options.maxResults) || ui._results;
+        ui.element.trigger('redraw');
         ui.dom.results.empty();
 
         if (rs.length > 0) {
@@ -249,12 +253,15 @@ $.widget('ui.gAutocomplete', {
                 ui._showList();
              }
         }
+        ui.element.trigger('redrawn');
     },
     _shiftSelection: function(el) {
         $(el).addClass('selected').siblings().removeClass('selected');
         return this;
     }
 });
+
+$.ui.gAutocomplete.getter = ['results'];
 
 $.ui.gAutocomplete.defaults = {
     highlight:  true,
@@ -265,7 +272,7 @@ $.ui.gAutocomplete.defaults = {
     maxResults: 20,
     width:      false,
     browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
-    create:     true,
+    create:     false, // buggy
     createText: 'Create a new object',
 };
 
