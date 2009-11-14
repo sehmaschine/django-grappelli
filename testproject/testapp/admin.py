@@ -73,14 +73,14 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
     }
     autocomplete = {
         'fk_test': {
-            'search_fields': ('username', 'first_name', 'last_name'),
+            'search_fields': ('name', 'domain',),
             'input_format':  '{label:s}',           # optional
             'list_format':   '{id:d} - {label:s}',  # optional
         }
     }
     facelist = {
         'm2m_test': {
-            'search_fields': ('username', 'first_name', 'last_name'),
+            'search_fields': ('name', 'domain',),
             'input_format':  '{label:s}',           # optional
             'list_format':   '{id:d} - {label:s}',  # optional
         }
