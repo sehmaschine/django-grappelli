@@ -25,12 +25,15 @@ $.widget('ui.gRelated', {
             link: $('<a class="related-lookup" />'),
             text: $('<strong />'),
         };
+        
+        ui.dom.object_id.attr('disabled', !ui.dom.content_type.val())
 
         ui.dom.content_type.bind('change.gRelated, keyup.gRelated', function() {
             var $el = $(this);
             var href = ui._url($el.val());
             ui.dom.object_id.val('');
             ui.dom.text.text('');
+            ui.dom.object_id.attr('disabled', !$el.val())
             if ($el.val()) {
                 var link = ui.dom.object_id.next('.related-lookup');
                 if (link.get(0)) {
@@ -60,25 +63,27 @@ $.widget('ui.gRelated', {
     _relatedLookup: function(e){
         var ui   = this;
         var text = ui.dom.text;
-        var app_label  = ui.dom.link.attr('href').split('/')[2];
-        var model_name = ui.dom.link.attr('href').split('/')[3];
-        
-        ui.dom.text.text('loading ...');
-        
-        // get object
-        $.get(ui.options.url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
-            var item = data;
-            ui.dom.text.text('');
-            if (item) {
-                var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
-                if (item.length > tl) {
-                    var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
-                    ui.dom.text.text(txt);
-                } else {
-                    ui.dom.text.text(decodeURI(item));
+        if(ui.dom.link.attr('href')) {
+            var app_label  = ui.dom.link.attr('href').split('/')[2];
+            var model_name = ui.dom.link.attr('href').split('/')[3];
+            
+            ui.dom.text.text('loading ...');
+            
+            // get object
+            $.get(ui.options.url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
+                var item = data;
+                ui.dom.text.text('');
+                if (item) {
+                    var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
+                    if (item.length > tl) {
+                        var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
+                        ui.dom.text.text(txt);
+                    } else {
+                        ui.dom.text.text(decodeURI(item));
+                    }
                 }
-            }
-        });
+            });
+        }
     },
     _m2mLookup: function(obj){},
 });
