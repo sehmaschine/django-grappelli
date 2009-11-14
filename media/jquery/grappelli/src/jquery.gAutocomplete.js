@@ -27,9 +27,13 @@ $.widget('ui.gAutocomplete', {
                                                                 .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>'), 
         };
         
-        ui.element.bind('focus', function(){
+        ui.element.attr('name', ui.element.attr('id')).bind('focus', function(){
             ui.dom.input.focus();
         });
+
+        if (ui.element.val()) {
+            ui.dom.input.val(ui.element.val());
+        }
 
         ui.dom.input.insertAfter(ui.element.hide());
         if (ui.options.width) {
@@ -43,7 +47,7 @@ $.widget('ui.gAutocomplete', {
             ui.dom.browse.insertBefore(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, function(){ $(this).removeClass('ui-state-hover'); })
                 .bind('click.browse', function(){
-                    return showRelatedObjectLookupPopup(this);      
+                    return showRelatedObjectLookupPopup(this); 
                 });
             ui.dom.input.css({marginLeft: '-22px', paddingLeft: '24px', width: w - 22 +'px'})
                 .bind('focus.browse', function(){ ui.dom.browse.addClass('focus'); })
@@ -101,11 +105,11 @@ $.widget('ui.gAutocomplete', {
     _setVal: function(val) {
         var ui = this;
         if (val) {
-            ui.element.val(val.id);
+            $('[name="'+ ui.element.attr('id') +'"]').val(val.id);
             ui.dom.input.val($.format(ui.options.inputFormat, val));
         }
         else {
-            ui.element.val('');
+            $('[name="'+ ui.element.attr('id') +'"]').val('');
             ui.dom.input.val('');
         }
     },
