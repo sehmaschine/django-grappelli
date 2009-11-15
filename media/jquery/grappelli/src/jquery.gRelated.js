@@ -98,6 +98,15 @@ $.ui.gRelated.defaults = {
     }
 };
 
+function showRelatedObjectLookupPopup(link) {
+    var link = $(link);
+    var name = link.attr('id').replace(/^lookup_/, '').replace(/\./g, '___');
+    var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
+    win = $.popup(name, href, {height: 600 , width: 900, resizable: true, scrollbars: true});
+    win.focus();
+    return false;
+}
+
 
 function dismissRelatedLookupPopup(win, id) {
     var el = $('#'+ win.name.replace(/___/g, '.'));

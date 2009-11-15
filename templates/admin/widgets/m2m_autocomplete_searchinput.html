@@ -1,5 +1,7 @@
 {% load i18n %}
-<input id="{{ name }}" class="vM2MAutocompleteSearchField mceNoEditor" />
+{{ list_format }}
+{{ input_format }}
+<input id="{{ name }}" name="{{ name }}" class="vM2MAutocompleteSearchField mceNoEditor" />
 <script type="text/javascript">
 $(function(){
     $('#{{ name }}').gFacelist({

@@ -47,7 +47,7 @@ class AutocompleteSearchInput(ForeignKeyRawIdWidget):
     def render(self, name, value, attrs=None):
         if attrs is None:
             attrs = {}
-        output = [super(AutocompleteSearchInput, self).render(name, value, attrs)]
+       #output = [super(AutocompleteSearchInput, self).render(name, value, attrs)]
         opts = self.rel.to._meta
         app_label = opts.app_label
         model_name = opts.object_name.lower()
@@ -120,11 +120,11 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
     def render(self, name, value, attrs=None):
         if attrs is None:
             attrs = {}
-        if value:
-            value = ','.join([str(v) for v in value])
-        else:
-            value = ''
-        output = [super(M2MAutocompleteSearchInput, self).render(name, value, attrs)]
+       #if value:
+       #    value = ','.join([str(v) for v in value])
+       #else:
+       #    value = ''
+       #output = [super(M2MAutocompleteSearchInput, self).render(name, value, attrs)]
         opts = self.rel.to._meta
         app_label = opts.app_label
         model_name = opts.object_name.lower()
@@ -136,7 +136,8 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
             url = ''
         attrs['class'] = 'vM2MAutocompleteRawIdAdminField'
         # Call the TextInput render method directly to have more control
-        output = [forms.TextInput.render(self, name, value, attrs)]
+        return u'%s' % value
+        output = [forms.TextInput.render(self, name, value[0], attrs)]
         if value:
             label = self.label_for_value(value)
         else:
