@@ -144,6 +144,7 @@ def get_messages(session):
     try:
         msg = session['grappelli']['message']
         del session['grappelli']['message']
+        session.modified = True
     except:
         msg = ""
     
