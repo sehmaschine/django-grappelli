@@ -38,7 +38,7 @@
             "category": "1",
             "users": [],
             "title": "FileBrowser",
-            "link": "/admin/filebrowser/",
+            "link": "/admin/filebrowser/browse/",
             "navigation": 1,
             "order": 0
         }
