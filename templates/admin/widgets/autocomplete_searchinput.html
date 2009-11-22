@@ -13,42 +13,8 @@ $(function() {
         createText:  '{% trans "Create a new" %} {{ model_name }}',
         highlight:   true,
         minChars:    1,
-        maxResults:  20,
+        maxResults:  20
     });
 });
 </script>
 {% endspaceless %}
-{%comment%}
-<script type="text/javascript">
-$(function() {
- //   ability to delete values by deleting the search-field
-//  $("#lookup_{{ name }}").bind("change", function() {
-//      if ($(this).val() == "") {
-//          $(this).parent().find('input.vAutocompleteRawIdAdminField').val("");
-//      }
-//  });
-  //lookup by ID
-//  function AutocompleteLookup(obj) {
-//      $.get('{% url grp_autocomplete_lookup_id %}', {
-//          'search_fields': '{{ search_fields }}',
-//          'app_label': '{{ app_label }}',
-//          'model_name': '{{ model_name }}',
-//          'object_id': obj.val(),
-//      }, function(data){
-//          $(obj).parent().find('input.vAutocompleteSearchField').val(data);
-//      });
-//  };
-//  function AutocompleteHandler(obj) {
-//      // autocomplete lookup handler
-//      obj.bind("change", function() {
-//          AutocompleteLookup($(this));
-//      });
-//      obj.bind("focus", function() {
-//          AutocompleteLookup($(this));
-//      });
-//  };
-//  AutocompleteHandler($("#id_{{ name }}"));
-});
-</script>
-<a href="{{ related_url }}{{ url|safe }}" class="related-lookup" id="lookup_id_{{ name }}" onclick="return showRelatedObjectLookupPopup(this);"><img src="{{ admin_media_prefix }}img/admin/selector-search.gif" width="16" height="16" alt="{% trans "Lookup" %}" /></a>
-{% endcomment %}
