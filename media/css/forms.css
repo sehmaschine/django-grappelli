@@ -273,11 +273,11 @@ ul.radiolist label input, ul.checkboxlist label input {
 
 input.vAutocompleteRawIdAdminField, 
 input.vM2MAutocompleteRawIdAdminField {
-    margin: 0 !important; padding: 0;
+    /*margin: 0 !important; padding: 0;
     width: 0 !important; height: 0;
     border: none;
     outline: none;
-    background: transparent;
+    background: transparent;*/
 }
 
 
@@ -305,7 +305,7 @@ input.vM2MAutocompleteRawIdAdminField {
 
 
 
-/* Form Fields Widths
+/* Form Fields Widths & Heights
 ------------------------------------------------------------------------------------------------------ */
 
 input[type=text], input[type=password], 
@@ -333,8 +333,13 @@ input.vManyToManyRawIdAdminField,
     width: 100px;
 }
 
-.inline-tabular input.vTextField {
+.inline-tabular input.vTextField, 
+.inline-tabular textarea.vLargeTextField, 
+.inline-tabular input.vFileBrowseField {
     width: 230px;
+}
+.inline-tabular textarea.vLargeTextField {
+    height: 100px;
 }
 .inline-tabular .form-cell>select, 
 .change-list form table select {

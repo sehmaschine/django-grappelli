@@ -29,7 +29,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
     {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.8.1.alpha.min.js"></script>#}
     <script type="text/javascript">
-        var ADMIN_URL = "/{% get_admin_url %}/";
+        var ADMIN_URL = "{% get_admin_url %}";
         var ADMIN_MEDIA_PREFIX = "{% admin_media_prefix %}";
         var BOOKMARKS_URL = "{% url grp_bookmark_get %}";
         {% get_generic_relation_list %}
@@ -76,8 +76,10 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     
     <!-- MESSAGES -->
     {% if messages %}
-    <ul class="messagelist">{% for message in messages %}<li{% ifequal message|slice:":5" "Error"%} class="error"{% endifequal %}>{{ message }}</li>{% endfor %}</ul>
+    <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
     {% endif %}
+    <!-- GRAPPELLI MESSAGES -->
+    {% get_messages request.session %}
     
     <!-- CONTENT -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">

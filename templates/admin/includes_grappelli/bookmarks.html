@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n grp_tags %}
 
 <ul id="bookmarks">
     <li id="toggle-bookmarks-listing" class="enabled"><a href="javascript://">{% trans "Bookmarks" %}</a>
@@ -24,9 +24,9 @@
         </div>
     </li>
     <li class="action bookmark-remove{% if is_bookmark %} active{% endif %}">
-        {% if is_bookmark %}<a href="{% url grp_bookmark_remove %}?path={{ path }}" class="bookmark-remove"> </a>{% else %}&nbsp;{% endif %}
+        {% if is_bookmark %}<a href="{% url grp_bookmark_remove %}?path={{ path|urlencode }}" class="bookmark-remove"> </a>{% else %}&nbsp;{% endif %}
     </li>
     <li class="action bookmark-manage">
-        <a href="/admin/grappelli/bookmark/{{ bookmark.id }}/" class="bookmark-manage"> </a>
+        <a href="{% get_admin_url %}grappelli/bookmark/{{ bookmark.id }}/" class="bookmark-manage"> </a>
     </li>
 </ul>

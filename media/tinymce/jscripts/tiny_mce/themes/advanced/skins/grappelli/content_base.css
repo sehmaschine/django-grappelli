@@ -14,7 +14,6 @@ body#tinymce, body#tinymce td, body#tinymce pre, body#tinymce ol, body#tinymce u
 body#tinymce {
     margin: 0; padding: 10px 10px 10px 0 !important;
     width: 620px;
-    background-color: #eee;
 }
 body#tinymce.fullscreen {
     width: 620px !important; /* Use this to apply the actual page-width and guarantee a wysiwyg content-structure */

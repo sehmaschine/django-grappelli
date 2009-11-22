@@ -4,6 +4,22 @@
 
 
 
+
+//function showRelatedObjectLookupPopup(triggeringLink) {
+//    var name = triggeringLink.id.replace(/^lookup_/, '');
+//    // IE doesn't like periods in the window name, so convert temporarily.
+//    name = name.replace(/\./g, '___');
+//    var href;
+//    if (triggeringLink.href.search(/\?/) >= 0) {
+//        href = triggeringLink.href + '&pop=1';
+//    } else {
+//        href = triggeringLink.href + '?pop=1';
+//    }
+//    var win = window.open(href, name, 'height=600,width=960,resizable=yes,scrollbars=yes');
+//    win.focus();
+//    return false;
+//}
+
 function showAddAnotherPopup(triggeringLink) {
     var name = triggeringLink.id.replace(/^add_/, '');
     name = name.replace(/\./g, '___');
@@ -13,7 +29,7 @@ function showAddAnotherPopup(triggeringLink) {
     } else {
         href  += '&_popup=1';
     }
-    var win = window.open(href, name, 'height=600,width=920,resizable=yes,scrollbars=yes');
+    var win = window.open(href, name, 'height=600,width=960,resizable=yes,scrollbars=yes');
     win.focus();
     return false;
 }
@@ -98,7 +114,46 @@ function M2MHandler(obj) {
     });
 }
 
+//function InitObjectID(obj) {
+//    obj.each(function() {
+//        var ct = $(this).closest('div[class*="object_id"]').prev().find(':input[name*="content_type"]').val();
+//        if (ct) {
+//            var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+//            lookupLink.attr('id', 'lookup_'+this.id);
+//            lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[ct] + '/?t=id');
+//            lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
+//            var lookupText = '<strong>&nbsp;</strong>';
+//            $(this).after(lookupText).after(lookupLink);
+//            if ($(this).val() != "") {
+//                var lookupText = GenericLookup($(this));
+//            }
+//        }
+//    });
+//}
 
+//function InitContentType(obj) {
+//    obj.bind("change", function() {
+//        if ($(this).val()) {
+//            var href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + "/?t=id";
+//            var lookupLink = $(this).closest('div[class*="content_type"]').next().find('a.related-lookup');
+//            var obj_id = $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]');
+//            if (lookupLink.attr('href')) {
+//                lookupLink.attr('href', href);
+//            } else {
+//                var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+//                lookupLink.attr('id', 'lookup_'+obj_id.attr('id'));
+//                lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + '/?t=id');
+//                lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
+//                var lookupText = '<strong>&nbsp;</strong>';
+//                $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]').after(lookupText).after(lookupLink);
+//            }
+//        } else {
+//            $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]').val('');
+//            $(this).closest('div[class*="content_type"]').next().find('a.related-lookup').remove();
+//            $(this).closest('div[class*="content_type"]').next().find('strong').remove();
+//        }
+//    });
+//}
 
 $(function(){
     
@@ -126,6 +181,7 @@ $(function(){
     
     RelatedHandler($("input.vForeignKeyRawIdAdminField"));
     M2MHandler($("input.vManyToManyRawIdAdminField"));
+    
     InitObjectID($('input[name*="object_id"]'));
     InitContentType($(':input[name*="content_type"]'));
     GenericHandler($('input[name*="object_id"]'));

@@ -1,7 +1,9 @@
 # coding: utf-8
 
+# imports
 import re
 
+# django imports
 from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.contrib import admin
@@ -9,6 +11,7 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import Group
 
+# grappelli imports
 from grappelli.models.help import HelpItem
 from grappelli.models.navigation import Navigation, NavigationItem
 from grappelli.settings import *
@@ -17,7 +20,6 @@ register = template.Library()
 
 
 # GENERIC OBJECTS
-
 class do_get_generic_objects(template.Node):
     
     def __init__(self):
@@ -43,7 +45,6 @@ register.tag('get_generic_relation_list', get_generic_relation_list)
 
 
 # CONTEXT-SENSITIVE HELP
-
 def get_help(path):
     """
     Context Sensitive Help (currently not implemented).
@@ -60,7 +61,6 @@ register.inclusion_tag('admin/includes_grappelli/help.html')(get_help)
 
 
 # NAVIGATION
-
 def get_navigation(user):
     """
     User-related Navigation/Sidebar on the Admin Index Page.
@@ -77,7 +77,6 @@ register.inclusion_tag('admin/includes_grappelli/navigation.html')(get_navigatio
 
 
 # SEARCH FIELDS VERBOSE
-
 class GetSearchFields(template.Node):
     
     def __init__(self, opts, var_name):
@@ -94,7 +93,7 @@ class GetSearchFields(template.Node):
         
         context[self.var_name] = ", ".join(field_list)
         return ""
-    
+
 
 def do_get_search_fields_verbose(parser, token):
     """
@@ -110,13 +109,11 @@ def do_get_search_fields_verbose(parser, token):
         raise template.TemplateSyntaxError, "%r tag had invalid arguments" % tag
     opts, var_name = m.groups()
     return GetSearchFields(opts, var_name)
-    
 
 register.tag('get_search_fields_verbose', do_get_search_fields_verbose)
 
 
 # ADMIN_TITLE
-
 def get_admin_title():
     """
     Returns the Title for the Admin-Interface.
@@ -128,14 +125,32 @@ register.simple_tag(get_admin_title)
 
 
 # ADMIN_URL
-
 def get_admin_url():
     """
-    Returns the Title for the Admin-Interface.
+    Returns the URL for the Admin-Interface.
     """
     
     return ADMIN_URL
     
 register.simple_tag(get_admin_url)
+
+
+# GRAPPELLI MESSAGING SYSTEM
+def get_messages(session):
+    """
+    Get Success and Error Messages.
+    """
+    
+    try:
+        msg = session['grappelli']['message']
+        del session['grappelli']['message']
+    except:
+        msg = ""
+    
+    return {
+        'message': msg
+    }
+    
+register.inclusion_tag('admin/includes_grappelli/messages.html')(get_messages)
 
 

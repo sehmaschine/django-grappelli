@@ -27,13 +27,11 @@ urlpatterns = patterns('',
     url(r'^autocomplete_lookup_id/$', 'grappelli.views.autocomplete.autocomplete_lookup_id', name="grp_autocomplete_lookup_id"),
    
     # M2M AUTOCOMPLETE LOOKUP
-    url(r'^m2m_autocomplete_lookup/$', 'grappelli.views.autocomplete.m2m_autocomplete_lookup', name="grp_m2m_autocomplete_lookup"),
-    url(r'^m2m_autocomplete_lookup_id/$', 'grappelli.views.autocomplete.m2m_autocomplete_lookup_id', name="grp_m2m_autocomplete_lookup_id"),    
-    
-)
+    #url(r'^m2m_autocomplete_lookup/$', 'grappelli.views.autocomplete.m2m_autocomplete_lookup', name="grp_m2m_autocomplete_lookup"),
+    #url(r'^m2m_autocomplete_lookup_id/$', 'grappelli.views.autocomplete.m2m_autocomplete_lookup_id', name="grp_m2m_autocomplete_lookup_id"),    
+)    
 
 # JavaScript I18N
 urlpatterns += patterns('',
     url(r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog', name="i18n-js"),
 )
-    
