@@ -43,7 +43,7 @@ class DjangoFieldsAdmin(admin.ModelAdmin):
             'fields': ('file_test', 'image_test', )
         }),
         ('Relationships', {
-            'fields': ('fk_test', 'm2m_test', 'ooo_test')
+            'fields': ('fk_test', 'ooo_test') # , 'm2m_test'
         }),
     )
     
@@ -61,7 +61,7 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
             'fields': ( 'char_test', 'slug_test',)
         }),
         ('Autocomplete', {
-            'fields': ('fk_test', 'm2m_test',)
+            'fields': ('fk_test',) # , 'm2m_test'
         }),
         ('Related lookup', {
             'fields': ('content_type', 'object_id',)
@@ -78,16 +78,13 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
             'list_format':   '{id:d} - {label:s}',  # optional
         }
     }
-    facelist = {
-        'm2m_test': {
-            'search_fields': ('name', 'domain',),
-            'input_format':  '{label:s}',           # optional
-            'list_format':   '{id:d} - {label:s}',  # optional
-        }
-    }
-#    m2m_autocomplete_search_fields = {
-#        'm2m': ('name',),
-#    }
+#   facelist = {
+#       'm2m_test': {
+#           'search_fields': ('name', 'domain',),
+#           'input_format':  '{label:s}',           # optional
+#           'list_format':   '{id:d} - {label:s}',  # optional
+#       }
+#   }
 admin.site.register(GrappelliFields, GrappelliFieldsAdmin)
 
 
@@ -121,7 +118,7 @@ class DjangoTabularFieldsInline(admin.TabularInline):
                #'url_test',      
                #'fk_test',       
                #'inline_test',   
-                'm2m_test',
+#               'm2m_test',
             )
         }),
     )
