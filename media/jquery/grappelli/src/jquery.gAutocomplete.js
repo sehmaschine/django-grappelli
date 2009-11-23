@@ -49,7 +49,13 @@ $.widget('ui.gAutocomplete', {
                 .bind('click.browse', function(){
                     return showRelatedObjectLookupPopup(this); 
                 });
-            ui.dom.input.css({marginLeft: '-22px', paddingLeft: '24px', width: w - 22 +'px'})
+
+            ui.dom.input
+                .css({
+                    marginLeft: '-22px', 
+                    paddingLeft: '24px', 
+                    width: w - 22 +'px'
+                })
                 .bind('focus.browse', function(){ ui.dom.browse.addClass('focus'); })
                 .bind('blur.browse',  function(){ ui.dom.browse.removeClass('focus'); });
             width = width - 23;
@@ -58,7 +64,7 @@ $.widget('ui.gAutocomplete', {
             .append(ui.dom.results)
             .insertAfter(ui.dom.input)
             .css({
-                left: ui.dom.input.position().left, 
+                //left: ui.dom.input.position().left + ui.dom.wrapper.css('margin-left'), 
                 position: 'absolute'
             }).width(width);
         
@@ -117,7 +123,6 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         var el = $('<'+ type +' />');
         var op = options || {};
-        if (type != 'input') { el.addClass('ui-helper-reset'); }
         if (op.ns)           { el.addClass(ui.widgetBaseClass +'-'+ op.ns); }
         if (op.attr)         { el.attr(op.attr); }
         return el;

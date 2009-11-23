@@ -277,17 +277,24 @@ ul.timelist li +li {
 
 /*  FK Autocomplete ............................................ */
 
+.vAutocompleteRawIdAdminField {
+    display:none;
+}
+
 .ui-gAutocomplete-wrapper {
     background:#f7fafb;
     border:1px solid #e0e0e0!important;
     border-color:#eaf5f8 #bbb #ddd #ccc!important;
     margin-top:-2px;
 }
+.form-row .ui-gAutocomplete-wrapper {
+    margin-left:151px;
+}
 
 .ui-gAutocomplete-results {
     z-index:1000;
-    box-shadow: #666 0.3em 0.3em 0.3em; /* CSS3+ */
-    -moz-box-shadow: #666 0.3em 0.3em 0.3em; /* FF 3.5+ */
+    box-shadow: #888 0.3em 0.3em 0.3em; /* CSS3+ */
+    -moz-box-shadow: #888 0.3em 0.3em 0.3em; /* FF 3.5+ */
 }
 .ui-gAutocomplete-result {
     cursor:pointer;
