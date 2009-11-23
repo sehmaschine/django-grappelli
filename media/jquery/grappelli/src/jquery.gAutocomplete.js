@@ -17,6 +17,14 @@ $.widget('ui.gAutocomplete', {
     _lastRequest: 0,
     _results: [],
     _select_onload: false,
+    _lookup: function(id) {
+        var ui = this;
+        $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
+            if (data) {
+                ui.dom.input.val(decodeURI(data));
+            }
+        });
+    },
     _init: function() {
         var ui = this;
         ui.dom = {
@@ -27,9 +35,11 @@ $.widget('ui.gAutocomplete', {
                                                                 .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>'), 
         };
         
-        ui.element.attr('name', ui.element.attr('id')).bind('focus', function(){
+        $('[name="'+ ui.element.attr('id') +'"]').bind('updated', function(e){
+            ui._lookup($(this).val());
             ui.dom.input.focus();
         });
+        ui.element.attr('name', ui.element.attr('id'));
 
         if (ui.element.val()) {
             ui.dom.input.val(ui.element.val());
@@ -283,15 +293,6 @@ $.ui.gAutocomplete.defaults = {
     browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
     create:     false, // buggy
     createText: 'Create a new object',
+    lookup_url: '/grappelli/lookup/related/'
 };
-
-if (/&pop/.test(window.location.search)) {
-    $('.result-list tbody tr a:first-child').each(function(){ this.onclick = ''; })
-        .bind('click', function(){
-              alert('test');
-              var t = $(this).parents('tr').find('td:first-child :checkbox').val();
-              return false;
-            opener.dismissRelatedLookupPopup(window, '2'); return false;
-        });
-}
 

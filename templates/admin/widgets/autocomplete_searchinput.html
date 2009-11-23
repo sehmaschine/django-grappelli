@@ -11,6 +11,7 @@ $(function() {
         listFormat:  '{{ list_format|default:"{id:d} - {label:s}" }}',
         inputFormat: '{{ input_format|default:"{label:s}" }}',
         createText:  '{% trans "Create a new" %} {{ model_name }}',
+        lookup_url:  '{% url grp_related_lookup %}',
         highlight:   true,
         minChars:    1,
         maxResults:  20

@@ -147,11 +147,17 @@ function dismissRelatedLookupPopup(win, id) {
     var el = $('#'+ win.name.replace(/___/g, '.'));
     if (el.hasClass('vManyToManyRawIdAdminField') && el.val()) {
         el.val($.format('{0:s},{1:s}', el.val(), id));
+        el.focus();
     }
     else {
         el.val(id);
+        if (el.hasClass('vAutocompleteRawIdAdminField')) {
+            el.trigger($.Event({type: 'updated'}));
+        }
+        else {
+            el.focus();
+        }
     }
-    el.focus();
     win.close();
 }
 
@@ -185,3 +191,16 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
     }
     win.close();
 }
+
+
+//if (/&pop/.test(window.location.search)) {
+//    alert('blah');
+//    $('.result-list tbody tr a:first-child')
+//        .bind('click.gRelatedBrowse', function(){
+//              alert('test');
+//              var t = $(this).parents('tr').find('td:first-child :checkbox').val();
+//              return false;
+//            opener.dismissRelatedLookupPopup(window, '2'); return false;
+//        });
+//}
+//
