@@ -21,39 +21,45 @@ $.RelatedBase = {
                     height: 600 , width: 920, resizable: true, scrollbars: true});
         return false;
     },
-    _relatedLookup: function(e){
+    _lookup: function(e){
         var ui   = this;
         var text = ui.dom.text;
         if(ui.dom.link.attr('href')) {
             var app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
             var model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
-            
-            ui.dom.text.text('loading ...');
-            
-            // get object
-            $.get(ui.options.url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
-                var item = data;
+
+            if (ui.dom.object_id.val() == '') {
                 ui.dom.text.text('');
-                if (item) {
-                    var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
-                    if (item.length > tl) {
-                        var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
-                        ui.dom.text.text(txt);
-                    } else {
-                        ui.dom.text.text(decodeURI(item));
+            }
+            else {
+                ui.dom.text.text('loading ...');
+
+                var url = ui.options[ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2mUrl' || 'url'];
+                
+                // get object
+                $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
+                    var item = data;
+                    //ui.dom.text.text('');
+                    if (item) {
+                        var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
+                        if (item.length > tl) {
+                            var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
+                            ui.dom.text.text(txt);
+                        } else {
+                            ui.dom.text.text(decodeURI(item));
+                        }
                     }
-                }
-            });
+                });
+            }
         }
-    },
-    _m2mLookup: function(obj){}
+    }
 };
 
 $.RelatedDefaultsBase = {
     maxTextLength: 32,
     maxTextSuffix: ' ...',
-    url: '/grappelli/related_lookup/',
-    m2mUrl: '/grappelli/related_lookup/',
+    url: '/grappelli/lookup/related/',
+    m2mUrl: '/grappelli/lookup/m2m/',
     getURL: function(k) {
         return MODEL_URL_ARRAY[k] && ADMIN_URL + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
     }
@@ -69,9 +75,10 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
         };
         ui.dom.link = ui.element.next();
         ui.dom.text.insertAfter(ui.dom.link);
-        ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
-            ui._relatedLookup(e);
-        });
+        ui.dom.object_id
+            .bind('keyup.gRelated focus.gRelated', function(e){
+                ui._lookup(e);
+            });
     }
 }));
 
@@ -119,7 +126,7 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
         });
 
         ui.dom.object_id.bind('keyup.gGenericRelated focus.gGenericRelated', function(e){
-            ui._relatedLookup(e);
+            ui._lookup(e);
         });
     }
 }));
@@ -138,7 +145,13 @@ function showRelatedObjectLookupPopup(link) {
 
 function dismissRelatedLookupPopup(win, id) {
     var el = $('#'+ win.name.replace(/___/g, '.'));
-    el.val((el.hasClass('vManyToManyRawIdAdminField') && el.val())? el.val() += ',' + id: id).focus();
+    if (el.hasClass('vManyToManyRawIdAdminField') && el.val()) {
+        el.val($.format('{0:s},{1:s}', el.val(), id));
+    }
+    else {
+        el.val(id);
+    }
+    el.focus();
     win.close();
 }
 

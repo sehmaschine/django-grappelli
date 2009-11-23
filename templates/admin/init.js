@@ -19,10 +19,10 @@ $('input.vTimeField').gTimeField({
         }}
     ]
 });
-$('input.vDateField').gDateField();
 $('.inline-group').gInlineGroup();
 $('.inline-stacked').gInlineStacked();
 $('.inline-tabular').gInlineTabular();
-$('input.vForeignKeyRawIdAdminField').gRelated({url: '{% url grp_related_lookup %}'});
-$('input[name*="object_id"]').gGenericRelated({url:  '{% url grp_related_lookup %}'});
+$('input.vDateField').gDateField();
+$('input.vForeignKeyRawIdAdminField, input.vManyToManyRawIdAdminField').gRelated({url: '{% url grp_related_lookup %}'});
+$('input[name*="object_id"]').gGenericRelated({url:  '{% url grp_related_lookup %}', url:  '{% url grp_m2m_lookup %}'});
 $('.ui-gAutoSlugField').gAutoSlugField();
