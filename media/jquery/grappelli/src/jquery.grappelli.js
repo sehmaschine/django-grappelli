@@ -17,6 +17,11 @@ $.popup = function(name, href, options) {
     return win;
 };
 
+$.unescapeHTML = function(str) {
+    var div = $('<div />').html(str.replace(/<\/?[^>]+>/gi, ''));
+    return div.get(0) ? div.text(): '';
+};
+
 $(function(){
     
     // Fieldset collapse
@@ -41,5 +46,3 @@ $(function(){
         return false;
     });
 });
-
-

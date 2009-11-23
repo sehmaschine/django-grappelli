@@ -3,9 +3,14 @@
  *  Package: Grappelli
  */
 
-$.widget('ui.gRelated', {
+// Abstract base class for gRelated and gGenericRelated
+
+$.RelatedBase = {
     _url: function(k) {
         return this.options.getURL(k);
+    },
+    _disable: function(state) {
+        this.dom.object_id.attr('disabled', state); 
     },
     _browse: function(link) {
         var link = $(link);
@@ -16,56 +21,12 @@ $.widget('ui.gRelated', {
                     height: 600 , width: 920, resizable: true, scrollbars: true});
         return false;
     },
-    _init: function(){
-        var ui = this;
-
-        ui.dom = {
-            object_id:    ui.element,
-            content_type: $('#'+ ui.element.attr('id').replace('object_id', 'content_type')),
-            link: $('<a class="related-lookup" />'),
-            text: $('<strong />'),
-        };
-        
-        ui.dom.object_id.attr('disabled', !ui.dom.content_type.val())
-
-        ui.dom.content_type.bind('change.gRelated, keyup.gRelated', function() {
-            var $el = $(this);
-            var href = ui._url($el.val());
-            ui.dom.object_id.val('');
-            ui.dom.text.text('');
-            ui.dom.object_id.attr('disabled', !$el.val())
-            if ($el.val()) {
-                var link = ui.dom.object_id.next('.related-lookup');
-                if (link.get(0)) {
-                    link.attr('href', href);
-                }
-                else {
-                    ui.dom.link.insertAfter(ui.dom.object_id)
-                        .after(ui.dom.text)
-                        .bind('click.gRelated', function(e){
-                            e.preventDefault();
-                            return ui._browse(this);
-                        })
-                        .data('id', ui.dom.object_id.attr('id'))
-                        .attr({id: 'lookup_'+ ui.dom.object_id.attr('id'), href: href});
-                }
-            } 
-            else {
-                ui.dom.object_id.val('');
-                ui.dom.object_id.parent().find('.related-lookup, strong').remove();
-            }
-        });
-
-        ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
-            ui._relatedLookup(e);
-        });
-    },
     _relatedLookup: function(e){
         var ui   = this;
         var text = ui.dom.text;
         if(ui.dom.link.attr('href')) {
-            var app_label  = ui.dom.link.attr('href').split('/')[2];
-            var model_name = ui.dom.link.attr('href').split('/')[3];
+            var app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
+            var model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
             
             ui.dom.text.text('loading ...');
             
@@ -85,10 +46,10 @@ $.widget('ui.gRelated', {
             });
         }
     },
-    _m2mLookup: function(obj){},
-});
+    _m2mLookup: function(obj){}
+};
 
-$.ui.gRelated.defaults = {
+$.RelatedDefaultsBase = {
     maxTextLength: 32,
     maxTextSuffix: ' ...',
     url: '/grappelli/related_lookup/',
@@ -97,6 +58,73 @@ $.ui.gRelated.defaults = {
         return MODEL_URL_ARRAY[k] && ADMIN_URL + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
     }
 };
+
+
+$.widget('ui.gRelated', $.extend($.RelatedBase, {
+    _init: function() {
+        var ui = this;
+        ui.dom = {
+            object_id: ui.element,
+            text: $('<strong />')
+        };
+        ui.dom.link = ui.element.next();
+        ui.dom.text.insertAfter(ui.dom.link);
+        ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
+            ui._relatedLookup(e);
+        });
+    }
+}));
+
+$.ui.gRelated.defaults = $.RelatedDefaultsBase;
+
+$.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
+    _init: function(){
+        var ui = this;
+
+        ui.dom = {
+            object_id: ui.element,
+            content_type: $('#'+ ui.element.attr('id').replace('object_id', 'content_type')),
+            link: $('<a class="related-lookup" />'),
+            text: $('<strong />')
+        };
+
+        ui._disable(!ui.dom.content_type.val());
+
+        ui.dom.content_type.bind('change.gGenericRelated, keyup.gGenericRelated', function() {
+            var $el = $(this);
+            var href = ui._url($el.val());
+            ui.dom.object_id.val('');
+            ui.dom.text.text('');
+            ui._disable(!$el.val());
+            if ($el.val()) {
+                var link = ui.dom.object_id.next('.related-lookup');
+                if (link.get(0)) {
+                    link.attr('href', href);
+                }
+                else {
+                    ui.dom.link.insertAfter(ui.dom.object_id)
+                        .after(ui.dom.text)
+                        .bind('click.gGenericRelated', function(e){
+                            e.preventDefault();
+                            return ui._browse(this);
+                        })
+                        .data('id', ui.dom.object_id.attr('id'))
+                        .attr({id: 'lookup_'+ ui.dom.object_id.attr('id'), href: href});
+                }
+            } 
+            else {
+                ui.dom.object_id.val('');
+                ui.dom.object_id.parent().find('.related-lookup, strong').remove();
+            }
+        });
+
+        ui.dom.object_id.bind('keyup.gGenericRelated focus.gGenericRelated', function(e){
+            ui._relatedLookup(e);
+        });
+    }
+}));
+
+$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase
 
 function showRelatedObjectLookupPopup(link) {
     var link = $(link);
@@ -122,9 +150,9 @@ function showAddAnotherPopup(link) {
     win.focus();
     return false;
 }
+
 function dismissAddAnotherPopup(win, newId, newRepr) {
-    // newId and newRepr are expected to have previously been escaped by
-    // django.utils.html.escape.
+    // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
     var $el  = $('#'+ win.name.replace(/___/g, '.'));
     if ($el.get(0)) {
         if ($el.get(0).nodeName == 'SELECT') {
@@ -144,13 +172,3 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
     }
     win.close();
 }
-  
-$.unescapeHTML = function(str) {
-    var div = $('<div />').html(str.replace(/<\/?[^>]+>/gi, ''));
-    return div.get(0) ? div.text(): '';
-};
-
-
-/* changes
- * - 
- * */

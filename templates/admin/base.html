@@ -40,7 +40,6 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
     <script type="text/javascript" src="{% url i18n-js "grappelli" %}"></script>
     {# this will only be for development mode, a single minified file will be used for distribution. #}
-    {% comment %}
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.grappelli.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gTimeField.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gDateField.js"></script>
@@ -57,10 +56,11 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.strings.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.masked.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.delayedObserver.js"></script>
+    {% comment %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.min.js"></script>
     {% endcomment %}
     {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/i18n/ui.datepicker-fr.js"></script>#}
     {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.js"></script>#}
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.min.js"></script>
 {% endblock %}
 {% block extrahead %}{% endblock %}
 </head>
