@@ -8,12 +8,12 @@ $.widget('ui.gInlineGroup', {
         var ui = this;
         ui.element.find('input[name*="DELETE"]').hide();
         ui._makeCollapsibleGroups();
-
+        
         // Prevent fields of inserted rows from triggering errors if un-edited
         ui.element.parents('form').bind('submit.gInlineGroup', function(){
             ui.element.find('.inline-related:not(.has_original):not(.has_modifications) div.order :text').val('');
         });
- 
+        
         /// ADD HANDLER
         ui.element.find('a.addhandler').bind('click.gInlineGroup', function(e){
             var container = $(this).parents('div.inline-group');
@@ -32,7 +32,7 @@ $.widget('ui.gInlineGroup', {
             
             /// set TOTAL_FORMS to number of items
             container.find('input[id*="TOTAL_FORMS"]').val(count);
-
+            
             ui._initializeItem(newitem, count);
             return false;
         });
@@ -44,43 +44,44 @@ $.widget('ui.gInlineGroup', {
             $(this).parents('div.inline-related').toggleClass('predelete');
             return false;
         });
-
+        
         // Autodiscover if sortable
         if (ui.element.find('.order').get(0)) {
             ui._makeSortable();
         }
-
+        
         ui.element.find('.addhandler').bind('click.gInlineGroup', function(){
             ui._refreshOrder();
         });
-
+        
         ui._refreshOrder();
     },
-
+    
     _initializeItem: function(el, count){
-
+        
         /// replace IDs, NAMEs, HREFs & FORs ...
-        el.find(':input,span,table,iframe,label').each(function() {
+        el.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
             var $el = $(this);
-            $.each(['id', 'name', 'for'], function(i, k){
+            $.each(['id', 'name', 'for', 'href'], function(i, k){
                 if ($el.attr(k)) {
                     $el.attr(k, $el.attr(k).replace(/-\d+-/g, '-'+  (count - 1) +'-'));
                 }
             });
         });
-
-        // Destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
+        
+        // destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
         el.find('.vDateField').unbind().removeClass('hasDatepicker').val('')
             .next().remove().end().end()
             .find('.vTimeField').unbind().val('').next().remove();
         
+        // date-/timefield
         el.find('.vDateField').gDateField();
         el.find('.vTimeField').gTimeField();
-
-       /// remove error-lists and error-classes
+        
+        /// remove error-lists and error-classes
         el.find('ul.errorlist').remove().end()
-          .find('.errors, .error').removeClass("errors error");
-
+            .find('.errors, .error').removeClass("errors error");
+        
         /// tinymce
         el.find('span.mceEditor').each(function(e) {
             var id = this.id.split('_parent')[0];
@@ -90,16 +91,16 @@ $.widget('ui.gInlineGroup', {
         });
         
         el.find(':input').val('').end() // clear all form-fields (within form-cells)
-          .find("strong").text('');     // clear related/generic lookups
-
-        // Little trick to prevent validation on un-edited fields
+            .find("strong").text('');     // clear related/generic lookups
+        
+        // little trick to prevent validation on un-edited fields
         el.find('input, textarea').bind('keypress.gInlineGroup', function(){
               el.addClass('has_modifications');
           }).end()
           .find('select, :radio, :checkbox').bind('keypress.gInlineGroup', function(){
               el.addClass('has_modifications');
           });
-
+          
         return el;
     },
     
@@ -108,29 +109,29 @@ $.widget('ui.gInlineGroup', {
             .removeClass('collapse-closed')
             .addClass('collapse-open')
     },
-
+    
     close: function() {
         return this.element.data('collapsed', true)
             .removeClass('collapse-open')
             .addClass('collapse-closed')
     },
-
+    
     toggle: function() {
         return this.is_open() && this.close() || this.open();
     },
-
+    
     is_closed: function() {
         return this.element.data('collapsed');
     },
-
+    
     is_open: function() {
         return !this.is_closed();
     },
-
+    
     is_collapsable: function() {
         return this.element.hasClass('collapse-closed') || this.element.hasClass('collapse-open');
     },
-
+    
     // INLINE GROUPS COLLAPSE (STACKED & TABULAR)
     _makeCollapsibleGroups: function() {
         var ui = this;
@@ -172,8 +173,8 @@ $.widget('ui.gInlineGroup', {
                 ui._refreshOrder();
             }
         });
-        //
     },
+    
     _refreshOrder: function() {
         var index = 1;
         var ui = this;
@@ -206,7 +207,7 @@ $.widget('ui.gInlineStacked', {
     _init: function(){
         var ui = this;
         ui._makeCollapsible();
-
+        
         // FIELDSETS WITHIN STACKED INLINES
         /* OBSOLETE ?
         ui.element.find('.inline-related').find('fieldset[class*="collapse-closed"]')
@@ -235,7 +236,7 @@ $.widget('ui.gInlineStacked', {
                     .removeClass('collapsed collapse-closed')
                     .addClass('collapse-open');
         });
-
+        
         ui.element.find('.inline-related')
             .addClass("collapsed")
             .find('h3:first-child')
@@ -271,14 +272,14 @@ $.ui.gInlineStacked.defaults = {
 $.widget('ui.gInlineTabular', {
     _init: function(){
         var ui = this;
-
+        
         ui.element.find('.inline-related h3:first').remove(); // fix layout bug
-
+        
         /// add predelete class (only necessary in case of errors)
         ui.element.find('input[name*="DELETE"]:checked').each(function(i) {
             $(this).parents('div.inline-related').addClass('predelete');
         });
-
+        
         /// OPEN TABULARINLINE WITH ERRORS (onload)
         ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
             $(this).parents('div.inline-tabular').removeClass("collapsed");
