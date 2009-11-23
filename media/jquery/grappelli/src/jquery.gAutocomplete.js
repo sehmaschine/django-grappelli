@@ -290,7 +290,6 @@ if (/&pop/.test(window.location.search)) {
         .bind('click', function(){
               alert('test');
               var t = $(this).parents('tr').find('td:first-child :checkbox').val();
-              console.log(t);
               return false;
             opener.dismissRelatedLookupPopup(window, '2'); return false;
         });
