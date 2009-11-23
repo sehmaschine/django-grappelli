@@ -70,6 +70,8 @@ from django.contrib.contenttypes.models import ContentType
 class GrappelliFields(models.Model):
     test_name   = models.CharField(u"Test name", max_length=255, default="test")
     fk_test     = models.ForeignKey(Site, verbose_name=u"FK Autocomplete")
+    gr_test     = models.ForeignKey(User, verbose_name=u"ForeignKey", null=True, blank=True)
+    gr_m2m      = models.ForeignKey(User, verbose_name=u"ManyToManyField", null=True, blank=True, related_name="m2m_user")
     m2m_test    = models.ManyToManyField(Site, verbose_name=u"M2M Autocomplete", blank=True, null=True, related_name="m2m_site")
     char_test   = models.CharField(u"CharField", max_length=255, blank=True)
     slug_test   = models.SlugField(u"SlugField", max_length=50)

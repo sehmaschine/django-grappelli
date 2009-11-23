@@ -53,6 +53,7 @@ admin.site.register(DjangoFields, DjangoFieldsAdmin)
 
 class GrappelliFieldsAdmin(GrappelliModelAdmin):
     list_display = ('__unicode__',)
+    raw_id_fields = ('gr_test', 'gr_m2m', )
     fieldsets = (
         (None, {
             'fields': ('test_name',)
@@ -64,6 +65,9 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
             'fields': ('fk_test',) # , 'm2m_test'
         }),
         ('Related lookup', {
+            'fields': ('gr_test', 'gr_m2m')
+        }),
+        ('Generic Related lookup', {
             'fields': ('content_type', 'object_id',)
         }),
     )
@@ -140,7 +144,7 @@ class GrappelliStackedFieldsInline(GrappelliStackedInline):
     allow_add = True
     autocomplete = {
         'fk_test': {
-            'search_fields': ('username', 'first_name', 'last_name'),         # mandatory (should it?)
+            'search_fields': ('domain', 'name',),         # mandatory (should it?)
             'input_format':  '{label:s}',           # optional
             'list_format':   '{id:d} - {label:s}',  # optional
         }
