@@ -12,8 +12,14 @@ from django.utils.translation import ugettext as _
 # grappelli imports
 from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.settings import ADMIN_TITLE, ADMIN_URL
+try:
+    # django SVN
+    from django.views.decorators.csrf import csrf_exempt
+except:
+    # django 1.1
+    from django.contrib.csrf.middleware import csrf_exempt
 
-
+@csrf_exempt
 def add_bookmark(request):
     """
     Add Site to Bookmarks.
