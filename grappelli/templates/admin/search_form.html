@@ -13,13 +13,11 @@
                     <input type="text" size="40" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" {% if not cl.query %}class="search-fields-verbose"{% endif %} />
                     <input type="submit" value="" />
                 </div>
-                {% if not cl.query %}
                 {% get_search_fields_verbose cl.opts as search_fields_verbose %}
                 {% if search_fields_verbose %}
                     <div class="form-row">
                         <p class="help"><strong>{% trans 'Search for' %}:</strong> {{ search_fields_verbose }}</p>
                     </div>
-                {% endif %}
                 {% endif %}
             </div>
             {% for pair in cl.params.items %}
