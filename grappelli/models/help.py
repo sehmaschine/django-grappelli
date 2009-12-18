@@ -32,13 +32,13 @@ class HelpItem(models.Model):
     Help Entry Item.
     """
     
-    help = models.ForeignKey(Help)
+    help = models.ForeignKey(Help, verbose_name=_('Help'))
     title = models.CharField(_('Title'), max_length=200)
     link = models.CharField(_('Link'), max_length=200, help_text=_('The Link should be relative, e.g. /admin/blog/.'))
     body = models.TextField(_('Body'))
     
     # order
-    order = PositionField(unique_for_field='help')
+    order = PositionField(_('Order'), unique_for_field='help')
     
     class Meta:
         app_label = "grappelli"
