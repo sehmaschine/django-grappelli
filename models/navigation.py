@@ -37,7 +37,7 @@ class NavigationItem(models.Model):
     Navigation Item.
     """
     
-    navigation = models.ForeignKey(Navigation)
+    navigation = models.ForeignKey(Navigation, verbose_name=_('Navigation'))
     title = models.CharField(_('Title'), max_length=30)
     link = models.CharField(_('Link'), max_length=200, help_text=_('The Link should be relative, e.g. /admin/blog/.'))
     category = models.CharField(_('Category'), max_length=1, choices=ITEM_CATEGORY_CHOICES)
@@ -47,7 +47,7 @@ class NavigationItem(models.Model):
     groups = models.ManyToManyField('auth.Group', verbose_name=_('Groups'), blank=True, related_name="admin_navigation_groups")
     
     # order
-    order = PositionField(unique_for_field='navigation')
+    order = PositionField(_('Order'), unique_for_field='navigation')
     
     class Meta:
         app_label = "grappelli"
