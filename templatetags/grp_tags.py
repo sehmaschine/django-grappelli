@@ -69,7 +69,7 @@ def get_navigation(user):
     if user.is_superuser:
         object_list = NavigationItem.objects.all()
     else:
-        object_list = NavigationItem.objects.filter(Q(groups=user.groups.all()) | Q(users=user)).distinct()
+        object_list = NavigationItem.objects.filter(Q(groups__in=user.groups.all()) | Q(users=user)).distinct()
     
     return { 'object_list': object_list }
     
