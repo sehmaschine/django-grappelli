@@ -17,7 +17,7 @@
                 {% get_search_fields_verbose cl.opts as search_fields_verbose %}
                 {% if search_fields_verbose %}
                     <div class="form-row">
-                        <p class="help"><strong>Search for:</strong> {{ search_fields_verbose }}</p>
+                        <p class="help"><strong>{% trans 'Search for' %}:</strong> {{ search_fields_verbose }}</p>
                     </div>
                 {% endif %}
                 {% endif %}
