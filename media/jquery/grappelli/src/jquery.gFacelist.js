@@ -2,6 +2,7 @@
  *  widget:  gFacelist
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gFacelist', {
     _init: function(){
@@ -165,3 +166,4 @@ $.ui.gFacelist.defaults = {
     }
 };
 
+})(jQuery);

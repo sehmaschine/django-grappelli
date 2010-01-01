@@ -2,6 +2,7 @@
  *  widget:  gChangelist
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gChangelist', {
     _init: function() {
@@ -55,3 +56,4 @@ $.widget('ui.gChangelist', {
     }
 });
 
+})(jQuery);

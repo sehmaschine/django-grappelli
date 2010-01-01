@@ -1,6 +1,7 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  Package: Grappelli
  */
+(function($){
 
 // Fail silently if gettext is unavailable
 if (typeof(gettext) == 'undefined') {
@@ -15,6 +16,11 @@ $.popup = function(name, href, options) {
     win.name = name;
     win.focus();
     return win;
+};
+
+$.unescapeHTML = function(str) {
+    var div = $('<div />').html(str.replace(/<\/?[^>]+>/gi, ''));
+    return div.get(0) ? div.text(): '';
 };
 
 $(function(){
@@ -42,11 +48,12 @@ $(function(){
     });
 });
 
-
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gTimeField
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gTimeField', {
     _init: function() {
@@ -135,10 +142,13 @@ $.ui.gTimeField.defaults = {
         }}
     ]
 };
+
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gDateField
  *  Package: Grappelli
  */
+(function($){
 
 $.datepicker.setDefaults({
     dateFormat:      'yy-mm-dd',
@@ -163,10 +173,13 @@ $.widget('ui.gDateField', {
 $.ui.gDateField.defaults = {
     mask: '9999-99-99', // set to false to disable
 };
+
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gChangelist
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gChangelist', {
     _init: function() {
@@ -220,10 +233,12 @@ $.widget('ui.gChangelist', {
     }
 });
 
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gBookmarks
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gBookmarks', {
          
@@ -274,22 +289,24 @@ $.ui.gBookmarks.defaults = {
     effects: false
 };
 
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gInlineGroup, gInlineStacked, gInlineTabular
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gInlineGroup', {
     _init: function(){
         var ui = this;
         ui.element.find('input[name*="DELETE"]').hide();
         ui._makeCollapsibleGroups();
-
+        
         // Prevent fields of inserted rows from triggering errors if un-edited
         ui.element.parents('form').bind('submit.gInlineGroup', function(){
             ui.element.find('.inline-related:not(.has_original):not(.has_modifications) div.order :text').val('');
         });
- 
+        
         /// ADD HANDLER
         ui.element.find('a.addhandler').bind('click.gInlineGroup', function(e){
             var container = $(this).parents('div.inline-group');
@@ -308,7 +325,7 @@ $.widget('ui.gInlineGroup', {
             
             /// set TOTAL_FORMS to number of items
             container.find('input[id*="TOTAL_FORMS"]').val(count);
-
+            
             ui._initializeItem(newitem, count);
             return false;
         });
@@ -320,43 +337,44 @@ $.widget('ui.gInlineGroup', {
             $(this).parents('div.inline-related').toggleClass('predelete');
             return false;
         });
-
+        
         // Autodiscover if sortable
         if (ui.element.find('.order').get(0)) {
             ui._makeSortable();
         }
-
+        
         ui.element.find('.addhandler').bind('click.gInlineGroup', function(){
             ui._refreshOrder();
         });
-
+        
         ui._refreshOrder();
     },
-
+    
     _initializeItem: function(el, count){
-
+        
         /// replace IDs, NAMEs, HREFs & FORs ...
-        el.find(':input,span,table,iframe,label').each(function() {
+        el.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
             var $el = $(this);
-            $.each(['id', 'name', 'for'], function(i, k){
+            $.each(['id', 'name', 'for', 'href'], function(i, k){
                 if ($el.attr(k)) {
                     $el.attr(k, $el.attr(k).replace(/-\d+-/g, '-'+  (count - 1) +'-'));
                 }
             });
         });
-
-        // Destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
+        
+        // destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
         el.find('.vDateField').unbind().removeClass('hasDatepicker').val('')
             .next().remove().end().end()
             .find('.vTimeField').unbind().val('').next().remove();
         
+        // date-/timefield
         el.find('.vDateField').gDateField();
         el.find('.vTimeField').gTimeField();
-
-       /// remove error-lists and error-classes
+        
+        /// remove error-lists and error-classes
         el.find('ul.errorlist').remove().end()
-          .find('.errors, .error').removeClass("errors error");
-
+            .find('.errors, .error').removeClass("errors error");
+        
         /// tinymce
         el.find('span.mceEditor').each(function(e) {
             var id = this.id.split('_parent')[0];
@@ -366,16 +384,16 @@ $.widget('ui.gInlineGroup', {
         });
         
         el.find(':input').val('').end() // clear all form-fields (within form-cells)
-          .find("strong").text('');     // clear related/generic lookups
-
-        // Little trick to prevent validation on un-edited fields
+            .find("strong").text('');     // clear related/generic lookups
+        
+        // little trick to prevent validation on un-edited fields
         el.find('input, textarea').bind('keypress.gInlineGroup', function(){
               el.addClass('has_modifications');
           }).end()
           .find('select, :radio, :checkbox').bind('keypress.gInlineGroup', function(){
               el.addClass('has_modifications');
           });
-
+          
         return el;
     },
     
@@ -384,29 +402,29 @@ $.widget('ui.gInlineGroup', {
             .removeClass('collapse-closed')
             .addClass('collapse-open')
     },
-
+    
     close: function() {
         return this.element.data('collapsed', true)
             .removeClass('collapse-open')
             .addClass('collapse-closed')
     },
-
+    
     toggle: function() {
         return this.is_open() && this.close() || this.open();
     },
-
+    
     is_closed: function() {
         return this.element.data('collapsed');
     },
-
+    
     is_open: function() {
         return !this.is_closed();
     },
-
+    
     is_collapsable: function() {
         return this.element.hasClass('collapse-closed') || this.element.hasClass('collapse-open');
     },
-
+    
     // INLINE GROUPS COLLAPSE (STACKED & TABULAR)
     _makeCollapsibleGroups: function() {
         var ui = this;
@@ -448,8 +466,8 @@ $.widget('ui.gInlineGroup', {
                 ui._refreshOrder();
             }
         });
-        //
     },
+    
     _refreshOrder: function() {
         var index = 1;
         var ui = this;
@@ -482,7 +500,7 @@ $.widget('ui.gInlineStacked', {
     _init: function(){
         var ui = this;
         ui._makeCollapsible();
-
+        
         // FIELDSETS WITHIN STACKED INLINES
         /* OBSOLETE ?
         ui.element.find('.inline-related').find('fieldset[class*="collapse-closed"]')
@@ -511,7 +529,7 @@ $.widget('ui.gInlineStacked', {
                     .removeClass('collapsed collapse-closed')
                     .addClass('collapse-open');
         });
-
+        
         ui.element.find('.inline-related')
             .addClass("collapsed")
             .find('h3:first-child')
@@ -547,14 +565,14 @@ $.ui.gInlineStacked.defaults = {
 $.widget('ui.gInlineTabular', {
     _init: function(){
         var ui = this;
-
+        
         ui.element.find('.inline-related h3:first').remove(); // fix layout bug
-
+        
         /// add predelete class (only necessary in case of errors)
         ui.element.find('input[name*="DELETE"]:checked').each(function(i) {
             $(this).parents('div.inline-related').addClass('predelete');
         });
-
+        
         /// OPEN TABULARINLINE WITH ERRORS (onload)
         ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
             $(this).parents('div.inline-tabular').removeClass("collapsed");
@@ -562,7 +580,7 @@ $.widget('ui.gInlineTabular', {
     },
 });
 
-
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gRelated
  *  Package: Grappelli
@@ -570,6 +588,7 @@ $.widget('ui.gInlineTabular', {
  *  Binding to old SelectFilter calls.. cannot be removed because the calls are
  *  hardcoded into django's source..
  */
+(function($){
 
 var SelectFilter = { 
     init: function(id, name, stacked, admin_media_prefix){ 
@@ -787,10 +806,13 @@ $.widget('ui.gSelectFilter', {
         ui._redraw(cid);
     }
 });
+
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gActions
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gActions', {
     _init: function() {
@@ -801,7 +823,7 @@ $.widget('ui.gActions', {
     }
 });
 
-
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gAutocomplete
  *  Package: Grappelli
@@ -810,6 +832,8 @@ $.widget('ui.gActions', {
  *
  *
  * */
+(function($){
+
 $.fn.prevOrLast = function() {
     return $(this).prev().length > 0 && $(this).prev() || $(this).parent().children(':last');
 };
@@ -821,6 +845,14 @@ $.widget('ui.gAutocomplete', {
     _lastRequest: 0,
     _results: [],
     _select_onload: false,
+    _lookup: function(id) {
+        var ui = this;
+        $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
+            if (data) {
+                ui.dom.input.val(decodeURI(data));
+            }
+        });
+    },
     _init: function() {
         var ui = this;
         ui.dom = {
@@ -831,9 +863,11 @@ $.widget('ui.gAutocomplete', {
                                                                 .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>'), 
         };
         
-        ui.element.attr('name', ui.element.attr('id')).bind('focus', function(){
+        $('[name="'+ ui.element.attr('id') +'"]').bind('updated', function(e){
+            ui._lookup($(this).val());
             ui.dom.input.focus();
         });
+        ui.element.attr('name', ui.element.attr('id'));
 
         if (ui.element.val()) {
             ui.dom.input.val(ui.element.val());
@@ -1087,22 +1121,15 @@ $.ui.gAutocomplete.defaults = {
     browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
     create:     false, // buggy
     createText: 'Create a new object',
+    lookup_url: '/grappelli/lookup/related/'
 };
 
-if (/&pop/.test(window.location.search)) {
-    $('.result-list tbody tr a:first-child').each(function(){ this.onclick = ''; })
-        .bind('click', function(){
-              alert('test');
-              var t = $(this).parents('tr').find('td:first-child :checkbox').val();
-              return false;
-            opener.dismissRelatedLookupPopup(window, '2'); return false;
-        });
-}
-
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gFacelist
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gFacelist', {
     _init: function(){
@@ -1266,14 +1293,21 @@ $.ui.gFacelist.defaults = {
     }
 };
 
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gRelated
  *  Package: Grappelli
  */
+(function($){
 
-$.widget('ui.gRelated', {
+// Abstract base class for gRelated and gGenericRelated
+
+$.RelatedBase = {
     _url: function(k) {
         return this.options.getURL(k);
+    },
+    _disable: function(state) {
+        this.dom.object_id.attr('disabled', state); 
     },
     _browse: function(link) {
         var link = $(link);
@@ -1284,24 +1318,88 @@ $.widget('ui.gRelated', {
                     height: 600 , width: 920, resizable: true, scrollbars: true});
         return false;
     },
+    _lookup: function(e){
+        var ui   = this;
+        var text = ui.dom.text;
+        if(ui.dom.link.attr('href')) {
+            var app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
+            var model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
+
+            if (ui.dom.object_id.val() == '') {
+                ui.dom.text.text('');
+            }
+            else {
+                ui.dom.text.text('loading ...');
+
+                var url = ui.options[ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2mUrl' || 'url'];
+                
+                // get object
+                $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
+                    var item = data;
+                    //ui.dom.text.text('');
+                    if (item) {
+                        var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
+                        if (item.length > tl) {
+                            var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
+                            ui.dom.text.text(txt);
+                        } else {
+                            ui.dom.text.text(decodeURI(item));
+                        }
+                    }
+                });
+            }
+        }
+    }
+};
+
+$.RelatedDefaultsBase = {
+    maxTextLength: 32,
+    maxTextSuffix: ' ...',
+    url: '/grappelli/lookup/related/',
+    m2mUrl: '/grappelli/lookup/m2m/',
+    getURL: function(k) {
+        return MODEL_URL_ARRAY[k] && ADMIN_URL + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
+    }
+};
+
+
+$.widget('ui.gRelated', $.extend($.RelatedBase, {
+    _init: function() {
+        var ui = this;
+        ui.dom = {
+            object_id: ui.element,
+            text: $('<strong />')
+        };
+        ui.dom.link = ui.element.next();
+        ui.dom.text.insertAfter(ui.dom.link);
+        ui.dom.object_id
+            .bind('keyup.gRelated focus.gRelated', function(e){
+                ui._lookup(e);
+            });
+    }
+}));
+
+$.ui.gRelated.defaults = $.RelatedDefaultsBase;
+
+$.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     _init: function(){
         var ui = this;
 
         ui.dom = {
-            object_id:    ui.element,
+            object_id: ui.element,
             content_type: $('#'+ ui.element.attr('id').replace('object_id', 'content_type')),
             link: $('<a class="related-lookup" />'),
-            text: $('<strong />'),
+            text: $('<strong />')
         };
-        
-        ui.dom.object_id.attr('disabled', !ui.dom.content_type.val())
 
-        ui.dom.content_type.bind('change.gRelated, keyup.gRelated', function() {
+        ui._disable(!ui.dom.content_type.val());
+
+        ui.dom.content_type.bind('change.gGenericRelated, keyup.gGenericRelated', function() {
             var $el = $(this);
             var href = ui._url($el.val());
             ui.dom.object_id.val('');
             ui.dom.text.text('');
-            ui.dom.object_id.attr('disabled', !$el.val())
+            ui._disable(!$el.val());
             if ($el.val()) {
                 var link = ui.dom.object_id.next('.related-lookup');
                 if (link.get(0)) {
@@ -1310,7 +1408,7 @@ $.widget('ui.gRelated', {
                 else {
                     ui.dom.link.insertAfter(ui.dom.object_id)
                         .after(ui.dom.text)
-                        .bind('click.gRelated', function(e){
+                        .bind('click.gGenericRelated', function(e){
                             e.preventDefault();
                             return ui._browse(this);
                         })
@@ -1324,47 +1422,13 @@ $.widget('ui.gRelated', {
             }
         });
 
-        ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
-            ui._relatedLookup(e);
+        ui.dom.object_id.bind('keyup.gGenericRelated focus.gGenericRelated', function(e){
+            ui._lookup(e);
         });
-    },
-    _relatedLookup: function(e){
-        var ui   = this;
-        var text = ui.dom.text;
-        if(ui.dom.link.attr('href')) {
-            var app_label  = ui.dom.link.attr('href').split('/')[2];
-            var model_name = ui.dom.link.attr('href').split('/')[3];
-            
-            ui.dom.text.text('loading ...');
-            
-            // get object
-            $.get(ui.options.url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
-                var item = data;
-                ui.dom.text.text('');
-                if (item) {
-                    var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
-                    if (item.length > tl) {
-                        var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
-                        ui.dom.text.text(txt);
-                    } else {
-                        ui.dom.text.text(decodeURI(item));
-                    }
-                }
-            });
-        }
-    },
-    _m2mLookup: function(obj){},
-});
-
-$.ui.gRelated.defaults = {
-    maxTextLength: 32,
-    maxTextSuffix: ' ...',
-    url: '/grappelli/related_lookup/',
-    m2mUrl: '/grappelli/related_lookup/',
-    getURL: function(k) {
-        return MODEL_URL_ARRAY[k] && ADMIN_URL + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
     }
-};
+}));
+
+$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase
 
 function showRelatedObjectLookupPopup(link) {
     var link = $(link);
@@ -1378,7 +1442,19 @@ function showRelatedObjectLookupPopup(link) {
 
 function dismissRelatedLookupPopup(win, id) {
     var el = $('#'+ win.name.replace(/___/g, '.'));
-    el.val((el.hasClass('vManyToManyRawIdAdminField') && el.val())? el.val() += ',' + id: id).focus();
+    if (el.hasClass('vManyToManyRawIdAdminField') && el.val()) {
+        el.val($.format('{0:s},{1:s}', el.val(), id));
+        el.focus();
+    }
+    else {
+        el.val(id);
+        if (el.hasClass('vAutocompleteRawIdAdminField')) {
+            el.trigger($.Event({type: 'updated'}));
+        }
+        else {
+            el.focus();
+        }
+    }
     win.close();
 }
 
@@ -1390,9 +1466,9 @@ function showAddAnotherPopup(link) {
     win.focus();
     return false;
 }
+
 function dismissAddAnotherPopup(win, newId, newRepr) {
-    // newId and newRepr are expected to have previously been escaped by
-    // django.utils.html.escape.
+    // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
     var $el  = $('#'+ win.name.replace(/___/g, '.'));
     if ($el.get(0)) {
         if ($el.get(0).nodeName == 'SELECT') {
@@ -1412,21 +1488,27 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
     }
     win.close();
 }
-  
-$.unescapeHTML = function(str) {
-    var div = $('<div />').html(str.replace(/<\/?[^>]+>/gi, ''));
-    return div.get(0) ? div.text(): '';
-};
 
 
-/* changes
- * - 
- * */
+//if (/&pop/.test(window.location.search)) {
+//    alert('blah');
+//    $('.result-list tbody tr a:first-child')
+//        .bind('click.gRelatedBrowse', function(){
+//              alert('test');
+//              var t = $(this).parents('tr').find('td:first-child :checkbox').val();
+//              return false;
+//            opener.dismissRelatedLookupPopup(window, '2'); return false;
+//        });
+//}
+//
+
+})(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gAutoSlugField
  *  Package: Grappelli
  *  Requies: jquery.slugify.js
  */
+(function($){
 
 $.widget('ui.gAutoSlugField', {
     _refresh: function(e, el) {
@@ -1451,7 +1533,10 @@ $.widget('ui.gAutoSlugField', {
 $.ui.gAutoSlugField.defaults = {
     delay: 0.8
 };
+
+})(jQuery);
 (function($){
+
     var LATIN_MAP = {
         'À': 'A', 'Á': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'Å': 'A', 'Æ': 'AE', 'Ç':
         'C', 'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E', 'Ì': 'I', 'Í': 'I', 'Î': 'I',
@@ -1591,6 +1676,7 @@ $.ui.gAutoSlugField.defaults = {
             $(this).text($.slugify($(this).text()));
         }
     };
+
 })(jQuery);
 /*
   jQuery strings - 0.4

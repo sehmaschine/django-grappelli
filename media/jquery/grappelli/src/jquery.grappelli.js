@@ -1,6 +1,7 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  Package: Grappelli
  */
+(function($){
 
 // Fail silently if gettext is unavailable
 if (typeof(gettext) == 'undefined') {
@@ -46,3 +47,5 @@ $(function(){
         return false;
     });
 });
+
+})(jQuery);

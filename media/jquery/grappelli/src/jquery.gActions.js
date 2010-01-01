@@ -2,6 +2,7 @@
  *  widget:  gActions
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gActions', {
     _init: function() {
@@ -12,4 +13,4 @@ $.widget('ui.gActions', {
     }
 });
 
-
+})(jQuery);

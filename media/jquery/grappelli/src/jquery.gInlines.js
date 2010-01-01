@@ -2,6 +2,7 @@
  *  widget:  gInlineGroup, gInlineStacked, gInlineTabular
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gInlineGroup', {
     _init: function(){
@@ -287,4 +288,4 @@ $.widget('ui.gInlineTabular', {
     },
 });
 
-
+})(jQuery);

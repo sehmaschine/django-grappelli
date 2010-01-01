@@ -5,6 +5,7 @@
  *  Binding to old SelectFilter calls.. cannot be removed because the calls are
  *  hardcoded into django's source..
  */
+(function($){
 
 var SelectFilter = { 
     init: function(id, name, stacked, admin_media_prefix){ 
@@ -222,3 +223,5 @@ $.widget('ui.gSelectFilter', {
         ui._redraw(cid);
     }
 });
+
+})(jQuery);

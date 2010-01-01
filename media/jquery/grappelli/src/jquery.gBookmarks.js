@@ -2,6 +2,7 @@
  *  widget:  gBookmarks
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gBookmarks', {
          
@@ -52,3 +53,4 @@ $.ui.gBookmarks.defaults = {
     effects: false
 };
 
+})(jQuery);

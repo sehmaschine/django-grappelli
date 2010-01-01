@@ -6,6 +6,8 @@
  *
  *
  * */
+(function($){
+
 $.fn.prevOrLast = function() {
     return $(this).prev().length > 0 && $(this).prev() || $(this).parent().children(':last');
 };
@@ -296,3 +298,4 @@ $.ui.gAutocomplete.defaults = {
     lookup_url: '/grappelli/lookup/related/'
 };
 
+})(jQuery);

@@ -3,6 +3,7 @@
  *  Package: Grappelli
  *  Requies: jquery.slugify.js
  */
+(function($){
 
 $.widget('ui.gAutoSlugField', {
     _refresh: function(e, el) {
@@ -27,3 +28,5 @@ $.widget('ui.gAutoSlugField', {
 $.ui.gAutoSlugField.defaults = {
     delay: 0.8
 };
+
+})(jQuery);

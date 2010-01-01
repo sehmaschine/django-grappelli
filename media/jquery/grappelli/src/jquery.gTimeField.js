@@ -2,6 +2,7 @@
  *  widget:  gTimeField
  *  Package: Grappelli
  */
+(function($){
 
 $.widget('ui.gTimeField', {
     _init: function() {
@@ -90,3 +91,5 @@ $.ui.gTimeField.defaults = {
         }}
     ]
 };
+
+})(jQuery);

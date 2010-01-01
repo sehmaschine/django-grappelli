@@ -2,6 +2,7 @@
  *  widget:  gDateField
  *  Package: Grappelli
  */
+(function($){
 
 $.datepicker.setDefaults({
     dateFormat:      'yy-mm-dd',
@@ -26,3 +27,5 @@ $.widget('ui.gDateField', {
 $.ui.gDateField.defaults = {
     mask: '9999-99-99', // set to false to disable
 };
+
+})(jQuery);

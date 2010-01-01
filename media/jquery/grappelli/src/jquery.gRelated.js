@@ -2,6 +2,7 @@
  *  widget:  gRelated
  *  Package: Grappelli
  */
+(function($){
 
 // Abstract base class for gRelated and gGenericRelated
 
@@ -204,3 +205,5 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
 //        });
 //}
 //
+
+})(jQuery);
