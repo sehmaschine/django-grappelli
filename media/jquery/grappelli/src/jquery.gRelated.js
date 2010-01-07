@@ -13,19 +13,24 @@ $.RelatedBase = {
     _disable: function(state) {
         this.dom.object_id.attr('disabled', state); 
     },
+
+    // This method is called when the "Browse" button is clicked on
+    // Related and GenericRelated fields
     _browse: function(link) {
         var link = $(link);
-        // IE doesn't like periods in the window name, so convert temporarily.
-        var name = link.data('id').replace(/\./g, '___'); 
         var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        this._win = $.popup(name, href, {
-                    height: 600 , width: 920, resizable: true, scrollbars: true});
+        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm._data('element', link.prevAll('input:first'));
+        wm.open();
         return false;
     },
+    
+    // This method is called when the object id field is changed and
+    // it updates the label accordingly
     _lookup: function(e){
         var ui   = this;
         var text = ui.dom.text;
-        if(ui.dom.link.attr('href')) {
+        if (ui.dom.link.attr('href')) {
             var app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
             var model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
 
@@ -74,8 +79,19 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
             object_id: ui.element,
             text: $('<strong />')
         };
-        ui.dom.link = ui.element.next();
-        ui.dom.text.insertAfter(ui.dom.link);
+        
+        ui.element.next('a').attr('onclick', false)
+            .bind('click', function(e){
+                e.preventDefault();
+                return ui._browse(this);
+            });
+        ui.dom.link = ui.element.next('a');
+        if (ui.element.nextAll('strong:first').get(0)) {
+            ui.dom.text = ui.element.nextAll('strong:first') 
+        }
+        else {
+            ui.dom.text.insertAfter(ui.dom.link);
+        }
         ui.dom.object_id
             .bind('keyup.gRelated focus.gRelated', function(e){
                 ui._lookup(e);
@@ -134,76 +150,106 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
 
 $.ui.gGenericRelated.defaults = $.RelatedDefaultsBase
 
-function showRelatedObjectLookupPopup(link) {
-    var link = $(link);
-    var name = link.attr('id').replace(/^lookup_/, '').replace(/\./g, '___');
-    var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
-    win = $.popup(name, href, {height: 600 , width: 900, resizable: true, scrollbars: true});
-    win.focus();
-    return false;
-}
+// Used in popup windows to disable default django behaviors
+$(function(){
 
+    // Add popup
+    $('a[onclick^=return\\ showAddAnotherPopup]')
+        .attr('onclick', false).unbind()
+        .bind('click', function(e){
+            var link = $(this);
+            var name = link.attr('id').replace(/^add_/, '');
+            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
+            var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+            wm._data('link', link);
+            wm._data('id', name);
+            wm.open(true);
+            e.preventDefault();
+            return false;
+        });
 
-function dismissRelatedLookupPopup(win, id) {
-    var el = $('#'+ win.name.replace(/___/g, '.'));
-    if (el.hasClass('vManyToManyRawIdAdminField') && el.val()) {
-        el.val($.format('{0:s},{1:s}', el.val(), id));
-        el.focus();
-    }
-    else {
-        el.val(id);
-        if (el.hasClass('vAutocompleteRawIdAdminField')) {
-            el.trigger($.Event({type: 'updated'}));
+    // Browse popup
+    if (opener && /\?|&pop/.test(window.location.search)) {
+        // get rid of actions
+        if ($('#action-toggle').get(0)) {
+            $('.result-list > table tr td:first-child, .result-list > table tr th:first-child, .actions').hide();
         }
-        else {
-            el.focus();
-        }
-    }
-    win.close();
-}
+        $('a[onclick^=opener\\.dismissRelatedLookupPopup]')
+            .attr('onclick', false)
+            .bind('click', function(e){
+                var pk = $(this).parents('tr').find('input.action-select').val();
+                var wm = opener.jQuery.wm(window.name);
+                if (wm) {
+                    wm._data('pk', pk);
+                    wm._data('newRepr', $(this).text());
+                    e.preventDefault();
+                    return $.dismissRelatedLookupPopup(window);
+                }
+            });
 
-function showAddAnotherPopup(link) {
-    var link = $(link);
-    var name = link.attr('id').replace(/^add_/, '').replace(/\./g, '___');
-    var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
-    win = $.popup(name, href, {height: 600 , width: 920, resizable: true, scrollbars: true});
-    win.focus();
-    return false;
-}
+        $.dismissRelatedLookupPopup = function (win) {
+            var wm = opener.jQuery.wm(win.name);
+            if (wm) {
+                var el  = wm._data('element');
+                var pk  = wm._data('pk');
+                var lbl = wm._data('newRepr');
 
-function dismissAddAnotherPopup(win, newId, newRepr) {
-    // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
-    var $el  = $('#'+ win.name.replace(/___/g, '.'));
-    if ($el.get(0)) {
-        if ($el.get(0).nodeName == 'SELECT') {
-            var select = $el;
-            var t = $el.attr('id').split(/(\-\d+\-)/); // account for related inlines
-            if (t.length === 3) {
-                var select = $('select[id^="'+ t[0] +'"][id$="'+ t[2] +'"]');
+                if (el.hasClass('vManyToManyRawIdAdminField') && el.val().length) {
+                    el.val($.format('{0:s},{1:s}', el.val(), pk));
+                    el.focus();
+                }
+                else {
+                    el.val(pk);
+                    if (el.hasClass('vAutocompleteSearchField')) {
+                        el.trigger($.Event({type: 'updated'}))
+                          .parent().find('input.ui-gAutocomplete-autocomplete').val(lbl);
+                    }
+                    else {
+                        el.focus();
+                    }
+                }
+                wm.close();
             }
-            $('<option />').attr('selected', true)
-                .val(newId).appendTo(select)
-                .text($.unescapeHTML(newRepr));
-
-        } else if ($el.get(0).nodeName == 'INPUT') {
-            $el.val(newId);
-        }
-        $el.focus();
+        };
     }
-    win.close();
-}
 
 
-//if (/&pop/.test(window.location.search)) {
-//    alert('blah');
-//    $('.result-list tbody tr a:first-child')
-//        .bind('click.gRelatedBrowse', function(){
-//              alert('test');
-//              var t = $(this).parents('tr').find('td:first-child :checkbox').val();
-//              return false;
-//            opener.dismissRelatedLookupPopup(window, '2'); return false;
-//        });
-//}
-//
+
+    // Add popup
+    if (opener && /_popup/.test(window.location.search)) {
+        // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
+        //
+        // I can't get rid of this function .. (I could by using the middleware, but it would make it a requirement..)
+        // django/contrib/admin/options.py: 
+        // return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(...
+        var wm  = opener.jQuery('html').data(window.name)
+        var $el = opener.jQuery('#'+ wm['id']);
+        opener.dismissAddAnotherPopup = function (w, newId, newRepr) {
+            if (wm) {
+                if ($el.get(0)) {
+                    if ($el.get(0).nodeName == 'SELECT') {
+                        var select = $el;
+                        var t = $el.attr('id').split(/(\-\d+\-)/); // account for related inlines
+                        if (t.length === 3) {
+                            var select = $('select[id^="'+ t[0] +'"][id$="'+ t[2] +'"]');
+                        }
+                        $('<option />').attr('selected', true)
+                            .val(newId).appendTo(select)
+                            .text($.unescapeHTML(newRepr));
+                    } else if ($el.get(0).nodeName == 'INPUT') {
+                        $el.val(newId);
+                        if ($el.hasClass('vAutocompleteRawIdAdminField')) {
+                            $el.prevAll('input.ui-gAutocomplete-autocomplete').val($.unescapeHTML(newRepr))
+                        }
+                    }
+                    $el.focus();
+                }
+                w.close();
+            }
+        }
+    }
+
+});
+
 
 })(jQuery);

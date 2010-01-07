@@ -19,6 +19,16 @@ $.widget('ui.gAutocomplete', {
     _lastRequest: 0,
     _results: [],
     _select_onload: false,
+    // This method is called when the "Browse" button is clicked on
+    // Autocomplete fields
+    _browse: function(link) {
+        var link = $(link);
+        var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm._data('element', link.prevAll('input:first'));
+        wm.open();
+        return false;
+    },
     _lookup: function(id) {
         var ui = this;
         $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
@@ -59,7 +69,7 @@ $.widget('ui.gAutocomplete', {
             ui.dom.browse.insertBefore(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, function(){ $(this).removeClass('ui-state-hover'); })
                 .bind('click.browse', function(){
-                    return showRelatedObjectLookupPopup(this); 
+                    return ui._browse(this); 
                 });
 
             ui.dom.input
