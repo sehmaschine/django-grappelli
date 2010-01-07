@@ -153,20 +153,6 @@ $.ui.gGenericRelated.defaults = $.RelatedDefaultsBase
 // Used in popup windows to disable default django behaviors
 $(function(){
 
-    // Add popup
-    $('a[onclick^=return\\ showAddAnotherPopup]')
-        .attr('onclick', false).unbind()
-        .bind('click', function(e){
-            var link = $(this);
-            var name = link.attr('id').replace(/^add_/, '');
-            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
-            var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
-            wm._data('link', link);
-            wm._data('id', name);
-            wm.open(true);
-            e.preventDefault();
-            return false;
-        });
 
     // Browse popup
     if (opener && /\?|&pop/.test(window.location.search)) {
@@ -183,20 +169,21 @@ $(function(){
                     wm._data('pk', pk);
                     wm._data('newRepr', $(this).text());
                     e.preventDefault();
-                    return $.dismissRelatedLookupPopup(window);
+                    return $.dismissRelatedLookupPopup(wm);
                 }
             });
 
-        $.dismissRelatedLookupPopup = function (win) {
-            var wm = opener.jQuery.wm(win.name);
+        $.dismissRelatedLookupPopup = function (wm) {
             if (wm) {
                 var el  = wm._data('element');
                 var pk  = wm._data('pk');
                 var lbl = wm._data('newRepr');
-
                 if (el.hasClass('vManyToManyRawIdAdminField') && el.val().length) {
                     el.val($.format('{0:s},{1:s}', el.val(), pk));
                     el.focus();
+                }
+                else if (el.hasClass('vM2MAutocompleteSearchField')) {
+                    el.gFacelist('addVal', {id: pk, label: lbl});
                 }
                 else {
                     el.val(pk);
@@ -208,14 +195,27 @@ $(function(){
                         el.focus();
                     }
                 }
-                wm.close();
+                //wm.close();
             }
         };
     }
 
 
-
     // Add popup
+    $('a[onclick^=return\\ showAddAnotherPopup]')
+        .attr('onclick', false).unbind()
+        .bind('click', function(e){
+            var link = $(this);
+            var name = link.attr('id').replace(/^add_/, '');
+            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
+            var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+            wm._data('link', link);
+            wm._data('id', name);
+            wm.open(true);
+            e.preventDefault();
+            return false;
+        });
+
     if (opener && /_popup/.test(window.location.search)) {
         // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
         //
@@ -237,9 +237,15 @@ $(function(){
                             .val(newId).appendTo(select)
                             .text($.unescapeHTML(newRepr));
                     } else if ($el.get(0).nodeName == 'INPUT') {
-                        $el.val(newId);
-                        if ($el.hasClass('vAutocompleteRawIdAdminField')) {
+                        if ($el.hasClass('vM2MAutocompleteRawIdAdminField')) {
+                            opener.jQuery('#'+ $el.attr('id').replace('id_','')).gFacelist('addVal', {id: newId, label: newRepr});
+                        }
+                        else if ($el.hasClass('vAutocompleteRawIdAdminField')) {
+                            $el.val(newId);
                             $el.prevAll('input.ui-gAutocomplete-autocomplete').val($.unescapeHTML(newRepr))
+                        }
+                        else {
+                            $el.val(newId);
                         }
                     }
                     $el.focus();

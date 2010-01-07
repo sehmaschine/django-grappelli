@@ -346,7 +346,7 @@ a.ui-gAutocomplete-browse:focus {
 }
 .ui-gAutocomplete-autocomplete {
     background-color:#eaf5f8;
-    margin-right:8px;
+    margin-right:0;
 }
 .ui-gAutocomplete-autocomplete:focus {
     background-color:#eaf5f8;
@@ -422,9 +422,11 @@ a.ui-gAutocomplete-browse:focus {
     padding:2px 0 0 2px;
     border-right:1px solid #ddd!important;
     cursor:pointer;
-    -moz-border-radius-topRight:3px;
+    -moz-border-radius:0;
+    -moz-border-radius:0;
+}
+.ui-gFacelist-toolbar a:first-child {
     -moz-border-radius-topleft:3px;
-    -webkit-border-radius-topRight:3px;
     -webkit-border-radius-topleft:3px;
 }
 .ui-gFacelist-toolbar span {
@@ -444,12 +446,14 @@ a.ui-gAutocomplete-browse:focus {
 .ui-gFacelist-wrapper .ui-gAutocomplete-wrapper {
     width:698px!important;
     margin-top:4px!important;
-    left:161px!important;
+    /*left:161px!important;*/
+    margin-left:-4px;
     border-top:1px solid #ddd!important;
+    z-index:10000;
 }
 .ui-gFacelist-wrapper .ui-gAutocomplete-wrapper ul {
     margin:0!important;
 }
 .vM2MAutocompleteRawIdAdminField + a.add-another {
-    margin-left:4px;
+    margin-left:6px;
 }

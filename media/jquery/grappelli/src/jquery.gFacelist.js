@@ -14,19 +14,22 @@ $.widget('ui.gFacelist', {
         ui.element.hide().parent().find('p.help').remove();
 
         ui.dom = {
+            rawfield: ui.element.parent().find('input.vM2MAutocompleteRawIdAdminField').hide(),
             wrapper:  ui._createElement('div',  {ns: 'wrapper'}).width(700),
             toolbar:  ui._createElement('div',  {ns: 'toolbar'}).addClass('ui-corner-top ui-state-default'),
             facelist: ui._createElement('ul',   {ns: 'facelist'}).addClass('ui-helper-clearfix'),
             input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}})
                         .addClass('vM2MAutocompleteSearchField').width(100)
         };
-
         ui.dom.input.wrap('<li />').parent().appendTo(ui.dom.facelist);
         ui.dom.wrapper.append(ui.dom.toolbar, ui.dom.facelist).insertAfter(ui.element)
 
         if (ui.options.browse) {
-            ui.dom.browse = ui._button('browse', {href: '#', title: 'Browse'}),
-            ui.dom.toolbar.append(ui.dom.browse)
+            ui.dom.browse = ui._button('browse', {href: ui.options.related_url, title: 'Browse'})
+                .appendTo(ui.dom.toolbar)
+                .bind('click.browse', function(){
+                    return ui._browse(this); 
+                });
         }
         if (ui.options.clear) {
             ui.dom.clear = ui._button('clear', {href: '#', title: 'Clear all'}),
@@ -38,16 +41,16 @@ $.widget('ui.gFacelist', {
         }
         
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
-        // hide selected items
+        // remove already selected items from autocomplete results
         ui.dom.input.bind('redrawn', function(e){
             var rs = ui.dom.input.gAutocomplete('results');
             var ids = $.makeArray(ui.dom.facelist.find('.ui-gFacelist-item').map(function(){
-                return $(this).data('json').id
+                return $(this).data('json').id;
             }));
             var div = $(this).nextAll('div');
             div.find('li').each(function(){
                 if ($.inArray($(this).data('json').id, ids) >= 0) {
-                    $(this).hide();
+                    $(this).remove();
                 }
             });
             if (div.find('li:visible').length < 1) {
@@ -89,10 +92,20 @@ $.widget('ui.gFacelist', {
         ui._bind(ui.dom.input, 'complete', function(e){
             if (e.originalEvent.sticky) {
                 ui._addItem(e.originalEvent.data); 
-                ui._message(); 
             }
         });
 
+    },
+    addVal: function (i) {
+        this._addItem(i);
+    },
+    _browse: function(link) {
+        var link = $(link);
+        var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm._data('element', this.element);
+        wm.open();
+        return false;
     },
     _message: function(msg) {
         var ui = this;
@@ -102,22 +115,45 @@ $.widget('ui.gFacelist', {
             ui.dom.message.text($.format(msg, count));
         }
     },
+    _removeItem: function (item) {
+        var ui = this;
+        var el = $(item);
+        ui._removeId(el.data('json')['id']);
+        el.remove();
+        ui._message(); 
+    },
     _addItem: function(data) {
         var ui = this;
-        var val = ui.dom.ac.val();
-        if (val != '') {
-            var label = $('<span />').text(val);
+        if (data.label != '') {
+            var label = $('<span />').text(data.label);
             var button = ui._createElement('li', {ns: 'item'})
                     .html(label)
                     .data('json', data)
                     .addClass('ui-corner-all')
+                    .insertBefore(ui.dom.input.parent())
                     .bind('click.gFacelist', function(){
-                        $(this).remove();
-                    })
-                    .insertBefore(ui.dom.input.parent());
+                        ui._removeItem(this);
+                    });
+            ui._addId(data.id);
             ui.dom.ac.val('');
+            ui._message(); 
             return button;
         }
+    },
+    _addId: function (id) {
+        var ui    = this;
+        var ids   = ui.dom.rawfield.val().replace(/\[|\]/g,'').split(',');
+        var stack = $.map(ids, function (v){ if (v != '') { return v; } });
+        stack.push(id);
+        ui.dom.rawfield.val($.format('[{0:s}]', stack.join(',')));
+        return ui;
+    },
+    _removeId: function (id) {
+        var ui    = this;
+        var ids   = ui.dom.rawfield.val().replace(/\[|\]/g,'').split(',');
+        var stack = $.map(ids, function (v){ if (v != id) { return v; } });
+        ui.dom.rawfield.val($.format('[{0:s}]', stack.join(',')));
+        return ui;
     },
     _button: function(ns, attr) {
         var ui = this;
@@ -158,7 +194,7 @@ $.ui.gFacelist.defaults = {
     },
     autocomplete: {
         highlight:  true,
-        browse:     false,
+        browse:     false, // Using Autocomplete's browse becomes too messy ..
         throbber:   false,
         minChars:   1,
         maxResults: 20,

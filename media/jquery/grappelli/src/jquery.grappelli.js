@@ -8,6 +8,7 @@ if (typeof(gettext) == 'undefined') {
     function gettext(i) { return i; };
 }
 
+/* Deprecated
 $.popup = function(name, href, options) {
     var arr = [];
     var opt = $.extend({width:  600, height: 920, resizable: true, scrollbars: true}, options);
@@ -17,6 +18,7 @@ $.popup = function(name, href, options) {
     win.focus();
     return win;
 };
+*/
 
 // Minimal Window Manager
 

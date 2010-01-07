@@ -9,7 +9,7 @@ from django.conf import settings
 from grappelli.models.navigation import Navigation, NavigationItem
 from grappelli.models.bookmarks import Bookmark, BookmarkItem
 from grappelli.models.help import Help, HelpItem
-from grappelli.widgets import AutocompleteSearchInput, AutoSlugFieldInput #, M2MAutocompleteSearchInput
+from grappelli.widgets import AutocompleteSearchInput, AutoSlugFieldInput, M2MAutocompleteSearchInput
 
 # Lots of code duplication here ..
 
@@ -56,9 +56,10 @@ class GrappelliModelAdmin(admin.ModelAdmin):
         if isinstance(db_field, models.ForeignKey) and hasattr(self, 'autocomplete') and db_field.name in self.autocomplete:
             kwargs['widget'] = AutocompleteSearchInput(db_field, self)
        
-       #if isinstance(db_field, models.ManyToManyField) and hasattr(self, 'facelist') and db_field.name in self.facelist:
-       #    kwargs['widget'] = M2MAutocompleteSearchInput(db_field, self)
+        if isinstance(db_field, models.ManyToManyField) and hasattr(self, 'facelist') and db_field.name in self.facelist:
+            kwargs['widget'] = M2MAutocompleteSearchInput(db_field, self)
        
+
         return super(GrappelliModelAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
 
