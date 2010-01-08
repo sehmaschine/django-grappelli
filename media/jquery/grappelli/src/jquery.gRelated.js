@@ -247,7 +247,6 @@ $(function(){
                             var nop = opt.clone();
                             sel.append(nop);
                             if (el.attr('id') == sel.attr('id')) {
-                                opener.console.log(el.attr('id'), sel.attr('id'));
                                 nop.attr('selected', true);
                             }
                             $.sortSelect(sel);
@@ -265,19 +264,6 @@ $(function(){
                             el.val(newId);
                         }
                     }
-                    /*
-                    if (el.get(0).nodeName == 'SELECT') {
-                        var select = el;
-                        var t = el.attr('id').split(/(\-\d+\-)/); // account for related inlines
-                        if (t.length === 3) {
-                            var select = $('select[id^="'+ t[0] +'"][id$="'+ t[2] +'"]');
-                        }
-                        $('<option />').attr('selected', true)
-                            .val(newId).appendTo(select)
-                            .text($.unescapeHTML(newRepr));
-                    } else if (el.get(0).nodeName == 'INPUT') {
-                    }
-                    */
                     el.focus();
                 }
                 w.close();
