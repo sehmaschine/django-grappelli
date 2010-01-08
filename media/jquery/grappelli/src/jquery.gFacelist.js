@@ -21,6 +21,7 @@ $.widget('ui.gFacelist', {
             input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}})
                         .addClass('vM2MAutocompleteSearchField').width(100)
         };
+        ui.dom.rawfield.val(ui.dom.rawfield.val().replace(/\[|\]/g, ''));
         ui.dom.input.wrap('<li />').parent().appendTo(ui.dom.facelist);
         ui.dom.wrapper.append(ui.dom.toolbar, ui.dom.facelist).insertAfter(ui.element)
 
@@ -142,17 +143,17 @@ $.widget('ui.gFacelist', {
     },
     _addId: function (id) {
         var ui    = this;
-        var ids   = ui.dom.rawfield.val().replace(/\[|\]/g,'').split(',');
+        var ids   = ui.dom.rawfield.val().split(',');
         var stack = $.map(ids, function (v){ if (v != '') { return v; } });
         stack.push(id);
-        ui.dom.rawfield.val($.format('[{0:s}]', stack.join(',')));
+        ui.dom.rawfield.val(stack.join(','));
         return ui;
     },
     _removeId: function (id) {
         var ui    = this;
         var ids   = ui.dom.rawfield.val().replace(/\[|\]/g,'').split(',');
         var stack = $.map(ids, function (v){ if (v != id) { return v; } });
-        ui.dom.rawfield.val($.format('[{0:s}]', stack.join(',')));
+        ui.dom.rawfield.val($.format('{0:s}', stack.join(',')));
         return ui;
     },
     _button: function(ns, attr) {
