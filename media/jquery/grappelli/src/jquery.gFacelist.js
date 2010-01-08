@@ -7,7 +7,6 @@
 $.widget('ui.gFacelist', {
     _init: function(){
         var ui = this;
-        console.log(ui.element);
         // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
 
