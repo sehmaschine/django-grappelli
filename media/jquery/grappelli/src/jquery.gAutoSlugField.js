@@ -14,14 +14,21 @@ $.widget('ui.gAutoSlugField', {
     },
     _init: function() {
         var ui = this;
+        ui.element.delayedObserver(function(){
+            ui._refresh(e, $(this));
+        }, ui.options.delay);
+
         if (ui.element.attr('rel')) {
-            $('#id_'+ ui.element.attr('rel')).bind('keyup.gAutoSlugField', function(e) {
+            ui.elementTarget = $('#id_'+ ui.element.attr('rel'));
+            ui.elementTarget.bind('keyup.gAutoSlugField', function(e){
                 ui._refresh(e, $(this));
             });
+
+            // Initial data
+            if (ui.element.val() != $.slugify(ui.elementTarget.val())) {
+                ui.element.val($.slugify(ui.elementTarget.val()));
+            }
         }
-         ui.element.delayedObserver(function(e) {
-             ui._refresh(e, $(this));
-         }, ui.options.delay);
     }
 });
 

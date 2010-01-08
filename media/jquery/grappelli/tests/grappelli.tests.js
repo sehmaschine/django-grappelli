@@ -11,7 +11,7 @@ var gFaceListBaseOptions = {
 
 
 module("Basic requirements");
-var methods = ['wm', 'unescapeHTML', 'ui'];
+var methods = ['wm', 'unescapeHTML', 'ui', 'slugify'];
 
 test("Checking presence of jQuery required methods", methods.length, function() {
     for (var x=0;x<methods.length;x++) {
@@ -19,6 +19,9 @@ test("Checking presence of jQuery required methods", methods.length, function() 
         ok(typeof(jQuery[m]) != 'undefined', 'Method "'+ m +'" exists.');
     }
 });
+
+
+// --
 
 module("jQuery.gFacelist.js", {
     setup: function(){
@@ -29,9 +32,6 @@ module("jQuery.gFacelist.js", {
         fltest.gFacelist('destroy');
     }
 });
-
-// --
-
 
 test("Initialization", 4, function() {    
 
@@ -52,3 +52,28 @@ test("Initialization", 4, function() {
        'Item gets removed when clicked');
 });
 
+module("jQuery.gAutoslugfield.js", {
+    setup: function(){
+        $('.ui-gAutoSlugField').gAutoSlugField();
+    },
+    teardown: function(){
+        $('.ui-gAutoSlugField').gAutoSlugField('destroy');
+    }
+});
+
+test("Initialization", 4, function() {
+
+    ok($('#id_slug_test').val() == 'hello-world', 'Initial value');
+
+    $('#id_char_test').val('test').trigger($.Event({type:'keyup'}));
+    ok($('#id_char_test').val() == 'test', 'Auto update on keyup');
+
+    $('#id_slug_test').val('test2').trigger($.Event({type:'keyup'}));
+    ok($('#id_char_test').val() != 'test2', 'Target field does not change when slugfield is changed');
+    
+    $('#id_char_test').val("hello world|!/'$%?&*()_-abc").trigger($.Event({type:'keyup'}));
+
+    equals($('#id_slug_test').val(), "hello-world_-abc", 'Slugify escape characters correctly');
+    
+    
+});

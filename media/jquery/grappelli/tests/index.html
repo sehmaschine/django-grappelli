@@ -31,7 +31,7 @@
         <script type="text/javascript" src="../src/jquery.gAutocomplete.js"></script>
         <script type="text/javascript" src="../src/jquery.gFacelist.js"></script>
         <script type="text/javascript" src="../src/jquery.gRelated.js"></script>
-        <!--script type="text/javascript" src="../src/jquery.gAutoSlugField.js"></script-->
+        <script type="text/javascript" src="../src/jquery.gAutoSlugField.js"></script>
         <script type="text/javascript" src="../src/jquery.slugify.js"></script>
         <script type="text/javascript" src="../contrib/jquery.strings.js"></script>
         <script type="text/javascript" src="../contrib/jquery.masked.js"></script>
@@ -59,6 +59,35 @@
               
           <p class="help"> Maintenez appuyé « Ctrl », ou « Commande (touche pomme) » sur un Mac, pour en sélectionner plusieurs.</p>
             </div>
+
+
+
+
+<fieldset class="module aligned ">
+    <h2>Auto SlugField</h2>
+    <div class="form-row char_test  ">
+        <div> 
+            <label for="id_char_test">CharField:</label><input name="char_test" value="Hello World" class="vTextField" maxlength="255" type="text" id="id_char_test" />
+        </div>
+    </div>
+    <div class="form-row slug_test  ">
+        <div> 
+            <label for="id_slug_test" class="required">SlugField:</label><input name="slug_test" rel="char_test" maxlength="50" type="text" class="ui-gAutoSlugField vTextField" value="" id="id_slug_test" />
+        </div>
+    </div>  
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
         <script type="text/javascript" src="grappelli.tests.js"></script>
