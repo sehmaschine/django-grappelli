@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     (r'^grappelli/', include('grappelli.urls')),
     (r'^admin/(.*)', admin.site.root),
 )
-print settings.GRAPPELLI_MEDIA_ROOT
+
 if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media/(.*)$', 'django.views.static.serve', {

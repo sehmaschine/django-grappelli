@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from django.db import models
+from django.conf import settings
 admin_site = admin.AdminSite()
 
 #if hasattr(admin.site, 'disable_action'):
@@ -43,7 +44,7 @@ class DjangoFieldsAdmin(admin.ModelAdmin):
             'fields': ('file_test', 'image_test', )
         }),
         ('Relationships', {
-            'fields': ('fk_test', 'ooo_test') # , 'm2m_test'
+            'fields': ('fk_test', 'ooo_test', 'm2m_test')
         }),
     )
     
@@ -62,13 +63,16 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
             'fields': ( 'char_test', 'slug_test',)
         }),
         ('Autocomplete', {
-            'fields': ('fk_test',) # , 'm2m_test'
+            'fields': ('fk_test' , 'm2m_test',) 
         }),
         ('Related lookup', {
-            'fields': ('gr_test', 'gr_m2m')
+            'fields': ('gr_test', 'gr_m2m',)
         }),
         ('Generic Related lookup', {
             'fields': ('content_type', 'object_id',)
+        }),
+        ('TinyMCE Rich text editor', {
+            'fields': ('mce_test',)
         }),
     )
     auto_slugfield = {
@@ -82,13 +86,18 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
             'list_format':   '{id:d} - {label:s}',  # optional
         }
     }
-#   facelist = {
-#       'm2m_test': {
-#           'search_fields': ('name', 'domain',),
-#           'input_format':  '{label:s}',           # optional
-#           'list_format':   '{id:d} - {label:s}',  # optional
-#       }
-#   }
+    facelist = {
+        'm2m_test': {
+            'search_fields': ('name', 'domain',),
+            'input_format':  '{label:s}',           # optional
+            'list_format':   '{id:d} - {label:s}',  # optional
+        }
+    }
+    class Media:
+        js = [
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce/jscripts/tiny_mce/tiny_mce.js',
+            settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
+        ]
 admin.site.register(GrappelliFields, GrappelliFieldsAdmin)
 
 
@@ -122,7 +131,7 @@ class DjangoTabularFieldsInline(admin.TabularInline):
                #'url_test',      
                #'fk_test',       
                #'inline_test',   
-#               'm2m_test',
+                'm2m_test',
             )
         }),
     )
