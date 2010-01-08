@@ -257,9 +257,10 @@ $.widget('ui.gAutocomplete', {
         ui.dom.results.empty();
 
         if (rs.length > 0) {
-            $.each(rs, function(){
-                var txt = $.format(ui.options.listFormat, this);
-                var li  = ui._createElement('li', {ns: 'result'}).data('json', this).appendTo(ui.dom.results)
+            for (var x=0; x<rs.length; x++) {
+                var item = rs[x];
+                var txt  = $.format(ui.options.listFormat, item);
+                var li   = ui._createElement('li', {ns: 'result'}).data('json', item).appendTo(ui.dom.results)
                 
                 // Option: highlight
                 if (ui.options.highlight) {
@@ -270,10 +271,10 @@ $.widget('ui.gAutocomplete', {
                 }
                 ui.dom.input.removeClass('no-match');
                 ui.dom.results.find('.selected').removeClass('selected');
-                ui._bind(li, 'mouseover', function() { ui._shiftSelection(this); });
-                ui._bind(li, 'click',     function() { ui._shiftSelection(this)._choose(); });
-                ui._showList();
-            });
+                ui._bind(li, 'mouseover', function() { ui._shiftSelection(item); });
+                ui._bind(li, 'click',     function() { ui._shiftSelection(item)._choose(); });
+            }
+            ui._showList();
         }
         else {
             ui.dom.input.addClass('no-match');
