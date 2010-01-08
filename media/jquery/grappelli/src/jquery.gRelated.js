@@ -115,12 +115,12 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
         ui._disable(!ui.dom.content_type.val());
 
         ui.dom.content_type.bind('change.gGenericRelated, keyup.gGenericRelated', function() {
-            var $el = $(this);
-            var href = ui._url($el.val());
+            var el = $(this);
+            var href = ui._url(el.val());
             ui.dom.object_id.val('');
             ui.dom.text.text('');
-            ui._disable(!$el.val());
-            if ($el.val()) {
+            ui._disable(!el.val());
+            if (el.val()) {
                 var link = ui.dom.object_id.next('.related-lookup');
                 if (link.get(0)) {
                     link.attr('href', href);
@@ -200,6 +200,17 @@ $(function(){
         };
     }
 
+    $.sortSelect = function (select) {
+        var s = $(select);
+        var l = s.find('option').map(function(o){
+            return {label: $(this).text(), value: $(this).val(), selected: $(this).attr('selected') };
+        });
+        l = l.sort(function(a, b) { return a.label > b.label; });
+        s.empty();
+        l.each(function() {
+            $('<option />').val(this.value).attr('selected', this.selected).appendTo(s).text(this.label);
+        });
+    }
 
     // Add popup
     $('a[onclick^=return\\ showAddAnotherPopup]')
@@ -223,32 +234,51 @@ $(function(){
         // django/contrib/admin/options.py: 
         // return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(...
         var wm  = opener.jQuery('html').data(window.name)
-        var $el = opener.jQuery('#'+ wm['id']);
+        var el = opener.jQuery('#'+ wm['id']);
+        var wm2 = $.wm(window.name);
         opener.dismissAddAnotherPopup = function (w, newId, newRepr) {
             if (wm) {
-                if ($el.get(0)) {
-                    if ($el.get(0).nodeName == 'SELECT') {
-                        var select = $el;
-                        var t = $el.attr('id').split(/(\-\d+\-)/); // account for related inlines
+                if (el.get(0)) {
+                    var type = el.get(0).nodeName.toLowerCase();
+                    if (type == 'select') {
+                        var opt = $('<option />').val(newId).text($.unescapeHTML(newRepr));
+                        opener.jQuery('a[href='+ el.nextAll('a.add-another').attr('href') + ']').each(function(){
+                            var sel = $(this).parent().find('select');
+                            var nop = opt.clone();
+                            sel.append(nop);
+                            if (el.attr('id') == sel.attr('id')) {
+                                opener.console.log(el.attr('id'), sel.attr('id'));
+                                nop.attr('selected', true);
+                            }
+                            $.sortSelect(sel);
+                        });
+                    }
+                    else if (type == 'input') {
+                        if (el.hasClass('vM2MAutocompleteRawIdAdminField')) {
+                            opener.jQuery('#'+ el.attr('id').replace('id_','')).gFacelist('addVal', {id: newId, label: newRepr});
+                        }
+                        else if (el.hasClass('vAutocompleteRawIdAdminField')) {
+                            el.val(newId);
+                            el.prevAll('input.ui-gAutocomplete-autocomplete').val($.unescapeHTML(newRepr))
+                        }
+                        else {
+                            el.val(newId);
+                        }
+                    }
+                    /*
+                    if (el.get(0).nodeName == 'SELECT') {
+                        var select = el;
+                        var t = el.attr('id').split(/(\-\d+\-)/); // account for related inlines
                         if (t.length === 3) {
                             var select = $('select[id^="'+ t[0] +'"][id$="'+ t[2] +'"]');
                         }
                         $('<option />').attr('selected', true)
                             .val(newId).appendTo(select)
                             .text($.unescapeHTML(newRepr));
-                    } else if ($el.get(0).nodeName == 'INPUT') {
-                        if ($el.hasClass('vM2MAutocompleteRawIdAdminField')) {
-                            opener.jQuery('#'+ $el.attr('id').replace('id_','')).gFacelist('addVal', {id: newId, label: newRepr});
-                        }
-                        else if ($el.hasClass('vAutocompleteRawIdAdminField')) {
-                            $el.val(newId);
-                            $el.prevAll('input.ui-gAutocomplete-autocomplete').val($.unescapeHTML(newRepr))
-                        }
-                        else {
-                            $el.val(newId);
-                        }
+                    } else if (el.get(0).nodeName == 'INPUT') {
                     }
-                    $el.focus();
+                    */
+                    el.focus();
                 }
                 w.close();
             }
