@@ -5,7 +5,7 @@
 <script type="text/javascript">
 $(function(){
     $('#{{ name }}').gFacelist({
-        initial_data: {{ label|safe }},
+        initial_data: {{ label|safe|default:"false" }},
         clearAll: true,
         browse: true,
         related_url: '{{ related_url }}{{ url|safe }}',
