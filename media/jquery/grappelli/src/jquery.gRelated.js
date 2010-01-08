@@ -7,15 +7,13 @@
 // Abstract base class for gRelated and gGenericRelated
 
 $.RelatedBase = {
+
+    // Returns the backend url
     _url: function(k) {
         return this.options.getURL(k);
     },
-    _disable: function(state) {
-        this.dom.object_id.attr('disabled', state); 
-    },
 
-    // This method is called when the "Browse" button is clicked on
-    // Related and GenericRelated fields
+    // Called when the "Browse" button is clicked on Related and GenericRelated fields
     _browse: function(link) {
         var link = $(link);
         var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
@@ -25,8 +23,7 @@ $.RelatedBase = {
         return false;
     },
     
-    // This method is called when the object id field is changed and
-    // it updates the label accordingly
+    // Called when the object id field is changed and it updates the label accordingly
     _lookup: function(e){
         var ui   = this;
         var text = ui.dom.text;
@@ -42,10 +39,8 @@ $.RelatedBase = {
 
                 var url = ui.options[ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2mUrl' || 'url'];
                 
-                // get object
                 $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
                     var item = data;
-                    //ui.dom.text.text('');
                     if (item) {
                         var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
                         if (item.length > tl) {
@@ -75,27 +70,25 @@ $.RelatedDefaultsBase = {
 $.widget('ui.gRelated', $.extend($.RelatedBase, {
     _init: function() {
         var ui = this;
-        ui.dom = {
-            object_id: ui.element,
-            text: $('<strong />')
-        };
+        ui.dom = { object_id: ui.element, text: $('<strong />') };
         
-        ui.element.next('a').attr('onclick', false)
+        ui.dom.link = ui.element.next('a').attr('onclick', false)
             .bind('click', function(e){
                 e.preventDefault();
                 return ui._browse(this);
             });
-        ui.dom.link = ui.element.next('a');
+        
+        // use existing <strong> element if present
         if (ui.element.nextAll('strong:first').get(0)) {
             ui.dom.text = ui.element.nextAll('strong:first') 
         }
         else {
             ui.dom.text.insertAfter(ui.dom.link);
         }
-        ui.dom.object_id
-            .bind('keyup.gRelated focus.gRelated', function(e){
-                ui._lookup(e);
-            });
+
+        ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
+            ui._lookup(e);
+        }).trigger($.Event({type: 'keyup'})); // load initial data
     }
 }));
 
@@ -114,11 +107,14 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
 
         ui._disable(!ui.dom.content_type.val());
 
-        ui.dom.content_type.bind('change.gGenericRelated, keyup.gGenericRelated', function() {
+        // Rebuild object ID (input, browse button and label) when content type select is changed
+        ui.dom.content_type.bind('change.gGenericRelated, keyup.gGenericRelated', function(e) {
             var el = $(this);
             var href = ui._url(el.val());
-            ui.dom.object_id.val('');
-            ui.dom.text.text('');
+            if (e.firstrun) {
+                ui.dom.object_id.val('');
+                ui.dom.text.text('');
+            }
             ui._disable(!el.val());
             if (el.val()) {
                 var link = ui.dom.object_id.next('.related-lookup');
@@ -137,14 +133,20 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
                 }
             } 
             else {
-                ui.dom.object_id.val('');
-                ui.dom.object_id.parent().find('.related-lookup, strong').remove();
+                ui.dom.object_id.val('')
+                    .parent().find('.related-lookup, strong').remove();
             }
-        });
+        }).trigger($.Event({type: 'keyup', firstrun: true})); // load initial data
 
+        // Update when object ID is changed
         ui.dom.object_id.bind('keyup.gGenericRelated focus.gGenericRelated', function(e){
             ui._lookup(e);
-        });
+        }).trigger($.Event({type: 'keyup'})); // load initial data
+    },
+
+    // Disables the object ID input
+    _disable: function(state) {
+        this.dom.object_id.attr('disabled', state); 
     }
 }));
 
@@ -152,7 +154,6 @@ $.ui.gGenericRelated.defaults = $.RelatedDefaultsBase
 
 // Used in popup windows to disable default django behaviors
 $(function(){
-
 
     // Browse popup
     if (opener && /\?|&pop/.test(window.location.search)) {
@@ -195,11 +196,12 @@ $(function(){
                         el.focus();
                     }
                 }
-                //wm.close();
+                wm.close();
             }
         };
     }
 
+    // Sort a slect input alphabetically/numerically (TODO: optimize..)
     $.sortSelect = function (select) {
         var s = $(select);
         var l = s.find('option').map(function(o){
@@ -270,7 +272,6 @@ $(function(){
             }
         }
     }
-
 });
 
 
