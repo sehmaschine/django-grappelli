@@ -7,7 +7,7 @@
 $.widget('ui.gFacelist', {
     _init: function(){
         var ui = this;
-
+        console.log(ui.element);
         // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
 
@@ -96,6 +96,13 @@ $.widget('ui.gFacelist', {
             }
         });
 
+        // load initial data
+        if (ui.options.initial_data) {
+            $.each(ui.options.initial_data, function(k, v) {
+                ui._addItem({label:v, id: k});
+            });
+        }
+
     },
     addVal: function (i) {
         this._addItem(i);
@@ -112,7 +119,7 @@ $.widget('ui.gFacelist', {
         var ui = this;
         if (!msg && ui.options.message) {
             var count = ui.dom.facelist.find('.ui-gFacelist-item').length;
-            var msg = count > 1 && '{0:d} selected messages' || '{0:d} selected message';
+            var msg = count > 1 && '{0:d} selected items' || '{0:d} selected item';
             ui.dom.message.text($.format(msg, count));
         }
     },
@@ -124,7 +131,7 @@ $.widget('ui.gFacelist', {
         ui._message(); 
     },
     _addItem: function(data) {
-        var ui = this;
+        var ui = this
         if (data.label != '') {
             var label = $('<span />').text(data.label);
             var button = ui._createElement('li', {ns: 'item'})

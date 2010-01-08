@@ -1,5 +1,7 @@
 # coding: utf-8
 
+import json
+
 from django import forms
 from django.conf import settings
 from django.utils.safestring import mark_safe
@@ -82,7 +84,6 @@ class AutocompleteSearchInput(ForeignKeyRawIdWidget):
         output.reverse()
         return mark_safe(u''.join(output))
     
-
 class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
     """
     An Autocomplete Widget for M2M-Fields.
@@ -92,9 +93,11 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
     widget_template = None
     
     def label_for_value(self, value):
-        key = self.rel.get_related_field().name
-        obj = self.rel.to._default_manager.get(**{key: value})
-        return truncate_words(obj, 14)
+        out = {}
+        for item in value:
+            key = self.rel.get_related_field().name
+            out[item] = u'%s' % self.rel.to._default_manager.get(**{key: item})
+        return json.dumps(out)
     
     def __init__(self, field, fieldAdmin, attrs=None):
         if hasattr(fieldAdmin, 'facelist') and field.name in fieldAdmin.facelist:
