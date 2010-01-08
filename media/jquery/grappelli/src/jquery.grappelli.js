@@ -92,6 +92,12 @@ $(function(){
         $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
     });
 
+
+    // Collapsible groups
+    $('.group-collapsible .section').parent().bind('click.grappelli', function (){
+        $(this).parents('table').find('tbody').toggle();
+    });
+
     // Always focus first field of a form OR the search input
     $('form .form-row:eq(0)')
         .find('input, select, textarea, button').eq(0)

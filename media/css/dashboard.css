@@ -71,6 +71,7 @@
 
 .dashboard .module table {
     border-right: none;
+    width:100%;
 }
 .dashboard .module table + table {
     border-top: 1px solid #e0e0e0;
