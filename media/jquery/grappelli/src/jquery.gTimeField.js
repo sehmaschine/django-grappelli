@@ -1,15 +1,18 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gTimeField
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 $.widget('ui.gTimeField', {
+
     _init: function() {
         var ui = this;
         ui.dom = {
             picker: $('<div class="clockbox module"><h2 class="clock-title" /><ul class="timelist" /><p class="clock-cancel"><a href="#" /></p></div>'),
-            button: $('<button class="ui-timepicker-trigger" type="button" />'),
+            button: $('<button class="ui-timepicker-trigger" type="button" />')
         };
         ui.dom.picker.appendTo('body')
             .find('h2').text(gettext('Choose a time')).end()
@@ -41,6 +44,7 @@ $.widget('ui.gTimeField', {
             ui.element.mask(ui.options.mask);
         }
     },
+
     toggle: function(at) {
         var ui = this;
         if (ui.dom.picker.is(':visible')) {
@@ -50,6 +54,7 @@ $.widget('ui.gTimeField', {
             ui.show(at);
         }
     },
+
     show: function(at) {
         var pos = $(at).offset();
         var ui = this;
@@ -65,6 +70,7 @@ $.widget('ui.gTimeField', {
             }
         });
     },
+
     hide: function() {
         var ui = this;
         if (ui.dom.picker.is(':visible')) {
@@ -72,6 +78,7 @@ $.widget('ui.gTimeField', {
             $('body').unbind('click.gTimeField');
         }
     }
+
 });
 
 $.ui.gTimeField.defaults = {

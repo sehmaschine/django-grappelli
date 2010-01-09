@@ -1,6 +1,8 @@
-/*  Author: Maxime Haineault <max@motion-m.ca>
+/*  Author:  Maxime Haineault <max@motion-m.ca>
  *  widget:  gBookmarks
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 

@@ -4,21 +4,26 @@
  *
  *  Binding to old SelectFilter calls.. cannot be removed because the calls are
  *  hardcoded into django's source..
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
-var SelectFilter = { 
+// Legacy compatibility
+window.SelectFilter = { 
     init: function(id, name, stacked, admin_media_prefix){ 
         $('#'+id).gSelectFilter({stacked: stacked, name: name});
     }
 };
 
 $.widget('ui.gSelectFilter', {
+    
     _cache: {avail: [], chosen: []},
-    _init: function() {
-        var ui   = this;
-        var id   = ui.element.attr('id');
 
+    _init: function() {
+        var id, ui;
+        ui = this;
+        id = ui.element.attr('id');
         ui.dom  = {
             wrapper:   $('<div />').appendTo(ui.element.parent()).addClass(ui.options.stacked ? 'selector stacked' : 'selector'),
             available: $('<div />').addClass('selector-available'),
@@ -92,16 +97,17 @@ $.widget('ui.gSelectFilter', {
     },
 
     // Repopulate HTML select box from cache
-    _redraw: function(cid) {
-        var ui  = this;
-        var cids = cid && [cid] || ['avail', 'chosen'];
+    _redraw: function(i) {
+        var ui, cids, cid, node, w, x, y, z;
+        ui   = this;
+        cids = i && [i] || ['avail', 'chosen'];
 
-        for (var x = 0, y = cids.length; x < y; x++) {
-            var cid = cids[x];
+        for (w = 0, x = cids.length; w < x; w++) {
+            cid = cids[w];
             ui._sort(cid);
             ui.dom.select[cid].find('option').remove();
-            for (var i = 0, j = ui._cache[cid].length; i < j; i++) {
-                var node = ui._cache[cid][i];
+            for (y = 0, z = ui._cache[cid].length; y < z; y++) {
+                node = ui._cache[cid][y];
                 if (node.displayed) {
                     $('<option />').val(node.value).text(node.text).appendTo(ui.dom.select[cid]);
                 }
@@ -110,16 +116,16 @@ $.widget('ui.gSelectFilter', {
     },
     
     _delete_from_cache: function(cid, value) {
-        var ui = this;
-        var node, delete_index = null;
-        for (var i = 0; (node = ui._cache[cid][i]); i++) {
+        var ui, node, delete_index, i, j;
+        ui = this;
+        for (i = 0; (node = ui._cache[cid][i]); i++) {
             if (node.value == value) {
                 delete_index = i;
                 break;
             }
         }
-        var j = ui._cache[cid].length - 1;
-        for (var i = delete_index; i < j; i++) {
+        j = ui._cache[cid].length - 1;
+        for (i = delete_index; i < j; i++) {
             ui._cache[cid][i] = ui._cache[cid][i+1];
         }
         ui._cache[cid].length--;
@@ -138,38 +144,44 @@ $.widget('ui.gSelectFilter', {
         }
         return false;
     },
+
     _move: function(cid) {
         var ui = this;
         ui.dom.select[cid].find('option').each(function(){
             var $opt = $(this);
-            if ($opt.attr('selected') == true && ui._cache_contains(cid, $opt.val())) {
+            if ($opt.attr('selected') === true && ui._cache_contains(cid, $opt.val())) {
                 ui._add_to_cache((cid == 'avail' && 'chosen' || 'avail'), {value: $opt.val(), text: $opt.text(), displayed: 1});
                 ui._delete_from_cache(cid, $opt.val());
             }
         });
         ui._redraw();
     },
+
     _move_all: function(cid) {
         this.dom.select[cid].find('option').attr('selected', 'true');
         this._move(cid);
     },
+
     _sort: function(cid) {
         this._cache[cid].sort( function(a, b) {
             a = a.text.toLowerCase();
             b = b.text.toLowerCase();
             try {
-                if (a > b) return 1;
-                if (a < b) return -1;
+                if (a > b) { return 1; }
+                if (a < b) { return -1; }
             }
             catch (e) {} // silently fail on IE 'unknown' exception
             return 0;
         } );
     },
+
     _select_all: function(cid) {
         this.dom.select[cid].find('option').attr('selected', 'selected');
     },
+
     _filter_key_up: function(e, cid) {
-        var ui = this;
+        var ui, from, temp;
+        ui   = this;
         from = ui.dom.select[cid].get(0);
         // don't submit form if user pressed Enter
         if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
@@ -178,18 +190,20 @@ $.widget('ui.gSelectFilter', {
             from.selectedIndex = 0;
             return false;
         }
-        var temp = from.selectedIndex;
+        temp = from.selectedIndex;
 
         ui.filter(cid, ui.dom.select[cid].prev().find('input').val());
         from.selectedIndex = temp;
         return true;
     },
+
     _filter_key_down: function(e, cid) {
-        var ui = this;
+        var ui, from, old_index;
+        ui = this;
         from = ui.dom.select[cid].get(0);
         // right arrow -- move across
         if ((e.which && e.which == 39) || (e.keyCode && e.keyCode == 39)) {
-            var old_index = from.selectedIndex;
+            old_index = from.selectedIndex;
             ui._move(cid, (cid == 'avail' && 'chosen' || 'avail'));
             from.selectedIndex = (old_index == from.length) ? from.length - 1 : old_index;
             return false;
@@ -200,7 +214,7 @@ $.widget('ui.gSelectFilter', {
         }
         // up arrow -- wrap around
         if ((e.which && e.which == 38) || (e.keyCode && e.keyCode == 38)) {
-            from.selectedIndex = (from.selectedIndex == 0) ? from.length - 1 : from.selectedIndex - 1;
+            from.selectedIndex = (from.selectedIndex === 0) ? from.length - 1 : from.selectedIndex - 1;
         }
         return true;
     },
@@ -208,13 +222,13 @@ $.widget('ui.gSelectFilter', {
     // Redisplay the HTML select box, displaying only the choices containing ALL
     // the words in text. (It's an AND search.)
     filter: function(cid, text) {
-        var tokens = text.toLowerCase().split(/\s+/);
-        var node, token;
-        var ui  = this;
+        var node, token, tokens, ui, i, j;
+        tokens = text.toLowerCase().split(/\s+/);
+        ui  = this;
 
-        for (var i = 0; (node = ui._cache[cid][i]); i++) {
+        for (i = 0; (node = ui._cache[cid][i]); i++) {
             node.displayed = 1;
-            for (var j = 0; (token = tokens[j]); j++) {
+            for (j = 0; (token = tokens[j]); j++) {
                 if (node.text.toLowerCase().indexOf(token) == -1) {
                     node.displayed = 0;
                 }

@@ -1,3 +1,5 @@
+ // jslinted - 8 Jan 2010
+ 
 (function($){
 
     var LATIN_MAP = {
@@ -74,20 +76,21 @@
 
     var Downcoder = {};
     Downcoder.Initialize = function() {
+        var c, y, x, lookup;
         if (Downcoder.map) { // already made
             return false;
         }
         Downcoder.map ={};
         Downcoder.chars = '';
-        for(var i in ALL_DOWNCODE_MAPS) {
-            var lookup = ALL_DOWNCODE_MAPS[i];
-            for (var c in lookup) {
-                Downcoder.map[c] = lookup[c];
+        for(x =0; x < ALL_DOWNCODE_MAPS.length; x++) {
+            lookup = ALL_DOWNCODE_MAPS[x];
+            for (y =0; y < lookup.length;) {
+                Downcoder.map[y] = lookup[y];
                 Downcoder.chars += c;
             }
          }
         Downcoder.regex = new RegExp('[' + Downcoder.chars + ']|[^' + Downcoder.chars + ']+','g');
-    }
+    };
 
     var downcode = function(slug) {
         Downcoder.Initialize();
@@ -97,7 +100,7 @@
             for (var i = 0 ; i < pieces.length ; i++) {
                 if (pieces[i].length == 1) {
                     var mapped = Downcoder.map[pieces[i]];
-                    if (mapped != null) {
+                    if (mapped !== null) {
                         downcoded += mapped;
                         continue;
                     }
@@ -109,25 +112,26 @@
             downcoded = slug;
         }
         return downcoded;
-    }
+    };
 
-    var slugify = function(s, num_chars) {
+    var slugify = function(str, num_chars) {
+        var s, r, removelist;
         // changes, e.g., "Petty theft" to "petty_theft"
         // remove all these words from the string before slugifying
-        s = downcode(s);
+        s = downcode(str);
         removelist = ["a", "an", "as", "at", "before", "but", "by", "for", "from",
-                      "is", "in", "into", "like", "of", "off", "on", "onto", "per",
-                      "since", "than", "the", "this", "that", "to", "up", "via",
-                      "with"];
+                          "is", "in", "into", "like", "of", "off", "on", "onto", "per",
+                          "since", "than", "the", "this", "that", "to", "up", "via",
+                          "with"];
         r = new RegExp('\\b(' + removelist.join('|') + ')\\b', 'gi');
         s = s.replace(r, '');
         // if downcode doesn't hit, the char will be stripped here
-        s = s.replace(/[^-\w\s]/g, '');  // remove unneeded chars
+        s = s.replace(/[^\-\w\s]/g, '');  // remove unneeded chars
         s = s.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
-        s = s.replace(/[-\s]+/g, '-');   // convert spaces to hyphens
+        s = s.replace(/[\-\s]+/g, '-');   // convert spaces to hyphens
         s = s.toLowerCase();             // convert to lowercase
         return s.substring(0, num_chars || 255);// trim to first num_chars chars
-    }
+    };
     $.slugify = function(){
         return slugify.apply(this, arguments);
     };

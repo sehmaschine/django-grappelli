@@ -1,6 +1,8 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gRelated
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
@@ -14,8 +16,8 @@ $.RelatedBase = {
     },
 
     // Called when the "Browse" button is clicked on Related and GenericRelated fields
-    _browse: function(link) {
-        var link = $(link);
+    _browse: function(l) {
+        var link = $(l);
         var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
         var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
         wm._data('element', link.prevAll('input:first'));
@@ -26,7 +28,6 @@ $.RelatedBase = {
     // Called when the object id field is changed and it updates the label accordingly
     _lookup: function(e){
         var ui   = this;
-        var text = ui.dom.text;
         if (ui.dom.link.attr('href')) {
             var app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
             var model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
@@ -80,7 +81,7 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
         
         // use existing <strong> element if present
         if (ui.element.nextAll('strong:first').get(0)) {
-            ui.dom.text = ui.element.nextAll('strong:first') 
+            ui.dom.text = ui.element.nextAll('strong:first');
         }
         else {
             ui.dom.text.insertAfter(ui.dom.link);
@@ -150,7 +151,7 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase
+$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase;
 
 // Used in popup windows to disable default django behaviors
 $(function(){
@@ -212,7 +213,7 @@ $(function(){
         l.each(function() {
             $('<option />').val(this.value).attr('selected', this.selected).appendTo(s).text(this.label);
         });
-    }
+    };
 
     // Add popup
     $('a[onclick^=return\\ showAddAnotherPopup]')
@@ -235,9 +236,9 @@ $(function(){
         // I can't get rid of this function .. (I could by using the middleware, but it would make it a requirement..)
         // django/contrib/admin/options.py: 
         // return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(...
-        var wm  = opener.jQuery('html').data(window.name)
-        var el = opener.jQuery('#'+ wm['id']);
-        var wm2 = $.wm(window.name);
+        var wm  = opener.jQuery('html').data(window.name);
+        var el = opener.jQuery('#'+ wm.id);
+
         opener.dismissAddAnotherPopup = function (w, newId, newRepr) {
             if (wm) {
                 if (el.get(0)) {
@@ -260,7 +261,7 @@ $(function(){
                         }
                         else if (el.hasClass('vAutocompleteRawIdAdminField')) {
                             el.val(newId);
-                            el.prevAll('input.ui-gAutocomplete-autocomplete').val($.unescapeHTML(newRepr))
+                            el.prevAll('input.ui-gAutocomplete-autocomplete').val($.unescapeHTML(newRepr));
                         }
                         else {
                             el.val(newId);
@@ -270,9 +271,8 @@ $(function(){
                 }
                 w.close();
             }
-        }
+        };
     }
 });
-
 
 })(jQuery);

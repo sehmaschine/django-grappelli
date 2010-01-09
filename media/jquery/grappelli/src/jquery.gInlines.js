@@ -1,6 +1,8 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gInlineGroup, gInlineStacked, gInlineTabular
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
@@ -108,13 +110,13 @@ $.widget('ui.gInlineGroup', {
     open: function() {
         return this.element.data('collapsed', false)
             .removeClass('collapse-closed')
-            .addClass('collapse-open')
+            .addClass('collapse-open');
     },
     
     close: function() {
         return this.element.data('collapsed', true)
             .removeClass('collapse-open')
-            .addClass('collapse-closed')
+            .addClass('collapse-closed');
     },
     
     toggle: function() {
@@ -262,10 +264,10 @@ $.widget('ui.gInlineStacked', {
         
         /// OPEN STACKEDINLINE WITH ERRORS (onload)
         $('.inline-group:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
-    },
+    }
 });
 $.ui.gInlineStacked.defaults = {
-    collapsible: true,
+    collapsible: true
 };
 
 // INLINE TABULAR
@@ -285,7 +287,7 @@ $.widget('ui.gInlineTabular', {
         ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
             $(this).parents('div.inline-tabular').removeClass("collapsed");
         });
-    },
+    }
 });
 
 })(jQuery);

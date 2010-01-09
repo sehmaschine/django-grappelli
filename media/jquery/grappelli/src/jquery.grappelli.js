@@ -1,27 +1,16 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 // Fail silently if gettext is unavailable
 if (typeof(gettext) == 'undefined') {
-    function gettext(i) { return i; };
+    gettext = function (i) { return i; };
 }
 
-/* Deprecated
-$.popup = function(name, href, options) {
-    var arr = [];
-    var opt = $.extend({width:  600, height: 920, resizable: true, scrollbars: true}, options);
-    $.each(opt, function(k, v){ arr.push(k +'='+ v); });
-    var win  = window.open(href, name, arr.join(','));
-    win.name = name;
-    win.focus();
-    return win;
-};
-*/
-
 // Minimal Window Manager
-
 $.wm = function () {
     this.defaults = {width:  600, height: 920, resizable: true, scrollbars: true};
 
@@ -29,7 +18,7 @@ $.wm = function () {
         var html  = (opener && opener.jQuery('html') || $('html'));
         var cache = html.data(this.name);
         if (cache) {
-            if (k && v) { return cache[k] = v; }
+            if (k && v) { cache[k] = v; return v; }
             else if (k) { return cache[k] || false; }
             else        { return cache; }
         }
@@ -68,8 +57,8 @@ $.wm = function () {
     else {
         this.name = arguments[0];
         var data = (opener && opener.jQuery('html') || $('html')).data(this.name);
-        if (data && data['instance']) {
-            return data['instance'];
+        if (data && data.instance) {
+            return data.instance;
         }
         else {
             return false;
@@ -77,6 +66,7 @@ $.wm = function () {
     }
 
     (opener && opener.jQuery('html') || $('html')).data(this.name, { instance: this });
+
     return this;
 };
 
@@ -111,9 +101,10 @@ $(function(){
                     title:  $(this).find('h1:first').hide().text(),
                     height: 300        
                 }).show();
-            })
+            });
         return false;
     });
+
 });
 
 })(jQuery);

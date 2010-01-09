@@ -1,6 +1,8 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gActions
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 

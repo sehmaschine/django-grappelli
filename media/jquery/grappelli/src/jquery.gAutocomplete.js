@@ -1,10 +1,10 @@
-/*  Author: Maxime Haineault <max@motion-m.ca>
+/*  Author:  Maxime Haineault <max@motion-m.ca>
  *  widget:  gAutocomplete
  *  Package: Grappelli
  *  Todo:
  *   - Caching
  *
- *
+ *  jslinted - 8 Jan 2010
  * */
 (function($){
 
@@ -16,27 +16,11 @@ $.fn.nextOrFirst = function() {
 };
 
 $.widget('ui.gAutocomplete', {
+
     _lastRequest: 0,
     _results: [],
     _select_onload: false,
-    // This method is called when the "Browse" button is clicked on
-    // Autocomplete fields
-    _browse: function(link) {
-        var link = $(link);
-        var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
-        wm._data('element', link.prevAll('input:first'));
-        wm.open();
-        return false;
-    },
-    _lookup: function(id) {
-        var ui = this;
-        $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
-            if (data) {
-                ui.dom.input.val(decodeURI(data));
-            }
-        });
-    },
+
     _init: function() {
         var ui = this;
         ui.dom = {
@@ -44,7 +28,7 @@ $.widget('ui.gAutocomplete', {
             results: ui._createElement('ul',    {ns: 'results'}), 
             input:   ui._createElement('input', {ns: 'autocomplete', attr:{type: 'text'}}).addClass('vAutocompleteSearchField'), 
             browse:  ui._createElement('a',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}).addClass('ui-corner-left ui-state-default')
-                                                                .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>'), 
+                                                                .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>') 
         };
         
         $('[name="'+ ui.element.attr('id') +'"]').bind('updated', function(e){
@@ -59,11 +43,10 @@ $.widget('ui.gAutocomplete', {
 
         ui.dom.input.insertAfter(ui.element.hide());
         if (ui.options.width) {
-            ui.dom.input.width(ui.options.width)
+            ui.dom.input.width(ui.options.width);
         }
-        var width = ui.dom.input.width() 
-                        + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) 
-                        + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
+        var width = ui.dom.input.width() + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
+
         if (ui.options.browse) {
             var w = ui.dom.input.width();
             ui.dom.browse.insertBefore(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
@@ -93,43 +76,57 @@ $.widget('ui.gAutocomplete', {
         ui._bind(ui.dom.input, 'keydown', function(e){
             var kc = e.keyCode || 0;
             var key = $.ui.keyCode;
-            var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 8, 9];
+            //var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 8, 9];
             switch(kc) {
-                case key.UP:     return ui._select('prev'); break;
-                case key.DOWN:   return ui._select('next'); break;
-                case key.ENTER:  e.preventDefault(); return ui._choose(); break;
-                case key.ESCAPE: return ui._cancel(); break;
+                case key.UP:     return ui._select('prev');
+                case key.DOWN:   return ui._select('next');
+                case key.ENTER:  e.preventDefault(); return ui._choose();
+                case key.ESCAPE: return ui._cancel();
                 default:
                 return true;
-                break;
             }
         });
 
         //ui._bind(ui.dom.input, 'blur', function(){ ui._hideList(); });
         ui.dom.input.delayedObserver(function(e){
             var kc = e.keyCode || 0;
-            var key = $.ui.keyCode;
             var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9];
-            switch(kc) {
-                default:
-                // Option: minChar
-                if ($(this).val().length >= ui.options.minChars) { 
-                    if ($.inArray(kc, noCompletes) < 0) {
-                        ui._autocomplete();
-                    }
+            // Option: minChar
+            if ($(this).val().length >= ui.options.minChars) { 
+                if ($.inArray(kc, noCompletes) < 0) {
+                    ui._autocomplete();
                 }
-                else {
-                    ui.dom.wrapper.hide();
-                    ui._selected().removeClass('selected');
-                    if ($(this).val().length == 0) {
-                        ui._setVal();
-                    }
+            }
+            else {
+                ui.dom.wrapper.hide();
+                ui._selected().removeClass('selected');
+                if ($(this).val().length === 0) {
+                    ui._setVal();
                 }
-                return true;
-                break;
             }
         }, ui.options.delay);
     },
+    
+    // This method is called when the "Browse" button is clicked on
+    // Autocomplete fields
+    _browse: function(l) {
+        var link = $(l);
+        var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm._data('element', link.prevAll('input:first'));
+        wm.open();
+        return false;
+    },
+
+    _lookup: function(id) {
+        var ui = this;
+        $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
+            if (data) {
+                ui.dom.input.val(decodeURI(data));
+            }
+        });
+    },
+
     _setVal: function(val) {
         var ui = this;
         if (val) {
@@ -141,6 +138,7 @@ $.widget('ui.gAutocomplete', {
             ui.dom.input.val('');
         }
     },
+
     _createElement: function(type, options) {
         var ui = this;
         var el = $('<'+ type +' />');
@@ -149,14 +147,14 @@ $.widget('ui.gAutocomplete', {
         if (op.attr)         { el.attr(op.attr); }
         return el;
     },
+
     _bind: function(element, eventName, callback) {
         var ui = this; 
         element.bind(eventName +'.'+ ui.widgetEventPrefix, function(e){
             return callback.apply(this, [e, ui]);
         });
     },
-    _callback: function(e, ui) {
-    },
+
     _hideList: function() {
         var ui = this;
         if (ui.dom.wrapper.is(':visible')){
@@ -164,6 +162,7 @@ $.widget('ui.gAutocomplete', {
             $('html').unbind('click.gAutocomplete');
         }
     },
+
     _showList: function(){
         var ui = this;
         if (ui.dom.wrapper.is(':hidden')){
@@ -175,23 +174,27 @@ $.widget('ui.gAutocomplete', {
             });
         }
     },
+
     _select: function(which) {
         var ui = this;
+        var li = false;
         ui._showList();
         var selected = ui._selected();
         if (selected.length > 0) {
-            var li = selected.removeClass('selected')[(which == 'prev' && 'prevOrLast' || 'nextOrFirst')]();
+            li = selected.removeClass('selected')[(which == 'prev' && 'prevOrLast' || 'nextOrFirst')]();
         }
         else {
-            var li = ui.dom.results.find((which == 'prev' && 'li:last-child' || 'li:first-child')).addClass('selected');
+            li = ui.dom.results.find((which == 'prev' && 'li:last-child' || 'li:first-child')).addClass('selected');
         }
         li.addClass('selected');
         ui._choose(true);
         return true;
     },
+
     _selected: function() {
         return this.dom.results.find('li.selected');
     },
+
     _autocomplete: function() {
         var ui  = this;
         var url = ui.options.backend +'?q='+ ui.dom.input.val();
@@ -215,9 +218,11 @@ $.widget('ui.gAutocomplete', {
             }
         });
     },
+
     results: function() {
         return this._results;         
     },
+
     _choose: function(nonSticky) {
         var ui = this;
         var node = ui.dom.results.find('.selected');
@@ -240,6 +245,7 @@ $.widget('ui.gAutocomplete', {
         ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky, data: node.data('json')}));
         return false;
     },
+
     _cancel: function() {
         var ui = this;
         ui.dom.results.find('.selected').removeClass('selected');
@@ -250,17 +256,21 @@ $.widget('ui.gAutocomplete', {
         ui._hideList();
         return false;
     },
+
     _redraw: function() {
         var ui = this;
+        var li, item, txt = false;
         var rs = ui.options.maxResults && ui._results.slice(0, ui.options.maxResults) || ui._results;
+        var liMouseMove = function() { ui._shiftSelection(item); };
+        var liClick = function() { ui._shiftSelection(item)._choose(); };
         ui.element.trigger('redraw');
         ui.dom.results.empty();
 
         if (rs.length > 0) {
             for (var x=0; x<rs.length; x++) {
-                var item = rs[x];
-                var txt  = $.format(ui.options.listFormat, item);
-                var li   = ui._createElement('li', {ns: 'result'}).data('json', item).appendTo(ui.dom.results)
+                item = rs[x];
+                txt  = $.format(ui.options.listFormat, item);
+                li   = ui._createElement('li', {ns: 'result'}).data('json', item).appendTo(ui.dom.results);
                 
                 // Option: highlight
                 if (ui.options.highlight) {
@@ -271,15 +281,15 @@ $.widget('ui.gAutocomplete', {
                 }
                 ui.dom.input.removeClass('no-match');
                 ui.dom.results.find('.selected').removeClass('selected');
-                ui._bind(li, 'mouseover', function() { ui._shiftSelection(item); });
-                ui._bind(li, 'click',     function() { ui._shiftSelection(item)._choose(); });
+                ui._bind(li, 'mouseover', liMouseMove);
+                ui._bind(li, 'click',     liClick);
             }
             ui._showList();
         }
         else {
             ui.dom.input.addClass('no-match');
              if (ui.options.create) {
-                var li  = ui._createElement('li', {ns: 'result'}).data('create', true);
+                li = ui._createElement('li', {ns: 'result'}).data('create', true);
                 li.text(ui.options.createText);
                 ui.dom.results.html(li);
                 ui._showList();
@@ -287,6 +297,7 @@ $.widget('ui.gAutocomplete', {
         }
         ui.element.trigger('redrawn');
     },
+
     _shiftSelection: function(el) {
         $(el).addClass('selected').siblings().removeClass('selected');
         return this;

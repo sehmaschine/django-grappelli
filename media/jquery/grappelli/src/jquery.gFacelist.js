@@ -1,10 +1,13 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gFacelist
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 $.widget('ui.gFacelist', {
+
     _init: function(){
         var ui = this;
         // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
@@ -23,7 +26,7 @@ $.widget('ui.gFacelist', {
         
         ui.dom.rawfield.val(ui.dom.rawfield.val().replace(/\[|\]/g, ''));
         ui.dom.input.wrap('<li />').parent().appendTo(ui.dom.facelist);
-        ui.dom.wrapper.append(ui.dom.toolbar, ui.dom.facelist).insertAfter(ui.element)
+        ui.dom.wrapper.append(ui.dom.toolbar, ui.dom.facelist).insertAfter(ui.element);
 
         if (ui.options.browse) {
             ui.dom.browse = ui._button('browse', {href: ui.options.related_url, title: 'Browse'})
@@ -33,8 +36,8 @@ $.widget('ui.gFacelist', {
                 });
         }
         if (ui.options.clear) {
-            ui.dom.clear = ui._button('clear', {href: '#', title: 'Clear all'}),
-            ui.dom.toolbar.append(ui.dom.clear)
+            ui.dom.clear = ui._button('clear', {href: '#', title: 'Clear all'});
+            ui.dom.toolbar.append(ui.dom.clear);
         }
         if (ui.options.message) {
             ui.dom.message = ui._createElement('span', {ns: 'message'}).text('No item selected');
@@ -44,11 +47,11 @@ $.widget('ui.gFacelist', {
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
         // remove already selected items from autocomplete results
         ui.dom.input.bind('redrawn', function(e){
-            var rs = ui.dom.input.gAutocomplete('results');
-            var ids = $.makeArray(ui.dom.facelist.find('.ui-gFacelist-item').map(function(){
+            var ids, div;
+            ids = $.makeArray(ui.dom.facelist.find('.ui-gFacelist-item').map(function(){
                 return $(this).data('json').id;
             }));
-            var div = $(this).nextAll('div');
+            div = $(this).nextAll('div');
             div.find('li').each(function(){
                 if ($.inArray($(this).data('json').id, ids) >= 0) {
                     $(this).remove();
@@ -62,7 +65,7 @@ $.widget('ui.gFacelist', {
         ui.dom.ac = ui.dom.wrapper.find('.ui-gAutocomplete-autocomplete');
         ui.dom.ac
             .bind('focus.gFacelist', function(){ ui.dom.facelist.addClass('focus'); })
-            .bind('blur.gFacelist',  function(){ ui.dom.facelist.removeClass('focus'); })
+            .bind('blur.gFacelist',  function(){ ui.dom.facelist.removeClass('focus'); });
 
         ui._bind(ui.dom.wrapper, 'click', function(e){ 
             if (!$(e.target).hasClass('ui-gAutocomplete-autocomplete')) {
@@ -71,23 +74,17 @@ $.widget('ui.gFacelist', {
         });
                           
         ui._bind(ui.dom.ac, 'keydown', function(e){
-            switch(e.keyCode) {
-                case $.ui.keyCode.BACKSPACE:
-                    if (!ui.dom.ac.val().length) {
-                        ui.dom.input.parent().prev().remove();
-                    }
-                break;
-                case $.ui.keyCode.ENTER:    
-                    return false;
-                break;
+            if (e.keyCode == $.ui.keyCode.BACKSPACE && !ui.dom.ac.val().length) {
+                ui.dom.input.parent().prev().remove();
+            }
+            else if ($.ui.keyCode.ENTER) {
+                return false;
             }
         });
 
         ui._bind(ui.dom.ac, 'keyup', function(e){
-            switch(e.keyCode) {
-                case $.ui.keyCode.ESCAPE:   
-                    ui.dom.ac.val(''); 
-                break;
+            if (e.keyCode == $.ui.keyCode.ESCAPE) {
+                ui.dom.ac.val(''); 
             }
         });
         ui._bind(ui.dom.input, 'complete', function(e){
@@ -104,34 +101,40 @@ $.widget('ui.gFacelist', {
         }
 
     },
+
     addVal: function (i) {
         this._addItem(i);
     },
-    _browse: function(link) {
-        var link = $(link);
-        var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+
+    _browse: function(l) {
+        var link, href, wm;
+        link = $(l);
+        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
         wm._data('element', this.element);
         wm.open();
         return false;
     },
+
     _message: function(msg) {
         var ui = this;
         if (!msg && ui.options.message) {
             var count = ui.dom.facelist.find('.ui-gFacelist-item').length;
-            var msg = count > 1 && '{0:d} selected items' || '{0:d} selected item';
+            msg = count > 1 && '{0:d} selected items' || '{0:d} selected item';
             ui.dom.message.text($.format(msg, count));
         }
     },
+
     _removeItem: function (item) {
         var ui = this;
         var el = $(item);
-        ui._removeId(el.data('json')['id']);
+        ui._removeId(el.data('json').id);
         el.remove();
         ui._message(); 
     },
+
     _addItem: function(data) {
-        var ui = this
+        var ui = this;
         if (data.label != '') {
             var label = $('<span />').text(data.label);
             var button = ui._createElement('li', {ns: 'item'})
@@ -148,25 +151,30 @@ $.widget('ui.gFacelist', {
             return button;
         }
     },
+
     _addId: function (id) {
-        var ui    = this;
-        var ids   = ui.dom.rawfield.val().split(',');
-        var stack = $.map(ids, function (v){ if (v != '') { return v; } });
+        var ui, ids, stack;
+        ui    = this;
+        ids   = ui.dom.rawfield.val().split(',');
+        stack = $.map(ids, function (v){ if (v != '') { return v; } });
         stack.push(id);
         ui.dom.rawfield.val(stack.join(','));
         return ui;
     },
+
     _removeId: function (id) {
-        var ui    = this;
-        var ids   = ui.dom.rawfield.val().replace(/\[|\]/g,'').split(',');
-        var stack = $.map(ids, function (v){ if (v != id) { return v; } });
+        var ui, ids, stack;
+        ui    = this;
+        ids   = ui.dom.rawfield.val().replace(/\[|\]/g,'').split(',');
+        stack = $.map(ids, function (v){ if (v != id) { return v; } });
         ui.dom.rawfield.val($.format('{0:s}', stack.join(',')));
         return ui;
     },
+
     _button: function(ns, attr) {
-        var ui = this;
-        var at = attr || {};
-        var el = ui._createElement('a', {ns: ns, attr: attr })
+        var ui, el;
+        ui = this;
+        el = ui._createElement('a', {ns: ns, attr: attr || {} })
                 .addClass('ui-state-default')
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, 
                        function(){ $(this).removeClass('ui-state-hover'); });
@@ -175,22 +183,27 @@ $.widget('ui.gFacelist', {
         }
         return el;
     },
+
     _createElement: function(type, options, innerHTML) {
-        var ui = this;
-        var el = $('<'+ type +' />');
-        var op = options || {};
+        var ui, el, op;
+        ui = this;
+        el = $('<'+ type +' />');
+        op = options || {};
         if (type != 'input') { el.addClass('ui-helper-reset'); }
         if (op.ns)           { el.addClass(ui.widgetBaseClass +'-'+ op.ns); }
         if (op.attr)         { el.attr(op.attr); }
         return el;
     },
+
     _bind: function(element, eventName, callback) {
         var ui = this; 
         element.bind(eventName +'.'+ ui.widgetEventPrefix, function(e){
             return callback.apply(this, [e, ui]);
         });
-    },
+    }
+
 });
+
 $.ui.gFacelist.defaults = {
     browse:   true,
     clearAll: true,

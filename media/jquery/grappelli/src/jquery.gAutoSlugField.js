@@ -1,20 +1,17 @@
-/*  Author: Maxime Haineault <max@motion-m.ca>
- *  widget:  gAutoSlugField
- *  Package: Grappelli
- *  Requies: jquery.slugify.js
+/*  Author:   Maxime Haineault <max@motion-m.ca>
+ *  widget:   gAutoSlugField
+ *  Package:  Grappelli
+ *  Requires: jquery.slugify.js
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 $.widget('ui.gAutoSlugField', {
-    _refresh: function(e, el) {
-        var val = $.slugify(el.val());
-        if (val != '') {
-            this.element.val(val);
-        }
-    },
+
     _init: function() {
         var ui = this;
-        ui.element.delayedObserver(function(){
+        ui.element.delayedObserver(function(e){
             ui._refresh(e, $(this));
         }, ui.options.delay);
 
@@ -28,6 +25,13 @@ $.widget('ui.gAutoSlugField', {
             if (ui.element.val() != $.slugify(ui.elementTarget.val())) {
                 ui.element.val($.slugify(ui.elementTarget.val()));
             }
+        }
+    },
+    
+    _refresh: function(e, el) {
+        var val = $.slugify(el.val());
+        if (val != '') {
+            this.element.val(val);
         }
     }
 });
