@@ -10,10 +10,7 @@
 $.widget('ui.gAutoSlugField', {
 
     _init: function() {
-        var ui = this;
-        ui.element.delayedObserver(function(e){
-            ui._refresh(e, $(this));
-        }, ui.options.delay);
+        var ui = this; 
 
         if (ui.element.attr('rel')) {
             ui.elementTarget = $('#id_'+ ui.element.attr('rel'));
@@ -26,13 +23,16 @@ $.widget('ui.gAutoSlugField', {
                 ui.element.val($.slugify(ui.elementTarget.val()));
             }
         }
+        ui.element.delayedObserver(function(e){
+            ui._refresh($(e));
+        }, ui.options.delay);
     },
     
-    _refresh: function(e, el) {
-        var val = $.slugify(el.val());
-        if (val != '') {
-            this.element.val(val);
-        }
+    _refresh: function(el) {
+      //var val = $.slugify(el.val());
+      //if (val != '') {
+      //    this.element.val(val);
+      //}
     }
 });
 

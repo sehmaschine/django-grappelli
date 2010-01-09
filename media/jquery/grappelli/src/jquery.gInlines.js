@@ -113,7 +113,7 @@ $.widget('ui.gInlineGroup', {
             .addClass('collapse-open');
     },
     
-    close: function() {
+    close: function(){
         return this.element.data('collapsed', true)
             .removeClass('collapse-open')
             .addClass('collapse-closed');

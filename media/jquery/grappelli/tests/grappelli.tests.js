@@ -22,7 +22,6 @@ test("Checking presence of jQuery required methods", methods.length, function() 
 
 
 // --
-
 module("jQuery.gFacelist.js", {
     setup: function(){
         fltest = $('#m2m_test');
@@ -71,9 +70,7 @@ test("Initialization", 4, function() {
     $('#id_slug_test').val('test2').trigger($.Event({type:'keyup'}));
     ok($('#id_char_test').val() != 'test2', 'Target field does not change when slugfield is changed');
     
-    $('#id_char_test').val("hello world|!/'$%?&*()_-abc").trigger($.Event({type:'keyup'}));
-
-    equals($('#id_slug_test').val(), "hello-world_-abc", 'Slugify escape characters correctly');
+    equals($.slugify("hello world|!/'$%?&*()_-abc"), "hello-world_-abc", 'Slugify escape characters correctly');
     
     
 });

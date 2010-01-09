@@ -1,21 +1,73 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 // Fail silently if gettext is unavailable
 if (typeof(gettext) == 'undefined') {
-    function gettext(i) { return i; };
+    gettext = function (i) { return i; };
 }
 
-$.popup = function(name, href, options) {
-    var arr = [];
-    var opt = $.extend({width:  600, height: 920, resizable: true, scrollbars: true}, options);
-    $.each(opt, function(k, v){ arr.push(k +'='+ v); });
-    var win  = window.open(href, name, arr.join(','));
-    win.name = name;
-    win.focus();
-    return win;
+// Minimal Window Manager
+$.wm = function () {
+    this.defaults = {width:  600, height: 920, resizable: true, scrollbars: true};
+
+    this._data = function (k, v){
+        var html  = (opener && opener.jQuery('html') || $('html'));
+        var cache = html.data(this.name);
+        if (cache) {
+            if (k && v) { cache[k] = v; return v; }
+            else if (k) { return cache[k] || false; }
+            else        { return cache; }
+        }
+        else {
+            return false;
+        }
+    };
+
+    this._getOptions = function () {
+        var a = [];
+        $.each(this.options, function(k, v){ 
+            a.push(k +'='+ v); 
+        });
+        return a.join(',');
+    };
+
+    this.close = function () {
+        this.window.close();
+        this.window = false;
+    };
+
+    this.open = function (focus) {
+        this.window = window.open(this.href, this.name, this._getOptions());
+        this.window.name = this.name;
+        if (focus) {
+            this.window.focus();
+        }
+        return this.window;
+    };
+    if (arguments.length > 1) {
+        this.href    = arguments[0];
+        this.options = $.extend(this.defaults, arguments[1] || {});
+        this.name    = 'window-'+ String((new Date()).getTime());
+        this.window  = false;
+    }
+    else {
+        this.name = arguments[0];
+        var data = (opener && opener.jQuery('html') || $('html')).data(this.name);
+        if (data && data.instance) {
+            return data.instance;
+        }
+        else {
+            return false;
+        }
+    }
+
+    (opener && opener.jQuery('html') || $('html')).data(this.name, { instance: this });
+
+    return this;
 };
 
 $.unescapeHTML = function(str) {
@@ -28,6 +80,12 @@ $(function(){
     // Fieldset collapse
     $('.module.collapse-closed h2, .module.collapse-open h2').addClass('collapse-toggle').bind('click.grappelli', function(){
         $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
+    });
+
+
+    // Collapsible groups
+    $('.group-collapsible .section').parent().bind('click.grappelli', function (){
+        $(this).parents('table').find('tbody').toggle();
     });
 
     // Always focus first field of a form OR the search input
@@ -43,24 +101,28 @@ $(function(){
                     title:  $(this).find('h1:first').hide().text(),
                     height: 300        
                 }).show();
-            })
+            });
         return false;
     });
+
 });
 
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gTimeField
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 $.widget('ui.gTimeField', {
+
     _init: function() {
         var ui = this;
         ui.dom = {
             picker: $('<div class="clockbox module"><h2 class="clock-title" /><ul class="timelist" /><p class="clock-cancel"><a href="#" /></p></div>'),
-            button: $('<button class="ui-timepicker-trigger" type="button" />'),
+            button: $('<button class="ui-timepicker-trigger" type="button" />')
         };
         ui.dom.picker.appendTo('body')
             .find('h2').text(gettext('Choose a time')).end()
@@ -92,6 +154,7 @@ $.widget('ui.gTimeField', {
             ui.element.mask(ui.options.mask);
         }
     },
+
     toggle: function(at) {
         var ui = this;
         if (ui.dom.picker.is(':visible')) {
@@ -101,6 +164,7 @@ $.widget('ui.gTimeField', {
             ui.show(at);
         }
     },
+
     show: function(at) {
         var pos = $(at).offset();
         var ui = this;
@@ -116,6 +180,7 @@ $.widget('ui.gTimeField', {
             }
         });
     },
+
     hide: function() {
         var ui = this;
         if (ui.dom.picker.is(':visible')) {
@@ -123,6 +188,7 @@ $.widget('ui.gTimeField', {
             $('body').unbind('click.gTimeField');
         }
     }
+
 });
 
 $.ui.gTimeField.defaults = {
@@ -147,6 +213,8 @@ $.ui.gTimeField.defaults = {
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gDateField
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
@@ -155,15 +223,17 @@ $.datepicker.setDefaults({
     buttonText:      'Date picker',
     showOn:          'button',
     showButtonPanel: true, 
-    closeText:       gettext('Cancel'),
+    closeText:       gettext && gettext('Cancel') || 'Cancel'
 //  buttonImage:     ADMIN_MEDIA_PREFIX +'img/icons/icon-calendar.png'
 });
 
 $.widget('ui.gDateField', {
     _init: function() {
         var ui = this;
+
         ui.element.datepicker()
             .parent().find('br').replaceWith('<span class="spacer" />');
+
         if (ui.options.mask) {
             ui.element.mask(ui.options.mask);
         }
@@ -171,17 +241,20 @@ $.widget('ui.gDateField', {
 });
 
 $.ui.gDateField.defaults = {
-    mask: '9999-99-99', // set to false to disable
+    mask: '9999-99-99' // set to false to disable
 };
 
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gChangelist
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 $.widget('ui.gChangelist', {
+
     _init: function() {
         var ui = this;
           
@@ -234,9 +307,11 @@ $.widget('ui.gChangelist', {
 });
 
 })(jQuery);
-/*  Author: Maxime Haineault <max@motion-m.ca>
+/*  Author:  Maxime Haineault <max@motion-m.ca>
  *  widget:  gBookmarks
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
@@ -293,6 +368,8 @@ $.ui.gBookmarks.defaults = {
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gInlineGroup, gInlineStacked, gInlineTabular
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
@@ -397,16 +474,16 @@ $.widget('ui.gInlineGroup', {
         return el;
     },
     
-    open: function() {
+    open: function() {
         return this.element.data('collapsed', false)
             .removeClass('collapse-closed')
-            .addClass('collapse-open')
+            .addClass('collapse-open');
     },
     
-    close: function() {
+    close: function(){
         return this.element.data('collapsed', true)
             .removeClass('collapse-open')
-            .addClass('collapse-closed')
+            .addClass('collapse-closed');
     },
     
     toggle: function() {
@@ -554,10 +631,10 @@ $.widget('ui.gInlineStacked', {
         
         /// OPEN STACKEDINLINE WITH ERRORS (onload)
         $('.inline-group:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
-    },
+    }
 });
 $.ui.gInlineStacked.defaults = {
-    collapsible: true,
+    collapsible: true
 };
 
 // INLINE TABULAR
@@ -577,7 +654,7 @@ $.widget('ui.gInlineTabular', {
         ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
             $(this).parents('div.inline-tabular').removeClass("collapsed");
         });
-    },
+    }
 });
 
 })(jQuery);
@@ -587,21 +664,26 @@ $.widget('ui.gInlineTabular', {
  *
  *  Binding to old SelectFilter calls.. cannot be removed because the calls are
  *  hardcoded into django's source..
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
-var SelectFilter = { 
+// Legacy compatibility
+window.SelectFilter = { 
     init: function(id, name, stacked, admin_media_prefix){ 
         $('#'+id).gSelectFilter({stacked: stacked, name: name});
     }
 };
 
 $.widget('ui.gSelectFilter', {
+    
     _cache: {avail: [], chosen: []},
-    _init: function() {
-        var ui   = this;
-        var id   = ui.element.attr('id');
 
+    _init: function() {
+        var id, ui;
+        ui = this;
+        id = ui.element.attr('id');
         ui.dom  = {
             wrapper:   $('<div />').appendTo(ui.element.parent()).addClass(ui.options.stacked ? 'selector stacked' : 'selector'),
             available: $('<div />').addClass('selector-available'),
@@ -675,16 +757,17 @@ $.widget('ui.gSelectFilter', {
     },
 
     // Repopulate HTML select box from cache
-    _redraw: function(cid) {
-        var ui  = this;
-        var cids = cid && [cid] || ['avail', 'chosen'];
+    _redraw: function(i) {
+        var ui, cids, cid, node, w, x, y, z;
+        ui   = this;
+        cids = i && [i] || ['avail', 'chosen'];
 
-        for (var x = 0, y = cids.length; x < y; x++) {
-            var cid = cids[x];
+        for (w = 0, x = cids.length; w < x; w++) {
+            cid = cids[w];
             ui._sort(cid);
             ui.dom.select[cid].find('option').remove();
-            for (var i = 0, j = ui._cache[cid].length; i < j; i++) {
-                var node = ui._cache[cid][i];
+            for (y = 0, z = ui._cache[cid].length; y < z; y++) {
+                node = ui._cache[cid][y];
                 if (node.displayed) {
                     $('<option />').val(node.value).text(node.text).appendTo(ui.dom.select[cid]);
                 }
@@ -693,16 +776,16 @@ $.widget('ui.gSelectFilter', {
     },
     
     _delete_from_cache: function(cid, value) {
-        var ui = this;
-        var node, delete_index = null;
-        for (var i = 0; (node = ui._cache[cid][i]); i++) {
+        var ui, node, delete_index, i, j;
+        ui = this;
+        for (i = 0; (node = ui._cache[cid][i]); i++) {
             if (node.value == value) {
                 delete_index = i;
                 break;
             }
         }
-        var j = ui._cache[cid].length - 1;
-        for (var i = delete_index; i < j; i++) {
+        j = ui._cache[cid].length - 1;
+        for (i = delete_index; i < j; i++) {
             ui._cache[cid][i] = ui._cache[cid][i+1];
         }
         ui._cache[cid].length--;
@@ -721,38 +804,44 @@ $.widget('ui.gSelectFilter', {
         }
         return false;
     },
+
     _move: function(cid) {
         var ui = this;
         ui.dom.select[cid].find('option').each(function(){
             var $opt = $(this);
-            if ($opt.attr('selected') == true && ui._cache_contains(cid, $opt.val())) {
+            if ($opt.attr('selected') === true && ui._cache_contains(cid, $opt.val())) {
                 ui._add_to_cache((cid == 'avail' && 'chosen' || 'avail'), {value: $opt.val(), text: $opt.text(), displayed: 1});
                 ui._delete_from_cache(cid, $opt.val());
             }
         });
         ui._redraw();
     },
+
     _move_all: function(cid) {
         this.dom.select[cid].find('option').attr('selected', 'true');
         this._move(cid);
     },
+
     _sort: function(cid) {
         this._cache[cid].sort( function(a, b) {
             a = a.text.toLowerCase();
             b = b.text.toLowerCase();
             try {
-                if (a > b) return 1;
-                if (a < b) return -1;
+                if (a > b) { return 1; }
+                if (a < b) { return -1; }
             }
             catch (e) {} // silently fail on IE 'unknown' exception
             return 0;
         } );
     },
+
     _select_all: function(cid) {
         this.dom.select[cid].find('option').attr('selected', 'selected');
     },
+
     _filter_key_up: function(e, cid) {
-        var ui = this;
+        var ui, from, temp;
+        ui   = this;
         from = ui.dom.select[cid].get(0);
         // don't submit form if user pressed Enter
         if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
@@ -761,18 +850,20 @@ $.widget('ui.gSelectFilter', {
             from.selectedIndex = 0;
             return false;
         }
-        var temp = from.selectedIndex;
+        temp = from.selectedIndex;
 
         ui.filter(cid, ui.dom.select[cid].prev().find('input').val());
         from.selectedIndex = temp;
         return true;
     },
+
     _filter_key_down: function(e, cid) {
-        var ui = this;
+        var ui, from, old_index;
+        ui = this;
         from = ui.dom.select[cid].get(0);
         // right arrow -- move across
         if ((e.which && e.which == 39) || (e.keyCode && e.keyCode == 39)) {
-            var old_index = from.selectedIndex;
+            old_index = from.selectedIndex;
             ui._move(cid, (cid == 'avail' && 'chosen' || 'avail'));
             from.selectedIndex = (old_index == from.length) ? from.length - 1 : old_index;
             return false;
@@ -783,7 +874,7 @@ $.widget('ui.gSelectFilter', {
         }
         // up arrow -- wrap around
         if ((e.which && e.which == 38) || (e.keyCode && e.keyCode == 38)) {
-            from.selectedIndex = (from.selectedIndex == 0) ? from.length - 1 : from.selectedIndex - 1;
+            from.selectedIndex = (from.selectedIndex === 0) ? from.length - 1 : from.selectedIndex - 1;
         }
         return true;
     },
@@ -791,13 +882,13 @@ $.widget('ui.gSelectFilter', {
     // Redisplay the HTML select box, displaying only the choices containing ALL
     // the words in text. (It's an AND search.)
     filter: function(cid, text) {
-        var tokens = text.toLowerCase().split(/\s+/);
-        var node, token;
-        var ui  = this;
+        var node, token, tokens, ui, i, j;
+        tokens = text.toLowerCase().split(/\s+/);
+        ui  = this;
 
-        for (var i = 0; (node = ui._cache[cid][i]); i++) {
+        for (i = 0; (node = ui._cache[cid][i]); i++) {
             node.displayed = 1;
-            for (var j = 0; (token = tokens[j]); j++) {
+            for (j = 0; (token = tokens[j]); j++) {
                 if (node.text.toLowerCase().indexOf(token) == -1) {
                     node.displayed = 0;
                 }
@@ -811,6 +902,8 @@ $.widget('ui.gSelectFilter', {
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gActions
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
@@ -824,13 +917,13 @@ $.widget('ui.gActions', {
 });
 
 })(jQuery);
-/*  Author: Maxime Haineault <max@motion-m.ca>
+/*  Author:  Maxime Haineault <max@motion-m.ca>
  *  widget:  gAutocomplete
  *  Package: Grappelli
  *  Todo:
  *   - Caching
  *
- *
+ *  jslinted - 8 Jan 2010
  * */
 (function($){
 
@@ -842,17 +935,11 @@ $.fn.nextOrFirst = function() {
 };
 
 $.widget('ui.gAutocomplete', {
+
     _lastRequest: 0,
     _results: [],
     _select_onload: false,
-    _lookup: function(id) {
-        var ui = this;
-        $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
-            if (data) {
-                ui.dom.input.val(decodeURI(data));
-            }
-        });
-    },
+
     _init: function() {
         var ui = this;
         ui.dom = {
@@ -860,7 +947,7 @@ $.widget('ui.gAutocomplete', {
             results: ui._createElement('ul',    {ns: 'results'}), 
             input:   ui._createElement('input', {ns: 'autocomplete', attr:{type: 'text'}}).addClass('vAutocompleteSearchField'), 
             browse:  ui._createElement('a',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}).addClass('ui-corner-left ui-state-default')
-                                                                .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>'), 
+                                                                .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>') 
         };
         
         $('[name="'+ ui.element.attr('id') +'"]').bind('updated', function(e){
@@ -875,17 +962,16 @@ $.widget('ui.gAutocomplete', {
 
         ui.dom.input.insertAfter(ui.element.hide());
         if (ui.options.width) {
-            ui.dom.input.width(ui.options.width)
+            ui.dom.input.width(ui.options.width);
         }
-        var width = ui.dom.input.width() 
-                        + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) 
-                        + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
+        var width = ui.dom.input.width() + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
+
         if (ui.options.browse) {
             var w = ui.dom.input.width();
             ui.dom.browse.insertBefore(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, function(){ $(this).removeClass('ui-state-hover'); })
                 .bind('click.browse', function(){
-                    return showRelatedObjectLookupPopup(this); 
+                    return ui._browse(this); 
                 });
 
             ui.dom.input
@@ -909,43 +995,57 @@ $.widget('ui.gAutocomplete', {
         ui._bind(ui.dom.input, 'keydown', function(e){
             var kc = e.keyCode || 0;
             var key = $.ui.keyCode;
-            var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 8, 9];
+            //var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 8, 9];
             switch(kc) {
-                case key.UP:     return ui._select('prev'); break;
-                case key.DOWN:   return ui._select('next'); break;
-                case key.ENTER:  e.preventDefault(); return ui._choose(); break;
-                case key.ESCAPE: return ui._cancel(); break;
+                case key.UP:     return ui._select('prev');
+                case key.DOWN:   return ui._select('next');
+                case key.ENTER:  e.preventDefault(); return ui._choose();
+                case key.ESCAPE: return ui._cancel();
                 default:
                 return true;
-                break;
             }
         });
 
         //ui._bind(ui.dom.input, 'blur', function(){ ui._hideList(); });
         ui.dom.input.delayedObserver(function(e){
             var kc = e.keyCode || 0;
-            var key = $.ui.keyCode;
             var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9];
-            switch(kc) {
-                default:
-                // Option: minChar
-                if ($(this).val().length >= ui.options.minChars) { 
-                    if ($.inArray(kc, noCompletes) < 0) {
-                        ui._autocomplete();
-                    }
+            // Option: minChar
+            if ($(this).val().length >= ui.options.minChars) { 
+                if ($.inArray(kc, noCompletes) < 0) {
+                    ui._autocomplete();
                 }
-                else {
-                    ui.dom.wrapper.hide();
-                    ui._selected().removeClass('selected');
-                    if ($(this).val().length == 0) {
-                        ui._setVal();
-                    }
+            }
+            else {
+                ui.dom.wrapper.hide();
+                ui._selected().removeClass('selected');
+                if ($(this).val().length === 0) {
+                    ui._setVal();
                 }
-                return true;
-                break;
             }
         }, ui.options.delay);
     },
+    
+    // This method is called when the "Browse" button is clicked on
+    // Autocomplete fields
+    _browse: function(l) {
+        var link = $(l);
+        var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm._data('element', link.prevAll('input:first'));
+        wm.open();
+        return false;
+    },
+
+    _lookup: function(id) {
+        var ui = this;
+        $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
+            if (data) {
+                ui.dom.input.val(decodeURI(data));
+            }
+        });
+    },
+
     _setVal: function(val) {
         var ui = this;
         if (val) {
@@ -957,6 +1057,7 @@ $.widget('ui.gAutocomplete', {
             ui.dom.input.val('');
         }
     },
+
     _createElement: function(type, options) {
         var ui = this;
         var el = $('<'+ type +' />');
@@ -965,14 +1066,14 @@ $.widget('ui.gAutocomplete', {
         if (op.attr)         { el.attr(op.attr); }
         return el;
     },
+
     _bind: function(element, eventName, callback) {
         var ui = this; 
         element.bind(eventName +'.'+ ui.widgetEventPrefix, function(e){
             return callback.apply(this, [e, ui]);
         });
     },
-    _callback: function(e, ui) {
-    },
+
     _hideList: function() {
         var ui = this;
         if (ui.dom.wrapper.is(':visible')){
@@ -980,6 +1081,7 @@ $.widget('ui.gAutocomplete', {
             $('html').unbind('click.gAutocomplete');
         }
     },
+
     _showList: function(){
         var ui = this;
         if (ui.dom.wrapper.is(':hidden')){
@@ -991,23 +1093,27 @@ $.widget('ui.gAutocomplete', {
             });
         }
     },
+
     _select: function(which) {
         var ui = this;
+        var li = false;
         ui._showList();
         var selected = ui._selected();
         if (selected.length > 0) {
-            var li = selected.removeClass('selected')[(which == 'prev' && 'prevOrLast' || 'nextOrFirst')]();
+            li = selected.removeClass('selected')[(which == 'prev' && 'prevOrLast' || 'nextOrFirst')]();
         }
         else {
-            var li = ui.dom.results.find((which == 'prev' && 'li:last-child' || 'li:first-child')).addClass('selected');
+            li = ui.dom.results.find((which == 'prev' && 'li:last-child' || 'li:first-child')).addClass('selected');
         }
         li.addClass('selected');
         ui._choose(true);
         return true;
     },
+
     _selected: function() {
         return this.dom.results.find('li.selected');
     },
+
     _autocomplete: function() {
         var ui  = this;
         var url = ui.options.backend +'?q='+ ui.dom.input.val();
@@ -1031,9 +1137,11 @@ $.widget('ui.gAutocomplete', {
             }
         });
     },
+
     results: function() {
         return this._results;         
     },
+
     _choose: function(nonSticky) {
         var ui = this;
         var node = ui.dom.results.find('.selected');
@@ -1056,6 +1164,7 @@ $.widget('ui.gAutocomplete', {
         ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky, data: node.data('json')}));
         return false;
     },
+
     _cancel: function() {
         var ui = this;
         ui.dom.results.find('.selected').removeClass('selected');
@@ -1066,16 +1175,21 @@ $.widget('ui.gAutocomplete', {
         ui._hideList();
         return false;
     },
+
     _redraw: function() {
         var ui = this;
+        var li, item, txt = false;
         var rs = ui.options.maxResults && ui._results.slice(0, ui.options.maxResults) || ui._results;
+        var liMouseMove = function() { ui._shiftSelection(item); };
+        var liClick = function() { ui._shiftSelection(item)._choose(); };
         ui.element.trigger('redraw');
         ui.dom.results.empty();
 
         if (rs.length > 0) {
-            $.each(rs, function(){
-                var txt = $.format(ui.options.listFormat, this);
-                var li  = ui._createElement('li', {ns: 'result'}).data('json', this).appendTo(ui.dom.results)
+            for (var x=0; x<rs.length; x++) {
+                item = rs[x];
+                txt  = $.format(ui.options.listFormat, item);
+                li   = ui._createElement('li', {ns: 'result'}).data('json', item).appendTo(ui.dom.results);
                 
                 // Option: highlight
                 if (ui.options.highlight) {
@@ -1086,15 +1200,15 @@ $.widget('ui.gAutocomplete', {
                 }
                 ui.dom.input.removeClass('no-match');
                 ui.dom.results.find('.selected').removeClass('selected');
-                ui._bind(li, 'mouseover', function() { ui._shiftSelection(this); });
-                ui._bind(li, 'click',     function() { ui._shiftSelection(this)._choose(); });
-                ui._showList();
-            });
+                ui._bind(li, 'mouseover', liMouseMove);
+                ui._bind(li, 'click',     liClick);
+            }
+            ui._showList();
         }
         else {
             ui.dom.input.addClass('no-match');
              if (ui.options.create) {
-                var li  = ui._createElement('li', {ns: 'result'}).data('create', true);
+                li = ui._createElement('li', {ns: 'result'}).data('create', true);
                 li.text(ui.options.createText);
                 ui.dom.results.html(li);
                 ui._showList();
@@ -1102,6 +1216,7 @@ $.widget('ui.gAutocomplete', {
         }
         ui.element.trigger('redrawn');
     },
+
     _shiftSelection: function(el) {
         $(el).addClass('selected').siblings().removeClass('selected');
         return this;
@@ -1128,36 +1243,43 @@ $.ui.gAutocomplete.defaults = {
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gFacelist
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 $.widget('ui.gFacelist', {
+
     _init: function(){
         var ui = this;
-
         // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
 
         ui.element.hide().parent().find('p.help').remove();
 
         ui.dom = {
+            rawfield: ui.element.parent().find('input.vM2MAutocompleteRawIdAdminField').hide(),
             wrapper:  ui._createElement('div',  {ns: 'wrapper'}).width(700),
             toolbar:  ui._createElement('div',  {ns: 'toolbar'}).addClass('ui-corner-top ui-state-default'),
             facelist: ui._createElement('ul',   {ns: 'facelist'}).addClass('ui-helper-clearfix'),
             input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}})
                         .addClass('vM2MAutocompleteSearchField').width(100)
         };
-
+        
+        ui.dom.rawfield.val(ui.dom.rawfield.val().replace(/\[|\]/g, ''));
         ui.dom.input.wrap('<li />').parent().appendTo(ui.dom.facelist);
-        ui.dom.wrapper.append(ui.dom.toolbar, ui.dom.facelist).insertAfter(ui.element)
+        ui.dom.wrapper.append(ui.dom.toolbar, ui.dom.facelist).insertAfter(ui.element);
 
         if (ui.options.browse) {
-            ui.dom.browse = ui._button('browse', {href: '#', title: 'Browse'}),
-            ui.dom.toolbar.append(ui.dom.browse)
+            ui.dom.browse = ui._button('browse', {href: ui.options.related_url, title: 'Browse'})
+                .appendTo(ui.dom.toolbar)
+                .bind('click.browse', function(){
+                    return ui._browse(this); 
+                });
         }
         if (ui.options.clear) {
-            ui.dom.clear = ui._button('clear', {href: '#', title: 'Clear all'}),
-            ui.dom.toolbar.append(ui.dom.clear)
+            ui.dom.clear = ui._button('clear', {href: '#', title: 'Clear all'});
+            ui.dom.toolbar.append(ui.dom.clear);
         }
         if (ui.options.message) {
             ui.dom.message = ui._createElement('span', {ns: 'message'}).text('No item selected');
@@ -1165,16 +1287,16 @@ $.widget('ui.gFacelist', {
         }
         
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
-        // hide selected items
+        // remove already selected items from autocomplete results
         ui.dom.input.bind('redrawn', function(e){
-            var rs = ui.dom.input.gAutocomplete('results');
-            var ids = $.makeArray(ui.dom.facelist.find('.ui-gFacelist-item').map(function(){
-                return $(this).data('json').id
+            var ids, div;
+            ids = $.makeArray(ui.dom.facelist.find('.ui-gFacelist-item').map(function(){
+                return $(this).data('json').id;
             }));
-            var div = $(this).nextAll('div');
+            div = $(this).nextAll('div');
             div.find('li').each(function(){
                 if ($.inArray($(this).data('json').id, ids) >= 0) {
-                    $(this).hide();
+                    $(this).remove();
                 }
             });
             if (div.find('li:visible').length < 1) {
@@ -1185,7 +1307,7 @@ $.widget('ui.gFacelist', {
         ui.dom.ac = ui.dom.wrapper.find('.ui-gAutocomplete-autocomplete');
         ui.dom.ac
             .bind('focus.gFacelist', function(){ ui.dom.facelist.addClass('focus'); })
-            .bind('blur.gFacelist',  function(){ ui.dom.facelist.removeClass('focus'); })
+            .bind('blur.gFacelist',  function(){ ui.dom.facelist.removeClass('focus'); });
 
         ui._bind(ui.dom.wrapper, 'click', function(e){ 
             if (!$(e.target).hasClass('ui-gAutocomplete-autocomplete')) {
@@ -1194,62 +1316,107 @@ $.widget('ui.gFacelist', {
         });
                           
         ui._bind(ui.dom.ac, 'keydown', function(e){
-            switch(e.keyCode) {
-                case $.ui.keyCode.BACKSPACE:
-                    if (!ui.dom.ac.val().length) {
-                        ui.dom.input.parent().prev().remove();
-                    }
-                break;
-                case $.ui.keyCode.ENTER:    
-                    return false;
-                break;
+            if (e.keyCode == $.ui.keyCode.BACKSPACE && !ui.dom.ac.val().length) {
+                ui.dom.input.parent().prev().remove();
+            }
+            else if ($.ui.keyCode.ENTER) {
+                return false;
             }
         });
 
         ui._bind(ui.dom.ac, 'keyup', function(e){
-            switch(e.keyCode) {
-                case $.ui.keyCode.ESCAPE:   
-                    ui.dom.ac.val(''); 
-                break;
+            if (e.keyCode == $.ui.keyCode.ESCAPE) {
+                ui.dom.ac.val(''); 
             }
         });
         ui._bind(ui.dom.input, 'complete', function(e){
             if (e.originalEvent.sticky) {
                 ui._addItem(e.originalEvent.data); 
-                ui._message(); 
             }
         });
 
+        // load initial data
+        if (ui.options.initial_data) {
+            $.each(ui.options.initial_data, function(k, v) {
+                ui._addItem({label:v, id: k});
+            });
+        }
+
     },
+
+    addVal: function (i) {
+        this._addItem(i);
+    },
+
+    _browse: function(l) {
+        var link, href, wm;
+        link = $(l);
+        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm._data('element', this.element);
+        wm.open();
+        return false;
+    },
+
     _message: function(msg) {
         var ui = this;
         if (!msg && ui.options.message) {
             var count = ui.dom.facelist.find('.ui-gFacelist-item').length;
-            var msg = count > 1 && '{0:d} selected messages' || '{0:d} selected message';
+            msg = count > 1 && '{0:d} selected items' || '{0:d} selected item';
             ui.dom.message.text($.format(msg, count));
         }
     },
+
+    _removeItem: function (item) {
+        var ui = this;
+        var el = $(item);
+        ui._removeId(el.data('json').id);
+        el.remove();
+        ui._message(); 
+    },
+
     _addItem: function(data) {
         var ui = this;
-        var val = ui.dom.ac.val();
-        if (val != '') {
-            var label = $('<span />').text(val);
+        if (data.label != '') {
+            var label = $('<span />').text(data.label);
             var button = ui._createElement('li', {ns: 'item'})
                     .html(label)
                     .data('json', data)
                     .addClass('ui-corner-all')
+                    .insertBefore(ui.dom.input.parent())
                     .bind('click.gFacelist', function(){
-                        $(this).remove();
-                    })
-                    .insertBefore(ui.dom.input.parent());
+                        ui._removeItem(this);
+                    });
+            ui._addId(data.id);
             ui.dom.ac.val('');
+            ui._message(); 
             return button;
         }
     },
+
+    _addId: function (id) {
+        var ui, ids, stack;
+        ui    = this;
+        ids   = ui.dom.rawfield.val().split(',');
+        stack = $.map(ids, function (v){ if (v != '') { return v; } });
+        stack.push(id);
+        ui.dom.rawfield.val(stack.join(','));
+        return ui;
+    },
+
+    _removeId: function (id) {
+        var ui, ids, stack;
+        ui    = this;
+        ids   = ui.dom.rawfield.val().replace(/\[|\]/g,'').split(',');
+        stack = $.map(ids, function (v){ if (v != id) { return v; } });
+        ui.dom.rawfield.val($.format('{0:s}', stack.join(',')));
+        return ui;
+    },
+
     _button: function(ns, attr) {
-        var ui = this;
-        var at = attr || {};
-        var el = ui._createElement('a', {ns: ns, attr: attr })
+        var ui, el;
+        ui = this;
+        el = ui._createElement('a', {ns: ns, attr: attr || {} })
                 .addClass('ui-state-default')
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, 
                        function(){ $(this).removeClass('ui-state-hover'); });
@@ -1258,22 +1425,27 @@ $.widget('ui.gFacelist', {
         }
         return el;
     },
+
     _createElement: function(type, options, innerHTML) {
-        var ui = this;
-        var el = $('<'+ type +' />');
-        var op = options || {};
+        var ui, el, op;
+        ui = this;
+        el = $('<'+ type +' />');
+        op = options || {};
         if (type != 'input') { el.addClass('ui-helper-reset'); }
         if (op.ns)           { el.addClass(ui.widgetBaseClass +'-'+ op.ns); }
         if (op.attr)         { el.attr(op.attr); }
         return el;
     },
+
     _bind: function(element, eventName, callback) {
         var ui = this; 
         element.bind(eventName +'.'+ ui.widgetEventPrefix, function(e){
             return callback.apply(this, [e, ui]);
         });
-    },
+    }
+
 });
+
 $.ui.gFacelist.defaults = {
     browse:   true,
     clearAll: true,
@@ -1285,7 +1457,7 @@ $.ui.gFacelist.defaults = {
     },
     autocomplete: {
         highlight:  true,
-        browse:     false,
+        browse:     false, // Using Autocomplete's browse becomes too messy ..
         throbber:   false,
         minChars:   1,
         maxResults: 20,
@@ -1297,31 +1469,34 @@ $.ui.gFacelist.defaults = {
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gRelated
  *  Package: Grappelli
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 // Abstract base class for gRelated and gGenericRelated
 
 $.RelatedBase = {
+
+    // Returns the backend url
     _url: function(k) {
         return this.options.getURL(k);
     },
-    _disable: function(state) {
-        this.dom.object_id.attr('disabled', state); 
-    },
-    _browse: function(link) {
-        var link = $(link);
-        // IE doesn't like periods in the window name, so convert temporarily.
-        var name = link.data('id').replace(/\./g, '___'); 
+
+    // Called when the "Browse" button is clicked on Related and GenericRelated fields
+    _browse: function(l) {
+        var link = $(l);
         var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        this._win = $.popup(name, href, {
-                    height: 600 , width: 920, resizable: true, scrollbars: true});
+        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm._data('element', link.prevAll('input:first'));
+        wm.open();
         return false;
     },
+    
+    // Called when the object id field is changed and it updates the label accordingly
     _lookup: function(e){
         var ui   = this;
-        var text = ui.dom.text;
-        if(ui.dom.link.attr('href')) {
+        if (ui.dom.link.attr('href')) {
             var app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
             var model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
 
@@ -1333,10 +1508,8 @@ $.RelatedBase = {
 
                 var url = ui.options[ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2mUrl' || 'url'];
                 
-                // get object
                 $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
                     var item = data;
-                    //ui.dom.text.text('');
                     if (item) {
                         var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
                         if (item.length > tl) {
@@ -1366,16 +1539,25 @@ $.RelatedDefaultsBase = {
 $.widget('ui.gRelated', $.extend($.RelatedBase, {
     _init: function() {
         var ui = this;
-        ui.dom = {
-            object_id: ui.element,
-            text: $('<strong />')
-        };
-        ui.dom.link = ui.element.next();
-        ui.dom.text.insertAfter(ui.dom.link);
-        ui.dom.object_id
-            .bind('keyup.gRelated focus.gRelated', function(e){
-                ui._lookup(e);
+        ui.dom = { object_id: ui.element, text: $('<strong />') };
+        
+        ui.dom.link = ui.element.next('a').attr('onclick', false)
+            .bind('click', function(e){
+                e.preventDefault();
+                return ui._browse(this);
             });
+        
+        // use existing <strong> element if present
+        if (ui.element.nextAll('strong:first').get(0)) {
+            ui.dom.text = ui.element.nextAll('strong:first');
+        }
+        else {
+            ui.dom.text.insertAfter(ui.dom.link);
+        }
+
+        ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
+            ui._lookup(e);
+        }).trigger($.Event({type: 'keyup'})); // load initial data
     }
 }));
 
@@ -1394,13 +1576,16 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
 
         ui._disable(!ui.dom.content_type.val());
 
-        ui.dom.content_type.bind('change.gGenericRelated, keyup.gGenericRelated', function() {
-            var $el = $(this);
-            var href = ui._url($el.val());
-            ui.dom.object_id.val('');
-            ui.dom.text.text('');
-            ui._disable(!$el.val());
-            if ($el.val()) {
+        // Rebuild object ID (input, browse button and label) when content type select is changed
+        ui.dom.content_type.bind('change.gGenericRelated, keyup.gGenericRelated', function(e) {
+            var el = $(this);
+            var href = ui._url(el.val());
+            if (e.firstrun) {
+                ui.dom.object_id.val('');
+                ui.dom.text.text('');
+            }
+            ui._disable(!el.val());
+            if (el.val()) {
                 var link = ui.dom.object_id.next('.related-lookup');
                 if (link.get(0)) {
                     link.attr('href', href);
@@ -1417,116 +1602,183 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
                 }
             } 
             else {
-                ui.dom.object_id.val('');
-                ui.dom.object_id.parent().find('.related-lookup, strong').remove();
+                ui.dom.object_id.val('')
+                    .parent().find('.related-lookup, strong').remove();
             }
-        });
+        }).trigger($.Event({type: 'keyup', firstrun: true})); // load initial data
 
+        // Update when object ID is changed
         ui.dom.object_id.bind('keyup.gGenericRelated focus.gGenericRelated', function(e){
             ui._lookup(e);
-        });
+        }).trigger($.Event({type: 'keyup'})); // load initial data
+    },
+
+    // Disables the object ID input
+    _disable: function(state) {
+        this.dom.object_id.attr('disabled', state); 
     }
 }));
 
-$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase
+$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase;
 
-function showRelatedObjectLookupPopup(link) {
-    var link = $(link);
-    var name = link.attr('id').replace(/^lookup_/, '').replace(/\./g, '___');
-    var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
-    win = $.popup(name, href, {height: 600 , width: 900, resizable: true, scrollbars: true});
-    win.focus();
-    return false;
-}
+// Used in popup windows to disable default django behaviors
+$(function(){
 
-
-function dismissRelatedLookupPopup(win, id) {
-    var el = $('#'+ win.name.replace(/___/g, '.'));
-    if (el.hasClass('vManyToManyRawIdAdminField') && el.val()) {
-        el.val($.format('{0:s},{1:s}', el.val(), id));
-        el.focus();
-    }
-    else {
-        el.val(id);
-        if (el.hasClass('vAutocompleteRawIdAdminField')) {
-            el.trigger($.Event({type: 'updated'}));
+    // Browse popup
+    if (opener && /\?|&pop/.test(window.location.search)) {
+        // get rid of actions
+        if ($('#action-toggle').get(0)) {
+            $('.result-list > table tr td:first-child, .result-list > table tr th:first-child, .actions').hide();
         }
-        else {
-            el.focus();
-        }
-    }
-    win.close();
-}
+        $('a[onclick^=opener\\.dismissRelatedLookupPopup]')
+            .attr('onclick', false)
+            .bind('click', function(e){
+                var pk = $(this).parents('tr').find('input.action-select').val();
+                var wm = opener.jQuery.wm(window.name);
+                if (wm) {
+                    wm._data('pk', pk);
+                    wm._data('newRepr', $(this).text());
+                    e.preventDefault();
+                    return $.dismissRelatedLookupPopup(wm);
+                }
+            });
 
-function showAddAnotherPopup(link) {
-    var link = $(link);
-    var name = link.attr('id').replace(/^add_/, '').replace(/\./g, '___');
-    var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
-    win = $.popup(name, href, {height: 600 , width: 920, resizable: true, scrollbars: true});
-    win.focus();
-    return false;
-}
-
-function dismissAddAnotherPopup(win, newId, newRepr) {
-    // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
-    var $el  = $('#'+ win.name.replace(/___/g, '.'));
-    if ($el.get(0)) {
-        if ($el.get(0).nodeName == 'SELECT') {
-            var select = $el;
-            var t = $el.attr('id').split(/(\-\d+\-)/); // account for related inlines
-            if (t.length === 3) {
-                var select = $('select[id^="'+ t[0] +'"][id$="'+ t[2] +'"]');
+        $.dismissRelatedLookupPopup = function (wm) {
+            if (wm) {
+                var el  = wm._data('element');
+                var pk  = wm._data('pk');
+                var lbl = wm._data('newRepr');
+                if (el.hasClass('vManyToManyRawIdAdminField') && el.val().length) {
+                    el.val($.format('{0:s},{1:s}', el.val(), pk));
+                    el.focus();
+                }
+                else if (el.hasClass('vM2MAutocompleteSearchField')) {
+                    el.gFacelist('addVal', {id: pk, label: lbl});
+                }
+                else {
+                    el.val(pk);
+                    if (el.hasClass('vAutocompleteSearchField')) {
+                        el.trigger($.Event({type: 'updated'}))
+                          .parent().find('input.ui-gAutocomplete-autocomplete').val(lbl);
+                    }
+                    else {
+                        el.focus();
+                    }
+                }
+                wm.close();
             }
-            $('<option />').attr('selected', true)
-                .val(newId).appendTo(select)
-                .text($.unescapeHTML(newRepr));
-
-        } else if ($el.get(0).nodeName == 'INPUT') {
-            $el.val(newId);
-        }
-        $el.focus();
+        };
     }
-    win.close();
-}
 
+    // Sort a slect input alphabetically/numerically (TODO: optimize..)
+    $.sortSelect = function (select) {
+        var s = $(select);
+        var l = s.find('option').map(function(o){
+            return {label: $(this).text(), value: $(this).val(), selected: $(this).attr('selected') };
+        });
+        l = l.sort(function(a, b) { return a.label > b.label; });
+        s.empty();
+        l.each(function() {
+            $('<option />').val(this.value).attr('selected', this.selected).appendTo(s).text(this.label);
+        });
+    };
 
-//if (/&pop/.test(window.location.search)) {
-//    alert('blah');
-//    $('.result-list tbody tr a:first-child')
-//        .bind('click.gRelatedBrowse', function(){
-//              alert('test');
-//              var t = $(this).parents('tr').find('td:first-child :checkbox').val();
-//              return false;
-//            opener.dismissRelatedLookupPopup(window, '2'); return false;
-//        });
-//}
-//
+    // Add popup
+    $('a[onclick^=return\\ showAddAnotherPopup]')
+        .attr('onclick', false).unbind()
+        .bind('click', function(e){
+            var link = $(this);
+            var name = link.attr('id').replace(/^add_/, '');
+            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
+            var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+            wm._data('link', link);
+            wm._data('id', name);
+            wm.open(true);
+            e.preventDefault();
+            return false;
+        });
+
+    if (opener && /_popup/.test(window.location.search)) {
+        // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
+        //
+        // I can't get rid of this function .. (I could by using the middleware, but it would make it a requirement..)
+        // django/contrib/admin/options.py: 
+        // return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(...
+        var wm  = opener.jQuery('html').data(window.name);
+        var el = opener.jQuery('#'+ wm.id);
+
+        opener.dismissAddAnotherPopup = function (w, newId, newRepr) {
+            if (wm) {
+                if (el.get(0)) {
+                    var type = el.get(0).nodeName.toLowerCase();
+                    if (type == 'select') {
+                        var opt = $('<option />').val(newId).text($.unescapeHTML(newRepr));
+                        opener.jQuery('a[href='+ el.nextAll('a.add-another').attr('href') + ']').each(function(){
+                            var sel = $(this).parent().find('select');
+                            var nop = opt.clone();
+                            sel.append(nop);
+                            if (el.attr('id') == sel.attr('id')) {
+                                nop.attr('selected', true);
+                            }
+                            $.sortSelect(sel);
+                        });
+                    }
+                    else if (type == 'input') {
+                        if (el.hasClass('vM2MAutocompleteRawIdAdminField')) {
+                            opener.jQuery('#'+ el.attr('id').replace('id_','')).gFacelist('addVal', {id: newId, label: newRepr});
+                        }
+                        else if (el.hasClass('vAutocompleteRawIdAdminField')) {
+                            el.val(newId);
+                            el.prevAll('input.ui-gAutocomplete-autocomplete').val($.unescapeHTML(newRepr));
+                        }
+                        else {
+                            el.val(newId);
+                        }
+                    }
+                    el.focus();
+                }
+                w.close();
+            }
+        };
+    }
+});
 
 })(jQuery);
-/*  Author: Maxime Haineault <max@motion-m.ca>
- *  widget:  gAutoSlugField
- *  Package: Grappelli
- *  Requies: jquery.slugify.js
+/*  Author:   Maxime Haineault <max@motion-m.ca>
+ *  widget:   gAutoSlugField
+ *  Package:  Grappelli
+ *  Requires: jquery.slugify.js
+ *
+ *  jslinted - 8 Jan 2010
  */
 (function($){
 
 $.widget('ui.gAutoSlugField', {
-    _refresh: function(e, el) {
-        var val = $.slugify(el.val());
-        if (val != '') {
-            this.element.val(val);
-        }
-    },
+
     _init: function() {
-        var ui = this;
+        var ui = this; 
+
         if (ui.element.attr('rel')) {
-            $('#id_'+ ui.element.attr('rel')).bind('keyup.gAutoSlugField', function(e) {
+            ui.elementTarget = $('#id_'+ ui.element.attr('rel'));
+            ui.elementTarget.bind('keyup.gAutoSlugField', function(e){
                 ui._refresh(e, $(this));
             });
+
+            // Initial data
+            if (ui.element.val() != $.slugify(ui.elementTarget.val())) {
+                ui.element.val($.slugify(ui.elementTarget.val()));
+            }
         }
-         ui.element.delayedObserver(function(e) {
-             ui._refresh(e, $(this));
-         }, ui.options.delay);
+        ui.element.delayedObserver(function(e){
+            ui._refresh($(e));
+        }, ui.options.delay);
+    },
+    
+    _refresh: function(el) {
+      //var val = $.slugify(el.val());
+      //if (val != '') {
+      //    this.element.val(val);
+      //}
     }
 });
 
@@ -1535,6 +1787,8 @@ $.ui.gAutoSlugField.defaults = {
 };
 
 })(jQuery);
+ // jslinted - 8 Jan 2010
+ 
 (function($){
 
     var LATIN_MAP = {
@@ -1611,20 +1865,21 @@ $.ui.gAutoSlugField.defaults = {
 
     var Downcoder = {};
     Downcoder.Initialize = function() {
+        var c, y, x, lookup;
         if (Downcoder.map) { // already made
             return false;
         }
         Downcoder.map ={};
         Downcoder.chars = '';
-        for(var i in ALL_DOWNCODE_MAPS) {
-            var lookup = ALL_DOWNCODE_MAPS[i];
-            for (var c in lookup) {
-                Downcoder.map[c] = lookup[c];
+        for(x =0; x < ALL_DOWNCODE_MAPS.length; x++) {
+            lookup = ALL_DOWNCODE_MAPS[x];
+            for (y =0; y < lookup.length;) {
+                Downcoder.map[y] = lookup[y];
                 Downcoder.chars += c;
             }
          }
         Downcoder.regex = new RegExp('[' + Downcoder.chars + ']|[^' + Downcoder.chars + ']+','g');
-    }
+    };
 
     var downcode = function(slug) {
         Downcoder.Initialize();
@@ -1634,7 +1889,7 @@ $.ui.gAutoSlugField.defaults = {
             for (var i = 0 ; i < pieces.length ; i++) {
                 if (pieces[i].length == 1) {
                     var mapped = Downcoder.map[pieces[i]];
-                    if (mapped != null) {
+                    if (mapped !== null) {
                         downcoded += mapped;
                         continue;
                     }
@@ -1646,25 +1901,26 @@ $.ui.gAutoSlugField.defaults = {
             downcoded = slug;
         }
         return downcoded;
-    }
+    };
 
-    var slugify = function(s, num_chars) {
+    var slugify = function(str, num_chars) {
+        var s, r, removelist;
         // changes, e.g., "Petty theft" to "petty_theft"
         // remove all these words from the string before slugifying
-        s = downcode(s);
+        s = downcode(str);
         removelist = ["a", "an", "as", "at", "before", "but", "by", "for", "from",
-                      "is", "in", "into", "like", "of", "off", "on", "onto", "per",
-                      "since", "than", "the", "this", "that", "to", "up", "via",
-                      "with"];
+                          "is", "in", "into", "like", "of", "off", "on", "onto", "per",
+                          "since", "than", "the", "this", "that", "to", "up", "via",
+                          "with"];
         r = new RegExp('\\b(' + removelist.join('|') + ')\\b', 'gi');
         s = s.replace(r, '');
         // if downcode doesn't hit, the char will be stripped here
-        s = s.replace(/[^-\w\s]/g, '');  // remove unneeded chars
+        s = s.replace(/[^\-\w\s]/g, '');  // remove unneeded chars
         s = s.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
-        s = s.replace(/[-\s]+/g, '-');   // convert spaces to hyphens
+        s = s.replace(/[\-\s]+/g, '-');   // convert spaces to hyphens
         s = s.toLowerCase();             // convert to lowercase
         return s.substring(0, num_chars || 255);// trim to first num_chars chars
-    }
+    };
     $.slugify = function(){
         return slugify.apply(this, arguments);
     };
@@ -2241,16 +2497,14 @@ $.ui.gAutoSlugField.defaults = {
                 var el = $(this);
                 var op = options || {};
                 el.data('oldval', el.val())
-                    .data('delay', delay || 0.5)
                     .data('condition', op.condition || function() { return ($(this).data('oldval') == $(this).val()); })
-                    .data('callback', callback)
                     [(op.event||'keyup')](function(e){
                         if (el.data('condition').apply(el)) { return; }
                         else {
                             if (el.data('timer')) { clearTimeout(el.data('timer')); }
                             el.data('timer', setTimeout(function(){
-                                el.data('callback').apply(el, [e]);
-                            }, el.data('delay') * 1000));
+                                callback.apply(el, [e]);
+                            }, (delay || 0.5) * 1000));
                             el.data('oldval', el.val());
                         }
                     });
