@@ -86,3 +86,33 @@ test("Initialization", 4, function() {
     
     
 });
+
+module("jQuery.gActions.js", {
+    setup: function(){
+        $('#changelist').gActions();
+    },
+    teardown: function(){
+        $('#changelist').gActions('destroy');
+    }
+});
+
+test("Initialization", 1, function() {
+
+    ok($('.action-select[value=1]').is(':checked') &&
+        $('.action-select[value=2]').not(':checked') &&  
+        $('.action-select[value=3]').not(':checked'),
+        'Initial data');
+});
+
+test("Checking", 2, function() {
+    $('#action-toggle').trigger($.Event({type: 'click'}));
+    ok($('.action-select[value=1]').not(':checked') &&
+        $('.action-select[value=2]').not(':checked') &&  
+        $('.action-select[value=3]').not(':checked'),
+        'Uncheck');
+    $('#action-toggle').trigger($.Event({type: 'click'}));
+    ok($('.action-select[value=1]').is(':checked') &&
+        $('.action-select[value=2]').is(':checked') &&  
+        $('.action-select[value=3]').is(':checked'),
+        'Check');
+});

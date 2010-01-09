@@ -911,7 +911,7 @@ $.widget('ui.gActions', {
     _init: function() {
         var ui = this;
         $('#action-toggle').show().bind('click.grappelli', function(){
-            ui.element.find('.result-list input.action-select').attr('checked', $(this).attr('checked'));
+            ui.element.find('input.action-select').attr('checked', $(this).attr('checked'));
         });
     }
 });
@@ -1761,7 +1761,7 @@ $.widget('ui.gAutoSlugField', {
         if (ui.element.attr('rel')) {
             ui.elementTarget = $('#id_'+ ui.element.attr('rel'));
             ui.elementTarget.bind('keyup.gAutoSlugField', function(e){
-                ui._refresh(e, $(this));
+                ui._refresh(e);
             });
 
             // Initial data
@@ -1770,15 +1770,15 @@ $.widget('ui.gAutoSlugField', {
             }
         }
         ui.element.delayedObserver(function(e){
-            ui._refresh($(e));
+            ui._refresh(e, true);
         }, ui.options.delay);
     },
     
-    _refresh: function(el) {
-      //var val = $.slugify(el.val());
-      //if (val != '') {
-      //    this.element.val(val);
-      //}
+    _refresh: function(e, fromSource) {
+        var ui, val;
+        ui  = this;
+        val = $.slugify((!ui.elementTarget || fromSource) && ui.element.val() || ui.elementTarget.val());
+        ui.element.val(val);
     }
 });
 

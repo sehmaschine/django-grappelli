@@ -52,41 +52,33 @@
             <!-- jquery.gFacelist -->
             <div>
                 <label for="id_m2m_test">M2M Autocomplete test:</label>
-
-
                 <input id="m2m_test" name="m2m_test" />
 <input class="vM2MAutocompleteRawIdAdminField" type="text" name="m2m_test" value="[2, 14, 17]" id="id_m2m_test" /><a href="/admin/sites/site/add/" class="add-another" id="add_id_m2m_test" onclick="return showAddAnotherPopup(this);"> <img src="/admin-media/img/admin/icon_addlink.gif" width="10" height="10" alt="Ajouter un autre"/></a>
-              
-          <p class="help"> Maintenez appuyé « Ctrl », ou « Commande (touche pomme) » sur un Mac, pour en sélectionner plusieurs.</p>
+                  <p class="help"> Maintenez appuyé « Ctrl », ou « Commande (touche pomme) » sur un Mac, pour en sélectionner plusieurs.</p>
             </div>
 
+            <!-- jquery.gAutoSlugField -->
+            <fieldset class="module aligned ">
+                <h2>Auto SlugField</h2>
+                <div class="form-row char_test  ">
+                    <div> 
+                        <label for="id_char_test">CharField:</label><input name="char_test" value="Hello World" class="vTextField" maxlength="255" type="text" id="id_char_test" />
+                    </div>
+                </div>
+                <div class="form-row slug_test  ">
+                    <div> 
+                        <label for="id_slug_test" class="required">SlugField:</label><input name="slug_test" rel="char_test" maxlength="50" type="text" class="ui-gAutoSlugField vTextField" value="" id="id_slug_test" />
+                    </div>
+                </div>  
+            </fieldset>
 
-
-
-<fieldset class="module aligned ">
-    <h2>Auto SlugField</h2>
-    <div class="form-row char_test  ">
-        <div> 
-            <label for="id_char_test">CharField:</label><input name="char_test" value="Hello World" class="vTextField" maxlength="255" type="text" id="id_char_test" />
-        </div>
-    </div>
-    <div class="form-row slug_test  ">
-        <div> 
-            <label for="id_slug_test" class="required">SlugField:</label><input name="slug_test" rel="char_test" maxlength="50" type="text" class="ui-gAutoSlugField vTextField" value="" id="id_slug_test" />
-        </div>
-    </div>  
-</fieldset>
-
-
-
-
-
-
-
-
-
-
-
+            <!-- jquery.gActions -->
+            <div id="changelist">
+                <input type="checkbox" id="action-toggle" style="display: inline;"/>
+                <input type="checkbox" name="_selected_action" value="1" class="action-select" checked="checked"/>
+                <input type="checkbox" name="_selected_action" value="2" class="action-select"/>
+                <input type="checkbox" name="_selected_action" value="3" class="action-select"/>
+            </div>
 
 
         </div>
