@@ -29,12 +29,12 @@ class BookmarkItem(models.Model):
     Bookmark Item.
     """
     
-    bookmark = models.ForeignKey(Bookmark)
+    bookmark = models.ForeignKey(Bookmark, verbose_name=_('Bookmark'))
     title = models.CharField(_('Title'), max_length=80)
     link = models.CharField(_('Link'), max_length=200, help_text=_('The Link should be relative, e.g. /admin/blog/.'))
     
     # order
-    order = PositionField(unique_for_field='bookmark')
+    order = PositionField(_('Order'), unique_for_field='bookmark')
     
     class Meta:
         app_label = "grappelli"

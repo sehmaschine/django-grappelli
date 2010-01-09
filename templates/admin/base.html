@@ -82,7 +82,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
     {% endif %}
     <!-- GRAPPELLI MESSAGES -->
-    {% get_messages request.session %}
+    {% if request %}{% get_messages request.session %}{% endif %}
     
     <!-- CONTENT -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">

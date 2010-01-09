@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n %}
+{% load i18n grp_csrf %}
 
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
@@ -27,7 +27,7 @@
     {% for deleteable_object in deletable_objects %}
         <ul>{{ deleteable_object|unordered_list }}</ul>
     {% endfor %}
-    <form action="" method="post">{% csrf_token %}
+    <form action="" method="post">{% grp_csrf_token %}
         <div class="submit-row">
             {% for obj in queryset %}
             <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk }}" />
