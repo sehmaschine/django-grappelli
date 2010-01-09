@@ -11,12 +11,24 @@ var gFaceListBaseOptions = {
 
 
 module("Basic requirements");
-var methods = ['wm', 'unescapeHTML', 'ui', 'slugify'];
+var jQueryMethods = ['wm', 'unescapeHTML', 'widget', 'slugify', 'sortSelect'];
 
-test("Checking presence of jQuery required methods", methods.length, function() {
-    for (var x=0;x<methods.length;x++) {
-        var m = methods[x];
-        ok(typeof(jQuery[m]) != 'undefined', 'Method "'+ m +'" exists.');
+test("Checking presence of jQuery required methods", jQueryMethods.length, function() {
+    for (var x=0;x<jQueryMethods.length;x++) {
+        var m = jQueryMethods[x];
+        equals(typeof(jQuery[m]), 'function', 'Method "'+ m +'" exists.');
+    }
+});
+
+var uiMethods = ['datepicker', 'dialog', 'draggable', 'droppable', 'resizable', 'selectable', 'sortable', 
+                 'accordion', 'gActions', 'gAutoSlugField', 'gAutocomplete', 'gBookmarks', 'gChangelist', 
+                 'gDateField', 'gFacelist', 'gGenericRelated', 'gInlineGroup', 'gInlineStacked', 
+                 'gInlineTabular', 'gRelated', 'gSelectFilter', 'gTimeField'];
+
+test("Checking presence of jQuery UI required methods", uiMethods.length, function() {
+    for (var x=0;x<uiMethods.length;x++) {
+        var m = uiMethods[x];
+        ok(typeof(jQuery.ui[m]) != 'undefined', 'Method "'+ m +'" exists.');
     }
 });
 
