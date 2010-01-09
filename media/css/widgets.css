@@ -444,6 +444,9 @@ a.ui-gAutocomplete-browse:focus {
     font-size:0.9em;
     font-weight:bold;
 }
+.ui-gFacelist-message b {
+    color:#666;
+}
 .ui-gFacelist-wrapper .ui-gAutocomplete-wrapper {
     width:698px!important;
     margin-top:4px!important;

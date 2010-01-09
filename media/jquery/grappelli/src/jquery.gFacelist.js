@@ -40,7 +40,7 @@ $.widget('ui.gFacelist', {
             ui.dom.toolbar.append(ui.dom.clear);
         }
         if (ui.options.message) {
-            ui.dom.message = ui._createElement('span', {ns: 'message'}).text('No item selected');
+            ui.dom.message = ui._createElement('span', {ns: 'message'}).text(ui.options.noItemFormat);
             ui.dom.toolbar.append(ui.dom.message);
         }
         
@@ -90,6 +90,7 @@ $.widget('ui.gFacelist', {
         ui._bind(ui.dom.input, 'complete', function(e){
             if (e.originalEvent.sticky) {
                 ui._addItem(e.originalEvent.data); 
+                ui._message();
             }
         });
 
@@ -98,12 +99,14 @@ $.widget('ui.gFacelist', {
             $.each(ui.options.initial_data, function(k, v) {
                 ui._addItem({label:v, id: k});
             });
+            ui._message();
         }
 
     },
 
     addVal: function (i) {
         this._addItem(i);
+        this._message();
     },
 
     _browse: function(l) {
@@ -117,11 +120,15 @@ $.widget('ui.gFacelist', {
     },
 
     _message: function(msg) {
+        var ui, cnt;
         var ui = this;
-        if (!msg && ui.options.message) {
-            var count = ui.dom.facelist.find('.ui-gFacelist-item').length;
-            msg = count > 1 && '{0:d} selected items' || '{0:d} selected item';
-            ui.dom.message.text($.format(msg, count));
+        if (ui.options.message) {
+            if (!msg) {
+                cnt = ui.dom.facelist.find('.ui-gFacelist-item').length;
+                msg = $.format(ui.options.messageFormat[cnt > 1 && 1 || 0], cnt);
+            }
+            ui.dom.message.html(msg);
+            return msg;
         }
     },
 
@@ -134,20 +141,29 @@ $.widget('ui.gFacelist', {
     },
 
     _addItem: function(data) {
-        var ui = this;
+        var ui, label, button;
+        ui = this;
         if (data.label != '') {
-            var label = $('<span />').text(data.label);
-            var button = ui._createElement('li', {ns: 'item'})
-                    .html(label)
-                    .data('json', data)
-                    .addClass('ui-corner-all')
-                    .insertBefore(ui.dom.input.parent())
-                    .bind('click.gFacelist', function(){
-                        ui._removeItem(this);
-                    });
+            label = $('<span />').text(data.label);
+            button = ui._createElement('li', {ns: 'item'})
+                .html(label)
+                .data('json', data)
+                .addClass('ui-corner-all')
+                .insertBefore(ui.dom.input.parent())
+                .bind('click.gFacelist', function(){
+                    ui._removeItem(this);
+                });
+
+            if (ui.options.message) {
+                button.hover(function() {
+                    ui._message($.format(ui.options.hoverFormat, $(this).text()));
+                }, function() {
+                    ui._message();
+                });
+            }
+
             ui._addId(data.id);
             ui.dom.ac.val('');
-            ui._message(); 
             return button;
         }
     },
@@ -179,7 +195,7 @@ $.widget('ui.gFacelist', {
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, 
                        function(){ $(this).removeClass('ui-state-hover'); });
         if (ui.options.buttonIcon[ns]) {
-            el.append('<span class="ui-icon ui-icon-'+ ui.options.buttonIcon[ns] +'">Add</span>');
+            el.append('<span class="ui-icon ui-icon-'+ ui.options.buttonIcon[ns] +'"></span>');
         }
         return el;
     },
@@ -205,14 +221,19 @@ $.widget('ui.gFacelist', {
 });
 
 $.ui.gFacelist.defaults = {
+    // functional options
     browse:   true,
-    clearAll: true,
     message:  true,
+    messageFormat: ['<b>{0:d}</b> selected item', '<b>{0:d}</b> selected items'],
+    hoverFormat:   'Click to remove <b>{0:s}</b>',
+    noItemFormat:  'No item selected',
     buttonIcon: { // see http://jqueryui.com/themeroller/ for available icons
         browse: 'search', 
         clear:  'closethick',
         add:    'plusthick'
     },
+
+    clearAll: true,
     autocomplete: {
         highlight:  true,
         browse:     false, // Using Autocomplete's browse becomes too messy ..
