@@ -1,7 +1,6 @@
 # coding: utf-8
 
-import json
-
+from django.utils import simplejson
 from django import forms
 from django.conf import settings
 from django.utils.safestring import mark_safe
@@ -11,10 +10,12 @@ from django.contrib.admin.widgets import ForeignKeyRawIdWidget, ManyToManyRawIdW
 from django.forms.widgets import TextInput
 from django.utils.translation import ugettext as _
 
+
 class AutoSlugFieldInput(TextInput):
     """
     An Auto SlugField Widget.
     """
+    
     def __init__(self, field, fieldAdmin, attrs={'clas': 'ui-gAutoSlugField vTextField'}):
         super(AutoSlugFieldInput, self).__init__(attrs)
 
@@ -97,7 +98,7 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
         for item in value:
             key = self.rel.get_related_field().name
             out[item] = u'%s' % self.rel.to._default_manager.get(**{key: item})
-        return json.dumps(out)
+        return simplejson.dumps(out)
     
     def __init__(self, field, fieldAdmin, attrs=None):
         if hasattr(fieldAdmin, 'facelist') and field.name in fieldAdmin.facelist:
@@ -117,11 +118,6 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
     def render(self, name, value, attrs=None):
         if attrs is None:
             attrs = {}
-       #if value:
-       #    value = ','.join([str(v) for v in value])
-       #else:
-       #    value = ''
-       #output = [super(M2MAutocompleteSearchInput, self).render(name, value, attrs)]
         opts = self.rel.to._meta
         app_label = opts.app_label
         model_name = opts.object_name.lower()
@@ -133,7 +129,11 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
             url = ''
         attrs['class'] = 'vM2MAutocompleteRawIdAdminField'
         # Call the TextInput render method directly to have more control
-        output = [forms.TextInput.render(self, name, value, attrs)]
+        if value:
+           output_value = ','.join([str(v) for v in value])
+        else:
+           output_value = ''
+        output = [forms.TextInput.render(self, name, output_value, attrs)]
         if value:
             label = self.label_for_value(value)
         else:
