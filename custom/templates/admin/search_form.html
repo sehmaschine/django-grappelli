@@ -1,0 +1,31 @@
+{% load adminmedia i18n grp_tags %}
+
+{% if cl.search_fields %}
+    
+    <!-- Search Form -->
+    <div class="module search">
+        <h2>{% trans 'Search' %}</h2>
+        <div id="toolbar">
+            <form id="changelist-search" action="" method="get">
+            <div><!-- DIV needed for valid HTML -->
+                <div class="form-row">
+                    {% comment %}<label for="searchbar">&nbsp;</label>{% endcomment %}
+                    <input type="text" size="40" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" {% if not cl.query %}class="search-fields-verbose"{% endif %} />
+                    <input type="submit" value="" />
+                </div>
+                {% get_search_fields_verbose cl.opts as search_fields_verbose %}
+                {% if search_fields_verbose %}
+                    <div class="form-row">
+                        <p class="help"><strong>{% trans 'Search for' %}:</strong> {{ search_fields_verbose }}</p>
+                    </div>
+                {% endif %}
+            </div>
+            {% for pair in cl.params.items %}
+                {% ifnotequal pair.0 search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endifnotequal %}
+            {% endfor %}
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">document.getElementById("searchbar").focus();</script>
+
+{% endif %}
