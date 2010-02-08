@@ -6,8 +6,8 @@ except NameError:
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.forms.models import BaseModelForm, BaseModelFormSet, fields_for_model, _get_foreign_key
-from django.contrib.admin.options import flatten_fieldsets, BaseModelAdmin
-from django.contrib.admin.options import HORIZONTAL, VERTICAL
+from grappelli.admin.options import flatten_fieldsets, BaseModelAdmin
+from grappelli.admin.options import HORIZONTAL, VERTICAL
 
 __all__ = ['validate']
 

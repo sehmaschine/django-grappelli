@@ -1,7 +1,7 @@
 import re
 from django import http, template
-from django.contrib.admin import ModelAdmin
-from django.contrib.admin import actions
+from grappelli.admin import ModelAdmin
+from grappelli.admin import actions
 from django.contrib.auth import authenticate, login
 from django.db.models.base import ModelBase
 from django.core.exceptions import ImproperlyConfigured
@@ -67,7 +67,7 @@ class AdminSite(object):
 
         # Don't import the humongous validation code unless required
         if admin_class and settings.DEBUG:
-            from django.contrib.admin.validation import validate
+            from grappelli.admin.validation import validate
         else:
             validate = lambda model, adminclass: None
 
@@ -147,11 +147,11 @@ class AdminSite(object):
         The default implementation checks that LogEntry, ContentType and the
         auth context processor are installed.
         """
-        from django.contrib.admin.models import LogEntry
+        from grappelli.admin.models import LogEntry
         from django.contrib.contenttypes.models import ContentType
 
         if not LogEntry._meta.installed:
-            raise ImproperlyConfigured("Put 'django.contrib.admin' in your INSTALLED_APPS setting in order to use the admin application.")
+            raise ImproperlyConfigured("Put 'grappelli.admin' in your INSTALLED_APPS setting in order to use the admin application.")
         if not ContentType._meta.installed:
             raise ImproperlyConfigured("Put 'django.contrib.contenttypes' in your INSTALLED_APPS setting in order to use the admin application.")
         if 'django.core.context_processors.auth' not in settings.TEMPLATE_CONTEXT_PROCESSORS:

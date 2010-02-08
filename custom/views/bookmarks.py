@@ -6,7 +6,7 @@ import urllib
 # django imports
 from django.shortcuts import HttpResponse, render_to_response
 from django.http import HttpResponseRedirect
-from grappelli3.admin.views.decorators import staff_member_required
+from grappelli.admin.views.decorators import staff_member_required
 from django.utils.translation import ugettext as _
 
 # grappelli imports

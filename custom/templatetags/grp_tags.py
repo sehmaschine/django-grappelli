@@ -6,7 +6,7 @@ import re
 # django imports
 from django import template
 from django.contrib.contenttypes.models import ContentType
-from django.contrib import admin
+from grappelli import admin
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import Group

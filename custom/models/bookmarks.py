@@ -13,7 +13,7 @@ class Bookmark(models.Model):
     user = models.ForeignKey('auth.User', limit_choices_to={'is_staff': True}, verbose_name=_('User'), related_name="admin_bookmark_set")
     
     class Meta:
-        app_label = "grappelli"
+        app_label = "grappelli.custom"
         verbose_name = _('Bookmark')
         verbose_name_plural = _('Bookmarks')
         ordering = ['user',]
@@ -37,7 +37,7 @@ class BookmarkItem(models.Model):
     order = PositionField(_('Order'), unique_for_field='bookmark')
     
     class Meta:
-        app_label = "grappelli"
+        app_label = "grappelli.custom"
         verbose_name = _('Bookmark Item')
         verbose_name_plural = _('Bookmark Items')
         ordering = ['order']

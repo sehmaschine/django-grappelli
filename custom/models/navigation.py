@@ -21,7 +21,7 @@ class Navigation(models.Model):
     order = PositionField(_('Order'))
     
     class Meta:
-        app_label = "grappelli"
+        app_label = "grappelli.custom"
         verbose_name = _('Navigation')
         verbose_name_plural = _('Navigation')
         ordering = ['order',]
@@ -50,7 +50,7 @@ class NavigationItem(models.Model):
     order = PositionField(_('Order'), unique_for_field='navigation')
     
     class Meta:
-        app_label = "grappelli"
+        app_label = "grappelli.custom"
         verbose_name = _('Navigation Item')
         verbose_name_plural = _('Navigation Items')
         ordering = ['navigation', 'order']

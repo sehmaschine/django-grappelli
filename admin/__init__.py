@@ -1,7 +1,7 @@
-from django.contrib.admin.helpers import ACTION_CHECKBOX_NAME
-from django.contrib.admin.options import ModelAdmin, HORIZONTAL, VERTICAL
-from django.contrib.admin.options import StackedInline, TabularInline
-from django.contrib.admin.sites import AdminSite, site
+from grappelli.admin.helpers import ACTION_CHECKBOX_NAME
+from grappelli.admin.options import ModelAdmin, HORIZONTAL, VERTICAL
+from grappelli.admin.options import StackedInline, TabularInline
+from grappelli.admin.sites import AdminSite, site
 from django.utils.importlib import import_module
 
 # A flag to tell us if autodiscover is running.  autodiscover will set this to

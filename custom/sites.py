@@ -2,8 +2,8 @@
 
 import re
 from django import http, template
-from grappelli3.admin import ModelAdmin
-from grappelli3.admin import actions
+from grappelli.admin import ModelAdmin
+from grappelli.admin import actions
 from django.contrib.auth import authenticate, login
 from django.db.models.base import ModelBase
 from django.core.exceptions import ImproperlyConfigured

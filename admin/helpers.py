@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
-from django.contrib.admin.util import flatten_fieldsets
+from grappelli.admin.util import flatten_fieldsets
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 

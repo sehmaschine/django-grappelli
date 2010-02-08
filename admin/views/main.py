@@ -1,6 +1,6 @@
-from django.contrib.admin.filterspecs import FilterSpec
-from django.contrib.admin.options import IncorrectLookupParameters
-from django.contrib.admin.util import quote
+from grappelli.admin.filterspecs import FilterSpec
+from grappelli.admin.options import IncorrectLookupParameters
+from grappelli.admin.util import quote
 from django.core.paginator import Paginator, InvalidPage
 from django.db import models
 from django.db.models.query import QuerySet

@@ -3,9 +3,9 @@ from django.forms.formsets import all_valid
 from django.forms.models import modelform_factory, modelformset_factory, inlineformset_factory
 from django.forms.models import BaseInlineFormSet
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.admin import widgets
-from django.contrib.admin import helpers
-from django.contrib.admin.util import unquote, flatten_fieldsets, get_deleted_objects, model_ngettext, model_format_dict
+from grappelli.admin import widgets
+from grappelli.admin import helpers
+from grappelli.admin.util import unquote, flatten_fieldsets, get_deleted_objects, model_ngettext, model_format_dict
 from django.core.exceptions import PermissionDenied
 from django.db import models, transaction
 from django.db.models.fields import BLANK_CHOICE_DASH
@@ -380,7 +380,7 @@ class ModelAdmin(BaseModelAdmin):
 
         The default implementation creates an admin LogEntry object.
         """
-        from django.contrib.admin.models import LogEntry, ADDITION
+        from grappelli.admin.models import LogEntry, ADDITION
         LogEntry.objects.log_action(
             user_id         = request.user.pk,
             content_type_id = ContentType.objects.get_for_model(object).pk,
@@ -395,7 +395,7 @@ class ModelAdmin(BaseModelAdmin):
 
         The default implementation creates an admin LogEntry object.
         """
-        from django.contrib.admin.models import LogEntry, CHANGE
+        from grappelli.admin.models import LogEntry, CHANGE
         LogEntry.objects.log_action(
             user_id         = request.user.pk,
             content_type_id = ContentType.objects.get_for_model(object).pk,
@@ -413,7 +413,7 @@ class ModelAdmin(BaseModelAdmin):
 
         The default implementation creates an admin LogEntry object.
         """
-        from django.contrib.admin.models import LogEntry, DELETION
+        from grappelli.admin.models import LogEntry, DELETION
         LogEntry.objects.log_action(
             user_id         = request.user.id,
             content_type_id = ContentType.objects.get_for_model(self.model).pk,
@@ -875,7 +875,7 @@ class ModelAdmin(BaseModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         "The 'change list' admin view for this model."
-        from django.contrib.admin.views.main import ChangeList, ERROR_FLAG
+        from grappelli.admin.views.main import ChangeList, ERROR_FLAG
         opts = self.model._meta
         app_label = opts.app_label
         if not self.has_change_permission(request, None):
@@ -1043,7 +1043,7 @@ class ModelAdmin(BaseModelAdmin):
 
     def history_view(self, request, object_id, extra_context=None):
         "The 'history' admin view for this model."
-        from django.contrib.admin.models import LogEntry
+        from grappelli.admin.models import LogEntry
         model = self.model
         opts = model._meta
         app_label = opts.app_label

@@ -1,5 +1,5 @@
 from django import template, forms
-from django.contrib.admin.views.decorators import staff_member_required
+from grappelli.admin.views.decorators import staff_member_required
 from django.template import loader
 from django.shortcuts import render_to_response
 from django.contrib.sites.models import Site

@@ -16,7 +16,7 @@ class Help(models.Model):
     order = PositionField(_('Order'))
     
     class Meta:
-        app_label = "grappelli"
+        app_label = "grappelli.custom"
         verbose_name = _('Help')
         verbose_name_plural = _('Help')
         ordering = ['order']
@@ -41,7 +41,7 @@ class HelpItem(models.Model):
     order = PositionField(_('Order'), unique_for_field='help')
     
     class Meta:
-        app_label = "grappelli"
+        app_label = "grappelli.custom"
         verbose_name = _('Help Entry')
         verbose_name_plural = _('Help Entries')
         ordering = ['help', 'order']

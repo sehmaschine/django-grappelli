@@ -1,5 +1,5 @@
 from django import template
-from django.contrib.admin.models import LogEntry
+from grappelli.admin.models import LogEntry
 
 register = template.Library()
 
