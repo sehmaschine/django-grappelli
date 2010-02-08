@@ -16,10 +16,11 @@ class Help(models.Model):
     order = PositionField(_('Order'))
     
     class Meta:
-        app_label = "grappelli.custom"
+        app_label = "custom"
         verbose_name = _('Help')
         verbose_name_plural = _('Help')
         ordering = ['order']
+        db_table = 'grappelli_help'
     
     def __unicode__(self):
         return u"%s" % (self.title)
@@ -41,10 +42,11 @@ class HelpItem(models.Model):
     order = PositionField(_('Order'), unique_for_field='help')
     
     class Meta:
-        app_label = "grappelli.custom"
+        app_label = "custom"
         verbose_name = _('Help Entry')
         verbose_name_plural = _('Help Entries')
         ordering = ['help', 'order']
+        db_table = 'grappelli_helpitem'
     
     def __unicode__(self):
         return u"%s" % (self.title)

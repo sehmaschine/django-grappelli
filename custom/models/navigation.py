@@ -21,10 +21,11 @@ class Navigation(models.Model):
     order = PositionField(_('Order'))
     
     class Meta:
-        app_label = "grappelli.custom"
+        app_label = "custom"
         verbose_name = _('Navigation')
         verbose_name_plural = _('Navigation')
         ordering = ['order',]
+        db_table = 'grappelli_navigation'
     
     def __unicode__(self):
         return u"%s" % (self.title)
@@ -50,10 +51,11 @@ class NavigationItem(models.Model):
     order = PositionField(_('Order'), unique_for_field='navigation')
     
     class Meta:
-        app_label = "grappelli.custom"
+        app_label = "custom"
         verbose_name = _('Navigation Item')
         verbose_name_plural = _('Navigation Items')
         ordering = ['navigation', 'order']
+        db_table = 'grappelli_navigationitem'
     
     def __unicode__(self):
         return u"%s" % (self.title)
