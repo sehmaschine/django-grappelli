@@ -78,15 +78,19 @@ $.unescapeHTML = function(str) {
 $(function(){
     
     // Fieldset collapse
-    $('.module.collapse-closed h2, .module.collapse-open h2').addClass('collapse-toggle').bind('click.grappelli', function(){
-        $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
-    });
-
+    $('.module.collapse-closed h2, .module.collapse-open h2')
+        .addClass('collapse-toggle').bind('click.grappelli', function(){
+            $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
+        });
 
     // Collapsible groups
     $('.group-collapsible .section').parent().bind('click.grappelli', function (){
         $(this).parents('table').find('tbody').toggle();
     });
+
+    //Open collapsed groups which contain errors (thanks Stefan)
+    $('.collapse-closed:has(div.errors)')
+        .removeClass("collapse-closed").removeClass("collapsed").addClass("collapse-open");    
 
     // Always focus first field of a form OR the search input
     $('form .form-row:eq(0)')
