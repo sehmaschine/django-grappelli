@@ -1,16 +1,16 @@
- // jslinted - 8 Jan 2010
- 
-(function($){
+// jslinted - 8 Jan 2010
+
+(function($) {
 
     var LATIN_MAP = {
         'À': 'A', 'Á': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'Å': 'A', 'Æ': 'AE', 'Ç':
-        'C', 'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E', 'Ì': 'I', 'Í': 'I', 'Î': 'I',
+                'C', 'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E', 'Ì': 'I', 'Í': 'I', 'Î': 'I',
         'Ï': 'I', 'Ð': 'D', 'Ñ': 'N', 'Ò': 'O', 'Ó': 'O', 'Ô': 'O', 'Õ': 'O', 'Ö':
-        'O', 'Ő': 'O', 'Ø': 'O', 'Ù': 'U', 'Ú': 'U', 'Û': 'U', 'Ü': 'U', 'Ű': 'U',
+                'O', 'Ő': 'O', 'Ø': 'O', 'Ù': 'U', 'Ú': 'U', 'Û': 'U', 'Ü': 'U', 'Ű': 'U',
         'Ý': 'Y', 'Þ': 'TH', 'ß': 'ss', 'à':'a', 'á':'a', 'â': 'a', 'ã': 'a', 'ä':
-        'a', 'å': 'a', 'æ': 'ae', 'ç': 'c', 'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
+                'a', 'å': 'a', 'æ': 'ae', 'ç': 'c', 'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
         'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i', 'ð': 'd', 'ñ': 'n', 'ò': 'o', 'ó':
-        'o', 'ô': 'o', 'õ': 'o', 'ö': 'o', 'ő': 'o', 'ø': 'o', 'ù': 'u', 'ú': 'u',
+                'o', 'ô': 'o', 'õ': 'o', 'ö': 'o', 'ő': 'o', 'ø': 'o', 'ù': 'u', 'ú': 'u',
         'û': 'u', 'ü': 'u', 'ű': 'u', 'ý': 'y', 'þ': 'th', 'ÿ': 'y'
     };
     var LATIN_SYMBOLS_MAP = {
@@ -63,76 +63,54 @@
         'Ķ':'k', 'Ļ':'L', 'Ņ':'N', 'Š':'S', 'Ū':'u', 'Ž':'Z'
     };
 
-    var ALL_DOWNCODE_MAPS = [];
-    ALL_DOWNCODE_MAPS[0] = LATIN_MAP;
-    ALL_DOWNCODE_MAPS[1] = LATIN_SYMBOLS_MAP;
-    ALL_DOWNCODE_MAPS[2] = GREEK_MAP;
-    ALL_DOWNCODE_MAPS[3] = TURKISH_MAP;
-    ALL_DOWNCODE_MAPS[4] = RUSSIAN_MAP;
-    ALL_DOWNCODE_MAPS[5] = UKRAINIAN_MAP;
-    ALL_DOWNCODE_MAPS[6] = CZECH_MAP;
-    ALL_DOWNCODE_MAPS[7] = POLISH_MAP;
-    ALL_DOWNCODE_MAPS[8] = LATVIAN_MAP;
-
+    var ALL_DOWNCODE_MAPS = [LATIN_MAP,LATIN_SYMBOLS_MAP,GREEK_MAP,TURKISH_MAP,RUSSIAN_MAP,UKRAINIAN_MAP,CZECH_MAP,POLISH_MAP,LATVIAN_MAP];
     var Downcoder = {};
+    Downcoder.removelist = ["a", "an", "as", "at", "before", "but", "by", "for", "from",
+        "is", "in", "into", "like", "of", "off", "on", "onto", "per",
+        "since", "than", "the", "this", "that", "to", "up", "via",
+        "with"];
+    Downcoder.removeReg = new RegExp('\\b(' + Downcoder.removelist.join('|') + ')\\b', 'gi');
+    Downcoder.unneededReg = /[^\-\w\s]/g;
+    Downcoder.leadtrailReg = /^\s+|\s+$/g;
+    Downcoder.spaceReg = /[\-\s]+/g;
+
     Downcoder.Initialize = function() {
-        var c, y, x, lookup;
-        if (Downcoder.map) { // already made
-            return false;
-        }
-        Downcoder.map ={};
+        if (Downcoder.map) return;// already made
+        Downcoder.map = {};
         Downcoder.chars = '';
-        for(x =0; x < ALL_DOWNCODE_MAPS.length; x++) {
-            lookup = ALL_DOWNCODE_MAPS[x];
-            for (y =0; y < lookup.length;) {
-                Downcoder.map[y] = lookup[y];
-                Downcoder.chars += c;
+        for (var i in ALL_DOWNCODE_MAPS) {
+            var arr = ALL_DOWNCODE_MAPS[i];
+            for (var attr in arr) {
+                Downcoder.map[attr] = arr[attr];
             }
-         }
-        Downcoder.regex = new RegExp('[' + Downcoder.chars + ']|[^' + Downcoder.chars + ']+','g');
+        }
     };
 
-    var downcode = function(slug) {
+    var downcode = function(slug)
+    {
         Downcoder.Initialize();
-        var downcoded = "";
-        var pieces = slug.match(Downcoder.regex);
-        if(pieces) {
-            for (var i = 0 ; i < pieces.length ; i++) {
-                if (pieces[i].length == 1) {
-                    var mapped = Downcoder.map[pieces[i]];
-                    if (mapped !== null) {
-                        downcoded += mapped;
-                        continue;
-                    }
-                }
-                downcoded += pieces[i];
-            }
-        }
-        else {
-            downcoded = slug;
+        var downcoded = '';
+        for (var i = 0; i < slug.length; i++)
+        {
+            downcoded += Downcoder.map[slug[i]] || slug[i];
         }
         return downcoded;
     };
 
     var slugify = function(str, num_chars) {
-        var s, r, removelist;
+        var s;
         // changes, e.g., "Petty theft" to "petty_theft"
         // remove all these words from the string before slugifying
         s = downcode(str);
-        removelist = ["a", "an", "as", "at", "before", "but", "by", "for", "from",
-                          "is", "in", "into", "like", "of", "off", "on", "onto", "per",
-                          "since", "than", "the", "this", "that", "to", "up", "via",
-                          "with"];
-        r = new RegExp('\\b(' + removelist.join('|') + ')\\b', 'gi');
-        s = s.replace(r, '');
+        s = s.replace(Downcoder.removeReg, '');
         // if downcode doesn't hit, the char will be stripped here
-        s = s.replace(/[^\-\w\s]/g, '');  // remove unneeded chars
-        s = s.replace(/^\s+|\s+$/g, ''); // trim leading/trailing spaces
-        s = s.replace(/[\-\s]+/g, '-');   // convert spaces to hyphens
+        s = s.replace(Downcoder.unneededReg, '');  // remove unneeded chars
+        s = s.replace(Downcoder.leadtrailReg, ''); // trim leading/trailing spaces
+        s = s.replace(Downcoder.spaceReg, '-');   // convert spaces to hyphens
         s = s.toLowerCase();             // convert to lowercase
         return s.substring(0, num_chars || 255);// trim to first num_chars chars
     };
-    $.slugify = function(){
+    $.slugify = function() {
         return slugify.apply(this, arguments);
     };
     $.fn.slugify = function(text, length) {

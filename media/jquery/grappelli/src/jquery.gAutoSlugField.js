@@ -5,39 +5,53 @@
  *
  *  jslinted - 8 Jan 2010
  */
-(function($){
+(function($) {
 
-$.widget('ui.gAutoSlugField', {
+    $.widget('ui.gAutoSlugField', {
 
-    _init: function() {
-        var ui = this; 
+        ignore: {6:6,9:9,13:13,16:16,27:27,35:35,36:36,37:37,38:38,39:39,40:40},
 
-        if (ui.element.attr('rel')) {
-            ui.elementTarget = $('#id_'+ ui.element.attr('rel'));
-            ui.elementTarget.bind('keyup.gAutoSlugField', function(e){
-                ui._refresh(e);
+        _init: function() {
+            var ui = this;
+
+            var fieldIds = ui.element.attr('rel').split(',');
+            var selector = '';
+            for (var i in fieldIds) selector += '#id_' + fieldIds[i] + ',';
+            var fields = $(selector);
+
+            ui._bindSlugField(fields, ui.element);
+            ui._bindSlugField(ui.element, ui.element);
+        },
+
+        _bindSlugField: function(fields, element) {
+            var ui = this;
+            var timer = null;
+            fields.bind('keyup.gAutoSlugField', function(ev) {
+                if (ui.ignore[ev.keyCode]) return;
+                clearTimeout(timer);
+                timer = setTimeout(function() {
+                    ui._refresh(element, fields)
+                }, (ui.options.delay * 1000));
             });
+        },
 
-            // Initial data
-            if (ui.element.val() != $.slugify(ui.elementTarget.val())) {
-                ui.element.val($.slugify(ui.elementTarget.val()));
-            }
+        _getSlugValue: function(fields, length) {
+            var slugValue = '';
+            fields.each(function(i, el) {
+                var newValue = $.slugify($(el).val(), length);
+                if (slugValue.length > 0 && newValue.length > 0) slugValue += '_';
+                slugValue += newValue;
+            });
+            return slugValue;
+        },
+
+        _refresh: function(element, fields) {
+            element.val(this._getSlugValue(fields, element.attr('maxlength')));
         }
-        ui.element.delayedObserver(function(e){
-            ui._refresh(e, true);
-        }, ui.options.delay);
-    },
-    
-    _refresh: function(e, fromSource) {
-        var ui, val;
-        ui  = this;
-        val = $.slugify((!ui.elementTarget || fromSource) && ui.element.val() || ui.elementTarget.val());
-        ui.element.val(val);
-    }
-});
+    });
 
-$.ui.gAutoSlugField.defaults = {
-    delay: 0.8
-};
+    $.ui.gAutoSlugField.defaults = {
+        delay: 0.5
+    };
 
 })(jQuery);
