@@ -1,0 +1,175 @@
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    
+    
+    /*  Header & Breadcrubms
+    ------------------------------------------------------------------------------------------------------ */
+    
+    #header {
+        background: -webkit-gradient(linear, left top, left bottom, from(#3b3b3b), to(#333));
+    }
+    div.breadcrumbs {
+        background: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#dbdbdb));
+    }
+    
+    
+    /*  Object Tools
+    ------------------------------------------------------------------------------------------------------ */
+    
+    .object-tools a:link, .object-tools a:visited {
+        background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#d1d1d1));
+    }
+    .object-tools a:hover, .object-tools a:active {
+        background: -webkit-gradient(linear, left top, left bottom, from(#309bbf), to(#2b8dad));
+    }
+    
+    .object-tools a.focus:link, .object-tools a.focus:visited {
+        background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#3b3b3b));
+    }
+    .object-tools a.focus:hover, .object-tools a.focus:active {
+        background: -webkit-gradient(linear, left top, left bottom, from(#309bbf), to(#2b8dad));
+    }
+    
+    
+    /*  Modules
+    ------------------------------------------------------------------------------------------------------ */
+    
+    .module > h2, .module caption, 
+    .inline-group h2,
+    .inline-related h2 {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e4e4e4));
+    }
+    
+    
+    /*  Forms
+    ------------------------------------------------------------------------------------------------------ */
+    
+    input[type=submit], input[type=button], button {
+        background: -webkit-gradient(linear, left top, left bottom, from(#acd7e5), to(#a4cedb));
+    }
+    input[type=submit].default, button.default {
+        background: -webkit-gradient(linear, left top, left bottom, from(#309bbf), to(#2b8dad));
+    }
+    .submit-row a.deletelink:link, .submit-row a.deletelink:visited {
+        background: -webkit-gradient(linear, left top, left bottom, from(#bf3030), to(#ad2b2b));
+    }
+    .submit-row a.cancellink:link, .submit-row a.cancellink:visited {
+        background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#d1d1d1));
+    }
+    input[type=submit]:hover, input[type=submit]:active, 
+    input[type=submit].default:hover, input[type=submit].default:active, 
+    input[type=button]:hover, input[type=button]:active, 
+    button:hover, button:active, 
+    .submit-row a.deletelink:hover, .submit-row a.deletelink:active, 
+    .submit-row a.cancellink:hover, .submit-row a.cancellink:active { 
+        background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#3b3b3b));
+    }
+    
+    
+    /*  Tables
+    ------------------------------------------------------------------------------------------------------ */
+    
+    thead th,
+    tfoot td {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e5e5e5));    
+    }
+    thead th.sorted {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#eee));    
+    }
+    
+    
+    /*  Changelist
+    ------------------------------------------------------------------------------------------------------ */
+    
+    #changelist .actions {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e4e4e4));
+    }
+    #changelist .actions:first-child {
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-top-right-radius: 4px;
+    }
+    .paginator {
+        -webkit-border-bottom-left-radius: 4px;
+        -webkit-border-bottom-right-radius: 4px;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e4e4e4));
+    }
+    #changelist .filterset h3.form-row {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#e0f0f5), to(#d8e8ed));
+    }
+    #changelist .filterset h3.form-row:hover, 
+    #changelist .filterset.collapse-open h3.form-row {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#b8dae5), to(#cae3eb));
+    }
+    
+    /*  Change-Forms (Fieldsets, Inline-Group, Inline-Stacked)
+    ------------------------------------------------------------------------------------------------------ */
+    
+    fieldset.collapse-closed h2.collapse-toggle {
+        background-image: url('../img/icons/icon_fieldset_collapse-closed.png'),
+        -webkit-gradient(linear, left top, left bottom, from(#e0f0f5), to(#d8e8ed));
+    }
+    fieldset.collapse-closed h2.collapse-toggle:hover, 
+    fieldset.collapse-open h2.collapse-toggle {
+        background-image: url('../img/icons/icon_fieldset_collapse-open.png'),
+        -webkit-gradient(linear, left top, left bottom, from(#b8dae5), to(#cae3eb));
+    }
+    
+    .inline-group.collapse-closed h2.collapse-toggle {
+        background-image: url('../img/icons/icon_fieldset_collapse-closed.png'),
+        -webkit-gradient(linear, left top, left bottom, from(#e0f0f5), to(#d8e8ed));
+    }
+    .inline-group.collapse-closed h2.collapse-toggle:hover, 
+    .inline-group.collapse-open h2.collapse-toggle {
+        background-image: url('../img/icons/icon_fieldset_collapse-open.png'),
+        -webkit-gradient(linear, left top, left bottom, from(#b8dae5), to(#cae3eb));
+    }
+    
+    .inline-related.collapse-closed h3.collapse-toggle {
+        background-image: url('../img/icons/icon_fieldset_collapse-closed.png'),
+        -webkit-gradient(linear, left top, left bottom, from(#eff5e4), to(#e7eddd));
+    }
+    .inline-related.collapse-closed h3.collapse-toggle:hover, 
+    .inline-related h3.collapse-toggle {
+        background-image: url('../img/icons/icon_fieldset_collapse-open.png'),
+        -webkit-gradient(linear, left top, left bottom, from(#d8e3c3), to(#e0ebca));
+    }
+        
+    .inline-stacked .predelete.collapse-closed h3 {
+        background-image: url('../img/icons/icon_fieldset_collapse-closed.png'),
+        -webkit-gradient(linear, left top, left bottom, from(#f2d6d6), to(#e8cccc)) !important;
+    }
+    .inline-stacked .predelete h3, 
+    .inline-stacked .predelete.collapse-closed h3:hover {
+        background-image: url('../img/icons/icon_fieldset_collapse-open.png'),
+        -webkit-gradient(linear, left top, left bottom, from(#e8cccc), to(#f2d6d6)) !important;
+    }
+    
+    
+    /*  Calendarbox & Clockbox
+    ------------------------------------------------------------------------------------------------------ */
+    
+    .module .calendar caption, .module .calendarbox h2, .module .clockbox h2 {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#444), to(#3b3b3b)) !important;
+    }
+    a.calendarnav-previous {
+        background-image: url('../img/icons/icon-calendarnav_previous.png'), 
+        -webkit-gradient(linear, left top, left bottom, from(#444), to(#3b3b3b));
+    }
+    a.calendarnav-next {
+        background-image: url('../img/icons/icon-calendarnav_next.png'), 
+        -webkit-gradient(linear, left top, left bottom, from(#444), to(#3b3b3b));
+    }
+    a.calendarnav-previous:hover, a.calendarnav-previous:active {
+        background-image: url('../img/icons/icon-calendarnav_previous.png'), 
+        -webkit-gradient(linear, left top, left bottom, from(#309bbf), to(#2b8dad));
+    } 
+    a.calendarnav-next:hover, a.calendarnav-next:active {
+        background-image: url('../img/icons/icon-calendarnav_next.png'), 
+        -webkit-gradient(linear, left top, left bottom, from(#309bbf), to(#2b8dad));
+    }
+    .calendar-cancel {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#444), to(#3b3b3b));
+    }
+    
+    
+}
+

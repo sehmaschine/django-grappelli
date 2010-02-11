@@ -1,0 +1,158 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n grp_tags %}
+
+<!-- STYLES & SCRIPTS -->
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />
+{% endblock %}
+{% block javascripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsibleGroup.js"></script>
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block coltype %}colMS{% endblock %}
+{% block bodyclass %}dashboard{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}<div class="breadcrumbs">{% trans "Home" %}</div>{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+<div id="content-main">
+    {% if app_list or group_list %}
+        {% if group_list %}
+            {% for k,v in group_list.items %}
+            {% if v.applications %}
+            <div id="group_{{ k }}" class="group-collapsible {% if v.classes %}{% for class in v.classes %}{{ class }} {% endfor %}{% else %}collapse-open{% endif%}">
+                {% if v.name %}<h2>{{ v.name }}</h2>{% endif %}
+                {% if v.show_apps %}
+                    {% for app in v.applications %}
+                    <div class="module" id="app_{{ app.name|lower }}">
+                        <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+                            {% if v.show_apps %}<caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>{% endif %}
+                            {% for model in app.models %}
+                            <tr>
+                            {% if model.perms.change %}
+                                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                            {% else %}
+                                <th scope="row">{{ model.name }}</th>
+                            {% endif %}
+                            
+                            {% if model.perms.add %}
+                                <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                            
+                            {% if model.perms.change %}
+                                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="module" id="app_{{ app.name|lower }}">
+                        {% for app in v.applications %}
+                        <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+                            {% for model in app.models %}
+                            <tr>
+                            {% if model.perms.change %}
+                                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                            {% else %}
+                                <th scope="row">{{ model.name }}</th>
+                            {% endif %}
+                            
+                            {% if model.perms.add %}
+                                <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                            
+                            {% if model.perms.change %}
+                                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if app_list %}
+            <div class="group-collapsible">
+               {% for app in app_list %}
+               <div class="module" id="app_{{ app.name|lower }}">
+                   <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+                       <caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>
+                       {% for model in app.models %}
+                       <tr>
+                       {% if model.perms.change %}
+                           <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                       {% else %}
+                           <th scope="row">{{ model.name }}</th>
+                       {% endif %}
+                       
+                       {% if model.perms.add %}
+                           <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+                       {% else %}
+                           <td>&nbsp;</td>
+                       {% endif %}
+                       
+                       {% if model.perms.change %}
+                           <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                       {% else %}
+                           <td>&nbsp;</td>
+                       {% endif %}
+                       </tr>
+                       {% endfor %}
+                   </table>
+               </div>
+               {% endfor %}
+           </div>
+        {% endif %}
+    {% else %}
+        <p>{% trans "You don't have permission to edit anything." %}</p>
+    {% endif %}
+    
+</div>
+{% endblock %}
+
+<!-- SIDEBAR -->
+{% block sidebar %}
+<div id="content-related">
+    <div class="module" id="recent-actions-module">
+        <h2>{% trans 'Recent Actions' %}</h2>
+        <h3>{% trans 'My Actions' %}</h3>
+            {% load log %}
+            {% get_admin_log 10 as admin_log for_user user %}
+            {% if not admin_log %}
+            <p>{% trans 'None available' %}</p>
+            {% else %}
+            <ul class="actionlist">
+            {% for entry in admin_log %}
+            <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">{% if not entry.is_deletion %}<a href="{{ entry.get_admin_url }}">{% endif %}{{ entry.object_repr }}{% if not entry.is_deletion %}</a>{% endif %}<br /><span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span></li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+{% block extendedsidebar %}
+{% get_navigation user %}
+{% endblock %}
+
+{% endblock %}

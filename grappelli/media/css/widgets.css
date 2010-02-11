@@ -1,0 +1,326 @@
+
+
+
+/*  Selectors
+------------------------------------------------------------------------------------------------------ */
+
+.selector {
+    position: relative; float: left; overflow: hidden;
+    width: 700px;
+}
+
+.selector-available, .selector-chosen {
+    float: left;
+    width: 338px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #ddd;
+}
+.stacked .selector-available, .stacked .selector-chosen {
+    width: 698px;
+}
+
+.selector h2, .inline-group .selector h2, 
+.inline-related fieldset .selector-available h2, .inline-related fieldset .selector-chosen h2 {
+    padding: 7px 5px 6px 7px;
+    font-size: 12px; line-height: 13px; font-weight: bold;
+    border: none;
+    border-bottom: 1px solid #d0d0d0;
+    background: transparent;
+}
+
+.selector .selector-filter {
+    padding: 3px 5px 2px 2px;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+    background: url('../img/icons/icon-searchbox.png') 6px 50% no-repeat;
+}
+.selector h2 + .selector-filter {
+    -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
+}
+.selector .selector-filter input[type=text] {
+    position: relative;
+    margin: 0 0 0 25px;
+    width: 292px;
+}
+.selector.stacked .selector-filter input[type=text] {
+    width: 652px;
+}
+.selector .selector-filter img {
+    display: none;
+}
+
+.selector select[multiple=multiple] {
+    margin: 0; padding-left: 3px;
+    width: 338px; height: 200px;
+    border-top: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
+    border-left: none;
+    -moz-border-radius: 0; -webkit-border-radius: 0;
+}
+.selector.stacked select[multiple=multiple] {
+    width: 698px;
+}
+.selector h2 + select {
+    display: none; position: relative; top: -1px;
+    border-top: none;
+}
+
+.selector ul.selector-chooser {
+    float: left;
+    margin: 110px 2px 0; padding: 0;
+}
+.selector.stacked ul.selector-chooser {
+    margin: 4px 0 0 334px;
+}
+.selector.stacked ul.selector-chooser li {
+    float: left;
+}
+a.selector-add, a.selector-remove {
+    display: block;
+    width: 16px; height: 16px;
+    color: transparent;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+}
+a.selector-add:link, a.selector-add:visited {
+    background-image: url('../img/icons/icon-selector_add-m2m_horizontal.png');
+}
+a.selector-add:hover, a.selector-add:active {
+    background-image: url('../img/icons/icon-selector_add-m2m_horizontal-hover.png');
+}
+a.selector-remove:link, a.selector-remove:visited {
+    background-image: url('../img/icons/icon-selector_remove-m2m_horizontal.png');
+}
+a.selector-remove:hover, a.selector-remove:active {
+    background-image: url('../img/icons/icon-selector_remove-m2m_horizontal-hover.png');
+}
+.stacked a.selector-add:link, .stacked a.selector-add:visited {
+    background-image: url('../img/icons/icon-selector_add-m2m_vertical.png');
+}
+.stacked a.selector-add:hover, .stacked a.selector-add:active {
+    background-image: url('../img/icons/icon-selector_add-m2m_vertical-hover.png');
+}
+.stacked a.selector-remove:link, .stacked a.selector-remove:visited {
+    background-image: url('../img/icons/icon-selector_remove-m2m_vertical.png');
+}
+.stacked a.selector-remove:hover, .stacked a.selector-remove:active {
+    background-image: url('../img/icons/icon-selector_remove-m2m_vertical-hover.png');
+}
+a.selector-chooseall, a.selector-clearall {
+    display: block;
+    margin: 0; padding: 2px 7px;
+    font-size: 11px; line-height: 13px; font-weight: bold;
+    border-top: 1px solid #e4e4e4;
+}
+
+
+
+/*  File Uploads
+------------------------------------------------------------------------------------------------------ */
+
+p.file-upload {
+    margin: 0; padding: 0;
+    color: #666; font-size: 11px; line-height: 20px; font-weight: bold;
+}
+.file-upload a {
+    font-weight: normal;
+}
+.file-upload .deletelink {
+    margin-left: 5px;
+}
+
+
+
+/*  Date & Time
+------------------------------------------------------------------------------------------------------ */
+
+p.datetime {
+    margin: 0; padding: 0;
+    color: #666; font-size: 11px;
+}
+p.datetime br {
+    display: none;
+}
+
+input.vDateField + span, input.vTimeField + span {
+    position: relative; top: -1px;
+    display: inline-block;
+    vertical-align: middle;
+    color: #ccc; font-size: 11px; line-height: 11px;
+}
+input.vDateField + span a:first-child, 
+input.vTimeField + span a:first-child {
+    position: relative; top: 1px;
+}
+
+.form-row label + p.datetime {
+    margin: 0;
+}
+.change-list form table input.vDateField + span, 
+.change-list form table input.vTimeField + span {
+    vertical-align: baseline;
+}
+
+a[id^="calendarlink"] img, a[id^="clocklink"] img {
+    display: none;
+}
+a[id^="calendarlink"], a[id^="clocklink"] {
+    margin-right: 0; padding: 2px 10px 3px 8px;
+    background: transparent 50% 50% no-repeat;
+}
+a[id^="calendarlink"]:link, a[id^="calendarlink"]:visited {
+    background-image: url('../img/icons/icon-calendar.png');
+}
+a[id^="calendarlink"]:hover, a[id^="calendarlink"]:active {
+    background-image: url('../img/icons/icon-calendar-hover.png');
+}
+a[id^="clocklink"]:link, a[id^="clocklink"]:visited {
+    background-image: url('../img/icons/icon-clock.png');
+}
+a[id^="clocklink"]:hover, a[id^="clocklink"]:active {
+    background-image: url('../img/icons/icon-clock-hover.png');
+}
+
+
+
+/*  Calendarbox & Clockbox
+------------------------------------------------------------------------------------------------------ */
+
+.module.calendarbox, .module.clockbox {
+    position: absolute;
+    margin: 5px;
+    width: 180px;
+    font-size: 11px; text-align: center;
+    border: 2px solid #444;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #444;
+    -moz-box-shadow: 0 0 20px #999; -webkit-box-shadow: 0 0 20px #999;
+}
+.clockbox {
+    width: 120px;
+}
+
+
+/*  Table & Headings ................................................... */
+
+.calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+.module .calendar caption, .module .calendarbox h2, .clockbox.module h2 {
+    margin: 0; padding: 6px 0 7px;
+    color: #fff; font-size: 12px; font-weight: bold; text-align: center;
+    border-bottom: none;
+    -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px;
+    background: #444 !important;
+}
+
+.calendar th, .calendar td {
+    font-size: 11px; text-align: center;
+}
+.calendar th {
+    padding: 2px 3px;
+    font-size: 10px;
+    border-bottom: 1px solid #c4c4c4;
+    background: #ddd;
+}
+.calendar td {
+    padding: 0;
+    background: #fff;
+}
+
+.calendar td.selected a {
+    background: #444;
+}
+.calendar td.nonday {
+    background: #eee;
+}
+.calendar td.today a {
+    background: #fff;
+}
+
+.calendar td a, .timelist a {
+    display: block;
+    padding: 2px 0;
+    width: 100%; height: 100%;
+    font-weight: bold; text-align: center;
+    color: #444;
+}
+
+.calendar td a:hover, .calendar td a:active, 
+.timelist a:hover, .timelist a:active {
+    color: #fff;
+    background: #309bbf;
+}
+
+
+/*  Calendar Navigation ................................................... */
+
+a.calendarnav-previous, a.calendarnav-next {
+    position: absolute; display: block;
+    padding: 5px;
+    width: 18px; height: 18px;
+    color: transparent;
+    background-color: #444;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+a.calendarnav-previous {
+    left: 0;
+    border-right: 1px solid #525252;
+    -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+    background-image: url('../img/icons/icon-calendarnav_previous.png');
+}
+a.calendarnav-next {
+    right: 0;
+    border-left: 1px solid #525252;
+    -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+    background-image: url('../img/icons/icon-calendarnav_next.png');
+}
+a.calendarnav-previous:hover, a.calendarnav-previous:active, 
+a.calendarnav-next:hover, a.calendarnav-next:active {
+    background-color: #309bbf;
+}
+
+
+/*  Shortcuts & Cancel ................................................... */
+
+.calendar-shortcuts {
+    padding: 3px 0 4px;
+    color: #c4c4c4; font-size: 10px; line-height: 11px; font-weight: bold;
+    border-top: 1px solid #c4c4c4;
+    background: #ddd;
+}
+.calendar-cancel {
+    margin: 0; padding: 2px 0 0;
+    font-size: 11px;
+    -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+    background: #444;
+}
+
+.calendar-cancel a:link, .calendar-cancel a:visited {
+    color: #d94141; font-weight: bold;
+}
+.calendar-cancel a:hover, .calendar-cancel a:active {
+    color: #fff;
+}
+
+
+/*  Timelist ................................................... */
+
+ul.timelist, ul.timelist li {
+    padding: 0;
+    background: #fff;
+}
+ul.timelist li +li {
+    border-top: 1px solid #e4e4e4;
+}
+
+
