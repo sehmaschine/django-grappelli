@@ -1,0 +1,147 @@
+
+
+
+/*  Content-Main RTE
+------------------------------------------------------------------------------------------------------ */
+
+/*.documentation .colSM h1 {
+    left: -225px !important;
+}*/
+
+.documentation #content-main.rte .module {
+    padding: 0 10px 10px;
+    background: #fff;
+}
+.documentation #content-main.rte .module.model {
+    padding: 0;
+    background: #eee;
+}
+.documentation #content-main.rte p + .module.model {
+    margin-top: 15px;
+}
+.documentation #content-main.rte .module>h2 {
+    margin: 0 -10px 10px;
+}
+
+
+
+/*  Content-Related
+------------------------------------------------------------------------------------------------------ */
+
+.documentation #content-related a {
+    font-weight: bold;
+}
+.documentation #content-related ul li {
+    padding: 3px 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.documentation #content-related ul li:last-child {
+    border-bottom: none;
+}
+
+
+
+/*  Table
+------------------------------------------------------------------------------------------------------ */
+
+.documentation table.docutils {
+    margin-top: 10px;
+    border: 1px solid #d4d4d4;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+.documentation blockquote table.docutils {
+    margin-top: 0;
+}
+.documentation table.docutils tbody tr td {
+    background: #f4f4f4;
+}
+
+.documentation table.docutils thead th:first-child, 
+.documentation table.model thead th:first-child {
+    -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+}
+.documentation table.docutils thead th:last-child, 
+.documentation table.model thead th:last-child {
+    -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+}
+.documentation table.docutils tbody tr:last-child td:first-child {
+    -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+}
+.documentation table.docutils tbody tr:last-child td:last-child {
+    -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+}
+
+
+
+/*  Typography
+------------------------------------------------------------------------------------------------------ */
+
+#content-related a.selected {
+    color: #444;
+}
+
+a.back {
+    position: relative; display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+
+/*  RTE (Rich Text Edited)
+------------------------------------------------------------------------------------------------------ */
+
+.rte h2.subhead {
+    margin: 0;
+    font-size: 12px;
+}
+
+.rte h3 {
+    margin: 10px -10px 10px; padding: 7px 10px 6px;
+    font-size: 12px !important;
+    border-top: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+}
+.rte h2 + h3 {
+    margin-top: -11px !important;
+}
+.rte h4 {
+    margin: 10px 0 0;
+    font-size: 12px;
+}
+.rte p {
+    margin: 10px 0 0;
+}
+.rte > p:first-child {
+    margin-top: 0;
+}
+/* Workaround for problem rported in django-ticket #11817 */
+.rte h2 p, 
+.rte h4 p {
+    margin: 0 !important;
+    font-weight: normal;
+}
+.rte h4:empty, 
+.rte p:empty, 
+.rte hr, 
+br:first-child {
+    display: none !important;
+}
+
+.rte ul, .rte ol {
+    margin: 10px 0 0 20px; padding: 0 0 0 10px;
+    font-weight: normal !important;
+}
+.rte ul li, .rte ol li {
+    margin: 0; padding: 0;
+}
+.rte ul li {
+    list-style-type: disc;
+}
+.rte ol li {
+    list-style-type: decimal;
+}
+
+.rte blockquote {
+    margin-top: 10px;
+}
