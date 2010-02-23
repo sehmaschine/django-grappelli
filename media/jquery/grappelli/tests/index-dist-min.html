@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr" >
+    <head>
+        <title>QUnit Test Suite</title>
+
+        <link rel="stylesheet" type="text/css" href="../../../css/base.css" />
+        <link rel="stylesheet" type="text/css" href="../../custom-theme/jquery-ui-1.7.2.custom.css" />
+        <link rel="stylesheet" href="data/qunit.css" type="text/css" media="screen">
+
+        <script type="text/javascript" src="data/qunit.js"></script>
+        <!--script type="text/javascript" src="test.js"></script>
+        <script type="text/javascript" src="same.js"></script-->
+
+        <script type="text/javascript">
+        function gettext (i) { return i; }    
+        var ADMIN_URL = "/admin/";
+        var ADMIN_MEDIA_PREFIX = "/admin-media/";
+        var BOOKMARKS_URL = "/grappelli/bookmark/get/";
+        var MODEL_URL_ARRAY = {1: 'auth/permission',2: 'auth/group',3: 'auth/user',4: 'auth/message',5: 'admin/logentry',6: 'contenttypes/contenttype',7: 'sessions/session',8: 'sites/site',9: 'grappelli/navigation',10: 'grappelli/navigationitem',11: 'grappelli/bookmark',12: 'grappelli/bookmarkitem',13: 'grappelli/help',14: 'grappelli/helpitem',15: 'django_evolution/version',16: 'django_evolution/evolution',17: 'testapp/inlinestackedtest',18: 'testapp/inlinetabulartest',19: 'testapp/djangofields',20: 'testapp/grappellifields'}
+        </script>
+        <script type="text/javascript" src="../../jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="../../jquery-ui-1.7.2.custom.min.js"></script>
+        <script type="text/javascript" src="../dist/jquery.grappelli.min.js"></script>
+        <style>
+        #main { display:none; }
+        </style>
+    </head>
+    <body>
+        <h1 id="qunit-header">QUnit Test Suite</h1>
+        <h2 id="qunit-banner"></h2>
+        <div id="qunit-testrunner-toolbar"></div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+        <div id="main" style="">
+
+            <!-- jquery.gFacelist -->
+            <div>
+                <label for="id_m2m_test">M2M Autocomplete test:</label>
+                <input id="m2m_test" name="m2m_test" />
+<input class="vM2MAutocompleteRawIdAdminField" type="text" name="m2m_test" value="[2, 14, 17]" id="id_m2m_test" /><a href="/admin/sites/site/add/" class="add-another" id="add_id_m2m_test" onclick="return showAddAnotherPopup(this);"> <img src="/admin-media/img/admin/icon_addlink.gif" width="10" height="10" alt="Ajouter un autre"/></a>
+                  <p class="help"> Maintenez appuyé « Ctrl », ou « Commande (touche pomme) » sur un Mac, pour en sélectionner plusieurs.</p>
+            </div>
+
+            <!-- jquery.gAutoSlugField -->
+            <fieldset class="module aligned ">
+                <h2>Auto SlugField</h2>
+                <div class="form-row char_test  ">
+                    <div> 
+                        <label for="id_char_test">CharField:</label><input name="char_test" value="Hello World" class="vTextField" maxlength="255" type="text" id="id_char_test" />
+                    </div>
+                </div>
+                <div class="form-row slug_test  ">
+                    <div> 
+                        <label for="id_slug_test" class="required">SlugField:</label><input name="slug_test" rel="char_test" maxlength="50" type="text" class="ui-gAutoSlugField vTextField" value="" id="id_slug_test" />
+                    </div>
+                </div>  
+            </fieldset>
+
+            <!-- jquery.gActions -->
+            <div id="changelist">
+                <input type="checkbox" id="action-toggle" style="display: inline;"/>
+                <input type="checkbox" name="_selected_action" value="1" class="action-select" checked="checked"/>
+                <input type="checkbox" name="_selected_action" value="2" class="action-select"/>
+                <input type="checkbox" name="_selected_action" value="3" class="action-select"/>
+            </div>
+
+
+        </div>
+        <script type="text/javascript" src="grappelli.tests.js"></script>
+    </body>
+</html>

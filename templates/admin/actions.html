@@ -1,0 +1,8 @@
+{% load i18n %}
+<div class="module changelist-actions">
+    {% for field in action_form %}
+    <div class="box changelist-action">
+        <label>{{ field }}</label>
+    </div>
+    {% endfor %}
+</div>

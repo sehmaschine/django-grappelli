@@ -1,0 +1,259 @@
+
+
+
+/*  Basic Table Settings
+------------------------------------------------------------------------------------------------------ */
+
+table {
+    margin: 0; padding: 0;
+    border-spacing: none;
+}
+td, th {
+    font-size: 11px; line-height: 15px;
+    vertical-align: top;
+    padding: 5px 10px;
+}
+th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+tr.alt th, tr.alt td {
+    background: #f4f4f4;
+}
+.row1 th, .row1 td {
+    background: #f4f4f4;
+}
+.row2 th, .row2 td {
+    background: #fff;
+}
+
+
+/*  Thead ................................................... */
+
+thead th,
+tfoot td {
+    color: #aaa;
+    padding: 5px 10px;
+    font-size: 11px; line-height: 12px;
+    border-left: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+    background: #eee;
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+    background: -moz-linear-gradient(top, #eee, #e0e0e0);
+}
+thead th:first-of-type {
+    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+}
+thead th:last-of-type {
+    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+}
+/*thead th.sortable {
+    background: #cee9f2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#cee9f2));
+    background: -moz-linear-gradient(top, #e1f0f5, #cee9f2)
+}*/
+thead th.sorted {
+    border-bottom: 1px solid #ccc;
+    background: #e0e0e0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#eee));
+    background: -moz-linear-gradient(top, #e0e0e0, #eee);
+}
+thead th a {
+    position: relative; display: block;
+    margin: -5px -10px -4px; padding: 4px 10px 4px;
+    height: 100% !important;
+    white-space: nowrap;
+}
+thead th a:link, thead th a:visited {
+    color: #59afcc;
+    border-top: 1px solid #fff;
+}
+thead th a:hover, thead th a:active, 
+thead th.sorted a {
+    color: #444;
+}
+thead th.sorted a {
+    border-top: 1px solid #ececec;
+}
+thead th.ascending a:after {
+    content: url('../img/icons/icon-th-ascending.png');
+}
+thead th.descending a:after {
+    content: url('../img/icons/icon-th-descending.png');
+}
+
+
+/*  Tbody ................................................... */
+
+tbody th, tbody td {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tfoot td {
+    border-bottom: none;
+    border-top: 1px solid #d4d4d4;
+}
+
+thead th:first-child,
+tfoot td:first-child {
+    border-left: none;
+}
+
+thead th.optional {
+    font-weight: normal !important;
+}
+
+fieldset table {
+    border-right: 1px solid #eee;
+}
+
+tr.row-label td {
+    font-size: 9px;
+    padding-top: 2px;
+    padding-bottom: 0;
+    border-bottom: none;
+    color: #666;
+    margin-top: -1px;
+}
+
+
+
+/*  Table XFull
+------------------------------------------------------------------------------------------------------ */
+
+table.xfull {
+    width: 100%;
+}
+
+
+
+/*  Changelist Table
+------------------------------------------------------------------------------------------------------ */
+
+#changelist table {
+    position: relative;
+    border: 1px solid #bdbdbd;
+}
+/* undecided: depends on js-solution for calculating table-widths */
+#changelist thead th:last-of-type {    
+    padding-right: 10px;
+/*    padding-right: 10.5px;*/
+/*    padding-right: 11px;*/
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #changelist thead th:last-of-type {
+        padding-right: 11px;
+    }
+}
+
+#changelist tbody th, #changelist tbody td {
+    border: none;
+    border-top: 1px solid #e8e8e8;
+    border-left: 1px solid #e0e0e0;
+}
+#changelist tbody tr:first-child th, #changelist tbody tr:first-child td {
+    border-top: 1px solid #fff;
+}
+#changelist tbody tr th:first-child, #changelist tbody tr td:first-child {
+    border-left: none;
+}
+
+#changelist .changelist-results:first-child table, 
+#changelist .changelist-results:first-child thead th:first-of-type, 
+#changelist .changelist-results:first-child thead th:first-of-type a, 
+#changelist .restrictions + .changelist-results table, 
+#changelist .restrictions + .changelist-results thead th:first-of-type, 
+#changelist .restrictions + .changelist-results thead th:first-of-type a {
+    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+}
+#changelist .changelist-results:first-child table, 
+#changelist .changelist-results:first-child thead th:last-of-type,
+#changelist .changelist-results:first-child thead th:last-of-type a, 
+#changelist .restrictions + .changelist-results table, 
+#changelist .restrictions + .changelist-results thead th:last-of-type,
+#changelist .restrictions + .changelist-results thead th:last-of-type a {
+    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+
+.module.changelist-actions + .changelist-results table, 
+.module.changelist-actions + .changelist-results thead th:first-of-type, 
+.module.changelist-actions + .changelist-results thead th:first-of-type a {
+    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+}
+.module.changelist-actions + .changelist-results table, 
+.module.changelist-actions + .changelist-results thead th:last-of-type, 
+.module.changelist-actions + .changelist-results thead th:last-of-type a {
+    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
+}
+
+#changelist .changelist-results:last-child table, 
+#changelist .changelist-results:last-child tbody tr:last-of-type th:first-child, 
+#changelist .changelist-results:last-child tbody tr:last-of-type td:first-child {
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+}
+#changelist .changelist-results:last-child table, 
+#changelist .changelist-results:last-child tbody tr:last-of-type th:last-child, 
+#changelist .changelist-results:last-child tbody tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+}
+
+#changelist form table tbody td, #changelist form table tbody th {
+    padding-top: 10px;
+    padding-bottom: 9px;
+    line-height: 16px;
+}
+
+
+
+/*  Orderable Tables
+------------------------------------------------------------------------------------------------------ */
+
+table.orderable tbody tr td:hover {
+    cursor: move;
+}
+
+table.orderable tbody tr td:first-child {
+    padding-left: 14px;
+    background-image: url(../img/admin/nav-bg-grabber.gif);
+    background-repeat: repeat-y;
+}
+
+table.orderable-initalized .order-cell, body>tr>td.order-cell {
+    display: none;
+}
+
+
+
+/*  Change History
+------------------------------------------------------------------------------------------------------ */
+
+table#change-history {
+    width: 100%;
+}
+table#change-history tbody th {
+    width: 150px;
+}
+table#change-history thead th:first-child {
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+}
+table#change-history thead th:last-child {
+    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+
+
+
+/*  Overrides
+------------------------------------------------------------------------------------------------------ */
+
+tbody th:first-child, tbody td:first-child {
+    border-left: none;
+}
+tbody tr:last-child td, tbody tr:last-child th {
+    border-bottom: none;
+}
+table .nowrap {
+    white-space: nowrap;
+}

@@ -1,0 +1,123 @@
+{% load i18n %}
+
+{% if show %}
+<div class="module date-hierarchy">
+<div style="padding: 10px; font-size: 11px; font-weight: bold">
+    {% if back %}<a href="{{ back.link }}">{{ back.title }}</a>{% endif %}
+    {% if back_year %}<span style="margin: 0 1px">&raquo;</span>
+        {% if back_month %}
+            <a href="{{ back_year.link }}">{{ back_year.year|date:"Y" }}</a>
+        {% else %}
+            <span>{{ back_year.year|date:"Y" }}</span>
+        {% endif %}
+    {% endif %}
+    {% if back_month %}<span style="margin: 0 1px">&raquo;</span>
+        {% if back_day %}
+            <a href="{{ back_month.link }}">{{ back_month.month|date:"F" }}</a>
+        {% else %}
+            <span>{{ back_month.month|date:"F" }}</span>
+        {% endif %}
+    {% endif %}
+    {% if back_day %}<span style="margin: 0 1px">&raquo;</span>
+        {{ back_month.day|date:"j" }}
+    {% endif %}
+    
+    
+    {% if year_choices %}
+        <select class="date-hierarchy-choice">
+            <option>{% trans 'Select Year' %}</option>
+            {% for choice in year_choices %}
+                {% if choice.link %}
+                    <option value="{{ choice.link }}">{{ choice.year|date:"Y" }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    {% endif %}
+    {% if month_choices %}
+        <select class="date-hierarchy-choice">
+            <option>{% trans 'Select Month' %}</option>
+            {% for choice in month_choices %}
+                {% if choice.link %}
+                    <option value="{{ choice.link }}">{{ choice.month|date:"F" }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    {% endif %}
+    {% if day_choices %}
+        <select class="date-hierarchy-choice">
+            <option>{% trans 'Select Day' %}</option>
+            {% for choice in day_choices %}
+                {% if choice.link %}
+                    <option value="{{ choice.link }}">{{ choice.day|date:"j" }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    {% endif %}
+    
+    
+    {% comment %}
+    <ul class="datecrumbs">
+        {% if back %}<li><a href="{{ back.link }}">{{ back.title }}</a></li>{% endif %}
+        {% if back_year %}
+            <li>
+                {% if back_month %}
+                    <a href="{{ back_year.link }}">{{ back_year.year|date:"Y" }}</a>
+                {% else %}
+                    <span>{{ back_year.year|date:"Y" }}</span>
+                {% endif %}
+            </li>
+        {% endif %}
+        {% if back_month %}
+            <li>
+                {% if back_day %}
+                    <a href="{{ back_month.link }}">{{ back_month.month|date:"F" }}</a>
+                {% else %}
+                    <span>{{ back_month.month|date:"F" }}</span>
+                {% endif %}
+            </li>
+        {% endif %}
+        {% if back_day %}
+            <li>
+                {{ back_month.day|date:"j" }}
+            </li>
+        {% endif %}
+        <li>
+        {% if year_choices %}
+            <select class="date-hierarchy-choice">
+                <option>{% trans 'Select Year' %}</option>
+                {% for choice in year_choices %}
+                    {% if choice.link %}
+                        <option value="{{ choice.link }}">{{ choice.year|date:"Y" }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        {% endif %}
+        {% if month_choices %}
+            <select class="date-hierarchy-choice">
+                <option>{% trans 'Select Month' %}</option>
+                {% for choice in month_choices %}
+                    {% if choice.link %}
+                        <option value="{{ choice.link }}">{{ choice.month|date:"F" }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        {% endif %}
+        {% if day_choices %}
+        
+                <select class="date-hierarchy-choice">
+                    <option>{% trans 'Select Day' %}</option>
+                    {% for choice in day_choices %}
+                        {% if choice.link %}
+                            <option value="{{ choice.link }}">{{ choice.day|date:"j" }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+        
+        {% endif %}
+        </li>
+    </ul>
+    {% endcomment %}
+    <br clear="all" />
+</div>
+</div>
+{% endif %}

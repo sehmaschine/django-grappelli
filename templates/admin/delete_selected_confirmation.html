@@ -1,0 +1,50 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n grp_csrf %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+     <a href="../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
+     <a href="./">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
+     {% trans 'Delete multiple objects' %}
+</div>
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+{% if perms_lacking %}
+    <div class="module">
+        <h2>{% blocktrans %}Deleting the {{ object_name }} would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h2>
+        <ul class="rte">
+        {% for obj in perms_lacking %}
+            <li>{{ obj }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <div class="module">
+        <h2>{% blocktrans %}Are you sure you want to delete the selected {{ object_name }} objects? All of the following objects and it's related items will be deleted:{% endblocktrans %}</h2>
+        {% for deleteable_object in deletable_objects %}
+        <div class="row">
+            <ul class="rte">{{ deleteable_object|unordered_list }}</ul>
+        </div>
+        {% endfor %}
+    </div>
+    <form action="" method="post">{% grp_csrf_token %}
+        <div class="module submit-row">
+            {% for obj in queryset %}
+                <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk }}" />
+            {% endfor %}
+            <input type="hidden" name="action" value="delete_selected" />
+            <input type="hidden" name="post" value="yes" />
+            <ul class="submit-row" {% if is_popup %}style="overflow: auto;"{% endif %}>
+                <li class="left"><a href="../" class="cancel-link">{% trans "Cancel" %}</a></li>
+                <li><input type="submit" value="{% trans "Yes, I'm sure" %}" class="default" /></li>
+            </ul><input type="hidden" name="post" value="yes" />
+        </div>
+    </form>
+{% endif %}
+{% endblock %}

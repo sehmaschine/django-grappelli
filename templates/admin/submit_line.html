@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="module footer">
+    <ul class="submit-row">
+        {% if show_delete_link %}<li class="left"><a href="delete/" class="delete-link">Delete</a></li>{% endif %}
+        {% comment %}<li class="left"><a href="#" class="cancel-link">Cancel</a></li>{% endcomment %}
+        {% if show_save %}<li><input type="submit" value="{% trans 'Save' %}" class="default" name="_save" {{ onclick_attrib }}/></li>{% endif %}
+        {% if show_save_as_new %}<li><input type="submit" value="{% trans 'Save as new' %}" name="_saveasnew" {{ onclick_attrib }}/></li>{% endif %}
+        {% if show_save_and_add_another %}<li><input type="submit" value="{% trans 'Save and add another' %}" name="_addanother" {{ onclick_attrib }} /></li>{% endif %}
+        {% if show_save_and_continue %}<li><input type="submit" value="{% trans 'Save and continue editing' %}" name="_continue" {{ onclick_attrib }}/></li>{% endif %}
+        {% comment %}<li><input type="reset" value="Reset" /></li>{% endcomment %}
+    </ul><br clear="all" />
+</div>

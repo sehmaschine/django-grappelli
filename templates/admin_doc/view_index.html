@@ -1,0 +1,61 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia %}
+{% load i18n %}
+{% block extrahead %}
+<script type="text/javascript">
+$(function(){
+    // Correct the position of anchors (because "#header" & "#breadcrumbs" have a "position:fixed")
+    $('.table-of-contents a').click(function(){
+        var myReference = ".rte " + $(this).attr('href');
+        var targetOffset = $(myReference).offset().top;
+        $('html,body').scrollTop(targetOffset - 56);
+        return(false);
+    });
+    // Remove emtpy elements: wrkaround for problem reported in django-ticket #11817
+    $('.rte h4:empty').remove();
+    $('.rte p:empty').remove();
+    $('.rte hr').remove();
+});
+</script>
+{% endblock %}
+{% block bodyclass %}documentation{% endblock %}
+{% block content-class %}content-grid{% endblock %}
+{% block breadcrumbs %}<div id="breadcrumbs"><a href="../../">Home</a> &rsaquo; <a href="../">Documentation</a> &rsaquo; Views</div>{% endblock %}
+{% block title %}Views{% endblock %}
+
+{% block content %}
+
+<h1>View documentation</h1>
+
+{% regroup views|dictsort:"site_id" by site as views_by_site %}
+<div class="container-grid">
+    <div class="column span-6">
+        <div class="module table-of-contents">
+            <h2>Jump to site</h2>
+            <ul>
+                {% for site_views in views_by_site %}
+                <li><a href="#site{{ site_views.grouper.id }}">{{ site_views.grouper.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="column span-18 last rte">
+        {% for site_views in views_by_site %}
+        <div class="group">
+            <h2 id="site{{ site_views.grouper.id }}">Views by URL on {{ site_views.grouper.name }}</h2>
+            {% for view in site_views.list|dictsort:"url" %}
+            {% ifchanged %}
+            <div class="module">
+            <h3><a href="{{ view.module }}.{{ view.name }}/">{{ view.url }}</a></h3>
+            <p class="small quiet">View function: {{ view.module }}.{{ view.name }}</p>
+            <p>{{ view.title }}</p>
+            </div>
+            {% endifchanged %}
+        {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
