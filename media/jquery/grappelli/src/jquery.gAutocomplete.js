@@ -34,6 +34,7 @@ $.widget('ui.gAutocomplete', {
             ui._lookup($(this).val());
             ui.dom.input.focus();
         });
+        ui.element.parent().find('.vAutocompleteRawIdAdminField').hide();
         ui.element.attr('name', ui.element.attr('id'));
 
         if (ui.element.val()) {
@@ -64,13 +65,13 @@ $.widget('ui.gAutocomplete', {
                 .bind('blur.browse',  function(){ ui.dom.browse.removeClass('focus'); });
             // width = width - 23;
         }
+
         ui.dom.wrapper
             .append(ui.dom.results)
             .insertAfter(ui.dom.input)
-            // .css({
-            //     //left: ui.dom.input.position().left + ui.dom.wrapper.css('margin-left'), 
-            //     position: 'absolute'
-            // }).width(width);
+            .css({
+                left: ui.dom.input.position().left, 
+            }).width(width);
         
         ui._bind(ui.dom.input, 'keydown', function(e){
             var kc = e.keyCode || 0;
@@ -303,20 +304,22 @@ $.widget('ui.gAutocomplete', {
     }
 });
 
-$.ui.gAutocomplete.getter = ['results'];
+$.extend($.ui.gAutocomplete, {
+    getter: 'results',
+    defaults: {
+        highlight:  true,
+        browse:     true,
+        throbber:   true,
+        delay:      0.5,
+        minChars:   2,
+        maxResults: 20,
+        width:      false,
+        browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
+        create:     false, // buggy
+        createText: 'Create a new object',
+        lookup_url: '/grappelli/lookup/related/'
+    }
+});
 
-$.ui.gAutocomplete.defaults = {
-    highlight:  true,
-    browse:     true,
-    throbber:   true,
-    delay:      0.5,
-    minChars:   2,
-    maxResults: 20,
-    width:      false,
-    browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
-    create:     false, // buggy
-    createText: 'Create a new object',
-    lookup_url: '/grappelli/lookup/related/'
-};
 
 })(jQuery);
