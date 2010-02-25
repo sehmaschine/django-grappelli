@@ -3,7 +3,7 @@
 {% spaceless %}
 <ul class="pagination">
     {% ifnotequal cl.result_count 0 %}
-    <li class="results"><xspan>{{ cl.result_count }} {% ifequal cl.result_count 1 %}{{ cl.opts.verbose_name|escape }}{% else %}{{ cl.opts.verbose_name_plural }}{% endifequal %}</xspan></li>
+    <li class="results"><span>{{ cl.result_count }} {% ifequal cl.result_count 1 %}{{ cl.opts.verbose_name|escape }}{% else %}{{ cl.opts.verbose_name_plural }}{% endifequal %}</span></li>
     {% endifnotequal %}
     {% if pagination_required %}
         {% comment %}<li class="page">{% trans 'Page' %}</li>{% endcomment %}
