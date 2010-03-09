@@ -270,6 +270,16 @@ body {
     margin-left: 6px; color: #999; font-size: 10px;
 }
 
+.ui-datepicker td.ui-state-disabled {
+    font-size:11px;
+    background:#ccc;
+    font-weight:bold;
+    border:1px solid transparent;
+    border-radius:3px; -moz-border-radius:3px; -webkit-borderradius:3px;
+    padding: 5px 0px 2px;
+    text-align: center;
+    color:#888;
+}
 
 
 /*	Tabs
@@ -331,6 +341,7 @@ ul.ui-gAutocomplete-results li {
     color: #666;
     cursor: pointer;
 }
+ul.ui-gAutocomplete-results li.selected,
 ul.ui-gAutocomplete-results li:hover {
     background: #e1f0f5;
 }
@@ -406,3 +417,13 @@ ul.ui-gFacelist-facelist input.ui-gAutocomplete-autocomplete {
 }
 
 
+.ui-gAutoSlugField-preview {
+    display:block;
+    margin-left:160px;
+    padding:2px 6px;
+    background:#eee;
+    border:1px solid #ddd;
+    border-width:0 1px 1px 1px;
+    width:744px;
+    color:#999;
+}

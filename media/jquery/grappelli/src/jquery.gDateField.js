@@ -11,14 +11,17 @@ $.datepicker.setDefaults({
     buttonText:      ' ',
     showOn:          'button',
     showButtonPanel: true, 
-    closeText:       gettext && gettext('Cancel') || 'Cancel'
-//  buttonImage:     ADMIN_MEDIA_PREFIX +'img/icons/icon-calendar.png'
+    closeText:       gettext && gettext('Cancel') || 'Cancel',
+    showOtherMonths: true,
+    constrainInput:  true,
+    defaultDate:     'today',
 });
+
 
 $.widget('ui.gDateField', {
     _init: function() {
         var ui = this;
-
+        console.log(ui.element)
         ui.element.datepicker()
             .parent().find('br').replaceWith('<span class="spacer" />');
 
@@ -29,7 +32,7 @@ $.widget('ui.gDateField', {
 });
 
 $.ui.gDateField.defaults = {
-    mask: '9999-99-99' // set to false to disable
+    mask: '9999-99-99', // set to false to disable
 };
 
 })(jQuery);

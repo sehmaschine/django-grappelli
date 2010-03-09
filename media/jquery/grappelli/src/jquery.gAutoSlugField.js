@@ -10,20 +10,26 @@
 $.widget('ui.gAutoSlugField', {
 
     _init: function() {
-        var ui = this; 
+        var ui  = this; 
+        ui.mode = ui.element.attr('rel') && 'mirror' || 'standalone';
+        ui.dom  = {
+            preview: $('<span class="ui-gAutoSlugField-preview">test</span>'),
+            input: $('<input maxlength="50" type="text" class="ui-gAutoSlugField vTextField" />')
+        };
 
-        if (ui.element.attr('rel')) {
-            ui.elementTarget = $('#id_'+ ui.element.attr('rel'));
-            ui.elementTarget.bind('keyup.gAutoSlugField', function(e){
-                ui._refresh(e);
-            });
-
-            // Initial data
-            if (ui.element.val() != $.slugify(ui.elementTarget.val())) {
-                ui.element.val($.slugify(ui.elementTarget.val()));
-            }
+        if (ui.mode == 'mirror') {
+            ui.dom.input = $('#id_'+ ui.element.attr('rel'));
         }
-        ui.element.delayedObserver(function(e){
+        else {
+            ui.element.hide();
+            ui.dom.preview.insertAfter(ui.element);
+            if (ui.element.attr('maxlength')) {
+                ui.dom.input.attr('maxlength', ui.element.attr('maxlength'));
+            }
+            ui.dom.input.insertBefore(ui.element);
+        }
+
+        ui.dom.input.delayedObserver(function(e){
             ui._refresh(e, true);
         }, ui.options.delay);
     },
@@ -31,7 +37,10 @@ $.widget('ui.gAutoSlugField', {
     _refresh: function(e, fromSource) {
         var ui, val;
         ui  = this;
-        val = $.slugify((!ui.elementTarget || fromSource) && ui.element.val() || ui.elementTarget.val());
+        val = $.slugify(ui.dom.input.val());
+        if (ui.mode == 'standalone') {
+            ui.dom.preview.text(val);
+        }
         ui.element.val(val);
     }
 });
