@@ -20,9 +20,11 @@ $.widget('ui.gAutocomplete', {
     _lastRequest: 0,
     _results: [],
     _select_onload: false,
+    _ignored_chars: [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9],
 
     _init: function() {
-        var ui = this;
+        var ui, width;
+        ui = this;
         ui.dom = {
             wrapper: ui._createElement('div',   {ns: 'wrapper'}).addClass('ui-corner-bottom').hide(), 
             results: ui._createElement('ul',    {ns: 'results'}), 
@@ -30,25 +32,22 @@ $.widget('ui.gAutocomplete', {
             browse:  ui._createElement('button',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}) 
         };
         
-        $('[name="'+ ui.element.attr('id') +'"]').bind('updated', function(e){
-            ui._lookup($(this).val());
-            ui.dom.input.focus();
-        });
-        ui.element.parent().find('.vAutocompleteRawIdAdminField').hide();
+        ui.element.hide().parent().find('.vAutocompleteRawIdAdminField').hide();
         ui.element.attr('name', ui.element.attr('id'));
+        ui.dom.input.insertAfter(ui.element);
 
+        // Initial value
         if (ui.element.val()) {
             ui.dom.input.val(ui.element.val());
         }
 
-        ui.dom.input.insertAfter(ui.element.hide());
         if (ui.options.width) {
             ui.dom.input.width(ui.options.width);
         }
-        var width = ui.dom.input.width() + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
+
+        width = ui.dom.input.width() + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
 
         if (ui.options.browse) {
-            var w = ui.dom.input.width();
             ui.dom.browse.insertAfter(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, function(){ $(this).removeClass('ui-state-hover'); })
                 .bind('click.browse', function(){
@@ -56,27 +55,19 @@ $.widget('ui.gAutocomplete', {
                 });
 
             ui.dom.input
-                .css({
-                    // marginLeft: '-22px', 
-                    // paddingLeft: '24px', 
-                    // width: w - 22 +'px'
-                })
                 .bind('focus.browse', function(){ ui.dom.browse.addClass('focus'); })
                 .bind('blur.browse',  function(){ ui.dom.browse.removeClass('focus'); });
-            // width = width - 23;
         }
 
         ui.dom.wrapper
             .append(ui.dom.results)
             .insertAfter(ui.dom.input)
-            .css({
-                left: ui.dom.input.position().left, 
-            }).width(width);
+            .css('left', ui.dom.input.position().left)
+            .width(width);
         
         ui._bind(ui.dom.input, 'keydown', function(e){
             var kc = e.keyCode || 0;
             var key = $.ui.keyCode;
-            //var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 8, 9];
             switch(kc) {
                 case key.UP:     return ui._select('prev');
                 case key.DOWN:   return ui._select('next');
@@ -87,13 +78,11 @@ $.widget('ui.gAutocomplete', {
             }
         });
 
-        //ui._bind(ui.dom.input, 'blur', function(){ ui._hideList(); });
         ui.dom.input.delayedObserver(function(e){
             var kc = e.keyCode || 0;
-            var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9];
             // Option: minChar
             if ($(this).val().length >= ui.options.minChars) { 
-                if ($.inArray(kc, noCompletes) < 0) {
+                if ($.inArray(kc, ui._ignored_chars) < 0) {
                     ui._autocomplete();
                 }
             }
@@ -106,9 +95,10 @@ $.widget('ui.gAutocomplete', {
             }
         }, ui.options.delay);
     },
-    
-    // This method is called when the "Browse" button is clicked on
-    // Autocomplete fields
+
+    /* called when the "Browse" button is clicked on
+     * Autocomplete fields
+     */
     _browse: function(l) {
         var link = $(l);
         var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
@@ -118,15 +108,10 @@ $.widget('ui.gAutocomplete', {
         return false;
     },
 
-    _lookup: function(id) {
-        var ui = this;
-        $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
-            if (data) {
-                ui.dom.input.val(decodeURI(data));
-            }
-        });
-    },
-
+    /* Set the current widget value
+     * @val the value to be set (must be an object that 
+     *      contains a "id" and a "label" property)
+     **/
     _setVal: function(val) {
         var ui = this;
         if (val) {
@@ -139,6 +124,10 @@ $.widget('ui.gAutocomplete', {
         }
     },
 
+    /* Creates an HTML fragment
+     * @type    the element type (ex: "div", "p", "b"...)
+     * @attr    an array of attributes to apply
+     **/
     _createElement: function(type, options) {
         var ui = this;
         var el = $('<'+ type +' />');
@@ -148,13 +137,18 @@ $.widget('ui.gAutocomplete', {
         return el;
     },
 
+    /*  Shortcut to bind an event to the
+     *  widget element
+     **/
     _bind: function(element, eventName, callback) {
         var ui = this; 
         element.bind(eventName +'.'+ ui.widgetEventPrefix, function(e){
             return callback.apply(this, [e, ui]);
         });
     },
-
+    
+    /* Hide the autocomplete result list
+     **/
     _hideList: function() {
         var ui = this;
         if (ui.dom.wrapper.is(':visible')){
@@ -163,6 +157,8 @@ $.widget('ui.gAutocomplete', {
         }
     },
 
+    /* Show the autocomplete result list
+     **/
     _showList: function(){
         var ui = this;
         if (ui.dom.wrapper.is(':hidden')){
@@ -175,6 +171,8 @@ $.widget('ui.gAutocomplete', {
         }
     },
 
+    /* Called when a selection has been made
+     **/
     _select: function(which) {
         var ui = this;
         var li = false;
@@ -190,11 +188,17 @@ $.widget('ui.gAutocomplete', {
         ui._choose(true);
         return true;
     },
+            
 
+    /*  Returns the currently selected "li" element
+     **/
     _selected: function() {
         return this.dom.results.find('li.selected');
     },
 
+    /* Called when the input value has been changed.
+     * Then updates the results list.
+     * */
     _autocomplete: function() {
         var ui  = this;
         var url = ui.options.backend +'?q='+ ui.dom.input.val();
@@ -219,6 +223,9 @@ $.widget('ui.gAutocomplete', {
         });
     },
 
+
+    /*  Return the cached results list
+     **/
     results: function() {
         return this._results;         
     },
@@ -235,17 +242,14 @@ $.widget('ui.gAutocomplete', {
                 ui._hideList();
             }
         }
-        else if (node.data('create') && !nonSticky) {
-            // create object ..
-            if (ui.element.nextAll('.add-another').length) {
-                ui.element.nextAll('.add-another').trigger('click');
-            }
-            // ui._hideList();
-        }
         ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky, data: node.data('json')}));
         return false;
     },
 
+
+    /* This method is called to cancel a complete operation, for
+     * example, if the user presses "Esc" or "Tab" while autocompleting.
+     * */
     _cancel: function() {
         var ui = this;
         ui.dom.results.find('.selected').removeClass('selected');
@@ -257,6 +261,10 @@ $.widget('ui.gAutocomplete', {
         return false;
     },
 
+    /*  This method must be called when a new results list
+     *  as been loaded. It will update the autocomplete list
+     *  with the new results.
+     **/
     _redraw: function() {
         var ui = this;
         var li, item, txt = false;
@@ -271,7 +279,7 @@ $.widget('ui.gAutocomplete', {
                 item = rs[x];
                 txt  = $.format(ui.options.listFormat, item);
                 li   = ui._createElement('li', {ns: 'result'}).data('json', item).appendTo(ui.dom.results);
-                
+
                 // Option: highlight
                 if (ui.options.highlight) {
                     li.html(txt.replace(new RegExp("("+ ui.dom.input.val() +")", "gi"),'<b>$1</b>'));
@@ -297,7 +305,10 @@ $.widget('ui.gAutocomplete', {
         }
         ui.element.trigger('redrawn');
     },
-
+    
+    /* Take a LI element, mark it as selected and
+     * mark its siblings as not-selected
+     * */
     _shiftSelection: function(el) {
         $(el).addClass('selected').siblings().removeClass('selected');
         return this;
@@ -307,7 +318,10 @@ $.widget('ui.gAutocomplete', {
 $.extend($.ui.gAutocomplete, {
     getter: 'results',
     defaults: {
+        // tested
         highlight:  true,
+        
+        // non-tested
         browse:     true,
         throbber:   true,
         delay:      0.5,
