@@ -14,17 +14,26 @@ $.datepicker.setDefaults({
     closeText:       gettext && gettext('Cancel') || 'Cancel',
     showOtherMonths: true,
     constrainInput:  true,
-    defaultDate:     'today',
+    defaultDate:     'today'
 });
 
 
 $.widget('ui.gDateField', {
     _init: function() {
         var ui = this;
-        console.log(ui.element)
-        ui.element.datepicker()
-            .parent().find('br').replaceWith('<span class="spacer" />');
 
+        ui.element.datepicker().parent()
+            // replace BR
+            .find('br').replaceWith(ui.options.spacer || '');
+
+        // remove text Date: & Time: (now that's ugly..)
+        if (!ui.element.prev().get(0)) {
+            try {
+                ui.element.parent().get(0).childNodes[0].replaceWholeText('');
+                ui.element.parent().get(0).childNodes[3].replaceWholeText('');
+            } catch (e) {};
+        }
+            
         if (ui.options.mask) {
             ui.element.mask(ui.options.mask);
         }
@@ -32,7 +41,11 @@ $.widget('ui.gDateField', {
 });
 
 $.ui.gDateField.defaults = {
-    mask: '9999-99-99', // set to false to disable
-};
 
+    // set to false to disable input masking
+    mask:   '9999-99-99',                   
+
+    // separator between date and time fields
+    spacer: '<span class="spacer" />',      
+};                                          
 })(jQuery);

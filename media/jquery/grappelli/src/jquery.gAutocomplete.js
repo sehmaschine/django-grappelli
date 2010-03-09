@@ -322,6 +322,7 @@ $.extend($.ui.gAutocomplete, {
         highlight:  true,
         
         // non-tested
+
         browse:     true,
         throbber:   true,
         delay:      0.5,
