@@ -367,7 +367,33 @@ ul.ui-gAutocomplete-results li b {
 
 /*  Facelist
 ------------------------------------------------------------------------------------------------------ */
-
+.ui-gFacelist-wrapper {
+    width:758px;
+    margin-left:160px;
+    /*
+    background:#EAF5F8;
+    width:758px;
+    padding:5px 5px 4px 5px;
+    -webkit-box-shadow: #EAEAEA 0px 1px 3px inset;
+    -webkit-box-sizing: border-box;
+    border-bottom-left-radius: 3px 3px;
+    border-bottom-right-radius: 3px 3px;
+    border: 1px solid;
+    border-top-left-radius: 3px 3px;
+    border-top-right-radius: 3px 3px;
+    border-color: #CCC #DDD #DDD #CCC;
+    color: #666;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px;
+    outline: none;
+    vertical-align: middle;    
+    */
+}
+.ui-gFacelist-wrapper.focus {
+    border-color: #999 #BBB #BBB #999;
+}
 span.ui-gFacelist-message {
     display: inline-block;
     height: 25px;
@@ -390,7 +416,7 @@ span.ui-gFacelist-message {
 
 ul.ui-gFacelist-facelist {
     position: relative; float: left; clear: both;
-    padding: 0px 5px 5px;
+    padding: 5px 5px 5px;
     border: 1px solid #bbb;
     border-color: #ccc #ddd #ddd #ccc;
     border-top: none;
@@ -398,6 +424,8 @@ ul.ui-gFacelist-facelist {
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
     background: #fff;
+    clear:both;
+    width:758px;
     
 }
 li.ui-gFacelist-item {
@@ -407,15 +435,33 @@ li.ui-gFacelist-item {
     font-weight: bold;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
     background: #ddd;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#39BAE5), to(#309BBF));
+    -webkit-box-shadow: #666 0px 0px 3px;
+    opacity: 1;    
+    padding: 5px 8px 4px;
+    -webkit-box-sizing: border-box;
+    border-bottom-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    border: none;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+    color: white;
+    cursor: pointer;
+    height: 25px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    width: auto;    
+}
+li.ui-gFacelist-item:hover {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#444), to(#666));
 }
 li.ui-gFacelist-item {
     margin-right: 5px;
 }
-ul.ui-gFacelist-facelist input.ui-gAutocomplete-autocomplete {
-    margin-top: 4px;
-    width: 100px;
+.ui-gFacelist-wrapper .ui-gAutocomplete-autocomplete {
 }
-
+.ui-gFacelist-browse {
+}
 
 .ui-gAutoSlugField-preview {
     display:block;

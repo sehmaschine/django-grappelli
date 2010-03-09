@@ -99,6 +99,7 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     _init: function(){
         var ui = this;
 
+        ui.options = $.extend($.RelatedDefaultsBase, ui.options);
         ui.dom = {
             object_id: ui.element,
             content_type: $('#'+ ui.element.attr('id').replace('object_id', 'content_type')),
