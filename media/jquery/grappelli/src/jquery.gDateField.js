@@ -2,7 +2,7 @@
  *  widget:  gDateField
  *  Package: Grappelli
  *
- *  jslinted - 8 Jan 2010
+ *  jslinted - 9 Mar 2010 (r764)
  */
 (function($){
 
@@ -31,7 +31,7 @@ $.widget('ui.gDateField', {
             try {
                 ui.element.parent().get(0).childNodes[0].replaceWholeText('');
                 ui.element.parent().get(0).childNodes[3].replaceWholeText('');
-            } catch (e) {};
+            } catch (e) {}
         }
             
         if (ui.options.mask) {
@@ -46,6 +46,6 @@ $.ui.gDateField.defaults = {
     mask:   '9999-99-99',                   
 
     // separator between date and time fields
-    spacer: '<span class="spacer" />',      
+    spacer: '<span class="spacer" />'
 };                                          
 })(jQuery);
