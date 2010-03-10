@@ -232,9 +232,9 @@ $.widget('ui.gAutocomplete', {
         return this._results;         
     },
 
-    _choose: function(nonSticky) {
+    _choose: function(nonSticky, mouseClick) {
         var ui = this;
-        var node = ui.dom.results.find('.selected');
+        var node = ui.dom.results.find(mouseClick && '.hover' || '.selected');
         if (node.data('json')) {
             ui._setVal(node.data('json'));
             if (nonSticky) { // remember value in case of cancel
@@ -272,7 +272,7 @@ $.widget('ui.gAutocomplete', {
         var li, item, txt = false;
         var rs = ui.options.maxResults && ui._results.slice(0, ui.options.maxResults) || ui._results;
         var liMouseMove = function() { ui._shiftSelection(item); };
-        var liClick = function() { ui._shiftSelection(item)._choose(); };
+        var liClick = function() { ui._choose(false, true); };
         ui.element.trigger('redraw');
         ui.dom.results.empty();
 
@@ -280,7 +280,11 @@ $.widget('ui.gAutocomplete', {
             for (var x=0; x<rs.length; x++) {
                 item = rs[x];
                 txt  = $.format(ui.options.listFormat, item);
-                li   = ui._createElement('li', {ns: 'result'}).data('json', item).appendTo(ui.dom.results);
+                li   = ui._createElement('li', {ns: 'result'}).data('json', item)
+                            .hover(function(){ $(this).addClass('hover'); }, 
+                                   function(){ $(this).removeClass('hover'); })
+                            .appendTo(ui.dom.results);
+                            
 
                 // Option: highlight
                 if (ui.options.highlight) {
@@ -307,7 +311,9 @@ $.widget('ui.gAutocomplete', {
      * mark its siblings as not-selected
      * */
     _shiftSelection: function(el) {
-        $(el).addClass('selected').siblings().removeClass('selected');
+        try {
+            $(el).addClass('selected').siblings().removeClass('selected');
+        } catch(e) {}
         return this;
     }
 });

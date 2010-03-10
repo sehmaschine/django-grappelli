@@ -99,9 +99,9 @@ button.ui-gAutocomplete-browse,
 button.ui-gFacelist-browse, 
 button.ui-datepicker-trigger, 
 button.ui-timepicker-trigger {
-    width: 25px;
-    border: 1px solid #ccc;
-    background: #c30 50% 50% no-repeat;
+    width:      25px;
+    border:     1px solid #ccc;
+    background: #e1f0f5 50% 50% no-repeat;
 }
 button.fb_show:hover, 
 button.ui-gAutocomplete-browse:hover, 

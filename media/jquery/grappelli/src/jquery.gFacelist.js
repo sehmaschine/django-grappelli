@@ -20,7 +20,7 @@ $.widget('ui.gFacelist', {
             facelist: ui._createElement('ul',   {ns: 'facelist'}).addClass('ui-helper-clearfix'),
             input:    ui._createElement('input',{ns: 'search'})
                         .addClass('vM2MAutocompleteSearchField'), 
-            browse:  ui._createElement('button',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}) 
+            browse:  ui._createElement('button',{ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}) 
         };
         
         ui.dom.rawfield.val(ui.dom.rawfield.val().replace(/\[|\]/g, ''));
@@ -73,7 +73,6 @@ $.widget('ui.gFacelist', {
         ui._bind(ui.dom.input, 'complete', function(e){
             if (e.originalEvent.sticky) {
                 ui._addItem(e.originalEvent.data); 
-                ui._message();
             }
         });
 
@@ -82,17 +81,20 @@ $.widget('ui.gFacelist', {
             $.each(ui.options.initial_data, function(k, v) {
                 ui._addItem({label:v, id: k});
             });
-            ui._message();
         }
         // TODO: find out proper css fix
         ui.element.parent().find('.add-another').css('margin-top', '-24px').css('margin-left', '6px');
     },
 
+    /* Public method for adding a value
+     * instance.gFacelist('addVal', <value>);
+     * */
     addVal: function (i) {
         this._addItem(i);
-        this._message();
     },
 
+    /* Called when the browse button is clicked
+     **/
     _browse: function(l) {
         var link, href, wm;
         link = $(l);
@@ -103,27 +105,18 @@ $.widget('ui.gFacelist', {
         return false;
     },
 
-    _message: function(msg) {
-        var ui, cnt;
-        var ui = this;
-        if (ui.options.message) {
-            if (!msg) {
-                cnt = ui.dom.facelist.find('.ui-gFacelist-item').length;
-                msg = $.format(ui.options.messageFormat[cnt > 1 && 1 || 0], cnt);
-            }
-            //ui.dom.message.html(msg);
-            return msg;
-        }
-    },
-
+    /*  Removes an item from the list
+     **/
     _removeItem: function (item) {
         var ui = this;
         var el = $(item);
         ui._removeId(el.data('json').id);
         el.remove();
-        ui._message(); 
     },
 
+    /* Add an item to the list and
+     * bind necessary events
+     **/
     _addItem: function(data) {
         var ui, label, button;
         ui = this;
@@ -136,15 +129,11 @@ $.widget('ui.gFacelist', {
                 .appendTo(ui.dom.facelist)
                 .bind('click.gFacelist', function(){
                     ui._removeItem(this);
-                });
+                }).hide();
 
-            if (ui.options.message) {
-                button.hover(function() {
-                    ui._message($.format(ui.options.hoverFormat, $(this).text()));
-                }, function() {
-                    ui._message();
-                });
-            }
+            setTimeout(function(){
+                button.show();           
+            }, ui.options.addItemDelay * 1000);
 
             ui._addId(data.id);
             ui.dom.ac.val('');
@@ -152,6 +141,8 @@ $.widget('ui.gFacelist', {
         }
     },
 
+    /* Removes an id from the raw field and cache
+     **/
     _addId: function (id) {
         var ui, ids, stack;
         ui    = this;
@@ -162,6 +153,8 @@ $.widget('ui.gFacelist', {
         return ui;
     },
 
+    /* Add an id to the raw field and cache
+     **/
     _removeId: function (id) {
         var ui, ids, stack;
         ui    = this;
@@ -171,16 +164,9 @@ $.widget('ui.gFacelist', {
         return ui;
     },
 
-    _button: function(ns, attr) {
-        var ui, el;
-        ui = this;
-        el = ui._createElement('a', {ns: ns, attr: attr || {} })
-                .addClass('ui-state-default')
-                .hover(function(){ $(this).addClass('ui-state-hover'); }, 
-                       function(){ $(this).removeClass('ui-state-hover'); });
-        return el;
-    },
-
+    /* Create a DOM element and manage 
+     * proper namespacing of class name
+     **/
     _createElement: function(type, options, innerHTML) {
         var ui, el, op;
         ui = this;
@@ -192,29 +178,37 @@ $.widget('ui.gFacelist', {
         return el;
     },
 
+    /* Bind an event to an element and
+     * manage proper namespacing of event name
+     **/
     _bind: function(element, eventName, callback) {
         var ui = this; 
         element.bind(eventName +'.'+ ui.widgetEventPrefix, function(e){
             return callback.apply(this, [e, ui]);
         });
     }
-
 });
 
 $.ui.gFacelist.defaults = {
-    // functional options
-    browse:   true,
-    message:  true,
-    messageFormat: ['<b>{0:d}</b> selected item', '<b>{0:d}</b> selected items'],
-    hoverFormat:   'Click to remove <b>{0:s}</b>',
-    noItemFormat:  'No item selected',
+    
+    // Delay before showing a new item (in ms)
+    //
+    // When an item is selected it's better to 
+    // wait a short delay before showing the newly
+    // added item. If not, the item gets added before
+    // the autocomplete list hides itself and it creates
+    // a feeling that nothing happened.
+    addItemDelay: 0.2,
+
+    // show browse button
+    browse: true,
+
+    // gAutocomplete options
     autocomplete: {
         highlight:  true,
         browse:     false, // Using Autocomplete's browse becomes too messy ..
-        throbber:   false,
         minChars:   1,
         maxResults: 20,
     }
 };
-
 })(jQuery);

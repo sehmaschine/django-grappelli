@@ -341,9 +341,16 @@ ul.ui-gAutocomplete-results li {
     color: #666;
     cursor: pointer;
 }
-ul.ui-gAutocomplete-results li.selected,
+/* hover and selected must bear a slight style 
+ * difference since they have a slight behevior 
+ * difference 
+ **/
 ul.ui-gAutocomplete-results li:hover {
+    background: #dfe7e9;
+}
+ul.ui-gAutocomplete-results li.selected {
     background: #e1f0f5;
+    font-weight:bold;
 }
 ul.ui-gAutocomplete-results li:first-child {
     border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
