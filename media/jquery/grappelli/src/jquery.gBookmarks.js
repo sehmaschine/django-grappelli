@@ -7,29 +7,37 @@
 (function($){
 
 $.widget('ui.gBookmarks', {
+
+    _mapDom: function() {
+        var ui = this;
+        for (var x in ui.options.ns) {
+            ui.dom[x] = jQuery(ui.options.ns[x]);
+        }
+    },
          
     _init: function() {
         var ui  = this;
         var url = ui.options.url +'?path='+ window.location.pathname +' #bookmarks > li';
+        ui.dom = {};
 
         ui.element.load(url, function(){
-            ui.dom = {
-                wrapper:   $(ui.options.ns.wrapper),
-                add:       $(ui.options.ns.add),
-                list:      $(ui.options.ns.list), 
-                path:      $(ui.options.ns.path), 
-                title:     $(ui.options.ns.title),
-                cancel:    $(ui.options.ns.cancel)
-            };
+
+            ui._mapDom();
             
             ui._timeout = true;
             ui.showMethod = ui.options.effects && 'slideDown' || 'show';
             ui.hideMethod = ui.options.effects && 'slideUp'   || 'hide';
 
-            $("li#toggle-bookmarks-listing.enabled")
-                .live("mouseover", function(){ ui.show("#bookmarks-listing:hidden"); });
             ui.dom.add.live("click",    function() { return ui.add();    });
             ui.dom.cancel.live("click", function() { return ui.cancel(); });
+
+            $("li#toggle-bookmarks-listing.enabled")
+                .live("mouseover", function(){ 
+                    ui.show("#bookmarks-listing:hidden"); 
+                    $("#bookmarks").one("mouseleave", function(){ 
+                        ui.hide("#bookmarks-listing:visible"); 
+                    });
+                });
         });
     },
 
@@ -40,25 +48,22 @@ $.widget('ui.gBookmarks', {
         var ui = this;
         ui._timeout = false;
         $(el)[ui.showMethod](ui.options.effectsSpeed);
-        $("#bookmarks").one("mouseleave", function(){ 
-            ui.hide("#bookmarks-listing:visible"); 
-        });
     },
 
-    hide: function(el) {
+    hide: function(el, timeout, speed) {
         var ui = this;
         ui._timeout = true;
         setTimeout(function(){
             if (ui._timeout) {
-                $(el)[ui.hideMethod](ui.options.effectsSpeed);
+                $(el)[ui.hideMethod](speed || ui.options.effectsSpeed);
                 ui._timeout = false;
             }
-        }, ui.options.hideTimeout);
+        }, typeof(timeout) == 'undefined' && ui.options.hideTimeout || timeout);
     },
 
     cancel: function() {
         var ui = this;
-        ui.hide("#bookmark-add");
+        ui.hide(ui.dom.addWrapper, 0);
         $("#toggle-bookmarks-listing").toggleClass('enabled');
         return false;
     },
@@ -68,7 +73,9 @@ $.widget('ui.gBookmarks', {
         $("#bookmark-title").val($('h1').text());
         $("#bookmark-path").val(window.location.pathname);
         $("#toggle-bookmarks-listing").removeClass('enabled');
-        ui.show("#toggle-bookmark-add");
+        $('#bookmarks-listing').hide();
+        ui.hide("#bookmarks-listing", 0, 0);
+        ui.show(ui.dom.addWrapper);
         return false;
     }
 });
@@ -77,12 +84,13 @@ $.ui.gBookmarks.defaults = {
 
     // DOM mapping
     ns: {
-        wrapper: '#bookmarks',
-        add:     '#toggle-bookmark-add',
-        cancel:  '#bookmark-add-cancel',
-        list:    '#toggle-bookmarks-listing',
-        path:    '#bookmark-path',
-        title:   '#bookmark-title'
+        wrapper:    '#bookmarks',
+        addWrapper: '#bookmark-add',
+        add:        '#toggle-bookmark-add',
+        cancel:     '#bookmark-add-cancel',
+        list:       '#toggle-bookmarks-listing',
+        path:       '#bookmark-path',
+        title:      '#bookmark-title'
     },
 
     // backend URL
