@@ -368,46 +368,12 @@ ul.ui-gAutocomplete-results li b {
 /*  Facelist
 ------------------------------------------------------------------------------------------------------ */
 .ui-gFacelist-wrapper {
-    width:758px;
     margin-left:160px;
-    /*
-    background:#EAF5F8;
     width:758px;
-    padding:5px 5px 4px 5px;
-    -webkit-box-shadow: #EAEAEA 0px 1px 3px inset;
-    -webkit-box-sizing: border-box;
-    border-bottom-left-radius: 3px 3px;
-    border-bottom-right-radius: 3px 3px;
-    border: 1px solid;
-    border-top-left-radius: 3px 3px;
-    border-top-right-radius: 3px 3px;
-    border-color: #CCC #DDD #DDD #CCC;
-    color: #666;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 0px;
-    outline: none;
-    vertical-align: middle;    
-    */
 }
+
 .ui-gFacelist-wrapper.focus {
     border-color: #999 #BBB #BBB #999;
-}
-span.ui-gFacelist-message {
-    display: inline-block;
-    height: 25px;
-    background: #fff;
-    margin: 0;
-    padding: 3px 5px 4px;
-    vertical-align: middle;
-    color: #666; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;
-    border: 1px solid #bbb;
-    border-color: #ccc #ddd #ddd #ccc;
-    border-top-left-radius: 3px; -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px;
-    border-top-right-radius: 3px; -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px;
-    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-    outline: none;
 }
 
 .ui-gFacelist-toolbar button {
@@ -415,30 +381,15 @@ span.ui-gFacelist-message {
 }
 
 ul.ui-gFacelist-facelist {
-    position: relative; float: left; clear: both;
-    padding: 5px 5px 5px 0;
-    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
     clear:both;
+    padding: 5px 5px 5px 0;
+    position: relative; float: left; clear: both;
     width:758px;
-    /*
-    border-color: #ccc #ddd #ddd #ccc;
-    background: #fff;
-    border-top: none;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-    border: 1px solid #bbb;
-    background: #fff;
-    */
-    
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
+
 li.ui-gFacelist-item {
-    position: relative; float: left;
-    margin-top: 5px; 
-    margin-right: 5px;
-    padding: 4px 7px 3px 4px;
     cursor: pointer;
-    width: auto;
-    font-weight: bold;
     background:#ddd;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ebf2f5), to(#e1f0f5));
     background-image: -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
@@ -447,38 +398,40 @@ li.ui-gFacelist-item {
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
     -webkit-box-shadow: #666 0px 0px 3px;
     -webkit-box-sizing: border-box;
+    float: left;
+    font-weight: bold;
+    margin-top: 5px; 
+    margin-right: 5px;
+    padding: 4px 7px 3px 4px;
     opacity: 1;    
-    /*
-    padding: 5px 8px 4px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-
-
-    background-image: url('../img/icons/icon-related-lookup-hover.png');
-    background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    */
+    position: relative; 
+    width: auto;
 }
+
 li.ui-gFacelist-item:hover {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e1e1e1), to(#eee));
     background-image: -moz-linear-gradient(top, #e1e1e1, #eee);
 }
+
 li.ui-gFacelist-item span {
     background:transparent url('../img/icons/icon-bookmark_remove-inactive.png') no-repeat 2px 2px;
     padding:0 0 0 18px;
 }
+
 li.ui-gFacelist-item:hover span {
     background:transparent url('../img/icons/icon-bookmark_remove.png') no-repeat 2px 2px;
 }
 
+/*  AutoSlugField
+------------------------------------------------------------------------------------------------------ */
+
 .ui-gAutoSlugField-preview {
     display:block;
-    margin-left:160px;
+    color:#999;
     padding:2px 6px;
     background:#eee;
     border:1px solid #ddd;
     border-width:0 1px 1px 1px;
+    margin-left:160px;
     width:744px;
-    color:#999;
 }
-
-
