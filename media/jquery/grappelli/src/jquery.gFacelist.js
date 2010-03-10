@@ -12,9 +12,7 @@ $.widget('ui.gFacelist', {
         var ui = this;
         // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
-
         ui.element.hide().parent().find('p.help').remove();
-        ui.element.hide().parent().find('label').hide();
 
         ui.dom = {
             rawfield: ui.element.parent().find('input.vM2MAutocompleteRawIdAdminField').hide(),
