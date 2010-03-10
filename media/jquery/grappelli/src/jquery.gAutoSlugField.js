@@ -32,6 +32,11 @@ $.widget('ui.gAutoSlugField', {
         ui.dom.input.delayedObserver(function(e){
             ui._refresh(e, true);
         }, ui.options.delay);
+
+        // extra security ..
+        ui.element.bind('blur', function(e){
+            $(this).val($.slugify($(this).val()));
+        });
     },
     
     _refresh: function(e, fromSource) {

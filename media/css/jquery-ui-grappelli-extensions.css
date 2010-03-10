@@ -396,7 +396,6 @@ li.ui-gFacelist-item {
     background-repeat:no-repeat;
     border:1px solid #ccc;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
-    -webkit-box-shadow: #666 0px 0px 3px;
     -webkit-box-sizing: border-box;
     float: left;
     font-weight: bold;
