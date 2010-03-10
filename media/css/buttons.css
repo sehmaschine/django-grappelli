@@ -101,7 +101,7 @@ button.ui-datepicker-trigger,
 button.ui-timepicker-trigger {
     width: 25px;
     border: 1px solid #ccc;
-    background: #e1f0f5 50% 50% no-repeat;
+    background: #c30 50% 50% no-repeat;
 }
 button.fb_show:hover, 
 button.ui-gAutocomplete-browse:hover, 
@@ -109,6 +109,15 @@ button.ui-gFacelist-browse:hover,
 button.ui-datepicker-trigger:hover, 
 button.ui-timepicker-trigger:hover {
     background-color: #e1e1e1;
+}
+button.fb_show[disabled], 
+button.ui-gAutocomplete-browse[disabled], 
+button.ui-gFacelist-browse[disabled], 
+button.ui-datepicker-trigger[disabled], 
+button.ui-timepicker-trigger[disabled] {
+    /* TODO: there probably should be a icon-related-lookup-disabled.png.. */
+    background-image:url("../img/icons/icon-related-lookup-hover.png"), -moz-linear-gradient(center top , #e1e1e1, #eeeeee);
+    opacity: 0.5;
 }
 
 #changelist table button {

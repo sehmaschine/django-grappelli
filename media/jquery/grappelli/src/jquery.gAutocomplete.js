@@ -26,11 +26,13 @@ $.widget('ui.gAutocomplete', {
         var ui, width;
         ui = this;
         ui.dom = {
-            wrapper: ui._createElement('div',   {ns: 'wrapper'}).addClass('ui-corner-bottom').hide(), 
-            results: ui._createElement('ul',    {ns: 'results'}), 
-            input:   ui._createElement('input', {ns: 'autocomplete', attr:{type: 'text'}}).addClass('vAutocompleteSearchField'), 
-            browse:  ui._createElement('button',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}) 
+            wrapper: ui._createElement('div',    {ns: 'wrapper'}).addClass('ui-corner-bottom').hide(), 
+            results: ui._createElement('ul',     {ns: 'results'}), 
+            input:   ui._createElement('input',  {ns: 'autocomplete', attr:{ type: 'text'}}).addClass('vAutocompleteSearchField'), 
+            browse:  ui._createElement('button', {ns: 'browse',       attr:{ href: ui.options.related_url, title: 'Browse'}}) 
         };
+
+//      ui.options.minChars = 4;
         
         ui.element.hide().parent().find('.vAutocompleteRawIdAdminField').hide();
         ui.element.attr('name', ui.element.attr('id'));
@@ -39,10 +41,6 @@ $.widget('ui.gAutocomplete', {
         // Initial value
         if (ui.element.val()) {
             ui.dom.input.val(ui.element.val());
-        }
-
-        if (ui.options.width) {
-            ui.dom.input.width(ui.options.width);
         }
 
         width = ui.dom.input.width() + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
@@ -132,8 +130,8 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         var el = $('<'+ type +' />');
         var op = options || {};
-        if (op.ns)           { el.addClass(ui.widgetBaseClass +'-'+ op.ns); }
-        if (op.attr)         { el.attr(op.attr); }
+        if (op.ns)   { el.addClass(ui.widgetBaseClass +'-'+ op.ns); }
+        if (op.attr) { el.attr(op.attr); }
         return el;
     },
 
@@ -204,25 +202,28 @@ $.widget('ui.gAutocomplete', {
         var url = ui.options.backend +'?q='+ ui.dom.input.val();
         var lr  = ++ui._lastRequest;
 
-        // Option: maxResults
         if (ui.options.maxResults) {
             url = url + '&limit='+ ui.options.maxResults;
         }
-        // Option: throbber
         if (ui.options.throbber) {
             ui.dom.input.addClass('searching');
+        }
+        if (ui.options.browse) {
+            ui.dom.browse.attr('disabled', true);
         }
         ui._showList();
         $.getJSON(url, function(json, responseStatus){
             // process the request only if it's successful and it's the last sent (avoid race conditions)
             ui.dom.input.removeClass('searching');
+            if (ui.options.browse) {
+                ui.dom.browse.attr('disabled', null);
+            }
             if (responseStatus == 'success' && lr == ui._lastRequest) {
                 ui._results = json;
                 ui._redraw();
             }
         });
     },
-
 
     /*  Return the cached results list
      **/
@@ -318,21 +319,28 @@ $.widget('ui.gAutocomplete', {
 $.extend($.ui.gAutocomplete, {
     getter: 'results',
     defaults: {
-        // tested
-        highlight:  true,
+        // maximum results to show per requests (this is 
+        // processed server side)
+        maxResults: 4,
+
+        // a short delay is necessary to avoid making a request upon 
+        // each keystroke 0.5 (500ms) is recommended.
+        delay: 0.5,    
+
+        // highlight matched substrings with <b> tags
+        highlight: true,
+
+        // show a browse button
+        browse: true,
+
+        // the minimum caracters the field must contain before making
+        // a search query
+        minChars: 2,
         
         // non-tested
-
-        browse:     true,
         throbber:   true,
-        delay:      0.5,
-        minChars:   2,
-        maxResults: 20,
-        width:      false,
-        browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
-        create:     false, // buggy
+
         createText: 'Create a new object',
-        lookup_url: '/grappelli/lookup/related/'
     }
 });
 
