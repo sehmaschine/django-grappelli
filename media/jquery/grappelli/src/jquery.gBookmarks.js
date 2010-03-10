@@ -2,29 +2,21 @@
  *  widget:  gBookmarks
  *  Package: Grappelli
  *
- *  jslinted - 8 Jan 2010
+ *  jslinted - 10 Mar 2010
  */
 (function($){
 
 $.widget('ui.gBookmarks', {
-
-    _mapDom: function() {
-        var ui = this;
-        for (var x in ui.options.ns) {
-            ui.dom[x] = jQuery(ui.options.ns[x]);
-        }
-    },
          
     _init: function() {
-        var ui  = this;
-        var url = ui.options.url +'?path='+ window.location.pathname +' #bookmarks > li';
+        var ui, url;
+        ui  = this;
+        url = ui.options.url +'?path='+ window.location.pathname +' #bookmarks > li';
         ui.dom = {};
 
         ui.element.load(url, function(){
-
             ui._mapDom();
-            
-            ui._timeout = true;
+            ui._timeout   = true;
             ui.showMethod = ui.options.effects && 'slideDown' || 'show';
             ui.hideMethod = ui.options.effects && 'slideUp'   || 'hide';
 
@@ -41,15 +33,34 @@ $.widget('ui.gBookmarks', {
         });
     },
 
-    /*  Show the drop down menu
-     *
-     * */
-    show: function(el) {
-        var ui = this;
-        ui._timeout = false;
-        $(el)[ui.showMethod](ui.options.effectsSpeed);
+    /* Maps the ui.options.ns property to their
+     * respective DOM node so that { wrapper: '#bookmarks' }
+     * becomes "ui.dom.wrapper" that points to $('#bookmarks')
+     **/
+    _mapDom: function() {
+        var ui, x;
+        ui = this;
+        for (x in ui.options.ns) {
+            // ensure that's not a prototyped property
+            if (ui.options.ns.hasOwnProperty(x)) { 
+                ui.dom[x] = jQuery(ui.options.ns[x]);
+            }
+        }
     },
 
+    /*  Show the drop down menu
+     *  @speed animation speed, uses options by default
+     * */
+    show: function(el, speed) {
+        var ui = this;
+        ui._timeout = false;
+        $(el)[ui.showMethod](speed || ui.options.effectsSpeed);
+    },
+
+    /* Hide a given menu
+     *  @timeout animation timeout, uses options by default
+     *  @speed animation speed, uses options by default
+     * */
     hide: function(el, timeout, speed) {
         var ui = this;
         ui._timeout = true;
@@ -61,6 +72,9 @@ $.widget('ui.gBookmarks', {
         }, typeof(timeout) == 'undefined' && ui.options.hideTimeout || timeout);
     },
 
+    /* This method is called when the cancel button of
+     * the add bookmark form is pressed.
+     * */
     cancel: function() {
         var ui = this;
         ui.hide(ui.dom.addWrapper, 0);
@@ -68,6 +82,9 @@ $.widget('ui.gBookmarks', {
         return false;
     },
     
+    /* This method is called when the add bookmark 
+     * button (+) is pressed
+     * */
     add: function() {
         var ui = this;
         $("#bookmark-title").val($('h1').text());
@@ -110,7 +127,5 @@ $.ui.gBookmarks.defaults = {
     //
     // TL-DR: the menu doesn't feel like it has ADD
     hideTimeout: 500
-
 };
-
 })(jQuery);
