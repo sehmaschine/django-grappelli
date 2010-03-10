@@ -166,6 +166,9 @@ button.ui-gFacelist-browse:hover {
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }
+.errors button.ui-gAutocomplete-browse {
+    border-color:#bf3030 #bf3030 #bf3030 #ccc;
+}
 
 
 /*  Datepicker Button ......................................... */

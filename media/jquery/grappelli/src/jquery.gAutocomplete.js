@@ -161,6 +161,7 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         if (ui.dom.wrapper.is(':hidden')){
             ui.dom.wrapper.show();
+            ui.dom.input.parents('.form-row').removeClass('errors');
             $('html').bind('click.gAutocomplete', function(e){
                 if (!$(e.target).hasClass('ui-gAutocomplete-autocomplete')) {
                     ui._hideList();
@@ -296,13 +297,8 @@ $.widget('ui.gAutocomplete', {
             ui._showList();
         }
         else {
-            ui.dom.input.addClass('no-match');
-             if (ui.options.create) {
-                li = ui._createElement('li', {ns: 'result'}).data('create', true);
-                li.text(ui.options.createText);
-                ui.dom.results.html(li);
-                ui._showList();
-             }
+            ui._hideList();
+            ui.dom.input.parents('.form-row').addClass('errors');
         }
         ui.element.trigger('redrawn');
     },
