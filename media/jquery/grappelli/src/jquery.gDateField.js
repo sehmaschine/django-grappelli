@@ -40,12 +40,14 @@ $.widget('ui.gDateField', {
     }
 });
 
-$.ui.gDateField.defaults = {
+$.extend($.ui.gDateField, {
+    autoSelector: 'input.vDateField',
+    defaults: {
+        // set to false to disable input masking
+        mask:   '9999-99-99',                   
 
-    // set to false to disable input masking
-    mask:   '9999-99-99',                   
-
-    // separator between date and time fields
-    spacer: '<span class="spacer" />'
-};                                          
+        // separator between date and time fields
+        spacer: '<span class="spacer" />'
+    }
+});
 })(jQuery);

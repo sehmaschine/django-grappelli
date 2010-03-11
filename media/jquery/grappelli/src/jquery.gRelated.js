@@ -17,9 +17,10 @@ $.RelatedBase = {
 
     // Called when the "Browse" button is clicked on Related and GenericRelated fields
     _browse: function(l) {
-        var link = $(l);
-        var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        var wm   = $.wm(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
+        var ui, link, href, wm;
+        link = $(l);
+        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        wm   = $.wm(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
         wm._data('element', link.prevAll('input:first'));
         wm.open();
         return false;
@@ -27,25 +28,23 @@ $.RelatedBase = {
     
     // Called when the object id field is changed and it updates the label accordingly
     _lookup: function(e){
-        var ui   = this;
+        var ui, app_label, model_name, url, tl, txt, item;
+        ui = this;
         if (ui.dom.link.attr('href')) {
-            var app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
-            var model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
-
+            app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
+            model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
             if (ui.dom.object_id.val() == '') {
                 ui.dom.text.text('');
             }
             else {
                 ui.dom.text.text('loading ...');
-
-                var url = ui.options[ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2mUrl' || 'url'];
-                
+                url = $.grappelli.conf.get((ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2m_related' || 'related') + '_url');
                 $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
-                    var item = data;
+                    item = data;
                     if (item) {
-                        var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
+                        tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
                         if (item.length > tl) {
-                            var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
+                            txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
                             ui.dom.text.text(txt);
                         } else {
                             ui.dom.text.text(decodeURI(item));
@@ -60,10 +59,8 @@ $.RelatedBase = {
 $.RelatedDefaultsBase = {
     maxTextLength: 32,
     maxTextSuffix: ' ...',
-    url: '/grappelli/lookup/related/',
-    m2mUrl: '/grappelli/lookup/m2m/',
     getURL: function(k) {
-        return MODEL_URL_ARRAY[k] && ADMIN_URL + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
+        return MODEL_URL_ARRAY[k] && $.grappelli.conf.get('admin_url') + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
     }
 };
 
@@ -93,7 +90,10 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.ui.gRelated.defaults = $.RelatedDefaultsBase;
+$.extend($.ui.gRelated, {
+    autoSelector: 'input.vForeignKeyRawIdAdminField, input.vManyToManyRawIdAdminField',
+    defaults: $.RelatedDefaultsBase
+});
 
 $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     _init: function(){
@@ -152,7 +152,10 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase;
+$.extend($.ui.gGenericRelated, {
+    autoSelector: 'input[name*="object_id"]',
+    defaults: $.RelatedDefaultsBase
+});
 
 // Used in popup windows to disable default django behaviors
 $(function(){

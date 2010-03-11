@@ -11,7 +11,7 @@ from django.contrib import admin
 from django.db import models
 from django.db.models import Q
 from django.utils import dateformat
-from django.utils.translation import get_partial_date_formats, ugettext as _
+from django.utils.translation import get_language, get_partial_date_formats, ugettext as _
 from django.contrib.auth.models import Group
 
 # grappelli imports
@@ -126,6 +126,10 @@ def get_admin_title():
     
 register.simple_tag(get_admin_title)
 
+# RETURNS CURRENT LANGUAGE
+def get_lang():
+    return get_language()
+register.simple_tag(get_lang)
 
 # ADMIN_URL
 def get_admin_url():

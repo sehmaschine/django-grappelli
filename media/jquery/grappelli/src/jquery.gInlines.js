@@ -201,8 +201,9 @@ $.widget('ui.gInlineGroup', {
     }
 });
 
-$.ui.gInlineGroup.defaults = {
-};
+$.extend($.ui.gInlineGroup.defaults , {
+    autoSelector: '.inline-group',
+});
 
 // INLINE STACKED 
 
@@ -266,9 +267,13 @@ $.widget('ui.gInlineStacked', {
         $('.inline-group:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
     }
 });
-$.ui.gInlineStacked.defaults = {
-    collapsible: true
-};
+
+$.extend($.ui.gInlineStacked, {
+    autoSelector: '.inline-stacked',
+    defaults: {
+        collapsible: true
+    }
+});
 
 // INLINE TABULAR
 
@@ -290,4 +295,7 @@ $.widget('ui.gInlineTabular', {
     }
 });
 
+$.extend($.ui.gInlineTabular, {
+    autoSelector: '.inline-tabular'
+});
 })(jQuery);

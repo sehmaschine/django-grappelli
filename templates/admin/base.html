@@ -35,20 +35,15 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 
 {% block javascripts %}
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
-    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.8.1.alpha.min.js"></script>#}
-    <script type="text/javascript">
-        var ADMIN_URL = "{% get_admin_url %}";
-        var ADMIN_MEDIA_PREFIX = "{% admin_media_prefix %}";
-        var BOOKMARKS_URL = "{% url grp_bookmark_get %}";
-        {% get_generic_relation_list %}
-        $(function(){
-          {% block javascripts.init  %}{% include "admin/init.js"  %}{% endblock %}
-        });
-    </script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
-    <script type="text/javascript" src="{% url i18n-js "grappelli" %}"></script>
-    {# this will only be for development mode, a single minified file will be used for distribution. #}
+    {% comment %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.min.js"></script>
+    {% endcomment %}
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.grappelli.js"></script>
+    <script type="text/javascript" src="{% url i18n-js "grappelli" %}"></script>
+
+    {# this will only be for development mode, a single minified file will be used for distribution. #}
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gTimeField.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gDateField.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gChangelist.js"></script>
@@ -64,11 +59,38 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.strings.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.masked.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.delayedObserver.js"></script>
-    {% comment %}
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.min.js"></script>
-    {% endcomment %}
-    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/i18n/ui.datepicker-fr.js"></script>#}
-    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.js"></script>#}
+
+    {% ifnotequal get_lang 'en' %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/i18n/ui.datepicker-{% get_lang %}.js"></script>
+    {% endifnotequal %}
+
+    <script type="text/javascript">
+        // Use this to remove *all* effects (not recommended)
+        // $.fx.off = true;
+        // $.fx.speeds._default = 0; // force fx.off for jQuery < 1.8 (http://dev.jqueryui.com/ticket/4328)
+
+        $.grappelli.conf.extend({
+            lang:               '{% get_lang %}',
+            admin_url:          '{% get_admin_url %}',
+            admin_media_prefix: '{% admin_media_prefix %}',
+            bookmarks_url:      '{% url grp_bookmark_get %}',
+            related_url:        '{% url grp_related_lookup %}',
+            m2m_related_url:    '{% url grp_m2m_lookup %}',
+        });
+
+        {% get_generic_relation_list %}
+
+        $(function(){
+            $.grappelli.widgets.init([
+                'gBookmarks', 'gChangelist', 'gActions', 'gTimeField', 'gInlineGroup', 'gInlineTabular', 
+                'gTimeField','gDateField', 'gRelated', 'gGenericRelated', 'gAutoSlugField'
+            ]);
+
+            // To customize JavaScript behavior use create a file
+            // template/admin/init.js and it will be included here.
+            {% block javascripts.init  %}{% include "admin/init.js"  %}{% endblock %}
+        });
+    </script>
 {% endblock %}
 {% block extrahead %}{% endblock %}
 </head>
@@ -76,7 +98,6 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
 <!-- CONTAINER -->
 <div id="container">
-    
     <!-- HEADER -->
     {% if not is_popup %}
     {% include "admin/includes_grappelli/header.html" %}

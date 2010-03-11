@@ -11,7 +11,7 @@ $.widget('ui.gBookmarks', {
     _init: function() {
         var ui, url;
         ui  = this;
-        url = ui.options.url +'?path='+ window.location.pathname +' #bookmarks > li';
+        url = $.grappelli.conf.get('bookmarks_url') +'?path='+ window.location.pathname +' #bookmarks > li';
         ui.dom = {};
 
         ui.element.load(url, function(){
@@ -97,35 +97,34 @@ $.widget('ui.gBookmarks', {
     }
 });
 
-$.ui.gBookmarks.defaults = {
+$.extend($.ui.gBookmarks, {
+    autoSelector: '#bookmarks',
+    defaults: {
+        // DOM mapping
+        ns: {
+            wrapper:    '#bookmarks',
+            addWrapper: '#bookmark-add',
+            add:        '#toggle-bookmark-add',
+            cancel:     '#bookmark-add-cancel',
+            list:       '#toggle-bookmarks-listing',
+            path:       '#bookmark-path',
+            title:      '#bookmark-title'
+        },
 
-    // DOM mapping
-    ns: {
-        wrapper:    '#bookmarks',
-        addWrapper: '#bookmark-add',
-        add:        '#toggle-bookmark-add',
-        cancel:     '#bookmark-add-cancel',
-        list:       '#toggle-bookmarks-listing',
-        path:       '#bookmark-path',
-        title:      '#bookmark-title'
-    },
+        // Set to false to disable effects or true to enable them
+        effects: true,
 
-    // backend URL
-    url: BOOKMARKS_URL,
-
-    // Set to false to disable effects or true to enable them
-    effects: true,
-
-    // Speed at which effects are applied (in ms)
-    effectsSpeed: 80,
-    
-    // Amount of time (in ms) before hiding the menu.
-    //
-    // Allowing a small grace period before hiding the menu avoid
-    // lots of accidental gestures and makes the menu feels more
-    // "solid" for the user. 
-    //
-    // TL-DR: the menu doesn't feel like it has ADD
-    hideTimeout: 500
-};
+        // Speed at which effects are applied (in ms)
+        effectsSpeed: 80,
+        
+        // Amount of time (in ms) before hiding the menu.
+        //
+        // Allowing a small grace period before hiding the menu avoid
+        // lots of accidental gestures and makes the menu feels more
+        // "solid" for the user. 
+        //
+        // TL-DR: the menu doesn't feel like it has ADD
+        hideTimeout: 500
+    }
+});
 })(jQuery);

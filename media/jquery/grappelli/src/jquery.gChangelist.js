@@ -59,4 +59,7 @@ $.widget('ui.gChangelist', {
     }
 });
 
+$.extend($.ui.gChangelist, {
+    autoSelector: '.changelist-content',
+});
 })(jQuery);

@@ -26,7 +26,7 @@ tinyMCE.init({
     mode: "textareas",
     //elements: "summary, body",
     theme: "advanced",
-    language: "de",
+    language: "en", // TODO: should be dynamicly linked to grappelli
     skin: "grappelli",
     browsers: "gecko",
     dialog_type: "window",

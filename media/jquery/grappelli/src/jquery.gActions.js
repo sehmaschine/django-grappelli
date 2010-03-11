@@ -15,4 +15,7 @@ $.widget('ui.gActions', {
     }
 });
 
+$.extend($.ui.gActions, {
+    autoSelector: '#changelist',
+});
 })(jQuery);

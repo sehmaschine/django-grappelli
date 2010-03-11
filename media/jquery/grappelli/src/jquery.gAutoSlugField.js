@@ -56,8 +56,10 @@ $.widget('ui.gAutoSlugField', {
     }
 });
 
-$.ui.gAutoSlugField.defaults = {
-    delay: 0.8
-};
-
+$.extend($.ui.gAutoSlugField, {
+    autoSelector: '.ui-gAutoSlugField',
+    defaults: {
+        delay: 0.8
+    }
+});
 })(jQuery);

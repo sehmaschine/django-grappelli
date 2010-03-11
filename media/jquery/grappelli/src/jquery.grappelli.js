@@ -10,6 +10,50 @@ if (typeof(gettext) == 'undefined') {
     gettext = function (i) { return i; };
 }
 
+$.grappelli = (new function(){
+    var g = this;
+    g._
+    g._registy = {};
+    g.inst = {};
+
+    g.inst.widgets = {
+        init: function (widgets){
+            var iterator = function (i, widgetName) {
+                var w = jQuery.ui[widgetName];
+                if (w) {
+                    if (w.autoSelector) {
+                        jQuery(w.autoSelector)[widgetName]();
+                    }
+                }
+            };
+            $.each(widgets, iterator);
+        }
+    };
+
+    g.inst.conf = {
+        extend: function (obj){
+            for (var x in obj) {
+                if (obj.hasOwnProperty(x)) {
+                    g.inst.conf.set(x, obj[x]);
+                }
+            }
+        },
+        set: function (k, v){
+            return g._registy[k] = v;
+        },
+        get: function (k, fallback){
+            try {
+                return g._registy[k];
+            }
+            catch (e) {
+                return fallback || false;
+            }
+        }
+    };
+    return g.inst;
+}());
+
+
 // Minimal Window Manager
 $.wm = function () {
     this.defaults = {width:  600, height: 920, resizable: true, scrollbars: true};
