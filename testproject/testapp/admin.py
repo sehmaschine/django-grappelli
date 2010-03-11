@@ -95,7 +95,7 @@ class GrappelliFieldsAdmin(GrappelliModelAdmin):
     }
     class Media:
         js = [
-            settings.ADMIN_MEDIA_PREFIX + 'tinymce/jscripts/tiny_mce/tiny_mce.js',
+            settings.ADMIN_MEDIA_PREFIX + 'jquery/tinymce/jscripts/tiny_mce/tiny_mce.js',
             settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
         ]
 admin.site.register(GrappelliFields, GrappelliFieldsAdmin)
@@ -103,7 +103,7 @@ admin.site.register(GrappelliFields, GrappelliFieldsAdmin)
 
 class DjangoTabularFieldsInline(admin.TabularInline):
     model = DjangoFields
-    classes = ('collapse-open',)
+    classes = ('ui-collapsible', )
     allow_add = True
     extra = 1
     fieldsets = (
@@ -144,12 +144,12 @@ class GrappelliTabularFieldsInline(admin.TabularInline):
 
 class DjangoStackedFieldsInline(admin.StackedInline):
     model = DjangoFields
-    classes = ('collapse-open collapse-open-items',)
+    classes = ('ui-collapsible', 'ui-collapsible-all-closed',)
     allow_add = True
 
 class GrappelliStackedFieldsInline(GrappelliStackedInline):
     model = GrappelliFields 
-    classes = ('collapse-closed',)
+    classes = ('ui-collapsible', 'ui-collapsible-closed')
     allow_add = True
     autocomplete = {
         'fk_test': {

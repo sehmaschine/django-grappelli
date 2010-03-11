@@ -53,7 +53,7 @@ class DjangoFields(models.Model):
     fk_test        = models.ForeignKey(Site, verbose_name=u"ForeignKey", blank=True)
     inline_test    = models.ForeignKey('InlineTabularTest', verbose_name=u"ForeignKey (inline tabular)", blank=True, null=True)
     inline_test2   = models.ForeignKey('InlineStackedTest', verbose_name=u"ForeignKey (inline stacked)", blank=True, null=True)
-    m2m_test       = models.ManyToManyField(Site, verbose_name=u"ManyToManyField", blank=True, related_name='many_to_many')
+    m2m_test       = models.ManyToManyField(Site, verbose_name=u"ManyToManyField", blank=True, related_name='many_to_many', help_text="Lorem lipsum dolor amet")
     ooo_test       = models.OneToOneField(Site, verbose_name=u"OneToOneField", blank=True, related_name='one_to_one')
 
     def __unicode__(self):
