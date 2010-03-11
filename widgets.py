@@ -152,9 +152,9 @@ class M2MAutocompleteSearchInput(ManyToManyRawIdWidget):
             'admin/widgets/m2m_autocomplete_searchinput.html',
         ), context))
         output.reverse()
-        print "---"
-        print output
-        print "---"
+       #print "---"
+       #print output
+       #print "---"
         return mark_safe(u''.join(output))
 
 
