@@ -68,12 +68,15 @@
     border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
 }
 
-.group.collapsible.closed {
+.group.ui-collapsible-closed {
     border-color: #e0e0e0;
 }
 .group, 
-.group.collapsible.closed:hover {
+.group.ui-collapsible-closed:hover {
     border-color: #c7c7c7;
+}
+.group.ui-collapsible-closed .ui-collapsible-toggle {
+    display:block!important;
 }
 .group.changelist-content {
     margin: 0 0 7px;
@@ -220,36 +223,40 @@
 /*	Collapsible Structures
 ------------------------------------------------------------------------------------------------------ */
 
-.collapsible.closed *, 
-.collapsible.closed .module.table, 
-.collapsible.closed .module.table * {
+/* collapsible = ui-collapsible */
+.group.ui-collapsible-closed .module {
+    display:none;
+}
+
+.module.ui-collapsible-closed.table, 
+.module.ui-collapsible-closed * {
     display: none;
 }
 
-.collapsible-handler {
+/* collapsible-handler = ui-collapsible-toggle */
+.ui-collapsible-toggle {
     cursor: pointer;
 }
-
-.collapsible.closed .collapsible-handler, 
-.collapsible.closed .tools,
-.collapsible.closed .tools * {
+.ui-collapsible-closed .ui-collapsible-toggle, 
+.ui-collapsible-closed .tools,
+.ui-collapsible-closed .tools * {
     display: block !important;
 }
-.collapsible.closed h3+.tools, 
-.collapsible.closed h4+.tools {
+.ui-collapsible-closed h3+.tools, 
+.ui-collapsible-closed h4+.tools {
     margin-top: 1px !important;
 }
 
-.module.collapsible.closed h2.collapsible-handler, 
-.module.collapsible.closed h3.collapsible-handler, 
-.module.collapsible.closed h4.collapsible-handler {
+.module.ui-collapsible-closed h2.ui-collapsible-toggle, 
+.module.ui-collapsible-closed h3.ui-collapsible-toggle, 
+.module.ui-collapsible-closed h4.ui-collapsible-toggle {
     border-bottom: none;
 }
-.group .module.collapsible.closed h3.collapsible-handler, 
-.group .module.collapsible.closed h4.collapsible-handler, 
-.collapsible.closed h2.collapsible-handler, 
-.module .module.collapsible.closed.last .collapsible-handler, 
-.module .module.collapsible.closed:last-child .collapsible-handler {
+.group .module.ui-collapsible-closed h3.ui-collapsible-toggle, 
+.group .module.ui-collapsible-closed h4.ui-collapsible-toggle, 
+.ui-collapsible-closed h2.ui-collapsible-toggle, 
+.module .module.ui-collapsible-closed.last .ui-collapsible-toggle, 
+.module .module.ui-collapsible-closed:last-child .ui-collapsible-toggle {
     border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
 }
@@ -257,7 +264,7 @@
 
 /*  1st Level Collapsible-Handler Borders Top (Dark/Bright) ......................................... */
 
-.collapsible h2.collapsible-handler {
+.ui-collapsible h2.ui-collapsible-toggle {
     background: #a1d4e5 !important;
     background: -webkit-gradient(linear, left top, left bottom, from(#bcdfeb), to(#a1d4e5)) !important;
     background: -moz-linear-gradient(top, #bcdfeb, #a1d4e5) !important;
@@ -266,21 +273,21 @@
 
 /*  2nd Level Collapsible-Handler Borders Top (Dark/Bright) ......................................... */
 
-.group .collapsible h3.collapsible-handler, 
-.module .collapsible h3.collapsible-handler {
+.group .ui-collapsible h3.ui-collapsible-toggle, 
+.module .ui-collapsible h3.ui-collapsible-toggle {
     background: #cee9f2 !important;
     background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#cee9f2)) !important;
     background: -moz-linear-gradient(top, #e1f0f5, #cee9f2) !important;
 }
-.module .collapsible h3.collapsible-handler {
+.module .ui-collapsible h3.ui-collapsible-toggle {
     border-top: 1px solid #e1f0f5;
 }
 
 
 /*  3rd Level Collapsible-Handler Borders Top (Dark/Bright) ......................................... */
 
-.group .module .collapsible h4.collapsible-handler, 
-.module .module .collapsible h4.collapsible-handler {
+.group .module .ui-collapsible h4.ui-collapsible-toggle, 
+.module .module .ui-collapsible h4.uicollapsible-toggle {
     border-top: 1px solid #f0f7fa;
     background: #e1f0f5 !important;
     background: -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5)) !important;

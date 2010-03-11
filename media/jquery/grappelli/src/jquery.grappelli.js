@@ -121,38 +121,9 @@ $.unescapeHTML = function(str) {
 
 $(function(){
     
-    // Fieldset collapse
-    // $('.module.collapse-closed h2, .module.collapse-open h2').addClass('collapse-toggle').bind('click.grappelli', function(){
-    //     $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
-    // });
-    $('.group.collapsible h2, .module.collapsible h2, .module.collapsible h3, .module.collapsible h4').addClass('collapsible-handler').bind('click.grappelli', function(){
-        var collapsible = $(this).parent();
-        var collapsibleExclude = '.collapsible-handler, .module .tools, .collapsible-bypass';
-
-        // Simple Toggle Behaviour
-        collapsible.toggleClass('open').toggleClass('closed');
-
-        // SlideUp/SlideDown Behaviour
-        // if (collapsible.hasClass('open')) {
-        //     $(collapsible).removeClass('open');
-        //     $(collapsible).children().not(collapsibleExclude).slideUp(400, function(){
-        //         $(collapsible).addClass('closed');
-        //     });
-        // }
-        // if (collapsible.hasClass('closed')) {
-        //     $(collapsible).removeClass('closed').addClass('open');
-        //     $(collapsible).children().not(collapsibleExclude).slideDown(400);
-        // }
-    });
-
-    // Collapsible groups
-    // $('.group.collapsible .section').parent().bind('click.grappelli', function (){
-    //     $(this).parents('table').find('tbody').toggle();
-    // });
-    
-    // 
     
     // Always focus first field of a form OR the search input
+    // TODO: this is most likely broken if the first field is a rich text area ..
     $('form .form-row:eq(0)')
         .find('input, select, textarea, button').eq(0)
         .add('#searchbar').focus();

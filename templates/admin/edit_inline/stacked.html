@@ -1,19 +1,17 @@
 {% load i18n %}
 
 <div class="group {% if inline_admin_formset.opts.sortable %} sortable{% endif %}{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}" name="inlinegroup">
-    {{ inline_admin_formset.formset.management_form }}
-    {{ inline_admin_formset.formset.non_form_errors }}
     <h2>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>
     <ul class="tools">
-        <li><a href="javascript://" class="icon open-handler" title="{% trans 'Open All Items' %}"></a></li>
-        <li><a href="javascript://" class="icon close-handler" title="{% trans 'Close All Items' %}"></a></li>
+        <li><a href="javascript://" class="icon ui-collapsible-open-all" title="{% trans 'Open All Items' %}"></a></li>
+        <li><a href="javascript://" class="icon ui-collapsible-close-all" title="{% trans 'Close All Items' %}"></a></li>
         <li>{% if inline_admin_formset.opts.allow_add %}<a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a>{% else %}&nbsp;{% endif %}</li>
     </ul>
     <div class="items"> <!-- sortable container -->
         {% for inline_admin_form in inline_admin_formset %}
-        <div class="module collapsible open"> <!-- sortable items -->
+        <div class="module ui-collapsible-open  ui-collapsible"> <!-- sortable items -->
             <!-- headline, original, delete/link/sort -->
-            <h3 class="collapsible-handler">{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
+            <h3 class="ui-collapsible-toggle">{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
             <ul class="tools">
                 {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
                 {% if inline_admin_formset.opts.sortable %}<li><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}
@@ -37,6 +35,8 @@
             </ul><br clear="all" />
         </div>
     {% endif %}
+    {{ inline_admin_formset.formset.management_form }}
+    {{ inline_admin_formset.formset.non_form_errors }}
 </div>
 
 <div class="sortablehelper" style="display: none">

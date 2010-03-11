@@ -3,12 +3,6 @@
 <!-- LOADING -->
 {% load i18n grp_tags %}
 
-<!-- STYLES & SCRIPTS -->
-{% block javascripts %}
-    {{ block.super }}
-    <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsibleGroup.js"></script>
-{% endblock %}
-
 <!-- COLTYPE/BODYCLASS -->
 {% block coltype %}colMS{% endblock %}
 {% block bodyclass %}dashboard{% endblock %}

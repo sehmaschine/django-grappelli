@@ -1,7 +1,7 @@
 /*  Author:   Maxime Haineault <max@motion-m.ca>
  *  widget:   gAutoSlugField
  *  Package:  Grappelli
- *  Requires: jquery.slugify.js
+ *  Requires: jquery.gAutoSlugField.js
  *
  *  jslinted - 8 Jan 2010
  */
