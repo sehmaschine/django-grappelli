@@ -1,6 +1,20 @@
+/* Note: the "good" way to implement tinyMCE would be to create a new db field type
+ *
+ * details = grappelliModels.RichText(...)
+ *
+ * This would translate into a standard textarea with a distinctive class name
+ *
+ * The JS would look for that class name and if it founds it it would load
+ * dynamically the js required by the editor.
+ *
+ * That way you can have both standards and rich textarea on the same form
+ * and you don't force the programmers to fiddle with JS paths in models.
+ *
+ * */
+(function($){
 function CustomFileBrowser(field_name, url, type, win) {
     
-    var cmsURL = "/admin/filebrowser/browse/?pop=2";
+    var cmsURL = $.grappelli.conf.get('filebrowser_url');
     cmsURL = cmsURL + "&type=" + type;
     
     tinyMCE.activeEditor.windowManager.open({
@@ -19,35 +33,35 @@ function CustomFileBrowser(field_name, url, type, win) {
     return false;
 }
 
-
 tinyMCE.init({
-    
-    // main settings
-    mode: "textareas",
-    //elements: "summary, body",
-    theme: "advanced",
-    language: "en", // TODO: should be dynamicly linked to grappelli
-    skin: "grappelli",
-    browsers: "gecko",
-    dialog_type: "window",
-    editor_deselector : "mceNoEditor",
-    
-    // general settings
-    width: '758',
-    height: '300',
-    indentation : '10px',
-    fix_list_elements : true,
-    relative_urls: false,
-    remove_script_host : true,
-    accessibility_warnings : false,
-    object_resizing: false,
-    cleanup_on_startup: true,
-    //forced_root_block: "p",
-    remove_trailing_nbsp: true,
+
+    // General
+    mode :              'textareas',
+    theme :             'advanced',
+    skin:               'grappelli',
+    dialog_type:        'window',
+    browsers:           'gecko,msie,safari,opera',
+    editor_deselector : 'mceNoEditor',
+    language:           $.grappelli.conf.get('lang'),
+    relative_urls:      false,
+    plugins:            'advimage,advlink,fullscreen,paste,media,searchreplace,grappelli,grappelli_contextmenu,template',
     
     // callbackss
-    file_browser_callback: "CustomFileBrowser",
-    
+    file_browser_callback: 'CustomFileBrowser',
+
+    // Layout
+    width:              758,
+    height:             300,
+    indentation:        '10px',
+    object_resizing:    false,
+
+    // Accessibility
+    cleanup_on_startup:     true,
+    accessibility_warnings: false,
+    remove_trailing_nbsp:   true,
+    fix_list_elements :     true,
+    remove_script_host:     true,
+
     // theme_advanced
     theme_advanced_toolbar_location: "top",
     theme_advanced_toolbar_align: "left",
@@ -62,13 +76,13 @@ tinyMCE.init({
     theme_advanced_resize_horizontal : false,
     theme_advanced_resizing_use_cookie : true,
     theme_advanced_styles: "Image left-aligned=img_left;Image left-aligned (nospace)=img_left_nospacetop;Image right-aligned=img_right;Image right-aligned (nospace)=img_right_nospacetop;Image Block=img_block",
-    advlink_styles: "intern=internal;extern=external",
+
     
-    // plugins
-    plugins: "advimage,advlink,fullscreen,paste,media,searchreplace,grappelli,grappelli_contextmenu,template",
+    // Adv (?)
+    advlink_styles: "intern=internal;extern=external",
     advimage_update_dimensions_onchange: true,
     
-    // grappelli settings
+    // grappelli
     grappelli_adv_hidden: false,
     grappelli_show_documentstructure: 'on',
     
@@ -87,43 +101,30 @@ tinyMCE.init({
     ],
     
     // elements
-    valid_elements : ""
-    + "-p,"
-    + "a[href|target=_blank|class],"
-    + "-strong/-b,"
-    + "-em/-i,"
-    + "-u,"
-    + "-ol,"
-    + "-ul,"
-    + "-li,"
-    + "br,"
-    + "img[class|src|alt=|width|height]," + 
-    + "-h2,-h3,-h4," + 
-    + "-pre," +
-    + "-blockquote," +
-    + "-code," + 
-    + "-div",
-    extended_valid_elements: ""
-    + "a[name|class|href|target|title|onclick],"
-    + "img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],"
-    + "br[clearfix],"
-    + "-p[class<clearfix?summary?code],"
-    + "h2[class<clearfix],h3[class<clearfix],h4[class<clearfix],"
-    + "ul[class<clearfix],ol[class<clearfix],"
-    + "div[class],"
-    + "object[align<bottom?left?middle?right?top|archive|border|class|classid"
-      + "|codebase|codetype|data|declare|dir<ltr?rtl|height|hspace|id|lang|name"
-      + "|onclick|ondblclick|onkeydown|onkeypress|onkeyup|onmousedown|onmousemove"
-      + "|onmouseout|onmouseover|onmouseup|standby|style|tabindex|title|type|usemap"
-      + "|vspace|width],"
-    +"param[id|name|type|value|valuetype<DATA?OBJECT?REF],",
-    valid_child_elements : ""
-    + "h1/h2/h3/h4/h5/h6/a[%itrans_na],"
-    + "table[thead|tbody|tfoot|tr|td],"
-    + "strong/b/p/div/em/i/td[%itrans|#text],"
-    + "body[%btrans|#text]",
-    
-    
+    valid_elements : [
+        '-p,','a[href|target=_blank|class]','-strong/-b','-em/-i','-u','-ol',
+        '-ul','-li','br','img[class|src|alt=|width|height]','-h2,-h3,-h4','-pre','-blockquote','-code','-div'
+    ].join(','),
+    extended_valid_elements: [
+        'a[name|class|href|target|title|onclick]',
+        'img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name]',
+        'br[clearfix]',
+        '-p[class<clearfix?summary?code]',
+        'h2[class<clearfix],h3[class<clearfix],h4[class<clearfix]',
+        'ul[class<clearfix],ol[class<clearfix]',
+        'div[class]',
+        'object[align<bottom?left?middle?right?top|archive|border|class|classid'
+          + "|codebase|codetype|data|declare|dir<ltr?rtl|height|hspace|id|lang|name"
+          + "|onclick|ondblclick|onkeydown|onkeypress|onkeyup|onmousedown|onmousemove"
+          + "|onmouseout|onmouseover|onmouseup|standby|style|tabindex|title|type|usemap"
+          + "|vspace|width]",
+        'param[id|name|type|value|valuetype<DATA?OBJECT?REF]'
+    ].join(','),
+    valid_child_elements : [
+        'h1/h2/h3/h4/h5/h6/a[%itrans_na]',       'table[thead|tbody|tfoot|tr|td]',
+        'strong/b/p/div/em/i/td[%itrans|#text]', 'body[%btrans|#text]'
+    ].join(',')
+
     // custom cleanup
     // setup: function(ed) {
     //     // Gets executed before DOM to HTML string serialization
@@ -140,7 +141,5 @@ tinyMCE.init({
     //         }
     //     });
     // }
-    
 });
-
-
+}(jQuery));

@@ -60,9 +60,6 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.masked.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.delayedObserver.js"></script>
 
-    {% ifnotequal get_lang 'en' %}
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/i18n/ui.datepicker-{% get_lang %}.js"></script>
-    {% endifnotequal %}
 
     <script type="text/javascript">
         // Use this to remove *all* effects (not recommended)
@@ -76,6 +73,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
             bookmarks_url:      '{% url grp_bookmark_get %}',
             related_url:        '{% url grp_related_lookup %}',
             m2m_related_url:    '{% url grp_m2m_lookup %}',
+            filebrowser_url:    '/admin/filebrowser/browse/?pop=2',
         });
 
         {% get_generic_relation_list %}
@@ -91,8 +89,13 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
             {% block javascripts.init  %}{% include "admin/init.js"  %}{% endblock %}
         });
     </script>
-{% endblock %}
-{% block extrahead %}{% endblock %}
+    {% endblock %}
+
+    {% block extrahead %}{% endblock %}
+    
+    {% ifnotequal get_lang 'en' %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/i18n/ui.datepicker-{% get_lang %}.js"></script>
+    {% endifnotequal %}
 </head>
 
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
