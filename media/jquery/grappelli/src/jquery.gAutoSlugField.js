@@ -12,7 +12,6 @@ $.widget('ui.gAutoSlugField', {
     _init: function() {
         var ui  = this; 
         ui.mode = ui.element.attr('rel') && 'mirror' || 'standalone';
-        ui.mode = 'standalone';
         ui.dom  = {
             preview: $('<span class="ui-gAutoSlugField-preview">test</span>'),
             input:   $('<input maxlength="50" type="text" class="ui-gAutoSlugField vTextField" />')
