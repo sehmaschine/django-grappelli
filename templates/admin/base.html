@@ -68,6 +68,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 
         $.grappelli.conf.extend({
             lang:               '{% get_lang %}',
+            rtl:                {% if LANGUAGE_BIDI %}true{% else %}false{% endif %},
             admin_url:          '{% get_admin_url %}',
             admin_media_prefix: '{% admin_media_prefix %}',
             bookmarks_url:      '{% url grp_bookmark_get %}',

@@ -14,7 +14,8 @@ $.datepicker.setDefaults({
     closeText:       gettext && gettext('Cancel') || 'Cancel',
     showOtherMonths: true,
     constrainInput:  true,
-    defaultDate:     'today'
+    defaultDate:     'today',
+    isRTL:           $.grappelli.conf.get('rtl')
 });
 
 
