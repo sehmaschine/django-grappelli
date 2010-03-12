@@ -198,10 +198,10 @@ h1 + .tools a.focus {
 
 /*  Tools in Module Add-Handler ......................................... */
 
-.tabular .module.add-handler .tools {
+.tabular .module.ui-add-handler .tools {
     height: 34px;
 }
-.tabular .module.add-handler .tools li {
+.tabular .module.ui-add-handler .tools li {
     padding: 9px 2px;
 }
 
@@ -215,6 +215,7 @@ h1 + .tools a.focus {
     width: 100%; height: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    cursor:pointer;
 }
 
 .tools a.icon {
@@ -270,10 +271,10 @@ h1 + .tools a.focus {
     background-image: url('../img/icons/icon-tools-remove-handler-hover.png');
 }
 
-.tools a.add-handler, .tools a.add-handler:visited {
+.tools a.ui-add-handler, .tools a.ui-add-handler:visited {
     background-image: url('../img/icons/icon-tools-add-handler.png');
 }
-.tools a.add-handler:hover, .tools a.add-handler:active {
+.tools a.ui-add-handler:hover, .tools a.ui-add-handler:active {
     background-image: url('../img/icons/icon-tools-add-handler-hover.png');
 }
 

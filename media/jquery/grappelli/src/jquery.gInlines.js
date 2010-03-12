@@ -18,7 +18,7 @@ $.widget('ui.gInlineGroup', {
         });
         
         /// ADD HANDLER
-        ui.element.find('a.addhandler').bind('click.gInlineGroup', function(e){
+        ui.element.find('a.ui-add-handler').bind('click.gInlineGroup', function(e){
             var container = $(this).parents('div.inline-group');
             var lastitem  = container.find('div.inline-related:last');
             var newitem   = lastitem.clone(true).appendTo(container.find('div.items:first'));

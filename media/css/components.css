@@ -488,11 +488,11 @@ h2 + * + * + .module.table {
     width: 100%;
 /*    min-width: 52px;*/
 }
-.module.tbody .table-row.add-handler .table-cell.tools {
+.module.tbody .table-row.ui-add-handler .table-cell.tools {
     height: 37px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    .module.tbody .table-row.add-handler .table-cell.tools {
+    .module.tbody .table-row.ui-add-handler .table-cell.tools {
         height: 25px;
     }
 }
@@ -506,7 +506,7 @@ h2 + * + * + .module.table {
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 
-.module.add-handler {
+.module.ui-add-handler {
     border-color: #d4d4d4;
     background: #e1f0f5;
     background: #fff;
