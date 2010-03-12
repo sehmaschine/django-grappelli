@@ -7,6 +7,13 @@
  *
  *  jslinted - 8 Jan 2010
  */
+
+// AARGH.
+function addEvent() {
+    var method = arguments[2];
+    $(function(){ method.call(); });
+}
+
 (function($){
 
 // Legacy compatibility
@@ -237,5 +244,7 @@ $.widget('ui.gSelectFilter', {
         ui._redraw(cid);
     }
 });
+
+
 
 })(jQuery);
