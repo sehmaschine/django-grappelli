@@ -9,6 +9,8 @@
 $.datepicker.setDefaults({
     dateFormat:      'yy-mm-dd',
     buttonText:      ' ',
+    duration:        160,
+    showAnim:        'slideDown',
     showOn:          'button',
     showButtonPanel: true, 
     closeText:       gettext && gettext('Cancel') || 'Cancel',
