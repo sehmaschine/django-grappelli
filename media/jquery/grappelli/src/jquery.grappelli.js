@@ -50,6 +50,23 @@ $.grappelli = (new function(){
             }
         }
     };
+
+    g.inst.getMessages = function(url, method, data, callback) {
+            var wrapper = $('.messagelist').hide();
+            if (!wrapper.get(0)) {
+                wrapper = $('<ul class="messagelist" />').hide().insertBefore('#content');
+            }
+            jQuery[method](url, data || {}, function() {
+                if (callback) {
+                    callback.apply(this, arguments);
+                }
+                var tmp = arguments[0].match(/\<ul\sclass="messagelist\s?(\w+?)">(.*)<\/ul>/);
+                if (tmp[1]) {
+                    wrapper.html(tmp[2]).addClass(tmp[1]).slideDown('fast');
+                }
+            });
+    
+    };
     return g.inst;
 }());
 

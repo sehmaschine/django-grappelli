@@ -87,12 +87,23 @@ $.widget('ui.gBookmarks', {
      * */
     add: function() {
         var ui = this;
-        $("#bookmark-title").val($('h1').text());
-        $("#bookmark-path").val(window.location.pathname);
-        $("#toggle-bookmarks-listing").removeClass('enabled');
-        $('#bookmarks-listing').hide();
-        ui.hide("#bookmarks-listing", 0, 0);
+        var addForm = ui.dom.addWrapper.find('form');
+
+        ui.dom.title.val($('h1').text());
+        ui.dom.path.val(window.location.pathname);
+        ui.dom.list.removeClass('enabled');
+        ui.hide(ui.dom.list, 0, 0);
         ui.show(ui.dom.addWrapper);
+        addForm.bind('submit', function(e){
+            var $elf = $(this);
+            ui.hide(ui.dom.addWrapper, 0, 0);
+            setTimeout(function(){
+                $.grappelli.getMessages($elf.attr('action'), 
+                                        $elf.attr('method').toLowerCase(),
+                                        $elf.serialize());
+            }, 200);
+            return false;             
+        });
         return false;
     }
 });
