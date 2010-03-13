@@ -29,13 +29,13 @@ class do_get_generic_objects(template.Node):
         pass
     
     def render(self, context):
-        return_string = "var MODEL_URL_ARRAY = {"
+        return_string = "{"
         for c in ContentType.objects.all().order_by('id'):
-            return_string = "%s%d: '%s/%s'," % (return_string, c.id, c.app_label, c.model)
+            return_string = "%s%d: {pk: %s, app: '%s', model: '%s'}," % (return_string, c.id, c.id, c.app_label, c.model)
         return_string = "%s}" % return_string[:-1]
         return return_string
 
-def get_generic_relation_list(parser, token):
+def get_content_types(parser, token):
     """
     Returns a list of installed applications and models.
     Needed for lookup of generic relationships.
@@ -44,7 +44,7 @@ def get_generic_relation_list(parser, token):
     tokens = token.contents.split()
     return do_get_generic_objects()
     
-register.tag('get_generic_relation_list', get_generic_relation_list)
+register.tag('get_content_types', get_content_types)
 
 
 # CONTEXT-SENSITIVE HELP

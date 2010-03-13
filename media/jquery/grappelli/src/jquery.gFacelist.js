@@ -99,7 +99,7 @@ $.widget('ui.gFacelist', {
         var link, href, wm;
         link = $(l);
         href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm   = $.grappelli.window(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
         wm._data('element', this.element);
         wm.open();
         return false;

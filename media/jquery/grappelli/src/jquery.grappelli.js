@@ -51,6 +51,15 @@ $.grappelli = (new function(){
         }
     };
 
+    g.inst.contentTypeExist = function(pk) {
+        return g.inst.conf.get('content_types')[pk] && true || false;
+    };
+
+    g.inst.contentTypeURL = function(pk) {
+        var ct = g.inst.conf.get('content_types')[pk];
+        return  [g.inst.conf.get('admin_url'), ct.app, '/', ct.model, '/'].join('');
+    };
+
     g.inst.getMessages = function(url, method, data, callback) {
             var wrapper = $('.messagelist').hide();
             if (!wrapper.get(0)) {
@@ -72,64 +81,66 @@ $.grappelli = (new function(){
 
 
 // Minimal Window Manager
-$.wm = function () {
-    this.defaults = {width:  600, height: 920, resizable: true, scrollbars: true};
+$.extend($.grappelli, {
+    window: function () {
+        this.defaults = {width:  600, height: 920, resizable: true, scrollbars: true};
 
-    this._data = function (k, v){
-        var html  = (opener && opener.jQuery('html') || $('html'));
-        var cache = html.data(this.name);
-        if (cache) {
-            if (k && v) { cache[k] = v; return v; }
-            else if (k) { return cache[k] || false; }
-            else        { return cache; }
+        this._data = function (k, v){
+            var html  = (opener && opener.jQuery('html') || $('html'));
+            var cache = html.data(this.name);
+            if (cache) {
+                if (k && v) { cache[k] = v; return v; }
+                else if (k) { return cache[k] || false; }
+                else        { return cache; }
+            }
+            else {
+                return false;
+            }
+        };
+
+        this._getOptions = function () {
+            var a = [];
+            $.each(this.options, function(k, v){ 
+                a.push(k +'='+ v); 
+            });
+            return a.join(',');
+        };
+
+        this.close = function () {
+            this._win.close();
+            this._win = false;
+        };
+
+        this.open = function (focus) {
+            this._win = window.open(this.href, this.name, this._getOptions());
+            this._win.name = this.name;
+            if (focus) {
+                this._win.focus();
+            }
+            return this._win;
+        };
+        if (arguments.length > 1) {
+            this.href    = arguments[0];
+            this.options = $.extend(this.defaults, arguments[1] || {});
+            this.name    = 'window-'+ String((new Date()).getTime());
+            this._win    = false;
         }
         else {
-            return false;
+            this.name = arguments[0];
+            var data = (opener && opener.jQuery('html') || $('html')).data(this.name);
+            if (data && data.instance) {
+                return data.instance;
+            }
+            else {
+                return false;
+            }
         }
-    };
 
-    this._getOptions = function () {
-        var a = [];
-        $.each(this.options, function(k, v){ 
-            a.push(k +'='+ v); 
-        });
-        return a.join(',');
-    };
+        (opener && opener.jQuery('html') || $('html')).data(this.name, { instance: this });
 
-    this.close = function () {
-        this.window.close();
-        this.window = false;
-    };
-
-    this.open = function (focus) {
-        this.window = window.open(this.href, this.name, this._getOptions());
-        this.window.name = this.name;
-        if (focus) {
-            this.window.focus();
-        }
-        return this.window;
-    };
-    if (arguments.length > 1) {
-        this.href    = arguments[0];
-        this.options = $.extend(this.defaults, arguments[1] || {});
-        this.name    = 'window-'+ String((new Date()).getTime());
-        this.window  = false;
+        return this;
     }
-    else {
-        this.name = arguments[0];
-        var data = (opener && opener.jQuery('html') || $('html')).data(this.name);
-        if (data && data.instance) {
-            return data.instance;
-        }
-        else {
-            return false;
-        }
-    }
-
-    (opener && opener.jQuery('html') || $('html')).data(this.name, { instance: this });
-
-    return this;
-};
+});
 
 $.unescapeHTML = function(str) {
     var div = $('<div />').html(str.replace(/<\/?[^>]+>/gi, ''));

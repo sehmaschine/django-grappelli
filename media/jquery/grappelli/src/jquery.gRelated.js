@@ -10,23 +10,31 @@
 
 $.RelatedBase = {
 
-    // Returns the backend url
+    /* Returns the browse url
+     * @k content type id (pk)
+     * outputs: /admin/<app>/<model>/
+     * */
     _url: function(k) {
-        return this.options.getURL(k);
+        return $.grappelli.contentTypeExist(k) 
+            && $.grappelli.contentTypeURL(k) +'?t=id' || '';
     },
 
-    // Called when the "Browse" button is clicked on Related and GenericRelated fields
+    /* Called when the "Browse" button is clicked 
+     * on Related and GenericRelated fields
+     */
     _browse: function(l) {
         var ui, link, href, wm;
         link = $(l);
         href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        wm   = $.wm(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
+        wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
         wm._data('element', link.prevAll('input:first'));
         wm.open();
         return false;
     },
     
-    // Called when the object id field is changed and it updates the label accordingly
+    /* Called when the object id field is changed 
+     * and it updates the label accordingly
+     */
     _lookup: function(e){
         var ui, app_label, model_name, url, tl, txt, item;
         ui = this;
@@ -58,12 +66,8 @@ $.RelatedBase = {
 
 $.RelatedDefaultsBase = {
     maxTextLength: 32,
-    maxTextSuffix: ' ...',
-    getURL: function(k) {
-        return MODEL_URL_ARRAY[k] && $.grappelli.conf.get('admin_url') + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
-    }
+    maxTextSuffix: ' ...'
 };
-
 
 $.widget('ui.gRelated', $.extend($.RelatedBase, {
     _init: function() {
@@ -71,7 +75,7 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
         ui.dom = { object_id: ui.element, text: $('<strong />') };
         
         ui.dom.link = ui.element.next('a').attr('onclick', false)
-            .bind('click', function(e){
+            .live('click', function(e){
                 e.preventDefault();
                 return ui._browse(this);
             });
@@ -226,7 +230,7 @@ $(function(){
             var link = $(this);
             var name = link.attr('id').replace(/^add_/, '');
             var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
-            var wm   = $.wm(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
+            var wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
             wm._data('link', link);
             wm._data('id', name);
             wm.open(true);

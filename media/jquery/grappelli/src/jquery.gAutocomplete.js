@@ -100,7 +100,7 @@ $.widget('ui.gAutocomplete', {
     _browse: function(l) {
         var link = $(l);
         var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        var wm   = $.grappelli.window(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
         wm._data('element', link.prevAll('input:first'));
         wm.open();
         return false;
