@@ -67,7 +67,7 @@ class NavigationItemInline(admin.StackedInline):
     
     model = NavigationItem
     extra = 1
-    classes = ('collapse-open',)
+    classes = ('ui-collapsible', 'ui-collapsible-all-closed')
     fieldsets = (
         ('', {
             'fields': ('title', 'link', 'category',)
@@ -112,7 +112,7 @@ class BookmarkItemInline(admin.TabularInline):
     
     model = BookmarkItem
     extra = 1
-    classes = ('collapse-open',)
+    classes = ('ui-collapsible-open',)
     fieldsets = (
         ('', {
             'fields': ('title', 'link', 'order',)
@@ -169,7 +169,7 @@ class HelpItemInline(admin.StackedInline):
     
     model = HelpItem
     extra = 1
-    classes = ('collapse-open',)
+    classes = ('ui-collapsible-open',)
     fieldsets = (
         ('', {
             'fields': ('title', 'link', 'body', 'order',)

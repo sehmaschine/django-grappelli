@@ -26,11 +26,10 @@ $.widget('ui.gCollapsible.js', {
 
     _init: function() {
         var ui  = this; 
-        ui._isGroup = ui.element.hasClass('.group');
+        ui._isGroup = ui.element.addClass('ui-collapsible').hasClass('.group');
         ui.dom  = {
             closeAll: ui.element.find('.ui-collapsible-close-all'),
             openAll:  ui.element.find('.ui-collapsible-open-all'),
-            toggle:   false
         };
         if (!ui.element.hasClass('ui-collapsible-closed')) {
             ui.element.addClass('ui-collapsible-opened')
@@ -39,10 +38,10 @@ $.widget('ui.gCollapsible.js', {
             ui.dom.toggle = ui.element.find('.ui-collapsible-toggle');
         }
         else {
-            ui.dom.toggle = ui.element.find(':first');
-            ui.dom.toggle.bind('click', function() {
-                               
-            });
+            ui.element.children().eq(0)
+                .addClass('ui-collapsible-toggle')
+                .bind('click', function(e){
+                    ui._onClick.apply(this, [e, ui]); });
 
             // Close/Open all
             ui.dom.openAll.bind('click', function(){
@@ -68,10 +67,17 @@ $.widget('ui.gCollapsible.js', {
         }
 
         // Toggle behavior
-        ui.dom.toggle.bind('click', function(){
-            var el = ui._isGroup && ui.element || $(this).parents('.ui-collapsible:first');
-            ui.toggle(el);
+        $('h3.ui-collapsible-toggle').live('click', function(e){
+            ui._onClick.apply(this, [e, ui]);
         });
+    },
+
+    _onClick: function(e, ui){
+        var parent = $(this).parents('.ui-collapsible:eq(0)');
+        if (!parent.get(0)) {
+            parent = ui.element;
+        }
+        ui.toggle(parent);
     },
 
     toggle: function(el) {
@@ -98,7 +104,7 @@ $.widget('ui.gCollapsible.js', {
 });
 
 $.extend($.ui.gCollapsible, {
-    autoSelector: '.ui-collapsible',
+    autoSelector: '.ui-collapsible, ui-collapsible-open',
     defaults: {
     }
 });

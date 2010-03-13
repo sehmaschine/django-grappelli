@@ -6,11 +6,83 @@
  */
 (function($){
 
+$.grappelli.gInlineTabularBase = {
+    
+    
+};
+    
+$.grappelli.gInlineStackedBase = {
+    
+    
+};
+         
 $.widget('ui.gInlineGroup', {
+
+    _updateIdentifiers: function(row, index) {
+        var ui, attr, attrs, tag, tags, curr, t, x;
+        ui   = this;
+        attr = {};
+        tags = $.map(ui.options.updatedTags, function(tag){
+                       t = tag.match(/^(\w+):(.*)$/);
+                       attr[t[1]] = t[2] && t[2].split(',') || false;
+                       return t[1]; }).join(',');
+
+        row.find(tags).each(function(i, t){
+            tag   = t.nodeName.toLowerCase();
+            attrs = attr[tag];
+            for (x in attrs) {
+                curr = attrs[x];
+                $(this).attr(curr, $(this).attr(curr).replace(/\-\d+\-/, '-'+ index +'-'));
+            }
+        });
+    },
+
+    _newRow: function() {
+        var ui, index, old, row, title;
+        ui = this;
+        index = ui._totalForms + 1;
+        old   = ui.getRow(ui._totalForms);
+        row   = old.clone();
+        // Update title for stacked inlines
+        if (ui._isStacked) {
+            title = row.find('h3:first');
+            title.text(title.text().replace(/#\d+/, '#'+ index));
+        }
+        ui._updateIdentifiers(row, ui._totalForms);
+        ui._totalForms = index;
+        return row.insertAfter(old);
+    },
+
+    addFormRow: function() {
+        var ui = this;
+        var newRow = ui._newRow();
+
+    },
+    
+    getRow: function(index) {
+        var ui = this;
+        return ui.element.find('.items > .module').eq(index - 1);
+    },
+
     _init: function(){
         var ui = this;
-        ui.element.find('input[name*="DELETE"]').hide();
-        ui._makeCollapsibleGroups();
+
+        ui._isTabular    = ui.element.hasClass('tabular');
+        ui._isStacked    = !ui._isTabular;
+        ui._totalForms   = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
+        ui._initialForms = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
+
+        ui = $.extend(ui, $.grappelli[ui._isTabular && 'gInlineTabularBase' || 'gInlineStackedBase']);
+
+        ui.dom = {
+            addHandler: ui.element.find('.ui-add-handler'),
+        };
+
+        ui.dom.addHandler.bind('click', function(e){
+            ui.addFormRow();
+        });
+
+        /*
         
         // Prevent fields of inserted rows from triggering errors if un-edited
         ui.element.parents('form').bind('submit.gInlineGroup', function(){
@@ -53,16 +125,17 @@ $.widget('ui.gInlineGroup', {
             ui._makeSortable();
         }
         
-        ui.element.find('.addhandler').bind('click.gInlineGroup', function(){
+        ui.element.find('.ui-add-handler').bind('click.gInlineGroup', function(){
             ui._refreshOrder();
         });
         
         ui._refreshOrder();
+        */
     },
-    
-    _initializeItem: function(el, count){
+    /*
+    _initializeitem: function(el, count){
         
-        /// replace IDs, NAMEs, HREFs & FORs ...
+        /// replace ids, names, hrefs & fors ...
         el.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
             var $el = $(this);
             $.each(['id', 'name', 'for', 'href'], function(i, k){
@@ -73,86 +146,41 @@ $.widget('ui.gInlineGroup', {
         });
         
         // destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
-        el.find('.vDateField').unbind().removeClass('hasDatepicker').val('')
+        el.find('.vdatefield').unbind().removeclass('hasdatepicker').val('')
             .next().remove().end().end()
-            .find('.vTimeField').unbind().val('').next().remove();
+            .find('.vtimefield').unbind().val('').next().remove();
         
         // date-/timefield
-        el.find('.vDateField').gDateField();
-        el.find('.vTimeField').gTimeField();
+        el.find('.vdatefield').gdatefield();
+        el.find('.vtimefield').gtimefield();
         
         /// remove error-lists and error-classes
         el.find('ul.errorlist').remove().end()
-            .find('.errors, .error').removeClass("errors error");
+            .find('.errors, .error').removeclass("errors error");
         
         /// tinymce
-        el.find('span.mceEditor').each(function(e) {
+        el.find('span.mceeditor').each(function(e) {
             var id = this.id.split('_parent')[0];
             $(this).remove();
             el.find('#' + id).css('display', '');
-            tinyMCE.execCommand("mceAddControl", true, id);
+            tinymce.execcommand("mceaddcontrol", true, id);
         });
         
         el.find(':input').val('').end() // clear all form-fields (within form-cells)
             .find("strong").text('');     // clear related/generic lookups
         
         // little trick to prevent validation on un-edited fields
-        el.find('input, textarea').bind('keypress.gInlineGroup', function(){
-              el.addClass('has_modifications');
+        el.find('input, textarea').bind('keypress.ginlinegroup', function(){
+              el.addclass('has_modifications');
           }).end()
-          .find('select, :radio, :checkbox').bind('keypress.gInlineGroup', function(){
-              el.addClass('has_modifications');
+          .find('select, :radio, :checkbox').bind('keypress.ginlinegroup', function(){
+              el.addclass('has_modifications');
           });
           
         return el;
     },
-    
-    open: function() {
-        return this.element.data('collapsed', false)
-            .removeClass('collapse-closed')
-            .addClass('collapse-open');
-    },
-    
-    close: function(){
-        return this.element.data('collapsed', true)
-            .removeClass('collapse-open')
-            .addClass('collapse-closed');
-    },
-    
-    toggle: function() {
-        return this.is_open() && this.close() || this.open();
-    },
-    
-    is_closed: function() {
-        return this.element.data('collapsed');
-    },
-    
-    is_open: function() {
-        return !this.is_closed();
-    },
-    
-    is_collapsable: function() {
-        return this.element.hasClass('collapse-closed') || this.element.hasClass('collapse-open');
-    },
-    
-    // INLINE GROUPS COLLAPSE (STACKED & TABULAR)
-    _makeCollapsibleGroups: function() {
-        var ui = this;
-        if (ui.is_collapsable()) {
-            if (ui.element.hasClass('collapse-closed')) {
-                ui.close();
-            } 
-            else {
-                ui.open();
-            }
-            
-            ui.element.find(' > h2').addClass('collapse-toggle')
-                .bind("click.gInlineGroup", function(){
-                    ui.toggle();
-                });
-        }
-    },
-    
+    */
+    /*
     _makeSortable: function() {
         var ui   = this;
         var grip = $('<span class="ui-icon ui-icon-grip-dotted-vertical" />');
@@ -199,10 +227,13 @@ $.widget('ui.gInlineGroup', {
             }
         });
     }
+    */
 });
-
-$.extend($.ui.gInlineGroup.defaults , {
-    autoSelector: '.inline-group',
+$.extend($.ui.gInlineGroup, {
+    autoSelector: '.group',
+    defaults: {
+        updatedTags: ['input:id,name', 'select:id,name', 'textarea:id,name', 'label:for'],
+    }
 });
 
 // INLINE STACKED 
@@ -210,8 +241,6 @@ $.extend($.ui.gInlineGroup.defaults , {
 $.widget('ui.gInlineStacked', {
     _init: function(){
         var ui = this;
-        ui._makeCollapsible();
-        
         // FIELDSETS WITHIN STACKED INLINES
         /* OBSOLETE ?
         ui.element.find('.inline-related').find('fieldset[class*="collapse-closed"]')
@@ -224,47 +253,6 @@ $.widget('ui.gInlineStacked', {
                     .toggleClass('collapse-open');
         });
         */
-    },
-    _makeCollapsible: function() {
-        var ui = this;
-        // COLLAPSE OPEN/CLOSE ALL BUTTONS
-        ui.element.find('a.closehandler').bind("click", function(){
-            $(this).parents('div.inline-stacked')
-                .find('div.inline-related')
-                    .removeClass('collapse-open')
-                    .addClass('collapsed collapse-closed');
-        });
-        ui.element.find('a.openhandler').bind("click", function(){
-            $(this).parents('div.inline-stacked')
-                .find('div.inline-related')
-                    .removeClass('collapsed collapse-closed')
-                    .addClass('collapse-open');
-        });
-        
-        ui.element.find('.inline-related')
-            .addClass("collapsed")
-            .find('h3:first-child')
-                .addClass('collapse-toggle')
-                .bind("click", function(){
-                    var p = $(this).parent();
-                    if (!p.hasClass('collapsed') && !p.hasClass('collapse-closed')) {
-                        p.addClass('collapsed')
-                         .addClass('collapse-closed')
-                         .removeClass('collapse-open');
-                    }
-                    else {
-                        p.removeClass('collapsed')
-                         .removeClass('collapse-closed')
-                         .addClass('collapse-open');
-                    }
-                });
-        if (ui.element.hasClass('collapse-open-items')) {
-            ui.element.find('.inline-related.collapse-closed.collapsed')
-                .removeClass('collapse-closed collapsed').addClass('collapse-open');
-        }
-        
-        /// OPEN STACKEDINLINE WITH ERRORS (onload)
-        $('.inline-group:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
     }
 });
 
@@ -279,6 +267,7 @@ $.extend($.ui.gInlineStacked, {
 
 $.widget('ui.gInlineTabular', {
     _init: function(){
+    /*
         var ui = this;
         
         ui.element.find('.inline-related h3:first').remove(); // fix layout bug
@@ -292,6 +281,7 @@ $.widget('ui.gInlineTabular', {
         ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
             $(this).parents('div.inline-tabular').removeClass("collapsed");
         });
+        */
     }
 });
 
