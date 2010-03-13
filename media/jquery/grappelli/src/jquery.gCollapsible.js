@@ -3,7 +3,7 @@
  *  Package:  Grappelli
  *  Requires: jquery.gCollapsible.js
  *
- *  jslinted - 8 Jan 2010
+ *  jslinted - 13 Mar 2010
  *
  *  CSS based collaspible behavior
  *
@@ -29,35 +29,31 @@ $.widget('ui.gCollapsible.js', {
         ui._isGroup = ui.element.addClass('ui-collapsible').hasClass('.group');
         ui.dom  = {
             closeAll: ui.element.find('.ui-collapsible-close-all'),
-            openAll:  ui.element.find('.ui-collapsible-open-all'),
+            openAll:  ui.element.find('.ui-collapsible-open-all')
         };
         if (!ui.element.hasClass('ui-collapsible-closed')) {
-            ui.element.addClass('ui-collapsible-opened')
+            ui.element.addClass('ui-collapsible-opened');
         }
-        if (!ui._isGroup) {
-            ui.dom.toggle = ui.element.find('.ui-collapsible-toggle');
-        }
-        else {
+        if (ui._isGroup) {
+
+            // Toggle behavior of h3
+            ui.element.find('h3.ui-collapsible-toggle').bind('click', function(e){
+                ui._onClick.apply(this, [e, ui]);
+            });
+            
+            // Toggle behavior of h2
             ui.element.children().eq(0)
                 .addClass('ui-collapsible-toggle')
                 .bind('click', function(e){
                     ui._onClick.apply(this, [e, ui]); });
 
             // Close/Open all
-            ui.dom.openAll.bind('click', function(){
-                ui.openAll();
-            });
-
-            ui.dom.closeAll.bind('click', function(){
-                ui.closeAll();
-            });
-
-            if (ui.element.hasClass('ui-collapsible-all-closed')) {
-                ui.closeAll();
-            }
-            else {
-                ui.openAll();
-            }
+            ui[(ui.element.hasClass('ui-collapsible-all-closed') && 'closeAll' || 'openAll')]();
+            ui.dom.openAll.bind('click',  function(){ ui.openAll(); });
+            ui.dom.closeAll.bind('click', function(){ ui.closeAll(); });
+        }
+        else {
+            ui.dom.toggle = ui.element.find('.ui-collapsible-toggle');
         }
 
         // Errors handling
@@ -66,12 +62,12 @@ $.widget('ui.gCollapsible.js', {
             ui.open(errors.parents('.ui-collapsible'));
         }
 
-        // Toggle behavior
-        $('h3.ui-collapsible-toggle').live('click', function(e){
-            ui._onClick.apply(this, [e, ui]);
-        });
     },
 
+    /* Triggered when a toggle handle is clicked
+     * @e   event
+     * @ui  gCollapsible instance
+     * */
     _onClick: function(e, ui){
         var parent = $(this).parents('.ui-collapsible:eq(0)');
         if (!parent.get(0)) {
@@ -80,23 +76,39 @@ $.widget('ui.gCollapsible.js', {
         ui.toggle(parent);
     },
 
+    /* Toggles collapsible group
+     * @el   element
+     * */
     toggle: function(el) {
         return this[el.hasClass('ui-collapsible-closed') && 'open' || 'close'](el); 
     },
 
+    /* Opens *all* (including parent group)
+     * @el   element
+     * */
     openAll: function(el) {
+        this.open(this.element); // Make sure group is open first
         this.open(this.element.find('.ui-collapsible'));
     },
 
+    /* Close all (excluding parent group)
+     * @el   element
+     * */
     closeAll: function(el) {
         this.close(this.element.find('.ui-collapsible'));
     },
 
+    /* Opens a collapsible container
+     * @el   element
+     * */
     open: function(el) {
         return el.addClass('ui-collapsible-opened')
           .removeClass('ui-collapsible-closed');
     },
 
+    /* Closes a collapsible container
+     * @el   element
+     * */
     close: function(el) {
         return el.removeClass('ui-collapsible-opened')
           .addClass('ui-collapsible-closed');
@@ -105,7 +117,6 @@ $.widget('ui.gCollapsible.js', {
 
 $.extend($.ui.gCollapsible, {
     autoSelector: '.ui-collapsible, ui-collapsible-open',
-    defaults: {
-    }
+    defaults: {}
 });
 })(jQuery);

@@ -17,14 +17,18 @@ $.grappelli = (new function(){
     g.inst = {};
 
     g.inst.widgets = {
-        init: function (widgets){
+        init: function (widgets, parent){
             var iterator = function (i, widgetName) {
-                var w = jQuery.ui[widgetName];
-                if (w) {
-                    if (w.autoSelector) {
-                        jQuery(w.autoSelector)[widgetName]();
-                    }
+            var w = jQuery.ui[widgetName];
+            if (w && w.autoSelector) {
+                if (parent) {
+                    console.log(jQuery(parent).find(w.autoSelector))
+                    jQuery(parent).find(w.autoSelector)[widgetName]();
                 }
+                else {
+                    jQuery(w.autoSelector)[widgetName]();
+                }
+            }
             };
             $.each(widgets, iterator);
         }

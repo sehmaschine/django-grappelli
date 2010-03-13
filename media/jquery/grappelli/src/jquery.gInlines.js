@@ -42,7 +42,7 @@ $.widget('ui.gInlineGroup', {
         ui = this;
         index = ui._totalForms + 1;
         old   = ui.getRow(ui._totalForms);
-        row   = old.clone();
+        row   = old.clone(true);
         // Update title for stacked inlines
         if (ui._isStacked) {
             title = row.find('h3:first');
@@ -56,7 +56,9 @@ $.widget('ui.gInlineGroup', {
     addFormRow: function() {
         var ui = this;
         var newRow = ui._newRow();
-
+        // initialize within the row scope the plugins 
+        // that can't rely on jQuery.fn.live
+        //$.grappelli.widgets.init(['gRelated'], newRow);
     },
     
     getRow: function(index) {
@@ -83,7 +85,7 @@ $.widget('ui.gInlineGroup', {
         });
 
         /*
-        
+        $.grappelli.widgets.init([], row);
         // Prevent fields of inserted rows from triggering errors if un-edited
         ui.element.parents('form').bind('submit.gInlineGroup', function(){
             ui.element.find('.inline-related:not(.has_original):not(.has_modifications) div.order :text').val('');
