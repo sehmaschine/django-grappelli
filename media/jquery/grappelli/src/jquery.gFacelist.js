@@ -12,6 +12,10 @@ $.widget('ui.gFacelist', {
         var ui = this;
         // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
+        
+        // merge options from server
+        ui.options = $.extend(ui.options, ui.element.metadata());
+
         ui.element.hide().parent().find('p.help').remove();
 
         ui.dom = {
@@ -33,6 +37,11 @@ $.widget('ui.gFacelist', {
                 });
         }
         
+        ui.options.autocomplete.app = ui.options.app;
+        ui.options.autocomplete.model = ui.options.model;
+        ui.options.autocomplete.search_fields = ui.options.search_fields;
+        // Overriding because using Autocomplete's browse becomes too messy ..
+        ui.options.autocomplete.browse = false;
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
         // remove already selected items from autocomplete results
         ui.dom.input.bind('redrawn', function(e){
@@ -189,26 +198,29 @@ $.widget('ui.gFacelist', {
     }
 });
 
-$.ui.gFacelist.defaults = {
-    
-    // Delay before showing a new item (in ms)
-    //
-    // When an item is selected it's better to 
-    // wait a short delay before showing the newly
-    // added item. If not, the item gets added before
-    // the autocomplete list hides itself and it creates
-    // a feeling that nothing happened.
-    addItemDelay: 0.2,
+$.extend($.ui.gFacelist, {
+    autoSelector: 'input.ui-gFacelist',
+    defaults: {
 
-    // show browse button
-    browse: true,
+        related_url: '',
 
-    // gAutocomplete options
-    autocomplete: {
-        highlight:  true,
-        browse:     false, // Using Autocomplete's browse becomes too messy ..
-        minChars:   1,
-        maxResults: 20,
+        // data present at load time (json)
+        initial_data: false,
+
+        // Delay before showing a new item (in ms)
+        //
+        // When an item is selected it's better to 
+        // wait a short delay before showing the newly
+        // added item. If not, the item gets added before
+        // the autocomplete list hides itself and it creates
+        // a feeling that nothing happened.
+        addItemDelay: 0.2,
+
+        // show browse button
+        browse: true,
+
+        // gAutocomplete options
+        autocomplete: {}
     }
-};
+});
 })(jQuery);

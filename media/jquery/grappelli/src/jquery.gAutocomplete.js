@@ -28,8 +28,6 @@ $.widget('ui.gAutocomplete', {
     _init: function() {
         var ui, width;
         ui = this;
-        console.log('AC INIT');
-        console.log(ui.element.metadata());
         ui.options = $.extend(ui.options, ui.element.metadata());
         ui.dom = {
             wrapper: ui._createElement('div',    {ns: 'wrapper'}).hide(), 
@@ -63,7 +61,6 @@ $.widget('ui.gAutocomplete', {
                 .bind('blur.browse',  function(){ ui.dom.browse.removeClass('focus'); });
         }
 
-        console.log('pos', ui.dom.input.position().left);
         ui.dom.wrapper
             .append(ui.dom.results)
             .insertAfter(ui.dom.input)
@@ -293,7 +290,6 @@ $.widget('ui.gAutocomplete', {
                             .appendTo(ui.dom.results);
                             
 
-                console.log(txt, ui.options.listFormat, item)
                 // Option: highlight
                 if (ui.options.highlight) {
                     li.html(txt.replace(new RegExp("("+ ui.dom.input.val() +")", "gi"),'<b>$1</b>'));

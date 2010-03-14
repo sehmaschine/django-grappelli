@@ -95,7 +95,6 @@ $.widget('ui.gInlineGroup', {
         });
 
         ui._templateRow = ui.getRow(ui._totalForms).clone(false);
-        //console.log('v', ui._templateRow);
 
         /*
         $.grappelli.widgets.init([], row);

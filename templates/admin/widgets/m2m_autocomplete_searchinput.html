@@ -1,22 +1,7 @@
 {% load i18n %}
 {{ list_format }}{{ input_format }}
 {% spaceless %}
-<input id="{{ name }}" name="{{ name }}" class="vM2MAutocompleteSearchField" />
-<script type="text/javascript">
-$(function(){
-    $('#{{ name }}').gFacelist({
-        initial_data: {{ label|safe|default:"false" }},
-        clearAll: true,
-        browse: true,
-        related_url: '{{ related_url }}{{ url|safe }}',
-        autocomplete: {
-            backend:     '/grappelli/autocomplete/{{ app_label }}/{{ model_name }}/{{ search_fields }}/',
-            listFormat:  '{{ list_format|default:"{id:d} - {label:s}" }}',
-            inputFormat: '{{ input_format|default:"{label:s}" }}'
-        }
-    });
-});
-</script>
+<input id="{{ name }}" name="{{ name }}" class="vM2MAutocompleteSearchField ui-gFacelist {model:'{{model_name}}', app:'{{app_label}}', search_fields:'{{search_fields}}', related_url:'{{ related_url }}{{ url|safe }}', initial_data: {{ label|safe|default:"false" }}}" />
 {% endspaceless %}
 
 {% comment %}
