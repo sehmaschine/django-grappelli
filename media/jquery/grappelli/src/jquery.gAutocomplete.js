@@ -32,7 +32,7 @@ $.widget('ui.gAutocomplete', {
         console.log(ui.element.metadata());
         ui.options = $.extend(ui.options, ui.element.metadata());
         ui.dom = {
-            wrapper: ui._createElement('div',    {ns: 'wrapper'}).addClass('ui-corner-bottom').hide(), 
+            wrapper: ui._createElement('div',    {ns: 'wrapper'}).hide(), 
             results: ui._createElement('ul',     {ns: 'results'}), 
             input:   ui._createElement('input',  {ns: 'autocomplete', attr:{ type: 'text'}}).addClass('vAutocompleteSearchField'), 
             browse:  ui._createElement('button', {ns: 'browse',       attr:{ href: ui.options.related_url, title: 'Browse'}}) 
@@ -63,7 +63,7 @@ $.widget('ui.gAutocomplete', {
                 .bind('blur.browse',  function(){ ui.dom.browse.removeClass('focus'); });
         }
 
-
+        console.log('pos', ui.dom.input.position().left);
         ui.dom.wrapper
             .append(ui.dom.results)
             .insertAfter(ui.dom.input)

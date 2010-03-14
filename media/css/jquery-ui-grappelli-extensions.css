@@ -336,6 +336,11 @@ ul.ui-gAutocomplete-results {
     box-shadow: 0 0 3px #444; -moz-box-shadow: 0 0 3px #444; -webkit-box-shadow: 0 0 3px #444;
     background: #fff;
 }
+/* inline bug fix */
+.group ul.ui-gAutocomplete-results {
+    margin-left:171px;
+    width:745px;
+}
 ul.ui-gAutocomplete-results li {
     padding: 2px 5px;
     color: #666;
