@@ -9,6 +9,11 @@
 if (typeof(gettext) == 'undefined') {
     gettext = function (i) { return i; };
 }
+if (typeof(console) == 'undefined') {
+    console = {
+        log: function() {}
+    };
+}
 
 $.grappelli = (new function(){
     var g = this;
@@ -17,21 +22,115 @@ $.grappelli = (new function(){
     g.inst = {};
 
     g.inst.widgets = {
-        init: function (widgets, parent){
-            var iterator = function (i, widgetName) {
-            var w = jQuery.ui[widgetName];
-            if (w && w.autoSelector) {
-                if (parent) {
-                    console.log(jQuery(parent).find(w.autoSelector))
-                    jQuery(parent).find(w.autoSelector)[widgetName]();
+        init: function (){
+            var iterator, w, widgets, parent;
+            iterator = function (i, widgetName) {
+                w = jQuery.ui[widgetName];
+                if (w && w.autoSelector) {
+                    if (parent) {
+                        jQuery(parent).find(w.autoSelector)[widgetName]();
+                    }
+                    else {
+                        jQuery(w.autoSelector)[widgetName]();
+                    }
                 }
-                else {
-                    jQuery(w.autoSelector)[widgetName]();
-                }
-            }
             };
+            if (arguments.length == 0) {
+                widgets = $.grappelli.conf.get('widgets');
+                parent  = false;
+            }
+            else if (arguments.length == 1) {
+                widgets = arguments[0];
+                parent  = false;
+            }
+            else {
+                widgets = arguments[1];
+                parent  = arguments[0];
+            }
             $.each(widgets, iterator);
-        }
+        },
+        each: function() {
+            var parent   = false;
+            var iterator = function (i, widgetName) {
+                var w = jQuery.ui[widgetName];
+                w.widgetName = widgetName;
+                if (w && w.autoSelector) {
+                    if (parent) {
+                        var elements = jQuery(parent).find(w.autoSelector);
+                    }
+                    else {
+                        var elements = jQuery(w.autoSelector);
+                    }
+                    callback.apply(w, [widgetName, elements]);
+                }
+            };
+            if (arguments.length == 1) {
+                var widgets  = $.grappelli.conf.get('widgets');
+                var callback = arguments[0];
+            }
+            else if (arguments.length == 2 && $.isFunction(arguments[1])) {
+                var widgets  = arguments[0];
+                var callback = arguments[1];
+            }
+            else if (arguments.length == 2 && !$.isFunction(arguments[1])) {
+                var widgets  = $.grappelli.conf.get('widgets');
+                var callback = arguments[0];
+                var parent   = arguments[1];
+            }
+            else if (arguments.length == 3 && $.isFunction(arguments[1])) {
+                var widgets  = arguments[0];
+                var callback = arguments[1];
+                var parent = arguments[2];
+            }
+            $.each(widgets, iterator);
+        },
+        trigger: function(t, d, widgets){ 
+            $.grappelli.widgets.each(
+                widgets || $.grappelli.conf.get('widgets'),
+                function(widgetName, els) { console.log('trigger', t, widgetName)
+                    if (els.length > 0 && this.events && this.events[t]) {
+                        this.events[t].apply(els, [$.Event({type: t, data: d})])
+                    }
+                });
+        },
+        /*
+         * $.grappelli.widgets.call('destroy', scope)
+         * $.grappelli.widgets.call('option', 1, scope)
+        call: function() {
+            var iterator, w, s, widgets, parent;
+            iterator = function (i, widgetName) {
+                w = jQuery.ui[widgetName];
+                if (w && w.autoSelector) {
+                    if (parent) {
+                        s = jQuery(parent).find(w.autoSelector);
+                    }
+                    else {
+                        s = jQuery(w.autoSelector);
+                    }
+                    if (args)
+                        s[widgetName](method, args);
+                    }
+                    else {
+                        s[widgetName](method);
+                    }
+                }
+            };
+            if (typeof arguments[0] == 'string') {
+                parent  = false;
+                method  = arguments[0];
+                args    = arguments[1] || {};
+                widgets = arguments[2] || [];
+            }
+            else {
+                parent  = arguments[0];
+                method  = arguments[1];
+                args    = arguments[2] || {};
+                widgets = arguments[3] || [];
+            }
+            $.each(widgets, iterator);
+        },
+        */
+
     };
 
     g.inst.conf = {

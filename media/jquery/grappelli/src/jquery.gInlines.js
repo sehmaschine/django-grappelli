@@ -41,16 +41,26 @@ $.widget('ui.gInlineGroup', {
         var ui, index, old, row, title;
         ui = this;
         index = ui._totalForms + 1;
-        old   = ui.getRow(ui._totalForms);
-        row   = old.clone(true);
+        old   = ui._templateRow;
+        row   = old.clone(false);
         // Update title for stacked inlines
         if (ui._isStacked) {
             title = row.find('h3:first');
             title.text(title.text().replace(/#\d+/, '#'+ index));
         }
+        $.grappelli.widgets.trigger('nodeCloned', {node: row});
         ui._updateIdentifiers(row, ui._totalForms);
+        row.insertAfter(ui.getRow(ui._totalForms));
         ui._totalForms = index;
-        return row.insertAfter(old);
+        $.grappelli.widgets.trigger('nodeInserted', {node: row});
+//      $.grappelli.widgets.each(function(widgetName, elements) {
+//          if (elements.length > 0) {
+//              //elements[widgetName]();
+//          }
+//      }, row);
+        //$.grappelli.widgets.call(row, 'destroy', ['gDateField'])
+//        $.grappelli.widgets.init(row, ['gDateField', 'gRelated', 'gAutocomplete'])
+        return row;
     },
 
     addFormRow: function() {
@@ -83,6 +93,9 @@ $.widget('ui.gInlineGroup', {
         ui.dom.addHandler.bind('click', function(e){
             ui.addFormRow();
         });
+
+        ui._templateRow = ui.getRow(ui._totalForms).clone(false);
+        //console.log('v', ui._templateRow);
 
         /*
         $.grappelli.widgets.init([], row);

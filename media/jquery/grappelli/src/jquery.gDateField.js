@@ -24,7 +24,7 @@ $.datepicker.setDefaults({
 $.widget('ui.gDateField', {
     _init: function() {
         var ui = this;
-
+        console.log('dp init', ui.element);
         ui.element.datepicker().parent()
             // replace BR
             .find('br').replaceWith(ui.options.spacer || '');
@@ -51,6 +51,17 @@ $.extend($.ui.gDateField, {
 
         // separator between date and time fields
         spacer: '<span class="spacer" />'
+    },
+    events: {
+        nodeCloned: function(e) {
+            var parent = e.originalEvent.data.node;
+            var nodes  = $($.ui.gDateField.autoSelector, e.originalEvent.data.node);
+            if (nodes.length) {
+                nodes.parent().find('.ui-datepicker-trigger').remove();
+                nodes.removeClass('hasDatepicker').data('datepicker', false);
+                nodes.gDateField('destroy').gDateField();
+            }
+        }
     }
 });
 })(jQuery);

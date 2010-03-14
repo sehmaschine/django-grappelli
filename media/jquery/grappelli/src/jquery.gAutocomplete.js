@@ -21,10 +21,16 @@ $.widget('ui.gAutocomplete', {
     _results: [],
     _select_onload: false,
     _ignored_chars: [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9],
-
+    _getUrl: function() {
+        var ui = this;
+        return [$.grappelli.conf.get('autocomplete_url'), ui.options.app, '/', ui.options.model,'/'].join('');
+    },
     _init: function() {
         var ui, width;
         ui = this;
+        console.log('AC INIT');
+        console.log(ui.element.metadata());
+        ui.options = $.extend(ui.options, ui.element.metadata());
         ui.dom = {
             wrapper: ui._createElement('div',    {ns: 'wrapper'}).addClass('ui-corner-bottom').hide(), 
             results: ui._createElement('ul',     {ns: 'results'}), 
@@ -56,6 +62,7 @@ $.widget('ui.gAutocomplete', {
                 .bind('focus.browse', function(){ ui.dom.browse.addClass('focus'); })
                 .bind('blur.browse',  function(){ ui.dom.browse.removeClass('focus'); });
         }
+
 
         ui.dom.wrapper
             .append(ui.dom.results)
@@ -200,7 +207,7 @@ $.widget('ui.gAutocomplete', {
      * */
     _autocomplete: function() {
         var ui  = this;
-        var url = ui.options.backend +'?q='+ ui.dom.input.val();
+        var url = ui._getUrl() + ui.options.search_fields +'/?q='+ ui.dom.input.val();
         var lr  = ++ui._lastRequest;
 
         if (ui.options.maxResults) {
@@ -286,6 +293,7 @@ $.widget('ui.gAutocomplete', {
                             .appendTo(ui.dom.results);
                             
 
+                console.log(txt, ui.options.listFormat, item)
                 // Option: highlight
                 if (ui.options.highlight) {
                     li.html(txt.replace(new RegExp("("+ ui.dom.input.val() +")", "gi"),'<b>$1</b>'));
@@ -319,6 +327,7 @@ $.widget('ui.gAutocomplete', {
 });
 
 $.extend($.ui.gAutocomplete, {
+    autoSelector: 'input.ui-gAutocomplete',
     getter: 'results',
     defaults: {
         // maximum results to show per requests (this is 
@@ -337,12 +346,20 @@ $.extend($.ui.gAutocomplete, {
 
         // the minimum caracters the field must contain before making
         // a search query
-        minChars: 2,
-        
-        // non-tested
-        throbber:   true,
-
-        createText: 'Create a new object',
+        minChars: 1,
+    
+        maxResults: 20,
+        listFormat: '{id:d} - {label:s}',
+        inputFormat: '{label:s}'
+    },
+    events: {
+        nodeCloned: function(e) {
+            var parent = e.originalEvent.data.node;
+            var nodes  = $($.ui.gDateField.autoSelector, e.originalEvent.data.node);
+            if (nodes.length) {
+                nodes.gAutocomplete('destroy').gAutocomplete();
+            }
+        }
     }
 });
 
