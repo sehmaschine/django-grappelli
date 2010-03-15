@@ -87,7 +87,7 @@ $.grappelli = (new function(){
         trigger: function(t, d, widgets){ 
             $.grappelli.widgets.each(
                 widgets || $.grappelli.conf.get('widgets'),
-                function(widgetName, els) { console.log('trigger', t, widgetName)
+                function(widgetName, els) { 
                     if (els.length > 0 && this.events && this.events[t]) {
                         this.events[t].apply(els, [$.Event({type: t, data: d})])
                     }

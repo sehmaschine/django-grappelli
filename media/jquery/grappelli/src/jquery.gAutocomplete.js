@@ -35,8 +35,6 @@ $.widget('ui.gAutocomplete', {
             input:   ui._createElement('input',  {ns: 'autocomplete', attr:{ type: 'text'}}).addClass('vAutocompleteSearchField'), 
             browse:  ui._createElement('button', {ns: 'browse',       attr:{ href: ui.options.related_url, title: 'Browse'}}) 
         };
-
-//      ui.options.minChars = 4;
         
         ui.element.hide().parent().find('.vAutocompleteRawIdAdminField').hide();
         ui.element.attr('name', ui.element.attr('id'));
@@ -236,6 +234,8 @@ $.widget('ui.gAutocomplete', {
         return this._results;         
     },
 
+    /* Called on key up/down and mouseover
+     * */
     _choose: function(nonSticky, mouseClick) {
         var ui = this;
         var node = ui.dom.results.find(mouseClick && '.hover' || '.selected');

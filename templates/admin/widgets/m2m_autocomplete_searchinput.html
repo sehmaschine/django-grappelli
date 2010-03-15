@@ -3,38 +3,3 @@
 {% spaceless %}
 <input id="{{ name }}" name="{{ name }}" class="vM2MAutocompleteSearchField ui-gFacelist {model:'{{model_name}}', app:'{{app_label}}', search_fields:'{{search_fields}}', related_url:'{{ related_url }}{{ url|safe }}', initial_data: {{ label|safe|default:"false" }}}" />
 {% endspaceless %}
-
-{% comment %}
-<a href="{{ related_url }}{{ url|safe }}" class="related-lookup" id="lookup_id_{{ name }}" onclick="return showRelatedObjectLookupPopup(this);">
-    <img src="{{ admin_media_prefix }}img/admin/selector-search.gif" width="16" height="16" alt="{% trans "Lookup" %}" />
-</a>
-<script type="text/javascript">
-$(document).ready(function() {
-    // lookup by search-fields
-    $('#m2m_lookup_{{ name }}').autocomplete('{% url grp_m2m_autocomplete_lookup %}', {
-        highlight: false,
-        multiple: true,
-        mustMatch: true,
-        matchContains: true,
-        cacheLength: 20,
-        minChars: 2,
-        extraParams: {
-            'search_fields': '{{ search_fields }}',
-            'app_label': '{{ app_label }}',
-            'model_name': '{{ model_name }}'
-        }
-    })
-    // lookup by ID
-    function M2MAutocompleteLookup(obj) {
-        $.get('{% url grp_m2m_autocomplete_lookup_id %}', {
-            'search_fields': '{{ search_fields }}',
-            'app_label': '{{ app_label }}',
-            'model_name': '{{ model_name }}',
-            'object_id': obj.val(),
-        }, function(data){
-            $(obj).parent().find('textarea.vM2MAutocompleteSearchField').val(data);
-        });
-    };
-});
-</script>
-{% endcomment %}
