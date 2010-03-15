@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+{% block breadcrumbs %}<div id="breadcrumbs"><a href="{{ root_path }}">Home</a> &rsaquo; Tests</div>{% endblock %}
+{% block title %}Tests{% endblock %}
+{% block content-class %}content-flexible{% endblock %}
+{% block content %}
+
+
+<h1>Grappelli unit tests</h1>
+<div class="container-grid rte">
+    <div class="module">
+        <h2>Uncompressed</h2>
+        <iframe style="width:100%;height:300px;" src="/media/admin-media/jquery/grappelli/tests/index.html"></iframe>
+        <h2>Compressed</h2>
+        <iframe style="width:100%;height:300px;" src="/media/admin-media/jquery/grappelli/tests/index-dist.html"></iframe>
+        <h2>Compressed &amp; minified</h2>
+        <iframe style="width:100%;height:300px;" src="/media/admin-media/jquery/grappelli/tests/index-dist-min.html"></iframe>
+    </div>
+</div>
+
+{% endblock %}
+

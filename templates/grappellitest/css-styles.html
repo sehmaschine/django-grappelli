@@ -1,0 +1,24 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block breadcrumbs %}<div id="breadcrumbs"><a href="{{ root_path }}">Home</a> &rsaquo; Tests</div>{% endblock %}
+{% block title %}Tests{% endblock %}
+
+{% block content %}
+
+<h1>Grappelli tests</h1>
+
+<div id="content-main">
+  <h3><a href="{% url test-css-styles %}">CSS Styles</a></h3>
+  <p>A showcase of importants CSS style rules.</p>
+
+  <h3><a href="{% url test-js-grappelli %}">Grappelli JavaScript tests</a></h3>
+  <p>Unit tests for grappelli core widgets.</p>
+
+  <h3><a href="{% url test-js-contrib %}">Contrib JavaScript tests</a></h3>
+  <p>Unit tests for externals libraries.</p>
+
+  <h3><a href="{% url test-functional %}">Functional tests</a></h3>
+  <p>Functional tests of each widgets.</p>
+</div>
+{% endblock %}
+
