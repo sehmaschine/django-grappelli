@@ -351,7 +351,7 @@ $.extend($.ui.gAutocomplete, {
     events: {
         nodeCloned: function(e) {
             var parent = e.originalEvent.data.node;
-            var nodes  = $($.ui.gDateField.autoSelector, e.originalEvent.data.node);
+            var nodes  = $($.ui.gAutocomplete.autoSelector, e.originalEvent.data.node);
             if (nodes.length) {
                 nodes.gAutocomplete('destroy').gAutocomplete();
             }

@@ -179,6 +179,7 @@ $.grappelli = (new function(){
             });
     
     };
+
     return g.inst;
 }());
 
