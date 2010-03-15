@@ -1,4 +1,7 @@
-
+html, body {
+    margin:0;
+    padding:0;
+}
 ol#qunit-tests {
 	font-family:"Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
 	margin:0;
@@ -67,6 +70,7 @@ h1#qunit-header{
 	-webkit-border-top-right-radius:15px;
 	-webkit-border-top-left-radius:15px;
 	text-shadow: rgba(0, 0, 0, 0.5) 4px 4px 1px;
+    display:none;
 }
 h2#qunit-banner{
 	font-family:"Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
@@ -102,12 +106,6 @@ p#qunit-testresult{
 	margin:0;
 	font-size: small;
 	color:#2b81af;
-	border-bottom-right-radius:15px;
-	border-bottom-left-radius:15px;
-	-moz-border-radius-bottomright:15px;
-	-moz-border-radius-bottomleft:15px;
-	-webkit-border-bottom-right-radius:15px;
-	-webkit-border-bottom-left-radius:15px;
 	background-color:#D2E0E6;
 	padding:0.5em 0.5em 0.5em 2.5em;
 }

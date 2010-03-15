@@ -11,7 +11,7 @@ var gFaceListBaseOptions = {
 
 
 module("Basic requirements");
-var jQueryMethods = ['wm', 'unescapeHTML', 'widget', 'slugify', 'sortSelect'];
+var jQueryMethods = ['unescapeHTML', 'widget', 'slugify', 'sortSelect'];
 
 test("Checking presence of jQuery required methods", jQueryMethods.length, function() {
     for (var x=0;x<jQueryMethods.length;x++) {
@@ -23,7 +23,7 @@ test("Checking presence of jQuery required methods", jQueryMethods.length, funct
 var uiMethods = ['datepicker', 'dialog', 'draggable', 'droppable', 'resizable', 'selectable', 'sortable', 
                  'accordion', 'gActions', 'gAutoSlugField', 'gAutocomplete', 'gBookmarks', 'gChangelist', 
                  'gDateField', 'gFacelist', 'gGenericRelated', 'gInlineGroup', 'gInlineStacked', 
-                 'gInlineTabular', 'gRelated', 'gSelectFilter', 'gTimeField'];
+                 'gInlineTabular', 'gRelated', 'gSelectFilter', 'gTimeField', 'gCollapsible'];
 
 test("Checking presence of jQuery UI required methods", uiMethods.length, function() {
     for (var x=0;x<uiMethods.length;x++) {
@@ -98,21 +98,37 @@ module("jQuery.gActions.js", {
 
 test("Initialization", 1, function() {
 
-    ok($('.action-select[value=1]').is(':checked') &&
-        $('.action-select[value=2]').not(':checked') &&  
-        $('.action-select[value=3]').not(':checked'),
+    ok($('.action-select[value=1]').is(':checked')  &&
+       $('.action-select[value=2]').not(':checked') &&  
+       $('.action-select[value=3]').not(':checked'),
         'Initial data');
 });
 
 test("Checking", 2, function() {
     $('#action-toggle').trigger($.Event({type: 'click'}));
     ok($('.action-select[value=1]').not(':checked') &&
-        $('.action-select[value=2]').not(':checked') &&  
-        $('.action-select[value=3]').not(':checked'),
+       $('.action-select[value=2]').not(':checked') &&  
+       $('.action-select[value=3]').not(':checked'),
         'Uncheck');
     $('#action-toggle').trigger($.Event({type: 'click'}));
     ok($('.action-select[value=1]').is(':checked') &&
-        $('.action-select[value=2]').is(':checked') &&  
-        $('.action-select[value=3]').is(':checked'),
+       $('.action-select[value=2]').is(':checked') &&  
+       $('.action-select[value=3]').is(':checked'),
         'Check');
+});
+
+module("jQuery.gBookmarks.js", {
+    setup: function(){
+        $('#bookmarks').gBookmarks();
+    },
+    teardown: function(){
+        $('#bookmarks').gBookmarks('destroy');
+    }
+});
+
+test("Initialization", 1, function() {
+    
+    $('#toggle-bookmark-add').trigger('click');
+    ok($('#bookmarks-listing').is(':visible'),
+        'Bookmark add form shows up when bookmark add is clicked');
 });

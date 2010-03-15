@@ -6,23 +6,56 @@
         <link rel="stylesheet" type="text/css" href="../../../css/base.css" />
         <link rel="stylesheet" type="text/css" href="../../custom-theme/jquery-ui-1.7.2.custom.css" />
         <link rel="stylesheet" href="data/qunit.css" type="text/css" media="screen">
+        <script type="text/javascript" src="data/qunit.js"></script> 
 
-        <script type="text/javascript" src="data/qunit.js"></script>
-        <!--script type="text/javascript" src="test.js"></script>
-        <script type="text/javascript" src="same.js"></script-->
-
-        <script type="text/javascript">
-        function gettext (i) { return i; }    
-        var ADMIN_URL = "/admin/";
-        var ADMIN_MEDIA_PREFIX = "/admin-media/";
-        var BOOKMARKS_URL = "/grappelli/bookmark/get/";
-        var MODEL_URL_ARRAY = {1: 'auth/permission',2: 'auth/group',3: 'auth/user',4: 'auth/message',5: 'admin/logentry',6: 'contenttypes/contenttype',7: 'sessions/session',8: 'sites/site',9: 'grappelli/navigation',10: 'grappelli/navigationitem',11: 'grappelli/bookmark',12: 'grappelli/bookmarkitem',13: 'grappelli/help',14: 'grappelli/helpitem',15: 'django_evolution/version',16: 'django_evolution/evolution',17: 'testapp/inlinestackedtest',18: 'testapp/inlinetabulartest',19: 'testapp/djangofields',20: 'testapp/grappellifields'}
-        </script>
-        <script type="text/javascript" src="../../jquery-1.3.2.min.js"></script>
-        <script type="text/javascript" src="../../jquery-ui-1.7.2.custom.min.js"></script>
-        <script type="text/javascript" src="../dist/jquery.grappelli.min.js"></script>
+        <script type="text/javascript" src="/grappelli/jsi18n/grappelli/"></script> 
+        <script type="text/javascript" src="/admin-media/jquery/jquery-1.3.2.min.js"></script> 
+        <script type="text/javascript" src="/admin-media/jquery/jquery-ui-1.7.2.custom.min.js"></script> 
+        <script type="text/javascript" src="/admin-media/jquery/grappelli/dist/jquery.grappelli.js"></script>  
+        <script type="text/javascript"> 
+            // Use this to remove *all* effects (not recommended)
+            // $.fx.off = true;
+            // $.fx.speeds._default = 0; // force fx.off for jQuery < 1.8 (http://dev.jqueryui.com/ticket/4328)
+     
+            $.grappelli.conf.extend({
+                lang:               'fr',
+                rtl:                false,
+                content_types:      {1: {pk: 1, app: 'auth', model: 'permission'},2: {pk: 2, app: 'auth', model: 'group'},3: {pk: 3, app: 'auth', model: 'user'},4: {pk: 4, app: 'auth', model: 'message'},5: {pk: 5, app: 'admin', model: 'logentry'},6: {pk: 6, app: 'contenttypes', model: 'contenttype'},7: {pk: 7, app: 'sessions', model: 'session'},8: {pk: 8, app: 'sites', model: 'site'},9: {pk: 9, app: 'grappelli', model: 'navigation'},10: {pk: 10, app: 'grappelli', model: 'navigationitem'},11: {pk: 11, app: 'grappelli', model: 'bookmark'},12: {pk: 12, app: 'grappelli', model: 'bookmarkitem'},13: {pk: 13, app: 'grappelli', model: 'help'},14: {pk: 14, app: 'grappelli', model: 'helpitem'},15: {pk: 15, app: 'django_evolution', model: 'version'},16: {pk: 16, app: 'django_evolution', model: 'evolution'},17: {pk: 17, app: 'testapp', model: 'inlinestackedtest'},18: {pk: 18, app: 'testapp', model: 'inlinetabulartest'},19: {pk: 19, app: 'testapp', model: 'djangofields'},20: {pk: 20, app: 'testapp', model: 'grappellifields'}},
+                admin_url:          '/admin/',
+                admin_media_prefix: '/admin-media/',
+                bookmarks_url:      '/grappelli/bookmark/get/',
+                related_url:        '/grappelli/lookup/related/',
+                m2m_related_url:    '/grappelli/lookup/m2m/',
+                filebrowser_url:    '/optionsadmin/filebrowser/browse/?pop=2',
+                autocomplete_url:   '/grappelli/autocomplete/'
+            });
+     
+            $.grappelli.conf.set('widgets', [
+                'gInlineGroup',
+                'gInlineTabular',
+                'gActions',
+                'gAutoSlugField',
+                'gAutocomplete',
+                'gFacelist',
+                'gBookmarks',
+                'gChangelist',
+                'gCollapsible',
+                'gGenericRelated',
+                'gDateField',
+                'gTimeField',
+                'gRelated',
+                'gSelectFilter'
+            ]);
+     
+            $(function(){
+                $.grappelli.widgets.init();
+                // To customize JavaScript behavior use create a file
+                // template/admin/init.js and it will be included here.
+                
+            });
+        </script> 
         <style>
-        #main { display:none; }
+        #main { position:absolute; width:1px;height:1px;top:-9999px;left:-9999px; }
         </style>
     </head>
     <body>
@@ -64,8 +97,24 @@
                 <input type="checkbox" name="_selected_action" value="3" class="action-select"/>
             </div>
 
-
+            <!-- jquery.bookmarks-->
+            <ul id="bookmarks"> 
+                <li id="toggle-bookmarks-listing" class="enabled"><a>Favoris</a></li> 
+                <ul id="bookmarks-listing"> 
+                    <li class="no-entries"><p>Chargement de Favoris</p></li> 
+                </ul> 
+                <li class="action bookmark-add"> 
+                    <a href="#" id="toggle-bookmark-add" class="bookmark-add"> </a> 
+                </li> 
+                <li class="action bookmark-remove"> 
+                    <a href="#" class="bookmark-remove"> </a> 
+                </li> 
+                <li class="action bookmark-manage"> 
+                    <a href="#" class="bookmark-manage"> </a> 
+                </li> 
+            </ul> 
         </div>
         <script type="text/javascript" src="grappelli.tests.js"></script>
     </body>
 </html>
+

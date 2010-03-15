@@ -19,7 +19,9 @@ modules:
       - src: src/jquery.gFacelist.js
       - src: src/jquery.gRelated.js
       - src: src/jquery.gAutoSlugField.js
-      - src: src/jquery.slugify.js
+      - src: src/jquery.gCollapsible.js
+      - src: contrib/jquery.slugify.js
       - src: contrib/jquery.strings.js
       - src: contrib/jquery.masked.js
       - src: contrib/jquery.delayedObserver.js
+      - src: contrib/jquery.metadata.js

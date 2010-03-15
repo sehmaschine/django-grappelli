@@ -9,66 +9,242 @@
 if (typeof(gettext) == 'undefined') {
     gettext = function (i) { return i; };
 }
+if (typeof(console) == 'undefined') {
+    console = {
+        log: function() {}
+    };
+}
+
+$.grappelli = (new function(){
+    var g = this;
+    g._
+    g._registy = {};
+    g.inst = {};
+
+    g.inst.widgets = {
+        init: function (){
+            var iterator, w, widgets, parent;
+            iterator = function (i, widgetName) {
+                w = jQuery.ui[widgetName];
+                if (w && w.autoSelector) {
+                    if (parent) {
+                        jQuery(parent).find(w.autoSelector)[widgetName]();
+                    }
+                    else {
+                        jQuery(w.autoSelector)[widgetName]();
+                    }
+                }
+            };
+            if (arguments.length == 0) {
+                widgets = $.grappelli.conf.get('widgets');
+                parent  = false;
+            }
+            else if (arguments.length == 1) {
+                widgets = arguments[0];
+                parent  = false;
+            }
+            else {
+                widgets = arguments[1];
+                parent  = arguments[0];
+            }
+            $.each(widgets, iterator);
+        },
+        each: function() {
+            var parent   = false;
+            var iterator = function (i, widgetName) {
+                var w = jQuery.ui[widgetName];
+                w.widgetName = widgetName;
+                if (w && w.autoSelector) {
+                    if (parent) {
+                        var elements = jQuery(parent).find(w.autoSelector);
+                    }
+                    else {
+                        var elements = jQuery(w.autoSelector);
+                    }
+                    callback.apply(w, [widgetName, elements]);
+                }
+            };
+            if (arguments.length == 1) {
+                var widgets  = $.grappelli.conf.get('widgets');
+                var callback = arguments[0];
+            }
+            else if (arguments.length == 2 && $.isFunction(arguments[1])) {
+                var widgets  = arguments[0];
+                var callback = arguments[1];
+            }
+            else if (arguments.length == 2 && !$.isFunction(arguments[1])) {
+                var widgets  = $.grappelli.conf.get('widgets');
+                var callback = arguments[0];
+                var parent   = arguments[1];
+            }
+            else if (arguments.length == 3 && $.isFunction(arguments[1])) {
+                var widgets  = arguments[0];
+                var callback = arguments[1];
+                var parent = arguments[2];
+            }
+            $.each(widgets, iterator);
+        },
+        trigger: function(t, d, widgets){ 
+            $.grappelli.widgets.each(
+                widgets || $.grappelli.conf.get('widgets'),
+                function(widgetName, els) { 
+                    if (els.length > 0 && this.events && this.events[t]) {
+                        this.events[t].apply(els, [$.Event({type: t, data: d})])
+                    }
+                });
+        },
+        /*
+         * $.grappelli.widgets.call('destroy', scope)
+         * $.grappelli.widgets.call('option', 1, scope)
+        call: function() {
+            var iterator, w, s, widgets, parent;
+            iterator = function (i, widgetName) {
+                w = jQuery.ui[widgetName];
+                if (w && w.autoSelector) {
+                    if (parent) {
+                        s = jQuery(parent).find(w.autoSelector);
+                    }
+                    else {
+                        s = jQuery(w.autoSelector);
+                    }
+                    if (args)
+                        s[widgetName](method, args);
+                    }
+                    else {
+                        s[widgetName](method);
+                    }
+                }
+            };
+            if (typeof arguments[0] == 'string') {
+                parent  = false;
+                method  = arguments[0];
+                args    = arguments[1] || {};
+                widgets = arguments[2] || [];
+            }
+            else {
+                parent  = arguments[0];
+                method  = arguments[1];
+                args    = arguments[2] || {};
+                widgets = arguments[3] || [];
+            }
+            $.each(widgets, iterator);
+        },
+        */
+
+    };
+
+    g.inst.conf = {
+        extend: function (obj){
+            for (var x in obj) {
+                if (obj.hasOwnProperty(x)) {
+                    g.inst.conf.set(x, obj[x]);
+                }
+            }
+        },
+        set: function (k, v){
+            return g._registy[k] = v;
+        },
+        get: function (k, fallback){
+            try {
+                return g._registy[k];
+            }
+            catch (e) {
+                return fallback || false;
+            }
+        }
+    };
+
+    g.inst.contentTypeExist = function(pk) {
+        return g.inst.conf.get('content_types')[pk] && true || false;
+    };
+
+    g.inst.contentTypeURL = function(pk) {
+        var ct = g.inst.conf.get('content_types')[pk];
+        return  [g.inst.conf.get('admin_url'), ct.app, '/', ct.model, '/'].join('');
+    };
+
+    g.inst.getMessages = function(url, method, data, callback) {
+            var wrapper = $('.messagelist').hide();
+            if (!wrapper.get(0)) {
+                wrapper = $('<ul class="messagelist" />').hide().insertBefore('#content');
+            }
+            jQuery[method](url, data || {}, function() {
+                if (callback) {
+                    callback.apply(this, arguments);
+                }
+                var tmp = arguments[0].match(/\<ul\sclass="messagelist\s?(\w+?)">(.*)<\/ul>/);
+                if (tmp[1]) {
+                    wrapper.html(tmp[2]).addClass(tmp[1]).slideDown('fast');
+                }
+            });
+    
+    };
+
+    return g.inst;
+}());
+
 
 // Minimal Window Manager
-$.wm = function () {
-    this.defaults = {width:  600, height: 920, resizable: true, scrollbars: true};
+$.extend($.grappelli, {
+    window: function () {
+        this.defaults = {width:  600, height: 920, resizable: true, scrollbars: true};
 
-    this._data = function (k, v){
-        var html  = (opener && opener.jQuery('html') || $('html'));
-        var cache = html.data(this.name);
-        if (cache) {
-            if (k && v) { cache[k] = v; return v; }
-            else if (k) { return cache[k] || false; }
-            else        { return cache; }
+        this._data = function (k, v){
+            var html  = (opener && opener.jQuery('html') || $('html'));
+            var cache = html.data(this.name);
+            if (cache) {
+                if (k && v) { cache[k] = v; return v; }
+                else if (k) { return cache[k] || false; }
+                else        { return cache; }
+            }
+            else {
+                return false;
+            }
+        };
+
+        this._getOptions = function () {
+            var a = [];
+            $.each(this.options, function(k, v){ 
+                a.push(k +'='+ v); 
+            });
+            return a.join(',');
+        };
+
+        this.close = function () {
+            this._win.close();
+            this._win = false;
+        };
+
+        this.open = function (focus) {
+            this._win = window.open(this.href, this.name, this._getOptions());
+            this._win.name = this.name;
+            if (focus) {
+                this._win.focus();
+            }
+            return this._win;
+        };
+        if (arguments.length > 1) {
+            this.href    = arguments[0];
+            this.options = $.extend(this.defaults, arguments[1] || {});
+            this.name    = 'window-'+ String((new Date()).getTime());
+            this._win    = false;
         }
         else {
-            return false;
+            this.name = arguments[0];
+            var data = (opener && opener.jQuery('html') || $('html')).data(this.name);
+            if (data && data.instance) {
+                return data.instance;
+            }
+            else {
+                return false;
+            }
         }
-    };
 
-    this._getOptions = function () {
-        var a = [];
-        $.each(this.options, function(k, v){ 
-            a.push(k +'='+ v); 
-        });
-        return a.join(',');
-    };
+        (opener && opener.jQuery('html') || $('html')).data(this.name, { instance: this });
 
-    this.close = function () {
-        this.window.close();
-        this.window = false;
-    };
-
-    this.open = function (focus) {
-        this.window = window.open(this.href, this.name, this._getOptions());
-        this.window.name = this.name;
-        if (focus) {
-            this.window.focus();
-        }
-        return this.window;
-    };
-    if (arguments.length > 1) {
-        this.href    = arguments[0];
-        this.options = $.extend(this.defaults, arguments[1] || {});
-        this.name    = 'window-'+ String((new Date()).getTime());
-        this.window  = false;
+        return this;
     }
-    else {
-        this.name = arguments[0];
-        var data = (opener && opener.jQuery('html') || $('html')).data(this.name);
-        if (data && data.instance) {
-            return data.instance;
-        }
-        else {
-            return false;
-        }
-    }
-
-    (opener && opener.jQuery('html') || $('html')).data(this.name, { instance: this });
-
-    return this;
-};
+});
 
 $.unescapeHTML = function(str) {
     var div = $('<div />').html(str.replace(/<\/?[^>]+>/gi, ''));
@@ -77,18 +253,9 @@ $.unescapeHTML = function(str) {
 
 $(function(){
     
-    // Fieldset collapse
-    $('.module.collapse-closed h2, .module.collapse-open h2').addClass('collapse-toggle').bind('click.grappelli', function(){
-        $(this).parent().toggleClass('collapse-open').toggleClass('collapse-closed');
-    });
-
-
-    // Collapsible groups
-    $('.group-collapsible .section').parent().bind('click.grappelli', function (){
-        $(this).parents('table').find('tbody').toggle();
-    });
-
+    
     // Always focus first field of a form OR the search input
+    // TODO: this is most likely broken if the first field is a rich text area ..
     $('form .form-row:eq(0)')
         .find('input, select, textarea, button').eq(0)
         .add('#searchbar').focus();
@@ -104,6 +271,7 @@ $(function(){
             });
         return false;
     });
+    
 
 });
 
@@ -191,59 +359,93 @@ $.widget('ui.gTimeField', {
 
 });
 
-$.ui.gTimeField.defaults = {
-    mask: '99:99:99', // set to false to disable
-    buttons: [
-        {label: gettext("Now"), callback: function(e, ui){ 
-            return ui.element.val(new Date().getHourMinuteSecond()); 
-        }},
-        {label: gettext("Midnight"), callback: function(e, ui){ 
-            return ui.element.val('00:00:00'); 
-        }},
-        {label: gettext("6 a.m."), callback: function(e, ui){ 
-            return ui.element.val('06:00:00'); 
-        }},
-        {label: gettext("Noon"), callback: function(e, ui){ 
-            return ui.element.val('12:00:00'); 
-        }}
-    ]
-};
-
+$.extend($.ui.gAutoSlugField, {
+    autoSelector: 'input.vTimeField',
+    defaults: {
+        mask: '99:99:99', // set to false to disable
+        buttons: [
+            {label: gettext("Now"), callback: function(e, ui){ 
+                return ui.element.val(new Date().getHourMinuteSecond()); 
+            }},
+            {label: gettext("Midnight"), callback: function(e, ui){ 
+                return ui.element.val('00:00:00'); 
+            }},
+            {label: gettext("6 a.m."), callback: function(e, ui){ 
+                return ui.element.val('06:00:00'); 
+            }},
+            {label: gettext("Noon"), callback: function(e, ui){ 
+                return ui.element.val('12:00:00'); 
+            }}
+        ]
+    }
+});
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gDateField
  *  Package: Grappelli
  *
- *  jslinted - 8 Jan 2010
+ *  jslinted - 9 Mar 2010 (r764)
  */
 (function($){
 
 $.datepicker.setDefaults({
     dateFormat:      'yy-mm-dd',
-    buttonText:      'Date picker',
+    buttonText:      ' ',
+    duration:        160,
+    showAnim:        'slideDown',
     showOn:          'button',
     showButtonPanel: true, 
-    closeText:       gettext && gettext('Cancel') || 'Cancel'
-//  buttonImage:     ADMIN_MEDIA_PREFIX +'img/icons/icon-calendar.png'
+    closeText:       gettext && gettext('Cancel') || 'Cancel',
+    showOtherMonths: true,
+    constrainInput:  true,
+    defaultDate:     'today',
+    isRTL:           $.grappelli.conf.get('rtl')
 });
+
 
 $.widget('ui.gDateField', {
     _init: function() {
         var ui = this;
+        console.log('dp init', ui.element);
+        ui.element.datepicker().parent()
+            // replace BR
+            .find('br').replaceWith(ui.options.spacer || '');
 
-        ui.element.datepicker()
-            .parent().find('br').replaceWith('<span class="spacer" />');
-
+        // remove text Date: & Time: (now that's ugly..)
+        if (!ui.element.prev().get(0)) {
+            try {
+                ui.element.parent().get(0).childNodes[0].replaceWholeText('');
+                ui.element.parent().get(0).childNodes[3].replaceWholeText('');
+            } catch (e) {}
+        }
+            
         if (ui.options.mask) {
             ui.element.mask(ui.options.mask);
         }
     }
 });
 
-$.ui.gDateField.defaults = {
-    mask: '9999-99-99' // set to false to disable
-};
+$.extend($.ui.gDateField, {
+    autoSelector: 'input.vDateField',
+    defaults: {
+        // set to false to disable input masking
+        mask:   '9999-99-99',                   
 
+        // separator between date and time fields
+        spacer: '<span class="spacer" />'
+    },
+    events: {
+        nodeCloned: function(e) {
+            var parent = e.originalEvent.data.node;
+            var nodes  = $($.ui.gDateField.autoSelector, e.originalEvent.data.node);
+            if (nodes.length) {
+                nodes.parent().find('.ui-datepicker-trigger').remove();
+                nodes.removeClass('hasDatepicker').data('datepicker', false);
+                nodes.gDateField('destroy').gDateField();
+            }
+        }
+    }
+});
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gChangelist
@@ -294,76 +496,162 @@ $.widget('ui.gChangelist', {
         var cw = ui.content.outerWidth();
 
         if (tw > cw) {
-            $('#changelist.module.filtered').css('padding-right', 227);
-            $('.changelist-content').css('min-width', (tw + 1) +'px');
-            $('#changelist-filter').css('border-right', '15px solid #fff');
+            // $('#changelist.module.filtered').css('padding-right', 227);
+            // $('.changelist-content').css('min-width', (tw + 1) +'px');
+            // $('#changelist-filter').css('border-right', '15px solid #fff');
         }
         if (tw < cw) {
-            $('#changelist.module.filtered').css('padding-right', 210);
-            $('.changelist-content').css('min-width', 'auto');
-            $('#changelist-filter').css('border-right', 0);
+            // $('#changelist.module.filtered').css('padding-right', 210);
+            // $('.changelist-content').css('min-width', 'auto');
+            // $('#changelist-filter').css('border-right', 0);
         }
     }
 });
 
+$.extend($.ui.gChangelist, {
+    autoSelector: '.changelist-content',
+});
 })(jQuery);
 /*  Author:  Maxime Haineault <max@motion-m.ca>
  *  widget:  gBookmarks
  *  Package: Grappelli
  *
- *  jslinted - 8 Jan 2010
+ *  jslinted - 10 Mar 2010
  */
 (function($){
 
 $.widget('ui.gBookmarks', {
          
     _init: function() {
-        var ui  = this;
-        var url = ui.options.url +'?path='+ window.location.pathname +' #bookmarks > li';
-        
-        this.showMethod = this.options.effects && 'slideDown' || 'show';
-        this.hideMethod = this.options.effects && 'slideUp' || 'hide';
+        var ui, url;
+        ui  = this;
+        url = $.grappelli.conf.get('bookmarks_url') +'?path='+ window.location.pathname +' #bookmarks > li';
+        ui.dom = {};
 
-        $("li#toggle-bookmarks-listing.enabled")
-            .live("mouseover", function(){ ui.show("#bookmarks-listing:hidden"); });
-        
-        $('#toggle-bookmark-add').live("click", function() { return ui.add(); });
-        $('#bookmark-add-cancel').live("click", function() { return ui.cancel(); });
-        ui.element.load(url);
-    },
+        ui.element.load(url, function(){
+            ui._mapDom();
+            ui._timeout   = true;
+            ui.showMethod = ui.options.effects && 'slideDown' || 'show';
+            ui.hideMethod = ui.options.effects && 'slideUp'   || 'hide';
 
-    show: function(el) {
-        var ui = this;
-        $(el)[ui.showMethod]();
-        $("#bookmarks").one("mouseleave", function(){ 
-            ui.hide("#bookmarks-listing:visible"); 
+            ui.dom.add.live("click",    function() { return ui.add();    });
+            ui.dom.cancel.live("click", function() { return ui.cancel(); });
+
+            $("li#toggle-bookmarks-listing.enabled")
+                .live("mouseover", function(){ 
+                    ui.show("#bookmarks-listing:hidden"); 
+                    $("#bookmarks").one("mouseleave", function(){ 
+                        ui.hide("#bookmarks-listing:visible"); 
+                    });
+                });
         });
     },
 
-    hide: function(el) {
-        $(el)[this.hideMethod]();
+    /* Maps the ui.options.ns property to their
+     * respective DOM node so that { wrapper: '#bookmarks' }
+     * becomes "ui.dom.wrapper" that points to $('#bookmarks')
+     **/
+    _mapDom: function() {
+        var ui, x;
+        ui = this;
+        for (x in ui.options.ns) {
+            // ensure that's not a prototyped property
+            if (ui.options.ns.hasOwnProperty(x)) { 
+                ui.dom[x] = jQuery(ui.options.ns[x]);
+            }
+        }
     },
 
+    /*  Show the drop down menu
+     *  @speed animation speed, uses options by default
+     * */
+    show: function(el, speed) {
+        var ui = this;
+        ui._timeout = false;
+        $(el)[ui.showMethod](speed || ui.options.effectsSpeed);
+    },
+
+    /* Hide a given menu
+     *  @timeout animation timeout, uses options by default
+     *  @speed animation speed, uses options by default
+     * */
+    hide: function(el, timeout, speed) {
+        var ui = this;
+        ui._timeout = true;
+        setTimeout(function(){
+            if (ui._timeout) {
+                $(el)[ui.hideMethod](speed || ui.options.effectsSpeed);
+                ui._timeout = false;
+            }
+        }, typeof(timeout) == 'undefined' && ui.options.hideTimeout || timeout);
+    },
+
+    /* This method is called when the cancel button of
+     * the add bookmark form is pressed.
+     * */
     cancel: function() {
-        this.hide("#bookmark-add");
+        var ui = this;
+        ui.hide(ui.dom.addWrapper, 0);
         $("#toggle-bookmarks-listing").toggleClass('enabled');
         return false;
     },
     
+    /* This method is called when the add bookmark 
+     * button (+) is pressed
+     * */
     add: function() {
-        $("#bookmark-title").val($('h1').text());
-        $("#bookmark-path").val(window.location.pathname);
-        $("#toggle-bookmarks-listing").removeClass('enabled');
-        this.show("#bookmark-add");
+        var ui = this;
+        var addForm = ui.dom.addWrapper.find('form');
+
+        ui.dom.title.val($('h1').text());
+        ui.dom.path.val(window.location.pathname);
+        ui.dom.list.removeClass('enabled');
+        ui.hide(ui.dom.list, 0, 0);
+        ui.show(ui.dom.addWrapper);
+        addForm.bind('submit', function(e){
+            var $elf = $(this);
+            ui.hide(ui.dom.addWrapper, 0, 0);
+            setTimeout(function(){
+                $.grappelli.getMessages($elf.attr('action'), 
+                                        $elf.attr('method').toLowerCase(),
+                                        $elf.serialize());
+            }, 200);
+            return false;             
+        });
         return false;
     }
 });
 
-$.ui.gBookmarks.defaults = {
-    url: BOOKMARKS_URL,
-    effects: false
-};
+$.extend($.ui.gBookmarks, {
+    autoSelector: '#bookmarks',
+    defaults: {
+        // DOM mapping
+        ns: {
+            wrapper:    '#bookmarks',
+            addWrapper: '#bookmark-add',
+            add:        '#toggle-bookmark-add',
+            cancel:     '#bookmark-add-cancel',
+            list:       '#toggle-bookmarks-listing',
+            path:       '#bookmark-path',
+            title:      '#bookmark-title'
+        },
 
+        // Set to false to disable effects or true to enable them
+        effects: true,
+
+        // Speed at which effects are applied (in ms)
+        effectsSpeed: 80,
+        
+        // Amount of time (in ms) before hiding the menu.
+        //
+        // Allowing a small grace period before hiding the menu avoid
+        // lots of accidental gestures and makes the menu feels more
+        // "solid" for the user. 
+        //
+        // TL-DR: the menu doesn't feel like it has ADD
+        hideTimeout: 500
+    }
+});
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gInlineGroup, gInlineStacked, gInlineTabular
@@ -373,19 +661,105 @@ $.ui.gBookmarks.defaults = {
  */
 (function($){
 
+$.grappelli.gInlineTabularBase = {
+    
+    
+};
+    
+$.grappelli.gInlineStackedBase = {
+    
+    
+};
+         
 $.widget('ui.gInlineGroup', {
+
+    _updateIdentifiers: function(row, index) {
+        var ui, attr, attrs, tag, tags, curr, t, x;
+        ui   = this;
+        attr = {};
+        tags = $.map(ui.options.updatedTags, function(tag){
+                       t = tag.match(/^(\w+):(.*)$/);
+                       attr[t[1]] = t[2] && t[2].split(',') || false;
+                       return t[1]; }).join(',');
+
+        row.find(tags).each(function(i, t){
+            tag   = t.nodeName.toLowerCase();
+            attrs = attr[tag];
+            for (x in attrs) {
+                curr = attrs[x];
+                $(this).attr(curr, $(this).attr(curr).replace(/\-\d+\-/, '-'+ index +'-'));
+            }
+        });
+    },
+
+    _newRow: function() {
+        var ui, index, old, row, title;
+        ui = this;
+        index = ui._totalForms + 1;
+        old   = ui._templateRow;
+        row   = old.clone(false);
+        // Update title for stacked inlines
+        if (ui._isStacked) {
+            title = row.find('h3:first');
+            title.text(title.text().replace(/#\d+/, '#'+ index));
+        }
+        $.grappelli.widgets.trigger('nodeCloned', {node: row});
+        ui._updateIdentifiers(row, ui._totalForms);
+        row.insertAfter(ui.getRow(ui._totalForms));
+        ui._totalForms = index;
+        $.grappelli.widgets.trigger('nodeInserted', {node: row});
+//      $.grappelli.widgets.each(function(widgetName, elements) {
+//          if (elements.length > 0) {
+//              //elements[widgetName]();
+//          }
+//      }, row);
+        //$.grappelli.widgets.call(row, 'destroy', ['gDateField'])
+//        $.grappelli.widgets.init(row, ['gDateField', 'gRelated', 'gAutocomplete'])
+        return row;
+    },
+
+    addFormRow: function() {
+        var ui = this;
+        var newRow = ui._newRow();
+        // initialize within the row scope the plugins 
+        // that can't rely on jQuery.fn.live
+        //$.grappelli.widgets.init(['gRelated'], newRow);
+    },
+    
+    getRow: function(index) {
+        var ui = this;
+        return ui.element.find('.items > .module').eq(index - 1);
+    },
+
     _init: function(){
         var ui = this;
-        ui.element.find('input[name*="DELETE"]').hide();
-        ui._makeCollapsibleGroups();
-        
+
+        ui._isTabular    = ui.element.hasClass('tabular');
+        ui._isStacked    = !ui._isTabular;
+        ui._totalForms   = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
+        ui._initialForms = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
+
+        ui = $.extend(ui, $.grappelli[ui._isTabular && 'gInlineTabularBase' || 'gInlineStackedBase']);
+
+        ui.dom = {
+            addHandler: ui.element.find('.ui-add-handler'),
+        };
+
+        ui.dom.addHandler.bind('click', function(e){
+            ui.addFormRow();
+        });
+
+        ui._templateRow = ui.getRow(ui._totalForms).clone(false);
+
+        /*
+        $.grappelli.widgets.init([], row);
         // Prevent fields of inserted rows from triggering errors if un-edited
         ui.element.parents('form').bind('submit.gInlineGroup', function(){
             ui.element.find('.inline-related:not(.has_original):not(.has_modifications) div.order :text').val('');
         });
         
         /// ADD HANDLER
-        ui.element.find('a.addhandler').bind('click.gInlineGroup', function(e){
+        ui.element.find('a.ui-add-handler').bind('click.gInlineGroup', function(e){
             var container = $(this).parents('div.inline-group');
             var lastitem  = container.find('div.inline-related:last');
             var newitem   = lastitem.clone(true).appendTo(container.find('div.items:first'));
@@ -420,16 +794,17 @@ $.widget('ui.gInlineGroup', {
             ui._makeSortable();
         }
         
-        ui.element.find('.addhandler').bind('click.gInlineGroup', function(){
+        ui.element.find('.ui-add-handler').bind('click.gInlineGroup', function(){
             ui._refreshOrder();
         });
         
         ui._refreshOrder();
+        */
     },
-    
-    _initializeItem: function(el, count){
+    /*
+    _initializeitem: function(el, count){
         
-        /// replace IDs, NAMEs, HREFs & FORs ...
+        /// replace ids, names, hrefs & fors ...
         el.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
             var $el = $(this);
             $.each(['id', 'name', 'for', 'href'], function(i, k){
@@ -440,86 +815,41 @@ $.widget('ui.gInlineGroup', {
         });
         
         // destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
-        el.find('.vDateField').unbind().removeClass('hasDatepicker').val('')
+        el.find('.vdatefield').unbind().removeclass('hasdatepicker').val('')
             .next().remove().end().end()
-            .find('.vTimeField').unbind().val('').next().remove();
+            .find('.vtimefield').unbind().val('').next().remove();
         
         // date-/timefield
-        el.find('.vDateField').gDateField();
-        el.find('.vTimeField').gTimeField();
+        el.find('.vdatefield').gdatefield();
+        el.find('.vtimefield').gtimefield();
         
         /// remove error-lists and error-classes
         el.find('ul.errorlist').remove().end()
-            .find('.errors, .error').removeClass("errors error");
+            .find('.errors, .error').removeclass("errors error");
         
         /// tinymce
-        el.find('span.mceEditor').each(function(e) {
+        el.find('span.mceeditor').each(function(e) {
             var id = this.id.split('_parent')[0];
             $(this).remove();
             el.find('#' + id).css('display', '');
-            tinyMCE.execCommand("mceAddControl", true, id);
+            tinymce.execcommand("mceaddcontrol", true, id);
         });
         
         el.find(':input').val('').end() // clear all form-fields (within form-cells)
             .find("strong").text('');     // clear related/generic lookups
         
         // little trick to prevent validation on un-edited fields
-        el.find('input, textarea').bind('keypress.gInlineGroup', function(){
-              el.addClass('has_modifications');
+        el.find('input, textarea').bind('keypress.ginlinegroup', function(){
+              el.addclass('has_modifications');
           }).end()
-          .find('select, :radio, :checkbox').bind('keypress.gInlineGroup', function(){
-              el.addClass('has_modifications');
+          .find('select, :radio, :checkbox').bind('keypress.ginlinegroup', function(){
+              el.addclass('has_modifications');
           });
           
         return el;
     },
-    
-    open: function() {
-        return this.element.data('collapsed', false)
-            .removeClass('collapse-closed')
-            .addClass('collapse-open');
-    },
-    
-    close: function(){
-        return this.element.data('collapsed', true)
-            .removeClass('collapse-open')
-            .addClass('collapse-closed');
-    },
-    
-    toggle: function() {
-        return this.is_open() && this.close() || this.open();
-    },
-    
-    is_closed: function() {
-        return this.element.data('collapsed');
-    },
-    
-    is_open: function() {
-        return !this.is_closed();
-    },
-    
-    is_collapsable: function() {
-        return this.element.hasClass('collapse-closed') || this.element.hasClass('collapse-open');
-    },
-    
-    // INLINE GROUPS COLLAPSE (STACKED & TABULAR)
-    _makeCollapsibleGroups: function() {
-        var ui = this;
-        if (ui.is_collapsable()) {
-            if (ui.element.hasClass('collapse-closed')) {
-                ui.close();
-            } 
-            else {
-                ui.open();
-            }
-            
-            ui.element.find(' > h2').addClass('collapse-toggle')
-                .bind("click.gInlineGroup", function(){
-                    ui.toggle();
-                });
-        }
-    },
-    
+    */
+    /*
     _makeSortable: function() {
         var ui   = this;
         var grip = $('<span class="ui-icon ui-icon-grip-dotted-vertical" />');
@@ -566,18 +896,20 @@ $.widget('ui.gInlineGroup', {
             }
         });
     }
+    */
 });
-
-$.ui.gInlineGroup.defaults = {
-};
+$.extend($.ui.gInlineGroup, {
+    autoSelector: '.group',
+    defaults: {
+        updatedTags: ['input:id,name', 'select:id,name', 'textarea:id,name', 'label:for'],
+    }
+});
 
 // INLINE STACKED 
 
 $.widget('ui.gInlineStacked', {
     _init: function(){
         var ui = this;
-        ui._makeCollapsible();
-        
         // FIELDSETS WITHIN STACKED INLINES
         /* OBSOLETE ?
         ui.element.find('.inline-related').find('fieldset[class*="collapse-closed"]')
@@ -590,57 +922,21 @@ $.widget('ui.gInlineStacked', {
                     .toggleClass('collapse-open');
         });
         */
-    },
-    _makeCollapsible: function() {
-        var ui = this;
-        // COLLAPSE OPEN/CLOSE ALL BUTTONS
-        ui.element.find('a.closehandler').bind("click", function(){
-            $(this).parents('div.inline-stacked')
-                .find('div.inline-related')
-                    .removeClass('collapse-open')
-                    .addClass('collapsed collapse-closed');
-        });
-        ui.element.find('a.openhandler').bind("click", function(){
-            $(this).parents('div.inline-stacked')
-                .find('div.inline-related')
-                    .removeClass('collapsed collapse-closed')
-                    .addClass('collapse-open');
-        });
-        
-        ui.element.find('.inline-related')
-            .addClass("collapsed")
-            .find('h3:first-child')
-                .addClass('collapse-toggle')
-                .bind("click", function(){
-                    var p = $(this).parent();
-                    if (!p.hasClass('collapsed') && !p.hasClass('collapse-closed')) {
-                        p.addClass('collapsed')
-                         .addClass('collapse-closed')
-                         .removeClass('collapse-open');
-                    }
-                    else {
-                        p.removeClass('collapsed')
-                         .removeClass('collapse-closed')
-                         .addClass('collapse-open');
-                    }
-                });
-        if (ui.element.hasClass('collapse-open-items')) {
-            ui.element.find('.inline-related.collapse-closed.collapsed')
-                .removeClass('collapse-closed collapsed').addClass('collapse-open');
-        }
-        
-        /// OPEN STACKEDINLINE WITH ERRORS (onload)
-        $('.inline-group:has(.errors)').removeClass('collapse-closed collapsed').addClass('collapse-open');
     }
 });
-$.ui.gInlineStacked.defaults = {
-    collapsible: true
-};
+
+$.extend($.ui.gInlineStacked, {
+    autoSelector: '.inline-stacked',
+    defaults: {
+        collapsible: true
+    }
+});
 
 // INLINE TABULAR
 
 $.widget('ui.gInlineTabular', {
     _init: function(){
+    /*
         var ui = this;
         
         ui.element.find('.inline-related h3:first').remove(); // fix layout bug
@@ -654,9 +950,13 @@ $.widget('ui.gInlineTabular', {
         ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
             $(this).parents('div.inline-tabular').removeClass("collapsed");
         });
+        */
     }
 });
 
+$.extend($.ui.gInlineTabular, {
+    autoSelector: '.inline-tabular'
+});
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gRelated
@@ -667,6 +967,13 @@ $.widget('ui.gInlineTabular', {
  *
  *  jslinted - 8 Jan 2010
  */
+
+// AARGH.
+function addEvent() {
+    var method = arguments[2];
+    $(function(){ method.call(); });
+}
+
 (function($){
 
 // Legacy compatibility
@@ -898,6 +1205,8 @@ $.widget('ui.gSelectFilter', {
     }
 });
 
+
+
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gActions
@@ -916,6 +1225,9 @@ $.widget('ui.gActions', {
     }
 });
 
+$.extend($.ui.gActions, {
+    autoSelector: '#changelist',
+});
 })(jQuery);
 /*  Author:  Maxime Haineault <max@motion-m.ca>
  *  widget:  gAutocomplete
@@ -939,63 +1251,54 @@ $.widget('ui.gAutocomplete', {
     _lastRequest: 0,
     _results: [],
     _select_onload: false,
-
-    _init: function() {
+    _ignored_chars: [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9],
+    _getUrl: function() {
         var ui = this;
+        return [$.grappelli.conf.get('autocomplete_url'), ui.options.app, '/', ui.options.model,'/'].join('');
+    },
+    _init: function() {
+        var ui, width;
+        ui = this;
+        ui.options = $.extend(ui.options, ui.element.metadata());
         ui.dom = {
-            wrapper: ui._createElement('div',   {ns: 'wrapper'}).addClass('ui-corner-bottom').hide(), 
-            results: ui._createElement('ul',    {ns: 'results'}), 
-            input:   ui._createElement('input', {ns: 'autocomplete', attr:{type: 'text'}}).addClass('vAutocompleteSearchField'), 
-            browse:  ui._createElement('a',     {ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}).addClass('ui-corner-left ui-state-default')
-                                                                .append('<span class="ui-icon ui-icon-'+ ui.options.browseIcon +'">Browse</span>') 
+            wrapper: ui._createElement('div',    {ns: 'wrapper'}).hide(), 
+            results: ui._createElement('ul',     {ns: 'results'}), 
+            input:   ui._createElement('input',  {ns: 'autocomplete', attr:{ type: 'text'}}).addClass('vAutocompleteSearchField'), 
+            browse:  ui._createElement('button', {ns: 'browse',       attr:{ href: ui.options.related_url, title: 'Browse'}}) 
         };
         
-        $('[name="'+ ui.element.attr('id') +'"]').bind('updated', function(e){
-            ui._lookup($(this).val());
-            ui.dom.input.focus();
-        });
+        ui.element.hide().parent().find('.vAutocompleteRawIdAdminField').hide();
         ui.element.attr('name', ui.element.attr('id'));
+        ui.dom.input.insertAfter(ui.element);
 
+        // Initial value
         if (ui.element.val()) {
             ui.dom.input.val(ui.element.val());
         }
 
-        ui.dom.input.insertAfter(ui.element.hide());
-        if (ui.options.width) {
-            ui.dom.input.width(ui.options.width);
-        }
-        var width = ui.dom.input.width() + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
+        width = ui.dom.input.width() + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
 
         if (ui.options.browse) {
-            var w = ui.dom.input.width();
-            ui.dom.browse.insertBefore(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
+            ui.dom.browse.insertAfter(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, function(){ $(this).removeClass('ui-state-hover'); })
                 .bind('click.browse', function(){
                     return ui._browse(this); 
                 });
 
             ui.dom.input
-                .css({
-                    marginLeft: '-22px', 
-                    paddingLeft: '24px', 
-                    width: w - 22 +'px'
-                })
                 .bind('focus.browse', function(){ ui.dom.browse.addClass('focus'); })
                 .bind('blur.browse',  function(){ ui.dom.browse.removeClass('focus'); });
-            width = width - 23;
         }
+
         ui.dom.wrapper
             .append(ui.dom.results)
             .insertAfter(ui.dom.input)
-            .css({
-                //left: ui.dom.input.position().left + ui.dom.wrapper.css('margin-left'), 
-                position: 'absolute'
-            }).width(width);
+            .css('left', ui.dom.input.position().left)
+            .width(width);
         
         ui._bind(ui.dom.input, 'keydown', function(e){
             var kc = e.keyCode || 0;
             var key = $.ui.keyCode;
-            //var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 8, 9];
             switch(kc) {
                 case key.UP:     return ui._select('prev');
                 case key.DOWN:   return ui._select('next');
@@ -1006,13 +1309,11 @@ $.widget('ui.gAutocomplete', {
             }
         });
 
-        //ui._bind(ui.dom.input, 'blur', function(){ ui._hideList(); });
         ui.dom.input.delayedObserver(function(e){
             var kc = e.keyCode || 0;
-            var noCompletes = [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9];
             // Option: minChar
             if ($(this).val().length >= ui.options.minChars) { 
-                if ($.inArray(kc, noCompletes) < 0) {
+                if ($.inArray(kc, ui._ignored_chars) < 0) {
                     ui._autocomplete();
                 }
             }
@@ -1025,27 +1326,23 @@ $.widget('ui.gAutocomplete', {
             }
         }, ui.options.delay);
     },
-    
-    // This method is called when the "Browse" button is clicked on
-    // Autocomplete fields
+
+    /* called when the "Browse" button is clicked on
+     * Autocomplete fields
+     */
     _browse: function(l) {
         var link = $(l);
         var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        var wm   = $.grappelli.window(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
         wm._data('element', link.prevAll('input:first'));
         wm.open();
         return false;
     },
 
-    _lookup: function(id) {
-        var ui = this;
-        $.get(ui.options.lookup_url, {object_id: id, app_label: 'sites', model_name: 'site'}, function(data) {
-            if (data) {
-                ui.dom.input.val(decodeURI(data));
-            }
-        });
-    },
-
+    /* Set the current widget value
+     * @val the value to be set (must be an object that 
+     *      contains a "id" and a "label" property)
+     **/
     _setVal: function(val) {
         var ui = this;
         if (val) {
@@ -1058,22 +1355,31 @@ $.widget('ui.gAutocomplete', {
         }
     },
 
+    /* Creates an HTML fragment
+     * @type    the element type (ex: "div", "p", "b"...)
+     * @attr    an array of attributes to apply
+     **/
     _createElement: function(type, options) {
         var ui = this;
         var el = $('<'+ type +' />');
         var op = options || {};
-        if (op.ns)           { el.addClass(ui.widgetBaseClass +'-'+ op.ns); }
-        if (op.attr)         { el.attr(op.attr); }
+        if (op.ns)   { el.addClass(ui.widgetBaseClass +'-'+ op.ns); }
+        if (op.attr) { el.attr(op.attr); }
         return el;
     },
 
+    /*  Shortcut to bind an event to the
+     *  widget element
+     **/
     _bind: function(element, eventName, callback) {
         var ui = this; 
         element.bind(eventName +'.'+ ui.widgetEventPrefix, function(e){
             return callback.apply(this, [e, ui]);
         });
     },
-
+    
+    /* Hide the autocomplete result list
+     **/
     _hideList: function() {
         var ui = this;
         if (ui.dom.wrapper.is(':visible')){
@@ -1082,10 +1388,13 @@ $.widget('ui.gAutocomplete', {
         }
     },
 
+    /* Show the autocomplete result list
+     **/
     _showList: function(){
         var ui = this;
         if (ui.dom.wrapper.is(':hidden')){
             ui.dom.wrapper.show();
+            ui.dom.input.parents('.form-row').removeClass('errors');
             $('html').bind('click.gAutocomplete', function(e){
                 if (!$(e.target).hasClass('ui-gAutocomplete-autocomplete')) {
                     ui._hideList();
@@ -1094,6 +1403,8 @@ $.widget('ui.gAutocomplete', {
         }
     },
 
+    /* Called when a selection has been made
+     **/
     _select: function(which) {
         var ui = this;
         var li = false;
@@ -1109,28 +1420,38 @@ $.widget('ui.gAutocomplete', {
         ui._choose(true);
         return true;
     },
+            
 
+    /*  Returns the currently selected "li" element
+     **/
     _selected: function() {
         return this.dom.results.find('li.selected');
     },
 
+    /* Called when the input value has been changed.
+     * Then updates the results list.
+     * */
     _autocomplete: function() {
         var ui  = this;
-        var url = ui.options.backend +'?q='+ ui.dom.input.val();
+        var url = ui._getUrl() + ui.options.search_fields +'/?q='+ ui.dom.input.val();
         var lr  = ++ui._lastRequest;
 
-        // Option: maxResults
         if (ui.options.maxResults) {
             url = url + '&limit='+ ui.options.maxResults;
         }
-        // Option: throbber
         if (ui.options.throbber) {
             ui.dom.input.addClass('searching');
+        }
+        if (ui.options.browse) {
+            ui.dom.browse.attr('disabled', true);
         }
         ui._showList();
         $.getJSON(url, function(json, responseStatus){
             // process the request only if it's successful and it's the last sent (avoid race conditions)
             ui.dom.input.removeClass('searching');
+            if (ui.options.browse) {
+                ui.dom.browse.attr('disabled', null);
+            }
             if (responseStatus == 'success' && lr == ui._lastRequest) {
                 ui._results = json;
                 ui._redraw();
@@ -1138,13 +1459,17 @@ $.widget('ui.gAutocomplete', {
         });
     },
 
+    /*  Return the cached results list
+     **/
     results: function() {
         return this._results;         
     },
 
-    _choose: function(nonSticky) {
+    /* Called on key up/down and mouseover
+     * */
+    _choose: function(nonSticky, mouseClick) {
         var ui = this;
-        var node = ui.dom.results.find('.selected');
+        var node = ui.dom.results.find(mouseClick && '.hover' || '.selected');
         if (node.data('json')) {
             ui._setVal(node.data('json'));
             if (nonSticky) { // remember value in case of cancel
@@ -1154,17 +1479,14 @@ $.widget('ui.gAutocomplete', {
                 ui._hideList();
             }
         }
-        else if (node.data('create') && !nonSticky) {
-            // create object ..
-            if (ui.element.nextAll('.add-another').length) {
-                ui.element.nextAll('.add-another').trigger('click');
-            }
-            // ui._hideList();
-        }
         ui.element.trigger($.Event({type: 'complete', sticky: !nonSticky, data: node.data('json')}));
         return false;
     },
 
+
+    /* This method is called to cancel a complete operation, for
+     * example, if the user presses "Esc" or "Tab" while autocompleting.
+     * */
     _cancel: function() {
         var ui = this;
         ui.dom.results.find('.selected').removeClass('selected');
@@ -1176,12 +1498,16 @@ $.widget('ui.gAutocomplete', {
         return false;
     },
 
+    /*  This method must be called when a new results list
+     *  as been loaded. It will update the autocomplete list
+     *  with the new results.
+     **/
     _redraw: function() {
         var ui = this;
         var li, item, txt = false;
         var rs = ui.options.maxResults && ui._results.slice(0, ui.options.maxResults) || ui._results;
         var liMouseMove = function() { ui._shiftSelection(item); };
-        var liClick = function() { ui._shiftSelection(item)._choose(); };
+        var liClick = function() { ui._choose(false, true); };
         ui.element.trigger('redraw');
         ui.dom.results.empty();
 
@@ -1189,8 +1515,12 @@ $.widget('ui.gAutocomplete', {
             for (var x=0; x<rs.length; x++) {
                 item = rs[x];
                 txt  = $.format(ui.options.listFormat, item);
-                li   = ui._createElement('li', {ns: 'result'}).data('json', item).appendTo(ui.dom.results);
-                
+                li   = ui._createElement('li', {ns: 'result'}).data('json', item)
+                            .hover(function(){ $(this).addClass('hover'); }, 
+                                   function(){ $(this).removeClass('hover'); })
+                            .appendTo(ui.dom.results);
+                            
+
                 // Option: highlight
                 if (ui.options.highlight) {
                     li.html(txt.replace(new RegExp("("+ ui.dom.input.val() +")", "gi"),'<b>$1</b>'));
@@ -1206,38 +1536,60 @@ $.widget('ui.gAutocomplete', {
             ui._showList();
         }
         else {
-            ui.dom.input.addClass('no-match');
-             if (ui.options.create) {
-                li = ui._createElement('li', {ns: 'result'}).data('create', true);
-                li.text(ui.options.createText);
-                ui.dom.results.html(li);
-                ui._showList();
-             }
+            ui._hideList();
+            ui.dom.input.parents('.form-row').addClass('errors');
         }
         ui.element.trigger('redrawn');
     },
-
+    
+    /* Take a LI element, mark it as selected and
+     * mark its siblings as not-selected
+     * */
     _shiftSelection: function(el) {
-        $(el).addClass('selected').siblings().removeClass('selected');
+        try {
+            $(el).addClass('selected').siblings().removeClass('selected');
+        } catch(e) {}
         return this;
     }
 });
 
-$.ui.gAutocomplete.getter = ['results'];
+$.extend($.ui.gAutocomplete, {
+    autoSelector: 'input.ui-gAutocomplete',
+    getter: 'results',
+    defaults: {
+        // maximum results to show per requests (this is 
+        // processed server side)
+        maxResults: 4,
 
-$.ui.gAutocomplete.defaults = {
-    highlight:  true,
-    browse:     true,
-    throbber:   true,
-    delay:      0.5,
-    minChars:   2,
-    maxResults: 20,
-    width:      false,
-    browseIcon: 'search', // see http://jqueryui.com/themeroller/ for available icons
-    create:     false, // buggy
-    createText: 'Create a new object',
-    lookup_url: '/grappelli/lookup/related/'
-};
+        // a short delay is necessary to avoid making a request upon 
+        // each keystroke 0.5 (500ms) is recommended.
+        delay: 0.5,    
+
+        // highlight matched substrings with <b> tags
+        highlight: true,
+
+        // show a browse button
+        browse: true,
+
+        // the minimum caracters the field must contain before making
+        // a search query
+        minChars: 1,
+    
+        maxResults: 20,
+        listFormat: '{id:d} - {label:s}',
+        inputFormat: '{label:s}'
+    },
+    events: {
+        nodeCloned: function(e) {
+            var parent = e.originalEvent.data.node;
+            var nodes  = $($.ui.gAutocomplete.autoSelector, e.originalEvent.data.node);
+            if (nodes.length) {
+                nodes.gAutocomplete('destroy').gAutocomplete();
+            }
+        }
+    }
+});
+
 
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
@@ -1254,38 +1606,36 @@ $.widget('ui.gFacelist', {
         var ui = this;
         // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
         ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
+        
+        // merge options from server
+        ui.options = $.extend(ui.options, ui.element.metadata());
 
         ui.element.hide().parent().find('p.help').remove();
 
         ui.dom = {
             rawfield: ui.element.parent().find('input.vM2MAutocompleteRawIdAdminField').hide(),
-            wrapper:  ui._createElement('div',  {ns: 'wrapper'}).width(700),
-            toolbar:  ui._createElement('div',  {ns: 'toolbar'}).addClass('ui-corner-top ui-state-default'),
+            wrapper:  ui._createElement('div',  {ns: 'wrapper'}),
             facelist: ui._createElement('ul',   {ns: 'facelist'}).addClass('ui-helper-clearfix'),
-            input:    ui._createElement('input',{ns: 'search', attr: {maxlength: ui.options.searchMaxlength}})
-                        .addClass('vM2MAutocompleteSearchField').width(100)
+            input:    ui._createElement('input',{ns: 'search'})
+                        .addClass('vM2MAutocompleteSearchField'), 
+            browse:  ui._createElement('button',{ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}) 
         };
         
         ui.dom.rawfield.val(ui.dom.rawfield.val().replace(/\[|\]/g, ''));
-        ui.dom.input.wrap('<li />').parent().appendTo(ui.dom.facelist);
-        ui.dom.wrapper.append(ui.dom.toolbar, ui.dom.facelist).insertAfter(ui.element);
+        ui.dom.wrapper.append(ui.dom.input, ui.dom.facelist).insertAfter(ui.element);
 
         if (ui.options.browse) {
-            ui.dom.browse = ui._button('browse', {href: ui.options.related_url, title: 'Browse'})
-                .appendTo(ui.dom.toolbar)
+            ui.dom.browse.insertAfter(ui.dom.input)
                 .bind('click.browse', function(){
                     return ui._browse(this); 
                 });
         }
-        if (ui.options.clear) {
-            ui.dom.clear = ui._button('clear', {href: '#', title: 'Clear all'});
-            ui.dom.toolbar.append(ui.dom.clear);
-        }
-        if (ui.options.message) {
-            ui.dom.message = ui._createElement('span', {ns: 'message'}).text(ui.options.noItemFormat);
-            ui.dom.toolbar.append(ui.dom.message);
-        }
         
+        ui.options.autocomplete.app = ui.options.app;
+        ui.options.autocomplete.model = ui.options.model;
+        ui.options.autocomplete.search_fields = ui.options.search_fields;
+        // Overriding because using Autocomplete's browse becomes too messy ..
+        ui.options.autocomplete.browse = false;
         ui.dom.input.gAutocomplete(ui.options.autocomplete);
         // remove already selected items from autocomplete results
         ui.dom.input.bind('redrawn', function(e){
@@ -1309,17 +1659,11 @@ $.widget('ui.gFacelist', {
             .bind('focus.gFacelist', function(){ ui.dom.facelist.addClass('focus'); })
             .bind('blur.gFacelist',  function(){ ui.dom.facelist.removeClass('focus'); });
 
-        ui._bind(ui.dom.wrapper, 'click', function(e){ 
-            if (!$(e.target).hasClass('ui-gAutocomplete-autocomplete')) {
-                $(this).find('input').focus(); 
-            }
-        });
-                          
         ui._bind(ui.dom.ac, 'keydown', function(e){
             if (e.keyCode == $.ui.keyCode.BACKSPACE && !ui.dom.ac.val().length) {
                 ui.dom.input.parent().prev().remove();
             }
-            else if ($.ui.keyCode.ENTER) {
+            else if (e.keyCode == $.ui.keyCode.ENTER) {
                 return false;
             }
         });
@@ -1332,7 +1676,6 @@ $.widget('ui.gFacelist', {
         ui._bind(ui.dom.input, 'complete', function(e){
             if (e.originalEvent.sticky) {
                 ui._addItem(e.originalEvent.data); 
-                ui._message();
             }
         });
 
@@ -1341,68 +1684,59 @@ $.widget('ui.gFacelist', {
             $.each(ui.options.initial_data, function(k, v) {
                 ui._addItem({label:v, id: k});
             });
-            ui._message();
         }
-
+        // TODO: find out proper css fix
+        ui.element.parent().find('.add-another').css('margin-top', '-24px').css('margin-left', '6px');
     },
 
+    /* Public method for adding a value
+     * instance.gFacelist('addVal', <value>);
+     * */
     addVal: function (i) {
         this._addItem(i);
-        this._message();
     },
 
+    /* Called when the browse button is clicked
+     **/
     _browse: function(l) {
         var link, href, wm;
         link = $(l);
         href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        wm   = $.grappelli.window(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
         wm._data('element', this.element);
         wm.open();
         return false;
     },
 
-    _message: function(msg) {
-        var ui, cnt;
-        var ui = this;
-        if (ui.options.message) {
-            if (!msg) {
-                cnt = ui.dom.facelist.find('.ui-gFacelist-item').length;
-                msg = $.format(ui.options.messageFormat[cnt > 1 && 1 || 0], cnt);
-            }
-            ui.dom.message.html(msg);
-            return msg;
-        }
-    },
-
+    /*  Removes an item from the list
+     **/
     _removeItem: function (item) {
         var ui = this;
         var el = $(item);
         ui._removeId(el.data('json').id);
         el.remove();
-        ui._message(); 
     },
 
+    /* Add an item to the list and
+     * bind necessary events
+     **/
     _addItem: function(data) {
         var ui, label, button;
         ui = this;
-        if (data.label != '') {
+        if (data.label && data.label != '') {
             label = $('<span />').text(data.label);
             button = ui._createElement('li', {ns: 'item'})
                 .html(label)
                 .data('json', data)
                 .addClass('ui-corner-all')
-                .insertBefore(ui.dom.input.parent())
+                .appendTo(ui.dom.facelist)
                 .bind('click.gFacelist', function(){
                     ui._removeItem(this);
-                });
+                }).hide();
 
-            if (ui.options.message) {
-                button.hover(function() {
-                    ui._message($.format(ui.options.hoverFormat, $(this).text()));
-                }, function() {
-                    ui._message();
-                });
-            }
+            setTimeout(function(){
+                button.show();           
+            }, ui.options.addItemDelay * 1000);
 
             ui._addId(data.id);
             ui.dom.ac.val('');
@@ -1410,6 +1744,8 @@ $.widget('ui.gFacelist', {
         }
     },
 
+    /* Removes an id from the raw field and cache
+     **/
     _addId: function (id) {
         var ui, ids, stack;
         ui    = this;
@@ -1420,6 +1756,8 @@ $.widget('ui.gFacelist', {
         return ui;
     },
 
+    /* Add an id to the raw field and cache
+     **/
     _removeId: function (id) {
         var ui, ids, stack;
         ui    = this;
@@ -1429,19 +1767,9 @@ $.widget('ui.gFacelist', {
         return ui;
     },
 
-    _button: function(ns, attr) {
-        var ui, el;
-        ui = this;
-        el = ui._createElement('a', {ns: ns, attr: attr || {} })
-                .addClass('ui-state-default')
-                .hover(function(){ $(this).addClass('ui-state-hover'); }, 
-                       function(){ $(this).removeClass('ui-state-hover'); });
-        if (ui.options.buttonIcon[ns]) {
-            el.append('<span class="ui-icon ui-icon-'+ ui.options.buttonIcon[ns] +'"></span>');
-        }
-        return el;
-    },
-
+    /* Create a DOM element and manage 
+     * proper namespacing of class name
+     **/
     _createElement: function(type, options, innerHTML) {
         var ui, el, op;
         ui = this;
@@ -1453,39 +1781,42 @@ $.widget('ui.gFacelist', {
         return el;
     },
 
+    /* Bind an event to an element and
+     * manage proper namespacing of event name
+     **/
     _bind: function(element, eventName, callback) {
         var ui = this; 
         element.bind(eventName +'.'+ ui.widgetEventPrefix, function(e){
             return callback.apply(this, [e, ui]);
         });
     }
-
 });
 
-$.ui.gFacelist.defaults = {
-    // functional options
-    browse:   true,
-    message:  true,
-    messageFormat: ['<b>{0:d}</b> selected item', '<b>{0:d}</b> selected items'],
-    hoverFormat:   'Click to remove <b>{0:s}</b>',
-    noItemFormat:  'No item selected',
-    buttonIcon: { // see http://jqueryui.com/themeroller/ for available icons
-        browse: 'search', 
-        clear:  'closethick',
-        add:    'plusthick'
-    },
+$.extend($.ui.gFacelist, {
+    autoSelector: 'input.ui-gFacelist',
+    defaults: {
 
-    clearAll: true,
-    autocomplete: {
-        highlight:  true,
-        browse:     false, // Using Autocomplete's browse becomes too messy ..
-        throbber:   false,
-        minChars:   1,
-        maxResults: 20,
-        width:      100
+        related_url: '',
+
+        // data present at load time (json)
+        initial_data: false,
+
+        // Delay before showing a new item (in ms)
+        //
+        // When an item is selected it's better to 
+        // wait a short delay before showing the newly
+        // added item. If not, the item gets added before
+        // the autocomplete list hides itself and it creates
+        // a feeling that nothing happened.
+        addItemDelay: 0.2,
+
+        // show browse button
+        browse: true,
+
+        // gAutocomplete options
+        autocomplete: {}
     }
-};
-
+});
 })(jQuery);
 /*  Author: Maxime Haineault <max@motion-m.ca>
  *  widget:  gRelated
@@ -1499,42 +1830,49 @@ $.ui.gFacelist.defaults = {
 
 $.RelatedBase = {
 
-    // Returns the backend url
+    /* Returns the browse url
+     * @k content type id (pk)
+     * outputs: /admin/<app>/<model>/
+     * */
     _url: function(k) {
-        return this.options.getURL(k);
+        return $.grappelli.contentTypeExist(k) 
+            && $.grappelli.contentTypeURL(k) +'?t=id' || '';
     },
 
-    // Called when the "Browse" button is clicked on Related and GenericRelated fields
+    /* Called when the "Browse" button is clicked 
+     * on Related and GenericRelated fields
+     */
     _browse: function(l) {
-        var link = $(l);
-        var href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
-        var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+        var ui, link, href, wm;
+        link = $(l);
+        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
         wm._data('element', link.prevAll('input:first'));
         wm.open();
         return false;
     },
     
-    // Called when the object id field is changed and it updates the label accordingly
+    /* Called when the object id field is changed 
+     * and it updates the label accordingly
+     */
     _lookup: function(e){
-        var ui   = this;
+        var ui, app_label, model_name, url, tl, txt, item;
+        ui = this;
         if (ui.dom.link.attr('href')) {
-            var app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
-            var model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
-
+            app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
+            model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
             if (ui.dom.object_id.val() == '') {
                 ui.dom.text.text('');
             }
             else {
                 ui.dom.text.text('loading ...');
-
-                var url = ui.options[ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2mUrl' || 'url'];
-                
+                url = $.grappelli.conf.get((ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2m_related' || 'related') + '_url');
                 $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
-                    var item = data;
+                    item = data;
                     if (item) {
-                        var tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
+                        tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
                         if (item.length > tl) {
-                            var txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
+                            txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
                             ui.dom.text.text(txt);
                         } else {
                             ui.dom.text.text(decodeURI(item));
@@ -1548,14 +1886,8 @@ $.RelatedBase = {
 
 $.RelatedDefaultsBase = {
     maxTextLength: 32,
-    maxTextSuffix: ' ...',
-    url: '/grappelli/lookup/related/',
-    m2mUrl: '/grappelli/lookup/m2m/',
-    getURL: function(k) {
-        return MODEL_URL_ARRAY[k] && ADMIN_URL + MODEL_URL_ARRAY[k]  +'/?t=id' || '';
-    }
+    maxTextSuffix: ' ...'
 };
-
 
 $.widget('ui.gRelated', $.extend($.RelatedBase, {
     _init: function() {
@@ -1563,7 +1895,7 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
         ui.dom = { object_id: ui.element, text: $('<strong />') };
         
         ui.dom.link = ui.element.next('a').attr('onclick', false)
-            .bind('click', function(e){
+            .live('click', function(e){
                 e.preventDefault();
                 return ui._browse(this);
             });
@@ -1582,12 +1914,16 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.ui.gRelated.defaults = $.RelatedDefaultsBase;
+$.extend($.ui.gRelated, {
+    autoSelector: 'input.vForeignKeyRawIdAdminField, input.vManyToManyRawIdAdminField',
+    defaults: $.RelatedDefaultsBase
+});
 
 $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     _init: function(){
         var ui = this;
 
+        ui.options = $.extend($.RelatedDefaultsBase, ui.options);
         ui.dom = {
             object_id: ui.element,
             content_type: $('#'+ ui.element.attr('id').replace('object_id', 'content_type')),
@@ -1640,7 +1976,10 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase;
+$.extend($.ui.gGenericRelated, {
+    autoSelector: 'input[name*="object_id"]',
+    defaults: $.RelatedDefaultsBase
+});
 
 // Used in popup windows to disable default django behaviors
 $(function(){
@@ -1711,7 +2050,7 @@ $(function(){
             var link = $(this);
             var name = link.attr('id').replace(/^add_/, '');
             var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
-            var wm   = $.wm(href, {height: 600 , width: 920, resizable: true, scrollbars: true});
+            var wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
             wm._data('link', link);
             wm._data('id', name);
             wm.open(true);
@@ -1768,7 +2107,7 @@ $(function(){
 /*  Author:   Maxime Haineault <max@motion-m.ca>
  *  widget:   gAutoSlugField
  *  Package:  Grappelli
- *  Requires: jquery.slugify.js
+ *  Requires: jquery.gAutoSlugField.js
  *
  *  jslinted - 8 Jan 2010
  */
@@ -1777,36 +2116,180 @@ $(function(){
 $.widget('ui.gAutoSlugField', {
 
     _init: function() {
-        var ui = this; 
+        var ui  = this; 
+        ui.mode = ui.element.attr('rel') && 'mirror' || 'standalone';
+        ui.dom  = {
+            preview: $('<span class="ui-gAutoSlugField-preview">test</span>'),
+            input:   $('<input maxlength="50" type="text" class="ui-gAutoSlugField vTextField" />')
+        };
 
-        if (ui.element.attr('rel')) {
-            ui.elementTarget = $('#id_'+ ui.element.attr('rel'));
-            ui.elementTarget.bind('keyup.gAutoSlugField', function(e){
-                ui._refresh(e);
+        if (ui.mode == 'mirror') {
+            ui.dom.input = $('#id_'+ ui.element.attr('rel'));
+            // extra security ..
+            ui.element.bind('blur', function(e){
+                $(this).val($.slugify($(this).val()));
             });
-
-            // Initial data
-            if (ui.element.val() != $.slugify(ui.elementTarget.val())) {
-                ui.element.val($.slugify(ui.elementTarget.val()));
-            }
         }
-        ui.element.delayedObserver(function(e){
+        else {
+            ui.element.hide();
+            ui.dom.preview.insertAfter(ui.element);
+            if (ui.element.attr('maxlength')) {
+                ui.dom.input.attr('maxlength', ui.element.attr('maxlength'));
+            }
+            ui.dom.input.insertBefore(ui.element);
+        }
+
+        ui.dom.input.bind('keyup', function(e){
             ui._refresh(e, true);
-        }, ui.options.delay);
+        });
+
+        ui._refresh(); // sync initial values
     },
     
-    _refresh: function(e, fromSource) {
+    _refresh: function() {
         var ui, val;
         ui  = this;
-        val = $.slugify((!ui.elementTarget || fromSource) && ui.element.val() || ui.elementTarget.val());
+        val = $.slugify(ui.dom.input.val());
+        if (ui.mode == 'standalone') {
+            if (val == '' && typeof val != 'undefined') {
+                ui.dom.preview.hide().text('');
+            }
+            else {
+                ui.dom.preview.show().text(val);
+            }
+        }
         ui.element.val(val);
     }
 });
 
-$.ui.gAutoSlugField.defaults = {
-    delay: 0.8
-};
+$.extend($.ui.gAutoSlugField, {
+    autoSelector: '.ui-gAutoSlugField',
+    defaults: {
+        delay: 0.8
+    }
+});
+})(jQuery);
+/*  Author:   Maxime Haineault <max@motion-m.ca>
+ *  widget:   gCollapsible
+ *  Package:  Grappelli
+ *  Requires: jquery.gCollapsible.js
+ *
+ *  jslinted - 13 Mar 2010
+ *
+ *  CSS based collaspible behavior
+ *
+ *  Classes
+ *  =======
+ *
+ *  ui-collapsible              make an element collapsible
+ *  ui-collapsible-opened       opened state of a collapsible element
+ *  ui-collapsible-closed       closed state of a collapsible element
+ *  ui-collapsible-toggle       make an element the toggle element for a parent collapsible
+ *  ui-collapsible-open-all     open also sub-element that are collapsible
+ *  ui-collapsible-close-all    open also sub-element that are collapsible
+ *  ui-collapsible-all-opened   open also sub-element that are collapsible (applies to groups)
+ *  ui-collapsible-all-closed   close also sub-element that are collapsible (applies to groups)
+ *
+ */
+(function($){
 
+$.widget('ui.gCollapsible.js', {
+
+    _init: function() {
+        var ui  = this; 
+        ui._isGroup = ui.element.addClass('ui-collapsible').hasClass('.group');
+        ui.dom  = {
+            closeAll: ui.element.find('.ui-collapsible-close-all'),
+            openAll:  ui.element.find('.ui-collapsible-open-all')
+        };
+        if (!ui.element.hasClass('ui-collapsible-closed')) {
+            ui.element.addClass('ui-collapsible-opened');
+        }
+        if (ui._isGroup) {
+
+            // Toggle behavior of h3
+            ui.element.find('h3.ui-collapsible-toggle').bind('click', function(e){
+                ui._onClick.apply(this, [e, ui]);
+            });
+            
+            // Toggle behavior of h2
+            ui.element.children().eq(0)
+                .addClass('ui-collapsible-toggle')
+                .bind('click', function(e){
+                    ui._onClick.apply(this, [e, ui]); });
+
+            // Close/Open all
+            ui[(ui.element.hasClass('ui-collapsible-all-closed') && 'closeAll' || 'openAll')]();
+            ui.dom.openAll.bind('click',  function(){ ui.openAll(); });
+            ui.dom.closeAll.bind('click', function(){ ui.closeAll(); });
+        }
+        else {
+            ui.dom.toggle = ui.element.find('.ui-collapsible-toggle');
+        }
+
+        // Errors handling
+        var errors = ui.element.find('.errors');
+        if (errors) {
+            ui.open(errors.parents('.ui-collapsible'));
+        }
+
+    },
+
+    /* Triggered when a toggle handle is clicked
+     * @e   event
+     * @ui  gCollapsible instance
+     * */
+    _onClick: function(e, ui){
+        var parent = $(this).parents('.ui-collapsible:eq(0)');
+        if (!parent.get(0)) {
+            parent = ui.element;
+        }
+        ui.toggle(parent);
+    },
+
+    /* Toggles collapsible group
+     * @el   element
+     * */
+    toggle: function(el) {
+        return this[el.hasClass('ui-collapsible-closed') && 'open' || 'close'](el); 
+    },
+
+    /* Opens *all* (including parent group)
+     * @el   element
+     * */
+    openAll: function(el) {
+        this.open(this.element); // Make sure group is open first
+        this.open(this.element.find('.ui-collapsible'));
+    },
+
+    /* Close all (excluding parent group)
+     * @el   element
+     * */
+    closeAll: function(el) {
+        this.close(this.element.find('.ui-collapsible'));
+    },
+
+    /* Opens a collapsible container
+     * @el   element
+     * */
+    open: function(el) {
+        return el.addClass('ui-collapsible-opened')
+          .removeClass('ui-collapsible-closed');
+    },
+
+    /* Closes a collapsible container
+     * @el   element
+     * */
+    close: function(el) {
+        return el.removeClass('ui-collapsible-opened')
+          .addClass('ui-collapsible-closed');
+    }
+});
+
+$.extend($.ui.gCollapsible, {
+    autoSelector: '.ui-collapsible, ui-collapsible-open',
+    defaults: {}
+});
 })(jQuery);
  // jslinted - 8 Jan 2010
  
@@ -2532,4 +3015,152 @@ $.ui.gAutoSlugField.defaults = {
             });
         }
     });
+})(jQuery);
+/*
+ * Metadata - jQuery plugin for parsing metadata from elements
+ *
+ * Copyright (c) 2006 John Resig, Yehuda Katz, J�örn Zaefferer, Paul McLanahan
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ *
+ * Revision: $Id: jquery.metadata.js 3640 2007-10-11 18:34:38Z pmclanahan $
+ *
+ */
+
+/**
+ * Sets the type of metadata to use. Metadata is encoded in JSON, and each property
+ * in the JSON will become a property of the element itself.
+ *
+ * There are four supported types of metadata storage:
+ *
+ *   attr:  Inside an attribute. The name parameter indicates *which* attribute.
+ *          
+ *   class: Inside the class attribute, wrapped in curly braces: { }
+ *   
+ *   elem:  Inside a child element (e.g. a script tag). The
+ *          name parameter indicates *which* element.
+ *   html5: Values are stored in data-* attributes.
+ *          
+ * The metadata for an element is loaded the first time the element is accessed via jQuery.
+ *
+ * As a result, you can define the metadata type, use $(expr) to load the metadata into the elements
+ * matched by expr, then redefine the metadata type and run another $(expr) for other elements.
+ * 
+ * @name $.metadata.setType
+ *
+ * @example <p id="one" class="some_class {item_id: 1, item_label: 'Label'}">This is a p</p>
+ * @before $.metadata.setType("class")
+ * @after $("#one").metadata().item_id == 1; $("#one").metadata().item_label == "Label"
+ * @desc Reads metadata from the class attribute
+ * 
+ * @example <p id="one" class="some_class" data="{item_id: 1, item_label: 'Label'}">This is a p</p>
+ * @before $.metadata.setType("attr", "data")
+ * @after $("#one").metadata().item_id == 1; $("#one").metadata().item_label == "Label"
+ * @desc Reads metadata from a "data" attribute
+ * 
+ * @example <p id="one" class="some_class"><script>{item_id: 1, item_label: 'Label'}</script>This is a p</p>
+ * @before $.metadata.setType("elem", "script")
+ * @after $("#one").metadata().item_id == 1; $("#one").metadata().item_label == "Label"
+ * @desc Reads metadata from a nested script element
+ * 
+ * @example <p id="one" class="some_class" data-item_id="1" data-item_label="Label">This is a p</p>
+ * @before $.metadata.setType("html5")
+ * @after $("#one").metadata().item_id == 1; $("#one").metadata().item_label == "Label"
+ * @desc Reads metadata from a series of data-* attributes
+ *
+ * @param String type The encoding type
+ * @param String name The name of the attribute to be used to get metadata (optional)
+ * @cat Plugins/Metadata
+ * @descr Sets the type of encoding to be used when loading metadata for the first time
+ * @type undefined
+ * @see metadata()
+ */
+
+(function($) {
+
+$.extend({
+  metadata : {
+    defaults : {
+      type: 'class',
+      name: 'metadata',
+      cre: /({.*})/,
+      single: 'metadata'
+    },
+    setType: function( type, name ){
+      this.defaults.type = type;
+      this.defaults.name = name;
+    },
+    get: function( elem, opts ){
+      var settings = $.extend({},this.defaults,opts);
+      // check for empty string in single property
+      if ( !settings.single.length ) settings.single = 'metadata';
+      
+      var data = $.data(elem, settings.single);
+      // returned cached data if it already exists
+      if ( data ) return data;
+      
+      data = "{}";
+      
+      var getData = function(data) {
+        if(typeof data != "string") return data;
+        
+        if( data.indexOf('{') < 0 ) {
+          data = eval("(" + data + ")");
+        }
+      }
+      
+      var getObject = function(data) {
+        if(typeof data != "string") return data;
+        
+        data = eval("(" + data + ")");
+        return data;
+      }
+      
+      if ( settings.type == "html5" ) {
+        var object = {};
+        $( elem.attributes ).each(function() {
+          var name = this.nodeName;
+          if(name.match(/^data-/)) name = name.replace(/^data-/, '');
+          else return true;
+          object[name] = getObject(this.nodeValue);
+        });
+      } else {
+        if ( settings.type == "class" ) {
+          var m = settings.cre.exec( elem.className );
+          if ( m )
+            data = m[1];
+        } else if ( settings.type == "elem" ) {
+          if( !elem.getElementsByTagName ) return;
+          var e = elem.getElementsByTagName(settings.name);
+          if ( e.length )
+            data = $.trim(e[0].innerHTML);
+        } else if ( elem.getAttribute != undefined ) {
+          var attr = elem.getAttribute( settings.name );
+          if ( attr )
+            data = attr;
+        }
+        object = getObject(data.indexOf("{") < 0 ? "{" + data + "}" : data);
+      }
+      
+      $.data( elem, settings.single, object );
+      return object;
+    }
+  }
+});
+
+/**
+ * Returns the metadata object for the first member of the jQuery object.
+ *
+ * @name metadata
+ * @descr Returns element's metadata object
+ * @param Object opts An object contianing settings to override the defaults
+ * @type jQuery
+ * @cat Plugins/Metadata
+ */
+$.fn.metadata = function( opts ){
+  return $.metadata.get( this[0], opts );
+};
+
 })(jQuery);
