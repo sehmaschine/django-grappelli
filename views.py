@@ -37,3 +37,14 @@ def unit_test_grappelli(request):
 #   }, context_instance=RequestContext(request))
 unit_test_grappelli = staff_member_required(unit_test_grappelli)
 
+def unit_test_grappelli_run(request):
+    return render_to_response('grappellitest/test-run.html', {
+        'root_path': get_root_path(),
+    }, context_instance=RequestContext(request))
+#   admin_root = get_root_path()
+#   return render_to_response('admin_doc/bookmarklets.html', {
+#       'root_path': admin_root,
+#       'admin_url': mark_safe("%s://%s%s" % (request.is_secure() and 'https' or 'http', request.get_host(), admin_root)),
+#   }, context_instance=RequestContext(request))
+unit_test_grappelli = staff_member_required(unit_test_grappelli)
+

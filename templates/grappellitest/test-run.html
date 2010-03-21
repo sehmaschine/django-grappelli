@@ -1,0 +1,54 @@
+{% extends "grappellitest/test-base.html" %}
+{% load adminmedia i18n %}
+{% load i18n %}
+
+{% block js.jquery %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/{{ request.GET.jquery|default:"1.4" }}/jquery{% if request.GET.min %}.min{% endif%}.js"></script> 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/{{ request.GET.jquery|default:"1.8" }}/jquery-ui{% if request.GET.min %}.min{% endif%}.js"></script> 
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}jquery/ui/css/ui-lightness/jquery-ui-1.8.custom.css" />
+    {% comment %}
+    {% ifequal request.GET.jquery "1.3" %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2{% if request.GET.min %}.min{% endif%}.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom{% if request.GET.min %}.min{% endif%}.js"></script> 
+    <link rel="stylesheet" type="text/css" href="/admin-media/jquery/custom-theme/jquery-ui-1.7.2.custom.css" />
+    {% else %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/ui/js/jquery-1.4.2{% if request.GET.min %}.min{% endif%}.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/ui/js/jquery-ui-1.8.custom{% if request.GET.min %}.min{% endif%}.js"></script> 
+    {% endifequal %}
+    {% endcomment %}
+{% endblock %}
+
+{% block js.contrib %}
+    {% ifequal request.GET.test "src" %}
+        <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.strings.js"></script> 
+        <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.masked.js"></script> 
+        <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.delayedObserver.js"></script> 
+        <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.metadata.js"></script> 
+        <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.slugify.js"></script> 
+    {% endifequal %}
+{% endblock %}
+
+{% block js.grappelli %}
+    {% ifequal request.GET.test "src" %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.grappelli.js"></script>  
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gTimeField.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gDateField.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gChangelist.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gBookmarks.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gInlines.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gSelectFilter.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gActions.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gAutocomplete.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gFacelist.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gRelated.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gAutoSlugField.js"></script> 
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gCollapsible.js"></script> 
+    {% else %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli{% if request.GET.min %}.min{% endif%}.js"></script>
+    {% endifequal %}
+{% endblock %}
+{% block content %}
+
+{% endblock %}
+{% block js %}
+{% endblock %}

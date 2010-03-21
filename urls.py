@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from django.conf import settings
 from grappellitest import views
 
 urlpatterns = patterns('',
@@ -14,6 +15,10 @@ urlpatterns = patterns('',
         views.unit_test_grappelli,
         name='test-js-grappelli'
     ),
+    url('^js/grappelli/run/$',
+        views.unit_test_grappelli_run,
+        name='test-js-grappelli-run'
+    ),
     url('^js/contrib/$',
         views.index,
         name='test-js-contrib'
@@ -22,4 +27,8 @@ urlpatterns = patterns('',
         views.index,
         name='test-functional'
     ),
+    
+    url(r'^media/(.*)$', 'django.views.static.serve', {
+        'document_root': settings.GRAPPELLITEST_MEDIA_ROOT, 'show_indexes': True}, 
+        name="test-media"),
 )

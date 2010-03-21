@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr" >
+    <head>
+        <title>QUnit Test Suite|{% block js %}{% endblock %}</title>
+        <script type="text/javascript" src="/grappelli/jsi18n/grappelli/"></script> 
+        
+        {% block js.jquery %}{% endblock %}
+        {% block js.contrib %}{% endblock %}
+        {% block js.grappelli %}{% endblock %}
+
+        <script type="text/javascript"> 
+            // Use this to remove *all* effects (not recommended)
+            // $.fx.off = true;
+            // $.fx.speeds._default = 0; // force fx.off for jQuery < 1.8 (http://dev.jqueryui.com/ticket/4328)
+     
+            $.grappelli.conf.extend({
+                lang:               'fr',
+                rtl:                false,
+                content_types:      {1: {pk: 1, app: 'auth', model: 'permission'},2: {pk: 2, app: 'auth', model: 'group'},3: {pk: 3, app: 'auth', model: 'user'},4: {pk: 4, app: 'auth', model: 'message'},5: {pk: 5, app: 'admin', model: 'logentry'},6: {pk: 6, app: 'contenttypes', model: 'contenttype'},7: {pk: 7, app: 'sessions', model: 'session'},8: {pk: 8, app: 'sites', model: 'site'},9: {pk: 9, app: 'grappelli', model: 'navigation'},10: {pk: 10, app: 'grappelli', model: 'navigationitem'},11: {pk: 11, app: 'grappelli', model: 'bookmark'},12: {pk: 12, app: 'grappelli', model: 'bookmarkitem'},13: {pk: 13, app: 'grappelli', model: 'help'},14: {pk: 14, app: 'grappelli', model: 'helpitem'},15: {pk: 15, app: 'django_evolution', model: 'version'},16: {pk: 16, app: 'django_evolution', model: 'evolution'},17: {pk: 17, app: 'testapp', model: 'inlinestackedtest'},18: {pk: 18, app: 'testapp', model: 'inlinetabulartest'},19: {pk: 19, app: 'testapp', model: 'djangofields'},20: {pk: 20, app: 'testapp', model: 'grappellifields'}},
+                admin_url:          '/admin/',
+                admin_media_prefix: '/admin-media/',
+                bookmarks_url:      '/grappelli/bookmark/get/',
+                related_url:        '/grappelli/lookup/related/',
+                m2m_related_url:    '/grappelli/lookup/m2m/',
+                filebrowser_url:    '/optionsadmin/filebrowser/browse/?pop=2',
+                autocomplete_url:   '/grappelli/autocomplete/'
+            });
+     
+            $.grappelli.conf.set('widgets', [
+                'gInlineGroup',
+                'gInlineTabular',
+                'gActions',
+                'gAutoSlugField',
+                'gAutocomplete',
+                'gFacelist',
+                'gBookmarks',
+                'gChangelist',
+                'gCollapsible',
+                'gGenericRelated',
+                'gDateField',
+                'gTimeField',
+                'gRelated',
+                'gSelectFilter'
+            ]);
+     
+            $(function(){
+                $.grappelli.widgets.init();
+                // To customize JavaScript behavior use create a file
+                // template/admin/init.js and it will be included here.
+                
+            });
+        </script> 
+        
+
+        <style>
+        #main { position:absolute; width:1px;height:1px;top:-9999px;left:-9999px; }
+        </style>
+    </head>
+    <body>
+        <h1 id="qunit-header">QUnit Test Suite</h1>
+        <h2 id="qunit-banner"></h2>
+        <div id="qunit-testrunner-toolbar"></div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+        <div id="main" style="">
+
+            <!-- jquery.gFacelist -->
+            <div>
+                <label for="id_m2m_test">M2M Autocomplete test:</label>
+                <input id="m2m_test" name="m2m_test" />
+<input class="vM2MAutocompleteRawIdAdminField" type="text" name="m2m_test" value="[2, 14, 17]" id="id_m2m_test" /><a href="/admin/sites/site/add/" class="add-another" id="add_id_m2m_test" onclick="return showAddAnotherPopup(this);"> <img src="/admin-media/img/admin/icon_addlink.gif" width="10" height="10" alt="Ajouter un autre"/></a>
+                  <p class="help"> Maintenez appuyé « Ctrl », ou « Commande (touche pomme) » sur un Mac, pour en sélectionner plusieurs.</p>
+            </div>
+
+            <!-- jquery.gAutoSlugField -->
+            <fieldset class="module aligned ">
+                <h2>Auto SlugField</h2>
+                <div class="form-row char_test  ">
+                    <div> 
+                        <label for="id_char_test">CharField:</label><input name="char_test" value="Hello World" class="vTextField" maxlength="255" type="text" id="id_char_test" />
+                    </div>
+                </div>
+                <div class="form-row slug_test  ">
+                    <div> 
+                        <label for="id_slug_test" class="required">SlugField:</label><input name="slug_test" rel="char_test" maxlength="50" type="text" class="ui-gAutoSlugField vTextField" value="" id="id_slug_test" />
+                    </div>
+                </div>  
+            </fieldset>
+
+            <!-- jquery.gActions -->
+            <div id="changelist">
+                <input type="checkbox" id="action-toggle" style="display: inline;"/>
+                <input type="checkbox" name="_selected_action" value="1" class="action-select" checked="checked"/>
+                <input type="checkbox" name="_selected_action" value="2" class="action-select"/>
+                <input type="checkbox" name="_selected_action" value="3" class="action-select"/>
+            </div>
+
+            <!-- jquery.bookmarks-->
+            <ul id="bookmarks"> 
+                <li id="toggle-bookmarks-listing" class="enabled"><a>Favoris</a></li> 
+                <ul id="bookmarks-listing"> 
+                    <li class="no-entries"><p>Chargement de Favoris</p></li> 
+                </ul> 
+                <li class="action bookmark-add"> 
+                    <a href="#" id="toggle-bookmark-add" class="bookmark-add"> </a> 
+                </li> 
+                <li class="action bookmark-remove"> 
+                    <a href="#" class="bookmark-remove"> </a> 
+                </li> 
+                <li class="action bookmark-manage"> 
+                    <a href="#" class="bookmark-manage"> </a> 
+                </li> 
+            </ul> 
+        </div>
+        <!-- Qunit -->
+        <link rel="stylesheet" href="/grappelli/test/media/jquery/qunit/qunit.css" type="text/css" media="screen">
+        <script type="text/javascript" src="/grappelli/test/media/jquery/qunit/qunit.js"></script> 
+        <script type="text/javascript" src="/grappelli/test/media/jquery/tests/grappelli.js"></script> 
+    </body>
+</html>
+
