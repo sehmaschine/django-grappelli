@@ -11,47 +11,54 @@ $.widget('ui.gAutoSlugField', {
 
     _init: function() {
         var ui  = this; 
-        ui.mode = ui.element.attr('rel') && 'mirror' || 'standalone';
-        ui.dom  = {
-            preview: $('<span class="ui-gAutoSlugField-preview">test</span>'),
-            input:   $('<input maxlength="50" type="text" class="ui-gAutoSlugField vTextField" />')
-        };
+        ui.mode = ui.element.attr('rel') && 'target' || 'standalone';
+        ui.dom  = {};
 
-        if (ui.mode == 'mirror') {
-            ui.dom.input = $('#id_'+ ui.element.attr('rel'));
-            // extra security ..
-            ui.element.bind('blur', function(e){
-                $(this).val($.slugify($(this).val()));
+        if (ui.mode == 'target') {
+            ui.element.attr('readonly', true);
+            ui.dom.lockButton = $(ui.options.lockButton).insertAfter(ui.element);
+            ui.dom.lockButton.draggable({
+                appendTo: ui.element.parent(),
+                helper:   function() {
+                console.log('test');
+                $('<div style="background:#c30;width:10px;height:10px;position:relative;">test</div>'); },
+//                revert:   true,
+//                revertDuration: 800,
+//                scope:    'slugfield',
+//                scroll:   true,
+                start: function(e) {
+                    console.log(this, e);
+                }
             });
+            console.log($(ui.element.attr('rel')));
+            $(ui.element.attr('rel')).droppable({
+//                scope: 'slugfield',
+                drop: function() { alert('dropped'); }
+            });            
         }
         else {
-            ui.element.hide();
-            ui.dom.preview.insertAfter(ui.element);
-            if (ui.element.attr('maxlength')) {
-                ui.dom.input.attr('maxlength', ui.element.attr('maxlength'));
-            }
-            ui.dom.input.insertBefore(ui.element);
+            ui.dom.input = ui.element;
+            ui.dom.input.delayedObserver(function(e){
+                ui._refresh(e, this);
+            }, ui.options.delay);
         }
 
-        ui.dom.input.bind('keyup', function(e){
-            ui._refresh(e, true);
-        });
+//      ui.element.bind('blur', function(e){
+//          ui._refresh(e, this);
+//      });
 
-        ui._refresh(); // sync initial values
+//      ui.dom.input.bind('blur', function(e){
+//          ui._refresh(e, this);
+//      });
+
+        //ui._refresh(); // sync initial values
     },
     
-    _refresh: function() {
+    _refresh: function(e, source) {
+
         var ui, val;
         ui  = this;
-        val = $.slugify(ui.dom.input.val());
-        if (ui.mode == 'standalone') {
-            if (val == '' && typeof val != 'undefined') {
-                ui.dom.preview.hide().text('');
-            }
-            else {
-                ui.dom.preview.show().text(val);
-            }
-        }
+        val = $.slugify((source && $(source) || ui.dom.input).val(), ui.element.attr('maxlength'));
         ui.element.val(val);
     }
 });
@@ -59,7 +66,8 @@ $.widget('ui.gAutoSlugField', {
 $.extend($.ui.gAutoSlugField, {
     autoSelector: '.ui-gAutoSlugField',
     defaults: {
-        delay: 0.8
+        lockButton:   '<button title="Unlock" class="ui-gAutoSlugField-toggle" />',
+        delay: 1.5
     }
 });
 })(jQuery);
