@@ -17,7 +17,8 @@
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/buttons.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/tables.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}jquery/custom-theme/jquery-ui-1.7.2.custom.css" />
+    {#<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}jquery/custom-theme/jquery-ui-1.7.2.custom.css" />#}
+    <link rel="stylesheet" type="text/css" href="/admin-media/jquery/ui/css/ui-lightness/jquery-ui-1.8.custom.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" />
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
 {% endblock %}
@@ -37,8 +38,10 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <script type="text/javascript" src="{% url i18n-js "grappelli" %}"></script>
 
     {# jquery #}
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>
+    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>#}
+    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>#}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
     {# contribs #}
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.strings.js"></script>
@@ -104,7 +107,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 
 
         $(function(){
-            $.grappelli.widgets.init()
+            $.grappelli.widgets.init();
             // To customize JavaScript behavior use create a file
             // template/admin/init.js and it will be included here.
             {% block javascripts.init  %}{% include "admin/init.js"  %}{% endblock %}

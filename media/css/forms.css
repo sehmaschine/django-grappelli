@@ -654,6 +654,12 @@ input.vM2MAutocompleteSearchField {
     height: 118px;
 }
 
+input[readonly],
+textarea[readonly],
+select[readonly] {
+    background:#f4f4f4;
+}
+
 
 
 /* Large Form Elements in Change-Form: Widths & Heights

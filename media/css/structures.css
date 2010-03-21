@@ -130,19 +130,19 @@ ul#bookmarks li.action.bookmark-remove {
 ul#bookmarks li.action.active {
     background-image: none;
 }
-.bookmark-add.active a:link, .bookmark-add.active a:visited {
+.bookmark-add.active a, .bookmark-add.active a:visited {
     background-image: url('../img/icons/icon-bookmark_add.png');
 }
 .bookmark-add.active a:hover, .bookmark-add.active a:active {
     background-image: url('../img/icons/icon-bookmark_add-hover.png');
 }
-.bookmark-remove.active a:link, .bookmark-remove.active a:visited {
+.bookmark-remove.active a, .bookmark-remove.active a:visited {
      background-image: url('../img/icons/icon-bookmark_remove.png');
 }
 .bookmark-remove.active a:hover, .bookmark-remove.active a:active {
     background-image: url('../img/icons/icon-bookmark_remove-hover.png');
 }
-a.bookmark-manage:link, a.bookmark-manage:visited {
+a.bookmark-manage, a.bookmark-manage:visited {
     background-image: url('../img/icons/icon-bookmark_manage.png');
 }
 a.bookmark-manage:hover, a.bookmark-manage:active {
@@ -174,7 +174,7 @@ ul#bookmarks-listing li:last-child {
 ul#bookmarks li p {
     padding: 5px 10px;
 }
-ul#bookmarks-listing a:link, ul#bookmarks-listing a:visited {
+ul#bookmarks-listing a, ul#bookmarks-listing a:visited {
     display: block;
     padding: 5px 30px 5px 10px;
     background: #333;

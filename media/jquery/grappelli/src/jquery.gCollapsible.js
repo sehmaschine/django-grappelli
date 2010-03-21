@@ -24,6 +24,10 @@
 
 $.widget('ui.gCollapsible.js', {
 
+    options: {
+        autoSelector: '.ui-collapsible, ui-collapsible-open'
+    },
+
     _init: function() {
         var ui  = this; 
         ui._isGroup = ui.element.addClass('ui-collapsible').hasClass('.group');
@@ -115,8 +119,4 @@ $.widget('ui.gCollapsible.js', {
     }
 });
 
-$.extend($.ui.gCollapsible, {
-    autoSelector: '.ui-collapsible, ui-collapsible-open',
-    defaults: {}
-});
 })(jQuery);

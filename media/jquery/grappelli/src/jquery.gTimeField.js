@@ -8,6 +8,25 @@
 
 $.widget('ui.gTimeField', {
 
+    options: {
+        autoSelector: 'input.vTimeField',
+        mask: '99:99:99', // set to false to disable
+        buttons: [
+            {label: gettext("Now"), callback: function(e, ui){ 
+                return ui.element.val(new Date().getHourMinuteSecond()); 
+            }},
+            {label: gettext("Midnight"), callback: function(e, ui){ 
+                return ui.element.val('00:00:00'); 
+            }},
+            {label: gettext("6 a.m."), callback: function(e, ui){ 
+                return ui.element.val('06:00:00'); 
+            }},
+            {label: gettext("Noon"), callback: function(e, ui){ 
+                return ui.element.val('12:00:00'); 
+            }}
+        ]
+    },
+
     _init: function() {
         var ui = this;
         ui.dom = {
@@ -81,24 +100,4 @@ $.widget('ui.gTimeField', {
 
 });
 
-$.extend($.ui.gAutoSlugField, {
-    autoSelector: 'input.vTimeField',
-    defaults: {
-        mask: '99:99:99', // set to false to disable
-        buttons: [
-            {label: gettext("Now"), callback: function(e, ui){ 
-                return ui.element.val(new Date().getHourMinuteSecond()); 
-            }},
-            {label: gettext("Midnight"), callback: function(e, ui){ 
-                return ui.element.val('00:00:00'); 
-            }},
-            {label: gettext("6 a.m."), callback: function(e, ui){ 
-                return ui.element.val('06:00:00'); 
-            }},
-            {label: gettext("Noon"), callback: function(e, ui){ 
-                return ui.element.val('12:00:00'); 
-            }}
-        ]
-    }
-});
 })(jQuery);

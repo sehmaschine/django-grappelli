@@ -81,6 +81,7 @@ button.fb_show,
 button.ui-datepicker-trigger, 
 button.ui-timepicker-trigger, 
 button.ui-gAutocomplete-browse, 
+button.ui-gAutoSlugField-toggle, 
 button.ui-gFacelist-browse, 
 a.button, 
 .vDateField + span a, 
@@ -99,6 +100,7 @@ a.add-another {
 button.fb_show, 
 button.ui-gAutocomplete-browse, 
 button.ui-gFacelist-browse, 
+button.ui-gAutoSlugField-toggle, 
 button.ui-datepicker-trigger, 
 button.ui-timepicker-trigger {
     width:      25px;
@@ -108,6 +110,7 @@ button.ui-timepicker-trigger {
 button.fb_show:hover, 
 button.ui-gAutocomplete-browse:hover, 
 button.ui-gFacelist-browse:hover, 
+button.ui-gAutoSlugField-toggle:hover, 
 button.ui-datepicker-trigger:hover, 
 button.ui-timepicker-trigger:hover {
     background-color: #e1e1e1;
@@ -115,6 +118,7 @@ button.ui-timepicker-trigger:hover {
 button.fb_show[disabled], 
 button.ui-gAutocomplete-browse[disabled], 
 button.ui-gFacelist-browse[disabled], 
+button.ui-gAutoSlugField-toggle[disabled], 
 button.ui-datepicker-trigger[disabled], 
 button.ui-timepicker-trigger[disabled] {
     /* TODO: there probably should be a icon-related-lookup-disabled.png.. */
@@ -170,6 +174,24 @@ button.ui-gFacelist-browse:hover {
 }
 .errors button.ui-gAutocomplete-browse,
 .errors button.ui-gFacelist-browse {
+    border-color:#bf3030 #bf3030 #bf3030 #ccc;
+}
+
+/*  AutoSlugField Button ......................................... */
+
+/* TODO: lock/unlock icons .. */
+
+button.ui-gAutoSlugField-toggle {
+    background-image: url('../img/icons/icon-related-lookup.png');
+    background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
+}
+button.ui-gAutoSlugField-toggle:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
+    background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+.errors button.ui-gAutoSlugField-toggle {
     border-color:#bf3030 #bf3030 #bf3030 #ccc;
 }
 

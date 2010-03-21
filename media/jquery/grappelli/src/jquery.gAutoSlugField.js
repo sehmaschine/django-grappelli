@@ -9,18 +9,23 @@
 
 $.widget('ui.gAutoSlugField', {
 
+    options: {
+        autoSelector: '.ui-gAutoSlugField',
+        lockButton:   '<button title="Unlock" class="ui-gAutoSlugField-toggle" />',
+        delay: 1.5
+    },
+
     _init: function() {
         var ui  = this; 
         ui.mode = ui.element.attr('rel') && 'target' || 'standalone';
         ui.dom  = {};
 
         if (ui.mode == 'target') {
-            ui.element.attr('readonly', true);
+            ui.element.attr('readonly', 'true');
             ui.dom.lockButton = $(ui.options.lockButton).insertAfter(ui.element);
             ui.dom.lockButton.draggable({
                 appendTo: ui.element.parent(),
                 helper:   function() {
-                console.log('test');
                 $('<div style="background:#c30;width:10px;height:10px;position:relative;">test</div>'); },
 //                revert:   true,
 //                revertDuration: 800,
@@ -30,7 +35,6 @@ $.widget('ui.gAutoSlugField', {
                     console.log(this, e);
                 }
             });
-            console.log($(ui.element.attr('rel')));
             $(ui.element.attr('rel')).droppable({
 //                scope: 'slugfield',
                 drop: function() { alert('dropped'); }
@@ -63,11 +67,4 @@ $.widget('ui.gAutoSlugField', {
     }
 });
 
-$.extend($.ui.gAutoSlugField, {
-    autoSelector: '.ui-gAutoSlugField',
-    defaults: {
-        lockButton:   '<button title="Unlock" class="ui-gAutoSlugField-toggle" />',
-        delay: 1.5
-    }
-});
 })(jQuery);

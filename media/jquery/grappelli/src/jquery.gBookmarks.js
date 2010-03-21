@@ -8,10 +8,41 @@
 
 $.widget('ui.gBookmarks', {
          
+    options: {
+        autoSelector: '#bookmarks',
+        // DOM mapping
+        ns: {
+            wrapper:    '#bookmarks',
+            addWrapper: '#bookmark-add',
+            add:        '#toggle-bookmark-add',
+            cancel:     '#bookmark-add-cancel',
+            list:       '#toggle-bookmarks-listing',
+            path:       '#bookmark-path',
+            title:      '#bookmark-title'
+        },
+
+        // Set to false to disable effects or true to enable them
+        effects: true,
+
+        // Speed at which effects are applied (in ms)
+        effectsSpeed: 80,
+        
+        // Amount of time (in ms) before hiding the menu.
+        //
+        // Allowing a small grace period before hiding the menu avoid
+        // lots of accidental gestures and makes the menu feels more
+        // "solid" for the user. 
+        //
+        // TL-DR: the menu doesn't feel like it has ADD
+        hideTimeout: 500
+    },
+
     _init: function() {
         var ui, url;
         ui  = this;
         url = $.grappelli.conf.get('bookmarks_url') +'?path='+ window.location.pathname +' #bookmarks > li';
+
+        ui.options = $.extend($.ui.gBookmarks.defaults, ui.options);
         ui.dom = {};
 
         ui.element.load(url, function(){
@@ -41,10 +72,7 @@ $.widget('ui.gBookmarks', {
         var ui, x;
         ui = this;
         for (x in ui.options.ns) {
-            // ensure that's not a prototyped property
-            if (ui.options.ns.hasOwnProperty(x)) { 
-                ui.dom[x] = jQuery(ui.options.ns[x]);
-            }
+            ui.dom[x] = jQuery(ui.options.ns[x]);
         }
     },
 
@@ -108,34 +136,4 @@ $.widget('ui.gBookmarks', {
     }
 });
 
-$.extend($.ui.gBookmarks, {
-    autoSelector: '#bookmarks',
-    defaults: {
-        // DOM mapping
-        ns: {
-            wrapper:    '#bookmarks',
-            addWrapper: '#bookmark-add',
-            add:        '#toggle-bookmark-add',
-            cancel:     '#bookmark-add-cancel',
-            list:       '#toggle-bookmarks-listing',
-            path:       '#bookmark-path',
-            title:      '#bookmark-title'
-        },
-
-        // Set to false to disable effects or true to enable them
-        effects: true,
-
-        // Speed at which effects are applied (in ms)
-        effectsSpeed: 80,
-        
-        // Amount of time (in ms) before hiding the menu.
-        //
-        // Allowing a small grace period before hiding the menu avoid
-        // lots of accidental gestures and makes the menu feels more
-        // "solid" for the user. 
-        //
-        // TL-DR: the menu doesn't feel like it has ADD
-        hideTimeout: 500
-    }
-});
 })(jQuery);

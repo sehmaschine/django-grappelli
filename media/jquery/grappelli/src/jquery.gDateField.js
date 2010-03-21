@@ -22,6 +22,17 @@ $.datepicker.setDefaults({
 
 
 $.widget('ui.gDateField', {
+
+    options: {
+        autoSelector: 'input.vDateField',
+
+        // set to false to disable input masking
+        mask:   '9999-99-99',                   
+
+        // separator between date and time fields
+        spacer: '<span class="spacer" />'
+    },
+
     _init: function() {
         var ui = this;
         console.log('dp init', ui.element);
@@ -44,14 +55,6 @@ $.widget('ui.gDateField', {
 });
 
 $.extend($.ui.gDateField, {
-    autoSelector: 'input.vDateField',
-    defaults: {
-        // set to false to disable input masking
-        mask:   '9999-99-99',                   
-
-        // separator between date and time fields
-        spacer: '<span class="spacer" />'
-    },
     events: {
         nodeCloned: function(e) {
             var parent = e.originalEvent.data.node;

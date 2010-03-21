@@ -18,6 +18,11 @@ $.grappelli.gInlineStackedBase = {
          
 $.widget('ui.gInlineGroup', {
 
+    options: {
+        autoSelector: '.group',
+        updatedTags: ['input:id,name', 'select:id,name', 'textarea:id,name', 'label:for'],
+    },
+
     _updateIdentifiers: function(row, index) {
         var ui, attr, attrs, tag, tags, curr, t, x;
         ui   = this;
@@ -243,16 +248,16 @@ $.widget('ui.gInlineGroup', {
     }
     */
 });
-$.extend($.ui.gInlineGroup, {
-    autoSelector: '.group',
-    defaults: {
-        updatedTags: ['input:id,name', 'select:id,name', 'textarea:id,name', 'label:for'],
-    }
-});
 
 // INLINE STACKED 
 
 $.widget('ui.gInlineStacked', {
+
+    options: {
+        autoSelector: '.inline-stacked',
+        collapsible: true
+    },
+
     _init: function(){
         var ui = this;
         // FIELDSETS WITHIN STACKED INLINES
@@ -270,16 +275,13 @@ $.widget('ui.gInlineStacked', {
     }
 });
 
-$.extend($.ui.gInlineStacked, {
-    autoSelector: '.inline-stacked',
-    defaults: {
-        collapsible: true
-    }
-});
-
 // INLINE TABULAR
 
 $.widget('ui.gInlineTabular', {
+
+    options: {
+        autoSelector: '.inline-tabular'
+    },
     _init: function(){
     /*
         var ui = this;
@@ -299,7 +301,4 @@ $.widget('ui.gInlineTabular', {
     }
 });
 
-$.extend($.ui.gInlineTabular, {
-    autoSelector: '.inline-tabular'
-});
 })(jQuery);

@@ -26,6 +26,11 @@
         <li><strong>{% firstof user.first_name user.username %}</strong></li>
         <!-- Userlinks -->
         {% block userlinks %}
+        <!-- JS tests -->
+        {% url test-index as testindexurl %}
+        {% if testindexurl %}
+        <li><a href="{{ testindexurl }}">{% trans 'Tests' %}</a></li>
+        {% endif %}
         <!-- Documentation -->
         {% url django-admindocs-docroot as docsroot %}
         {% if docsroot %}

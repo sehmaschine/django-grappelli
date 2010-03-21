@@ -8,10 +8,32 @@
 
 $.widget('ui.gFacelist', {
 
+    options: {
+        autoSelector: 'input.ui-gFacelist',
+
+        related_url: '',
+
+        // data present at load time (json)
+        initial_data: false,
+
+        // Delay before showing a new item (in ms)
+        //
+        // When an item is selected it's better to 
+        // wait a short delay before showing the newly
+        // added item. If not, the item gets added before
+        // the autocomplete list hides itself and it creates
+        // a feeling that nothing happened.
+        addItemDelay: 0.2,
+
+        // show browse button
+        browse: true,
+
+        // gAutocomplete options
+        autocomplete: {}
+    },
+
     _init: function(){
         var ui = this;
-        // erh.. jquery UI < 1.8 fix: http://dev.jqueryui.com/ticket/4366
-        ui.options.autocomplete = $.extend($.ui.gFacelist.defaults.autocomplete, ui.options.autocomplete);
         
         // merge options from server
         ui.options = $.extend(ui.options, ui.element.metadata());
@@ -198,29 +220,4 @@ $.widget('ui.gFacelist', {
     }
 });
 
-$.extend($.ui.gFacelist, {
-    autoSelector: 'input.ui-gFacelist',
-    defaults: {
-
-        related_url: '',
-
-        // data present at load time (json)
-        initial_data: false,
-
-        // Delay before showing a new item (in ms)
-        //
-        // When an item is selected it's better to 
-        // wait a short delay before showing the newly
-        // added item. If not, the item gets added before
-        // the autocomplete list hides itself and it creates
-        // a feeling that nothing happened.
-        addItemDelay: 0.2,
-
-        // show browse button
-        browse: true,
-
-        // gAutocomplete options
-        autocomplete: {}
-    }
-});
 })(jQuery);

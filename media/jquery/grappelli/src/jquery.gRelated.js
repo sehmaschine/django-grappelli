@@ -39,17 +39,18 @@ $.RelatedBase = {
         var ui, app_label, model_name, url, tl, txt, item;
         ui = this;
         if (ui.dom.link.attr('href')) {
-            app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2);
-            model_name = ui.dom.link.attr('href').split('/').slice(-2,-1);
+            app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2)[0];
+            model_name = ui.dom.link.attr('href').split('/').slice(-2,-1)[0];
             if (ui.dom.object_id.val() == '') {
                 ui.dom.text.text('');
             }
             else {
                 ui.dom.text.text('loading ...');
                 url = $.grappelli.conf.get((ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2m_related' || 'related') + '_url');
-                $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data) {
+                console.log('aa', {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name});
+                $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data, status) {
                     item = data;
-                    if (item) {
+                    if (item && status == 'success') {
                         tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
                         if (item.length > tl) {
                             txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
@@ -70,10 +71,14 @@ $.RelatedDefaultsBase = {
 };
 
 $.widget('ui.gRelated', $.extend($.RelatedBase, {
+
+    options: $.extend($.RelatedDefaultsBase, {
+        autoSelector: 'input.vForeignKeyRawIdAdminField, input.vManyToManyRawIdAdminField',
+    }),
+
     _init: function() {
         var ui = this;
         ui.dom = { object_id: ui.element, text: $('<strong />') };
-        
         ui.dom.link = ui.element.next('a').attr('onclick', false)
             .live('click', function(e){
                 e.preventDefault();
@@ -94,16 +99,14 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.extend($.ui.gRelated, {
-    autoSelector: 'input.vForeignKeyRawIdAdminField, input.vManyToManyRawIdAdminField',
-    defaults: $.RelatedDefaultsBase
-});
-
 $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
+    
+    options: $.extend($.RelatedDefaultsBase, {
+        autoSelector: 'input[name*="object_id"]'
+    }),
+
     _init: function(){
         var ui = this;
-
-        ui.options = $.extend($.RelatedDefaultsBase, ui.options);
         ui.dom = {
             object_id: ui.element,
             content_type: $('#'+ ui.element.attr('id').replace('object_id', 'content_type')),
@@ -156,10 +159,6 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.extend($.ui.gGenericRelated, {
-    autoSelector: 'input[name*="object_id"]',
-    defaults: $.RelatedDefaultsBase
-});
 
 // Used in popup windows to disable default django behaviors
 $(function(){

@@ -7,6 +7,9 @@
 (function($){
 
 $.widget('ui.gActions', {
+    options: {
+        autoSelector: '#changelist'
+    },
     _init: function() {
         var ui = this;
         $('#action-toggle').show().bind('click.grappelli', function(){
@@ -15,7 +18,4 @@ $.widget('ui.gActions', {
     }
 });
 
-$.extend($.ui.gActions, {
-    autoSelector: '#changelist',
-});
 })(jQuery);

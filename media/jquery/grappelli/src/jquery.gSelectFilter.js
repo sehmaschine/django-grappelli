@@ -245,6 +245,4 @@ $.widget('ui.gSelectFilter', {
     }
 });
 
-
-
 })(jQuery);

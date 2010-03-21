@@ -16,6 +16,30 @@ $.fn.nextOrFirst = function() {
 };
 
 $.widget('ui.gAutocomplete', {
+    options: {
+        autoSelector: 'input.ui-gAutocomplete',
+        // maximum results to show per requests (this is 
+        // processed server side)
+        maxResults: 4,
+
+        // a short delay is necessary to avoid making a request upon 
+        // each keystroke 0.5 (500ms) is recommended.
+        delay: 0.5,    
+
+        // highlight matched substrings with <b> tags
+        highlight: true,
+
+        // show a browse button
+        browse: true,
+
+        // the minimum caracters the field must contain before making
+        // a search query
+        minChars: 1,
+    
+        maxResults: 20,
+        listFormat: '{id:d} - {label:s}',
+        inputFormat: '{label:s}'
+    },
 
     _lastRequest: 0,
     _results: [],
@@ -323,31 +347,7 @@ $.widget('ui.gAutocomplete', {
 });
 
 $.extend($.ui.gAutocomplete, {
-    autoSelector: 'input.ui-gAutocomplete',
     getter: 'results',
-    defaults: {
-        // maximum results to show per requests (this is 
-        // processed server side)
-        maxResults: 4,
-
-        // a short delay is necessary to avoid making a request upon 
-        // each keystroke 0.5 (500ms) is recommended.
-        delay: 0.5,    
-
-        // highlight matched substrings with <b> tags
-        highlight: true,
-
-        // show a browse button
-        browse: true,
-
-        // the minimum caracters the field must contain before making
-        // a search query
-        minChars: 1,
-    
-        maxResults: 20,
-        listFormat: '{id:d} - {label:s}',
-        inputFormat: '{label:s}'
-    },
     events: {
         nodeCloned: function(e) {
             var parent = e.originalEvent.data.node;

@@ -1,7 +1,7 @@
 {% load i18n grp_tags grp_csrf %}
 
 <ul id="bookmarks">
-    <li id="toggle-bookmarks-listing" class="enabled"><a href="javascript://">{% trans "Bookmarks" %}</a>
+    <li id="toggle-bookmarks-listing" class="enabled"><a>{% trans "Bookmarks" %}</a>
         <ul id="bookmarks-listing">
             {% if object_list %}
             {% for object in object_list %}
@@ -13,7 +13,7 @@
         </ul>
     </li>
     <li class="action bookmark-add{% if not is_bookmark %} active{% endif %}">
-        {% if not is_bookmark %}<a href="javascript://" id="toggle-bookmark-add" class="bookmark-add"> </a>{% else %}&nbsp;{% endif %}
+        {% if not is_bookmark %}<a id="toggle-bookmark-add" class="bookmark-add"> </a>{% else %}&nbsp;{% endif %}
         <div id="bookmark-add">
             <form action="{% url grp_bookmark_add %}" method="POST">{% grp_csrf_token %}
                 <input id="bookmark-path" name="path" type="hidden" value="" />

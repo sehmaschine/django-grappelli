@@ -7,6 +7,10 @@
 (function($){
 
 $.widget('ui.gChangelist', {
+    
+    options: {
+        autoSelector: '.changelist-content'
+    },
 
     _init: function() {
         var ui = this;
@@ -59,7 +63,4 @@ $.widget('ui.gChangelist', {
     }
 });
 
-$.extend($.ui.gChangelist, {
-    autoSelector: '.changelist-content',
-});
 })(jQuery);

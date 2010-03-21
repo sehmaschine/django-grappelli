@@ -23,15 +23,16 @@ $.grappelli = (new function(){
 
     g.inst.widgets = {
         init: function (){
-            var iterator, w, widgets, parent;
+            var iterator, w, widgets, parent, selector;
             iterator = function (i, widgetName) {
+                s = $.ui[widgetName].prototype.options.autoSelector;
                 w = jQuery.ui[widgetName];
-                if (w && w.autoSelector) {
+                if (w && s) {
                     if (parent) {
-                        jQuery(parent).find(w.autoSelector)[widgetName]();
+                        jQuery(parent).find(s)[widgetName]();
                     }
                     else {
-                        jQuery(w.autoSelector)[widgetName]();
+                        jQuery(s)[widgetName]();
                     }
                 }
             };
@@ -53,13 +54,14 @@ $.grappelli = (new function(){
             var parent   = false;
             var iterator = function (i, widgetName) {
                 var w = jQuery.ui[widgetName];
+                var s = $.ui[widgetName].prototype.options.autoSelector;
                 w.widgetName = widgetName;
                 if (w && w.autoSelector) {
                     if (parent) {
-                        var elements = jQuery(parent).find(w.autoSelector);
+                        var elements = jQuery(parent).find(s);
                     }
                     else {
-                        var elements = jQuery(w.autoSelector);
+                        var elements = jQuery(s);
                     }
                     callback.apply(w, [widgetName, elements]);
                 }
