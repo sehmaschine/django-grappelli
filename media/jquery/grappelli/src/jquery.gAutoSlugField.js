@@ -20,18 +20,15 @@ $.widget('ui.gAutoSlugField', {
         var ui  = this; 
         ui.mode = ui.element.attr('rel') && 'target' || 'standalone';
         ui.dom  = {};
-        console.log($.grappelli.conf.get('admin_media_prefix'));
-        console.log(ui.options.crosshair);
 
         if (ui.mode == 'target') {
-            //ui.element.attr('readonly', 'true');
             ui.dom.crosshair  = $(ui.options.crosshair).attr('src', $.grappelli.conf.get('admin_media_prefix') + ui.options.crosshairImg).insertAfter(ui.element).draggable({
                 helper:   'clone',
                 appendTo: 'body',
+                scope:    'slugfield',
+                scroll:   true,
                 revert:   true,
                 revertDuration: 100,
-                scope:    'slugfield',
-//                scroll:   true,
                 start: function(e) {
                     $('body').addClass('ui-state-dragging');
                 },
@@ -39,7 +36,7 @@ $.widget('ui.gAutoSlugField', {
                     $('body').removeClass('ui-state-dragging');
                 }
             });
-            $(ui.element.attr('rel')).droppable({
+            $(ui.element.attr('rel')).not(ui.element).droppable({
                 scope: 'slugfield',
                 activeClass: 'ui-state-highlight',
                 drop:  function(e) { 
@@ -47,19 +44,17 @@ $.widget('ui.gAutoSlugField', {
                 }
             });            
         }
-        else {
-            ui.dom.input = ui.element;
-            ui.dom.input.delayedObserver(function(e){
-                ui._refresh(e, this);
-            }, ui.options.delay);
-        }
+        ui.element.bind('blur', function(e){
+            ui._refresh(e, this);
+        }).delayedObserver(function(e){
+            ui._refresh(e, this);
+        }, ui.options.delay);
     },
     
     _refresh: function(e, source) {
-
         var ui, val;
         ui  = this;
-        src = (source && $(source) || ui.dom.input);
+        src = (source && $(source) || ui.element);
         val = $.slugify(src.val() || src.text(), ui.element.attr('maxlength'));
         ui.element.val(val);
     }

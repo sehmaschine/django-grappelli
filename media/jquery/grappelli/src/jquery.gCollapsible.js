@@ -30,7 +30,7 @@ $.widget('ui.gCollapsible.js', {
 
     _init: function() {
         var ui  = this; 
-        ui._isGroup = ui.element.addClass('ui-collapsible').hasClass('.group');
+        ui._isGroup = ui.element.addClass('ui-collapsible').hasClass('group');
         ui.dom  = {
             closeAll: ui.element.find('.ui-collapsible-close-all'),
             openAll:  ui.element.find('.ui-collapsible-open-all')
@@ -41,7 +41,9 @@ $.widget('ui.gCollapsible.js', {
         if (ui._isGroup) {
 
             // Toggle behavior of h3
+            console.log('test');
             ui.element.find('h3.ui-collapsible-toggle').bind('click', function(e){
+                      console.log('bbb');
                 ui._onClick.apply(this, [e, ui]);
             });
             
@@ -49,6 +51,7 @@ $.widget('ui.gCollapsible.js', {
             ui.element.children().eq(0)
                 .addClass('ui-collapsible-toggle')
                 .bind('click', function(e){
+                      console.log('aaa');
                     ui._onClick.apply(this, [e, ui]); });
 
             // Close/Open all
