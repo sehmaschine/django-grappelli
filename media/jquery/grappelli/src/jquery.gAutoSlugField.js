@@ -32,7 +32,7 @@ $.widget('ui.gAutoSlugField', {
 //                scope:    'slugfield',
 //                scroll:   true,
                 start: function(e) {
-                    console.log(this, e);
+                    //console.log(this, e);
                 }
             });
             $(ui.element.attr('rel')).droppable({

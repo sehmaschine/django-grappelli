@@ -47,7 +47,6 @@ $.RelatedBase = {
             else {
                 ui.dom.text.text('loading ...');
                 url = $.grappelli.conf.get((ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2m_related' || 'related') + '_url');
-                console.log('aa', {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name});
                 $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data, status) {
                     item = data;
                     if (item && status == 'success') {

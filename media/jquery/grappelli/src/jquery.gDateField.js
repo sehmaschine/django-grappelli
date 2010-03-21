@@ -35,7 +35,6 @@ $.widget('ui.gDateField', {
 
     _init: function() {
         var ui = this;
-        console.log('dp init', ui.element);
         ui.element.datepicker().parent()
             // replace BR
             .find('br').replaceWith(ui.options.spacer || '');
