@@ -11,7 +11,8 @@ $.widget('ui.gAutoSlugField', {
 
     options: {
         autoSelector: '.ui-gAutoSlugField',
-        lockButton:   '<button title="Unlock" class="ui-gAutoSlugField-toggle" />',
+        crosshair:    '<img alt="X" title="Drag on other input to set new slug" style="z-index:1000;position:relative;top:6px;left:6px;" />',
+        crosshairImg: 'img/icons/icon-changelist-actions.png',
         delay: 1.5
     },
 
@@ -19,25 +20,31 @@ $.widget('ui.gAutoSlugField', {
         var ui  = this; 
         ui.mode = ui.element.attr('rel') && 'target' || 'standalone';
         ui.dom  = {};
+        console.log($.grappelli.conf.get('admin_media_prefix'));
+        console.log(ui.options.crosshair);
 
         if (ui.mode == 'target') {
-            ui.element.attr('readonly', 'true');
-            ui.dom.lockButton = $(ui.options.lockButton).insertAfter(ui.element);
-            ui.dom.lockButton.draggable({
-                appendTo: ui.element.parent(),
-                helper:   function() {
-                $('<div style="background:#c30;width:10px;height:10px;position:relative;">test</div>'); },
-//                revert:   true,
-//                revertDuration: 800,
-//                scope:    'slugfield',
+            //ui.element.attr('readonly', 'true');
+            ui.dom.crosshair  = $(ui.options.crosshair).attr('src', $.grappelli.conf.get('admin_media_prefix') + ui.options.crosshairImg).insertAfter(ui.element).draggable({
+                helper:   'clone',
+                appendTo: 'body',
+                revert:   true,
+                revertDuration: 100,
+                scope:    'slugfield',
 //                scroll:   true,
                 start: function(e) {
-                    //console.log(this, e);
+                    $('body').addClass('ui-state-dragging');
+                },
+                stop: function(e) {
+                    $('body').removeClass('ui-state-dragging');
                 }
             });
             $(ui.element.attr('rel')).droppable({
-//                scope: 'slugfield',
-                drop: function() { alert('dropped'); }
+                scope: 'slugfield',
+                activeClass: 'ui-state-highlight',
+                drop:  function(e) { 
+                    ui._refresh(e, this);
+                }
             });            
         }
         else {
@@ -46,23 +53,14 @@ $.widget('ui.gAutoSlugField', {
                 ui._refresh(e, this);
             }, ui.options.delay);
         }
-
-//      ui.element.bind('blur', function(e){
-//          ui._refresh(e, this);
-//      });
-
-//      ui.dom.input.bind('blur', function(e){
-//          ui._refresh(e, this);
-//      });
-
-        //ui._refresh(); // sync initial values
     },
     
     _refresh: function(e, source) {
 
         var ui, val;
         ui  = this;
-        val = $.slugify((source && $(source) || ui.dom.input).val(), ui.element.attr('maxlength'));
+        src = (source && $(source) || ui.dom.input);
+        val = $.slugify(src.val() || src.text(), ui.element.attr('maxlength'));
         ui.element.val(val);
     }
 });

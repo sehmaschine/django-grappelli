@@ -27,7 +27,7 @@ $.widget('ui.gDateField', {
         autoSelector: 'input.vDateField',
 
         // set to false to disable input masking
-        mask:   '9999-99-99',                   
+        mask:   false, //'9999-99-99',                   
 
         // separator between date and time fields
         spacer: '<span class="spacer" />'
