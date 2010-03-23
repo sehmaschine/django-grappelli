@@ -22,9 +22,6 @@
  */
 (function($){
 
-$('.collapse-open').removeClass('collapse-open').addClass('ui-collapsible').addClass('ui-collapsible-opened');
-$('.collapse-closed').removeClass('collapse').addClass('ui-collapsible').addClass('ui-collapsible-closed');
-$('.collapse').removeClass('collapse').addClass('ui-collapsible').addClass('ui-collapsible-closed');
 
 $.widget('ui.gCollapsible.js', {
 
@@ -50,6 +47,13 @@ $.widget('ui.gCollapsible.js', {
             ui.element.find('h3.ui-collapsible-toggle').bind('click', function(e){
                 ui._onClick.apply(this, [e, ui]);
             });
+
+            // Toggle behavior of h4
+            ui.element.find('.ui-collapsible > h4')
+                .addClass('ui-collapsible-toggle')
+                .bind('click', function(e){
+                    ui._onClick.apply(this, [e, ui]);
+                });
             
             // Close/Open all
             ui[(ui.element.hasClass('ui-collapsible-all-closed') && 'closeAll' || 'openAll')]();
