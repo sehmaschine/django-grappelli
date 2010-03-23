@@ -201,17 +201,22 @@ $.widget('ui.gAutocomplete', {
     _select: function(which) {
         var ui = this;
         var li = false;
-        ui._showList();
-        var selected = ui._selected();
-        if (selected.length > 0) {
-            li = selected.removeClass('selected')[(which == 'prev' && 'prevOrLast' || 'nextOrFirst')]();
+        if (ui.dom.results.find('li').length > 0) {
+            ui._showList();
+            var selected = ui._selected();
+            if (selected.length > 0) {
+                li = selected.removeClass('selected')[(which == 'prev' && 'prevOrLast' || 'nextOrFirst')]();
+            }
+            else {
+                li = ui.dom.results.find((which == 'prev' && 'li:last-child' || 'li:first-child')).addClass('selected');
+            }
+            li.addClass('selected');
+            ui._choose(true);
+            return true;
         }
         else {
-            li = ui.dom.results.find((which == 'prev' && 'li:last-child' || 'li:first-child')).addClass('selected');
+            ui._hideList();
         }
-        li.addClass('selected');
-        ui._choose(true);
-        return true;
     },
             
 

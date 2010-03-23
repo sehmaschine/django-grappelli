@@ -77,8 +77,11 @@ $.widget('ui.gFacelist', {
                     $(this).remove();
                 }
             });
+            console.log(div.find('li:visible'));
+
             if (div.find('li:visible').length < 1) {
-                ui.dom.facelist.find('.ui-gAutocomplete-autocomplete').addClass('no-match');
+                ui.dom.wrapper.find('.ui-gAutocomplete-autocomplete');
+                div.hide();
             }
         });
 
