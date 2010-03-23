@@ -9,6 +9,7 @@
 
 <!-- STYLESHEETS / EXTRASTYLE -->
 {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/reset.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/typography.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/structures.css" />
@@ -17,8 +18,6 @@
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/buttons.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/tables.css" />
-    {#<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}jquery/custom-theme/jquery-ui-1.7.2.custom.css" />#}
-    <link rel="stylesheet" type="text/css" href="/admin-media/jquery/ui/css/ui-lightness/jquery-ui-1.8.custom.css" />
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" />
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
 {% endblock %}
@@ -131,7 +130,9 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     {% endif %}
     
     <!-- BREADCRUMBS -->
-    {% block breadcrumbs %}<div id="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>{% endblock %}
+    {% block breadcrumbs %}
+    <div id="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>
+    {% endblock %}
     
     <!-- MESSAGES -->
     {% if messages %}
