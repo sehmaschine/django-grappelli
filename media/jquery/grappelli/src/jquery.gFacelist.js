@@ -77,7 +77,6 @@ $.widget('ui.gFacelist', {
                     $(this).remove();
                 }
             });
-            console.log(div.find('li:visible'));
 
             if (div.find('li:visible').length < 1) {
                 ui.dom.wrapper.find('.ui-gAutocomplete-autocomplete');

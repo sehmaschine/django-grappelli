@@ -10,22 +10,26 @@
  *  Classes
  *  =======
  *
- *  ui-collapsible              make an element collapsible
- *  ui-collapsible-opened       opened state of a collapsible element
- *  ui-collapsible-closed       closed state of a collapsible element
- *  ui-collapsible-toggle       make an element the toggle element for a parent collapsible
- *  ui-collapsible-open-all     open also sub-element that are collapsible
- *  ui-collapsible-close-all    open also sub-element that are collapsible
- *  ui-collapsible-all-opened   open also sub-element that are collapsible (applies to groups)
- *  ui-collapsible-all-closed   close also sub-element that are collapsible (applies to groups)
+ *                      ui-collapsible              make an element collapsible
+ *  collapse-open       ui-collapsible-opened       opened state of a collapsible element
+ *  collapse(-closed)   ui-collapsible-closed       closed state of a collapsible element
+ *                      ui-collapsible-toggle       make an element the toggle element for a parent collapsible
+ *                      ui-collapsible-open-all     open also sub-element that are collapsible
+ *                      ui-collapsible-close-all    open also sub-element that are collapsible
+ *                      ui-collapsible-all-opened   open also sub-element that are collapsible (applies to groups)
+ *                      ui-collapsible-all-closed   close also sub-element that are collapsible (applies to groups)
  *
  */
 (function($){
 
+$('.collapse-open').removeClass('collapse-open').addClass('ui-collapsible').addClass('ui-collapsible-opened');
+$('.collapse-closed').removeClass('collapse').addClass('ui-collapsible').addClass('ui-collapsible-closed');
+$('.collapse').removeClass('collapse').addClass('ui-collapsible').addClass('ui-collapsible-closed');
+
 $.widget('ui.gCollapsible.js', {
 
     options: {
-        autoSelector: '.ui-collapsible, ui-collapsible-open'
+        autoSelector: '.ui-collapsible, .ui-collapsible-open, .ui-collapsible-closed'
     },
 
     _init: function() {
@@ -35,33 +39,29 @@ $.widget('ui.gCollapsible.js', {
             closeAll: ui.element.find('.ui-collapsible-close-all'),
             openAll:  ui.element.find('.ui-collapsible-open-all')
         };
+
         if (!ui.element.hasClass('ui-collapsible-closed')) {
             ui.element.addClass('ui-collapsible-opened');
         }
+
         if (ui._isGroup) {
 
             // Toggle behavior of h3
-            console.log('test');
             ui.element.find('h3.ui-collapsible-toggle').bind('click', function(e){
-                      console.log('bbb');
                 ui._onClick.apply(this, [e, ui]);
             });
             
-            // Toggle behavior of h2
-            ui.element.children().eq(0)
-                .addClass('ui-collapsible-toggle')
-                .bind('click', function(e){
-                      console.log('aaa');
-                    ui._onClick.apply(this, [e, ui]); });
-
             // Close/Open all
             ui[(ui.element.hasClass('ui-collapsible-all-closed') && 'closeAll' || 'openAll')]();
             ui.dom.openAll.bind('click',  function(){ ui.openAll(); });
             ui.dom.closeAll.bind('click', function(){ ui.closeAll(); });
         }
-        else {
-            ui.dom.toggle = ui.element.find('.ui-collapsible-toggle');
-        }
+
+        // Toggle behavior of h2
+        ui.element.find('h2:first')
+            .addClass('ui-collapsible-toggle')
+            .bind('click', function(e){
+                ui._onClick.apply(this, [e, ui]); });
 
         // Errors handling
         var errors = ui.element.find('.errors');
