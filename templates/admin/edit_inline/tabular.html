@@ -46,8 +46,12 @@
                     {% for line in fieldset %}
                         {% for field in line %}
                             <div class="table-cell {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
-                                {{ field.field }}
-                                {{ field.field.errors.as_ul }}
+                                {% if field.is_readonly %}
+                                    <p>{{ field.contents }}</p>
+                                {% else %}
+                                    {{ field.field }}
+                                    {{ field.field.errors.as_ul }}
+                                {% endif %}
                             </div>
                         {% endfor %}
                     {% endfor %}
