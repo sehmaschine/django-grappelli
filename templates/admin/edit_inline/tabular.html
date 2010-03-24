@@ -1,6 +1,6 @@
-{% load i18n %}
+{% load i18n adminmedia %}
 
-<div class="group tabular{% if inline_admin_formset.opts.sortable %} sortable{% endif %}{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}" name="inlinegrouptabular">
+<div class="group tabular{% if inline_admin_formset.opts.sortable %} sortable{% endif %}{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}" id="{{ inline_admin_formset.formset.prefix }}-group" name="inlinegrouptabular">
     <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
     {% spaceless %}
     <ul class="tools">
@@ -15,9 +15,9 @@
     <div class="module table"> <!-- table, sortable container -->
         <div class="module thead"> <!-- table header -->
             <div class="table-row">
-                {% for field in inline_admin_formset.fields %}
-                    {% if not field.is_hidden %}
-                        <div class="table-cell {{ field.label|lower }}">{{ field.label|capfirst }}</div>
+                {% for is_hidden, label in inline_admin_formset.fields %}
+                    {% if not is_hidden %}
+                        <div class="table-cell {{ field.label|lower }}">{{ label|capfirst }}</div>
                     {% endif %}
                 {% endfor %}
                 <div class="table-cell">&nbsp;</div>
@@ -63,7 +63,7 @@
                     {% endspaceless %}
                 </div>
                 {{ inline_admin_form.fk_field.field }}
-                {{ inline_admin_form.pk_field.field }}
+                {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
             </div>
         </div>
         {% endfor %}
@@ -80,4 +80,3 @@
 <div class="sortablehelper">
     <h3><b>&nbsp;</b></h3>
 </div>
-
