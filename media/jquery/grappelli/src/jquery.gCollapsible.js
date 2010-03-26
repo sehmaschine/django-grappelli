@@ -10,12 +10,8 @@
  *  Classes
  *  =======
  *
- *                      ui-collapsible              make an element collapsible
  *  collapse-open       ui-collapsible-opened       opened state of a collapsible element
  *  collapse(-closed)   ui-collapsible-closed       closed state of a collapsible element
- *                      ui-collapsible-toggle       make an element the toggle element for a parent collapsible
- *                      ui-collapsible-open-all     open also sub-element that are collapsible
- *                      ui-collapsible-close-all    open also sub-element that are collapsible
  *                      ui-collapsible-all-opened   open also sub-element that are collapsible (applies to groups)
  *                      ui-collapsible-all-closed   close also sub-element that are collapsible (applies to groups)
  *
@@ -26,7 +22,7 @@
 $.widget('ui.gCollapsible.js', {
 
     options: {
-        autoSelector: '.ui-collapsible, .ui-collapsible-open, .ui-collapsible-closed'
+        autoSelector: '.ui-collapsible-opened, .ui-collapsible-closed, ui-collapsible-all-opened, ui-collapsible-all-closed'
     },
 
     _init: function() {

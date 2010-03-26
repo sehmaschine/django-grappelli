@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-23 13:13-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:291
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:25
+#: media/jquery/grappelli/src/jquery.gTimeField.js:37
+msgid "Choose a time"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:292
+#: media/jquery/grappelli/dist/jquery.grappelli.js:393
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:25
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:26
+#: media/jquery/grappelli/src/jquery.gDateField.js:17
+#: media/jquery/grappelli/src/jquery.gTimeField.js:38
+msgid "Cancel"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:362
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:26
+#: media/jquery/grappelli/src/jquery.gTimeField.js:15
+msgid "Now"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:365
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:26
+#: media/jquery/grappelli/src/jquery.gTimeField.js:18
+msgid "Midnight"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:368
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:26
+#: media/jquery/grappelli/src/jquery.gTimeField.js:21
+msgid "6 a.m."
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:371
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:26
+#: media/jquery/grappelli/src/jquery.gTimeField.js:24
+msgid "Noon"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:970
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:30
+#: media/jquery/grappelli/src/jquery.gSelectFilter.js:37
+#, perl-format
+msgid "Available %s"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:971
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:30
+#: media/jquery/grappelli/src/jquery.gSelectFilter.js:38
+#, perl-format
+msgid "Chosen %s"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:972
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:30
+#: media/jquery/grappelli/src/jquery.gSelectFilter.js:39
+msgid "Choose all"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:973
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:30
+#: media/jquery/grappelli/src/jquery.gSelectFilter.js:40
+msgid "Clear all"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:1003
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:30
+#: media/jquery/grappelli/src/jquery.gSelectFilter.js:70
+msgid "Add"
+msgstr ""
+
+#: media/jquery/grappelli/dist/jquery.grappelli.js:1010
+#: media/jquery/grappelli/dist/jquery.grappelli.min.js:30
+#: media/jquery/grappelli/src/jquery.gSelectFilter.js:77
+msgid "Remove"
+msgstr ""
+
+#: media/jquery/grappelli/src/jquery.gDateField.js:8
+#: media/jquery/grappelli/src/jquery.gDateField.js:11
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: media/jquery/grappelli/src/jquery.gDateField.js:22
+msgid ""
+"January February March April May June July August September October November "
+"December"
+msgstr ""
+
+#: media/jquery/grappelli/src/jquery.gDateField.js:23
+#: media/jquery/grappelli/src/jquery.gDateField.js:24
+msgid "S M T W T F S"
+msgstr ""
+
+#: media/jquery/grappelli/src/jquery.gDateField.js:25
+msgid "FIRST_DAY_OF_WEEK"
+msgstr ""

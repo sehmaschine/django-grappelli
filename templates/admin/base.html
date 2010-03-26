@@ -34,8 +34,9 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 {% endcomment %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{% url i18n-js "grappelli" %}"></script>
+{#<script type="text/javascript" src="{% url i18n-js "grappelli" %}"></script>#}
 
+    <script type="text/javascript" src="/admin/jsi18n/"></script>{# url jsi18n <- not sure why this doesn't work #}
     {# jquery #}
     {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>#}
     {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>#}
@@ -68,6 +69,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gRelated.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gAutoSlugField.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gCollapsible.js"></script>
+
 
     <script type="text/javascript">
         // Use this to remove *all* effects (not recommended)

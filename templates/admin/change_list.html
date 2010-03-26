@@ -7,7 +7,6 @@
 {% block javascripts %}
     {{ block.super }}
     {% if cl.formset %}
-        <script type="text/javascript" src="../../jsi18n/"></script>
         {{ media }}
     {% endif %}
     {% if is_popup %}
@@ -108,18 +107,6 @@
                 TableStretch('.changelist-results');
             });
             
-            // jQuery UI Datepicker
-            $(".vDateField").datepicker({
-                showOn: 'button', 
-                buttonImageOnly: false, 
-                buttonText: ''
-            });
-            
-            $('.toggle-filter').click(function(){
-                $(this).toggleClass('selected');
-                $('.filter-container').toggle();
-            });
-            
             $(".date-hierarchy-choice").change(function(){
                 location.href = $(this).val();
             });
@@ -128,18 +115,14 @@
                 location.href = $(this).val();
             });
             
-            var filter_activated = false;
-            var filter_activated_counter = 0;
-            $(".filter_choice").each(function(){
-                $(this).find("option:selected").not(":first-child").each(function(){
-                    filter_activated_counter = filter_activated_counter + 1;
-                    filter_activated = true;
-                });
-            });
-            if (filter_activated) {
-                $(".toggle-filter").addClass("activated");
-                $('.filter-container').show();
-            };
+//          var filter_activated = false;
+//          var filter_activated_counter = 0;
+//          $(".filter_choice").each(function(){
+//              $(this).find("option:selected").not(":first-child").each(function(){
+//                  filter_activated_counter = filter_activated_counter + 1;
+//                  filter_activated = true;
+//              });
+//          });
             
         });
         $(window).resize(function(){

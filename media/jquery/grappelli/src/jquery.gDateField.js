@@ -7,19 +7,25 @@
 (function($){
 
 $.datepicker.setDefaults({
-    dateFormat:      'yy-mm-dd',
+//    dateFormat:      'yy-mm-dd',
+    dateFormat:      gettext('DATET_FORMAT') || 'yy-mm-dd',
     buttonText:      ' ',
     duration:        160,
     showAnim:        'slideDown',
     showOn:          'button',
+    buttonImageOnly: false, 
     showButtonPanel: true, 
     closeText:       gettext && gettext('Cancel') || 'Cancel',
     showOtherMonths: true,
     constrainInput:  true,
     defaultDate:     'today',
+    // Localization
+    monthNames:      gettext('January February March April May June July August September October November December').split(' '),
+    dayNamesMin:     gettext('S M T W T F S').split(' '),
+    dayNamesShort:   gettext('S M T W T F S').split(' '),
+    firstDay:        parseInt(gettext('FIRST_DAY_OF_WEEK') == 'FIRST_DAY_OF_WEEK' && 0 || gettext('FIRST_DAY_OF_WEEK')),
     isRTL:           $.grappelli.conf.get('rtl')
 });
-
 
 $.widget('ui.gDateField', {
 

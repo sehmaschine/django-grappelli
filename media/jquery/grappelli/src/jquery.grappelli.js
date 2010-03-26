@@ -6,9 +6,9 @@
 (function($){
 
 // Fail silently if gettext is unavailable
-if (typeof(gettext) == 'undefined') {
-    gettext = function (i) { return i; };
-}
+//if (typeof(gettext) == 'undefined') {
+//    gettext = function (i) { return i; };
+//}
 if (typeof(console) == 'undefined') {
     console = {
         log: function() {}
