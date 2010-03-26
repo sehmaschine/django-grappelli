@@ -29,19 +29,21 @@ TIME_ZONE = 'America/Chicago'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 #LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'fr'
+LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
+USE_L10N = USE_I18N 
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 
 GRAPPELLI_MEDIA_ROOT = os.path.realpath(os.path.join(PROJECT_PATH, '../contrib/grappelli/media/'))
+GRAPPELLITEST_MEDIA_ROOT = os.path.realpath(os.path.join(PROJECT_PATH, '../contrib/grappellitest/media/'))
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -74,11 +76,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-#   'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#   'debug_toolbar.middleware.DebugToolbarMiddleware',
     'grappelli.middleware.JavaScript404Patch',
+    'grappelli.middleware.BrowserCompatibilityEnforcer',
 )
-
+INTERNAL_IPS = ('127.0.0.1', '192.168.0.100')
 ROOT_URLCONF = 'testproject.urls'
 
 TEMPLATE_DIRS = (
@@ -97,7 +101,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admindocs',
     'grappelli',
+    'grappellitest',
     'django_evolution',
+    'debug_toolbar',
 #   'django_extensions',
     'testapp',
 )

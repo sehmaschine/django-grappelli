@@ -74,7 +74,8 @@ class GrappelliFields(models.Model):
     gr_m2m      = models.ManyToManyField(User, verbose_name=u"ManyToManyField", null=True, blank=True, related_name="m2m_user")
     m2m_test    = models.ManyToManyField(Site, verbose_name=u"M2M Autocomplete", blank=True, null=True, related_name="m2m_site")
     char_test   = models.CharField(u"CharField", max_length=255, blank=True)
-    slug_test   = models.SlugField(u"SlugField", max_length=50)
+    slug_test   = models.SlugField(u"SlugField", max_length=50, help_text="Drag the gear (which should be a crosshair..) to set the slug from another field")
+    slug_test2  = models.SlugField(u"SlugField", max_length=50, help_text="Standalone", null=True, blank=True)
     mce_test    = models.TextField(u"TinyMCE", blank=True)
 
     content_type = models.ForeignKey(ContentType, blank=True, null=True, related_name="content_type")
