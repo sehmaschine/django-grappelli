@@ -186,7 +186,9 @@ body {
 }
 .ui-datepicker td span, .ui-datepicker td a {
     padding: 4px 0 3px;
+    margin:0!important;
     text-align: center;
+    display:block;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 .ui-datepicker td a.ui-state-hover {
@@ -271,16 +273,19 @@ body {
 }
 
 .ui-datepicker td.ui-state-disabled {
-    font-size:11px;
-    background:#ccc;
-    font-weight:bold;
-    border:1px solid transparent;
-    border-radius:3px; -moz-border-radius:3px; -webkit-borderradius:3px;
-    padding: 5px 0px 2px;
+    padding:1px;
     text-align: center;
-    color:#888;
 }
-
+.ui-datepicker td.ui-state-disabled span {
+    background:#ccc;
+    color:#555!important;
+    font-weight:bold;
+    font-size:11px;
+    border-radius:3px; -moz-border-radius:3px; -webkit-borderradius:3px;
+}
+button.ui-datepicker-close {
+    margin-right:4px!important;
+}
 
 /*	Tabs
 ------------------------------------------------------------------------------------------------------ */
