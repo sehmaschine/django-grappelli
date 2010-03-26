@@ -1,0 +1,240 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load adminmedia admin_list i18n grp_tags grp_csrf %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    {% if cl.formset %}
+        {{ media }}
+    {% endif %}
+    {% if is_popup %}
+    <script type="text/javascript">
+        // HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
+        $('div.actions, p.submit-row').hide();
+        $('input.action-select').parent().hide();
+        $('input#action-toggle').parent().hide();
+    </script>
+    {% endif %}
+    
+    <script type="text/javascript">
+        function initializeFlexibleLayout(content) {
+            $('#content').addClass('content-flexible');
+            $(content).find('.span-flexible').next('.column').parent().addClass('layout-flexible-grid');
+            $(content).find('.column').next('.span-flexible').parent().addClass('layout-grid-flexible');
+            $(content).append('<br clear="all" />');
+            // Layout Flexible + Grid
+            if ($(content).hasClass('layout-flexible-grid')) {
+                var SpanGrid = $(content).find('.span-flexible').next('.column').outerWidth();
+                var PaddingRight = SpanGrid + 20;
+                var MarginRight = - SpanGrid - 20;
+                $(content).css({
+                    'padding-right': PaddingRight
+                });
+                $(content).find('.span-flexible').next('.column').css({
+                    'margin-right': -10000
+                });
+            }
+            // Layout Grid + Flexible
+            if ($(content).hasClass('layout-grid-flexible')) {
+                var SpanGrid = $(content).find('.span-flexible').prev('.column').outerWidth();
+                var PaddingLeft = SpanGrid + 20;
+                var MarginLeft = - SpanGrid - 20;
+                $(content).css({
+                    'padding-left': PaddingLeft
+                });
+                $(content).find('.span-flexible').prev('.column').css({
+                    'margin-left': MarginLeft
+                });
+            }
+        };
+
+        function HorizontalOverflow(content) {
+            var TableWidth = $(content).find('table').outerWidth();
+            var SpanFlexibleWidth = $(content).find('.span-flexible').outerWidth();
+            if (TableWidth > SpanFlexibleWidth) {
+                $(content).find('.span-flexible').css({
+                    'min-width' : TableWidth + 1 + 'px'
+                });
+                $(content).find('.span-flexible').next('.column').css({
+                    'border-right' : '20px solid transparent'
+                });
+            }
+            if (TableWidth < SpanFlexibleWidth) {
+                $(content).find('.span-flexible').css({
+                    'min-width': 'auto'
+                });
+            }
+        };
+        
+        function ModifyTableElements() {
+            $('.changelist-results a.add-another').parent().addClass('nowrap');
+            // $('.changelist-results a.related-lookup').parent().addClass('nowrap');
+        };
+        
+        function TableStretch(Module) {
+            // Table of module, always '.changelist-results'
+            var Table = $(Module).children('table');
+            
+            // Set width to 'auto' to calculate new TableLastChildModifiedWidth when th browser-window is resized
+            $(Table).children('table thead th:last').css('width', 'auto');
+            
+            // Calculate desired width of thead th:last
+            var ModuleWidth = $(Module).outerWidth();
+            var TableWidth = $(Table).outerWidth();
+            var TableModuleDifference = ModuleWidth - TableWidth;
+            var TableLastChildWidth = $(Table).children('thead th:last').outerWidth();
+            var TableLastChildModifiedWidth = TableLastChildWidth + TableModuleDifference - 12;
+            // alert(ModuleWidth);
+            // alert(TableWidth);
+            // alert(TableModuleDifference);
+            // alert(TableLastChildWidth);
+            // alert(TableLastChildModifiedWidth);
+            
+            //  assign TableLastChildModifiedWidth to thead th:last
+            $(Table).children('thead th:last').css('width', TableLastChildModifiedWidth);
+        };
+        
+        
+        $(document).ready(function() {
+            initializeFlexibleLayout('.container-flexible');
+            ModifyTableElements();
+            
+            // Stretch the table as soon as it - and its delayed contents like RelatedObjects - are loaded
+            // The image is a temporary solution
+            $('.changelist-results img.loader').load(function() {
+                TableStretch('.changelist-results');
+            });
+            
+            $(".date-hierarchy-choice").change(function(){
+                location.href = $(this).val();
+            });
+            
+            $(".filter_choice").change(function(){
+                location.href = $(this).val();
+            });
+            
+//          var filter_activated = false;
+//          var filter_activated_counter = 0;
+//          $(".filter_choice").each(function(){
+//              $(this).find("option:selected").not(":first-child").each(function(){
+//                  filter_activated_counter = filter_activated_counter + 1;
+//                  filter_activated = true;
+//              });
+//          });
+            
+        });
+        $(window).resize(function(){
+            HorizontalOverflow('.container-flexible');
+            TableStretch('.changelist-results');
+        });
+        window.onload = function () {
+            HorizontalOverflow('.container-flexible');
+            
+            // Stretch the table as soon as it - and its delayed contents like RelatedObjects - are loaded
+            // inserted temporarily because the document.ready does not work on first load (just when the page is reloaded)
+            TableStretch('.changelist-results');
+        }
+    </script>
+    
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS-- >
+{% block bodyclass %}change-list{% endblock %}
+{% block content-class %}content-flexible{% endblock %}
+
+<!-- BREADCRUMBS -- >
+{% block breadcrumbs %}
+{% if not is_popup %}
+    <div id="breadcrumbs">
+        <a href="{% if request.session.grappelli.home %}{{ request.session.grappelli.home }}{% else %}{% get_admin_url %}{% endif %}">{% trans "Home" %}</a> &rsaquo;
+        <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
+        {{ cl.opts.verbose_name_plural|capfirst }}
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block content_title %}
+    <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
+{% endblock %}
+
+<!-- Object-Tools -->
+{% block object-tools %}
+    {% if has_add_permission %}
+        <ul class="tools" style="right: x240px !important">
+            <li>
+                <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="focus">
+                    {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+                </a>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <div id="changelist" class="container-flexible">
+        
+        <div class="column span-flexible">
+            <!-- Popup Hidden Field -->
+            {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+            <!-- Errors -->
+            {% if cl.formset.errors %}
+                <p class="errornote">
+                    {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                </p>
+                <ul class="errorlist">{% for error in cl.formset.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+            <!-- Management Form -->
+            {% if cl.formset %}
+                {{ cl.formset.management_form }}
+            {% endif %}
+            <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% grp_csrf_token %}
+                <div class="group changelist-content">
+                    {% block result_list %}
+                        {% if action_form and actions_on_top and cl.full_result_count and cl.result_count %}{% admin_actions %}{% endif %}
+                        {% result_list cl %}
+                        {% if action_form and actions_on_bottom and cl.full_result_count and cl.result_count %}{% admin_actions %}{% endif %}
+                    {% endblock %}
+                </div>
+                <div class="module footer">
+                    {% block pagination %}{% pagination cl %}{% endblock %}
+                    {% if cl.formset and cl.result_count %}
+                        <ul class="submit-row">
+                            <li><input type="submit" class="default" value="Save"/></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+        <div class="column span-6 last sidebar">
+            {% block filters %}
+                {% if cl.has_filters or cl.search_fields or cl.date_hierarchy %}
+                    <!-- Results -->
+                    {% ifnotequal cl.result_count cl.full_result_count %}
+                        <div class="module filter-results">
+                            <h2>{% trans 'Results' %}</h2>
+                            <div class="form-row">
+                                <p>{% blocktrans with cl.result_count as counter %}{{ counter }} found{% endblocktrans %}</p>
+                                <a href="?{% if cl.is_popup %}pop=1{% endif %}">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
+                            </div>
+                        </div>
+                    {% endifnotequal %}
+                    <!-- Search -->
+                    {% block search %}{% search_form cl %}{% endblock %}
+                    <!-- Date Hierarchy -->
+                    {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+                    <!-- Filter -->
+                    {% if cl.has_filters %}
+                        <!-- Filter -->
+                        <div class="module filter">
+                            <h2>{% trans 'Filter' %}</h2>
+                            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

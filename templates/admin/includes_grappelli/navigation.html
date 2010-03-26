@@ -1,0 +1,21 @@
+{% load i18n %}
+<div class="module navigation" id="content-related-extended">
+    <h2>{% trans "Navigation" %}</h2>
+    {% if object_list %}
+    {% for object in object_list %}
+    {% ifchanged object.navigation %}
+    {% if not forloop.first %}</ul></div>{% endif %}
+    <div class="module">
+        <h3>{{ object.navigation }}</h3>
+        <ul>
+    {% endifchanged %}
+            <li><a href="{{ object.link }}" class="{{ object.get_category_display }}"{% ifequal object.get_category_display "external" %} target="_blank"{% endifequal %}>{{ object }}</a></li>
+    {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="module">
+        <h3>{% trans "No Items Found." %}</h3>
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,10 @@
+{% load i18n %}
+{% spaceless %}
+<input 
+    type="text" 
+    id="{{ name }}" 
+    name="{{ name }}"
+    value="{{ label }}" 
+    class="vAutocompleteSearchField ui-gAutocomplete {model:'{{model_name}}', app:'{{app_label}}', search_fields:'{{search_fields}}', related_url:'{{ related_url }}{{ url|safe }}'}"
+/>
+{% endspaceless %}

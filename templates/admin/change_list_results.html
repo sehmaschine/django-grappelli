@@ -1,0 +1,21 @@
+{% if results %}
+    <div class="module changelist-results">
+        <table cellspacing="0">
+            <thead>
+                <tr>
+                    {% for header in result_headers %}
+                    <th class="{{ header.class_attrib|cut:'class='|cut:'"' }}{% if header.sortable %} sortable{% endif %}">
+                    {% if header.sortable %}<a href="{{ header.url }}">{% endif %}
+                    {{ header.text|capfirst }}
+                    {% if header.sortable %}</a>{% endif %}</th>{% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+                <tr class="{% cycle 'row1' 'row2' %}">{% for item in result %}{{ item }}{% endfor %}</tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <img src="/media/admin/img/icons/icon-tools-add-handler.png" class="loader" style="display: none" />
+    </div>
+{% endif %}

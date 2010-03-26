@@ -1,0 +1,44 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n grp_csrf %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+     <a href="../../../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="../../../">{{ app_label|capfirst }}</a> &rsaquo;
+     <a href="../../">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
+     <a href="../">{{ object|truncatewords:"18" }}</a> &rsaquo;
+     {% trans 'Delete' %}
+</div>
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+{% if perms_lacking %}
+    <div class="module">
+        <h2>{% blocktrans with object as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h2>
+        <ul class="rte">
+        {% for obj in perms_lacking %}
+            <li>{{ obj }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <div class="module">
+        <h2>{% blocktrans with object as escaped_object %}Are you sure you want to delete the {{ object_name }} "{{ escaped_object }}"? All of the following related items will be deleted:{% endblocktrans %}</h2>
+        <div class="row">
+            <ul class="rte">{{ deleted_objects|unordered_list }}</ul>
+        </div>
+    </div>
+    <form action="" method="post">{% grp_csrf_token %}
+        <div class="module submit-row">
+            <ul class="submit-row" {% if is_popup %}style="overflow: auto;"{% endif %}>
+                <li class="left"><a href="../" class="cancel-link">{% trans "Cancel" %}</a></li>
+                <li><input type="submit" value="{% trans "Yes, I'm sure" %}" class="default" /></li>
+            </ul><input type="hidden" name="post" value="yes" />
+        </div>
+    </form>
+{% endif %}
+{% endblock %}

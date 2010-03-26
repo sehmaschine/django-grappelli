@@ -1,0 +1,49 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia %}
+{% load i18n %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/documentation.css" />
+{% endblock %}
+{% block extrahead %}
+<script>
+$(document).ready(function(){
+    // Sync Active Help Entry With Link In Sidebar
+    $('body').each(function(){
+        var ActiveItem = $('.module').attr('name');
+        $('#content-related').find('a.'+ActiveItem).addClass('selected');
+    });
+});
+</script>
+{% endblock %}
+{% block coltype %}colSM{% endblock %}
+{% block bodyclass %}dashboard documentation{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="/admin/">{% trans "Home" %}</a> &rsaquo; <a href="/grappelli/help/">{% trans "Help" %}</a> &rsaquo; {{ object.title }}</div>{% endblock %}
+
+{% block content %}
+<div id="content-main" class="rte">
+    <div class="module" name="detail-{{ object.id }}">
+    {{ object.get_body|safe }}
+    </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<div id="content-related">
+    {% for help in menu %}
+    <div class="module">
+        <table>
+            <caption style="width:100%;">{{ help }}</caption>
+            {% for helpitem in help.helpitem_set.all %}
+            <tr class="collapse">
+                <th scope="row"><a href="../{{ helpitem.id }}/" class="detail-{{ helpitem.id }}">{{ helpitem }}</a></th>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

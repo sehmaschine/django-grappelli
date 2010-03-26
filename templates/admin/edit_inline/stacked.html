@@ -1,0 +1,44 @@
+{% load i18n %}
+
+<div class="group {% if inline_admin_formset.opts.sortable %} sortable{% endif %}{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}" name="inlinegroup">
+    <h2>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>
+    <ul class="tools">
+        <li><a class="icon ui-collapsible-open-all" title="{% trans 'Open All Items' %}"></a></li>
+        <li><a class="icon ui-collapsible-close-all" title="{% trans 'Close All Items' %}"></a></li>
+        <li>{% if inline_admin_formset.opts.allow_add %}<a class="icon ui-add-handler" title="{% trans 'Add Item' %}"> </a>{% else %}&nbsp;{% endif %}</li>
+    </ul>
+    <div class="items"> <!-- sortable container -->
+        {% for inline_admin_form in inline_admin_formset %}
+        <div class="module ui-collapsible-open  ui-collapsible"> <!-- sortable items -->
+            <!-- headline, original, delete/link/sort -->
+            <h3 class="ui-collapsible-toggle">{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
+            <ul class="tools">
+                {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
+                {% if inline_admin_formset.opts.sortable %}<li><a class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}
+                {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a class="icon delete-link" title="{% trans 'Delete Item' %}"></a></li>{% endif %}
+            </ul>
+            <!-- fieldsets -->
+            {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+            {% for fieldset in inline_admin_form %}
+                {% include "admin/includes/fieldset_inline.html" %}
+            {% endfor %}
+            {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+            {{ inline_admin_form.fk_field.field }}
+        </div>
+        {% endfor %}
+        {{ inline_admin_formset.extra_forms }}
+    </div>
+    {% if inline_admin_formset.opts.allow_add %}
+        <div class="module ui-add-handler">
+            <ul class="tools">
+                <li><a class="icon ui-add-handler" title="{% trans 'Add Item' %}"> </a></li>
+            </ul><br clear="all" />
+        </div>
+    {% endif %}
+    {{ inline_admin_formset.formset.management_form }}
+    {{ inline_admin_formset.formset.non_form_errors }}
+</div>
+
+<div class="sortablehelper" style="display: none">
+    <h3><b>Sortable Helper</b></h3>
+</div>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+
+<!-- LOADING -->
+{% load adminmedia i18n grp_tags %}
+
+<!-- STYLESHEETS / EXTRASTYLE -->
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/typography.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/structures.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/components.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/tools.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/tables.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" />
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
+{% endblock %}
+{% block extrastyle %}{% endblock %}
+
+<!-- JAVASCRIPTS / EXTRAHEAD -->
+
+{% comment %}
+
+jQuery UI theme: 
+
+http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&fsDefault=12px&cornerRadius=4px&bgColorHeader=333333&bgTextureHeader=05_inset_soft.png&bgImgOpacityHeader=30&borderColorHeader=aaaaaa&fcHeader=eeeeee&iconColorHeader=eeeeee&bgColorContent=eeeeee&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=222222&bgColorDefault=e6e6e6&bgTextureDefault=02_glass.png&bgImgOpacityDefault=75&borderColorDefault=d3d3d3&fcDefault=555555&iconColorDefault=888888&bgColorHover=d7dee0&bgTextureHover=02_glass.png&bgImgOpacityHover=75&borderColorHover=309BBF&fcHover=309BBF&iconColorHover=309BBF&bgColorActive=f0f0f0&bgTextureActive=04_highlight_hard.png&bgImgOpacityActive=80&borderColorActive=aaaaaa&fcActive=212121&iconColorActive=454545&bgColorHighlight=ffffee&bgTextureHighlight=02_glass.png&bgImgOpacityHighlight=55&borderColorHighlight=fcefa1&fcHighlight=363636&iconColorHighlight=309BBF&bgColorError=fef1ec&bgTextureError=05_inset_soft.png&bgImgOpacityError=95&borderColorError=BF3030&fcError=BF3030&iconColorError=BF3030&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
+
+{% endcomment %}
+
+{% block javascripts %}
+{#<script type="text/javascript" src="{% url i18n-js "grappelli" %}"></script>#}
+
+    <script type="text/javascript" src="/admin/jsi18n/"></script>{# url jsi18n <- not sure why this doesn't work #}
+    {# jquery #}
+    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-1.3.2.min.js"></script>#}
+    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/jquery-ui-1.7.2.custom.min.js"></script>#}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+    {# contribs #}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.strings.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.masked.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.delayedObserver.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.metadata.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/contrib/jquery.slugify.js"></script>
+
+    {# grappelli base #}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.grappelli.js"></script>
+    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.js"></script>#}
+    {#<script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/dist/jquery.grappelli.min.js"></script>#}
+
+    {# this will only be for development mode, a single minified file will be used for distribution. #}
+    {# grappelli plugins #}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gTimeField.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gDateField.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gChangelist.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gBookmarks.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gInlines.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gSelectFilter.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gActions.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gAutocomplete.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gFacelist.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gRelated.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gAutoSlugField.js"></script>
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gCollapsible.js"></script>
+
+
+    <script type="text/javascript">
+        // Use this to remove *all* effects (not recommended)
+        // $.fx.off = true;
+        // $.fx.speeds._default = 0; // force fx.off for jQuery < 1.8 (http://dev.jqueryui.com/ticket/4328)
+
+        $.grappelli.conf.extend({
+            lang:               '{% get_lang %}',
+            rtl:                {% if LANGUAGE_BIDI %}true{% else %}false{% endif %},
+            content_types:      {% get_content_types %},
+            admin_url:          '{% get_admin_url %}',
+            admin_media_prefix: '{% admin_media_prefix %}',
+            bookmarks_url:      '{% url grp_bookmark_get %}',
+            related_url:        '{% url grp_related_lookup %}',
+            m2m_related_url:    '{% url grp_m2m_lookup %}',
+            filebrowser_url:    '/optionsadmin/filebrowser/browse/?pop=2',
+            autocomplete_url:   '/grappelli/autocomplete/'
+        });
+
+        $.grappelli.conf.set('widgets', [
+            'gInlineGroup',
+            'gInlineTabular',
+            'gActions',
+            'gAutocomplete',
+            'gFacelist',
+            'gBookmarks',
+            'gChangelist',
+            'gCollapsible',
+            'gGenericRelated',
+            'gDateField',
+            'gTimeField',
+            'gRelated',
+            'gSelectFilter',
+            'gAutoSlugField'
+        ]);
+
+
+        $(function(){
+
+            // Backward compatibility with legacy class names
+            $('.collapse-open').removeClass('collapse-open').addClass('ui-collapsible').addClass('ui-collapsible-opened');
+            $('.collapse-closed').removeClass('collapse-closed').addClass('ui-collapsible').addClass('ui-collapsible-closed');
+
+            $.grappelli.widgets.init();
+            // To customize JavaScript behavior use create a file
+            // template/admin/init.js and it will be included here.
+            {% block javascripts.init  %}{% include "admin/init.js"  %}{% endblock %}
+        });
+    </script>
+    {% endblock %}
+
+    {% block extrahead %}{% endblock %}
+    
+    {% ifnotequal get_lang 'en' %}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/i18n/ui.datepicker-{% get_lang %}.js"></script>
+    {% endifnotequal %}
+</head>
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+<!-- CONTAINER -->
+<div id="container">
+    <!-- HEADER -->
+    {% if not is_popup %}
+    {% include "admin/includes_grappelli/header.html" %}
+    {% endif %}
+    
+    <!-- BREADCRUMBS -->
+    {% block breadcrumbs %}
+    <div id="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>
+    {% endblock %}
+    
+    <!-- MESSAGES -->
+    {% if messages %}
+    <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+    {% endif %}
+    <!-- GRAPPELLI MESSAGES -->
+    {% if request %}{% get_messages request.session %}{% endif %}
+    
+    <!-- CONTENT -->
+    <div id="content" class="{% block content-class %}{% endblock %}">
+        {% block pretitle %}{% endblock %}
+        {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+        {% block object-tools %}{% endblock %}
+        {% block content %}
+            {{ content }}
+            {% block filters %}{% endblock %}
+        {% endblock %}
+        <br class="clear" />
+    </div>
+    
+    <!-- FOOTER -->
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+</body>
+</html>
+

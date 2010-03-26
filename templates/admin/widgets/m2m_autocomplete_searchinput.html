@@ -1,0 +1,5 @@
+{% load i18n %}
+{{ list_format }}{{ input_format }}
+{% spaceless %}
+<input id="{{ name }}" name="{{ name }}" class="vM2MAutocompleteSearchField ui-gFacelist {model:'{{model_name}}', app:'{{app_label}}', search_fields:'{{search_fields}}', related_url:'{{ related_url }}{{ url|safe }}', initial_data: {{ label|safe|default:"false" }}}" />
+{% endspaceless %}

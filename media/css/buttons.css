@@ -1,0 +1,449 @@
+a {
+    cursor:pointer;
+}
+
+
+/* Submit, Delete & Cancel Buttons
+------------------------------------------------------------------------------------------------------ */
+
+input[type=submit], input[type=reset], input[type=button], button {
+    margin-top: 0; margin-bottom: 0; padding: 4px 5px 5px;
+    width: auto; height: 25px;
+    color: #fff;
+    border: none;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+    background: #acd7e5;
+    cursor: pointer;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type=submit], input[type=reset], input[type=button], button {
+        padding: 5px 8px 4px;
+    }
+}
+
+.submit-row a.delete-link, 
+.submit-row a.cancel-link {
+    display: block;
+    padding: 5px 7px 4px;
+    font-weight: bold;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+
+input[type=submit], 
+#bookmark-add-cancel, 
+.submit-row a.delete-link:link, .submit-row a.delete-link:visited, 
+.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited {
+    box-shadow: 0 0 3px #333; -moz-box-shadow: 0 0 3px #333; -webkit-box-shadow: 0 0 3px #333;
+    opacity: .6;
+}
+.submit-row a.delete-link:link, .submit-row a.delete-link:visited {
+    color: #fff;
+    background: #bf3030;
+    background: -webkit-gradient(linear, left top, left bottom, from(#d93636), to(#bf3030));
+    background: -moz-linear-gradient(top, #d93636, #bf3030);
+}
+#bookmark-add-cancel, 
+.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited {
+    color: #fff;
+    background: #666;
+    background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#444));
+    background: -moz-linear-gradient(top, #666, #444);
+}
+
+input[type=submit] {
+    background: #309bbf;
+    background: -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));
+    background: -moz-linear-gradient(top, #39bae5, #309bbf);
+}
+input[type=submit]:hover, 
+#bookmark-add-cancel:hover, 
+.submit-row a.delete-link:hover, .submit-row a.delete-link:active, 
+.submit-row a.cancel-link:hover, .submit-row a.cancel-link:active {
+    color: #fff;
+    background: #444;
+    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#666));
+    background: -moz-linear-gradient(top, #444, #666);
+    opacity: 1;
+}
+
+input[type=submit].default {
+    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 3px #666; -webkit-box-shadow: 0 0 3px #666;
+    opacity: 1;
+}
+
+
+
+/* Icons & Buttons
+------------------------------------------------------------------------------------------------------ */
+
+button.fb_show, 
+button.ui-datepicker-trigger, 
+button.ui-timepicker-trigger, 
+button.ui-gAutocomplete-browse, 
+button.ui-gAutoSlugField-toggle, 
+button.ui-gFacelist-browse, 
+a.button, 
+.vDateField + span a, 
+.vTimeField + span a, 
+a.fb_show, 
+a.related-lookup, 
+a.add-another {
+    position: relative;
+    margin-left: -25px;
+    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
+    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+}
+
+button.fb_show, 
+button.ui-gAutocomplete-browse, 
+button.ui-gFacelist-browse, 
+button.ui-gAutoSlugField-toggle, 
+button.ui-datepicker-trigger, 
+button.ui-timepicker-trigger {
+    width:      25px;
+    border:     1px solid #ccc;
+    background: #e1f0f5 50% 50% no-repeat;
+}
+button.fb_show:hover, 
+button.ui-gAutocomplete-browse:hover, 
+button.ui-gFacelist-browse:hover, 
+button.ui-gAutoSlugField-toggle:hover, 
+button.ui-datepicker-trigger:hover, 
+button.ui-timepicker-trigger:hover {
+    background-color: #e1e1e1;
+}
+button.fb_show[disabled], 
+button.ui-gAutocomplete-browse[disabled], 
+button.ui-gFacelist-browse[disabled], 
+button.ui-gAutoSlugField-toggle[disabled], 
+button.ui-datepicker-trigger[disabled], 
+button.ui-timepicker-trigger[disabled] {
+    /* TODO: there probably should be a icon-related-lookup-disabled.png.. */
+    background-image:url("../img/icons/icon-related-lookup-hover.png"), -moz-linear-gradient(center top , #e1e1e1, #eeeeee);
+    opacity: 0.5;
+}
+
+#changelist table button {
+    top: -7px;
+    margin-bottom: -12px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #changelist table button {
+        top: -8px;
+        margin-bottom: -11px;
+    }
+}
+
+
+/*  Hide Images in Templates ........................................... */
+
+a.add-another img, a.related-lookup img { opacity: 0; }
+a.related-lookup img { display: none; }
+
+
+/*  Filebrowser Button ......................................... */
+
+/*button.fb_show {
+    background-image: url('../img/icons/icon-fb-show.png');
+    background-image: url('../img/icons/icon-fb-show.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: url('../img/icons/icon-fb-show.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5))
+}
+button.fb_show:hover {
+    ackground-image: url('../img/icons/icon-fb-show-hover.png');
+    background-image: url('../img/icons/icon-fb-show-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: url('../img/icons/icon-fb-show-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}*/
+
+
+/*  Autocomplete Button ......................................... */
+
+button.ui-gAutocomplete-browse, 
+button.ui-gFacelist-browse {
+    background-image: url('../img/icons/icon-related-lookup.png');
+    background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
+}
+button.ui-gAutocomplete-browse:hover, 
+button.ui-gFacelist-browse:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
+    background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+.errors button.ui-gAutocomplete-browse,
+.errors button.ui-gFacelist-browse {
+    border-color:#bf3030 #bf3030 #bf3030 #ccc;
+}
+
+/*  AutoSlugField Button ......................................... */
+
+/* TODO: lock/unlock icons .. */
+
+button.ui-gAutoSlugField-toggle {
+    background-image: url('../img/icons/icon-related-lookup.png');
+    background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
+}
+button.ui-gAutoSlugField-toggle:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
+    background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+.errors button.ui-gAutoSlugField-toggle {
+    border-color:#bf3030 #bf3030 #bf3030 #ccc;
+}
+
+
+/*  Datepicker Button ......................................... */
+
+button.ui-datepicker-trigger {
+    background-image: url('../img/icons/icon-datepicker.png');
+    background-image: url('../img/icons/icon-datepicker.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: url('../img/icons/icon-datepicker.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
+}
+button.ui-datepicker-trigger:hover {
+    background-image: url('../img/icons/icon-datepicker-hover.png');
+    background-image: url('../img/icons/icon-datepicker-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: url('../img/icons/icon-datepicker-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+
+
+/*  Timepicker Button ......................................... */
+
+button.ui-timepicker-trigger {
+    background-image: url('../img/icons/icon-timepicker.png');
+    background-image: url('../img/icons/icon-timepicker.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: url('../img/icons/icon-timepicker.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
+}
+button.ui-timepicker-trigger:hover {
+    background-image: url('../img/icons/icon-timepicker-hover.png');
+    background-image: url('../img/icons/icon-timepicker-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: url('../img/icons/icon-timepicker-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+
+
+/*  Search Button ......................................... */
+
+button.search {
+    margin: 0 4px 0 -20px;
+    border-color: transparent !important;
+    background-image: url('../img/icons/icon-search.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+}
+button.search:hover {
+    background-image: url('../img/icons/icon-search-hover.png');
+}
+
+
+
+/* Links as Buttons
+------------------------------------------------------------------------------------------------------ */
+
+a.button, 
+.datecrumbs a, 
+.datecrumbs span {
+    display: inline-block;
+    padding: 4px 8px 4px;
+    font-size: 11px; font-weight: bold;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+
+
+/*  Drop-Down Button ......................................... */
+
+a.button.drop-down {
+    float: right;
+    padding-left: 20px;
+    padding-top: 3px;
+}
+a.button.drop-down[class*="selected"] {
+    position: relative; z-index: 1000;
+    height: 17px;
+    color: #444 !important;
+    border-color: #b0b0b0;
+    border-bottom-width: 0 !important;
+    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0;
+    box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+    -moz-box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+    -webkit-box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+}
+a.button.drop-down:link, a.button.drop-down:visited {
+    color: #309bbf;
+    background: #fff url('../img/icons/icon-dropdown.png') 3px 3px no-repeat;
+}
+a.button.drop-down[class*="selected"], 
+a.button.drop-down:hover, a.button.drop-down:active {
+    color: #666;
+    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5) !important;
+    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
+}
+
+
+/*  Filebrowser & Related Lookup ......................................... */
+
+a.fb_show img {
+    width: 0; height: 0;
+    opacity: 0;
+}
+
+a.fb_show, 
+a.related-lookup {
+    top: 0;
+    display: inline-block;
+    margin-bottom: -9.5px;
+    width: 23px; height: 23px;
+    border: 1px solid #ccc;
+    background: 50% 50% no-repeat;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    a.fb_show, 
+    a.related-lookup {
+        margin-bottom: -10px;
+    }
+}
+
+a.fb_show:link, a.fb_show:visited, 
+a.related-lookup:link, a.related-lookup:visited {
+    background-color: #e1f0f5;
+}
+a.fb_show:hover, a.fb_show:active, 
+a.related-lookup:hover, a.related-lookup:active {
+    background-color: #e1e1e1;
+}
+
+a.fb_show:link, a.fb_show:visited {
+    background-image: url('../img/icons/icon-fb-show.png');
+    background-image: url('../img/icons/icon-fb-show.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: url('../img/icons/icon-fb-show.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
+}
+a.fb_show:hover, a.fb_show:active {
+    background-image: url('../img/icons/icon-fb-show-hover.png');
+    background-image: url('../img/icons/icon-fb-show-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: url('../img/icons/icon-fb-show-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+a.related-lookup:link, a.related-lookup:visited {
+    background-image: url('../img/icons/icon-related-lookup.png');
+    background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
+}
+a.related-lookup:hover, a.related-lookup:active {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
+    background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+
+a.related-lookup + strong {
+    position: relative; top: 1px;
+    margin-left: 5px;
+    color: #555; font-size: 11px; font-weight: bold;
+}
+#changelist table a.related-lookup {
+    top: -5px;
+    margin-bottom: -12px;
+}
+#changelist table a.related-lookup + strong {
+    top: -1px;
+}
+
+
+/*  Add Another ......................................... */
+
+a.add-another {
+    position: relative;
+    display: inline-block;
+    margin-left: 3px;
+    width: 14px; height: 14px;
+    vertical-align: top;
+    font-size: 11px; line-height: 16px;
+    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    background: 50% 50% no-repeat;
+}
+
+a.add-another:link, a.add-another:visited {
+    background-image: url('../img/icons/icon-add_another.png');
+}
+a.add-another:hover, a.add-another:active {
+    background-image: url('../img/icons/icon-add_another-hover.png');
+}
+
+.change-list table tbody a.add-another {
+    position: relative; top: -7px;
+}
+
+.radiolist.inline + a.add-another, 
+.checkboxlist.inline + a.add-another {
+    margin-left: -4px;
+}
+
+
+/*  Buttons & Button Links in Errors ......................................... */
+
+.error input + button, 
+.error .vDateField + button, 
+.error .vTimeField + button, 
+.error input + a.fb_show, 
+.error input + a.related-lookup, 
+.error input + a.add-another, 
+.errors input + button, 
+.errors .vDateField + button, 
+.errors .vTimeField + button, 
+.errors input + a.fb_show, 
+.errors input + a.related-lookup, 
+.errors input + a.add-another {
+    border-color: #bf3030;
+}
+
+
+/*  Focused Buttons & Button Links ......................................... */
+
+input:focus + button, 
+.vDateField:focus + span a, 
+.vTimeField:focus + span a, 
+input:focus + a.fb_show, 
+input:focus + a.related-lookup, 
+input:focus + a.add-another {
+    border-color: #bbb;
+    border-left-color: #ccc;
+}
+
+
+/*  Unknown, Yes & No Workaround
+------------------------------------------------------------------------------------------------------ */
+
+img[src$="img/admin/icon-unknown.gif"] {
+    padding: 5px;
+    width: 0; height: 0;
+    background: url('../img/icons/icon-unknown.png') 0 50% no-repeat;
+}
+img[src$="img/admin/icon-no.gif"] {
+    padding: 5px;
+    width: 0; height: 0;
+    background: url('../img/icons/icon-no.png') 0 50% no-repeat;
+}
+img[src$="img/admin/icon-yes.gif"] {
+    padding: 5px;
+    width: 0; height: 0;
+    background: url('../img/icons/icon-yes.png') 0 50% no-repeat;
+}
+
+#changelist form table img[src$="img/admin/icon-unknown.gif"] {
+    position: relative; top: 2px;
+    vertical-align: top;
+}
+#changelist form table img[src$="img/admin/icon-no.gif"] {
+    position: relative; top: 3px;
+    vertical-align: top;
+}
+#changelist form table img[src$="img/admin/icon-yes.gif"] {
+    position: relative; top: 2px;
+    vertical-align: top;
+}
+

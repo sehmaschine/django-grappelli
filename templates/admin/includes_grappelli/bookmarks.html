@@ -1,0 +1,32 @@
+{% load i18n grp_tags grp_csrf %}
+
+<ul id="bookmarks">
+    <li id="toggle-bookmarks-listing" class="enabled"><a>{% trans "Bookmarks" %}</a>
+        <ul id="bookmarks-listing">
+            {% if object_list %}
+            {% for object in object_list %}
+            <li><a href="{{ object.link }}"><strong>{{ object }}</strong></a></li>
+            {% endfor %}
+            {% else %}
+            <li class="no-entries"><p>{% trans "No Bookmarks Found" %}</p></li>
+            {% endif %}
+        </ul>
+    </li>
+    <li class="action bookmark-add{% if not is_bookmark %} active{% endif %}">
+        {% if not is_bookmark %}<a id="toggle-bookmark-add" class="bookmark-add"> </a>{% else %}&nbsp;{% endif %}
+        <div id="bookmark-add">
+            <form action="{% url grp_bookmark_add %}" method="POST">{% grp_csrf_token %}
+                <input id="bookmark-path" name="path" type="hidden" value="" />
+                <input id="bookmark-title" name="title" type="text" value="" />
+                <button id="bookmark-add-cancel">{% trans "Cancel" %}</button>
+                <input type="submit" value='{% trans "Save Bookmark" %}' id="bookmark-save" class="default" />
+            </form>
+        </div>
+    </li>
+    <li class="action bookmark-remove{% if is_bookmark %} active{% endif %}">
+        {% if is_bookmark %}<a href="{% url grp_bookmark_remove %}?path={{ path|urlencode }}" class="bookmark-remove"> </a>{% else %}&nbsp;{% endif %}
+    </li>
+    <li class="action bookmark-manage">
+        <a href="{% get_admin_url %}grappelli/bookmark/{{ bookmark.id }}/" class="bookmark-manage"> </a>
+    </li>
+</ul>

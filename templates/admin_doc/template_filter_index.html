@@ -1,0 +1,62 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia %}
+{% load i18n %}
+{% block extrahead %}
+<script type="text/javascript">
+$(function(){
+    // Correct the position of anchors (because "#header" & "#breadcrumbs" have a "position:fixed")
+    $('.table-of-contents a').click(function(){
+        var myReference = ".rte " + $(this).attr('href');
+        var targetOffset = $(myReference).offset().top;
+        $('html,body').scrollTop(targetOffset - 56);
+        return(false);
+    });
+    // Remove emtpy elements: wrkaround for problem reported in django-ticket #11817
+    $('.rte h4:empty').remove();
+    $('.rte p:empty').remove();
+    $('.rte hr').remove();
+});
+</script>
+{% endblock %}
+{% block bodyclass %}documentation{% endblock %}
+{% block content-class %}content-grid{% endblock %}
+{% block breadcrumbs %}<div id="breadcrumbs"><a href="../../">Home</a> &rsaquo; <a href="../">Documentation</a> &rsaquo; filters</div>{% endblock %}
+{% block title %}Template filters{% endblock %}
+
+{% block content %}
+
+<h1>Template filter documentation</h1>
+
+<div class="container-grid">
+    <div class="column span-6">
+        {% regroup filters|dictsort:"library" by library as filter_libraries %}
+        {% for library in filter_libraries %}
+        <div class="module table-of-contents">
+            <h2>{% firstof library.grouper "Built-in filters" %}</h2>
+            <ul>
+            {% for filter in library.list|dictsort:"name" %}
+                <li><a href="#{{ filter.name }}">{{ filter.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="column span-18 last rte">
+        {% regroup filters|dictsort:"library" by library as filter_libraries %}
+        {% for library in filter_libraries %}
+        <div class="group collapsible open">
+            <h2 class="collapsible-handler">{% firstof library.grouper "Built-in filters" %}</h2>
+            {% if library.grouper %}<p>To use these filters, put <code>{% templatetag openblock %} load {{ library.grouper }} {% templatetag closeblock %}</code> in your template before using the filter.</p>{% endif %}
+            {% for filter in library.list|dictsort:"name" %}
+            <div class="module">
+                <h3 id="{{ filter.name }}">{{ filter.name }}</h3>
+                <p>{{ filter.title }}</p>
+                <p>{{ filter.body }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
