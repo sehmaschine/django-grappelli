@@ -128,11 +128,13 @@ body {
     position: absolute;
     top: 3px;
     width: 16px;
-    height: 22px;
+    height: 30px;
     background-color: transparent;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     cursor: pointer;
+    margin:0 2px;
+    padding:0 4px;
 }
 .ui-datepicker .ui-datepicker-prev {
     left: 0;

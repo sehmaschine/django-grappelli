@@ -5,10 +5,9 @@
  *  jslinted - 9 Mar 2010 (r764)
  */
 (function($){
-
 $.datepicker.setDefaults({
 //    dateFormat:      'yy-mm-dd',
-    dateFormat:      gettext('DATET_FORMAT') || 'yy-mm-dd',
+    dateFormat:      (gettext('DATE_FORMAT') == 'DATE_FORMAT') && 'yy-mm-dd' || gettext('DATE_FORMAT'),
     buttonText:      ' ',
     duration:        160,
     showAnim:        'slideDown',

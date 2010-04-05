@@ -1015,6 +1015,7 @@ ul.submit-row li.left:first-child {
 .module.clockbox {
     padding: 3px;
     border-color: #bdbdbd;
+    z-index:1000;
     box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
 }
 .module.clockbox h2 {
@@ -1040,12 +1041,12 @@ p.clock-cancel {
     margin-top: 1px;
     padding: 0;
 }
-.clock-cancel a:link, .clock-cancel a:visited {
+.clock-cancel a, .clock-cancel a:visited {
     color: #aaa;
     border: 1px solid #c7c7c7;
     background: transparent;
 }
-ul.timelist li a:link, ul.timelist li a:visited {
+ul.timelist li a, ul.timelist li a:visited {
     color: #444;
     border: 1px solid #c7c7c7;
     background: #cee9f2;
