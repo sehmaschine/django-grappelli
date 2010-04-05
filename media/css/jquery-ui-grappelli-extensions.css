@@ -453,3 +453,10 @@ li.ui-gFacelist-item:hover span {
     margin-left:160px;
     width:744px;
 }
+
+.ui-draggable {
+    cursor:pointer;
+}
+.ui-draggable.ui-draggable-dragging {
+    cursor:move;
+}

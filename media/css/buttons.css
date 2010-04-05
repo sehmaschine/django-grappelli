@@ -87,8 +87,7 @@ a.button,
 .vDateField + span a, 
 .vTimeField + span a, 
 a.fb_show, 
-a.related-lookup, 
-a.add-another {
+a.related-lookup {
     position: relative;
     margin-left: -25px;
     border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
