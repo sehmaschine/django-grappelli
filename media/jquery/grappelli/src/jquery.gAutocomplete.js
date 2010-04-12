@@ -49,7 +49,7 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         return [$.grappelli.conf.get('autocomplete_url'), ui.options.app, '/', ui.options.model,'/'].join('');
     },
-    _init: function() {
+    _create: function() {
         var ui, width;
         ui = this;
         ui.options = $.extend(ui.options, ui.element.metadata());

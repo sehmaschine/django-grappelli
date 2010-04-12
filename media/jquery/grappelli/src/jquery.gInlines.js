@@ -81,13 +81,13 @@ $.widget('ui.gInlineGroup', {
         return ui.element.find('.items > .module').eq(index - 1);
     },
 
-    _init: function(){
+    _create: function(){
         var ui = this;
 
         ui._isTabular    = ui.element.hasClass('tabular');
         ui._isStacked    = !ui._isTabular;
         ui._totalForms   = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
-        ui._initialForms = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
+        ui._createialForms = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
 
         ui = $.extend(ui, $.grappelli[ui._isTabular && 'gInlineTabularBase' || 'gInlineStackedBase']);
 
@@ -127,7 +127,7 @@ $.widget('ui.gInlineGroup', {
             /// set TOTAL_FORMS to number of items
             container.find('input[id*="TOTAL_FORMS"]').val(count);
             
-            ui._initializeItem(newitem, count);
+            ui._createializeItem(newitem, count);
             return false;
         });
         
@@ -152,7 +152,7 @@ $.widget('ui.gInlineGroup', {
         */
     },
     /*
-    _initializeitem: function(el, count){
+    _createializeitem: function(el, count){
         
         /// replace ids, names, hrefs & fors ...
         el.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
@@ -258,7 +258,7 @@ $.widget('ui.gInlineStacked', {
         collapsible: true
     },
 
-    _init: function(){
+    _create: function(){
         var ui = this;
         // FIELDSETS WITHIN STACKED INLINES
         /* OBSOLETE ?
@@ -282,7 +282,7 @@ $.widget('ui.gInlineTabular', {
     options: {
         autoSelector: '.inline-tabular'
     },
-    _init: function(){
+    _create: function(){
     /*
         var ui = this;
         

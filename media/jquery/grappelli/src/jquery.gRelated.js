@@ -75,7 +75,7 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
         autoSelector: 'input.vForeignKeyRawIdAdminField, input.vManyToManyRawIdAdminField',
     }),
 
-    _init: function() {
+    _create: function() {
         var ui = this;
         ui.dom = { object_id: ui.element, text: $('<strong />') };
         ui.dom.link = ui.element.next('a').attr('onclick', false)
@@ -104,7 +104,7 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
         autoSelector: 'input[name*="object_id"]'
     }),
 
-    _init: function(){
+    _create: function(){
         var ui = this;
         ui.dom = {
             object_id: ui.element,

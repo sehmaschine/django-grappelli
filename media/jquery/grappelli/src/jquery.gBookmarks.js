@@ -37,7 +37,7 @@ $.widget('ui.gBookmarks', {
         hideTimeout: 500
     },
 
-    _init: function() {
+    _create: function() {
         var ui, url;
         ui  = this;
         url = $.grappelli.conf.get('bookmarks_url') +'?path='+ window.location.pathname +' #bookmarks > li';

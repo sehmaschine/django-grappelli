@@ -38,7 +38,7 @@ $.widget('ui.gDateField', {
         spacer: '<span class="spacer" />'
     },
 
-    _init: function() {
+    _create: function() {
         var ui = this;
         ui.element.datepicker().parent()
             // replace BR

@@ -32,7 +32,7 @@ $.widget('ui.gFacelist', {
         autocomplete: {}
     },
 
-    _init: function(){
+    _create: function(){
         var ui = this;
         
         // merge options from server

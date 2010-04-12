@@ -27,7 +27,7 @@ $.widget('ui.gSelectFilter', {
     
     _cache: {avail: [], chosen: []},
 
-    _init: function() {
+    _create: function() {
         var id, ui;
         ui = this;
         id = ui.element.attr('id');

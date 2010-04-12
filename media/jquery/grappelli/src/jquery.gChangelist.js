@@ -12,7 +12,7 @@ $.widget('ui.gChangelist', {
         autoSelector: '.changelist-content'
     },
 
-    _init: function() {
+    _create: function() {
         var ui = this;
           
         this.table   = ui.element.find('table');

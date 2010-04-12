@@ -7,10 +7,12 @@
 (function($){
 
 $.widget('ui.gActions', {
+
     options: {
         autoSelector: '#changelist'
     },
-    _init: function() {
+
+    _create: function() {
         var ui = this;
         $('#action-toggle').show().bind('click.grappelli', function(){
             ui.element.find('input.action-select').attr('checked', $(this).attr('checked'));

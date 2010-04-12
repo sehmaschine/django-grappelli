@@ -16,7 +16,7 @@ $.widget('ui.gAutoSlugField', {
         delay: 1.5
     },
 
-    _init: function() {
+    _create: function() {
         var ui  = this; 
         ui.mode = ui.element.attr('rel') && 'target' || 'standalone';
         ui.dom  = {};

@@ -25,7 +25,7 @@ $.widget('ui.gCollapsible.js', {
         autoSelector: '.ui-collapsible-opened, .ui-collapsible-closed, ui-collapsible-all-opened, ui-collapsible-all-closed'
     },
 
-    _init: function() {
+    _create: function() {
         var ui  = this; 
         ui._isGroup = ui.element.addClass('ui-collapsible').hasClass('group');
         ui.dom  = {
