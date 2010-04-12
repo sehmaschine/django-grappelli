@@ -7,74 +7,9 @@
 {% block javascripts %}
     {{ block.super }}
     {% if cl.formset %}{{ media }}{% endif %}
-    
     <script type="text/javascript">
-        $.grappelli.conf.set('isPopup', {% if is_popup %}true{% else %}false{% endif %});
-        function HorizontalOverflow(content) {
-            var TableWidth = $(content).find('table').outerWidth();
-            var SpanFlexibleWidth = $(content).find('.span-flexible').outerWidth();
-            if (TableWidth > SpanFlexibleWidth) {
-                $(content).find('.span-flexible').css('min-width', TableWidth + 1 + 'px');
-                $(content).find('.span-flexible').next('.column').css('border-right', '20px solid transparent');
-            }
-            if (TableWidth < SpanFlexibleWidth) {
-                $(content).find('.span-flexible').css('min-width', 'auto');
-            }
-        };
-        
-        function TableStretch(Module) {
-            // Table of module, always '.changelist-results'
-            var Table = $(Module).children('table');
-            
-            // Set width to 'auto' to calculate new TableLastChildModifiedWidth when th browser-window is resized
-            $(Table).children('table thead th:last').css('width', 'auto');
-            
-            // Calculate desired width of thead th:last
-            var ModuleWidth = $(Module).outerWidth();
-            var TableWidth = $(Table).outerWidth();
-            var TableModuleDifference = ModuleWidth - TableWidth;
-            var TableLastChildWidth = $(Table).children('thead th:last').outerWidth();
-            var TableLastChildModifiedWidth = TableLastChildWidth + TableModuleDifference - 12;
-            // alert(ModuleWidth);
-            // alert(TableWidth);
-            // alert(TableModuleDifference);
-            // alert(TableLastChildWidth);
-            // alert(TableLastChildModifiedWidth);
-            
-            //  assign TableLastChildModifiedWidth to thead th:last
-            $(Table).children('thead th:last').css('width', TableLastChildModifiedWidth);
-        };
-        
-        
-        $(document).ready(function() {
-            // Stretch the table as soon as it - and its delayed contents like RelatedObjects - are loaded
-            // The image is a temporary solution
-            $('.changelist-results img.loader').load(function() {
-                TableStretch('.changelist-results');
-            });
-//          var filter_activated = false;
-//          var filter_activated_counter = 0;
-//          $(".filter_choice").each(function(){
-//              $(this).find("option:selected").not(":first-child").each(function(){
-//                  filter_activated_counter = filter_activated_counter + 1;
-//                  filter_activated = true;
-//              });
-//          });
-            
-        });
-        $(window).resize(function(){
-            HorizontalOverflow('.container-flexible');
-            TableStretch('.changelist-results');
-        });
-        window.onload = function () {
-            HorizontalOverflow('.container-flexible');
-            
-            // Stretch the table as soon as it - and its delayed contents like RelatedObjects - are loaded
-            // inserted temporarily because the document.ready does not work on first load (just when the page is reloaded)
-            TableStretch('.changelist-results');
-        }
+    $.grappelli.conf.set('isPopup', {% if is_popup %}true{% else %}false{% endif %});
     </script>
-    
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS-- >
