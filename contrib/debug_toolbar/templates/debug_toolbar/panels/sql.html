@@ -1,0 +1,69 @@
+{% load i18n %}
+<table>
+	<thead>
+		<tr>
+			<th>{% trans "Time" %}&nbsp;(ms)</th>
+			<th>{% trans "Action" %}</th>
+			<th>{% trans 'Stacktrace' %}</th>
+			<th>{% trans 'Query' %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for query in queries %}
+			<tr class="{% cycle 'djDebugOdd' 'djDebugEven' %}">
+				<td>{{ query.duration|floatformat:"2" }}</td>
+				<td>
+				{% if query.params %}
+					{% if query.is_select %}
+						<a class="remoteCall" href="/__debug__/sql_select/?sql={{ query.raw_sql|urlencode }}&amp;params={{ query.params|urlencode }}&amp;duration={{ query.duration|floatformat:"2"|urlencode }}&amp;hash={{ query.hash }}">SELECT</a><br />
+						<a class="remoteCall" href="/__debug__/sql_explain/?sql={{ query.raw_sql|urlencode }}&amp;params={{ query.params|urlencode }}&amp;duration={{ query.duration|floatformat:"2"|urlencode }}&amp;hash={{ query.hash }}">EXPLAIN</a><br />
+						{% if is_mysql %}
+							<a class="remoteCall" href="/__debug__/sql_profile/?sql={{ query.raw_sql|urlencode }}&amp;params={{ query.params|urlencode }}&amp;duration={{ query.duration|floatformat:"2"|urlencode }}&amp;hash={{ query.hash }}">PROFILE</a><br />
+						{% endif %}
+					{% endif %}
+				{% endif %}
+				</td>
+				<td>
+					{% if query.stacktrace %}
+					<div class="djSQLShowStacktraceDiv"><a class="djSQLShowStacktrace" href="#">Toggle Stacktrace</a></div>
+					{% endif %}
+				</td>
+				<td class="syntax">
+					<div class="djDebugSqlWrap">
+						<div class="djDebugSql">{{ query.sql|safe }}</div>
+						{% if query.stacktrace %}
+						<div class="djSQLHideStacktraceDiv" style="display:none;">
+							<table>
+								<tr>
+									<th>{% trans "Line" %}</th>
+									<th>{% trans "Method" %}</th>
+									<th>{% trans "File" %}</th>
+								</tr>
+								{% for file, line, method in query.stacktrace %}
+									<tr>
+										<td>{{ line }}</td>
+										<td><code>{{ method|escape }}</code></td>
+										<td><code>{{ file|escape }}</code></td>
+									</tr>
+								{% endfor %}
+							</table>
+							{% if query.template_info %}
+							<table>
+								{% for line in query.template_info.context %}
+								<tr>
+									<td>{{ line.num }}</td>
+									<td><code style="font-family: monospace;{% if line.highlight %}background-color: lightgrey{% endif %}">{{ line.content }}</code></td>
+								</tr>
+								{% endfor %}
+							</table>
+							<p><strong>{{ query.template_info.name|default:"(unknown)" }}</strong></p>
+							{% endif %}
+						</div>
+						{% endif %}
+            <span class="djDebugLineChart{% if query.is_slow %} djDebugLineChartWarning{% endif %}" style="width:{{ query.width_ratio }}%; left:{{ query.start_offset }}%;"></span>
+					</div>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

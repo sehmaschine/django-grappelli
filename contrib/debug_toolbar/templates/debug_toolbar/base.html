@@ -1,0 +1,55 @@
+{% load i18n %}
+<script type="text/javascript" charset="utf-8">
+// <![CDATA[
+var DEBUG_TOOLBAR_MEDIA_URL = "{{ DEBUG_TOOLBAR_MEDIA_URL }}";
+// ]]>
+</script>
+<script type="text/javascript" src="{{ DEBUG_TOOLBAR_MEDIA_URL }}js/toolbar.min.js"></script>
+<div id="djDebug">
+	<div style="display:none;" id="djDebugToolbar">
+		<ul id="djDebugPanelList">
+			{% if panels %}
+			<li><a id="djHideToolBarButton" href="#" title="{% trans "Hide Toolbar" %}">{% trans "Hide" %} &raquo;</a></li>
+			{% else %}
+			<li id="djDebugButton">DEBUG</li>
+			{% endif %}
+			{% for panel in panels %}
+				<li>
+					{% if panel.has_content %}
+						<a href="{{ panel.url|default:"#" }}" title="{{ panel.title }}" class="{{ panel.dom_id }}">
+					{% else %}
+					    <div class="contentless">
+					{% endif %}
+					{{ panel.nav_title }}
+					{% with panel.nav_subtitle as subtitle %}
+						{% if subtitle %}<br /><small>{{ subtitle }}</small>{% endif %}
+					{% endwith %}
+					{% if panel.has_content %}
+						</a>
+					{% else %}
+					    </div>
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div style="display:none;" id="djDebugToolbarHandle">
+		<a title="{% trans "Show Toolbar" %}" id="djShowToolBarButton" href="#">&laquo;</a>
+	</div>
+	{% for panel in panels %}
+		{% if panel.has_content %}
+			<div id="{{ panel.dom_id }}" class="panelContent">
+				<div class="djDebugPanelTitle">
+					<a href="" class="djDebugClose">{% trans "Close" %}</a>
+					<h3>{{ panel.title|safe }}</h3>
+				</div>
+				<div class="djDebugPanelContent">
+				    <div class="scroll">
+				        {{ panel.content|safe }}
+				    </div>
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+	<div id="djDebugWindow" class="panelContent"></div>
+</div>
