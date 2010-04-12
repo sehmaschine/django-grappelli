@@ -69,7 +69,8 @@ $.RelatedDefaultsBase = {
 
 
 $.widget('ui.gRelated', $.extend($.RelatedBase, {
-    _init: function() {
+    options: $.RelatedDefaultsBase,
+    _create: function() {
         var ui = this;
         ui.dom = { object_id: ui.element, text: $('<strong />') };
         
@@ -93,10 +94,9 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.ui.gRelated.defaults = $.RelatedDefaultsBase;
-
 $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
-    _init: function(){
+    options: $.RelatedDefaultsBase,
+    _create: function(){
         var ui = this;
 
         ui.dom = {
@@ -151,7 +151,6 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     }
 }));
 
-$.ui.gGenericRelated.defaults = $.RelatedDefaultsBase;
 
 // Used in popup windows to disable default django behaviors
 $(function(){
