@@ -57,6 +57,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
 
     {# this will only be for development mode, a single minified file will be used for distribution. #}
     {# grappelli plugins #}
+    <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gLayout.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gTimeField.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gDateField.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gChangelist.js"></script>
@@ -90,6 +91,7 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
         });
 
         $.grappelli.conf.set('widgets', [
+            'gLayout',
             'gInlineGroup',
             'gInlineTabular',
             'gActions',

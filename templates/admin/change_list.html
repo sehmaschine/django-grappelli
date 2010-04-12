@@ -6,71 +6,20 @@
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
-    {% if cl.formset %}
-        {{ media }}
-    {% endif %}
-    {% if is_popup %}
-    <script type="text/javascript">
-        // HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
-        $('div.actions, p.submit-row').hide();
-        $('input.action-select').parent().hide();
-        $('input#action-toggle').parent().hide();
-    </script>
-    {% endif %}
+    {% if cl.formset %}{{ media }}{% endif %}
     
     <script type="text/javascript">
-        function initializeFlexibleLayout(content) {
-            $('#content').addClass('content-flexible');
-            $(content).find('.span-flexible').next('.column').parent().addClass('layout-flexible-grid');
-            $(content).find('.column').next('.span-flexible').parent().addClass('layout-grid-flexible');
-            $(content).append('<br clear="all" />');
-            // Layout Flexible + Grid
-            if ($(content).hasClass('layout-flexible-grid')) {
-                var SpanGrid = $(content).find('.span-flexible').next('.column').outerWidth();
-                var PaddingRight = SpanGrid + 20;
-                var MarginRight = - SpanGrid - 20;
-                $(content).css({
-                    'padding-right': PaddingRight
-                });
-                $(content).find('.span-flexible').next('.column').css({
-                    'margin-right': -10000
-                });
-            }
-            // Layout Grid + Flexible
-            if ($(content).hasClass('layout-grid-flexible')) {
-                var SpanGrid = $(content).find('.span-flexible').prev('.column').outerWidth();
-                var PaddingLeft = SpanGrid + 20;
-                var MarginLeft = - SpanGrid - 20;
-                $(content).css({
-                    'padding-left': PaddingLeft
-                });
-                $(content).find('.span-flexible').prev('.column').css({
-                    'margin-left': MarginLeft
-                });
-            }
-        };
-
+        $.grappelli.conf.set('isPopup', {% if is_popup %}true{% else %}false{% endif %});
         function HorizontalOverflow(content) {
             var TableWidth = $(content).find('table').outerWidth();
             var SpanFlexibleWidth = $(content).find('.span-flexible').outerWidth();
             if (TableWidth > SpanFlexibleWidth) {
-                $(content).find('.span-flexible').css({
-                    'min-width' : TableWidth + 1 + 'px'
-                });
-                $(content).find('.span-flexible').next('.column').css({
-                    'border-right' : '20px solid transparent'
-                });
+                $(content).find('.span-flexible').css('min-width', TableWidth + 1 + 'px');
+                $(content).find('.span-flexible').next('.column').css('border-right', '20px solid transparent');
             }
             if (TableWidth < SpanFlexibleWidth) {
-                $(content).find('.span-flexible').css({
-                    'min-width': 'auto'
-                });
+                $(content).find('.span-flexible').css('min-width', 'auto');
             }
-        };
-        
-        function ModifyTableElements() {
-            $('.changelist-results a.add-another').parent().addClass('nowrap');
-            // $('.changelist-results a.related-lookup').parent().addClass('nowrap');
         };
         
         function TableStretch(Module) {
@@ -98,23 +47,11 @@
         
         
         $(document).ready(function() {
-            initializeFlexibleLayout('.container-flexible');
-            ModifyTableElements();
-            
             // Stretch the table as soon as it - and its delayed contents like RelatedObjects - are loaded
             // The image is a temporary solution
             $('.changelist-results img.loader').load(function() {
                 TableStretch('.changelist-results');
             });
-            
-            $(".date-hierarchy-choice").change(function(){
-                location.href = $(this).val();
-            });
-            
-            $(".filter_choice").change(function(){
-                location.href = $(this).val();
-            });
-            
 //          var filter_activated = false;
 //          var filter_activated_counter = 0;
 //          $(".filter_choice").each(function(){

@@ -17,6 +17,14 @@ $.widget('ui.gChangelist', {
           
         this.table   = ui.element.find('table');
         this.content = ui.element;
+
+        $(".date-hierarchy-choice").change(function(){
+            location.href = $(this).val();
+        });
+
+        $(".filter_choice").change(function(){
+            location.href = $(this).val();
+        });
         
         // TICKET #11447: td containing a.add-another need.nowrap
         $('table a.add-another').parent('td').addClass('nowrap');

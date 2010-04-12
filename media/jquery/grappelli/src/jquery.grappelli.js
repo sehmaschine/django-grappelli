@@ -262,6 +262,7 @@ $(function(){
         .find('input, select, textarea, button').eq(0)
         .add('#searchbar').focus();
 
+    /*
     $('.object-tools a[href=history/]').bind('click.grappelli', function(){
         $('<div />').hide().appendTo('body')
             .load($(this).attr('href') +' #content', {}, function(html, rsStatus){
@@ -273,7 +274,7 @@ $(function(){
             });
         return false;
     });
-    
+    */
 
 });
 
