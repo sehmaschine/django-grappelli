@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     ('^$', 'django.views.generic.simple.redirect_to', {'url': '/admin/'}),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^grappelli/', include('grappelli.urls')),
-    (r'^grappelli/test/', include('grappellitest.urls')),
+#   (r'^grappelli/test/', include('grappellitest.urls')),
     (r'^admin/(.*)', admin.site.root),
 )
 

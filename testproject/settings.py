@@ -78,7 +78,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#   'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'grappelli.middleware.JavaScript404Patch',
     'grappelli.middleware.BrowserCompatibilityEnforcer',
 )
@@ -101,7 +101,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admindocs',
     'grappelli',
-    'grappellitest',
+#   'grappellitest',
     'django_evolution',
     'debug_toolbar',
 #   'django_extensions',
