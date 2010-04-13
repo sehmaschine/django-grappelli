@@ -27,6 +27,8 @@ class GrappelliEnhancedFieldsAdmin(GrappelliModelAdmin):
     }
 
     class Media:
+        verbose_name = u'Enhanced fields test'
+        verbose_name_plural = u'Enhanced related fields tests'
         js = [
             settings.ADMIN_MEDIA_PREFIX + 'jquery/tinymce/jscripts/tiny_mce/tiny_mce.js',
             settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
@@ -34,90 +36,38 @@ class GrappelliEnhancedFieldsAdmin(GrappelliModelAdmin):
 admin.site.register(GrappelliEnhancedFields, GrappelliEnhancedFieldsAdmin)
 
 
+class GrappelliRelatedFieldsAdmin(GrappelliModelAdmin):
+    list_display = ('__unicode__', 'fk_test', 'gr_test')
+    list_editable = ('fk_test', 'gr_test')
+    raw_id_fields = ('gr_test', 'gr_m2m', )
+    fieldsets = (
+        (None, {
+            'fields': ('fk_test', 'gr_test', 'gr_m2m')
+        }),
+    )
+    autocomplete = {
+        'fk_test': {
+            'search_fields': ('name', 'domain',),
+            'input_format':  '{label:s}',           # optional
+            'list_format':   '{id:d} - {label:s}',  # optional
+        }
+    }
+    facelist = {
+        'm2m_test': {
+            'search_fields': ('name', 'domain',),
+            'input_format':  '{label:s}',           # optional
+            'list_format':   '{id:d} - {label:s}',  # optional
+        }
+    }
+    class Media:
+        verbose_name = u'Related fields test'
+        verbose_name_plural = u'Related fields tests'
+
+admin.site.register(GrappelliRelatedFields, GrappelliRelatedFieldsAdmin)
 
 
 
 
-
-#class DjangoFieldsAdmin(admin.ModelAdmin):
-#    list_display = ('__unicode__', 'char_test', 'url_test')
-#    list_editable = ('char_test', 'url_test')
-#    fieldsets = (
-#        (None, {
-#            'fields': ('char_test', 'text_test', 'slug_test', 'boolean_test', 'nboolean_test')
-#        }),
-#        ('Date and Time (collapse-open)', {
-#            'classes': ('collapse-open',),
-#            'fields': ('datetime_test', 'time_test', 'date_test')
-#        }),
-#        ('Networking (collapse-closed)', {
-#            'classes': ('collapse-closed',),
-#            'fields': ('url_test', 'email_test', 'ip_test')
-#        }),
-#        ('Numbers', {
-#            'fields': ('decimal_test', 'integer_test', 'pinteger_test', 'psinteger_test', 'sinteger_test', 'float_test')
-#        }),
-#        ('Uploads', {
-#            'fields': ('file_test', 'image_test', )
-#        }),
-#        ('Relationships', {
-#            'fields': ('fk_test', 'ooo_test', 'm2m_test')
-#        }),
-#    )
-#    
-#
-#admin.site.register(DjangoFields, DjangoFieldsAdmin)
-#
-#
-#class GrappelliFieldsAdmin(GrappelliModelAdmin):
-#    list_display = ('__unicode__',)
-#    raw_id_fields = ('gr_test', 'gr_m2m', )
-#    fieldsets = (
-#        (None, {
-#            'fields': ('test_name',)
-#        }),
-#        ('Auto SlugField', {
-#            'classes': ['ui-collapsible-open'],
-#            'fields': ( 'char_test', 'slug_test', 'slug_test2')
-#        }),
-#        ('Autocomplete', {
-#            'fields': ('fk_test' , 'm2m_test',) 
-#        }),
-#        ('Related lookup', {
-#            'fields': ('gr_test', 'gr_m2m',)
-#        }),
-#        ('Generic Related lookup', {
-#            'fields': ('content_type', 'object_id',)
-#        }),
-#        ('TinyMCE Rich text editor', {
-#            'fields': ('mce_test',)
-#        }),
-#    )
-#    auto_slugfield = {
-#        'slug_test':  'input[type=text],textarea',
-#        'slug_test2': True
-#    }
-#    autocomplete = {
-#        'fk_test': {
-#            'search_fields': ('name', 'domain',),
-#            'input_format':  '{label:s}',           # optional
-#            'list_format':   '{id:d} - {label:s}',  # optional
-#        }
-#    }
-#    facelist = {
-#        'm2m_test': {
-#            'search_fields': ('name', 'domain',),
-#            'input_format':  '{label:s}',           # optional
-#            'list_format':   '{id:d} - {label:s}',  # optional
-#        }
-#    }
-#    class Media:
-#        js = [
-#            settings.ADMIN_MEDIA_PREFIX + 'jquery/tinymce/jscripts/tiny_mce/tiny_mce.js',
-#            settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
-#        ]
-#admin.site.register(GrappelliFields, GrappelliFieldsAdmin)
-#
 #
 #class DjangoTabularFieldsInline(admin.TabularInline):
 #    model = DjangoFields

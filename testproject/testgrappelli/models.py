@@ -16,11 +16,11 @@ class GrappelliRelatedFields(models.Model):
     content_object = generic.GenericForeignKey("content_type", "object_id")
 
     def __unicode__(self):
-        return u'%s' % self.test_name
+        return u'%s' % self.fk_test
 
     class Meta:
-        verbose_name = u'Django related fields test'
-        verbose_name_plural = u'Django related fields test'
+        verbose_name = u'Related fields test'
+        verbose_name_plural = u'Related fields tests'
 
 
 class GrappelliEnhancedFields(models.Model):
@@ -33,8 +33,8 @@ class GrappelliEnhancedFields(models.Model):
         return u'%s' % self.char_test
 
     class Meta:
-        verbose_name = u'Grappelli enhanced fields test'
-        verbose_name_plural = u'Grappelli enhanced fields test'
+        verbose_name = u'Enhanced fields test'
+        verbose_name_plural = u'Enhanced fields tests'
 
 
 #class GrappelliInlines(models.Model):

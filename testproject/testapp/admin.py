@@ -86,6 +86,7 @@ admin.site.register(DjangoFileFields, DjangoFileFieldsAdmin)
 class DjangoRelatedFieldsAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'fk_test', 'ooo_test',)
     list_editable = ('fk_test', 'ooo_test',)
+    raw_id_fields = ('gr_test', 'gr_m2m', )
     fieldsets = (
         (None, {
             'fields': ('char_test', 'fk_test', 'm2m_test', 'ooo_test',)
