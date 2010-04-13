@@ -27,7 +27,7 @@ $.widget('ui.gTimeField', {
         ]
     },
 
-    _init: function() {
+    _create: function() {
         var ui = this;
         ui.dom = {
             picker: $('<div class="clockbox module"><h2 class="clock-title" /><ul class="timelist" /><p class="clock-cancel"><a /></p></div>'),
