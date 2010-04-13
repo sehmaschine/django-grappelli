@@ -13,7 +13,7 @@ from testgrappelli.models import *
 
 
 
-class GrappelliEnhancedFieldsAdmin(admin.ModelAdmin):
+class GrappelliEnhancedFieldsAdmin(GrappelliModelAdmin):
     list_display = ('__unicode__', 'slug_test', 'slug_test2', 'mce_test')
     list_editable = ('slug_test', 'slug_test2', 'mce_test')
     fieldsets = (
