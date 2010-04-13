@@ -107,5 +107,6 @@ INSTALLED_APPS = (
 #   'django_extensions',
     'testdjango',
     'testgrappelli',
+    'testinlines',
 )
 GRAPPELLI_ADMIN_TITLE = 'Grappelli Test Project'

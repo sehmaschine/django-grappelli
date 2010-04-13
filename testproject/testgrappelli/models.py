@@ -5,8 +5,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
+
 class GrappelliRelatedFields(models.Model):
-    char_test      = models.CharField(u"Test name", max_length=255)
+    char_test   = models.CharField(u"Test name", max_length=255)
     fk_test     = models.ForeignKey(Site, verbose_name=u"FK Autocomplete")
     gr_test     = models.ForeignKey(User, verbose_name=u"ForeignKey", null=True, blank=True)
     gr_m2m      = models.ManyToManyField(User, verbose_name=u"ManyToManyField", null=True, blank=True, related_name="m2m_user")
