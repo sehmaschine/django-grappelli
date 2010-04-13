@@ -53,6 +53,7 @@ $.widget('ui.gTimeField', {
                 .bind('click.grappelli', function(e){
                     button.callback.apply(this, [e, ui]);
                     ui.dom.picker.hide();
+                    $('body').unbind('.gTimeField');
                     return false;
                 }).end()
                 .appendTo(ui.dom.picker.find('.timelist'));
@@ -87,24 +88,19 @@ $.widget('ui.gTimeField', {
             display: 'block'
         }).show();
 
-        setTimeout(function(){
+        setTimeout(function(){ // weird google chrome fix .. but it works.
             $('body').one('click.gTimeField', function(e){
                 var target = $(e.originalTarget);
                 if (!target.hasClass('.clock-title') && !target.hasClass('ui-timepicker-trigger')) {
                    ui.hide(); 
                 }
             });
-        }, 50);
+        }, 1);
     },
 
     hide: function() {
         var ui = this;
         ui.dom.picker.hide();
-        $('body').trigger('click');
-        
     }
-
 });
-
 })(jQuery);
-
