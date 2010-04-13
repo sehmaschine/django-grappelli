@@ -18,7 +18,7 @@ class GrappelliEnhancedFieldsAdmin(GrappelliModelAdmin):
     list_editable = ('slug_test', 'slug_test2', 'mce_test')
     fieldsets = (
         (None, {
-            'fields': ('slug_test', 'slug_test2', 'mce_test')
+            'fields': ('char_test', 'slug_test', 'slug_test2', 'mce_test')
         }),
     )
     auto_slugfield = {
