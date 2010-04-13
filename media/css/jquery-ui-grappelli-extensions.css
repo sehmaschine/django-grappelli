@@ -460,3 +460,15 @@ li.ui-gFacelist-item:hover span {
 .ui-draggable.ui-draggable-dragging {
     cursor:move;
 }
+
+
+
+/**/
+/* django-debug toolbar adjustments (does not really belong here I guess ..)
+------------------------------------------------------------------------------------------------------ */
+
+#djDebugToolbar {
+    top:58px!important;
+    bottom:45px!important;
+}
+

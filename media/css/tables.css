@@ -136,6 +136,7 @@ table.xfull {
 #changelist table {
     position: relative;
     border: 1px solid #bdbdbd;
+    width:100%;
 }
 /* undecided: depends on js-solution for calculating table-widths */
 #changelist thead th:last-of-type {    
@@ -204,6 +205,10 @@ table.xfull {
     padding-top: 10px;
     padding-bottom: 9px;
     line-height: 16px;
+}
+
+#changelist .action-checkbox-column {
+    width:14px;
 }
 
 

@@ -18,6 +18,14 @@ $.widget('ui.gChangelist', {
         this.table   = ui.element.find('table');
         this.content = ui.element;
 
+
+        // TODO: 
+        // This should be in template .. but I can't find the template.
+        // The last td of an editable list should look like this;
+        // <td class="ui-helper-hidden"></td>
+        ui.element.find('td > input[type=hidden]')
+            .parent().hide();
+
         $(".date-hierarchy-choice").change(function(){
             location.href = $(this).val();
         });
