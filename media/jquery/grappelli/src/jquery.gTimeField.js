@@ -1,5 +1,5 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
- *  widget:  gTimeField
+*  widget:  gTimeField
  *  Package: Grappelli
  *
  *  jslinted - 8 Jan 2010
@@ -27,7 +27,7 @@ $.widget('ui.gTimeField', {
         ]
     },
 
-    _create: function() {
+    _init: function() {
         var ui = this;
         ui.dom = {
             picker: $('<div class="clockbox module"><h2 class="clock-title" /><ul class="timelist" /><p class="clock-cancel"><a /></p></div>'),
@@ -43,12 +43,14 @@ $.widget('ui.gTimeField', {
         ui.dom.picker.insertAfter(ui.dom.button)
             .find('h2').text(gettext('Choose a time')).end()
             .find('a').text(gettext('Cancel')).end()
-            .css({ display:  'none', position: 'absolute'});
+            .css({position: 'absolute'}).hide();
 
         $.each(ui.options.buttons, function(){
             var button = this;
-            $('<li><a href="#"></a></li>').find('a')
-                .text(button.label).bind('click.grappelli', function(e){
+            $('<li><a /></li>').find('a')
+                .attr('title', button.label)
+                .text(button.label)
+                .bind('click.grappelli', function(e){
                     button.callback.apply(this, [e, ui]);
                     ui.dom.picker.hide();
                     return false;
@@ -77,28 +79,32 @@ $.widget('ui.gTimeField', {
 
     show: function(at) {
         var pos = $(at).offset();
-        console.log(pos);
         var ui = this;
-        ui.dom.picker.show().css({
+
+        ui.dom.picker.css({
             top: pos.top - ui.dom.picker.height() / 2 - 13,
-            left: pos.left - ui.dom.picker.width()
-        });
-        $('body').bind('click.gTimeField', function(e){
-            var target = $(e.originalTarget);
-            if (!target.hasClass('.clock-title') && !target.hasClass('ui-timepicker-trigger')) {
-               ui.hide(); 
-            }
-        });
+            left: pos.left - ui.dom.picker.width(),
+            display: 'block'
+        }).show();
+
+        setTimeout(function(){
+            $('body').one('click.gTimeField', function(e){
+                var target = $(e.originalTarget);
+                if (!target.hasClass('.clock-title') && !target.hasClass('ui-timepicker-trigger')) {
+                   ui.hide(); 
+                }
+            });
+        }, 50);
     },
 
     hide: function() {
         var ui = this;
-        if (ui.dom.picker.is(':visible')) {
-            ui.dom.picker.hide();
-            $('body').unbind('click.gTimeField');
-        }
+        ui.dom.picker.hide();
+        $('body').trigger('click');
+        
     }
 
 });
 
 })(jQuery);
+
