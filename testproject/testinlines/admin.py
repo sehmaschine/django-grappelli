@@ -8,7 +8,7 @@ from testgrappelli.models import *
 from testdjango.models import *
 from testinlines.models import *
 
-# Tabular / Text Fields
+# Text Fields / Tabular
 
 class DjangoTextFieldsTabularInline(admin.TabularInline):
     model = DjangoTextFieldsInline
@@ -28,7 +28,7 @@ class DjangoTextFieldsTabularTestAdmin(admin.ModelAdmin):
     inlines = [DjangoTextFieldsTabularInline]
 admin.site.register(DjangoTextFieldsTabularTest, DjangoTextFieldsTabularTestAdmin)
 
-# Tabular / Text Fields
+# Text Fields / stacked
 
 class DjangoTextFieldsStackedInline(admin.StackedInline):
     model = DjangoTextFieldsInline
@@ -47,3 +47,44 @@ class DjangoTextFieldsStackedTestAdmin(admin.ModelAdmin):
     list_display = ('char_test',)
     inlines = [DjangoTextFieldsStackedInline]
 admin.site.register(DjangoTextFieldsStackedTest, DjangoTextFieldsStackedTestAdmin)
+
+
+# Time Fields / Tabular
+
+class DjangoTimeFieldsTabularInline(admin.TabularInline):
+    model = DjangoTimeFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'datetime_test', 'date_test', 'time_test', 
+            )
+        }),
+    )
+
+class DjangoTimeFieldsTabularTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoTimeFieldsTabularInline]
+admin.site.register(DjangoTimeFieldsTabularTest, DjangoTimeFieldsTabularTestAdmin)
+
+# Time Fields / stacked
+
+class DjangoTimeFieldsStackedInline(admin.StackedInline):
+    model = DjangoTimeFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'datetime_test', 'date_test', 'time_test', 
+            )
+        }),
+    )
+
+class DjangoTimeFieldsStackedTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoTimeFieldsStackedInline]
+admin.site.register(DjangoTimeFieldsStackedTest, DjangoTimeFieldsStackedTestAdmin)

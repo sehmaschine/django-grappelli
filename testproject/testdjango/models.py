@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
-
+# Text fields
 class DjangoTextFields(models.Model):
     char_test      = models.CharField(u"CharField", max_length=255, help_text=u"A string field, for small- to large-sized strings (required).")
     slug_test      = models.SlugField(u"SlugField", max_length=50, blank=True, help_text=u"A slug is a short label for something, containing only letters, numbers, underscores or hyphens. They're generally used in URLs.")
@@ -22,6 +22,7 @@ class DjangoTextFields(models.Model):
         verbose_name_plural = u'Text fields tests'
 
 
+# Time fields
 class DjangoTimeFields(models.Model):
     datetime_test  = models.DateTimeField(u"DateTimeField")
     date_test      = models.DateField(u"DateField", blank=True)
