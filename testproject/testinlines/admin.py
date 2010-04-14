@@ -8,6 +8,8 @@ from testgrappelli.models import *
 from testdjango.models import *
 from testinlines.models import *
 
+# Text Fields  -----------------------------------------------------------------------------------
+
 # Text Fields / Tabular
 
 class DjangoTextFieldsTabularInline(admin.TabularInline):
@@ -49,6 +51,8 @@ class DjangoTextFieldsStackedTestAdmin(admin.ModelAdmin):
 admin.site.register(DjangoTextFieldsStackedTest, DjangoTextFieldsStackedTestAdmin)
 
 
+# Time Fields  -----------------------------------------------------------------------------------
+
 # Time Fields / Tabular
 
 class DjangoTimeFieldsTabularInline(admin.TabularInline):
@@ -88,3 +92,47 @@ class DjangoTimeFieldsStackedTestAdmin(admin.ModelAdmin):
     list_display = ('char_test',)
     inlines = [DjangoTimeFieldsStackedInline]
 admin.site.register(DjangoTimeFieldsStackedTest, DjangoTimeFieldsStackedTestAdmin)
+
+# Number Fields  -----------------------------------------------------------------------------------
+
+# Number Fields / Tabular
+
+class DjangoNumberFieldsTabularInline(admin.TabularInline):
+    model = DjangoNumberFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'decimal_test', 'integer_test', 'float_test', 'pinteger_test', 'psinteger_test',
+                'sinteger_test', 'boolean_test', 'nboolean_test',
+            )
+        }),
+    )
+
+class DjangoNumberFieldsTabularTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoNumberFieldsTabularInline]
+admin.site.register(DjangoNumberFieldsTabularTest, DjangoNumberFieldsTabularTestAdmin)
+
+# Number Fields / stacked
+
+class DjangoNumberFieldsStackedInline(admin.StackedInline):
+    model = DjangoNumberFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'decimal_test', 'integer_test', 'float_test', 'pinteger_test', 'psinteger_test',
+                'sinteger_test', 'boolean_test', 'nboolean_test',
+            )
+        }),
+    )
+
+class DjangoNumberFieldsStackedTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoNumberFieldsStackedInline]
+admin.site.register(DjangoNumberFieldsStackedTest, DjangoNumberFieldsStackedTestAdmin)
