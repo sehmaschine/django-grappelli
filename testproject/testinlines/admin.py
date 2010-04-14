@@ -136,3 +136,129 @@ class DjangoNumberFieldsStackedTestAdmin(admin.ModelAdmin):
     list_display = ('char_test',)
     inlines = [DjangoNumberFieldsStackedInline]
 admin.site.register(DjangoNumberFieldsStackedTest, DjangoNumberFieldsStackedTestAdmin)
+
+# Net Fields  -----------------------------------------------------------------------------------
+
+# Net Fields / Tabular
+
+class DjangoNetFieldsTabularInline(admin.TabularInline):
+    model = DjangoNetFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'email_test', 'ip_test', 'url_test',
+            )
+        }),
+    )
+
+class DjangoNetFieldsTabularTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoNetFieldsTabularInline]
+admin.site.register(DjangoNetFieldsTabularTest, DjangoNetFieldsTabularTestAdmin)
+
+# Net Fields / stacked
+
+class DjangoNetFieldsStackedInline(admin.StackedInline):
+    model = DjangoNetFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'email_test', 'ip_test', 'url_test',
+            )
+        }),
+    )
+
+class DjangoNetFieldsStackedTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoNetFieldsStackedInline]
+admin.site.register(DjangoNetFieldsStackedTest, DjangoNetFieldsStackedTestAdmin)
+
+# File Fields  -----------------------------------------------------------------------------------
+
+# File Fields / Tabular
+
+class DjangoFileFieldsTabularInline(admin.TabularInline):
+    model = DjangoFileFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'file_test', 'image_test', 
+            )
+        }),
+    )
+
+class DjangoFileFieldsTabularTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoFileFieldsTabularInline]
+admin.site.register(DjangoFileFieldsTabularTest, DjangoFileFieldsTabularTestAdmin)
+
+# File Fields / stacked
+
+class DjangoFileFieldsStackedInline(admin.StackedInline):
+    model = DjangoFileFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'file_test', 'image_test', 
+            )
+        }),
+    )
+
+class DjangoFileFieldsStackedTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoFileFieldsStackedInline]
+admin.site.register(DjangoFileFieldsStackedTest, DjangoFileFieldsStackedTestAdmin)
+
+# Related Fields  -----------------------------------------------------------------------------------
+
+# Related Fields / Tabular
+
+class DjangoRelatedFieldsTabularInline(admin.TabularInline):
+    model = DjangoRelatedFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'fk_test', 'm2m_test', 'ooo_test',
+            )
+        }),
+    )
+
+class DjangoRelatedFieldsTabularTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoRelatedFieldsTabularInline]
+admin.site.register(DjangoRelatedFieldsTabularTest, DjangoRelatedFieldsTabularTestAdmin)
+
+# Related Fields / stacked
+
+class DjangoRelatedFieldsStackedInline(admin.StackedInline):
+    model = DjangoRelatedFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'fk_test', 'm2m_test', 'ooo_test',
+            )
+        }),
+    )
+
+class DjangoRelatedFieldsStackedTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoRelatedFieldsStackedInline]
+admin.site.register(DjangoRelatedFieldsStackedTest, DjangoRelatedFieldsStackedTestAdmin)

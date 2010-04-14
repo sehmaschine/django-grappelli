@@ -62,3 +62,63 @@ class DjangoNumberFieldsTabularTest(models.Model):
 # Number fields / Stacked 
 class DjangoNumberFieldsStackedTest(models.Model):
     char_test = models.CharField(u"Test name", max_length=255)
+
+# Net Fields  -----------------------------------------------------------------------------------
+
+class DjangoNetFieldsInline(DjangoNetFields):
+    tabular_test = models.ForeignKey('DjangoNetFieldsTabularTest', blank=True)
+    stacked_test = models.ForeignKey('DjangoNetFieldsStackedTest', blank=True)
+    def __unicode__(self):
+        return u'%s' % self.char_test
+
+    class Meta:
+        verbose_name = u'Net fields test'
+        verbose_name_plural = u'Net fields tests'
+
+#  Net fields / Tabular
+class DjangoNetFieldsTabularTest(models.Model):
+    char_test = models.CharField(u"Test name", max_length=255)
+
+# Net fields / Stacked 
+class DjangoNetFieldsStackedTest(models.Model):
+    char_test = models.CharField(u"Test name", max_length=255)
+
+# File Fields  -----------------------------------------------------------------------------------
+
+class DjangoFileFieldsInline(DjangoFileFields):
+    tabular_test = models.ForeignKey('DjangoFileFieldsTabularTest', blank=True)
+    stacked_test = models.ForeignKey('DjangoFileFieldsStackedTest', blank=True)
+    def __unicode__(self):
+        return u'%s' % self.char_test
+
+    class Meta:
+        verbose_name = u'File fields test'
+        verbose_name_plural = u'File fields tests'
+
+#  File fields / Tabular
+class DjangoFileFieldsTabularTest(models.Model):
+    char_test = models.CharField(u"Test name", max_length=255)
+
+# File fields / Stacked 
+class DjangoFileFieldsStackedTest(models.Model):
+    char_test = models.CharField(u"Test name", max_length=255)
+
+#  Fields  -----------------------------------------------------------------------------------
+
+class DjangoRelatedFieldsInline(DjangoRelatedFields):
+    tabular_test = models.ForeignKey('DjangoRelatedFieldsTabularTest', blank=True)
+    stacked_test = models.ForeignKey('DjangoRelatedFieldsStackedTest', blank=True)
+    def __unicode__(self):
+        return u'%s' % self.char_test
+
+    class Meta:
+        verbose_name = u'Related fields test'
+        verbose_name_plural = u'Related fields tests'
+
+#  Related fields / Tabular
+class DjangoRelatedFieldsTabularTest(models.Model):
+    char_test = models.CharField(u"Test name", max_length=255)
+
+# Related fields / Stacked 
+class DjangoRelatedFieldsStackedTest(models.Model):
+    char_test = models.CharField(u"Test name", max_length=255)
