@@ -8,16 +8,42 @@ from testgrappelli.models import *
 from testdjango.models import *
 from testinlines.models import *
 
-class DjangoTabularInlineAdmin(admin.TabularInline):
-    model = DjangoTextFields
+# Tabular / Text Fields
+
+class DjangoTextFieldsTabularInline(admin.TabularInline):
+    model = DjangoTextFieldsInline
     classes = ('ui-collapsible-all-opened', )
     allow_add = True
     extra = 1
     fieldsets = (
         (None, {
             'fields': (
-                'char_test', 
+                'char_test', 'slug_test', 'text_test', 
             )
         }),
     )
-admin.site.register(DjangoTabularInline, DjangoTabularInlineAdmin)
+
+class DjangoTextFieldsTabularTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoTextFieldsTabularInline]
+admin.site.register(DjangoTextFieldsTabularTest, DjangoTextFieldsTabularTestAdmin)
+
+# Tabular / Text Fields
+
+class DjangoTextFieldsStackedInline(admin.StackedInline):
+    model = DjangoTextFieldsInline
+    classes = ('ui-collapsible-all-opened', )
+    allow_add = True
+    extra = 1
+    fieldsets = (
+        (None, {
+            'fields': (
+                'char_test', 'slug_test', 'text_test', 
+            )
+        }),
+    )
+
+class DjangoTextFieldsStackedTestAdmin(admin.ModelAdmin):
+    list_display = ('char_test',)
+    inlines = [DjangoTextFieldsStackedInline]
+admin.site.register(DjangoTextFieldsStackedTest, DjangoTextFieldsStackedTestAdmin)
