@@ -36,15 +36,3 @@ class GrappelliEnhancedFields(models.Model):
     class Meta:
         verbose_name = u'Enhanced fields test'
         verbose_name_plural = u'Enhanced fields tests'
-
-
-#class GrappelliInlines(models.Model):
-#    inline_test  = models.ForeignKey('InlineTabularTest', verbose_name=u"ForeignKey (inline tabular)", blank=True, null=True)
-#    inline_test2 = models.ForeignKey('InlineStackedTest', verbose_name=u"ForeignKey (inline stacked)", blank=True, null=True)
-#
-#    def __unicode__(self):
-#        return u'%s - %s' % (self.test_name, self.fk_test)
-#
-#    class Meta:
-#        verbose_name = u'Grappelli Field test'
-#        verbose_name_plural = u'Grappelli Field tests'

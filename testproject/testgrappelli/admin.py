@@ -28,7 +28,7 @@ class GrappelliEnhancedFieldsAdmin(GrappelliModelAdmin):
 
     class Media:
         verbose_name = u'Enhanced fields test'
-        verbose_name_plural = u'Enhanced related fields tests'
+        verbose_name_plural = u'Enhanced fields tests'
         js = [
             settings.ADMIN_MEDIA_PREFIX + 'jquery/tinymce/jscripts/tiny_mce/tiny_mce.js',
             settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',

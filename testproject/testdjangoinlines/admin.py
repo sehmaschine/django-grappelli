@@ -4,9 +4,8 @@ from django.contrib import admin
 from django.db import models
 from django.conf import settings
 
-from testgrappelli.models import *
 from testdjango.models import *
-from testinlines.models import *
+from testdjangoinlines.models import *
 
 # Text Fields  -----------------------------------------------------------------------------------
 
