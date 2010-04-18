@@ -36,7 +36,6 @@ $.widget('ui.gCollapsible.js', {
         if (!ui.element.hasClass('ui-collapsible-closed')) {
             ui.element.addClass('ui-collapsible-opened');
         }
-        console.log('test', ui._isGroup);
         if (ui._isGroup) {
 
             // Toggle behavior of h3
@@ -52,7 +51,6 @@ $.widget('ui.gCollapsible.js', {
                 });
             
             // Close/Open all
-            console.log('test', ui.element.hasClass('ui-collapsible-all-closed'));
             ui[(ui.element.hasClass('ui-collapsible-all-closed') && 'closeAll' || 'openAll')]();
             ui.dom.openAll.bind('click',  function(){ ui.openAll(); });
             ui.dom.closeAll.bind('click', function(){ ui.closeAll(); });
