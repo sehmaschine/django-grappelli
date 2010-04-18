@@ -48,10 +48,9 @@ $.widget('ui.gInlineGroup', {
         row.insertAfter(ui.getRow(ui.totalForms));
         ui.totalForms = index;
         $.grappelli.widgets.trigger('nodeInserted', {node: row});
-        // initialize within the row scope the plugins 
+        // initial#  ize within the row scope the plugins 
         // that can't rely on jQuery.fn.live
         $.grappelli.widgets.init(row);
-        console.log('x', row);
         return row;
     },
 

@@ -22,7 +22,7 @@
 $.widget('ui.gCollapsible.js', {
 
     options: {
-        autoSelector: '.ui-collapsible-opened, .ui-collapsible-closed, ui-collapsible-all-opened, ui-collapsible-all-closed'
+        autoSelector: ['.ui-collapsible-opened', '.ui-collapsible-closed', '.ui-collapsible-all-opened', '.ui-collapsible-all-closed'].join(',')
     },
 
     _create: function() {
@@ -36,7 +36,7 @@ $.widget('ui.gCollapsible.js', {
         if (!ui.element.hasClass('ui-collapsible-closed')) {
             ui.element.addClass('ui-collapsible-opened');
         }
-
+        console.log('test', ui._isGroup);
         if (ui._isGroup) {
 
             // Toggle behavior of h3
