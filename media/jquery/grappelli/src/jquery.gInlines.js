@@ -35,36 +35,33 @@ $.widget('ui.gInlineGroup', {
     createRow: function() {
         var ui, index, old, row, title;
         ui = this;
-        index = ui._totalForms + 1;
+        index = ui.totalForms + 1;
         old   = ui._templateRow;
         row   = old.clone(false);
         // Update title for stacked inlines
-        if (ui._isStacked) {
+        if (ui.isStacked) {
             title = row.find('h3:first');
             title.text(title.text().replace(/#\d+/, '#'+ index));
         }
         $.grappelli.widgets.trigger('nodeCloned', {node: row});
-        ui._updateIdentifiers(row, ui._totalForms);
-        row.insertAfter(ui.getRow(ui._totalForms));
-        ui._totalForms = index;
+        ui._updateIdentifiers(row, ui.totalForms);
+        row.insertAfter(ui.getRow(ui.totalForms));
+        ui.totalForms = index;
         $.grappelli.widgets.trigger('nodeInserted', {node: row});
         // initialize within the row scope the plugins 
         // that can't rely on jQuery.fn.live
         $.grappelli.widgets.init(row);
+        console.log('x', row);
         return row;
     },
 
-    isTabular: function() {
-        return ui.element.hasClass('tabular');
-    },
-    
     getRow: function(index) {
         var ui = this;
         if (ui.isTabular) {
             return ui.element.find('.module.tbody').eq(index - 1);
         }
         else {
-            return ui.element.find('.module').eq(index - 1);
+            return ui.element.find('div.module').eq(index - 1);
         }
     },
 
@@ -75,12 +72,11 @@ $.widget('ui.gInlineGroup', {
             items:      ui.element.find('.items')
         };
 
-        ui._isTabular      = ui.element.hasClass('tabular');
-        ui._isStacked      = !ui._isTabular;
-        ui._totalForms     = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
-        ui._initialForms   = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
-        ui._templateRow    = ui.getRow(ui._totalForms + 1).hide().clone(false);
-        
+        ui.isTabular      = ui.element.hasClass('tabular');
+        ui.isStacked      = !ui.isTabular;
+        ui.totalForms     = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
+        ui.initialForms   = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
+        ui._templateRow    = ui.getRow(ui.totalForms).hide().clone(false);
         ui.dom.addHandler.bind('click.gInlineGroup', function(e){
             ui.createRow().show().appendTo(ui.dom.items);
         });
@@ -104,7 +100,7 @@ $.widget('ui.gInlineGroup', {
             if (header.get(0) && container.hasClass('inline-stacked')) {
                 header.html("<b>" + $.trim(header.text()).replace(/(\d+)$/, count) + "</b>");
             }
-            else {
+            else {#  
                 header.remove(); // fix layout bug in inline-tabular
             }
             
