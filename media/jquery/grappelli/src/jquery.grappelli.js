@@ -40,13 +40,17 @@ $.grappelli = (new function(){
                 widgets = $.grappelli.conf.get('widgets');
                 parent  = false;
             }
-            else if (arguments.length == 1) {
+            else if (arguments.length == 1 && $.isArray(arguments[0])) {
                 widgets = arguments[0];
                 parent  = false;
             }
-            else {
+            else if (arguments.length == 2){
                 widgets = arguments[1];
                 parent  = arguments[0];
+            }
+            else {
+                widgets = $.grappelli.conf.get('widgets');
+                parent = arguments[0];
             }
             $.each(widgets, iterator);
         },
@@ -135,6 +139,7 @@ $.grappelli = (new function(){
 
     };
 
+    // Global config manager
     g.inst.conf = {
         extend: function (obj){
             for (var x in obj) {
@@ -144,7 +149,8 @@ $.grappelli = (new function(){
             }
         },
         set: function (k, v){
-            return g._registy[k] = v;
+            g._registy[k] = v;
+            return v;
         },
         get: function (k, fallback){
             try {

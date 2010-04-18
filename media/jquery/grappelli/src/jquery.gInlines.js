@@ -1,20 +1,10 @@
 /*  Author: Maxime Haineault <max@motion-m.ca>
- *  widget:  gInlineGroup, gInlineStacked, gInlineTabular
+ *  widget:  gInlineGroup
  *  Package: Grappelli
  *
  *  jslinted - 8 Jan 2010
  */
 (function($){
-
-$.grappelli.gInlineTabularBase = {
-    
-    
-};
-    
-$.grappelli.gInlineStackedBase = {
-    
-    
-};
          
 $.widget('ui.gInlineGroup', {
 
@@ -37,12 +27,12 @@ $.widget('ui.gInlineGroup', {
             attrs = attr[tag];
             for (x in attrs) {
                 curr = attrs[x];
-                $(this).attr(curr, $(this).attr(curr).replace(/\-\d+\-/, '-'+ index +'-'));
+                $(this).attr(curr, $(this).attr(curr).replace('__prefix__', index));
             }
         });
     },
 
-    _newRow: function() {
+    createRow: function() {
         var ui, index, old, row, title;
         ui = this;
         index = ui._totalForms + 1;
@@ -58,51 +48,45 @@ $.widget('ui.gInlineGroup', {
         row.insertAfter(ui.getRow(ui._totalForms));
         ui._totalForms = index;
         $.grappelli.widgets.trigger('nodeInserted', {node: row});
-//      $.grappelli.widgets.each(function(widgetName, elements) {
-//          if (elements.length > 0) {
-//              //elements[widgetName]();
-//          }
-//      }, row);
-        //$.grappelli.widgets.call(row, 'destroy', ['gDateField'])
-//        $.grappelli.widgets.init(row, ['gDateField', 'gRelated', 'gAutocomplete'])
+        // initialize within the row scope the plugins 
+        // that can't rely on jQuery.fn.live
+        $.grappelli.widgets.init(row);
         return row;
     },
 
-    addFormRow: function() {
-        var ui = this;
-        var newRow = ui._newRow();
-        // initialize within the row scope the plugins 
-        // that can't rely on jQuery.fn.live
-        //$.grappelli.widgets.init(['gRelated'], newRow);
+    isTabular: function() {
+        return ui.element.hasClass('tabular');
     },
     
     getRow: function(index) {
         var ui = this;
-        return ui.element.find('.items > .module').eq(index - 1);
+        if (ui.isTabular) {
+            return ui.element.find('.module.tbody').eq(index - 1);
+        }
+        else {
+            return ui.element.find('.module').eq(index - 1);
+        }
     },
 
     _create: function(){
         var ui = this;
-
-        ui._isTabular    = ui.element.hasClass('tabular');
-        ui._isStacked    = !ui._isTabular;
-        ui._totalForms   = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
-        ui._createialForms = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
-
-        ui = $.extend(ui, $.grappelli[ui._isTabular && 'gInlineTabularBase' || 'gInlineStackedBase']);
-
         ui.dom = {
-            addHandler: ui.element.find('.ui-add-handler'),
+            addHandler: ui.element.find('a.ui-add-handler'),
+            items:      ui.element.find('.items')
         };
 
-        ui.dom.addHandler.bind('click', function(e){
-            ui.addFormRow();
+        ui._isTabular      = ui.element.hasClass('tabular');
+        ui._isStacked      = !ui._isTabular;
+        ui._totalForms     = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
+        ui._initialForms   = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
+        ui._templateRow    = ui.getRow(ui._totalForms + 1).hide().clone(false);
+        
+        ui.dom.addHandler.bind('click.gInlineGroup', function(e){
+            ui.createRow().show().appendTo(ui.dom.items);
         });
 
-        ui._templateRow = ui.getRow(ui._totalForms).clone(false);
 
         /*
-        $.grappelli.widgets.init([], row);
         // Prevent fields of inserted rows from triggering errors if un-edited
         ui.element.parents('form').bind('submit.gInlineGroup', function(){
             ui.element.find('.inline-related:not(.has_original):not(.has_modifications) div.order :text').val('');
@@ -135,7 +119,7 @@ $.widget('ui.gInlineGroup', {
         ui.element.find('a.deletelink').bind("click.gInlineGroup", function() {
             var cp = $(this).prev(':checkbox');
             cp.attr('checked', !cp.attr('checked'));
-            $(this).parents('div.inline-related').toggleClass('predelete');
+            $(this).parentswidgets('div.inline-related').toggleClass('predelete');
             return false;
         });
         
@@ -155,7 +139,14 @@ $.widget('ui.gInlineGroup', {
     _createializeitem: function(el, count){
         
         /// replace ids, names, hrefs & fors ...
-        el.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
+        el.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {like Gecko) Safari/531.2+
+ 36         # Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Chrome/1.0.154.48 Safari/525.19
+ 37         # Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2) Gecko/20100115 Firefox/3.6
+ 38         #
+ 39         # Stonewalled:
+ 40         # Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; Media Center PC 3.0; .NET CLR 1.0.3705)
+ 41         # Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1; Media Center PC 3.0; .NET CLR 1.0.3705)
+
             var $el = $(this);
             $.each(['id', 'name', 'for', 'href'], function(i, k){
                 if ($el.attr(k)) {
@@ -167,7 +158,15 @@ $.widget('ui.gInlineGroup', {
         // destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
         el.find('.vdatefield').unbind().removeclass('hasdatepicker').val('')
             .next().remove().end().end()
-            .find('.vtimefield').unbind().val('').next().remove();
+            .find('.vtimefield').unbind().val('').ne
+xt().remove();like Gecko) Safari/531.2+
+ 36         # Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Chrome/1.0.154.48 Safari/525.19
+ 37         # Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2) Gecko/20100115 Firefox/3.6
+ 38         #
+ 39         # Stonewalled:
+ 40         # Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; Media Center PC 3.0; .NET CLR 1.0.3705)
+ 41         # Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1; Media Center PC 3.0; .NET CLR 1.0.3705)
+
         
         // date-/timefield
         el.find('.vdatefield').gdatefield();
@@ -188,7 +187,14 @@ $.widget('ui.gInlineGroup', {
         el.find(':input').val('').end() // clear all form-fields (within form-cells)
             .find("strong").text('');     // clear related/generic lookups
         
-        // little trick to prevent validation on un-edited fields
+        // little trick to prevent validation on un-edited fieldslike Gecko) Safari/531.2+
+ 36         # Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Chrome/1.0.154.48 Safari/525.19
+ 37         # Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2) Gecko/20100115 Firefox/3.6
+ 38         #
+ 39         # Stonewalled:
+ 40         # Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; Media Center PC 3.0; .NET CLR 1.0.3705)
+ 41         # Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1; Media Center PC 3.0; .NET CLR 1.0.3705)
+
         el.find('input, textarea').bind('keypress.ginlinegroup', function(){
               el.addclass('has_modifications');
           }).end()
@@ -209,7 +215,14 @@ $.widget('ui.gInlineGroup', {
         }
         else if (ui.element.hasClass('inline-tabular')) {
             grip.prependTo(ui.element.find('.items div.inline-item-tools'));
-        }
+        }like Gecko) Safari/531.2+
+ 36         # Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Chrome/1.0.154.48 Safari/525.19
+ 37         # Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2) Gecko/20100115 Firefox/3.6
+ 38         #
+ 39         # Stonewalled:
+ 40         # Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; Media Center PC 3.0; .NET CLR 1.0.3705)
+ 41         # Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1; Media Center PC 3.0; .NET CLR 1.0.3705)
+
         ui.element.find('.items')
             .sortable({
             axis: 'y',
@@ -226,7 +239,7 @@ $.widget('ui.gInlineGroup', {
     },
     
     _refreshOrder: function() {
-        var index = 1;
+        var index = 1;.hide()
         var ui = this;
         ui.element.find('.order input[type=text]').each(function(){
             $(this).val(index);
@@ -248,57 +261,4 @@ $.widget('ui.gInlineGroup', {
     }
     */
 });
-
-// INLINE STACKED 
-
-$.widget('ui.gInlineStacked', {
-
-    options: {
-        autoSelector: '.inline-stacked',
-        collapsible: true
-    },
-
-    _create: function(){
-        var ui = this;
-        // FIELDSETS WITHIN STACKED INLINES
-        /* OBSOLETE ?
-        ui.element.find('.inline-related').find('fieldset[class*="collapse-closed"]')
-            .addClass("collapsed").find('h4:first').addClass("collapse-toggle").end()
-            .find('fieldset[class*="collapse-open"] h4:first').addClass("collapse-toggle")
-            .bind("click", function(e){
-                $(this).parent()
-                    .toggleClass('collapsed')
-                    .toggleClass('collapse-closed')
-                    .toggleClass('collapse-open');
-        });
-        */
-    }
-});
-
-// INLINE TABULAR
-
-$.widget('ui.gInlineTabular', {
-
-    options: {
-        autoSelector: '.inline-tabular'
-    },
-    _create: function(){
-    /*
-        var ui = this;
-        
-        ui.element.find('.inline-related h3:first').remove(); // fix layout bug
-        
-        /// add predelete class (only necessary in case of errors)
-        ui.element.find('input[name*="DELETE"]:checked').each(function(i) {
-            $(this).parents('div.inline-related').addClass('predelete');
-        });
-        
-        /// OPEN TABULARINLINE WITH ERRORS (onload)
-        ui.element.filter('.inline-tabular').find('div[class*="error"]:first').each(function(i) {
-            $(this).parents('div.inline-tabular').removeClass("collapsed");
-        });
-        */
-    }
-});
-
 })(jQuery);
