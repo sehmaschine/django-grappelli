@@ -47,7 +47,7 @@ $.widget('ui.gAutocomplete', {
     _ignored_chars: [106, 107, 108, 109, 110, 111, 13, 16, 17, 188, 190, 20, 27, 32, 33, 34, 35, 36, 37, 38, 39, 40, 45, 9],
     _getUrl: function() {
         var ui = this;
-        return [$.grappelli.conf.get('autocomplete_url'), ui.options.app, '/', ui.options.model,'/'].join('');
+        return [$.grappelli.conf.get('autocomplete_url'), ui.option('app'), '/', ui.option('model'),'/'].join('');
     },
     _create: function() {
         var ui, width;
@@ -57,7 +57,7 @@ $.widget('ui.gAutocomplete', {
             wrapper: ui._createElement('div',    {ns: 'wrapper'}).hide(), 
             results: ui._createElement('ul',     {ns: 'results'}), 
             input:   ui._createElement('input',  {ns: 'autocomplete', attr:{ type: 'text'}}).addClass('vAutocompleteSearchField'), 
-            browse:  ui._createElement('button', {ns: 'browse',       attr:{ href: ui.options.related_url, title: 'Browse'}}) 
+            browse:  ui._createElement('button', {ns: 'browse',       attr:{ href: ui.option('related_url'), title: 'Browse'}}) 
         };
         
         ui.element.hide().parent().find('.vAutocompleteRawIdAdminField').hide();
@@ -71,7 +71,7 @@ $.widget('ui.gAutocomplete', {
 
         width = ui.dom.input.width() + parseInt(ui.dom.input.css('padding-left').slice(0, -2), 10) + parseInt(ui.dom.input.css('padding-right').slice(0, -2), 10);
 
-        if (ui.options.browse) {
+        if (ui.option('browse')) {
             ui.dom.browse.insertAfter(ui.dom.input).attr('id', 'lookup_id_'+ ui.element.attr('id'))
                 .hover(function(){ $(this).addClass('ui-state-hover'); }, function(){ $(this).removeClass('ui-state-hover'); })
                 .bind('click.browse', function(){
@@ -105,7 +105,7 @@ $.widget('ui.gAutocomplete', {
         ui.dom.input.delayedObserver(function(e){
             var kc = e.keyCode || 0;
             // Option: minChar
-            if ($(this).val().length >= ui.options.minChars) { 
+            if ($(this).val().length >= ui.option('minChars')) { 
                 if ($.inArray(kc, ui._ignored_chars) < 0) {
                     ui._autocomplete();
                 }
@@ -117,7 +117,7 @@ $.widget('ui.gAutocomplete', {
                     ui._setVal();
                 }
             }
-        }, ui.options.delay);
+        }, ui.option('delay'));
     },
 
     /* called when the "Browse" button is clicked on
@@ -140,7 +140,7 @@ $.widget('ui.gAutocomplete', {
         var ui = this;
         if (val) {
             $('[name="'+ ui.element.attr('id') +'"]').val(val.id);
-            ui.dom.input.val($.format(ui.options.inputFormat, val));
+            ui.dom.input.val($.format(ui.option('inputFormat'), val));
         }
         else {
             $('[name="'+ ui.element.attr('id') +'"]').val('');
@@ -231,23 +231,23 @@ $.widget('ui.gAutocomplete', {
      * */
     _autocomplete: function() {
         var ui  = this;
-        var url = ui._getUrl() + ui.options.search_fields +'/?q='+ ui.dom.input.val();
+        var url = ui._getUrl() + ui.option('search_fields') +'/?q='+ ui.dom.input.val();
         var lr  = ++ui._lastRequest;
 
-        if (ui.options.maxResults) {
-            url = url + '&limit='+ ui.options.maxResults;
+        if (ui.option('maxResults')) {
+            url = url + '&limit='+ ui.option('maxResults');
         }
-        if (ui.options.throbber) {
+        if (ui.option('throbber')) {
             ui.dom.input.addClass('searching');
         }
-        if (ui.options.browse) {
+        if (ui.option('browse')) {
             ui.dom.browse.attr('disabled', true);
         }
         ui._showList();
         $.getJSON(url, function(json, responseStatus){
             // process the request only if it's successful and it's the last sent (avoid race conditions)
             ui.dom.input.removeClass('searching');
-            if (ui.options.browse) {
+            if (ui.option('browse')) {
                 ui.dom.browse.attr('disabled', null);
             }
             if (responseStatus == 'success' && lr == ui._lastRequest) {
@@ -303,7 +303,7 @@ $.widget('ui.gAutocomplete', {
     _redraw: function() {
         var ui = this;
         var li, item, txt = false;
-        var rs = ui.options.maxResults && ui._results.slice(0, ui.options.maxResults) || ui._results;
+        var rs = ui.option('maxResults ')&& ui._results.slice(0, ui.option('maxResults')) || ui._results;
         var liMouseMove = function() { ui._shiftSelection(item); };
         var liClick = function() { ui._choose(false, true); };
         ui.element.trigger('redraw');
@@ -312,7 +312,7 @@ $.widget('ui.gAutocomplete', {
         if (rs.length > 0) {
             for (var x=0; x<rs.length; x++) {
                 item = rs[x];
-                txt  = $.format(ui.options.listFormat, item);
+                txt  = $.format(ui.option('listFormat'), item);
                 li   = ui._createElement('li', {ns: 'result'}).data('json', item)
                             .hover(function(){ $(this).addClass('hover'); }, 
                                    function(){ $(this).removeClass('hover'); })
@@ -320,7 +320,7 @@ $.widget('ui.gAutocomplete', {
                             
 
                 // Option: highlight
-                if (ui.options.highlight) {
+                if (ui.option('highlight')) {
                     li.html(txt.replace(new RegExp("("+ ui.dom.input.val() +")", "gi"),'<b>$1</b>'));
                 }
                 else {

@@ -46,7 +46,7 @@ $.widget('ui.gFacelist', {
             facelist: ui._createElement('ul',   {ns: 'facelist'}).addClass('ui-helper-clearfix'),
             input:    ui._createElement('input',{ns: 'search'})
                         .addClass('vM2MAutocompleteSearchField'), 
-            browse:  ui._createElement('button',{ns: 'browse', attr:{href: ui.options.related_url, title: 'Browse'}}) 
+            browse:  ui._createElement('button',{ns: 'browse', attr:{href: ui.option('related_url'), title: 'Browse'}}) 
         };
         
         ui.dom.rawfield.val(ui.dom.rawfield.val().replace(/\[|\]/g, ''));

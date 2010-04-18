@@ -50,9 +50,9 @@ $.RelatedBase = {
                 $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data, status) {
                     item = data;
                     if (item && status == 'success') {
-                        tl = (ui.options.maxTextLength - ui.options.maxTextSuffix.length);
+                        tl = (ui.option('maxTextLength') - ui.option('maxTextSuffix').length);
                         if (item.length > tl) {
-                            txt = decodeURI(item.substr(0, tl) + ui.options.maxTextSuffix);
+                            txt = decodeURI(item.substr(0, tl) + ui.option('maxTextSuffix'));
                             ui.dom.text.text(txt);
                         } else {
                             ui.dom.text.text(decodeURI(item));
@@ -225,9 +225,10 @@ $(function(){
     $('a[onclick^=return\\ showAddAnotherPopup]')
         .attr('onclick', false).unbind()
         .bind('click', function(e){
+            alert('test');
             var link = $(this);
             var name = link.attr('id').replace(/^add_/, '');
-            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + '_popup=1';
+            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
             var wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
             wm._data('link', link);
             wm._data('id', name);
@@ -236,7 +237,26 @@ $(function(){
             return false;
         });
 
-    if (opener && /_popup/.test(window.location.search)) {
+    // small layout fix ..
+    if ($.browser.mozilla) {
+        $('a[onclick^=return\\ showRelatedObjectLookupPopup]').css('top', '-1px')
+    }
+
+    $('a[onclick^=return\\ showRelatedObjectLookupPopup]')
+        .attr('onclick', false).unbind()
+        .bind('click', function(e){
+            var link = $(this);
+            var name = link.attr('id').replace(/^add_/, '');
+            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
+            var wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
+            wm._data('link', link);
+            wm._data('id', name);
+            wm.open(true);
+            e.preventDefault();
+            return false;
+        });
+
+    if (opener && /pop/.test(window.location.search)) {
         // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
         //
         // I can't get rid of this function .. (I could by using the middleware, but it would make it a requirement..)

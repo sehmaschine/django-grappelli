@@ -20,9 +20,45 @@
 
 
 $.widget('ui.gCollapsible.js', {
-
     options: {
-        autoSelector: ['.ui-collapsible-opened', '.ui-collapsible-closed', '.ui-collapsible-all-opened', '.ui-collapsible-all-closed'].join(',')
+        autoSelector: ['.ui-collapsible-opened', '.ui-collapsible-closed', 
+                       '.ui-collapsible-all-opened', '.ui-collapsible-all-closed']
+                       .join(','),
+
+        // Close all (excluding parent group)
+        collapseAll: function(e, ui) {
+            ui._trigger('collapse', {
+                type:'collapse', 
+                data: {element: ui.element.find('.ui-collapsible')}
+            }, ui);
+        },
+
+        // Opens *all* (including parent group)
+        unCollapseAll: function(e, ui) {
+            ui._trigger('unCollapse', {
+                type:'unCollapse', 
+                data: {element: ui.element.find('.ui-collapsible').andSelf()}
+            }, ui);
+        },
+
+        toggle: function(e, ui) {
+            var el = e.data.element;
+            var type = el.hasClass('ui-collapsible-closed') && 'unCollapse' || 'collapse';
+            ui._trigger(type, {type:type, data: {element: el}}, ui);
+        },
+
+        // Opens a collapsible container
+        unCollapse: function(e, ui) {
+            return e.data.element.addClass('ui-collapsible-opened')
+              .removeClass('ui-collapsible-closed');
+        },
+
+        // Closes a collapsible container
+        collapse: function(e, ui) {
+            return e.data.element.removeClass('ui-collapsible-opened')
+              .addClass('ui-collapsible-closed');
+        }
+
     },
 
     _create: function() {
@@ -36,6 +72,7 @@ $.widget('ui.gCollapsible.js', {
         if (!ui.element.hasClass('ui-collapsible-closed')) {
             ui.element.addClass('ui-collapsible-opened');
         }
+
         if (ui._isGroup) {
 
             // Toggle behavior of h3
@@ -49,11 +86,18 @@ $.widget('ui.gCollapsible.js', {
                 .bind('click', function(e){
                     ui._onClick.apply(this, [e, ui]);
                 });
-            
+           
             // Close/Open all
-            ui[(ui.element.hasClass('ui-collapsible-all-closed') && 'closeAll' || 'openAll')]();
-            ui.dom.openAll.bind('click',  function(){ ui.openAll(); });
-            ui.dom.closeAll.bind('click', function(){ ui.closeAll(); });
+            ui._trigger(ui.element.hasClass('ui-collapsible-all-closed') 
+                        && 'collapseAll' || 'unCollapseAll', {}, ui);
+
+            ui.dom.openAll.bind('click',  function(){ 
+                ui._trigger('unCollapseAll', {}, ui);
+            });
+
+            ui.dom.closeAll.bind('click', function(){ 
+                ui._trigger('collapseAll', {}, ui);
+            });
         }
 
         // Toggle behavior of h2
@@ -65,9 +109,22 @@ $.widget('ui.gCollapsible.js', {
         // Errors handling
         var errors = ui.element.find('.errors');
         if (errors) {
-            ui.open(errors.parents('.ui-collapsible'));
+            ui.unCollapse(errors.parents('.ui-collapsible'));
         }
+    },
 
+    /* Triggers unCollapse event on a specified collapsible DOM element
+     * @ el Collapsible element
+     * */
+    unCollapse: function(el) {
+        this._trigger('unCollapse', { type:'unCollapse', data: {element: el}}, this);
+    },
+
+    /* Triggers collapse event on a specified collapsible DOM element
+     * @ el Collapsible element
+     * */
+    collapse: function(el) {
+        this._trigger('collapse', { type:'collapse', data: {element: el}}, this);
     },
 
     /* Triggered when a toggle handle is clicked
@@ -75,49 +132,9 @@ $.widget('ui.gCollapsible.js', {
      * @ui  gCollapsible instance
      * */
     _onClick: function(e, ui){
-        var parent = $(this).parents('.ui-collapsible:eq(0)');
-        if (!parent.get(0)) {
-            parent = ui.element;
-        }
-        ui.toggle(parent);
-    },
-
-    /* Toggles collapsible group
-     * @el   element
-     * */
-    toggle: function(el) {
-        return this[el.hasClass('ui-collapsible-closed') && 'open' || 'close'](el); 
-    },
-
-    /* Opens *all* (including parent group)
-     * @el   element
-     * */
-    openAll: function(el) {
-        this.open(this.element); // Make sure group is open first
-        this.open(this.element.find('.ui-collapsible'));
-    },
-
-    /* Close all (excluding parent group)
-     * @el   element
-     * */
-    closeAll: function(el) {
-        this.close(this.element.find('.ui-collapsible'));
-    },
-
-    /* Opens a collapsible container
-     * @el   element
-     * */
-    open: function(el) {
-        return el.addClass('ui-collapsible-opened')
-          .removeClass('ui-collapsible-closed');
-    },
-
-    /* Closes a collapsible container
-     * @el   element
-     * */
-    close: function(el) {
-        return el.removeClass('ui-collapsible-opened')
-          .addClass('ui-collapsible-closed');
+        var p = $(this).parents('.ui-collapsible:eq(0)');
+        if (!p.get(0)) { p = ui.element; }
+        ui._trigger('toggle', {type:'toggle', data: {element: p}}, ui);
     }
 });
 

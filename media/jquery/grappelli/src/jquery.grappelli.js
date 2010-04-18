@@ -98,45 +98,7 @@ $.grappelli = (new function(){
                         this.events[t].apply(els, [$.Event({type: t, data: d})])
                     }
                 });
-        },
-        /*
-         * $.grappelli.widgets.call('destroy', scope)
-         * $.grappelli.widgets.call('option', 1, scope)
-        call: function() {
-            var iterator, w, s, widgets, parent;
-            iterator = function (i, widgetName) {
-                w = jQuery.ui[widgetName];
-                if (w && w.autoSelector) {
-                    if (parent) {
-                        s = jQuery(parent).find(w.autoSelector);
-                    }
-                    else {
-                        s = jQuery(w.autoSelector);
-                    }
-                    if (args)
-                        s[widgetName](method, args);
-                    }
-                    else {
-                        s[widgetName](method);
-                    }
-                }
-            };
-            if (typeof arguments[0] == 'string') {
-                parent  = false;
-                method  = arguments[0];
-                args    = arguments[1] || {};
-                widgets = arguments[2] || [];
-            }
-            else {
-                parent  = arguments[0];
-                method  = arguments[1];
-                args    = arguments[2] || {};
-                widgets = arguments[3] || [];
-            }
-            $.each(widgets, iterator);
-        },
-        */
-
+        }
     };
 
     // Global config manager

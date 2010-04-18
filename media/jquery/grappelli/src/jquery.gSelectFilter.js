@@ -32,12 +32,12 @@ $.widget('ui.gSelectFilter', {
         ui = this;
         id = ui.element.attr('id');
         ui.dom  = {
-            wrapper:   $('<div />').appendTo(ui.element.parent()).addClass(ui.options.stacked ? 'selector stacked' : 'selector'),
+            wrapper:   $('<div />').appendTo(ui.element.parent()).addClass(ui.option('stacked') ? 'selector stacked' : 'selector'),
             available: $('<div />').addClass('selector-available'),
             chooser:   $('<ul />').addClass('selector-chooser'),
             chosen:    $('<div />').addClass('selector-chosen'),
-            title1:    $('<h2 />').text(interpolate(gettext('Available %s'), [ui.options.name])),
-            title2:    $('<h2 />').text(interpolate(gettext('Chosen %s'), [ui.options.name])),
+            title1:    $('<h2 />').text(interpolate(gettext('Available %s'), [ui.option('name')])),
+            title2:    $('<h2 />').text(interpolate(gettext('Chosen %s'), [ui.option('name')])),
             choseall:  $('<a href="#" />').text(gettext('Choose all')).addClass('selector-chooseall'),
             clearall:  $('<a href="#" />').text(gettext('Clear all')).addClass('selector-clearall'),
             filter1:   $('<p>&nbsp;</p>').addClass('selector-filter'),
@@ -84,7 +84,7 @@ $.widget('ui.gSelectFilter', {
                 return false;
             });
 
-        ui.element.attr({ id: id +'_from', name: ui.options.name + '_old'})
+        ui.element.attr({ id: id +'_from', name: ui.option('name') + '_old'})
             .bind('dblclick.gSelectFilter', function(){
                 ui._move('avail');
             })

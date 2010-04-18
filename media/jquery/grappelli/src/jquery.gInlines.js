@@ -9,15 +9,16 @@
 $.widget('ui.gInlineGroup', {
 
     options: {
-        autoSelector: '.group',
-        updatedTags: ['input:id,name', 'select:id,name', 'textarea:id,name', 'label:for'],
+        autoSelector:  '.group',
+        prefixKeyword: '__prefix__',
+        updatedTags:   ['input:id,name', 'select:id,name', 'textarea:id,name', 'label:for'],
     },
 
     _updateIdentifiers: function(row, index) {
         var ui, attr, attrs, tag, tags, curr, t, x;
         ui   = this;
         attr = {};
-        tags = $.map(ui.options.updatedTags, function(tag){
+        tags = $.map(ui.option('updatedTags'), function(tag){
                        t = tag.match(/^(\w+):(.*)$/);
                        attr[t[1]] = t[2] && t[2].split(',') || false;
                        return t[1]; }).join(',');
@@ -27,7 +28,8 @@ $.widget('ui.gInlineGroup', {
             attrs = attr[tag];
             for (x in attrs) {
                 curr = attrs[x];
-                $(this).attr(curr, $(this).attr(curr).replace('__prefix__', index));
+                $(this).attr(curr, $(this).attr(curr)
+                       .replace(ui.option('prefixKeyword'), index));
             }
         });
     },
@@ -71,11 +73,12 @@ $.widget('ui.gInlineGroup', {
             items:      ui.element.find('.items')
         };
 
-        ui.isTabular      = ui.element.hasClass('tabular');
-        ui.isStacked      = !ui.isTabular;
-        ui.totalForms     = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
-        ui.initialForms   = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
-        ui._templateRow    = ui.getRow(ui.totalForms).hide().clone(false);
+        ui.isTabular    = ui.element.hasClass('tabular');
+        ui.isStacked    = !ui.isTabular;
+        ui.totalForms   = parseInt(ui.element.find('input[name$=-TOTAL_FORMS]').val(), 10);
+        ui.initialForms = parseInt(ui.element.find('input[name$=-INITIAL_FORMS]').val(), 10);
+        ui._templateRow = ui.getRow(ui.totalForms + 1).hide().clone(false);
+        //ui.getRow(ui.totalForms + 1).remove();
         ui.dom.addHandler.bind('click.gInlineGroup', function(e){
             ui.createRow().show().appendTo(ui.dom.items);
         });
@@ -110,7 +113,7 @@ $.widget('ui.gInlineGroup', {
             return false;
         });
         
-        /// DELETEHANDLER
+        /// DELETEHANDLE#  R
         ui.element.find('a.deletelink').bind("click.gInlineGroup", function() {
             var cp = $(this).prev(':checkbox');
             cp.attr('checked', !cp.attr('checked'));

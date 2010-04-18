@@ -42,7 +42,7 @@ $.widget('ui.gDateField', {
         var ui = this;
         ui.element.datepicker().parent()
             // replace BR
-            .find('br').replaceWith(ui.options.spacer || '');
+            .find('br').replaceWith(ui.option('spacer')|| '');
 
         // remove text Date: & Time: (now that's ugly..)
         if (!ui.element.prev().get(0)) {
@@ -52,8 +52,8 @@ $.widget('ui.gDateField', {
             } catch (e) {}
         }
             
-        if (ui.options.mask) {
-            ui.element.mask(ui.options.mask);
+        if (ui.option('mask')) {
+            ui.element.mask(ui.option('mask'));
         }
     }
 });

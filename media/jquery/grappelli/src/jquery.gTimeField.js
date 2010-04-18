@@ -45,7 +45,7 @@ $.widget('ui.gTimeField', {
             .find('a').text(gettext('Cancel')).end()
             .css({position: 'absolute'}).hide();
 
-        $.each(ui.options.buttons, function(){
+        $.each(ui.option('buttons'), function(){
             var button = this;
             $('<li><a /></li>').find('a')
                 .attr('title', button.label)
@@ -63,8 +63,8 @@ $.widget('ui.gTimeField', {
             $('.clockbox.module:visible').hide();
         });
         
-        if (ui.options.mask) {
-            ui.element.mask(ui.options.mask);
+        if (ui.option('mask')) {
+            ui.element.mask(ui.option('mask'));
         }
     },
 

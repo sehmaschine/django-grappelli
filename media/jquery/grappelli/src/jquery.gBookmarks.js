@@ -48,8 +48,8 @@ $.widget('ui.gBookmarks', {
         ui.element.load(url, function(){
             ui._mapDom();
             ui._timeout   = true;
-            ui.showMethod = ui.options.effects && 'slideDown' || 'show';
-            ui.hideMethod = ui.options.effects && 'slideUp'   || 'hide';
+            ui.showMethod = ui.option('effects') && 'slideDown' || 'show';
+            ui.hideMethod = ui.option('effects') && 'slideUp'   || 'hide';
 
             ui.dom.add.live("click",    function() { return ui.add();    });
             ui.dom.cancel.live("click", function() { return ui.cancel(); });
@@ -71,8 +71,8 @@ $.widget('ui.gBookmarks', {
     _mapDom: function() {
         var ui, x;
         ui = this;
-        for (x in ui.options.ns) {
-            ui.dom[x] = jQuery(ui.options.ns[x]);
+        for (x in ui.option('ns')) {
+            ui.dom[x] = jQuery(ui.option('ns')[x]);
         }
     },
 
@@ -82,7 +82,7 @@ $.widget('ui.gBookmarks', {
     show: function(el, speed) {
         var ui = this;
         ui._timeout = false;
-        $(el)[ui.showMethod](speed || ui.options.effectsSpeed);
+        $(el)[ui.showMethod](speed || ui.option('effectsSpeed'));
     },
 
     /* Hide a given menu
@@ -94,10 +94,10 @@ $.widget('ui.gBookmarks', {
         ui._timeout = true;
         setTimeout(function(){
             if (ui._timeout) {
-                $(el)[ui.hideMethod](speed || ui.options.effectsSpeed);
+                $(el)[ui.hideMethod](speed || ui.option('effectsSpeed'));
                 ui._timeout = false;
             }
-        }, typeof(timeout) == 'undefined' && ui.options.hideTimeout || timeout);
+        }, typeof(timeout) == 'undefined' && ui.option('hideTimeout ')|| timeout);
     },
 
     /* This method is called when the cancel button of
@@ -122,6 +122,7 @@ $.widget('ui.gBookmarks', {
         ui.dom.list.removeClass('enabled');
         ui.hide(ui.dom.list, 0, 0);
         ui.show(ui.dom.addWrapper);
+        /*
         addForm.bind('submit', function(e){
             var $elf = $(this);
             ui.hide(ui.dom.addWrapper, 0, 0);
@@ -132,6 +133,7 @@ $.widget('ui.gBookmarks', {
             }, 200);
             return false;             
         });
+        */
         return false;
     }
 });

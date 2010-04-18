@@ -22,7 +22,7 @@ $.widget('ui.gAutoSlugField', {
         ui.dom  = {};
 
         if (ui.mode == 'target') {
-            ui.dom.crosshair  = $(ui.options.crosshair).attr('src', $.grappelli.conf.get('admin_media_prefix') + ui.options.crosshairImg).insertAfter(ui.element).draggable({
+            ui.dom.crosshair  = $(ui.option('crosshair')).attr('src', $.grappelli.conf.get('admin_media_prefix') + ui.option('crosshairImg')).insertAfter(ui.element).draggable({
                 helper:   'clone',
                 appendTo: 'body',
                 scope:    'slugfield',
@@ -48,7 +48,7 @@ $.widget('ui.gAutoSlugField', {
             ui._refresh(e, this);
         }).delayedObserver(function(e){
             ui._refresh(e, this);
-        }, ui.options.delay);
+        }, ui.option('delay'));
     },
     
     _refresh: function(e, source) {

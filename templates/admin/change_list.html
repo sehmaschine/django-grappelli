@@ -8,7 +8,7 @@
     {{ block.super }}
     {% if cl.formset %}{{ media }}{% endif %}
     <script type="text/javascript">
-    $.grappelli.conf.set('isPopup', {% if is_popup %}true{% else %}false{% endif %});
+    $.grappelli.conf.set('isPopup', {% if is_popup or 'pop' in request.GET %}true{% else %}false{% endif %});
     </script>
 {% endblock %}
 
