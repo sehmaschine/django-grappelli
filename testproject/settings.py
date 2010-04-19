@@ -109,3 +109,6 @@ INSTALLED_APPS = (
     'testgrappelliinlines',
 )
 GRAPPELLI_ADMIN_TITLE = 'Grappelli Test Project'
+DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False
+}
