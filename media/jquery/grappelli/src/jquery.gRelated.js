@@ -22,7 +22,7 @@ $.RelatedBase = {
     /* Called when the "Browse" button is clicked 
      * on Related and GenericRelated fields
      */
-    _browse: function(l) {
+    browse: function(l) {
         var ui, link, href, wm;
         link = $(l);
         href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
@@ -32,11 +32,11 @@ $.RelatedBase = {
         return false;
     },
     
-    /* Called when the object id field is changed 
+    /* Called when the object id field is changed/focused 
      * and it updates the label accordingly
      */
     _lookup: function(e){
-        var ui, app_label, model_name, url, tl, txt, item;
+        var ui, app_label, model_name, url, tl, txt, type;
         ui = this;
         if (ui.dom.link.attr('href')) {
             app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2)[0];
@@ -46,9 +46,16 @@ $.RelatedBase = {
             }
             else {
                 ui.dom.text.text('loading ...');
-                url = $.grappelli.conf.get((ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2m_related' || 'related') + '_url');
-                $.get(url, {object_id: ui.dom.object_id.val(), app_label: app_label, model_name: model_name}, function(data, status) {
-                    item = data;
+
+                type = ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2m_related' || 'related';
+                url  = $.grappelli.conf.get(type + '_url');
+                get  = {
+                    object_id: ui.dom.object_id.val(), 
+                    app_label: app_label, 
+                    model_name: model_name
+                };
+
+                $.get(url, get, function(item, status) {
                     if (item && status == 'success') {
                         tl = (ui.option('maxTextLength') - ui.option('maxTextSuffix').length);
                         if (item.length > tl) {
@@ -81,7 +88,7 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
         ui.dom.link = ui.element.next('a').attr('onclick', false)
             .live('click', function(e){
                 e.preventDefault();
-                return ui._browse(this);
+                return ui.browse(this);
             });
         
         // use existing <strong> element if present
@@ -134,7 +141,7 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
                         .after(ui.dom.text)
                         .bind('click.gGenericRelated', function(e){
                             e.preventDefault();
-                            return ui._browse(this);
+                            return ui.browse(this);
                         })
                         .data('id', ui.dom.object_id.attr('id'))
                         .attr({id: 'lookup_'+ ui.dom.object_id.attr('id'), href: href});
@@ -159,114 +166,60 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
 }));
 
 
-// Used in popup windows to disable default django behaviors
+// Window is a popup
+// Used to disable default django behaviors
 $(function(){
+    if ($.grappelli.conf.get('isPopup')) {
 
-    // Browse popup
-    if (opener && /\?|&pop/.test(window.location.search)) {
         // get rid of actions
         if ($('#action-toggle').get(0)) {
             $('.result-list > table tr td:first-child, .result-list > table tr th:first-child, .actions').hide();
         }
+        // small layout fix ..
+        if ($.browser.mozilla) {
+            $('a[onclick^=return\\ showRelatedObjectLookupPopup]').css('top', '-1px');
+        }
+        
+        // Browse Related Popup
         $('a[onclick^=opener\\.dismissRelatedLookupPopup]')
             .attr('onclick', false)
             .bind('click', function(e){
-                var pk = $(this).parents('tr').find('input.action-select').val();
-                var wm = opener.jQuery.wm(window.name);
-                if (wm) {
-                    wm._data('pk', pk);
-                    wm._data('newRepr', $(this).text());
-                    e.preventDefault();
-                    return $.dismissRelatedLookupPopup(wm);
-                }
+                var wm = opener.jQuery.grappelli.window(window.name);
+                wm._data('pk', $(this).parents('tr').find('input.action-select').val());
+                wm._data('newRepr', $(this).text());
+                e.preventDefault();
+                return $.dismissRelatedLookupPopup(wm);
             });
 
+
         $.dismissRelatedLookupPopup = function (wm) {
-            if (wm) {
-                var el  = wm._data('element');
-                var pk  = wm._data('pk');
-                var lbl = wm._data('newRepr');
-                if (el.hasClass('vManyToManyRawIdAdminField') && el.val().length) {
-                    el.val($.format('{0:s},{1:s}', el.val(), pk));
-                    el.focus();
-                }
-                else if (el.hasClass('vM2MAutocompleteSearchField')) {
-                    el.gFacelist('addVal', {id: pk, label: lbl});
+            var el  = wm._data('element');
+            var pk  = wm._data('pk');
+            var lbl = wm._data('newRepr');
+            if (el.hasClass('vManyToManyRawIdAdminField') && el.val().length) {
+                el.val($.format('{0:s},{1:s}', el.val(), pk));
+                el.focus();
+            }
+            else if (el.hasClass('vM2MAutocompleteSearchField')) {
+                el.gFacelist('addVal', {id: pk, label: lbl});
+            }
+            else {
+                el.val(pk);
+                if (el.hasClass('vAutocompleteSearchField')) {
+                    el.trigger($.Event({type: 'updated'}))
+                      .parent().find('input.ui-gAutocomplete-autocomplete').val(lbl);
                 }
                 else {
-                    el.val(pk);
-                    if (el.hasClass('vAutocompleteSearchField')) {
-                        el.trigger($.Event({type: 'updated'}))
-                          .parent().find('input.ui-gAutocomplete-autocomplete').val(lbl);
-                    }
-                    else {
-                        el.focus();
-                    }
+                    el.focus();
                 }
-                wm.close();
             }
+            wm.close();
         };
-    }
-
-    // Sort a slect input alphabetically/numerically (TODO: optimize..)
-    $.sortSelect = function (select) {
-        var s = $(select);
-        var l = s.find('option').map(function(o){
-            return {label: $(this).text(), value: $(this).val(), selected: $(this).attr('selected') };
-        });
-        l = l.sort(function(a, b) { return a.label > b.label; });
-        s.empty();
-        l.each(function() {
-            $('<option />').val(this.value).attr('selected', this.selected).appendTo(s).text(this.label);
-        });
-    };
-
-    // Add popup
-    $('a[onclick^=return\\ showAddAnotherPopup]')
-        .attr('onclick', false).unbind()
-        .bind('click', function(e){
-            alert('test');
-            var link = $(this);
-            var name = link.attr('id').replace(/^add_/, '');
-            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
-            var wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
-            wm._data('link', link);
-            wm._data('id', name);
-            wm.open(true);
-            e.preventDefault();
-            return false;
-        });
-
-    // small layout fix ..
-    if ($.browser.mozilla) {
-        $('a[onclick^=return\\ showRelatedObjectLookupPopup]').css('top', '-1px')
-    }
-
-    $('a[onclick^=return\\ showRelatedObjectLookupPopup]')
-        .attr('onclick', false).unbind()
-        .bind('click', function(e){
-            var link = $(this);
-            var name = link.attr('id').replace(/^add_/, '');
-            var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
-            var wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
-            wm._data('link', link);
-            wm._data('id', name);
-            wm.open(true);
-            e.preventDefault();
-            return false;
-        });
-
-    if (opener && /pop/.test(window.location.search)) {
-        // newId and newRepr are expected to have previously been escaped by django.utils.html.escape.
-        //
-        // I can't get rid of this function .. (I could by using the middleware, but it would make it a requirement..)
-        // django/contrib/admin/options.py: 
-        // return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(...
-        var wm  = opener.jQuery('html').data(window.name);
-        var el = opener.jQuery('#'+ wm.id);
 
         opener.dismissAddAnotherPopup = function (w, newId, newRepr) {
+            var wm = opener.jQuery.grappelli.window(window.name);
             if (wm) {
+                var el = wm._data('element');
                 if (el.get(0)) {
                     var type = el.get(0).nodeName.toLowerCase();
                     if (type == 'select') {
@@ -298,7 +251,33 @@ $(function(){
                 w.close();
             }
         };
+
+    }
+    // Not a popup
+    else {
+        // Related lookup button
+        $('a[onclick^=return\\ showRelatedObjectLookupPopup]')
+            .attr('onclick', false).unbind()
+            .bind('click', function(e){
+                $(this).prev('input').gRelated('browse', this);
+                e.preventDefault();
+                return false;
+            });
+
+        // Add popup
+        $('a[onclick^=return\\ showAddAnotherPopup]')
+            .attr('onclick', false).unbind()
+            .bind('click', function(e){
+                var link = $(this);
+                var name = link.attr('id').replace(/^add_/, '');
+                var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
+                var wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
+                wm._data('link', link);
+                wm._data('id', name);
+                wm.open(true);
+                e.preventDefault();
+                return false;
+            });
     }
 });
-
 })(jQuery);

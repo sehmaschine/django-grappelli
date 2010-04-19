@@ -194,6 +194,7 @@ $.extend($.grappelli, {
             return this._win;
         };
         if (arguments.length > 1) {
+
             this.href    = arguments[0];
             this.options = $.extend(this.defaults, arguments[1] || {});
             this.name    = 'window-'+ String((new Date()).getTime());
@@ -221,8 +222,20 @@ $.unescapeHTML = function(str) {
     return div.get(0) ? div.text(): '';
 };
 
+// Sort a slect input alphabetically/numerically (TODO: optimize..)
+$.sortSelect = function (select) {
+    var s = $(select);
+    var l = s.find('option').map(function(o){
+        return {label: $(this).text(), value: $(this).val(), selected: $(this).attr('selected') };
+    });
+    l = l.sort(function(a, b) { return a.label > b.label; });
+    s.empty();
+    l.each(function() {
+        $('<option />').val(this.value).attr('selected', this.selected).appendTo(s).text(this.label);
+    });
+};
+
 $(function(){
-    
     
     // Always focus first field of a form OR the search input
     // TODO: this is most likely broken if the first field is a rich text area ..
@@ -246,4 +259,6 @@ $(function(){
 
 });
 
+
 })(jQuery);
+

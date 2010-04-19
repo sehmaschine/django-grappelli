@@ -11,7 +11,7 @@
     $.grappelli.conf.set('isPopup', {% if is_popup or 'pop' in request.GET %}true{% else %}false{% endif %});
     {% if is_popup or 'pop' in request.GET %}
     $(function(){
-        $('.module.footer').remove(); 
+        //$('.module.footer').remove(); 
     });
     {% endif %}
     </script>
