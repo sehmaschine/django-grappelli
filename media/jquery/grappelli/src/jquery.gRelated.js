@@ -22,13 +22,13 @@ $.RelatedBase = {
     /* Called when the "Browse" button is clicked 
      * on Related and GenericRelated fields
      */
-    browse: function(l) {
+    browse: function(l, noFocus) {
         var ui, link, href, wm;
         link = $(l);
-        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1&_popup=1';
         wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
         wm._data('element', link.prevAll('input:first'));
-        wm.open();
+        wm.open(!noFocus);
         return false;
     },
     
@@ -38,9 +38,9 @@ $.RelatedBase = {
     _lookup: function(e){
         var ui, app_label, model_name, url, tl, txt, type;
         ui = this;
-        if (ui.dom.link.attr('href')) {
-            app_label  = ui.dom.link.attr('href').split('/').slice(-3,-2)[0];
-            model_name = ui.dom.link.attr('href').split('/').slice(-2,-1)[0];
+        if (ui.element.next('a').attr('href')) {
+            app_label  = ui.element.next('a').attr('href').split('/').slice(-3,-2)[0];
+            model_name = ui.element.next('a').attr('href').split('/').slice(-2,-1)[0];
             if (ui.dom.object_id.val() == '') {
                 ui.dom.text.text('');
             }
@@ -85,18 +85,13 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
     _create: function() {
         var ui = this;
         ui.dom = { object_id: ui.element, text: $('<strong />') };
-        ui.dom.link = ui.element.next('a').attr('onclick', false)
-            .live('click', function(e){
-                e.preventDefault();
-                return ui.browse(this);
-            });
-        
+
         // use existing <strong> element if present
         if (ui.element.nextAll('strong:first').get(0)) {
             ui.dom.text = ui.element.nextAll('strong:first');
         }
         else {
-            ui.dom.text.insertAfter(ui.dom.link);
+            ui.dom.text.insertAfter(ui.element.next('a'));
         }
 
         ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
@@ -136,7 +131,7 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
                 if (link.get(0)) {
                     link.attr('href', href);
                 }
-                else {
+                else {ui.dom.link
                     ui.dom.link.insertAfter(ui.dom.object_id)
                         .after(ui.dom.text)
                         .bind('click.gGenericRelated', function(e){
@@ -165,6 +160,53 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     }
 }));
 
+
+
+$.widget('ui.gRelatedAddAnother', {
+    
+    options: {
+        // Idealy this should really be something like 'a.add-another' 
+        // Unfortunately this is hardcoded in Django
+        autoSelector: 'a[onclick^=return\\ showAddAnotherPopup]',
+        win: {
+            height: 600, 
+            width: 980, 
+            resizable: true, 
+            scrollbars: true
+        }
+    },
+
+    /* Called when the "Add another" button is clicked 
+     * on Related and GenericRelated fields
+     */
+    browse: function(l, noFocus) {
+        var ui, link, href, wm;
+        ui   = this;
+        link = $(l);
+        name = link.attr('id').replace(/^add_/, ''); // useful ?
+        href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1&_popup=1';
+        wm   = $.grappelli.window(href, ui.option('win'));
+        wm._data('element', link.prevAll('input:first'));
+        wm._data('id',      name);
+        wm._data('link',    link);
+        wm.open(!noFocus);
+        return false;
+    },
+
+    _create: function(){
+        var ui = this;
+        ui.element
+            .attr('onclick', false).unbind()
+            .bind('click', function(e){
+                ui.browse(this);
+                return false;
+            });
+
+        if ($.grappelli.conf.get('isPopup')) {
+        }
+    }
+
+});
 
 // Window is a popup
 // Used to disable default django behaviors
@@ -248,8 +290,9 @@ $(function(){
                     }
                     el.focus();
                 }
-                w.close();
+                wm.close();
             }
+            return false;
         };
 
     }
@@ -265,19 +308,17 @@ $(function(){
             });
 
         // Add popup
+        /*
         $('a[onclick^=return\\ showAddAnotherPopup]')
             .attr('onclick', false).unbind()
             .bind('click', function(e){
-                var link = $(this);
-                var name = link.attr('id').replace(/^add_/, '');
-                var href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1';
-                var wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
-                wm._data('link', link);
-                wm._data('id', name);
-                wm.open(true);
+                var name  = $(this).attr('id').replace(/^add_/, '');
+                var input = $(this).parent().find('input[name="'+ name +'"]');
+                .gRelated('browse', this);
                 e.preventDefault();
                 return false;
             });
+        */
     }
 });
 })(jQuery);
