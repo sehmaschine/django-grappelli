@@ -263,30 +263,6 @@ $(function(){
                 return false;
             });
 
-        $.dismissRelatedLookupPopup = function (wm) {
-            var el  = wm._data('element');
-            var pk  = wm._data('pk');
-            var lbl = wm._data('newRepr');
-            if (el.hasClass('vManyToManyRawIdAdminField') && el.val().length) {
-                el.val($.format('{0:s},{1:s}', el.val(), pk));
-                el.focus();
-            }
-            else if (el.hasClass('vM2MAutocompleteSearchField')) {
-                el.gFacelist('addVal', {id: pk, label: lbl});
-            }
-            else {
-                el.val(pk);
-                if (el.hasClass('vAutocompleteSearchField')) {
-                    el.trigger($.Event({type: 'updated'}))
-                      .parent().find('input.ui-gAutocomplete-autocomplete').val(lbl);
-                }
-                else {
-                    el.focus();
-                }
-            }
-            wm.close();
-        };
-
         opener.dismissAddAnotherPopup = function (w, newId, newRepr) {
             var wm = opener.jQuery.grappelli.window(window.name);
             if (wm) {

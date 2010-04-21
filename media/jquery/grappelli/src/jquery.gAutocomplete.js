@@ -120,6 +120,7 @@ $.widget('ui.gAutocomplete', {
         }, ui.option('delay'));
 
         ui.dom.input.bind('updated.gAutocomplete', function(e){
+            // TODO: move to gFacelist
             if (ui.element.hasClass('vM2MAutocompleteSearchField')) {
                 ui.element.gFacelist('addVal', {
                     id: e.originalEvent.data.pk, 
