@@ -18,19 +18,6 @@ $.RelatedBase = {
         return $.grappelli.contentTypeExist(k) 
             && $.grappelli.contentTypeURL(k) +'?t=id' || '';
     },
-
-    /* Called when the "Browse" button is clicked 
-     * on Related and GenericRelated fields
-     */
-    browse: function(l, noFocus) {
-        var ui, link, href, wm;
-        link = $(l);
-        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1&_popup=1';
-        wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
-        wm._data('element', link.prevAll('input:first'));
-        wm.open(!noFocus);
-        return false;
-    },
     
     /* Called when the object id field is changed/focused 
      * and it updates the label accordingly
@@ -43,9 +30,10 @@ $.RelatedBase = {
             model_name = ui.element.next('a').attr('href').split('/').slice(-2,-1)[0];
             if (ui.dom.object_id.val() == '') {
                 ui.dom.text.text('');
+                ui.setText('');
             }
             else {
-                ui.dom.text.text('loading ...');
+                ui.setText('loading ...');
 
                 type = ui.dom.object_id.hasClass('vManyToManyRawIdAdminField') && 'm2m_related' || 'related';
                 url  = $.grappelli.conf.get(type + '_url');
@@ -57,17 +45,20 @@ $.RelatedBase = {
 
                 $.get(url, get, function(item, status) {
                     if (item && status == 'success') {
-                        tl = (ui.option('maxTextLength') - ui.option('maxTextSuffix').length);
-                        if (item.length > tl) {
-                            txt = decodeURI(item.substr(0, tl) + ui.option('maxTextSuffix'));
-                            ui.dom.text.text(txt);
-                        } else {
-                            ui.dom.text.text(decodeURI(item));
-                        }
+                        ui.setText(decodeURI(item));
                     }
                 });
             }
         }
+    },
+
+    setText: function(value) {
+        var ui  = this;
+        var mxl = parseInt(ui.option('maxTextLength'), 10) - ui.option('maxTextSuffix').length;
+        if (value.length > mxl) {
+            value = value.substr(0, tl) + ui.option('maxTextSuffix');
+        }
+        ui.dom.text.text(value);
     }
 };
 
@@ -79,7 +70,7 @@ $.RelatedDefaultsBase = {
 $.widget('ui.gRelated', $.extend($.RelatedBase, {
 
     options: $.extend($.RelatedDefaultsBase, {
-        autoSelector: 'input.vForeignKeyRawIdAdminField, input.vManyToManyRawIdAdminField',
+        autoSelector: 'input.vForeignKeyRawIdAdminField, input.vManyToManyRawIdAdminField'
     }),
 
     _create: function() {
@@ -97,6 +88,12 @@ $.widget('ui.gRelated', $.extend($.RelatedBase, {
         ui.dom.object_id.bind('keyup.gRelated focus.gRelated', function(e){
             ui._lookup(e);
         }).trigger($.Event({type: 'keyup'})); // load initial data
+
+        ui.element.bind('updated.gRelated', function(e){
+            ui.setText(e.originalEvent.data.value);
+            ui.element.val(e.originalEvent.data.pk).focus();
+        });
+
     }
 }));
 
@@ -131,7 +128,7 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
                 if (link.get(0)) {
                     link.attr('href', href);
                 }
-                else {ui.dom.link
+                else {
                     ui.dom.link.insertAfter(ui.dom.object_id)
                         .after(ui.dom.text)
                         .bind('click.gGenericRelated', function(e){
@@ -160,6 +157,40 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
     }
 }));
 
+$.widget('ui.gRelatedBrowse', {
+    options: {
+        autoSelector: 'a[onclick^=return\\ showRelatedObjectLookupPopup]',
+        win: {
+            height: 600, 
+            width: 980, 
+            resizable: true, 
+            scrollbars: true
+        }
+    },
+
+    /* Called when the "Browse" button is clicked 
+     * on Related and GenericRelated fields
+     */
+    browse: function(l, noFocus) {
+        var ui, link, href, wm;
+        link = $(l);
+        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
+        wm._data('element', link.prevAll('input:first'));
+        wm.open(!noFocus);
+        return false;
+    },
+
+    _create: function(){
+        var ui = this;
+        ui.element
+            .attr('onclick', false).unbind()
+            .bind('click', function(e){
+                ui.browse(this);
+                return false;
+            });
+    }
+});
 
 
 $.widget('ui.gRelatedAddAnother', {
@@ -183,7 +214,6 @@ $.widget('ui.gRelatedAddAnother', {
         var ui, link, href, wm;
         ui   = this;
         link = $(l);
-        name = link.attr('id').replace(/^add_/, ''); // useful ?
         href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1&_popup=1';
         wm   = $.grappelli.window(href, ui.option('win'));
         wm._data('element', link.prevAll('input:first'));
@@ -195,15 +225,16 @@ $.widget('ui.gRelatedAddAnother', {
 
     _create: function(){
         var ui = this;
+        // small layout fix ..
+        if ($.browser.mozilla) {
+            ui.element.css('top', '-1px');
+        }
         ui.element
             .attr('onclick', false).unbind()
             .bind('click', function(e){
                 ui.browse(this);
                 return false;
             });
-
-        if ($.grappelli.conf.get('isPopup')) {
-        }
     }
 
 });
@@ -217,22 +248,20 @@ $(function(){
         if ($('#action-toggle').get(0)) {
             $('.result-list > table tr td:first-child, .result-list > table tr th:first-child, .actions').hide();
         }
-        // small layout fix ..
-        if ($.browser.mozilla) {
-            $('a[onclick^=return\\ showRelatedObjectLookupPopup]').css('top', '-1px');
-        }
-        
+
         // Browse Related Popup
         $('a[onclick^=opener\\.dismissRelatedLookupPopup]')
             .attr('onclick', false)
             .bind('click', function(e){
                 var wm = opener.jQuery.grappelli.window(window.name);
-                wm._data('pk', $(this).parents('tr').find('input.action-select').val());
-                wm._data('newRepr', $(this).text());
-                e.preventDefault();
-                return $.dismissRelatedLookupPopup(wm);
+                var el  = wm._data('element');
+                el.trigger($.Event({type: 'updated', data: {
+                    pk:    $(this).parents('tr').find('input.action-select').val(),
+                    value: $(this).text()
+                }}));
+                wm.close();
+                return false;
             });
-
 
         $.dismissRelatedLookupPopup = function (wm) {
             var el  = wm._data('element');
@@ -294,31 +323,6 @@ $(function(){
             }
             return false;
         };
-
-    }
-    // Not a popup
-    else {
-        // Related lookup button
-        $('a[onclick^=return\\ showRelatedObjectLookupPopup]')
-            .attr('onclick', false).unbind()
-            .bind('click', function(e){
-                $(this).prev('input').gRelated('browse', this);
-                e.preventDefault();
-                return false;
-            });
-
-        // Add popup
-        /*
-        $('a[onclick^=return\\ showAddAnotherPopup]')
-            .attr('onclick', false).unbind()
-            .bind('click', function(e){
-                var name  = $(this).attr('id').replace(/^add_/, '');
-                var input = $(this).parent().find('input[name="'+ name +'"]');
-                .gRelated('browse', this);
-                e.preventDefault();
-                return false;
-            });
-        */
     }
 });
 })(jQuery);

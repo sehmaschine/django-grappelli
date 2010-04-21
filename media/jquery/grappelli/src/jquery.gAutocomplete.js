@@ -118,6 +118,25 @@ $.widget('ui.gAutocomplete', {
                 }
             }
         }, ui.option('delay'));
+
+        ui.dom.input.bind('updated.gAutocomplete', function(e){
+            if (ui.element.hasClass('vM2MAutocompleteSearchField')) {
+                ui.element.gFacelist('addVal', {
+                    id: e.originalEvent.data.pk, 
+                    label: e.originalEvent.data.value
+                });
+            }
+            else {
+                ui.element.val(e.originalEvent.data.pk);
+                if (ui.element.hasClass('vAutocompleteSearchField')) {
+                    ui.element.trigger($.Event({type: 'updated'}))
+                      .parent().find('input.ui-gAutocomplete-autocomplete').val(e.originalEvent.data.value);
+                }
+                else {
+                    ui.element.focus();
+                }
+            }
+        });
     },
 
     /* called when the "Browse" button is clicked on
