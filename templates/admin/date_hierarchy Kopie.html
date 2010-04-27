@@ -1,0 +1,18 @@
+{% load i18n %}
+
+{% if show and choices %}
+    <div class="module date-hierarchy">
+        <h2>{% trans 'Date Hierarchy' %}</h2>
+        {% comment %}
+        <ul class="tools">
+            <li><a href="" class="icon remove-handler"> </a></li>
+        </ul>
+        {% endcomment %}
+        <ul>
+            {% if back %}<li class="date-back"><a href="{{ back.link }}">&lsaquo; {{ back.title }}</a></li>{% endif %}
+            {% for choice in choices %}
+            <li>{% if choice.link %}<a href="{{ choice.link }}">{{ choice.title }}</a>{% else %}<p>{{ choice.title }}</p>{% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
