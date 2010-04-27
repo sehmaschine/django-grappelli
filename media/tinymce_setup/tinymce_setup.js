@@ -42,7 +42,7 @@ tinyMCE.init({
     dialog_type:        'window',
     browsers:           'gecko,msie,safari,opera',
     editor_deselector : 'mceNoEditor',
-    language:           $.grappelli.conf.get('lang'),
+    language:           "de",
     relative_urls:      false,
     plugins:            'advimage,advlink,fullscreen,paste,media,searchreplace,grappelli,grappelli_contextmenu,template',
     
