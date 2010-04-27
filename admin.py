@@ -151,7 +151,7 @@ class HelpOptions(admin.ModelAdmin):
     # Media
     class Media:
         js = [
-            settings.ADMIN_MEDIA_PREFIX + 'tinymce/jscripts/tiny_mce/tiny_mce.js',
+            settings.ADMIN_MEDIA_PREFIX + 'jquery/tinymce/jscripts/tiny_mce/tiny_mce.js',
             settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
         ]
 
@@ -175,7 +175,7 @@ class HelpItemOptions(admin.ModelAdmin):
     # Media
     class Media:
         js = [
-            settings.ADMIN_MEDIA_PREFIX + 'tinymce/jscripts/tiny_mce/tiny_mce.js',
+            settings.ADMIN_MEDIA_PREFIX + 'jquery/tinymce/jscripts/tiny_mce/tiny_mce.js',
             settings.ADMIN_MEDIA_PREFIX + 'tinymce_setup/tinymce_setup.js',
         ]
 
