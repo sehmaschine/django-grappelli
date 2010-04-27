@@ -70,29 +70,6 @@
             $('.changelist-results a.add-another').parent().addClass('nowrap');
         };
         
-        function TableStretch(Module) {
-            // Table of module, always '.changelist-results'
-            var Table = $(Module).children('table');
-            
-            // Set width to 'auto' to calculate new TableLastChildModifiedWidth when th browser-window is resized
-            $(Table).children('table thead th:last').css('width', 'auto');
-            
-            // Calculate desired width of thead th:last
-            var ModuleWidth = $(Module).outerWidth();
-            var TableWidth = $(Table).outerWidth();
-            var TableModuleDifference = ModuleWidth - TableWidth;
-            var TableLastChildWidth = $(Table).children('thead th:last').outerWidth();
-            var TableLastChildModifiedWidth = TableLastChildWidth + TableModuleDifference - 12;
-            // alert(ModuleWidth);
-            // alert(TableWidth);
-            // alert(TableModuleDifference);
-            // alert(TableLastChildWidth);
-            // alert(TableLastChildModifiedWidth);
-            
-            //  assign TableLastChildModifiedWidth to thead th:last
-            $(Table).children('thead th:last').css('width', TableLastChildModifiedWidth);
-        }
-        
         $(document).ready(function() {
             initializeFlexibleLayout('.container-flexible');
             
@@ -193,14 +170,9 @@
         
         $(window).resize(function(){
             HorizontalOverflow('.container-flexible');
-            TableStretch('.changelist-results');
         });
         window.onload = function () {
             HorizontalOverflow('.container-flexible');
-            
-            // Stretch the table as soon as it - and its delayed contents like RelatedObjects - are loaded
-            // inserted temporarily because the document.ready does not work on first load (just when the page is reloaded)
-            TableStretch('.changelist-results');
         }
     })(jQuery.noConflict());
 </script>
