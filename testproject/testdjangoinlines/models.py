@@ -4,16 +4,6 @@ from testdjango.models import *
 
 # Text Fields  -----------------------------------------------------------------------------------
 
-class DjangoTextFieldsInline(DjangoTextFields):
-    tabular_test = models.ForeignKey('DjangoTextFieldsTabularTest', blank=True)
-    stacked_test = models.ForeignKey('DjangoTextFieldsStackedTest', blank=True)
-    def __unicode__(self):
-        return u'%s' % self.char_test
-
-    class Meta:
-        verbose_name = u'Text fields test'
-        verbose_name_plural = u'Text fields tests'
-
 #  Text fields / Tabular
 class DjangoTextFieldsTabularTest(models.Model):
     char_test   = models.CharField(u"Test name", max_length=255)
@@ -22,18 +12,16 @@ class DjangoTextFieldsTabularTest(models.Model):
 class DjangoTextFieldsStackedTest(models.Model):
     char_test   = models.CharField(u"Test name", max_length=255)
 
-
-# Time Fields  -----------------------------------------------------------------------------------
-
-class DjangoTimeFieldsInline(DjangoTimeFields):
-    tabular_test = models.ForeignKey('DjangoTimeFieldsTabularTest', blank=True)
-    stacked_test = models.ForeignKey('DjangoTimeFieldsStackedTest', blank=True)
-    def __unicode__(self):
-        return u'%s' % self.char_test
+class DjangoTextFieldsInline(DjangoTextFields):
+    tabular_test = models.ForeignKey(DjangoTextFieldsTabularTest, blank=True, null=True)
+    stacked_test = models.ForeignKey(DjangoTextFieldsStackedTest, blank=True, null=True)
 
     class Meta:
-        verbose_name = u'Time fields test'
-        verbose_name_plural = u'Time fields tests'
+        verbose_name = u'Text fields test'
+        verbose_name_plural = u'Text fields tests'
+
+
+# Time Fields  -----------------------------------------------------------------------------------
 
 #  Time fields / Tabular
 class DjangoTimeFieldsTabularTest(models.Model):
@@ -43,17 +31,15 @@ class DjangoTimeFieldsTabularTest(models.Model):
 class DjangoTimeFieldsStackedTest(models.Model):
     char_test = models.CharField(u"Test name", max_length=255)
 
-# Number Fields  -----------------------------------------------------------------------------------
-
-class DjangoNumberFieldsInline(DjangoNumberFields):
-    tabular_test = models.ForeignKey('DjangoNumberFieldsTabularTest', blank=True)
-    stacked_test = models.ForeignKey('DjangoNumberFieldsStackedTest', blank=True)
-    def __unicode__(self):
-        return u'%s' % self.char_test
+class DjangoTimeFieldsInline(DjangoTimeFields):
+    tabular_test = models.ForeignKey(DjangoTimeFieldsTabularTest, blank=True, null=True)
+    stacked_test = models.ForeignKey(DjangoTimeFieldsStackedTest, blank=True, null=True)
 
     class Meta:
-        verbose_name = u'Number fields test'
-        verbose_name_plural = u'Number fields tests'
+        verbose_name = u'Time fields test'
+        verbose_name_plural = u'Time fields tests'
+
+# Number Fields  -----------------------------------------------------------------------------------
 
 #  Number fields / Tabular
 class DjangoNumberFieldsTabularTest(models.Model):
@@ -63,17 +49,15 @@ class DjangoNumberFieldsTabularTest(models.Model):
 class DjangoNumberFieldsStackedTest(models.Model):
     char_test = models.CharField(u"Test name", max_length=255)
 
-# Net Fields  -----------------------------------------------------------------------------------
-
-class DjangoNetFieldsInline(DjangoNetFields):
-    tabular_test = models.ForeignKey('DjangoNetFieldsTabularTest', blank=True)
-    stacked_test = models.ForeignKey('DjangoNetFieldsStackedTest', blank=True)
-    def __unicode__(self):
-        return u'%s' % self.char_test
+class DjangoNumberFieldsInline(DjangoNumberFields):
+    tabular_test = models.ForeignKey(DjangoNumberFieldsTabularTest, blank=True, null=True)
+    stacked_test = models.ForeignKey(DjangoNumberFieldsStackedTest, blank=True, null=True)
 
     class Meta:
-        verbose_name = u'Net fields test'
-        verbose_name_plural = u'Net fields tests'
+        verbose_name = u'Number fields test'
+        verbose_name_plural = u'Number fields tests'
+
+# Net Fields  -----------------------------------------------------------------------------------
 
 #  Net fields / Tabular
 class DjangoNetFieldsTabularTest(models.Model):
@@ -83,17 +67,15 @@ class DjangoNetFieldsTabularTest(models.Model):
 class DjangoNetFieldsStackedTest(models.Model):
     char_test = models.CharField(u"Test name", max_length=255)
 
-# File Fields  -----------------------------------------------------------------------------------
-
-class DjangoFileFieldsInline(DjangoFileFields):
-    tabular_test = models.ForeignKey('DjangoFileFieldsTabularTest', blank=True)
-    stacked_test = models.ForeignKey('DjangoFileFieldsStackedTest', blank=True)
-    def __unicode__(self):
-        return u'%s' % self.char_test
+class DjangoNetFieldsInline(DjangoNetFields):
+    tabular_test = models.ForeignKey(DjangoNetFieldsTabularTest, blank=True, null=True)
+    stacked_test = models.ForeignKey(DjangoNetFieldsStackedTest, blank=True, null=True)
 
     class Meta:
-        verbose_name = u'File fields test'
-        verbose_name_plural = u'File fields tests'
+        verbose_name = u'Net fields test'
+        verbose_name_plural = u'Net fields tests'
+
+# File Fields  -----------------------------------------------------------------------------------
 
 #  File fields / Tabular
 class DjangoFileFieldsTabularTest(models.Model):
@@ -103,17 +85,15 @@ class DjangoFileFieldsTabularTest(models.Model):
 class DjangoFileFieldsStackedTest(models.Model):
     char_test = models.CharField(u"Test name", max_length=255)
 
-#  Fields  -----------------------------------------------------------------------------------
-
-class DjangoRelatedFieldsInline(DjangoRelatedFields):
-    tabular_test = models.ForeignKey('DjangoRelatedFieldsTabularTest', blank=True)
-    stacked_test = models.ForeignKey('DjangoRelatedFieldsStackedTest', blank=True)
-    def __unicode__(self):
-        return u'%s' % self.char_test
+class DjangoFileFieldsInline(DjangoFileFields):
+    tabular_test = models.ForeignKey(DjangoFileFieldsTabularTest, blank=True, null=True)
+    stacked_test = models.ForeignKey(DjangoFileFieldsStackedTest, blank=True, null=True)
 
     class Meta:
-        verbose_name = u'Related fields test'
-        verbose_name_plural = u'Related fields tests'
+        verbose_name = u'File fields test'
+        verbose_name_plural = u'File fields tests'
+
+#  Related Fields  -----------------------------------------------------------------------------------
 
 #  Related fields / Tabular
 class DjangoRelatedFieldsTabularTest(models.Model):
@@ -122,3 +102,11 @@ class DjangoRelatedFieldsTabularTest(models.Model):
 # Related fields / Stacked 
 class DjangoRelatedFieldsStackedTest(models.Model):
     char_test = models.CharField(u"Test name", max_length=255)
+
+class DjangoRelatedFieldsInline(DjangoRelatedFields):
+    tabular_test = models.ForeignKey(DjangoRelatedFieldsTabularTest, blank=True, null=True)
+    stacked_test = models.ForeignKey(DjangoRelatedFieldsStackedTest, blank=True, null=True)
+
+    class Meta:
+        verbose_name = u'Related fields test'
+        verbose_name_plural = u'Related fields tests'

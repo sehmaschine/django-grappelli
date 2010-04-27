@@ -78,9 +78,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'grappelli.middleware.JavaScript404Patch',
     'grappelli.middleware.BrowserCompatibilityEnforcer',
+    
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 INTERNAL_IPS = ('127.0.0.1', '192.168.0.100')
 ROOT_URLCONF = 'testproject.urls'
@@ -102,13 +103,14 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'grappelli',
 #   'grappellitest',
-    'debug_toolbar',
     'testdjango',
     'testgrappelli',
     'testdjangoinlines',
     'testgrappelliinlines',
+    'debug_toolbar',
 )
 GRAPPELLI_ADMIN_TITLE = 'Grappelli Test Project'
+#INTERNAL_IPS = ('127.0.0.1',)
 DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False
 }

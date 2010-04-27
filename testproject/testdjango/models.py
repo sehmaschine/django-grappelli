@@ -25,8 +25,8 @@ class DjangoTextFields(models.Model):
 # Time fields
 class DjangoTimeFields(models.Model):
     datetime_test  = models.DateTimeField(u"DateTimeField")
-    date_test      = models.DateField(u"DateField", blank=True)
-    time_test      = models.TimeField(u"TimeField", blank=True)
+    date_test      = models.DateField(u"DateField", blank=True, null=True)
+    time_test      = models.TimeField(u"TimeField", blank=True, null=True)
 
     def __unicode__(self):
         return u'%s' % self.datetime_test
