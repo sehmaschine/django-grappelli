@@ -32,7 +32,7 @@
         var ADMIN_URL = "{% get_admin_url %}";
         // var ADMIN_MEDIA_PREFIX = "{% admin_media_prefix %}";
         // var BOOKMARKS_URL = "{% url grp_bookmark_get %}";
-        {% get_generic_relation_list %}
+        var MODEL_URL_ARRAY = {% get_content_types %};
     </script>
 {% endblock %}
 {% block extrahead %}{% endblock %}
