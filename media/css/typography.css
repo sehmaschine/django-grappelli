@@ -72,9 +72,12 @@ a { text-decoration: none; outline: none !important; }
 a:link, a:visited { color: #309bbf; }
 a:hover, a:active, a.selected { color: #444; }
 
+
+.dashboard h2 a:link, .dashboard h2 a:visited, 
 .dashboard h3 a:link, .dashboard h3 a:visited {
     color: #444;
 }
+.dashboard h2 a:hover, .dashboard h2 a:active, 
 .dashboard h3 a:hover, .dashboard h3 a:active {
     color: #309bbf;
 }

@@ -156,12 +156,14 @@ input[type=file] {
     height: auto;
     border: none;
 }
-.table-cell input[type=file] {
+.th input[type=file], 
+.td input[type=file] {
     top: 3px;
     margin-bottom: -3px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    .table-cell input[type=file] {
+    .th input[type=file], 
+    .td input[type=file] {
         top: 2px;
         margin-bottom: -2px;
     }
@@ -230,39 +232,49 @@ input[type=checkbox], input[type=radio] {
     margin-left: 160px;
     margin-right: 5px;
 }
-.table-cell>input[type=radio], 
-.table-cell>input[type=checkbox] {
+.th>input[type=radio], 
+.th>input[type=checkbox], 
+.td>input[type=radio], 
+.td>input[type=checkbox] {
     top: 2px;
     margin-bottom: -3px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    .table-cell>input[type=radio] {
+    .th>input[type=radio], 
+    .td>input[type=radio] {
         top: 2px;
         margin-bottom: -2px;
     }
-    .table-cell>input[type=checkbox] {
+    .th>input[type=checkbox], 
+    .td>input[type=checkbox] {
         top: 3px;
         margin-bottom: -2px;
     }
 }
 .form-row input[type=radio], 
 .form-row input[type=checkbox], 
-.table-cell ul.radiolist input[type=radio], 
-.table-cell ul.checkboxlist input[type=checkbox] {
+.th ul.radiolist input[type=radio], 
+.th ul.checkboxlist input[type=checkbox], 
+.td ul.radiolist input[type=radio], 
+.td ul.checkboxlist input[type=checkbox] {
     top: -1px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .form-row input[type=radio], 
-    .table-cell ul.radiolist input[type=radio] {
+    .th ul.radiolist input[type=radio], 
+    .td ul.radiolist input[type=radio] {
         top: -2px;
     }
     .form-row input[type=checkbox], 
-    .table-cell ul.radiolist input[type=checkbox] {
+    .th ul.radiolist input[type=checkbox], 
+    .td ul.radiolist input[type=checkbox] {
         top: 0;
     }
 }
-.table-cell input[type=radio], 
-.table-cell input[type=checkbox], 
+.th input[type=radio], 
+.th input[type=checkbox], 
+.td input[type=radio], 
+.td input[type=checkbox],
 ul.radiolist input[type=radio], 
 ul.checkboxlist input[type=checkbox] {
     margin-left: 0;
@@ -289,6 +301,10 @@ ul.checkboxlist input[type=checkbox] {
     position: relative; top: -2px; margin: 0 3px 0 0;
 }
 
+ul.tools .delete-handler-container input[type=checkbox] {
+    display: none !important;
+}
+
 
 /*  Radiolists & Checkboxlists ................................................... */
 
@@ -298,7 +314,8 @@ ul.radiolist, ul.checkboxlist {
     font-size: 11px; line-height: 15px; font-weight: normal;
 }
 label + ul.radiolist, label + ul.checkboxlist, 
-.table-cell ul.radiolist, .table-cell ul.checkboxlist {
+.th ul.radiolist, .th ul.checkboxlist, 
+.td ul.radiolist, .td ul.checkboxlist {
     margin-left: 0;
 }
 

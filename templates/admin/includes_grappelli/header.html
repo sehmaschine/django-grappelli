@@ -5,22 +5,6 @@
     <!-- Title -->
     <div class="admin-title">{% get_admin_title %}</div>
     {% if user.is_authenticated and user.is_staff %}
-    <!-- Bookmarks (temporary) -->
-    <ul id="bookmarks">
-        <li id="toggle-bookmarks-listing" class="enabled"><a href="javascript://">{% trans "Bookmarks" %}</a></li>
-        <ul id="bookmarks-listing">
-            <li class="no-entries"><p>{% trans "Loading Bookmarks" %}</p></li>
-        </ul>
-        <li class="action bookmark-add">
-            <a href="#" id="toggle-bookmark-add" class="bookmark-add"> </a>
-        </li>
-        <li class="action bookmark-remove">
-            <a href="#" class="bookmark-remove"> </a>
-        </li>
-        <li class="action bookmark-manage">
-            <a href="#" class="bookmark-manage"> </a>
-        </li>
-    </ul>
     <ul id="user-tools">
         <!-- Username -->
         <li><strong>{% firstof user.first_name user.username %}</strong></li>

@@ -1,13 +1,14 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n admin_modify adminmedia grp_tags grp_csrf %}
+{% load i18n admin_modify adminmedia grp_tags %}
 
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
+    {% url admin:jsi18n as jsi18nurl %}
+    <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
     {{ media }}
-    {# if inline_admin_formsets %}{% endif #}
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->
@@ -24,6 +25,7 @@
 </div>
 {% endif %}{% endblock %}
 
+<!-- OBJECT TOOLS -->
 {% block object-tools %}
 {% if change %}
 {% if not is_popup %}
@@ -33,14 +35,12 @@
 {% endif %}
 {% endif %}
 {% endblock %}
+
 <!-- CONTENT -->
 {% block content %}
 <div class="container-flexible">
-    
-    <!-- Object-Tools -->
-    
     <div class="form-container">
-    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% grp_csrf_token %}{% block form_top %}{% endblock %} 
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
         <div>
             <!-- Popup Hidden Field -->
             {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
@@ -72,6 +72,11 @@
             
             <!-- Submit-Row -->
             {% submit_row %}
+            
+            <!-- Focus on first FormField -->
+            {% if adminform and add %}
+                <script type="text/javascript">document.getElementById("{{ adminform.first_field.auto_id }}").focus();</script>
+            {% endif %}
             
             <!-- JS for prepopulated fields -->
             {% prepopulated_fields_js %}

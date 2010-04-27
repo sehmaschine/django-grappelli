@@ -2,8 +2,11 @@
 
 {% spaceless %}
 <ul class="pagination">
+    {% if cl.result_count != cl.full_result_count %}
+    <li class="results"><span>{{ cl.result_count }} results</span></li>
+    {% endif %}
     {% ifnotequal cl.result_count 0 %}
-    <li class="results"><span>{{ cl.result_count }} {% ifequal cl.result_count 1 %}{{ cl.opts.verbose_name|escape }}{% else %}{{ cl.opts.verbose_name_plural }}{% endifequal %}</span></li>
+    <li class="results"><a href="?{% if cl.is_popup %}pop=1{% endif %}">{{ cl.full_result_count }} total</a></li>
     {% endifnotequal %}
     {% if pagination_required %}
         {% comment %}<li class="page">{% trans 'Page' %}</li>{% endcomment %}

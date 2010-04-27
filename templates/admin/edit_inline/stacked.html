@@ -1,44 +1,106 @@
-{% load i18n %}
+{% load i18n adminmedia %}
 
-<div class="group {% if inline_admin_formset.opts.sortable %} sortable{% endif %}{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}" name="inlinegroup">
+<!-- group -->
+<div class="group {% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
+    id="{{ inline_admin_formset.formset.prefix }}-group">
     <h2>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>
     <ul class="tools">
-        <li><a class="icon ui-collapsible-open-all" title="{% trans 'Open All Items' %}"></a></li>
-        <li><a class="icon ui-collapsible-close-all" title="{% trans 'Close All Items' %}"></a></li>
-        <li>{% if inline_admin_formset.opts.allow_add %}<a class="icon ui-add-handler" title="{% trans 'Add Item' %}"> </a>{% else %}&nbsp;{% endif %}</li>
+        <li class="open-handler-container"><a href="javascript://" class="icon open-handler" title="{% trans 'Open All Items' %}"></a></li>
+        <li class="close-handler-container"><a href="javascript://" class="icon close-handler" title="{% trans 'Close All Items' %}"></a></li>
+        <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a></li>
     </ul>
-    <div class="items"> <!-- sortable container -->
+    {{ inline_admin_formset.formset.management_form }}
+    {{ inline_admin_formset.formset.non_form_errors }}
+    <!-- container -->
+    <div class="items">
         {% for inline_admin_form in inline_admin_formset %}
-        <div class="module ui-collapsible-open  ui-collapsible"> <!-- sortable items -->
-            <!-- headline, original, delete/link/sort -->
-            <h3 class="ui-collapsible-toggle">{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
+        <!-- element -->
+        <div class="module collapse closed{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
+            id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
+            <h3>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
             <ul class="tools">
-                {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
-                {% if inline_admin_formset.opts.sortable %}<li><a class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}
-                {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a class="icon delete-link" title="{% trans 'Delete Item' %}"></a></li>{% endif %}
+                {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
+                {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
+                {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon delete-handler" title="{% trans 'Delete Item' %}"></a></li>{% endif %}
             </ul>
-            <!-- fieldsets -->
             {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
             {% for fieldset in inline_admin_form %}
                 {% include "admin/includes/fieldset_inline.html" %}
             {% endfor %}
-            {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+            {{ inline_admin_form.pk_field.field }}
             {{ inline_admin_form.fk_field.field }}
         </div>
         {% endfor %}
         {{ inline_admin_formset.extra_forms }}
     </div>
-    {% if inline_admin_formset.opts.allow_add %}
-        <div class="module ui-add-handler">
-            <ul class="tools">
-                <li><a class="icon ui-add-handler" title="{% trans 'Add Item' %}"> </a></li>
-            </ul><br clear="all" />
-        </div>
-    {% endif %}
-    {{ inline_admin_formset.formset.management_form }}
-    {{ inline_admin_formset.formset.non_form_errors }}
+    <div class="module add-item">
+        <a href="javascript://" class="add-handler">{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</a>
+        <ul class="tools">
+            <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a></li>
+        </ul><br clear="all" />
+    </div>
 </div>
 
-<div class="sortablehelper" style="display: none">
-    <h3><b>Sortable Helper</b></h3>
-</div>
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function() {
+        var updateInlineLabel = function(row) {
+            $("#{{ inline_admin_formset.formset.prefix }}-group div.items div.module").find("h3:first").each(function(i) {
+                $(this).html($(this).html().replace(/(#\d+)/g, "#" + ++i));
+            });
+        }
+        var reinitDateTimeShortCuts = function(row) {
+            // Reinitialize the calendar and clock widgets by force, yuck.
+            if (typeof DateTimeShortcuts != "undefined") {
+                row.find(".datetimeshortcuts").remove();
+                DateTimeShortcuts.init();
+            }
+        }
+        var updateSelectFilter = function(row) {
+            // If any SelectFilter widgets were added, instantiate a new instance.
+            if (typeof SelectFilter != "undefined"){
+                row.find(".selectfilter").each(function(index, value){
+                  var namearr = value.name.split('-');
+                  SelectFilter.init(value.id, namearr[namearr.length-1], false, "{% admin_media_prefix %}");
+                });
+                row.find(".selectfilterstacked").each(function(index, value){
+                  var namearr = value.name.split('-');
+                  SelectFilter.init(value.id, namearr[namearr.length-1], true, "{% admin_media_prefix %}");
+                });
+            }
+        }
+        var reinitTinyMCE = function(row) {
+            row.find("textarea.vLargeTextField").each(function() {
+                console.log("add mce", this.id)
+                tinyMCE.execCommand('mceAddControl', false, this.id);
+            });
+        };
+        var deleteTinyMCE = function(row) {
+            row.find("textarea.vLargeTextField").each(function() {
+                if (tinyMCE.getInstanceById(this.id)) {
+                    console.log("remove mce", this.id)
+                    tinyMCE.execCommand('mceRemoveControl', false, this.id);
+                }
+            });
+        };
+        
+        
+        // TODO. re-init ui-calendar
+        $("#{{ inline_admin_formset.formset.prefix }}-group").inline({
+            prefix: "{{ inline_admin_formset.formset.prefix }}",
+            deleteCssClass: "delete-handler",
+            emptyCssClass: "empty-form",
+            onRemoved: (function (row) {
+                updateInlineLabel(row);
+                deleteTinyMCE(row);
+            }),
+            onAdded: (function(row) {
+                reinitTinyMCE(row);
+                reinitDateTimeShortCuts(row);
+                updateSelectFilter(row);
+                updateInlineLabel(row);
+            })
+        });
+    });
+})(jQuery.noConflict());
+</script>

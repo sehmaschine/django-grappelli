@@ -11,10 +11,17 @@
         <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
     {% endif %}
     {{ media }}
+    {% if is_popup %}
+    <script type="text/javascript">
+        // HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
+        $('div.actions, p.submit-row').hide();
+        $('input.action-select').parent().hide();
+        $('input#action-toggle').parent().hide();
+    </script>
+    {% endif %}
     
 <script type="text/javascript">
     (function($) {
-        
         function initializeFlexibleLayout(content) {
             $('#content').addClass('content-flexible');
             $(content).find('.span-flexible').next('.column').parent().addClass('layout-flexible-grid');
@@ -65,9 +72,8 @@
         };
         
         function ModifyTableElements() {
-            // UGLY HACK: add no-wrap to table-elements
-            // should be there already.
             $('.changelist-results a.add-another').parent().addClass('nowrap');
+            // $('.changelist-results a.related-lookup').parent().addClass('nowrap');
         };
         
         function TableStretch(Module) {
@@ -91,10 +97,18 @@
             
             //  assign TableLastChildModifiedWidth to thead th:last
             $(Table).children('thead th:last').css('width', TableLastChildModifiedWidth);
-        }
+        };
+        
         
         $(document).ready(function() {
             initializeFlexibleLayout('.container-flexible');
+            ModifyTableElements();
+            
+            // Stretch the table as soon as it - and its delayed contents like RelatedObjects - are loaded
+            // The image is a temporary solution
+            $('.changelist-results img.loader').load(function() {
+                TableStretch('.changelist-results');
+            });
             
             // jQuery UI Datepicker
             // $(".vDateField").datepicker({
@@ -108,89 +122,38 @@
                 $('.filter-container').toggle();
             });
             
+            $(".date-hierarchy-choice").change(function(){
+                location.href = $(this).val();
+            });
+            
             $(".filter_choice").change(function(){
                 location.href = $(this).val();
             });
+            
+            var filter_activated = false;
+            var filter_activated_counter = 0;
+            $(".filter_choice").each(function(){
+                $(this).find("option:selected").not(":first-child").each(function(){
+                    filter_activated_counter = filter_activated_counter + 1;
+                    filter_activated = true;
+                });
+            });
+            if (filter_activated) {
+                $(".toggle-filter").addClass("activated");
+                $('.filter-container').show();
+            };
             
             if ($("input.action-select").length > 0) {
                 $("input.action-select").actions();
             }
             // hide the last coll if its an editable list
             // because this coll has just the hidden input with the id (breaks ui)
-            
             if ($("#changelist").hasClass("editable")) {
-                // UGLY HACK: add th for thead when list_editables are activated.
-                // why is the th missing anyway??? f*ck.
                 $(".changelist-results tr").each(function() {
                     $(this).find("td:last").hide();
                 });
             }
-            
-            $("div#filter h2").click(function() {
-                $(this).next().toggle();
-            })
-            
-            $("h4#filter-handler").click(function() {
-                $("div#filters").toggle();
-            })
-            
-            $("a#search-handler").click(function() {
-                $("div.search-container").toggle();
-            })
-            
-            $("input#action-toggle").click(function() {
-                var selected = $("input[name='_selected_action']:checked").length;
-                if (selected) {
-                    // $("div#footer_general").hide();
-                    $("div#footer_submit").hide();
-                    $("div#footer_actions").show();
-                } else {
-                    // $("div#footer_general").show();
-                    $("div#footer_submit").hide();
-                    $("div#footer_actions").hide();
-                }
-            })
-            $("input[name='_selected_action']").click(function() {
-                var selected = $("input[name='_selected_action']:checked").length;
-                if (selected) {
-                    // $("div#footer_general").hide();
-                    $("div#footer_submit").hide();
-                    // $("div#footer_actions").show();
-                } else {
-                    // $("div#footer_general").show();
-                    $("div#footer_submit").hide();
-                    // $("div#footer_actions").hide();
-                }
-            })
-            $("input[name!='_selected_action'][id!='action-toggle']").click(function() {
-                // $("div#footer_general").hide();
-                $("div#footer_submit").show();
-                // $("div#footer_actions").hide();
-            })
-            
-            $("a.cancel-link").click(function() {
-                // $("div#footer_general").show();
-                $("div#footer_submit").hide();
-                // $("div#footer_actions").hide();
-            })
-            
-            $("a.toggle-filters").click(function() {
-                $(".filter-pulldown").toggle();
-            })
-            
-            {% if is_popup %}
-            // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
-            // shouldn't be there in the first place, see
-            // http://code.djangoproject.com/ticket/11700
-            $('div#actions').hide();
-            $('input.action-select').parent().hide();
-            $('input#action-toggle').parent().hide();
-            $('div.changelist-results input').attr('disabled', 'disabled');
-            $('div#submit').hide();
-            {% endif %}
-            
         });
-        
         $(window).resize(function(){
             HorizontalOverflow('.container-flexible');
             TableStretch('.changelist-results');
@@ -224,9 +187,7 @@
 
 <!-- CONTENT-TITLE -->
 {% block content_title %}
-    <h1>
-        {{ cl.opts.verbose_name_plural|capfirst }}
-    </h1>
+    <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
 {% endblock %}
 
 <!-- OBJECT-TOOLS -->
@@ -235,7 +196,7 @@
         <ul class="tools">
             <li>
                 <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="focus">
-                    Add
+                    {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
                 </a>
             </li>
         </ul>
@@ -244,77 +205,68 @@
 
 <!-- CONTENT -->
 {% block content %}
-
-{% if search_form or cl.date_hierarchy or cl.has_filters %}
-<div class="module">
-    <div class="Xform-row">
-        {% pagination cl %}
-        {% if cl.has_filters %}
-            <div id="filters" class="box filter">
-                <a href="javascript://" class="toggle-filters">{% trans 'Filter' %}</a>
-                <div class="filter-pulldown">
-                    {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+    <div id="changelist" class="container-flexible">
+        
+        <div class="column span-flexible">
+            <!-- Popup Hidden Field -->
+            {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+            <!-- Errors -->
+            {% if cl.formset.errors %}
+                <p class="errornote">
+                    {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                </p>
+                {{ cl.formset.non_form_errors }}
+            {% endif %}
+            <!-- Management Form -->
+            {% if cl.formset %}
+                {{ cl.formset.management_form }}
+            {% endif %}
+            <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                <div class="group changelist-content">
+                    {% block result_list %}
+                        {% if action_form and actions_on_top and cl.full_result_count and cl.result_count %}{% admin_actions %}{% endif %}
+                        {% result_list cl %}
+                        {% if action_form and actions_on_bottom and cl.full_result_count and cl.result_count %}{% admin_actions %}{% endif %}
+                    {% endblock %}
                 </div>
-            </div>
-        {% endif %}
-        {% if not search_form %}
-            <div id="search" class="box search">
-                {% block search %}{% search_form cl %}{% endblock %}
-            </div>
-        {% endif %}
-        <br clear="all" />
+                <div class="module footer">
+                    {% block pagination %}{% pagination cl %}{% endblock %}
+                    {% if cl.formset and cl.result_count %}
+                        <ul class="submit-row">
+                            <li class="submit-button-container"><input type="submit" class="default" value="Save"/></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+        
+            {% block filters %}
+                {% if cl.has_filters or cl.search_fields or cl.date_hierarchy %}
+                    <div class="column span-6 last sidebar">
+                    <!-- Results -->
+                    {% ifnotequal cl.result_count cl.full_result_count %}
+                        <div class="module filter-results">
+                            <h2>{% trans 'Results' %}</h2>
+                            <div class="form-row">
+                                <p>{% blocktrans with cl.result_count as counter %}{{ counter }} found{% endblocktrans %}</p>
+                                <a href="?{% if cl.is_popup %}pop=1{% endif %}">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
+                            </div>
+                        </div>
+                    {% endifnotequal %}
+                    <!-- Search -->
+                    {% block search %}{% search_form cl %}{% endblock %}
+                    <!-- Date Hierarchy -->
+                    {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+                    <!-- Filter -->
+                    {% if cl.has_filters %}
+                        <!-- Filter -->
+                        <div class="module filter">
+                            <h2>{% trans 'Filter' %}</h2>
+                            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                        </div>
+                    {% endif %}
+                    </div>
+                {% endif %}
+            {% endblock %}
     </div>
-    {% if cl.date_hierarchy %}
-    <div id="date-hierarchy">
-        {% date_hierarchy cl %}
-    </div>
-    {% endif %}
-</div>
-{% endif %}
-
-<form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-
-<div id="actions">
-{% admin_actions %}
-</div>
-
-<div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
-    <!-- Popup Hidden Field -->
-    {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
-    <!-- Errors -->
-    {% if cl.formset.errors %}
-        <p class="errornote">
-            {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
-        </p>
-        {{ cl.formset.non_form_errors }}
-    {% endif %}
-    <!-- Management Form -->
-    {% if cl.formset %}
-        {{ cl.formset.management_form }}
-    {% endif %}
-    <div class="group changelist-content">
-        {% block result_list %}
-            {% result_list cl %}
-        {% endblock %}
-    </div>
-</div><br clear="all" />
-
-<div class="module">
-    <div class="form-row">
-        {% pagination cl %}
-    </div>
-</div>
-
-{% if cl.formset and cl.result_count %}
-<div id="submit" class="module footer" style="display: none;">
-    <ul class="submit-row">
-        <li class="left delete-link-container"><a href="javascript://" class="cancel-link">Cancel</a></li>
-        <li class="submit-button-container"><input type="submit" class="default" value="Save"/></li>
-    </ul>
-</div>
-{% endif %}
-
-</form>
-
-
 {% endblock %}

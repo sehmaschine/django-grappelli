@@ -1,36 +1,34 @@
 {% load i18n adminmedia %}
 
-<div class="group tabular{% if inline_admin_formset.opts.sortable %} sortable{% endif %}{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}" id="{{ inline_admin_formset.formset.prefix }}-group" name="inlinegrouptabular">
+<!-- group -->
+<div class="group tabular{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
+    id="{{ inline_admin_formset.formset.prefix }}-group" >
     <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
-    {% spaceless %}
     <ul class="tools">
-        <li><a href="#" class="icon open-handler" title="{% trans 'Open Items' %}"> </a></li>
-        <li><a href="#" class="icon close-handler" title="{% trans 'Close Items' %}"> </a></li>
-        <li>{% if inline_admin_formset.opts.allow_add %}<a class="icon ui-add-handler" title="{% trans 'Add Item' %}"> </a>{% else %}&nbsp;{% endif %}</li>
+        <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a></li>
     </ul>
-    {% endspaceless %}
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}
-    {{ inline_admin_formset.opts.model.opts.order_with_respect_to }}
-    <div class="module table"> <!-- table, sortable container -->
-        <div class="module thead"> <!-- table header -->
-            <div class="table-row">
+    <!-- container -->
+    <div class="module table">
+        <div class="module thead">
+            <div class="tr">
                 {% for is_hidden, label in inline_admin_formset.fields %}
                     {% if not is_hidden %}
-                        <div class="table-cell {{ field.label|lower }}">{{ label|capfirst }}</div>
+                        <div class="th {{ label|lower }}">{{ label|capfirst }}</div>
                     {% endif %}
                 {% endfor %}
-                <div class="table-cell">&nbsp;</div>
+                {% if inline_admin_formset.formset.can_delete %}<div class="th">&nbsp;</div>{% endif %}
             </div>
         </div>
         {% for inline_admin_form in inline_admin_formset %}
-        <div class="module tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}"> <!-- tbody, sortable items -->
-            <!-- errors -->
+        <!-- element -->
+        <div class="module tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
+            id="{{ inline_admin_formset.formset.prefix }}{% if not forloop.last %}{{ forloop.counter0 }}{% else %}-empty{% endif %}">
             {% if inline_admin_form.form.non_field_errors %}
                 <div>{{ inline_admin_form.form.non_field_errors }}</div>
             {% endif %}
             <h3 style="display: none;"><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</h3>
-            <!-- hidden fields -->
             {% spaceless %}
             {% for fieldset in inline_admin_form %}
                 {% for line in fieldset %}
@@ -40,29 +38,27 @@
                 {% endfor %}
             {% endfor %}
             {% endspaceless %}
-            <!-- fieldsets -->
-            <div class="table-row"> <!-- table-table-row -->
+            <div class="tr"> <!-- table-table-row -->
                 {% for fieldset in inline_admin_form %}
                     {% for line in fieldset %}
                         {% for field in line %}
-                            <div class="table-cell {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
+                            <div class="td {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
                                 {% if field.is_readonly %}
                                     <p>{{ field.contents }}</p>
                                 {% else %}
-                                    {{ field.field }}
-                                    {{ field.field.errors.as_ul }}
+                                {{ field.field }}
+                                {{ field.field.errors.as_ul }}
                                 {% endif %}
                             </div>
                         {% endfor %}
                     {% endfor %}
                 {% endfor %}
-                <!-- delete/link/sort -->
-                <div class="table-cell tools">
+                <div class="td tools">
                     {% spaceless %}
                     <ul class="tools">
-                        {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
-                        {% if inline_admin_formset.opts.sortable %}<li><a class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}
-                        {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a class="icon delete-handler" title="{% trans 'Delete Item' %}"> </a>{% endif %}
+                        {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
+                        {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
+                        {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon delete-handler" title="{% trans 'Delete Item' %}"> </a>{% endif %}
                     </ul>
                     {% endspaceless %}
                 </div>
@@ -72,15 +68,51 @@
         </div>
         {% endfor %}
     </div>
-    {% if inline_admin_formset.opts.allow_add %}
-        <div class="module ui-add-handler">
-            <ul class="tools">
-                <li><a class="icon ui-add-handler" title="{% trans 'Add Item' %}"> </a></li>
-            </ul><br clear="all" />
-        </div>
-    {% endif %}
+    <div class="module add-item">
+        <a href="javascript://" class="add-handler">{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</a>
+        <ul class="tools">
+            <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a></li>
+        </ul><br clear="all" />
+    </div>
 </div>
 
-<div class="sortablehelper">
-    <h3><b>&nbsp;</b></h3>
-</div>
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        var rows = "#{{ inline_admin_formset.formset.prefix }}-group div.table div.tbody";
+        var reinitDateTimeShortCuts = function() {
+            // Reinitialize the calendar and clock widgets by force
+            if (typeof DateTimeShortcuts != "undefined") {
+                $(".datetimeshortcuts").remove();
+                DateTimeShortcuts.init();
+            }
+        }
+        var updateSelectFilter = function() {
+            // If any SelectFilter widgets are a part of the new form,
+            // instantiate a new SelectFilter instance for it.
+            if (typeof SelectFilter != "undefined"){
+                $(".selectfilter").each(function(index, value){
+                  var namearr = value.name.split('-');
+                  SelectFilter.init(value.id, namearr[namearr.length-1], false, "{% admin_media_prefix %}");
+                })
+                $(".selectfilterstacked").each(function(index, value){
+                  var namearr = value.name.split('-');
+                  SelectFilter.init(value.id, namearr[namearr.length-1], true, "{% admin_media_prefix %}");
+                })
+            }
+        }
+        // TODO. re-init tinymce
+        // TODO. re-init ui-calendar
+        $("#{{ inline_admin_formset.formset.prefix }}-group").inline({
+            prefix: "{{ inline_admin_formset.formset.prefix }}",
+            deleteCssClass: "delete-handler",
+            emptyCssClass: "empty-form",
+            onAdded: (function(row) {
+                reinitDateTimeShortCuts();
+                updateSelectFilter();
+            })
+        });
+    });
+})(jQuery.noConflict());
+</script>
+

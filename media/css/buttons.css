@@ -22,23 +22,43 @@ input[type=submit], input[type=reset], input[type=button], button {
     }
 }
 
+.submit-row>*[class*="-container"] {
+    border: 1px solid #666;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 10px #666; -webkit-box-shadow: 0 0 3px #666;
+    background: #666;
+}
+.submit-row>*[class*="-container"]:hover {
+    border: 1px solid #777;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 10px #777; -webkit-box-shadow: 0 0 3px #666;
+    background: #777;
+}
+
+
 .submit-row a.delete-link, 
 .submit-row a.cancel-link {
     display: block;
-    padding: 5px 7px 4px;
+    padding: 5px 10px;
     font-weight: bold;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+.submit-row input[type=submit] {
+    padding: 5px 10px;
+    height: 28px;
+    border: 1px solid #267c99;
 }
 
 input[type=submit], 
 #bookmark-add-cancel, 
 .submit-row a.delete-link:link, .submit-row a.delete-link:visited, 
 .submit-row a.cancel-link:link, .submit-row a.cancel-link:visited {
-    box-shadow: 0 0 3px #333; -moz-box-shadow: 0 0 3px #333; -webkit-box-shadow: 0 0 3px #333;
+    box-shadow: none !important; -moz-box-shadow: none !important; -webkit-box-shadow: none !important;
     opacity: .6;
 }
 .submit-row a.delete-link:link, .submit-row a.delete-link:visited {
     color: #fff;
+    border: 1px solid #992626;
     background: #bf3030;
     background: -webkit-gradient(linear, left top, left bottom, from(#d93636), to(#bf3030));
     background: -moz-linear-gradient(top, #d93636, #bf3030);
@@ -64,11 +84,18 @@ input[type=submit]:hover,
     background: #444;
     background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#666));
     background: -moz-linear-gradient(top, #444, #666);
+    
+    color: #444;
+    border-color: #747474;
+    background: #d6d6d6;
+    background: -moz-linear-gradient(top, #d6d6d6, #e3e3e3);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e3e3e3), to(#d6d6d6));
+    
     opacity: 1;
 }
 
 input[type=submit].default {
-    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 3px #666; -webkit-box-shadow: 0 0 3px #666;
+/*    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 3px #666; -webkit-box-shadow: 0 0 3px #666;*/
     opacity: 1;
 }
 
