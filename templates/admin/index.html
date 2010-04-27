@@ -31,8 +31,8 @@
                             <div class="row">
                                 {% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}<span>{{ model.name }}</span>{% endif %}
                                 <ul class="actions">
-                                    <li class="add-link">{% if model.perms.add %}<a href="#">{% trans 'Add' %}</a>{% else %}&nbsp;{% endif %}</li>
-                                    <li class="change-link"> {% if model.perms.change %}<a href="#">{% trans 'Change' %}</a>{% else %}&nbsp;{% endif %}</li>
+                                    <li class="add-link">{% if model.perms.add %}<a href="{{ model.admin_url }}add/">{% trans 'Add' %}</a>{% else %}&nbsp;{% endif %}</li>
+                                    <li class="change-link"> {% if model.perms.change %}<a href="{{ model.admin_url }}">{% trans 'Change' %}</a>{% else %}&nbsp;{% endif %}</li>
                                 </ul>
                             </div>
                             {% endfor %}
@@ -46,8 +46,8 @@
                                 <div class="row">
                                     {% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}<span>{{ model.name }}</span>{% endif %}
                                     <ul class="actions">
-                                        <li class="add-link">{% if model.perms.add %}<a href="#">{% trans 'Add' %}</a>{% else %}&nbsp;{% endif %}</li>
-                                        <li class="change-link"> {% if model.perms.change %}<a href="#">{% trans 'Change' %}</a>{% else %}&nbsp;{% endif %}</li>
+                                        <li class="add-link">{% if model.perms.add %}<a href="{{ model.admin_url }}add/">{% trans 'Add' %}</a>{% else %}&nbsp;{% endif %}</li>
+                                        <li class="change-link"> {% if model.perms.change %}<a href="{{ model.admin_url }}">{% trans 'Change' %}</a>{% else %}&nbsp;{% endif %}</li>
                                     </ul>
                                 </div>
                                 {% endfor %}
@@ -68,8 +68,8 @@
                     <div class="row">
                         {% if model.perms.change %}<a href="{{ model.admin_url }}">{{ model.name }}</a>{% else %}<span>{{ model.name }}</span>{% endif %}
                         <ul class="actions">
-                            <li class="add-link">{% if model.perms.add %}<a href="#">{% trans 'Add' %}</a>{% else %}&nbsp;{% endif %}</li>
-                            <li class="change-link"> {% if model.perms.change %}<a href="#">{% trans 'Change' %}</a>{% else %}&nbsp;{% endif %}</li>
+                            <li class="add-link">{% if model.perms.add %}<a href="{{ model.admin_url }}add/">{% trans 'Add' %}</a>{% else %}&nbsp;{% endif %}</li>
+                            <li class="change-link"> {% if model.perms.change %}<a href="{{ model.admin_url }}">{% trans 'Change' %}</a>{% else %}&nbsp;{% endif %}</li>
                         </ul>
                    </div>
                    {% endfor %}
