@@ -65,9 +65,15 @@
             <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% grp_csrf_token %}
                 <div class="group changelist-content">
                     {% block result_list %}
+                        {% ifequal cl.full_result_count 0 %}
+                        <div class="changelist-messageblock">
+                            <p>{% trans "No results." %} <a href="add/{% if is_popup %}?_popup=1{% endif %}">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></p>
+                        </div>
+                        {% else %}
                         {% if action_form and actions_on_top and cl.full_result_count and cl.result_count %}{% admin_actions %}{% endif %}
                         {% result_list cl %}
                         {% if action_form and actions_on_bottom and cl.full_result_count and cl.result_count %}{% admin_actions %}{% endif %}
+                        {% endifequal %}
                     {% endblock %}
                 </div>
                 <div class="module footer">

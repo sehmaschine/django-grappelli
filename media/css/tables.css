@@ -211,7 +211,17 @@ table.xfull {
     width:14px;
 }
 
-
+.changelist-messageblock {
+    background:#f4f4f4;
+    padding:10px;
+    font-size:160%;
+    border:1px solid #bdbdbd;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
+.changelist-messageblock p {
+    padding:10px 20px;
+}
 
 /*  Orderable Tables
 ------------------------------------------------------------------------------------------------------ */
