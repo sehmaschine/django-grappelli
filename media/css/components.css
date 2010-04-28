@@ -14,6 +14,9 @@
     margin: 0; padding: 5px 10px;
 }
 
+.module p.datetime {
+    padding:0;
+}
 
 
 /*	Modules

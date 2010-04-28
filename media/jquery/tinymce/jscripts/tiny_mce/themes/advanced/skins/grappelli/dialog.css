@@ -23,7 +23,15 @@
 
 /* Import & Modifications of Django/Grappelli styles
 ----------------------------------------------------------------------- */
-@import url('../../../../../../../css/base.css');
+@import url('../../../../../../../../css/reset.css');
+@import url('../../../../../../../jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css');
+@import url('../../../../../../../../css/typography.css');
+@import url('../../../../../../../../css/structures.css');
+@import url('../../../../../../../../css/components.css');
+@import url('../../../../../../../../css/forms.css');
+@import url('../../../../../../../../css/buttons.css');
+@import url('../../../../../../../../css/jquery-ui-grappelli-extensions.css');
+
 
 .module {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
