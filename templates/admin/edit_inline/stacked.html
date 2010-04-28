@@ -49,12 +49,18 @@
                 $(this).html($(this).html().replace(/(#\d+)/g, "#" + ++i));
             });
         }
-        var reinitDateTimeShortCuts = function(row) {
+        var reinitDateTimeFields = function(row) {
             // Reinitialize the calendar and clock widgets by force, yuck.
             if (typeof DateTimeShortcuts != "undefined") {
                 row.find(".datetimeshortcuts").remove();
                 DateTimeShortcuts.init();
             }
+            row.find(".vDateField").datepicker({
+                appendText: '(mm/dd/yyyy)',
+                showOn: 'button',
+                buttonImageOnly: false,
+                buttonText: ''
+            });
         }
         var updateSelectFilter = function(row) {
             // If any SelectFilter widgets were added, instantiate a new instance.
@@ -96,7 +102,7 @@
             }),
             onAdded: (function(row) {
                 reinitTinyMCE(row);
-                reinitDateTimeShortCuts(row);
+                reinitDateTimeFields(row);
                 updateSelectFilter(row);
                 updateInlineLabel(row);
             })

@@ -80,12 +80,18 @@
 (function($) {
     $(document).ready(function($) {
         var rows = "#{{ inline_admin_formset.formset.prefix }}-group div.table div.tbody";
-        var reinitDateTimeShortCuts = function() {
-            // Reinitialize the calendar and clock widgets by force
+        var reinitDateTimeFields = function() {
+            // Reinitialize the calendar and clock widgets by force, yuck.
             if (typeof DateTimeShortcuts != "undefined") {
-                $(".datetimeshortcuts").remove();
+                row.find(".datetimeshortcuts").remove();
                 DateTimeShortcuts.init();
             }
+            row.find(".vDateField").datepicker({
+                appendText: '(mm/dd/yyyy)',
+                showOn: 'button',
+                buttonImageOnly: false,
+                buttonText: ''
+            });
         }
         var updateSelectFilter = function() {
             // If any SelectFilter widgets are a part of the new form,
@@ -108,7 +114,7 @@
             deleteCssClass: "delete-handler",
             emptyCssClass: "empty-form",
             onAdded: (function(row) {
-                reinitDateTimeShortCuts();
+                reinitDateTimeFields();
                 updateSelectFilter();
             })
         });

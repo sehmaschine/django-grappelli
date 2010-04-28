@@ -31,9 +31,11 @@ var DateTimeShortcuts = {
             if (inp.getAttribute('type') == 'text' && inp.className.match(/vTimeField/)) {
                 DateTimeShortcuts.addClock(inp);
             }
-            else if (inp.getAttribute('type') == 'text' && inp.className.match(/vDateField/)) {
-                DateTimeShortcuts.addCalendar(inp);
-            }
+            // NOTE grappelli: modification of original!
+            //else if (inp.getAttribute('type') == 'text' && inp.className.match(/vDateField/)) {
+            //    DateTimeShortcuts.addCalendar(inp);
+            //}
+            // NOTE end
         }
     },
     // Add clock widget to a given field
