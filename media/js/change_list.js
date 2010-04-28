@@ -75,7 +75,19 @@
         });
         
         if ($("input.action-select").length > 0) {
-            $("input.action-select").actions();
+            $("input.action-select").actions({
+                // NOTE grappelli: modification of original!
+                actionContainer: "div.changelist-actions div.form-row",
+                counterContainer: "li.action-counter",
+                allContainer: "div.changelist-actions div.form-row li.all",
+                acrossInput: "div.changelist-actions div.form-row input.select-across",
+                acrossQuestions: "div.changelist-actions div.form-row li.question",
+                acrossClears: "div.changelist-actions div.form-row li.clear-selection",
+                allToggle: "#action-toggle",
+                selectedClass: "selected",
+                actionSelect: "div.changelist-actions div.form-row select"
+                // NOTE end
+            });
         }
         // hide the last coll if its an editable list
         // because this coll has just the hidden input with the id (breaks ui)
