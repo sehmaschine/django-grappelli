@@ -860,12 +860,118 @@ ul.actions li a {
 
 
 
+/* Changelist Filters
+------------------------------------------------------------------------------------------------------ */
+
+.module.changelist-filters {
+    position: relative;
+    color: #666;
+    border: 1px solid #d9d9d9;
+/*    padding: 5px 10px;*/
+/*    border-top: 1px solid #b0b0b0;*/
+    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
+/*    background: #eee;
+    background: -moz-linear-gradient(top, #eee, #e0e0e0);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+*/}
+.module.changelist-filters:last-of-type {
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+}
+
+.module.changelist-filters ul {
+    position: relative; float: left; clear: both;
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: bold;
+    margin: -1px 10px -1px 0;
+}
+.module.changelist-filters ul li {
+    position: relative; float: left;
+    display: block;
+    margin-right: 3px;
+    border: 1px solid #eee;
+    border: 1px solid #f4f4f4;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+.module.changelist-filters ul li.all {
+    margin-right: 10px;
+}
+
+.module.changelist-filters ul a, 
+.module.changelist-filters ul span {
+    display: inline-block;
+    padding: 4px 8px 3px;
+    font-size: 11px;
+    font-weight: bold;
+    border: 1px solid;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+.module.changelist-filters ul a:link, .module.changelist-filters ul a:visited {
+    color: #59afcc;
+    border-color: #d4d4d4;
+    background: #e0e0e0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+    background: -moz-linear-gradient(top, #eee, #e0e0e0);
+
+}
+.module.changelist-filters ul a:hover, .module.changelist-filters ul a:active {
+    color: #444;
+    border-color: #d4d4d4;
+    background: #e0e0e0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+    background: -moz-linear-gradient(top, #eee, #e0e0e0);
+}
+.module.changelist-filters ul span {
+    color: #444;
+    border-color: #e0e0e0;
+}
+.module.changelist-filters ul span span {
+    padding: 0;
+    border: 0;
+}
+
+.module.date-hierarchy ul a, 
+.module.date-hierarchy ul span {
+    padding: 2px 5px 1px;
+}
+
+
+
+/* Changelist Date Hierarchy
+------------------------------------------------------------------------------------------------------ */
+
+.module.date-hierarchy {
+    border: 1px solid #d9d9d9;
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+    background: #eee;
+    background: -moz-linear-gradient(top, #eee, #e7e7e7);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e7e7e7));
+}
+.module + .module.date-hierarchy {
+    margin-top: -8px;
+    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
+}
+.module + .module.date-hierarchy .form-row {
+    border-top: 1px solid #fff !important;
+    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
+}
+
+
+
+
+
 /* Changelist Actions
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-actions {
     position: relative;
     color: #666;
+/*    border: 1px solid #d9d9d9;*/
 /*    padding: 5px 10px;*/
 /*    border-top: 1px solid #b0b0b0;*/
 /*    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;*/
@@ -874,30 +980,61 @@ ul.actions li a {
     background: -moz-linear-gradient(top, #eee, #e0e0e0);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
 }
-/*.module.changelist-results + .module.changelist-actions {
-    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
-    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-}*/
-
-/*.module.changelist-actions label {
-    display: block; float: none;
-    margin: 0 0 0 -2px;
-    padding: 0 0 0 24px;
-    font-weight: bold; overflow: visible;
-    background: transparent url('../img/icons/icon-changelist-actions.png') 0 50% no-repeat;
-}*/
 
 .module.changelist-actions ul {
     position: relative; float: left; clear: both;
     font-size: 11px;
     line-height: 16px;
     font-weight: bold;
+    margin: -1px 10px -1px 0;
 }
 .module.changelist-actions ul li {
     position: relative; float: left;
+    display: block;
+    margin-right: 3px;
+    border: 1px solid #eee;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+.module.changelist-actions ul li.all {
     margin-right: 10px;
+}
+
+.module.changelist-actions ul a, 
+.module.changelist-actions ul span {
+    display: inline-block;
+    padding: 4px 8px 3px;
+    font-size: 11px;
+    font-weight: bold;
+    border: 1px solid;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+.module.changelist-actions ul a:link, .module.changelist-actions ul a:visited {
+    color: #59afcc;
+    border-color: #ccc;
+    background: #e0e0e0;
+    background: -moz-linear-gradient(top, #eee, #e0e0e0);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+/*    
+    border-color: #e0e0e0;
+    background: #e0e0e0;
+    background: -moz-linear-gradient(top, #f3f3f3, #eee);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
+*/
+}
+.module.changelist-actions ul a:hover, .module.changelist-actions ul a:active {
+    color: #444;
+    border-color: #ccc;
+    background: #e0e0e0;
+    background: -moz-linear-gradient(top, #eee, #e0e0e0);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+}
+.module.changelist-actions ul span {
+    color: #444;
+    border-color: #d9d9d9;
+}
+.module.changelist-actions ul span span {
+    padding: 0;
+    border: 0;
 }
 
 .module.changelist-actions #action-toggle {
@@ -906,6 +1043,13 @@ ul.actions li a {
 .module.changelist-actions select {
     margin-left: 0;
     width: 278px;
+}
+
+.module.changelist-actions li.all,
+/*.module.changelist-actions li.action-counter,*/
+.module.changelist-actions li.clear-selection,
+.module.changelist-actions li.question {
+   display: none;
 }
 
 
@@ -924,23 +1068,55 @@ ul.actions li a {
 
 
 
-/* Search
+/* Options: Search, Filter
 ------------------------------------------------------------------------------------------------------ */
+
+.box.options {
+    position: absolute;
+    right: 10px;
+    width: auto;
+}
+.box.options *:last-child {
+    margin-right: 0 !important;
+}
 
 .box.search {
-    position: relative; float: right;
-    width: 300px;
+    position: relative; float: left;
 }
-
-
-
-/* Module Filter
------------------------------------------------------------------------------------------------------- */
 
 .box.filter {
-    position: relative; float: right;
-    width: 200px;
+    position: relative; float: left;
 }
+a.button.drop-down.toggle-filters {
+    float: none !important;
+    display: block;
+    margin: 0;
+    padding-bottom: 3px;
+}
+a.button.drop-down.toggle-filters[class*="selected"] {
+    position: relative; z-index: 1000;
+    height: 17px;
+    color: #444 !important;
+    border-color: #b0b0b0;
+    border-bottom-width: 0 !important;
+    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0;
+    box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+    -moz-box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+    -webkit-box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+}
+a.button.drop-down.toggle-filters:link, a.button.drop-down.toggle-filters:visited {
+    color: #309bbf;
+    background: transparent url('../img/icons/icon-dropdown.png') 3px 3px no-repeat;
+}
+a.button.drop-down.toggle-filters[class*="selected"], 
+a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:active {
+    color: #666;
+    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5) !important;
+    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
+}
+
 .filter-pulldown {
     display: none;
     position: absolute;
@@ -1037,7 +1213,7 @@ ul.pagination {
     position: relative;
     float: left;
     margin: 0 10px 0 0;
-    padding: 4px 0 4.5px;
+/*    padding: 4px 0 4.5px;*/
     width: auto;
     font-weight: bold;
     border-top: none !important;
