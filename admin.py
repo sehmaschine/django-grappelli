@@ -37,7 +37,7 @@ class GrappelliStackedInline(admin.StackedInline):
             kwargs['widget'] = AutocompleteSearchInput(db_field, self)
        
         if isinstance(db_field, models.ManyToManyField) and hasattr(self, 'facelist') and db_field.name in self.facelist:
-            kwargs['widget_attrs'] = M2MAutocompleteSearchInput(db_field, self)
+            kwargs['widget'] = M2MAutocompleteSearchInput(db_field, self)
        
         return super(GrappelliStackedInline, self).formfield_for_dbfield(db_field, **kwargs)
 
