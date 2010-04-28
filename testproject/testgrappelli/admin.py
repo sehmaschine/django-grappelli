@@ -37,12 +37,18 @@ admin.site.register(GrappelliEnhancedFields, GrappelliEnhancedFieldsAdmin)
 
 
 class GrappelliRelatedFieldsAdmin(GrappelliModelAdmin):
-    list_display = ('__unicode__', 'fk_test', 'gr_test')
+    list_display = ('__unicode__', 'fk_test', 'gr_test', 'content_type', 'object_id')
     list_editable = ('fk_test', 'gr_test')
     raw_id_fields = ('gr_test', 'gr_m2m', )
     fieldsets = (
-        (None, {
-            'fields': ('fk_test', 'gr_test', 'gr_m2m')
+        ('Autocomplete', {
+            'fields': ('fk_test', 'm2m_test')
+        }),
+        ('Related', {
+            'fields': ('gr_m2m', 'gr_test', )
+        }),
+        ('Generic related', {
+            'fields': ('content_type', 'object_id')
         }),
     )
     autocomplete = {
