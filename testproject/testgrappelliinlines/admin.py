@@ -6,23 +6,42 @@ from django.conf import settings
 
 from testgrappelli.models import *
 from testgrappelliinlines.models import *
+from grappelli.admin import GrappelliTabularInline
 
 # Related Fields  -----------------------------------------------------------------------------------
 
 # Related Fields / Tabular
 
-class GrappelliRelatedFieldsTabularInline(admin.TabularInline):
+class GrappelliRelatedFieldsTabularInline(GrappelliTabularInline):
     model = GrappelliRelatedFieldsInline
     classes = ('ui-collapsible-all-opened', )
     allow_add = True
     extra = 1
     fieldsets = (
-        (None, {
-            'fields': (
-                'fk_test', 'gr_test', 'gr_m2m', 'content_type', 'object_id',
-            )
+        ('Autocomplete', {
+            'fields': ('fk_test', 'm2m_test')
+        }),
+        ('Related', {
+            'fields': ('gr_m2m', 'gr_test', )
+        }),
+        ('Generic related', {
+            'fields': ('content_type', 'object_id')
         }),
     )
+    autocomplete = {
+        'fk_test': {
+            'search_fields': ('name', 'domain',),
+            'input_format':  '{label:s}',           # optional
+            'list_format':   '{id:d} - {label:s}',  # optional
+        }
+    }
+    facelist = {
+        'm2m_test': {
+            'search_fields': ('name', 'domain',),
+            'input_format':  '{label:s}',           # optional
+            'list_format':   '{id:d} - {label:s}',  # optional
+        }
+    }
 
 class GrappelliRelatedFieldsTabularTestAdmin(admin.ModelAdmin):
     list_display = ('char_test',)
