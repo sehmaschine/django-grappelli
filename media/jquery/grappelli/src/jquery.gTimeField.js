@@ -13,7 +13,8 @@ $.widget('ui.gTimeField', {
         mask: '99:99:99', // set to false to disable
         buttons: [
             {label: gettext("Now"), callback: function(e, ui){ 
-                return ui.element.val(new Date().getHourMinuteSecond()); 
+                var d = new Date();
+                return ui.element.val(d.getHours() +':'+ d.getMinutes() +':'+ d.getSeconds()); 
             }},
             {label: gettext("Midnight"), callback: function(e, ui){ 
                 return ui.element.val('00:00:00'); 
