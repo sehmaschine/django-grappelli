@@ -965,13 +965,12 @@ ul.actions li a {
 .module.changelist-actions {
     position: relative;
     margin-bottom: 0;
-    color: #666;
+    color: #ccc;
     border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
     background: #eee;
     background: -moz-linear-gradient(top, #eee, #e0e0e0);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
-    display: none;
 }
 .module.changelist-actions.all-selected, 
 .module.changelist-actions.all-selected + .module.changelist-results {
@@ -992,7 +991,7 @@ ul.actions li a {
     position: relative; float: left;
     display: block;
     margin-right: 3px;
-    border: 1px solid #eee;
+    border: 1px solid #444;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 .module.changelist-actions ul li.all {
@@ -1014,23 +1013,17 @@ ul.actions li a {
     background: #e0e0e0;
     background: -moz-linear-gradient(top, #eee, #e0e0e0);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
-/*    
-    border-color: #e0e0e0;
-    background: #e0e0e0;
-    background: -moz-linear-gradient(top, #f3f3f3, #eee);
-    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
-*/
 }
 .module.changelist-actions ul a:hover, .module.changelist-actions ul a:active {
-    color: #444;
+    color: #ccc;
     border-color: #ccc;
     background: #e0e0e0;
     background: -moz-linear-gradient(top, #eee, #e0e0e0);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
 }
 .module.changelist-actions ul span {
-    color: #444;
-    border-color: #d9d9d9;
+    color: #ccc;
+    border-color: #333;
 }
 .module.changelist-actions ul span span {
     padding: 0;
@@ -1086,6 +1079,7 @@ ul.actions li a {
 
 .box.filter {
     position: relative; float: left;
+    z-index: 1000;
     border: 1px solid #fff;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
@@ -1126,7 +1120,7 @@ a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:activ
     display: none;
     position: relative;
     z-index: 1000;
-    top: 26px;
+/*    top: 26px;*/
     padding: 0 10px 10px;
     border: 1px solid #bdbdbd;
     border-top: 0;
@@ -1136,7 +1130,7 @@ a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:activ
 }
 .filter-pulldown .filter {
     position: relative;
-/*    margin: 10px 0 0;*/
+    padding: 7px 0 0;
     width: 100%;
 }
 .filter-pulldown select {
@@ -1144,7 +1138,7 @@ a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:activ
 }
 .filter-pulldown label {
     color: #999;
-    margin: 0; padding: 0;
+    margin: 0 0 -2px; padding: 0;
     width: 100% !important;
     line-height: 12px;
     font-weight: bold;
@@ -1273,8 +1267,8 @@ ul.pagination span {
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
     background: -moz-linear-gradient(top, #eee, #e0e0e0);
 }
-ul.pagination a.showall {
-/*    margin-left: 7px;*/
+ul.pagination li.showall {
+    margin-left: 7px;
 }
 .submit-row ul.pagination li, 
 .submit-row ul.pagination li.results {

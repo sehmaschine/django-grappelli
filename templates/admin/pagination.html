@@ -14,6 +14,6 @@
             <li>{% paginator_number cl i %}</li>
         {% endfor %}
     {% endif %}
-    {% if show_all_url %}<li><a href="{{ show_all_url }}" class="showall">{% trans 'Show all' %}</a></li>{% endif %}
+    {% if show_all_url %}<li class="showall"><a href="{{ show_all_url }}">{% trans 'Show all' %}</a></li>{% endif %}
 </ul>
 {% endspaceless %}
