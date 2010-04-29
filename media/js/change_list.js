@@ -9,8 +9,7 @@
             } else {
                 reset();
             }
-            actionCheckboxes.attr("checked", checked)
-                .parent().parent().toggleClass(options.selectedClass, checked);
+            actionCheckboxes.attr("checked", checked).parent().parent().toggleClass(options.selectedClass, checked);
         };
         
         updateCounter = function() {
@@ -60,6 +59,13 @@
             reset();
             $(options.acrossInput).val(0);
             $(options.actionContainer).removeClass(options.selectedClass);
+        };
+        
+        clearSelection = function() {
+            $(options.allToggle).attr("checked", false);
+            clearAcross();
+            checker(0);
+            updateCounter();
         };
         
         initializeFlexibleLayout = function(content) {
@@ -123,11 +129,20 @@
         initFilter = function() {
             $("a.toggle-filters").click(function() {
                 $(".filter-pulldown").toggle();
+                $("#filters").toggleClass("open");
             });
 
             $(".filter_choice").change(function(){
                 location.href = $(this).val();
             });
+            
+            var filter_choice = $(".filter_choice");
+            
+            for (var i = 0; i < filter_choice.length; i++) {
+                if (!$(filter_choice[i]).find(':first-child').attr('selected')) {
+                    $("#filters").addClass('selected');
+                }
+            }
         };
         
         initLayout = function() {
@@ -158,10 +173,7 @@
         
         $("div.changelist-actions li.clear-selection a").click(function(event) {
             event.preventDefault();
-            $(options.allToggle).attr("checked", false);
-            clearAcross();
-            checker(0);
-            updateCounter();
+            clearSelection();
         });
         
         lastChecked = null;
@@ -172,8 +184,7 @@
             var target = event.target ? event.target : event.srcElement;
             if (lastChecked && $.data(lastChecked) != $.data(target) && event.shiftKey == true) {
                 var inrange = false;
-                $(lastChecked).attr("checked", target.checked)
-                    .parent().parent().toggleClass(options.selectedClass, target.checked);
+                $(lastChecked).attr("checked", target.checked).parent().parent().toggleClass(options.selectedClass, target.checked);
                 actionCheckboxes.each(function() {
                     if ($.data(this) == $.data(lastChecked) || $.data(this) == $.data(target)) {
                         inrange = (inrange) ? false : true;
@@ -228,11 +239,7 @@
             
             // need to uncheck all actions checkboxes and update counter
             // (actions are not working if you want to edit items in the change_list)
-            checker(0);
-            updateCounter();
-            //$(options.allToggle).attr("checked", false);
-            //actionCheckboxes.attr("checked", false);
-            //updateCounter();
+            clearSelection();
         });
         
         $("a.cancel-link").click(function() {
