@@ -103,6 +103,19 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
         autoSelector: 'input[name*="object_id"]'
     }),
 
+    /* Called when the "Browse" button is clicked 
+     * on Related and GenericRelated fields
+     */
+    browse: function(l, noFocus) {
+        var ui, link, href, wm;
+        link = $(l);
+        href = link.attr('href') + ((link.attr('href').search(/\?/) >= 0) && '&' || '?') + 'pop=1';
+        wm   = $.grappelli.window(href, {height: 600 , width: 980, resizable: true, scrollbars: true});
+        wm._data('element', link.prevAll('input:first'));
+        wm.open(!noFocus);
+        return false;
+    },
+
     _create: function(){
         var ui = this;
         ui.dom = {
@@ -149,6 +162,11 @@ $.widget('ui.gGenericRelated', $.extend($.RelatedBase, {
         ui.dom.object_id.bind('keyup.gGenericRelated focus.gGenericRelated', function(e){
             ui._lookup(e);
         }).trigger($.Event({type: 'keyup'})); // load initial data
+        
+        ui.element.bind('updated.gRelated', function(e){
+            ui.setText(e.originalEvent.data.value);
+            ui.element.val(e.originalEvent.data.pk).focus();
+        });
     },
 
     // Disables the object ID input
@@ -216,7 +234,7 @@ $.widget('ui.gRelatedAddAnother', {
         link = $(l);
         href = link.attr('href') + (/\?/.test(link.attr('href')) && '&' || '?') + 'pop=1&_popup=1';
         wm   = $.grappelli.window(href, ui.option('win'));
-        wm._data('element', link.prevAll('input:first'));
+        wm._data('element', link.prevAll('input, select'));
         wm._data('id',      name);
         wm._data('link',    link);
         wm.open(!noFocus);

@@ -7,8 +7,8 @@ class JavaScript404Patch():
     (because they are hardcoded in django's core)
     """
     def __init__(self):
-        self.strip = ['actions','SelectBox','SelectFilter2','calendar',
-                      'DateTimeShortcuts', 'CollapsibleGroup', 'RelatedObjectLookups',
+        self.strip = ['actions','SelectBox','SelectFilter2','calendar', 'jquery.init',
+                      'actions.min', 'DateTimeShortcuts', 'CollapsibleGroup', 'RelatedObjectLookups',
                       'getElementsBySelector', 'js/core', 'CollapsedFieldsets']
         self.re    = re.compile('<script.*(%s).js"></script>\n' % '|'.join(self.strip))
         

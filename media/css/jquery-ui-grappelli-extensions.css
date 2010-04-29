@@ -472,3 +472,25 @@ li.ui-gFacelist-item:hover span {
     bottom:45px!important;
 }
 
+
+
+/** jQuery.timepickr adjustments (experimental)
+ * */
+.ui-datetimepickr-input .ui-timepickr-input {
+    margin-left:13px!important;
+}
+.ui-timepickr-button span {
+    -moz-border-radius:6px;
+    height:17px;
+    background:-moz-linear-gradient(center top , #666666, #444444) repeat scroll 0 0 transparent;
+    color:#fff;
+    width:16px;
+    font-size:11px!important;
+    padding:4px 6px 2px 6px!important;
+}
+.ui-timepickr-button span:hover {
+    background:-moz-linear-gradient(center top , #39BAE5, #309BBF) repeat scroll 0 0 transparent;
+    border-color:transparent;
+    color:#fff;
+    opacity:1;
+}

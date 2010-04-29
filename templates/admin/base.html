@@ -70,7 +70,10 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gRelated.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gAutoSlugField.js"></script>
     <script type="text/javascript" src="{% admin_media_prefix %}jquery/grappelli/src/jquery.gCollapsible.js"></script>
-
+    
+    {# expirimental #}
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8000/timepickr-media/ui-timepickr/src/css/ui.timepickr.css" />
+    <script type="text/javascript" src="/timepickr-media/ui-timepickr/src/ui.timepickr.js"></script>
 
     <script type="text/javascript">
         // Use this to remove *all* effects (not recommended)
@@ -106,7 +109,9 @@ http://jqueryui.com/themeroller/#ffDefault=Arial%2Csans-serif&fwDefault=normal&f
             'gRelatedBrowse',
             'gGenericRelated',
             'gSelectFilter',
-            'gAutoSlugField'
+            'gAutoSlugField',
+            // experimental
+            'timepickr'
         ]);
 
 

@@ -203,7 +203,7 @@
                 return $(this[arguments[0]]);
             }
             // $.tpl('ui.test', '<span>hello world</span>');
-            if (arguments.length == 2 && $.isString(arguments[1])) {
+            if (arguments.length == 2 && typeof(arguments[1]) == 'string') {
                 this[arguments[0]] = arguments[1];
                 return $(this[arguments[0]]);
             }
@@ -217,11 +217,11 @@
                 return this[arguments[0]];
             }
             // $.tpl('ui.test', {value:blah});
-            if (arguments.length == 2 && $.isObject(arguments[1])) {
+            if (arguments.length == 2 && typeof(arguments[1]) == 'object') {
                 return $($.format(this[arguments[0]], arguments[1]));
             }
             // $.tpl('ui.test', {value:blah}, false);
-            if (arguments.length == 3 && $.isObject(arguments[1])) {
+            if (arguments.length == 3 && typeof(arguments[1]) == 'object') {
                 return (arguments[2] == true) 
                     ? $.format(this[arguments[0]], arguments[1])
                     : $($.format(this[arguments[0]], arguments[1]));
