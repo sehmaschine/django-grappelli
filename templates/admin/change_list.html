@@ -17,7 +17,7 @@
     <script type="text/javascript" src="{% admin_media_prefix %}js/change_list.js"></script>
     
     <script type="text/javascript" charset="utf-8">
-{% if is_popup %}
+    {% if is_popup %}
         (function($) {
             $(document).ready(function() {
                 // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
@@ -30,7 +30,7 @@
                 $('div#submit').hide();
             });
         })(jQuery.noConflict());
-{% endif %}
+    {% endif %}
     </script>
     
 {% endblock %}
@@ -106,8 +106,6 @@
 
 <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
 
-{% admin_actions %}
-
 <div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
     <!-- Popup Hidden Field -->
     {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
@@ -122,14 +120,17 @@
     {% if cl.formset %}
         {{ cl.formset.management_form }}
     {% endif %}
-    <div class="group changelist-content">
-        {% block result_list %}
-            {% result_list cl %}
-        {% endblock %}
-    </div>
+    <!-- Changelist Actions -->
+    {% admin_actions %}
+    <!-- Changelist Results -->
+    {% block result_list %}
+        {% result_list cl %}
+    {% endblock %}
+    <!-- Changelist Actions -->
+    {% admin_actions %}
 </div><br clear="all" />
 
-<div class="module">
+<div class="module pagination">
     <div class="form-row">
         {% pagination cl %}
     </div>

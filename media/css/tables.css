@@ -11,7 +11,7 @@ table {
 td, th {
     font-size: 11px; line-height: 15px;
     vertical-align: top;
-    padding: 5px 10px;
+    padding: 10px 10px 9px;
 }
 th {
     text-align: left;
@@ -28,7 +28,9 @@ tr.alt th, tr.alt td {
 .row2 th, .row2 td {
     background: #fff;
 }
-
+.selected th, .selected td {
+    background: #ffffe6;
+}
 
 /*  Thead ................................................... */
 
@@ -135,6 +137,7 @@ table.xfull {
 
 #changelist table {
     position: relative;
+    margin: -1px !important;
     border: 1px solid #bdbdbd;
 }
 /* undecided: depends on js-solution for calculating table-widths */
@@ -159,42 +162,44 @@ table.xfull {
     border-left: none;
 }
 
-#changelist .changelist-results:first-child table, 
-#changelist .changelist-results:first-child thead th:first-of-type, 
-#changelist .changelist-results:first-child thead th:first-of-type a, 
-#changelist .restrictions + .changelist-results table, 
-#changelist .restrictions + .changelist-results thead th:first-of-type, 
-#changelist .restrictions + .changelist-results thead th:first-of-type a {
+#changelist .changelist-results table, 
+#changelist .changelist-results thead th:first-of-type, 
+#changelist .changelist-results thead th:first-of-type a {
     border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
 }
-#changelist .changelist-results:first-child table, 
-#changelist .changelist-results:first-child thead th:last-of-type,
-#changelist .changelist-results:first-child thead th:last-of-type a, 
-#changelist .restrictions + .changelist-results table, 
-#changelist .restrictions + .changelist-results thead th:last-of-type,
-#changelist .restrictions + .changelist-results thead th:last-of-type a {
+#changelist .changelist-results table, 
+#changelist .changelist-results thead th:last-of-type,
+#changelist .changelist-results thead th:last-of-type a {
     border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
 
-.module.changelist-actions + .changelist-results table, 
-.module.changelist-actions + .changelist-results thead th:first-of-type, 
-.module.changelist-actions + .changelist-results thead th:first-of-type a {
+#changelist .module.changelist-actions + .changelist-results, 
+#changelist .module.changelist-actions + .changelist-results table, 
+#changelist .module.changelist-actions + .changelist-results thead th:first-of-type, 
+#changelist .module.changelist-actions + .changelist-results thead th:first-of-type a, 
+#changelist .changelist-results + .changelist-actions {
     border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
 }
-.module.changelist-actions + .changelist-results table, 
-.module.changelist-actions + .changelist-results thead th:last-of-type, 
-.module.changelist-actions + .changelist-results thead th:last-of-type a {
+#changelist .module.changelist-actions + .changelist-results, 
+#changelist .module.changelist-actions + .changelist-results table, 
+#changelist .module.changelist-actions + .changelist-results thead th:last-of-type, 
+#changelist .module.changelist-actions + .changelist-results thead th:last-of-type a, 
+#changelist .changelist-results + .changelist-actions {
     border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
 }
 
 #changelist .changelist-results:last-child table, 
 #changelist .changelist-results:last-child tbody tr:last-of-type th:first-child, 
-#changelist .changelist-results:last-child tbody tr:last-of-type td:first-child {
+#changelist .changelist-results:last-child tbody tr:last-of-type td:first-child, 
+#changelist .changelist-results + .changelist-actions {
     border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
 }
+#changelist .changelist-results:last-child, 
 #changelist .changelist-results:last-child table, 
 #changelist .changelist-results:last-child tbody tr:last-of-type th:last-child, 
-#changelist .changelist-results:last-child tbody tr:last-of-type td:last-of-type {
+#changelist .changelist-results:last-child tbody tr:last-of-type td:last-of-type, 
+#changelist .changelist-results + .changelist-actions, 
+#changelist.editable .changelist-results:last-child tbody tr:last-of-type td:nth-last-child(-n+2) {
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 

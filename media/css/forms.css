@@ -143,8 +143,18 @@ input[type=text], input[type=password] {
 
 /*  Searchbar ................................................... */
 
+form#changelist-search {
+    position: relative; float: left; clear: both;
+    border: 1px solid #fff;
+    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
 input#searchbar {
-    padding-right: 30px;
+    position: relative; float: left;
+    padding-left: 8px;
+    width: 218px;
+    height: 26px;
+    font-size: 11px;
+    border-radius: 14px; -moz-border-radius: 14px; -webkit-border-radius: 14px;
 }
 
 
@@ -346,23 +356,23 @@ ul.radiolist label, ul.checkboxlist label {
 
 /*  Changelist Form Fields ................................................... */
 
-#changelist form table input[type=text], 
-#changelist form table input[type=password], 
-#changelist form table input[type=file], 
-#changelist form table select, 
-#changelist form table textarea {
+#changelist table input[type=text], 
+#changelist table input[type=password], 
+#changelist table input[type=file], 
+#changelist table select, 
+#changelist table textarea {
     position: relative;
     top: -5px;
     margin-bottom: -9px;
     vertical-align: top;
 }
 
-#changelist form table input[type=radio], 
-#changelist form table input[type=checkbox] {
+#changelist table input[type=radio], 
+#changelist table input[type=checkbox] {
     position: relative; top: -1px;
 }
-#changelist form table thead input[type=radio], 
-#changelist form table thead input[type=checkbox] {
+#changelist table thead input[type=radio], 
+#changelist table thead input[type=checkbox] {
     top: 0;
 }
 

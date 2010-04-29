@@ -80,11 +80,6 @@
 .group.ui-collapsible-closed .ui-collapsible-toggle {
     display:block!important;
 }
-.group.changelist-content {
-    margin: 0 0 7px;
-    padding: 0;
-    border: none !important;
-}
 
 
 
@@ -571,7 +566,6 @@ h2 + * + * + .module.table {
 /*  Predelete
 ------------------------------------------------------------------------------------------------------ */
 
-
 .predelete h2, .predelete h2.collapse-handler, 
 .predelete h3, .predelete h3.collapse-handler, 
 .predelete h4, .predelete h4.collapse-handler {
@@ -880,14 +874,14 @@ ul.actions li a {
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 
-.module.changelist-filters ul {
+/*.module.changelist-filters ul {
     position: relative; float: left; clear: both;
     font-size: 11px;
     line-height: 16px;
     font-weight: bold;
     margin: -1px 10px -1px 0;
-}
-.module.changelist-filters ul li {
+}*/
+/*.module.changelist-filters ul li {
     position: relative; float: left;
     display: block;
     margin-right: 3px;
@@ -930,12 +924,9 @@ ul.actions li a {
 .module.changelist-filters ul span span {
     padding: 0;
     border: 0;
-}
+}*/
 
-.module.date-hierarchy ul a, 
-.module.date-hierarchy ul span {
-    padding: 2px 5px 1px;
-}
+
 
 
 
@@ -961,7 +952,10 @@ ul.actions li a {
     border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
 }
 
-
+.module.date-hierarchy ul a, 
+.module.date-hierarchy ul span {
+    padding: 2px 5px 1px;
+}
 
 
 
@@ -970,15 +964,20 @@ ul.actions li a {
 
 .module.changelist-actions {
     position: relative;
+    margin-bottom: 0;
     color: #666;
-/*    border: 1px solid #d9d9d9;*/
-/*    padding: 5px 10px;*/
-/*    border-top: 1px solid #b0b0b0;*/
-/*    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;*/
-/*    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;*/
+    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
     background: #eee;
     background: -moz-linear-gradient(top, #eee, #e0e0e0);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+}
+.module.changelist-actions.all-selected, 
+.module.changelist-actions.all-selected + .module.changelist-results {
+    background: #ffffe6 !important;
+}
+.module.changelist-results + .module.changelist-actions {
+    margin-top: -8px;
 }
 
 .module.changelist-actions ul {
@@ -1058,8 +1057,8 @@ ul.actions li a {
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-results {
-    border: none !important;
-    background: none !important;
+    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
+    background: #e6e6e6 !important;
 }
 .changelist-actions + .changelist-results, 
 .changelist-results + .changelist-actions {
@@ -1086,6 +1085,8 @@ ul.actions li a {
 
 .box.filter {
     position: relative; float: left;
+    border: 1px solid #fff;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 a.button.drop-down.toggle-filters {
     float: none !important;
@@ -1121,13 +1122,13 @@ a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:activ
     display: none;
     position: absolute;
     z-index: 1000;
-    top: 30px;
+    top: 26px;
     padding: 0 10px 10px;
     border: 1px solid #bdbdbd;
     border-top: 0;
     border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-    background: #eee;
+    background: #e1f0f5;
 }
 .filter-pulldown .filter {
     position: relative; float: left;
@@ -1209,19 +1210,24 @@ a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:activ
 /* Pagination
 ------------------------------------------------------------------------------------------------------ */
 
+.module.pagination {
+    border: 1px solid #d9d9d9;
+}
 ul.pagination {
     position: relative;
     float: left;
     margin: 0 10px 0 0;
-/*    padding: 4px 0 4.5px;*/
+    padding: 0;
     width: auto;
     font-weight: bold;
     border-top: none !important;
 }
 ul.pagination li {
     position: relative; float: left;
+    display: block;
     margin-right: 3px;
-/*    padding: 10px 0;*/
+    border: 1px solid #fff;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 ul.pagination li.results {
     margin-right: 10px;
@@ -1233,23 +1239,30 @@ ul.pagination li:last-child {
 
 ul.pagination span, 
 ul.pagination a {
-    padding: 5px 8.5px;
-    font-size: 11px; font-weight: bold;
+    display: inline-block;
+    padding: 3px 8px 3px;
+    min-width: 25px;
+    font-size: 11px;
+    font-weight: bold;
     border: 1px solid;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
 ul.pagination a:link, .pagination a:visited {
     color: #59afcc;
-    border-color: #e0e0e0;
-/*    background: #eee;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
-    background: -moz-linear-gradient(top, #fff, #eee);
-*/
+    border-color: #d9d9d9;
+    /*background: #e0e0e0;
+        background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+        background: -moz-linear-gradient(top, #eee, #e0e0e0);*/
 }
-ul.pagination a:hover, .pagination a:active, 
+ul.pagination a:hover, .pagination a:active {
+    color: #444;
+    border-color: #bdbdbd;
+    background: #e0e0e0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+    background: -moz-linear-gradient(top, #eee, #e0e0e0);
+}
 ul.pagination span {
-/*    padding: 5px 8.5px;*/
     color: #444;
     border-color: #bdbdbd;
     background: #e0e0e0;
@@ -1257,7 +1270,7 @@ ul.pagination span {
     background: -moz-linear-gradient(top, #eee, #e0e0e0);
 }
 ul.pagination a.showall {
-    margin-left: 7px;
+/*    margin-left: 7px;*/
 }
 .submit-row ul.pagination li, 
 .submit-row ul.pagination li.results {
