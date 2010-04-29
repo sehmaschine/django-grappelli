@@ -26,7 +26,7 @@ class GrappelliEnhancedFieldsAdmin(GrappelliModelAdmin):
         'slug_test2': True
     }
 
-    class Media:
+    class Meta:
         verbose_name = u'Enhanced fields test'
         verbose_name_plural = u'Enhanced fields tests'
         js = [
@@ -65,9 +65,6 @@ class GrappelliRelatedFieldsAdmin(GrappelliModelAdmin):
             'list_format':   '{id:d} - {label:s}',  # optional
         }
     }
-    class Media:
-        verbose_name = u'Related fields test'
-        verbose_name_plural = u'Related fields tests'
 
 admin.site.register(GrappelliRelatedFields, GrappelliRelatedFieldsAdmin)
 

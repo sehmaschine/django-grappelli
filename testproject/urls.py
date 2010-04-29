@@ -20,7 +20,9 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media/(.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-        (r'^admin-media/(.*)$', 'django.views.static.serve', {
+        (r'^-media/(.*)$', 'django.views.static.serve', {
             'document_root': settings.GRAPPELLI_MEDIA_ROOT, 'show_indexes': True}),
+        (r'^timepickr-media/(.*)$', 'django.views.static.serve', {
+            'document_root': settings.TIMEPICKR_MEDIA_ROOT, 'show_indexes': True}),
     )
 

@@ -42,6 +42,7 @@ USE_L10N = USE_I18N
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 
+TIMEPICKR_MEDIA_ROOT = os.path.realpath(os.path.join(PROJECT_PATH, '../contrib/timepickr/media/'))
 GRAPPELLI_MEDIA_ROOT = os.path.realpath(os.path.join(PROJECT_PATH, '../contrib/grappelli/media/'))
 GRAPPELLITEST_MEDIA_ROOT = os.path.realpath(os.path.join(PROJECT_PATH, '../contrib/grappellitest/media/'))
 
@@ -107,6 +108,7 @@ INSTALLED_APPS = (
     'testgrappelli',
     'testdjangoinlines',
     'testgrappelliinlines',
+    'testgrappelliexperimental',
     'debug_toolbar',
 )
 GRAPPELLI_ADMIN_TITLE = 'Grappelli Test Project'
