@@ -17,9 +17,10 @@
     <script type="text/javascript" src="{% admin_media_prefix %}js/change_list.js"></script>
     
     <script type="text/javascript" charset="utf-8">
-    {% if is_popup %}
+    
         (function($) {
             $(document).ready(function() {
+            {% if is_popup %}
                 // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
                 // shouldn't be there in the first place, see
                 // http://code.djangoproject.com/ticket/11700
@@ -28,9 +29,11 @@
                 $('input#action-toggle').parent().hide();
                 $('div.changelist-results input').attr('disabled', 'disabled');
                 $('div#submit').hide();
+            {% endif %}
+                
+                $('body').change_list();
             });
         })(jQuery.noConflict());
-    {% endif %}
     </script>
     
 {% endblock %}

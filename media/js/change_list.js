@@ -64,7 +64,7 @@
         clearSelection = function() {
             $(options.allToggle).attr("checked", false);
             clearAcross();
-            checker(0);
+            checker(false);
             updateCounter();
         };
         
@@ -218,27 +218,18 @@
             });
         }
         
-        $("input#action-toggle").click(function() {
-            var selected = $("input[name='_selected_action']:checked").length;
-            if (selected) {
-                $("div#footer_submit").hide();
-                $("div#footer_actions").show();
-            } else {
-                $("div#footer_submit").hide();
-                $("div#footer_actions").hide();
-            }
-        });
-        
-        
         $("input.action-select, input#action-toggle").click(function() {
             $("div#submit").hide();
         });
         
         $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']").click(function() {
+            
             $("div#submit").show();
             
             // need to uncheck all actions checkboxes and update counter
             // (actions are not working if you want to edit items in the change_list)
+            
+            actionCheckboxes.attr("checked", false);
             clearSelection();
         });
         
@@ -277,13 +268,13 @@
         actionCheckboxes: "input.action-select",
         actionContainer: "div.changelist-actions",
         counterContainer: "li.action-counter",
-        allContainer: "div.changelist-actions div.form-row li.all",
-        acrossInput: "div.changelist-actions div.form-row input.select-across",
-        acrossQuestions: "div.changelist-actions div.form-row li.question",
-        acrossClears: "div.changelist-actions div.form-row li.clear-selection",
+        allContainer: "div.changelist-actions li.all",
+        acrossInput: "div.changelist-actions input.select-across",
+        acrossQuestions: "div.changelist-actions li.question",
+        acrossClears: "div.changelist-actions li.clear-selection",
         allToggle: "#action-toggle",
         selectedClass: "selected",
-        actionSelect: "div.changelist-actions div.form-row select",
+        actionSelect: "div.changelist-actions select",
         initialSearchVal: "Search"
     };
 })(jQuery);
