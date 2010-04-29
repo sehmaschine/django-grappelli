@@ -17,9 +17,49 @@
     <script type="text/javascript" src="{% admin_media_prefix %}js/change_list.js"></script>
     
     <script type="text/javascript" charset="utf-8">
-    {% if is_popup %}
+
         (function($) {
             $(document).ready(function() {
+                // jQuery UI Datepicker
+                // $(".vDateField").datepicker({
+                //     showOn: 'button', 
+                //     buttonImageOnly: false, 
+                //     buttonText: ''
+                // });
+
+
+                // NOTE klemens: couldn't find this node anywhere. deprecated?
+                $('.toggle-filter').click(function(){
+                    console.log("deprecated?: .toggle-filter");
+                    $(this).toggleClass('selected');
+                    $('.filter-container').toggle();
+                });
+
+
+                // NOTE klemens: couldn't find this node anywhere. deprecated?
+                $("div#filter h2").click(function() {
+                    console.log("deprecated?: .toggle-filter");
+                    $(this).next().toggle();
+                });
+
+
+                // NOTE klemens: couldn't find this node anywhere. deprecated?
+                $("h4#filter-handler").click(function() {
+                    console.log("deprecated?: .toggle-filter");
+                    $("div#filters").toggle();
+                });
+
+
+                // NOTE klemens: couldn't find this node anywhere. deprecated?
+                $("a#search-handler").click(function() {
+                    console.log("deprecated?: .toggle-filter");
+                    $("div.search-container").toggle();
+                });
+                
+                
+                $('body').change_list();
+                
+            {% if is_popup %}
                 // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
                 // shouldn't be there in the first place, see
                 // http://code.djangoproject.com/ticket/11700
@@ -28,9 +68,10 @@
                 $('input#action-toggle').parent().hide();
                 $('div.changelist-results input').attr('disabled', 'disabled');
                 $('div#submit').hide();
+            {% endif %}
             });
         })(jQuery.noConflict());
-    {% endif %}
+
     </script>
     
 {% endblock %}

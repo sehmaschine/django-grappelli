@@ -971,6 +971,7 @@ ul.actions li a {
     background: #eee;
     background: -moz-linear-gradient(top, #eee, #e0e0e0);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+    display: none;
 }
 .module.changelist-actions.all-selected, 
 .module.changelist-actions.all-selected + .module.changelist-results {
