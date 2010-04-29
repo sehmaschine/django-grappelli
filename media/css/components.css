@@ -1088,6 +1088,9 @@ ul.actions li a {
     border: 1px solid #fff;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
+.box.filter.open {
+    box-shadow: ; -moz-box-shadow: 0 0 10px #444; -webkit-box-shadow: ;
+}
 a.button.drop-down.toggle-filters {
     float: none !important;
     display: block;
@@ -1120,7 +1123,7 @@ a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:activ
 
 .filter-pulldown {
     display: none;
-    position: absolute;
+    position: relative;
     z-index: 1000;
     top: 26px;
     padding: 0 10px 10px;
@@ -1131,8 +1134,8 @@ a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:activ
     background: #e1f0f5;
 }
 .filter-pulldown .filter {
-    position: relative; float: left;
-    margin: 10px 0 0;
+    position: relative;
+/*    margin: 10px 0 0;*/
     width: 100%;
 }
 .filter-pulldown select {
