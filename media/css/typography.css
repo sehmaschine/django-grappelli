@@ -223,14 +223,11 @@ td.focus {
 ul.rte ul, ul.rte ol, 
 ol.rte ul, ol.rte ol {
     margin: 0 0 0 20px;
-    font-size: 11px;
-    line-height: 13px;
+    font-size: 12px;
+    line-height: 14px;
 }
 .rte ul li, .rte ol li {
     margin: 0; padding: 0;
-}
-.delete-confirmation ul.rte>li+li {
-    margin-top: 5px;
 }
 
 .rte ul li {
@@ -238,6 +235,38 @@ ol.rte ul, ol.rte ol {
 }
 .rte ol li {
     list-style-type: decimal;
+}
+
+.delete-confirmation ul.rte>li {
+    padding-bottom: 9px;
+    font-weight: bold;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+.delete-confirmation ul.rte>li:first-child {
+    border-top: 0;
+}
+.delete-confirmation ul.rte>li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+.delete-confirmation ul.rte>li+li {
+    padding-top: 8px !important;
+}
+.delete-confirmation ul.rte>li>ul {
+    margin-top: 2px;
+}
+.delete-confirmation ul.rte>li>ul>li {
+    list-style-type: none;
+    border-top: 1px dashed #e0e0e0;
+    margin: 0 0 0 -30px !important;
+    padding: 5px 0;
+}
+.delete-confirmation ul.rte>li>ul>li:last-child {
+    padding-bottom: 0;
+}
+.delete-confirmation ul.rte>li>ul>li>ul>li {
+    font-size: 11px;
 }
 
 .rte dd ul, .rte dd ol {

@@ -1,0 +1,14 @@
+orignal js removed:
+    actions.js, actions.min.js
+    jquery.js, jquery.min.js
+    collapse.js, collapse.min.js
+    calendar.js
+    
+original js updated:
+    datetimeshortcuts.js
+    ???
+    
+js added by grappelli:
+    changelist.js
+    grappelli.js
+    
