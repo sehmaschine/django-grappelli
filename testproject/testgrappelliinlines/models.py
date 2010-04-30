@@ -5,8 +5,8 @@ from testgrappelli.models import *
 # Related Fields  -----------------------------------------------------------------------------------
 
 class GrappelliRelatedFieldsInline(GrappelliRelatedFields):
-    tabular_test = models.ForeignKey('GrappelliRelatedFieldsTabularTest', blank=True)
-    stacked_test = models.ForeignKey('GrappelliRelatedFieldsStackedTest', blank=True)
+    tabular_test = models.ForeignKey('GrappelliRelatedFieldsTabularTest', null=True, blank=True)
+    stacked_test = models.ForeignKey('GrappelliRelatedFieldsStackedTest', null=True, blank=True)
     def __unicode__(self):
         return u'%s' % self.char_test
 
@@ -26,8 +26,8 @@ class GrappelliRelatedFieldsStackedTest(models.Model):
 # Enhanced Fields  -----------------------------------------------------------------------------------
 
 class GrappelliEnhancedFieldsInline(GrappelliEnhancedFields):
-    tabular_test = models.ForeignKey('GrappelliEnhancedFieldsTabularTest', blank=True)
-    stacked_test = models.ForeignKey('GrappelliEnhancedFieldsStackedTest', blank=True)
+    tabular_test = models.ForeignKey('GrappelliEnhancedFieldsTabularTest', null=True, blank=True)
+    stacked_test = models.ForeignKey('GrappelliEnhancedFieldsStackedTest', null=True, blank=True)
     def __unicode__(self):
         return u'%s' % self.char_test
 

@@ -90,7 +90,7 @@ class DjangoRelatedFields(models.Model):
     ooo_test       = models.OneToOneField(Site, verbose_name=u"OneToOneField", blank=True, related_name='one_to_one', help_text=u"A one-to-one relationship. Conceptually, this is similar to a ForeignKey  with unique=True, but the 'reverse' side of the relation will directly return a single object.")
 
     def __unicode__(self):
-        return u'%s' % self.test_name
+        return u'%s' % self.char_test
 
     class Meta:
         verbose_name = u'Related fields test'

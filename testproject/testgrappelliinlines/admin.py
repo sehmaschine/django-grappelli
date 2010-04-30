@@ -17,7 +17,7 @@ from grappelli.admin import GrappelliTabularInline, GrappelliStackedInline
 
 class GrappelliRelatedFieldsTabularInline(GrappelliTabularInline):
     model = GrappelliRelatedFieldsInline
-    classes = ('ui-collapsible-all-opened', )
+    classes = ('ui-collapsible-opened',)
     allow_add = True
     extra = 1
     fieldsets = (
@@ -62,9 +62,9 @@ admin.site.register(GrappelliRelatedFieldsTabularTest, GrappelliRelatedFieldsTab
 
 class GrappelliEnhancedFieldsTabularInline(GrappelliTabularInline):
     model = GrappelliEnhancedFieldsInline
-    classes = ('ui-collapsible-all-opened', )
+#   classes = ('ui-collapsible-closed',)
     allow_add = True
-    extra = 1
+    extra = 3
     fieldsets = (
         (None, {
             'fields': (
@@ -72,9 +72,14 @@ class GrappelliEnhancedFieldsTabularInline(GrappelliTabularInline):
             )
         }),
     )
+    auto_slugfield = {
+        'slug_test':  'input[type=text],textarea',
+        'slug_test2': True
+    }
 
 class GrappelliEnhancedFieldsTabularTestAdmin(admin.ModelAdmin):
     list_display = ('char_test',)
+    classes = ('ui-collapsible-closed',)
     inlines = [GrappelliEnhancedFieldsTabularInline]
 
     class Media:
@@ -96,7 +101,8 @@ admin.site.register(GrappelliEnhancedFieldsTabularTest, GrappelliEnhancedFieldsT
 
 class GrappelliRelatedFieldsStackedInline(GrappelliStackedInline):
     model = GrappelliRelatedFieldsInline
-    classes = ('ui-collapsible-all-opened', )
+#   classes = ('ui-collapsible-all-opened', )
+    classes = ('ui-collapsible-opened',)
     allow_add = True
     extra = 1
     fieldsets = (
@@ -151,6 +157,10 @@ class GrappelliEnhancedFieldsStackedInline(GrappelliStackedInline):
             )
         }),
     )
+    auto_slugfield = {
+        'slug_test':  'input[type=text],textarea',
+        'slug_test2': True
+    }
 
 class GrappelliEnhancedFieldsStackedTestAdmin(admin.ModelAdmin):
     list_display = ('char_test',)
