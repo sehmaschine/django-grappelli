@@ -140,15 +140,6 @@ table.xfull {
     margin: -1px !important;
     border: 1px solid #bdbdbd;
 }
-/* undecided: depends on js-solution for calculating table-widths */
-#changelist thead th:last-of-type {    
-/*    padding-right: 10px;*/
-}
-/*@media screen and (-webkit-min-device-pixel-ratio:0) {
-    #changelist thead th:last-of-type {
-        padding-right: 11px;
-    }
-}*/
 
 #changelist tbody th, #changelist tbody td {
     border: none;
@@ -162,44 +153,24 @@ table.xfull {
     border-left: none;
 }
 
-#changelist .changelist-results table, 
+#changelist .changelist-results, 
+#changelist .changelist-results table {
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+
 #changelist .changelist-results thead th:first-of-type, 
 #changelist .changelist-results thead th:first-of-type a {
     border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
 }
-#changelist .changelist-results table, 
 #changelist .changelist-results thead th:last-of-type,
 #changelist .changelist-results thead th:last-of-type a {
     border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
-
-#changelist .module.changelist-actions + .changelist-results, 
-#changelist .module.changelist-actions + .changelist-results table, 
-#changelist .module.changelist-actions + .changelist-results thead th:first-of-type, 
-#changelist .module.changelist-actions + .changelist-results thead th:first-of-type a, 
-#changelist .changelist-results + .changelist-actions {
-    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
-}
-#changelist .module.changelist-actions + .changelist-results, 
-#changelist .module.changelist-actions + .changelist-results table, 
-#changelist .module.changelist-actions + .changelist-results thead th:last-of-type, 
-#changelist .module.changelist-actions + .changelist-results thead th:last-of-type a, 
-#changelist .changelist-results + .changelist-actions {
-    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
-}
-
-#changelist .changelist-results:last-child table, 
-#changelist .changelist-results:last-child tbody tr:last-of-type th:first-child, 
-#changelist .changelist-results:last-child tbody tr:last-of-type td:first-child, 
-#changelist .changelist-results + .changelist-actions {
+#changelist .changelist-results tbody tr:last-of-type>*:first-child {
     border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
 }
-#changelist .changelist-results:last-child, 
-#changelist .changelist-results:last-child table, 
-#changelist .changelist-results:last-child tbody tr:last-of-type th:last-child, 
-#changelist .changelist-results:last-child tbody tr:last-of-type td:last-of-type, 
-#changelist .changelist-results + .changelist-actions, 
-#changelist.editable .changelist-results:last-child tbody tr:last-of-type td:nth-last-child(-n+2) {
+#changelist .changelist-results tbody tr:last-of-type>*:last-child, 
+#changelist.editable .changelist-results tbody tr:last-of-type td:nth-last-child(-n+2) {
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 
@@ -240,12 +211,23 @@ table#change-history tbody th {
     width: 150px;
 }
 table#change-history thead th:first-child {
-    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
 }
 table#change-history thead th:last-child {
-    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
 
+
+
+/*  Documentation
+------------------------------------------------------------------------------------------------------ */
+
+.model-index table {
+    width: 100%;
+}
+.model-index table th {
+    padding: 7px 10px 8px;
+}
 
 
 /*  Overrides

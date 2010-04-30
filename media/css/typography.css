@@ -220,9 +220,19 @@ td.focus {
     margin: 10px 0 0 20px; padding: 0 0 0 10px;
     font-weight: normal !important;
 }
+ul.rte ul, ul.rte ol, 
+ol.rte ul, ol.rte ol {
+    margin: 0 0 0 20px;
+    font-size: 11px;
+    line-height: 13px;
+}
 .rte ul li, .rte ol li {
     margin: 0; padding: 0;
 }
+.delete-confirmation ul.rte>li+li {
+    margin-top: 5px;
+}
+
 .rte ul li {
     list-style-type: disc;
 }

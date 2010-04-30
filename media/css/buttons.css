@@ -24,17 +24,15 @@ input[type=submit], input[type=reset], input[type=button], button {
 
 .submit-row>*[class*="-container"] {
     border: 1px solid #666;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 10px #666; -webkit-box-shadow: 0 0 3px #666;
+    border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
+    box-shadow: 0 0 5px #666; -moz-box-shadow: 0 0 5px #666; -webkit-box-shadow: 0 0 5px #666;
     background: #666;
 }
 .submit-row>*[class*="-container"]:hover {
     border: 1px solid #777;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 10px #777; -webkit-box-shadow: 0 0 3px #666;
+    box-shadow: 0 0 5px #777; -moz-box-shadow: 0 0 5px #777; -webkit-box-shadow: 0 0 5px #777;
     background: #777;
 }
-
 
 .submit-row a.delete-link, 
 .submit-row a.cancel-link {
@@ -66,6 +64,7 @@ input[type=submit],
 #bookmark-add-cancel, 
 .submit-row a.cancel-link:link, .submit-row a.cancel-link:visited {
     color: #fff;
+    border: 1px solid #444;
     background: #666;
     background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#444));
     background: -moz-linear-gradient(top, #666, #444);
@@ -97,6 +96,23 @@ input[type=submit]:hover,
 input[type=submit].default {
 /*    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 3px #666; -webkit-box-shadow: 0 0 3px #666;*/
     opacity: 1;
+}
+
+
+
+/* Submit-Row Footer
+------------------------------------------------------------------------------------------------------ */
+
+.footer .submit-row>*[class*="-container"] {
+    border: 1px solid #666;
+    border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
+    box-shadow: 0 0 5px #666; -moz-box-shadow: 0 0 5px #666; -webkit-box-shadow: 0 0 5px #666;
+    background: #666;
+}
+.footer .submit-row>*[class*="-container"]:hover {
+    border: 1px solid #777;
+    box-shadow: 0 0 5px #777; -moz-box-shadow: 0 0 5px #777; -webkit-box-shadow: 0 0 5px #777;
+    background: #777;
 }
 
 

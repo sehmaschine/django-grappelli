@@ -7,28 +7,24 @@
 {% block title %}View: {{ name }}{% endblock %}
 
 {% block content %}
-<h1>{{ name }}</h1>
-
-<div class="container-grid rte">
-    <div class="module">
-        <h2>{{ summary }}</h2>
-
-        <p>{{ body }}</p>
-
-        {% if meta.Context %}
+    <h1>{{ name }}</h1>
+    <div class="container-grid rte">
         <div class="module">
-            <h3>Context:</h3>
-            <p>{{ meta.Context }}</p>
+            <h2>{{ summary }}</h2>
+            <p>{{ body }}</p>
+            {% if meta.Context %}
+                <div class="module">
+                    <h3>Context:</h3>
+                    <p>{{ meta.Context }}</p>
+                </div>
+            {% endif %}
+            {% if meta.Templates %}
+                <div class="module">
+                    <h3>Templates:</h3>
+                    <p>{{ meta.Templates }}</p>
+                </div>
+            {% endif %}
         </div>
-        {% endif %}
-
-        {% if meta.Templates %}
-        <div class="module">
-            <h3>Templates:</h3>
-            <p>{{ meta.Templates }}</p>
-        </div>
-        {% endif %}
+        <a href="../" class="back">&lsaquo; Back to Views Documentation</a>
     </div>
-    <a href="../" class="back">&lsaquo; Back to Views Documentation</a>
-</div>
 {% endblock %}

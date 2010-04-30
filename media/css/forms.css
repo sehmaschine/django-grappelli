@@ -158,6 +158,13 @@ input#searchbar {
 }
 
 
+/*  FileBrowseField ................................................... */
+
+input.vFileBrowseField {
+    padding-right: 25px;
+}
+
+
 /*  File ................................................... */
 
 input[type=file] {
@@ -223,9 +230,15 @@ select[multiple=multiple] {
     padding-right: 5px;
     height: 160px;
 }
-option {
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select[multiple=multiple] {
+        background-image: none;
+    }
+}
+option, 
+select[multiple=multiple] option {
     padding-right: 30px;
-    border-bottom: 1px dotted #ddd;
+    border-bottom: 1px dotted #ddd !important;
 }
 option:last-child {
     border-bottom: none;

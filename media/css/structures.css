@@ -242,7 +242,7 @@ ul#bookmarks-listing li:last-child a {
 /*  Breadcrumbs
 ------------------------------------------------------------------------------------------------------ */
 
-#breadcrumbs {
+div#breadcrumbs {
     position: fixed; top: 30px; left: 0; z-index: 1000;
     width: 100%;
     padding: 5px 10px 5px 20px;
@@ -251,7 +251,7 @@ ul#bookmarks-listing li:last-child a {
     border-bottom: 1px solid #ccc;
     background: #e6e6e6;
 }
-#breadcrumbs a {
+div#breadcrumbs a {
     padding: 10px 2px;
 }
 body.popup div#breadcrumbs {
