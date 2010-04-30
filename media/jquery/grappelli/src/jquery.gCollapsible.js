@@ -37,7 +37,7 @@ $.widget('ui.gCollapsible.js', {
         unCollapseAll: function(e, ui) {
             ui._trigger('unCollapse', {
                 type:'unCollapse', 
-                data: {element: ui.element.find('.ui-collapsible').andSelf()}
+                data: {element: ui.element.find('.ui-collapsible')}
             }, ui);
         },
 
@@ -49,13 +49,14 @@ $.widget('ui.gCollapsible.js', {
 
         // Opens a collapsible container
         unCollapse: function(e, ui) {
-            return e.data.element.addClass('ui-collapsible-opened')
+            return (e.data && e.data.element || ui.element).addClass('ui-collapsible-opened')
               .removeClass('ui-collapsible-closed');
         },
 
         // Closes a collapsible container
         collapse: function(e, ui) {
-            return e.data.element.removeClass('ui-collapsible-opened')
+                      console.log('aa', e);
+            return (e.data && e.data.element || ui.element).removeClass('ui-collapsible-opened')
               .addClass('ui-collapsible-closed');
         }
 
@@ -86,10 +87,21 @@ $.widget('ui.gCollapsible.js', {
                 .bind('click', function(e){
                     ui._onClick.apply(this, [e, ui]);
                 });
-           
+            
+            // Close/Open
+            if (ui.element.hasClass('ui-collapsible-closed'))  {
+                ui.collapse();
+            }
+            else {
+                ui.unCollapse();
+            }
+
             // Close/Open all
             ui._trigger(ui.element.hasClass('ui-collapsible-all-closed') 
                         && 'collapseAll' || 'unCollapseAll', {}, ui);
+            
+            ui._trigger(ui.element.hasClass('ui-collapsible-closed') 
+                        && 'collapse' || 'unCollapse', {}, ui);
 
             ui.dom.openAll.bind('click',  function(){ 
                 ui._trigger('unCollapseAll', {}, ui);
@@ -108,7 +120,7 @@ $.widget('ui.gCollapsible.js', {
 
         // Errors handling
         var errors = ui.element.find('.errors');
-        if (errors) {
+        if (errors.length) {
             ui.unCollapse(errors.parents('.ui-collapsible'));
         }
     },
@@ -117,14 +129,14 @@ $.widget('ui.gCollapsible.js', {
      * @ el Collapsible element
      * */
     unCollapse: function(el) {
-        this._trigger('unCollapse', { type:'unCollapse', data: {element: el}}, this);
+        this._trigger('unCollapse', { type:'unCollapse', data: {element: el || this.element }}, this);
     },
 
     /* Triggers collapse event on a specified collapsible DOM element
      * @ el Collapsible element
      * */
     collapse: function(el) {
-        this._trigger('collapse', { type:'collapse', data: {element: el}}, this);
+        this._trigger('collapse', { type:'collapse', data: {element: el || this.element }}, this);
     },
 
     /* Triggered when a toggle handle is clicked
