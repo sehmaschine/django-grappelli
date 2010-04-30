@@ -21,6 +21,9 @@
 
 $.widget('ui.gCollapsible.js', {
     options: {
+      //nodeInserted: function(e) {
+      //    var row = e.originalEvent.data.node;
+      //},
         autoSelector: ['.ui-collapsible-opened', '.ui-collapsible-closed', 
                        '.ui-collapsible-all-opened', '.ui-collapsible-all-closed']
                        .join(','),
@@ -55,7 +58,6 @@ $.widget('ui.gCollapsible.js', {
 
         // Closes a collapsible container
         collapse: function(e, ui) {
-                      console.log('aa', e);
             return (e.data && e.data.element || ui.element).removeClass('ui-collapsible-opened')
               .addClass('ui-collapsible-closed');
         }
@@ -77,14 +79,14 @@ $.widget('ui.gCollapsible.js', {
         if (ui._isGroup) {
 
             // Toggle behavior of h3
-            ui.element.find('h3.ui-collapsible-toggle').bind('click', function(e){
+            ui.element.find('h3.ui-collapsible-toggle').live('click', function(e){
                 ui._onClick.apply(this, [e, ui]);
             });
 
             // Toggle behavior of h4
             ui.element.find('.ui-collapsible > h4')
                 .addClass('ui-collapsible-toggle')
-                .bind('click', function(e){
+                .live('click', function(e){
                     ui._onClick.apply(this, [e, ui]);
                 });
             

@@ -60,7 +60,7 @@ $.grappelli = (new function(){
                 var w = jQuery.ui[widgetName];
                 var s = $.ui[widgetName].prototype.options.autoSelector;
                 w.widgetName = widgetName;
-                if (w && w.autoSelector) {
+                if (w && s) {
                     if (parent) {
                         var elements = jQuery(parent).find(s);
                     }
@@ -94,8 +94,9 @@ $.grappelli = (new function(){
             $.grappelli.widgets.each(
                 widgets || $.grappelli.conf.get('widgets'),
                 function(widgetName, els) { 
-                    if (els.length > 0 && this.events && this.events[t]) {
-                        this.events[t].apply(els, [$.Event({type: t, data: d})])
+                    var opts = this.prototype.options;
+                    if (els.length > 0 && typeof(opts) != 'undefined' && opts[t]) {
+                        opts[t].apply(els, [$.Event({type: t, data: d})])
                     }
                 });
         }
