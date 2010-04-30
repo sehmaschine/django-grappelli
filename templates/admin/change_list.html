@@ -6,36 +6,29 @@
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
-    
     {% if cl.formset %}
         {% url admin:jsi18n as jsi18nurl %}
         <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
     {% endif %}
-    
     {{ media }}
-    
     <script type="text/javascript" src="{% admin_media_prefix %}js/change_list.js"></script>
-    
     <script type="text/javascript" charset="utf-8">
-    
         (function($) {
             $(document).ready(function() {
-            {% if is_popup %}
-                // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
-                // shouldn't be there in the first place, see
-                // http://code.djangoproject.com/ticket/11700
-                $('div#actions').hide();
-                $('input.action-select').parent().hide();
-                $('input#action-toggle').parent().hide();
-                $('div.changelist-results input').attr('disabled', 'disabled');
-                $('div#submit').hide();
-            {% endif %}
-                
+                {% if is_popup %}
+                    // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
+                    // shouldn't be there in the first place, see
+                    // http://code.djangoproject.com/ticket/11700
+                    $('div#actions').hide();
+                    $('input.action-select').parent().hide();
+                    $('input#action-toggle').parent().hide();
+                    $('div.changelist-results input').attr('disabled', 'disabled');
+                    $('div#submit').hide();
+                {% endif %}
                 $('body').change_list();
             });
         })(jQuery.noConflict());
     </script>
-    
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS-- >
@@ -44,13 +37,13 @@
 
 <!-- BREADCRUMBS -- >
 {% block breadcrumbs %}
-{% if not is_popup %}
-    <div id="breadcrumbs">
-        <a href="../../">{% trans "Home" %}</a> &rsaquo;
-        <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
-        {{ cl.opts.verbose_name_plural|capfirst }}
-    </div>
-{% endif %}
+    {% if not is_popup %}
+        <div id="breadcrumbs">
+            <a href="../../">{% trans "Home" %}</a> &rsaquo;
+            <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
+            {{ cl.opts.verbose_name_plural|capfirst }}
+        </div>
+    {% endif %}
 {% endblock %}
 
 <!-- CONTENT-TITLE -->
@@ -66,7 +59,7 @@
         <ul class="tools">
             <li>
                 <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="focus">
-                    Add
+                    {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
                 </a>
             </li>
         </ul>
@@ -75,10 +68,10 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <!-- CHANGELIST-FILTERS -->
-    {% if search_form or cl.date_hierarchy or cl.has_filters %}
+    {% if search_form or cl.has_filters or cl.date_hierarchy %}
         <div class="module changelist-filters">
             <div class="form-row">
+                <!-- PAGINATION TOP -->
                 {% pagination cl %}
                 {% if cl.has_filters or search_form %}
                     <div class="box options">
@@ -88,7 +81,7 @@
                                 {% block search %}{% search_form cl %}{% endblock %}
                             </div>
                         {% endif %}
-                        <!-- FILTER -->
+                        <!-- FILTERS -->
                         {% if cl.has_filters %}
                             <div id="filters" class="box filter span-6">
                                 <a href="javascript://" class="button drop-down toggle-filters">{% trans 'Filter' %}</a>
@@ -102,6 +95,7 @@
                 <br clear="all" />
             </div>
         </div>
+        <!-- DATE HIERARCHY -->
         {% if cl.date_hierarchy %}
             {% date_hierarchy cl %}
         {% endif %}
@@ -122,23 +116,15 @@
                 {{ cl.formset.management_form }}
             {% endif %}
             <!-- CHANGELIST-RESULTS -->
-            {% if cl.full_result_count %}
-                {% block result_list %}
-                    {% result_list cl %}
-                {% endblock %}
-            {% else %}
-                <div class="module">
-                    <div class="form-row"><strong>Nix gefunden!!!</strong></div>
-                </div>
-            {% endif %}
+            {% block result_list %}
+                {% result_list cl %}
+            {% endblock %}
             <!-- PAGINATION BOTTOM -->
-            {% if cl.result_count %}
-                <div class="module pagination">
-                    <div class="form-row">
-                        {% pagination cl %}
-                    </div>
+            <div class="module pagination">
+                <div class="form-row">
+                    {% pagination cl %}
                 </div>
-            {% endif %}
+            </div>
         </div><br clear="all" />
         <!-- CHANGELIST-ACTIONS -->
         {% if action_form and cl.full_result_count and cl.result_count %}
