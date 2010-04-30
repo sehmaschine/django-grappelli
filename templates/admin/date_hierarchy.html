@@ -1,11 +1,13 @@
 {% load i18n %}
 {% if show and choices %}
-<div class="form-row">
-    <ul>
-        {% if back %}<li><a href="{{ back.link }}" class="date-hierarchy-back">{{ back.title }}</a></li>{% endif %}
-        {% for choice in choices %}
-        <li>{% if choice.link %}<a href="{{ choice.link }}">{{ choice.title }}</a>{% else %}<span>{{ choice.title }}</span>{% endif %}</li>
-        {% endfor %}
-    </ul>
+<div id="date-hierarchy" class="module date-hierarchy">
+    <div class="form-row">
+        <ul>
+            {% if back %}<li><a href="{{ back.link }}" class="date-hierarchy-back">{{ back.title }}</a></li>{% endif %}
+            {% for choice in choices %}
+            <li>{% if choice.link %}<a href="{{ choice.link }}">{{ choice.title }}</a>{% else %}<span>{{ choice.title }}</span>{% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 {% endif %}

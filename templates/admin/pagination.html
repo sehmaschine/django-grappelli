@@ -5,9 +5,9 @@
     {% if cl.result_count != cl.full_result_count %}
     <li class="results"><span>{{ cl.result_count }} results</span></li>
     {% endif %}
-    {% ifnotequal cl.result_count 0 %}
+    {% comment %}{% ifnotequal cl.result_count 0 %}{% endcomment %}
     <li class="results"><a href="?{% if cl.is_popup %}pop=1{% endif %}">{{ cl.full_result_count }} total</a></li>
-    {% endifnotequal %}
+    {% comment %}{% endifnotequal %}{% endcomment %}
     {% if pagination_required %}
         {% comment %}<li class="page">{% trans 'Page' %}</li>{% endcomment %}
         {% for i in page_range %}

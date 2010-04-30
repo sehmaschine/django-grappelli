@@ -75,81 +75,83 @@
 
 <!-- CONTENT -->
 {% block content %}
-
-{% if search_form or cl.date_hierarchy or cl.has_filters %}
-    <div class="module changelist-filters">
-        <div class="form-row">
-            {% pagination cl %}
-            {% if cl.has_filters or search_form %}
-                <div class="box options">
-                    {% if not search_form %}
-                        <div id="search" class="box search span-6">
-                            {% block search %}{% search_form cl %}{% endblock %}
-                        </div>
-                    {% endif %}
-                    {% if cl.has_filters %}
-                        <div id="filters" class="box filter span-6">
-                            <a href="javascript://" class="button drop-down toggle-filters">{% trans 'Filter' %}</a>
-                            <div class="filter-pulldown">
-                                {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+    <!-- CHANGELIST-FILTERS -->
+    {% if search_form or cl.date_hierarchy or cl.has_filters %}
+        <div class="module changelist-filters">
+            <div class="form-row">
+                {% pagination cl %}
+                {% if cl.has_filters or search_form %}
+                    <div class="box options">
+                        <!-- SEARCH -->
+                        {% if not search_form %}
+                            <div id="search" class="box search span-6">
+                                {% block search %}{% search_form cl %}{% endblock %}
                             </div>
-                        </div>
-                    {% endif %}
+                        {% endif %}
+                        <!-- FILTER -->
+                        {% if cl.has_filters %}
+                            <div id="filters" class="box filter span-6">
+                                <a href="javascript://" class="button drop-down toggle-filters">{% trans 'Filter' %}</a>
+                                <div class="filter-pulldown">
+                                    {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <br clear="all" />
+            </div>
+        </div>
+        {% if cl.date_hierarchy %}
+            {% date_hierarchy cl %}
+        {% endif %}
+    {% endif %}
+    <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+        <div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
+            <!-- POPUP -->
+            {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+            <!-- ERRORS -->
+            {% if cl.formset.errors %}
+                <p class="errornote">
+                    {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                </p>
+                {{ cl.formset.non_form_errors }}
+            {% endif %}
+            <!-- MANAGEMENT FORM -->
+            {% if cl.formset %}
+                {{ cl.formset.management_form }}
+            {% endif %}
+            <!-- CHANGELIST-RESULTS -->
+            {% if cl.full_result_count %}
+                {% block result_list %}
+                    {% result_list cl %}
+                {% endblock %}
+            {% else %}
+                <div class="module">
+                    <div class="form-row"><strong>Nix gefunden!!!</strong></div>
                 </div>
             {% endif %}
-            <br clear="all" />
-        </div>
-    </div>
-    {% if cl.date_hierarchy %}
-        <div id="date-hierarchy" class="module date-hierarchy">
-            {% date_hierarchy cl %}
-        </div>
-    {% endif %}
-{% endif %}
-
-<form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-
-<div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
-    <!-- Popup Hidden Field -->
-    {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
-    <!-- Errors -->
-    {% if cl.formset.errors %}
-        <p class="errornote">
-            {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
-        </p>
-        {{ cl.formset.non_form_errors }}
-    {% endif %}
-    <!-- Management Form -->
-    {% if cl.formset %}
-        {{ cl.formset.management_form }}
-    {% endif %}
-    <!-- Changelist Actions -->
-    {% comment %}{% admin_actions %}{% endcomment %}
-    <!-- Changelist Results -->
-    {% block result_list %}
-        {% result_list cl %}
-    {% endblock %}
-    
-</div><br clear="all" />
-
-<div class="module pagination">
-    <div class="form-row">
-        {% pagination cl %}
-    </div>
-</div>
-
-{% if cl.formset and cl.result_count %}
-<!-- Changelist Actions -->
-{% admin_actions %}
-<div id="submit" class="module footer" style="display: none;">
-    <ul class="submit-row">
-        <li class="left delete-link-container"><a href="javascript://" class="cancel-link">Cancel</a></li>
-        <li class="submit-button-container"><input type="submit" class="default" value="Save"/></li>
-    </ul>
-</div>
-{% endif %}
-
-</form>
-
-
+            <!-- PAGINATION BOTTOM -->
+            {% if cl.result_count %}
+                <div class="module pagination">
+                    <div class="form-row">
+                        {% pagination cl %}
+                    </div>
+                </div>
+            {% endif %}
+        </div><br clear="all" />
+        <!-- CHANGELIST-ACTIONS -->
+        {% if action_form and cl.full_result_count and cl.result_count %}
+            {% admin_actions %}
+        {% endif %}
+        <!-- SUBMIT ROW -->
+        {% if cl.formset and cl.full_result_count and cl.result_count %}
+            <div id="submit" class="module footer" style="display: none;">
+                <ul class="submit-row">
+                    <li class="left delete-link-container"><a href="javascript://" class="cancel-link">Cancel</a></li>
+                    <li class="submit-button-container"><input type="submit" class="default" value="Save"/></li>
+                </ul>
+            </div>
+        {% endif %}
+    </form>
 {% endblock %}
