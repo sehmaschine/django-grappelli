@@ -48,6 +48,10 @@ $.widget('ui.gLayout', {
         var ui = this;
         $('#content').addClass('content-flexible');
 
+        if ($.trim($('.sidebar').html()) == '') {
+            $('.sidebar').remove();
+        }
+
         if ($.grappelli.conf.get('isPopup')) {
             // HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
             $('div.actions, p.submit-row').hide();
