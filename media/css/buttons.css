@@ -131,7 +131,7 @@ button.ui-timepicker-trigger[disabled] {
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     #changelist table button {
-        top: -8px;
+        top: -6px;
         margin-bottom: -11px;
     }
 }

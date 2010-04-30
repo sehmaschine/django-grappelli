@@ -11,7 +11,7 @@ $.widget('ui.gAutoSlugField', {
 
     options: {
         autoSelector: '.ui-gAutoSlugField',
-        crosshair:    '<img alt="X" title="Drag on other input to set new slug" style="z-index:1000;position:relative;top:6px;left:6px;" />',
+        crosshair:    '<img alt="X" class="ui-gAutoSlugField-handle" title="Drag on other input to set new slug" />',
         crosshairImg: 'img/icons/icon-changelist-actions.png',
         delay: 1.5
     },

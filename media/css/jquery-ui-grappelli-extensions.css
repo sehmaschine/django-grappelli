@@ -460,6 +460,15 @@ li.ui-gFacelist-item:hover span {
 .ui-draggable.ui-draggable-dragging {
     cursor:move;
 }
+.ui-gAutoSlugField-handle {
+    z-index:1000;
+    position:relative;
+    top:6px;
+    left:6px;
+}
+.changelist-results .ui-gAutoSlugField-handle {
+    top:0px;
+}
 
 
 

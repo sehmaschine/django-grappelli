@@ -320,6 +320,12 @@ ul.radiolist label, ul.checkboxlist label {
 
 
 /*  Autocomplete Fields ................................................... */
+#changelist form .vAutocompleteSearchField,
+#changelist form .vM2MAutocompleteSearchField {
+    width:100%;
+    max-width:320px;
+    min-width:100px;
+}
 
 .vAutocompleteSearchField, 
 .vM2MAutocompleteSearchField {
