@@ -134,7 +134,7 @@ $.widget('ui.gInlineGroup', {
         */
     },
     /*
-    _createializeitem: function(el, count){
+    _createitem: function(el, count){
         
         /// replace ids, names, hrefs & fors ...
         el.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {like Gecko) Safari/531.2+
@@ -156,15 +156,7 @@ $.widget('ui.gInlineGroup', {
         // destroy and re-initialize datepicker (for some reason .datepicker('destroy') doesn't seem to work..)
         el.find('.vdatefield').unbind().removeclass('hasdatepicker').val('')
             .next().remove().end().end()
-            .find('.vtimefield').unbind().val('').ne
-xt().remove();like Gecko) Safari/531.2+
- 36         # Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Chrome/1.0.154.48 Safari/525.19
- 37         # Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2) Gecko/20100115 Firefox/3.6
- 38         #
- 39         # Stonewalled:
- 40         # Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; Media Center PC 3.0; .NET CLR 1.0.3705)
- 41         # Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1; Media Center PC 3.0; .NET CLR 1.0.3705)
-
+            .find('.vtimefield').unbind().val('').next().remove();
         
         // date-/timefield
         el.find('.vdatefield').gdatefield();
