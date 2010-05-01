@@ -73,9 +73,18 @@
             <!-- Submit-Row -->
             {% submit_row %}
             
-            <!-- Focus on first FormField -->
             {% if adminform and add %}
-                <script type="text/javascript">document.getElementById("{{ adminform.first_field.auto_id }}").focus();</script>
+            {% block extrahead %}
+            <script type="text/javascript">
+            (function($){
+                $(function(){ 
+                    {# Focus on first FormField #}
+                  $("#{{ adminform.first_field.auto_id }}, #{{ adminform.first_field.auto_id }}_0")
+                    .eq(0).focus(); 
+                });
+            }(jQuery));
+            </script>
+            {% endblock %}
             {% endif %}
             
             <!-- JS for prepopulated fields -->

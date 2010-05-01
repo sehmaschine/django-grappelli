@@ -44,8 +44,20 @@ body {
     padding: 5px 15px;
     border-top: 1px solid #fff;
 }
-.ui-accordion .ui-accordion-content-active { display: block; }/* Datepicker
+.ui-accordion .ui-accordion-content-active { display: block; }
+/* Datepicker
 ----------------------------------*/
+.datetime br {
+    display:none;
+}
+.datetimeshortcuts {
+    width:40px;
+    position:relative;
+    margin-left:10px;
+}
+.datetimeshortcuts a {
+    margin-left:0!important;
+}
 
 
 
