@@ -56,7 +56,7 @@
                 DateTimeShortcuts.init();
             }
             row.find(".vDateField").datepicker({
-                appendText: '(mm/dd/yyyy)',
+                //appendText: '(mm/dd/yyyy)',
                 showOn: 'button',
                 buttonImageOnly: false,
                 buttonText: ''
@@ -77,14 +77,12 @@
         }
         var reinitTinyMCE = function(row) {
             row.find("textarea.vLargeTextField").each(function() {
-                console.log("add mce", this.id)
                 tinyMCE.execCommand('mceAddControl', false, this.id);
             });
         };
         var deleteTinyMCE = function(row) {
             row.find("textarea.vLargeTextField").each(function() {
                 if (tinyMCE.getInstanceById(this.id)) {
-                    console.log("remove mce", this.id)
                     tinyMCE.execCommand('mceRemoveControl', false, this.id);
                 }
             });
