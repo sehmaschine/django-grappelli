@@ -1,6 +1,20 @@
 
 var CHAR_MAX_LENGTH = 30;
 
+function dismissRelatedLookupPopup(win, chosenId) {
+    var name = windowname_to_id(win.name);
+    var elem = document.getElementById(name);
+    if (elem.className.indexOf('vManyToManyRawIdAdminField') != -1 && elem.value) {
+        elem.value += ',' + chosenId;
+    } else {
+        document.getElementById(name).value = chosenId;
+    }
+    //grappelli custom
+    document.getElementById(name).focus();
+    // end
+    win.close();
+}
+
 (function($) {
     function RelatedLookup(obj) {
         // check if val isn't empty string or the same value as before
@@ -93,6 +107,9 @@ var CHAR_MAX_LENGTH = 30;
         obj.bind("keyup", function() {
             RelatedLookup($(this));
         });
+        obj.bind("blur", function() {
+            RelatedLookup($(this));
+        });
     }
 
     function M2MHandler(obj) {
@@ -104,6 +121,9 @@ var CHAR_MAX_LENGTH = 30;
             M2MLookup($(this));
         });
         obj.bind("keyup", function() {
+            M2MLookup($(this));
+        });
+        obj.bind("blur", function() {
             M2MLookup($(this));
         });
     }
@@ -178,10 +198,9 @@ var CHAR_MAX_LENGTH = 30;
 
         // m2m lookup setup
         $("input.vManyToManyRawIdAdminField").each(function() {
-            // insert empty text-elements after all empty foreignkeys
-            if ($(this).val() == "") {
-                $(this).next().after('&nbsp;<strong>&nbsp;</strong>');
-            }
+            // insert empty text-elements after all m2m fields
+            $(this).next().after('&nbsp;<strong>&nbsp;</strong>');
+            M2MLookup($(this));
         });
 
         RelatedHandler($("input.vForeignKeyRawIdAdminField"));

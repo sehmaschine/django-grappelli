@@ -222,7 +222,7 @@
             $("div#submit").hide();
         });
         
-        $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']").click(function() {
+        $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']").focus(function() {
             
             $("div#submit").show();
             
@@ -232,6 +232,10 @@
             actionCheckboxes.attr("checked", false);
             clearSelection();
         });
+        
+        $("td input.vForeignKeyRawIdAdminField").each(function() {
+            $(this).parent().addClass('nowrap');
+        })
         
         $("a.cancel-link").click(function() {
             $("div#submit").hide();

@@ -41,16 +41,8 @@ function showRelatedObjectLookupPopup(triggeringLink) {
     return false;
 }
 
-function dismissRelatedLookupPopup(win, chosenId) {
-    var name = windowname_to_id(win.name);
-    var elem = document.getElementById(name);
-    if (elem.className.indexOf('vManyToManyRawIdAdminField') != -1 && elem.value) {
-        elem.value += ',' + chosenId;
-    } else {
-        document.getElementById(name).value = chosenId;
-    }
-    win.close();
-}
+// customized in grappelli.RelatedObjectLoopups.js
+//function dismissRelatedLookupPopup(win, chosenId) {}
 
 function showAddAnotherPopup(triggeringLink) {
     var name = triggeringLink.id.replace(/^add_/, '');
