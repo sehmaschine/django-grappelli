@@ -23,9 +23,12 @@
                     $('input.action-select').parent().hide();
                     $('input#action-toggle').parent().hide();
                     $('div.changelist-results input').attr('disabled', 'disabled');
+                    $('div.changelist-results select').attr('disabled', 'disabled');
                     $('div#submit').hide();
                 {% endif %}
+                
                 $('body').change_list();
+                
             });
         })(jQuery.noConflict());
     </script>

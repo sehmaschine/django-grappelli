@@ -233,6 +233,17 @@
             clearSelection();
         });
         
+        $("select[name!='action']").click(function() {
+            
+            $("div#submit").show();
+            
+            // need to uncheck all actions checkboxes and update counter
+            // (actions are not working if you want to edit items in the change_list)
+            
+            actionCheckboxes.attr("checked", false);
+            clearSelection();
+        });
+        
         $("td input.vForeignKeyRawIdAdminField").each(function() {
             $(this).parent().addClass('nowrap');
         })

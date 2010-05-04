@@ -1,6 +1,24 @@
 
 var CHAR_MAX_LENGTH = 30;
 
+// customized from RelatedObjectLoopups.js
+function showRelatedObjectLookupPopup(triggeringLink) {
+    var name = triggeringLink.id.replace(/^lookup_/, '');
+    name = id_to_windowname(name);
+    var href;
+    if (triggeringLink.href.search(/\?/) >= 0) {
+        href = triggeringLink.href + '&pop=1';
+    } else {
+        href = triggeringLink.href + '?pop=1';
+    }
+    //grappelli custom
+    var win = window.open(href, name, 'height=500,width=980,resizable=yes,scrollbars=yes');
+    // end
+    win.focus();
+    return false;
+}
+
+// customized from RelatedObjectLoopups.js
 function dismissRelatedLookupPopup(win, chosenId) {
     var name = windowname_to_id(win.name);
     var elem = document.getElementById(name);
@@ -15,10 +33,59 @@ function dismissRelatedLookupPopup(win, chosenId) {
     win.close();
 }
 
+// customized from RelatedObjectLoopups.js
+function showAddAnotherPopup(triggeringLink) {
+    var name = triggeringLink.id.replace(/^add_/, '');
+    name = id_to_windowname(name);
+    href = triggeringLink.href
+    if (href.indexOf('?') == -1) {
+        href += '?_popup=1';
+    } else {
+        href  += '&_popup=1';
+    }
+    var win = window.open(href, name, 'height=500,width=980,resizable=yes,scrollbars=yes');
+    win.focus();
+    return false;
+}
+
+// customized from RelatedObjectLoopups.js
+function dismissAddAnotherPopup(win, newId, newRepr) {
+    // newId and newRepr are expected to have previously been escaped by
+    // django.utils.html.escape.
+    newId = html_unescape(newId);
+    newRepr = html_unescape(newRepr);
+    var name = windowname_to_id(win.name);
+    var elem = document.getElementById(name);
+    if (elem) {
+        if (elem.nodeName == 'SELECT') {
+            var o = new Option(newRepr, newId);
+            elem.options[elem.options.length] = o;
+            o.selected = true;
+        } else if (elem.nodeName == 'INPUT') {
+            if (elem.className.indexOf('vManyToManyRawIdAdminField') != -1 && elem.value) {
+                elem.value += ',' + newId;
+            } else {
+                elem.value = newId;
+            }
+        }
+    } else {
+        var toId = name + "_to";
+        elem = document.getElementById(toId);
+        var o = new Option(newRepr, newId);
+        SelectBox.add_to_cache(toId, o);
+        SelectBox.redisplay(toId);
+    }
+    alert(elem)
+    //grappelli custom
+    elem.click();
+    // end
+    win.close();
+}
+
 (function($) {
     function RelatedLookup(obj) {
         // check if val isn't empty string or the same value as before
-        if (obj.val() == "" || obj.val() == obj.data('old_val')) return;
+        if (obj.val() == obj.data('old_val')) return;
         obj.data('old_val', obj.val());
         
         var link = obj.next();
@@ -45,7 +112,7 @@ function dismissRelatedLookupPopup(win, chosenId) {
 
     function M2MLookup(obj) {
         // check if val isn't empty string or the same value as before
-        if (obj.val() == "" || obj.val() == obj.data('old_val')) return;
+        if (obj.val() == obj.data('old_val')) return;
         obj.data('old_val', obj.val());
         
         var link = obj.next();
@@ -71,7 +138,7 @@ function dismissRelatedLookupPopup(win, chosenId) {
 
     function GenericLookup(obj) {
         // check if val isn't empty string or the same value as before
-        if (obj.val() == "" || obj.val() == obj.data('old_val')) return;
+        if (obj.val() == obj.data('old_val')) return;
         obj.data('old_val', obj.val());
         
         var link = obj.next();
