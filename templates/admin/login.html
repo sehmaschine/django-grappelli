@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n grp_csrf %}
+{% load i18n %} {# grp_csrf #}
 
 <!-- BODYCLASS -->
 {% block bodyclass %}login{% endblock %}
@@ -17,7 +17,7 @@
         <p class="errornote">{{ error_message }}</p>
     {% endif %}
     
-    <form action="{{ app_path }}" method="post" id="login-form">{% grp_csrf_token %}
+    <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
         <div class="container-flexible login">
             <fieldset class="module">
                 <div class="form-row">
