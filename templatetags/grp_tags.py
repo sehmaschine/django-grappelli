@@ -1,17 +1,9 @@
 # coding: utf-8
 
-# imports
-import re
-import datetime
 
 # django imports
 from django import template
 from django.contrib.contenttypes.models import ContentType
-from django.contrib import admin
-from django.db import models
-from django.db.models import Q
-from django.utils import dateformat
-from django.utils.translation import get_language, get_partial_date_formats, ugettext as _
 
 # grappelli imports
 from grappelli.settings import *

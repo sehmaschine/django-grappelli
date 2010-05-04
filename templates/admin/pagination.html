@@ -7,7 +7,7 @@
     {% endif %}
     <li class="results">
         {% if cl.result_count != cl.full_result_count or cl.show_all %}
-        <a href="?{% if cl.is_popup %}pop=1{% endif %}">{{ cl.full_result_count }} {% trans 'total' %}</a>
+        <a href="?{% if cl.is_popup %}pop=1{% endif %}" class="total">{{ cl.full_result_count }} {% trans 'total' %}</a>
         {% else %}
         <span>{{ cl.full_result_count }} {% trans 'total' %}</span>
         {% endif %}
