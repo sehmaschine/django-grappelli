@@ -80,7 +80,7 @@
 (function($) {
     $(document).ready(function($) {
         var rows = "#{{ inline_admin_formset.formset.prefix }}-group div.table div.tbody";
-        var reinitDateTimeFields = function() {
+        var reinitDateTimeFields = function(row) {
             // Reinitialize the calendar and clock widgets by force, yuck.
             if (typeof DateTimeShortcuts != "undefined") {
                 row.find(".datetimeshortcuts").remove();
@@ -93,7 +93,7 @@
                 buttonText: ''
             });
         }
-        var updateSelectFilter = function() {
+        var updateSelectFilter = function(row) {
             // If any SelectFilter widgets are a part of the new form,
             // instantiate a new SelectFilter instance for it.
             if (typeof SelectFilter != "undefined"){
@@ -114,8 +114,8 @@
             deleteCssClass: "delete-handler",
             emptyCssClass: "empty-form",
             onAdded: (function(row) {
-                reinitDateTimeFields();
-                updateSelectFilter();
+                reinitDateTimeFields(row);
+                updateSelectFilter(row);
             })
         });
     });

@@ -15,6 +15,7 @@
     <script type="text/javascript" charset="utf-8">
         (function($) {
             $(document).ready(function() {
+                
                 {% if is_popup %}
                     // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
                     // shouldn't be there in the first place, see
@@ -25,10 +26,11 @@
                     $('div.changelist-results input').attr('disabled', 'disabled');
                     $('div.changelist-results select').attr('disabled', 'disabled');
                     $('div#submit').hide();
+                    $('.related-lookup, .add-another').attr("onClick", "return false;");
+                    $('.vDateField').datepicker("disable");
                 {% endif %}
                 
                 $('body').change_list();
-                
             });
         })(jQuery.noConflict());
     </script>
