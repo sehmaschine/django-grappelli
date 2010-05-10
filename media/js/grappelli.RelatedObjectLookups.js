@@ -75,9 +75,11 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         SelectBox.add_to_cache(toId, o);
         SelectBox.redisplay(toId);
     }
-    alert(elem)
+    //alert(elem)
     //grappelli custom
-    elem.click();
+    if (elem.click) {
+        elem.click();
+    }
     // end
     win.close();
 }
