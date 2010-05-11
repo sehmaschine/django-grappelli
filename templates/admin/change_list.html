@@ -25,6 +25,7 @@
                     $('input#action-toggle').parent().hide();
                     $('div.changelist-results input').attr('disabled', 'disabled');
                     $('div.changelist-results select').attr('disabled', 'disabled');
+                    $('div.changelist-results textarea').attr('disabled', 'disabled').addClass("mceNoEditor");
                     $('div#submit').hide();
                     $('.related-lookup, .add-another').attr("onClick", "return false;");
                     $('.vDateField').datepicker("disable");
