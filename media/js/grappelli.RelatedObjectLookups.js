@@ -67,6 +67,37 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             } else {
                 elem.value = newId;
             }
+        // NOTE: via http://code.djangoproject.com/attachment/ticket/10191/RelatedObjectLookups-updated.js.patch
+        // check if the className contains radiolist - if it's HORIZONTAL, then it won't match if we compare explicitly 
+        } else if (elem.className.indexOf('radiolist') > -1) {
+            var cnt = elem.getElementsByTagName('li').length; 
+            var idName = elem.id+'_'+cnt; 
+            var newLi = document.createElement('li'); 
+            var newLabel = document.createElement('label'); 
+            var newText = document.createTextNode(' '+newRepr); 
+            try { 
+                // IE doesn't support settings name, type, or class by setAttribute 
+                var newInput = document.createElement('<input type=\'radio\' name=\''+name.slice(3)+'\' checked=\'checked\' class=\''+elem.className+'\' />'); 
+            } catch(err) { 
+                var newInput = document.createElement('input'); 
+                newInput.setAttribute('class', elem.className); 
+                newInput.setAttribute('type', 'radio'); 
+                newInput.setAttribute('name', name.slice(3)); 
+            } 
+            newLabel.setAttribute('for', idName); 
+            newInput.setAttribute('id', idName); 
+            newInput.setAttribute('value', newId); 
+            newInput.setAttribute('checked', 'checked'); 
+            newLabel.appendChild(newInput); 
+            // check if the content being added is a tag - useful for image lists 
+            if (newRepr.charAt(0) == '<' && newRepr.charAt(newRepr.length-1) == '>') { 
+                newLabel.innerHTML += newRepr; 
+            } 
+            else { 
+                newLabel.appendChild(newText); 
+            } 
+            newLi.appendChild(newLabel); 
+            elem.appendChild(newLi); 
         }
     } else {
         var toId = name + "_to";
@@ -75,7 +106,6 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         SelectBox.add_to_cache(toId, o);
         SelectBox.redisplay(toId);
     }
-    //alert(elem)
     //grappelli custom
     if (elem.click) {
         elem.click();
