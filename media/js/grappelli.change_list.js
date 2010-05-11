@@ -242,6 +242,10 @@
             $(this).parent().addClass('nowrap');
         })
         
+        $("td input.vFileBrowseField").each(function() {
+            $(this).parent().addClass('nowrap');
+        })
+        
         $("a.cancel-link").click(function() {
             $("div#submit").hide();
         });
