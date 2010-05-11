@@ -127,10 +127,19 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         var app_label = link.attr('href').split('/')[2];
         var model_name= link.attr('href').split('/')[3];
         
+        if (obj.val() == "") {
+            text.text('');
+            return;
+        }
+        
         text.text('loading ...');
         
         // get object
-        $.get('/grappelli/lookup/related/', {object_id: obj.val(), app_label: app_label, model_name: model_name}, function(data) {
+        $.get('/grappelli/lookup/related/', {
+            object_id: obj.val(),
+            app_label: app_label,
+            model_name: model_name
+        }, function(data) {
             var item = data;
             text.text('');
             if (item) {
@@ -154,8 +163,13 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         var app_label = link.attr('href').split('/')[2];
         var model_name= link.attr('href').split('/')[3];
 
+        if (obj.val() == "") {
+            text.text('');
+            return;
+        }
+        
         text.text('loading ...');
-
+        
         // get object
         $.get('/grappelli/lookup/m2m/', {
             object_id: obj.val(),
@@ -165,9 +179,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             var item = data;
             text.text('');
             if (item) {
-                if (item == "Not Found") {
-                    // do nothin.
-                } else if (item.length > CHAR_MAX_LENGTH) {
+                if (item.length > CHAR_MAX_LENGTH) {
                     text.text(decodeURI(item.substr(0, CHAR_MAX_LENGTH) + " ..."));
                 } else {
                     text.text(decodeURI(item));
@@ -201,40 +213,21 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             }
         });
     }
-
+    
     function RelatedHandler(obj) {
         // related lookup handler
-        obj.bind("change", function() {
-            RelatedLookup($(this));
-        });
-        obj.bind("focus", function() {
-            RelatedLookup($(this));
-        });
-        
-        obj.bind("keyup", function() {
-            RelatedLookup($(this));
-        });
-        obj.bind("blur", function() {
+        obj.bind("change focus keyup blur", function() {
             RelatedLookup($(this));
         });
     }
-
+    
     function M2MHandler(obj) {
         // related lookup handler
-        obj.bind("change", function() {
-            M2MLookup($(this));
-        });
-        obj.bind("focus", function() {
-            M2MLookup($(this));
-        });
-        obj.bind("keyup", function() {
-            M2MLookup($(this));
-        });
-        obj.bind("blur", function() {
+        obj.bind("change focus keyup blur", function() {
             M2MLookup($(this));
         });
     }
-
+    
     function InitObjectID(obj) {
         obj.each(function() {
             var ct = $(this).closest('div[class*="object_id"]').prev().find(':input[name*="content_type"]').val();
@@ -280,13 +273,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
 
     function GenericHandler(obj) {
         // related lookup handler
-        obj.bind("change", function() {
-            GenericLookup($(this));
-        });
-        obj.bind("focus", function() {
-            GenericLookup($(this));
-        });
-        obj.bind("keyup", function() {
+        obj.bind("change focus keyup", function() {
             GenericLookup($(this));
         });
     }
