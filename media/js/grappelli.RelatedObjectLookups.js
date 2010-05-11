@@ -43,7 +43,7 @@ function showAddAnotherPopup(triggeringLink) {
     } else {
         href  += '&_popup=1';
     }
-    var win = window.open(href, name, 'height=500,width=980,resizable=yes,scrollbars=yes');
+    var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
     win.focus();
     return false;
 }
