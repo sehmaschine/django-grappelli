@@ -301,8 +301,10 @@ body.popup .breadcrumbs + ul.messagelist {
 ------------------------------------------------------------------------------------------------------ */
 
 #login-form {
-    width: 400px;
+/*    width: 400px;*/
     margin: 0 auto;
+}
+div.login {
     padding-top: 100px;
 }
 
@@ -344,6 +346,10 @@ body.popup .breadcrumbs + ul.messagelist {
 
 .column {
     position: relative; float: left;
+}
+.column.centered {
+    position: relative; float: none !important;
+    margin: 0 auto !important;
 }
 .span-flexible {
     position: relative;

@@ -1078,61 +1078,86 @@ ul.actions li a {
     margin-right: 0 !important;
 }
 
-.box.search {
-    position: relative; float: left;
+.module.search {
+    position: relative; float: right;
+    padding: 8px 10px;
+    border: 0;
 }
 
-.box.filter {
-    position: relative; float: left;
+.module.filter {
+    position: relative; float: right;
     z-index: 1000;
+    padding: 8px 10px 0;
+    border: 0;
+}
+
+.module.filter .pulldown-container {
+    position: absolute;
+    width: inherit;
     border: 1px solid #fff;
     border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
 }
-.box.filter.open {
-    border: 1px solid #bdbdbd;
+.module.filter.open .pulldown-container {
+    border-color: #ccc;
     box-shadow: 0 0 10px #444; -moz-box-shadow: 0 0 10px #444; -webkit-box-shadow: 0 0 10px #444;
 }
-a.button.drop-down.toggle-filters {
-    float: none !important;
+
+a.button.toggle-filters {
     display: block;
     margin: 0;
-    padding-bottom: 3px;
+    padding: 4px 20px 4px 8px;
 }
-.box.filter.open a.button.drop-down.toggle-filters, 
-.box.filter.open.selected a.button.drop-down.toggle-filters {
+.module.filter.open a.button.toggle-filters, 
+.module.filter.open.selected a.button.toggle-filters {
     border-color: transparent !important;
     border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0;
 }
-a.button.drop-down.toggle-filters:link, a.button.drop-down.toggle-filters:visited {
+a.button.toggle-filters:link, a.button.toggle-filters:visited {
     color: #309bbf;
-    background: transparent url('../img/icons/icon-dropdown.png') 3px 3px no-repeat;
+    border-color: #ddd;
+    background: transparent url('../img/icons/icon-dropdown.png') 100% 3px no-repeat;
 }
 
-.box.filter.selected a.button.drop-down.toggle-filters:link, .box.filter.selected a.button.drop-down.toggle-filters:visited {
+.module.filter.selected a.button.toggle-filters:link, .module.filter.selected a.button.toggle-filters:visited {
     color: #444;
-    border-color: #bdbdbd;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat;
-    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -moz-linear-gradient(top, #eee, #e0e0e0);
-    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
+    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -moz-linear-gradient(top, #eee, #e0e0e0);
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
 }
 
-.box.filter.open a.button.drop-down.toggle-filters, 
-.box.filter.open.selected a.button.drop-down.toggle-filters, 
-.box.filter.selected a.button.drop-down.toggle-filters:hover, .box.filter.selected a.button.drop-down.toggle-filters:active, 
-a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:active {
+.module.filter.open a.button.toggle-filters, .module.filter.open.selected a.button.toggle-filters, 
+.module.filter.selected a.button.toggle-filters:hover, .module.filter.selected a.button.toggle-filters:active, 
+a.button.toggle-filters:hover, a.button.toggle-filters:active {
     color: #666;
-    border-color: #bdbdbd;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat;
-    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5);
-    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
+    border-color: #ccc;
+    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5);
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
+}
+.module.filter.selected a.button.toggle-filters:link, .module.filter.selected a.button.toggle-filters:visited {
+    color: #666;
+    border-color: #ddd;
+    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5);
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
+}
+.module.filter.open a.button.toggle-filters, 
+.module.filter.open.selected a.button.toggle-filters, 
+.module.filter.selected a.button.toggle-filters:hover, .module.filter.selected a.button.toggle-filters:active, 
+a.button.toggle-filters:hover, a.button.toggle-filters:active {
+    color: #666;
+    border-color: #ccc;
+    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5);
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
 }
 
 .filter-pulldown {
     display: none;
     position: relative;
     z-index: 1000;
-    top: -1px;
+    margin: -1px 0;
     padding: 0 10px 10px;
     border: 1px solid transparent;
     border-top: 0;
@@ -1231,19 +1256,28 @@ a.button.drop-down.toggle-filters:hover, a.button.drop-down.toggle-filters:activ
 /*    display: none;*/
 }
 .module.pagination {
+    padding: 8px 10px;
     border: 1px solid #d9d9d9;
+/*    border: 0;*/
+/*    background: #e4f;*/
+}
+.module .module.pagination {
+    position: relative; float: left;
+    border: 0;
 }
 ul.pagination {
     position: relative;
-    float: left;
-    margin: 0 10px 0 0;
+/*    float: left;*/
+    clear: both;
+    margin: 0;
     padding: 0;
     width: auto;
     font-weight: bold;
     border-top: none !important;
 }
 ul.pagination li {
-    position: relative; float: left;
+    position: relative;
+    float: left;
     display: block;
     margin-right: 3px;
     border: 1px solid #fff;
@@ -1260,7 +1294,7 @@ ul.pagination li:last-child {
 ul.pagination span, 
 ul.pagination a {
     display: inline-block;
-    padding: 3px 8px 3px;
+    padding: 4px 8px 4px;
     min-width: 25px;
     font-size: 11px;
     font-weight: bold;
@@ -1332,7 +1366,7 @@ ul.submit-row li.left:first-child {
 /* Clockbox
 ------------------------------------------------------------------------------------------------------ */
 
-.module.clockbox {
+/*.module.clockbox {
     padding: 3px;
     border-color: #bdbdbd;
     box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
@@ -1375,7 +1409,7 @@ ul.timelist li a:hover, ul.timelist li a:active,
     color: #fff;
     border-color: transparent;
     background: #444;
-}
+}*/
 
 
 

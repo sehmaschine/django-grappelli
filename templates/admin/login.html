@@ -16,23 +16,24 @@
     {% if error_message %}
         <p class="errornote">{{ error_message }}</p>
     {% endif %}
-    
-    <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-        <div class="container-flexible login">
-            <fieldset class="module">
-                <div class="form-row">
-                    <label for="id_username" class="required">{% trans 'Username:' %}</label> <input type="text" name="username" id="id_username" />
+    <div class="container-flexible login">
+        <div class="column span-10 centered">
+            <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+                <fieldset class="module">
+                    <div class="form-row">
+                        <label for="id_username" class="required">{% trans 'Username:' %}</label> <input type="text" name="username" id="id_username" />
+                    </div>
+                    <div class="form-row">
+                        <label for="id_password" class="required">{% trans 'Password:' %}</label> <input type="password" name="password" id="id_password" />
+                        <input type="hidden" name="this_is_the_login_form" value="1" />
+                    </div>
+                </fieldset>
+                <div class="module submit-row">
+                    <ul class="submit-row">
+                        <li class="right"><input type="submit" class="default" value="{% trans 'Log in' %}" /></li>
+                    </ul>
                 </div>
-                <div class="form-row">
-                    <label for="id_password" class="required">{% trans 'Password:' %}</label> <input type="password" name="password" id="id_password" />
-                    <input type="hidden" name="this_is_the_login_form" value="1" />
-                </div>
-            </fieldset>
-            <div class="module submit-row">
-                <ul class="submit-row">
-                    <li class="right"><input type="submit" class="default" value="{% trans 'Log in' %}" /></li>
-                </ul>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 {% endblock %}

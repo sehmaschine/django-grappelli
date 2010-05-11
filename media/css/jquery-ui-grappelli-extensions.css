@@ -305,6 +305,16 @@ button.ui-datepicker-close {
     margin-right:4px!important;
 }
 
+
+
+/*  Timepicker
+------------------------------------------------------------------------------------------------------ */
+
+#ui-timepicker {
+    
+}
+
+
 /*	Tabs
 ------------------------------------------------------------------------------------------------------ */
 
@@ -455,6 +465,8 @@ li.ui-gFacelist-item span {
 li.ui-gFacelist-item:hover span {
     background:transparent url('../img/icons/icon-bookmark_remove.png') no-repeat 2px 2px;
 }
+
+
 
 /*  AutoSlugField
 ------------------------------------------------------------------------------------------------------ */

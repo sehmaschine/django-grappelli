@@ -2,14 +2,16 @@
 {% load i18n %}
 {% block content-class %}content-flexible{% endblock %}
 
-{% block breadcrumbs %}<div id="breadcrumbs"><a href="../">{% trans 'Home' %}</a></div>{% endblock %}
+{% block breadcrumbs %}{% comment %}<div id="breadcrumbs"><a href="../">{% trans 'Home' %}</a></div>{% endcomment %}{% endblock %}
 {% block content_title %}&nbsp;{% endblock %}
 
 {% block content %}
-<div class="container-flexible login" id="login-form">
-    <div class="module">
-        <h2>{{ title }}</h2>
-        <div class="row"><a href="../"><strong>{% trans 'Log in again' %}</strong></a></div>
+    <div class="container-flexible login">
+        <div class="column span-10 centered">
+            <div class="module">
+                <h2>{{ title }}</h2>
+                <div class="row"><a href="../"><strong>{% trans 'Log in again' %}</strong></a></div>
+            </div>
+        </div>
     </div>
-</div>
 {% endblock %}

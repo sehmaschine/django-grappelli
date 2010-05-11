@@ -75,30 +75,28 @@
 {% block content %}
     {% if search_form or cl.has_filters or cl.date_hierarchy %}
         <div class="module changelist-filters">
-            <div class="form-row">
                 <!-- PAGINATION TOP -->
                 {% pagination cl %}
                 {% if cl.has_filters or search_form %}
-                    <div class="box options">
-                        <!-- SEARCH -->
-                        {% if not search_form %}
-                            <div id="search" class="box search span-6">
-                                {% block search %}{% search_form cl %}{% endblock %}
-                            </div>
-                        {% endif %}
-                        <!-- FILTERS -->
-                        {% if cl.has_filters %}
-                            <div id="filters" class="box filter span-6">
-                                <a href="javascript://" class="button drop-down toggle-filters">{% trans 'Filter' %}</a>
+                    <!-- FILTERS -->
+                    {% if cl.has_filters %}
+                        <div id="filters" class="module filter span-6">
+                            <div class="pulldown-container">
+                                <a href="javascript://" class="button toggle-filters">{% trans 'Filter' %}</a>
                                 <div class="filter-pulldown">
                                     {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
                                 </div>
                             </div>
+                        </div>
+                    {% endif %}
+                        <!-- SEARCH -->
+                        {% if not search_form %}
+                            <div id="search" class="module search span-6">
+                                {% block search %}{% search_form cl %}{% endblock %}
+                            </div>
                         {% endif %}
-                    </div>
                 {% endif %}
                 <br clear="all" />
-            </div>
         </div>
         <!-- DATE HIERARCHY -->
         {% if cl.date_hierarchy %}
@@ -125,11 +123,7 @@
                 {% result_list cl %}
             {% endblock %}
             <!-- PAGINATION BOTTOM -->
-            <div class="module pagination">
-                <div class="form-row">
-                    {% pagination cl %}
-                </div>
-            </div>
+            {% pagination cl %}
         </div><br clear="all" />
         <!-- CHANGELIST-ACTIONS -->
         {% if action_form and cl.full_result_count and cl.result_count %}
