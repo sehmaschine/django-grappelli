@@ -295,14 +295,14 @@ body {
     text-align: center;
 }
 .ui-datepicker td.ui-state-disabled span {
-    background:#ccc;
-    color:#555!important;
-    font-weight:bold;
-    font-size:11px;
-    border-radius:3px; -moz-border-radius:3px; -webkit-borderradius:3px;
+    background: #ccc;
+    color: #555 !important;
+    font-weight: bold;
+    font-size: 11px;
+    border-radius: 3px; -moz-border-radius: 3px; -webkit-borderradius: 3px;
 }
 button.ui-datepicker-close {
-    margin-right:4px!important;
+    margin-right: 4px !important;
 }
 
 
@@ -311,25 +311,41 @@ button.ui-datepicker-close {
 ------------------------------------------------------------------------------------------------------ */
 
 #ui-timepicker {
+    border: 0;
     box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
 }
 #ui-timepicker .row {
     padding: 1px 10px;
     font-size: 11px;
+    border: 0;
     cursor: pointer;
 }
 #ui-timepicker .row:first-child {
-    border-top: 0;
+    border-top: 0 !important;
+    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+#ui-timepicker .row:last-child {
+    border-top: 0 !important;
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 #ui-timepicker .row.ui-state-default {
-    background: #4ef;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+    background: #e1f0f5;
 }
+#ui-timepicker .row.ui-state-active, 
 #ui-timepicker .row.ui-state-default:hover {
-    background: #e4f;
+    color: #fff;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+    background: #444;
 }
 #ui-timepicker .row.ui-state-active {
     background: #333;
 }
+
 
 
 /*	Tabs

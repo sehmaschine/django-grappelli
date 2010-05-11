@@ -55,6 +55,10 @@ ul.errorlist:empty {
 .form-cell ul.errorlist li {
     padding-left: 0;
 }
+.form-cell label + * + ul.errorlist, 
+.form-cell label + * + * + ul.errorlist {
+    padding-left: 160px !important;
+}
 
 table ul.errorlist {
     margin: -9px 0 6px;
@@ -332,8 +336,8 @@ ul.radiolist, ul.checkboxlist {
     font-size: 11px; line-height: 15px; font-weight: normal;
 }
 label + ul.radiolist, label + ul.checkboxlist, 
-th ul.radiolist, .th ul.checkboxlist, 
-td ul.radiolist, .td ul.checkboxlist {
+th ul.radiolist, th ul.checkboxlist, .th ul.radiolist, .th ul.checkboxlist, 
+td ul.radiolist, td ul.checkboxlist, .td ul.radiolist, .td ul.checkboxlist {
     margin-left: 0;
 }
 

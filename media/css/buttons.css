@@ -99,7 +99,6 @@ input[type=submit]:hover,
 }
 
 input[type=submit].default {
-/*    box-shadow: 0 0 3px #666; -moz-box-shadow: 0 0 3px #666; -webkit-box-shadow: 0 0 3px #666;*/
     opacity: 1;
 }
 
@@ -151,9 +150,11 @@ button.ui-gAutocomplete-browse[disabled],
 button.ui-gFacelist-browse[disabled], 
 button.ui-gAutoSlugField-toggle[disabled], 
 button.ui-datepicker-trigger[disabled], 
-button.ui-timepicker-trigger[disabled] {
+button.ui-timepicker-trigger[disabled], 
+input[disabled] + a {
     background: transparent 50% 50% no-repeat !important;
-    opacity: 0.5;
+    opacity: 0.3;
+    cursor: auto !important;
 }
 
 #changelist table button {
@@ -189,7 +190,7 @@ button.ui-gFacelist-browse:hover {
 }
 button.ui-gAutocomplete-browse[disabled], button.ui-gAutocomplete-browse[disabled]:hover, 
 button.ui-gFacelist-browse[disabled], button.ui-gFacelist-browse[disabled]:hover {
-    background-image: url('../img/icons/icon-related-lookup-hover.png');
+    background-image: url('../img/icons/icon-related-lookup-hover.png') !important;
 }
 .errors button.ui-gAutocomplete-browse,
 .errors button.ui-gFacelist-browse {
@@ -211,7 +212,7 @@ button.ui-gAutoSlugField-toggle:hover {
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }
 button.ui-gAutoSlugField-toggle[disabled], button.ui-gAutoSlugField-toggle[disabled]:hover {
-    background-image: url('../img/icons/icon-related-lookup-hover.png');
+    background-image: url('../img/icons/icon-related-lookup-hover.png') !important;
 }
 .errors button.ui-gAutoSlugField-toggle {
     border-color:#bf3030 #bf3030 #bf3030 #ccc;
@@ -248,7 +249,7 @@ button.ui-timepicker-trigger:hover {
     background-image: url('../img/icons/icon-timepicker-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }
 button.ui-timepicker-trigger[disabled], button.ui-timepicker-trigger[disabled]:hover {
-    background-image: url('../img/icons/icon-timepicker-hover.png');
+    background-image: url('../img/icons/icon-timepicker-hover.png') !important;
 }
 
 
@@ -269,7 +270,7 @@ button.search:hover {
     background-image: url('../img/icons/icon-search-hover.png');
 }
 button.search[disabled], button.search[disabled]:hover {
-    background-image: url('../img/icons/icon-search-hover.png');
+    background-image: url('../img/icons/icon-search-hover.png') !important;
 }
 
 
@@ -372,6 +373,13 @@ a.related-lookup:hover, a.related-lookup:active {
     background-image: url('../img/icons/icon-related-lookup-hover.png');
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+
+input[disabled] + a.fb_show {
+    background-image: url('../img/icons/icon-fb-show-hover.png') !important;
+}
+input[disabled] + a.related-lookup {
+    background-image: url('../img/icons/icon-related-lookup-hover.png') !important;
 }
 
 a.related-lookup + strong {
