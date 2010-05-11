@@ -37,7 +37,7 @@ function dismissRelatedLookupPopup(win, chosenId) {
 function showAddAnotherPopup(triggeringLink) {
     var name = triggeringLink.id.replace(/^add_/, '');
     name = id_to_windowname(name);
-    href = triggeringLink.href
+    href = triggeringLink.href;
     if (href.indexOf('?') == -1) {
         href += '?_popup=1';
     } else {
@@ -49,6 +49,8 @@ function showAddAnotherPopup(triggeringLink) {
 }
 
 // customized from RelatedObjectLoopups.js
+// grappelli custom: 
+//  - trigger elem.click() to show submit/cancle footer in change_list;
 function dismissAddAnotherPopup(win, newId, newRepr) {
     // newId and newRepr are expected to have previously been escaped by
     // django.utils.html.escape.
@@ -155,11 +157,17 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         text.text('loading ...');
 
         // get object
-        $.get('/grappelli/lookup/m2m/', {object_id: obj.val(), app_label: app_label, model_name: model_name}, function(data) {
+        $.get('/grappelli/lookup/m2m/', {
+            object_id: obj.val(),
+            app_label: app_label,
+            model_name: model_name
+        }, function(data) {
             var item = data;
             text.text('');
             if (item) {
-                if (item.length > CHAR_MAX_LENGTH) {
+                if (item == "Not Found") {
+                    // do nothin.
+                } else if (item.length > CHAR_MAX_LENGTH) {
                     text.text(decodeURI(item.substr(0, CHAR_MAX_LENGTH) + " ..."));
                 } else {
                     text.text(decodeURI(item));
@@ -238,7 +246,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
                 var lookupText = '<strong>&nbsp;</strong>';
                 $(this).after(lookupText).after(lookupLink);
                 if ($(this).val() != "") {
-                    var lookupText = GenericLookup($(this));
+                    lookupText = GenericLookup($(this));
                 }
             }
         });
@@ -246,24 +254,26 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
 
     function InitContentType(obj) {
         obj.bind("change", function() {
+            var node = $(this).closest('div[class*="content_type"]').next(),
+                lookupLink = node.find('a.related-lookup'),
+                obj_id = next.find('input[name*="object_id"]'),
+                href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + "/?t=id";
+                
             if ($(this).val()) {
-                var href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + "/?t=id";
-                var lookupLink = $(this).closest('div[class*="content_type"]').next().find('a.related-lookup');
-                var obj_id = $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]');
                 if (lookupLink.attr('href')) {
                     lookupLink.attr('href', href);
                 } else {
-                    var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+                    lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
                     lookupLink.attr('id', 'lookup_'+obj_id.attr('id'));
                     lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + '/?t=id');
                     lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
                     var lookupText = '<strong>&nbsp;</strong>';
-                    $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]').after(lookupText).after(lookupLink);
+                    obj_id.after(lookupText).after(lookupLink);
                 }
             } else {
-                $(this).closest('div[class*="content_type"]').next().find('input[name*="object_id"]').val('');
-                $(this).closest('div[class*="content_type"]').next().find('a.related-lookup').remove();
-                $(this).closest('div[class*="content_type"]').next().find('strong').remove();
+                obj_id.val('');
+                lookupLink.remove();
+                node.find('strong').remove();
             }
         });
     }
