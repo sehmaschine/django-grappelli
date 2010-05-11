@@ -1,0 +1,248 @@
+
+
+
+/*  Modules
+------------------------------------------------------------------------------------------------------ */
+
+.module {
+    border-color: #bdbdbd;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #eee;
+    background: -moz-linear-gradient(top, #f3f3f3, #eee);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
+}
+
+
+/*  Nested Modules Basics ......................................... */
+
+.module .module {
+    border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
+}
+.module .module:first-child {
+    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+}
+.module fielset.module {
+    border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
+}
+
+
+
+/*  Groups
+------------------------------------------------------------------------------------------------------ */
+
+.group {
+    border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
+    border: 2px solid;
+}
+
+.group.collapse.closed {
+    border-color: #e0e0e0;
+}
+.group, 
+.group.collapse.closed:hover {
+    border-color: #c7c7c7;
+}
+
+
+
+/*  Elements in Modules & Groups
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  1st Level Borders Top (Dark/Bright) ......................................... */
+
+.group h2, 
+.module h2 {
+    border-bottom-color: #bdbdbd;
+    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+    background: #d6d6d6;
+    background: -moz-linear-gradient(top, #e3e3e3, #d6d6d6);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e3e3e3), to(#d6d6d6));
+}
+.group h2 {
+    border-color: #bdbdbd;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+}
+.module h2+*, 
+.module h2+.tools+* {
+    border-top: 1px solid #fff;
+}
+
+
+/*  2nd Level Borders Top (Dark/Bright) ......................................... */
+
+.module .module {
+    border-top-color: #c7c7c7;
+}
+.module .module>*:first-child {
+    border-top-color: #eee;
+}
+
+.group h3, 
+.module h3 {
+    border-bottom-color: #c7c7c7;
+    background: #e0e0e0;
+    background: -moz-linear-gradient(top, #e9e9e9, #e0e0e0);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#e0e0e0));
+}
+.group h3 {
+    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+}
+.module h3+*, 
+.module h3+.tools+* {
+    border-top-color: #fff;
+}
+
+
+/*  3rd Level Borders Top (Dark/Bright) ......................................... */
+
+.group .module .module, 
+.module .module .module {
+    border-top-color: #d4d4d4;
+}
+.group .module .module>*:first-child, 
+.module .module .module>*:first-child {
+    border-top-color: #f4f4f4;
+}
+
+.group h4, 
+.module h4 {
+    border-bottom-color: #d4d4d4;
+    background: #e8e8e8;
+    background: -moz-linear-gradient(top, #ededed, #e8e8e8);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#e8e8e8));
+}
+.module h4+*, 
+.module h4+.tools+* {
+    border-top-color: #fff;
+}
+
+.module .description {
+    border-bottom-color: #d4d4d4;
+}
+
+
+
+/*  Modules & Groups Overrides
+------------------------------------------------------------------------------------------------------ */
+
+.module .module:last-of-type {
+    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+}
+
+
+
+/*  Collapsible Structures
+------------------------------------------------------------------------------------------------------ */
+
+.group .module.collapse.closed h3.collapse-handler, 
+.group .module.collapse.closed h4.collapse-handler, 
+.collapse.closed h2.collapse-handler, 
+.module .module.collapse.closed.last .collapse-handler, 
+.module .module.collapse.closed:last-child .collapse-handler {
+    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+}
+
+
+/*  1st Level Collapsible-Handler ......................................... */
+
+.collapse h2.collapse-handler {
+    background: #a1d4e5;
+    background: -moz-linear-gradient(top, #bcdfeb, #a1d4e5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#bcdfeb), to(#a1d4e5));
+}
+.collapse h2.collapse-handler:hover, 
+.collapse.open h2.collapse-handler {
+    background: #bcdfeb;
+    background: -moz-linear-gradient(top, #a1d4e5, #bcdfeb);
+    background: -webkit-gradient(linear, left top, left bottom, from(#a1d4e5), to(#bcdfeb));
+}
+
+
+/*  2nd Level Collapsible-Handler ......................................... */
+
+.group .collapse h3.collapse-handler, 
+.module .collapse h3.collapse-handler {
+    background: #cee9f2;
+    background: -moz-linear-gradient(top, #e1f0f5, #cee9f2);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#cee9f2));
+}
+.group .collapse h3.collapse-handler:hover, 
+.module .collapse h3.collapse-handler:hover, 
+.group .collapse.open h3.collapse-handler, 
+.module .collapse.open h3.collapse-handler {
+    background: #e1f0f5;
+    background: -moz-linear-gradient(top, #cee9f2, #e1f0f5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#cee9f2), to(#e1f0f5));
+}
+.module .collapse h3.collapse-handler {
+    border-top-color: #e1f0f5;
+}
+
+
+/*  3rd Level Collapsible-Handler ......................................... */
+
+.group .module .collapse h4.collapse-handler, 
+.module .module .collapse h4.collapse-handler {
+    border-top-color: #f0f7fa;
+    background: #e1f0f5;
+    background: -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
+}
+.group .collapse h4.collapse-handler:hover, 
+.module .collapse h4.collapse-handler:hover, 
+.group .collapse.open h4.collapse-handler, 
+.module .collapse.open h4.collapse-handler {
+    background: #ebf2f5;
+    background: -moz-linear-gradient(top, #e1f0f5, #ebf2f5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#ebf2f5));
+}
+
+
+
+/*  Form Row
+------------------------------------------------------------------------------------------------------ */
+
+.form-row {
+    overflow: hidden;
+    padding: 8px 10px;
+    line-height: 18px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+.form-row.first, 
+.form-row:first-child, 
+.module input[type=hidden] + .form-row {
+    border-top: none;
+    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+.form-row.last, 
+.form-row:last-of-type {
+    border-bottom: none !important;
+}
+fieldset.module > .form-row.last, 
+fieldset.module > .form-row:last-child {
+    border-bottom: none !important;
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+}
+.form-row+.module {
+    margin-top: -1px !important;
+}
+
+.form-row .column:first-child {
+    margin-left: 0 !important;
+}
+.form-row .column:last-child {
+    margin-right: -20px !important;
+}
+
+
+
+

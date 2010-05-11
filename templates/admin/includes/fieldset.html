@@ -3,7 +3,6 @@
     {% if fieldset.description %}<div class="description">{{ fieldset.description|safe }}</div>{% endif %}
     {% for line in fieldset %}
     <div class="form-row{% if line.errors %} errors{% endif %} {% for field in line %}{{ field.field.name }} {% endfor %} ">
-        {{ line.errors }}
         {% for field in line %}
         <div{% if not line.fields|length_is:"1" %} class="form-cell"{% endif %}> 
             {% if field.is_checkbox %}
@@ -16,6 +15,7 @@
                     {{ field.field }}
                 {% endif %}
             {% endif %}
+            {{ line.errors }}
             {% if field.field.field.help_text %}
                 <p class="help">{{ field.field.field.help_text|safe }}</p>
             {% endif %}

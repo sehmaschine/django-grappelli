@@ -163,7 +163,6 @@ button.ui-timepicker-trigger[disabled] {
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     #changelist table button {
-        top: -8px;
         margin-bottom: -11px;
     }
 }
@@ -379,6 +378,7 @@ a.related-lookup + strong {
     margin-left: 5px;
     color: #555; font-size: 11px; font-weight: bold;
 }
+#changelist table a.fb_show, 
 #changelist table a.related-lookup {
     top: -5px;
     margin-bottom: -12px;

@@ -311,7 +311,24 @@ button.ui-datepicker-close {
 ------------------------------------------------------------------------------------------------------ */
 
 #ui-timepicker {
-    
+    box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
+}
+#ui-timepicker .row {
+    padding: 1px 10px;
+    font-size: 11px;
+    cursor: pointer;
+}
+#ui-timepicker .row:first-child {
+    border-top: 0;
+}
+#ui-timepicker .row.ui-state-default {
+    background: #4ef;
+}
+#ui-timepicker .row.ui-state-default:hover {
+    background: #e4f;
+}
+#ui-timepicker .row.ui-state-active {
+    background: #333;
 }
 
 

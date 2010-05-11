@@ -37,7 +37,7 @@ fieldset {
 }
 
 ul.errorlist {
-    margin: -4px 0 4px;
+    margin: 3px 0 -3px;
     color: #bf3030; font-size: 11px; line-height: 16px; font-weight: bold;
 }
 ul.errorlist li {
@@ -50,7 +50,7 @@ ul.errorlist:empty {
 }
 
 .form-cell ul.errorlist {
-    margin: 3px 0 -3px; padding-left: 0;
+    padding-left: 0;
 }
 .form-cell ul.errorlist li {
     padding-left: 0;
@@ -60,7 +60,7 @@ table ul.errorlist {
     margin: -9px 0 6px;
 }
 .module.table ul.errorlist {
-    margin: -4px 0 2px;
+    margin: 1px 0 -3px;
 }
 table ul.errorlist li, 
 .module.table ul.errorlist li {
@@ -175,23 +175,18 @@ input[type=file] {
 }
 .th input[type=file], 
 .td input[type=file] {
-    top: 3px;
-    margin-bottom: -3px;
+    top: 2px;
+    margin-bottom: -2px;
 }
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    .th input[type=file], 
-    .td input[type=file] {
-        top: 2px;
-        margin-bottom: -2px;
-    }
-}
-
 
 
 /*  Date & Time ................................................... */
 
 .vDateField, .vTimeField {
     margin-left: 0;
+}
+p.datetime {
+    padding: 0;
 }
 p.datetime input.vTimeField {
     margin-left: 13px;
@@ -337,8 +332,8 @@ ul.radiolist, ul.checkboxlist {
     font-size: 11px; line-height: 15px; font-weight: normal;
 }
 label + ul.radiolist, label + ul.checkboxlist, 
-.th ul.radiolist, .th ul.checkboxlist, 
-.td ul.radiolist, .td ul.checkboxlist {
+th ul.radiolist, .th ul.checkboxlist, 
+td ul.radiolist, .td ul.checkboxlist {
     margin-left: 0;
 }
 
@@ -379,7 +374,10 @@ ul.radiolist label, ul.checkboxlist label {
     margin-bottom: -9px;
     vertical-align: top;
 }
-
+#changelist table input[type=file] {
+    top: -3px;
+    margin-bottom: -7px;
+}
 #changelist table input[type=radio], 
 #changelist table input[type=checkbox] {
     position: relative; top: -1px;
