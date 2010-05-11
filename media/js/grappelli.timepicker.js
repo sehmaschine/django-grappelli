@@ -50,9 +50,9 @@ $.widget("ui.timepicker", {
             if (self.element.attr("disabled")) return;
             self._toggleTimepicker();
         });
-        this.element.focus(function() {
-            self._toggleTimepicker();
-        })
+        //this.element.focus(function() {
+        //    self._toggleTimepicker();
+        //})
     },
     
     _init: function() {
@@ -61,20 +61,29 @@ $.widget("ui.timepicker", {
         var self = this,
             options = self.options,
             template = $(options.template),
-            template_str = "<ul>";
+            template_str = "<ul>",
+            now = new Date(),
+            hours = now.getHours(), 
+            minutes = now.getMinutes();
+        
+        hours = ((hours < 10) ? "0" + hours : hours);
+        minutes = ((minutes < 10) ? "0" + minutes : minutes);
         
         for (var i = 0; i < options.time_list.length; i++) {
+            template_str += '<li class="ui-state-default row">';
             if (options.time_list[i] == "now") {
-                var now = new Date();
-                template_str += '<li class="row">' + now.getHours() + ":" + now.getMinutes() + "</li>";
+                template_str += hours + ":" + minutes;
             } else {
-                template_str += '<li class="row">' + options.time_list[i] + "</li>";
+                template_str += options.time_list[i];
             }
+            template_str += "</li>";
         }
         template_str += "</ul>";
         template.append(template_str);
         
         template.appendTo("body").find('li').click(function() {
+            $(this).parent().children('li').removeClass("ui-state-active");
+            $(this).addClass("ui-state-active");
             $(self.timepicker.data("current_input")).val($(this).html());
             self.timepicker.hide();
         });
@@ -91,13 +100,14 @@ $.widget("ui.timepicker", {
     
     _toggleTimepicker: function() {
         if (this.timepicker.is(":visible")) {
-            this.timepicker.data("current_input", null)
+            this.timepicker.data("current_input", null);
             this.timepicker.hide();
         } else {
             this.timepicker_offset = this.element.offset();
             this.timepicker_offset.left += this.element.outerWidth() + this.options.offset.left;
             this.timepicker.css(this.timepicker_offset);
-            this.timepicker.data("current_input", this.element)
+            this.timepicker.data("current_input", this.element);
+            this.element.focus();
             this.timepicker.show();
         }
         this.timepicker_open = !this.timepicker_open;
