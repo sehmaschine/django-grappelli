@@ -4,7 +4,7 @@
 $.widget("ui.timepicker", {
     // default options
     options: {
-        template: '<div id="ui-timepicker" style="position: absolute; display: none;"></div>',
+        template: '<div id="ui-timepicker" class="module" style="position: absolute; display: none;"></div>',
         timepicker_selector: "#ui-timepicker",
         offset: {
             left: 10
@@ -60,16 +60,19 @@ $.widget("ui.timepicker", {
         
         var self = this,
             options = self.options,
-            template = $(options.template);
+            template = $(options.template),
+            template_str = "<ul>";
         
         for (var i = 0; i < options.time_list.length; i++) {
             if (options.time_list[i] == "now") {
                 var now = new Date();
-                template.append("<li>" + now.getHours() + ":" + now.getMinutes() + "</li>");
+                template_str += '<li class="row">' + now.getHours() + ":" + now.getMinutes() + "</li>";
             } else {
-                template.append("<li>" + options.time_list[i] + "</li>");
+                template_str += '<li class="row">' + options.time_list[i] + "</li>";
             }
         }
+        template_str += "</ul>";
+        template.append(template_str);
         
         template.appendTo("body").find('li').click(function() {
             $(self.timepicker.data("current_input")).val($(this).html());
