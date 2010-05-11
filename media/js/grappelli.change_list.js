@@ -157,6 +157,17 @@
             //};
         };
         
+        showSubmitFooter = function() {
+            
+            $("div#submit").show();
+            
+            // need to uncheck all actions checkboxes and update counter
+            // (actions are not working if you want to edit items in the change_list)
+            
+            actionCheckboxes.attr("checked", false);
+            clearSelection();
+        };
+        
         // Show counter by default
         $(options.counterContainer).show();
         
@@ -222,27 +233,10 @@
             $("div#submit").hide();
         });
         
-        $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']").focus(function() {
-            
-            $("div#submit").show();
-            
-            // need to uncheck all actions checkboxes and update counter
-            // (actions are not working if you want to edit items in the change_list)
-            
-            actionCheckboxes.attr("checked", false);
-            clearSelection();
-        });
-        
-        $("select[name!='action']").click(function() {
-            
-            $("div#submit").show();
-            
-            // need to uncheck all actions checkboxes and update counter
-            // (actions are not working if you want to edit items in the change_list)
-            
-            actionCheckboxes.attr("checked", false);
-            clearSelection();
-        });
+        $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']").focus(showSubmitFooter);
+        $("select[name!='action']").click(showSubmitFooter);
+        // FilebrowseField's button
+        $("a.fb_show").click(showSubmitFooter);
         
         $("td input.vForeignKeyRawIdAdminField").each(function() {
             $(this).parent().addClass('nowrap');
