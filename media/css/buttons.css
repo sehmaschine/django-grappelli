@@ -134,8 +134,8 @@ button.ui-gFacelist-browse,
 button.ui-gAutoSlugField-toggle, 
 button.ui-datepicker-trigger, 
 button.ui-timepicker-trigger {
-    width:      25px;
-    border:     1px solid #ccc;
+    width: 25px;
+    border: 1px solid #ccc;
     background: #e1f0f5 50% 50% no-repeat;
 }
 button.fb_show:hover, 
@@ -152,8 +152,7 @@ button.ui-gFacelist-browse[disabled],
 button.ui-gAutoSlugField-toggle[disabled], 
 button.ui-datepicker-trigger[disabled], 
 button.ui-timepicker-trigger[disabled] {
-    /* TODO: there probably should be a icon-related-lookup-disabled.png.. */
-    background-image:url("../img/icons/icon-related-lookup-hover.png"), -moz-linear-gradient(center top , #e1e1e1, #eeeeee);
+    background: transparent 50% 50% no-repeat !important;
     opacity: 0.5;
 }
 
@@ -174,20 +173,6 @@ a.add-another img, a.related-lookup img { opacity: 0; }
 a.related-lookup img { display: none; }
 
 
-/*  Filebrowser Button ......................................... */
-
-/*button.fb_show {
-    background-image: url('../img/icons/icon-fb-show.png');
-    background-image: url('../img/icons/icon-fb-show.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: url('../img/icons/icon-fb-show.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5))
-}
-button.fb_show:hover {
-    ackground-image: url('../img/icons/icon-fb-show-hover.png');
-    background-image: url('../img/icons/icon-fb-show-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: url('../img/icons/icon-fb-show-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
-}*/
-
-
 /*  Autocomplete Button ......................................... */
 
 button.ui-gAutocomplete-browse, 
@@ -202,9 +187,13 @@ button.ui-gFacelist-browse:hover {
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }
+button.ui-gAutocomplete-browse[disabled], button.ui-gAutocomplete-browse[disabled]:hover, 
+button.ui-gFacelist-browse[disabled], button.ui-gFacelist-browse[disabled]:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
+}
 .errors button.ui-gAutocomplete-browse,
 .errors button.ui-gFacelist-browse {
-    border-color:#bf3030 #bf3030 #bf3030 #ccc;
+    border-color: #bf3030 #bf3030 #bf3030 #ccc;
 }
 
 /*  AutoSlugField Button ......................................... */
@@ -220,6 +209,9 @@ button.ui-gAutoSlugField-toggle:hover {
     background-image: url('../img/icons/icon-related-lookup-hover.png');
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+button.ui-gAutoSlugField-toggle[disabled], button.ui-gAutoSlugField-toggle[disabled]:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
 }
 .errors button.ui-gAutoSlugField-toggle {
     border-color:#bf3030 #bf3030 #bf3030 #ccc;
@@ -238,6 +230,9 @@ button.ui-datepicker-trigger:hover {
     background-image: url('../img/icons/icon-datepicker-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-datepicker-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }
+button.ui-datepicker-trigger[disabled], button.ui-datepicker-trigger[disabled]:hover {
+    background-image: url('../img/icons/icon-datepicker-hover.png') !important;
+}
 
 
 /*  Timepicker Button ......................................... */
@@ -251,6 +246,9 @@ button.ui-timepicker-trigger:hover {
     background-image: url('../img/icons/icon-timepicker-hover.png');
     background-image: url('../img/icons/icon-timepicker-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-timepicker-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
+}
+button.ui-timepicker-trigger[disabled], button.ui-timepicker-trigger[disabled]:hover {
+    background-image: url('../img/icons/icon-timepicker-hover.png');
 }
 
 
@@ -268,6 +266,9 @@ button.search {
     background-position: 0 50%;
 }
 button.search:hover {
+    background-image: url('../img/icons/icon-search-hover.png');
+}
+button.search[disabled], button.search[disabled]:hover {
     background-image: url('../img/icons/icon-search-hover.png');
 }
 
