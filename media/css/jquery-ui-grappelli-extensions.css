@@ -45,18 +45,21 @@ body {
     border-top: 1px solid #fff;
 }
 .ui-accordion .ui-accordion-content-active { display: block; }
+
+
+
 /* Datepicker
 ----------------------------------*/
 .datetime br {
-    display:none;
+    display: none;
 }
 .datetimeshortcuts {
-    width:40px;
-    position:relative;
-    margin-left:10px;
+    width: 40px;
+    position: relative;
+    margin-left: 10px;
 }
 .datetimeshortcuts a {
-    margin-left:0!important;
+    margin-left: 0 !important;
 }
 
 
@@ -311,6 +314,7 @@ button.ui-datepicker-close {
 ------------------------------------------------------------------------------------------------------ */
 
 #ui-timepicker {
+    padding: 5px;
     border: 0;
     box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
 }
@@ -318,32 +322,38 @@ button.ui-datepicker-close {
     padding: 1px 10px;
     font-size: 11px;
     border: 0;
+    border-radius: 3px; -moz-border-radius: 3px; -webkit-borderradius: 3px;
     cursor: pointer;
 }
-#ui-timepicker .row:first-child {
+#ui-timepicker .row + .row {
+    margin-top: 2px;
+}
+/*#ui-timepicker .row:first-child {
     border-top: 0 !important;
     border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
     border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
 #ui-timepicker .row:last-child {
-    border-top: 0 !important;
+    border-bottom: 0 !important;
     border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-}
+}*/
 #ui-timepicker .row.ui-state-default {
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #e0e0e0;
+/*    border-top: 1px solid #fff;*/
+/*    border-bottom: 1px solid #e0e0e0;*/
+    border: 1px solid #c7c7c7;
     background: #e1f0f5;
 }
-#ui-timepicker .row.ui-state-active, 
+#ui-timepicker .row.ui-state-active {
+    border: 1px solid #bababa;
+    background: #d6d6d6;
+}
 #ui-timepicker .row.ui-state-default:hover {
     color: #fff;
-    border-top: 1px solid #666;
-    border-bottom: 1px solid #666;
+/*    border-top: 1px solid #666;*/
+/*    border-bottom: 1px solid #666;*/
+    border: 1px solid #666;
     background: #444;
-}
-#ui-timepicker .row.ui-state-active {
-    background: #333;
 }
 
 

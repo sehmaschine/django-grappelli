@@ -289,8 +289,8 @@ ol.rte ul, ol.rte ol {
 
 .small { font-size: 10px; }
 .fw-normal { font-weight: normal; }
-
-
+.warning { color: #bf3030; }
+.quiet { color: #999; }
 
 
 

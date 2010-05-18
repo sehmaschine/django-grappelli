@@ -300,12 +300,22 @@ body.popup .breadcrumbs + ul.messagelist {
 /*  Login Form
 ------------------------------------------------------------------------------------------------------ */
 
+div.login {
+    top: -30px;
+}
 #login-form {
-/*    width: 400px;*/
     margin: 0 auto;
 }
-div.login {
-    padding-top: 100px;
+.login  .module {
+    border: 0;
+    background: #333;
+}
+.login .module .form-row {
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #222;
+}
+.login .module label {
+    color: #eee;
 }
 
 
@@ -321,6 +331,9 @@ div.login {
 }
 #content.content-flexible {
     width: 100%;
+}
+body.filebrowser.popup #content {
+    top: 28px;
 }
 
 

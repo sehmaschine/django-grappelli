@@ -1,6 +1,18 @@
 
 
 
+/*  Login Form
+------------------------------------------------------------------------------------------------------ */
+
+#login-form .module {
+    border: 0;
+    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
+    background: #333;
+}
+
+
+
 /*  Modules
 ------------------------------------------------------------------------------------------------------ */
 
@@ -8,8 +20,6 @@
     border: 1px solid #bdbdbd;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #eee;
-    background: -moz-linear-gradient(top, #f3f3f3, #eee);
-    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#eee));
 }
 
 

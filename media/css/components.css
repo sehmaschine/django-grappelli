@@ -640,13 +640,16 @@ a.selector-chooseall, a.selector-clearall {
 /* Navigation, Table of Contents
 ------------------------------------------------------------------------------------------------------ */
 
-.module.navigation, 
-.module.navigation .module, 
+.module.link-list, 
+.module.link-list .module, 
 .module.actions, 
-.module.actions .module {
+.module.actions .module, 
+.module.feed, 
+.module.feed .module {
     background: #fff;
 }
-.navigation ul li, 
+.link-list ul li, 
+.feed ul li, 
 .table-of-contents ul li {
     padding: 0;
     font-size: 11px; line-height: 15px; font-weight: bold;
@@ -657,52 +660,65 @@ a.selector-chooseall, a.selector-clearall {
     color: #999;
 }
 .actions ul li:first-child, 
-.navigation ul li:first-child, 
+.link-list ul li:first-child, 
+.feed ul li:first-child, 
 .table-of-contents ul li:first-child {
     border-top: none;
 }
 .actions ul li:last-child, 
-.navigation ul li:last-child, 
+.link-list ul li:last-child, 
+.feed ul li:last-child, 
 .table-of-contents ul li:last-child {
     border-bottom: none;
 }
-.navigation ul li a, 
+.link-list ul li a, 
+.feed ul li a, .feed ul li span, 
 .table-of-contents ul li a {
     display: block;
     padding: 5px 10px;
     font-weight: bold;
+    line-height: 13px;
     background-color: transparent;
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
-.navigation ul li.selected a, 
+.link-list ul li.selected a, 
 .table-of-contents ul li.selected a {
     color: #444;
 }
 
-.navigation ul li a {
+.link-list ul li a, 
+.feed ul li a {
     padding-left: 25px;
 }
-.navigation a.internal {
-    background-position: 12px 8px;
+.dashboard a.internal {
+    background-position: 12px 7px;
 }
-.navigation a.external {
-    background-position: 10px 9px;
+.dashboard a.external {
+    background-position: 10px 8px;
 }
-.navigation a.internal:link, .navigation a.internal:visited {
+.dashboard a.internal:link, .dashboard a.internal:visited {
     background-image: url('../img/icons/icon-navigation-internal.png');
 }
-.navigation a.internal:hover, .navigation a.internal:active {
+.dashboard a.internal:hover, .dashboard a.internal:active {
     color: #666;
     background-image: url('../img/icons/icon-navigation-internal-hover.png');
 }
-.navigation a.external:link, .navigation a.external:visited {
+.dashboard a.external:link, .dashboard a.external:visited {
     color: #83c3d9;
     background-image: url('../img/icons/icon-navigation-external.png');
 }
-.navigation a.external:hover, .navigation a.external:active {
+.dashboard a.external:hover, .dashboard a.external:active {
     color: #666;
     background-image: url('../img/icons/icon-navigation-external-hover.png');
+}
+
+.feed ul li a, .feed ul li span {
+    line-height: 13px;
+}
+.feed ul li span.date {
+    float: right;
+    padding: 5px 5px 0 5px;
 }
 
 
@@ -781,7 +797,7 @@ ul.actions li a {
 .module.filter {
     position: relative; float: right;
     z-index: 1000;
-    padding: 8px 10px 0;
+    padding: 8px 10px;
     border: 0;
 }
 .module.search {

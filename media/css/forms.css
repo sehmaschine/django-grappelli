@@ -35,7 +35,6 @@ fieldset {
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #bf3030;
 }
-
 ul.errorlist {
     margin: 3px 0 -3px;
     color: #bf3030; font-size: 11px; line-height: 16px; font-weight: bold;
@@ -43,12 +42,13 @@ ul.errorlist {
 ul.errorlist li {
     padding: 0 5px 0 160px;
 }
-
+p.errornote + ul.errorlist {
+    margin-bottom: 8px;
+}
 ul.errorlist:empty {
     display: none;
     margin: 0;
 }
-
 .form-cell ul.errorlist {
     padding-left: 0;
 }
@@ -59,7 +59,6 @@ ul.errorlist:empty {
 .form-cell label + * + * + ul.errorlist {
     padding-left: 160px !important;
 }
-
 table ul.errorlist {
     margin: -9px 0 6px;
 }
@@ -70,7 +69,9 @@ table ul.errorlist li,
 .module.table ul.errorlist li {
     padding-left: 0;
 }
-
+p.errornote + ul.errorlist li {
+    padding-left: 10px;
+}
 .error input, .error select, .errors input, .errors select {
     border: 1px solid #bf3030 !important;
 }
