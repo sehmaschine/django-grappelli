@@ -50,17 +50,14 @@
             });
         }
         var reinitDateTimeFields = function(row) {
-            // Reinitialize the calendar and clock widgets by force, yuck.
-            if (typeof DateTimeShortcuts != "undefined") {
-                row.find(".datetimeshortcuts").remove();
-                DateTimeShortcuts.init();
-            }
             row.find(".vDateField").datepicker({
                 //appendText: '(mm/dd/yyyy)',
                 showOn: 'button',
                 buttonImageOnly: false,
-                buttonText: ''
+                buttonText: '',
+                dateFormat: grappelli.getFormat('date')
             });
+            $(".vTimeField").timepicker();
         }
         var updateSelectFilter = function(row) {
             // If any SelectFilter widgets were added, instantiate a new instance.

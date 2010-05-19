@@ -4,6 +4,7 @@
 # django imports
 from django import template
 from django.contrib.contenttypes.models import ContentType
+from django.utils.formats import get_format
 
 # grappelli imports
 from grappelli.settings import *
@@ -56,5 +57,20 @@ def get_admin_url():
     """
     return ADMIN_URL
 register.simple_tag(get_admin_url)
+
+
+def get_date_format():
+    return get_format('DATE_INPUT_FORMATS')[0]
+register.simple_tag(get_date_format)
+
+
+def get_time_format():
+    return get_format('TIME_INPUT_FORMATS')[0]
+register.simple_tag(get_time_format)
+
+
+def get_datetime_format():
+    return get_format('DATETIME_INPUT_FORMATS')[0]
+register.simple_tag(get_datetime_format)
 
 
