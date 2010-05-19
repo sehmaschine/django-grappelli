@@ -13,11 +13,12 @@
     <div class="module table">
         <div class="module thead">
             <div class="tr">
-                {% for is_hidden, label in inline_admin_formset.fields %}
-                    {% if not is_hidden %}
-                        <div class="th {{ label|lower }}">{{ label|capfirst }}</div>
+                {% for field in inline_admin_formset.fields %}
+                    {% if not field.widget.is_hidden %}
+                        <div class="th {{ field.label|lower }}">{{ field.label|capfirst }}</div>
                     {% endif %}
                 {% endfor %}
+                
                 {% if inline_admin_formset.formset.can_delete %}<div class="th">&nbsp;</div>{% endif %}
             </div>
         </div>
