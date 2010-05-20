@@ -234,7 +234,7 @@
         });
         
         $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']").focus(showSubmitFooter);
-        $("select[class!='filter_choice']").click(showSubmitFooter);
+        $("select[class!='filter_choice'][name!='action']").click(showSubmitFooter);
         // FilebrowseField's button
         $("a.fb_show").click(showSubmitFooter);
         
