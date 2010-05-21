@@ -35,6 +35,11 @@ fieldset {
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #bf3030;
 }
+/* little fix to accomodate the top aligned login form .. */
+.errornote.login-errors {
+    margin-bottom: 0px!important; padding: 8px 12px;
+    border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;
+}
 ul.errorlist {
     margin: 3px 0 -3px;
     color: #bf3030; font-size: 11px; line-height: 16px; font-weight: bold;

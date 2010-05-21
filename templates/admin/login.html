@@ -8,16 +8,25 @@
 {% block content-class %}content-flexible{% endblock %}
 {% block content_title %}{% endblock %}
 
+<!-- EXTRAHEAD-->
+{% block extrahead %}
+    <script type="text/javascript">
+    (function($) {
+        $(window).load(function(){ $('#id_username').focus(); });
+    })(jQuery.noConflict());
+    </script>
+{% endblock %}
+
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}{% endblock %}
 
 <!-- CONTENT -->
 {% block content %}
-    {% if error_message %}
-        <p class="errornote">{{ error_message }}</p>
-    {% endif %}
     <div class="container-flexible login">
         <div class="column span-10 centered">
+    {% if error_message %}
+        <p class="errornote login-errors">{{ error_message }}</p>
+    {% endif %}
             <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
                 <fieldset class="module">
                     <div class="form-row">
