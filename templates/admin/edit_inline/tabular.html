@@ -15,10 +15,9 @@
             <div class="tr">
                 {% for field in inline_admin_formset.fields %}
                     {% if not field.widget.is_hidden %}
-                        <div class="th {{ field.label|lower }}">{{ field.label|capfirst }}</div>
+                        <div class="th {{ label|lower }}"{% if field.required %} class="required"{% endif %}>{{ label|capfirst }}</div>
                     {% endif %}
                 {% endfor %}
-                
                 {% if inline_admin_formset.formset.can_delete %}<div class="th">&nbsp;</div>{% endif %}
             </div>
         </div>
@@ -83,14 +82,16 @@
         var rows = "#{{ inline_admin_formset.formset.prefix }}-group div.table div.tbody";
         var reinitDateTimeFields = function(row) {
             // Reinitialize the calendar and clock widgets by force, yuck.
+            if (typeof DateTimeShortcuts != "undefined") {
+                row.find(".datetimeshortcuts").remove();
+                DateTimeShortcuts.init();
+            }
             row.find(".vDateField").datepicker({
                 //appendText: '(mm/dd/yyyy)',
                 showOn: 'button',
                 buttonImageOnly: false,
-                buttonText: '',
-                dateFormat: grappelli.getFormat('date'),
+                buttonText: ''
             });
-            $(".vTimeField").timepicker();
         }
         var updateSelectFilter = function(row) {
             // If any SelectFilter widgets are a part of the new form,
