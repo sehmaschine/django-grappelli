@@ -72,6 +72,18 @@ h1 + .tools a:hover, h1 + .tools a:active {
     opacity: 1;
 }
 
+h1 + .tools a.add-handler:link, h1 + .tools a.add-handler:visited {
+    padding-left: 30px;
+    background: #444 0 50% no-repeat scroll;
+    background-image: url('../img/icons/icon-object-tools-add-handler.png'), -moz-linear-gradient(top, #666, #444);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#666), to(#444));
+}
+h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
+    background: #309bbf 0 50% no-repeat scroll;
+    background-image: url('../img/icons/icon-object-tools-add-handler.png'), -moz-linear-gradient(top, #39bae5, #309bbf);
+    background-image: url('../img/icons/icon-object-tools-add-handler.png'), -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));
+}
+
 
 /*  Focused Buttons ................................................... */
 

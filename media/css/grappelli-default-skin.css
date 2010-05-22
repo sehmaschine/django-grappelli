@@ -47,11 +47,11 @@
 }
 
 .group.collapse.closed {
-    border: 1px solid #e0e0e0;
+    border: 2px solid #e0e0e0;
 }
 .group, 
 .group.collapse.closed:hover {
-    border: 1px solid #c7c7c7;
+    border: 2px solid #c7c7c7;
 }
 
 
@@ -412,7 +412,8 @@ a.selector-chooseall, a.selector-clearall {
     border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
     border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
 }
-.module.changelist-filters:last-of-type {
+.module.changelist-filters:last-of-type, 
+body.filebrowser .module.changelist-filters {
     border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }

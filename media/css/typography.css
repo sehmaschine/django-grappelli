@@ -286,6 +286,15 @@ ol.rte ul, ol.rte ol {
 .rte dl, .rte dt, .rte dd {
     margin: 0;
 }
+.rte dl {
+    padding: 5px 10px;
+}
+.rte dt {
+    font-weight: bold;
+}
+.rte dd + dt {
+    margin-top: 5px;
+}
 
 .small { font-size: 10px; }
 .fw-normal { font-weight: normal; }

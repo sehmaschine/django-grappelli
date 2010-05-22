@@ -229,12 +229,47 @@ ul#bookmarks-listing li:last-child a {
     right: 40px;
     border-left: 1px solid #303030;
 }
-#user-tools li {
+#user-tools>li {
     border-left: 1px solid #404040;
     border-right: 1px solid #303030;
 }
-#user-tools li:last-child {
+#user-tools>li:last-child {
     padding-right: 20px;
+}
+
+#user-tools li.user-options-container {
+    position: relative;
+    width: 200px;
+}
+
+li.user-options-container.open a.user-options-handler {
+    display: block;
+    color: #eee !important;
+}
+ul.user-options {
+    display: none;
+}
+li.user-options-container.open ul.user-options {
+    display: block;
+    position: absolute; float: none; clear: both;
+    z-index: 1000;
+    margin: 7px -10px 0;
+    width: 221px;
+    border-top: 1px solid #262626;
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+    background: #333;
+}
+ul.user-options li {
+    float: none !important; clear: both;
+    border-top: 1px solid #404040;
+    border-bottom: 1px solid #292929;
+}
+ul.user-options li:last-child {
+    border-bottom: 0;
+}
+ul.user-options li a {
+    display: block;
 }
 
 
@@ -283,7 +318,9 @@ ul.messagelist.error li {
 body.popup .breadcrumbs + ul.messagelist {
     top: 24px;
 }
-
+body.filebrowser.popup ul.messagelist {
+    top: 28px;
+}
 
 
 /*  Masthead
@@ -310,7 +347,7 @@ div.login {
     border: 0;
     background: #333;
 }
-.login .module .form-row {
+.login .module .row {
     border-top: 1px solid #444;
     border-bottom: 1px solid #222;
 }
@@ -383,6 +420,22 @@ body.filebrowser.popup #content {
     float: left;
     width: 100%;
 }
+fieldset.module .row .column:first-child {
+    margin-left: 0 !important;
+}
+fieldset.module .row .column:last-child {
+    margin-right: -20px !important;
+}
+fieldset.module .row .column.span-flexible:last-child {
+    margin-right: 0 !important;
+}
+.row .span-flexible, 
+.row .span-flexible:last-child {
+    float: none;
+    width: auto;
+    margin-right: 0 !important;
+}
+
 
 
 /*  Basic Float & Margin ......................................... */
@@ -479,32 +532,60 @@ body.filebrowser.popup #content {
 .prepend-23 { padding-left: 920px; }
 
 
-/*  Columns in Form-Cells ......................................... */
+/*  Span-X + Span-Flexible ......................................... */
 
-.form-cell.span-1  { width: 0px; }
-.form-cell.span-2  { width: 40px; }
-.form-cell.span-3  { width: 80px; }
-.form-cell.span-4  { width: 120px; }
-.form-cell.span-5  { width: 160px; }
-.form-cell.span-6  { width: 200px; }
-.form-cell.span-7  { width: 240px; }
-.form-cell.span-8  { width: 280px; }
-.form-cell.span-9  { width: 330px; }
-.form-cell.span-10 { width: 360px; }
-.form-cell.span-11 { width: 400px; }
-.form-cell.span-12 { width: 440px; }
-.form-cell.span-13 { width: 480px; }
-.form-cell.span-14 { width: 520px; }
-.form-cell.span-15 { width: 560px; }
-.form-cell.span-16 { width: 600px; }
-.form-cell.span-17 { width: 640px; }
-.form-cell.span-18 { width: 680px; }
-.form-cell.span-19 { width: 720px; }
-.form-cell.span-20 { width: 760px; }
-.form-cell.span-21 { width: 800px; }
-.form-cell.span-22 { width: 840px; }
-.form-cell.span-23 { width: 880px; }
-.form-cell.span-24 { width: 920px; margin: 0; }
+.span-1 + .span-flexible  { margin-left: 40px; }
+.span-2 + .span-flexible  { margin-left: 80px; }
+.span-3 + .span-flexible  { margin-left: 120px; }
+.span-4 + .span-flexible  { margin-left: 160px; }
+.span-5 + .span-flexible  { margin-left: 200px; }
+.span-6 + .span-flexible  { margin-left: 240px; }
+.span-7 + .span-flexible  { margin-left: 280px; }
+.span-8 + .span-flexible  { margin-left: 320px; }
+.span-9 + .span-flexible  { margin-left: 360px; }
+.span-10 + .span-flexible { margin-left: 400px; }
+.span-11 + .span-flexible { margin-left: 440px; }
+.span-12 + .span-flexible { margin-left: 480px; }
+.span-13 + .span-flexible { margin-left: 520px; }
+.span-14 + .span-flexible { margin-left: 560px; }
+.span-15 + .span-flexible { margin-left: 600px; }
+.span-16 + .span-flexible { margin-left: 640px; }
+.span-17 + .span-flexible { margin-left: 680px; }
+.span-18 + .span-flexible { margin-left: 720px; }
+.span-19 + .span-flexible { margin-left: 760px; }
+.span-20 + .span-flexible { margin-left: 800px; }
+.span-21 + .span-flexible { margin-left: 840px; }
+.span-22 + .span-flexible { margin-left: 880px; }
+.span-23 + .span-flexible { margin-left: 920px; }
+.span-24 + .span-flexible { margin-left: 960px; }
+
+
+/*  Columns in Cells ......................................... */
+
+.cell.span-1  { width: 0px; }
+.cell.span-2  { width: 40px; }
+.cell.span-3  { width: 80px; }
+.cell.span-4  { width: 120px; }
+.cell.span-5  { width: 160px; }
+.cell.span-6  { width: 200px; }
+.cell.span-7  { width: 240px; }
+.cell.span-8  { width: 280px; }
+.cell.span-9  { width: 330px; }
+.cell.span-10 { width: 360px; }
+.cell.span-11 { width: 400px; }
+.cell.span-12 { width: 440px; }
+.cell.span-13 { width: 480px; }
+.cell.span-14 { width: 520px; }
+.cell.span-15 { width: 560px; }
+.cell.span-16 { width: 600px; }
+.cell.span-17 { width: 640px; }
+.cell.span-18 { width: 680px; }
+.cell.span-19 { width: 720px; }
+.cell.span-20 { width: 760px; }
+.cell.span-21 { width: 800px; }
+.cell.span-22 { width: 840px; }
+.cell.span-23 { width: 880px; }
+.cell.span-24 { width: 920px; margin: 0; }
 
 
 /* Clearing floats without extra markup

@@ -127,6 +127,17 @@ a.add-another {
     border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
 }
 
+button {
+    background: #309bbf;
+    background-image: -moz-linear-gradient(top, #33a6cc, #309bbf);
+    background-image: -webkit-linear-gradient(top, #33a6cc, #309bbf);
+}
+button:hover {
+    background: #666;
+    background-image: -moz-linear-gradient(top, #555, #444);
+    background-image: -moz-linear-gradient(top, #555, #444);
+}
+
 button.fb_show, 
 button.ui-gAutocomplete-browse, 
 button.ui-gFacelist-browse, 
@@ -424,6 +435,10 @@ a.add-another:hover, a.add-another:active {
 .radiolist.inline + a.add-another, 
 .checkboxlist.inline + a.add-another {
     margin-left: -4px;
+    
+    margin-left: -20px;
+    margin-right: -10000px;
+    float: left;
 }
 
 

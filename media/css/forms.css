@@ -12,16 +12,21 @@ fieldset {
     margin: 0; padding: 0;
 }
 
-.form-row p.help {
-    margin: 3px 0 2px 161px; padding: 0;
+.row p.help {
+    margin: 3px 0 2px 161px;
+    padding: 0;
+    
+    margin-left: 0;
 }
 
-.form-row ul.radio-list + p.help, 
-.form-row ul.checkbox-list + p.help {
+.row ul.radio-list + p.help, 
+.row ul.checkbox-list + p.help {
     margin-top: -3px;
 }
-.form-row input[type=checkbox] + label + p.help {
+.row input[type=checkbox] + label + p.help {
     margin-left: 161px;
+    
+    margin-left: 0;
 }
 
 
@@ -30,7 +35,8 @@ fieldset {
 ------------------------------------------------------------------------------------------------------ */
 
 .errornote {
-    margin-bottom: 7px; padding: 8px 10px;
+    margin-bottom: 7px;
+    padding: 8px 10px;
     color: #f7f7f7; font-size: 12px; font-weight: bold;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #bf3030;
@@ -46,6 +52,7 @@ ul.errorlist {
 }
 ul.errorlist li {
     padding: 0 5px 0 160px;
+    padding-left: 0;
 }
 p.errornote + ul.errorlist {
     margin-bottom: 8px;
@@ -54,14 +61,14 @@ ul.errorlist:empty {
     display: none;
     margin: 0;
 }
-.form-cell ul.errorlist {
+.cell ul.errorlist {
     padding-left: 0;
 }
-.form-cell ul.errorlist li {
+.cell ul.errorlist li {
     padding-left: 0;
 }
-.form-cell label + * + ul.errorlist, 
-.form-cell label + * + * + ul.errorlist {
+.cell label + * + ul.errorlist, 
+.cell label + * + * + ul.errorlist {
     padding-left: 160px !important;
 }
 table ul.errorlist {
@@ -88,7 +95,7 @@ p.errornote + ul.errorlist li {
 
 label {
     margin: 5px 0 -5px;
-    width: 140px;
+/*    width: 140px;*/
     color: #444; font-size: 11px; line-height: 15px;
     cursor: pointer;
 }
@@ -98,14 +105,18 @@ label {
 }
 
 .module label {
-    display: block; float: left;
-    margin-right: 20px;
+    display: block;
+/*    float: left;*/
+/*    margin-right: 20px;*/
     padding: 0 0 6px;
-    width: 140px;
+/*    width: 140px;*/
 }
 .module .vCheckboxLabel {
-    display: inline; float: none; clear: both;
-    margin: 0 0 0 10px; padding: 0;
+    display: inline;
+    float: none;
+    clear: both;
+    margin: 0 0 0 10px;
+    padding: 0;
 }
 
 
@@ -256,8 +267,11 @@ input[type=checkbox], input[type=radio] {
     position: relative;
     margin: 0;
 }
-.form-row input[type=checkbox], .form-row input[type=radio] {
+.row input[type=checkbox], .row input[type=radio] {
     margin-left: 160px;
+    
+    margin-left: 0;
+    
     margin-right: 5px;
 }
 .th>input[type=radio], 
@@ -279,8 +293,8 @@ input[type=checkbox], input[type=radio] {
         margin-bottom: -2px;
     }
 }
-.form-row input[type=radio], 
-.form-row input[type=checkbox], 
+.row input[type=radio], 
+.row input[type=checkbox], 
 .th ul.radiolist input[type=radio], 
 .th ul.checkboxlist input[type=checkbox], 
 .td ul.radiolist input[type=radio], 
@@ -288,12 +302,12 @@ input[type=checkbox], input[type=radio] {
     top: -1px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    .form-row input[type=radio], 
+    .row input[type=radio], 
     .th ul.radiolist input[type=radio], 
     .td ul.radiolist input[type=radio] {
         top: -2px;
     }
-    .form-row input[type=checkbox], 
+    .row input[type=checkbox], 
     .th ul.radiolist input[type=checkbox], 
     .td ul.radiolist input[type=checkbox] {
         top: 0;
@@ -309,23 +323,23 @@ ul.checkboxlist input[type=checkbox] {
     margin-right: 5px;
 }
 
-.form-row input[type=checkbox] + label {
+.row input[type=checkbox] + label {
     position: relative; float: none;
     top: 0;
     display: inline-block;
     margin-bottom: -2px;
 }
 
-.form-row ul.checkboxlist input[type=checkbox] {
+.row ul.checkboxlist input[type=checkbox] {
     top: 0;
     margin: 0 5px 0 0;
 }
-.form-row ul.checkboxlist label input[type=checkbox] {
+.row ul.checkboxlist label input[type=checkbox] {
     top: -2px;
     vertical-align: bottom;
 }
 
-.form-row label + input + p.help input[type=checkbox] {
+.row label + input + p.help input[type=checkbox] {
     position: relative; top: -2px; margin: 0 3px 0 0;
 }
 
@@ -337,9 +351,17 @@ ul.tools .delete-handler-container input[type=checkbox] {
 /*  Radiolists & Checkboxlists ................................................... */
 
 ul.radiolist, ul.checkboxlist {
-    position: relative; float: none; display: inline-block;
-    margin: 5px 0 5px 160px; padding: 0;
-    font-size: 11px; line-height: 15px; font-weight: normal;
+    position: relative;
+    float: none;
+    display: inline-block;
+    margin: 5px 0 5px 160px;
+    
+    margin-left: 0;
+    
+    padding: 0;
+    font-size: 11px;
+    line-height: 15px;
+    font-weight: normal;
 }
 label + ul.radiolist, label + ul.checkboxlist, 
 th ul.radiolist, th ul.checkboxlist, .th ul.radiolist, .th ul.checkboxlist, 
@@ -351,16 +373,42 @@ ul.radiolist li + li, ul.checkboxlist li + li {
     margin-top: 2px;
 }
 
-ul.inline li {
+ul.radiolist.inline, ul.checkboxlist.inline {
     float: left;
-    white-space: nowrap;
+    display: inline;
+    margin-top: 5px;
+    padding-right: 20px;
+}
+th ul.radiolist.inline, th ul.checkboxlist.inline, 
+td ul.radiolist.inline, td ul.checkboxlist.inline {
+    margin-top: 0;
+}
+ul.radiolist.inline li, ul.checkboxlist.inline li {
+    float: left;
+    display: inline;
     margin-top: 0 !important;
     padding-right: 20px;
 }
+.module.tbody ul.radiolist.inline, .module.tbody ul.checkboxlist.inline {
+/*    float: left;*/
+    display: inline;
+/*    max-width: 400px;*/
+/*    background: #4ef;*/
+    white-space: normal;
+}
+.module.tbody ul.radiolist.inline li, .module.tbody ul.checkboxlist.inline li {
+    position: relative;
+    float: left;
+    display: inline;
+}
+
 ul.radiolist label, ul.checkboxlist label {
-    float: none; display: inline-block;
-    margin: 0; padding: 0;
+    float: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
     width: auto !important;
+    white-space: nowrap;
 }
 
 
@@ -694,7 +742,7 @@ input.vM2MAutocompleteSearchField {
     width: 278px;
 }
 
-.form-row select {
+.row select {
     min-width: 118px;
 }
 
@@ -713,17 +761,17 @@ select[readonly] {
 /* Large Form Elements in Change-Form: Widths & Heights
 ------------------------------------------------------------------------------------------------------ */
 
-.form-row .vTextField, 
-.form-row .vURLField, 
-.form-row .vFileBrowseField, 
-.form-row textarea, 
-.form-row .vLargeTextField, 
-.form-row .vXMLLargeTextField, 
-.form-row .vAutocompleteSearchField, 
-.form-row .vM2MAutocompleteSearchField {
+.row .vTextField, 
+.row .vURLField, 
+.row .vFileBrowseField, 
+.row textarea, 
+.row .vLargeTextField, 
+.row .vXMLLargeTextField, 
+.row .vAutocompleteSearchField, 
+.row .vM2MAutocompleteSearchField {
     width: 758px;
 }
-.form-row select {
+.row select {
     max-width: 758px;
 }
 

@@ -132,7 +132,7 @@ body {
 .ui-datepicker {
     width: auto !important; padding: 3px 3px 0;
     border-color: #bdbdbd;
-    box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
+    box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
 }
 .ui-datepicker .ui-datepicker-header {
     padding: 2px 0;
@@ -315,11 +315,11 @@ button.ui-datepicker-close {
 
 #ui-timepicker {
     padding: 5px;
-    border: 0;
-    box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
+    border: 1px solid #bdbdbd;
+    box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
 }
 #ui-timepicker .row {
-    padding: 1px 10px;
+    padding: 2px 10px 0;
     font-size: 11px;
     border: 0;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-borderradius: 3px;
@@ -341,18 +341,18 @@ button.ui-datepicker-close {
 #ui-timepicker .row.ui-state-default {
 /*    border-top: 1px solid #fff;*/
 /*    border-bottom: 1px solid #e0e0e0;*/
-    border: 1px solid #c7c7c7;
+    border: 1px solid #c7c7c7 !important;
     background: #e1f0f5;
 }
 #ui-timepicker .row.ui-state-active {
-    border: 1px solid #bababa;
+    border: 1px solid #bababa !important;
     background: #d6d6d6;
 }
 #ui-timepicker .row.ui-state-default:hover {
     color: #fff;
 /*    border-top: 1px solid #666;*/
 /*    border-bottom: 1px solid #666;*/
-    border: 1px solid #666;
+    border: 1px solid #666 !important;
     background: #444;
 }
 
