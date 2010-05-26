@@ -5,7 +5,7 @@
     {% endfor %}
     {% if actions_selection_counter %}
     <ul>
-        <li class="action-counter"><span class="action-counter"><span class="_acnt">0</span> {{ selection_note }}</span></li>
+        <li class="action-counter"><span class="action-counter">{{ selection_note }}</span></li>
         {% if cl.result_count != cl.result_list|length %}
         <li class="all"><span class="all">{{ selection_note_all }}</span></li>
         <li class="question"><a href="javascript:;" title="{% trans "Click here to select the objects across all pages" %}">{% blocktrans with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktrans %}</a></li>

@@ -14,12 +14,21 @@
         
         updateCounter = function() {
             var count = actionCheckboxes.filter(":checked").length;
+            
             if (count > 0) {
                 $(options.actionContainer).show();
             } else {
                 $(options.actionContainer).hide();
             }
-            $("span._acnt").html(count);
+            
+            if ($(options.actionContainer).find("span._acnt").length > 0) {
+                $(options.actionContainer).find("span._acnt").html(count);
+            } else {
+                var actionCounter = $(options.actionContainer).find("span.action-counter"),
+                    text = actionCounter.html();
+                actionCounter.html('<span class="_acnt">' + count + '</span>' + text.substring(1));
+            }
+            
             $(options.allToggle).attr("checked", function() {
                 if (count == actionCheckboxes.length) {
                     value = true;
