@@ -74,3 +74,6 @@ def get_datetime_format():
 register.simple_tag(get_datetime_format)
 
 
+def grappelli_admin_title():
+    return ADMIN_TITLE
+register.simple_tag(grappelli_admin_title)
