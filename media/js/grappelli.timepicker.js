@@ -7,7 +7,7 @@ $.widget("ui.timepicker", {
         template: '<div id="ui-timepicker" class="module" style="position: absolute; display: none;"></div>',
         timepicker_selector: "#ui-timepicker",
         offset: {
-            left: 10
+            top: 5
         },
         time_list: [
             'now',
@@ -61,22 +61,11 @@ $.widget("ui.timepicker", {
         var self = this,
             options = self.options,
             template = $(options.template),
-            template_str = "<ul>",
-            now = new Date(),
-            hours = now.getHours(), 
-            minutes = now.getMinutes();
-        
-        hours = ((hours < 10) ? "0" + hours : hours);
-        minutes = ((minutes < 10) ? "0" + minutes : minutes);
+            template_str = "<ul>";
+            
         
         for (var i = 0; i < options.time_list.length; i++) {
-            template_str += '<li class="ui-state-default row">';
-            if (options.time_list[i] == "now") {
-                template_str += hours + ":" + minutes;
-            } else {
-                template_str += options.time_list[i];
-            }
-            template_str += "</li>";
+            template_str += '<li class="ui-state-default row">' + options.time_list[i] + '</li>';
         }
         template_str += "</ul>";
         template.append(template_str);
@@ -84,7 +73,18 @@ $.widget("ui.timepicker", {
         template.appendTo("body").find('li').click(function() {
             $(this).parent().children('li').removeClass("ui-state-active");
             $(this).addClass("ui-state-active");
-            $(self.timepicker.data("current_input")).val($(this).html());
+            var new_val = $(this).html();
+            if (new_val == "now") {
+                var now = new Date(),
+                    hours = now.getHours(), 
+                    minutes = now.getMinutes();
+                
+                hours = ((hours < 10) ? "0" + hours : hours);
+                minutes = ((minutes < 10) ? "0" + minutes : minutes);
+                
+                new_val = hours + ":" + minutes;
+            }
+            $(self.timepicker.data("current_input")).val(new_val);
             self.timepicker.hide();
         });
         
@@ -104,7 +104,8 @@ $.widget("ui.timepicker", {
             this.timepicker.hide();
         } else {
             this.timepicker_offset = this.element.offset();
-            this.timepicker_offset.left += this.element.outerWidth() + this.options.offset.left;
+            //this.timepicker_offset.left += this.element.outerWidth() 
+            this.timepicker_offset.top += this.element.outerHeight() + this.options.offset.top;
             this.timepicker.css(this.timepicker_offset);
             this.timepicker.data("current_input", this.element);
             this.element.focus();
