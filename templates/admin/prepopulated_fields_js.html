@@ -1,4 +1,5 @@
 <script type="text/javascript">
+(function( $ ) {
 {% for field in prepopulated_fields %}
     $("#{{ field.field.auto_id }}").bind('change.grappelli', function() { 
         $(this).data('changed', true); 
@@ -12,4 +13,5 @@
     });
     {% endfor %}
 {% endfor %}
+})(jQuery.noConflict());
 </script>
