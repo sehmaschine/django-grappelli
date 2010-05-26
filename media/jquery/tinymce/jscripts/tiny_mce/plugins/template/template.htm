@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{#template_dlg.title}</title>
+    <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+    <script type="text/javascript" src="js/template.js"></script>
+    <base target="_self" />
+</head>
+<body onresize="TemplateDialog.resize();"> 
+    <form onsubmit="TemplateDialog.insert();return false;">
+        <div id="frmbody">
+            <div class="title">{#template_dlg.desc}</div>
+            <fieldset class="module">
+                <div class="form-row combine">
+                    <label for="tpath" title="{#template_dlg.select}">{#template_dlg.label}:</label>
+                    <select id="tpath" name="tpath" onchange="TemplateDialog.selectTemplate(this.options[this.selectedIndex].value, this.options[this.selectedIndex].text);" class="mceFocus">
+                        <option value="">{#template_dlg.select}...</option>
+                    </select>
+                    <span id="warning"></span>
+                </div>
+                <div class="form-row description last">
+                    <label for="tdesc">{#template_dlg.desc_label}:</label>
+                    <span id="tmpldesc"></span>
+                </div>
+                <fieldset style="display: none;">
+                    <iframe id="templatesrc" name="templatesrc" src="blank.htm" width="260" height="400" frameborder="0"></iframe>
+                </fieldset>
+            </fieldset>
+        </div>
+        <div class="mceActionPanel submit-row">
+            <div style="float: left">
+                <input type="submit" id="insert" class="default" name="insert" value="{#insert}" />
+            </div>
+            <div style="float: right">
+                <input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+            </div>
+        </div>
+    </form>
+</body> 
+</html> 
