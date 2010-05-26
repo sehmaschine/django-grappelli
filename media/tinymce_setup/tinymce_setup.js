@@ -11,10 +11,10 @@
  * and you don't force the programmers to fiddle with JS paths in models.
  *
  * */
-(function($){
+//(function($){
 function CustomFileBrowser(field_name, url, type, win) {
     
-    var cmsURL = $.grappelli.conf.get('filebrowser_url');
+    var cmsURL = "/admin/filebrowser/browse/?pop=2";
     cmsURL = cmsURL + "&type=" + type;
     
     tinyMCE.activeEditor.windowManager.open({
@@ -142,4 +142,4 @@ tinyMCE.init({
     //     });
     // }
 });
-}(jQuery));
+//}(jQuery));
