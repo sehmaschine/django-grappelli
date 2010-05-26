@@ -65,7 +65,11 @@ $.widget("ui.timepicker", {
             
         
         for (var i = 0; i < options.time_list.length; i++) {
-            template_str += '<li class="ui-state-default row">' + options.time_list[i] + '</li>';
+            if (options.time_list[i] == "now") {
+                template_str += '<li class="ui-state-active row">' + options.time_list[i] + '</li>';
+            } else {
+                template_str += '<li class="ui-state-default row">' + options.time_list[i] + '</li>';
+            }
         }
         template_str += "</ul>";
         template.append(template_str);
