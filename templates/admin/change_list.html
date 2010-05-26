@@ -16,9 +16,9 @@
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
+    {{ media }}
     {% if cl.formset %}
         <script type="text/javascript" src="../../jsi18n/"></script>
-        {{ media }}
     {% endif %}
     <script type="text/javascript" src="{% admin_media_prefix %}js/admin/Changelist.js"></script>
     {% if is_popup %}
