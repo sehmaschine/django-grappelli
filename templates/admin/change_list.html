@@ -6,7 +6,8 @@
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
-    {% if cl.formset %}{{ media }}{% endif %}
+    {% if cl.formset %}{% endif %}
+    {{ media }}
     <script type="text/javascript">
     $.grappelli.conf.set('isPopup', {% if is_popup or 'pop' in request.GET %}true{% else %}false{% endif %});
     </script>
