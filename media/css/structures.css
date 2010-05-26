@@ -6,9 +6,9 @@
 
 body {
     padding: 58px 20px 0;
-    font-family: Arial, sans-serif; font-size: 12px; line-height: 16px;
-    color: #444;
-    background: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 16px;
 }
 body.popup {
     padding-top: 0;
@@ -21,9 +21,11 @@ body.popup {
 
 #container {
     z-index: 0;
-    position: relative; float: left; clear: both;
+    position: relative;
+    float: left;
+    clear: both;
     margin: 0;
-    padding: 0 ;
+    padding: 0;
     width: 100%;
 }
 
@@ -33,16 +35,16 @@ body.popup {
 ------------------------------------------------------------------------------------------------------ */
 
 #header {
-    position: fixed; top: 0; left: 0; z-index: 1100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
     padding: 0 20px;
-    width: 100%; height: 30px;
-    color: #eee; font-size: 11px; line-height: 14px; font-weight: bold;
-    background: #333;
-    background: -moz-linear-gradient(top, #444, #333);
-    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#333));
-}
-#header a:hover, #header a:active {
-    color: #ddd;
+    width: 100%;
+    height: 30px;
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: bold;
 }
 body.filebrowser.popup #header {
     display: none;
@@ -53,33 +55,34 @@ body.filebrowser.popup #header {
 /*  Branding, Bookmarks & User-Tools
 ------------------------------------------------------------------------------------------------------ */
 
-.branding, .admin-title, #bookmarks li, #user-tools li {
-    margin: 0; padding: 8px 10px;
+.branding, .admin-title, 
+#bookmarks li, #user-tools li {
+    margin: 0;
+    padding: 8px 10px;
 }
 .branding {
     display: none;
-    position: relative; float: right;
+    position: relative;
+    float: right;
     width: 10px;
-    border-left: 1px solid #343434;
     background: url('../img/grappelli-icon.png') 50% 50% no-repeat;
-    background-color: #262626;
 }
 .admin-title {
-    position: relative; float: left;
+    position: relative;
+    float: left;
     margin: 0 0 0 -20px;
     padding-left: 20px;
     padding-right: 20px;
-    border-left: 1px solid #404040;
-    border-right: 1px solid #303030;
 }
 #header ul li {
-    position: relative; float: left;
+    position: relative;
+    float: left;
 }
 
 
 /*  Bookmarks ................................................... */
 
-ul#bookmarks {
+/*ul#bookmarks {
     position: relative; float: left;
     border-left: 1px solid #404040;
     border-right: 1px solid #404040;
@@ -102,12 +105,12 @@ ul#bookmarks li.action {
 }
 ul#bookmarks li.action:last-child {
     padding-right: 5px;
-}
+}*/
 
 
 /*  Bookmarks Actions ................................................... */
 
-ul#bookmarks li.action a {
+/*ul#bookmarks li.action a {
     position: relative; display: block;
     margin: 0;
     width: 18px; height: 22px;
@@ -148,11 +151,11 @@ a.bookmark-manage, a.bookmark-manage:visited {
 a.bookmark-manage:hover, a.bookmark-manage:active {
     background-image: url('../img/icons/icon-bookmark_manage-hover.png');
 }
-
+*/
 
 /*  Bookmarks Listing ................................................... */
 
-ul#bookmarks-listing {
+/*ul#bookmarks-listing {
     display: none;
     position: absolute; z-index: 1000; top: 30px; left: -1px; float: none;
     margin: 0;
@@ -187,11 +190,11 @@ ul#bookmarks-listing li:last-child a {
     border-bottom-left-radius: 3px; -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px; -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px;
 }
-
+*/
 
 /*  Add Bookmark ................................................... */
 
-#bookmark-add {
+/*#bookmark-add {
     display: none;
     position: absolute; z-index: 1000; top: 30px; left: -196px;
     margin: 0; padding: 10px;
@@ -219,7 +222,7 @@ ul#bookmarks-listing li:last-child a {
 }
 #bookmark-add-cancel {
     float: left;
-}
+}*/
 
 
 /*  User Tools ................................................... */
@@ -227,11 +230,6 @@ ul#bookmarks-listing li:last-child a {
 #user-tools {
     position: absolute;
     right: 40px;
-    border-left: 1px solid #303030;
-}
-#user-tools>li {
-    border-left: 1px solid #404040;
-    border-right: 1px solid #303030;
 }
 #user-tools>li:last-child {
     padding-right: 20px;
@@ -244,29 +242,22 @@ ul#bookmarks-listing li:last-child a {
 
 li.user-options-container.open a.user-options-handler {
     display: block;
-    color: #eee !important;
 }
 ul.user-options {
     display: none;
 }
 li.user-options-container.open ul.user-options {
     display: block;
-    position: absolute; float: none; clear: both;
+    position: absolute;
+    float: none;
+    clear: both;
     z-index: 1000;
     margin: 7px -10px 0;
     width: 221px;
-    border-top: 1px solid #262626;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-    background: #333;
 }
 ul.user-options li {
-    float: none !important; clear: both;
-    border-top: 1px solid #404040;
-    border-bottom: 1px solid #292929;
-}
-ul.user-options li:last-child {
-    border-bottom: 0;
+    float: none !important;
+    clear: both;
 }
 ul.user-options li a {
     display: block;
@@ -278,13 +269,15 @@ ul.user-options li a {
 ------------------------------------------------------------------------------------------------------ */
 
 div#breadcrumbs {
-    position: fixed; top: 30px; left: 0; z-index: 1000;
-    width: 100%;
+    position: fixed;
+    top: 30px;
+    left: 0;
+    z-index: 1000;
     padding: 5px 10px 5px 20px;
-    color: #666; font-size: 11px; font-weight: bold; text-align: left;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background: #e6e6e6;
+    width: 100%;
+    font-size: 11px;
+/*    font-weight: bold;*/
+    text-align: left;
 }
 div#breadcrumbs a {
     padding: 10px 2px;
@@ -299,21 +292,23 @@ body.popup div#breadcrumbs {
 ------------------------------------------------------------------------------------------------------ */
 
 ul.messagelist {
-    position: relative; top: 0; z-index: 1001;
+    position: relative;
+    top: 0;
+    z-index: 1001;
     margin: 0 -20px;
 }
 ul.messagelist li {
     display: block;
-    font-size: 11px; font-weight: bold;
     padding: 3px 10px 4px 35px;
-    border-bottom: 1px solid #ccc;
-    background: #e8f2da url('../img/icons/icon-yes.png') 20px 50% no-repeat;
+    font-size: 11px;
+    font-weight: bold;
+    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
 }
 ul.messagelist.success li {
-    background: #e8f2da url('../img/icons/icon-yes.png') 20px 50% no-repeat;
+    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
 }
 ul.messagelist.error li {
-    background: #f2e6e6 url('../img/icons/icon-yes.png') 20px 50% no-repeat;
+    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
 }
 body.popup .breadcrumbs + ul.messagelist {
     top: 24px;
@@ -327,7 +322,10 @@ body.filebrowser.popup ul.messagelist {
 ------------------------------------------------------------------------------------------------------ */
 
 #masthead {
-    position: relative; float: left; clear: both; z-index: 900;
+    position: relative;
+    float: left;
+    clear: both;
+    z-index: 900;
     padding: 60px 0 10px;
     width: 100%;
 }
@@ -343,17 +341,6 @@ div.login {
 #login-form {
     margin: 0 auto;
 }
-.login  .module {
-    border: 0;
-    background: #333;
-}
-.login .module .row {
-    border-top: 1px solid #444;
-    border-bottom: 1px solid #222;
-}
-.login .module label {
-    color: #eee;
-}
 
 
 
@@ -361,7 +348,9 @@ div.login {
 ------------------------------------------------------------------------------------------------------ */
 
 #content {
-    position: relative; float: left; clear: both;
+    position: relative;
+    float: left;
+    clear: both;
     margin: 0 0 80px;
     padding: 0;
     width: auto;
@@ -380,11 +369,15 @@ body.filebrowser.popup #content {
 
 .container, 
 .container-grid {
-    position: relative; float: left; clear: both;
+    position: relative;
+    float: left;
+    clear: both;
     width: 940px;
 }
 .container-flexible {
-    position: relative; float: none; clear: both;
+    position: relative;
+    float: none;
+    clear: both;
     width: auto;
     height: 100%;
 }
@@ -395,10 +388,12 @@ body.filebrowser.popup #content {
 ------------------------------------------------------------------------------------------------------ */
 
 .column {
-    position: relative; float: left;
+    position: relative;
+    float: left;
 }
 .column.centered {
-    position: relative; float: none !important;
+    position: relative;
+    float: none !important;
     margin: 0 auto !important;
 }
 .span-flexible {

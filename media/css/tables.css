@@ -5,13 +5,15 @@
 ------------------------------------------------------------------------------------------------------ */
 
 table {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     border-spacing: none;
 }
 td, th {
-    font-size: 11px; line-height: 15px;
     vertical-align: top;
     padding: 10px 10px 9px;
+    font-size: 11px;
+    line-height: 15px;
 }
 th {
     text-align: left;
@@ -19,65 +21,26 @@ th {
     font-weight: bold;
 }
 
-tr.alt th, tr.alt td {
-    background: #f4f4f4;
-}
-.row1 th, .row1 td {
-    background: #f4f4f4;
-}
-.row2 th, .row2 td {
-    background: #fff;
-}
-.selected th, .selected td {
-    background: #ffd;
-}
 
 /*  Thead ................................................... */
 
 thead th,
 tfoot td {
-    color: #aaa;
     padding: 5px 10px;
-    font-size: 11px; line-height: 12px;
-    border-left: 1px solid #d4d4d4;
-    border-bottom: 1px solid #d4d4d4;
-    background: #eee;
-    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
-    background: -moz-linear-gradient(top, #eee, #e0e0e0);
+    font-size: 11px;
+    line-height: 12px;
+    font-weight: normal;
 }
-thead th:first-of-type {
-    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
-}
-thead th:last-of-type {
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
-}
-/*thead th.sortable {
-    background: #cee9f2;
-    background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#cee9f2));
-    background: -moz-linear-gradient(top, #e1f0f5, #cee9f2)
-}*/
 thead th.sorted {
-    border-bottom: 1px solid #ccc;
-    background: #e0e0e0;
-    background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#eee));
-    background: -moz-linear-gradient(top, #e0e0e0, #eee);
+    font-weight: bold;
 }
 thead th a {
-    position: relative; display: block;
-    margin: -5px -10px -4px; padding: 4px 10px 4px;
+    position: relative;
+    display: block;
+    margin: -5px -10px -4px;
+    padding: 4px 10px 4px;
     height: 100% !important;
     white-space: nowrap;
-}
-thead th a:link, thead th a:visited {
-    color: #59afcc;
-    border-top: 1px solid #fff;
-}
-thead th a:hover, thead th a:active, 
-thead th.sorted a {
-    color: #444;
-}
-thead th.sorted a {
-    border-top: 1px solid #ececec;
 }
 thead th.ascending a:after {
     content: url('../img/icons/icon-th-ascending.png');
@@ -89,36 +52,14 @@ thead th.descending a:after {
 
 /*  Tbody ................................................... */
 
-tbody th, tbody td {
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-tfoot td {
-    border-bottom: none;
-    border-top: 1px solid #d4d4d4;
-}
-
-thead th:first-child,
-tfoot td:first-child {
-    border-left: none;
-}
-
 thead th.optional {
     font-weight: normal !important;
 }
-
-fieldset table {
-    border-right: 1px solid #eee;
-}
-
 tr.row-label td {
-    font-size: 9px;
+    margin-top: -1px;
     padding-top: 2px;
     padding-bottom: 0;
-    border-bottom: none;
-    color: #666;
-    margin-top: -1px;
+    font-size: 9px;
 }
 
 
@@ -138,47 +79,6 @@ table.xfull {
 #changelist table {
     position: relative;
     margin: -1px !important;
-    border: 1px solid #bdbdbd;
-}
-#changelist tbody th, #changelist tbody td {
-    border: none;
-    border-top: 1px solid #e8e8e8;
-    border-left: 1px solid #e0e0e0;
-}
-#changelist tbody tr:first-child th, #changelist tbody tr:first-child td {
-    border-top: 1px solid #fff;
-}
-#changelist tbody tr th:first-child, #changelist tbody tr td:first-child {
-    border-left: none;
-}
-
-#changelist .changelist-results, 
-#changelist /*.changelist-results*/ table {
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-}
-
-#changelist /*.changelist-results*/ thead th:first-of-type, 
-#changelist /*.changelist-results*/ thead th:first-of-type a, 
-#changelist /*.changelist-results*/ thead *:first-child[style^="display: none"] + *, 
-#changelist /*.changelist-results*/ thead *:first-child[style^="display: none"] + * a {
-    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-}
-#changelist /*.changelist-results*/ thead th:last-of-type,
-#changelist /*.changelist-results*/ thead th:last-of-type a {
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
-}
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:first-child, 
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:first-child[style^="display: none"] + * {
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-}
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:last-child, 
-#changelist.editable /*.changelist-results*/ tbody tr:last-of-type td:nth-last-child(-n+2) {
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-}
-
-#changelist /*.changelist-results*/ thead *[style^="display: none"] + *, 
-#changelist /*.changelist-results*/ tbody tr *[style^="display: none"] + * {
-    border-left: 0;
 }
 
 #changelist form table tbody td, #changelist form table tbody th {
@@ -217,12 +117,6 @@ table#change-history {
 table#change-history tbody th {
     width: 150px;
 }
-table#change-history thead th:first-child {
-    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-}
-table#change-history thead th:last-child {
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
-}
 
 
 
@@ -237,15 +131,10 @@ table#change-history thead th:last-child {
 }
 
 
-/*  Overrides
+
+/*  Other Classes
 ------------------------------------------------------------------------------------------------------ */
 
-tbody th:first-child, tbody td:first-child {
-    border-left: none;
-}
-tbody tr:last-child td, tbody tr:last-child th {
-    border-bottom: none;
-}
 table .nowrap {
     white-space: nowrap;
 }

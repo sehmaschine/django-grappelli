@@ -13,9 +13,11 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    position: relative; z-index: 800;
+    position: relative;
+    z-index: 800;
     margin: 26px 0 10px;
-    font-size: 16px; line-height: 20px;
+    font-size: 16px;
+    line-height: 20px;
 }
 .pretitle + h1 {
     margin-top: 0;
@@ -38,26 +40,20 @@ h4, h5 {
 .module p.help, 
 p.help {
     padding: 5px 0;
-    color: #999;
-    font-size: 10px !important; line-height: 12px;
+    font-size: 10px !important;
+    line-height: 12px;
 }
 
 .fb_show + p.help a {
     display: inline-block;
     padding: 3px;
-    font-size: 0; line-height: 0;
-    border: 1px solid #309bbf;
-    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
-}
-.fb_show + p.help a:link, .fb_show + p.help a:visited {
-    border: 1px solid #309bbf;
-}
-.fb_show + p.help a:hover, .fb_show + p.help a:active {
-    border: 1px solid #444;
+    font-size: 0;
+    line-height: 0;
 }
 .fb_show + p.help a img {
     margin: 0;
-    font-size: 0; line-height: 0;
+    font-size: 0;
+    line-height: 0;
 }
 .container-grid > p:first-child, .container-flexible > p:first-child, 
 .container-grid .column > p:first-child, .container-flexible .column > p:first-child {
@@ -69,24 +65,14 @@ p.help {
 /* 	Links
 ------------------------------------------------------------------------------------------------------ */
 
-a { text-decoration: none; outline: none !important; }
-a:link, a:visited { color: #309bbf; }
-a:hover, a:active, a.selected { color: #444; }
-
-
-.dashboard h2 a:link, .dashboard h2 a:visited, 
-.dashboard h3 a:link, .dashboard h3 a:visited {
-    color: #444;
+a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
 }
-.dashboard h2 a:hover, .dashboard h2 a:active, 
-.dashboard h3 a:hover, .dashboard h3 a:active {
-    color: #309bbf;
+a.back {
+    font-weight: bold;
 }
-
-#header a:link, #header a:visited { color: #59AFCC; }
-#header a:hover, #header a:active { color: #444; }
-
-a.back { font-weight: bold; }
 
 
 
@@ -103,30 +89,28 @@ ul, li {
 ------------------------------------------------------------------------------------------------------ */
 
 blockquote {
-    margin-left: 2px; padding-left: 4px;
-    color: #777; font-size: 11px;
-    border-left: 5px solid #ddd;
+    margin-left: 2px;
+    padding-left: 4px;
+    font-size: 11px;
 }
 
 code, pre {
-    color: #666; font-size: 11px; font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
-    background: inherit;
+    font-size: 11px;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
 }
 
 pre.literal-block {
-    margin: 10px; padding: 6px 8px;
-    background: #eee;
+    margin: 10px;
+    padding: 6px 8px;
 }
-
-code strong { color: #930; }
 
 hr {
     clear: both;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     height: 1px;
-    color: #eee; font-size: 1px; line-height: 1px;
-    border: none;
-    background-color: #eee;
+    font-size: 1px;
+    line-height: 1px;
 }
 
 
@@ -149,13 +133,9 @@ td.focus {
     font-size: 12px;
 }
 .rte h3 {
-    margin: 10px -10px 10px; padding: 7px 10px 6px;
+    margin: 10px -10px 10px;
+    padding: 7px 10px 6px;
     font-size: 12px !important;
-    border-top: 1px solid #d4d4d4;
-    border-bottom: 1px solid #d4d4d4;
-}
-.rte .group h3 {
-    border-top: none;
 }
 .rte h2 + h3 {
     margin-top: -11px !important;
@@ -164,12 +144,7 @@ td.focus {
     margin: 10px 0 0;
     font-size: 12px;
 }
-.rte h3:last-child, 
-.rte h4:last-child {
-    border-bottom: none;
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-}
+
 .rte p {
     margin: 10px 0;
 }
@@ -210,15 +185,9 @@ td.focus {
     display: none !important;
 }
 
-.rte td {
-    border-left: 1px solid #f4f4f4;
-}
-.rte td:first-of-type {
-    border-left: none;
-}
-
 .rte ul, .rte ol {
-    margin: 10px 0 0 20px; padding: 0 0 0 10px;
+    margin: 10px 0 0 20px;
+    padding: 0 0 0 10px;
     font-weight: normal !important;
 }
 ul.rte ul, ul.rte ol, 
@@ -228,9 +197,9 @@ ol.rte ul, ol.rte ol {
     line-height: 14px;
 }
 .rte ul li, .rte ol li {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
 }
-
 .rte ul li {
     list-style-type: disc;
 }
@@ -241,15 +210,9 @@ ol.rte ul, ol.rte ol {
 .delete-confirmation ul.rte>li {
     padding-bottom: 9px;
     font-weight: bold;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #e0e0e0;
-}
-.delete-confirmation ul.rte>li:first-child {
-    border-top: 0;
 }
 .delete-confirmation ul.rte>li:last-child {
     padding-bottom: 0;
-    border-bottom: 0;
 }
 .delete-confirmation ul.rte>li+li {
     padding-top: 8px !important;
@@ -259,7 +222,6 @@ ol.rte ul, ol.rte ol {
 }
 .delete-confirmation ul.rte>li>ul>li {
     list-style-type: none;
-    border-top: 1px dashed #e0e0e0;
     margin: 0 0 0 -30px !important;
     padding: 5px 0;
 }
@@ -273,16 +235,9 @@ ol.rte ul, ol.rte ol {
 .rte dd ul, .rte dd ol {
     margin-top: 0;
 }
-
 .rte blockquote {
     margin: 10px;
 }
-
-.rte blockquote table {
-    border: 1px solid #d4d4d4;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-}
-
 .rte dl, .rte dt, .rte dd {
     margin: 0;
 }
@@ -296,10 +251,10 @@ ol.rte ul, ol.rte ol {
     margin-top: 5px;
 }
 
+
+
+/*  Other Styles
+------------------------------------------------------------------------------------------------------ */
+
 .small { font-size: 10px; }
 .fw-normal { font-weight: normal; }
-.warning { color: #bf3030; }
-.quiet { color: #999; }
-
-
-

@@ -5,28 +5,23 @@
 ------------------------------------------------------------------------------------------------------ */
 
 form {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 fieldset {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .row p.help {
-    margin: 3px 0 2px 161px;
+    margin: 3px 0 2px 0;
     padding: 0;
-    
-    margin-left: 0;
 }
 
 .row ul.radio-list + p.help, 
 .row ul.checkbox-list + p.help {
     margin-top: -3px;
-}
-.row input[type=checkbox] + label + p.help {
-    margin-left: 161px;
-    
-    margin-left: 0;
 }
 
 
@@ -37,22 +32,22 @@ fieldset {
 .errornote {
     margin-bottom: 7px;
     padding: 8px 10px;
-    color: #f7f7f7; font-size: 12px; font-weight: bold;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-    background: #bf3030;
+    font-size: 12px;
+    font-weight: bold;
 }
 /* little fix to accomodate the top aligned login form .. */
 .errornote.login-errors {
-    margin-bottom: 0px!important; padding: 8px 12px;
-    border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;
+    margin-bottom: 0 !important;
+    padding: 8px 12px;
 }
 ul.errorlist {
     margin: 3px 0 -3px;
-    color: #bf3030; font-size: 11px; line-height: 16px; font-weight: bold;
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: bold;
 }
 ul.errorlist li {
-    padding: 0 5px 0 160px;
-    padding-left: 0;
+    padding: 0 5px 0 0;
 }
 p.errornote + ul.errorlist {
     margin-bottom: 8px;
@@ -84,9 +79,6 @@ table ul.errorlist li,
 p.errornote + ul.errorlist li {
     padding-left: 10px;
 }
-.error input, .error select, .errors input, .errors select {
-    border: 1px solid #bf3030 !important;
-}
 
 
 
@@ -95,8 +87,8 @@ p.errornote + ul.errorlist li {
 
 label {
     margin: 5px 0 -5px;
-/*    width: 140px;*/
-    color: #444; font-size: 11px; line-height: 15px;
+    font-size: 11px;
+    line-height: 15px;
     cursor: pointer;
 }
 .required label, label.required, 
@@ -106,10 +98,7 @@ label {
 
 .module label {
     display: block;
-/*    float: left;*/
-/*    margin-right: 20px;*/
     padding: 0 0 6px;
-/*    width: 140px;*/
 }
 .module .vCheckboxLabel {
     display: inline;
@@ -127,23 +116,10 @@ label {
 input, textarea, select, button {
     margin: 0;
     vertical-align: middle;
-    color: #666; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;
-    border: 1px solid #bbb;
-    border-color: #ccc #ddd #ddd #ccc;
-    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-    outline: none;
-}
-input, textarea, select {
-    box-shadow: 0 1px 3px #eaeaea inset; -moz-box-shadow: 0 1px 3px #eaeaea inset; -webkit-box-shadow: 0 1px 3px #eaeaea inset;
-}
-
-*:focus, input:focus, textarea:focus, select:focus {
-    border-color: #999 #bbb #bbb #999;
-}
-select:focus * {
-    border: none !important;
-    outline: none !important;
 }
 
 
@@ -165,17 +141,17 @@ input[type=text], input[type=password] {
 /*  Searchbar ................................................... */
 
 form#changelist-search {
-    position: relative; float: left; clear: both;
-    border: 1px solid #fff;
-    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+    position: relative;
+    float: left;
+    clear: both;
 }
 input#searchbar {
-    position: relative; float: left;
+    position: relative;
+    float: left;
     padding-left: 8px;
     width: 218px;
     height: 26px;
     font-size: 11px;
-    border-radius: 14px; -moz-border-radius: 14px; -webkit-border-radius: 14px;
 }
 
 
@@ -192,7 +168,7 @@ input[type=file] {
     position: relative;
     top: 1px;
     height: auto;
-    border: none;
+    border: 0;
 }
 .th input[type=file], 
 .td input[type=file] {
@@ -231,10 +207,6 @@ select {
     padding: 4px 3px 4px 3px;
     height: 25px;
 }
-/*option {
-    border: 2px solid #e4f !important;
-}*/
-
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select {
         padding: 4px 28px 4px 8px;
@@ -251,14 +223,6 @@ select[multiple=multiple] {
         background-image: none;
     }
 }
-option, 
-select[multiple=multiple] option {
-    padding-right: 30px;
-    border-bottom: 1px dotted #ddd !important;
-}
-option:last-child {
-    border-bottom: none;
-}
 
 
 /*  Checkbox, Radio ................................................... */
@@ -268,10 +232,7 @@ input[type=checkbox], input[type=radio] {
     margin: 0;
 }
 .row input[type=checkbox], .row input[type=radio] {
-    margin-left: 160px;
-    
     margin-left: 0;
-    
     margin-right: 5px;
 }
 .th>input[type=radio], 
@@ -324,7 +285,8 @@ ul.checkboxlist input[type=checkbox] {
 }
 
 .row input[type=checkbox] + label {
-    position: relative; float: none;
+    position: relative;
+    float: none;
     top: 0;
     display: inline-block;
     margin-bottom: -2px;
@@ -340,7 +302,9 @@ ul.checkboxlist input[type=checkbox] {
 }
 
 .row label + input + p.help input[type=checkbox] {
-    position: relative; top: -2px; margin: 0 3px 0 0;
+    position: relative;
+    top: -2px;
+    margin: 0 3px 0 0;
 }
 
 ul.tools .delete-handler-container input[type=checkbox] {
@@ -354,20 +318,17 @@ ul.radiolist, ul.checkboxlist {
     position: relative;
     float: none;
     display: inline-block;
-    margin: 5px 0 5px 160px;
-    
-    margin-left: 0;
-    
+    margin: 5px 0;
     padding: 0;
     font-size: 11px;
     line-height: 15px;
     font-weight: normal;
 }
-label + ul.radiolist, label + ul.checkboxlist, 
+/*label + ul.radiolist, label + ul.checkboxlist, 
 th ul.radiolist, th ul.checkboxlist, .th ul.radiolist, .th ul.checkboxlist, 
 td ul.radiolist, td ul.checkboxlist, .td ul.radiolist, .td ul.checkboxlist {
     margin-left: 0;
-}
+}*/
 
 ul.radiolist li + li, ul.checkboxlist li + li {
     margin-top: 2px;
@@ -390,10 +351,7 @@ ul.radiolist.inline li, ul.checkboxlist.inline li {
     padding-right: 20px;
 }
 .module.tbody ul.radiolist.inline, .module.tbody ul.checkboxlist.inline {
-/*    float: left;*/
     display: inline;
-/*    max-width: 400px;*/
-/*    background: #4ef;*/
     white-space: normal;
 }
 .module.tbody ul.radiolist.inline li, .module.tbody ul.checkboxlist.inline li {
@@ -409,14 +367,6 @@ ul.radiolist label, ul.checkboxlist label {
     padding: 0;
     width: auto !important;
     white-space: nowrap;
-}
-
-
-/*  Autocomplete Fields ................................................... */
-
-.vAutocompleteSearchField, 
-.vM2MAutocompleteSearchField {
-    background: #eaf5f8;
 }
 
 
@@ -438,7 +388,8 @@ ul.radiolist label, ul.checkboxlist label {
 }
 #changelist table input[type=radio], 
 #changelist table input[type=checkbox] {
-    position: relative; top: -1px;
+    position: relative;
+    top: -1px;
 }
 #changelist table thead input[type=radio], 
 #changelist table thead input[type=checkbox] {
@@ -750,12 +701,6 @@ input.vM2MAutocompleteSearchField {
     height: 118px;
 }
 
-input[readonly],
-textarea[readonly],
-select[readonly] {
-    background:#f4f4f4;
-}
-
 
 
 /* Large Form Elements in Change-Form: Widths & Heights
@@ -774,6 +719,7 @@ select[readonly] {
 .row select {
     max-width: 758px;
 }
+
 
 
 /* Form Elements in Changelist-Results Table & Tabular Modules: Widths & Heights

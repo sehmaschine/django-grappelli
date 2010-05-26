@@ -22,15 +22,10 @@ fieldset.module label + p {
 
 .module {
     margin: 0 0 7px;
-    border: 1px solid #bdbdbd;
-    background: #eee;
 }
 
 #changelist .span-flexible .module + ul.submit-row {
     margin-top: 10px;
-}
-.rte .module {
-    background: transparent;
 }
 .module:empty {
     display: none;
@@ -39,13 +34,9 @@ fieldset.module label + p {
 
 /*  Nested Modules Basics ......................................... */
 
-.module .module {
-    margin: 0;
-    border: none;
-}
+.module .module, 
 .module fielset.module {
     margin: 0;
-    border: none;
 }
 
 
@@ -56,18 +47,6 @@ fieldset.module label + p {
 .group {
     margin: 0 -4px 7px;
     padding: 2px;
-    border: 2px solid;
-}
-
-.group.collapse.closed {
-    border-color: #e0e0e0;
-}
-.group, 
-.group.collapse.closed:hover {
-    border-color: #c7c7c7;
-}
-.group.ui-collapsible-closed .ui-collapsible-toggle {
-    display: block !important;
 }
 
 
@@ -76,92 +55,37 @@ fieldset.module label + p {
 ------------------------------------------------------------------------------------------------------ */
 
 
-/*  1st Level Borders Top (Dark/Bright) ......................................... */
+/*  1st Level Elements ......................................... */
 
 .group h2, 
 .module h2 {
     padding: 6px 10px;
-    border-bottom: 1px solid #bdbdbd;
-    background: #d6d6d6;
-}
-.group h2 {
-    border: 1px solid #bdbdbd;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 .group h2+.tools+* {
     margin-top: 2px;
 }
-.module h2+*, 
-.module h2+.tools+* {
-    border-top: 1px solid #fff;
-}
-.module h2+.module, 
-.module h2+.tools, 
-.module h2+.tools+.module {
-    border-top: none !important;
-}
 
 
-/*  2nd Level Borders Top (Dark/Bright) ......................................... */
-
-.module .module {
-    border-top: 1px solid #c7c7c7;
-}
-#changelist .span-flexible .module .module:first-child {
-    border-top: none;
-}
-.module .module>*:first-child {
-    border-top: 1px solid #eee;
-}
+/*  2nd Level Elements (Dark/Bright) ......................................... */
 
 .group h3, 
 .module h3 {
     margin: 0;
     padding: 5px 10px;
-    border-bottom: 1px solid #c7c7c7;
-    background: #e0e0e0;
-}
-.module h3+*, 
-.module h3+.tools+* {
-    border-top: 1px solid #fff;
-}
-.module h3+.module, 
-.module h3+.tools, 
-.module h3+.tools+.module {
-    border-top: none !important;
 }
 
 
-/*  3rd Level Borders Top (Dark/Bright) ......................................... */
-
-.group .module .module, 
-.module .module .module {
-    border-top: 1px solid #d4d4d4;
-}
-.group .module .module>*:first-child, 
-.module .module .module>*:first-child {
-    border-top: 1px solid #f4f4f4;
-}
+/*  3rd Level Elements ......................................... */
 
 .group h4, 
 .module h4 {
     margin: 0;
-    padding: 3px 10px 4px 10px;
-    border-bottom: 1px solid #d4d4d4;
-    background: #e8e8e8;
-}
-.module h4+*, 
-.module h4+.tools+* {
-    border-top: 1px solid #fff;
-}
-.module h4+.tools {
-    border-top: none !important;
+    padding: 4px 10px 4px 10px;
 }
 
 .module .description {
     padding: 8px 10px;
     font-size: 11px;
-    border-bottom: 1px solid #d4d4d4;
 }
 
 
@@ -215,85 +139,23 @@ fieldset.module label + p {
     margin-top: 1px !important;
 }
 
-.module.collapse.closed h2.collapse-handler, 
-.module.collapse.closed h3.collapse-handler, 
-.module.collapse.closed h4.collapse-handler {
-    border-bottom: none;
-}
 
 
-/*  1st Level Collapsible-Handler ......................................... */
-
-.collapse h2.collapse-handler {
-    background: #a1d4e5;
-}
-.collapse h2.collapse-handler:hover, 
-.collapse.open h2.collapse-handler {
-    background: #bcdfeb;
-}
-
-
-/*  2nd Level Collapsible-Handler ......................................... */
-
-.group .collapse h3.collapse-handler, 
-.module .collapse h3.collapse-handler {
-    background: #cee9f2;
-}
-.group .collapse h3.collapse-handler:hover, 
-.module .collapse h3.collapse-handler:hover, 
-.group .collapse.open h3.collapse-handler, 
-.module .collapse.open h3.collapse-handler {
-    background: #e1f0f5;
-}
-.module .collapse h3.collapse-handler {
-    border-top: 1px solid #e1f0f5;
-}
-
-
-/*  3rd Level Collapsible-Handler ......................................... */
-
-.group .module .collapse h4.collapse-handler, 
-.module .module .collapse h4.collapse-handler {
-    border-top: 1px solid #f0f7fa;
-    background: #e1f0f5;
-}
-.group .collapse h4.collapse-handler:hover, 
-.module .collapse h4.collapse-handler:hover, 
-.group .collapse.open h4.collapse-handler, 
-.module .collapse.open h4.collapse-handler {
-    background: #ebf2f5;
-}
-
-
-
-/* Row
+/*  Row
 ------------------------------------------------------------------------------------------------------ */
 
 .row {
     padding: 5px 10px;
     font-weight: bold;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #e0e0e0;
 }
-.row.first, 
-.row:first-child, 
-fieldset.module  input[type=hidden] + .row {
-    border-top: 0 !important;
-}
-.row.last, 
-.row:last-child, 
-.row:last-of-type, 
-fieldset.module > .row.last, 
-fieldset.module > .row:last-child {
-    border-bottom: 0 !important;
-}
+
 fieldset.module .row + .module {
     margin-top: -1px !important;
 }
 
 
 
-/* Cell
+/*  Cell
 ------------------------------------------------------------------------------------------------------ */
 
 .row .cell {
@@ -302,8 +164,6 @@ fieldset.module .row + .module {
     margin-bottom: -5px;
     padding: 5px 10px;
     width: auto;
-    border-right: 1px solid #e0e0e0;
-    border-left: 1px solid #fff;
 }
 .row .cell + .cell {
     padding-left: 18px;
@@ -323,7 +183,7 @@ fieldset.module .row {
 
 
 
-/* Fieldset Cell
+/*  Fieldset Cell
 ------------------------------------------------------------------------------------------------------ */
 
 fieldset.module .cell {
@@ -336,13 +196,6 @@ fieldset.module .cell {
 fieldset.module .cell + fieldset.module .cell {
     padding-left: 18px;
 }
-fieldset.module .cell:first-child {
-    border-left: none !important;
-}
-fieldset.module .cell:last-child, 
-fieldset.module .cell.last {
-    border-right: none !important;
-}
 fieldset.module .cell[class*="span"] {
     margin-right: 0;
 }
@@ -352,10 +205,8 @@ fieldset.module .cell[class*="span"]:first-child {
 fieldset.module .cell input[class*="span"] {
     margin-right: 0;
 }
-
 fieldset.module .cell.last + fieldset.module .cell {
     clear: left;
-    border-left: none !important;
     padding-left: 0;
 }
 fieldset.module .cell.last + fieldset.module .cell, 
@@ -373,10 +224,8 @@ fieldset.module .cell.last + fieldset.module .cell + * + fieldset.module .cell {
     display: table;
     margin: 0 0 -2px;
     width: 100%;
-    border: 0;
     border-collapse: separate;
     border-spacing: 0 2px;
-    background: transparent;
 }
 h2 + .module.table, 
 h2 + * + .module.table, 
@@ -398,19 +247,15 @@ h2 + * + * + .module.table {
 }
 .module.thead, 
 .module.tfoot {
-    color: #aaa;
     font-size: 11px;
     font-weight: bold;
-    background: transparent;
 }
 .module.table .tr {
     display: table-row;
-    background: transparent;
 }
 
 .module.tbody {
     display: table-row-group;
-    background: transparent;
 }
 
 .module.table .th, 
@@ -423,27 +268,13 @@ h2 + * + * + .module.table {
     height: 100%;
     vertical-align: top;
     white-space: nowrap;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #e0e0e0;
 }
-.module.thead .th:last-of-type, 
-.module.thead .td:last-of-type, 
-.module.tfoot .td:last-of-type {
-    border-right: 0;
-}
-.module.table .module.thead .th, 
-.module.table .module.thead .td {
-    border-top: 0;
-    background: 0;
-}
+
 .module.tbody .th, 
 .module.tbody .td {
     padding-top: 5px;
     padding-bottom: 5px;
 /*    max-width: 758px;*/
-    border-top: 1px solid #d4d4d4;
-    border-bottom: 1px solid #d4d4d4;
-    background: #eee;
 }
 .module.table .th:first-of-type, 
 .module.table .td:first-of-type {
@@ -453,10 +284,6 @@ h2 + * + * + .module.table {
 .module.tbody .td.tools {
     padding-left: 0;
     width: 100%;
-}
-.module.tbody .th:first-of-type, 
-.module.tbody .td:first-of-type {
-    border-left: 1px solid #ccc;
 }
 
 .empty-form {
@@ -470,8 +297,6 @@ h2 + * + * + .module.table {
 
 .module.add-item {
     height: 28px;
-    border-color: transparent;
-    background: #fff;
 }
 .module.add-item>a {
     position: relative;
@@ -482,43 +307,18 @@ h2 + * + * + .module.table {
 
 
 
-/*  Predelete
------------------------------------------------------------------------------------------------------- */
-
-.predelete h2, .predelete h2.collapse-handler, 
-.predelete h3, .predelete h3.collapse-handler, 
-.predelete h4, .predelete h4.collapse-handler {
-    background: #f2e6e6 !important;
-}
-.predelete h2.collapse-handler:hover, 
-.predelete h3.collapse-handler:hover, 
-.predelete h4.collapse-handler:hover, 
-.collapse.open .predelete h2.collapse-handler, 
-.collapse.open .predelete h3.collapse-handler, 
-.collapse.open .predelete h4.collapse-handler {
-    background: #f2e6e6 !important;
-}
-.predelete, 
-.predelete .module,
-.predelete .th, 
-.predelete .td {
-    background: #f2e6e6 !important;
-}
-
-
-
 /*  Selectors
 ------------------------------------------------------------------------------------------------------ */
 
 .selector {
-    position: relative; float: left; overflow: hidden;
+    position: relative;
+    float: left;
+    overflow: hidden;
     width: 758px;
 }
 .selector-available, .selector-chosen {
     float: left;
     width: 366px;
-    border: 1px solid #ccc;
-    background: #ddd;
 }
 .stacked .selector-available, .stacked .selector-chosen {
     width: 756px;
@@ -529,19 +329,13 @@ h2 + * + * + .module.table {
     font-size: 12px;
     line-height: 13px;
     font-weight: bold;
-    border: 0;
-    border-bottom: 1px solid #d0d0d0;
-    background: transparent;
 }
 .selector .selector-filter {
     padding: 3px 5px 2px 2px;
     min-height: 25px;
-    color: #666;
     font-weight: bold;
     line-height: 25px;
     text-indent: 25px;
-    border-top: 1px solid #e4e4e4;
-    border-bottom: 1px solid #e4e4e4;
     background: url('../img/icons/icon-searchbox.png') 6px 50% no-repeat;
 }
 .selector .selector-filter input[type=text] {
@@ -557,16 +351,19 @@ h2 + * + * + .module.table {
 .selector .selector-filter img {
     display: none;
 }
+.selector .selector-chosen .selector-filter:after {
+    content: " " url('../img/icons/icon-selector_add-m2m_horizontal-hover.png');
+    opacity: .75;
+}
+.selector.stacked .selector-chosen .selector-filter:after {
+    content: " " url('../img/icons/icon-selector_add-m2m_vertical-hover.png');
+}
 .selector select[multiple=multiple] {
     margin: 0;
     padding-left: 3px;
     max-width: 367px !important;
     width: 367px !important;
     height: 200px;
-    border-top: 1px solid #d0d0d0;
-    border-bottom: 1px solid #d0d0d0;
-    border-left: 0;
-    -moz-border-radius: 0; -webkit-border-radius: 0;
 }
 .selector.stacked select[multiple=multiple] {
     width: 757px !important;
@@ -576,7 +373,6 @@ h2 + * + * + .module.table {
     display: none;
     position: relative;
     top: -1px;
-    border-top: 0;
 }
 .selector ul.selector-chooser {
     float: left;
@@ -595,7 +391,7 @@ a.selector-add, a.selector-remove {
     display: block;
     width: 18px;
     height: 18px;
-    color: transparent;
+    color: transparent !important;
     background-position: 50% 0;
     background-repeat: no-repeat;
 }
@@ -630,44 +426,20 @@ a.selector-chooseall, a.selector-clearall {
     font-size: 11px;
     line-height: 13px;
     font-weight: bold;
-    border-top: 1px solid #e4e4e4;
 }
 
 
 
-/* Navigation, Table of Contents
+/*  Link-List, Actions, Feed, Table of Contents
 ------------------------------------------------------------------------------------------------------ */
 
-.module.link-list, 
-.module.link-list .module, 
-.module.actions, 
-.module.actions .module, 
-.module.feed, 
-.module.feed .module {
-    background: #fff;
-}
 .link-list ul li, 
 .feed ul li, 
 .table-of-contents ul li {
     padding: 0;
-    font-size: 11px; line-height: 15px; font-weight: bold;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #e0e0e0;
-}
-.actions ul li {
-    color: #999;
-}
-.actions ul li:first-child, 
-.link-list ul li:first-child, 
-.feed ul li:first-child, 
-.table-of-contents ul li:first-child {
-    border-top: none;
-}
-.actions ul li:last-child, 
-.link-list ul li:last-child, 
-.feed ul li:last-child, 
-.table-of-contents ul li:last-child {
-    border-bottom: none;
+    font-size: 11px;
+    line-height: 15px;
+    font-weight: bold;
 }
 .link-list ul li a, 
 .feed ul li a, .feed ul li span, 
@@ -679,10 +451,6 @@ a.selector-chooseall, a.selector-clearall {
     background-color: transparent;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-}
-.link-list ul li.selected a, 
-.table-of-contents ul li.selected a {
-    color: #444;
 }
 
 .link-list ul li a, 
@@ -699,19 +467,16 @@ a.external {
 .dashboard a.external {
     background-position: 10px 8px;
 }
-/*.dashboard*/ a.internal:link, /*.dashboard*/ a.internal:visited {
+a.internal:link, a.internal:visited {
     background-image: url('../img/icons/icon-navigation-internal.png');
 }
-/*.dashboard*/ a.internal:hover, /*.dashboard*/ a.internal:active {
-    color: #666;
+a.internal:hover, a.internal:active {
     background-image: url('../img/icons/icon-navigation-internal-hover.png');
 }
-/*.dashboard*/ a.external:link, /*.dashboard*/ a.external:visited {
-    color: #83c3d9;
+a.external:link, a.external:visited {
     background-image: url('../img/icons/icon-navigation-external.png');
 }
-/*.dashboard*/ a.external:hover, /*.dashboard*/ a.external:active {
-    color: #666;
+a.external:hover, a.external:active {
     background-image: url('../img/icons/icon-navigation-external-hover.png');
 }
 
@@ -729,10 +494,13 @@ a.external {
 ------------------------------------------------------------------------------------------------------ */
 
 ul.actions {
-    position: relative; float: right; clear: both;
+    position: relative;
+    float: right;
+    clear: both;
 }
 ul.actions li {
-    position: relative; float: left;
+    position: relative;
+    float: left;
     margin-left: 20px;
 }
 ul.actions li.change-link {
@@ -749,12 +517,11 @@ ul.actions li a {
     padding: 4px 5px 4px 25px;
     font-size: 11px;
     line-height: 12px;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #e0e0e0;
 }
 
 .actions ul li a {
-    margin-left: -15px; padding-left: 15px;
+    margin-left: -15px;
+    padding-left: 15px;
     font-weight: bold;
     background-position: 0 50%;
     background-repeat: no-repeat;
@@ -774,20 +541,8 @@ ul.actions li a {
 }
 
 .actions li.delete-link {
-    color: #666;
     text-decoration: line-through;
     background: url('../img/icons/icon-actions-delete-link.png') 10px 7px no-repeat;
-}
-
-
-
-/*  Module Changelist Filters
------------------------------------------------------------------------------------------------------- */
-
-.module.changelist-filters {
-    position: relative;
-    color: #666;
-    border: 1px solid #d9d9d9;
 }
 
 
@@ -797,10 +552,10 @@ ul.actions li a {
 
 .module.search, 
 .module.filter {
-    position: relative; float: right;
+    position: relative;
+    float: right;
     z-index: 1000;
     padding: 8px 10px;
-    border: 0;
 }
 .module.search {
     padding-right: 0;
@@ -809,11 +564,6 @@ ul.actions li a {
 .module.filter .pulldown-container {
     position: absolute;
     width: inherit;
-    border: 1px solid #fff;
-}
-.module.filter.open .pulldown-container {
-    border-color: #ccc;
-    box-shadow: 0 0 10px #444; -moz-box-shadow: 0 0 10px #444; -webkit-box-shadow: 0 0 10px #444;
 }
 
 a.button.toggle-filters {
@@ -821,38 +571,25 @@ a.button.toggle-filters {
     margin: 0;
     padding: 4px 20px 4px 8px;
 }
-.open a.button.toggle-filters, 
-.open.selected a.button.toggle-filters {
-    border-color: transparent !important;
-}
 a.button.toggle-filters:link, a.button.toggle-filters:visited {
-    color: #309bbf;
-    border-color: #ddd;
     background: transparent url('../img/icons/icon-dropdown.png') 100% 3px no-repeat;
 }
 .selected a.button.toggle-filters:link, .selected a.button.toggle-filters:visited {
-    color: #444;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
 }
 .open a.button.toggle-filters, .selected a.button.toggle-filters, 
 .selected a.button.toggle-filters:hover, .selected a.button.toggle-filters:active, 
 a.button.toggle-filters:hover, a.button.toggle-filters:active {
-    color: #666;
-    border-color: #ccc;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
 }
 .selected a.button.toggle-filters:link, .selected a.button.toggle-filters:visited {
-    color: #666;
-    border-color: #ddd;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
 }
 .open a.button.toggle-filters, 
 .open.selected a.button.toggle-filters, 
 .selected a.button.toggle-filters:hover, .selected a.button.toggle-filters:active, 
 a.button.toggle-filters:hover, a.button.toggle-filters:active {
-    color: #666;
-    border-color: #ccc;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
+    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
 }
 
 .filter-pulldown {
@@ -861,9 +598,6 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
     z-index: 1000;
     margin: -1px 0;
     padding: 0 10px 10px;
-    border: 1px solid transparent;
-    border-top: 0;
-    background: #e1f0f5;
 }
 .filter-pulldown .filter {
     position: relative;
@@ -874,8 +608,8 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
     width: 100% !important;
 }
 .filter-pulldown label {
-    color: #999;
-    margin: 0 0 -2px; padding: 0;
+    margin: 0 0 -2px;
+    padding: 0;
     width: 100% !important;
     line-height: 12px;
     font-weight: bold;
@@ -886,41 +620,37 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 /* Module Date Hierarchy
 ------------------------------------------------------------------------------------------------------ */
 
-.module.date-hierarchy {
-    padding: 3px 10px;
-    border: 1px solid #d9d9d9;
-    background: #eee;
-}
 .module + .module.date-hierarchy {
     margin-top: -8px;
 }
-.module + .module.date-hierarchy .form-row {
-    border-top: 1px solid #fff !important;
-}
 
 .date-hierarchy ul {
-    position: relative; float: left; clear: both;
+    position: relative;
+    float: left;
+    clear: both;
     font-size: 11px;
     line-height: 16px;
     font-weight: bold;
 }
 .date-hierarchy ul li {
-    position: relative; float: left;
+    position: relative;
+    float: left;
     margin-right: 10px;
 }
 .module.date-hierarchy ul a, 
 .module.date-hierarchy ul span {
     padding: 2px 5px 1px;
+    font-weight: normal;
 }
 .date-hierarchy ul li a.date-hierarchy-back {
     padding-left: 10px;
     background: 0 50% no-repeat scroll;
 }
+
 .date-hierarchy a.date-hierarchy-back:link, .date-hierarchy a.date-hierarchy-back:visited {
     background-image: url('../img/icons/icon-date-hierarchy-back.png');
 }
 .date-hierarchy a.date-hierarchy-back:hover, .date-hierarchy a.date-hierarchy-back:active {
-    color: #666;
     background-image: url('../img/icons/icon-date-hierarchy-back-hover.png');
 }
 
@@ -931,11 +661,10 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 
 .module.pagination {
     padding: 8px 10px;
-    border: 1px solid #d9d9d9;
 }
 .module .module.pagination {
-    position: relative; float: left;
-    border: 0;
+    position: relative;
+    float: left;
 }
 ul.pagination {
     position: relative;
@@ -944,14 +673,12 @@ ul.pagination {
     padding: 0;
     width: auto;
     font-weight: bold;
-    border-top: none !important;
 }
 ul.pagination li {
     position: relative;
     float: left;
     display: block;
     margin-right: 3px;
-    border: 1px solid #fff;
 }
 ul.pagination li.results {
     margin-right: 10px;
@@ -970,29 +697,12 @@ ul.pagination a {
     min-width: 25px;
     font-size: 11px;
     font-weight: bold;
-    border: 1px solid;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-}
-ul.pagination a:link, .pagination a:visited {
-    color: #59afcc;
-    border-color: #d9d9d9;
-}
-ul.pagination a:hover, .pagination a:active {
-    color: #444;
-    border-color: #bdbdbd;
-    background: #e0e0e0;
-}
-ul.pagination span {
-    color: #444;
-    border-color: #bdbdbd;
-    background: #e0e0e0;
 }
 ul.pagination li.separator span {
     padding: 4px 0;
     min-width: 10px;
     font-size: 14px;
-    border-color: transparent;
-    background: transparent;
 }
 ul.pagination li.showall {
     margin-left: 7px;
@@ -1009,7 +719,7 @@ ul.pagination li.showall {
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-results {
-    background: #eee url('/media/admin/img/backgrounds/changelist-results.png') repeat scroll !important;
+    background: url('/media/admin/img/backgrounds/changelist-results.png') repeat scroll !important;
 }
 .changelist-actions + .changelist-results, 
 .changelist-results + .changelist-actions {
@@ -1025,16 +735,11 @@ ul.pagination li.showall {
     display: none;
     position: relative;
     margin-bottom: 0;
-    color: #ccc;
-    background: #eee;
-}
-.module.changelist-actions.all-selected, 
-.module.changelist-actions.all-selected + .module.changelist-results {
-    background: #ffffe6 !important;
 }
 
 .module.changelist-actions ul {
-    position: relative; float: left;
+    position: relative;
+    float: left;
     display: inline;
     font-size: 11px;
     line-height: 16px;
@@ -1042,10 +747,10 @@ ul.pagination li.showall {
     margin: -1px 10px -1px 0;
 }
 .module.changelist-actions ul li {
-    position: relative; float: left;
+    position: relative;
+    float: left;
     display: block;
     margin-right: 3px;
-    border: 1px solid #444;
 }
 .module.changelist-actions ul li.all {
     margin-right: 10px;
@@ -1059,23 +764,8 @@ ul.pagination li.showall {
     font-weight: bold;
     border: 1px solid;
 }
-.module.changelist-actions ul a:link, .module.changelist-actions ul a:visited {
-    color: #59afcc;
-    border-color: #333;
-    background: #333;
-}
-.module.changelist-actions ul a:hover, .module.changelist-actions ul a:active {
-    color: #ccc;
-    border-color: #333;
-    background: #555;
-}
-.module.changelist-actions ul span {
-    color: #ccc;
-    border-color: #333;
-}
 .module.changelist-actions ul span span {
     padding: 0;
-    border: 0;
 }
 
 .module.changelist-actions #action-toggle {
@@ -1106,10 +796,7 @@ ul.pagination li.showall {
     padding: 10px 20px;
     width: 100%;
     opacity: 1;
-    border: 0;
-    border-top: 1px solid #bdbdbd;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-    background: #333;
 }
 
 .module.footer {
@@ -1126,14 +813,16 @@ ul.pagination li.showall {
 
 .module.submit-row {
     width: 100%;
-    border: 0;
 }
 ul.submit-row {
-    position: relative; float: left; clear: both;
+    position: relative;
+    float: left;
+    clear: both;
     width: 100%;
 }
 .pagination + ul.submit-row {
-    float: right; clear: none;
+    float: right;
+    clear: none;
     width: 25%;
 }
 ul.submit-row li {
