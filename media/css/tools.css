@@ -229,21 +229,12 @@ h1 + .tools a.focus {
 }
 
 .tools a.delete-handler:link, .tools a.delete-handler:visited, 
-.predelete .tools a.delete-handler:hover, .predelete .tools a.deletelink:active {
+.predelete .tools a.delete-handler:hover, .predelete .tools a.delete-handler:active {
     background-image: url('../img/icons/icon-tools-delete-handler.png');
 }
 .tools a.delete-handler:hover, .tools a.delete-handler:active, 
 .predelete .tools a.delete-handler:link, .predelete .tools a.delete-handler:visited {
     background-image: url('../img/icons/icon-tools-delete-handler-hover.png');
-}
-
-.has_original .tools a.delete-handler:link, .has_original .tools a.delete-handler:visited,
-.has_original.predelete .tools a.delete-handler:hover, .has_original.predelete .tools a.deletelink:active {
-    background-image: url('../img/icons/icon-tools-trash-handler.png');
-}
-.has_original .tools a.delete-handler:hover, .has_original .tools a.delete-handler:active,
-.has_original.predelete .tools a.delete-handler:link, .has_original.predelete .tools a.delete-handler:visited {
-    background-image: url('../img/icons/icon-tools-trash-handler-hover.png');
 }
 
 .tools a.remove-handler:link, .tools a.remove-handler:visited {

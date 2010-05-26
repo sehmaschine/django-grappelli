@@ -972,6 +972,7 @@ ul.pagination li.separator span {
 
 .module.submit-row {
     border: 0;
+    background: transparent;
 }
 
 
@@ -1171,19 +1172,30 @@ input[type=submit], input[type=reset], input[type=button], button {
 .submit-row>*[class*="-container"] {
     border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
     box-shadow: 0 0 5px #666; -moz-box-shadow: 0 0 5px #666; -webkit-box-shadow: 0 0 5px #666;
-    background: #666;
+    background: #d6d6d6;
 }
 .submit-row>*[class*="-container"]:hover {
     box-shadow: 0 0 5px #777; -moz-box-shadow: 0 0 5px #777; -webkit-box-shadow: 0 0 5px #777;
+    background: #d6d6d6;
+}
+.submit-row>*[class*="cancel-button-container"] {
+    box-shadow: 0 0 5px #aaa; -moz-box-shadow: 0 0 5px #aaa; -webkit-box-shadow: 0 0 5px #aaa;
+}
+.footer .submit-row>*[class*="-container"], 
+.footer .submit-row>*[class*="cancel-button-container"] {
+    border: 1px solid #666;
+    box-shadow: 0 0 5px #666; -moz-box-shadow: 0 0 5px #666; -webkit-box-shadow: 0 0 5px #666;
+    background: #666;
+}
+.submit-row>*[class*="cancel-button-container"] {
+    box-shadow: 0 0 5px #aaa; -moz-box-shadow: 0 0 5px #aaa; -webkit-box-shadow: 0 0 5px #aaa;
+}
+.footer .submit-row>*[class*="-container"]:hover, 
+.footer .submit-row>*[class*="cancel-button-container"]:hover {
+    border: 1px solid #777;
+    box-shadow: 0 0 5px #777; -moz-box-shadow: 0 0 5px #777; -webkit-box-shadow: 0 0 5px #777;
     background: #777;
 }
-.footer .submit-row>*[class*="-container"] {
-    border: 1px solid #666;
-}
-.footer .submit-row>*[class*="-container"]:hover {
-    border: 1px solid #777;
-}
-
 
 
 /* Buttons & Buttonlike Links
@@ -1200,7 +1212,8 @@ input[type=submit], input[type=reset], input[type=button], button {
 input[type=submit], 
 #bookmark-add-cancel, 
 .submit-row a.delete-link:link, .submit-row a.delete-link:visited, 
-.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited {
+.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited, 
+.submit-row input[type=button] {
     box-shadow: none !important; -moz-box-shadow: none !important; -webkit-box-shadow: none !important;
 }
 
@@ -1212,7 +1225,8 @@ input[type=submit],
     background: -moz-linear-gradient(top, #d93636, #bf3030);
 }
 #bookmark-add-cancel, 
-.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited {
+.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited, 
+.submit-row input.cancel:hover {
     color: #fff;
     border: 1px solid #444;
     background: #666;
@@ -1228,9 +1242,10 @@ input[type=submit] {
 input[type=submit]:hover, 
 #bookmark-add-cancel:hover, 
 .submit-row a.delete-link:hover, .submit-row a.delete-link:active, 
-.submit-row a.cancel-link:hover, .submit-row a.cancel-link:active {
+.submit-row a.cancel-link:hover, .submit-row a.cancel-link:active, 
+.submit-row input.cancel {
     color: #444;
-    border-color: #aaa;
+    border: 1px solid #aaa;
     background: #d6d6d6;
     background: -moz-linear-gradient(top, #e3e3e3, #d6d6d6);
     background: -webkit-gradient(linear, left top, left bottom, from(#e3e3e3), to(#d6d6d6));
@@ -1239,7 +1254,7 @@ input[type=submit]:hover,
 .footer #bookmark-add-cancel:hover, 
 .footer .submit-row a.delete-link:hover, .footer .submit-row a.delete-link:active, 
 .footer .submit-row a.cancel-link:hover, .footer .submit-row a.cancel-link:active {
-    border-color: #666;
+    border: 1px solid #666;
 }
 
 button.fb_show, 
@@ -1253,7 +1268,8 @@ a.button,
 .vTimeField + span a, 
 a.fb_show, 
 a.related-lookup, 
-a.add-another {
+a.add-another, 
+span#srcbrowser, span#hrefbrowser {
     border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
     border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
     border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
@@ -1276,7 +1292,8 @@ button.ui-gAutocomplete-browse,
 button.ui-gFacelist-browse, 
 button.ui-gAutoSlugField-toggle, 
 button.ui-datepicker-trigger, 
-button.ui-timepicker-trigger {
+button.ui-timepicker-trigger, 
+span#srcbrowser, span#hrefbrowser {
     border: 1px solid #ccc;
     background-color: #e1f0f5;
 }
@@ -1285,7 +1302,8 @@ button.ui-gAutocomplete-browse:hover,
 button.ui-gFacelist-browse:hover, 
 button.ui-gAutoSlugField-toggle:hover, 
 button.ui-datepicker-trigger:hover, 
-button.ui-timepicker-trigger:hover {
+button.ui-timepicker-trigger:hover, 
+span#srcbrowser:hover, span#hrefbrowser:hover {
     background-color: #e1e1e1;
 }
 button.fb_show[disabled], 
@@ -1422,19 +1440,23 @@ a.related-lookup:hover, a.related-lookup:active {
     background-color: #e1e1e1;
 }
 
-a.fb_show:link, a.fb_show:visited {
+a.fb_show:link, a.fb_show:visited, 
+span#srcbrowser {
     background-image: url('../img/icons/icon-fb-show.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
     background-image: url('../img/icons/icon-fb-show.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
 }
-a.fb_show:hover, a.fb_show:active {
+a.fb_show:hover, a.fb_show:active, 
+span#srcbrowser:hover {
     background-image: url('../img/icons/icon-fb-show-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-fb-show-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }
-a.related-lookup:link, a.related-lookup:visited {
+a.related-lookup:link, a.related-lookup:visited, 
+span#hrefbrowser {
     background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
     background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
 }
-a.related-lookup:hover, a.related-lookup:active {
+a.related-lookup:hover, a.related-lookup:active, 
+span#hrefbrowser:hover {
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }

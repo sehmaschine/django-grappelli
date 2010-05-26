@@ -25,7 +25,8 @@ input[type=submit], input[type=reset], input[type=button], button {
     padding: 5px 10px;
     font-weight: bold;
 }
-.submit-row input[type=submit] {
+.submit-row input[type=submit], 
+.submit-row input[type=button] {
     padding: 5px 10px;
     height: 28px;
     font-weight: bold;
@@ -34,14 +35,16 @@ input[type=submit], input[type=reset], input[type=button], button {
 input[type=submit], 
 #bookmark-add-cancel, 
 .submit-row a.delete-link:link, .submit-row a.delete-link:visited, 
-.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited {
+.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited, 
+.submit-row input[type=button] {
     opacity: .6;
 }
 
 input[type=submit]:hover, 
 #bookmark-add-cancel:hover, 
 .submit-row a.delete-link:hover, .submit-row a.delete-link:active, 
-.submit-row a.cancel-link:hover, .submit-row a.cancel-link:active {
+.submit-row a.cancel-link:hover, .submit-row a.cancel-link:active, 
+.submit-row input[type=button]:hover {
     opacity: 1;
 }
 

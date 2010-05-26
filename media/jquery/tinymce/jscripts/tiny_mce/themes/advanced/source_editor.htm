@@ -15,12 +15,13 @@
 
 		<br style="clear: both" />
 
-		<textarea name="htmlSource" id="htmlSource" rows="15" cols="100" style="width: 100%; height: 100%; font-family: 'Courier New',Courier,monospace; font-size: 12px;" dir="ltr" wrap="off" class="mceFocus"></textarea>
-
-		<div class="mceActionPanel">
-			<input type="submit" name="insert" value="{#update}" id="insert" />
-			<input type="button" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" id="cancel" />
-		</div>
-	</form>
+		<textarea name="htmlSource" id="htmlSource" rows="15" cols="100" style="width: 100%; height: 485px !important; font-family: 'Courier New',Courier,monospace; font-size: 12px;" dir="ltr" wrap="off" class="mceFocus"></textarea>
+        <div class="mceActionPanel module submit-row">
+            <ul class="submit-row">
+                <li class="cancel-button-container left"><input type="button" id="cancel" class="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" /></li>
+                <li class="submit-button-container"><input type="submit" name="insert" value="{#update}" id="insert" class="default" /></li>
+            </ul>
+        </div>
+    </form>
 </body>
 </html>

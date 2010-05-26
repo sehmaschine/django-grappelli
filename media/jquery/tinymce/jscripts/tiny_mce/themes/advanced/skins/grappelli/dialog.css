@@ -23,28 +23,33 @@
 
 /* Import & Modifications of Django/Grappelli styles
 ----------------------------------------------------------------------- */
-@import url('../../../../../../../css/base.css');
+@import url('../../../../../../../../css/base.css');
 
-.module {
+/*.module {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
     background-color: #eee;
 }
-.form-row.first { border-top: none !important; }
-.form-row.last { border-bottom: none !important; }
-.form-row.combine { border-bottom: none !important; }
-.form-row.combine + .form-row { padding-top: 0 !important; border-top: none !important; }
+.row.first { border-top: none !important; }
+.row.last { border-bottom: none !important; }
+.row.combine { border-bottom: none !important; }
+.row.combine + .row { padding-top: 0 !important; border-top: none !important; }*/
 
 /* Generic
 ----------------------------------------------------------------------- */
 body {
-    margin: 20px 20px 0; padding: 0;
+    margin: 20px 0 0 20px; padding: 0 20px 0 0;
     background: #fff !important;
 }
 body.filebrowser {
     margin: 0 !important;
 }
 
-html { background: transparent; overflow-x: hidden !important; }
+html, body {
+    height: 100%;
+    background: transparent;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
 table { width: 100%; border-spacing: 0; }
 td { padding: 0; }
 
@@ -109,10 +114,6 @@ a:hover { color: #2B6FB6; }
 .tabs + .panel_wrapper { -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0; }
 
 .mceActionPanel {
-    float: left; clear: both !important;
-    margin: 3px 0 0 !important; padding: 0;
-    width: 100%;
-    text-align: right;
 }
 
 
@@ -161,7 +162,7 @@ legend {
     font-size: 15px; font-weight: bold;
     color:#2B6FB6; display: none;
 }
-legend + .form-row { border-top: none !important; }
+legend + .row { border-top: none !important; }
 
 label {
     display: block; float: left;
@@ -177,15 +178,15 @@ label.additional { position: relative; display: inline; float: none; top: 1px; }
 
 input[type=text], input[type=password] { width: 250px !important; }
 select { width: 258px !important; }
-input#src, input#href { width: 220px !important; }
+input#src, input#href { width: 240px !important; padding-right: 10px; }
 input.size, input.number { margin-right: 1px; width: 30px !important; }
 input.radio { position: relative; top: 6px; margin: 0 5px 13px 0; }
 input.checkbox { position: relative; top: 6px; margin: 0 5px 13px 0 !important; }
 input.radio.additional, input.checkbox.additional { margin-left: 10px !important; }
 input#constrain { position: relative; margin: 0 5px 0 32px !important; }
-input[type=submit] { margin: 0; }
+/*input[type=submit] { margin: 0; }
 input#cancel { color: #666; background-color: #ddd; }
-input#cancel:hover { color: #fff; background-color: #444; }
+input#cancel:hover { color: #fff; background-color: #444; }*/
 
 input.radio.inline {
     position: relative; top: 1px;
@@ -196,18 +197,18 @@ input.checkbox.inline {
     margin: 0 5px 0 0 !important;
 }
 
-.form-row.inline label {
+.row.inline label {
     margin: 0;
 }
-.form-row.inline input.radio + label, .form-row.inline input.checkbox + label {
+.row.inline input.radio + label, .row.inline input.checkbox + label {
     display: inline; float: none; position: relative; top: -1px !important;
     margin-right: 30px;
 }
-.form-row.inline input.radio {
+.row.inline input.radio {
     position: relative; top: -1px;
     margin: 0 5px 0 0 !important;
 }
-.form-row.inline input.checkbox {
+.row.inline input.checkbox {
     position: relative; top: -2px;
     margin: 0 5px 0 0 !important;
 }
@@ -218,8 +219,8 @@ input.checkbox.inline {
     margin-bottom: 5px;
     width: 100% !important;
     border: 1px solid #d4d4d4;
-    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+    border-radius: 5px !important; -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
 #iframecontainer {
    padding: 2px 0;
@@ -227,10 +228,10 @@ input.checkbox.inline {
 textarea#htmlSource {
     width: 100% !important; height: 100%;
     color: #444; font-family: 'Courier New',Courier,monospace; font-size: 12px; font-weight: normal;
-    border: none !important;
+/*    border: none !important;*/
 }
 #iframecontainer iframe {
-    -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
+    border-radius: 5px !important; -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
 }
 
 
@@ -244,16 +245,19 @@ span#srcbrowser, span#hrefbrowser { position: relative; top: -25px; margin-botto
 #hrefbrowser, #hrefbrowser.mceButtonNormal, #hrefbrowser.mceButtonOver, 
 #filebrowser_link {
     position: relative; display: block; float: right;
-    width: 26px; height: 22px;
-    margin-left: 5px; border: none;
-    background: transparent url('img/icons/icon-fb_show.png') 0 0 no-repeat;
+    width: 23px;
+    height: 23px;
+    left: -3px;
+/*    background: transparent url('img/icons/icon-fb_show.png') 0 0 no-repeat;*/
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
     cursor: pointer !important;
 }
 
 #srcbrowser:hover, #srcbrowser.mceButtonNormal:hover, #srcbrowser.mceButtonOver:hover, 
 #hrefbrowser:hover, #hrefbrowser.mceButtonNormal:hover, #hrefbrowser.mceButtonOver:hover, 
 #filebrowser_link:hover {
-    background: transparent url('img/icons/icon-fb_show-hover.png') 0 0 no-repeat !important;
+/*    background: transparent url('img/icons/icon-fb_show-hover.png') 0 0 no-repeat !important;*/
 }
 
 
@@ -270,6 +274,9 @@ span#srcbrowser, span#hrefbrowser { position: relative; top: -25px; margin-botto
 }
 #charmap td {
     padding: 0 !important;
+}
+#charmap td.title {
+    border: 0 !important;
 }
 #charmap td#charmapView {
     border: 1px solid #d4d4d4 !important;

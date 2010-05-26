@@ -9,16 +9,7 @@
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/typography.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/structures.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/components.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/tools.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/buttons.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/tables.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/grappelli-skin-default.css" />
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/XXXgrappelli-default-skin.css" />
+    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/base.css" />
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
     
     <link rel="stylesheet" href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">

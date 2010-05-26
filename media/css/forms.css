@@ -307,7 +307,8 @@ ul.checkboxlist input[type=checkbox] {
     margin: 0 3px 0 0;
 }
 
-ul.tools .delete-handler-container input[type=checkbox] {
+ul.tools .delete-handler-container input[type=checkbox], 
+ul.tools .remove-handler-container input[type=checkbox] {
     display: none !important;
 }
 
