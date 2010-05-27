@@ -23,7 +23,7 @@
 
 /* Import & Modifications of Django/Grappelli styles
 ----------------------------------------------------------------------- */
-@import url('../../../../../../../../css/base.css');
+@import url('../../../../../../../css/base.css');
 
 /*.module {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
