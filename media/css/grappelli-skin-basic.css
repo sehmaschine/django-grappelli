@@ -6,7 +6,7 @@
 
 
 
-/* 	Paragraphs
+/*  Paragraphs
 ------------------------------------------------------------------------------------------------------ */
 
 .module p.help, 
@@ -26,7 +26,7 @@ p.help {
 
 
 
-/* 	Links
+/*  Links
 ------------------------------------------------------------------------------------------------------ */
 
 a:link, a:visited {
@@ -1060,7 +1060,7 @@ button.ui-gFacelist-browse,
 button.ui-gAutoSlugField-toggle, 
 button.ui-datepicker-trigger, 
 button.ui-timepicker-trigger, 
-span#srcbrowser, span#hrefbrowser {
+.tinyMCE .browse span {
     border: 1px solid #ccc;
     background-color: #e1f0f5;
 }
@@ -1070,7 +1070,7 @@ button.ui-gFacelist-browse:hover,
 button.ui-gAutoSlugField-toggle:hover, 
 button.ui-datepicker-trigger:hover, 
 button.ui-timepicker-trigger:hover, 
-span#srcbrowser:hover, span#hrefbrowser:hover {
+.tinyMCE .browse span:hover {
     background-color: #e1e1e1;
 }
 button.fb_show[disabled], 

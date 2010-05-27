@@ -19,9 +19,9 @@
                 <div class="module table-of-contents">
                     <h2>{% firstof library.grouper "Built-in tags" %}</h2>
                     <ul>
-                    {% for tag in library.list|dictsort:"name" %}
-                        <li><a href="#{{ tag.name }}">{{ tag.name }}</a></li>
-                    {% endfor %}
+                        {% for tag in library.list|dictsort:"name" %}
+                            <li><a href="#{{ tag.name }}">{{ tag.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             {% endfor %}

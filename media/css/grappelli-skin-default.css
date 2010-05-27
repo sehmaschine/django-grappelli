@@ -6,7 +6,7 @@
 
 
 
-/* 	Paragraphs
+/*  Paragraphs
 ------------------------------------------------------------------------------------------------------ */
 
 .module p.help, 
@@ -27,7 +27,7 @@ p.help {
 
 
 
-/* 	Links
+/*  Links
 ------------------------------------------------------------------------------------------------------ */
 
 a:link, a:visited {
@@ -479,7 +479,7 @@ ul.messagelist.error li {
 
 
 
-/*  Form Row
+/*  Row
 ------------------------------------------------------------------------------------------------------ */
 
 .row {
@@ -505,7 +505,7 @@ fieldset.module > .row:last-child {
 
 
 
-/*  Form Cell
+/*  Cell
 ------------------------------------------------------------------------------------------------------ */
 
 .cell {
@@ -815,7 +815,7 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 
 
 
-/* Module Date Hierarchy
+/*  Module Date Hierarchy
 ------------------------------------------------------------------------------------------------------ */
 
 .module.date-hierarchy {
@@ -847,7 +847,7 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 
 
 
-/* Pagination
+/*  Pagination
 ------------------------------------------------------------------------------------------------------ */
 
 .module.pagination {
@@ -895,7 +895,7 @@ ul.pagination li.separator span {
 
 
 
-/* Module Changelist-Results
+/*  Module Changelist-Results
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-results {
@@ -905,7 +905,7 @@ ul.pagination li.separator span {
 
 
 
-/* Module Changelist Actions
+/*  Module Changelist Actions
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-actions {
@@ -953,7 +953,7 @@ ul.pagination li.separator span {
 
 
 
-/* Module Footer
+/*  Module Footer
 ------------------------------------------------------------------------------------------------------ */
 
 .module.footer {
@@ -1063,7 +1063,7 @@ h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
 
 
 
-/* Errors
+/*  Errors
 ------------------------------------------------------------------------------------------------------ */
 
 .errornote {
@@ -1084,7 +1084,7 @@ ul.errorlist {
 
 
 
-/* Labels & Other Typographic Elements in Forms
+/*  Labels & Other Typographic Elements in Forms
 ------------------------------------------------------------------------------------------------------ */
 
 label {
@@ -1198,7 +1198,7 @@ input[type=submit], input[type=reset], input[type=button], button {
 }
 
 
-/* Buttons & Buttonlike Links
+/*  Buttons & Buttonlike Links
 ------------------------------------------------------------------------------------------------------ */
 
 .submit-row a.delete-link, 
@@ -1269,7 +1269,7 @@ a.button,
 a.fb_show, 
 a.related-lookup, 
 a.add-another, 
-span#srcbrowser, span#hrefbrowser {
+.tinyMCE .browse span {
     border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
     border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
     border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
@@ -1293,7 +1293,7 @@ button.ui-gFacelist-browse,
 button.ui-gAutoSlugField-toggle, 
 button.ui-datepicker-trigger, 
 button.ui-timepicker-trigger, 
-span#srcbrowser, span#hrefbrowser {
+.tinyMCE .browse span {
     border: 1px solid #ccc;
     background-color: #e1f0f5;
 }
@@ -1303,7 +1303,7 @@ button.ui-gFacelist-browse:hover,
 button.ui-gAutoSlugField-toggle:hover, 
 button.ui-datepicker-trigger:hover, 
 button.ui-timepicker-trigger:hover, 
-span#srcbrowser:hover, span#hrefbrowser:hover {
+.tinyMCE .browse span:hover {
     background-color: #e1e1e1;
 }
 button.fb_show[disabled], 
@@ -1340,7 +1340,7 @@ button.ui-gFacelist-browse:hover {
 
 /*  AutoSlugField Button ......................................... */
 
-/* TODO: lock/unlock icons .. */
+/*  TODO: lock/unlock icons .. */
 
 button.ui-gAutoSlugField-toggle {
     background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
@@ -1388,7 +1388,7 @@ button.search {
 
 
 
-/* Links as Buttons
+/*  Links as Buttons
 ------------------------------------------------------------------------------------------------------ */
 
 a.button, 
@@ -1441,22 +1441,20 @@ a.related-lookup:hover, a.related-lookup:active {
 }
 
 a.fb_show:link, a.fb_show:visited, 
-span#srcbrowser {
+.tinyMCE .browse span {
     background-image: url('../img/icons/icon-fb-show.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
     background-image: url('../img/icons/icon-fb-show.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
 }
 a.fb_show:hover, a.fb_show:active, 
-span#srcbrowser:hover {
+.tinyMCE .browse span:hover {
     background-image: url('../img/icons/icon-fb-show-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-fb-show-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }
-a.related-lookup:link, a.related-lookup:visited, 
-span#hrefbrowser {
+a.related-lookup:link, a.related-lookup:visited {
     background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
     background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
 }
-a.related-lookup:hover, a.related-lookup:active, 
-span#hrefbrowser:hover {
+a.related-lookup:hover, a.related-lookup:active {
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
 }

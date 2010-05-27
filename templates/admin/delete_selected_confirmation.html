@@ -6,10 +6,10 @@
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
     <div id="breadcrumbs">
-         <a href="../../">{% trans "Home" %}</a> &rsaquo;
-         <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
-         <a href="./">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
-         {% trans 'Delete multiple objects' %}
+        <a href="../../">{% trans "Home" %}</a> &rsaquo;
+        <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
+        <a href="./">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
+        {% trans 'Delete multiple objects' %}
     </div>
 {% endblock %}
 
@@ -21,9 +21,9 @@
                 <h2>{% blocktrans %}Deleting the {{ object_name }} would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h2>
                 <div class="row">
                     <ul class="rte">
-                    {% for obj in perms_lacking %}
-                        <li>{{ obj }}</li>
-                    {% endfor %}
+                        {% for obj in perms_lacking %}
+                            <li>{{ obj }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

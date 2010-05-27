@@ -11,9 +11,9 @@
 <!-- EXTRAHEAD-->
 {% block extrahead %}
     <script type="text/javascript">
-    (function($) {
-        $(window).load(function(){ $('#id_username').focus(); });
-    })(jQuery.noConflict());
+        (function($) {
+            $(window).load(function(){ $('#id_username').focus(); });
+        })(jQuery.noConflict());
     </script>
 {% endblock %}
 
@@ -24,9 +24,7 @@
 {% block content %}
     <div class="container-flexible login">
         <div class="column span-10 centered">
-    {% if error_message %}
-        <p class="errornote login-errors">{{ error_message }}</p>
-    {% endif %}
+            {% if error_message %}<p class="errornote login-errors">{{ error_message }}</p>{% endif %}
             <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
                 <fieldset class="module">
                     <div class="row">

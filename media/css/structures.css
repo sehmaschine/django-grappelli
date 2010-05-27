@@ -384,7 +384,7 @@ body.filebrowser.popup #content {
 
 
 
-/* Blueprint Grid Columns & Spans
+/*  Blueprint Grid Columns & Spans
 ------------------------------------------------------------------------------------------------------ */
 
 .column {
@@ -430,7 +430,6 @@ fieldset.module .row .column.span-flexible:last-child {
     width: auto;
     margin-right: 0 !important;
 }
-
 
 
 /*  Basic Float & Margin ......................................... */

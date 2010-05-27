@@ -1,25 +1,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>{#media_dlg.title}</title>
-	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
-	<script type="text/javascript" src="js/media.js"></script>
-	<script type="text/javascript" src="../../utils/mctabs.js"></script>
-	<script type="text/javascript" src="../../utils/validate.js"></script>
-	<script type="text/javascript" src="../../utils/form_utils.js"></script>
-	<script type="text/javascript" src="../../utils/editable_selects.js"></script>
-	<!-- <link href="css/media.css" rel="stylesheet" type="text/css" /> -->
-	<base target="_self" />
+    <title>{#media_dlg.title}</title>
+    <script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+    <script type="text/javascript" src="js/media.js"></script>
+    <script type="text/javascript" src="../../utils/mctabs.js"></script>
+    <script type="text/javascript" src="../../utils/validate.js"></script>
+    <script type="text/javascript" src="../../utils/form_utils.js"></script>
+    <script type="text/javascript" src="../../utils/editable_selects.js"></script>
+    <!-- <link href="css/media.css" rel="stylesheet" type="text/css" /> -->
+    <base target="_self" />
 </head>
-<body style="display: none">
+<body style="display: none" class="tinyMCE">
     <form onsubmit="insertMedia();return false;" action="#">
-		<div class="tabs">
-			<ul>
-				<li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');generatePreview();" onmousedown="return false;">{#media_dlg.general}</a></span></li>
-				<li id="advanced_tab"><span><a href="javascript:mcTabs.displayTab('advanced_tab','advanced_panel');" onmousedown="return false;">{#media_dlg.advanced}</a></span></li>
-			</ul>
-		</div>
-
+        <div class="tabs">
+            <ul>
+                <li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');generatePreview();" onmousedown="return false;">{#media_dlg.general}</a></span></li>
+                <li id="advanced_tab"><span><a href="javascript:mcTabs.displayTab('advanced_tab','advanced_panel');" onmousedown="return false;">{#media_dlg.advanced}</a></span></li>
+            </ul>
+        </div>
         <div class="panel_wrapper">
             <div id="general_panel" class="panel current">
                 <fieldset class="module">
@@ -31,9 +30,9 @@
                                 <option value="flash">Flash</option>
                                 <!-- <option value="flv">Flash video (FLV)</option> -->
                                 <option value="qt">Quicktime</option>
-                                <option value="shockwave">Shockwave</option>
-                                <option value="wmp">Windows Media</option>
-                                <option value="rmp">Real Media</option>
+                                <!-- <option value="shockwave">Shockwave</option> -->
+                                <!-- <option value="wmp">Windows Media</option> -->
+                                <!-- <option value="rmp">Real Media</option> -->
                             </select>
                         </div>
                     </div>
@@ -53,8 +52,10 @@
                         <div class="column span-flexible">
                             <input type="text" id="width" name="width" value="" class="size" onchange="generatePreview('width');" /> x 
                             <input type="text" id="height" name="height" value="" class="size"  onchange="generatePreview('height');" /> px
-                            <input id="constrain" type="checkbox" name="constrain" class="checkbox" />
-                            <label id="constrainlabel" for="constrain">{#media_dlg.constrain_proportions}</label>
+                            <p style="padding: 5px 0 0 !important;">
+                                <input id="constrain" type="checkbox" name="constrain" class="checkbox" style="margin-left: 0 !important" />
+                                <label id="constrainlabel" for="constrain">{#media_dlg.constrain_proportions}</label>
+                            </p>
                         </div>
                     </div>
                     <div class="row">
@@ -95,7 +96,7 @@
                         <div class="column span-4"><label for="bgcolor">{#media_dlg.bgcolor}</label></div>
                         <div class="column span-flexible">
                             <input id="bgcolor" name="bgcolor" type="text" value="" size="9" onchange="updateColor('bgcolor_pick','bgcolor');generatePreview();" />
-                            <div id="bgcolor_pickcontainer">&nbsp;</div>
+                            <div id="bgcolor_pickcontainer" style="display: none">&nbsp;</div>
                         </div>
                     </div>
                     <div class="row combine">
@@ -166,19 +167,19 @@
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_play">{#media_dlg.play}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flash_play" name="flash_play" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flash_play" name="flash_play" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_loop">{#media_dlg.loop}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flash_loop" name="flash_loop" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flash_loop" name="flash_loop" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_menu">{#media_dlg.menu}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flash_menu" name="flash_menu" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flash_menu" name="flash_menu" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_swliveconnect">{#media_dlg.liveconnect}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flash_swliveconnect" name="flash_swliveconnect" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flash_swliveconnect" name="flash_swliveconnect" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_base">{#media_dlg.base}</label></div>
@@ -229,27 +230,27 @@
                         </div> -->
                         <div class="row combine">
                             <div class="column span-4"><label for="flv_hiddengui">{#media_dlg.flv_hiddengui}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flv_hiddengui" name="flv_hiddengui" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_hiddengui" name="flv_hiddengui" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row combine">
                             <div class="column span-4"><label for="flv_autostart">{#media_dlg.flv_autostart}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flv_autostart" name="flv_autostart" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_autostart" name="flv_autostart" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row combine">
                             <div class="column span-4"><label for="flv_loop">{#media_dlg.flv_loop}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flv_loop" name="flv_loop" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_loop" name="flv_loop" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row combine">
                             <div class="column span-4"><label for="flv_showscalemodes">{#media_dlg.flv_showscalemodes}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flv_showscalemodes" name="flv_showscalemodes" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_showscalemodes" name="flv_showscalemodes" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row combine">
                             <div class="column span-4"><label for="flv_smoothvideo">{#media_dlg.flv_smoothvideo}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flv_smoothvideo" name="flash_flv_flv_smoothvideosmoothvideo" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_smoothvideo" name="flash_flv_flv_smoothvideosmoothvideo" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row last">
                             <div class="column span-4"><label for="flv_jscallback">{#media_dlg.flv_jscallback}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flv_jscallback" name="flv_jscallback" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_jscallback" name="flv_jscallback" onchange="generatePreview();" /></div>
                         </div>
                     </fieldset>
                 </div>
@@ -261,43 +262,43 @@
                         <legend>{#media_dlg.qt_options}</legend>
                         <div class="row first">
                             <div class="column span-4"><label for="qt_loop">{#media_dlg.loop}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_loop" name="qt_loop" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_loop" name="qt_loop" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_autoplay">{#media_dlg.play}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_autoplay" name="qt_autoplay" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_autoplay" name="qt_autoplay" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_cache">{#media_dlg.cache}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_cache" name="qt_cache" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_cache" name="qt_cache" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_controller">{#media_dlg.controller}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_controller" name="qt_controller" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_controller" name="qt_controller" checked="checked" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_correction">{#media_dlg.correction}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_correction" name="qt_correction" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_correction" name="qt_correction" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_enablejavascript">{#media_dlg.enablejavascript}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_enablejavascript" name="qt_enablejavascript" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_enablejavascript" name="qt_enablejavascript" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_kioskmode">{#media_dlg.kioskmode}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_kioskmode" name="qt_kioskmode" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_kioskmode" name="qt_kioskmode" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_autohref">{#media_dlg.autohref}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_autohref" name="qt_autohref" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_autohref" name="qt_autohref" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_playeveryframe">{#media_dlg.playeveryframe}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_playeveryframe" name="qt_playeveryframe" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_playeveryframe" name="qt_playeveryframe" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_targetcache">{#media_dlg.targetcache}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="qt_targetcache" name="qt_targetcache" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_targetcache" name="qt_targetcache" onchange="generatePreview();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="qt_scale">{#media_dlg.scale}</label></div>
@@ -337,7 +338,7 @@
                             <div class="column span-4"><label for="qt_qtsrc">{#media_dlg.qtsrc}</label></div>
                             <div class="column span-flexible">
                                 <input type="text" id="qt_qtsrc" name="qt_qtsrc" onchange="generatePreview();" />
-                                <div id="qtsrcfilebrowsercontainer">&nbsp;</div>
+                                <div id="qtsrcfilebrowsercontainer">lolo</div>
                             </div>
                         </div>
                     </fieldset>

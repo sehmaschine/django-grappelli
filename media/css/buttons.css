@@ -1,7 +1,7 @@
 
 
 
-/* Submit, Delete & Cancel Buttons
+/*  Submit, Delete & Cancel Buttons
 ------------------------------------------------------------------------------------------------------ */
 
 input[type=submit], input[type=reset], input[type=button], button {
@@ -54,7 +54,7 @@ input[type=submit].default {
 
 
 
-/* Icons & Buttons
+/*  Icons & Buttons
 ------------------------------------------------------------------------------------------------------ */
 
 button.fb_show, 
@@ -139,7 +139,7 @@ button.ui-gFacelist-browse[disabled], button.ui-gFacelist-browse[disabled]:hover
 
 /*  AutoSlugField Button ......................................... */
 
-/* TODO: lock/unlock icons .. */
+/*  TODO: lock/unlock icons .. */
 
 button.ui-gAutoSlugField-toggle {
     background-image: url('../img/icons/icon-related-lookup.png');
@@ -199,7 +199,7 @@ button.search[disabled], button.search[disabled]:hover {
 
 
 
-/* Links as Buttons
+/*  Links as Buttons
 ------------------------------------------------------------------------------------------------------ */
 
 a.button, 
@@ -259,19 +259,17 @@ a.related-lookup {
 }
 
 a.fb_show:link, a.fb_show:visited, 
-span#srcbrowser {
+.tinyMCE .browse span {
     background-image: url('../img/icons/icon-fb-show.png');
 }
 a.fb_show:hover, a.fb_show:active, 
-span#srcbrowser:hover {
+.tinyMCE .browse span:hover {
     background-image: url('../img/icons/icon-fb-show-hover.png');
 }
-a.related-lookup:link, a.related-lookup:visited, 
-span#hrefbrowser {
+a.related-lookup:link, a.related-lookup:visited {
     background-image: url('../img/icons/icon-related-lookup.png');
 }
-a.related-lookup:hover, a.related-lookup:active, 
-span#hrefbrowser:hover {
+a.related-lookup:hover, a.related-lookup:active {
     background-image: url('../img/icons/icon-related-lookup-hover.png');
 }
 

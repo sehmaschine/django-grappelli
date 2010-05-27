@@ -57,6 +57,10 @@ textarea { resize: none; outline: none; }
 a:link, a:visited { color: black; }
 a:hover { color: #2B6FB6; }
 
+div.submit-row {
+    margin-top: 15px !important;
+}
+
 
 /* Tabs
 ----------------------------------------------------------------------- */
@@ -164,10 +168,10 @@ legend {
 }
 legend + .row { border-top: none !important; }
 
-label {
+/*label {
     display: block; float: left;
     font-size: 11px; width: 150px !important;
-}
+}*/
 .required { font-weight: bold; }
 label.msg { display:none; }
 label.invalid { color:#EE0000; display:inline; }
@@ -176,23 +180,41 @@ label.additional { position: relative; display: inline; float: none; top: 1px; }
 .description label { margin: 0 0 12px !important; padding: 0 !important; }
 #constrainlabel { display: inline; float: none; position: relative; top: 1px !important; }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], 
+select {
     width: 100% !important;
 }
-select { width: 100% !important; }
 input#src, input#href {
     width: 100% !important;
     padding-right: 28px;
 }
-input.size, input.number { margin-right: 1px; width: 50px !important; }
-input.radio { position: relative; top: 6px; margin: 0 5px 13px 0; }
-input.checkbox { position: relative; top: 6px; margin: 0 5px 13px 0 !important; }
-input.radio.additional, input.checkbox.additional { margin-left: 10px !important; }
-input#constrain { position: relative; margin: 0 5px 0 32px !important; }
-/*input[type=submit] { margin: 0; }
-input#cancel { color: #666; background-color: #ddd; }
-input#cancel:hover { color: #fff; background-color: #444; }*/
-
+input.size, input.number {
+    margin-right: 1px;
+    width: 50px !important;
+}
+input.radio {
+    position: relative;
+    margin: 0 5px 13px 0;
+}
+input.checkbox {
+    position: relative;
+    margin: 0 5px 13px 0 !important;
+}
+.row input[type=radio], 
+.row input[type=radio] {
+/*    top: 0 !important;*/
+}
+input[type=radio].standalone, 
+input[type=checkbox].standalone {
+    top: 6px !important;
+}
+input.radio.additional, input.checkbox.additional {
+    margin-left: 10px !important;
+}
+input#constrain {
+    position: relative;
+    margin: 0 5px 0 32px !important;
+}
 input.radio.inline {
     position: relative; top: 1px;
     margin: 0 5px 0 0 !important;
@@ -201,10 +223,9 @@ input.checkbox.inline {
     position: relative; top: -1px;
     margin: 0 5px 0 0 !important;
 }
-
-.row.inline label {
+/*.row.inline label {
     margin: 0;
-}
+}*/
 .row.inline input.radio + label, .row.inline input.checkbox + label {
     display: inline; float: none; position: relative; top: -1px !important;
     margin-right: 30px;
@@ -243,27 +264,16 @@ textarea#htmlSource {
 
 /* Browse-Icons
 ----------------------------------------------------------------------- */
-span#srcbrowser, span#hrefbrowser { position: relative; top: -25px; margin-bottom: -25px; }
-#filebrowser_link { position: relative; top: -27px; margin-bottom: -27px; }
-
-#srcbrowser, #srcbrowser.mceButtonNormal, #srcbrowser.mceButtonOver, 
-#hrefbrowser, #hrefbrowser.mceButtonNormal, #hrefbrowser.mceButtonOver, 
-#filebrowser_link {
+.browse span { position: relative; top: -25px; margin-bottom: -25px; }
+.browse span {
     position: relative; display: block; float: right;
     width: 23px;
     height: 23px;
-/*    left: -3px;*/
-/*    background: transparent url('img/icons/icon-fb_show.png') 0 0 no-repeat;*/
     background-position: 50% 50%;
     background-repeat: no-repeat;
     cursor: pointer !important;
 }
 
-#srcbrowser:hover, #srcbrowser.mceButtonNormal:hover, #srcbrowser.mceButtonOver:hover, 
-#hrefbrowser:hover, #hrefbrowser.mceButtonNormal:hover, #hrefbrowser.mceButtonOver:hover, 
-#filebrowser_link:hover {
-/*    background: transparent url('img/icons/icon-fb_show-hover.png') 0 0 no-repeat !important;*/
-}
 
 
 /* Source

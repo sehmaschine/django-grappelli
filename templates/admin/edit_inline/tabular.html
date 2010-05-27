@@ -22,50 +22,50 @@
             </div>
         </div>
         {% for inline_admin_form in inline_admin_formset %}
-        <!-- element -->
-        <div class="module tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
-            id="{{ inline_admin_formset.formset.prefix }}{% if not forloop.last %}{{ forloop.counter0 }}{% else %}-empty{% endif %}">
-            {% if inline_admin_form.form.non_field_errors %}
-                <div>{{ inline_admin_form.form.non_field_errors }}</div>
-            {% endif %}
-            <h3 style="display: none;"><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</h3>
-            {% spaceless %}
-            {% for fieldset in inline_admin_form %}
-                {% for line in fieldset %}
-                    {% for field in line %}
-                        {% if field.is_hidden %} {{ field.field }} {% endif %}
-                    {% endfor %}
-                {% endfor %}
-            {% endfor %}
-            {% endspaceless %}
-            <div class="tr"> <!-- table-table-row -->
+            <!-- element -->
+            <div class="module tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
+                id="{{ inline_admin_formset.formset.prefix }}{% if not forloop.last %}{{ forloop.counter0 }}{% else %}-empty{% endif %}">
+                {% if inline_admin_form.form.non_field_errors %}
+                    <div>{{ inline_admin_form.form.non_field_errors }}</div>
+                {% endif %}
+                <h3 style="display: none;"><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</h3>
+                {% spaceless %}
                 {% for fieldset in inline_admin_form %}
                     {% for line in fieldset %}
                         {% for field in line %}
-                            <div class="td {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
-                                {% if field.is_readonly %}
-                                    <p>{{ field.contents }}</p>
-                                {% else %}
-                                {{ field.field }}
-                                {{ field.field.errors.as_ul }}
-                                {% endif %}
-                            </div>
+                            {% if field.is_hidden %} {{ field.field }} {% endif %}
                         {% endfor %}
                     {% endfor %}
                 {% endfor %}
-                <div class="td tools">
-                    {% spaceless %}
-                    <ul class="tools">
-                        {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
-                        {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
-                        {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>{% endif %}
-                    </ul>
-                    {% endspaceless %}
+                {% endspaceless %}
+                <div class="tr">
+                    {% for fieldset in inline_admin_form %}
+                        {% for line in fieldset %}
+                            {% for field in line %}
+                                <div class="td {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
+                                    {% if field.is_readonly %}
+                                        <p>{{ field.contents }}</p>
+                                    {% else %}
+                                        {{ field.field }}
+                                        {{ field.field.errors.as_ul }}
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    <div class="td tools">
+                        {% spaceless %}
+                        <ul class="tools">
+                            {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
+                            {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
+                            {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>{% endif %}
+                        </ul>
+                        {% endspaceless %}
+                    </div>
+                    {{ inline_admin_form.fk_field.field }}
+                    {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
                 </div>
-                {{ inline_admin_form.fk_field.field }}
-                {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
             </div>
-        </div>
         {% endfor %}
     </div>
     <div class="module add-item">

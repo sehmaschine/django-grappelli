@@ -14,28 +14,28 @@
     <!-- container -->
     <div class="items">
         {% for inline_admin_form in inline_admin_formset %}
-        <!-- element -->
-        <div class="module collapse closed{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
-            id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
-                <h3>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
-            <ul class="tools">
-                {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
-                {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
-                {% if inline_admin_formset.formset.can_delete %}
-                    {% if inline_admin_form.original %}
-                        <li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon delete-handler" title="{% trans 'Delete Item' %}"></a></li>
-                    {% else %}
-                        <li class="remove-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon remove-handler" title="{% trans 'Delete Item' %}"></a></li>
+            <!-- element -->
+            <div class="module collapse closed{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
+                id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
+                    <h3>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
+                <ul class="tools">
+                    {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
+                    {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
+                    {% if inline_admin_formset.formset.can_delete %}
+                        {% if inline_admin_form.original %}
+                            <li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon delete-handler" title="{% trans 'Delete Item' %}"></a></li>
+                        {% else %}
+                            <li class="remove-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon remove-handler" title="{% trans 'Delete Item' %}"></a></li>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            </ul>
-            {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
-            {% for fieldset in inline_admin_form %}
-                {% include "admin/includes/fieldset_inline.html" %}
-            {% endfor %}
-            {{ inline_admin_form.pk_field.field }}
-            {{ inline_admin_form.fk_field.field }}
-        </div>
+                </ul>
+                {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+                {% for fieldset in inline_admin_form %}
+                    {% include "admin/includes/fieldset_inline.html" %}
+                {% endfor %}
+                {{ inline_admin_form.pk_field.field }}
+                {{ inline_admin_form.fk_field.field }}
+            </div>
         {% endfor %}
         {{ inline_admin_formset.extra_forms }}
     </div>
@@ -90,7 +90,6 @@
                 }
             });
         };
-        
         
         // TODO. re-init ui-calendar
         $("#{{ inline_admin_formset.formset.prefix }}-group").inline({

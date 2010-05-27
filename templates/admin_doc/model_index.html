@@ -20,25 +20,25 @@
             <div class="module table-of-contents">
                 <h2>Model groups</h2>
                 <ul>
-                {% regroup models by app_label as grouped_models %}
-                {% for group in grouped_models %}
-                    <li><a href="#app-{{ group.grouper }}">{{ group.grouper|capfirst }}</a></li>
-                {% endfor %}
+                    {% regroup models by app_label as grouped_models %}
+                    {% for group in grouped_models %}
+                        <li><a href="#app-{{ group.grouper }}">{{ group.grouper|capfirst }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
         <div class="column span-18 last rte">
             {% for group in grouped_models %}
-            <div class="module">
-                <h2 id="app-{{ group.grouper }}">{{ group.grouper|capfirst }}</h2>
-                <table>
-                    {% for model in group.list %}
-                    <tr>
-                        <th><a href="{{ model.app_label }}.{{ model.object_name.lower }}/">{{ model.object_name }}</a></th>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
+                <div class="module">
+                    <h2 id="app-{{ group.grouper }}">{{ group.grouper|capfirst }}</h2>
+                    <table>
+                        {% for model in group.list %}
+                            <tr>
+                                <th><a href="{{ model.app_label }}.{{ model.object_name.lower }}/">{{ model.object_name }}</a></th>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             {% endfor %}
         </div>
     </div>

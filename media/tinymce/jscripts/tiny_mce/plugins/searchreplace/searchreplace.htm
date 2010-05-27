@@ -9,7 +9,7 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/searchreplace.css" /> -->
 	<base target="_self" />
 </head>
-<body style="display:none;">
+<body style="display:none;" class="tinyMCE">
 <form onsubmit="SearchReplaceDialog.searchNext('none');return false;" action="#">
 	<div class="tabs">
 		<ul>
@@ -28,17 +28,17 @@
                 <div class="row inline">
                     <div class="column span-4"><label>{#searchreplace_dlg.direction}</label></div>
                     <div class="column span-flexible">
-                        <input id="search_panel_backwardsu" name="search_panel_backwards" class="radio" type="radio" />
-                        <label for="search_panel_backwardsu">{#searchreplace_dlg.up}</label>
-                        <input id="search_panel_backwardsd" name="search_panel_backwards" class="radio" type="radio" checked="checked" />
-                        <label for="search_panel_backwardsd">{#searchreplace_dlg.down}</label>
+                        <ul class="radiolist inline">
+                            <li><label for="search_panel_backwardsu"><input id="search_panel_backwardsu" name="search_panel_backwards" class="radio" type="radio" /> {#searchreplace_dlg.up}</label></li>
+                            <li><label for="search_panel_backwardsd"><input id="search_panel_backwardsd" name="search_panel_backwards" class="radio" type="radio" checked="checked" /> {#searchreplace_dlg.down}</label></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="row inline">
                     <div class="column span-4"><label>&nbsp;</label></div>
                     <div class="column span-flexible">
-                        <input id="search_panel_casesensitivebox" name="search_panel_casesensitivebox" class="checkbox" type="checkbox" />
-                        <label for="search_panel_casesensitivebox">{#searchreplace_dlg.mcase}</label>
+                        <input id="search_panel_casesensitivebox" name="search_panel_casesensitivebox" type="checkbox" />
+                        <label for="search_panel_casesensitivebox"> {#searchreplace_dlg.mcase}</label>
                     </div>
                 </div>
             </fieldset>

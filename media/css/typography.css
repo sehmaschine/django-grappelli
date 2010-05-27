@@ -5,7 +5,7 @@
 
 
 
-/* 	Headings
+/*  Headings
 ------------------------------------------------------------------------------------------------------ */
 
 h1, h2, h3, h4 {
@@ -34,7 +34,7 @@ h4, h5 {
 
 
 
-/* 	Paragraphs
+/*  Paragraphs
 ------------------------------------------------------------------------------------------------------ */
 
 .module p.help, 
@@ -62,7 +62,7 @@ p.help {
 
 
 
-/* 	Links
+/*  Links
 ------------------------------------------------------------------------------------------------------ */
 
 a {
@@ -168,7 +168,7 @@ td.focus {
     padding: 0 !important;
 }
 
-/* Workaround for problem reported in django-ticket #11817 */
+/*  Workaround for problem reported in django-ticket #11817 */
 .rte h2 p, 
 .rte h4 p {
     margin: 0 !important;

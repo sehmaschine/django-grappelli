@@ -19,9 +19,9 @@
                 <div class="module table-of-contents">
                     <h2>{% firstof library.grouper "Built-in filters" %}</h2>
                     <ul>
-                    {% for filter in library.list|dictsort:"name" %}
-                        <li><a href="#{{ filter.name }}">{{ filter.name }}</a></li>
-                    {% endfor %}
+                        {% for filter in library.list|dictsort:"name" %}
+                            <li><a href="#{{ filter.name }}">{{ filter.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             {% endfor %}
