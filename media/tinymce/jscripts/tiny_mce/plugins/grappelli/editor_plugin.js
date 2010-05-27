@@ -128,21 +128,41 @@
         // INTERNAL: SHOW/HIDE DOCUMENT STRUCTURE
         _show_documentstructure: function(ed) {
             head = ed.getBody().previousSibling;
-            if (head.lastChild.getAttribute('href') != documentstructure_css) {
-                var vs_link = document.createElement("link");
-                vs_link.rel="stylesheet";
-                vs_link.mce_href = documentstructure_css;
-                vs_link.href = documentstructure_css;
-                head.appendChild(vs_link);
-                ed.settings.grappelli_show_documentstructure = 'on';
-                tinymce.util.Cookie.set('grappelli_show_documentstructure', 'on', cookie_date, '/');
-                ed.controlManager.setActive('grappelli_documentstructure', true);
+            var headChilds = head.childNodes;
+            
+            for (var i = 0; i < headChilds.length; i++) {
+                if (headChilds[i].nodeName == "LINK" 
+                    && headChilds[i].getAttribute('href') == documentstructure_css) {
+                    // documentstructure_css is already set so...
+                    return;
+                }
             }
+            var vs_link = document.createElement("link");
+            vs_link.rel="stylesheet";
+            vs_link.mce_href = documentstructure_css;
+            vs_link.href = documentstructure_css;
+            head.appendChild(vs_link);
+            ed.settings.grappelli_show_documentstructure = 'on';
+            tinymce.util.Cookie.set('grappelli_show_documentstructure', 'on', cookie_date, '/');
+            ed.controlManager.setActive('grappelli_documentstructure', true);
         },
         _hide_documentstructure: function(ed) {
             head = ed.getBody().previousSibling;
-            if (head.lastChild.getAttribute('href') == documentstructure_css) {
-                vs_link = head.lastChild;
+            vs_link = null;
+            
+            var headChilds = head.childNodes;
+            
+            for (var i = 0; i < headChilds.length; i++) {
+                if (headChilds[i].nodeName == "LINK" 
+                    && headChilds[i].getAttribute('href') == documentstructure_css) {
+                    // found the node with documentstructure_css
+                    vs_link = headChilds[i];
+                    break;
+                }
+            }
+            
+            if (vs_link !== null) {
+                // if we found the node with documentstructure_css, delete it
                 head.removeChild(vs_link);
                 ed.settings.grappelli_show_documentstructure = 'off';
                 tinymce.util.Cookie.set('grappelli_show_documentstructure', 'off', cookie_date, '/');
