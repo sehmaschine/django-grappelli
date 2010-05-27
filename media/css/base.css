@@ -8,4 +8,5 @@
 @import url('buttons.css');
 @import url('tables.css');
 
-@import url('grappelli-skin-default.css');
+/*@import url('grappelli-skin-default.css');*/
+@import url('grappelli-skin-basic.css');

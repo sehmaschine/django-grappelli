@@ -11,9 +11,7 @@
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/base.css" />
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
-    
     <link rel="stylesheet" href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    {#<link rel="stylesheet" href="{% admin_media_prefix %}css/datepicker/grappelli-theme-extensions.css" type="text/css" />#}
     <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" />
 {% endblock %}
 {% block extrastyle %}{% endblock %}
@@ -51,7 +49,7 @@
         
         <!-- MESSAGES -->
         {% if messages %}
-        <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+            <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
         {% endif %}
         
         <!-- CONTENT -->

@@ -258,16 +258,20 @@ a.related-lookup {
     }
 }
 
-a.fb_show:link, a.fb_show:visited {
+a.fb_show:link, a.fb_show:visited, 
+span#srcbrowser {
     background-image: url('../img/icons/icon-fb-show.png');
 }
-a.fb_show:hover, a.fb_show:active {
+a.fb_show:hover, a.fb_show:active, 
+span#srcbrowser:hover {
     background-image: url('../img/icons/icon-fb-show-hover.png');
 }
-a.related-lookup:link, a.related-lookup:visited {
+a.related-lookup:link, a.related-lookup:visited, 
+span#hrefbrowser {
     background-image: url('../img/icons/icon-related-lookup.png');
 }
-a.related-lookup:hover, a.related-lookup:active {
+a.related-lookup:hover, a.related-lookup:active, 
+span#hrefbrowser:hover {
     background-image: url('../img/icons/icon-related-lookup-hover.png');
 }
 

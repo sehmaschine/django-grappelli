@@ -16,7 +16,6 @@ p.help {
 
 .fb_show + p.help a {
     border: 1px solid #309bbf;
-    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 .fb_show + p.help a:link, .fb_show + p.help a:visited {
     border: 1px solid #309bbf;
@@ -97,8 +96,6 @@ hr {
 .rte h3:last-child, 
 .rte h4:last-child {
     border-bottom: 0;
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
 }
 .rte td {
     border-left: 1px solid #f4f4f4;
@@ -121,7 +118,6 @@ hr {
 }
 .rte blockquote table {
     border: 1px solid #d4d4d4;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 
 
@@ -154,8 +150,6 @@ body {
 #header {
     color: #eee;
     background: #333;
-    background: -moz-linear-gradient(top, #444, #333);
-    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#333));
 }
 #header a:hover, #header a:active {
     color: #ddd;
@@ -190,8 +184,6 @@ li.user-options-container.open a.user-options-handler {
 }
 li.user-options-container.open ul.user-options {
     border-top: 1px solid #262626;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
     background: #333;
 }
 ul.user-options li {
@@ -237,8 +229,6 @@ ul.messagelist.error li {
 
 .login  .module {
     border: 0;
-    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
-    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
     background: #333;
 }
 .login .module .row {
@@ -261,7 +251,6 @@ ul.messagelist.error li {
 
 .module {
     border: 1px solid #bdbdbd;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #eee;
 }
 .rte .module {
@@ -274,21 +263,12 @@ ul.messagelist.error li {
 .module .module, 
 .module fielset.module {
     border: 0;
-    border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
-}
-.module .module:first-child {
-    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
 }
 
 
 
 /*  Groups
 ------------------------------------------------------------------------------------------------------ */
-
-.group {
-    border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
-}
 
 .group.collapse.closed {
     border: 2px solid #e0e0e0;
@@ -309,15 +289,10 @@ ul.messagelist.error li {
 .group h2, 
 .module h2 {
     border-bottom: 1px solid #bdbdbd;
-    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
     background: #d6d6d6;
-    background: -moz-linear-gradient(top, #e3e3e3, #d6d6d6);
-    background: -webkit-gradient(linear, left top, left bottom, from(#e3e3e3), to(#d6d6d6));
 }
 .group h2 {
     border: 1px solid #bdbdbd;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 .module h2+*, 
 .module h2+.tools+* {
@@ -346,12 +321,6 @@ ul.messagelist.error li {
 .module h3 {
     border-bottom: 1px solid #c7c7c7;
     background: #e0e0e0;
-    background: -moz-linear-gradient(top, #e9e9e9, #e0e0e0);
-    background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#e0e0e0));
-}
-.group h3 {
-    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
 }
 .module h3+*, 
 .module h3+.tools+* {
@@ -379,8 +348,6 @@ ul.messagelist.error li {
 .module h4 {
     border-bottom: 1px solid #d4d4d4;
     background: #e8e8e8;
-    background: -moz-linear-gradient(top, #ededed, #e8e8e8);
-    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#e8e8e8));
 }
 .module h4+*, 
 .module h4+.tools+* {
@@ -395,27 +362,9 @@ ul.messagelist.error li {
 
 
 
-/*  Modules & Groups Overrides
------------------------------------------------------------------------------------------------------- */
-
-.module .module:last-of-type {
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-}
-
-
-
 /*  Collapsible Structures
 ------------------------------------------------------------------------------------------------------ */
 
-.group .module.collapse.closed h3.collapse-handler, 
-.group .module.collapse.closed h4.collapse-handler, 
-.collapse.closed h2.collapse-handler, 
-.module .module.collapse.closed.last .collapse-handler, 
-.module .module.collapse.closed:last-child .collapse-handler {
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-}
 .module.collapse.closed h2.collapse-handler, 
 .module.collapse.closed h3.collapse-handler, 
 .module.collapse.closed h4.collapse-handler {
@@ -427,14 +376,10 @@ ul.messagelist.error li {
 
 .collapse h2.collapse-handler {
     background: #a1d4e5;
-    background: -moz-linear-gradient(top, #bcdfeb, #a1d4e5);
-    background: -webkit-gradient(linear, left top, left bottom, from(#bcdfeb), to(#a1d4e5));
 }
 .collapse h2.collapse-handler:hover, 
 .collapse.open h2.collapse-handler {
     background: #bcdfeb;
-    background: -moz-linear-gradient(top, #a1d4e5, #bcdfeb);
-    background: -webkit-gradient(linear, left top, left bottom, from(#a1d4e5), to(#bcdfeb));
 }
 
 
@@ -443,16 +388,12 @@ ul.messagelist.error li {
 .group .collapse h3.collapse-handler, 
 .module .collapse h3.collapse-handler {
     background: #cee9f2;
-    background: -moz-linear-gradient(top, #e1f0f5, #cee9f2);
-    background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#cee9f2));
 }
 .group .collapse h3.collapse-handler:hover, 
 .module .collapse h3.collapse-handler:hover, 
 .group .collapse.open h3.collapse-handler, 
 .module .collapse.open h3.collapse-handler {
     background: #e1f0f5;
-    background: -moz-linear-gradient(top, #cee9f2, #e1f0f5);
-    background: -webkit-gradient(linear, left top, left bottom, from(#cee9f2), to(#e1f0f5));
 }
 .module .collapse h3.collapse-handler {
     border-top: 1px solid #e1f0f5;
@@ -465,16 +406,12 @@ ul.messagelist.error li {
 .module .module .collapse h4.collapse-handler {
     border-top: 1px solid #f0f7fa;
     background: #e1f0f5;
-    background: -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background: -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
 }
 .group .collapse h4.collapse-handler:hover, 
 .module .collapse h4.collapse-handler:hover, 
 .group .collapse.open h4.collapse-handler, 
 .module .collapse.open h4.collapse-handler {
     background: #ebf2f5;
-    background: -moz-linear-gradient(top, #e1f0f5, #ebf2f5);
-    background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#ebf2f5));
 }
 
 
@@ -490,8 +427,6 @@ ul.messagelist.error li {
 .row:first-child, 
 .module input[type=hidden] + .row {
     border-top: 0 !important;
-    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
 .row.last, 
 .row:last-child, 
@@ -499,8 +434,6 @@ ul.messagelist.error li {
 fieldset.module > .row.last, 
 fieldset.module > .row:last-child {
     border-bottom: 0 !important;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 
 
@@ -572,15 +505,6 @@ fieldset.module .cell.last + fieldset.module .cell {
 .module.tbody .th:first-of-type, 
 .module.tbody .td:first-of-type {
     border-left: 1px solid #ccc;
-    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-}
-.module.tbody .th:last-of-type, 
-.module.tbody .td:last-of-type {
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
-    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 
 
@@ -602,8 +526,6 @@ fieldset.module .cell.last + fieldset.module .cell {
 .predelete h3, .predelete h3.collapse-handler, 
 .predelete h4, .predelete h4.collapse-handler {
     background: #f2e6e6 !important;
-    background: -moz-linear-gradient(top, #fff2f2, #f2e6e6) !important;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff2f2), to(#f2e6e6)) !important;
 }
 .predelete h2.collapse-handler:hover, 
 .predelete h3.collapse-handler:hover, 
@@ -612,8 +534,6 @@ fieldset.module .cell.last + fieldset.module .cell {
 .collapse.open .predelete h3.collapse-handler, 
 .collapse.open .predelete h4.collapse-handler {
     background: #f2e6e6 !important;
-    background: -moz-linear-gradient(top, #f2e6e6, #fff2f2) !important;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff2f2), to(#f2e6e6)) !important;
 }
 .predelete, 
 .predelete .module,
@@ -629,7 +549,6 @@ fieldset.module .cell.last + fieldset.module .cell {
 
 .selector-available, .selector-chosen {
     border: 1px solid #ccc;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #ddd;
 }
 .selector h2, .inline-group .selector h2, 
@@ -642,18 +561,11 @@ fieldset.module .cell.last + fieldset.module .cell {
     color: #666;
     border-top: 1px solid #e4e4e4;
     border-bottom: 1px solid #e4e4e4;
-    border-top-left-radius: 5px;-moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
-}
-.selector h2 + .selector-filter {
-    border-radius-topleft: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
-    border-radius-topright: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
 }
 .selector select[multiple=multiple] {
     border-left: 0;
     border-top: 1px solid #d0d0d0;
     border-bottom: 1px solid #d0d0d0;
-    border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
 }
 
 a.selector-chooseall, a.selector-clearall {
@@ -727,13 +639,6 @@ a.external:hover, a.external:active {
 .module.changelist-filters {
     color: #666;
     border: 1px solid #d4d4d4;
-    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
-}
-.module.changelist-filters:last-of-type, 
-body.filebrowser .module.changelist-filters {
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 
 
@@ -744,11 +649,9 @@ body.filebrowser .module.changelist-filters {
 .module.search, 
 .module.filter {
     border: 0;
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
 .module.filter .pulldown-container {
     border: 1px solid #fff;
-    border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
 }
 .module.filter.open .pulldown-container {
     border-color: #ccc;
@@ -758,8 +661,6 @@ body.filebrowser .module.changelist-filters {
 .open a.button.toggle-filters, 
 .open.selected a.button.toggle-filters {
     border-color: transparent !important;
-    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0;
 }
 a.button.toggle-filters:link, a.button.toggle-filters:visited {
     color: #309bbf;
@@ -768,9 +669,6 @@ a.button.toggle-filters:link, a.button.toggle-filters:visited {
 .selected a.button.toggle-filters:link, .selected a.button.toggle-filters:visited {
     color: #444;
     background-color: #e1f0f5;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
-    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -moz-linear-gradient(top, #eee, #e0e0e0);
-    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
 }
 .open a.button.toggle-filters, .selected a.button.toggle-filters, 
 .selected a.button.toggle-filters:hover, .selected a.button.toggle-filters:active, 
@@ -778,17 +676,11 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
     color: #666;
     border-color: #ccc;
     background-color: #e1f0f5;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
-    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5);
-    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
 }
 .selected a.button.toggle-filters:link, .selected a.button.toggle-filters:visited {
     color: #666;
     border-color: #ddd;
     background-color: #e1f0f5;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
-    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5);
-    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
 }
 .open a.button.toggle-filters, 
 .open.selected a.button.toggle-filters, 
@@ -797,16 +689,11 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
     color: #666;
     border-color: #ccc;
     background-color: #e1f0f5;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat;
-    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5);
-    background: url('../img/icons/icon-dropdown-hover.png') 100% 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
 }
 
 .filter-pulldown {
     border: 1px solid transparent;
     border-top: 0;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
     background: #e1f0f5;
 }
 .filter-pulldown label {
@@ -820,20 +707,10 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 
 .module.date-hierarchy {
     border: 1px solid #d9d9d9;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
     background: #eee;
-    background: -moz-linear-gradient(top, #eee, #e7e7e7);
-    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e7e7e7));
-}
-.module + .module.date-hierarchy {
-    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
-    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
 }
 .module + .module.date-hierarchy .row {
     border-top: 1px solid #fff !important;
-    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
-    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
 }
 .date-hierarchy a:link, .date-hierarchy a:visited {
     color: #59afcc;
@@ -861,13 +738,11 @@ ul.pagination {
 }
 ul.pagination li {
     border: 1px solid #fff;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 
 ul.pagination span, 
 ul.pagination a {
     border: 1px solid;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
 ul.pagination a:link, .pagination a:visited {
@@ -878,15 +753,11 @@ ul.pagination a:hover, .pagination a:active {
     color: #444;
     border-color: #bdbdbd;
     background: #e0e0e0;
-    background: -moz-linear-gradient(top, #eee, #e0e0e0);
-    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
 }
 ul.pagination span {
     color: #444;
     border-color: #bdbdbd;
     background: #e0e0e0;
-    background: -moz-linear-gradient(top, #eee, #e0e0e0);
-    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
 }
 ul.pagination li.separator span {
     border-color: transparent;
@@ -899,7 +770,6 @@ ul.pagination li.separator span {
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-results {
-    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
     background-color: #eee !important;
 }
 
@@ -910,11 +780,7 @@ ul.pagination li.separator span {
 
 .module.changelist-actions {
     color: #ccc;
-    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
     background: #eee;
-    background: -moz-linear-gradient(top, #eee, #e0e0e0);
-    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
 }
 .module.changelist-actions.all-selected, 
 .module.changelist-actions.all-selected + .module.changelist-results {
@@ -922,26 +788,20 @@ ul.pagination li.separator span {
 }
 .module.changelist-actions ul li {
     border: 1px solid #444;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 .module.changelist-actions ul a, 
 .module.changelist-actions ul span {
     border: 1px solid;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 .module.changelist-actions ul a:link, .module.changelist-actions ul a:visited {
     color: #59afcc;
     border-color: #333;
     background: #333;
-    background: -moz-linear-gradient(top, #444, #333);
-    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#333));
 }
 .module.changelist-actions ul a:hover, .module.changelist-actions ul a:active {
     color: #ccc;
     border-color: #333;
     background: #555;
-    background: -moz-linear-gradient(top, #666, #555);
-    background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#555));
 }
 .module.changelist-actions ul span {
     color: #ccc;
@@ -959,10 +819,7 @@ ul.pagination li.separator span {
 .module.footer {
     border: 0;
     border-top: 1px solid #bdbdbd;
-    border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
     background: #333;
-    background: -moz-linear-gradient(top, #444, #333);
-    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#333));
 }
 
 
@@ -996,64 +853,16 @@ h1 + .tools a {
 }
 h1 + .tools a:link, h1 + .tools a:visited {
     background: #444;
-    background: -moz-linear-gradient(top, #666, #444);
-    background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#444));
 }
 h1 + .tools a:hover, h1 + .tools a:active {
     border-color: transparent;
     background: #309bbf;
-    background: -moz-linear-gradient(top, #39bae5, #309bbf);
-    background: -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));
 }
 h1 + .tools a.add-handler:link, h1 + .tools a.add-handler:visited {
     background-color: #444;
-    background: #444 0 50% no-repeat scroll;
-    background-image: url('../img/icons/icon-object-tools-add-handler.png'), -moz-linear-gradient(top, #666, #444);
-    background-image: url('../img/icons/icon-object-tools-add-handler.png'), -webkit-gradient(linear, left top, left bottom, from(#666), to(#444));
 }
 h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
     background-color: #309bbf;
-    background: #309bbf 0 50% no-repeat scroll;
-    background-image: url('../img/icons/icon-object-tools-add-handler.png'), -moz-linear-gradient(top, #39bae5, #309bbf);
-    background-image: url('../img/icons/icon-object-tools-add-handler.png'), -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));
-}
-
-
-/*  1st Level H2 + Tools ......................................... */
-
-.group h2+.tools, 
-.module h2+.tools {
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
-}
-
-.module h2+.tools li {
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
-}
-.group h2+.tools, 
-.module.collapse.closed h2+.tools {
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-}
-
-
-/*  2nd Level H3 + Tools ......................................... */
-
-.group .module.collapse.closed h3+.tools, 
-.group .module.collapse.closed h3+.tools li, 
-.module.collapse.closed:last-child h3+.tools, 
-.module.collapse.closed:last-child h3+.tools li {
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-}
-.group h3+.tools, 
-.group h3+.tools li {
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
-}
-
-
-/*  3rd Level H4 + Tools ......................................... */
-
-.module.collapse.closed:last-child h4+.tools, 
-.module.collapse.closed:last-child h4+.tools li {
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
 }
 
 
@@ -1068,12 +877,7 @@ h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
 
 .errornote {
     color: #f7f7f7;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #bf3030;
-}
-/* little fix to accomodate the top aligned login form .. */
-.errornote.login-errors {
-    border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;
 }
 ul.errorlist {
     color: #bf3030;
@@ -1100,7 +904,6 @@ input, textarea, select, button {
     color: #666;
     border: 1px solid #bbb;
     border-color: #ccc #ddd #ddd #ccc;
-    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
     outline: 0;
 }
 input, textarea, select {
@@ -1221,8 +1024,6 @@ input[type=submit],
     color: #fff;
     border: 1px solid #992626;
     background: #bf3030;
-    background: -webkit-gradient(linear, left top, left bottom, from(#d93636), to(#bf3030));
-    background: -moz-linear-gradient(top, #d93636, #bf3030);
 }
 #bookmark-add-cancel, 
 .submit-row a.cancel-link:link, .submit-row a.cancel-link:visited, 
@@ -1230,14 +1031,10 @@ input[type=submit],
     color: #fff;
     border: 1px solid #444;
     background: #666;
-    background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#444));
-    background: -moz-linear-gradient(top, #666, #444);
 }
 
 input[type=submit] {
     background: #309bbf;
-    background: -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));
-    background: -moz-linear-gradient(top, #39bae5, #309bbf);
 }
 input[type=submit]:hover, 
 #bookmark-add-cancel:hover, 
@@ -1247,8 +1044,6 @@ input[type=submit]:hover,
     color: #444;
     border: 1px solid #aaa;
     background: #d6d6d6;
-    background: -moz-linear-gradient(top, #e3e3e3, #d6d6d6);
-    background: -webkit-gradient(linear, left top, left bottom, from(#e3e3e3), to(#d6d6d6));
 }
 .footer input[type=submit]:hover, 
 .footer #bookmark-add-cancel:hover, 
@@ -1257,34 +1052,11 @@ input[type=submit]:hover,
     border: 1px solid #666;
 }
 
-button.fb_show, 
-button.ui-datepicker-trigger, 
-button.ui-timepicker-trigger, 
-button.ui-gAutocomplete-browse, 
-button.ui-gAutoSlugField-toggle, 
-button.ui-gFacelist-browse, 
-a.button, 
-.vDateField + span a, 
-.vTimeField + span a, 
-a.fb_show, 
-a.related-lookup, 
-a.add-another, 
-span#srcbrowser, span#hrefbrowser {
-    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
-    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-}
-
 button {
     background: #309bbf;
-    background-image: -moz-linear-gradient(top, #33a6cc, #309bbf);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#33a6cc), to(#309bbf));
 }
 button:hover {
     background: #666;
-    background-image: -moz-linear-gradient(top, #555, #444);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#555), to(#444));
 }
 
 button.fb_show, 
@@ -1319,66 +1091,6 @@ input[disabled] + a {
 }
 
 
-/*  Autocomplete Button ......................................... */
-
-button.ui-gAutocomplete-browse, 
-button.ui-gFacelist-browse {
-    background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
-}
-button.ui-gAutocomplete-browse:hover, 
-button.ui-gFacelist-browse:hover {
-    background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
-}
-
-.errors button.ui-gAutocomplete-browse,
-.errors button.ui-gFacelist-browse {
-    border-color: #bf3030 #bf3030 #bf3030 #ccc;
-}
-
-
-/*  AutoSlugField Button ......................................... */
-
-/* TODO: lock/unlock icons .. */
-
-button.ui-gAutoSlugField-toggle {
-    background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
-}
-button.ui-gAutoSlugField-toggle:hover {
-    background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
-}
-.errors button.ui-gAutoSlugField-toggle {
-    border-color: #bf3030 #bf3030 #bf3030 #ccc;
-}
-
-
-/*  Datepicker Button ......................................... */
-
-button.ui-datepicker-trigger {
-    background-image: url('../img/icons/icon-datepicker.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: url('../img/icons/icon-datepicker.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
-}
-button.ui-datepicker-trigger:hover {
-    background-image: url('../img/icons/icon-datepicker-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: url('../img/icons/icon-datepicker-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
-}
-
-
-/*  Timepicker Button ......................................... */
-
-button.ui-timepicker-trigger {
-    background-image: url('../img/icons/icon-timepicker.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: url('../img/icons/icon-timepicker.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
-}
-button.ui-timepicker-trigger:hover {
-    background-image: url('../img/icons/icon-timepicker-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: url('../img/icons/icon-timepicker-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
-}
-
-
 /*  Search Button ......................................... */
 
 button.search {
@@ -1395,7 +1107,6 @@ a.button,
 .datecrumbs a, 
 .datecrumbs span {
     border: 1px solid #e0e0e0;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 
 
@@ -1405,8 +1116,6 @@ a.button.drop-down[class*="selected"] {
     color: #444 !important;
     border-color: #b0b0b0;
     border-bottom-width: 0 !important;
-    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0;
     box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
     -moz-box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
     -webkit-box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
@@ -1419,9 +1128,6 @@ a.button.drop-down[class*="selected"],
 a.button.drop-down:hover, a.button.drop-down:active {
     color: #666;
     background-color: #e1f0f5;
-    background: #e1f0f5 url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat;
-    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -moz-linear-gradient(top, #f0f7fa, #e1f0f5) !important;
-    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f0f7fa), to(#e1f0f5));
 }
 
 
@@ -1439,37 +1145,8 @@ a.fb_show:hover, a.fb_show:active,
 a.related-lookup:hover, a.related-lookup:active {
     background-color: #e1e1e1;
 }
-
-a.fb_show:link, a.fb_show:visited, 
-span#srcbrowser {
-    background-image: url('../img/icons/icon-fb-show.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: url('../img/icons/icon-fb-show.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
-}
-a.fb_show:hover, a.fb_show:active, 
-span#srcbrowser:hover {
-    background-image: url('../img/icons/icon-fb-show-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: url('../img/icons/icon-fb-show-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
-}
-a.related-lookup:link, a.related-lookup:visited, 
-span#hrefbrowser {
-    background-image: url('../img/icons/icon-related-lookup.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: url('../img/icons/icon-related-lookup.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
-}
-a.related-lookup:hover, a.related-lookup:active, 
-span#hrefbrowser:hover {
-    background-image: url('../img/icons/icon-related-lookup-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
-}
-
 a.related-lookup + strong {
     color: #555;
-}
-
-
-/*  Add Another ......................................... */
-
-a.add-another {
-    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
 
 
@@ -1530,20 +1207,10 @@ tfoot td {
     border-left: 1px solid #d4d4d4;
     border-bottom: 1px solid #d4d4d4;
     background: #eee;
-    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#e0e0e0));
-    background: -moz-linear-gradient(top, #eee, #e0e0e0);
-}
-thead th:first-of-type {
-    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
-}
-thead th:last-of-type {
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
 }
 thead th.sorted {
     border-bottom: 1px solid #ccc;
     background: #e0e0e0;
-    background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#eee));
-    background: -moz-linear-gradient(top, #e0e0e0, #eee);
 }
 
 thead th a:link, thead th a:visited {
@@ -1604,46 +1271,9 @@ tr.row-label td {
 #changelist tbody tr th:first-child, #changelist tbody tr td:first-child {
     border-left: 0;
 }
-
-#changelist .changelist-results, 
-#changelist /*.changelist-results*/ table {
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-}
-
-#changelist /*.changelist-results*/ thead th:first-of-type, 
-#changelist /*.changelist-results*/ thead th:first-of-type a, 
-#changelist /*.changelist-results*/ thead *:first-child[style^="display: none"] + *, 
-#changelist /*.changelist-results*/ thead *:first-child[style^="display: none"] + * a {
-    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-}
-#changelist /*.changelist-results*/ thead th:last-of-type,
-#changelist /*.changelist-results*/ thead th:last-of-type a {
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
-}
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:first-child, 
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:first-child[style^="display: none"] + * {
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-}
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:last-child, 
-#changelist.editable /*.changelist-results*/ tbody tr:last-of-type td:nth-last-child(-n+2) {
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-}
-
 #changelist /*.changelist-results*/ thead *[style^="display: none"] + *, 
 #changelist /*.changelist-results*/ tbody tr *[style^="display: none"] + * {
     border-left: 0;
-}
-
-
-
-/*  Change History
------------------------------------------------------------------------------------------------------- */
-
-table#change-history thead th:first-child {
-    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-}
-table#change-history thead th:last-child {
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
 
 
