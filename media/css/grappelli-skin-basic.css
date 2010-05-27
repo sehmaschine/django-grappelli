@@ -416,7 +416,7 @@ ul.messagelist.error li {
 
 
 
-/*  Form Row
+/*  Row
 ------------------------------------------------------------------------------------------------------ */
 
 .row {
@@ -438,7 +438,7 @@ fieldset.module > .row:last-child {
 
 
 
-/*  Form Cell
+/*  Cell
 ------------------------------------------------------------------------------------------------------ */
 
 .cell {
@@ -702,7 +702,7 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 
 
 
-/* Module Date Hierarchy
+/*  Module Date Hierarchy
 ------------------------------------------------------------------------------------------------------ */
 
 .module.date-hierarchy {
@@ -724,7 +724,7 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 
 
 
-/* Pagination
+/*  Pagination
 ------------------------------------------------------------------------------------------------------ */
 
 .module.pagination {
@@ -766,7 +766,7 @@ ul.pagination li.separator span {
 
 
 
-/* Module Changelist-Results
+/*  Module Changelist-Results
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-results {
@@ -775,7 +775,7 @@ ul.pagination li.separator span {
 
 
 
-/* Module Changelist Actions
+/*  Module Changelist Actions
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-actions {
@@ -813,7 +813,7 @@ ul.pagination li.separator span {
 
 
 
-/* Module Footer
+/*  Module Footer
 ------------------------------------------------------------------------------------------------------ */
 
 .module.footer {
@@ -824,7 +824,7 @@ ul.pagination li.separator span {
 
 
 
-/* Submit Row
+/*  Submit Row
 ------------------------------------------------------------------------------------------------------ */
 
 .module.submit-row {
@@ -872,7 +872,7 @@ h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
 
 
 
-/* Errors
+/*  Errors
 ------------------------------------------------------------------------------------------------------ */
 
 .errornote {
@@ -888,7 +888,7 @@ ul.errorlist {
 
 
 
-/* Labels & Other Typographic Elements in Forms
+/*  Labels & Other Typographic Elements in Forms
 ------------------------------------------------------------------------------------------------------ */
 
 label {
@@ -897,7 +897,7 @@ label {
 
 
 
-/* Form Elements
+/*  Form Elements
 ------------------------------------------------------------------------------------------------------ */
 
 input, textarea, select, button {
@@ -965,7 +965,6 @@ select[readonly] {
 input[type=submit], input[type=reset], input[type=button], button {
     color: #fff;
     border: 0;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #acd7e5;
 }
 
@@ -973,7 +972,6 @@ input[type=submit], input[type=reset], input[type=button], button {
 /*  Button Containers ................................................... */
 
 .submit-row>*[class*="-container"] {
-    border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
     box-shadow: 0 0 5px #666; -moz-box-shadow: 0 0 5px #666; -webkit-box-shadow: 0 0 5px #666;
     background: #d6d6d6;
 }
@@ -1001,13 +999,10 @@ input[type=submit], input[type=reset], input[type=button], button {
 }
 
 
-/* Buttons & Buttonlike Links
+
+/*  Buttons & Buttonlike Links
 ------------------------------------------------------------------------------------------------------ */
 
-.submit-row a.delete-link, 
-.submit-row a.cancel-link {
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-}
 .submit-row input[type=submit] {
     border: 1px solid #267c99;
 }
@@ -1100,7 +1095,7 @@ button.search {
 
 
 
-/* Links as Buttons
+/*  Links as Buttons
 ------------------------------------------------------------------------------------------------------ */
 
 a.button, 
@@ -1271,8 +1266,8 @@ tr.row-label td {
 #changelist tbody tr th:first-child, #changelist tbody tr td:first-child {
     border-left: 0;
 }
-#changelist /*.changelist-results*/ thead *[style^="display: none"] + *, 
-#changelist /*.changelist-results*/ tbody tr *[style^="display: none"] + * {
+#changelist thead *[style^="display: none"] + *, 
+#changelist tbody tr *[style^="display: none"] + * {
     border-left: 0;
 }
 

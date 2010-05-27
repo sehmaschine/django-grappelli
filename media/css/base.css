@@ -8,5 +8,10 @@
 @import url('buttons.css');
 @import url('tables.css');
 
-/*@import url('grappelli-skin-default.css');*/
-@import url('grappelli-skin-basic.css');
+
+
+/*  Basic Skin ................................................... */
+/*@import url('grappelli-skin-basic.css');*/
+
+/*  Default Skin: Border-Radius, Background-Gradients ................................................... */
+@import url('grappelli-skin-default.css');

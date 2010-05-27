@@ -217,7 +217,7 @@ fieldset.module .cell.last + fieldset.module .cell + * + fieldset.module .cell {
 
 
 
-/* Tabular Modules
+/*  Tabular Modules
 ------------------------------------------------------------------------------------------------------ */
 
 .module.table {
@@ -274,7 +274,6 @@ h2 + * + * + .module.table {
 .module.tbody .td {
     padding-top: 5px;
     padding-bottom: 5px;
-/*    max-width: 758px;*/
 }
 .module.table .th:first-of-type, 
 .module.table .td:first-of-type {
@@ -490,7 +489,7 @@ a.external:hover, a.external:active {
 
 
 
-/* Basic Actions & Module Actions
+/*  Basic Actions & Module Actions
 ------------------------------------------------------------------------------------------------------ */
 
 ul.actions {
@@ -617,7 +616,7 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 
 
 
-/* Module Date Hierarchy
+/*  Module Date Hierarchy
 ------------------------------------------------------------------------------------------------------ */
 
 .module + .module.date-hierarchy {
@@ -656,7 +655,7 @@ a.button.toggle-filters:hover, a.button.toggle-filters:active {
 
 
 
-/* Pagination
+/*  Pagination
 ------------------------------------------------------------------------------------------------------ */
 
 .module.pagination {
@@ -715,7 +714,7 @@ ul.pagination li.showall {
 
 
 
-/* Module Changelist-Results
+/*  Module Changelist-Results
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-results {
@@ -728,7 +727,7 @@ ul.pagination li.showall {
 
 
 
-/* Module Changelist Actions
+/*  Module Changelist Actions
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-actions {
@@ -785,7 +784,7 @@ ul.pagination li.showall {
 
 
 
-/* Module Footer
+/*  Module Footer
 ------------------------------------------------------------------------------------------------------ */
 
 .module.footer {
@@ -793,22 +792,18 @@ ul.pagination li.showall {
     z-index: 1000;
     bottom: 0;
     margin: 0 -20px;
-    padding: 10px 20px;
+    padding: 12px 20px;
     width: 100%;
     opacity: 1;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
-
-.module.footer {
-    padding: 8px 20px 7px;
-}
 .module.footer.changelist-actions {
-    padding: 10px 20px;
+    padding: 15px 20px 14px;
 }
 
 
 
-/* Submit Row
+/*  Submit Row
 ------------------------------------------------------------------------------------------------------ */
 
 .module.submit-row {
@@ -839,7 +834,7 @@ ul.submit-row li.left:first-child {
 
 
 
-/* Sortable
+/*  Sortable
 ------------------------------------------------------------------------------------------------------ */
 
 .sortablehelper, sortablehelper * {

@@ -1606,31 +1606,31 @@ tr.row-label td {
 }
 
 #changelist .changelist-results, 
-#changelist /*.changelist-results*/ table {
+#changelist table {
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 
-#changelist /*.changelist-results*/ thead th:first-of-type, 
-#changelist /*.changelist-results*/ thead th:first-of-type a, 
-#changelist /*.changelist-results*/ thead *:first-child[style^="display: none"] + *, 
-#changelist /*.changelist-results*/ thead *:first-child[style^="display: none"] + * a {
+#changelist thead th:first-of-type, 
+#changelist thead th:first-of-type a, 
+#changelist thead *:first-child[style^="display: none"] + *, 
+#changelist thead *:first-child[style^="display: none"] + * a {
     border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
 }
-#changelist /*.changelist-results*/ thead th:last-of-type,
-#changelist /*.changelist-results*/ thead th:last-of-type a {
+#changelist thead th:last-of-type,
+#changelist thead th:last-of-type a {
     border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
 }
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:first-child, 
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:first-child[style^="display: none"] + * {
+#changelist tbody tr:last-of-type>*:first-child, 
+#changelist tbody tr:last-of-type>*:first-child[style^="display: none"] + * {
     border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
 }
-#changelist /*.changelist-results*/ tbody tr:last-of-type>*:last-child, 
-#changelist.editable /*.changelist-results*/ tbody tr:last-of-type td:nth-last-child(-n+2) {
+#changelist tbody tr:last-of-type>*:last-child, 
+#changelist.editable tbody tr:last-of-type td:nth-last-child(-n+2) {
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 
-#changelist /*.changelist-results*/ thead *[style^="display: none"] + *, 
-#changelist /*.changelist-results*/ tbody tr *[style^="display: none"] + * {
+#changelist thead *[style^="display: none"] + *, 
+#changelist tbody tr *[style^="display: none"] + * {
     border-left: 0;
 }
 
