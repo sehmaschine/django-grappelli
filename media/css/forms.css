@@ -325,11 +325,6 @@ ul.radiolist, ul.checkboxlist {
     line-height: 15px;
     font-weight: normal;
 }
-/*label + ul.radiolist, label + ul.checkboxlist, 
-th ul.radiolist, th ul.checkboxlist, .th ul.radiolist, .th ul.checkboxlist, 
-td ul.radiolist, td ul.checkboxlist, .td ul.radiolist, .td ul.checkboxlist {
-    margin-left: 0;
-}*/
 
 ul.radiolist li + li, ul.checkboxlist li + li {
     margin-top: 2px;
@@ -339,6 +334,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
     float: left;
     display: inline;
     margin-top: 5px;
+    margin-bottom: 3px;
     padding-right: 20px;
 }
 th ul.radiolist.inline, th ul.checkboxlist.inline, 
@@ -349,6 +345,7 @@ ul.radiolist.inline li, ul.checkboxlist.inline li {
     float: left;
     display: inline;
     margin-top: 0 !important;
+    margin-bottom: 2px;
     padding-right: 20px;
 }
 .module.tbody ul.radiolist.inline, .module.tbody ul.checkboxlist.inline {

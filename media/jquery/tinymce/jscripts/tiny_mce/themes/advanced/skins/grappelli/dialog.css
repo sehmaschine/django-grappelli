@@ -176,10 +176,15 @@ label.additional { position: relative; display: inline; float: none; top: 1px; }
 .description label { margin: 0 0 12px !important; padding: 0 !important; }
 #constrainlabel { display: inline; float: none; position: relative; top: 1px !important; }
 
-input[type=text], input[type=password] { width: 250px !important; }
-select { width: 258px !important; }
-input#src, input#href { width: 240px !important; padding-right: 10px; }
-input.size, input.number { margin-right: 1px; width: 30px !important; }
+input[type=text], input[type=password] {
+    width: 100% !important;
+}
+select { width: 100% !important; }
+input#src, input#href {
+    width: 100% !important;
+    padding-right: 28px;
+}
+input.size, input.number { margin-right: 1px; width: 50px !important; }
 input.radio { position: relative; top: 6px; margin: 0 5px 13px 0; }
 input.checkbox { position: relative; top: 6px; margin: 0 5px 13px 0 !important; }
 input.radio.additional, input.checkbox.additional { margin-left: 10px !important; }
@@ -247,7 +252,7 @@ span#srcbrowser, span#hrefbrowser { position: relative; top: -25px; margin-botto
     position: relative; display: block; float: right;
     width: 23px;
     height: 23px;
-    left: -3px;
+/*    left: -3px;*/
 /*    background: transparent url('img/icons/icon-fb_show.png') 0 0 no-repeat;*/
     background-position: 50% 50%;
     background-repeat: no-repeat;

@@ -29,7 +29,8 @@
 .grappelliSkin div, .grappelliSkin iframe, 
 .grappelliSkin a, .grappelliSkin img, .grappelliSkin span, 
 .grappelliSkin *, .grappelliSkin .text {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     width: auto;
     font-family: Arial, sans-serif; font-size: 11px; line-height: 15px; font-weight: normal;
     text-decoration: none; text-align: left; white-space: nowrap;
@@ -38,6 +39,10 @@
     background: transparent;
     vertical-align: baseline;
     cursor: default;
+}
+.grappelliSkin table, .grappelliSkin tbody, .grappelliSkin tr, .grappelliSkin td {
+    margin: 0 !important;
+    border: 0 !important;
 }
 .grappelliSkin a {
     text-decoration: none;
@@ -69,10 +74,10 @@
 }
 .grappelliSkin td.mceToolbar {
     padding-bottom: 5px;
-    border-bottom: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4!important;
 }
 .predelete .grappelliSkin td.mceToolbar {
-    border-bottom: 1px solid #e5caca;
+    border-bottom: 1px solid #e5caca !important;
 }
 .grappelliSkin td.mceToolbar.advanced_icons {
     border-top: 1px solid #ccc !important;
@@ -88,25 +93,24 @@
 
 
 
-/* External (not defined yet)
------------------------------------------------------------------------ */
-
-
-
 /* Layout
 ----------------------------------------------------------------------- */
 
+#changelist span.mceEditor.grappelliSkin {
+    display: inline-block;
+    margin: -4px 0 -5px;
+}
 .grappelliSkin table.mceLayout {
     height: auto !important;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-    background: #eee;
+    background: transparent;
 }
 .predelete .grappelliSkin table.mceLayout {
     background: transparent !important;
 }
 #mce_fullscreen_container {
     height: 100% !important;
-    background: #eee;
+    background: transparent;
 }
 #mce_fullscreen_container table.mceLayout {
     height: 100% !important;
@@ -118,9 +122,13 @@
 }
 
 /* Additional Toolbar-Rows */
+#changelist .grappelliSkin table.mceToolbar {
+    margin: 0 !important;
+}
 
-.grappelliSkin table.mceToolbar + table.mceToolbar {
-    margin-top: 5px;
+.grappelliSkin table.mceToolbar + table.mceToolbar, 
+#changelist .grappelliSkin table.mceToolbar + table.mceToolbar {
+    margin-top: 5px !important;
     height: 28px;
     background: transparent;
 }
@@ -372,7 +380,7 @@
 }
 
 .grappelliSkin .mcePlaceHolder {
-    position: relative; left: 160px;
+    position: relative;
     border: 1px solid #d4d4d4;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;

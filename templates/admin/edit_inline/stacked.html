@@ -7,7 +7,7 @@
     <ul class="tools">
         <li class="open-handler-container"><a href="javascript://" class="icon open-handler" title="{% trans 'Open All Items' %}"></a></li>
         <li class="close-handler-container"><a href="javascript://" class="icon close-handler" title="{% trans 'Close All Items' %}"></a></li>
-        <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Another' %}"> </a></li>
+        <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a></li>
     </ul>
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}
@@ -23,12 +23,11 @@
                 {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
                 {% if inline_admin_formset.formset.can_delete %}
                     {% if inline_admin_form.original %}
-                        <li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon delete-handler" title="{% trans 'Remove' %}"></a></li>
+                        <li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon delete-handler" title="{% trans 'Delete Item' %}"></a></li>
                     {% else %}
-                        <li class="remove-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon remove-handler" title="{% trans 'Remove' %}"></a></li>
+                        <li class="remove-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon remove-handler" title="{% trans 'Delete Item' %}"></a></li>
                     {% endif %}
                 {% endif %}
-                {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"></a></li>{% endif %}
             </ul>
             {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
             {% for fieldset in inline_admin_form %}
