@@ -76,7 +76,8 @@ tinyMCE.init({
     theme_advanced_resize_horizontal : false,
     theme_advanced_resizing_use_cookie : true,
     theme_advanced_styles: "Image left-aligned=img_left;Image left-aligned (nospace)=img_left_nospacetop;Image right-aligned=img_right;Image right-aligned (nospace)=img_right_nospacetop;Image Block=img_block",
-
+    
+    content_css: "/media/admin/css/base.css",
     
     // Adv (?)
     advlink_styles: "intern=internal;extern=external",
