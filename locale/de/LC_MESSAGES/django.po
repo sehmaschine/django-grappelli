@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-13 16:13+0100\n"
+"POT-Creation-Date: 2009-12-18 10:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,20 +16,86 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: sites.py:131 sites.py:142 sites.py:150
+#: sites.py:234 sites.py:245 sites.py:253
 msgid "Site administration"
-msgstr ""
+msgstr "Website Administration"
 
-#: sites.py:212
+#: sites.py:315
 #, python-format
 msgid "%s administration"
 msgstr "%s Administration"
+
+#: models/admin.py:21
+msgid "Admin Site"
+msgstr ""
+
+#: models/admin.py:21
+msgid "Index URL for an Admin Site Object."
+msgstr ""
+
+#: models/admin.py:22 models/admin.py:45 models/bookmarks.py:33
+#: models/help.py:13 models/help.py:36 models/navigation.py:18
+#: models/navigation.py:41
+msgid "Title"
+msgstr "Titel"
+
+#: models/admin.py:23
+msgid "Name"
+msgstr ""
+
+#: models/admin.py:24
+msgid "Template"
+msgstr ""
+
+#: models/admin.py:25
+msgid "Classes"
+msgstr ""
+
+#: models/admin.py:26
+msgid "Show Apps"
+msgstr ""
+
+#: models/admin.py:27 models/bookmarks.py:37 models/help.py:16
+#: models/help.py:41 models/navigation.py:21 models/navigation.py:50
+msgid "Order"
+msgstr "Reihenfolge"
+
+#: models/admin.py:31
+msgid "Admin Group"
+msgstr ""
+
+#: models/admin.py:32
+#, fuzzy
+msgid "Admin Groups"
+msgstr "Gruppen"
+
+#: models/admin.py:46 models/bookmarks.py:34 models/help.py:37
+#: models/navigation.py:42
+msgid "Link"
+msgstr "Link"
+
+#: models/admin.py:46 models/bookmarks.py:34 models/help.py:37
+#: models/navigation.py:42
+msgid "The Link should be relative, e.g. /admin/blog/."
+msgstr "Der Link muss relativ sein, z.B. /admin/blog/."
+
+#: models/admin.py:47 models/navigation.py:43
+msgid "Category"
+msgstr "Kategorie"
+
+#: models/admin.py:54
+msgid "Admin Group Item"
+msgstr ""
+
+#: models/admin.py:55
+msgid "Admin Group Items"
+msgstr ""
 
 #: models/bookmarks.py:13 templates/admin/object_history.html:26
 msgid "User"
 msgstr "Benutzer"
 
-#: models/bookmarks.py:17
+#: models/bookmarks.py:17 models/bookmarks.py:32
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
@@ -37,19 +103,6 @@ msgstr "Lesezeichen"
 #: templates/admin/includes_grappelli/header.html:10
 msgid "Bookmarks"
 msgstr "Lesezeichen"
-
-#: models/bookmarks.py:33 models/help.py:13 models/help.py:36
-#: models/navigation.py:18 models/navigation.py:41
-msgid "Title"
-msgstr "Titel"
-
-#: models/bookmarks.py:34 models/help.py:37 models/navigation.py:42
-msgid "Link"
-msgstr "Link"
-
-#: models/bookmarks.py:34 models/help.py:37 models/navigation.py:42
-msgid "The Link should be relative, e.g. /admin/blog/."
-msgstr "Der Link muss relative sein, z.B. /admin/blog/."
 
 #: models/bookmarks.py:41
 msgid "Bookmark Item"
@@ -59,11 +112,8 @@ msgstr "Lesezeichen Inhalt"
 msgid "Bookmark Items"
 msgstr "Lesezeichen Inhalte"
 
-#: models/help.py:16 models/navigation.py:21
-msgid "Order"
-msgstr "Reihenfolge"
-
-#: models/help.py:20 models/help.py:21 templates/grappelli/help/help.html:10
+#: models/help.py:20 models/help.py:21 models/help.py:35
+#: templates/grappelli/help/help.html:10
 #: templates/grappelli/help/help_detail.html:22 views/help.py:35
 msgid "Help"
 msgstr "Hilfe"
@@ -80,22 +130,10 @@ msgstr "Hilfe Inhalt"
 msgid "Help Entries"
 msgstr "Hilfe Inhalte"
 
-#: models/navigation.py:9
-msgid "internal"
-msgstr "intern"
-
-#: models/navigation.py:10
-msgid "external"
-msgstr "extern"
-
-#: models/navigation.py:25 models/navigation.py:26
+#: models/navigation.py:25 models/navigation.py:26 models/navigation.py:40
 #: templates/admin/includes_grappelli/navigation.html:5
 msgid "Navigation"
 msgstr "Navigation"
-
-#: models/navigation.py:43
-msgid "Category"
-msgstr "Kategorie"
 
 #: models/navigation.py:46
 msgid "Users"
@@ -140,7 +178,7 @@ msgstr "Die angeforderte Seite konnte nicht gefunden werden."
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_form.html:4
 msgid "Home"
-msgstr "Start"
+msgstr "Home"
 
 #: templates/admin/500.html:7
 msgid "Server error"
@@ -197,7 +235,7 @@ msgstr "Ändern"
 
 #: templates/admin/base_site.html:7
 msgid "Django site admin"
-msgstr "Django-Systemverwaltung"
+msgstr "Django Website Administration"
 
 #: templates/admin/base_site.html:8
 msgid "Django administration"
@@ -261,6 +299,9 @@ msgid ""
 "related objects, but your account doesn't have permission to delete the "
 "following types of objects:"
 msgstr ""
+"Das Löschen der %(object_name)s '%(escaped_object)s' hat das Löschen "
+"verknüpfter Inhalte zur Folge. Es fehlen Ihnen allerdings die Berechtigungen "
+"zum Löschen der folgenden Inhalte:"
 
 #: templates/admin/delete_confirmation.html:27
 #, python-format
@@ -268,6 +309,8 @@ msgid ""
 "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
 "All of the following related items will be deleted:"
 msgstr ""
+"Sind Sie sicher, dass Sie folgende %(object_name)s \"%(escaped_object)s\" "
+"löschen wollen? Folgende verknüpfte Inhalte werden ebenfalls gelöscht:"
 
 #: templates/admin/delete_confirmation.html:31
 #: templates/admin/delete_selected_confirmation.html:37
@@ -282,7 +325,7 @@ msgstr "Ja, ich bin sicher"
 
 #: templates/admin/delete_selected_confirmation.html:12
 msgid "Delete multiple objects"
-msgstr ""
+msgstr "Ausgewählte Inhalte löschen"
 
 #: templates/admin/delete_selected_confirmation.html:19
 #, python-format
@@ -327,7 +370,7 @@ msgstr ""
 #: templates/admin/index_collection.html:23
 #: templates/admin/index_group.html:23
 msgid "Site Administration"
-msgstr ""
+msgstr "Website Administration"
 
 #: templates/admin/invalid_setup.html:11
 msgid ""
@@ -359,7 +402,7 @@ msgstr "Aktion"
 
 #: templates/admin/object_history.html:33
 msgid "DATETIME_FORMAT"
-msgstr ""
+msgstr "DATUMSFORMAT"
 
 #: templates/admin/object_history.html:41
 msgid ""
@@ -375,6 +418,11 @@ msgstr "Alle anzeigen."
 
 #: templates/admin/search_form.html:7
 msgid "Search"
+msgstr "Suche"
+
+#: templates/admin/search_form.html:20
+#, fuzzy
+msgid "Search for"
 msgstr "Suche"
 
 #: templates/admin/submit_line.html:6
@@ -394,6 +442,8 @@ msgid ""
 "First, enter a username and password. Then, you'll be able to edit more user "
 "options."
 msgstr ""
+"Bitte Username und Passwort eingeben. Danach können Sie weitere Optionen "
+"ändern."
 
 #: templates/admin/auth/user/add_form.html:13
 msgid "Username"
@@ -412,7 +462,7 @@ msgstr "Passwort (Wiederholung)"
 #: templates/admin/auth/user/add_form.html:27
 #: templates/admin/auth/user/change_password.html:40
 msgid "Enter the same password as above, for verification."
-msgstr ""
+msgstr "Wiederholung des Passworts, zur Überprüfung."
 
 #: templates/admin/auth/user/change_password.html:13
 #: templates/admin/auth/user/change_password.html:46
@@ -425,6 +475,36 @@ msgstr "Passwort ändern"
 #: templates/admin/auth/user/change_password.html:26
 #, python-format
 msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+"Geben Sie ein Passwort für den Benutzer <strong>%(username)s</strong> ein."
+
+#: templates/admin/edit_inline/stacked.html:6
+msgid "Open All Items"
+msgstr ""
+
+#: templates/admin/edit_inline/stacked.html:7
+msgid "Close All Items"
+msgstr ""
+
+#: templates/admin/edit_inline/stacked.html:8
+#: templates/admin/edit_inline/tabular.html:6
+msgid "Add Item"
+msgstr ""
+
+#: templates/admin/edit_inline/stacked.html:18
+#: templates/admin/edit_inline/tabular.html:53
+#, fuzzy
+msgid "View on Site"
+msgstr "Auf der Website anzeigen"
+
+#: templates/admin/edit_inline/stacked.html:20
+#: templates/admin/edit_inline/tabular.html:52
+#, fuzzy
+msgid "Delete Item"
+msgstr "Löschen"
+
+#: templates/admin/edit_inline/tabular.html:54
+msgid "Move Item"
 msgstr ""
 
 #: templates/admin/includes_grappelli/bookmarks.html:11
@@ -459,7 +539,7 @@ msgstr "Keine Inhalte gefunden."
 #: templates/admin_doc/bookmarklets.html:9
 #: templates/admin_doc/bookmarklets.html:14
 msgid "Bookmarklets"
-msgstr ""
+msgstr "Bookmarklets"
 
 #: templates/admin_doc/bookmarklets.html:10
 msgid "Documentation bookmarklets"
@@ -488,7 +568,7 @@ msgstr ""
 
 #: templates/admin_doc/bookmarklets.html:29
 msgid "Show object ID"
-msgstr ""
+msgstr "Objekt-ID anzeigen"
 
 #: templates/admin_doc/bookmarklets.html:30
 msgid ""
@@ -530,16 +610,16 @@ msgstr ""
 #: templates/registration/password_change_form.html:17
 #: templates/registration/password_change_form.html:21
 msgid "Password change"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: templates/registration/password_change_done.html:19
 #: templates/registration/password_change_done.html:23
 msgid "Password change successful"
-msgstr ""
+msgstr "Die Passwortänderung war erfolgreich"
 
 #: templates/registration/password_change_done.html:25
 msgid "Your password was changed."
-msgstr ""
+msgstr "Ihr Passwort wurde geändert."
 
 #: templates/registration/password_change_form.html:23
 msgid ""
@@ -549,17 +629,17 @@ msgstr ""
 
 #: templates/registration/password_change_form.html:30
 msgid "Old password:"
-msgstr ""
+msgstr "Altes Passwort:"
 
 #: templates/registration/password_change_form.html:34
 #: templates/registration/password_reset_confirm.html:18
 msgid "New password:"
-msgstr ""
+msgstr "Neues Passwort:"
 
 #: templates/registration/password_change_form.html:38
 #: templates/registration/password_reset_confirm.html:20
 msgid "Confirm password:"
-msgstr ""
+msgstr "Passwort bestätigen:"
 
 #: templates/registration/password_change_form.html:41
 #: templates/registration/password_reset_confirm.html:21
@@ -573,12 +653,12 @@ msgstr ""
 #: templates/registration/password_reset_form.html:6
 #: templates/registration/password_reset_form.html:10
 msgid "Password reset"
-msgstr ""
+msgstr "Passwort zurücksetzen"
 
 #: templates/registration/password_reset_complete.html:6
 #: templates/registration/password_reset_complete.html:10
 msgid "Password reset complete"
-msgstr ""
+msgstr "Zurücksetzen des Passworts erfolgreich"
 
 #: templates/registration/password_reset_complete.html:12
 msgid "Your password has been set.  You may go ahead and log in now."
@@ -590,7 +670,7 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:12
 msgid "Enter new password"
-msgstr ""
+msgstr "Neues Passwort eingeben"
 
 #: templates/registration/password_reset_confirm.html:14
 msgid ""
@@ -600,7 +680,7 @@ msgstr ""
 
 #: templates/registration/password_reset_confirm.html:26
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "Fehler beim Zurücksetzen des Passworts"
 
 #: templates/registration/password_reset_confirm.html:28
 msgid ""
@@ -622,24 +702,25 @@ msgstr ""
 #: templates/registration/password_reset_email.html:2
 msgid "You're receiving this e-mail because you requested a password reset"
 msgstr ""
+"Sie erhalten dieses E-Mail, weil Sie ein neues Passwort angefragt haben"
 
 #: templates/registration/password_reset_email.html:3
 #, python-format
 msgid "for your user account at %(site_name)s"
-msgstr ""
+msgstr "für Ihren Benutzeraccount bei %(site_name)s"
 
 #: templates/registration/password_reset_email.html:5
 #, python-format
 msgid "Your new password is: %(new_password)s"
-msgstr ""
+msgstr "Ihr neues Passwort: %(new_password)s"
 
 #: templates/registration/password_reset_email.html:7
 msgid "Feel free to change this password by going to this page:"
-msgstr ""
+msgstr "Sie können Ihr Passwort auf folgender Seite ändern:"
 
 #: templates/registration/password_reset_email.html:11
 msgid "Your username, in case you've forgotten:"
-msgstr ""
+msgstr "Ihr Benutzername:"
 
 #: templates/registration/password_reset_email.html:13
 msgid "Thanks for using our site!"
@@ -655,6 +736,9 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll reset "
 "your password and e-mail the new one to you."
 msgstr ""
+"Sie haben Ihr Passwort vergessen? Bitte geben Sie Ihre E-Mail Adresse ein "
+"und wir setzen Ihr Passwort zurück. Sie erhalten Ihr neues Passwort per E-"
+"Mail."
 
 #: templates/registration/password_reset_form.html:16
 msgid "E-mail address:"
@@ -664,24 +748,30 @@ msgstr "E-Mail Adresse:"
 msgid "Reset my password"
 msgstr "Passwort zurücksetzen"
 
-#: views/bookmarks.py:32
+#: views/bookmarks.py:38
 msgid "Site is already bookmarked."
 msgstr "Die Seite ist bereits als Lesezeichen markiert."
 
-#: views/bookmarks.py:37
+#: views/bookmarks.py:43
 msgid "Site was added to Bookmarks."
 msgstr "Die Seite wurde zu den Lesezeichen hinzugefügt."
 
-#: views/bookmarks.py:39 views/bookmarks.py:41 views/bookmarks.py:44
+#: views/bookmarks.py:45 views/bookmarks.py:47 views/bookmarks.py:50
 #, fuzzy
 msgid "Site could not be added to Bookmarks."
 msgstr "Die Seite konnte nicht zu den Lesezeichen hinzugefügt werden."
 
-#: views/bookmarks.py:67
+#: views/bookmarks.py:73
 msgid "Site was removed from Bookmarks."
 msgstr "Die Seite wurde aus den Lesezeichen entfernt."
 
-#: views/bookmarks.py:69 views/bookmarks.py:71 views/bookmarks.py:74
+#: views/bookmarks.py:75 views/bookmarks.py:77 views/bookmarks.py:80
 #, fuzzy
 msgid "Site could not be removed from Bookmarks."
 msgstr "Die Seite konnte nicht aus den Lesezeichen entfernt werden."
+
+#~ msgid "internal"
+#~ msgstr "intern"
+
+#~ msgid "external"
+#~ msgstr "extern"

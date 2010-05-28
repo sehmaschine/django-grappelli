@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load adminmedia admin_list i18n grp_tags %}
+{% load adminmedia admin_list i18n grp_tags grp_csrf %}
 
 <!-- STYLES -->
 {% block extrastyle %}
@@ -75,7 +75,7 @@
         <!-- Changelist -->
         <div class="module{% if cl.has_filters or cl.search_fields or cl.date_hierarchy %} filtered{% endif %}" id="changelist">
             <div class="changelist-content">
-                <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %} 
+                <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% grp_csrf_token %}
                 
                 <!-- Popup Hidden Field -->
                 {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}

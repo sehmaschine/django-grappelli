@@ -3,7 +3,7 @@
 <div class="inline-group inline-tabular{% if inline_admin_formset.opts.sortable %} sortable{% endif %}{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}" name="inlinegrouptabular">
     <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
     <ul class="inline-item-tools">
-        {% if inline_admin_formset.opts.allow_add %}<li><a href="javascript://" class="addhandler" title="Add Item"></a></li>{% endif %}
+        {% if inline_admin_formset.opts.allow_add %}<li><a href="javascript://" class="addhandler" title="{% trans 'Add Item' %}"></a></li>{% endif %}
     </ul>
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}
@@ -49,9 +49,9 @@
             <!-- delete/link/sort -->
             <div class="item form-cell inline-item-tools">
                 <ul class="inline-item-tools">
-                    {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="deletelink" title="Delete Item"></a></li>{% endif %}
-                    {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="viewsitelink" title="View on Site"></a></li>{% endif %}
-                    {% comment %}{% if inline_admin_formset.opts.sortable %} <li><a href="javascript://" class="draghandler" title="Move Item"></a></li>{% endif %}{% endcomment %}
+                    {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="deletelink" title="{% trans 'Delete Item' %}"></a></li>{% endif %}
+                    {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="viewsitelink" title="{% trans 'View on Site' %}"></a></li>{% endif %}
+                    {% comment %}{% if inline_admin_formset.opts.sortable %} <li><a href="javascript://" class="draghandler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
                 </ul>
             </div>
             {{ inline_admin_form.fk_field.field }}
