@@ -1,0 +1,29 @@
+orignal js removed:
+    actions.js, actions.min.js
+    jquery.js, jquery.min.js
+    collapse.js, collapse.min.js
+    calendar.js
+
+original js updated:
+    datetimeshortcuts.js
+        - outcommented initialization of js for date fields (use jquery-ui datepicker @see grappelli.js)
+    RelatedObjectLookups.js
+        Popups:
+            - trigger focus/click event of element to open cancel/save footer in changelist
+            - open popups with 500x920 instead of 500x800
+
+js added by grappelli:
+    
+    grappelli.change_list.js
+        - all js magic for change_list
+    
+    grappelli.RelatedObjectLookups.js
+        - customization and initialization
+    
+    grappelli.js
+        - grappelli wide features like collapsables
+        - hacks like editing dom which is rendered from python code (not customizable via templates)
+    
+    media/jquery/*
+        - "own" jquery (use newer version than original)
+        - jquery-ui stuff like datepicker

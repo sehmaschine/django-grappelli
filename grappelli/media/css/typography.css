@@ -1,0 +1,260 @@
+
+/*  typography.css: 
+    2009 / vonautomatisch werkstaetten / vonautomatisch.at
+------------------------------------------------------------------------------------------------------ */
+
+
+
+/*  Headings
+------------------------------------------------------------------------------------------------------ */
+
+h1, h2, h3, h4 {
+    font-weight: bold;
+}
+
+h1 {
+    position: relative;
+    z-index: 800;
+    margin: 26px 0 10px;
+    font-size: 16px;
+    line-height: 20px;
+}
+.pretitle + h1 {
+    margin-top: 0;
+}
+h2 {
+    font-size: 13px;
+}
+h3 {
+    font-size: 12px;
+}
+h4, h5 {
+    font-size: 11px;
+}
+
+
+
+/*  Paragraphs
+------------------------------------------------------------------------------------------------------ */
+
+.module p.help, 
+p.help {
+    padding: 5px 0;
+    font-size: 10px !important;
+    line-height: 12px;
+}
+
+.fb_show + p.help a {
+    display: inline-block;
+    padding: 3px;
+    font-size: 0;
+    line-height: 0;
+}
+.fb_show + p.help a img {
+    margin: 0;
+    font-size: 0;
+    line-height: 0;
+}
+.container-grid > p:first-child, .container-flexible > p:first-child, 
+.container-grid .column > p:first-child, .container-flexible .column > p:first-child {
+    margin: 0 0 10px;
+}
+
+
+
+/*  Links
+------------------------------------------------------------------------------------------------------ */
+
+a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+a.back {
+    font-weight: bold;
+}
+
+
+
+/*  Listings
+------------------------------------------------------------------------------------------------------ */
+
+ul, li {
+    list-style-type: none;
+}
+
+
+
+/*  Blockquote, Pre, Code
+------------------------------------------------------------------------------------------------------ */
+
+blockquote {
+    margin-left: 2px;
+    padding-left: 4px;
+    font-size: 11px;
+}
+
+code, pre {
+    font-size: 11px;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+}
+
+pre.literal-block {
+    margin: 10px;
+    padding: 6px 8px;
+}
+
+hr {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    height: 1px;
+    font-size: 1px;
+    line-height: 1px;
+}
+
+
+
+/*  Table Typography
+------------------------------------------------------------------------------------------------------ */
+
+th.focus, 
+td.focus {
+    font-weight: bold;
+}
+
+
+
+/*  RTE (Rich Text Edited)
+------------------------------------------------------------------------------------------------------ */
+
+.rte h2.subhead {
+    margin: 0;
+    font-size: 12px;
+}
+.rte h3 {
+    margin: 10px -10px 10px;
+    padding: 7px 10px 6px;
+    font-size: 12px !important;
+}
+.rte h2 + h3 {
+    margin-top: -11px !important;
+}
+.rte h4 {
+    margin: 10px 0 0;
+    font-size: 12px;
+}
+
+.rte p {
+    margin: 10px 0;
+}
+.rte .module p {
+    margin: 10px 0;
+    padding: 0 10px;
+}
+.rte > p:first-child {
+    margin-top: 0;
+}
+
+.rte .group h2 + p, 
+.rte .module h2 + p {
+    margin: 5px 0;
+    padding: 0 10px;
+    font-size: 11px;
+}
+
+.rte table p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/*  Workaround for problem reported in django-ticket #11817 */
+.rte h2 p, 
+.rte h4 p {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-weight: normal;
+}
+.rte h2 p {
+    font-weight: bold !important;
+}
+.rte h4:empty, 
+.rte p:empty, 
+.rte hr, 
+.rte br:first-child {
+    display: none !important;
+}
+
+.rte ul, .rte ol {
+    margin: 10px 0 0 20px;
+    padding: 0 0 0 10px;
+    font-weight: normal !important;
+}
+ul.rte ul, ul.rte ol, 
+ol.rte ul, ol.rte ol {
+    margin: 0 0 0 20px;
+    font-size: 12px;
+    line-height: 14px;
+}
+.rte ul li, .rte ol li {
+    margin: 0;
+    padding: 0;
+}
+.rte ul li {
+    list-style-type: disc;
+}
+.rte ol li {
+    list-style-type: decimal;
+}
+
+.delete-confirmation ul.rte>li {
+    padding-bottom: 9px;
+    font-weight: bold;
+}
+.delete-confirmation ul.rte>li:last-child {
+    padding-bottom: 0;
+}
+.delete-confirmation ul.rte>li+li {
+    padding-top: 8px !important;
+}
+.delete-confirmation ul.rte>li>ul {
+    margin-top: 2px;
+}
+.delete-confirmation ul.rte>li>ul>li {
+    list-style-type: none;
+    margin: 0 0 0 -30px !important;
+    padding: 5px 0;
+}
+.delete-confirmation ul.rte>li>ul>li:last-child {
+    padding-bottom: 0;
+}
+.delete-confirmation ul.rte>li>ul>li>ul>li {
+    font-size: 11px;
+}
+
+.rte dd ul, .rte dd ol {
+    margin-top: 0;
+}
+.rte blockquote {
+    margin: 10px;
+}
+.rte dl, .rte dt, .rte dd {
+    margin: 0;
+}
+.rte dl {
+    padding: 5px 10px;
+}
+.rte dt {
+    font-weight: bold;
+}
+.rte dd + dt {
+    margin-top: 5px;
+}
+
+
+
+/*  Other Styles
+------------------------------------------------------------------------------------------------------ */
+
+.small { font-size: 10px; }
+.fw-normal { font-weight: normal; }

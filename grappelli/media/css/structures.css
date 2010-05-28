@@ -1,0 +1,607 @@
+
+
+
+/*  Body
+------------------------------------------------------------------------------------------------------ */
+
+body {
+    padding: 58px 20px 0;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+}
+body.popup {
+    padding-top: 0;
+}
+
+
+
+/* Container
+------------------------------------------------------------------------------------------------------ */
+
+#container {
+    z-index: 0;
+    position: relative;
+    float: left;
+    clear: both;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+
+/*  Header
+------------------------------------------------------------------------------------------------------ */
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    padding: 0 20px;
+    width: 100%;
+    height: 30px;
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: bold;
+}
+body.filebrowser.popup #header {
+    display: none;
+}
+
+
+
+/*  Branding, Bookmarks & User-Tools
+------------------------------------------------------------------------------------------------------ */
+
+.branding, .admin-title, 
+#bookmarks li, #user-tools li {
+    margin: 0;
+    padding: 8px 10px;
+}
+.branding {
+    display: none;
+    position: relative;
+    float: right;
+    width: 10px;
+    background: url('../img/grappelli-icon.png') 50% 50% no-repeat;
+}
+.admin-title {
+    position: relative;
+    float: left;
+    margin: 0 0 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#header ul li {
+    position: relative;
+    float: left;
+}
+
+
+/*  Bookmarks ................................................... */
+
+/*ul#bookmarks {
+    position: relative; float: left;
+    border-left: 1px solid #404040;
+    border-right: 1px solid #404040;
+}
+ul#bookmarks li {
+    padding: 8px 10px;
+}
+ul#bookmarks li.action.bookmark-manage {
+    border-right: 1px solid #303030;
+}
+ul#bookmarks li#toggle-bookmarks-listing {
+    width: 175px;
+    cursor: pointer;
+}
+ul#bookmarks li#toggle-bookmarks-listing:hover>a {
+    color: #eee;
+}
+ul#bookmarks li.action {
+    padding: 3px 0 2px;
+}
+ul#bookmarks li.action:last-child {
+    padding-right: 5px;
+}*/
+
+
+/*  Bookmarks Actions ................................................... */
+
+/*ul#bookmarks li.action a {
+    position: relative; display: block;
+    margin: 0;
+    width: 18px; height: 22px;
+    border: 1px solid transparent;
+    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+ul#bookmarks li.action {
+    width: 20px; height: 24px;
+    background-position: 50% 9px;
+    background-repeat: no-repeat;
+}
+ul#bookmarks li.action.bookmark-add {
+    background-image: url('../img/icons/icon-bookmark_add-inactive.png');
+}
+ul#bookmarks li.action.bookmark-remove {
+    background-image: url('../img/icons/icon-bookmark_remove-inactive.png');
+}
+ul#bookmarks li.action.active {
+    background-image: none;
+}
+.bookmark-add.active a, .bookmark-add.active a:visited {
+    background-image: url('../img/icons/icon-bookmark_add.png');
+}
+.bookmark-add.active a:hover, .bookmark-add.active a:active {
+    background-image: url('../img/icons/icon-bookmark_add-hover.png');
+}
+.bookmark-remove.active a, .bookmark-remove.active a:visited {
+     background-image: url('../img/icons/icon-bookmark_remove.png');
+}
+.bookmark-remove.active a:hover, .bookmark-remove.active a:active {
+    background-image: url('../img/icons/icon-bookmark_remove-hover.png');
+}
+a.bookmark-manage, a.bookmark-manage:visited {
+    background-image: url('../img/icons/icon-bookmark_manage.png');
+}
+a.bookmark-manage:hover, a.bookmark-manage:active {
+    background-image: url('../img/icons/icon-bookmark_manage-hover.png');
+}
+*/
+
+/*  Bookmarks Listing ................................................... */
+
+/*ul#bookmarks-listing {
+    display: none;
+    position: absolute; z-index: 1000; top: 30px; left: -1px; float: none;
+    margin: 0;
+    width: 260px;
+    border: 1px solid #404040;
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+    background: #333;
+    -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
+}
+ul#bookmarks-listing li {
+    float: none;
+    padding: 0;
+    border-bottom: 1px solid #404040;
+}
+ul#bookmarks-listing li:last-child {
+    border: none;
+}
+ul#bookmarks li p {
+    padding: 5px 10px;
+}
+ul#bookmarks-listing a, ul#bookmarks-listing a:visited {
+    display: block;
+    padding: 5px 30px 5px 10px;
+    background: #333;
+}
+ul#bookmarks-listing a:hover, ul#bookmarks-listing a:active {
+    color: #eee;
+    background: #309bbf;
+}
+ul#bookmarks-listing li:last-child a {
+    border-bottom-left-radius: 3px; -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px; -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px;
+}
+*/
+
+/*  Add Bookmark ................................................... */
+
+/*#bookmark-add {
+    display: none;
+    position: absolute; z-index: 1000; top: 30px; left: -196px;
+    margin: 0; padding: 10px;
+    width: 240px;
+    border: 1px solid #404040;
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+    background: #333;
+    box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
+}
+#bookmark-add input[type=text] {
+    margin-bottom: 10px;
+    width: 240px;
+    border: none;
+}
+#bookmark-add input[type=submit], 
+#bookmark-add-cancel {
+    position: relative;
+    width: auto;
+    height: 24px;
+    font-size: 11px;
+}
+#bookmark-add input[type=submit] {
+    float: right;
+}
+#bookmark-add-cancel {
+    float: left;
+}*/
+
+
+/*  User Tools ................................................... */
+
+#user-tools {
+    position: absolute;
+    right: 40px;
+}
+#user-tools>li:last-child {
+    padding-right: 20px;
+}
+
+#user-tools li.user-options-container {
+    position: relative;
+    width: 200px;
+}
+
+li.user-options-container.open a.user-options-handler {
+    display: block;
+}
+ul.user-options {
+    display: none;
+}
+li.user-options-container.open ul.user-options {
+    display: block;
+    position: absolute;
+    float: none;
+    clear: both;
+    z-index: 1000;
+    margin: 7px -10px 0;
+    width: 221px;
+}
+ul.user-options li {
+    float: none !important;
+    clear: both;
+}
+ul.user-options li a {
+    display: block;
+}
+
+
+
+/*  Breadcrumbs
+------------------------------------------------------------------------------------------------------ */
+
+div#breadcrumbs {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    z-index: 1000;
+    padding: 5px 10px 5px 20px;
+    width: 100%;
+    font-size: 11px;
+/*    font-weight: bold;*/
+    text-align: left;
+}
+div#breadcrumbs a {
+    padding: 10px 2px;
+}
+body.popup div#breadcrumbs {
+    top: 0;
+}
+
+
+
+/*  Messages
+------------------------------------------------------------------------------------------------------ */
+
+ul.messagelist {
+    position: relative;
+    top: 0;
+    z-index: 1001;
+    margin: 0 -20px;
+}
+ul.messagelist li {
+    display: block;
+    padding: 3px 10px 4px 35px;
+    font-size: 11px;
+    font-weight: bold;
+    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
+}
+ul.messagelist.success li {
+    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
+}
+ul.messagelist.error li {
+    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
+}
+body.popup .breadcrumbs + ul.messagelist {
+    top: 24px;
+}
+body.filebrowser.popup ul.messagelist {
+    top: 28px;
+}
+
+
+/*  Masthead
+------------------------------------------------------------------------------------------------------ */
+
+#masthead {
+    position: relative;
+    float: left;
+    clear: both;
+    z-index: 900;
+    padding: 60px 0 10px;
+    width: 100%;
+}
+
+
+
+/*  Login Form
+------------------------------------------------------------------------------------------------------ */
+
+div.login {
+    top: -30px;
+}
+#login-form {
+    margin: 0 auto;
+}
+
+
+
+/* Content
+------------------------------------------------------------------------------------------------------ */
+
+#content {
+    position: relative;
+    float: left;
+    clear: both;
+    margin: 0 0 80px;
+    padding: 0;
+    width: auto;
+}
+#content.content-flexible {
+    width: 100%;
+}
+body.filebrowser.popup #content {
+    top: 28px;
+}
+
+
+
+/* Container
+------------------------------------------------------------------------------------------------------ */
+
+.container, 
+.container-grid {
+    position: relative;
+    float: left;
+    clear: both;
+    width: 940px;
+}
+.container-flexible {
+    position: relative;
+    float: none;
+    clear: both;
+    width: auto;
+    height: 100%;
+}
+
+
+
+/*  Blueprint Grid Columns & Spans
+------------------------------------------------------------------------------------------------------ */
+
+.column {
+    position: relative;
+    float: left;
+}
+.column.centered {
+    position: relative;
+    float: none !important;
+    margin: 0 auto !important;
+}
+.span-flexible {
+    position: relative;
+    width: 100%;
+}
+.container-flexible.layout-flexible-grid .span-flexible {
+    float: left;
+    margin-right: 20px;
+    width: 100%;
+}
+.container-flexible.layout-flexible-grid .span-flexible + .column {
+    float: left !important;
+}
+.container-flexible.layout-grid-flexible .column {
+    float: left;
+}
+.container-flexible.layout-grid-flexible .span-flexible {
+    float: left;
+    width: 100%;
+}
+fieldset.module .row .column:first-child {
+    margin-left: 0 !important;
+}
+fieldset.module .row .column:last-child {
+    margin-right: -20px !important;
+}
+fieldset.module .row .column.span-flexible:last-child {
+    margin-right: 0 !important;
+}
+.row .span-flexible, 
+.row .span-flexible:last-child {
+    float: none;
+    width: auto;
+    margin-right: 0 !important;
+}
+
+
+/*  Basic Float & Margin ......................................... */
+
+.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, 
+.span-7, .span-8, .span-9, .span-10, .span-11, .span-12, 
+.span-13, .span-14, .span-15, .span-16, .span-17, .span-18, 
+.span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {
+/*    float: left;*/
+    margin-right: 20px;
+}
+.column.last { margin-right: 0; }
+
+
+/*  Column Widths ......................................... */
+
+.span-1  { width: 20px; }
+.span-2  { width: 60px; }
+.span-3  { width: 100px; }
+.span-4  { width: 140px; }
+.span-5  { width: 180px; }
+.span-6  { width: 220px; }
+.span-7  { width: 260px; }
+.span-8  { width: 300px; }
+.span-9  { width: 340px; }
+.span-10 { width: 380px; }
+.span-11 { width: 420px; }
+.span-12 { width: 460px; }
+.span-13 { width: 500px; }
+.span-14 { width: 540px; }
+.span-15 { width: 580px; }
+.span-16 { width: 620px; }
+.span-17 { width: 660px; }
+.span-18 { width: 700px; }
+.span-19 { width: 740px; }
+.span-20 { width: 780px; }
+.span-21 { width: 820px; }
+.span-22 { width: 860px; }
+.span-23 { width: 900px; }
+.span-24 { width: 940px; margin: 0; }
+
+
+/*  Append empty columns ......................................... */
+
+.append-1  { padding-right: 40px; }
+.append-2  { padding-right: 80px; }
+.append-3  { padding-right: 120px; }
+.append-4  { padding-right: 160px; }
+.append-5  { padding-right: 200px; }
+.append-6  { padding-right: 240px; }
+.append-7  { padding-right: 280px; }
+.append-8  { padding-right: 320px; }
+.append-9  { padding-right: 360px; }
+.append-10 { padding-right: 400px; }
+.append-11 { padding-right: 440px; }
+.append-12 { padding-right: 480px; }
+.append-13 { padding-right: 520px; }
+.append-14 { padding-right: 560px; }
+.append-15 { padding-right: 600px; }
+.append-16 { padding-right: 640px; }
+.append-17 { padding-right: 680px; }
+.append-18 { padding-right: 720px; }
+.append-19 { padding-right: 760px; }
+.append-20 { padding-right: 800px; }
+.append-21 { padding-right: 840px; }
+.append-22 { padding-right: 880px; }
+.append-23 { padding-right: 920px; }
+
+
+/*  Prepend empty columns ......................................... */
+
+.prepend-1  { padding-left: 40px; }
+.prepend-2  { padding-left: 80px; }
+.prepend-3  { padding-left: 120px; }
+.prepend-4  { padding-left: 160px; }
+.prepend-5  { padding-left: 200px; }
+.prepend-6  { padding-left: 240px; }
+.prepend-7  { padding-left: 280px; }
+.prepend-8  { padding-left: 320px; }
+.prepend-9  { padding-left: 360px; }
+.prepend-10 { padding-left: 400px; }
+.prepend-11 { padding-left: 440px; }
+.prepend-12 { padding-left: 480px; }
+.prepend-13 { padding-left: 520px; }
+.prepend-14 { padding-left: 560px; }
+.prepend-15 { padding-left: 600px; }
+.prepend-16 { padding-left: 640px; }
+.prepend-17 { padding-left: 680px; }
+.prepend-18 { padding-left: 720px; }
+.prepend-19 { padding-left: 760px; }
+.prepend-20 { padding-left: 800px; }
+.prepend-21 { padding-left: 840px; }
+.prepend-22 { padding-left: 880px; }
+.prepend-23 { padding-left: 920px; }
+
+
+/*  Span-X + Span-Flexible ......................................... */
+
+.span-1 + .span-flexible  { margin-left: 40px; }
+.span-2 + .span-flexible  { margin-left: 80px; }
+.span-3 + .span-flexible  { margin-left: 120px; }
+.span-4 + .span-flexible  { margin-left: 160px; }
+.span-5 + .span-flexible  { margin-left: 200px; }
+.span-6 + .span-flexible  { margin-left: 240px; }
+.span-7 + .span-flexible  { margin-left: 280px; }
+.span-8 + .span-flexible  { margin-left: 320px; }
+.span-9 + .span-flexible  { margin-left: 360px; }
+.span-10 + .span-flexible { margin-left: 400px; }
+.span-11 + .span-flexible { margin-left: 440px; }
+.span-12 + .span-flexible { margin-left: 480px; }
+.span-13 + .span-flexible { margin-left: 520px; }
+.span-14 + .span-flexible { margin-left: 560px; }
+.span-15 + .span-flexible { margin-left: 600px; }
+.span-16 + .span-flexible { margin-left: 640px; }
+.span-17 + .span-flexible { margin-left: 680px; }
+.span-18 + .span-flexible { margin-left: 720px; }
+.span-19 + .span-flexible { margin-left: 760px; }
+.span-20 + .span-flexible { margin-left: 800px; }
+.span-21 + .span-flexible { margin-left: 840px; }
+.span-22 + .span-flexible { margin-left: 880px; }
+.span-23 + .span-flexible { margin-left: 920px; }
+.span-24 + .span-flexible { margin-left: 960px; }
+
+
+/*  Columns in Cells ......................................... */
+
+.cell.span-1  { width: 0px; }
+.cell.span-2  { width: 40px; }
+.cell.span-3  { width: 80px; }
+.cell.span-4  { width: 120px; }
+.cell.span-5  { width: 160px; }
+.cell.span-6  { width: 200px; }
+.cell.span-7  { width: 240px; }
+.cell.span-8  { width: 280px; }
+.cell.span-9  { width: 330px; }
+.cell.span-10 { width: 360px; }
+.cell.span-11 { width: 400px; }
+.cell.span-12 { width: 440px; }
+.cell.span-13 { width: 480px; }
+.cell.span-14 { width: 520px; }
+.cell.span-15 { width: 560px; }
+.cell.span-16 { width: 600px; }
+.cell.span-17 { width: 640px; }
+.cell.span-18 { width: 680px; }
+.cell.span-19 { width: 720px; }
+.cell.span-20 { width: 760px; }
+.cell.span-21 { width: 800px; }
+.cell.span-22 { width: 840px; }
+.cell.span-23 { width: 880px; }
+.cell.span-24 { width: 920px; margin: 0; }
+
+
+/* Clearing floats without extra markup
+   Based on How To Clear Floats Without Structural Markup by PiE
+   [http://www.positioniseverything.net/easyclearing.html] */
+
+.clearfix:after, .container:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+.clearfix, .container { display: inline-block; }
+* html .clearfix,
+* html .container { height: 1%; }
+.clearfix, .container { display: block; }
+
+/* Regular clearing
+   apply to column that should drop below previous ones. */
+
+.clear { clear: both; }
+
+
+

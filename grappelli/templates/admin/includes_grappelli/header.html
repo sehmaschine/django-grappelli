@@ -1,0 +1,46 @@
+{% load i18n grp_tags %}
+
+<div id="header">
+    <div class="branding">&nbsp;</div>
+    <!-- Title -->
+    <div class="admin-title">{% get_admin_title %}</div>
+    {% if user.is_authenticated and user.is_staff %}
+        <ul id="user-tools">
+            <!-- Username -->
+            <li class="user-options-container collapse closed">
+                <a href="javascript://" class="user-options-handler collapse-handler">{% firstof user.first_name user.username %}</a>
+                <ul class="user-options">
+                    <!-- Change Password -->
+                    {% url admin:password_change as password_change_url %}
+                    {% if password_change_url %}
+                        <li><a href="{{ password_change_url }}">
+                    {% else %}
+                        <li><a href="{{ root_path }}password_change/">
+                    {% endif %}
+                    {% trans 'Change password' %}</a></li>
+                    <!-- Logout -->
+                    {% url admin:logout as logout_url %}
+                    {% if logout_url %}
+                        <li><a href="{{ logout_url }}">
+                    {% else %}
+                        <li><a href="{{ root_path }}logout/">
+                    {% endif %}
+                    {% trans 'Log out' %}</a></li>
+                </ul>
+            </li>
+            <!-- Userlinks -->
+            {% block userlinks %}
+                <!-- JS tests -->
+                {% url test-index as testindexurl %}
+                {% if testindexurl %}
+                    <li><a href="{{ testindexurl }}">{% trans 'Tests' %}</a></li>
+                {% endif %}
+                <!-- Documentation -->
+                {% url django-admindocs-docroot as docsroot %}
+                {% if docsroot %}
+                    <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
+                {% endif %}
+            {% endblock %}
+        </ul>
+    {% endif %}
+</div>

@@ -1,0 +1,372 @@
+
+
+
+/*  Submit, Delete & Cancel Buttons
+------------------------------------------------------------------------------------------------------ */
+
+input[type=submit], input[type=reset], input[type=button], button {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 4px 5px 5px;
+    width: auto;
+    height: 25px;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+    cursor: pointer;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type=submit], input[type=reset], input[type=button], button {
+        padding: 5px 8px 4px;
+    }
+}
+
+.submit-row a.delete-link, 
+.submit-row a.cancel-link {
+    display: block;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+.submit-row input[type=submit], 
+.submit-row input[type=button] {
+    padding: 5px 10px;
+    height: 28px;
+    font-weight: bold;
+}
+
+input[type=submit], 
+#bookmark-add-cancel, 
+.submit-row a.delete-link:link, .submit-row a.delete-link:visited, 
+.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited, 
+.submit-row input[type=button] {
+    opacity: .6;
+}
+
+input[type=submit]:hover, 
+#bookmark-add-cancel:hover, 
+.submit-row a.delete-link:hover, .submit-row a.delete-link:active, 
+.submit-row a.cancel-link:hover, .submit-row a.cancel-link:active, 
+.submit-row input[type=button]:hover {
+    opacity: 1;
+}
+
+input[type=submit].default {
+    opacity: 1;
+}
+
+
+
+/*  Icons & Buttons
+------------------------------------------------------------------------------------------------------ */
+
+button.fb_show, 
+button.ui-datepicker-trigger, 
+button.ui-timepicker-trigger, 
+button.ui-gAutocomplete-browse, 
+button.ui-gAutoSlugField-toggle, 
+button.ui-gFacelist-browse, 
+a.button, 
+.vDateField + span a, 
+.vTimeField + span a, 
+a.fb_show, 
+a.related-lookup, 
+a.add-another {
+    position: relative;
+    margin-left: -25px;
+}
+
+button.fb_show, 
+button.ui-gAutocomplete-browse, 
+button.ui-gFacelist-browse, 
+button.ui-gAutoSlugField-toggle, 
+button.ui-datepicker-trigger, 
+button.ui-timepicker-trigger, 
+button.fb_show:hover, 
+button.ui-gAutocomplete-browse:hover, 
+button.ui-gFacelist-browse:hover, 
+button.ui-gAutoSlugField-toggle:hover, 
+button.ui-datepicker-trigger:hover, 
+button.ui-timepicker-trigger:hover {
+    width: 25px;
+    background: 50% 50% no-repeat;
+}
+button.fb_show[disabled], 
+button.ui-gAutocomplete-browse[disabled], 
+button.ui-gFacelist-browse[disabled], 
+button.ui-gAutoSlugField-toggle[disabled], 
+button.ui-datepicker-trigger[disabled], 
+button.ui-timepicker-trigger[disabled], 
+input[disabled] + a {
+    background: 50% 50% no-repeat !important;
+    opacity: 0.3;
+    cursor: auto !important;
+}
+
+#changelist table button {
+    top: -7px;
+    margin-bottom: -12px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #changelist table button {
+        margin-bottom: -11px;
+    }
+}
+
+
+/*  Hide Images in Templates ........................................... */
+
+a.add-another img, a.related-lookup img {
+    opacity: 0;
+}
+a.related-lookup img {
+    display: none;
+}
+
+
+/*  Autocomplete Button ......................................... */
+
+button.ui-gAutocomplete-browse, 
+button.ui-gFacelist-browse {
+    background-image: url('../img/icons/icon-related-lookup.png');
+}
+button.ui-gAutocomplete-browse:hover, 
+button.ui-gFacelist-browse:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
+}
+button.ui-gAutocomplete-browse[disabled], button.ui-gAutocomplete-browse[disabled]:hover, 
+button.ui-gFacelist-browse[disabled], button.ui-gFacelist-browse[disabled]:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png') !important;
+}
+
+
+/*  AutoSlugField Button ......................................... */
+
+/*  TODO: lock/unlock icons .. */
+
+button.ui-gAutoSlugField-toggle {
+    background-image: url('../img/icons/icon-related-lookup.png');
+}
+button.ui-gAutoSlugField-toggle:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
+}
+button.ui-gAutoSlugField-toggle[disabled], button.ui-gAutoSlugField-toggle[disabled]:hover {
+    background-image: url('../img/icons/icon-related-lookup-hover.png') !important;
+}
+
+
+/*  Datepicker Button ......................................... */
+
+button.ui-datepicker-trigger {
+    background-image: url('../img/icons/icon-datepicker.png');
+}
+button.ui-datepicker-trigger:hover {
+    background-image: url('../img/icons/icon-datepicker-hover.png');
+}
+button.ui-datepicker-trigger[disabled], button.ui-datepicker-trigger[disabled]:hover {
+    background-image: url('../img/icons/icon-datepicker-hover.png') !important;
+}
+
+
+/*  Timepicker Button ......................................... */
+
+button.ui-timepicker-trigger {
+    background-image: url('../img/icons/icon-timepicker.png');
+}
+button.ui-timepicker-trigger:hover {
+    background-image: url('../img/icons/icon-timepicker-hover.png');
+}
+button.ui-timepicker-trigger[disabled], button.ui-timepicker-trigger[disabled]:hover {
+    background-image: url('../img/icons/icon-timepicker-hover.png') !important;
+}
+
+
+/*  Search Button ......................................... */
+
+button.search {
+    position: relative;
+    float: right;
+    top: 0;
+    right: 5px;
+    margin: 0 0 0 -30px;
+    background-image: url('../img/icons/icon-search.png');
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+}
+button.search:hover {
+    background-image: url('../img/icons/icon-search-hover.png');
+}
+button.search[disabled], button.search[disabled]:hover {
+    background-image: url('../img/icons/icon-search-hover.png') !important;
+}
+
+
+
+/*  Links as Buttons
+------------------------------------------------------------------------------------------------------ */
+
+a.button, 
+.datecrumbs a, 
+.datecrumbs span {
+    display: inline-block;
+    padding: 4px 8px 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+/*  Drop-Down Button ......................................... */
+
+a.button.drop-down {
+    float: right;
+    padding-left: 20px;
+    padding-top: 3px;
+}
+a.button.drop-down[class*="selected"] {
+    position: relative;
+    z-index: 1000;
+    height: 17px;
+}
+a.button.drop-down:link, a.button.drop-down:visited {
+    background: url('../img/icons/icon-dropdown.png') 3px 3px no-repeat;
+}
+a.button.drop-down[class*="selected"], 
+a.button.drop-down:hover, a.button.drop-down:active {
+    background: url('../img/icons/icon-dropdown-hover.png') 3px 3px no-repeat;
+}
+
+
+/*  Filebrowser & Related Lookup ......................................... */
+
+a.fb_show img {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+a.fb_show, 
+a.related-lookup {
+    top: 0;
+    display: inline-block;
+    margin-bottom: -9.5px;
+    width: 23px;
+    height: 23px;
+    background: 50% 50% no-repeat;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    a.fb_show, 
+    a.related-lookup {
+        margin-bottom: -10px;
+    }
+}
+
+a.fb_show:link, a.fb_show:visited, 
+.tinyMCE .browse span {
+    background-image: url('../img/icons/icon-fb-show.png');
+}
+a.fb_show:hover, a.fb_show:active, 
+.tinyMCE .browse span:hover {
+    background-image: url('../img/icons/icon-fb-show-hover.png');
+}
+a.related-lookup:link, a.related-lookup:visited {
+    background-image: url('../img/icons/icon-related-lookup.png');
+}
+a.related-lookup:hover, a.related-lookup:active {
+    background-image: url('../img/icons/icon-related-lookup-hover.png');
+}
+
+input[disabled] + a.fb_show {
+    background-image: url('../img/icons/icon-fb-show-hover.png') !important;
+}
+input[disabled] + a.related-lookup {
+    background-image: url('../img/icons/icon-related-lookup-hover.png') !important;
+}
+
+a.related-lookup + strong {
+    position: relative;
+    top: 1px;
+    margin-left: 5px;
+    font-size: 11px;
+    font-weight: bold;
+}
+#changelist table a.fb_show, 
+#changelist table a.related-lookup {
+    top: -5px;
+    margin-bottom: -12px;
+}
+#changelist table a.related-lookup + strong {
+    top: -1px;
+}
+
+
+/*  Add Another ......................................... */
+
+a.add-another {
+    position: relative;
+    display: inline-block;
+    margin-left: 3px;
+    width: 14px;
+    height: 14px;
+    vertical-align: top;
+    font-size: 11px;
+    line-height: 16px;
+    background: 50% 50% no-repeat;
+}
+
+a.add-another:link, a.add-another:visited {
+    background-image: url('../img/icons/icon-add_another.png');
+}
+a.add-another:hover, a.add-another:active {
+    background-image: url('../img/icons/icon-add_another-hover.png');
+}
+
+.change-list table tbody a.add-another {
+    position: relative;
+    top: -7px;
+}
+
+.radiolist.inline + a.add-another, 
+.checkboxlist.inline + a.add-another {
+    float: left;
+    margin-left: -20px;
+    margin-right: -10000px;
+}
+
+
+
+/*  Unknown, Yes & No Workaround
+------------------------------------------------------------------------------------------------------ */
+
+img[src$="img/admin/icon-unknown.gif"] {
+    padding: 5px;
+    width: 0;
+    height: 0;
+    background: url('../img/icons/icon-unknown.png') 0 50% no-repeat;
+}
+img[src$="img/admin/icon-no.gif"] {
+    padding: 5px;
+    width: 0;
+    height: 0;
+    background: url('../img/icons/icon-no.png') 0 50% no-repeat;
+}
+img[src$="img/admin/icon-yes.gif"] {
+    padding: 5px;
+    width: 0;
+    height: 0;
+    background: url('../img/icons/icon-yes.png') 0 50% no-repeat;
+}
+
+#changelist form table img[src$="img/admin/icon-unknown.gif"] {
+    position: relative;
+    top: 2px;
+    vertical-align: top;
+}
+#changelist form table img[src$="img/admin/icon-no.gif"] {
+    position: relative;
+    top: 3px;
+    vertical-align: top;
+}
+#changelist form table img[src$="img/admin/icon-yes.gif"] {
+    position: relative;
+    top: 2px;
+    vertical-align: top;
+}
+

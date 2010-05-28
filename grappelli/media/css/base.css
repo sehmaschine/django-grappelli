@@ -1,0 +1,34 @@
+
+
+
+/*  Reset Styles (reset.css of Blueprint www.blueprintcss.org)
+------------------------------------------------------------------------------------------------------ */
+
+@import url('reset.css');
+
+
+
+/*  Grappelli Styles:
+    The core settings of Grappelli are defined here.
+    Do not change them (better use your own skins/css in the next section).
+------------------------------------------------------------------------------------------------------ */
+
+@import url('typography.css');
+@import url('structures.css');
+@import url('components.css');
+@import url('tools.css');
+@import url('forms.css');
+@import url('buttons.css');
+@import url('tables.css');
+
+
+
+/*  Grappelli Skins & Custom Styles:
+    Use the delivered Grappelli skins or import your own skins/css here
+------------------------------------------------------------------------------------------------------ */
+
+/*  Grappelli Basic Skin: The Plain Version */
+/*@import url('grappelli-skin-basic.css');*/
+
+/*  Grappelli Default Skin: Adds Border-Radius & Background-Gradients to the Grappelli Basic Skin */
+@import url('grappelli-skin-default.css');

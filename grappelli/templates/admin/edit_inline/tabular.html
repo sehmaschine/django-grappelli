@@ -1,0 +1,122 @@
+{% load i18n adminmedia %}
+
+<!-- group -->
+<div class="group tabular{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
+    id="{{ inline_admin_formset.formset.prefix }}-group" >
+    <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
+    <ul class="tools">
+        <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Another' %}"> </a></li>
+    </ul>
+    {{ inline_admin_formset.formset.management_form }}
+    {{ inline_admin_formset.formset.non_form_errors }}
+    <!-- container -->
+    <div class="module table">
+        <div class="module thead">
+            <div class="tr">
+                {% for field in inline_admin_formset.fields %}
+                    {% if not field.widget.is_hidden %}
+                        <div class="th {{ field.label|lower }}{% if field.required %} required{% endif %}">{{ field.label|capfirst }}</div>
+                    {% endif %}
+                {% endfor %}
+                {% if inline_admin_formset.formset.can_delete %}<div class="th">&nbsp;</div>{% endif %}
+            </div>
+        </div>
+        {% for inline_admin_form in inline_admin_formset %}
+            <!-- element -->
+            <div class="module tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
+                id="{{ inline_admin_formset.formset.prefix }}{% if not forloop.last %}{{ forloop.counter0 }}{% else %}-empty{% endif %}">
+                {% if inline_admin_form.form.non_field_errors %}
+                    <div>{{ inline_admin_form.form.non_field_errors }}</div>
+                {% endif %}
+                <h3 style="display: none;"><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</h3>
+                {% spaceless %}
+                {% for fieldset in inline_admin_form %}
+                    {% for line in fieldset %}
+                        {% for field in line %}
+                            {% if field.is_hidden %} {{ field.field }} {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+                {% endspaceless %}
+                <div class="tr">
+                    {% for fieldset in inline_admin_form %}
+                        {% for line in fieldset %}
+                            {% for field in line %}
+                                <div class="td {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
+                                    {% if field.is_readonly %}
+                                        <p>{{ field.contents }}</p>
+                                    {% else %}
+                                        {{ field.field }}
+                                        {{ field.field.errors.as_ul }}
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    <div class="td tools">
+                        {% spaceless %}
+                        <ul class="tools">
+                            {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
+                            {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
+                            {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>{% endif %}
+                        </ul>
+                        {% endspaceless %}
+                    </div>
+                    {{ inline_admin_form.fk_field.field }}
+                    {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="module add-item">
+        <a href="javascript://" class="add-handler">{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</a>
+        <ul class="tools">
+            <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a></li>
+        </ul><br clear="all" />
+    </div>
+</div>
+
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        var rows = "#{{ inline_admin_formset.formset.prefix }}-group div.table div.tbody";
+        var reinitDateTimeFields = function(row) {
+            // Reinitialize the calendar and clock widgets by force, yuck.
+            row.find(".vDateField").datepicker({
+                //appendText: '(mm/dd/yyyy)',
+                showOn: 'button',
+                buttonImageOnly: false,
+                buttonText: '',
+                dateFormat: grappelli.getFormat('date'),
+            });
+            $(".vTimeField").timepicker();
+        }
+        var updateSelectFilter = function(row) {
+            // If any SelectFilter widgets are a part of the new form,
+            // instantiate a new SelectFilter instance for it.
+            if (typeof SelectFilter != "undefined"){
+                $(".selectfilter").each(function(index, value){
+                  var namearr = value.name.split('-');
+                  SelectFilter.init(value.id, namearr[namearr.length-1], false, "{% admin_media_prefix %}");
+                })
+                $(".selectfilterstacked").each(function(index, value){
+                  var namearr = value.name.split('-');
+                  SelectFilter.init(value.id, namearr[namearr.length-1], true, "{% admin_media_prefix %}");
+                })
+            }
+        }
+        // TODO. re-init tinymce
+        // TODO. re-init ui-calendar
+        $("#{{ inline_admin_formset.formset.prefix }}-group").inline({
+            prefix: "{{ inline_admin_formset.formset.prefix }}",
+            deleteCssClass: "delete-handler",
+            emptyCssClass: "empty-form",
+            onAdded: (function(row) {
+                reinitDateTimeFields(row);
+                updateSelectFilter(row);
+            })
+        });
+    });
+})(jQuery.noConflict());
+</script>
+

@@ -1,0 +1,30 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia %}
+{% load i18n %}
+{% block bodyclass %}documentation{% endblock %}
+{% block content-class %}content-grid{% endblock %}
+{% block breadcrumbs %}<div id="breadcrumbs"><a href="../../../">Home</a> &rsaquo; <a href="../../">Documentation</a> &rsaquo; <a href="../">Views</a> &rsaquo; {{ name }}</div>{% endblock %}
+{% block title %}View: {{ name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ name }}</h1>
+    <div class="container-grid rte">
+        <div class="module">
+            <h2>{{ summary }}</h2>
+            <p>{{ body }}</p>
+            {% if meta.Context %}
+                <div class="module">
+                    <h3>Context:</h3>
+                    <p>{{ meta.Context }}</p>
+                </div>
+            {% endif %}
+            {% if meta.Templates %}
+                <div class="module">
+                    <h3>Templates:</h3>
+                    <p>{{ meta.Templates }}</p>
+                </div>
+            {% endif %}
+        </div>
+        <a href="../" class="back">&lsaquo; Back to Views Documentation</a>
+    </div>
+{% endblock %}

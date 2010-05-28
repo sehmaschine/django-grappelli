@@ -1,0 +1,12 @@
+{% load adminmedia i18n grp_tags %}
+
+{% if cl.search_fields %}
+    <!-- Search Form -->
+    <form id="changelist-search" action="" method="get">
+        <input type="text" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" {% if not cl.query %}value="search-fields-verbose"{% endif %} />
+        <button type="submit" value="" class="search">&nbsp;</button>
+        {% for pair in cl.params.items %}
+            {% ifnotequal pair.0 search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endifnotequal %}
+        {% endfor %}
+    </form>
+{% endif %}
