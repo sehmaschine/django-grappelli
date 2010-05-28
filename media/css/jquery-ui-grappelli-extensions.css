@@ -1,13 +1,7 @@
 
-body {
-/*    background: #e4f !important;*/
-}
 
 
-
-
-
-/*	Widget Basics
+/*  Widget Basics
 ------------------------------------------------------------------------------------------------------ */
 
 .module.ui-widget {
@@ -23,7 +17,7 @@ body {
 
 
 
-/*	Accordion
+/*  Accordion
 ------------------------------------------------------------------------------------------------------ */
 
 
@@ -48,7 +42,7 @@ body {
 
 
 
-/* Datepicker
+/*  Datepicker
 ----------------------------------*/
 .datetime br {
     display: none;
@@ -61,8 +55,6 @@ body {
 .datetimeshortcuts a {
     margin-left: 0 !important;
 }
-
-
 
 .ui-accordion-header {
     margin-top: 2px !important;
@@ -113,20 +105,13 @@ body {
     border: 1px solid #c7c7c7;
     background-color: #e0e0e0;
 }
-
-
-
-
-/*.module .ui-accordion-header {
-    border-top: 1px solid #e4f;
-}*/
 .group .module .ui-accordion-header {
     border-top: 1px solid #4ef;
 }
 
 
 
-/*	Datepicker
+/*  Datepicker
 ------------------------------------------------------------------------------------------------------ */
 
 .ui-datepicker {
@@ -218,12 +203,9 @@ body {
     background: #444 !important;
 }
 .ui-datepicker td a.ui-state-active {
-/*    color: #fff;*/
-/*    border-color: #aaa;*/
     background: #fff;
 }
 .ui-datepicker td a.ui-state-highlight {
-/*    color: #fff;*/
     border-color: #bababa;
     background: #D6D6D6;
 }
@@ -240,7 +222,6 @@ body {
     height: 25px;
     color: #aaa; font-size: 11px;
     border: 1px solid #c7c7c7;
-/*    box-shadow: 0 0 3px #333; -moz-box-shadow: 0 0 3px #333; -webkit-box-shadow: 0 0 3px #333;*/
     background: transparent;
     cursor: pointer;
 }
@@ -253,8 +234,6 @@ body {
     opacity: 1 !important;
     color: #444; font-weight: bold;
     background: #cee9f2;
-/*    background: -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));*/
-/*    background: -moz-linear-gradient(top, #39bae5, #309bbf);*/
 }
 .ui-datepicker .ui-datepicker-buttonpane button.ui-state-hover {
     color: #fff !important;
@@ -314,33 +293,31 @@ button.ui-datepicker-close {
 ------------------------------------------------------------------------------------------------------ */
 
 #ui-timepicker {
-    padding: 5px;
+    padding: 5px 3px 3px 5px;
+    width: 216px;
     border: 1px solid #bdbdbd;
     box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
 }
-#ui-timepicker .row {
-    padding: 2px 10px 0;
+#ui-timepicker ul {
+    position: relative;
+    float: left;
+    clear: both;
+    width: auto;
+}
+#ui-timepicker ul li.row {
+    position: relative;
+    float: left;
+    display: block;
+    margin: 0 2px 2px 0;
+    padding: 2px 10px 1px;
+    width: 30px;
     font-size: 11px;
+    text-align: center;
     border: 0;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-borderradius: 3px;
     cursor: pointer;
 }
-#ui-timepicker .row + .row {
-    margin-top: 2px;
-}
-/*#ui-timepicker .row:first-child {
-    border-top: 0 !important;
-    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
-}
-#ui-timepicker .row:last-child {
-    border-bottom: 0 !important;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-}*/
 #ui-timepicker .row.ui-state-default {
-/*    border-top: 1px solid #fff;*/
-/*    border-bottom: 1px solid #e0e0e0;*/
     border: 1px solid #c7c7c7 !important;
     background: #e1f0f5;
 }
@@ -350,15 +327,13 @@ button.ui-datepicker-close {
 }
 #ui-timepicker .row.ui-state-default:hover {
     color: #fff;
-/*    border-top: 1px solid #666;*/
-/*    border-bottom: 1px solid #666;*/
     border: 1px solid #666 !important;
     background: #444;
 }
 
 
 
-/*	Tabs
+/*  Tabs
 ------------------------------------------------------------------------------------------------------ */
 
 .ui-tabs {
@@ -370,7 +345,6 @@ button.ui-datepicker-close {
     border: none;
     border-bottom: 1px solid #bdbdbd;
     border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
-/*    -moz-border-radius-bottomright: 0;*/
     background: none;
 }
 .ui-tabs .ui-tabs-nav li {
@@ -448,7 +422,6 @@ ul.ui-gAutocomplete-results li + li {
 ul.ui-gAutocomplete-results li b {
     margin: 0 1px;
     color: #444;
-/*    text-decoration: underline;*/
 }
 
 

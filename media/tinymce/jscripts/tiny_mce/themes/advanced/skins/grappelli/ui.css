@@ -115,6 +115,7 @@
 #mce_fullscreen_container table.mceLayout {
     height: 100% !important;
     -moz-border-radius: 0; -webkit-border-radius: 0;
+    background: #eee !important;
 }
 
 #mce_fullscreen_container .grappelliSkin table.mceLayout tr.mceFirst > td {
