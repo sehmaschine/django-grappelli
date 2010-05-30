@@ -10,7 +10,6 @@ class JavaScript404Patch():
     (because they are hardcoded in django's core)
     """
     def __init__(self):
-        print "xxx"
         self.strip = ['js/jquery.min', 'js/actions.min', 'js/collapse.min', 'js/calendar']
         self.re = re.compile('<script.*(%s).js"></script>\n' % '|'.join(self.strip))
         
