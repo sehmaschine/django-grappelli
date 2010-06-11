@@ -238,7 +238,7 @@
             });
         }
         
-        $("input.action-select, input#action-toggle").click(function() {
+        $("input.action-select, input#action-toggle, a.cancel-link").click(function() {
             $("div#submit").hide();
         });
         
@@ -247,16 +247,8 @@
         // FilebrowseField's button
         $("a.fb_show").click(showSubmitFooter);
         
-        $("td input.vForeignKeyRawIdAdminField").each(function() {
+        $("td input.vForeignKeyRawIdAdminField, td input.vFileBrowseField, td a.add-another").each(function() {
             $(this).parent().addClass('nowrap');
-        })
-        
-        $("td input.vFileBrowseField").each(function() {
-            $(this).parent().addClass('nowrap');
-        })
-        
-        $("a.cancel-link").click(function() {
-            $("div#submit").hide();
         });
         
         // Check state of checkboxes and reinit state if needed

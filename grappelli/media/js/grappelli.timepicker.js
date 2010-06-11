@@ -7,7 +7,7 @@ $.widget("ui.timepicker", {
         template: '<div id="ui-timepicker" class="module" style="position: absolute; display: none;"></div>',
         timepicker_selector: "#ui-timepicker",
         offset: {
-            top: 5
+            top: 0
         },
         time_list: [
             'now',
