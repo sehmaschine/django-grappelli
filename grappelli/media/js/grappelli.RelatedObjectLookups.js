@@ -232,7 +232,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         obj.each(function() {
             var ct = $(this).closest('div[class*="object_id"]').prev().find(':input[name*="content_type"]').val();
             if (ct) {
-                var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+                var lookupLink = $('<a class="related-lookup"></a>');
                 lookupLink.attr('id', 'lookup_'+this.id);
                 lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[ct] + '/?t=id');
                 lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
@@ -247,18 +247,19 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
 
     function InitContentType(obj) {
         obj.bind("change", function() {
+            console.log(MODEL_URL_ARRAY[$(this).val()])
             var node = $(this).closest('div[class*="content_type"]').next(),
                 lookupLink = node.find('a.related-lookup'),
-                obj_id = next.find('input[name*="object_id"]'),
+                obj_id = node.find('input[name*="object_id"]'),
                 href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + "/?t=id";
                 
             if ($(this).val()) {
                 if (lookupLink.attr('href')) {
                     lookupLink.attr('href', href);
                 } else {
-                    lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+                    lookupLink = $('<a class="related-lookup"></a>');
                     lookupLink.attr('id', 'lookup_'+obj_id.attr('id'));
-                    lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + '/?t=id');
+                    lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()].app + '/' + MODEL_URL_ARRAY[$(this).val()].model + '/?t=id');
                     lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
                     var lookupText = '<strong>&nbsp;</strong>';
                     obj_id.after(lookupText).after(lookupLink);
