@@ -14,8 +14,14 @@
     <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.change_list.js"></script>
     <script type="text/javascript" charset="utf-8">
         (function($) {
+            {% if is_popup %}
+                $(window).load(function() {
+                    $('.vDateField').datepicker("disable");
+                });
+            {% endif %}
+            
             $(document).ready(function() {
-                
+                $('body').change_list();
                 {% if is_popup %}
                     // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
                     // shouldn't be there in the first place, see
@@ -28,10 +34,7 @@
                     $('div.changelist-results textarea').attr('disabled', 'disabled').addClass("mceNoEditor");
                     $('div#submit').hide();
                     $('.related-lookup, .add-another').attr("onClick", "return false;");
-                    $('.vDateField').datepicker("disable");
                 {% endif %}
-                
-                $('body').change_list();
             });
         })(jQuery.noConflict());
     </script>

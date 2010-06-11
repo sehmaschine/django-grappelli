@@ -45,11 +45,15 @@ $.widget("ui.timepicker", {
         this.timepicker = $(options.timepicker_selector);
         this.timepicker.hide();
         
-        // register events
-        this.button.click(function() {
-            if (self.element.attr("disabled")) return;
-            self._toggleTimepicker();
-        });
+        if (this.element.attr("disabled")) {
+            this.button.attr("disabled", true);
+        } else {
+            // register events
+            this.button.click(function() {
+                self._toggleTimepicker();
+            });
+        }
+        
         //this.element.focus(function() {
         //    self._toggleTimepicker();
         //})
