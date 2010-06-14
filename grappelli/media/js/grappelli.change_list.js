@@ -242,7 +242,10 @@
             $("div#submit").hide();
         });
         
-        $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']").focus(showSubmitFooter);
+        var edit_inlines = $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']");
+        edit_inlines.focus(showSubmitFooter);
+        // safari (5) needs this because focus event doesn't work on checkboxes (anymore)
+        edit_inlines.end().find(":checkbox").click(showSubmitFooter);
         $("select[class!='filter_choice'][name!='action']").click(showSubmitFooter);
         // FilebrowseField's button
         $("a.fb_show").click(showSubmitFooter);
