@@ -18,7 +18,7 @@
                         <div class="column span-4">{{ field.label_tag }}</div>
                         <div class="column span-flexible">
                             {% if field.is_readonly %}
-                                <p>{{ field.contents }}</p>
+                                <p class="readonly">{{ field.contents }}</p>
                             {% else %}
                                 {{ field.field }}
                             {% endif %}
