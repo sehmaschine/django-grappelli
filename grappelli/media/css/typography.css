@@ -44,6 +44,14 @@ p.help {
     line-height: 12px;
 }
 
+p.readonly {
+    margin: 0 !important;
+    padding: 3px 0 !important;
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .fb_show + p.help a {
     display: inline-block;
     padding: 3px;
