@@ -56,6 +56,9 @@ ul.errorlist:empty {
     display: none;
     margin: 0;
 }
+.group.tabular ul.errorlist {
+    margin-left: 11px;
+}
 .cell ul.errorlist {
     padding-left: 0;
 }
