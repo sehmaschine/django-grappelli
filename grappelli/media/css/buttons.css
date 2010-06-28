@@ -186,15 +186,13 @@ button.search {
     top: 0;
     right: 5px;
     margin: 0 0 0 -30px;
-    background-image: url('../img/icons/icon-search.png');
-    background-repeat: no-repeat;
-    background-position: 0 50%;
+    background: url('../img/icons/icon-search.png') 0 50% no-repeat scroll;
 }
 button.search:hover {
-    background-image: url('../img/icons/icon-search-hover.png');
+    background: url('../img/icons/icon-search-hover.png') 0 50% no-repeat scroll;
 }
 button.search[disabled], button.search[disabled]:hover {
-    background-image: url('../img/icons/icon-search-hover.png') !important;
+    background: url('../img/icons/icon-search-hover.png') 0 50% no-repeat scroll !important;
 }
 
 
