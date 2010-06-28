@@ -41,9 +41,9 @@ fieldset {
     padding: 8px 12px;
 }
 ul.errorlist {
-    margin: 3px 0 -3px;
+    margin: 6px 0 -3px;
     font-size: 11px;
-    line-height: 16px;
+    line-height: 13px;
     font-weight: bold;
 }
 ul.errorlist li {
@@ -59,6 +59,14 @@ ul.errorlist:empty {
 .group.tabular ul.errorlist {
     margin-left: 11px;
 }
+.group.stacked ul.errorlist {
+    margin-left: 11px;
+    margin-bottom: 5px;
+}
+.group.stacked h3 + * + ul.errorlist {
+    margin: 0 !important;
+    padding: 5px 11px;
+}
 .cell ul.errorlist {
     padding-left: 0;
 }
@@ -72,16 +80,32 @@ ul.errorlist:empty {
 table ul.errorlist {
     margin: -9px 0 6px;
 }
+.group.stacked .row ul.errorlist, 
 .module.table ul.errorlist {
-    margin: 1px 0 -3px;
+    margin-top: 5px;
+    margin-left: 0;
+    margin-bottom: -3px;
+}
+ul.radiolist.inline + ul.errorlist, 
+ul.radiolist.inline + * + ul.errorlist {
+    position: relative; clear: both;
+}
+ul.radiolist + ul.errorlist, 
+ul.radiolist + * + ul.errorlist {
+    margin-top: 0 !important;
+}
+
+.module.table .tbody>ul.errorlist {
+    margin-top: 2px;
+    margin-left: 11px;
+    margin-bottom: 2px;
+}
+.module.table .tr ul.errorlist {
+    margin-left: 0;
 }
 .module.table ul.radiolist + ul.errorlist, 
 .module.table ul.radiolist + * + ul.errorlist {
     margin: -2px 0 0;
-}
-.module.table ul.radiolist.inline + ul.errorlist, 
-.module.table ul.radiolist.inline + * + ul.errorlist {
-    position: relative; clear: both;
 }
 table ul.errorlist li, 
 .module.table ul.errorlist li {
