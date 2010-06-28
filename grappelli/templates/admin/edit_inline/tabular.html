@@ -26,7 +26,7 @@
             <div class="module tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
                 id="{{ inline_admin_formset.formset.prefix }}{% if not forloop.last %}{{ forloop.counter0 }}{% else %}-empty{% endif %}">
                 {% if inline_admin_form.form.non_field_errors %}
-                    <div>{{ inline_admin_form.form.non_field_errors }}</div>
+                    <ul class="errorlist"><li>{{ inline_admin_form.form.non_field_errors }}</li></ul>
                 {% endif %}
                 <h3 style="display: none;"><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</h3>
                 {% spaceless %}
