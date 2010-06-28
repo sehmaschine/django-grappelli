@@ -449,7 +449,13 @@ a.selector-chooseall, a.selector-clearall {
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
-
+.actions p, 
+.link-list p, 
+.feed p {
+    color: #999;
+    font-size: 11px;
+    padding: 3px 10px;
+}
 .link-list ul li a, 
 .feed ul li a {
     padding-left: 25px;

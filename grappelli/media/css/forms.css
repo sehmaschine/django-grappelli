@@ -72,6 +72,14 @@ table ul.errorlist {
 .module.table ul.errorlist {
     margin: 1px 0 -3px;
 }
+.module.table ul.radiolist + ul.errorlist, 
+.module.table ul.radiolist + * + ul.errorlist {
+    margin: -2px 0 0;
+}
+.module.table ul.radiolist.inline + ul.errorlist, 
+.module.table ul.radiolist.inline + * + ul.errorlist {
+    position: relative; clear: both;
+}
 table ul.errorlist li, 
 .module.table ul.errorlist li {
     padding-left: 0;
