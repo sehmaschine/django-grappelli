@@ -73,11 +73,11 @@
 
 <!-- CONTENT -->
 {% block content %}
-    {% if search_form or cl.has_filters or cl.date_hierarchy %}
+    {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
         <div class="module changelist-filters">
             <!-- PAGINATION TOP -->
             {% pagination cl %}
-            {% if cl.has_filters or search_form %}
+            {% if cl.has_filters or cl.search_fields %}
                 <!-- FILTERS -->
                 {% if cl.has_filters %}
                     <div id="filters" class="module filter span-6">
@@ -89,12 +89,12 @@
                         </div>
                     </div>
                 {% endif %}
-                    <!-- SEARCH -->
-                    {% if not search_form %}
-                        <div id="search" class="module search span-6">
-                            {% block search %}{% search_form cl %}{% endblock %}
-                        </div>
-                    {% endif %}
+                <!-- SEARCH -->
+                {% if cl.search_fields %}
+                    <div id="search" class="module search span-6">
+                        {% block search %}{% search_form cl %}{% endblock %}
+                    </div>
+                {% endif %}
             {% endif %}
             <br clear="all" />
         </div>

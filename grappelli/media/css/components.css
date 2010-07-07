@@ -560,7 +560,7 @@ ul.actions li a {
     z-index: 1000;
     padding: 8px 10px;
 }
-.module.search {
+.module.filter + .module.search {
     padding-right: 0;
 }
 
