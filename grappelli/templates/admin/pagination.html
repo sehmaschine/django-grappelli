@@ -4,13 +4,15 @@
     <div class="module pagination">
         <ul class="pagination">
             {% if cl.result_count != cl.full_result_count %}
-                <li class="results"><span>{{ cl.result_count }} {% ifequal cl.result_count 1 %}{% trans 'result' %}{% else %}{% trans 'results' %}{% endifequal %}</span></li>
+                <li class="results"><span>
+                    {% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %}
+                </span></li>
             {% endif %}
             <li class="results">
                 {% if cl.result_count != cl.full_result_count or cl.show_all %}
-                    <a href="?{% if cl.is_popup %}pop=1{% endif %}" class="total">{{ cl.full_result_count }} {% trans 'total' %}</a>
+                    <a href="?{% if cl.is_popup %}pop=1{% endif %}" class="total">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
                 {% else %}
-                    <span>{{ cl.full_result_count }} {% trans 'total' %}</span>
+                    <span>{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</span>
                 {% endif %}
             </li>
             {% if pagination_required %}
