@@ -56,7 +56,7 @@
                     <div class="td tools">
                         {% spaceless %}
                         <ul class="tools">
-                            {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
+                            {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
                             {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
                             {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>{% endif %}
                         </ul>
