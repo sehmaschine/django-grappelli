@@ -1,9 +1,9 @@
 {% load adminmedia i18n grp_tags %}
-
 {% if cl.search_fields %}
+    {% get_search_fields_verbose cl.opts as search_fields_verbose %}
     <!-- Search Form -->
     <form id="changelist-search" action="" method="get">
-        <input type="text" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" {% if not cl.query %}value="search-fields-verbose"{% endif %} />
+        <input type="text" name="{{ search_var }}" id="searchbar"{% if not cl.query and not search_fields_verbose %} value="{% trans 'Search' %}"{% endif %}{% if search_fields_verbose and not cl.query %} value="{{ search_fields_verbose }}"{% endif %}{% if cl.query %} value="{{ cl.query }}"{% endif %} />
         <button type="submit" value="" class="search">&nbsp;</button>
         {% for pair in cl.params.items %}
             {% ifnotequal pair.0 search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endifnotequal %}
