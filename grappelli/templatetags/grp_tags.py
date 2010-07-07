@@ -1,10 +1,14 @@
 # coding: utf-8
 
+# python imports
+import re
 
 # django imports
 from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.utils.formats import get_format
+from django.db import models
+from django.contrib import admin
 
 # grappelli imports
 from grappelli.settings import *
@@ -77,3 +81,42 @@ register.simple_tag(get_datetime_format)
 def grappelli_admin_title():
     return ADMIN_TITLE
 register.simple_tag(grappelli_admin_title)
+
+
+# SEARCH FIELDS VERBOSE
+class GetSearchFields(template.Node):
+    
+    def __init__(self, opts, var_name):
+        self.opts = template.Variable(opts)
+        self.var_name = var_name
+    
+    def render(self, context):
+        opts = str(self.opts.resolve(context)).split('.')
+        model = models.get_model(opts[0], opts[1])
+        try:
+            field_list = admin.site._registry[model].search_fields_verbose
+        except:
+            field_list = ""
+        
+        context[self.var_name] = ", ".join(field_list)
+        return ""
+
+
+def do_get_search_fields_verbose(parser, token):
+    """
+    Get search_fields_verbose in order to display on the Changelist.
+    """
+    
+    try:
+        tag, arg = token.contents.split(None, 1)
+    except:
+        raise template.TemplateSyntaxError, "%s tag requires arguments" % token.contents.split()[0]
+    m = re.search(r'(.*?) as (\w+)', arg)
+    if not m:
+        raise template.TemplateSyntaxError, "%r tag had invalid arguments" % tag
+    opts, var_name = m.groups()
+    return GetSearchFields(opts, var_name)
+
+register.tag('get_search_fields_verbose', do_get_search_fields_verbose)
+
+
