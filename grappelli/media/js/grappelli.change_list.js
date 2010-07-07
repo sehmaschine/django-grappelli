@@ -295,5 +295,5 @@
         actionSelect: "div.changelist-actions select",
         initialSearchVal: "Search"
     };
-})(jQuery);
+})(django.jQuery);
 

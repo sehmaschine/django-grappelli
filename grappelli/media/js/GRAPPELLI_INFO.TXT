@@ -3,6 +3,7 @@ orignal js removed:
     jquery.js, jquery.min.js
     collapse.js, collapse.min.js
     calendar.js
+    jquery.init.js
 
 original js updated:
     datetimeshortcuts.js

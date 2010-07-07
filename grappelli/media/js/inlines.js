@@ -1,58 +1,4 @@
-/**
- * Django admin inlines
- *
- * Based on jQuery Formset 1.1
- * @author Stanislaus Madueke (stan DOT madueke AT gmail DOT com)
- * @requires jQuery 1.2.6 or later
- *
- * Copyright (c) 2010, vonautomatisch
- *
- * Licensed under the New BSD License
- * See: http://www.opensource.org/licenses/bsd-license.php
- */
- 
-//  tabular:
-//      <div id="name_set-group" class="group tabular ...">
-//          <h2>
-//          <ul class="tools">
-//          – management_form
-//          <div class="module table">
-//              <div class="module thead">
-//              <div id="name_set1" class="module tbody has_original">
-//                  <div class="table-row dynamic-name_set">
-//              ...
-//              <div id="name_set-empty" class="module tbody empty-form">
-//                  <div class="table-row dynamic-name_set">
-//          <div class="module add-handler">
-
-//  stacked:
-//      <div id="name_set-group" class="group ...">
-//          <h2>
-//          <ul class="tools">
-//          – management_form
-//          <div class="items">
-//              <div id="name_set1" class="module has_original">
-//                  <div class="table-row dynamic-name_set">
-//              ...
-//              <div id="name_set-empty" class="module empty-form">
-//                  <div class="table-row dynamic-name_set">
-//          <div class="module add-handler">
-
-/*
-$(rows).inline({
-            prefix: "bookmarkitem_set",
-            deleteCssClass: "delete-handler",
-            emptyCssClass: "empty-form",
-            onAdded: (function(row) {
-                reinitDateTimeShortCuts();
-                updateSelectFilter();
-            })
-        });
-
-*/
-
 (function($) {
-
 $.fn.inline = function(options) {
     var defaults = {
         prefix: "form",                     // The form prefix for your django formset
@@ -289,4 +235,4 @@ $.fn.inline = function(options) {
         });
     });
 };
-})(jQuery);
+})(django.jQuery);

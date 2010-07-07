@@ -23,17 +23,17 @@ var SelectFilter = {
         var from_box = document.getElementById(field_id);
         from_box.id += '_from'; // change its ID
         from_box.className = 'filtered';
-
+        
         // Remove <p class="info">, because it just gets in the way.
         var ps = from_box.parentNode.getElementsByTagName('p');
         for (var i=0; i<ps.length; i++) {
             from_box.parentNode.removeChild(ps[i]);
         }
-
+        
         // <div class="selector"> or <div class="selector stacked">
         var selector_div = quickElement('div', from_box.parentNode);
         selector_div.className = is_stacked ? 'selector stacked' : 'selector';
-
+        
         // <div class="selector-available">
         var selector_available = quickElement('div', selector_div, '');
         selector_available.className = 'selector-available';
@@ -47,7 +47,7 @@ var SelectFilter = {
         selector_available.appendChild(from_box);
         var choose_all = quickElement('a', selector_available, gettext('Choose all'), 'href', 'javascript: (function(){ SelectBox.move_all("' + field_id + '_from", "' + field_id + '_to"); })()');
         choose_all.className = 'selector-chooseall';
-
+        
         // <ul class="selector-chooser">
         var selector_chooser = quickElement('ul', selector_div, '');
         selector_chooser.className = 'selector-chooser';
@@ -55,7 +55,7 @@ var SelectFilter = {
         add_link.className = 'selector-add';
         var remove_link = quickElement('a', quickElement('li', selector_chooser, ''), gettext('Remove'), 'href', 'javascript: (function(){ SelectBox.move("' + field_id + '_to","' + field_id + '_from");})()');
         remove_link.className = 'selector-remove';
-
+        
         // <div class="selector-chosen">
         var selector_chosen = quickElement('div', selector_div, '');
         selector_chosen.className = 'selector-chosen';
@@ -67,9 +67,9 @@ var SelectFilter = {
         to_box.className = 'filtered';
         var clear_all = quickElement('a', selector_chosen, gettext('Clear all'), 'href', 'javascript: (function() { SelectBox.move_all("' + field_id + '_to", "' + field_id + '_from");})()');
         clear_all.className = 'selector-clearall';
-
+        
         from_box.setAttribute('name', from_box.getAttribute('name') + '_old');
-
+        
         // Set up the JavaScript event handlers for the select box filter interface
         addEvent(filter_input, 'keyup', function(e) { SelectFilter.filter_key_up(e, field_id); });
         addEvent(filter_input, 'keydown', function(e) { SelectFilter.filter_key_down(e, field_id); });

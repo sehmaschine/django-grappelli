@@ -18,4 +18,4 @@
         $('.rte p:empty').remove();
         $('.rte hr').remove();
     });
-})(jQuery.noConflict());
+})(django.jQuery);

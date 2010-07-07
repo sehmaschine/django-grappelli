@@ -1,6 +1,4 @@
 (function( $ ) {
-
-
 $.widget("ui.timepicker", {
     // default options
     options: {
@@ -78,7 +76,6 @@ $.widget("ui.timepicker", {
             options = self.options,
             template = $(options.template),
             template_str = "<ul>";
-            
         
         for (var i = 0; i < options.time_list.length; i++) {
             if (options.time_list[i] == "now") {
@@ -148,5 +145,4 @@ $.widget("ui.timepicker", {
         // now do other stuff particular to this widget
     }
 });
-
-})(jQuery.noConflict());
+})(django.jQuery);
