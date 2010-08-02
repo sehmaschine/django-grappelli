@@ -722,7 +722,7 @@ ul.pagination li.showall {
 ------------------------------------------------------------------------------------------------------ */
 
 .module.changelist-results {
-    background: url('/media/admin/img/backgrounds/changelist-results.png') repeat scroll !important;
+    background: url('../img/backgrounds/changelist-results.png') repeat scroll !important;
 }
 .changelist-actions + .changelist-results, 
 .changelist-results + .changelist-actions {
