@@ -25,7 +25,7 @@
         <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.RelatedObjectLookups.js"></script>
         <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.min.js"></script>
         <script type="text/javascript">
-            var ADMIN_URL = "{% get_admin_url %}",
+            var ADMIN_URL = "{% url admin:index %}",
                 MODEL_URL_ARRAY = {% get_content_types %},
                 DATE_FORMAT = "{% get_date_format %}",
                 TIME_FORMAT = "{% get_time_format %}",

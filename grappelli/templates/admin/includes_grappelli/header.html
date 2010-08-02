@@ -3,7 +3,7 @@
 <div id="header">
     <div class="branding">&nbsp;</div>
     <!-- Title -->
-    <div class="admin-title">{% get_admin_title %}</div>
+    <div class="admin-title">{{ grappelli_admin_title }}</div>
     {% if user.is_authenticated and user.is_staff %}
         <ul id="user-tools">
             <!-- Username -->
