@@ -78,10 +78,12 @@
                         {% block extrahead %}
                             <script type="text/javascript">
                                 (function($){
-                                    $(function(){ 
-                                        {# Focus on first FormField #}
-                                      $("#{{ adminform.first_field.auto_id }}, #{{ adminform.first_field.auto_id }}_0")
-                                        .eq(0).focus(); 
+                                    $(function(){
+                                        try {
+                                            {# Focus on first FormField #}
+                                            $("#{{ adminform.first_field.auto_id }}, #{{ adminform.first_field.auto_id }}_0")
+                                            .eq(0).focus();
+                                        } catch(e) {}
                                     });
                                 }(django.jQuery));
                             </script>
