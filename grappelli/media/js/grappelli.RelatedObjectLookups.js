@@ -187,9 +187,9 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         });
     }
     
-    function GenericLookup(obj) {
+    function GenericLookup(obj, force_update) {
         // check if val isn't empty string or the same value as before
-        if (obj.val() == obj.data('old_val')) return;
+        if (!force_update && obj.val() == obj.data('old_val')) return;
         obj.data('old_val', obj.val());
         
         var link = obj.next();
@@ -248,20 +248,21 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         obj.bind("change", function() {
             var node = $(this).closest('div[class*="content_type"]').next(),
                 lookupLink = node.find('a.related-lookup'),
-                obj_id = next.find('input[name*="object_id"]'),
-                href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + "/?t=id";
-                
+                obj_id = node.find('input[name*="object_id"]'),
+                href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()].app + "/" + MODEL_URL_ARRAY[$(this).val()].model + '/?t=id'
+            
             if ($(this).val()) {
                 if (lookupLink.attr('href')) {
                     lookupLink.attr('href', href);
                 } else {
                     lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
                     lookupLink.attr('id', 'lookup_' + obj_id.attr('id'));
-                    lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + '/?t=id');
+                    lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()].app + "/" + MODEL_URL_ARRAY[$(this).val()].model + '/?t=id');
                     lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
                     var lookupText = '<strong>&nbsp;</strong>';
                     obj_id.after(lookupText).after(lookupLink);
                 }
+                GenericLookup(obj_id, true);
             } else {
                 obj_id.val('');
                 lookupLink.remove();
