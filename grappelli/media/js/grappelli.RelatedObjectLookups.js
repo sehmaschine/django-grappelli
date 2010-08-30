@@ -122,10 +122,11 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         obj.data('old_val', obj.val());
         
         var link = obj.next();
+        var spliturl = link.attr('href').split('/');
+        var app_label = spliturl[spliturl.length-3];
+        var model_name= spliturl[spliturl.length-2];
+
         var text = obj.next().next();
-        var app_label = link.attr('href').split('/')[2];
-        var model_name= link.attr('href').split('/')[3];
-        
         if (obj.val() == "") {
             text.text('');
             return;
@@ -158,10 +159,11 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         obj.data('old_val', obj.val());
         
         var link = obj.next();
+        var spliturl = link.attr('href').split('/');
+        var app_label = spliturl[spliturl.length-3];
+        var model_name= spliturl[spliturl.length-2];
+
         var text = obj.next().next();
-        var app_label = link.attr('href').split('/')[2];
-        var model_name= link.attr('href').split('/')[3];
-        
         if (obj.val() == "") {
             text.text('');
             return;
@@ -193,10 +195,11 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         obj.data('old_val', obj.val());
         
         var link = obj.next();
-        var text = obj.next().next();
-        var app_label = link.attr('href').split('/')[2];
-        var model_name= link.attr('href').split('/')[3];
+        var spliturl = link.attr('href').split('/');
+        var app_label = spliturl[spliturl.length-3];
+        var model_name= spliturl[spliturl.length-2];
         
+        var text = obj.next().next();
         text.text('loading ...');
         
         // get object
