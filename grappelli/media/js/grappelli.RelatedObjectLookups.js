@@ -233,7 +233,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             if (ct) {
                 var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
                 lookupLink.attr('id', 'lookup_'+this.id);
-                lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[ct] + '/?t=id');
+                lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[ct].app + "/" + MODEL_URL_ARRAY[ct].model + '/?t=id');
                 lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
                 var lookupText = '<strong>&nbsp;</strong>';
                 $(this).after(lookupText).after(lookupLink);
@@ -256,7 +256,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
                     lookupLink.attr('href', href);
                 } else {
                     lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
-                    lookupLink.attr('id', 'lookup_'+obj_id.attr('id'));
+                    lookupLink.attr('id', 'lookup_' + obj_id.attr('id'));
                     lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()] + '/?t=id');
                     lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
                     var lookupText = '<strong>&nbsp;</strong>';
