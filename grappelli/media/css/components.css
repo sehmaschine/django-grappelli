@@ -557,7 +557,7 @@ ul.actions li a {
 .module.filter {
     position: relative;
     float: right;
-    z-index: 1000;
+    z-index: 990;
     padding: 8px 10px;
 }
 .module.filter + .module.search {
