@@ -184,6 +184,7 @@ input#searchbar {
     position: relative;
     float: left;
     padding-left: 8px;
+    padding-right: 30px;
     width: 218px;
     height: 26px;
     font-size: 11px;
