@@ -241,19 +241,11 @@ a.fb_show img {
 
 a.fb_show, 
 a.related-lookup {
-    top: 0;
     display: inline-block;
-    margin-bottom: -9.5px;
+    margin-bottom: -5px;
     width: 23px;
     height: 23px;
     background: 50% 50% no-repeat;
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    a.fb_show, 
-    a.related-lookup {
-        margin-bottom: -10px;
-    }
 }
 
 a.fb_show:link, a.fb_show:visited, 

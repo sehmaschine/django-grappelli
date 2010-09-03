@@ -150,7 +150,7 @@ label {
 
 input, textarea, select, button {
     margin: 0;
-    vertical-align: middle;
+    vertical-align: top;
     font-family: Arial, sans-serif;
     font-size: 12px;
     font-weight: bold;
