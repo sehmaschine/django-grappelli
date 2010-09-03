@@ -292,10 +292,12 @@ input[type=checkbox], input[type=radio] {
     }
 }
 .row input[type=radio], 
-.row input[type=checkbox], 
 .th ul.radiolist input[type=radio], 
+.td ul.radiolist input[type=radio] {
+    top: 0;
+}
+.row input[type=checkbox], 
 .th ul.checkboxlist input[type=checkbox], 
-.td ul.radiolist input[type=radio], 
 .td ul.checkboxlist input[type=checkbox] {
     top: 2px;
 }
