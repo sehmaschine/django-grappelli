@@ -234,7 +234,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         obj.each(function() {
             var ct = $(this).closest('div[class*="object_id"]').prev().find(':input[name*="content_type"]').val();
             if (ct) {
-                var lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+                var lookupLink = $('<a class="related-lookup"></a>');
                 lookupLink.attr('id', 'lookup_'+this.id);
                 lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[ct].app + "/" + MODEL_URL_ARRAY[ct].model + '/?t=id');
                 lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
@@ -258,7 +258,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
                 if (lookupLink.attr('href')) {
                     lookupLink.attr('href', href);
                 } else {
-                    lookupLink = $('<a class="related-lookup">&nbsp;&nbsp;</a>');
+                    lookupLink = $('<a class="related-lookup"></a>');
                     lookupLink.attr('id', 'lookup_' + obj_id.attr('id'));
                     lookupLink.attr('href', ADMIN_URL + MODEL_URL_ARRAY[$(this).val()].app + "/" + MODEL_URL_ARRAY[$(this).val()].model + '/?t=id');
                     lookupLink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
