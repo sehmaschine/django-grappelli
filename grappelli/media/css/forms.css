@@ -219,6 +219,7 @@ input[type=file] {
     margin-left: 0;
 }
 p.datetime {
+    margin-bottom: 0 !important;
     padding: 0;
 }
 p.datetime input.vTimeField {
