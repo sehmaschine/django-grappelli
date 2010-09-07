@@ -45,7 +45,7 @@
     {% if not is_popup %}
         <div id="breadcrumbs">
             <a href="../../">{% trans "Home" %}</a> &rsaquo;
-            <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
+            <a href="../">{% trans app_label|capfirst|escape %}</a> &rsaquo;
             {{ cl.opts.verbose_name_plural|capfirst }}
         </div>
     {% endif %}
