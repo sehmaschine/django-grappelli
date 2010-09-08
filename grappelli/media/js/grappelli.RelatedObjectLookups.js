@@ -194,13 +194,18 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         if (!force_update && obj.val() == obj.data('old_val')) return;
         obj.data('old_val', obj.val());
         
+        var text = obj.next().next();
+        if (obj.val() == "") {
+            text.text("");
+            return;
+        }
+        text.text('loading ...');
+        
         var link = obj.next();
+        if (link.length == 0) return;
         var spliturl = link.attr('href').split('/');
         var app_label = spliturl[spliturl.length-3];
         var model_name= spliturl[spliturl.length-2];
-        
-        var text = obj.next().next();
-        text.text('loading ...');
         
         // get object
         $.get('/grappelli/lookup/related/', {object_id: obj.val(), app_label: app_label, model_name: model_name}, function(data) {
@@ -251,10 +256,9 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         obj.bind("change", function() {
             var node = $(this).closest('div[class*="content_type"]').next(),
                 lookupLink = node.find('a.related-lookup'),
-                obj_id = node.find('input[name*="object_id"]'),
-                href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()].app + "/" + MODEL_URL_ARRAY[$(this).val()].model + '/?t=id'
-            
+                obj_id = node.find('input[name*="object_id"]');
             if ($(this).val()) {
+                var href = ADMIN_URL + MODEL_URL_ARRAY[$(this).val()].app + "/" + MODEL_URL_ARRAY[$(this).val()].model + '/?t=id';
                 if (lookupLink.attr('href')) {
                     lookupLink.attr('href', href);
                 } else {
