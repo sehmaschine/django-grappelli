@@ -13,6 +13,11 @@
     {{ media }}
     <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.change_list.js"></script>
     <script type="text/javascript" charset="utf-8">
+        {% if is_popup %}
+            var IS_POPUP = true;
+        {% else %}
+            var IS_POPUP = false;
+        {% endif %}
         (function($) {
             $(document).ready(function() {
                 {% if is_popup %}
@@ -27,7 +32,9 @@
                     $('div.changelist-results textarea').attr('disabled', 'disabled').addClass("mceNoEditor");
                     $('div#submit').hide();
                     $('.related-lookup, .add-another').attr("onClick", "return false;");
-                    $('.vDateField').datepicker("disable");
+                    // "really" disable datepicker in grappelli.js
+                    //$('.vDateField').addClass('disabled');
+                    
                 {% endif %}
                 
                 $('body').change_list();
