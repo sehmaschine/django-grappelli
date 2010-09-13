@@ -11,7 +11,8 @@ $.fn.inline = function(options) {
         formCssClass: "dynamic-form",       // CSS class applied to each form in a formset
         predeleteCssClass: "predelete",
         onAdded: null,                        // Function called each time a new form is added
-        onRemoved: null                       // Function called each time a form is deleted
+        onRemoved: null,                     // Function called each time a form is removed
+        onDelete: null                     // Function called each time a form with content form the db is deleted
     };
     
     options = $.extend(defaults, options);
@@ -145,6 +146,9 @@ $.fn.inline = function(options) {
             deleteHandler = function() {
                 var deleteInput = $(this).prev(),
                     form = deleteInput.parents("." + options.formCssClass).first();
+                if (options.onDelete) {
+                    options.onDelete(form);
+                }
                 if (form.hasClass("has_original")) { // toggle delete checkbox and delete css class
                     form.toggleClass(options.predeleteCssClass);
                     if (deleteInput.attr("checked")) {
