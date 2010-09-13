@@ -1,4 +1,11 @@
-loading order:
+JavaScript infos about grappelli:
+
+grappelli adds much additional features to the django.contrib.admin. to accomplish this the js loaded in grappelli is pretty different to django admin's.
+
+###
+loading order of grappelli:
+###
+
  * jquery-1.4.2.min.js
  * jquery-ui-1.8.custom.min.js (with datepicker)
  * grappelli.init.js
@@ -7,23 +14,34 @@ loading order:
  * grappelli.js
  * (optional) grappelli.change_list.js
 
-orignal js removed:
-    actions.js, actions.min.js
-    jquery.js, jquery.min.js
-    collapse.js, collapse.min.js
-    calendar.js
-    jquery.init.js
 
-original js updated:
-    datetimeshortcuts.js
-        - outcommented initialization of js for date fields (use jquery-ui datepicker @see grappelli.js)
-    RelatedObjectLookups.js
-        Popups:
-            - trigger focus/click event of element to open cancel/save footer in changelist
-            - open popups with 500x920 instead of 500x800
+###
+django.admin js removed:
+###
 
+grappelli has its own adminmedia folder. some of django's js files are missing (intentionally)
+
+actions.js, actions.min.js
+jquery.js, jquery.min.js
+collapse.js, collapse.min.js
+calendar.js
+jquery.init.js
+
+###
+django.admin js updated:
+###
+
+datetimeshortcuts.js
+    - outcommented initialization of js for date fields (use jquery-ui datepicker @see grappelli.js)
+RelatedObjectLookups.js
+    Popups:
+        - trigger focus/click event of element to open cancel/save footer in changelist
+        - open popups with 500x920 instead of 500x800
+
+###
 js added by grappelli:
-    
+###
+ 
     grappelli.change_list.js
         - all js magic for change_list
     
