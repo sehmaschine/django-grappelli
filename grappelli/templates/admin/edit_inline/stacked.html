@@ -66,7 +66,8 @@
                 buttonImageOnly: false,
                 buttonText: '',
                 dateFormat: grappelli.getFormat('date')
-            }).timepicker();
+            })
+            row.find(".vTimeField").timepicker();
         }
         var updateSelectFilter = function(row) {
             // If any SelectFilter widgets were added, instantiate a new instance.

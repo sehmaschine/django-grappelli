@@ -1,13 +1,25 @@
+/**
+ * this is grappellis timepicker.
+ * works pretty similar to ui.datepicker:
+ *  - adds a button to the element
+ *  - creates a node (div) at the bottom called ui-timepicker
+ *  - element.onClick fills the ui-timepicker node with the time_list (all times you can select)
+ */
+
 (function( $ ) {
 $.widget("ui.timepicker", {
     // default options
     options: {
+        // template for the container of the timepicker
         template: '<div id="ui-timepicker" class="module" style="position: absolute; display: none;"></div>',
+        // selector to get the ui-timepicker once it's added to the dom
         timepicker_selector: "#ui-timepicker",
+        // needed offset of the container from the element
         offset: {
             top: 0
         },
-        time_list: [
+        // if time_list wasn't sent when calling the timepicker we use this
+        default_time_list: [
             'now',
             '00:00',
             '01:00',
@@ -33,64 +45,105 @@ $.widget("ui.timepicker", {
             '21:00',
             '22:00',
             '23:00'
-        ]
+        ],
+        // leave this empty!!!
+        // NOTE: you can't set a default for time_list because if you call:
+        // $("node").timepicker({time_list: ["01:00", "02:00"]})
+        // ui.widget will extend/merge the options.time_list whith the one you sent.
+        time_list: []
     },
     
+    /**
+     * init timepicker for a specific element
+     */
     _create: function() {
-        //console.log("JO!", this.element)
-        //this.element.after('<button type="button" class="ui-timepicker-trigger"></button>');
-        //this.element.next().click(function() {
-        //    alert("JOJO!!!")
-        //});
-        var self = this,
-            options = self.options;
+        // for the events
+        var self = this;
         
-        this._init();
+        // to close timpicker if you click somewhere in the document
+        $(document).mousedown(function(evt) {
+            if (self.timepicker.is(":visible")) {
+                var $target = $(evt.target);
+                if ($target[0].id != self.timepicker[0].id && $target.parents(self.options.timepicker_selector).length == 0 && !$target.hasClass('hasTimepicker') && !$target.hasClass('ui-timepicker-trigger')) {
+                    self.timepicker.hide();
+                }
+            }
+        });
         
+        // get/create timepicker's container
+        if ($(this.options.timepicker_selector).size() == 0) {
+            $(this.options.template).appendTo('body');
+        }
+        this.timepicker = $(this.options.timepicker_selector);
+        this.timepicker.hide();
+        
+        // modify the element and create the button
         this.element.addClass("hasTimepicker");
         this.button = $('<button type="button" class="ui-timepicker-trigger"></button>');
         this.element.after(this.button);
         
-        // get/create timepicker
-        this.timepicker = $(options.timepicker_selector);
-        this.timepicker.hide();
-        
+        // disable button if element is disabled
         if (this.element.attr("disabled")) {
             this.button.attr("disabled", true);
-        } else {
-            // register events
+        }
+        // register event
+        else {
             this.button.click(function() {
                 self._toggleTimepicker();
             });
         }
-        
-        //this.element.focus(function() {
-        //    self._toggleTimepicker();
-        //})
     },
     
-    _init: function() {
-        if ($(this.options.timepicker_selector).size() > 0) return;
-        
+    /**
+     * called when button is clicked
+     */
+    _toggleTimepicker: function() {
+        if (this.timepicker.is(":visible")) {
+            this.timepicker.hide();
+        } else {
+            this.element.focus();
+            this._generateTimepickerContents();
+            this._showTimepicker();
+        }
+    },
+    
+    /**
+     * fills timepicker with time_list of element and shows it.
+     *
+     * called by _toggleTimepicker
+     */
+    _generateTimepickerContents: function() {
         var self = this,
-            options = self.options,
-            template = $(options.template),
             template_str = "<ul>";
         
-        for (var i = 0; i < options.time_list.length; i++) {
-            if (options.time_list[i] == "now") {
-                template_str += '<li class="ui-state-active row">' + options.time_list[i] + '</li>';
+        // there is no time_list for this instance so use the default one
+        if (this.options.time_list.length == 0) {
+            this.options.time_list = this.options.default_time_list;
+        }
+        
+        for (var i = 0; i < this.options.time_list.length; i++) {
+            if (this.options.time_list[i] == "now") {
+                template_str += '<li class="ui-state-active row">' + this.options.time_list[i] + '</li>';
             } else {
-                template_str += '<li class="ui-state-default row">' + options.time_list[i] + '</li>';
+                template_str += '<li class="ui-state-default row">' + this.options.time_list[i] + '</li>';
             }
         }
         template_str += "</ul>";
-        template.append(template_str);
         
-        template.appendTo("body").find('li').click(function() {
+        // fill timepicker container
+        this.timepicker.html(template_str);
+        
+        // click handler for items (times) in timepicker
+        this.timepicker.find('li').click(function() {
+            // remove active class from all items
             $(this).parent().children('li').removeClass("ui-state-active");
+            // mark clicked item as active
             $(this).addClass("ui-state-active");
+            
+            // innerHTML of item is new value of element
             var new_val = $(this).html();
+            
+            // if the value is "now" the new value is the current time
             if (new_val == "now") {
                 var now = new Date(),
                     hours = now.getHours(), 
@@ -101,43 +154,21 @@ $.widget("ui.timepicker", {
                 
                 new_val = hours + ":" + minutes;
             }
-            $(self.timepicker.data("current_input")).val(new_val);
+            
+            // set the new value and hide the timepicker
+            self.element.val(new_val);
             self.timepicker.hide();
         });
-        
-        $(document).mousedown(function(evt) {
-            if (self.timepicker.is(":visible")) {
-                var $target = $(evt.target);
-                if ($target[0].id != self.timepicker[0].id && $target.parents(options.timepicker_selector).length == 0 && !$target.hasClass('hasTimepicker') && !$target.hasClass('ui-timepicker-trigger')) {
-                    self.timepicker.hide();
-                }
-            }
-        });
     },
     
-    _toggleTimepicker: function() {
-        if (this.timepicker.is(":visible")) {
-            this.timepicker.data("current_input", null);
-            this.timepicker.hide();
-        } else {
-            this.timepicker_offset = this.element.offset();
-            //this.timepicker_offset.left += this.element.outerWidth() 
-            this.timepicker_offset.top += this.element.outerHeight() + this.options.offset.top;
-            this.timepicker.css(this.timepicker_offset);
-            this.timepicker.data("current_input", this.element);
-            this.element.focus();
-            this.timepicker.show();
-        }
-        this.timepicker_open = !this.timepicker_open;
-    },
-    
-    value: function() {
-        // calculate some value and return it
-        return 25;
-    },
-    
-    length: function() {
-        return 22;
+    /**
+     * sets offset and shows timepicker containter
+     */
+    _showTimepicker: function() {
+        this.timepicker_offset = this.element.offset();
+        this.timepicker_offset.top += this.element.outerHeight() + this.options.offset.top;
+        this.timepicker.css(this.timepicker_offset);
+        this.timepicker.show();
     },
     
     destroy: function() {

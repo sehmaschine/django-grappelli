@@ -88,9 +88,9 @@
                 buttonImageOnly: false,
                 buttonText: '',
                 dateFormat: grappelli.getFormat('date'),
-            }).end()
+            });
             // With sufficient thrust, pigs can fly..
-            .find(".vTimeField").timepicker();
+            row.find(".vTimeField").timepicker();
         }
         var updateSelectFilter = function(row) {
             // If any SelectFilter widgets are a part of the new form,
