@@ -123,7 +123,14 @@ $.widget("ui.timepicker", {
         
         for (var i = 0; i < this.options.time_list.length; i++) {
             if (this.options.time_list[i] == "now") {
-                template_str += '<li class="ui-state-active row">' + this.options.time_list[i] + '</li>';
+                var now = new Date(),
+                    hours = now.getHours(), 
+                    minutes = now.getMinutes();
+                    
+                hours = ((hours < 10) ? "0" + hours : hours);
+                minutes = ((minutes < 10) ? "0" + minutes : minutes);
+                
+                template_str += '<li class="ui-state-active row">' + hours + ":" + minutes + '</li>';
             } else {
                 template_str += '<li class="ui-state-default row">' + this.options.time_list[i] + '</li>';
             }
@@ -140,23 +147,8 @@ $.widget("ui.timepicker", {
             // mark clicked item as active
             $(this).addClass("ui-state-active");
             
-            // innerHTML of item is new value of element
-            var new_val = $(this).html();
-            
-            // if the value is "now" the new value is the current time
-            if (new_val == "now") {
-                var now = new Date(),
-                    hours = now.getHours(), 
-                    minutes = now.getMinutes();
-                
-                hours = ((hours < 10) ? "0" + hours : hours);
-                minutes = ((minutes < 10) ? "0" + minutes : minutes);
-                
-                new_val = hours + ":" + minutes;
-            }
-            
             // set the new value and hide the timepicker
-            self.element.val(new_val);
+            self.element.val($(this).html());
             self.timepicker.hide();
         });
     },
