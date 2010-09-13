@@ -1,3 +1,12 @@
+loading order:
+ * jquery-1.4.2.min.js
+ * jquery-ui-1.8.custom.min.js (with datepicker)
+ * grappelli.init.js
+ * grappelli.timepicker.js
+ * grappelli.RelatedObjectLookups.js
+ * grappelli.js
+ * (optional) grappelli.change_list.js
+
 orignal js removed:
     actions.js, actions.min.js
     jquery.js, jquery.min.js
