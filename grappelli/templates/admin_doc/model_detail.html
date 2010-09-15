@@ -11,7 +11,7 @@
                     $('.rte .module').css("width", childWidth);
                 });
             });
-        })(jQuery.noConflict());
+        })(django.jQuery);
     </script>
 {% endblock %}
 {% block bodyclass %}documentation{% endblock %}
@@ -27,7 +27,7 @@
             <p>{% filter linebreaksbr %}{% trans description %}{% endfilter %}</p>
         {% endif %}
         <div class="module model">
-            <table class="model" style="width: auto !important">
+            <table class="model" style="width: auto">
                 <thead>
                     <tr>
                         <th>Field</th>
@@ -40,7 +40,7 @@
                         <tr>
                             <td class="nowrap focus">{{ field.name }}</td>
                             <td class="nowrap">{{ field.data_type }}</td>
-                            <td class="nowrap">{{ field.verbose }}{% if field.help_text %} - {{ field.help_text|safe }}{% endif %}</td>
+                            <td>{{ field.verbose }}{% if field.help_text %} - {{ field.help_text|safe }}{% endif %}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
