@@ -230,16 +230,16 @@
         initLayout();
         
         initFilter();
-        
+        /*
+        // django version < 1.2.3 only
         // hide the last coll if its an editable list
         // because this coll has just the hidden input with the id (breaks ui)
         if ($("#changelist").hasClass("editable")) {
             // UGLY HACK: add th for thead when list_editables are activated.
-            // why is the th missing anyway??? f*ck.
             $(".changelist-results tr").each(function() {
                 $(this).find("td:last").hide();
             });
-        }
+        }*/
         
         $("input.action-select, input#action-toggle, a.cancel-link").click(function() {
             $("div#submit").hide();
