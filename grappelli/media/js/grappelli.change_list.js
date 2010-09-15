@@ -1,3 +1,6 @@
+/**
+ * manages all interactions in the admin change_list
+ */
 (function($) {
     $.fn.change_list = function(opts) {
         var options = $.extend({}, $.fn.change_list.defaults, opts),

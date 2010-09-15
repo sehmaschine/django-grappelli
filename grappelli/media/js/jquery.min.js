@@ -1,1 +1,3 @@
-// NOTE grappelli: modification of original!
+// dropped
+// not used in grappelli
+// kept this file to prevent 404

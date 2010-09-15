@@ -1,2 +1,3 @@
-// NOTE grappelli: modification of original!
-// not needed (use ui datepicker instead)
+// dropped
+// not used in grappelli
+// kept this file to prevent 404
