@@ -308,8 +308,8 @@ input[type=checkbox], input[type=radio] {
         top: 1px;
     }
     .row input[type=checkbox], 
-    .th ul.radiolist input[type=checkbox], 
-    .td ul.radiolist input[type=checkbox] {
+    .th ul.checkboxlist input[type=checkbox], 
+    .td ul.checkboxlist input[type=checkbox] {
         top: 3px;
     }
 }
@@ -337,7 +337,13 @@ ul.checkboxlist input[type=checkbox] {
 }
 .row ul.checkboxlist label input[type=checkbox] {
     top: -2px;
-    vertical-align: bottom;
+    vertical-align: middle;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .row ul.checkboxlist label input[type=checkbox] {
+        top: -1px;
+        vertical-align: middle;
+    }
 }
 
 .row label + input + p.help input[type=checkbox] {
@@ -363,6 +369,10 @@ ul.radiolist, ul.checkboxlist {
     font-size: 11px;
     line-height: 15px;
     font-weight: normal;
+}
+
+.row>ul.radiolist, .row>ul.checkboxlist {
+    margin: 0;
 }
 
 ul.radiolist li + li, ul.checkboxlist li + li {
@@ -776,5 +786,16 @@ input.vM2MAutocompleteSearchField {
 .changelist-results table select, 
 .module.table select {
     max-width: 278px;
+}
+
+
+
+/*  Form Elements Cells
+------------------------------------------------------------------------------------------------------ */
+
+.cell input[type=text], 
+.cell input[type=password], 
+.cell select {
+    max-width: 280px;
 }
 
