@@ -18,6 +18,10 @@ fieldset {
     margin: 3px 0 2px 0;
     padding: 0;
 }
+.row.cells p.help {
+    max-width: 278px;
+    white-space: normal !important;
+}
 
 .row ul.radio-list + p.help, 
 .row ul.checkbox-list + p.help {
@@ -134,6 +138,7 @@ label {
 .module label {
     display: block;
     padding: 0 0 6px;
+    white-space: normal;
 }
 .module .vCheckboxLabel {
     display: inline;
@@ -405,6 +410,9 @@ ul.radiolist.inline li, ul.checkboxlist.inline li {
     position: relative;
     float: left;
     display: inline;
+}
+.row.cells ul.radiolist.inline li, .row.cells ul.checkboxlist.inline li {
+    float: none;
 }
 
 ul.radiolist label, ul.checkboxlist label {

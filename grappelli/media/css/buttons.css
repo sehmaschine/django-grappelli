@@ -245,6 +245,8 @@ a.related-lookup {
     margin-bottom: -5px;
     width: 23px;
     height: 23px;
+    font-size: 0;
+    line-height: 0;
     background: 50% 50% no-repeat;
 }
 
@@ -318,6 +320,11 @@ a.add-another:hover, a.add-another:active {
     float: left;
     margin-left: -20px;
     margin-right: -10000px;
+}
+.row.cells ul.radiolist.inline + a.add-another, 
+.row.cells  ul.checkboxlist.inline + a.add-another {
+    float: none;
+    margin-right: 0;
 }
 
 
