@@ -1,35 +1,37 @@
-<fieldset class="module {{ fieldset.classes }}">
-    {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
-    {% if fieldset.description %}<div class="description">{{ fieldset.description|safe }}</div>{% endif %}
-    {% for line in fieldset %}
-        <div class="row{% if line.errors %} errors{% endif %} {% for field in line %}{{ field.field.name }} {% endfor %} ">
-            {% for field in line %}
-                <div{% if not line.fields|length_is:"1" %} class="cell"{% endif %}>
-                    {% if field.is_checkbox %}
-                        <div class="column span-4">&nbsp;</div>
-                        <div class="column span-flexible">
-                            {{ field.field }}{{ field.label_tag }}
-                            {{ line.errors }}
-                            {% if field.field.field.help_text %}
-                                <p class="help">{{ field.field.field.help_text|safe }}</p>
-                            {% endif %}
-                        </div>
-                    {% else %}
-                        <div class="column span-4">{{ field.label_tag }}</div>
-                        <div class="column span-flexible">
-                            {% if field.is_readonly %}
-                                <p class="readonly">{{ field.contents }}</p>
-                            {% else %}
-                                {{ field.field }}
-                            {% endif %}
-                            {{ line.errors }}
-                            {% if field.field.field.help_text %}
-                                <p class="help">{{ field.field.field.help_text|safe }}</p>
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-    {% endfor %}
-</fieldset>
+{% spaceless %}
+    <fieldset class="module {{ fieldset.classes }}">
+        {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+        {% if fieldset.description %}<div class="description">{{ fieldset.description|safe }}</div>{% endif %}
+        {% for line in fieldset %}
+            <div class="row cells-{{ line.fields|length }}{% if not line.fields|length_is:"1" %} cells{% endif %}{% if line.errors %} errors{% endif %} {% for field in line %}{{ field.field.name }} {% endfor %} ">
+                {% for field in line %}
+                    <div{% if not line.fields|length_is:"1" %} class="cell"{% endif %}>
+                        {% if field.is_checkbox %}
+                            <div class="column span-4">&nbsp;</div>
+                            <div class="column span-flexible">
+                                {{ field.field }}{{ field.label_tag }}
+                                {{ line.errors }}
+                                {% if field.field.field.help_text %}
+                                    <p class="help">{{ field.field.field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="column span-4">{{ field.label_tag }}</div>
+                            <div class="column span-flexible">
+                                {% if field.is_readonly %}
+                                    <p class="readonly">{{ field.contents }}</p>
+                                {% else %}
+                                    {{ field.field }}
+                                {% endif %}
+                                {{ line.errors }}
+                                {% if field.field.field.help_text %}
+                                    <p class="help">{{ field.field.field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </fieldset>
+{% endspaceless %}
