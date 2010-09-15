@@ -1,30 +1,17 @@
-/* Note: the "good" way to implement tinyMCE would be to create a new db field type
- *
- * details = grappelliModels.RichText(...)
- *
- * This would translate into a standard textarea with a distinctive class name
- *
- * The JS would look for that class name and if it founds it it would load
- * dynamically the js required by the editor.
- *
- * That way you can have both standards and rich textarea on the same form
- * and you don't force the programmers to fiddle with JS paths in models.
- *
- * */
-//(function($){
+
 function CustomFileBrowser(field_name, url, type, win) {
     
-    var cmsURL = "/admin/filebrowser/browse/?pop=2";
-    cmsURL = cmsURL + "&type=" + type;
+    var cmsURL = '/admin/filebrowser/browse/?pop=2';
+    cmsURL = cmsURL + '&type=' + type;
     
     tinyMCE.activeEditor.windowManager.open({
         file: cmsURL,
         width: 980,  // Your dimensions may differ - toy around with them!
         height: 500,
-        resizable: "yes",
-        scrollbars: "yes",
-        inline: "no",  // This parameter only has an effect if you use the inlinepopups plugin!
-        close_previous: "no",
+        resizable: 'yes',
+        scrollbars: 'yes',
+        inline: 'no',  // This parameter only has an effect if you use the inlinepopups plugin!
+        close_previous: 'no',
     }, {
         window: win,
         input: field_name,
@@ -34,112 +21,124 @@ function CustomFileBrowser(field_name, url, type, win) {
 }
 
 tinyMCE.init({
-
-    // General
-    mode :              'textareas',
-    theme :             'advanced',
-    skin:               'grappelli',
-    dialog_type:        'window',
-    browsers:           'gecko,msie,safari,opera',
-    editor_deselector : 'mceNoEditor',
-    language:           "de",
-    relative_urls:      false,
-    plugins:            'advimage,advlink,fullscreen,paste,media,searchreplace,grappelli,grappelli_contextmenu,template',
     
-    // callbackss
+    // see
+    // http://wiki.moxiecode.com/index.php/TinyMCE:Configuration
+    
+    // Init
+    mode: 'textareas',
+    theme: 'advanced',
+    skin: 'grappelli',
+    
+    // General
+    //accessibility_warnings: false,
+    browsers: 'gecko,msie,safari,opera',
+    dialog_type: 'window',
+    editor_deselector: 'mceNoEditor',
+    keep_styles : false,
+    language: 'en',
+    object_resizing: false,
+    media_strict: true,
+    
+    // Callbackss
     file_browser_callback: 'CustomFileBrowser',
-
+    
     // Layout
-    width:              758,
-    height:             300,
-    indentation:        '10px',
-    object_resizing:    false,
-
-    // Accessibility
-    cleanup_on_startup:     true,
-    accessibility_warnings: false,
-    remove_trailing_nbsp:   true,
-    fix_list_elements :     true,
-    remove_script_host:     true,
-
-    // theme_advanced
-    theme_advanced_toolbar_location: "top",
-    theme_advanced_toolbar_align: "left",
-    theme_advanced_statusbar_location: "bottom",
-    theme_advanced_buttons1: "formatselect,styleselect,|,bold,italic,underline,|,bullist,numlist,blockquote,|,undo,redo,|,link,unlink,|,image,|,fullscreen,|,grappelli_adv",
-    theme_advanced_buttons2: "search,|,pasteword,template,media,charmap,|,code,|,table,cleanup,grappelli_documentstructure",
-    theme_advanced_buttons3: "",
+    width: 758,
+    height: 300,
+    indentation: '10px',
+    
+    // Cleanup
+    cleanup : true,
+    cleanup_on_startup: true,
+    element_format : 'xhtml',
+    fix_list_elements: true,
+    fix_table_elements: true,
+    fix_nesting: true,
+    forced_root_block : 'p',
+    
+    // URL
+    relative_urls: false,
+    remove_script_host: true,
+    
+    // Content CSS
+    // content_css : "css/example.css",
+    
+    // Plugins
+    plugins: 'advimage,advlink,fullscreen,paste,media,searchreplace,grappelli,grappelli_contextmenu,template',
+    
+    // Theme Advanced
+    theme_advanced_toolbar_location: 'top',
+    theme_advanced_toolbar_align: 'left',
+    theme_advanced_statusbar_location: 'bottom',
+    theme_advanced_buttons1: 'formatselect,styleselect,|,bold,italic,underline,|,bullist,numlist,blockquote,|,undo,redo,|,link,unlink,|,image,|,fullscreen,|,grappelli_adv',
+    theme_advanced_buttons2: 'search,|,pasteword,template,media,charmap,|,code,|,table,cleanup,grappelli_documentstructure',
+    theme_advanced_buttons3: '',
     theme_advanced_path: false,
-    theme_advanced_blockformats: "p,h2,h3,h4,pre",
-    theme_advanced_styles: "[all] clearfix=clearfix;[p] small=small;[img] Image left-aligned=img_left;[img] Image left-aligned (nospace)=img_left_nospacetop;[img] Image right-aligned=img_right;[img] Image right-aligned (nospace)=img_right_nospacetop;[img] Image Block=img_block;[img] Image Block (nospace)=img_block_nospacetop;[div] column span-2=column span-2;[div] column span-4=column span-4;[div] column span-8=column span-8",
+    theme_advanced_blockformats: 'p,h2,h3,h4,pre',
     theme_advanced_resizing : true,
     theme_advanced_resize_horizontal : false,
     theme_advanced_resizing_use_cookie : true,
-    theme_advanced_styles: "Image left-aligned=img_left;Image left-aligned (nospace)=img_left_nospacetop;Image right-aligned=img_right;Image right-aligned (nospace)=img_right_nospacetop;Image Block=img_block",
+    theme_advanced_styles: '',
     
-    // Adv (?)
-    advlink_styles: "intern=internal;extern=external",
-    advimage_update_dimensions_onchange: true,
+    // Style formats
+    // see http://wiki.moxiecode.com/index.php/TinyMCE:Configuration/style_formats
+    style_formats : [
+        {title : 'Paragraph Small', block : 'p', classes: 'p_small'},
+        {title : 'Paragraph ImageCaption', block : 'p', classes: 'p_caption'},
+        {title : 'Clearfix', block : 'p', classes: 'clearfix'},
+        {title : 'Code', block : 'p', classes: 'code'}
+    ],
     
-    // grappelli
-    grappelli_adv_hidden: false,
-    grappelli_show_documentstructure: 'on',
-    
-    // templates
+    // Templates
+    // see http://wiki.moxiecode.com/index.php/TinyMCE:Plugins/template
+    // please note that you need to add the URLs (src) to your url-patterns
+    // with django.views.generic.simple.direct_to_template
     template_templates : [
         {
-            title : "2 Spalten, symmetrisch",
-            src : "/grappelli/tinymce/templates/2col/",
-            description : "Symmetrical 2 Columns."
+            title : '2 Columns',
+            src : '/path/to/your/template/',
+            description : '2 Columns.'
         },
         {
-            title : "2 Spalten, symmetrisch mit Unterteilung",
-            src : "/grappelli/tinymce/templates/4col/",
-            description : "Asymmetrical 2 Columns: big left, small right."
+            title : '4 Columns',
+            src : '/path/to/your/template/',
+            description : '4 Columns.'
         },
     ],
     
-    // elements
-    valid_elements : [
-        '-p,','a[href|target=_blank|class]','-strong/-b','-em/-i','-u','-ol',
-        '-ul','-li','br','img[class|src|alt=|width|height]','-h2,-h3,-h4','-pre','-blockquote','-code','-div'
-    ].join(','),
-    extended_valid_elements: [
-        'a[name|class|href|target|title|onclick]',
-        'img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name]',
-        'br[clearfix]',
-        '-p[class<clearfix?summary?code]',
-        'h2[class<clearfix],h3[class<clearfix],h4[class<clearfix]',
-        'ul[class<clearfix],ol[class<clearfix]',
-        'div[class]',
-        'object[align<bottom?left?middle?right?top|archive|border|class|classid'
-          + "|codebase|codetype|data|declare|dir<ltr?rtl|height|hspace|id|lang|name"
-          + "|onclick|ondblclick|onkeydown|onkeypress|onkeyup|onmousedown|onmousemove"
-          + "|onmouseout|onmouseover|onmouseup|standby|style|tabindex|title|type|usemap"
-          + "|vspace|width]",
-        'param[id|name|type|value|valuetype<DATA?OBJECT?REF]',
-        'address'
-    ].join(','),
-    valid_child_elements : [
-        'h1/h2/h3/h4/h5/h6/a[%itrans_na]',       'table[thead|tbody|tfoot|tr|td]',
-        'strong/b/p/div/em/i/td[%itrans|#text]', 'body[%btrans|#text]'
-    ].join(',')
-
-    // custom cleanup
-    // setup: function(ed) {
-    //     // Gets executed before DOM to HTML string serialization
-    //     ed.onBeforeGetContent.add(function(ed, o) {
-    //         // State get is set when contents is extracted from editor
-    //         if (o.get) {
-    //             // Remove empty paragraphs (because this is bad)
-    //             tinymce.each(ed.dom.select('p', o.node), function(n) {
-    //                 alert(n.firstChild);
-    //                 ed.dom.remove(n);
-    //             });
-    //             // Remove douple spaces
-    //             // o.content = o.content.replace(/<(strong|b)([^>]*)>/g, '');
-    //         }
-    //     });
-    // }
+    // Adv
+    advlink_styles: 'Internal Link=internal;External Link=external',
+    advimage_update_dimensions_onchange: true,
+    
+    // Grappelli
+    grappelli_adv_hidden: false,
+    grappelli_show_documentstructure: 'on',
+    
+    // Elements
+    // valid_elements: '@[id|class|style|title|dir<ltr?rtl|lang|xml::lang|onclick|ondblclick|'
+    // + 'onmousedown|onmouseup|onmouseover|onmousemove|onmouseout|onkeypress|'
+    // + 'onkeydown|onkeyup],a[rel|rev|charset|hreflang|tabindex|accesskey|type|'
+    // + 'name|href|target|title|class|onfocus|onblur],strong/b,em/i,strike,u,'
+    // + '#p,-ol[type|compact],-ul[type|compact],-li,br,img[longdesc|usemap|'
+    // + 'src|border|alt=|title|hspace|vspace|width|height|align],-sub,-sup,'
+    // + '-blockquote,-table[border=0|cellspacing|cellpadding|width|frame|rules|'
+    // + 'height|align|summary|bgcolor|background|bordercolor],-tr[rowspan|width|'
+    // + 'height|align|valign|bgcolor|background|bordercolor],tbody,thead,tfoot,'
+    // + '#td[colspan|rowspan|width|height|align|valign|bgcolor|background|bordercolor'
+    // + '|scope],#th[colspan|rowspan|width|height|align|valign|scope],caption,-div,'
+    // + '-span,-code,-pre,address,-h1,-h2,-h3,-h4,-h5,-h6,hr[size|noshade],-font[face'
+    // + '|size|color],dd,dl,dt,cite,abbr,acronym,del[datetime|cite],ins[datetime|cite],'
+    // + 'object[classid|width|height|codebase|*],param[name|value|_value],embed[type|width'
+    // + '|height|src|*],script[src|type],map[name],area[shape|coords|href|alt|target],bdo,'
+    // + 'button,col[align|char|charoff|span|valign|width],colgroup[align|char|charoff|span|'
+    // + 'valign|width],dfn,fieldset,form[action|accept|accept-charset|enctype|method],'
+    // + 'input[accept|alt|checked|disabled|maxlength|name|readonly|size|src|type|value],'
+    // + 'kbd,label[for],legend,noscript,optgroup[label|disabled],option[disabled|label|selected|value],'
+    // + 'q[cite],samp,select[disabled|multiple|name|size],small,'
+    // + 'textarea[cols|rows|disabled|name|readonly],tt,var,big',
+    // extended_valid_elements : 'embed[width|height|name|flashvars|src|bgcolor|align|play|'
+    // + 'loop|quality|allowscriptaccess|type|pluginspage]'
+    
 });
-//}(jQuery));
+
