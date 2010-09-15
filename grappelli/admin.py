@@ -44,7 +44,7 @@ class AdminSite(sites.AdminSite):
                 extra_context = kwargs.get('extra_context', {})
                 extra_context = self.annotate_context(extra_context)
                 kwargs['extra_context'] = extra_context
-                return view(request, *args, **kwargs)
+            return view(request, *args, **kwargs)
         if not cacheable:
             inner = never_cache(inner)
         # We add csrf_protect here so this function can be used as a utility
