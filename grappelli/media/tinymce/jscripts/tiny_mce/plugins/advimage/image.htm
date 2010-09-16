@@ -81,8 +81,10 @@
                         <div class="column span-flexible">
                             <input name="width" type="text" id="width" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeHeight();" /> x 
                             <input name="height" type="text" id="height" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeWidth();" /> px
-                            <input id="constrain" type="checkbox" name="constrain" class="checkbox" />
-                            <label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label>
+                            <p class="constrain">
+                                <input id="constrain" type="checkbox" name="constrain" class="checkbox" />
+                                <label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label>
+                            </p>
                         </div>
                     </div>
                     <div class="row" style="display:none">
