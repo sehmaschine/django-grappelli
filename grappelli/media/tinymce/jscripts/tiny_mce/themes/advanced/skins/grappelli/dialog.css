@@ -192,6 +192,11 @@ input.size, input.number {
     margin-right: 1px;
     width: 50px !important;
 }
+input#width, input#height {
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+}
 input.radio {
     position: relative;
     margin: 0 5px 13px 0;
@@ -213,7 +218,13 @@ input.radio.additional, input.checkbox.additional {
 }
 input#constrain {
     position: relative;
-    margin: 0 5px 0 32px !important;
+    margin: 0 5px 0 0 !important;
+}
+input + input#constrain {
+    margin-left: 32px !important;
+}
+p.constrain {
+    padding: 5px 0 0 !important;
 }
 input.radio.inline {
     position: relative; top: 1px;
@@ -248,13 +259,16 @@ input.checkbox.inline {
     border-radius: 5px !important; -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
+#textareaContainer {
+    border: 0;
+}
 #iframecontainer {
    padding: 2px 0;
 }
 textarea#htmlSource {
     width: 100% !important; height: 100%;
     color: #444; font-family: 'Courier New',Courier,monospace; font-size: 12px; font-weight: normal;
-/*    border: none !important;*/
+/*    border: 0 !important;*/
 }
 #iframecontainer iframe {
     border-radius: 5px !important; -moz-border-radius: 5px !important; -webkit-border-radius: 5px !important;
