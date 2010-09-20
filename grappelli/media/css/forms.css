@@ -281,18 +281,18 @@ input[type=checkbox], input[type=radio] {
 .th>input[type=checkbox], 
 .td>input[type=radio], 
 .td>input[type=checkbox] {
-    top: 2px;
+    top: 5px;
     margin-bottom: -3px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .th>input[type=radio], 
     .td>input[type=radio] {
-        top: 2px;
+        top: 6px;
         margin-bottom: -2px;
     }
     .th>input[type=checkbox], 
     .td>input[type=checkbox] {
-        top: 3px;
+        top: 7px;
         margin-bottom: -2px;
     }
 }
