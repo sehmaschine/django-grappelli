@@ -502,9 +502,6 @@ fieldset.module > .row:last-child {
     border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
-ul.errorlist + .module>*:first-child {
-    border-top: 1px solid #fff !important;
-}
 
 
 
@@ -531,13 +528,6 @@ fieldset.module .cell.last {
 fieldset.module .cell.last + fieldset.module .cell {
     border-left: 0 !important;
 }
-
-
-
-/*  Fieldset Multiple Cell
------------------------------------------------------------------------------------------------------- */
-
-
 
 
 
