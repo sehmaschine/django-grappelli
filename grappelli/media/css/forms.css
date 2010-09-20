@@ -213,7 +213,7 @@ input[type=file] {
 }
 .th input[type=file], 
 .td input[type=file] {
-    top: 2px;
+    top: 3px;
     margin-bottom: -2px;
 }
 
