@@ -55,6 +55,9 @@ function dismissRelatedLookupPopup(win, chosenId) {
     } else {
         document.getElementById(name).value = chosenId;
     }
+    // grappelli custom
+    elem.focus();
+    // end
     win.close();
 }
 
