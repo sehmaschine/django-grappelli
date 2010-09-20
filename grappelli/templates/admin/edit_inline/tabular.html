@@ -57,7 +57,11 @@
                         {% spaceless %}
                         <ul class="tools">
                             {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
-                            {% if inline_admin_formset.opts.sort_field_name %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}
+                            {% if inline_admin_formset.opts.sort_field_name %}
+                                {% if inline_admin_form.original or inline_admin_form.show_url %}
+                                    <li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>
+                                {% endif %}
+                            {% endif %}
                             {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>{% endif %}
                         </ul>
                         {% endspaceless %}
@@ -105,9 +109,11 @@
             // but removeHandler() can remove the current form and just reorder the rest
             // if we would do the same after drag&drop we would loose some form values
             // because while looping inputs would have the same names and maybe overwrite each other.
+            placeholder: 'ui-state-highlight',
+            forcePlaceholderSize: true,
+            items: 'div.has_original',
             update: function(evt, ui) {
-                var forms = $(this).find(".dynamic-form"), // all forms of the inline
-                    position_field;
+                var forms = $(this).find(".dynamic-form"); // all forms of the inline
                     
                 for (var i = 0; i < forms.length; i++) {
                     sortable_updateFormIndex($(forms[i]), i+1000, '{{ inline_admin_formset.formset.prefix }}');
@@ -119,10 +125,6 @@
                     tabular_onRemoved(form);
                     
                     sortable_updateFormIndex(form, i, '{{ inline_admin_formset.formset.prefix }}');
-                    position_field = form.find("input#id_{{ inline_admin_formset.formset.prefix }}-" + i + "-{{ inline_admin_formset.opts.sort_field_name }}");
-                    if (position_field.val()) {
-                        position_field.val(i);
-                    }
                     
                     tabular_onAdded(form);
                     
@@ -135,10 +137,9 @@
                 form;
             for (var i = 0; i < forms.length; i++) {
                 form = $(forms[i]);
-                if (!form.hasClass("has_original")) {
-                    if (is_form_filled(form)) {
-                        form.find("input#id_{{ inline_admin_formset.formset.prefix }}-" + i + "-{{ inline_admin_formset.opts.sort_field_name }}").val(i);
-                    }
+                
+                if (is_form_filled(form)) {
+                    form.find("input#id_{{ inline_admin_formset.formset.prefix }}-" + i + "-{{ inline_admin_formset.opts.sort_field_name }}").val(i+1);
                 }
             }
         });
