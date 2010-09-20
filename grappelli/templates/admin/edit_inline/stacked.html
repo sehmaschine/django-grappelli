@@ -20,7 +20,7 @@
                 <h3>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
                 <ul class="tools">
                     {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
-                    {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
+                    {% if inline_admin_formset.opts.sort_field_name %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}
                     {% if inline_admin_formset.formset.can_delete %}
                         {% if inline_admin_form.original %}
                             <li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon delete-handler" title="{% trans 'Delete Item' %}"></a></li>
@@ -54,63 +54,72 @@
 <script type="text/javascript">
 (function($) {
     $(document).ready(function() {
-        var updateInlineLabel = function(row) {
-            $("#{{ inline_admin_formset.formset.prefix }}-group div.items div.module").find("h3:first").each(function(i) {
-                $(this).html($(this).html().replace(/(#\d+)/g, "#" + ++i));
-            });
-        }
-        var reinitDateTimeFields = function(row) {
-            row.find(".vDateField").datepicker({
-                //appendText: '(mm/dd/yyyy)',
-                showOn: 'button',
-                buttonImageOnly: false,
-                buttonText: '',
-                dateFormat: grappelli.getFormat('date')
-            })
-            row.find(".vTimeField").timepicker();
-        }
-        var updateSelectFilter = function(row) {
-            // If any SelectFilter widgets were added, instantiate a new instance.
-            if (typeof SelectFilter != "undefined"){
-                row.find(".selectfilter").each(function(index, value){
-                  var namearr = value.name.split('-');
-                  SelectFilter.init(value.id, namearr[namearr.length-1], false, "{% admin_media_prefix %}");
-                });
-                row.find(".selectfilterstacked").each(function(index, value){
-                  var namearr = value.name.split('-');
-                  SelectFilter.init(value.id, namearr[namearr.length-1], true, "{% admin_media_prefix %}");
-                });
-            }
-        }
-        var reinitTinyMCE = function(row) {
-            row.find("textarea.vLargeTextField").each(function() {
-                tinyMCE.execCommand('mceAddControl', false, this.id);
-            });
-        };
-        var deleteTinyMCE = function(row) {
-            row.find("textarea.vLargeTextField").each(function() {
-                if (tinyMCE.getInstanceById(this.id)) {
-                    tinyMCE.execCommand('mceRemoveControl', false, this.id);
-                }
-            });
-        };
         
-        // TODO. re-init ui-calendar
+        // call for inline() widget
         $("#{{ inline_admin_formset.formset.prefix }}-group").inline({
             prefix: "{{ inline_admin_formset.formset.prefix }}",
             deleteCssClass: "delete-handler",
             emptyCssClass: "empty-form",
-            onRemoved: (function (row) {
-                updateInlineLabel(row);
-                deleteTinyMCE(row);
-            }),
-            onAdded: (function(row) {
-                reinitTinyMCE(row);
-                reinitDateTimeFields(row);
-                updateSelectFilter(row);
-                updateInlineLabel(row);
-            })
+            onRemoved: stacked_onRemoved,
+            onAdded: stacked_onAdded,
         });
+        
+{% if inline_admin_formset.opts.sort_field_name %}
+        /**
+         * sortable inlines
+         * uses onAdded() and onRemoved() of inline() call above
+         */
+        
+        $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.row.{{ inline_admin_formset.opts.sort_field_name }}").hide();
+        
+        
+        $("#{{ inline_admin_formset.formset.prefix }}-group > div.items").sortable({
+            // drag&drop the inlines with the drag-handler only
+            handle: "a.drag-handler",
+            // very scary magic after drap&drop operations
+            // pretty similar to inline() widget's removeHandler()
+            // but removeHandler() can remove the current form and just reorder the rest
+            // if we would do the same after drag&drop we would loose some form values
+            // because while looping inputs would have the same names and maybe overwrite each other.
+            update: function(evt, ui) {
+                var forms = $(this).find(".dynamic-form"), // all forms of the inline
+                    position_field;
+                    
+                for (var i = 0; i < forms.length; i++) {
+                    sortable_updateFormIndex($(forms[i]), i+1000, '{{ inline_admin_formset.formset.prefix }}');
+                }
+                
+                for (var i = 0; i < forms.length; i++) {
+                    var form = $(forms[i]);
+                    
+                    stacked_onRemoved(form);
+                    
+                    sortable_updateFormIndex(form, i, '{{ inline_admin_formset.formset.prefix }}');
+                    position_field = form.find("input#id_{{ inline_admin_formset.formset.prefix }}-" + i + "-{{ inline_admin_formset.opts.sort_field_name }}");
+                    if (position_field.val()) {
+                        position_field.val(i);
+                    }
+                    
+                    stacked_onAdded(form);
+                    
+                }
+            }
+        });
+        
+        $("#{{ opts.module_name }}_form").bind("submit", function(){
+            var forms = $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.dynamic-form"),
+                form;
+            for (var i = 0; i < forms.length; i++) {
+                form = $(forms[i]);
+                if (!form.hasClass("has_original")) {
+                    if (is_form_filled(form)) {
+                        form.find("input#id_{{ inline_admin_formset.formset.prefix }}-" + i + "-{{ inline_admin_formset.opts.sort_field_name }}").val(i);
+                    }
+                }
+            }
+        });
+        
+{% endif %}
     });
 })(django.jQuery);
 </script>

@@ -1,3 +1,119 @@
+/**
+ * helper functions for sortable inlines (tabular and stacked)
+ */
+
+function reinitDateTimeFields(row) {
+    row.find(".vDateField").datepicker({
+        //appendText: '(mm/dd/yyyy)',
+        showOn: 'button',
+        buttonImageOnly: false,
+        buttonText: '',
+        dateFormat: grappelli.getFormat('date'),
+    });
+    row.find(".vTimeField").timepicker();
+}
+
+function updateSelectFilter(row) {
+    // If any SelectFilter widgets were added, instantiate a new instance.
+    if (typeof SelectFilter != "undefined"){
+        row.find(".selectfilter").each(function(index, value){
+          var namearr = value.name.split('-');
+          SelectFilter.init(value.id, namearr[namearr.length-1], false, "{% admin_media_prefix %}");
+        });
+        row.find(".selectfilterstacked").each(function(index, value){
+          var namearr = value.name.split('-');
+          SelectFilter.init(value.id, namearr[namearr.length-1], true, "{% admin_media_prefix %}");
+        });
+    }
+}
+
+/**
+ * reorder of inlines dom
+ * works pretty similar to updateFormIndex() of the inline() widget
+ * helper function for sortable
+ */
+function sortable_updateFormIndex(form, idx, prefix) {
+    var re = /-\d+-/g;
+    form.attr('id', prefix + idx);
+    form.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
+        var node = django.jQuery(this),
+            node_id = node.attr('id'),
+            node_name = node.attr('name'),
+            node_for = node.attr('for'),
+            node_href = node.attr("href");
+        
+        if (node_id) node.attr('id', node_id.replace(re, "-" + idx + "-"));
+        if (node_name) node.attr('name', node_name.replace(re, "-" + idx + "-"));
+        if (node_for) node.attr('for', node_for.replace(re, "-" + idx + "-"));
+        if (node_href) node.attr('href', node_href.replace(re, "-" + idx + "-"));
+    });
+}
+
+/**
+ * checks if inline form is filled
+ * helper function for sortable
+ */
+function is_form_filled(form) {
+    var input_tags = form.find("input"),
+        input_tag;
+    for (var i = 0; i < input_tags.length; i++) {
+        input_tag = django.jQuery(input_tags[i]);
+        if (input_tag.val()) {
+            if (input_tag.attr("type") == "checkbox" || input_tag.attr("type") == "radio") {
+                if (input_tag.attr("checked")) {
+                    return true;
+                }
+            } else if (input_tag.attr("type") != "hidden"){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// updates label of inlines
+// to keep them in sequence (#1,#2,#3,...)
+function stacked_updateInlineLabel(row) {
+    row.parent().find("div.module").find("h3:first").each(function(i) {
+        var h3_node = django.jQuery(this);
+        h3_node.html(h3_node.html().replace(/(#\d+)/g, "#" + ++i));
+    });
+}
+
+// init tinymce for new inlines
+function reinitTinyMCE(row) {
+    row.find("textarea.vLargeTextField").each(function() {
+        tinyMCE.execCommand('mceAddControl', false, this.id);
+    });
+}
+
+// need to remove tinymce form removed inline
+function deleteTinyMCE(row) {
+    row.find("textarea.vLargeTextField").each(function() {
+        if (tinyMCE.getInstanceById(this.id)) {
+            tinyMCE.execCommand('mceRemoveControl', false, this.id);
+        }
+    });
+}
+
+function tabular_onAdded(row) {
+    reinitDateTimeFields(row);
+    updateSelectFilter(row);
+}
+
+function stacked_onAdded(row) {
+    reinitTinyMCE(row);
+    reinitDateTimeFields(row);
+    updateSelectFilter(row);
+    stacked_updateInlineLabel(row);
+}
+
+function stacked_onRemoved(row) {
+    stacked_updateInlineLabel(row);
+    deleteTinyMCE(row);
+}
+
+
 (function($) {
 $.fn.inline = function(options) {
     var defaults = {
@@ -11,8 +127,7 @@ $.fn.inline = function(options) {
         formCssClass: "dynamic-form",       // CSS class applied to each form in a formset
         predeleteCssClass: "predelete",
         onAdded: null,                        // Function called each time a new form is added
-        onRemoved: null,                     // Function called each time a form is removed
-        onDelete: null                     // Function called each time a form with content form the db is deleted
+        onRemoved: null                       // Function called each time a form is deleted
     };
     
     options = $.extend(defaults, options);
@@ -146,9 +261,6 @@ $.fn.inline = function(options) {
             deleteHandler = function() {
                 var deleteInput = $(this).prev(),
                     form = deleteInput.parents("." + options.formCssClass).first();
-                if (options.onDelete) {
-                    options.onDelete(form);
-                }
                 if (form.hasClass("has_original")) { // toggle delete checkbox and delete css class
                     form.toggleClass(options.predeleteCssClass);
                     if (deleteInput.attr("checked")) {

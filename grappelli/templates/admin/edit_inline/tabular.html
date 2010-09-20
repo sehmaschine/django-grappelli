@@ -57,7 +57,7 @@
                         {% spaceless %}
                         <ul class="tools">
                             {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
-                            {% comment %}{% if inline_admin_formset.opts.sortable %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}{% endcomment %}
+                            {% if inline_admin_formset.opts.sort_field_name %}<li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>{% endif %}
                             {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>{% endif %}
                         </ul>
                         {% endspaceless %}
@@ -79,45 +79,73 @@
 <script type="text/javascript">
 (function($) {
     $(document).ready(function($) {
-        var rows = "#{{ inline_admin_formset.formset.prefix }}-group div.table div.tbody";
-        var reinitDateTimeFields = function(row) {
-            // Reinitialize the calendar and clock widgets by force, yuck.
-            row.find(".vDateField").datepicker({
-                //appendText: '(mm/dd/yyyy)',
-                showOn: 'button',
-                buttonImageOnly: false,
-                buttonText: '',
-                dateFormat: grappelli.getFormat('date'),
-            });
-            // With sufficient thrust, pigs can fly..
-            row.find(".vTimeField").timepicker();
-        }
-        var updateSelectFilter = function(row) {
-            // If any SelectFilter widgets are a part of the new form,
-            // instantiate a new SelectFilter instance for it.
-            if (typeof SelectFilter != "undefined"){
-                $(".selectfilter").each(function(index, value){
-                  var namearr = value.name.split('-');
-                  SelectFilter.init(value.id, namearr[namearr.length-1], false, "{% admin_media_prefix %}");
-                })
-                $(".selectfilterstacked").each(function(index, value){
-                  var namearr = value.name.split('-');
-                  SelectFilter.init(value.id, namearr[namearr.length-1], true, "{% admin_media_prefix %}");
-                })
-            }
-        }
-        // TODO. re-init tinymce
-        // TODO. re-init ui-calendar
+        
         $("#{{ inline_admin_formset.formset.prefix }}-group").inline({
             prefix: "{{ inline_admin_formset.formset.prefix }}",
             deleteCssClass: "delete-handler",
             emptyCssClass: "empty-form",
-            onAdded: (function(row) {
-                reinitDateTimeFields(row);
-                updateSelectFilter(row);
-            })
+            onAdded: tabular_onAdded
         });
-    });
+        
+{% if inline_admin_formset.opts.sort_field_name %}
+        /**
+         * sortable inlines
+         * uses onAdded() and onRemoved() of inline() call above
+         * uses sortable_updateFormIndex() and is_form_filled() from change_from.html
+         */
+        
+        // hide sort_field_name from form
+        $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.{{ inline_admin_formset.opts.sort_field_name }}").hide();
+        
+        $("#{{ inline_admin_formset.formset.prefix }}-group > div.table").sortable({
+            // drag&drop the inlines with the drag-handler only
+            handle: "a.drag-handler",
+            // very scary magic after drap&drop operations
+            // pretty similar to inline() widget's removeHandler()
+            // but removeHandler() can remove the current form and just reorder the rest
+            // if we would do the same after drag&drop we would loose some form values
+            // because while looping inputs would have the same names and maybe overwrite each other.
+            update: function(evt, ui) {
+                var forms = $(this).find(".dynamic-form"), // all forms of the inline
+                    position_field;
+                    
+                for (var i = 0; i < forms.length; i++) {
+                    sortable_updateFormIndex($(forms[i]), i+1000, '{{ inline_admin_formset.formset.prefix }}');
+                }
+                
+                for (var i = 0; i < forms.length; i++) {
+                    var form = $(forms[i]);
+                    
+                    tabular_onRemoved(form);
+                    
+                    sortable_updateFormIndex(form, i, '{{ inline_admin_formset.formset.prefix }}');
+                    position_field = form.find("input#id_{{ inline_admin_formset.formset.prefix }}-" + i + "-{{ inline_admin_formset.opts.sort_field_name }}");
+                    if (position_field.val()) {
+                        position_field.val(i);
+                    }
+                    
+                    tabular_onAdded(form);
+                    
+                }
+            }
+        });
+        
+        $("#{{ opts.module_name }}_form").bind("submit", function(){
+            var forms = $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.dynamic-form"),
+                form;
+            for (var i = 0; i < forms.length; i++) {
+                form = $(forms[i]);
+                if (!form.hasClass("has_original")) {
+                    if (is_form_filled(form)) {
+                        form.find("input#id_{{ inline_admin_formset.formset.prefix }}-" + i + "-{{ inline_admin_formset.opts.sort_field_name }}").val(i);
+                    }
+                }
+            }
+        });
+        
+{% endif %}
+    
+    });    
 })(django.jQuery);
 </script>
 

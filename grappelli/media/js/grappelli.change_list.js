@@ -19,9 +19,11 @@
             var count = actionCheckboxes.filter(":checked").length;
             
             if (count > 0) {
+                hideSubmitFooter();
                 $(options.actionContainer).show();
             } else {
                 $(options.actionContainer).hide();
+                showSubmitFooter();
             }
             
             if ($(options.actionContainer).find("span._acnt").length > 0) {
@@ -170,14 +172,17 @@
         };
         
         showSubmitFooter = function() {
-            
             $("div#submit").show();
             
             // need to uncheck all actions checkboxes and update counter
             // (actions are not working if you want to edit items in the change_list)
             
-            actionCheckboxes.attr("checked", false);
-            clearSelection();
+            //actionCheckboxes.attr("checked", false);
+            //clearSelection();
+        };
+        
+        hideSubmitFooter = function() {
+            $("div#submit").hide();
         };
         
         // Show counter by default
@@ -231,28 +236,39 @@
         
         initFilter();
         /*
-        // django version < 1.2.3 only
-        // hide the last coll if its an editable list
-        // because this coll has just the hidden input with the id (breaks ui)
-        if ($("#changelist").hasClass("editable")) {
-            // UGLY HACK: add th for thead when list_editables are activated.
-            $(".changelist-results tr").each(function() {
-                $(this).find("td:last").hide();
+         * django version < 1.2.3 only
+         * hide the last coll if its an editable list
+         * because this coll has just the hidden input with the id (breaks ui)
+
+            if ($("#changelist").hasClass("editable")) {
+                // UGLY HACK: add th for thead when list_editables are activated.
+                $(".changelist-results tr").each(function() {
+                    $(this).find("td:last").hide();
+                });
+            }
+         */
+        
+        
+        /*
+         * deprecated code
+         * used to show submit footer if something changed only.
+         * way to complex to achieve this feature.
+         * now submit footer is visible if list_editable (and toggles visibility with action footer).
+         
+            $("input.action-select, input#action-toggle, a.cancel-link").click(function() {
+                $("div#submit").hide();
             });
-        }*/
         
-        $("input.action-select, input#action-toggle, a.cancel-link").click(function() {
-            $("div#submit").hide();
-        });
-        
-        //var edit_inlines = $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']");
-        //edit_inlines.focus(showSubmitFooter);
-        // safari (5) needs this because focus event doesn't work on checkboxes (anymore)
-        //edit_inlines.end().find(":checkbox").click(showSubmitFooter);
-        $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']").click(showSubmitFooter);
-        $("select[class!='filter_choice'][name!='action']").click(showSubmitFooter);
-        // FilebrowseField's button
-        $("a.fb_show").click(showSubmitFooter);
+            //var edit_inlines = $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']");
+            //edit_inlines.focus(showSubmitFooter);
+            // safari (5) needs this because focus event doesn't work on checkboxes (anymore)
+            //edit_inlines.end().find(":checkbox").click(showSubmitFooter);
+            var input_nodes = $("input[name!='_selected_action'][id!='action-toggle'][id!='searchbar']");
+            input_nodes.bind("change click", showSubmitFooter);
+            $("select[class!='filter_choice'][name!='action']").bind("change click", showSubmitFooter);
+            // FilebrowseField's button
+            $("a.fb_show").click(showSubmitFooter);
+        */
         
         $("td input.vForeignKeyRawIdAdminField, td input.vFileBrowseField, td a.add-another").each(function() {
             $(this).parent().addClass('nowrap');

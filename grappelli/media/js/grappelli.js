@@ -10,8 +10,8 @@ var grappelli = {};
     grappelli.openClass = "open";
     
     grappelli.collapseHandler = function() {
-        if (!jQuery("body").hasClass(grappelli.collapsedBlockedClass)) {
-            jQuery(this).parents(".collapse").first()
+        if (!$("body").hasClass(grappelli.collapsedBlockedClass)) {
+            $(this).parents("." + grappelli.collapseClass).first()
             .toggleClass(grappelli.closedClass)
             .toggleClass(grappelli.openClass);
         }
@@ -19,24 +19,28 @@ var grappelli = {};
     };
     
     grappelli.addCollapseHandlerClass = function() {
-        jQuery("." + this.collapseClass).find("h2:first").addClass(this.collapseHandlerClass);
-        jQuery("." + this.collapseClass).find("h3:first").addClass(this.collapseHandlerClass);
-        jQuery("." + this.collapseClass).find("h4:first").addClass(this.collapseHandlerClass);
+        $("." + this.collapseClass).each(function() {
+            var node = $(this).children().first();
+            if (node.is("h2") || node.is("h3") || node.is("h4")) {
+                node.addClass(grappelli.collapseHandlerClass)
+            }
+        });
     };
     
     grappelli.registerCollapseHandler = function() {
-        jQuery("." + this.collapseHandlerClass).click(this.collapseHandler);
+        $("." + this.collapseHandlerClass).click(this.collapseHandler);
     };
     
     grappelli.registerOpenAllHandler = function() {
-        jQuery("." + this.openAllClass).click(this.openAllHandler);
+        $("." + this.openAllClass).click(this.openAllHandler);
     };
     
-    /**
-     * Open the collapseble and its child collapsebles
+    /*
+     * Open all
      */
     grappelli.openAllHandler = function() {
-        jQuery(this).parents("." + grappelli.collapseClass)
+        // get .group and not .collapse because it doesn't necessarily have .collapse
+        $(this).parents(".group")
                     .removeClass(grappelli.closedClass)
                     .addClass(grappelli.openClass)
                     .find("." + grappelli.collapseClass)
@@ -45,34 +49,60 @@ var grappelli = {};
     };
     
     grappelli.registerCloseAllHandler = function() {
-        jQuery("." + this.closeAllClass).click(this.closeAllHandler);
+        $("." + this.closeAllClass).click(this.closeAllHandler);
     };
     
-    /**
-     * Close the collapseble and its child collapsebles
+    /*
+     * Close all
      */
     grappelli.closeAllHandler = function() {
-        jQuery(this).parents("." + grappelli.collapseClass)
+        // get .group and not .collapse because it doesn't necessarily have .collapse
+        $(this).parents(".group")
                     .find("." + grappelli.collapseClass)
                     .removeClass(grappelli.openClass)
                     .addClass(grappelli.closedClass);
     };
     
-    grappelli.initCollapseble = function() {
+    grappelli.initCollapsible = function() {
         grappelli.addCollapseHandlerClass();
         grappelli.registerCollapseHandler();
         
         grappelli.registerOpenAllHandler();
         grappelli.registerCloseAllHandler();
+        
+        $("." + grappelli.collapseClass + " ul.errorlist").each(function() {
+            $(this).parents("." + grappelli.collapseClass)
+                .removeClass(grappelli.closedClass)
+                .addClass(grappelli.openClass);
+        });
     };
     
-    grappelli.initDatePicker = function() {
-        jQuery(".vDateField").datepicker({
-            //appendText: '(mm/dd/yyyy)', 
-            showOn: 'button', 
+    grappelli.getFormat = function(type) {
+        if (type == "date") {
+            var format = DATE_FORMAT.toLowerCase().replace(/%\w/g, function(str) {
+                str = str.replace(/%/, '');
+                return str + str;
+            });
+        }
+        return format;
+    }
+    
+    grappelli.initDateAndTimePicker = function() {
+        var options = {
+            //appendText: '(mm/dd/yyyy)',
+            showOn: 'button',
             buttonImageOnly: false,
-            buttonText: ''
-        });
+            buttonText: '',
+            dateFormat: grappelli.getFormat('date'),
+            showAnim: ''
+        };
+        var dateFields = $("input[class*='vDateField']:not([id*='__prefix__'])");
+        dateFields.datepicker(options);
+        
+        if (typeof IS_POPUP != "undefined" && IS_POPUP) {
+            dateFields.datepicker('disable');
+        }
+        $("input[class*='vTimeField']:not([id*='__prefix__'])").timepicker();
     };
     
     grappelli.initHacks = function() {
@@ -84,9 +114,18 @@ var grappelli = {};
         });
     };
     
-    $(document).ready(function() {
-        grappelli.initCollapseble();
-        grappelli.initDatePicker();
+    // Using window.load instead of document ready for better performances
+    // It prevents lots of glitches, like divs that moves around upon loading
+    //
+    // Use $(document).ready only if you have to deal with images since it will
+    // wait for the document to be fully loaded/rendered before running the function
+    // while window.load method will run as soon as the DOM/CSS is loaded.
+    
+    $(window).load(function() {
+        // we do the hacks first!
+        // because we manipulate dom via innerHTML => loose events
         grappelli.initHacks();
+        grappelli.initCollapsible();
+        grappelli.initDateAndTimePicker();
     });
 })(django.jQuery);

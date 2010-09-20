@@ -34,10 +34,10 @@
                     $('.related-lookup, .add-another').attr("onClick", "return false;");
                     // "really" disable datepicker in grappelli.js
                     //$('.vDateField').addClass('disabled');
-                    
                 {% endif %}
                 
-                $('body').change_list();
+                {% get_search_fields_verbose cl.opts as search_fields_verbose %}
+                $('body').change_list({'initialSearchVal': '{% if not cl.query and not search_fields_verbose %}{% trans 'Search' %}{% endif %}{% if search_fields_verbose and not cl.query %}{{ search_fields_verbose }}{% endif %}{% if cl.query %}{{ cl.query }}{% endif %}'});
             });
         })(django.jQuery);
     </script>
@@ -138,7 +138,7 @@
         {% endif %}
         <!-- SUBMIT ROW -->
         {% if cl.formset and cl.full_result_count and cl.result_count %}
-            <div id="submit" class="module footer" style="display: none;">
+            <div id="submit" class="module footer">
                 <ul class="submit-row">
                     <li class="left delete-link-container"><a href="javascript://" class="cancel-link">Cancel</a></li>
                     <li class="submit-button-container"><input type="submit" class="default" name="_save" value="Save"/></li>
