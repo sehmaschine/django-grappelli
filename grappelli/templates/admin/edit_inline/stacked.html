@@ -117,11 +117,11 @@
             // but removeHandler() can remove the current form and just reorder the rest
             // if we would do the same after drag&drop we would loose some form values
             // because while looping inputs would have the same names and maybe overwrite each other.
-            placeholder: 'ui-state-highlight',
+            placeholder: 'ui-sortable-placeholder',
             forcePlaceholderSize: true,
             items: "div.dynamic-form",
             update: function(evt, ui) {
-                stacked_updateInlineLabel($(this).find(".dynamic-form").first());
+                stacked_updateInlineLabel(ui.item);
             }
         });
         

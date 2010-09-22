@@ -137,11 +137,20 @@
             // but removeHandler() can remove the current form and just reorder the rest
             // if we would do the same after drag&drop we would loose some form values
             // because while looping inputs would have the same names and maybe overwrite each other.
-            placeholder: 'ui-state-highlight',
+            placeholder: 'ui-sortable-placeholder',
             forcePlaceholderSize: true,
             items: "div.dynamic-form",
-            update: function(evt, ui) {
-                stacked_updateInlineLabel($(this).find(".dynamic-form").first());
+            start: function(evt, ui) {
+                //sadly we have to do this every time we start dragging
+                var template = "<div class='tr'>",
+                    len = ui.item.find("div.tr").children("div.td").length;
+                
+                for (var i = 0; i < len; i++) {
+                    template += "<div class='td'>&nbsp;</div>"
+                }
+                
+                template += "</div>"
+                ui.placeholder.addClass("tbody module").append(template);
             }
         });
         
