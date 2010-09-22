@@ -58,9 +58,7 @@
                         <ul class="tools">
                             {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
                             {% if inline_admin_formset.opts.sort_field_name %}
-                                {% if inline_admin_form.original or inline_admin_form.show_url %}
-                                    <li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>
-                                {% endif %}
+                                <li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>
                             {% endif %}
                             {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>{% endif %}
                         </ul>
@@ -99,7 +97,37 @@
          */
         
         // hide sort_field_name from form
-        $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.{{ inline_admin_formset.opts.sort_field_name }}").hide();
+        //$("#{{ inline_admin_formset.formset.prefix }}-group").find("div.{{ inline_admin_formset.opts.sort_field_name }}").hide();
+        
+    {% if errors %}
+        // sort inline
+        var container = $("#{{ inline_admin_formset.formset.prefix }}-group > div.table"),
+            dynamic_forms = container.find("div.dynamic-form"),
+            updated = false,
+            curr_form,
+            real_pos;
+        
+        // loop thru all inline forms
+        for (var i = 0; i < dynamic_forms.length; i++) {
+            curr_form = $(dynamic_forms[i]);
+            // the real position according to the sort_field(_name)
+            real_pos = curr_form.find("div.{{ inline_admin_formset.opts.sort_field_name }}").find("input").val();
+            // if there is none it's an empty inline (=> we are at the end)
+            // TODO: klemens: maybe buggy. try continue?
+            if (!real_pos) continue;
+            
+            real_pos = parseInt(real_pos, 10);
+            
+            // check if real position is not equal to the CURRENT position in the dom
+            if (real_pos != container.find("div.dynamic-form").index(curr_form)) {
+                // move to correct postition
+                curr_form.insertBefore(container.find("div.dynamic-form")[real_pos]);
+                // to update the inline lables
+                updated = true;
+            }
+        }
+        
+    {% endif %}
         
         $("#{{ inline_admin_formset.formset.prefix }}-group > div.table").sortable({
             // drag&drop the inlines with the drag-handler only
@@ -111,35 +139,23 @@
             // because while looping inputs would have the same names and maybe overwrite each other.
             placeholder: 'ui-state-highlight',
             forcePlaceholderSize: true,
-            items: 'div.has_original',
+            items: "div.dynamic-form",
             update: function(evt, ui) {
-                var forms = $(this).find(".dynamic-form"); // all forms of the inline
-                    
-                for (var i = 0; i < forms.length; i++) {
-                    sortable_updateFormIndex($(forms[i]), i+1000, '{{ inline_admin_formset.formset.prefix }}');
-                }
-                
-                for (var i = 0; i < forms.length; i++) {
-                    var form = $(forms[i]);
-                    
-                    tabular_onRemoved(form);
-                    
-                    sortable_updateFormIndex(form, i, '{{ inline_admin_formset.formset.prefix }}');
-                    
-                    tabular_onAdded(form);
-                    
-                }
+                stacked_updateInlineLabel($(this).find(".dynamic-form").first());
             }
         });
         
+        // sets the new positions onSubmit (0 - n)
         $("#{{ opts.module_name }}_form").bind("submit", function(){
             var forms = $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.dynamic-form"),
-                form;
+                form,
+                idx = 0;
             for (var i = 0; i < forms.length; i++) {
                 form = $(forms[i]);
                 
                 if (is_form_filled(form)) {
-                    form.find("input#id_{{ inline_admin_formset.formset.prefix }}-" + i + "-{{ inline_admin_formset.opts.sort_field_name }}").val(i+1);
+                    form.find("div.{{ inline_admin_formset.opts.sort_field_name }}").find("input").val(idx);
+                    idx++;
                 }
             }
         });
