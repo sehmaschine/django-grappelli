@@ -1,0 +1,15 @@
+{% extends "admin_tools/dashboard/module.html" %}
+{% load admin_tools_dashboard_tags %}
+{% block module_content %}
+<div class="group {% for item in module.css_classes %}{{ item }} {% endfor %}">
+    {% spaceless %}
+    {% if module.title %}
+        <h2>{{ module.title }}</h2>
+    {% endif %}
+    {% for sub_module in module.children %}
+        {% admin_tools_render_dashboard_module sub_module index forloop.counter %}
+    {% endfor %}
+    
+    {% endspaceless %}
+</div>
+{% endblock %}

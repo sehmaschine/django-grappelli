@@ -1,0 +1,10 @@
+{% extends "dashboard/module.html" %}
+{% load i18n admin_tools_dashboard_tags %}
+{% block module_content %}
+    <div class="group collapsible open">
+        <h2 class="collapsible-handler">{{ module.title }}</h2>
+        {% for sub_module in module.children %}
+            {% admin_tools_render_dashboard_module sub_module forloop.counter %}
+        {% endfor %}
+    </div>
+{% endblock %}

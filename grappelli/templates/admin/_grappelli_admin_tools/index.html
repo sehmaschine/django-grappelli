@@ -1,0 +1,18 @@
+{% extends "admin/_grappelli_admin_tools/base_site.html" %}
+{% load i18n admin_tools_dashboard_tags %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% block dashboard_css %}{% admin_tools_render_dashboard_css %}{% endblock %}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block bodyclass %}dashboard{% endblock %}
+{% block content-class %}content-grid{% endblock %}
+
+{% block breadcrumbs %}<div id="breadcrumbs">{% trans "Home" %}</div>{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+
+{% block content %}
+    {% admin_tools_render_dashboard %}
+{% endblock %}

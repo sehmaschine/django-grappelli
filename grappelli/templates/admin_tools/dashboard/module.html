@@ -1,0 +1,7 @@
+{% if not module.is_empty %}
+    {% block module_content %}
+        {% for child in module.children %}
+            {{ child }}
+        {% endfor %}
+    {% endblock %}
+{% endif %}

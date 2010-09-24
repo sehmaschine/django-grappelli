@@ -1,0 +1,21 @@
+{% extends "admin_tools/dashboard/module.html" %}
+{% block module_content %}
+{% if subindex %}
+    <div class="module feed {% for item in module.css_classes %}{{ item }} {% endfor %}">
+        <h3>{{ module.title }}</h2>
+{% else %}
+    <div class="module feed {% for item in module.css_classes %}{{ item }} {% endfor %}">
+        <h2>{{ module.title }}</h2>
+{% endif %}
+    <ul>
+        {% spaceless %}
+        {% for child in module.children %}
+        <li>
+            {% if child.date %}<span class="date mini quiet">{{ child.date|date }}&nbsp;</span>{% endif %}
+            {% if child.warning %}<span class="warning">{{ child.title }}</span>{% else %}<a class="external" href="{{ child.url }}">{{ child.title }}</a>{% endif %}
+        </li>
+        {% endfor %}
+        {% endspaceless %}
+    </ul>
+</div>
+{% endblock %}

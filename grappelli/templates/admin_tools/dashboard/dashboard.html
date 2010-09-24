@@ -1,0 +1,30 @@
+{% load i18n admin_tools_dashboard_tags %}
+
+{% if dashboard.Media.js %}
+{% for js in dashboard.Media.js %}
+<script type="text/javascript" src="{{ media_url }}/{{ js }}"></script>{% endfor %}
+{% endif %}
+
+<div class="container-grid">
+    <div class="column span-12">
+        {% for module in dashboard.children %}
+            {% if "column_1" in module.css_classes %}
+                {% admin_tools_render_dashboard_module module forloop.counter %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="column span-6">
+        {% for module in dashboard.children %}
+            {% if "column_2" in module.css_classes %}
+                {% admin_tools_render_dashboard_module module forloop.counter %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="column span-6 last">
+        {% for module in dashboard.children %}
+            {% if "column_3" in module.css_classes %}
+                {% admin_tools_render_dashboard_module module forloop.counter %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

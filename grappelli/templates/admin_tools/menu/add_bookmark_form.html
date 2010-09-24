@@ -1,0 +1,9 @@
+{% url admin-tools-menu-add-bookmark as form_url %}
+{% if form_url %}
+    <form id="bookmark-form" action="{{ form_url }}" method="POST">
+        <input type="hidden" name="next" value="{% firstof url request.get_full_path|urlencode %}" />
+        <input type="hidden" name="url" value="{% firstof url request.get_full_path|urlencode %}" />
+        <input type="hidden" name="title" value="{{ title }}" />
+        <button id="bookmark-button" type="submit">Add</button>
+    </form>
+{% endif %}

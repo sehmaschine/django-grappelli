@@ -9,6 +9,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.formats import get_format
 from django.db import models
 from django.contrib import admin
+from django.conf import settings
 
 # grappelli imports
 from grappelli.settings import *
@@ -120,3 +121,32 @@ def do_get_search_fields_verbose(parser, token):
 register.tag('get_search_fields_verbose', do_get_search_fields_verbose)
 
 
+class GetTemplatePathNode(template.Node):
+    
+    def __init__(self, template_name):
+        self.template_name = template_name
+        
+        self.template_path = "admin/_grappelli/"
+        if getattr(settings, 'ADMIN_TOOLS_INDEX_DASHBOARD'):
+            # but we wanna make sure. so check if admin_tools is in the INSTALLED_APPS too
+            apps = getattr(settings, 'INSTALLED_APPS')
+            if apps.count("admin_tools.dashboard"):
+                self.template_path = "admin/_grappelli_admin_tools/"
+    
+    def render(self, context):
+        context["template_path"] = "%s%s" % (self.template_path, self.template_name)
+        return ""
+
+
+# get template path for admin templates
+# use grappelli standalone or with admin_tools
+def get_template_path(parser, token):
+    try:
+        tag_name, template_name = token.split_contents()
+    except ValueError:
+        raise template.TemplateSyntaxError, "%r tag requires exactly one argument" % token.contents.split()[0]
+    if not (template_name[0] == template_name[-1] and template_name[0] in ('"', "'")):
+        raise template.TemplateSyntaxError, "%r tag's argument should be in quotes" % tag_name
+    
+    return GetTemplatePathNode(template_name[1:-1])
+register.tag(get_template_path)

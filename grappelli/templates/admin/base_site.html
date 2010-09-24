@@ -1,9 +1,1 @@
-{% extends "admin/base.html" %}
-
-<!-- LOADING -->
-{% load i18n grp_tags %}
-
-<!-- TITLE/BRANDING/NAV -->
-{% block title %}{{ title }} | {% grappelli_admin_title %}{% endblock %}
-{% block branding %}<h1 id="site-name">{% grappelli_admin_title %}</h1>{% endblock %}
-{% block nav-global %}{% endblock %}
+{% load grp_tags %}{% get_template_path "base_site.html" %}{% include template_path %}
