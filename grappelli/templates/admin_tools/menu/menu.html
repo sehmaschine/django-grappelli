@@ -41,10 +41,11 @@
             {% include "admin_tools/menu/add_bookmark_form.html" %}
         {% endif %}
     {% endif %}
-
-    <ul id="navigation-menu">
-        {% for item in menu.children %}
+    
+    {% for item in menu.children %}
+        <ul class="navigation-menu">
             {% admin_tools_render_menu_item item forloop.counter %}
-        {% endfor %}
-    </ul>
+        </ul>
+    {% endfor %}
+    
 {% endif %}
