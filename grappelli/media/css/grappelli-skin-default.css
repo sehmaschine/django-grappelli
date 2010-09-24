@@ -979,6 +979,18 @@ ul.pagination li.separator span {
 
 
 
+/*  Tooltips
+------------------------------------------------------------------------------------------------------ */
+
+.module.search .tooltip .tooltip-content {
+    border: 1px solid #ccc;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
+}
+
+
+
 /*  TOOLS
 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 

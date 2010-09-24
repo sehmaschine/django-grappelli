@@ -557,6 +557,29 @@ ul.actions li a {
     width: inherit;
 }
 
+.module.search .tooltip {
+    position: absolute;
+}
+.module.search .tooltip.search-fields {
+    top: 25px;
+}
+.module.search .tooltip .tooltip-pointer {
+    position: relative;
+    z-index: 1000;
+    display: block;
+    width: 30px;
+    height: 8px;
+    background: transparent url('../img/backgrounds/tooltip-pointer.png') 10px 100% no-repeat scroll;
+}
+.module.search .tooltip .tooltip-content {
+    position: relative;
+    z-index: 990;
+    top: -1px;
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 15px;
+}
+
 a.button.toggle-filters {
     display: block;
     margin: 0;

@@ -17,6 +17,35 @@
 
 
 
+/*  Sortable
+------------------------------------------------------------------------------------------------------ */
+
+.ui-sortable-helper {
+    opacity: .8;
+}
+.ui-sortable .module.ui-sortable-placeholder {
+    border: 1px solid #bdbdbd;
+    border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
+    background: transparent url('../img/backgrounds/ui-sortable-placeholder.png') 0 0 repeat scroll;
+}
+.group.stacked .ui-sortable .module.ui-sortable-placeholder {
+    display: block;
+    margin-top: 2px;
+}
+.group.tabular .ui-sortable .module.ui-sortable-placeholder {
+    border: 0 !important;
+    overflow: hidden;
+}
+.group.tabular .ui-sortable .module.ui-sortable-placeholder .td {
+    background: transparent;
+}
+.group.tabular .module.ui-sortable-helper {
+    border-top: 0 !important;
+    -moz-box-sizing: padding-box !important;
+}
+
+
+
 /*  Accordion
 ------------------------------------------------------------------------------------------------------ */
 
@@ -207,7 +236,7 @@
 }
 .ui-datepicker td a.ui-state-highlight {
     border-color: #bababa;
-    background: #D6D6D6;
+    background: #d6d6d6;
 }
 .ui-datepicker .ui-datepicker-buttonpane {
     background-image: none;
