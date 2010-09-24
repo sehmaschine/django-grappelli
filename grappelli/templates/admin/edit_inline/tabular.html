@@ -140,6 +140,8 @@
             placeholder: 'ui-sortable-placeholder',
             forcePlaceholderSize: true,
             items: "div.dynamic-form",
+            axis: "y",
+            appendTo: "body",
             start: function(evt, ui) {
                 //sadly we have to do this every time we start dragging
                 var template = "<div class='tr'>",

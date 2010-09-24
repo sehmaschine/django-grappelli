@@ -120,6 +120,8 @@
             placeholder: 'ui-sortable-placeholder module',
             forcePlaceholderSize: true,
             items: "div.dynamic-form",
+            axis: "y",
+            appendTo: "body",
             update: function(evt, ui) {
                 stacked_updateInlineLabel(ui.item);
             }
