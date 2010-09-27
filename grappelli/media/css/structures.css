@@ -80,25 +80,17 @@ body.filebrowser.popup #header {
 }
 
 
-/*  Bookmarks (UL Navigation-Menu of Admin-Tools) ................................................... */
+/*  Navigation Menu (UL Navigation-Menu of Admin-Tools) ................................................... */
 
-form#bookmark-form {
-    position: relative;
-    float: left;
-    display: inline;
-}
 ul.navigation-menu {
     position: relative;
     float: left;
-    width: auto;
-    background: transparent;
 }
 ul.navigation-menu li {
     float: none !important;
 }
 ul.navigation-menu>li {
     position: relative;
-    z-index: 1000;
     float: none !important;
     display: block;
     margin: 0;
@@ -106,43 +98,62 @@ ul.navigation-menu>li {
 ul.navigation-menu>li>a {
     display: block;
     padding: 8px 10px;
-    font-size: 11px;
-    border-left: 1px solid #404040;
-    border-right: 1px solid #303030;
+    font-size: 11px !important;
 }
-
-
+ul.navigation-menu li.bookmark, 
+ul.navigation-menu li.actions {
+    float: left !important;
+}
 ul.navigation-menu li ul {
     position: absolute;
+    z-index: 1 !important;
     float: none !important;
-    padding: 0 10px 10px;
-    min-width: 100%;
+    margin-top: -1px;
+    padding: 0;
+    min-width: 220px;
     white-space: nowrap;
-    border: 0;
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-    background: #333;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
 ul.navigation-menu li li {
-    padding: 0;
-/*    border-bottom: 1px solid #666;*/
+    padding: 0 10px;
+}
+ul.navigation-menu>li>ul>li.children {
+    padding-bottom: 4px;
 }
 ul.navigation-menu li li li {
-    padding: 0;
-    border-top: 0;
+    padding: 0 0 0 10px;
+}
+ul.navigation-menu li li.last {
+    border-bottom: 0 !important;
 }
 ul.navigation-menu li ul ul {
     position: relative;
-    float: none !important;
-    padding: 0 0 10px;
-    border-top: 1px solid #666;
+    float: none;
+    margin-top: 0;
+    width: 100%;
+}
+ul.navigation-menu li ul ul>li:first-child {
+    border-top: 1px solid #2a2a2a;
 }
 
+ul.navigation-menu li ul ul>li:first-child a {
+    margin-left: -10px;
+    padding-left: 10px;
+}
 ul.navigation-menu li li a {
+    display: block;
+    padding: 8px 0;
     font-size: 11px;
 }
 ul.navigation-menu li li li a {
+    padding: 4px 0;
     font-size: 11px;
+}
+ul.navigation-menu li.children>a {
+    font-size: 13px;
+}
+ul.navigation-menu li li.children>a {
+    font-size: 12px;
 }
 
 ul.navigation-menu.collapse.closed, 
@@ -150,210 +161,19 @@ ul.navigation-menu.collapse.closed li.collapse-handler,
 ul.navigation-menu.collapse.closed li.collapse-handler a {
     display: block !important;
 }
-/*ul#navigation-menu>li, 
-ul#navigation-menu>li a {
-    font-size: 11px;
-    background: transparent !important;
-}
-ul#navigation-menu.collapse.closed * {
-    display: none;
-}
-ul#navigation-menu.collapse.closed li.first, 
-ul#navigation-menu.collapse.closed li.first * {
-    display: block;
-}
-ul#navigation-menu li.collapse.open>a.collapse-handler {
-    padding-bottom: 8px;
-    margin-bottom: 0px;
-    color: #fff !important;
-    border-bottom: 1px solid #333;
-}*/
-/*ul#navigation-menu li ul {
-    position: absolute;
-    width: 302px;
-    border-left: 1px solid #404040;
-    border-right: 1px solid #303030;
-    border-bottom: 1px solid #303030;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-    background: #333;
-}
 
-ul#navigation-menu li ul li ul {
-    border: 0 !important;
-}
-
-ul#navigation-menu li ul li {
-    margin: 0 0 0 -2px;
-    width: 302px;
-    font-size: 12px;
-    border: 0;
-    background: #333;
-}
-ul#navigation-menu li ul li ul li {
-    margin: 0;
-    font-size: 11px;
-    border: 0 !important;
-}
-ul#navigation-menu li ul:last-child li:last-child {
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-}
-ul#navigation-menu li a {
-    display: block;
-    padding: 8px 10px;
-}
-ul#navigation-menu li ul li a {
-    padding: 3px 10px 3px 10px;
-}
-ul#navigation-menu li ul li ul li a {
-    padding: 1px 10px 1px 20px;
-}*/
-
-
-/*  Bookmarks ................................................... */
-
-/*ul#bookmarks {
-    position: relative; float: left;
-    border-left: 1px solid #404040;
-    border-right: 1px solid #404040;
-}
-ul#bookmarks li {
-    padding: 8px 10px;
-}
-ul#bookmarks li.action.bookmark-manage {
-    border-right: 1px solid #303030;
-}
-ul#bookmarks li#toggle-bookmarks-listing {
-    width: 175px;
-    cursor: pointer;
-}
-ul#bookmarks li#toggle-bookmarks-listing:hover>a {
-    color: #eee;
-}
-ul#bookmarks li.action {
-    padding: 3px 0 2px;
-}
-ul#bookmarks li.action:last-child {
-    padding-right: 5px;
-}*/
-
-
-/*  Bookmarks Actions ................................................... */
-
-/*ul#bookmarks li.action a {
-    position: relative; display: block;
-    margin: 0;
-    width: 18px; height: 22px;
-    border: 1px solid transparent;
-    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-}
-ul#bookmarks li.action {
-    width: 20px; height: 24px;
-    background-position: 50% 9px;
-    background-repeat: no-repeat;
-}
-ul#bookmarks li.action.bookmark-add {
-    background-image: url('../img/icons/icon-bookmark_add-inactive.png');
-}
-ul#bookmarks li.action.bookmark-remove {
-    background-image: url('../img/icons/icon-bookmark_remove-inactive.png');
-}
-ul#bookmarks li.action.active {
-    background-image: none;
-}
-.bookmark-add.active a, .bookmark-add.active a:visited {
-    background-image: url('../img/icons/icon-bookmark_add.png');
-}
-.bookmark-add.active a:hover, .bookmark-add.active a:active {
-    background-image: url('../img/icons/icon-bookmark_add-hover.png');
-}
-.bookmark-remove.active a, .bookmark-remove.active a:visited {
-     background-image: url('../img/icons/icon-bookmark_remove.png');
-}
-.bookmark-remove.active a:hover, .bookmark-remove.active a:active {
-    background-image: url('../img/icons/icon-bookmark_remove-hover.png');
-}
-a.bookmark-manage, a.bookmark-manage:visited {
-    background-image: url('../img/icons/icon-bookmark_manage.png');
-}
-a.bookmark-manage:hover, a.bookmark-manage:active {
-    background-image: url('../img/icons/icon-bookmark_manage-hover.png');
-}
-*/
-
-/*  Bookmarks Listing ................................................... */
-
-/*ul#bookmarks-listing {
-    display: none;
-    position: absolute; z-index: 1000; top: 30px; left: -1px; float: none;
-    margin: 0;
-    width: 260px;
-    border: 1px solid #404040;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-    background: #333;
-    -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
-}
-ul#bookmarks-listing li {
-    float: none;
-    padding: 0;
-    border-bottom: 1px solid #404040;
-}
-ul#bookmarks-listing li:last-child {
-    border: none;
-}
-ul#bookmarks li p {
-    padding: 5px 10px;
-}
-ul#bookmarks-listing a, ul#bookmarks-listing a:visited {
-    display: block;
-    padding: 5px 30px 5px 10px;
-    background: #333;
-}
-ul#bookmarks-listing a:hover, ul#bookmarks-listing a:active {
-    color: #eee;
-    background: #309bbf;
-}
-ul#bookmarks-listing li:last-child a {
-    border-bottom-left-radius: 3px; -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px; -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px;
-}
-*/
-
-/*  Add Bookmark ................................................... */
-
-/*#bookmark-add {
-    display: none;
-    position: absolute; z-index: 1000; top: 30px; left: -196px;
-    margin: 0; padding: 10px;
-    width: 240px;
-    border: 1px solid #404040;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
-    background: #333;
-    box-shadow: 0 0 10px #333; -moz-box-shadow: 0 0 10px #333; -webkit-box-shadow: 0 0 10px #333;
-}
-#bookmark-add input[type=text] {
-    margin-bottom: 10px;
-    width: 240px;
-    border: none;
-}
-#bookmark-add input[type=submit], 
-#bookmark-add-cancel {
+form#bookmark-form {
     position: relative;
-    width: auto;
-    height: 24px;
-    font-size: 11px;
-}
-#bookmark-add input[type=submit] {
-    float: right;
-}
-#bookmark-add-cancel {
     float: left;
-}*/
+    padding: 2px 10px 2px 0;
+    height: 26px;
+}
+form#bookmark-form button {
+    position: relative; display: block;
+    margin: 3px 0 0;
+    width: 20px;
+    height: 20px;
+}
 
 
 /*  User Tools ................................................... */

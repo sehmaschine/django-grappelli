@@ -1,9 +1,7 @@
 {% load i18n admin_tools_menu_tags %}
-
 {% if menu.children %}
     <script type="text/javascript" src="{{ media_url }}/admin_tools/js/utils.js"></script>
     <script type="text/javascript" charset="utf-8">
-
         // Load js files syncronously and conditionally
         var js_files = [
             {
@@ -19,7 +17,6 @@
                 test: function() { return true; }
             }{% endfor %}
         ];
-        
         loadScripts(js_files, function(){
             django.jQuery(function($) {
                 {% if has_bookmark_item %}
@@ -31,21 +28,33 @@
                 {% endif %}
             });
         });
-
     </script>
-
-    {% if has_bookmark_item %}
-        {% if bookmark %}
-            {% include "admin_tools/menu/remove_bookmark_form.html" %}
-        {% else %}
-            {% include "admin_tools/menu/add_bookmark_form.html" %}
-        {% endif %}
-    {% endif %}
-    
+    {% comment %}
+    {% for item in menu.children %}
+        <ul class="navigation-menu">
+            {% admin_tools_render_menu_item item forloop.counter %}
+            {% ifequal item.css_classes|join:' ' "bookmark" %}
+                <li class="actions">
+                    {% if bookmark %}
+                        {% include "admin_tools/menu/remove_bookmark_form.html" %}
+                    {% else %}
+                        {% include "admin_tools/menu/add_bookmark_form.html" %}
+                    {% endif %}
+                </li>
+            {% endifequal %}
+        </ul>
+    {% endfor %}
+    {% endcomment %}
     {% for item in menu.children %}
         <ul class="navigation-menu">
             {% admin_tools_render_menu_item item forloop.counter %}
         </ul>
+        {% ifequal item.css_classes|join:' ' "bookmark" %}
+            {% if bookmark %}
+                {% include "admin_tools/menu/remove_bookmark_form.html" %}
+            {% else %}
+                {% include "admin_tools/menu/add_bookmark_form.html" %}
+            {% endif %}
+        {% endifequal %}
     {% endfor %}
-    
 {% endif %}
