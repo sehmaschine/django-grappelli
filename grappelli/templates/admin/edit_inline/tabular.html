@@ -141,19 +141,32 @@
             forcePlaceholderSize: true,
             items: "div.dynamic-form",
             axis: "y",
-            appendTo: "body",
             start: function(evt, ui) {
+                ui.item.hide()
+                ui.placeholder.height(ui.placeholder.height()-4);
                 //sadly we have to do this every time we start dragging
                 var template = "<div class='tr'>",
                     len = ui.item.find("div.tr").children("div.td").length;
                 
                 for (var i = 0; i < len; i++) {
-                    template += "<div class='td'>&nbsp;</div>"
+                    template += "<div class='td'></div>"
                 }
                 
                 template += "</div>"
                 ui.placeholder.addClass("tbody module").append(template);
-            }
+            },
+            update: function(evt, ui) {
+                ui.item.show();
+            },
+            appendTo: 'body',
+            forceHelperSize: true,
+            containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.table',
+            tolerance: 'pointer',
+            helper: function(evt, elem) {
+                var helper = $("<div class='module table' />");
+                helper.html(elem.clone());
+                return helper;
+            },
         });
         
         // sets the new positions onSubmit (0 - n)
