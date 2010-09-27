@@ -7,7 +7,7 @@ def admin_template_path(request):
     # default templates for "grappelli standalone"
     template_path = "admin/_grappelli/"
     
-    if getattr(settings, 'ADMIN_TOOLS_INDEX_DASHBOARD'):
+    if getattr(settings, 'ADMIN_TOOLS_INDEX_DASHBOARD', False):
         apps = getattr(settings, 'INSTALLED_APPS')
         if apps.count("admin_tools.dashboard"):
             # seems to be a grappelli+admin_tools setup
