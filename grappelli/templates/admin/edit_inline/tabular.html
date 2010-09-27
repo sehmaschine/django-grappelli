@@ -57,7 +57,7 @@
                         {% spaceless %}
                         <ul class="tools">
                             {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}"> </a></li>{% endif %}
-                            {% if inline_admin_formset.opts.sort_field_name %}
+                            {% if inline_admin_formset.opts.sortable_field_name %}
                                 <li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>
                             {% endif %}
                             {% if inline_admin_formset.formset.can_delete %}<li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>{% endif %}
@@ -89,15 +89,15 @@
             onAdded: tabular_onAdded
         });
         
-{% if inline_admin_formset.opts.sort_field_name %}
+{% if inline_admin_formset.opts.sortable_field_name %}
         /**
          * sortable inlines
          * uses onAdded() and onRemoved() of inline() call above
          * uses sortable_updateFormIndex() and is_form_filled() from change_from.html
          */
         
-        // hide sort_field_name from form
-        //$("#{{ inline_admin_formset.formset.prefix }}-group").find("div.{{ inline_admin_formset.opts.sort_field_name }}").hide();
+        // hide sortable_field_name from form
+        $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.{{ inline_admin_formset.opts.sortable_field_name }}").hide();
         
     {% if errors %}
         // sort inline
@@ -111,7 +111,7 @@
         for (var i = 0; i < dynamic_forms.length; i++) {
             curr_form = $(dynamic_forms[i]);
             // the real position according to the sort_field(_name)
-            real_pos = curr_form.find("div.{{ inline_admin_formset.opts.sort_field_name }}").find("input").val();
+            real_pos = curr_form.find("div.{{ inline_admin_formset.opts.sortable_field_name }}").find("input").val();
             // if there is none it's an empty inline (=> we are at the end)
             // TODO: klemens: maybe buggy. try continue?
             if (!real_pos) continue;
@@ -178,7 +178,7 @@
                 form = $(forms[i]);
                 
                 if (is_form_filled(form)) {
-                    form.find("div.{{ inline_admin_formset.opts.sort_field_name }}").find("input").val(idx);
+                    form.find("div.{{ inline_admin_formset.opts.sortable_field_name }}").find("input").val(idx);
                     idx++;
                 }
             }
