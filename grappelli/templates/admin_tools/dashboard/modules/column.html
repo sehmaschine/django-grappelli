@@ -1,9 +1,0 @@
-{% extends "dashboard/module.html" %}
-{% load i18n admin_tools_dashboard_tags %}
-{% block module_content %}
-    <div class="column {{ module.className }}">
-        {% for child in module.children %}
-            {% admin_tools_render_dashboard_module child forloop.counter %}
-        {% endfor %}
-    </div>
-{% endblock %}
