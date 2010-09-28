@@ -5,6 +5,10 @@
         // Load js files syncronously and conditionally
         var js_files = [
             {
+                src : '{{ media_url }}/admin_tools/js/jquery/jquery.min.js',
+                test: function() { return typeof(jQuery) == 'undefined'; }
+            },
+            {
                 src : '{{ media_url }}/admin_tools/js/json.min.js',
                 test: function() { return typeof(JSON.stringify) == 'undefined'; }
             },
@@ -18,7 +22,7 @@
             }{% endfor %}
         ];
         loadScripts(js_files, function(){
-            django.jQuery(function($) {
+            jQuery(function($) {
                 {% if has_bookmark_item %}
                     process_bookmarks(
                        "{{ request.get_full_path }}",
