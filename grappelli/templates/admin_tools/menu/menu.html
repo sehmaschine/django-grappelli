@@ -46,7 +46,7 @@
                 });
                 
                 // do this each time a submenu is opened
-                $('ul.navigation-menu span.item-collapse-handler').click(function(){
+                $('ul.navigation-menu a.item-collapse-handler').click(function(){
                     // Collapse
                     $(this).closest('li.item-collapse').toggleClass("item-closed").toggleClass("item-open");
                     // Calculate Menu Height
@@ -61,7 +61,8 @@
                             "width": menuwidth,
                             "height": menuheight,
                             "max-height": menumaxheight,
-                            "overflow-y": "scroll"
+                            "overflow-y": "scroll",
+                            "overflow-x": "hidden !important"
                         });
                     }
                 });

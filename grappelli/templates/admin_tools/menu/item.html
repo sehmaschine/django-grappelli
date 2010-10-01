@@ -2,7 +2,7 @@
 {% spaceless %}
 {% if not item.is_empty %}
     <li class="menu-item{% if item.children %} parent{% if index %} collapse closed{% else %} item-collapse item-closed{% endif %}{% endif %}{% if not item.enabled %} disabled{% endif %}{% if selected %} selected{% endif %}{% if forloop.last %} last{% endif %}{% if item.css_classes %} {{ item.css_classes|join:' ' }}{% endif %}">
-        <a href="{% if item.url and item.enabled %}{{ item.url }}{% else %}#{% endif %}" class="{% if item.children %}parent{% if index %} collapse-handler{% else %} item-collapse-handler-container{% endif %}{% endif %}" {% if item.description %} title="{{ item.description }}"{% endif %}{% if item.accesskey %} accesskey="{{ item.accesskey }}"{% endif %}>{{ item.title }}</a>{% if item.children %}<span class="icon item-collapse-handler"></span>{% endif %}
+        <a href="{% if item.url and item.enabled %}{{ item.url }}{% else %}#{% endif %}" class="{% if item.children %}parent{% if index %} collapse-handler{% else %} item-collapse-handler-container{% endif %}{% endif %}" {% if item.description %} title="{{ item.description }}"{% endif %}{% if item.accesskey %} accesskey="{{ item.accesskey }}"{% endif %}>{{ item.title }}</a>{% if item.children %}{% if not index %}<a href="javascript://" class="icon item-collapse-handler"></a>{% endif %}{% endif %}
         {% if item.children %}
             <ul>
                 {% for child_item in item.children %}

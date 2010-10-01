@@ -112,10 +112,12 @@ ul.navigation-menu li ul {
     padding: 0;
     min-width: 220px;
     white-space: nowrap;
+    
 /*    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;*/
 }
-ul.navigation-menu>li>a+span+ul {
+ul.navigation-menu>li>a+ul {
     overflow: hidden;
+    overflow-x: hidden;
 /*    padding-right: 20px;*/
 /*    width: 500px;*/
 /*    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;*/
