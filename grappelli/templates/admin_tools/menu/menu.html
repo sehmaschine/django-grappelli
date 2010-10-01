@@ -30,44 +30,6 @@
                        "{% trans 'Please enter a name for the bookmark' %}"
                     );
                 {% endif %}
-                
-                // do this each time a navigation-menu is opened
-                // currently interferes with grappellis collapse function
-                $('ul.navigation-menu>li>a.collapse-handler').click(function(){
-                    menu = $(this).parent('li').children('ul');
-                    menumaxheight = $(window).height() - 80;
-                    menuheight = menu.height();
-                    if (menumaxheight < menuheight) {
-                        $(menu).css({
-                            "max-height": menumaxheight, 
-                            "overflow-y": "scroll"
-                        });
-                    }
-                });
-                
-                // do this each time a submenu is opened
-                $('ul.navigation-menu a.item-collapse-handler').click(function(){
-                    // Collapse
-                    $(this).closest('li.item-collapse').toggleClass("item-closed").toggleClass("item-open");
-                    // Calculate Menu Height
-                    menu = $(this).closest('ul.navigation-menu>li>ul');
-                    $(menu).removeAttr("style");
-                    menumaxheight = $(window).height() - 80;
-                    menuheight = menu.height();
-                    menuwidth = menu.outerWidth() + 15;
-                    if (menumaxheight < menuheight) {
-                        // $(menu).addClass("");
-                        $(menu).css({
-                            "width": menuwidth,
-                            "height": menuheight,
-                            "max-height": menumaxheight,
-                            "overflow-y": "scroll",
-                            "overflow-x": "hidden !important"
-                        });
-                    }
-                });
-                
-                // add something for clicking outside the navigation-menu
             });
         });
     </script>
