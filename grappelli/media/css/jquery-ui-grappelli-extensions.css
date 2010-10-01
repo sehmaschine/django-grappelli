@@ -313,6 +313,7 @@
     border-radius: 3px; -moz-border-radius: 3px; -webkit-borderradius: 3px;
 }
 button.ui-datepicker-close {
+    float: left !important;
     margin-right: 4px !important;
 }
 
