@@ -36,8 +36,12 @@
                     //$('.vDateField').addClass('disabled');
                 {% endif %}
                 
-                {% get_search_fields_verbose cl.opts as search_fields_verbose %}
-                $('body').change_list({'initialSearchVal': '{% if not cl.query and not search_fields_verbose %}{% trans 'Search' %}{% endif %}{% if search_fields_verbose and not cl.query %}{{ search_fields_verbose }}{% endif %}{% if cl.query %}{{ cl.query }}{% endif %}'});
+                {% if cl.search_fields %}
+                    {% get_search_fields_verbose cl.opts as search_fields_verbose %}
+                    $('body').change_list({'initialSearchVal': '{% if not cl.query and not search_fields_verbose %}{% trans 'Search' %}{% endif %}{% if search_fields_verbose and not cl.query %}{{ search_fields_verbose }}{% endif %}{% if cl.query %}{{ cl.query }}{% endif %}'});
+                {% else %}
+                    $('body').change_list();
+                {% endif %}
             });
         })(django.jQuery);
     </script>
