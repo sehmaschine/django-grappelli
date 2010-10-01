@@ -233,17 +233,18 @@ form#bookmark-form button {
     height: 20px;
 }
 
-ul.navigation-menu li.item-collapse span.item-collapse-handler {
+ul.navigation-menu li.item-collapse a.item-collapse-handler {
     position: relative;
     float: right;
     display: inline-block !important;
     right: 0;
     margin: -30px -10px -30px 0;
+    padding: 0;
     width: 28px;
     height: 30px;
     cursor: pointer;
 }
-ul.navigation-menu li li li.item-collapse span.item-collapse-handler {
+ul.navigation-menu li li li.item-collapse a.item-collapse-handler {
     margin: -22px 0;
     width: 28px;
     height: 22px;
@@ -251,16 +252,20 @@ ul.navigation-menu li li li.item-collapse span.item-collapse-handler {
 a.item-collapse-handler-container {
     padding-right: 28px !important;
 }
-ul.navigation-menu li li.item-collapse.item-closed>a+span.item-collapse-handler {
+ul.navigation-menu li li.item-collapse.item-closed>a+a.item-collapse-handler:link, 
+ul.navigation-menu li li.item-collapse.item-closed>a+a.item-collapse-handler:visited {
     background: transparent url("../img/icons/icon-admin_tools-dropdown.png") no-repeat scroll 50% 50%;
 }
-ul.navigation-menu li li.item-collapse.item-closed>a+span.item-collapse-handler:hover {
+ul.navigation-menu li li.item-collapse.item-closed>a+a.item-collapse-handler:hover, 
+ul.navigation-menu li li.item-collapse.item-closed>a+a.item-collapse-handler:active {
     background: transparent url("../img/icons/icon-admin_tools-dropdown-hover.png") no-repeat scroll 50% 50%;
 }
-ul.navigation-menu li li.item-collapse.item-open>a+span.item-collapse-handler {
+ul.navigation-menu li li.item-collapse.item-open>a+a.item-collapse-handler:link, 
+ul.navigation-menu li li.item-collapse.item-open>a+a.item-collapse-handler:visited {
     background: transparent url("../img/icons/icon-admin_tools-dropdown-active.png") no-repeat scroll 50% 50%;
 }
-ul.navigation-menu li li.item-collapse.item-open>a+span.item-collapse-handler:hover {
+ul.navigation-menu li li.item-collapse.item-open>a+a.item-collapse-handler:hover, 
+ul.navigation-menu li li.item-collapse.item-open>a+a.item-collapse-handler:active {
     background: transparent url("../img/icons/icon-admin_tools-dropdown-active-hover.png") no-repeat scroll 50% 50%;
 }
 
