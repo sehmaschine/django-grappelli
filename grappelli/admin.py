@@ -36,6 +36,7 @@ class AdminSite(sites.AdminSite):
             'i18n_javascript',
             'login',
             'logout',
+            'user_change_password',
         ]
         def inner(request, *args, **kwargs):
             if not self.has_permission(request):
