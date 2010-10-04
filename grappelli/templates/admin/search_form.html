@@ -9,10 +9,10 @@
             {% ifnotequal pair.0 search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endifnotequal %}
         {% endfor %}
         {% if search_fields_verbose and not cl.query %}
-            <!--<div class="tooltip search-fields">
+            <div id="searchbar_tooltip" class="tooltip search-fields" style="display: none;">
                 <div class="tooltip-pointer">&nbsp;</div>
                 <div class="tooltip-content"><strong>{% trans 'Search' %}:</strong> {{ search_fields_verbose }}</div>
-            </div>-->
+            </div>
         {% endif %}
     </form>
 {% endif %}
