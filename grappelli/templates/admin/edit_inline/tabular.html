@@ -146,7 +146,8 @@
                 ui.placeholder.height(ui.placeholder.height()-4);
                 //sadly we have to do this every time we start dragging
                 var template = "<div class='tr'>",
-                    len = ui.item.find("div.tr").children("div.td").length;
+                    // minus 1 because we don't need the "sortable_field_name row"
+                    len = ui.item.find("div.tr").children("div.td").length - 1;
                 
                 for (var i = 0; i < len; i++) {
                     template += "<div class='td'></div>"
