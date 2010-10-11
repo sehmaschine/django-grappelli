@@ -283,20 +283,19 @@
             }
         });
         
-        if (!$("input#searchbar").val()) {
-            $("input#searchbar").val(options.initialSearchVal);
-        }
-        $("input#searchbar").focus(function(){
-            if ($(this).val() == options.initialSearchVal) {
-                $(this).val("");
-            }
-        });
-        
-        $("input#searchbar").blur(function(){
-            if (!$(this).val()) {
-                $(this).val(options.initialSearchVal);
-            }
-        });
+        // if (!$("input#searchbar").val()) {
+        //     $("input#searchbar").val(options.initialSearchVal);
+        // }
+        // $("input#searchbar").focus(function(){
+        //     if ($(this).val() == options.initialSearchVal) {
+        //         $(this).val("");
+        //     }
+        // });
+        // $("input#searchbar").blur(function(){
+        //     if (!$(this).val()) {
+        //         $(this).val(options.initialSearchVal);
+        //     }
+        // });
         
     };
     
