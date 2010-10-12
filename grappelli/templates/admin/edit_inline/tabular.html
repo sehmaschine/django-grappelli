@@ -96,8 +96,26 @@
          * uses sortable_updateFormIndex() and is_form_filled() from change_from.html
          */
         
-        // hide sortable_field_name from form
-        $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.{{ inline_admin_formset.opts.sortable_field_name }}").hide();
+        // hide sortable_field(_name) from form
+        // hide div.td.{{ field.name }}
+        var position_nodes = $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.td.{{ inline_admin_formset.opts.sortable_field_name }}");
+        position_nodes.hide();
+        
+        // hide its header (div.th) too (hard)
+        // "div.th.{{ inline_admin_formset.opts.sortable_field_name }}" is not correct because
+        // its div.th.<field.label> (and not name, see line#18).
+        
+        // so let's get the "position/idx" the first position div
+        var tabular_row = position_nodes.first().parent().children("div.td");
+        // get the "position" (== i) in the "table"
+        for (var i = 0; i < tabular_row.length; i++) {
+            if ($(tabular_row[i]).hasClass("{{ inline_admin_formset.opts.sortable_field_name }}")) break;
+        }
+        // we have the same order in the header of the "table"
+        // so delete the div at the "position" (== i)
+        var position_header = $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.th")[i];
+        // and hide
+        $(position_header).hide()
         
     {% if errors %}
         // sort inline
