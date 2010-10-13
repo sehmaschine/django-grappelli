@@ -1,14 +1,32 @@
 {% extends "admin_tools/dashboard/module.html" %}
 {% load admin_tools_dashboard_tags %}
 {% block module_content %}
-<div class="group {% for item in module.css_classes %}{{ item }} {% endfor %}">
+<div class="group group-{{ module.display }} {% for item in module.css_classes %}{{ item }} {% endfor %}">
     {% spaceless %}
     {% if module.title %}
         <h2>{{ module.title }}</h2>
     {% endif %}
-    {% for sub_module in module.children %}
-        {% admin_tools_render_dashboard_module sub_module index forloop.counter %}
-    {% endfor %}
+    {% ifequal module.display "tabs" %}
+    <div class="group-{{ module.display }}-container">
+        <ul>
+            {% for sub_module in module.children %}
+                {% if not sub_module.is_empty %}<li class="group-tabs-link"><a href="#module_{{ index }}_{{ forloop.counter }}">{{ sub_module.title }}</a></li>{% endif %}
+            {% endfor %}
+        </ul>
+        {% for sub_module in module.children %}
+            {% admin_tools_render_dashboard_module sub_module index forloop.counter %}
+        {% endfor %}
+        </div>
+    {% endifequal %}
+    {% ifequal module.display "accordion" %}
+        {% for sub_module in module.children %}
+            {% if not sub_module.is_empty %}<span class="group-accordion-header"><a href="#">{{ sub_module.title }}</a></span>{% endif %}
+            {% admin_tools_render_dashboard_module sub_module index forloop.counter %}
+        {% endfor %}
+    {% else %}
+        
+    {% endifequal %}
+    
     
     {% endspaceless %}
 </div>

@@ -1,8 +1,57 @@
 {% load i18n admin_tools_dashboard_tags %}
 
+<script type="text/javascript" src="{{ media_url }}/admin_tools/js/utils.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    // Load js files syncronously and conditionally
+
+    var js_files = [
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery.min.js',
+            test: function() { return typeof(jQuery) == 'undefined'; }
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery-ui.min.js',
+            test: function() { return typeof(jQuery.ui) == 'undefined'; }
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/json.min.js',
+            test: function() { return typeof(JSON.stringify) == 'undefined'; }
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery.cookie.min.js',
+            test: function() { return typeof(jQuery.cookie) == 'undefined'; }
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/jquery/jquery.dashboard.js',
+            test: function() { return true; }
+        },
+        {
+            src : '{{ media_url }}/admin_tools/js/dashboard.js',
+            test: function() { return true; }
+        }{% for js in dashboard.Media.js %},
+        {
+            src : '{{ media_url }}/{{ js }}',
+            test: function() { return true; }
+        }{% endfor %}
+    ];
+
+    loadScripts(js_files, function(){
+        jQuery(function($) {
+            init_dashboard(
+                '{{ dashboard.get_id }}',
+                {{ dashboard.columns }},
+                {% autoescape off %}{{ dashboard_preferences }}{% endautoescape %},
+                '{% url admin-tools-dashboard-set-preferences %}'
+            );
+        });
+    });
+</script>
+
 {% if dashboard.Media.js %}
-{% for js in dashboard.Media.js %}
-<script type="text/javascript" src="{{ media_url }}/{{ js }}"></script>{% endfor %}
+    {% for js in dashboard.Media.js %}
+        <script type="text/javascript" src="{{ media_url }}/{{ js }}"></script>
+    {% endfor %}
 {% endif %}
 
 <div class="container-grid">

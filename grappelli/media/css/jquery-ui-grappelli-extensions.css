@@ -367,11 +367,19 @@ button.ui-datepicker-close {
 ------------------------------------------------------------------------------------------------------ */
 
 .ui-tabs {
-    padding: 0; zoom: 1;
+/*    padding: 0;*/
+    zoom: 1;
+    border: 0 !important;
+    background: transparent;
+}
+.group-tabs {
+/*    border: 2px solid #e0e0e0;*/
 }
 .ui-tabs .ui-tabs-nav {
+    margin-top: 2px;
     padding: 0;
-    color: #444; font-size: 12px;
+    color: #444;
+    font-size: 12px;
     border: none;
     border-bottom: 1px solid #bdbdbd;
     border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
@@ -380,22 +388,81 @@ button.ui-datepicker-close {
 .ui-tabs .ui-tabs-nav li {
     position: relative; float: left;
     border-bottom-width: 1px !important;
-    margin: 0 .2em -1px 0;
+    margin: 0 2px -1px 0;
     padding: 0;
 }
-.ui-tabs .ui-tabs-nav li a { float: left; text-decoration: none; padding: .5em 1em; }
+.ui-tabs .ui-tabs-nav li a {
+    float: left;
+    text-decoration: none;
+    padding: 6px 10px 6px;
+}
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected {
     padding-bottom: 0px; border-bottom-width: 1px;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
-.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { 
+    cursor: pointer; 
+} /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.group-tabs-link.ui-state-default {
+/*    border-color: #d4d4d4;*/
+/*    border-bottom-color: transparent;*/
+    background: transparent;
+    
+    background: #e1f0f5;
+    background: -moz-linear-gradient(top, #cee9f2, #e1f0f5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#cee9f2), to(#e1f0f5));
+}
+.group-tabs-link.ui-state-default:hover {
+    color: #444 !important;
+    border: 1px solid #c7c7c7;
+    background: #cee9f2;
+    background: -moz-linear-gradient(top, #e1f0f5, #cee9f2);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#cee9f2));
+}
+.group-tabs-link.ui-state-default.ui-tabs-selected {
+    border: 1px solid #c7c7c7;
+    border-bottom-color: transparent;
+    background: #e0e0e0;
+    background: -moz-linear-gradient(top, #e9e9e9, #e0e0e0);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#e0e0e0));
+    
+    background: #e9e9e9;
+    background: -moz-linear-gradient(top, #e0e0e0, #e9e9e9);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#e9e9e9));
+}
+
+
+.ui-tabs-nav li a {
+/*    color: #83c3d9 !important;*/
+    margin-bottom: 0px;
+    background: transparent !important;
+}
+.ui-tabs-nav li a:hover {
+    color: #444 !important;
+    margin-bottom: 0px;
+    background: transparent !important;
+}
+.ui-tabs-nav li.ui-tabs-selected a {
+    color: #444 !important;
+    padding: 6px 10px 6px;
+}
 .ui-tabs .ui-tabs-panel {
+    margin-top: 0 !important;
     padding: 0;
     display: block;
-    border: 1px solid #bdbdbd;
-    border-top: 1px solid #fff;
-    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+    border: 1px solid #ccc;
+    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
     background: #eee;
+}
+.ui-tabs-panel h3 { display: none; }
+.ui-tabs-panel > h3 + .module {
+    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+}
+.ui-tabs-panel > h3 + .module > h4:first-child {
+    margin-top: -1px;
+/*    border-top: 0 !important;*/
+    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
 }
 .ui-tabs .ui-tabs-hide { display: none !important; }
 

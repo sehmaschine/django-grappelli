@@ -1,7 +1,7 @@
 {% extends "admin_tools/dashboard/module.html" %}
 {% load i18n %}
 {% block module_content %}
-    <div class="module {% for item in module.css_classes %}{{ item }} {% endfor %}">
+    <div class="module {% for item in module.css_classes %}{{ item }} {% endfor %}"{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %}>
     
     {% if module.title %}
         {% if subindex %}
