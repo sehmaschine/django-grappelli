@@ -3,7 +3,6 @@
 from django.conf import settings
 
 def admin_template_path(request):
-    
     # default templates for "grappelli standalone"
     template_path = "admin/_grappelli/"
     

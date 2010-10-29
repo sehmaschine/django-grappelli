@@ -3,7 +3,7 @@
 <!-- group -->
 <div class="group stacked {% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
     id="{{ inline_admin_formset.formset.prefix }}-group">
-    <h2>{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>
+    <h2 class="collapse-handler">{{ inline_admin_formset.opts.verbose_name_plural|title }}</h2>
     <ul class="tools">
         <li class="open-handler-container"><a href="javascript://" class="icon open-handler" title="{% trans 'Open All Items' %}"></a></li>
         <li class="close-handler-container"><a href="javascript://" class="icon close-handler" title="{% trans 'Close All Items' %}"></a></li>
@@ -17,7 +17,7 @@
             <!-- element -->
             <div class="module collapse closed{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
                 id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
-                <h3>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
+                <h3 class="collapse-handler">{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
                 <ul class="tools">
                     {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original.content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
                     {% if inline_admin_formset.opts.sortable_field_name %}
@@ -111,11 +111,6 @@
         $("#{{ inline_admin_formset.formset.prefix }}-group > div.items").sortable({
             // drag&drop the inlines with the drag-handler only
             handle: "a.drag-handler",
-            // very scary magic after drap&drop operations
-            // pretty similar to inline() widget's removeHandler()
-            // but removeHandler() can remove the current form and just reorder the rest
-            // if we would do the same after drag&drop we would loose some form values
-            // because while looping inputs would have the same names and maybe overwrite each other.
             placeholder: 'ui-sortable-placeholder module',
             forcePlaceholderSize: true,
             items: "div.dynamic-form",

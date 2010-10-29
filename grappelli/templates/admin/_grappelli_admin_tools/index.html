@@ -13,6 +13,15 @@
 {% block breadcrumbs %}<div id="breadcrumbs">{% trans "Home" %}</div>{% endblock %}
 {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
 
+{% block object-tools %}
+    <ul class="tools">
+        <li class="trash-list-container">
+            <a href="javascript://" class="trash-list-toggle-handler">{% trans "Modules" %}</a>
+            <ul id="trash" class="trash-list" style="display:none;"></ul>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block content %}
     {% admin_tools_render_dashboard %}
 {% endblock %}

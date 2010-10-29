@@ -7,7 +7,7 @@
  */
 
 (function( $ ) {
-$.widget("ui.timepicker", {
+$.widget("ui.grp_timepicker", {
     // default options
     options: {
         // template for the container of the timepicker
@@ -168,4 +168,4 @@ $.widget("ui.timepicker", {
         // now do other stuff particular to this widget
     }
 });
-})(django.jQuery);
+})(jQuery);

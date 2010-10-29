@@ -20,7 +20,7 @@
     {% block javascripts %}
         <script type="text/javascript">
             // GLOBALS
-            var ADMIN_URL = "{% url admin:index %}",{# ugly hack to prevent tests from failing #}
+            var ADMIN_URL = "{% url admin:index %}",
                 MODEL_URL_ARRAY = {% get_content_types %},
                 DATE_FORMAT = "{% get_date_format %}",
                 TIME_FORMAT = "{% get_time_format %}",
@@ -31,7 +31,7 @@
         <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.init.js"></script>
         <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.timepicker.js"></script>
         <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.RelatedObjectLookups.js"></script>
-        <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.min.js"></script>
+        <script type="text/javascript" src="{% admin_media_prefix %}js/grappelli.js"></script>
     {% endblock %}
     
     {% block extrahead %}{% endblock %}

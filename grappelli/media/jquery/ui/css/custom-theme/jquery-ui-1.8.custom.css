@@ -8,7 +8,7 @@
 ----------------------------------*/
 .ui-helper-hidden { display: none; }
 .ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
-.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; /*line-height: 1.3;*/ text-decoration: none; /*font-size: 100%;*/ list-style: none; }
 .ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .ui-helper-clearfix { display: inline-block; }
 /* required comment for clearfix to work in Opera \*/
@@ -60,7 +60,7 @@
 .ui-state-default, .ui-widget-content .ui-state-default { border: 1px solid #c7c7c7; background: #cee9f2 url(images/ui-bg_glass_25_cee9f2_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #444444; }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #444444; text-decoration: none; }
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus { border: 1px solid #c7c7c7; background: #e0e0e0 url(images/ui-bg_glass_25_e0e0e0_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #212121; }
-.ui-state-hover a, .ui-state-hover a:hover { color: #212121; text-decoration: none; }
+.ui-state-hover a, .ui-state-hover a:hover { /*color: #212121;*/ text-decoration: none; }
 .ui-state-active, .ui-widget-content .ui-state-active { border: 1px solid #c7c7c7; background: #e0e0e0 url(images/ui-bg_glass_25_e0e0e0_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #444444; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #444444; text-decoration: none; }
 .ui-widget :active { outline: none; }

@@ -1,21 +1,13 @@
 {% extends "admin_tools/dashboard/module.html" %}
+{% load i18n %}
 {% block module_content %}
-    <div class="module link-list {% for item in module.css_classes %}{{ item }} {% endfor %}">
-{% if module.title %}
-    {% if subindex %}
-        <h3>{{ module.title }}</h3>
-    {% else %}
-        <h2>{{ module.title }}</h2>
-    {% endif %}
-{% endif %}
-        <ul>
-            {% spaceless %}
-                {% for child in module.children %}
-                    <li>
-                        <a class="{% if child.external %}external{% else %}internal{% endif %}" href="{{ child.url }}" {% if child.description %} title="{{ child.description }}"{% endif %}>{{ child.title }}</a>
-                    </li>
-                {% endfor %}
-            {% endspaceless %}
-        </ul>
-    </div>
+    <ul>
+        {% spaceless %}
+            {% for child in module.children %}
+                <li>
+                    <a class="{% if child.external %}external{% else %}internal{% endif %}" href="{{ child.url }}" {% if child.description %} title="{{ child.description }}"{% endif %}>{{ child.title }}</a>
+                </li>
+            {% endfor %}
+        {% endspaceless %}
+    </ul>
 {% endblock %}

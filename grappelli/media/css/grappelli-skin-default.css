@@ -222,6 +222,7 @@ ul.navigation-menu li li {
     border-top: 1px solid #404040;
     border-bottom: 1px solid #2a2a2a;
 }
+
 ul.navigation-menu li li li {
     border-top: 1px solid #303030;
     border-bottom: 1px solid #303030;
@@ -245,6 +246,10 @@ ul.navigation-menu li ul ul {
     border-top: 0;
     border-bottom: 0;
     background: transparent;
+}
+ul.navigation-menu li.menu-item.last {
+    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
 }
 
 ul.navigation-menu li ul ul>li:first-child a {
@@ -272,19 +277,19 @@ form#bookmark-form {
     border-right: 1px solid #303030;
 }
 form#bookmark-form button {
-    border: 1px solid #2e2e2e;
-    border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+/*    border: 1px solid #2e2e2e;*/
+/*    border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;*/
     background-position: 50% 3px;
     background-repeat: no-repeat;
-    background-color: #303030 !important;
+    background-color: transparent !important;
 }
 form#bookmark-form button {
     background-image: url('../img/icons/icon-bookmark_add.png');
 }
 form#bookmark-form button:hover {
-    border: 1px solid #ccc;
+/*    border: 1px solid #ccc;*/
     background-image: url('../img/icons/icon-bookmark_add-hover.png');
-    background-color: #e6e6e6 !important;
+/*    background-color: #e6e6e6 !important;*/
 }
 form#bookmark-form button.bookmarked {
     background-image: url('../img/icons/icon-bookmark_remove.png');

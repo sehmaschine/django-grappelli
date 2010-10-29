@@ -119,3 +119,15 @@ def do_get_search_fields_verbose(parser, token):
     return GetSearchFields(opts, var_name)
 
 register.tag('get_search_fields_verbose', do_get_search_fields_verbose)
+
+
+@register.filter
+def classname(obj, arg=None):
+    classname = obj.__class__.__name__.lower()
+    if arg:
+        if arg.lower() == classname:
+            return True
+        else:
+            return False
+    else:
+        return classname
