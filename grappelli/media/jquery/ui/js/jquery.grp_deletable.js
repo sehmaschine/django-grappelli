@@ -30,8 +30,8 @@
             
             this.options.on_init_finished(this);
             
-            if (this.trash.children().length == 0) {
-                this.trash_container.hide();
+            if (this.trash.children().length > 0) {
+                this.trash_container.show();
             }
             
             var self = this;
