@@ -15,6 +15,15 @@ var django = {
     };
     
     grappelli.initDateAndTimePicker = function() {
+        
+        // to get rid of text after DateField (hardcoded in django.admin)
+        $('p.datetime').each(function() {
+            var text = $(this).html();
+            text = text.replace(/^\w*: /, "");
+            text = text.replace(/<br>.*: /, "<br>");
+            $(this).html(text);
+        });
+        
         var options = {
             //appendText: '(mm/dd/yyyy)',
             showOn: 'button',
@@ -47,16 +56,6 @@ var django = {
         
         // inti timepicker
         $("input[class*='vTimeField']:not([id*='__prefix__'])").grp_timepicker();
-    };
-    
-    grappelli.initHacks = function() {
-        // to get rid of text after DateField (hardcoded in django.admin)
-        $('p.datetime').each(function() {
-            var text = $(this).html();
-            text = text.replace(/^\w*: /, "");
-            text = text.replace(/<br>.*: /, "<br>");
-            $(this).html(text);
-        });
     };
     
     grappelli.initSearchbar = function() {
@@ -98,12 +97,14 @@ var django = {
      * called on_inti() of ui.widget.grp_collapsible() (see intialization code on bottom)
      */
     grappelli.init_dashboard_collapsibles = function(elem, options) {
+        // set the initial status of the collapsible from dashboard_preferences
         var collapsed = this.dashboard.preferences.collapsed || {};
-        // get the setting for the current element (= collapsible)
-        var current_status = this.dashboard.preferences.collapsed[elem.attr("id")];
+        var current_status = collapsed[elem.attr("id")];
+        
         // no setting no action...
         if (current_status === undefined) return;
-        // set open/closed class if there is a setting (true/false)
+        
+        // override open/closed status if there is a setting
         if (current_status) {
             elem.removeClass(options.closed_css)
                 .addClass(options.open_css);
@@ -111,12 +112,18 @@ var django = {
             elem.addClass(options.closed_css)
                 .removeClass(options.open_css);
         }
+        
+    };
+    
+    grappelli.add_additional_collapsible_handler = function(elem, options) {
+        // first we add our custom .keep-open-handler
         elem.find(".keep-open-handler").click(function() {
             elem.find(options.toggle_handler_slctr).click();
         });
         elem.find(".keep-closed-handler").click(function() {
             elem.find(options.toggle_handler_slctr).click();
         });
+        
     };
     
     grappelli.init_dashboard_positions = function (column) {
@@ -169,13 +176,13 @@ var django = {
             max_height = module_height > max_height ? module_height : max_height;
         }
         return max_height;
-    }
+    };
     
     $(document).ready(function() {
         // menu in header
         $("div#header .collapse").grp_menu();
         
-        if (grappelli.dashboard) {
+        if (grappelli.site == "index") {
             
             // it's the dashboard (aka. admin_index)
             var main_column = $("#column_1");
@@ -230,6 +237,7 @@ var django = {
             $("div.container-grid div.collapse").grp_collapsible({
                 on_init: function(elem, options) {
                     grappelli.init_dashboard_collapsibles(elem, options);
+                    grappelli.add_additional_collapsible_handler(elem, options);
                 },
                 on_toggle: function(elem, options) {
                     // send new preferences to the server
@@ -248,8 +256,22 @@ var django = {
             main_column.removeAttr('style'); // delete the old setting first
             main_column.height(main_column.height() + grappelli.getHeightOfTallestModule(main_column));
             
-        } else {
-            // collapsibles in change-form
+        } else if (grappelli.site == "app_index") {
+            // collapsible
+            $("div.container-grid div.collapse").grp_collapsible({
+                on_init: function(elem, options) {
+                    grappelli.add_additional_collapsible_handler(elem, options);
+                }
+            });
+        
+        } else if (grappelli.site == "change_list") {
+            grappelli.initSearchbar();
+            grappelli.initDateAndTimePicker();
+        
+        } else if (grappelli.site == "change_form") {
+            grappelli.initDateAndTimePicker();
+            
+            // collapsibles
             $("div.container-flexible .collapse").grp_collapsible({
                 on_init: function(elem, options) {
                     // open collapse (and all collapse parents)
@@ -264,14 +286,9 @@ var django = {
                 }
             });
             
-            // collapsible_groups in change-form
+            // collapsible_groups
             $("div.container-flexible div.group").grp_collapsible_group();
             
-            // we do the hacks first!
-            // because we manipulate dom via innerHTML => loose events
-            grappelli.initHacks();
-            grappelli.initDateAndTimePicker();
-            grappelli.initSearchbar();
         }
     });
 })(django.jQuery);

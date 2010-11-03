@@ -1,42 +1,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+{% load theming_tags adminmedia i18n grp_tags %}
 <head>
-    <title>{% block title %}{% endblock %}</title>
-    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+{% spaceless %}
     
-    <!-- LOADING -->
-    {% load theming_tags adminmedia i18n grp_tags %}
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block blockbots %}
+        <meta name="robots" content="NONE,NOARCHIVE" />
+    {% endblock %}
     
     <!-- STYLESHEETS -->
     {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/base.css" />
-        {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
-        <link rel="stylesheet" href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" />
+        <link href="{% admin_media_prefix %}css/base.css" rel="stylesheet" type="text/css" />
+        {% if LANGUAGE_BIDI %}<link href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" rel="stylesheet" type="text/css" />{% endif %}
+        <link href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" rel="stylesheet" type="text/css"  />
     {% endblock %}
-    
+
     {% block extrastyle %}{% endblock %}
-    
+
     <!-- JAVASCRIPTS -->
     {% block javascripts %}
         <script type="text/javascript">
             // GLOBALS
-            // TODO: klemens: drop ADMIN_URL
-            
             var grappelli = {},
+                // TODO: klemens: drop ADMIN_URL
                 ADMIN_URL = "{% url admin:index %}",
                 MODEL_URL_ARRAY = {% get_content_types %},
                 DATE_FORMAT = "{% get_date_format %}",
                 TIME_FORMAT = "{% get_time_format %}",
                 DATETIME_FORMAT = "{% get_datetime_format %}";
         </script>
-        
+    
         <!-- jQuery -->
         <script src="{% admin_media_prefix %}jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
-        
         <!-- jQuery Cookie Plugin -->
         <script src="{% admin_media_prefix %}jquery/jquery.cookie.min.js" type="text/javascript"></script>
-        
         <!-- jQuery UI + plugins -->
         <script src="{% admin_media_prefix %}jquery/ui/js/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
         <script src="{% admin_media_prefix %}jquery/ui/js/jquery.grp_collapsible.js"type="text/javascript" ></script>
@@ -45,19 +45,17 @@
         <script src="{% admin_media_prefix %}jquery/ui/js/jquery.grp_menu.js" type="text/javascript"></script>
         <script src="{% admin_media_prefix %}jquery/ui/js/jquery.grp_timepicker.js" type="text/javascript"></script>
         <script src="{% admin_media_prefix %}jquery/ui/js/jquery.grp_change_list.js" type="text/javascript"></script>
-        
         <!-- other libs -->
         <script src="{% admin_media_prefix %}js/bookmarks.js" type="text/javascript"></script>
         <script src="{% admin_media_prefix %}js/grappelli.RelatedObjectLookups.js" type="text/javascript"></script>
         <script src="{% admin_media_prefix %}js/json.min.js" type="text/javascript"></script>
-        
         <!-- initialization code -->
         <script src="{% admin_media_prefix %}js/grappelli.js" type="text/javascript"></script>
-        
     {% endblock %}
-    
     {% block extrahead %}{% endblock %}
+{% endspaceless %}
 </head>
+
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
     <div id="container">
         
