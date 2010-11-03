@@ -35,7 +35,7 @@ var process_bookmarks = function(url, title, prompt_msg) {
                 $('#navigation-menu li.bookmark').append('<ul/>');
                 $('#navigation-menu li.bookmark').removeClass('disabled');
             }
-            $('#navigation-menu li.bookmark ul').append(
+            $('li.bookmark ul').append(
                 '<li><a href="' + url + '">' + new_title + '</a></li>'
             );
             $('#bookmark-form input[name=title]').attr('value', new_title);
