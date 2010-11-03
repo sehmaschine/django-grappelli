@@ -2,8 +2,8 @@
  * manages all interactions in the admin change_list
  */
 (function($) {
-    $.fn.change_list = function(opts) {
-        var options = $.extend({}, $.fn.change_list.defaults, opts),
+    $.fn.grp_change_list = function(opts) {
+        var options = $.extend({}, $.fn.grp_change_list.defaults, opts),
             actionCheckboxes = $(options.actionCheckboxes);
         
         checker = function(checked) {
@@ -300,7 +300,7 @@
     };
     
     /* Setup plugin defaults */
-    $.fn.change_list.defaults = {
+    $.fn.grp_change_list.defaults = {
         actionCheckboxes: "input.action-select",
         actionContainer: "div.changelist-actions",
         counterContainer: "li.action-counter",
@@ -313,5 +313,5 @@
         actionSelect: "div.changelist-actions select",
         initialSearchVal: "Search"
     };
-})(django.jQuery);
+})(jQuery);
 

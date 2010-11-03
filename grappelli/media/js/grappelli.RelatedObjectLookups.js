@@ -338,4 +338,4 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         InitContentType($(':input[name*="content_type"]'));
         GenericHandler($('input[name*="object_id"]'));
     });
-})(django.jQuery);
+})(jQuery);

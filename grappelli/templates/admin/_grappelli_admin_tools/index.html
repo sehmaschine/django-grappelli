@@ -1,9 +1,16 @@
 {% extends "admin/_grappelli_admin_tools/base_site.html" %}
 {% load i18n admin_tools_dashboard_tags %}
 
+{% block javascripts %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8">
+        grappelli.site = "index";
+    </script>
+{% endblock %}
+
 {% block extrastyle %}
-{{ block.super }}
-{% block dashboard_css %}{% admin_tools_render_dashboard_css %}{% endblock %}
+    {{ block.super }}
+    {% block dashboard_css %}{% admin_tools_render_dashboard_css %}{% endblock %}
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->
@@ -12,6 +19,15 @@
 
 {% block breadcrumbs %}<div id="breadcrumbs">{% trans "Home" %}</div>{% endblock %}
 {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+
+{% block object-tools %}
+    <ul class="tools">
+        <li class="trash-list-container" style="display:none;">
+            <a href="javascript://" class="trash-list-toggle-handler">{% trans "Modules" %}</a>
+            <ul id="trash" class="trash-list" style="display:none;"></ul>
+        </li>
+    </ul>
+{% endblock %}
 
 {% block content %}
     {% admin_tools_render_dashboard %}

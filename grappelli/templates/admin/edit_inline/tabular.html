@@ -3,7 +3,7 @@
 <!-- group -->
 <div class="group tabular{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
     id="{{ inline_admin_formset.formset.prefix }}-group" >
-    <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
+    <h2 class="collapse-handler">{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
     <ul class="tools">
         <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Another' %}"> </a></li>
     </ul>

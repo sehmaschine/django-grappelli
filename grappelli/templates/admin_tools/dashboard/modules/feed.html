@@ -1,12 +1,6 @@
 {% extends "admin_tools/dashboard/module.html" %}
+{% load i18n %}
 {% block module_content %}
-{% if subindex %}
-    <div class="module feed {% for item in module.css_classes %}{{ item }} {% endfor %}">
-        <h3>{{ module.title }}</h2>
-{% else %}
-    <div class="module feed {% for item in module.css_classes %}{{ item }} {% endfor %}">
-        <h2>{{ module.title }}</h2>
-{% endif %}
     <ul>
         {% spaceless %}
         {% for child in module.children %}
@@ -17,5 +11,4 @@
         {% endfor %}
         {% endspaceless %}
     </ul>
-</div>
 {% endblock %}

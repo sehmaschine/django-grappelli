@@ -1,6 +1,13 @@
 {% extends "admin/_grappelli_admin_tools/index.html" %} 
 {% load i18n admin_tools_dashboard_tags %}
 
+{% block javascripts %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8">
+        grappelli.site = "app_index";
+    </script>
+{% endblock %}
+
 <!-- BREADCRUMBS -->
 {% if not is_popup %}
     {% block breadcrumbs %}

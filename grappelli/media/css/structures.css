@@ -116,22 +116,24 @@ ul.navigation-menu li ul {
 /*    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;*/
 }
 ul.navigation-menu>li>a+ul {
-    overflow: hidden;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 /*    padding-right: 20px;*/
 /*    width: 500px;*/
-/*    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;*/
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
     box-shadow: 0 0 20px #333; -moz-box-shadow: 0 0 20px #333; -webkit-box-shadow: 0 0 20px #333;
 }
 ul.navigation-menu>li>ul>li.parent {
-/*    padding-bottom: 4px;*/
+    overflow-x: hidden !important;
 }
 
 ul.navigation-menu li ul ul {
     position: relative;
     float: none;
     margin-top: 0;
+    margin: 0;
+    padding: 0;
     width: 100%;
+    overflow: inherit;
 }
 
 ul.navigation-menu li li.item-collapse.item-open {
@@ -156,31 +158,31 @@ ul.navigation-menu li li li li li.item-collapse.item-open {
 /*    border: 1px solid #484848;*/
     background: #525252;
 }
-ul.navigation-menu li li li li li.item-collapse.item-open + li {
-/*    border: 0 !important;*/
-}
+
 
 ul.navigation-menu li li {
-    padding: 0 10px;
+/*    padding: 0 10px;*/
 }
 ul.navigation-menu li li li {
-    margin: 0 -20px 0 -10px;
-    padding: 0 10px 0 20px;
+/*    margin: 0 -20px 0 -10px;*/
+/*    padding: 0 10px 0 20px;*/
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
 ul.navigation-menu li li li li {
-    margin: 0 -10px 0 -20px;
-    padding: 0 10px 0 30px;
+/*    margin: 0 -10px 0 -20px;*/
+/*    padding: 0 10px 0 30px;*/
 /*    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;*/
 }
 ul.navigation-menu li li li li li {
-    margin: 0 -10px 0 -30px;
-    padding: 0 10px 0 40px;
+/*    margin: 0 -10px 0 -30px;*/
+/*    padding: 0 10px 0 40px;*/
+    overflow: hidden;
 /*    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;*/
 }
 ul.navigation-menu li li li li li li {
-    margin: 0 -10px 0 -40px;
-    padding: 0 10px 0 50px;
+/*    margin: 0 0 0 -40px;*/
+/*    padding: 0 10px 0 50px;*/
+    overflow: hidden;
 /*    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;*/
 }
 
@@ -190,18 +192,27 @@ ul.navigation-menu li li.last {
 }
 
 ul.navigation-menu li ul ul>li:first-child a {
-    margin-left: -10px;
-    padding-left: 10px;
+/*    margin-left: -10px;*/
+/*    padding-left: 10px;*/
 }
 ul.navigation-menu li li a {
     display: block;
-    padding: 8px 0;
+    padding: 8px 10px;
     font-size: 11px;
 }
 ul.navigation-menu li li li a {
-    padding: 4px 10px 4px 0;
+    padding: 4px 10px 4px 20px;
     font-size: 11px;
     white-space: normal;
+}
+ul.navigation-menu li li li li a {
+    padding-left: 30px;
+}
+ul.navigation-menu li li li li li a {
+    padding-left: 40px;
+}
+ul.navigation-menu li li li li li li a {
+    padding-left: 50px;
 }
 ul.navigation-menu li.parent>a {
     font-size: 11px;
@@ -225,7 +236,7 @@ ul.navigation-menu li.item-collapse a.item-collapse-handler-container {
 form#bookmark-form {
     position: relative;
     float: left;
-    padding: 2px 10px 2px 0;
+    padding: 3px 10px 1px 0;
     height: 26px;
 }
 form#bookmark-form button {
@@ -240,7 +251,7 @@ ul.navigation-menu li.item-collapse a.item-collapse-handler {
     float: right;
     display: inline-block !important;
     right: 0;
-    margin: -30px -10px -30px 0;
+    margin: -30px 0 -30px 0;
     padding: 0;
     width: 28px;
     height: 30px;
@@ -252,7 +263,7 @@ ul.navigation-menu li li li.item-collapse a.item-collapse-handler {
     height: 22px;
 }
 a.item-collapse-handler-container {
-    padding-right: 28px !important;
+    padding-right: 38px !important;
 }
 ul.navigation-menu li li.item-collapse.item-closed>a+a.item-collapse-handler:link, 
 ul.navigation-menu li li.item-collapse.item-closed>a+a.item-collapse-handler:visited {

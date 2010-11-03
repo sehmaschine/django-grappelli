@@ -9,6 +9,9 @@
     {% url admin:jsi18n as jsi18nurl %}
     <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
     {{ media }}
+    <script type="text/javascript" charset="utf-8">
+        grappelli.site = "change_form";
+    </script>
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->

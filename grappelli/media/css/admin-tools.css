@@ -1,0 +1,93 @@
+
+
+
+/*  Dashboard
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  Pre- & Post-Content ......................................... */
+
+.module.pre-content p,
+.module.post-content p {
+    font-size: 11px;
+    padding: 3px 10px 5px;
+}
+.module.post-content p {
+    border-top: 1px solid #fff !important;
+}
+
+
+ul.tools li.trash-list-container {
+    opacity: 1 !important;
+    overflow: visible !important;
+}
+ul.tools li.trash-list-container a.trash-list-toggle-handler {
+    z-index: 1000;
+    border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
+    opacity: 1 !important;
+}
+ul.tools a.trash-list-toggle-handler:link, ul.tools a.trash-list-toggle-handler:visited {
+    color: #444;
+    border: 1px solid #bdbdbd;
+    background: #a1d4e5;
+    background: -moz-linear-gradient(top, #bcdfeb, #a1d4e5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#bcdfeb), to(#a1d4e5));
+}
+ul.tools a.trash-list-toggle-handler:hover, ul.tools a.trash-list-toggle-handler:active, 
+ul.tools li.trash-list-container.open a.trash-list-toggle-handler {
+    color: #444;
+    background: #bcdfeb;
+    background: -moz-linear-gradient(top, #a1d4e5, #bcdfeb);
+    background: -webkit-gradient(linear, left top, left bottom, from(#a1d4e5), to(#bcdfeb));
+}
+ul.tools li.trash-list-container.open a.trash-list-toggle-handler {
+    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0 !important; -webkit-border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0 !important; -webkit-border-bottom-right-radius: 0;
+}
+ul.trash-list {
+    position: absolute;
+    float: none;
+    display: block;
+    right: 0;
+    z-index: 900;
+    margin-top: -1px;
+    min-width: 218px;
+    border: 1px solid #ccc;
+    border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
+    border-top-right-radius: 0; -moz-border-radius-topright: 0 !important; -webkit-border-top-right-radius: 0;
+    background: #eee;
+    box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
+}
+
+ul.trash-list:empty {
+    display: none;
+}
+
+
+ul.trash-list li {
+    position: relative;
+    float: none;
+    margin: 0 !important;
+    width: 100%;
+}
+
+ul.trash-list li a {
+    padding-left: 10px;
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
+    background: transparent !important;
+    opacity: 1 !important;
+}
+ul.trash-list li:first-child a {
+    border-top: 0 !important;
+}
+ul.trash-list li:last-child a {
+    border-bottom: 0 !important;
+}
+ul.trash-list li a:link, ul.trash-list li a:visited {
+    color: #309bbf;
+}
+ul.trash-list li a:hover, ul.trash-list li a:active {
+    color: #444;
+}

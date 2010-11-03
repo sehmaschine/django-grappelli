@@ -1,54 +1,16 @@
 {% load i18n admin_tools_menu_tags %}
 {% if menu.children %}
-    <script type="text/javascript" src="{{ media_url }}/admin_tools/js/utils.js"></script>
     <script type="text/javascript" charset="utf-8">
-        // Load js files syncronously and conditionally
-        var js_files = [
-            {
-                src : '{{ media_url }}/admin_tools/js/jquery/jquery.min.js',
-                test: function() { return typeof(jQuery) == 'undefined'; }
-            },
-            {
-                src : '{{ media_url }}/admin_tools/js/json.min.js',
-                test: function() { return typeof(JSON.stringify) == 'undefined'; }
-            },
-            {
-                src : '{{ media_url }}/admin_tools/js/menu.js',
-                test: function() { return true; }
-            }{% for js in menu.Media.js %},
-            {
-                src : '{{ media_url }}/{{ js }}',
-                test: function() { return true; }
-            }{% endfor %}
-        ];
-        loadScripts(js_files, function(){
-            jQuery(function($) {
-                {% if has_bookmark_item %}
-                    process_bookmarks(
-                       "{{ request.get_full_path }}",
-                       "{{ title }}",
-                       "{% trans 'Please enter a name for the bookmark' %}"
-                    );
-                {% endif %}
-            });
-        });
+    {% if has_bookmark_item %}
+        (function($) {
+            process_bookmarks(
+               "{{ request.get_full_path }}",
+               "{{ title }}",
+               "{% trans 'Please enter a name for the bookmark' %}"
+            );
+        })(django.jQuery);
+    {% endif %}
     </script>
-    {% comment %}
-    {% for item in menu.children %}
-        <ul class="navigation-menu">
-            {% admin_tools_render_menu_item item forloop.counter %}
-            {% ifequal item.css_classes|join:' ' "bookmark" %}
-                <li class="actions">
-                    {% if bookmark %}
-                        {% include "admin_tools/menu/remove_bookmark_form.html" %}
-                    {% else %}
-                        {% include "admin_tools/menu/add_bookmark_form.html" %}
-                    {% endif %}
-                </li>
-            {% endifequal %}
-        </ul>
-    {% endfor %}
-    {% endcomment %}
     {% for item in menu.children %}
         <ul class="navigation-menu">
             {% admin_tools_render_menu_item item forloop.counter %}
