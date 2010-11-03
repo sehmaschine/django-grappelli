@@ -1,5 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, NoReverseMatch
 from admin_tools.dashboard import modules, Dashboard, AppIndexDashboard
 
 # to activate your index dashboard add the following to your settings.py:
@@ -12,7 +12,7 @@ class CustomIndexDashboard(Dashboard):
     """
     def __init__(self, **kwargs):
         Dashboard.__init__(self, **kwargs)
-
+        
         # append a link list module for "quick links"
         #self.children.append(modules.LinkList(
         #    title=_('Quick links'),
@@ -20,6 +20,7 @@ class CustomIndexDashboard(Dashboard):
         #    draggable=False,
         #    deletable=False,
         #    collapsible=False,
+        #    css_classes=['column_1'],
         #    children=[
         #        {
         #            'title': _('Return to site'),
@@ -36,51 +37,57 @@ class CustomIndexDashboard(Dashboard):
         #    ]
         #))
         
-        self.children.append(modules.LinkList(
-            column=1,
-            title=_('Media Management'),
-            children=[
-                {
-                    'title': _('Django FileBrowser'),
-                    'url': '/admin/filebrowser/browse/',
-                    'external': False,
-                },
-            ]
+        try:
+            # add link to filebrowser
+            self.children.append(modules.LinkList(
+                title=_('Media Management'),
+                css_classes=['column_1'],
+                children=[
+                    {
+                        'title': _('Django FileBrowser'),
+                        'url': reverse("fb_browse"),
+                        'external': False,
+                    },
+                ]
+            ))
+        except NoReverseMatch:
+            # seems like reverse("fb_browse") didn't worked
+            # => filebrowser not installed
+            pass
+        
+        # append an app list module for "Applications"
+        self.children.append(modules.AppList(
+            title=_('Applications'),
+            css_classes=['column_1'],
+            exclude_list=('django.contrib',),
         ))
         
         # append an app list module for "Administration"
         self.children.append(modules.AppList(
             title=_('Administration'),
+            css_classes=['column_1'],
             include_list=('django.contrib',),
-            css_classes=['collapse', 'open'],
         ))
         
-        # append an app list module for "Applications"
-        self.children.append(modules.AppList(
-            title=_('Applications'),
-            exclude_list=('django.contrib',),
-            css_classes=['collapse', 'open'],
-        ))
-
         # append a recent actions module
         self.children.append(modules.RecentActions(
-            column=2,
+            css_classes=['column_2'],
             title=_('Recent Actions'),
             limit=5
         ))
-
+        
         # append a feed module
         self.children.append(modules.Feed(
-            column=2,
             title=_('Latest Django News'),
+            css_classes=['column_2'],
             feed_url='http://www.djangoproject.com/rss/weblog/',
             limit=5
         ))
-
+        
         # append another link list module for "support".
         self.children.append(modules.LinkList(
-            column=2,
             title=_('Support'),
+            css_classes=['column_3'],
             children=[
                 {
                     'title': _('Django documentation'),
@@ -124,13 +131,14 @@ class CustomAppIndexDashboard(AppIndexDashboard):
         # append a model list module
         self.children.append(modules.ModelList(
             title=_(self.app_title),
+            css_classes=['column_1'],
             models=self.models,
         ))
 
         # append a recent actions module
         self.children.append(modules.RecentActions(
-            column=2,
             title=_('Recent Actions'),
+            css_classes=['column_2'],
             include_list=self.get_app_content_types(),
         ))
 
