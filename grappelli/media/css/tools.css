@@ -279,6 +279,21 @@ h1 + .tools a.focus {
     background-image: url('../img/icons/icon-tools-open-handler-hover.png');
 }
 
+.tools a.arrow-up-handler:link, .tools a.arrow-up-handler:visited {
+    background-image: url('../img/icons/icon-tools-arrow-up-handler.png');
+}
+.tools a.arrow-up-handler:hover, .tools a.arrow-up-handler:active {
+    background-image: url('../img/icons/icon-tools-arrow-up-handler-hover.png');
+}
+
+.tools a.arrow-down-handler:link, .tools a.arrow-down-handler:visited {
+    background-image: url('../img/icons/icon-tools-arrow-down-handler.png');
+}
+.tools a.arrow-down-handler:hover, .tools a.arrow-down-handler:active {
+    background-image: url('../img/icons/icon-tools-arrow-down-handler-hover.png');
+}
+
+
 .group.open h2 + .tools li.keep-closed-handler-container,
 .module.open h2 + .tools li.keep-closed-handler-container, 
 .group.closed h2 + .tools li.keep-open-handler-container,
