@@ -61,10 +61,8 @@
         _trash_toggle_handler: function() {
             
             if (this.trash.is(":visible")) {
-                console.log("_trash_toggle_handler", "hide")
                 this.trash.hide();
             } else {
-                    console.log("_trash_toggle_handler", "show")
                 this.trash.show();
             }
         },

@@ -72,7 +72,6 @@
                     });
                 }
                 $(window).resize(function() {
-                    console.log("jo!!!")
                     // Calculate Menu Height
                     $(menu).removeAttr("style");
                     menumaxheight = $(window).height() - 80;
