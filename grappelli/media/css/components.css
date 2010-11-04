@@ -494,9 +494,6 @@ ul.actions li {
     float: left;
     margin-left: 20px;
 }
-ul.actions li.change-link {
-    width: 56px;
-}
 ul.actions li a {
     padding-left: 15px;
     font-size: 11px;
