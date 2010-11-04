@@ -1215,6 +1215,7 @@ input, textarea, select, button {
 }
 input, textarea, select {
     box-shadow: 0 1px 3px #eaeaea inset; -moz-box-shadow: 0 1px 3px #eaeaea inset; -webkit-box-shadow: 0 1px 3px #eaeaea inset;
+    background: #fff;
 }
 
 *:focus, input:focus, textarea:focus, select:focus {
