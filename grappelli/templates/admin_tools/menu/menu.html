@@ -4,7 +4,7 @@
     {% if has_bookmark_item %}
         (function($) {
             process_bookmarks(
-               "{{ request.get_full_path }}",
+               "{{ request.get_full_path|safe }}",
                "{{ title }}",
                "{% trans 'Please enter a name for the bookmark' %}"
             );
