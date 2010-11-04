@@ -12,32 +12,53 @@ var process_bookmarks = function(url, title, prompt_msg) {
     $('#bookmark-button').live('click', function(e) {
         var submit_url = $("#bookmark-form").attr('action');
         e.preventDefault();
+        // remove bookmark
         if ($(this).hasClass('bookmarked')) {
             $(this).removeClass('bookmarked');
-            $('#navigation-menu li.bookmark ul li a[href="' + url + '"]').parent().remove();
-            if (!$('#navigation-menu li.bookmark ul li').length) {
-                $('#navigation-menu li.bookmark ul').remove();
-                $('#navigation-menu li.bookmark a span').remove();
-                $('#navigation-menu li.bookmark').addClass('disabled');
+            
+            // remove bookmark li and set 
+            $('li.bookmark ul li a[href="' + url + '"]').parent().remove();
+            $('li.bookmark ul li').last().addClass("last");
+            
+            if (!$('li.bookmark ul li').length) {
+                $('li.bookmark ul').remove();
+                $('li.bookmark').addClass('disabled');
             }
             //Drop bookmark and switch form
             $.post(submit_url, $("#bookmark-form").serialize(), function(data) {
                 $("#bookmark-form").replaceWith(data.replace('**title**', title));
             }, 'html');
+        // add bookmark
         } else {
             new_title = prompt(prompt_msg, title);
             if (!new_title) {
                 return;
             }
             $(this).addClass('bookmarked');
-            if (!$('#navigation-menu li.bookmark ul').length) {
-                $('#navigation-menu li.bookmark a').prepend('<span class="icon"/>');
-                $('#navigation-menu li.bookmark').append('<ul/>');
-                $('#navigation-menu li.bookmark').removeClass('disabled');
+            
+            var reinit_menu = false;
+            
+            if (!$('li.bookmark ul').length) {
+                $('li.bookmark').append('<ul/>');
+                // if the page was loaded with an empty bookmark list
+                // a bunch of classes are missing
+                $('li.bookmark')
+                    .removeClass('disabled')
+                    .addClass("collapse parent closed")
+                    .find("a")
+                    .addClass("parent collapse-handler");
+                
+                reinit_menu = true;
             }
+            
             $('li.bookmark ul').append(
-                '<li><a href="' + url + '">' + new_title + '</a></li>'
+                '<li class="menu-item last"><a href="' + url + '">' + new_title + '</a></li>'
             );
+            
+            if (reinit_menu) {
+                $('div#header .collapse.bookmark').grp_menu();
+            }
+            
             $('#bookmark-form input[name=title]').attr('value', new_title);
             // Save bookmark and switch form
             $.post(submit_url, $("#bookmark-form").serialize(), function(data) {
