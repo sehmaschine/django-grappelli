@@ -187,6 +187,9 @@ var django = {
             // it's the dashboard (aka. admin_index)
             var main_column = $("#column_1");
             
+            $(".group-tabs").tabs();
+            $(".group-accordion").accordion({header: '.group-accordion-header'});
+            
             $("div#content").grp_deletable({
                 on_init_finished: function(ui) {
                     grappelli.init_dashboard_deletable(ui);
