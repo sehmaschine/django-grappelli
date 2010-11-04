@@ -109,8 +109,9 @@
 .ui-accordion .ui-accordion-header {
     display: block;
     margin: 0;
-    padding: 6px 10px;
+    padding: 6px 0;
     outline: none;
+    font-size: 12px;
     border: 1px solid #bdbdbd !important;
     background: #cee9f2;
     background: -moz-linear-gradient(top, #e1f0f5, #cee9f2);
@@ -136,6 +137,11 @@
 
 .ui-accordion-content {
     border-top: 0 !important;
+    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+    border-top-right-radius: 0; -moz-border-radius-topright: 0; -webkit-border-top-right-radius: 0;
+}
+.ui-accordion-content h3 {
+    display: none;
 }
 .ui-accordion-content .module:first-child {
     margin-top: 0 !important;
