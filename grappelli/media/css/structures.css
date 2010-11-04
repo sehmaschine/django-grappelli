@@ -374,6 +374,9 @@ body.popup .breadcrumbs + ul.messagelist {
 body.filebrowser.popup ul.messagelist {
     top: 28px;
 }
+body.login ul.messagelist {
+    top: -28px;
+}
 
 
 /*  Masthead
