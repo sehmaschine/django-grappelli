@@ -1,19 +1,19 @@
 {% extends "admin/_grappelli/base_site.html" %}
+{% load i18n adminmedia grp_tags log %}
 
-<!-- LOADING -->
-{% load i18n adminmedia grp_tags %}
-
-<!-- STYLES & SCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
+    <script type="text/javascript" charset="utf-8">
+        grappelli.site = "index_standalone";
+    </script>
 {% endblock %}
 
-<!-- COLTYPE/BODYCLASS -->
 {% block bodyclass %}dashboard{% endblock %}
 {% block content-class %}content-grid{% endblock %}
 
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}<div id="breadcrumbs">{% trans "Home" %}</div>{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
 
 <!-- CONTENT -->
 {% block content %}
@@ -43,7 +43,6 @@
             <h2>{% trans 'Recent Actions' %}</h2>
             <div class="module">
                 <h3>{% trans 'My Actions' %}</h3>
-                {% load log %}
                 {% get_admin_log 10 as admin_log for_user user %}
                 {% if not admin_log %}
                     <p>{% trans 'None available' %}</p>
