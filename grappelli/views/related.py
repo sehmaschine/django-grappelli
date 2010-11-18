@@ -40,10 +40,9 @@ def m2m_lookup(request):
             object_ids = request.GET.get('object_id').split(',')
             app_label = request.GET.get('app_label')
             model_name = request.GET.get('model_name')
-            
+            model = models.get_model(app_label, model_name)
             for obj_id in object_ids:
                 try:
-                    model = models.get_model(app_label, model_name)
                     obj = model.objects.get(pk=obj_id)
                     obj_text.append(unicode(obj))
                 except:
