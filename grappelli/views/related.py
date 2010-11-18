@@ -1,10 +1,13 @@
 # coding: utf-8
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.db import models
+from django.views.decorators.cache import never_cache
 
+@never_cache
 def related_lookup(request):
-    
+    if not (request.user.is_active and request.user.is_staff):
+        return HttpResponseForbidden('<h1>Permission denied</h1>')
     if request.method == 'GET':
         if request.GET.has_key('object_id') and request.GET.has_key('app_label') and request.GET.has_key('model_name'):
             object_id = request.GET.get('object_id')
@@ -25,9 +28,12 @@ def related_lookup(request):
         obj_text = "Error"
     
     return HttpResponse(obj_text, mimetype='text/plain; charset=utf-8')
-    
 
+
+@never_cache
 def m2m_lookup(request):
+    if not (request.user.is_active and request.user.is_staff):
+        return HttpResponseForbidden('<h1>Permission denied</h1>')
     obj_text = []
     if request.method == 'GET':
         if request.GET.has_key('object_id') and request.GET.has_key('app_label') and request.GET.has_key('model_name'):
