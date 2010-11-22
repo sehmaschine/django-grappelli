@@ -4,6 +4,7 @@
         {{ field }}
     {% endfor %}
     {% if actions_selection_counter %}
+        <script type="text/javascript">grappelli._actions_icnt="{{ cl.result_list|length|default:"0" }}";</script>
         <ul>
             <li class="action-counter"><span class="action-counter">{{ selection_note }}</span></li>
             {% if cl.result_count != cl.result_list|length %}

@@ -31,7 +31,15 @@
             } else {
                 var actionCounter = $(options.actionContainer).find("span.action-counter"),
                     text = actionCounter.html();
-                actionCounter.html('<span class="_acnt">' + count + '</span>' + text.substring(1));
+                // old version
+                //actionCounter.html('<span class="_acnt">' + count + '</span>' + text.substring(1));
+                // new version: from django.contrib.admin's media/js/actions.js
+                actionCounter.html(interpolate(
+                    ngettext('%(sel)s of %(cnt)s selected', '%(sel)s of %(cnt)s selected', count), {
+                        sel: count,
+                        cnt: grappelli._actions_icnt
+                    }, true)
+                );
             }
             
             $(options.allToggle).attr("checked", function() {
