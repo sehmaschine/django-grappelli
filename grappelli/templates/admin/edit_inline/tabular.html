@@ -96,16 +96,14 @@
          * uses sortable_updateFormIndex() and is_form_filled() from change_from.html
          */
         
-        // hide sortable_field(_name) from form
-        // hide div.td.{{ field.name }}
-        var position_nodes = $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.td.{{ inline_admin_formset.opts.sortable_field_name }}");
-        position_nodes.hide();
+         // all nodes of position fields
+         var position_nodes = $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.td.{{ inline_admin_formset.opts.sortable_field_name }}");
         
-        // hide its header (div.th) too (hard)
-        // "div.th.{{ inline_admin_formset.opts.sortable_field_name }}" is not correct because
+        // first hide its header (div.th)
+        // "div.th.{{ inline_admin_formset.opts.sortable_field_name }}" is not correct
         // its div.th.<field.label> (and not name, see line#18).
         
-        // so let's get the "position/idx" the first position div
+        // so let's get the "position/idx" of the first position div
         var tabular_row = position_nodes.first().parent().children("div.td");
         // get the "position" (== i) in the "table"
         for (var i = 0; i < tabular_row.length; i++) {
@@ -116,6 +114,17 @@
         var position_header = $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.th")[i];
         // and hide
         $(position_header).hide()
+        
+        var item;
+        for (var i = 0; i < position_nodes.length; i++) {
+            item = $(position_nodes[i]);
+            // hide it
+            item.hide();
+            // if it's the first child we move it to the end, or the design would be broken
+            if (item[0] == item.parent().children().first()[0]) {
+                item.parent().append(item);
+            }
+        }
         
     {% if errors %}
         // sort inline
