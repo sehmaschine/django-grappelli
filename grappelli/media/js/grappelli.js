@@ -200,11 +200,19 @@ var django = {
                     $(".remove-handler-container").attr("style", "");
                     $(".keep-open-handler-container").attr("style", "");
                     $(".keep-closed-handler-container").attr("style", "");
+                    
+                    
+                    // increase the height of main_column to be a able to 
+                    // sort big modules at the end of main_column with ui.sortable()
+                    main_column.removeAttr('style'); // delete the old setting first
+                    main_column.height(main_column.height() + grappelli.getHeightOfTallestModule(main_column));
                 } else { // deactivate
                     $(".drag-handler-container").attr("style", "display: none !important");
                     $(".remove-handler-container").attr("style", "display: none !important");
                     $(".keep-open-handler-container").attr("style", "display: none !important");
                     $(".keep-closed-handler-container").attr("style", "display: none !important");
+                    
+                    main_column.removeAttr('style'); // delete the old setting first
                 }
             });
             
@@ -276,11 +284,6 @@ var django = {
                     }
                 }
             });
-            
-            // increase the height of main_column to be a able to 
-            // sort big modules at the end of main_column with ui.sortable()
-            main_column.removeAttr('style'); // delete the old setting first
-            main_column.height(main_column.height() + grappelli.getHeightOfTallestModule(main_column));
             
         } else if (grappelli.site == "app_index") {
             // collapsible
