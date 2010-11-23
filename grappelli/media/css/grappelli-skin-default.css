@@ -1115,6 +1115,14 @@ h1 + .tools a:hover, h1 + .tools a:active {
     background: -moz-linear-gradient(top, #39bae5, #309bbf);
     background: -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));
 }
+
+.tools-active {
+    border-color: transparent !important;
+    background: #309bbf !important;
+    background: -moz-linear-gradient(top, #39bae5, #309bbf) !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf)) !important;
+}
+
 h1 + .tools a.add-handler:link, h1 + .tools a.add-handler:visited {
     background-color: #444;
     background: #444 0 50% no-repeat scroll;

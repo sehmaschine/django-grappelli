@@ -20,21 +20,21 @@
         <ul class="tools">
             {% if "column_1" in module.render_css_classes %}
                 {% if module.draggable %}
-                    <li class="drag-handler-container">
+                    <li class="drag-handler-container" style="display:none !important;">
                         <a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a>
                     </li>
                 {% endif %}
             {% endif %}
             {% if module.deletable %}
-                <li class="remove-handler-container">
+                <li class="remove-handler-container" style="display:none !important;">
                     <a href="javascript://" class="icon remove-handler" title="{% trans 'Delete Item' %}"></a>
                 </li>
             {% endif %}
             {% if module.collapsible %}
-                <li class="keep-open-handler-container">
+                <li class="keep-open-handler-container" style="display:none !important;">
                     <a href="javascript://" class="icon keep-open-handler"></a>
                 </li>
-                <li class="keep-closed-handler-container">
+                <li class="keep-closed-handler-container" style="display:none !important;">
                     <a href="javascript://" class="icon keep-closed-handler"></a>
                 </li>
             {% endif %}

@@ -184,8 +184,29 @@ var django = {
         
         if (grappelli.site == "index") {
             
-            // it's the dashboard (aka. admin_index)
             var main_column = $("#column_1");
+            
+            // in dashboard_edit_mode a user can change the apperance of the dashboard
+            // these changes ("delete"/collapse/move modoules) are persistent for the user.
+            // collapse still works outside of edit_mode but isn't saved
+            grappelli.dashboard_edit_mode = false;
+            $("a.edit-dashboard-toggle-handler").click(function() {
+                // toogle the edit mode
+                grappelli.dashboard_edit_mode = !grappelli.dashboard_edit_mode;
+                $(this).toggleClass("tools-active");
+                
+                if (grappelli.dashboard_edit_mode) { // activate
+                    $(".drag-handler-container").attr("style", "");
+                    $(".remove-handler-container").attr("style", "");
+                    $(".keep-open-handler-container").attr("style", "");
+                    $(".keep-closed-handler-container").attr("style", "");
+                } else { // deactivate
+                    $(".drag-handler-container").css("display", "none !important");
+                    $(".remove-handler-container").css("display", "none !important");
+                    $(".keep-open-handler-container").css("display", "none !important");
+                    $(".keep-closed-handler-container").css("display", "none !important");
+                }
+            });
             
             $(".group-tabs-container").tabs();
             $(".group-accordion-container").accordion({header: '.group-accordion-header'});
@@ -243,14 +264,16 @@ var django = {
                     grappelli.add_additional_collapsible_handler(elem, options);
                 },
                 on_toggle: function(elem, options) {
-                    // send new preferences to the server
-                    grappelli.set_dashboard_collapsible(elem.attr("id"), elem.hasClass(options.open_css));
-                    
-                    
-                    // increase the height of main_column to be a able to 
-                    // sort big modules at the end of main_column with ui.sortable()
-                    main_column.removeAttr('style'); // delete the old setting first
-                    main_column.height(main_column.height() + grappelli.getHeightOfTallestModule(main_column));
+                    if (grappelli.dashboard_edit_mode) {
+                        // send new preferences to the server
+                        grappelli.set_dashboard_collapsible(elem.attr("id"), elem.hasClass(options.open_css));
+                        
+                        
+                        // increase the height of main_column to be a able to 
+                        // sort big modules at the end of main_column with ui.sortable()
+                        main_column.removeAttr('style'); // delete the old setting first
+                        main_column.height(main_column.height() + grappelli.getHeightOfTallestModule(main_column));
+                    }
                 }
             });
             
