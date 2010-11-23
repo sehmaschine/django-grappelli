@@ -201,10 +201,10 @@ var django = {
                     $(".keep-open-handler-container").attr("style", "");
                     $(".keep-closed-handler-container").attr("style", "");
                 } else { // deactivate
-                    $(".drag-handler-container").css("display", "none !important");
-                    $(".remove-handler-container").css("display", "none !important");
-                    $(".keep-open-handler-container").css("display", "none !important");
-                    $(".keep-closed-handler-container").css("display", "none !important");
+                    $(".drag-handler-container").attr("style", "display: none !important");
+                    $(".remove-handler-container").attr("style", "display: none !important");
+                    $(".keep-open-handler-container").attr("style", "display: none !important");
+                    $(".keep-closed-handler-container").attr("style", "display: none !important");
                 }
             });
             
