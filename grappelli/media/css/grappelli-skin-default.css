@@ -488,6 +488,10 @@ ul.messagelist.error li {
 .module .description {
     border-bottom: 1px solid #d4d4d4;
 }
+.module .row.description, 
+.module.table .description {
+    border-bottom: 0;
+}
 
 
 
