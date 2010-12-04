@@ -6,9 +6,9 @@
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
-    {% if cl.formset %}
-        {% url admin:jsi18n as jsi18nurl %}
-        <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
+    {% if cl.formset or action_form %}
+        {% url 'admin:jsi18n' as jsi18nurl %}
+        <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"</script>
     {% endif %}
     {{ media }}
     <script type="text/javascript" charset="utf-8">
