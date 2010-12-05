@@ -8,13 +8,11 @@
     {{ block.super }}
     {% if cl.formset or action_form %}
         {% url 'admin:jsi18n' as jsi18nurl %}
-        <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"</script>
+        <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"></script>
     {% endif %}
     {{ media }}
     <script type="text/javascript" charset="utf-8">
-        
         grappelli.site = "change_list";
-        
         {% if is_popup %}
             var IS_POPUP = true;
         {% else %}
@@ -37,7 +35,6 @@
                     // "really" disable datepicker in grappelli.js
                     //$('.vDateField').addClass('disabled');
                 {% endif %}
-                
                 {% if cl.search_fields %}
                     {% get_search_fields_verbose cl.opts as search_fields_verbose %}
                     $('body').grp_change_list({'initialSearchVal': '{% if not cl.query and not search_fields_verbose %}{% trans 'Search' %}{% endif %}{% if search_fields_verbose and not cl.query %}{{ search_fields_verbose }}{% endif %}{% if cl.query %}{{ cl.query }}{% endif %}'});
