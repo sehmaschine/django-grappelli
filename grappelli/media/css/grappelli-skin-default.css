@@ -583,8 +583,11 @@ ul.messagelist.error li {
 ------------------------------------------------------------------------------------------------------ */
 
 .row {
+    margin: 0;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #e0e0e0;
+    border-left: 0;
+    border-right: 0;
 }
 .row.first, 
 .row:first-child, 
@@ -662,6 +665,7 @@ fieldset.module .cell.last + fieldset.module .cell {
 .module.table .module.thead .th, 
 .module.table .module.thead .td {
     border-top: 0;
+    border-bottom: 0;
     background: none;
 }
 .module.tbody .th, 
@@ -1227,7 +1231,12 @@ input, textarea, select, button {
 }
 input, textarea, select {
     box-shadow: 0 1px 3px #eaeaea inset; -moz-box-shadow: 0 1px 3px #eaeaea inset; -webkit-box-shadow: 0 1px 3px #eaeaea inset;
-    background: #fff;
+    background-color: #fff;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type=file] {
+        background-color: transparent;
+    }
 }
 
 *:focus, input:focus, textarea:focus, select:focus {
