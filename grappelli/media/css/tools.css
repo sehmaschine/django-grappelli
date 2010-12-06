@@ -252,17 +252,17 @@ h1 + .tools a.focus {
 }
 
 .tools a.open-handler:link, .tools a.open-handler:visited {
-    background-image: url('../img/icons/icon-tools-close-handler.png');
+    background-image: url('../img/icons/icon-tools-open-handler.png');
 }
 .tools a.open-handler:hover, .tools a.open-handler:active {
-    background-image: url('../img/icons/icon-tools-close-handler-hover.png');
+    background-image: url('../img/icons/icon-tools-open-handler-hover.png');
 }
 
 .tools a.close-handler:link, .tools a.close-handler:visited {
-    background-image: url('../img/icons/icon-tools-open-handler.png');
+    background-image: url('../img/icons/icon-tools-close-handler.png');
 }
 .tools a.close-handler:hover, .tools a.close-handler:active {
-    background-image: url('../img/icons/icon-tools-open-handler-hover.png');
+    background-image: url('../img/icons/icon-tools-close-handler-hover.png');
 }
 
 .tools a.keep-open-handler:link, .tools a.keep-open-handler:visited {
