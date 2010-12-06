@@ -422,6 +422,8 @@ ul.messagelist.error li {
 .row {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #e0e0e0;
+    border-left: 0;
+    border-right: 0;
 }
 .row.first, 
 .row:first-child, 
@@ -494,6 +496,7 @@ fieldset.module .cell.last + fieldset.module .cell {
 .module.table .module.thead .th, 
 .module.table .module.thead .td {
     border-top: 0;
+    border-bottom: 0;
     background: none;
 }
 .module.tbody .th, 
