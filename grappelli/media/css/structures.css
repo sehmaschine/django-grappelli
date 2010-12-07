@@ -337,7 +337,7 @@ div#breadcrumbs {
 /*    font-weight: bold;*/
     text-align: left;
 }
-div#breadcrumbs a {
+div#breadcrumbs > a {
     padding: 10px 2px;
 }
 body.popup div#breadcrumbs {
