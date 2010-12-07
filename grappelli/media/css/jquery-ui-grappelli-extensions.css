@@ -568,62 +568,20 @@ button.ui-datepicker-close {
 .ui-autocomplete .ui-menu-item a {
     padding: 5px;
     font-weight: bold;
+    border-top: 1px solid #e0e0e0 !important;
     border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
 }
 .ui-autocomplete .ui-menu-item a:hover, .ui-autocomplete .ui-menu-item a:active {
     color: #fff;
+    border-top: 1px solid transparent !important;
     background: #444;
 }
-
-
-
-/*  gAutocomplete
------------------------------------------------------------------------------------------------------- */
-
-/*.ui-gAutocomplete-wrapper {
-    position: absolute;
-    z-index: 400;
+.ui-autocomplete .ui-menu-item:first-child a {
+    border-top: 0 !important;
 }
-ul.ui-gAutocomplete-results {
-    margin-top: 4px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-    box-shadow: 0 0 3px #444; -moz-box-shadow: 0 0 3px #444; -webkit-box-shadow: 0 0 3px #444;
-    background: #fff;
+.ui-autocomplete .ui-menu-item:hover + li a {
+    border-top-color: 0 !important;
 }
-.group ul.ui-gAutocomplete-results {
-    margin-left:171px;
-    width:745px;
-}
-ul.ui-gAutocomplete-results li {
-    padding: 2px 5px;
-    color: #666;
-    cursor: pointer;
-}
-ul.ui-gAutocomplete-results li:hover {
-    background: #dfe7e9;
-}
-ul.ui-gAutocomplete-results li.selected {
-    background: #e1f0f5;
-    font-weight:bold;
-}
-ul.ui-gAutocomplete-results li:first-child {
-    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
-    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
-}
-ul.ui-gAutocomplete-results li:last-child {
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
-}
-ul.ui-gAutocomplete-results li + li {
-    border-top: 1px solid #eee;
-}
-
-ul.ui-gAutocomplete-results li b {
-    margin: 0 1px;
-    color: #444;
-}*/
 
 
 
