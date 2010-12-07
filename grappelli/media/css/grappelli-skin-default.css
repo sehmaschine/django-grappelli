@@ -1098,7 +1098,7 @@ ul.pagination li.separator span {
 /*  TOOLS
 –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-ul.tools li {
+ul.tools > li {
     border-top: 0 !important;
     border-bottom: 0 !important;
 }
