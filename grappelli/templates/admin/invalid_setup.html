@@ -3,6 +3,9 @@
 <!-- LOADING -->
 {% load i18n %}
 
+<!-- TITLE/BRANDING/NAV -->
+{% block title %}{{ title }} | {% grappelli_admin_title %}{% endblock %}
+
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}<div id="breadcrumbs"><a href="../../">{% trans 'Home' %}</a> &rsaquo; {{ title }}</div>{% endblock %}
 

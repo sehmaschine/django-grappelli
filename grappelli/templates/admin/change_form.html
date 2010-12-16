@@ -3,6 +3,9 @@
 <!-- LOADING -->
 {% load i18n admin_modify adminmedia grp_tags %}
 
+<!-- TITLE/BRANDING/NAV -->
+{% block title %}{{ title }} | {% grappelli_admin_title %}{% endblock %}
+
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}

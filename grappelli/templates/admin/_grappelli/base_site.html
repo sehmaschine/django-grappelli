@@ -1,10 +1,11 @@
 {% extends "admin/_grappelli/base.html" %}
 {% load i18n grp_tags %}
 
-{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+<!-- TITLE/BRANDING/NAV -->
+{% block title %}{{ title }} | {% grappelli_admin_title %}{% endblock %}
 
 {% block branding %}
-    <h1 id="site-name">{% trans 'Django administration' %}</h1>
+    <h1 id="site-name">{{ title }}</h1>
     
 {% endblock %}
 

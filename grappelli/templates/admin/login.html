@@ -1,7 +1,10 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n %} {# grp_csrf #}
+{% load i18n grp_tags %} {# grp_csrf #}
+
+<!-- TITLE/BRANDING/NAV -->
+{% block title %}{{ title }} | {% grappelli_admin_title %}{% endblock %}
 
 <!-- BODYCLASS -->
 {% block bodyclass %}login{% endblock %}
