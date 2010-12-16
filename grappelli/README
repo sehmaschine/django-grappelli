@@ -1,0 +1,41 @@
+Grappelli: A jazzy skin for the Django Admin-Interface (only available for standard-compliant browsers).
+
+Grappelli customizes django's admin by overwriting templates and media files only. No python code of django.contib.admin is overwritten.
+
+
+# Documentation #
+    
+    * Changelog                     http://code.google.com/p/django-grappelli/wiki/changelog_2_1
+    * Installation                  http://code.google.com/p/django-grappelli/wiki/Installation_2_1
+    * Setup                         http://code.google.com/p/django-grappelli/wiki/setup_2_1
+    * Available Settings            http://code.google.com/p/django-grappelli/wiki/settings_2_1
+    * Model Admin                   http://code.google.com/p/django-grappelli/wiki/modeladminoptions_2_1
+    * Inline Model Admin            http://code.google.com/p/django-grappelli/wiki/inlinemodeladminoptions_2_1
+    * Related Lookups               http://code.google.com/p/django-grappelli/wiki/relatedlookups_2_1
+    * Generic Relationships         http://code.google.com/p/django-grappelli/wiki/generic_2_1
+    * Using TinyMCE                 http://code.google.com/p/django-grappelli/wiki/tinymce_2_1
+    * Custom the Admin Index Page   http://code.google.com/p/django-grappelli/wiki/customizingindex_2_1
+    * JavaScript customizations:    grappelli/media/js/GRAPPELLI_INFO.txt
+
+
+# Information #
+
+    * FAQ                           http://code.google.com/p/django-grappelli/wiki/FAQ
+    * Features                      http://code.google.com/p/django-grappelli/wiki/Features
+    * Release Notes                 http://code.google.com/p/django-grappelli/wiki/releasenotes
+    * Django Issues                 http://code.google.com/p/django-grappelli/wiki/djangoissues
+    * Reviews                       http://code.google.com/p/django-grappelli/wiki/Reviews
+
+
+# Discussion/Questions #
+
+Use the Grappelli Google-Group  for asking questions, discuss development- and improvement-issues and 
+stay informed about changes/updates: http://groups.google.com/group/django-grappelli. 
+
+
+# Branches/Versions #
+
+    * Trunk, Grappelli 2.1: Compatible with Django 1.2
+    * Branch grappelli_2:   Compatible with Django 1.1
+    * Branch grappelli_2_2: JS-refactoring (in progress) 
+

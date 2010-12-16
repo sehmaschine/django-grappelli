@@ -1,0 +1,29 @@
+from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
+from admin_tools.dashboard import modules, AppIndexDashboard
+
+# create your custom modules here if you want, for example:
+#
+# class CustomDashboardModule(modules.DashboardModule):
+#     pass
+#
+{% if warning %}
+# WARNING: you've changed the default file name 'dashboard.py' to '{{ file }}.py',
+# so, you will need to tell django-admin-tools about this, just add this line
+# to your settings.py file:
+# ADMIN_TOOLS_APP_INDEX_DASHBOARD_MODULE = '{{ file }}'
+{% endif %}
+# Your {{ app }} dashboard class
+class {{ app|capfirst }}Dashboard(AppIndexDashboard):
+    """
+    Document your custom app index dashboard.
+    """
+    def __init__(self, app_title, models, *args, **kwargs):
+        super(CustomAppIndexDashboard, self).__init__(*args, **kwargs)
+
+        # append your modules here, example:
+        # self.append(modules.RecentActionsDashboardModule(
+        #     title=_('Recent Actions'),
+        #     limit=5,
+        #     include_list=models,
+        # ))

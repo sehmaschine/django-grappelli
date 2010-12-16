@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n %} {# grp_csrf #}
+
+<!-- BODYCLASS -->
+{% block bodyclass %}login{% endblock %}
+{% block content-class %}content-flexible{% endblock %}
+{% block content_title %}{% endblock %}
+
+<!-- EXTRAHEAD-->
+{% block extrahead %}
+    <script type="text/javascript">
+        (function($) {
+            $(window).load(function(){ $('#id_username').focus(); });
+        })(django.jQuery);
+    </script>
+{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <div class="container-flexible login">
+        <div class="column span-10 centered">
+            {% if error_message %}<p class="errornote login-errors">{{ error_message }}</p>{% endif %}
+            <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+                <fieldset class="module">
+                    <div class="row">
+                        <div class="column span-4"><label for="id_username" class="required">{% trans 'Username:' %}</label></div>
+                        <div class="column span-6 last"><input type="text" name="username" id="id_username" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="column span-4"><label for="id_password" class="required">{% trans 'Password:' %}</label></div>
+                        <div class="column span-6 last"><input type="password" name="password" id="id_password" /><input type="hidden" name="this_is_the_login_form" value="1" /></div>
+                    </div>
+                </fieldset>
+                <div class="module submit-row">
+                    <ul class="submit-row">
+                        <li class="submit-button-container"><input type="submit" class="default" value="{% trans 'Log in' %}" /></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,305 @@
+
+
+
+/*  Tools Basics
+------------------------------------------------------------------------------------------------------ */
+
+.tools {
+    position: relative;
+    float: right;
+    clear: both;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: bold;
+}
+ul.tools {
+    padding: 0;
+    list-style-type: none;
+    white-space: nowrap;
+}
+ul.tools:empty {
+    display: none;
+}
+ul.tools li {
+    position: relative;
+    float: left;
+    display: block;
+    overflow: hidden;
+    margin-left: 5px;
+    padding: 6px 0;
+    min-width: 12px;
+}
+ul.tools li:last-child {
+    margin-right: 5px;
+}
+
+
+
+/*  H1 + Tools
+------------------------------------------------------------------------------------------------------ */
+
+h1 + .tools, 
+.grappelli-h1 + .tools {
+    position: relative;
+    float: right;
+    clear: right;
+    z-index: 900;
+    margin-top: -34px;
+    margin-bottom: -34px;
+    display: inline-block;
+}
+
+h1 + .tools li, 
+h1 + .tools li:last-child {
+    float: left;
+    margin: 0 0 0 3px;
+    padding: 0;
+}
+h1 + .tools a {
+    display: block;
+    margin: 0;
+    padding: 4px 15px;
+    width: auto;
+    height: 17px;
+    font-size: 11px;
+    opacity: .6;
+}
+h1 + .tools a:hover, h1 + .tools a:active {
+    opacity: 1;
+}
+
+h1 + .tools a.add-handler:link, h1 + .tools a.add-handler:visited {
+    padding-left: 30px;
+    background: url('../img/icons/icon-object-tools-add-handler.png') 0 50% no-repeat scroll;
+}
+h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
+    background: url('../img/icons/icon-object-tools-add-handler.png') 0 50% no-repeat scroll;
+}
+
+
+/*  Focused Buttons ................................................... */
+
+h1 + .tools a.focus {
+    opacity: 1;
+}
+
+
+
+
+/*  Tools
+------------------------------------------------------------------------------------------------------ */
+
+.group .tools, 
+.module .tools {
+    position: relative;
+    float: right;
+    clear: both;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: bold;
+}
+.group ul.tools, 
+.module ul.tools {
+    padding: 0 2px;
+    list-style-type: none;
+}
+.group ul.tools li, 
+.module ul.tools li {
+    position: relative;
+    float: left;
+    display: block;
+    overflow: hidden;
+    margin-left: 5px;
+    padding: 6px 2px;
+}
+.group ul.tools li:last-child, 
+.module ul.tools li:last-child {
+    margin-right: 5px;
+}
+
+
+/*  1st Level H2 + Tools ......................................... */
+
+.group h2+.tools, 
+.module h2+.tools {
+    top: -29px;
+    right: 0;
+    margin-bottom: -29px;
+}
+.group h2+.tools {
+    right: 1px;
+}
+.module.collapse.closed h2+.tools {
+    top: -28px;
+}
+
+
+/*  2nd Level H3 + Tools ......................................... */
+
+.module h3+.tools {
+    top: -27px;
+    right: 0;
+    margin-bottom: -27px;
+}
+.module h3+ul.tools li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+/*  3rd Level H4 + Tools ......................................... */
+
+.module h4+.tools {
+    top: -24px;
+    right: 0;
+    margin-bottom: -24px;
+}
+.module h4+ul.tools li {
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+
+
+/*  Tools in Tabular Groups ......................................... */
+
+.module.table .th .tools, 
+.module.table .td .tools {
+    top: -5px;
+    right: -20px;
+    margin-left: -20px;
+    margin-bottom: -15px;
+}
+.module.table .th .tools li, 
+.module.table .td .tools li {
+    padding-top: 10px;
+    padding-bottom: 9px;
+}
+
+
+/*  Links ................................................... */
+
+.tools a {
+    position: relative;
+    display: block;
+    margin: -6px 0;
+    padding: 6px 0px;
+    width: 100%;
+    height: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.tools a.icon {
+    margin: -6px 0;
+    padding: 6px 0px;
+    width: 12px;
+    height: 16px;
+}
+
+.module.table .th .tools a, 
+.module.table .td .tools a {
+    margin: -9px 0;
+    padding: 9px 0px;
+}
+.module.table .th .tools a.icon, 
+.module.table .td .tools a.icon {
+    margin: -9px 0;
+    padding: 9px 0px;
+}
+
+
+/*  Icons ................................................... */
+
+.tools a.drag-handler:link, .tools a.drag-handler:visited {
+    background-image: url('../img/icons/icon-tools-drag-handler.png');
+}
+.tools a.drag-handler:hover, .tools a.drag-handler:active {
+    background-image: url('../img/icons/icon-tools-drag-handler-hover.png');
+}
+.predelete-items a.drag-handler, .predelete-item a.drag-handler {
+    display: none;
+}
+
+.tools a.viewsite-link:link, .tools a.viewsite-link:visited {
+    background-image: url('../img/icons/icon-tools-viewsite-link.png');
+    opacity: .4;
+}
+.tools a.viewsite-link:hover, .tools a.viewsite-link:active {
+    background-image: url('../img/icons/icon-tools-viewsite-link-hover.png');
+}
+
+.tools a.delete-handler:link, .tools a.delete-handler:visited, 
+.predelete .tools a.delete-handler:hover, .predelete .tools a.delete-handler:active {
+    background-image: url('../img/icons/icon-tools-delete-handler.png');
+}
+.tools a.delete-handler:hover, .tools a.delete-handler:active, 
+.predelete .tools a.delete-handler:link, .predelete .tools a.delete-handler:visited {
+    background-image: url('../img/icons/icon-tools-delete-handler-hover.png');
+}
+
+.tools a.remove-handler:link, .tools a.remove-handler:visited {
+    background-image: url('../img/icons/icon-tools-remove-handler.png');
+}
+.tools a.remove-handler:hover, .tools a.remove-handler:active {
+    background-image: url('../img/icons/icon-tools-remove-handler-hover.png');
+}
+
+.tools a.add-handler:link, .tools a.add-handler:visited {
+    background-image: url('../img/icons/icon-tools-add-handler.png');
+}
+.tools a.add-handler:hover, .tools a.add-handler:active {
+    background-image: url('../img/icons/icon-tools-add-handler-hover.png');
+}
+
+.tools a.open-handler:link, .tools a.open-handler:visited {
+    background-image: url('../img/icons/icon-tools-open-handler.png');
+}
+.tools a.open-handler:hover, .tools a.open-handler:active {
+    background-image: url('../img/icons/icon-tools-open-handler-hover.png');
+}
+
+.tools a.close-handler:link, .tools a.close-handler:visited {
+    background-image: url('../img/icons/icon-tools-close-handler.png');
+}
+.tools a.close-handler:hover, .tools a.close-handler:active {
+    background-image: url('../img/icons/icon-tools-close-handler-hover.png');
+}
+
+.tools a.keep-open-handler:link, .tools a.keep-open-handler:visited {
+    background-image: url('../img/icons/icon-tools-close-handler.png');
+}
+.tools a.keep-open-handler:hover, .tools a.keep-open-handler:active {
+    background-image: url('../img/icons/icon-tools-close-handler-hover.png');
+}
+
+.tools a.keep-closed-handler:link, .tools a.keep-closed-handler:visited {
+    background-image: url('../img/icons/icon-tools-open-handler.png');
+}
+.tools a.keep-closed-handler:hover, .tools a.keep-closed-handler:active {
+    background-image: url('../img/icons/icon-tools-open-handler-hover.png');
+}
+
+.tools a.arrow-up-handler:link, .tools a.arrow-up-handler:visited {
+    background-image: url('../img/icons/icon-tools-arrow-up-handler.png');
+}
+.tools a.arrow-up-handler:hover, .tools a.arrow-up-handler:active {
+    background-image: url('../img/icons/icon-tools-arrow-up-handler-hover.png');
+}
+
+.tools a.arrow-down-handler:link, .tools a.arrow-down-handler:visited {
+    background-image: url('../img/icons/icon-tools-arrow-down-handler.png');
+}
+.tools a.arrow-down-handler:hover, .tools a.arrow-down-handler:active {
+    background-image: url('../img/icons/icon-tools-arrow-down-handler-hover.png');
+}
+
+
+.group.open h2 + .tools li.keep-closed-handler-container,
+.module.open h2 + .tools li.keep-closed-handler-container, 
+.group.closed h2 + .tools li.keep-open-handler-container,
+.module.closed h2 + .tools li.keep-open-handler-container {
+    display: none !important;
+}
+.dashboard-module.open h2 + .tools {
+    margin-right: 5px;
+}

@@ -1,0 +1,51 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia %}
+{% load i18n %}
+{% block javascripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        (function($) {
+            $(document).ready(function(){
+                $('.rte .module').each(function(){
+                    var childWidth = $('.rte .module').children("table").outerWidth();
+                    $('.rte .module').css("width", childWidth);
+                });
+            });
+        })(django.jQuery);
+    </script>
+{% endblock %}
+{% block bodyclass %}documentation{% endblock %}
+{% block content-class %}content-grid{% endblock %}
+{% block breadcrumbs %}<div id="breadcrumbs"><a href="../../../">Home</a> &rsaquo; <a href="../../">Documentation</a> &rsaquo; <a href="../">Models</a> &rsaquo; {{ name }}</div>{% endblock %}
+
+{% block title %}Model: {{ name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ summary }}</h1>
+    <div class="container-grid rte">
+        {% if description %}
+            <p>{% filter linebreaksbr %}{% trans description %}{% endfilter %}</p>
+        {% endif %}
+        <div class="module model">
+            <table class="model" style="width: auto">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in fields|dictsort:"name" %}
+                        <tr>
+                            <td class="nowrap focus">{{ field.name }}</td>
+                            <td class="nowrap">{{ field.data_type }}</td>
+                            <td>{{ field.verbose }}{% if field.help_text %} - {{ field.help_text|safe }}{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="../" class="back">&lsaquo; Back to Models Documentation</a>
+    </div>
+{% endblock %}
