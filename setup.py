@@ -6,7 +6,7 @@ setup(
     description='A jazzy skin for the Django Admin-Interface.',
     author='Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)',
     author_email='patrick@vonautomatisch.at',
-    url = "https://github.com/sehmaschine/django-grappelli"
+    url = "https://github.com/sehmaschine/django-grappelli",
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
