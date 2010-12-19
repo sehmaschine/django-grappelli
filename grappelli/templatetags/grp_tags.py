@@ -131,3 +131,25 @@ def classname(obj, arg=None):
             return False
     else:
         return classname
+
+
+@register.filter
+def formsetsort(value, arg):
+    """
+    Takes a list of formset dicts, returns that list sorted by the sortable field.
+    """
+    
+    sorted_list = []
+    for item in value:
+        position = item.form[arg].data
+        if position and position != "-1":
+            sorted_list.append((int(position), item))
+    sorted_list.sort()
+    sorted_list = [item[1] for item in sorted_list]
+    for item in value:
+        position = item.form[arg].data
+        if not position or position == "-1":
+            sorted_list.append(item)
+    return sorted_list
+
+
