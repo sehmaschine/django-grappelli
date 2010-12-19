@@ -3,27 +3,43 @@
 <!-- LOADING -->
 {% load adminmedia admin_list i18n grp_tags %}
 
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+    {{ media.css }}
+{% endblock %}
+
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
     {% if cl.formset or action_form %}
         {% url 'admin:jsi18n' as jsi18nurl %}
         <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"></script>
+        <script type="text/javascript" charset="utf-8">
+            (function($) {
+                $(document).ready(function() {
+                    $("tr input.action-select").actions();
+                    grappelli.initDateAndTimePicker();
+                    // HACK (django-bug): change related-lookups in order to get the right URL.
+                    $('a.related-lookup').each(function() {
+                       href = $(this).attr('href').replace('../../../', '../../');
+                       $(this).attr('href', href);
+                    });
+                    // related lookups
+                    $("input.vForeignKeyRawIdAdminField").grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
+                    $("input.vManyToManyRawIdAdminField").grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
+                    $("input[name*='object_id']").grp_related_generic({lookup_url:"{% url grp_related_lookup %}"});
+                });
+            })(django.jQuery);
+        </script>
     {% endif %}
-    {{ media }}
     <script type="text/javascript" charset="utf-8">
-        grappelli.site = "change_list";
-        {% if is_popup %}
-            var IS_POPUP = true;
-        {% else %}
-            var IS_POPUP = false;
-        {% endif %}
         (function($) {
             $(document).ready(function() {
+                // HACK: remove actions and list_editables for popups
+                // shouldn't be there in the first place, see
+                // http://code.djangoproject.com/ticket/11700
                 {% if is_popup %}
-                    // UGLY HACK: REMOVE ACTIONS and LIST_EDITABLES FOR POPUPS
-                    // shouldn't be there in the first place, see
-                    // http://code.djangoproject.com/ticket/11700
                     $('div#actions').hide();
                     $('input.action-select').parent().hide();
                     $('input#action-toggle').parent().hide();
@@ -35,15 +51,14 @@
                     // "really" disable datepicker in grappelli.js
                     //$('.vDateField').addClass('disabled');
                 {% endif %}
-                {% if cl.search_fields %}
-                    {% get_search_fields_verbose cl.opts as search_fields_verbose %}
-                    $('body').grp_change_list({'initialSearchVal': '{% if not cl.query and not search_fields_verbose %}{% trans 'Search' %}{% endif %}{% if search_fields_verbose and not cl.query %}{{ search_fields_verbose }}{% endif %}{% if cl.query %}{{ cl.query }}{% endif %}'});
-                {% else %}
-                    $('body').grp_change_list();
-                {% endif %}
+                grappelli.initSearchbar();
+                grappelli.initFilter();
+                // HACK: add no-wrap to table-elements.
+                grappelli.initTableElements();
             });
         })(django.jQuery);
     </script>
+    {{ media.js }}
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS-- >
@@ -113,7 +128,7 @@
             {% date_hierarchy cl %}
         {% endif %}
     {% endif %}
-    <form action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+    <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
         <div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
             <!-- POPUP -->
             {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
@@ -135,15 +150,11 @@
             <!-- PAGINATION BOTTOM -->
             {% pagination cl %}
         </div><br clear="all" />
-        <!-- CHANGELIST-ACTIONS -->
-        {% if action_form and cl.full_result_count and cl.result_count %}
-            {% admin_actions %}
-        {% endif %}
         <!-- SUBMIT ROW -->
-        {% if cl.formset and cl.full_result_count and cl.result_count %}
+        {% if cl.formset or action_form %}
             <div id="submit" class="module footer">
+                {% if action_form %}{% admin_actions %}{% endif %}
                 <ul class="submit-row">
-                    <li class="left delete-link-container"><a href="javascript://" class="cancel-link">Cancel</a></li>
                     <li class="submit-button-container"><input type="submit" class="default" name="_save" value="Save"/></li>
                 </ul>
             </div>

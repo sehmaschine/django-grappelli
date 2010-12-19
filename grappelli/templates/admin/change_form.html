@@ -7,10 +7,34 @@
 {% block javascripts %}
     {{ block.super }}
     {% url admin:jsi18n as jsi18nurl %}
-    <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+    <script type="text/javascript" src="{{ jsi18nurl|default:'../../../jsi18n/' }}"></script>
+    <script src="{% admin_media_prefix %}js/grappelli/jquery.grp_inline.js" type="text/javascript"></script>
     {{ media }}
     <script type="text/javascript" charset="utf-8">
-        grappelli.site = "change_form";
+        (function($) {
+            $(document).ready(function() {
+                // inits
+                grappelli.initDateAndTimePicker();
+                // collapsibles
+                $("div.container-flexible .collapse").grp_collapsible({
+                    on_init: function(elem, options) {
+                        // open collapse (and all collapse parents) in case of errors
+                        if (elem.find("ul.errorlist").length > 0) {
+                            elem.removeClass("closed")
+                                .addClass("open");
+                            elem.parents(".collapse")
+                                .removeClass("closed")
+                                .addClass("open");
+                        }
+                    }
+                });
+                $("div.container-flexible div.group").grp_collapsible_group();
+                // related lookup
+                $("input.vForeignKeyRawIdAdminField").grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
+                $("input.vManyToManyRawIdAdminField").grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
+                $("input[name*='object_id']").grp_related_generic({lookup_url:"{% url grp_related_lookup %}"});
+            });
+        })(django.jQuery);
     </script>
 {% endblock %}
 
@@ -83,7 +107,7 @@
                                 (function($){
                                     $(function(){
                                         try {
-                                            {# Focus on first FormField #}
+                                            // focus on first form-field
                                             $("#{{ adminform.first_field.auto_id }}, #{{ adminform.first_field.auto_id }}_0")
                                             .eq(0).focus();
                                         } catch(e) {}

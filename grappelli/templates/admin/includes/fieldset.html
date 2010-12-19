@@ -10,7 +10,7 @@
                             <div class="column span-4">&nbsp;</div>
                             <div class="column span-flexible">
                                 {{ field.field }}{{ field.label_tag }}
-                                {{ line.errors }}
+                                {% if field.field.errors %}{{ line.errors }}{% endif %}
                                 {% if field.field.field.help_text %}
                                     <p class="help">{{ field.field.field.help_text|safe }}</p>
                                 {% endif %}
@@ -23,7 +23,7 @@
                                 {% else %}
                                     {{ field.field }}
                                 {% endif %}
-                                {{ line.errors }}
+                                {% if field.field.errors %}{{ line.errors }}{% endif %}
                                 {% if field.field.field.help_text %}
                                     <p class="help">{{ field.field.field.help_text|safe }}</p>
                                 {% endif %}
