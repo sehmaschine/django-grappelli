@@ -1,6 +1,8 @@
 # coding: utf-8
 
+# DJANGO IMPORTS
 from django.conf import settings
+
 
 # Admin Site Title
 ADMIN_HEADLINE = getattr(settings, "GRAPPELLI_ADMIN_HEADLINE", 'Grappelli')
