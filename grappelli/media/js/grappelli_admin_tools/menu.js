@@ -1,3 +1,6 @@
+// GRAPPELLI CUSTOM klemens: this is a slighly modified version 
+// of django-admin-tools' menu.js
+
 /**
  * Save/remove bookmarks to/from the bookmark menu item and the database
  *
@@ -17,6 +20,8 @@ var process_bookmarks = function(url, title, prompt_msg) {
         if ($(this).hasClass('bookmarked')) {
             $(this).removeClass('bookmarked');
             
+            // GRAPPELLI CUSTOM begin
+            
             // remove bookmark li and set 
             $('li.bookmark ul li a[href="' + url + '"]').parent().remove();
             $('li.bookmark ul li').last().addClass("last");
@@ -25,11 +30,13 @@ var process_bookmarks = function(url, title, prompt_msg) {
                 $('li.bookmark ul').remove();
                 $('li.bookmark').addClass('disabled');
             }
+            
+            // GRAPPELLI CUSTOM end
+            
             //Drop bookmark and switch form
             $.post(submit_url, $("#bookmark-form").serialize(), function(data) {
                 $("#bookmark-form").replaceWith(data.replace('**title**', title));
             }, 'html');
-        // add bookmark
         } else {
             new_title = prompt(prompt_msg, title);
             if (!new_title) {
@@ -37,12 +44,15 @@ var process_bookmarks = function(url, title, prompt_msg) {
             }
             $(this).addClass('bookmarked');
             
+            // GRAPPELLI CUSTOM begin
+            
             var reinit_menu = false;
             
+            // if the page was loaded with an empty bookmark list
+            // a bunch of classes are missing
+            // and we need to init the widget.
             if (!$('li.bookmark ul').length) {
                 $('li.bookmark').append('<ul/>');
-                // if the page was loaded with an empty bookmark list
-                // a bunch of classes are missing
                 $('li.bookmark')
                     .removeClass('disabled')
                     .addClass("collapse parent closed")
@@ -59,6 +69,8 @@ var process_bookmarks = function(url, title, prompt_msg) {
             if (reinit_menu) {
                 $('div#header .collapse.bookmark').grp_menu();
             }
+            
+            // GRAPPELLI CUSTOM end
             
             $('#bookmark-form input[name=title]').attr('value', new_title);
             // Save bookmark and switch form
