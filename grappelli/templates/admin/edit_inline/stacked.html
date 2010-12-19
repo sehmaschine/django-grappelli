@@ -13,7 +13,8 @@
     {{ inline_admin_formset.formset.non_form_errors }}
     <!-- container -->
     <div class="items">
-        {% for inline_admin_form in inline_admin_formset|formsetsort:inline_admin_formset.opts.sortable_field_name %}
+        {% with inline_admin_formset.opts.sortable_field_name|default:"" as sortable_field_name %}
+        {% for inline_admin_form in inline_admin_formset|formsetsort:sortable_field_name %}
             <!-- element -->
             <div class="module collapse closed{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
                 id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
@@ -43,6 +44,7 @@
                 {{ inline_admin_form.fk_field.field }}
             </div>
         {% endfor %}
+        {% endwith %}
         {{ inline_admin_formset.extra_forms }}
     </div>
     <div class="module add-item">
@@ -56,12 +58,6 @@
 <script type="text/javascript">
 (function($) {
     $(document).ready(function() {
-        
-        function reinitTinyMCE(row) {
-            row.find("textarea.vLargeTextField").each(function() {
-                tinyMCE.execCommand('mceAddControl', false, this.id);
-            });
-        }
         
         function updateSelectFilter(row) {
             // If any SelectFilter widgets were added, instantiate a new instance.
@@ -79,7 +75,6 @@
         
         function reinitDateTimeFields(row) {
             row.find(".vDateField").datepicker({
-                //appendText: '(mm/dd/yyyy)',
                 showOn: 'button',
                 buttonImageOnly: false,
                 buttonText: '',
@@ -88,42 +83,40 @@
             row.find(".vTimeField").grp_timepicker();
         }
         
-        $("#{{ inline_admin_formset.formset.prefix }}-group").inline({
+        $("#{{ inline_admin_formset.formset.prefix }}-group").grp_inline({
             prefix: "{{ inline_admin_formset.formset.prefix }}",
-            deleteCssClass: "delete-handler",
-            emptyCssClass: "empty-form",
             onAfterRemoved: function(inline) {},
             onAfterAdded: function(form) {
-                //reinitTinyMCE(form);
-                //reinitDateTimeFields(form);
-                //updateSelectFilter(form);
+                reinitDateTimeFields(form);
+                updateSelectFilter(form);
+                form.find("input.vForeignKeyRawIdAdminField").grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
+                form.find("input.vManyToManyRawIdAdminField").grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
+                form.find("input[name*='object_id']").grp_related_generic({lookup_url:"{% url grp_related_lookup %}"});
                 form.grp_collapsible();
-            },
+            }
         });
         
         {% if inline_admin_formset.opts.sortable_field_name %}
-        var sortable_field_name = "{{ sortable_field_name }}";
-        // $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.row.{{ inline_admin_formset.opts.sortable_field_name }}").hide();
         $("#{{ inline_admin_formset.formset.prefix }}-group > div.items").sortable({
             handle: "a.drag-handler",
             items: "div.dynamic-form",
             axis: "y",
-            containment: 'parent',
+            appendTo: 'body',
+            forceHelperSize: true,
+            containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.items',
             tolerance: 'pointer',
-            update: function(evt, ui) {
-                //stacked_updateInlineLabel(ui.item);
-            }
         });
-        // $("#{{ opts.module_name }}_form").bind("submit", function(){
-        //     var idx = 0;
-        //     $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.dynamic-form").each(function(){
-        //         var fields = $(this).find("fieldset :input:not([name$='{{ inline_admin_formset.opts.sortable_field_name }}'])[value]");
-        //         if (fields.serialize()) {
-        //             $(this).find("fieldset :input[name$='{{ inline_admin_formset.opts.sortable_field_name }}']").val(idx);
-        //             idx++;
-        //         }
-        //     });
-        // })
+        $("#{{ opts.module_name }}_form").bind("submit", function(){
+            var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}";
+            var i = 0;
+            $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.dynamic-form").each(function(){
+                var fields = $(this).find("fieldset :input[value]");
+                if (fields.serialize()) {
+                    $(this).find("input[name$='"+sortable_field_name+"']").val(i);
+                    i++;
+                }
+            });
+        });
         {% endif %}
         
     });

@@ -1,8 +1,10 @@
 # coding: utf-8
 
+# DJANGO IMPORTS
 from django.http import HttpResponse, HttpResponseForbidden
 from django.db import models
 from django.views.decorators.cache import never_cache
+from django.utils.translation import ugettext_lazy as _
 
 @never_cache
 def related_lookup(request):

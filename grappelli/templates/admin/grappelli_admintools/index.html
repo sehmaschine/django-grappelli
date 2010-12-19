@@ -9,9 +9,8 @@
             $(document).ready(function() {
                 $("div#header .collapse").grp_admintools_menu();
                 
-                
                 var main_column = $("#column_1");
-
+                
                 // in dashboard_edit_mode a user can change the apperance of the dashboard
                 // these changes ("delete"/collapse/move modoules) are persistent for the user.
                 // collapse still works outside of edit_mode but isn't saved
@@ -20,7 +19,7 @@
                     // toogle the edit mode
                     grappelli.dashboard_edit_mode = !grappelli.dashboard_edit_mode;
                     $(this).toggleClass("tools-active");
-
+                    
                     if (grappelli.dashboard_edit_mode) { // activate
                         $(".drag-handler-container").attr("style", "");
                         $(".remove-handler-container").attr("style", "");
@@ -64,10 +63,10 @@
                         main_column.height(main_column.height() + grappelli.getHeightOfTallestModule(main_column));
                     }
                 });
-
+                
                 // set order of dashboard modules
                 grappelli.init_dashboard_positions(main_column);
-
+                
                 // make modules sortable
                 main_column.sortable({
                     // drag&drop the inlines with the drag-handler only
@@ -90,7 +89,7 @@
                         //ui.item.parent().removeAttr('style');
                     }
                 });
-
+                
                 // make modules collapsible
                 $("div.container-grid div.collapse").grp_collapsible({
                     on_init: function(elem, options) {
@@ -101,8 +100,6 @@
                         if (grappelli.dashboard_edit_mode) {
                             // send new preferences to the server
                             grappelli.set_dashboard_collapsible(elem.attr("id"), elem.hasClass(options.open_css));
-
-
                             // increase the height of main_column to be a able to 
                             // sort big modules at the end of main_column with ui.sortable()
                             main_column.removeAttr('style'); // delete the old setting first

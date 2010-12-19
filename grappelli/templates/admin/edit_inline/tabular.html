@@ -21,7 +21,8 @@
                 {% if inline_admin_formset.formset.can_delete %}<div class="th">&nbsp;</div>{% endif %}
             </div>
         </div>
-        {% for inline_admin_form in inline_admin_formset %}
+        {% with inline_admin_formset.opts.sortable_field_name|default:"" as sortable_field_name %}
+        {% for inline_admin_form in inline_admin_formset|formsetsort:sortable_field_name %}
             <!-- element -->
             <div class="module tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
                 id="{{ inline_admin_formset.formset.prefix }}{% if not forloop.last %}{{ forloop.counter0 }}{% else %}-empty{% endif %}">
@@ -77,6 +78,7 @@
                 </div>
             </div>
         {% endfor %}
+        {% endwith %}
     </div>
     <div class="module add-item">
         <a href="javascript://" class="add-handler">{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</a>
@@ -115,8 +117,6 @@
         
         $("#{{ inline_admin_formset.formset.prefix }}-group").grp_inline({
             prefix: "{{ inline_admin_formset.formset.prefix }}",
-            deleteCssClass: "delete-handler",
-            emptyCssClass: "empty-form",
             onBeforeAdded: function(inline) {},
             onAfterAdded: function(form) {
                 reinitDateTimeFields(form);
@@ -127,31 +127,29 @@
             },
         });
         
+        {% if inline_admin_formset.opts.sortable_field_name %}
+        $("#{{ inline_admin_formset.formset.prefix }}-group > div.table").sortable({
+            handle: "a.drag-handler",
+            items: "div.dynamic-form",
+            axis: "y",
+            appendTo: 'body',
+            forceHelperSize: true,
+            containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.table',
+            tolerance: 'pointer',
+        });
+        $("#{{ opts.module_name }}_form").bind("submit", function(){
+            var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}";
+            var i = 0;
+            $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.dynamic-form").each(function(){
+                var fields = $(this).find("div.td :input[value]");
+                if (fields.serialize()) {
+                    $(this).find("input[name$='"+sortable_field_name+"']").val(i);
+                    i++;
+                }
+            });
+        });
+        {% endif %}
+        
     });
 })(django.jQuery);
 </script>
-{% comment %}
-var sortable_field_name = "{{ sortable_field_name }}";
-{% if inline_admin_formset.opts.can_order %}
-// $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.row.{{ inline_admin_formset.opts.sortable_field_name }}").hide();
-$("#{{ inline_admin_formset.formset.prefix }}-group > div.table").sortable({
-    handle: "a.drag-handler",
-    items: "div.dynamic-form",
-    axis: "y",
-    appendTo: 'body',
-    forceHelperSize: true,
-    containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.table',
-    tolerance: 'pointer',
-});
-$("#{{ opts.module_name }}_form").bind("submit", function(){
-    var idx = 1;
-    $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.dynamic-form").each(function(){
-        var fields = $(this).find("div.td :input[value]");
-        if (fields.serialize()) {
-            $(this).find("input[name$='ORDER']").val(idx);
-            idx++;
-        }
-    });
-});
-{% endif %}
-{% endcomment %}
