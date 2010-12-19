@@ -16,7 +16,7 @@ def admin_template_path(request):
         apps = getattr(settings, 'INSTALLED_APPS')
         if apps.count("admin_tools.dashboard"):
             # use grappelli admintools templates
-            template_path = "admin/grappelli_admin_tools/"
+            template_path = "admin/grappelli_admintools/"
     
     return {
         "admin_template_index": "%sindex.html" % template_path,
