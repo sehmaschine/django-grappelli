@@ -23,7 +23,7 @@ var django = {
     // datepicker, timepicker init
     grappelli.initDateAndTimePicker = function() {
         
-        // to get rid of text after DateField (hardcoded in django.admin)
+        // HACK: get rid of text after DateField (hardcoded in django.admin)
         $('p.datetime').each(function() {
             var text = $(this).html();
             text = text.replace(/^\w*: /, "");
@@ -87,6 +87,29 @@ var django = {
     grappelli.initSearchbar = function() {
         var searchbar = $("input#searchbar");
         searchbar.focus();
+    };
+    
+    grappelli.updateSelectFilter = function(form) {
+        if (typeof SelectFilter != "undefined"){
+            form.find(".selectfilter").each(function(index, value){
+                var namearr = value.name.split('-');
+                SelectFilter.init(value.id, namearr[namearr.length-1], false, "{% admin_media_prefix %}");
+            });
+            form.find(".selectfilterstacked").each(function(index, value){
+                var namearr = value.name.split('-');
+                SelectFilter.init(value.id, namearr[namearr.length-1], true, "{% admin_media_prefix %}");
+            });
+        }
+    };
+    
+    grappelli.reinitDateTimeFields = function(form) {
+        form.find(".vDateField").datepicker({
+            showOn: 'button',
+            buttonImageOnly: false,
+            buttonText: '',
+            dateFormat: grappelli.getFormat('date'),
+        });
+        form.find(".vTimeField").grp_timepicker();
     };
     
 })(django.jQuery);
