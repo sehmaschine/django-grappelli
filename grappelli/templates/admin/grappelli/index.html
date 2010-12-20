@@ -6,13 +6,6 @@
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
-    <script type="text/javascript" charset="utf-8">
-        (function($) {
-            $(document).ready(function() {
-                $("div#header .collapse").grp_collapsible();
-            });
-        })(django.jQuery);
-    </script>
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS-- >
