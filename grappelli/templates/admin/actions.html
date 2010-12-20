@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="cell changelist-actions">
+<div class="changelist-actions">
     {% for field in action_form %}{{ field }}{% endfor %}
     {% if actions_selection_counter %}
         <script type="text/javascript">var _actions_icnt="{{ cl.result_list|length|default:"0" }}";</script>

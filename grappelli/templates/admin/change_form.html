@@ -3,13 +3,18 @@
 <!-- LOADING -->
 {% load i18n admin_modify adminmedia grp_tags %}
 
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+    {{ media.css }}
+{% endblock %}
+
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
     {% url admin:jsi18n as jsi18nurl %}
     <script type="text/javascript" src="{{ jsi18nurl|default:'../../../jsi18n/' }}"></script>
     <script src="{% admin_media_prefix %}js/grappelli/jquery.grp_inline.js" type="text/javascript"></script>
-    {{ media }}
     <script type="text/javascript" charset="utf-8">
         (function($) {
             $(document).ready(function() {
@@ -36,6 +41,7 @@
             });
         })(django.jQuery);
     </script>
+    {{ media.js }}
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->

@@ -762,9 +762,6 @@ ul.pagination li.showall {
     display: block;
     margin-right: 3px;
 }
-.changelist-actions ul li.all {
-    margin-right: 10px;
-}
 
 .changelist-actions ul a, 
 .changelist-actions ul span {
@@ -772,7 +769,6 @@ ul.pagination li.showall {
     padding: 4px 8px 3px;
     font-size: 11px;
     font-weight: bold;
-    border: 1px solid;
 }
 .changelist-actions ul span span {
     padding: 0;
@@ -791,25 +787,6 @@ ul.pagination li.showall {
 .changelist-actions li.clear-selection,
 .changelist-actions li.question {
    display: none;
-}
-
-
-
-/*  Module Footer
------------------------------------------------------------------------------------------------------- */
-
-.module.footer {
-    position: fixed;
-    z-index: 1000;
-    bottom: 0;
-    margin: 0 -20px;
-    padding: 12px 20px;
-    width: 100%;
-    opacity: 1;
-    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-}
-.changelist-actions {
-    padding: 15px 20px 14px;
 }
 
 
@@ -841,6 +818,35 @@ ul.submit-row li.left {
 }
 ul.submit-row li.left:first-child {
     margin-left: 0;
+}
+
+
+
+/*  Module Footer
+------------------------------------------------------------------------------------------------------ */
+
+.module.footer {
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    margin: 0 -20px;
+    padding: 12px 20px;
+    width: 100%;
+    opacity: 1;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+.module.footer .changelist-actions {
+    position: relative;
+    float: left;
+    clear: none;
+    width: 75%;
+    padding: 2px 0 0;
+}
+.change-list .module.footer ul.submit-row {
+    position: relative;
+    float: left;
+    clear: none;
+    width: 25%;
 }
 
 

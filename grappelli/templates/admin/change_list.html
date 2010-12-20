@@ -40,16 +40,16 @@
                 // shouldn't be there in the first place, see
                 // http://code.djangoproject.com/ticket/11700
                 {% if is_popup %}
-                    $('div#actions').hide();
-                    $('input.action-select').parent().hide();
-                    $('input#action-toggle').parent().hide();
-                    $('div.changelist-results input').attr('disabled', 'disabled');
-                    $('div.changelist-results select').attr('disabled', 'disabled');
-                    $('div.changelist-results textarea').attr('disabled', 'disabled').addClass("mceNoEditor");
-                    $('div#submit').hide();
-                    $('.related-lookup, .add-another').attr("onClick", "return false;");
-                    // "really" disable datepicker in grappelli.js
-                    //$('.vDateField').addClass('disabled');
+                $('div#actions').hide();
+                $('div#submit').hide();
+                $('input.action-select').parent().hide();
+                $('input#action-toggle').parent().hide();
+                $('div.changelist-results input').attr('disabled', 'disabled');
+                $('div.changelist-results select').attr('disabled', 'disabled');
+                $('div.changelist-results textarea').attr('disabled', 'disabled').addClass("mceNoEditor");
+                $('.related-lookup, .add-another').attr("onClick", "return false;");
+                // "really" disable datepicker in grappelli.js
+                //$('.vDateField').addClass('disabled');
                 {% endif %}
                 grappelli.initSearchbar();
                 grappelli.initFilter();
