@@ -1,5 +1,4 @@
-include grappelli/LICENSE
+include LICENSE
+recursive-include docs *
 recursive-include grappelli/media *
-recursive-include grappelli/templates *.html
-recursive-include grappelli/locale *.mo *.po
-recursive-include grappelli/models/fixtures *.json
+recursive-include grappelli/templates *
