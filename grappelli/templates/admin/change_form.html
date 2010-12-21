@@ -6,7 +6,6 @@
 <!-- STYLESHEETS -->
 {% block stylesheets %}
     {{ block.super }}
-    {{ media.css }}
 {% endblock %}
 
 <!-- JAVASCRIPTS -->
@@ -18,9 +17,8 @@
     <script type="text/javascript" charset="utf-8">
         (function($) {
             $(document).ready(function() {
-                // inits
                 grappelli.initDateAndTimePicker();
-                // collapsibles
+                $("div.container-flexible div.group").grp_collapsible_group();
                 $("div.container-flexible .collapse").grp_collapsible({
                     on_init: function(elem, options) {
                         // open collapse (and all collapse parents) in case of errors
@@ -33,15 +31,13 @@
                         }
                     }
                 });
-                $("div.container-flexible div.group").grp_collapsible_group();
-                // related lookup
                 $("input.vForeignKeyRawIdAdminField").grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
                 $("input.vManyToManyRawIdAdminField").grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
                 $("input[name*='object_id']").grp_related_generic({lookup_url:"{% url grp_related_lookup %}"});
             });
         })(django.jQuery);
     </script>
-    {{ media.js }}
+    {{ media }}
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->

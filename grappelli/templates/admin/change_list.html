@@ -20,12 +20,6 @@
                 $(document).ready(function() {
                     $("tr input.action-select").actions();
                     grappelli.initDateAndTimePicker();
-                    // HACK (django-bug): change related-lookups in order to get the right URL.
-                    $('a.related-lookup').each(function() {
-                       href = $(this).attr('href').replace('../../../', '../../');
-                       $(this).attr('href', href);
-                    });
-                    // related lookups
                     $("input.vForeignKeyRawIdAdminField").grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
                     $("input.vManyToManyRawIdAdminField").grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
                     $("input[name*='object_id']").grp_related_generic({lookup_url:"{% url grp_related_lookup %}"});
@@ -36,25 +30,9 @@
     <script type="text/javascript" charset="utf-8">
         (function($) {
             $(document).ready(function() {
-                // HACK: remove actions and list_editables for popups
-                // shouldn't be there in the first place, see
-                // http://code.djangoproject.com/ticket/11700
-                {% if is_popup %}
-                $('div#actions').hide();
-                $('div#submit').hide();
-                $('input.action-select').parent().hide();
-                $('input#action-toggle').parent().hide();
-                $('div.changelist-results input').attr('disabled', 'disabled');
-                $('div.changelist-results select').attr('disabled', 'disabled');
-                $('div.changelist-results textarea').attr('disabled', 'disabled').addClass("mceNoEditor");
-                $('.related-lookup, .add-another').attr("onClick", "return false;");
-                // "really" disable datepicker in grappelli.js
-                //$('.vDateField').addClass('disabled');
-                {% endif %}
                 grappelli.initSearchbar();
                 grappelli.initFilter();
-                // HACK: add no-wrap to table-elements.
-                grappelli.initTableElements();
+                grappelli.initTableElements(); // HACK: add no-wrap to table-elements.
             });
         })(django.jQuery);
     </script>
@@ -78,9 +56,7 @@
 
 <!-- CONTENT-TITLE -->
 {% block content_title %}
-    <h1>
-        {{ cl.opts.verbose_name_plural|capfirst }}
-    </h1>
+    <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
 {% endblock %}
 
 <!-- OBJECT-TOOLS -->
