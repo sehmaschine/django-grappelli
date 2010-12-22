@@ -46,6 +46,13 @@ a:hover, a:active, a.selected {
     color: #309bbf;
 }
 
+.dashboard h4 a:link, .dashboard h4 a:visited {
+    color: #666;
+}
+.dashboard h4 a:hover, .dashboard h4 a:active {
+    color: #309bbf;
+}
+
 #header a:link, #header a:visited {
     color: #59AFCC;
 }
