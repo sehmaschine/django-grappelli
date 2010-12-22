@@ -1,6 +1,9 @@
 # coding: utf-8
 
+# PYTHON IMPORTS
 import os
+
+# DJANGO IMPORTS
 from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
 

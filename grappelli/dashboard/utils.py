@@ -1,14 +1,48 @@
 """
 Admin ui common utilities.
 """
+
+# PYTHON IMPORTS
 import types
+import warnings
 from fnmatch import fnmatch
 
+# DJANGO IMPORTS
 from django.conf import settings
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.utils.importlib import import_module
-import warnings
+
+
+def _get_dashboard_cls(dashboard_cls, context):
+    if type(dashboard_cls) is types.DictType:
+        curr_url = context.get('request').META['PATH_INFO']
+        for key in dashboard_cls:
+            admin_site_mod, admin_site_inst = key.rsplit('.', 1)
+            admin_site_mod = import_module(admin_site_mod)
+            admin_site = getattr(admin_site_mod, admin_site_inst)
+            admin_url = reverse('%s:index' % admin_site.name)
+            if curr_url.startswith(admin_url):
+                mod, inst = dashboard_cls[key].rsplit('.', 1)
+                mod = import_module(mod)
+                return getattr(mod, inst)
+    else:
+        mod, inst = dashboard_cls.rsplit('.', 1)
+        mod = import_module(mod)
+        return getattr(mod, inst)
+    raise ValueError('Dashboard matching "%s" not found' % dashboard_cls)
+
+
+def get_index_dashboard(context):
+    """
+    Returns the admin dashboard defined in settings (or the default one).
+    """
+    
+    return _get_dashboard_cls(getattr(
+        settings,
+        'GRAPPELLI_INDEX_DASHBOARD',
+        'grappelli.dashboard.dashboards.DefaultIndexDashboard'
+    ), context)()
 
 
 def get_admin_site(context=None, request=None):
@@ -33,8 +67,10 @@ def get_admin_site(context=None, request=None):
         return admin.site
     raise ValueError('Admin site matching "%s" not found' % dashboard_cls)
 
+
 def get_admin_site_name(context):
     return get_admin_site(context).name
+
 
 def get_avail_models(request):
     """ Returns (model, perm,) for all models user can possibly see """
@@ -47,6 +83,7 @@ def get_avail_models(request):
             continue
         items.append((model, perms,))
     return items
+
 
 def filter_models(request, models, exclude):
     """
@@ -88,22 +125,6 @@ class AppListElementMixin(object):
     """
     
     def _visible_models(self, request):
-        # compatibility layer: generate models/exclude patterns
-        # from include_list/exclude_list args
-        
-        if self.include_list:
-            warnings.warn(
-               "`include_list` is deprecated for ModelList and AppList and "
-               "will be removed in future releases. Please use `models` instead.",
-               DeprecationWarning
-            )
-        
-        if self.exclude_list:
-            warnings.warn(
-               "`exclude_list` is deprecated for ModelList and AppList and "
-               "will be removed in future releases. Please use `exclude` instead.",
-               DeprecationWarning
-            )
         
         included = self.models[:]
         included.extend([elem+"*" for elem in self.include_list])
@@ -140,13 +161,4 @@ class AppListElementMixin(object):
                                          app_label,
                                          model.__name__.lower()))
 
-def get_media_url():
-    """
-    Returns the django admin tools media URL.
-    """
-    media_url = getattr(settings, 'ADMIN_TOOLS_MEDIA_URL', None)
-    if media_url == None:
-        media_url = getattr(settings, 'STATIC_URL', None)
-    if media_url == None:
-        media_url = getattr(settings, 'MEDIA_URL')
-    return media_url.rstrip('/')
+

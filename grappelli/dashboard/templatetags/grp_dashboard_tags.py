@@ -3,7 +3,7 @@ Dashboard template tags, the following dashboard tags are available:
  * ``{% grp_render_dashboard %}``
  * ``{% grp_render_dashboard_module %}``
 
-To load the dashboard tags: ``{% load admin_tools_dashboard_tags %}``.
+To load the dashboard tags: ``{% load grp_dashboard_tags %}``.
 """
 
 import math
@@ -11,8 +11,7 @@ import math
 from django import template
 from django.core.urlresolvers import reverse
 
-from grappelli.dashboard.utils import get_media_url, get_admin_site_name
-from grappelli.dashboard.dashboard_utils import get_dashboard
+from grappelli.dashboard.utils import get_admin_site_name, get_index_dashboard
 
 register = template.Library()
 tag_func = register.inclusion_tag('grappelli/dashboard/dummy.html', takes_context=True)
@@ -32,17 +31,14 @@ def grp_render_dashboard(context, location='index', dashboard=None):
         with the ``get_index_dashboard`` or ``get_app_index_dashboard``
         functions, depending on the ``location`` argument.
     """
-    
     if dashboard is None:
-        dashboard = get_dashboard(context, location)
+        dashboard = get_index_dashboard(context)
     
     dashboard.init_with_context(context)
     
     context.update({
         'template': dashboard.template,
         'dashboard': dashboard,
-        'split_at': math.ceil(float(len(dashboard.children))/float(dashboard.columns)),
-        'media_url': get_media_url(),
         'admin_url': reverse('%s:index' % get_admin_site_name(context)),
     })
     return context
