@@ -2,9 +2,9 @@
 {% if not module.is_empty %}
 
 {% if dashboard.app_title %}
-    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}group group-{{ module.display }} {% else %}module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentactions" %}actions {% endif %}{{ module.render_css_classes|cut:"deletable"|cut:"draggable"|join:"" }}{% if module.collapsible %} collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} open{% endif %}{% endif %}">
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}group {% else %}module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentactions" %}actions {% endif %}{{ module.render_css_classes|cut:"deletable"|cut:"draggable"|join:"" }}{% if module.collapsible %} collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} open{% endif %}{% endif %}">
 {% else %}
-    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}group group-{{ module.display }} {% else %}module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"RecentActions" %}actions {% endif %}{{ module.render_css_classes }}{% if module.collapsible %} collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} open{% endif %}{% endif %}">
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}group {% else %}module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentActions" %}actions {% endif %}{{ module.render_css_classes }}{% if module.collapsible %} collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} open{% endif %}{% endif %}">
 {% endif %}
     
     {% if module.title %}

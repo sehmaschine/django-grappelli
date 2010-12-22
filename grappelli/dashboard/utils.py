@@ -14,7 +14,7 @@ import warnings
 def get_admin_site(context=None, request=None):
     dashboard_cls = getattr(
         settings,
-        'ADMIN_TOOLS_INDEX_DASHBOARD',
+        'GRAPPELLI_INDEX_DASHBOARD',
         'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
     )
     

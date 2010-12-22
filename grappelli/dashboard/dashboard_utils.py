@@ -50,7 +50,7 @@ def get_index_dashboard(context):
     """
     return _get_dashboard_cls(getattr(
         settings,
-        'ADMIN_TOOLS_INDEX_DASHBOARD',
+        'GRAPPELLI_INDEX_DASHBOARD',
         'grappelli.dashboard.dashboards.DefaultIndexDashboard'
     ), context)()
 
