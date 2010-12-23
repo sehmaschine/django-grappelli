@@ -184,59 +184,10 @@ class Group(DashboardModule):
 class LinkList(DashboardModule):
     """
     A module that displays a list of links.
-    As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
-    properties, the :class:`~grappelli.dashboard.modules.LinkList` takes
-    an extra keyword argument:
-    
-    ``layout``
-        The layout of the list, possible values are ``stacked`` and ``inline``.
-        The default value is ``stacked``.
-    
-    Link list modules children are simple python dictionaries that can have the
-    following keys:
-    
-    ``title``
-        The link title.
-    
-    ``url``
-        The link URL.
-    
-    ``external``
-        Boolean that indicates whether the link is an external one or not.
-    
-    ``description``
-        A string describing the link, it will be the ``title`` attribute of
-        the html ``a`` tag.
-    
-    Children can also be iterables (lists or tuples) of length 2, 3 or 4.
-    
-    Here's a small example of building a link list module::
-    
-        from grappelli.dashboard import modules, Dashboard
-        
-        class MyDashboard(Dashboard):
-            def __init__(self, **kwargs):
-                Dashboard.__init__(self, **kwargs)
-                
-                self.children.append(modules.LinkList(
-                    layout='inline',
-                    children=(
-                        {
-                            'title': 'Python website',
-                            'url': 'http://www.python.org',
-                            'external': True,
-                            'description': 'Python programming language rocks !',
-                        },
-                        ['Django website', 'http://www.djangoproject.com', True],
-                        ['Some internal link', '/some/internal/link/'],
-                    )
-                ))
-    
     """
     
     title = _('Links')
     template = 'grappelli/dashboard/modules/link_list.html'
-    layout = 'stacked'
     
     def init_with_context(self, context):
         if self._initialized:
@@ -259,60 +210,16 @@ class LinkList(DashboardModule):
 class AppList(DashboardModule, AppListElementMixin):
     """
     Module that lists installed apps and their models.
-    As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
-    properties, the :class:`~grappelli.dashboard.modules.AppList`
-    has two extra properties:
-    
-    ``models``
-        A list of models to include, only models whose name (e.g.
-        "blog.comments.Comment") match one of the strings (e.g. "blog.*")
-        in the models list will appear in the dashboard module.
-    
-    ``exclude``
-        A list of models to exclude, if a model name (e.g.
-        "blog.comments.Comment") match an element of this list (e.g.
-        "blog.comments.*") it won't appear in the dashboard module.
-    
-    If no models/exclude list is provided, **all apps** are shown.
-    
-    Here's a small example of building an app list module::
-    
-        from grappelli.dashboard import modules, Dashboard
-        
-        class MyDashboard(Dashboard):
-            def __init__(self, **kwargs):
-                Dashboard.__init__(self, **kwargs)
-                
-                # will only list the django.contrib apps
-                self.children.append(modules.AppList(
-                    title='Administration',
-                    models=('django.contrib.*',)
-                ))
-                # will list all apps except the django.contrib ones
-                self.children.append(modules.AppList(
-                    title='Applications',
-                    exclude=('django.contrib.*',)
-                ))
-    
-    .. note::
-        
-        Note that this module takes into account user permissions, for
-        example, if a user has no rights to change or add a ``Group``, then
-        the django.contrib.auth.Group model line will not be displayed.
     """
     
     title = _('Applications')
     template = 'grappelli/dashboard/modules/app_list.html'
     models = None
     exclude = None
-    include_list = None
-    exclude_list = None
     
     def __init__(self, title=None, **kwargs):
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
-        self.include_list = kwargs.pop('include_list', []) # deprecated
-        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
         super(AppList, self).__init__(title, **kwargs)
     
     def init_with_context(self, context):
@@ -348,50 +255,15 @@ class AppList(DashboardModule, AppListElementMixin):
 class ModelList(DashboardModule, AppListElementMixin):
     """
     Module that lists a set of models.
-    As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
-    properties, the :class:`~grappelli.dashboard.modules.ModelList` takes
-    two extra arguments:
-    
-    ``models``
-        A list of models to include, only models whose name (e.g.
-        "blog.comments.Comment") match one of the strings (e.g. "blog.*")
-        in the models list will appear in the dashboard module.
-    
-    ``exclude``
-        A list of models to exclude, if a model name (e.g.
-        "blog.comments.Comment") match an element of this list (e.g.
-        "blog.comments.*") it won't appear in the dashboard module.
-    
-    Here's a small example of building a model list module::
-        
-        from grappelli.dashboard import modules, Dashboard
-        
-        class MyDashboard(Dashboard):
-            def __init__(self, **kwargs):
-                Dashboard.__init__(self, **kwargs)
-                
-                self.children += [
-                    modules.ModelList('Authentication', ['django.contrib.auth.*',])
-                ]
-    
-    .. note::
-    
-        Note that this module takes into account user permissions, for
-        example, if a user has no rights to change or add a ``Group``, then
-        the django.contrib.auth.Group model line will not be displayed.
     """
     
     template = 'grappelli/dashboard/modules/model_list.html'
     models = None
     exclude = None
-    include_list = None
-    exclude_list = None
     
     def __init__(self, title=None, models=None, exclude=None, **kwargs):
         self.models = list(models or [])
         self.exclude = list(exclude or [])
-        self.include_list = kwargs.pop('include_list', []) # deprecated
-        self.exclude_list = kwargs.pop('exclude_list', []) # deprecated
         super(ModelList, self).__init__(title, **kwargs)
     
     def init_with_context(self, context):
@@ -414,36 +286,6 @@ class ModelList(DashboardModule, AppListElementMixin):
 class RecentActions(DashboardModule):
     """
     Module that lists the recent actions for the current user.
-    As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
-    properties, the :class:`~grappelli.dashboard.modules.RecentActions`
-    takes three extra keyword arguments:
-    
-    ``include_list``
-        A list of contenttypes (e.g. "auth.group" or "sites.site") to include,
-        only recent actions that match the given contenttypes will be
-        displayed.
-    
-    ``exclude_list``
-        A list of contenttypes (e.g. "auth.group" or "sites.site") to exclude,
-        recent actions that match the given contenttypes will not be
-        displayed.
-    
-    ``limit``
-        The maximum number of children to display. Default value: 10.
-    
-    Here's a small example of building a recent actions module::
-    
-        from grappelli.dashboard import modules, Dashboard
-        
-        class MyDashboard(Dashboard):
-            def __init__(self, **kwargs):
-                Dashboard.__init__(self, **kwargs)
-                
-                self.children.append(modules.RecentActions(
-                    title='Django CMS recent actions',
-                    limit=5,
-                    css_classes=('column_3',),
-                ))
     """
     
     title = _('Recent Actions')
@@ -506,43 +348,6 @@ class RecentActions(DashboardModule):
 class Feed(DashboardModule):
     """
     Class that represents a feed dashboard module.
-    
-    .. important::
-    
-        This class uses the
-        `Universal Feed Parser module <http://www.feedparser.org/>`_ to parse
-        the feeds, so you'll need to install it, all feeds supported by
-        FeedParser are thus supported by the Feed
-    
-    As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
-    properties, the :class:`~grappelli.dashboard.modules.Feed` takes two
-    extra keyword arguments:
-    
-    ``feed_url``
-        The URL of the feed.
-    
-    ``limit``
-        The maximum number of feed children to display. Default value: None,
-        which means that all children are displayed.
-    
-    Here's a small example of building a recent actions module::
-    
-        from grappelli.dashboard import modules, Dashboard
-        
-        class MyDashboard(Dashboard):
-            def __init__(self, **kwargs):
-                Dashboard.__init__(self, **kwargs)
-                
-                self.children.append(modules.Feed(
-                    title=_('Latest Django News'),
-                    feed_url='http://www.djangoproject.com/rss/weblog/',
-                    limit=5,
-                    css_classes=('column_3',),
-                ))
-    
-    The screenshot of what this code produces:
-    
-    .. image:: images/feed_dashboard_module.png
     """
     
     title = _('RSS Feed')
