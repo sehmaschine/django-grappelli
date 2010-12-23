@@ -84,7 +84,7 @@ class CustomIndexDashboard(Dashboard):
                 },
                 {
                     'title': _('Grappelli Documentation'),
-                    'url': 'http://www.vonautomatisch.at/grappelli/docs/1.3/',
+                    'url': 'http://packages.python.org/django-grappelli/',
                     'external': True,
                 },
                 {
