@@ -21,7 +21,7 @@ Available Settings
 Collapsibles
 ------------
 
-Use the ``classes`` property in order to collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_.
+Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_.
 
 A ModelAdmin example::
 
@@ -130,4 +130,4 @@ Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form
 * and remove TinyMCE instances again when removing (not deleting) a form.
 
 .. note::
-    TinyMCE with Inlines is not supported by default. You need to add the behaviour yourself.
+    TinyMCE with Inlines is not supported by default.

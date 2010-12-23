@@ -29,7 +29,7 @@ Here's an example of a custom dashboard::
 
     from django.core.urlresolvers import reverse
     from django.utils.translation import ugettext_lazy as _
-    from admin_tools.dashboard import modules, Dashboard
+    from grappelli.dashboard import modules, Dashboard
     
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
