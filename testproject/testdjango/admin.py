@@ -8,7 +8,7 @@ from django.conf import settings
 #if hasattr(admin.site, 'disable_action'):
 #    admin.site.disable_action('delete_selected')
 
-from grappelli.admin import GrappelliModelAdmin, GrappelliStackedInline, GrappelliTabularInline
+#from grappelli.admin import GrappelliModelAdmin, GrappelliStackedInline, GrappelliTabularInline
 from testdjango.models import *
 
 # -- User -- Overriding grappelli test
@@ -23,7 +23,7 @@ admin.site.unregister(User)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(User, UserAdmin)
 
-class UserAdmin(GrappelliModelAdmin):
+class UserAdmin(admin.ModelAdmin):
     list_display   = ('username', 'first_name', 'last_name', 'email', 'date_joined', 'last_login', 'is_staff', 'is_superuser')
     search_fields  = ['username', 'first_name',  'last_name', 'email']
     date_hierarchy = 'date_joined'

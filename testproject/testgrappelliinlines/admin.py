@@ -6,16 +6,13 @@ from django.conf import settings
 
 from testgrappelli.models import *
 from testgrappelliinlines.models import *
-from grappelli.admin import GrappelliTabularInline, GrappelliStackedInline
 
 
-# Tabular inlines ===================================================================================
+# Tabular inlines 
 
-# Related Fields  -----------------------------------------------------------------------------------
+# - Related Fields (tabular)
 
-# Related Fields / Tabular
-
-class GrappelliRelatedFieldsTabularInline(GrappelliTabularInline):
+class GrappelliRelatedFieldsTabularInline(admin.TabularInline):
     model = GrappelliRelatedFieldsInline
     classes = ('ui-collapsible-opened',)
     allow_add = True
@@ -56,11 +53,10 @@ class GrappelliRelatedFieldsTabularTestAdmin(admin.ModelAdmin):
 
 admin.site.register(GrappelliRelatedFieldsTabularTest, GrappelliRelatedFieldsTabularTestAdmin)
 
-# Enhanced Fields  -----------------------------------------------------------------------------------
 
-# Enhanced Fields / Tabular
+# - Enhanced Fields (tabular)
 
-class GrappelliEnhancedFieldsTabularInline(GrappelliTabularInline):
+class GrappelliEnhancedFieldsTabularInline(admin.TabularInline):
     model = GrappelliEnhancedFieldsInline
 #   classes = ('ui-collapsible-closed',)
     allow_add = True
@@ -68,14 +64,10 @@ class GrappelliEnhancedFieldsTabularInline(GrappelliTabularInline):
     fieldsets = (
         (None, {
             'fields': (
-                'slug_test', 'slug_test2', 'mce_test', 
+                'mce_test', 
             )
         }),
     )
-    auto_slugfield = {
-        'slug_test':  'input[type=text],textarea',
-        'slug_test2': True
-    }
 
 class GrappelliEnhancedFieldsTabularTestAdmin(admin.ModelAdmin):
     list_display = ('char_test',)
@@ -93,13 +85,11 @@ class GrappelliEnhancedFieldsTabularTestAdmin(admin.ModelAdmin):
 admin.site.register(GrappelliEnhancedFieldsTabularTest, GrappelliEnhancedFieldsTabularTestAdmin)
 
 
-# Stacked inlines ===================================================================================
+# Stacked inlines 
 
-# Related Fields  -----------------------------------------------------------------------------------
+# - Related Fields (stacked)
 
-# Related Fields / Stacked
-
-class GrappelliRelatedFieldsStackedInline(GrappelliStackedInline):
+class GrappelliRelatedFieldsStackedInline(admin.StackedInline):
     model = GrappelliRelatedFieldsInline
 #   classes = ('ui-collapsible-all-opened', )
     classes = ('ui-collapsible-opened',)
@@ -141,11 +131,10 @@ class GrappelliRelatedFieldsStackedTestAdmin(admin.ModelAdmin):
 
 admin.site.register(GrappelliRelatedFieldsStackedTest, GrappelliRelatedFieldsStackedTestAdmin)
 
-# Enhanced Fields  -----------------------------------------------------------------------------------
 
-# Enhanced Fields /Stacked 
+# - Enhanced Fields (stacked)
 
-class GrappelliEnhancedFieldsStackedInline(GrappelliStackedInline):
+class GrappelliEnhancedFieldsStackedInline(admin.StackedInline):
     model = GrappelliEnhancedFieldsInline
     classes = ('ui-collapsible-all-opened', )
     allow_add = True
@@ -153,14 +142,10 @@ class GrappelliEnhancedFieldsStackedInline(GrappelliStackedInline):
     fieldsets = (
         (None, {
             'fields': (
-                'slug_test', 'slug_test2', 'mce_test', 
+                'mce_test', 
             )
         }),
     )
-    auto_slugfield = {
-        'slug_test':  'input[type=text],textarea',
-        'slug_test2': True
-    }
 
 class GrappelliEnhancedFieldsStackedTestAdmin(admin.ModelAdmin):
     list_display = ('char_test',)

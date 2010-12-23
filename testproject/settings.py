@@ -79,8 +79,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'grappelli.middleware.JavaScript404Patch',
-    'grappelli.middleware.BrowserCompatibilityEnforcer',
+#   'grappelli.middleware.JavaScript404Patch',
+#   'grappelli.middleware.BrowserCompatibilityEnforcer',
     
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
@@ -108,7 +108,7 @@ INSTALLED_APPS = (
     'testgrappelli',
     'testdjangoinlines',
     'testgrappelliinlines',
-    'testgrappelliexperimental',
+   #'testgrappelliexperimental',
     'debug_toolbar',
 )
 GRAPPELLI_ADMIN_TITLE = 'Grappelli Test Project'

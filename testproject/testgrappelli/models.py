@@ -26,8 +26,6 @@ class GrappelliRelatedFields(models.Model):
 
 class GrappelliEnhancedFields(models.Model):
     char_test   = models.CharField(u"CharField", max_length=255, blank=True)
-    slug_test   = models.SlugField(u"SlugField", max_length=50, help_text="Drag the gear (which should be a crosshair..) to set the slug from another field")
-    slug_test2  = models.SlugField(u"SlugField", max_length=50, help_text="Standalone", null=True, blank=True)
     mce_test    = models.TextField(u"TinyMCE", blank=True)
 
     def __unicode__(self):

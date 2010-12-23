@@ -5,15 +5,12 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-#from testproject.testapp.admin import admin_site
-
-
 urlpatterns = patterns('',
     ('^$', 'django.views.generic.simple.redirect_to', {'url': '/admin/'}),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^grappelli/', include('grappelli.urls')),
 #   (r'^grappelli/test/', include('grappellitest.urls')),
-    (r'^admin/(.*)', admin.site.root),
+    (r'^admin/', include(admin.site.urls)),
 )
 
 if settings.DEBUG:
@@ -22,7 +19,5 @@ if settings.DEBUG:
             'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
         (r'^-media/(.*)$', 'django.views.static.serve', {
             'document_root': settings.GRAPPELLI_MEDIA_ROOT, 'show_indexes': True}),
-        (r'^timepickr-media/(.*)$', 'django.views.static.serve', {
-            'document_root': settings.TIMEPICKR_MEDIA_ROOT, 'show_indexes': True}),
     )
 
