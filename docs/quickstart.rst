@@ -23,7 +23,7 @@ Using ``pip``::
 
     pip install django-grappelli
 
-Using ``svn``::
+Using ``svn`` (recommended)::
 
     svn checkout http://django-grappelli.googlecode.com/svn/trunk/grappelli/ grappelli
 
@@ -32,7 +32,7 @@ or download the package from http://code.google.com/p/django-grappelli/downloads
 Installation
 ------------
 
-Open settings.py and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``django.contrib.admin``)::
+Open ``settings.py`` and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``django.contrib.admin``)::
 
     INSTALLED_APPS = (
         'grappelli', # required
@@ -40,17 +40,17 @@ Open settings.py and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``djan
         'django.contrib.admin', # required
     )
 
-Add the |grappelli| URL-patterns::
+Add |grappelli| URL-patterns::
 
     urlpatterns = patterns('',
         (r'^grappelli/', include(grappelli.urls)),
     )
 
-Start the devserver and login to your admin site and see if everything looks/works as expected::
+Start the devserver and login to your admin site::
 
     python manage.py runserver <IP-address>:8000 --adminmedia=/path/to/grappelli/media/
 
-If you're having problems, see :ref:`troubleshooting`.
+Check if everything looks/works as expected. If you're having problems, see :ref:`troubleshooting`.
 
 Media
 ^^^^^
@@ -59,5 +59,3 @@ With your production environment, you need to serve Grappellis media-files inste
 
 .. note::
     If you don't know how to server media/static files, please refer to the `Django Documentation <http://docs.djangoproject.com/en/dev/>`_.
-
-

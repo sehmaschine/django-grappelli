@@ -14,7 +14,7 @@ The ``Dashboard`` class
 -----------------------
 
 Base class for dashboards.
-The Dashboard class is a simple python list that has three additional
+The Dashboard class is a simple python list that has two additional
 properties:
 
 ``title``
@@ -22,7 +22,7 @@ properties:
     in a ``h2`` tag. Default value: 'Dashboard'.
 
 ``template``
-    The template to use to render the dashboard.
+    The template used to render the dashboard.
     Default value: 'grappelli/dashboard/dashboard.html'
 
 Here's an example of a custom dashboard::
@@ -65,8 +65,7 @@ Base class for all dashboard modules.
 Dashboard modules have the following properties:
 
 ``collapsible``
-    Boolean that determines whether the module is collapsible, this
-    allows users to show/hide module content. Default: ``True``.
+    Boolean that determines whether the module is collapsible. Default: ``True``.
 
 ``column``
     **required** Integer that corresponds to the column.
@@ -97,7 +96,7 @@ Dashboard modules have the following properties:
     Default value: ``None``.
 
 ``template``
-    The template to use to render the module.
+    The template used to render the module.
     Default value: 'grappelli/dashboard/module.html'.
 
 The ``Group`` class
@@ -130,13 +129,6 @@ The ``LinkList`` class
 -------------------------------------
 
 A module that displays a list of links.
-As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
-properties, the :class:`~grappelli.dashboard.modules.LinkList` takes
-an extra keyword argument:
-
-``layout``
-    The layout of the list, possible values are ``stacked`` and ``inline``.
-    The default value is ``stacked``.
 
 Link list modules children are simple python dictionaries that can have the
 following keys:
@@ -156,7 +148,7 @@ following keys:
 
 Children can also be iterables (lists or tuples) of length 2, 3 or 4.
 
-Here's a small example of building a link list module::
+Here's an example of building a link list module::
 
     from grappelli.dashboard import modules, Dashboard
     
@@ -172,7 +164,7 @@ Here's a small example of building a link list module::
                         'title': 'Python website',
                         'url': 'http://www.python.org',
                         'external': True,
-                        'description': 'Python programming language rocks !',
+                        'description': 'Python programming language rocks!',
                     },
                     ['Django website', 'http://www.djangoproject.com', True],
                     ['Some internal link', '/some/internal/link/'],
@@ -199,7 +191,7 @@ has two extra properties:
 
 If no models/exclude list is provided, **all apps** are shown.
 
-Here's a small example of building an app list module::
+Here's an example of building an app list module::
 
     from grappelli.dashboard import modules, Dashboard
     
@@ -222,9 +214,9 @@ Here's a small example of building an app list module::
 
 .. note::
     
-    Note that this module takes into account user permissions, for
+    This module takes into account user permissions. For
     example, if a user has no rights to change or add a ``Group``, then
-    the django.contrib.auth.Group model line will not be displayed.
+    the django.contrib.auth.Group model won't be displayed.
 
 The ``ModelList`` class
 --------------------------------------
@@ -260,9 +252,9 @@ Here's a small example of building a model list module::
 
 .. note::
 
-    Note that this module takes into account user permissions, for
+    This module takes into account user permissions. For
     example, if a user has no rights to change or add a ``Group``, then
-    the django.contrib.auth.Group model line will not be displayed.
+    the django.contrib.auth.Group model won't be displayed.
 
 The ``RecentActions`` class
 ------------------------------------------
@@ -285,7 +277,7 @@ takes three extra keyword arguments:
 ``limit``
     The maximum number of children to display. Default value: 10.
 
-Here's a small example of building a recent actions module::
+Here's an example of building a recent actions module::
 
     from grappelli.dashboard import modules, Dashboard
     
@@ -320,7 +312,7 @@ extra keyword arguments:
     The maximum number of feed children to display. Default value: None,
     which means that all children are displayed.
 
-Here's a small example of building a recent actions module::
+Here's an example of building a recent actions module::
 
     from grappelli.dashboard import modules, Dashboard
     

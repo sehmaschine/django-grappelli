@@ -6,7 +6,7 @@
 Customization
 =============
 
-|grappelli| is mainly about the look & feel of the Admin-Interface. Besides, |grappelli| adds some features to your admin site.
+While |grappelli| is mainly about the look & feel of the Admin-Interface, it also adds some features.
 
 .. _customizationsettings:
 
@@ -21,7 +21,7 @@ Available Settings
 Collapsibles
 ------------
 
-Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_.
+Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``collapse open`` and ``collapse closed``.
 
 A ModelAdmin example::
 
@@ -118,16 +118,16 @@ Using TinyMCE
 Copy ``tinymce_setup.js`` to your media-directory, adjust the setup (see `TinyMCE Configuration <http://wiki.moxiecode.com/index.php/TinyMCE:Configuration>`_) and add the necessary javascripts::
 
     class Media:
-            js = [
-                '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-                '/path/to/your/tinymce_setup.js',
-            ]
+        js = [
+            '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/path/to/your/tinymce_setup.js',
+        ]
 
-Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form. You need to write a custom template and use the callbacks to
+Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form. You need to write a custom template and use the inline-callbacks to
 
-* remove TinyMCE instances on load within the empty-form
-* initialize TinyMCE instances when adding a form
-* and remove TinyMCE instances again when removing (not deleting) a form.
+* onInit: remove TinyMCE instances from the the empty-form.
+* onAfterAdded: initialize TinyMCE instance(s) from the form.
+* onBeforeRemoved: remove TinyMCE instance(s) from the form.
 
 .. note::
     TinyMCE with Inlines is not supported by default.
