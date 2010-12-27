@@ -62,14 +62,14 @@
             $(document).mousedown(function(evt) {
                 if (self.timepicker.is(":visible")) {
                     var $target = $(evt.target);
-                    if ($target[0].id != self.timepicker[0].id && $target.parents(self.options.timepicker_selector).length == 0 && !$target.hasClass('hasTimepicker') && !$target.hasClass('ui-timepicker-trigger')) {
+                    if ($target[0].id != self.timepicker[0].id && $target.parents(self.options.timepicker_selector).length === 0 && !$target.hasClass('hasTimepicker') && !$target.hasClass('ui-timepicker-trigger')) {
                         self.timepicker.hide();
                     }
                 }
             });
             
             // get/create timepicker's container
-            if ($(this.options.timepicker_selector).size() == 0) {
+            if ($(this.options.timepicker_selector).size() === 0) {
                 $(this.options.template).appendTo('body');
             }
             this.timepicker = $(this.options.timepicker_selector);
@@ -109,7 +109,7 @@
                 template_str = "<ul>";
             
             // there is no time_list for this instance so use the default one
-            if (this.options.time_list.length == 0) {
+            if (this.options.time_list.length === 0) {
                 this.options.time_list = this.options.default_time_list;
             }
             

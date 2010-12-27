@@ -9,7 +9,7 @@
         var defaults = {
             placeholder: '&nbsp;<strong></strong>',
             repr_max_length: 30,
-            lookup_url: '',
+            lookup_url: ''
         };
         var opts = $.extend(defaults, options);
         return this.each(function() {
@@ -22,7 +22,7 @@
         lookuplink.attr('href', "../../../" + MODEL_URL_ARRAY[val].app + "/" + MODEL_URL_ARRAY[val].model + '/?t=id');
         lookuplink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
         return lookuplink;
-    }
+    };
     var _initialize = function(elem, options) {
         var ct = elem.closest('div[class*="object_id"]').prev().find(':input[name*="content_type"]');
         if (ct.val()) {
@@ -53,7 +53,7 @@
     };
     var _get_generic_repr = function(elem, options) {
         var link = elem.next();
-        if (link.length == 0) return;
+        if (link.length === 0) { return; }
         var spliturl = link.attr('href').split('/');
         var app_label = spliturl[spliturl.length-3];
         var model_name= spliturl[spliturl.length-2];

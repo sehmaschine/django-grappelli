@@ -9,7 +9,7 @@
         var defaults = {
             placeholder: '&nbsp;<strong></strong>',
             repr_max_length: 30,
-            lookup_url: '',
+            lookup_url: ''
         };
         var opts = $.extend(defaults, options);
         return this.each(function() {
@@ -28,7 +28,7 @@
     };
     var _get_m2m_repr = function(elem, options) {
         var link = elem.next();
-        if (link.length == 0) return;
+        if (link.length === 0) { return; }
         var spliturl = link.attr('href').split('/');
         var app_label = spliturl[spliturl.length-3];
         var model_name= spliturl[spliturl.length-2];

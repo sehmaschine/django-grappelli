@@ -9,7 +9,7 @@
         var defaults = {
             placeholder: '&nbsp;<strong></strong>',
             repr_max_length: 30,
-            lookup_url: '',
+            lookup_url: ''
         };
         var opts = $.extend(defaults, options);
         return this.each(function() {
@@ -18,9 +18,9 @@
     };
     var _initialize = function(elem, options) {
         // insert placeholder after empty foreignkey
-        if (elem.val() == "") {
+        if (elem.val() === "") {
             elem.next().after(options.placeholder);
-        };
+        }
         _register_handler(elem, options);
     };
     var _register_handler = function(elem, options) {
@@ -30,7 +30,7 @@
     };
     var _get_fk_repr = function(elem, options) {
         var link = elem.next();
-        if (link.length == 0) return;
+        if (link.length === 0) { return; }
         var spliturl = link.attr('href').split('/');
         var app_label = spliturl[spliturl.length-3];
         var model_name= spliturl[spliturl.length-2];

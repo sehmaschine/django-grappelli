@@ -58,7 +58,7 @@ function dismissRelatedLookupPopup(win, chosenId) {
 function showAddAnotherPopup(triggeringLink) {
     var name = triggeringLink.id.replace(/^add_/, '');
     name = id_to_windowname(name);
-    href = triggeringLink.href
+    href = triggeringLink.href;
     if (href.indexOf('?') == -1) {
         href += '?_popup=1';
     } else {
@@ -90,7 +90,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             }
         // GRAPPELLI CUSTOM
         // NOTE: via http://code.djangoproject.com/ticket/10191
-        // check if the className contains radiolist - if it's HORIZONTAL, then it won't match if we compare explicitly 
+        // check if the className contains radiolist - if it's HORIZONTAL, then it won't match if we compare explicitly
         } else if (elem.className.indexOf('radiolist') > -1) {
             var cnt = elem.getElementsByTagName('li').length;
             var idName = elem.id+'_'+cnt;

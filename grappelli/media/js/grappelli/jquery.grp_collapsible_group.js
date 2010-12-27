@@ -14,7 +14,7 @@
             open_css: "open",
             on_init: function() {},
             on_open: function() {},
-            on_close: function() {},
+            on_close: function() {}
         };
         options = $.extend(defaults, options);
         return this.each(function() {

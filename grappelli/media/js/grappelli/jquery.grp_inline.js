@@ -23,7 +23,7 @@
             onAfterInit: function(form) {},         // Function called after a form has been initialized
             onAfterAdded: function(form) {},        // Function called after a form has been added
             onAfterRemoved: function(inline) {},    // Function called after a form has been removed
-            onAfterDeleted: function(form) {},      // Function called after a form has been deleted
+            onAfterDeleted: function(form) {}       // Function called after a form has been deleted
         };
         options = $.extend(defaults, options);
         
@@ -49,10 +49,10 @@
                 node_name = node.attr('name'),
                 node_for = node.attr('for'),
                 node_href = node.attr("href");
-            if (node_id) node.attr('id', node_id.replace(replace_regex, replace_with));
-            if (node_name) node.attr('name', node_name.replace(replace_regex, replace_with));
-            if (node_for) node.attr('for', node_for.replace(replace_regex, replace_with));
-            if (node_href) node.attr('href', node_href.replace(replace_regex, replace_with));
+            if (node_id) { node.attr('id', node_id.replace(replace_regex, replace_with)); }
+            if (node_name) { node.attr('name', node_name.replace(replace_regex, replace_with)); }
+            if (node_for) { node.attr('for', node_for.replace(replace_regex, replace_with)); }
+            if (node_href) { node.attr('href', node_href.replace(replace_regex, replace_with)); }
         });
     };
     
@@ -81,7 +81,7 @@
         var maxForms = elem.find("#id_" + options.prefix + "-MAX_NUM_FORMS");
         var addButtons = elem.find("a." + options.addCssClass);
         // hide add button in case we've hit the max, except we want to add infinitely
-        if ((maxForms.val() != '') && (maxForms.val()-totalForms.val()) <= 0) {
+        if ((maxForms.val() !== '') && (maxForms.val()-totalForms.val()) <= 0) {
             hideAddBottons(elem, options);
         }
     };
@@ -108,9 +108,9 @@
             // update total forms
             totalForms.val(index + 1);
             // hide add button in case we've hit the max, except we want to add infinitely
-            if ((maxForms.val() != 0) && (maxForms.val() - totalForms.val()) <= 0) {
+            if ((maxForms.val() !== 0) && (maxForms.val() - totalForms.val()) <= 0) {
                 hideAddBottons(inline, options);
-            };
+            }
             // callback
             options.onAfterAdded(form);
         });
@@ -130,9 +130,9 @@
             var index = parseInt(totalForms.val(), 10);
             totalForms.val(index - 1);
             // show add button in case we've dropped below max
-            if ((maxForms.val() != 0) && (maxForms.val() - totalForms.val()) > 0) {
+            if ((maxForms.val() !== 0) && (maxForms.val() - totalForms.val()) > 0) {
                 showAddButtons(inline, options);
-            };
+            }
             // update form index (for all forms)
             var re = /-\d+-/g,
                 i = 0;
@@ -159,7 +159,7 @@
                 } else {
                     deleteInput.attr("checked", 'checked');
                 }
-            };
+            }
             // callback
             options.onAfterDeleted(form);
         });

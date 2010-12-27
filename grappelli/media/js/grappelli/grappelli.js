@@ -16,8 +16,8 @@ var django = {
                 str = str.replace(/%/, '');
                 return str + str;
             });
+            return format;
         }
-        return format;
     };
     
     // datepicker, timepicker init
@@ -107,7 +107,7 @@ var django = {
             showOn: 'button',
             buttonImageOnly: false,
             buttonText: '',
-            dateFormat: grappelli.getFormat('date'),
+            dateFormat: grappelli.getFormat('date')
         });
         form.find(".vTimeField").grp_timepicker();
     };
