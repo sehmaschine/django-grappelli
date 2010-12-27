@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-grappelli',
-    version='1.3',
+    version='2.3',
     description='A jazzy skin for the Django Admin-Interface.',
     author='Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)',
     author_email='werkstaetten@vonautomatisch.at',
