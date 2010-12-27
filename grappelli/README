@@ -1,8 +1,0 @@
-Hi Folks,
-
-this is grappelli a custom user interface for django's admin interface. it customizes django's admin by overwriting templates and media files only. And a middleware...but no python code of django.contib.admin is overwritten.
-
-Here are some infos about the customizations:
-
-
-Docu about JavaScript customizations: grappelli/media/js/GRAPPELLI_INFO.txt
