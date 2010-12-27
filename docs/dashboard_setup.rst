@@ -21,7 +21,6 @@ Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` 
     INSTALLED_APPS = (
         'grappelli.dashboard',
         'grappelli', # required
-        'filebrowser', # optional
         'django.contrib.admin', # required
     )
 

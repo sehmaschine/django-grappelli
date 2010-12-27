@@ -8,7 +8,7 @@
 Django Grappelli Documentation
 ==============================
 
-This documentation covers version 1.3 of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
+This documentation covers version 2.3 of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
 
 .. note::
     This is a preliminary version of the Grappelli Documentation.

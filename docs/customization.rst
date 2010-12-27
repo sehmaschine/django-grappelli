@@ -125,9 +125,9 @@ Copy ``tinymce_setup.js`` to your media-directory, adjust the setup (see `TinyMC
 
 Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form. You need to write a custom template and use the inline-callbacks to
 
-* onInit: remove TinyMCE instances from the the empty-form.
-* onAfterAdded: initialize TinyMCE instance(s) from the form.
-* onBeforeRemoved: remove TinyMCE instance(s) from the form.
+* ``onInit``: remove TinyMCE instances from the the empty-form.
+* ``onAfterAdded``: initialize TinyMCE instance(s) from the form.
+* ``onBeforeRemoved``: remove TinyMCE instance(s) from the form.
 
 .. note::
     TinyMCE with Inlines is not supported by default.

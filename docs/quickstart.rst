@@ -35,9 +35,8 @@ Installation
 Open ``settings.py`` and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``django.contrib.admin``)::
 
     INSTALLED_APPS = (
-        'grappelli', # required
-        'filebrowser', # optional
-        'django.contrib.admin', # required
+        'grappelli',
+        'django.contrib.admin',
     )
 
 Add |grappelli| URL-patterns::
