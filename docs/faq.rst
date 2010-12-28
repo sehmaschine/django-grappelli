@@ -15,11 +15,6 @@ Why should I use |grappelli|?
 
 If you are pleased with how the original Admin-Interface looks, you shouldn't.
 
-What is it Grappelli does, exactly?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Grappelli replaces the media-files and templates that come with ``django.contrib.admin``.
-
 I need help!
 ^^^^^^^^^^^^
 
@@ -28,7 +23,7 @@ see :ref:`Troubleshooting <troubleshooting>`.
 Which Browser do I need with Grappelli?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We are testing with Firefox, Chrome and Safari. IE8+ should work as well (but we rarely do any testing with IE).
+We are testing with Firefox, Chrome and Safari.
 
 Why is there no mercurial– or git–repository?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
