@@ -43,16 +43,6 @@
         <script src="{% admin_media_prefix %}js/grappelli/jquery.grp_related_m2m.js" type="text/javascript"></script>
         <script src="{% admin_media_prefix %}js/grappelli/jquery.grp_related_generic.js" type="text/javascript"></script>
         
-        <script type="text/javascript" charset="utf-8">
-            (function($) {
-                $(document).ready(function() {
-                    $("div#header .collapse").grp_collapsible();
-                    $("div.module").grp_collapsible({});
-                    $("div.group").grp_collapsible({});
-                });
-            })(django.jQuery);
-        </script>
-        
     {% endblock %}
     <!-- EXTRAHEAD -->
     {% block extrahead %}{% endblock %}

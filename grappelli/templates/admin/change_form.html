@@ -19,7 +19,7 @@
             $(document).ready(function() {
                 grappelli.initDateAndTimePicker();
                 $("div.container-flexible div.group").grp_collapsible_group();
-                $("div.container-flexible .collapse").grp_collapsible({
+                $("div#content .collapse").grp_collapsible({
                     on_init: function(elem, options) {
                         // open collapse (and all collapse parents) in case of errors
                         if (elem.find("ul.errorlist").length > 0) {
