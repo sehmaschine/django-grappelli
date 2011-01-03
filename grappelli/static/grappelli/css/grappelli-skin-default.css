@@ -323,7 +323,6 @@ div#breadcrumbs {
 ------------------------------------------------------------------------------------------------------ */
 
 ul.messagelist li {
-    margin-bottom: 1px;
     color: #fff;
     border-top: 1px solid #949494;
     border-bottom: 1px solid #949494;
