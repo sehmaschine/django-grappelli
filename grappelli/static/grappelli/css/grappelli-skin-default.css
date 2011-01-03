@@ -339,6 +339,9 @@ ul.messagelist li.warning {
     border-bottom-color: #a62929;
     background-color: #bf3030;
 }
+ul.messagelist li + li {
+    border-top: 0;
+}
 
 
 
