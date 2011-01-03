@@ -323,14 +323,22 @@ div#breadcrumbs {
 ------------------------------------------------------------------------------------------------------ */
 
 ul.messagelist li {
-    border-bottom: 1px solid #ccc;
-    background-color: #e8f2da;
+    margin-bottom: 1px;
+    color: #fff;
+    border-top: 1px solid #949494;
+    border-bottom: 1px solid #949494;
+    background-color: #a6a6a6;
 }
-ul.messagelist.success li {
-    background-color: #e8f2da;
+ul.messagelist li.success {
+    border-top-color: #72a629;
+    border-bottom-color: #72a629;
+    background-color: #83bf30;
 }
-ul.messagelist.error li {
-    background-color: #f2e6e6;
+ul.messagelist li.error, 
+ul.messagelist li.warning {
+    border-top-color: #a62929;
+    border-bottom-color: #a62929;
+    background-color: #bf3030;
 }
 
 

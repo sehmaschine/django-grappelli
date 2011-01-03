@@ -352,21 +352,14 @@ body.popup div#breadcrumbs {
 ul.messagelist {
     position: relative;
     top: 0;
-    z-index: 1001;
+    z-index: 990;
     margin: 0 -20px;
 }
 ul.messagelist li {
     display: block;
-    padding: 3px 10px 4px 35px;
+    padding: 5px 10px 5px 20px;
     font-size: 11px;
     font-weight: bold;
-    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
-}
-ul.messagelist.success li {
-    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
-}
-ul.messagelist.error li {
-    background: url('../img/icons/icon-yes.png') 20px 50% no-repeat;
 }
 body.popup .breadcrumbs + ul.messagelist {
     top: 24px;
