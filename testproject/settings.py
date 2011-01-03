@@ -91,18 +91,22 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.realpath(os.path.join(PROJECT_PATH, '../contrib/grappelli/templates/')),
     os.path.join(PROJECT_PATH, 'templates/'),
+    os.path.realpath(os.path.join(PROJECT_PATH, '../contrib/grappelli/dashboard/templates/')),
+    os.path.realpath(os.path.join(PROJECT_PATH, '../contrib/grappelli/templates/')),
 )
 
+GRAPPELLI_INDEX_DASHBOARD = 'testproject.dashboard.CustomIndexDashboard'
+
 INSTALLED_APPS = (
+    'grappelli.dashboard',
+    'grappelli',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admindocs',
-    'grappelli',
 #   'grappellitest',
     'testdjango',
     'testgrappelli',
@@ -116,3 +120,4 @@ GRAPPELLI_ADMIN_TITLE = 'Grappelli Test Project'
 DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False
 }
+    
