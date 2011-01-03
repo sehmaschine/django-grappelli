@@ -333,23 +333,23 @@ a.add-another:hover, a.add-another:active {
 ------------------------------------------------------------------------------------------------------ */
 
 img[src$="img/admin/icon-unknown.gif"] {
-    padding: 5px;
-    width: 0;
-    height: 0;
+    padding: 0;
+    width: 15px;
+    height: 15px;
     color: transparent;
     background: url('../img/icons/icon-unknown.png') 0 50% no-repeat;
 }
 img[src$="img/admin/icon-no.gif"] {
-    padding: 5px;
-    width: 0;
-    height: 0;
+    padding: 0;
+    width: 15px;
+    height: 15px;
     color: transparent;
     background: url('../img/icons/icon-no.png') 0 50% no-repeat;
 }
 img[src$="img/admin/icon-yes.gif"] {
-    padding: 5px;
-    width: 0;
-    height: 0;
+    padding: 0;
+    width: 15px;
+    height: 15px;
     color: transparent;
     background: url('../img/icons/icon-yes.png') 0 50% no-repeat;
 }
