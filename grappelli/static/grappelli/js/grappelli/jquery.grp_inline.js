@@ -108,7 +108,7 @@
             // update total forms
             totalForms.val(index + 1);
             // hide add button in case we've hit the max, except we want to add infinitely
-            if ((maxForms.val() !== 0) && (maxForms.val() - totalForms.val()) <= 0) {
+            if ((maxForms.val() !== 0) && (maxForms.val() != "") && (maxForms.val() - totalForms.val()) <= 0) {
                 hideAddBottons(inline, options);
             }
             // callback
