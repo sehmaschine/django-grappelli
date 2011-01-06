@@ -10,7 +10,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from grappelli.dashboard import modules
 from grappelli.dashboard.utils import get_admin_site_name
-
+from django import forms
 
 class Dashboard(object):
     """
@@ -39,8 +39,16 @@ class Dashboard(object):
         
         class MyDashboard(Dashboard):
             class Media:
-                css = ('css/mydashboard.css',)
-                js = ('js/mydashboard.js',)
+                css = {
+                    'all': (
+                        'css/mydashboard.css',
+                        'css/mystyles.css',
+                    ),
+                }
+                js = (
+                    'js/mydashboard.js',
+                    'js/myscript.js',
+                )
                 
     Here's an example of a custom dashboard::
     
@@ -74,15 +82,17 @@ class Dashboard(object):
                 ))
     
     """
-    
+
+    # Using Django's Media meta class
+    __metaclass__ = forms.MediaDefiningClass
+    def _media(self):
+        return forms.Media()
+    media = property(_media)
+
     title = _('Dashboard')
     template = 'grappelli/dashboard/dashboard.html'
     columns = 2
     children = None
-    
-    class Media:
-        css = ()
-        js  = ()
     
     def __init__(self, **kwargs):
         for key in kwargs:
