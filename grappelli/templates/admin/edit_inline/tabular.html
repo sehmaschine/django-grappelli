@@ -100,7 +100,7 @@
                 grappelli.updateSelectFilter(form);
                 form.find("input.vForeignKeyRawIdAdminField").grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
                 form.find("input.vManyToManyRawIdAdminField").grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
-                form.find("input[name*='object_id']").grp_related_generic({lookup_url:"{% url grp_related_lookup %}"});
+                form.find("input.vIntegerField[name*='object_id']").grp_related_generic({lookup_url:"{% url grp_related_lookup %}"});
             },
         });
         
