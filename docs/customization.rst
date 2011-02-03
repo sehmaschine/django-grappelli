@@ -50,7 +50,7 @@ An InlineModelAdmin example::
 Inline Sortables
 ----------------
 
-**New in Grappelli 1.3:** Please see :ref:`Release Notes <releasenotes>`.
+.. versionadded:: 2.3
 
 For using drag/drop with Inlines, you need to add a ``PositiveIntegerField`` to your Model::
 
@@ -79,22 +79,36 @@ In case of errors (somewhere within the form), the position of inline-rows are b
 Related Lookups
 ---------------
 
-Grappelli automatically adds the representation of an object beside the input-field (for fk- and m2m-fields)::
+.. versionchanged:: 2.3.1
+    Added ``related_lookup_fields``.
+
+With Grappelli, you're able to add the representation of an object beside the input-field (for fk- and m2m-fields)::
 
     class MyModel(models.Model):
         related_fk = models.ForeignKey(RelatedModel, verbose_name=u"Related Lookup (FK)")
         related_m2m = models.ManyToManyField(RelatedModel, verbose_name=u"Related Lookup (M2M)")
 
     class MyModelOptions(admin.ModelAdmin):
-        # use raw_id_fiels for related lookups
+        # define the raw_id_fields
         raw_id_fields = ('related_fk','related_m2m',)
+        # define the related_lookup_fields
+        related_lookup_fields = {
+            'fk': ['related_fk'],
+            'm2m': ['related_m2m'],
+        }
+
+.. note::
+    This is a workaround for a feature which should be implemented with the original admin-interface.
 
 .. _customizationgenericrelationships:
 
 Generic Relationships
 ---------------------
 
-Grappelli also adds the representation of an object for Generic Relations::
+.. versionchanged:: 2.3.1
+    Added ``related_lookup_fields``.
+
+With Grappelli, you're able to add the representation of an object for Generic Relations::
 
     from django.contrib.contenttypes import generic
     from django.contrib.contenttypes.models import ContentType
@@ -106,9 +120,18 @@ Grappelli also adds the representation of an object for Generic Relations::
         object_id = models.PositiveIntegerField(blank=True, null=True)
         content_object = generic.GenericForeignKey("content_type", "object_id")
         # second generic relation
-        content_type_2 = models.ForeignKey(ContentType, blank=True, null=True, related_name="content_type_2")
-        object_id_2 = models.PositiveIntegerField(blank=True, null=True)
-        content_object_2 = generic.GenericForeignKey("content_type_2", "object_id_2")
+        relation_type = models.ForeignKey(ContentType, blank=True, null=True, related_name="relation_type")
+        relation_id = models.PositiveIntegerField(blank=True, null=True)
+        relation_object = generic.GenericForeignKey("relation_type", "relation_id")
+    
+    class MyModelOptions(admin.ModelAdmin):
+        # define the related_lookup_fields
+        related_lookup_fields = {
+            'generic': [['content_type', 'object_id'], ['relation_type', 'relation_id']],
+        }
+
+.. note::
+    This is a workaround for a feature which should be implemented with the original admin-interface.
 
 .. _customizationtinymce:
 

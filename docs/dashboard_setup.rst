@@ -6,12 +6,12 @@
 Dashboard Setup
 ===============
 
-**New in Grappelli 1.3:** Please see :ref:`Release Notes <releasenotes>`.
+.. versionadded:: 2.3
 
 With the Django Admin-Interface, the admin index page reflects the structure of your applications/models. With ``grappelli.dashboard`` you are able to change that structure and rearrange (or group) apps and models.
 
 .. note::
-    ``grappelli.dashboard`` is a simplified version of `Django Admin Tools <http://packages.python.org/django-admin-tools/>`_: Bookmarks, Menus and the custom App-Index are not available with Grappelli.
+    ``grappelli.dashboard`` is a simplified version of `Django Admin Tools <http://packages.python.org/django-admin-tools/>`_: Bookmarks, Menus and the custom App-Index are **not available with Grappelli**.
 
 Add ``grappelli.dashboard`` to your Installed Apps
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -20,8 +20,8 @@ Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` 
 
     INSTALLED_APPS = (
         'grappelli.dashboard',
-        'grappelli', # required
-        'django.contrib.admin', # required
+        'grappelli',
+        'django.contrib.admin',
     )
 
 Create a custom Dashboard

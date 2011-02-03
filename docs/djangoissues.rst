@@ -46,6 +46,19 @@ Currently, the admin index site reflects the structure of your applications/mode
 
 see http://code.djangoproject.com/ticket/7497
 
+Related Lookups
+----------------
+
+With either ``raw_id_fields`` or ``Generic Relations``, the representation for an object should be displayed beneath the input-field.
+When changing the ``object-id`` (or selecting an object with the related pop-up window) the representation should be updated.
+
+This issue is solved with Grappelli (unfortunately overly complex due to the limitations of the original admin-interface).
+
+Autocompletes
+-------------
+
+As an alternative to ``Related Lookups`` it should also be possible to implement ``Autocompletes``.
+
 Searching Generic Relations
 ---------------------------
 

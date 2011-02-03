@@ -5,10 +5,12 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
 
-Django Grappelli Documentation
-==============================
+Django Grappelli
+================
 
-This documentation covers version 2.3 of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
+**A jazzy skin for the Django admin interface**.
+
+This documentation covers version 2.3.1 of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
 
 .. note::
     This is a preliminary version of the Grappelli Documentation.
@@ -49,3 +51,15 @@ This documentation covers version 2.3 of |grappelli|. |grappelli| is a grid-base
    troubleshooting
    djangoissues
    releasenotes
+   changelog
+
+Code
+----
+
+http://code.google.com/p/django-grappelli/
+
+Discussion
+----------
+
+Use the `Grappelli Google Group <http://groups.google.com/group/djangograppelli>`_ to ask questions or discuss features.
+
