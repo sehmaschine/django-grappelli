@@ -9,6 +9,8 @@
         var defaults = {
             placeholder: '&nbsp;<strong></strong>',
             repr_max_length: 30,
+            content_type: '',
+            object_id: '',
             lookup_url: ''
         };
         var opts = $.extend(defaults, options);
@@ -24,7 +26,7 @@
         return lookuplink;
     };
     var _initialize = function(elem, options) {
-        var ct = elem.closest('div[class*="object_id"]').prev().find(':input[name*="content_type"]');
+        var ct = $(options.content_type);
         if (ct.val()) {
             elem.after(options.placeholder).after(_lookup_link(elem.attr("id"),ct.val()));
         }
@@ -43,7 +45,7 @@
         });
     };
     var _update_lookup = function(elem, options) {
-        var obj = elem.closest('div[class*="content_type"]').next().find('input[name*="object_id"]');
+        var obj = $(options.object_id);
         obj.val('');
         obj.next().remove();
         obj.next().remove();
@@ -52,7 +54,7 @@
         }
     };
     var _get_generic_repr = function(elem, options) {
-        var link = elem.next();
+        var link = elem.next("a");
         if (link.length === 0) { return; }
         var spliturl = link.attr('href').split('/');
         var app_label = spliturl[spliturl.length-3];

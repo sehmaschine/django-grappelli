@@ -29,7 +29,7 @@
         });
     };
     var _get_fk_repr = function(elem, options) {
-        var link = elem.next();
+        var link = elem.next("a");
         if (link.length === 0) { return; }
         var spliturl = link.attr('href').split('/');
         var app_label = spliturl[spliturl.length-3];

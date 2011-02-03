@@ -4,7 +4,7 @@
 from django.http import HttpResponse, HttpResponseForbidden
 from django.db import models
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 
 @never_cache
 def related_lookup(request):
@@ -21,13 +21,13 @@ def related_lookup(request):
                     obj = model.objects.get(pk=object_id)
                     obj_text = unicode(obj)
                 except:
-                    obj_text = "Not Found"
+                    obj_text = _("Not Found")
             else:
                 obj_text = ""
         else:
-            obj_text = "Error"
+            obj_text = _("Error")
     else:
-        obj_text = "Error"
+        obj_text = _("Error")
     
     return HttpResponse(obj_text, mimetype='text/plain; charset=utf-8')
 
@@ -48,11 +48,11 @@ def m2m_lookup(request):
                     obj = model.objects.get(pk=obj_id)
                     obj_text.append(unicode(obj))
                 except:
-                    obj_text.append("Not Found")
+                    obj_text.append(_("Not Found"))
         else:
-            obj_text.append("Error")
+            obj_text.append(_("Error"))
     else:
-        obj_text.append("Error")
+        obj_text.append(_("Error"))
     obj_text = ", ".join(obj_text)
     
     return HttpResponse(obj_text, mimetype='text/plain; charset=utf-8')

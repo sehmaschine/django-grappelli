@@ -20,9 +20,31 @@
                 $(document).ready(function() {
                     $("tr input.action-select").actions();
                     grappelli.initDateAndTimePicker();
-                    $("input.vForeignKeyRawIdAdminField").grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
-                    $("input.vManyToManyRawIdAdminField").grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
-                    $("input[name*='object_id']").grp_related_generic({lookup_url:"{% url grp_related_lookup %}"});
+                    var prefix = "form";
+                    var related_lookup_fields_fk = {% get_related_lookup_fields_fk cl.model_admin %};
+                    var related_lookup_fields_m2m = {% get_related_lookup_fields_m2m cl.model_admin %};
+                    var related_lookup_fields_generic = {% get_related_lookup_fields_generic cl.model_admin %};
+                    $.each(related_lookup_fields_fk, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
+                    });
+                    $.each(related_lookup_fields_m2m, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
+                    });
+                    $.each(related_lookup_fields_generic, function() {
+                        var content_type = this[0],
+                            object_id = this[1];
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                        .each(function() {
+                            var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
+                                obj_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + object_id;
+                            $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                        });
+                    });
                 });
             })(django.jQuery);
         </script>
@@ -56,7 +78,7 @@
 
 <!-- CONTENT-TITLE -->
 {% block content_title %}
-    <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
+    <h1>{{ cl.opts.verbose_name_plural|capfirst }} {{ cl.model_admin }}</h1>
 {% endblock %}
 
 <!-- OBJECT-TOOLS -->
