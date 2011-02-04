@@ -844,7 +844,7 @@ ul.submit-row li.left:first-child {
 }
 .change-list .module.footer ul.submit-row {
     position: relative;
-    float: left;
+    float: right;
     clear: none;
     width: 25%;
 }
