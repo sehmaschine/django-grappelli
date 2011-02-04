@@ -19,6 +19,7 @@ input[type=submit], input[type=reset], input[type=button], button {
     }
 }
 
+.submit-row a.submit-link, 
 .submit-row a.delete-link, 
 .submit-row a.cancel-link {
     display: block;

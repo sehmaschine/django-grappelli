@@ -1345,10 +1345,12 @@ input[type=submit], input[type=reset], input[type=button], button {
 /*  Buttons & Buttonlike Links
 ------------------------------------------------------------------------------------------------------ */
 
+.submit-row a.submit-link, 
 .submit-row a.delete-link, 
 .submit-row a.cancel-link {
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
+.submit-row a.submit-link, 
 .submit-row input[type=submit] {
     border: 1px solid #267c99;
 }
@@ -1378,13 +1380,16 @@ input[type=submit],
     background: -moz-linear-gradient(top, #666, #444);
 }
 
-input[type=submit] {
+input[type=submit], 
+.submit-row a.submit-link:link, .submit-row a.submit-link:visited {
+    color: #fff;
     background: #309bbf;
     background: -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));
     background: -moz-linear-gradient(top, #39bae5, #309bbf);
 }
 input[type=submit]:hover, 
 #bookmark-add-cancel:hover, 
+.submit-row a.submit-link:hover, .submit-row a.submit-link:active, 
 .submit-row a.delete-link:hover, .submit-row a.delete-link:active, 
 .submit-row a.cancel-link:hover, .submit-row a.cancel-link:active, 
 .submit-row input.cancel {

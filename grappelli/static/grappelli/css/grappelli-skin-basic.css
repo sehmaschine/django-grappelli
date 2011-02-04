@@ -1016,7 +1016,8 @@ input[type=submit], input[type=reset], input[type=button], button {
 /*  Buttons & Buttonlike Links
 ------------------------------------------------------------------------------------------------------ */
 
-.submit-row input[type=submit] {
+.submit-row input[type=submit], 
+.submit-row a.submit-link:link, .submit-row a.submit-link:visited {
     border: 1px solid #267c99;
 }
 
@@ -1041,11 +1042,14 @@ input[type=submit],
     background: #666;
 }
 
-input[type=submit] {
+input[type=submit], 
+.submit-row a.submit-link:hover, .submit-row a.submit-link:active {
+    color: #fff;
     background: #309bbf;
 }
 input[type=submit]:hover, 
 #bookmark-add-cancel:hover, 
+.submit-row a.submit-link:hover, .submit-row a.submit-link:active, 
 .submit-row a.delete-link:hover, .submit-row a.delete-link:active, 
 .submit-row a.cancel-link:hover, .submit-row a.cancel-link:active, 
 .submit-row input.cancel {
