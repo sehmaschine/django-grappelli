@@ -15,10 +15,20 @@
     {% if cl.formset or action_form %}
         {% url 'admin:jsi18n' as jsi18nurl %}
         <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"></script>
+    {% endif %}
+    {% if action_form %}
         <script type="text/javascript" charset="utf-8">
             (function($) {
                 $(document).ready(function() {
                     $("tr input.action-select").actions();
+                });
+            })(django.jQuery);
+        </script>
+    {% endif %}
+    {% if cl.formset %}
+        <script type="text/javascript" charset="utf-8">
+            (function($) {
+                $(document).ready(function() {
                     grappelli.initDateAndTimePicker();
                     var prefix = "form";
                     var related_lookup_fields_fk = {% get_related_lookup_fields_fk cl.model_admin %};
@@ -78,7 +88,7 @@
 
 <!-- CONTENT-TITLE -->
 {% block content_title %}
-    <h1>{{ cl.opts.verbose_name_plural|capfirst }} {{ cl.model_admin }}</h1>
+    <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
 {% endblock %}
 
 <!-- OBJECT-TOOLS -->
