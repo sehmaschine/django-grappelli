@@ -162,9 +162,11 @@
         {% if cl.formset or action_form %}
             <div id="submit" class="module footer">
                 {% if action_form %}{% admin_actions %}{% endif %}
+                {% if cl.formset %}
                 <ul class="submit-row">
                     <li class="submit-button-container"><input type="submit" class="default" name="_save" value="Save"/></li>
                 </ul>
+                {% endif %}
             </div>
         {% endif %}
     </form>
