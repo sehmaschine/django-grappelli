@@ -69,6 +69,13 @@ Save Object and return to Changelist
 
 When you edit an object and save it, you are redirected to an unfiltered changelist. That's pretty annoying when you've filtered the changelist before editing the object.
 
+Ordering by multiple fields
+---------------------------
+
+You can't order a changelist by multiple fields of a model.
+
+see http://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.ordering
+
 Popups, Actions and list_editables
 ----------------------------------
 

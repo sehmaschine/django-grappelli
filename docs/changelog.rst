@@ -8,7 +8,16 @@
 Changelog
 =========
 
-2.3.1 (02/2011)
+2.3.2 (16/02/2011)
+^^^^^^^^^^^^^^^
+
+* Some smaller bugfixes on the changelist.
+* Finally deleted folder ``media`` (media-files are now in ``static``).
+* Added class submit-link for custom admin-pages.
+* Removed save-button on changelist if there is no formset.
+* Fixed a bug with using generic relations within generic-inlines (tabular and stacked).
+
+2.3.1 (03/02/2011)
 ^^^^^^^^^^^^^^^
 
 * Added ``related_lookup_fields`` for defining related lookups (fk, m2m, generic).
