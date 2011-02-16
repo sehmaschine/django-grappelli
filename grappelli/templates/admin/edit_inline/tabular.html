@@ -112,9 +112,12 @@
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.table")
             .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
             .each(function() {
-                var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
-                    obj_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + object_id;
-                $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                var i = $(this).attr("id").match(/-\d+-/);
+                if (i) {
+                    var ct_id = "#id_" + prefix + i[0] + content_type,
+                        obj_id = "#id_" + prefix + i[0] + object_id;
+                    $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                }
             });
         });
         
@@ -137,9 +140,12 @@
                         object_id = this[1];
                     form.find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
                     .each(function() {
-                        var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
-                            obj_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + object_id;
-                        $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                        var i = $(this).attr("id").match(/-\d+-/);
+                        if (i) {
+                            var ct_id = "#id_" + prefix + i[0] + content_type,
+                                obj_id = "#id_" + prefix + i[0] + object_id;
+                            $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                        }
                     });
                 });
             },
