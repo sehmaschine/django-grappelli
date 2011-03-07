@@ -32,7 +32,11 @@ h4, h5 {
     font-size: 11px;
 }
 
-
+.row img {
+    font-size: 1px;
+    line-height: 1px;
+    vertical-align: middle;
+}
 
 /*  Paragraphs
 ------------------------------------------------------------------------------------------------------ */
