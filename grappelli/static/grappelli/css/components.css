@@ -492,6 +492,8 @@ ul.actions {
 ul.actions li {
     position: relative;
     float: left;
+}
+ul.actions li + li {
     margin-left: 20px;
 }
 ul.actions li a {

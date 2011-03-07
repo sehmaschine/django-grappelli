@@ -585,7 +585,7 @@ fieldset.module .row .column.span-flexible:last-child {
 .span-1 + .span-flexible  { margin-left: 40px; }
 .span-2 + .span-flexible  { margin-left: 80px; }
 .span-3 + .span-flexible  { margin-left: 120px; }
-.span-4 + .span-flexible  { margin-left: 160px; }
+.span-4 + .span-flexible  { margin-left: 160px; min-width: 758px; }
 .span-5 + .span-flexible  { margin-left: 200px; }
 .span-6 + .span-flexible  { margin-left: 240px; }
 .span-7 + .span-flexible  { margin-left: 280px; }
