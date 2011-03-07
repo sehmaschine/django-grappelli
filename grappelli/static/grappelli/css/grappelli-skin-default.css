@@ -14,14 +14,16 @@ p.help {
     color: #999;
 }
 
-.fb_show + p.help a {
-    border: 1px solid #309bbf;
+p.preview a {
+    display: inline-block;
+    padding: 3px;
+    line-height: 1px;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 }
-.fb_show + p.help a:link, .fb_show + p.help a:visited {
+p.preview a:link, p.preview a:visited {
     border: 1px solid #309bbf;
 }
-.fb_show + p.help a:hover, .fb_show + p.help a:active {
+p.preview a:hover, p.preview a:active {
     border: 1px solid #444;
 }
 
