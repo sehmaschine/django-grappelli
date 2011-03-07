@@ -32,13 +32,9 @@ h4, h5 {
     font-size: 11px;
 }
 
-.row img {
-    font-size: 1px;
-    line-height: 1px;
-    vertical-align: middle;
-}
 
-/*  Paragraphs
+
+/*  Paragraphs & Images
 ------------------------------------------------------------------------------------------------------ */
 
 .module p.help, 
@@ -54,6 +50,12 @@ p.readonly {
     color: #666;
     font-size: 12px;
     font-weight: bold;
+}
+
+.row img {
+    font-size: 1px;
+    line-height: 1px;
+    vertical-align: middle;
 }
 
 .fb_show + p.help a {
