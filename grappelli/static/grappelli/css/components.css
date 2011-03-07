@@ -22,6 +22,9 @@ fieldset.module label + p {
     margin: 0 0 7px;
 }
 
+.form-container .module {
+    min-width: 938px;
+}
 #changelist .span-flexible .module + ul.submit-row {
     margin-top: 10px;
 }
@@ -45,6 +48,9 @@ fieldset.module label + p {
 .group {
     margin: 0 -4px 7px;
     padding: 2px;
+}
+.form-container .group {
+    min-width: 940px;
 }
 
 
