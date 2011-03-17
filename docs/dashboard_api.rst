@@ -181,13 +181,13 @@ has two extra properties:
 
 ``models``
     A list of models to include, only models whose name (e.g.
-    "blog.comments.Comment") match one of the strings (e.g. "blog.*")
+    "blog.models.BlogEntry") match one of the strings (e.g. "blog.*")
     in the models list will appear in the dashboard module.
 
 ``exclude``
     A list of models to exclude, if a model name (e.g.
-    "blog.comments.Comment") match an element of this list (e.g.
-    "blog.comments.*") it won't appear in the dashboard module.
+    "blog.models.BlogEntry") match an element of this list (e.g.
+    "blog.*") it won't appear in the dashboard module.
 
 If no models/exclude list is provided, **all apps** are shown.
 
@@ -228,13 +228,13 @@ two extra arguments:
 
 ``models``
     A list of models to include, only models whose name (e.g.
-    "blog.comments.Comment") match one of the strings (e.g. "blog.*")
+    "blog.models.BlogEntry") match one of the strings (e.g. "blog.*")
     in the models list will appear in the dashboard module.
 
 ``exclude``
     A list of models to exclude, if a model name (e.g.
-    "blog.comments.Comment") match an element of this list (e.g.
-    "blog.comments.*") it won't appear in the dashboard module.
+    "blog.models.BlogEntry") match an element of this list (e.g.
+    "blog.*") it won't appear in the dashboard module.
 
 Here's a small example of building a model list module::
     
@@ -245,9 +245,15 @@ Here's a small example of building a model list module::
             Dashboard.__init__(self, **kwargs)
             
             self.children.append(modules.ModelList(
-                title='Applications',
+                title='Several Models',
                 column=1,
                 models=('django.contrib.*',)
+            ))
+            
+            self.children.append(modules.ModelList(
+                title='Single Model',
+                column=1,
+                models=('blog.models.BlogEntry',)
             ))
 
 .. note::
