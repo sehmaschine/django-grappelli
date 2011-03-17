@@ -104,10 +104,13 @@ def filter_models(request, models, exclude):
         included = items
     else:
         for pattern in models:
+            pattern_items = []
             for item in items:
                 model, perms = item
                 if fnmatch(full_name(model), pattern) and item not in included:
-                    included.append(item)
+                    pattern_items.append(item)
+            pattern_items.sort(key=lambda x:x[0]._meta.verbose_name_plural)
+            included.extend(pattern_items)
     
     result = included[:]
     for pattern in exclude:
