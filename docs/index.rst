@@ -58,5 +58,5 @@ http://code.google.com/p/django-grappelli/
 Discussion
 ----------
 
-Use the `Grappelli Google Group <http://groups.google.com/group/djangograppelli>`_ to ask questions or discuss features.
+Use the `Grappelli Google Group <http://groups.google.com/group/django-grappelli>`_ to ask questions or discuss features.
 

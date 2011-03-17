@@ -75,6 +75,8 @@ Ordering by multiple fields
 You can't order a changelist by multiple fields of a model.
 
 see http://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.ordering
+http://code.djangoproject.com/ticket/11868
+http://code.djangoproject.com/ticket/4926
 
 Popups, Actions and list_editables
 ----------------------------------

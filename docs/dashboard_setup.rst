@@ -24,6 +24,18 @@ Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` 
         'django.contrib.admin',
     )
 
+Add context-processors
+^^^^^^^^^^^^^^^^^^^^^^
+
+You need to add the request context-processor::
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        "django.contrib.auth.context_processors.auth",
+        "django.core.context_processors.request",
+        "django.core.context_processors.i18n",
+        'django.contrib.messages.context_processors.messages',
+    )
+
 Create a custom Dashboard
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
