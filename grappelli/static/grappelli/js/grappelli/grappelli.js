@@ -66,11 +66,12 @@ var django = {
     };
     
     // HACK: add no-wrap to table-elements.
-    grappelli.initTableElements = function() {
-        $("td input.vForeignKeyRawIdAdminField, td input.vFileBrowseField, td a.add-another").each(function() {
-            $(this).parent().addClass('nowrap');
-        });
-    };
+    // should be solved with http://code.djangoproject.com/changeset/15658
+    // grappelli.initTableElements = function() {
+    //     $("td input.vForeignKeyRawIdAdminField, td input.vFileBrowseField, td a.add-another").each(function() {
+    //         $(this).parent().addClass('nowrap');
+    //     });
+    // };
     
     // changelist: filter
     grappelli.initFilter = function() {
