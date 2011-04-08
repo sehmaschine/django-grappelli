@@ -50,6 +50,7 @@
                                         {{ field.field }}
                                         {{ field.field.errors.as_ul }}
                                     {% endif %}
+                                    {% if field.field.help_text %}<p class="help">{{ field.field.help_text }}</p>{% endif %}
                                 </div>
                             {% endfor %}
                         {% endfor %}
