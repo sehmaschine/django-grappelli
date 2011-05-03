@@ -10,8 +10,8 @@
     {% block stylesheets %}
         <link href="{% admin_media_prefix %}css/base.css" rel="stylesheet" type="text/css" />
         {% if LANGUAGE_BIDI %}<link href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" rel="stylesheet" type="text/css" />{% endif %}
-        <link href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
-        <link href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" rel="stylesheet" type="text/css"  />
+        <link href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8" />
+        <link href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" rel="stylesheet" type="text/css" />
     {% endblock %}
     <!-- EXTRASTYLES -->
     {% block extrastyle %}{% endblock %}
