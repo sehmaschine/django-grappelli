@@ -29,9 +29,11 @@ fieldset.module label + p {
     margin-top: 10px;
 }
 .module:empty {
-    display: none;
+    padding: 0;
+    height: 0;
+    border: 0;
+    visibility: hidden;
 }
-
 
 /*  Nested Modules Basics ......................................... */
 
