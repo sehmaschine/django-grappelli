@@ -64,7 +64,9 @@
             $(document).ready(function() {
                 grappelli.initSearchbar();
                 grappelli.initFilter();
-                grappelli.initTableElements(); // HACK: add no-wrap to table-elements.
+                // HACK: add no-wrap to table-elements.
+                // should be solved with http://code.djangoproject.com/changeset/15658
+                // grappelli.initTableElements(); 
             });
         })(django.jQuery);
     </script>
