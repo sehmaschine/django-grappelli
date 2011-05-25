@@ -116,6 +116,7 @@
     background: #cee9f2;
     background: -moz-linear-gradient(top, #e1f0f5, #cee9f2);
     background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#cee9f2));
+    background: -o-linear-gradient(top, #e1f0f5, #cee9f2);
 }
 
 .ui-accordion-header.ui-state-default {
@@ -125,6 +126,7 @@
     background: #cee9f2;
     background: -moz-linear-gradient(top, #cee9f2, #e1f0f5);
     background: -webkit-gradient(linear, left top, left bottom, from(#cee9f2), to(#e1f0f5));
+    background: -o-linear-gradient(top, #cee9f2, #e1f0f5);
 }
 .ui-accordion-header.ui-state-active {
     border-bottom: 1px solid #c7c7c7 !important;
@@ -133,6 +135,7 @@
     background: #cee9f2;
     background: -moz-linear-gradient(top, #cee9f2, #e1f0f5);
     background: -webkit-gradient(linear, left top, left bottom, from(#cee9f2), to(#e1f0f5));
+    background: -o-linear-gradient(top, #cee9f2, #e1f0f5);
 }
 
 .ui-accordion-content {
@@ -460,6 +463,7 @@ button.ui-datepicker-close {
     background: #e1f0f5;
     background: -moz-linear-gradient(top, #cee9f2, #e1f0f5);
     background: -webkit-gradient(linear, left top, left bottom, from(#cee9f2), to(#e1f0f5));
+    background: -o-linear-gradient(top, #cee9f2, #e1f0f5);
 }
 .tab-handler.ui-state-default:hover {
     color: #444 !important;
@@ -467,6 +471,7 @@ button.ui-datepicker-close {
     background: #cee9f2;
     background: -moz-linear-gradient(top, #e1f0f5, #cee9f2);
     background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#cee9f2));
+    background: -o-linear-gradient(top, #e1f0f5, #cee9f2);
 }
 .tab-handler.ui-state-default.ui-tabs-selected {
     border: 1px solid #c7c7c7;
@@ -474,6 +479,7 @@ button.ui-datepicker-close {
     background: #e9e9e9;
     background: -moz-linear-gradient(top, #e0e0e0, #e9e9e9);
     background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#e9e9e9));
+    background: -o-linear-gradient(top, #e0e0e0, #e9e9e9);
 }
 
 
@@ -613,6 +619,7 @@ li.ui-gFacelist-item {
     background:#ddd;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ebf2f5), to(#e1f0f5));
     background-image: -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
+    background-image: -o-linear-gradient(top, #ebf2f5, #e1f0f5);
     background-repeat:no-repeat;
     border:1px solid #ccc;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
@@ -630,6 +637,7 @@ li.ui-gFacelist-item {
 li.ui-gFacelist-item:hover {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e1e1e1), to(#eee));
     background-image: -moz-linear-gradient(top, #e1e1e1, #eee);
+    background-image: -o-linear-gradient(top, #e1e1e1, #eee);
 }
 
 li.ui-gFacelist-item span {
