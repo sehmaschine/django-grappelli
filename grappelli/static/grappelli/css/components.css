@@ -28,12 +28,13 @@ fieldset.module label + p {
 #changelist .span-flexible .module + ul.submit-row {
     margin-top: 10px;
 }
-.module:empty {
+/* Empty breaks in Chrome 11+: Elements are not displayed initially even if they are not empty */
+/*.module:empty {
     padding: 0;
     height: 0;
     border: 0;
     visibility: hidden;
-}
+}*/
 
 /*  Nested Modules Basics ......................................... */
 

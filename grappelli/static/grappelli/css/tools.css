@@ -17,9 +17,10 @@ ul.tools {
     list-style-type: none;
     white-space: nowrap;
 }
-ul.tools:empty {
+/* Empty breaks in Chrome 11+: Elements are not displayed initially even if they are not empty */
+/*ul.tools:empty {
     display: none;
-}
+}*/
 ul.tools li {
     position: relative;
     float: left;

@@ -54,9 +54,10 @@ ul.trash-list {
     box-shadow: 0 10px 50px #ccc; -moz-box-shadow: 0 10px 50px #ccc; -webkit-box-shadow: 0 10px 50px #ccc;
 }
 
-ul.trash-list:empty {
+/* Empty breaks in Chrome 11+: Elements are not displayed initially even if they are not empty */
+/*ul.trash-list:empty {
     display: none;
-}
+}*/
 
 ul.trash-list li {
     position: relative;
