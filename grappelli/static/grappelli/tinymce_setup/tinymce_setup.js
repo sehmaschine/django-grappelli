@@ -11,11 +11,11 @@ function CustomFileBrowser(field_name, url, type, win) {
         resizable: 'yes',
         scrollbars: 'yes',
         inline: 'no',  // This parameter only has an effect if you use the inlinepopups plugin!
-        close_previous: 'no',
+        close_previous: 'no'
     }, {
         window: win,
         input: field_name,
-        editor_id: tinyMCE.selectedInstance.editorId,
+        editor_id: tinyMCE.selectedInstance.editorId
     });
     return false;
 }
@@ -35,7 +35,7 @@ tinyMCE.init({
     browsers: 'gecko,msie,safari,opera',
     dialog_type: 'window',
     editor_deselector: 'mceNoEditor',
-    keep_styles : false,
+    keep_styles: false,
     language: 'en',
     object_resizing: false,
     media_strict: true,
@@ -49,9 +49,9 @@ tinyMCE.init({
     indentation: '10px',
     
     // Cleanup
-    cleanup : true,
+    cleanup: true,
     cleanup_on_startup: true,
-    element_format : 'xhtml',
+    element_format: 'xhtml',
     fix_list_elements: true,
     fix_table_elements: true,
     fix_nesting: true,
@@ -76,10 +76,10 @@ tinyMCE.init({
     theme_advanced_buttons3: '',
     theme_advanced_path: false,
     theme_advanced_blockformats: 'p,h2,h3,h4,pre',
-    theme_advanced_resizing : true,
-    theme_advanced_resize_horizontal : false,
-    theme_advanced_resizing_use_cookie : true,
-    theme_advanced_styles: '',
+    theme_advanced_resizing: true,
+    theme_advanced_resize_horizontal: false,
+    theme_advanced_resizing_use_cookie: true,
+    theme_advanced_styles: 'Image Left=img_left;Image Right=img_right;Image Block=img_block',
     
     // Style formats
     // see http://wiki.moxiecode.com/index.php/TinyMCE:Configuration/style_formats
@@ -104,7 +104,7 @@ tinyMCE.init({
             title : '4 Columns',
             src : '/path/to/your/template/',
             description : '4 Columns.'
-        },
+        }
     ],
     
     // Adv
@@ -113,7 +113,7 @@ tinyMCE.init({
     
     // Grappelli
     grappelli_adv_hidden: false,
-    grappelli_show_documentstructure: 'on',
+    grappelli_show_documentstructure: 'on'
     
     // Elements
     // valid_elements: '@[id|class|style|title|dir<ltr?rtl|lang|xml::lang|onclick|ondblclick|'
