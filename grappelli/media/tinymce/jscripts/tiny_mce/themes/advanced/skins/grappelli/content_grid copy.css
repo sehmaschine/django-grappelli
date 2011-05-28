@@ -1,0 +1,68 @@
+/* -------------------------------------------------------------- 
+   
+   Grid based on BLUEPRINT CSS
+   http://code.google.com/p/blueprintcss/
+   
+-------------------------------------------------------------- */
+/* Sets up basic grid floating and margin. */
+div.span-1, 
+div.span-2, 
+div.span-3, 
+div.span-4, 
+div.span-5, 
+div.span-6, 
+div.span-7, 
+div.span-8, 
+div.span-9, 
+div.span-10, 
+div.span-11, 
+div.span-12 {
+  float: left;
+  margin-right: 10px !important; 
+}
+
+/* The last column in a row needs this class. */
+div.last { margin-right: 0 !important; }
+
+/* Use these classes to set the width of a column. */
+.span-1  { width: 60px; }
+.span-2  { width: 130px; }
+.span-3  { width: 200px; }
+.span-4  { width: 270px; }
+.span-5  { width: 340px; }
+.span-6  { width: 410px; }
+.span-7  { width: 480px; }
+.span-8  { width: 550px; }
+.span-9  { width: 620px; }
+.span-10 { width: 690px; }
+.span-11 { width: 760px; }
+.span-12 { width: 830px; margin-right: 0 !important; }
+
+div.span-12 + * {
+   position: relative; clear: both !important; display: block;
+}
+
+/* Clearing floats without extra markup
+   Based on How To Clear Floats Without Structural Markup by PiE
+   [http://www.positioniseverything.net/easyclearing.html] */
+
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both !important;
+    visibility: hidden;
+    font-size: 0; line-height: 0;
+}
+/*.clearfix, .container { display: inline-block; }*/
+* html .clearfix { height: 1px; }
+.clearfix {
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Regular clearing
+   apply to column that should drop below previous ones. */
+
+.clear { clear: both; }
+

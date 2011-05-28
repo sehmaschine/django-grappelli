@@ -1,0 +1,25 @@
+{% load i18n grp_dashboard_tags %}
+
+<div class="container-grid">
+    <div class="column span-12" id="column_1">
+        {% for module in dashboard.children %}
+            {% if module.column == 1 %}
+                {% grp_render_dashboard_module module forloop.counter %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="column span-6" id="column_2">
+        {% for module in dashboard.children %}
+            {% if module.column == 2 %}
+                {% grp_render_dashboard_module module forloop.counter %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="column span-6 last" id="column_3">
+        {% for module in dashboard.children %}
+            {% if module.column == 3 %}
+                {% grp_render_dashboard_module module forloop.counter %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

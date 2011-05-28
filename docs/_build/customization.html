@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customization &mdash; Django Grappelli v1.3 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Django Grappelli v1.3 documentation" href="index.html" />
+    <link rel="next" title="Dashboard Setup" href="dashboard_setup.html" />
+    <link rel="prev" title="Quick start guide" href="quickstart.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dashboard_setup.html" title="Dashboard Setup"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quick start guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Django Grappelli v1.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="customization">
+<span id="id1"></span><h1>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h1>
+<p>While Grappelli is mainly about the look &amp; feel of the Admin-Interface, it also adds some features.</p>
+<div class="section" id="available-settings">
+<span id="customizationsettings"></span><h2>Available Settings<a class="headerlink" href="#available-settings" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">GRAPPELLI_ADMIN_TITLE</span></tt></dt>
+<dd>The Site Title of your Admin-Interface. Change this instead of changing index.html</dd>
+</dl>
+</div>
+<div class="section" id="collapsibles">
+<span id="customizationadmin"></span><h2>Collapsibles<a class="headerlink" href="#collapsibles" title="Permalink to this headline">¶</a></h2>
+<p>Use the <tt class="docutils literal"><span class="pre">classes</span></tt> property in order to define collapsibles for a <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects">ModelAdmin</a> or an <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects">InlineModelAdmin</a>. Possible values are <tt class="docutils literal"><span class="pre">collapse</span> <span class="pre">open</span></tt> and <tt class="docutils literal"><span class="pre">collapse</span> <span class="pre">closed</span></tt>.</p>
+<p>A ModelAdmin example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">ModelOptions</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">fieldsets</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s">&#39;fields&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&#39;subtitle&#39;</span><span class="p">,</span> <span class="s">&#39;slug&#39;</span><span class="p">,</span> <span class="s">&#39;pub_date&#39;</span><span class="p">,</span> <span class="s">&#39;status&#39;</span><span class="p">,),</span>
+        <span class="p">}),</span>
+        <span class="p">(</span><span class="s">&#39;Flags&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s">&#39;classes&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;collapse closed&#39;</span><span class="p">,),</span>
+            <span class="s">&#39;fields&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s">&#39;flag_front&#39;</span><span class="p">,</span> <span class="s">&#39;flag_sticky&#39;</span><span class="p">,</span> <span class="s">&#39;flag_allow_comments&#39;</span><span class="p">,</span> <span class="s">&#39;flag_comments_closed&#39;</span><span class="p">,),</span>
+        <span class="p">}),</span>
+        <span class="p">(</span><span class="s">&#39;Tags&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s">&#39;classes&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;collapse open&#39;</span><span class="p">,),</span>
+            <span class="s">&#39;fields&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s">&#39;tags&#39;</span><span class="p">,),</span>
+        <span class="p">}),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>An InlineModelAdmin example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">NavigationItemInline</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">StackedInline</span><span class="p">):</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;collapse open&#39;</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inline-sortables">
+<span id="customizationinlinessortables"></span><h2>Inline Sortables<a class="headerlink" href="#inline-sortables" title="Permalink to this headline">¶</a></h2>
+<p><strong>New in Grappelli 1.3:</strong> Please see <a class="reference internal" href="releasenotes.html#releasenotes"><em>Release Notes</em></a>.</p>
+<p>For using drag/drop with Inlines, you need to add a <tt class="docutils literal"><span class="pre">PositiveIntegerField</span></tt> to your Model:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyInlineModel</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">mymodel</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span>
+    <span class="c"># position field</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveSmallIntegerField</span><span class="p">(</span><span class="s">&quot;Position&quot;</span><span class="p">)</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">ordering</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;position&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now, define the <tt class="docutils literal"><span class="pre">sortable_field_name</span></tt> with your <tt class="docutils literal"><span class="pre">InlineModelAdmin</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyInlineModelOptions</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">TabularInline</span><span class="p">):</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="o">...</span> <span class="p">,</span> <span class="s">&quot;position&quot;</span><span class="p">,)</span>
+    <span class="c"># define the sortable</span>
+    <span class="n">sortable_field_name</span> <span class="o">=</span> <span class="s">&quot;position&quot;</span>
+</pre></div>
+</div>
+<p>The inline-rows are being reordered based on the sortable-field (with a templatetag <tt class="docutils literal"><span class="pre">formsetsort</span></tt>). When submitting a form, the values of the sortable-field are re-indexed according to the position of each row.
+In case of errors (somewhere within the form), the position of inline-rows are being preserved. This applies to rows prepeared for deletion as well. Empty rows are moved to the end of the formset.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The sortable-field will not automatically be hidden (use a <tt class="docutils literal"><span class="pre">Hidden</span> <span class="pre">Input</span> <span class="pre">Widget</span></tt> if needed). For continous position-numbers (in your database), use a <tt class="docutils literal"><span class="pre">PositionField</span></tt> (see <a class="reference external" href="https://github.com/jpwatts/django-positions">django-positions</a>) instead of the <tt class="docutils literal"><span class="pre">PositiveIntegerField</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="related-lookups">
+<span id="customizationrelatedlookups"></span><h2>Related Lookups<a class="headerlink" href="#related-lookups" title="Permalink to this headline">¶</a></h2>
+<p>Grappelli automatically adds the representation of an object beside the input-field (for fk- and m2m-fields):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">related_fk</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">RelatedModel</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s">u&quot;Related Lookup (FK)&quot;</span><span class="p">)</span>
+    <span class="n">related_m2m</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">RelatedModel</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="s">u&quot;Related Lookup (M2M)&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">MyModelOptions</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c"># use raw_id_fiels for related lookups</span>
+    <span class="n">raw_id_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;related_fk&#39;</span><span class="p">,</span><span class="s">&#39;related_m2m&#39;</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generic-relationships">
+<span id="customizationgenericrelationships"></span><h2>Generic Relationships<a class="headerlink" href="#generic-relationships" title="Permalink to this headline">¶</a></h2>
+<p>Grappelli also adds the representation of an object for Generic Relations:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.contenttypes</span> <span class="kn">import</span> <span class="n">generic</span>
+<span class="kn">from</span> <span class="nn">django.contrib.contenttypes.models</span> <span class="kn">import</span> <span class="n">ContentType</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c"># first generic relation</span>
+    <span class="n">content_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">ContentType</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;content_type&quot;</span><span class="p">)</span>
+    <span class="n">object_id</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveIntegerField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">content_object</span> <span class="o">=</span> <span class="n">generic</span><span class="o">.</span><span class="n">GenericForeignKey</span><span class="p">(</span><span class="s">&quot;content_type&quot;</span><span class="p">,</span> <span class="s">&quot;object_id&quot;</span><span class="p">)</span>
+    <span class="c"># second generic relation</span>
+    <span class="n">content_type_2</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">ContentType</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;content_type_2&quot;</span><span class="p">)</span>
+    <span class="n">object_id_2</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PositiveIntegerField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">content_object_2</span> <span class="o">=</span> <span class="n">generic</span><span class="o">.</span><span class="n">GenericForeignKey</span><span class="p">(</span><span class="s">&quot;content_type_2&quot;</span><span class="p">,</span> <span class="s">&quot;object_id_2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-tinymce">
+<span id="customizationtinymce"></span><h2>Using TinyMCE<a class="headerlink" href="#using-tinymce" title="Permalink to this headline">¶</a></h2>
+<p>Copy <tt class="docutils literal"><span class="pre">tinymce_setup.js</span></tt> to your media-directory, adjust the setup (see <a class="reference external" href="http://wiki.moxiecode.com/index.php/TinyMCE:Configuration">TinyMCE Configuration</a>) and add the necessary javascripts:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Media</span><span class="p">:</span>
+    <span class="n">js</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s">&#39;/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js&#39;</span><span class="p">,</span>
+        <span class="s">&#39;/path/to/your/tinymce_setup.js&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form. You need to write a custom template and use the inline-callbacks to</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">onInit</span></tt>: remove TinyMCE instances from the the empty-form.</li>
+<li><tt class="docutils literal"><span class="pre">onAfterAdded</span></tt>: initialize TinyMCE instance(s) from the form.</li>
+<li><tt class="docutils literal"><span class="pre">onBeforeRemoved</span></tt>: remove TinyMCE instance(s) from the form.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">TinyMCE with Inlines is not supported by default.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Customization</a><ul>
+<li><a class="reference internal" href="#available-settings">Available Settings</a></li>
+<li><a class="reference internal" href="#collapsibles">Collapsibles</a></li>
+<li><a class="reference internal" href="#inline-sortables">Inline Sortables</a></li>
+<li><a class="reference internal" href="#related-lookups">Related Lookups</a></li>
+<li><a class="reference internal" href="#generic-relationships">Generic Relationships</a></li>
+<li><a class="reference internal" href="#using-tinymce">Using TinyMCE</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="quickstart.html"
+                        title="previous chapter">Quick start guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dashboard_setup.html"
+                        title="next chapter">Dashboard Setup</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/customization.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dashboard_setup.html" title="Dashboard Setup"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quick start guide"
+             >previous</a> |</li>
+        <li><a href="index.html">Django Grappelli v1.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Patrick Kranzlmueller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.5.
+    </div>
+  </body>
+</html>

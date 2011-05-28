@@ -1,0 +1,4 @@
+include LICENSE
+recursive-include docs *
+recursive-include grappelli/media *
+recursive-include grappelli/templates *
