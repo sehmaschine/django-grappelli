@@ -1,0 +1,28 @@
+.. _features:
+
+Features
+========
+
+Here's a quick overview of the features added by Grappelli.
+
+
+Admin Index Page
+----------------
+
+* Collapsibles
+* xxx
+
+
+Changelist
+----------
+
+* Collapsibles
+* xxx
+
+
+Change Form
+-----------
+
+* Collapsibles
+* xxx
+

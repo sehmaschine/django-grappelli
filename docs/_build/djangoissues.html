@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Issues &mdash; Django Grappelli v2.3.2 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.3.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Django Grappelli v2.3.2 documentation" href="index.html" />
+    <link rel="next" title="Grappelli 2.3.x Release Notes" href="releasenotes.html" />
+    <link rel="prev" title="Troubleshooting" href="troubleshooting.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="releasenotes.html" title="Grappelli 2.3.x Release Notes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="troubleshooting.html" title="Troubleshooting"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Django Grappelli v2.3.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="django-issues">
+<span id="djangoissues"></span><h1>Django Issues<a class="headerlink" href="#django-issues" title="Permalink to this headline">¶</a></h1>
+<p>There are some known problems with the Django admin-interface. I´m going to list them here in order to avoid confusion (because the problems are not related to Grappelli whatsoever).</p>
+<p>see <a class="reference external" href="http://code.djangoproject.com/wiki/DjangoDesign">http://code.djangoproject.com/wiki/DjangoDesign</a></p>
+<div class="section" id="harcoded-stuff">
+<h2>Harcoded Stuff<a class="headerlink" href="#harcoded-stuff" title="Permalink to this headline">¶</a></h2>
+<p>With &#8220;Hardcoded Stuff&#8221;, I´m referring to HTML-Code within Views (instead of using Templates).
+There´s a lot of this within the Admin-Interface and therefore it´s just not possible to style some elements. For other elements, we need to use ugly hacks or strange CSS.</p>
+</div>
+<div class="section" id="javascripts">
+<h2>Javascripts<a class="headerlink" href="#javascripts" title="Permalink to this headline">¶</a></h2>
+<p>Some Javascripts are about 5 years old. Others are pretty new. Some are jQuery, some not. Still a bit messy and hard to customize.</p>
+<p>see <a class="reference internal" href="javascripts.html#javascripts"><em>Javascripts</em></a>.</p>
+</div>
+<div class="section" id="reordering-edit-inlines">
+<h2>Reordering Edit-Inlines<a class="headerlink" href="#reordering-edit-inlines" title="Permalink to this headline">¶</a></h2>
+<p>First, the <tt class="docutils literal"><span class="pre">can_order</span></tt> attribute is not available with the admin-interface. Second, in case of errors, formsets are not returned in the right order. Therefore, reordering inlines is currently only possible with some hacks.</p>
+<p>see <a class="reference external" href="http://code.djangoproject.com/ticket/14238">http://code.djangoproject.com/ticket/14238</a></p>
+</div>
+<div class="section" id="translating-app-names">
+<h2>Translating App Names<a class="headerlink" href="#translating-app-names" title="Permalink to this headline">¶</a></h2>
+<p>It´s not possible to (easily) translate the names of apps within the admin-interface which leads to a strange language mix (esp. on the index page).</p>
+<p>see <a class="reference external" href="http://code.djangoproject.com/ticket/3591">http://code.djangoproject.com/ticket/3591</a> and <a class="reference external" href="http://code.djangoproject.com/ticket/14251">http://code.djangoproject.com/ticket/14251</a></p>
+</div>
+<div class="section" id="the-admin-index-site">
+<h2>The Admin Index Site<a class="headerlink" href="#the-admin-index-site" title="Permalink to this headline">¶</a></h2>
+<p>Currently, the admin index site reflects the structure of your applications/models. We don´t think editors (who use the admin site) are interested in the structure of your project/applications. What they want is the most reasonable list of models, divided into different sections (not necessarily apps).</p>
+<p>see <a class="reference external" href="http://code.djangoproject.com/ticket/7497">http://code.djangoproject.com/ticket/7497</a></p>
+</div>
+<div class="section" id="related-lookups">
+<h2>Related Lookups<a class="headerlink" href="#related-lookups" title="Permalink to this headline">¶</a></h2>
+<p>With either <tt class="docutils literal"><span class="pre">raw_id_fields</span></tt> or <tt class="docutils literal"><span class="pre">Generic</span> <span class="pre">Relations</span></tt>, the representation for an object should be displayed beneath the input-field.
+When changing the <tt class="docutils literal"><span class="pre">object-id</span></tt> (or selecting an object with the related pop-up window) the representation should be updated.</p>
+<p>This issue is solved with Grappelli (unfortunately overly complex due to the limitations of the original admin-interface).</p>
+</div>
+<div class="section" id="autocompletes">
+<h2>Autocompletes<a class="headerlink" href="#autocompletes" title="Permalink to this headline">¶</a></h2>
+<p>As an alternative to <tt class="docutils literal"><span class="pre">Related</span> <span class="pre">Lookups</span></tt> it should also be possible to implement <tt class="docutils literal"><span class="pre">Autocompletes</span></tt>.</p>
+</div>
+<div class="section" id="searching-generic-relations">
+<h2>Searching Generic Relations<a class="headerlink" href="#searching-generic-relations" title="Permalink to this headline">¶</a></h2>
+<p>It´s not possible to use a &#8220;content_object&#8221; within search_fields.</p>
+</div>
+<div class="section" id="save-object-and-return-to-changelist">
+<h2>Save Object and return to Changelist<a class="headerlink" href="#save-object-and-return-to-changelist" title="Permalink to this headline">¶</a></h2>
+<p>When you edit an object and save it, you are redirected to an unfiltered changelist. That&#8217;s pretty annoying when you&#8217;ve filtered the changelist before editing the object.</p>
+</div>
+<div class="section" id="ordering-by-multiple-fields">
+<h2>Ordering by multiple fields<a class="headerlink" href="#ordering-by-multiple-fields" title="Permalink to this headline">¶</a></h2>
+<p>You can&#8217;t order a changelist by multiple fields of a model.</p>
+<p>see <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.ordering">http://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.ordering</a></p>
+</div>
+<div class="section" id="popups-actions-and-list-editables">
+<h2>Popups, Actions and list_editables<a class="headerlink" href="#popups-actions-and-list-editables" title="Permalink to this headline">¶</a></h2>
+<p>With the current version of Django, actions are visible within popups but delete confirmation doesn´t handle popups correctly. Moreover, list_editables are also visible. From our point of view, editing elements shouldn´t be possible with popups (and hasn´t been before actions are introduced).</p>
+<p>see <a class="reference external" href="http://code.djangoproject.com/ticket/11700">http://code.djangoproject.com/ticket/11700</a></p>
+</div>
+<div class="section" id="admin-documentation">
+<h2>Admin Documentation<a class="headerlink" href="#admin-documentation" title="Permalink to this headline">¶</a></h2>
+<p>The document structure of the admin_doc templates is a bit messy (about every second template has a different structure). Therefore, it´s hard to style these pages. Trying to do our best to give it a decent look though.</p>
+<p>Moreover, all admin-views lead to an error.</p>
+<p>Translation of the Admin Documentation is half-baked.</p>
+</div>
+<div class="section" id="html-css-framework">
+<h2>HTML/CSS Framework<a class="headerlink" href="#html-css-framework" title="Permalink to this headline">¶</a></h2>
+<p>For the Admin-Interface to be customizable, flexible and extensible, we need a coherent HTML/CSS scheme.</p>
+<p>We do think that Grappelli is a first step.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="troubleshooting.html"
+                        title="previous chapter">Troubleshooting</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="releasenotes.html"
+                        title="next chapter">Grappelli 2.3.x Release Notes</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/djangoissues.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="releasenotes.html" title="Grappelli 2.3.x Release Notes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="troubleshooting.html" title="Troubleshooting"
+             >previous</a> |</li>
+        <li><a href="index.html">Django Grappelli v2.3.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Patrick Kranzlmueller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.5.
+    </div>
+  </body>
+</html>

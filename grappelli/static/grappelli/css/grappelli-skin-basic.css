@@ -1,0 +1,1301 @@
+
+
+
+/*  TYPOGRAPHY
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+
+/*  Paragraphs
+------------------------------------------------------------------------------------------------------ */
+
+.module p.help, 
+p.help {
+    color: #999;
+}
+
+.fb_show + p.help a {
+    border: 1px solid #309bbf;
+}
+.fb_show + p.help a:link, .fb_show + p.help a:visited {
+    border: 1px solid #309bbf;
+}
+.fb_show + p.help a:hover, .fb_show + p.help a:active {
+    border: 1px solid #444;
+}
+
+
+
+/*  Links
+------------------------------------------------------------------------------------------------------ */
+
+a:link, a:visited {
+    color: #309bbf;
+}
+a:hover, a:active, a.selected {
+    color: #444;
+}
+
+.dashboard h2 a:link, .dashboard h2 a:visited, 
+.dashboard h3 a:link, .dashboard h3 a:visited {
+    color: #444;
+}
+.dashboard h2 a:hover, .dashboard h2 a:active, 
+.dashboard h3 a:hover, .dashboard h3 a:active {
+    color: #309bbf;
+}
+
+#header a:link, #header a:visited {
+    color: #59AFCC;
+}
+#header a:hover, #header a:active {
+    color: #444;
+}
+
+
+
+/*  Blockquote, Pre, Code
+------------------------------------------------------------------------------------------------------ */
+
+blockquote {
+    color: #777;
+    border-left: 5px solid #ddd;
+}
+
+code, pre {
+    color: #666;
+    background: inherit;
+}
+
+pre.literal-block {
+    background: #eee;
+}
+
+code strong {
+    color: #930;
+}
+
+hr {
+    color: #eee;
+    border: 0;
+    background-color: #eee;
+}
+
+
+
+/*  RTE (Rich Text Edited)
+------------------------------------------------------------------------------------------------------ */
+
+.rte h3 {
+    border-top: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+}
+.rte .group h3 {
+    border-top: 0;
+}
+.rte h3:last-child, 
+.rte h4:last-child {
+    border-bottom: 0;
+}
+.rte td {
+    border-left: 1px solid #f4f4f4;
+}
+.rte td:first-of-type {
+    border-left: 0;
+}
+.delete-confirmation ul.rte>li {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+.delete-confirmation ul.rte>li:first-child {
+    border-top: 0;
+}
+.delete-confirmation ul.rte>li:last-child {
+    border-bottom: 0;
+}
+.delete-confirmation ul.rte>li>ul>li {
+    border-top: 1px dashed #e0e0e0;
+}
+.rte blockquote table {
+    border: 1px solid #d4d4d4;
+}
+
+
+
+/*  Other Styles
+------------------------------------------------------------------------------------------------------ */
+
+.warning {
+    color: #bf3030;
+}
+.quiet {
+    color: #999;
+}
+
+
+
+/*  STRUCTURES
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+body {
+    color: #444;
+    background: #fff;
+}
+
+
+
+/*  Header
+------------------------------------------------------------------------------------------------------ */
+
+#header {
+    color: #eee;
+    background: #333;
+}
+#header a:hover, #header a:active {
+    color: #ddd;
+}
+
+
+
+/*  Branding, Bookmarks & User-Tools
+------------------------------------------------------------------------------------------------------ */
+
+.branding {
+    border-left: 1px solid #343434;
+    background-color: #262626;
+}
+.admin-title {
+    border-left: 1px solid #404040;
+    border-right: 1px solid #303030;
+}
+
+
+/*  User Tools ................................................... */
+
+#user-tools {
+    border-left: 1px solid #303030;
+}
+#user-tools>li {
+    border-left: 1px solid #404040;
+    border-right: 1px solid #303030;
+}
+li.user-options-container.open a.user-options-handler {
+    color: #eee !important;
+}
+li.user-options-container.open ul.user-options {
+    border-top: 1px solid #262626;
+    background: #333;
+}
+ul.user-options li {
+    border-top: 1px solid #404040;
+    border-bottom: 1px solid #292929;
+}
+ul.user-options li:last-child {
+    border-bottom: 0;
+}
+
+
+
+/*  Breadcrumbs
+------------------------------------------------------------------------------------------------------ */
+
+div#breadcrumbs {
+    color: #666;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #e6e6e6;
+}
+
+
+
+/*  Messages
+------------------------------------------------------------------------------------------------------ */
+
+ul.messagelist li {
+    border-bottom: 1px solid #ccc;
+    background-color: #e8f2da;
+}
+ul.messagelist.success li {
+    background-color: #e8f2da;
+}
+ul.messagelist.error li {
+    background-color: #f2e6e6;
+}
+
+
+
+/*  Login Form
+------------------------------------------------------------------------------------------------------ */
+
+.login  .module {
+    border: 0;
+    background: #333;
+}
+.login .module .row {
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #222;
+}
+.login .module label {
+    color: #eee;
+}
+
+
+
+/*  COMPONENTS
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+
+/*  Modules
+------------------------------------------------------------------------------------------------------ */
+
+.module {
+    border: 1px solid #bdbdbd;
+    background: #eee;
+}
+.rte .module {
+    background: transparent;
+}
+
+
+/*  Nested Modules Basics ......................................... */
+
+.module .module, 
+.module fielset.module {
+    border: 0;
+}
+
+
+
+/*  Groups
+------------------------------------------------------------------------------------------------------ */
+
+.group.collapse.closed {
+    border: 2px solid #e0e0e0;
+}
+.group, 
+.group.collapse.closed:hover {
+    border: 2px solid #c7c7c7;
+}
+
+
+
+/*  Elements in Modules & Groups
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  1st Level Borders Top (Dark/Bright) ......................................... */
+
+.group h2, 
+.module h2 {
+    border-bottom: 1px solid #bdbdbd;
+    background: #d6d6d6;
+}
+.group h2 {
+    border: 1px solid #bdbdbd;
+}
+.module h2+*, 
+.module h2+.tools+* {
+    border-top: 1px solid #fff;
+}
+.module h2+.module, 
+.module h2+.tools, 
+.module h2+.tools+.module {
+    border-top: 0 !important;
+}
+
+
+/*  2nd Level Borders Top (Dark/Bright) ......................................... */
+
+.module .module {
+    border-top: 1px solid #c7c7c7;
+}
+.module .module>*:first-child {
+    border-top: 1px solid #eee;
+}
+#changelist .span-flexible .module .module:first-child {
+    border-top: 0;
+}
+
+.group h3, 
+.module h3 {
+    border-bottom: 1px solid #c7c7c7;
+    background: #e0e0e0;
+}
+.module h3+*, 
+.module h3+.tools+* {
+    border-top: 1px solid #fff;
+}
+.module h3+.module, 
+.module h3+.tools, 
+.module h3+.tools+.module {
+    border-top: 0 !important;
+}
+
+
+/*  3rd Level Borders Top (Dark/Bright) ......................................... */
+
+.group .module .module, 
+.module .module .module {
+    border-top: 1px solid #d4d4d4;
+}
+.group .module .module>*:first-child, 
+.module .module .module>*:first-child {
+    border-top: 1px solid #f4f4f4;
+}
+
+.group h4, 
+.module h4 {
+    border-bottom: 1px solid #d4d4d4;
+    background: #e8e8e8;
+}
+.module h4+*, 
+.module h4+.tools+* {
+    border-top: 1px solid #fff;
+}
+.module h4+.tools {
+    border-top: 0 !important;
+}
+.module .description {
+    border-bottom: 1px solid #d4d4d4;
+}
+
+
+
+/*  Collapsible Structures
+------------------------------------------------------------------------------------------------------ */
+
+.module.collapse.closed h2.collapse-handler, 
+.module.collapse.closed h3.collapse-handler, 
+.module.collapse.closed h4.collapse-handler {
+    border-bottom: 0;
+}
+
+
+/*  1st Level Collapsible-Handler ......................................... */
+
+.collapse h2.collapse-handler {
+    background: #a1d4e5;
+}
+.collapse h2.collapse-handler:hover, 
+.collapse.open h2.collapse-handler {
+    background: #bcdfeb;
+}
+
+
+/*  2nd Level Collapsible-Handler ......................................... */
+
+.group .collapse h3.collapse-handler, 
+.module .collapse h3.collapse-handler {
+    background: #cee9f2;
+}
+.group .collapse h3.collapse-handler:hover, 
+.module .collapse h3.collapse-handler:hover, 
+.group .collapse.open h3.collapse-handler, 
+.module .collapse.open h3.collapse-handler {
+    background: #e1f0f5;
+}
+.module .collapse h3.collapse-handler {
+    border-top: 1px solid #e1f0f5;
+}
+
+
+/*  3rd Level Collapsible-Handler ......................................... */
+
+.group .module .collapse h4.collapse-handler, 
+.module .module .collapse h4.collapse-handler {
+    border-top: 1px solid #f0f7fa;
+    background: #e1f0f5;
+}
+.group .collapse h4.collapse-handler:hover, 
+.module .collapse h4.collapse-handler:hover, 
+.group .collapse.open h4.collapse-handler, 
+.module .collapse.open h4.collapse-handler {
+    background: #ebf2f5;
+}
+
+
+
+/*  Row
+------------------------------------------------------------------------------------------------------ */
+
+.row {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+    border-left: 0;
+    border-right: 0;
+}
+.row.first, 
+.row:first-child, 
+.module input[type=hidden] + .row {
+    border-top: 0 !important;
+}
+.row.last, 
+.row:last-child, 
+.row:last-of-type, 
+fieldset.module > .row.last, 
+fieldset.module > .row:last-child {
+    border-bottom: 0 !important;
+}
+
+
+
+/*  Cell
+------------------------------------------------------------------------------------------------------ */
+
+.cell {
+    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #fff;
+}
+
+
+
+/*  Fieldset Cell
+------------------------------------------------------------------------------------------------------ */
+
+fieldset.module .cell:first-child {
+    border-left: 0 !important;
+}
+fieldset.module .cell:last-child, 
+fieldset.module .cell.last {
+    border-right: 0 !important;
+}
+fieldset.module .cell.last + fieldset.module .cell {
+    border-left: 0 !important;
+}
+
+
+/*  Tabular Modules
+------------------------------------------------------------------------------------------------------ */
+
+.module.table {
+    border: 0;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+    background: transparent;
+}
+.module.thead, 
+.module.tfoot {
+    color: #aaa;
+    background: transparent;
+}
+.module.table .tr, 
+.module.tbody {
+    background: transparent;
+}
+.module.table .th, 
+.module.table .td {
+    border-left: 1px solid #fff;
+    border-right: 1px solid #e0e0e0;
+}
+.module.thead .th:last-of-type, 
+.module.thead .td:last-of-type, 
+.module.tfoot .td:last-of-type {
+    border-right: 0;
+}
+.module.table .module.thead .th, 
+.module.table .module.thead .td {
+    border-top: 0;
+    border-bottom: 0;
+    background: none;
+}
+.module.tbody .th, 
+.module.tbody .td {
+    border-top: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+    background: #eee;
+}
+.module.tbody .th:first-of-type, 
+.module.tbody .td:first-of-type {
+    border-left: 1px solid #ccc;
+}
+
+
+
+/*  Add Items
+------------------------------------------------------------------------------------------------------ */
+
+.module.add-item {
+    border: 1px solid transparent;
+    background: #fff;
+}
+
+
+
+/*  Predelete
+------------------------------------------------------------------------------------------------------ */
+
+.predelete h2, .predelete h2.collapse-handler, 
+.predelete h3, .predelete h3.collapse-handler, 
+.predelete h4, .predelete h4.collapse-handler {
+    background: #f2e6e6 !important;
+}
+.predelete h2.collapse-handler:hover, 
+.predelete h3.collapse-handler:hover, 
+.predelete h4.collapse-handler:hover, 
+.collapse.open .predelete h2.collapse-handler, 
+.collapse.open .predelete h3.collapse-handler, 
+.collapse.open .predelete h4.collapse-handler {
+    background: #f2e6e6 !important;
+}
+.predelete, 
+.predelete .module,
+.predelete .th, 
+.predelete .td {
+    background: #f2e6e6 !important;
+}
+
+
+
+/*  Selectors
+------------------------------------------------------------------------------------------------------ */
+
+.selector-available, .selector-chosen {
+    border: 1px solid #ccc;
+    background: #ddd;
+}
+.selector h2, .inline-group .selector h2, 
+.inline-related fieldset .selector-available h2, .inline-related fieldset .selector-chosen h2 {
+    border: 0;
+    border-bottom: 1px solid #d0d0d0;
+    background: transparent;
+}
+.selector .selector-filter {
+    color: #666;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+}
+.selector select[multiple=multiple] {
+    border-left: 0;
+    border-top: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+a.selector-chooseall, a.selector-clearall {
+    border-top: 1px solid #e4e4e4;
+}
+
+.selector h2 + select {
+    border-top: 0;
+}
+
+a.selector-chooseall, a.selector-clearall {
+    border-top: 1px solid #e4e4e4;
+}
+
+
+
+/*  Link-List, Actions, Feed, Table of Contents
+------------------------------------------------------------------------------------------------------ */
+
+.module.link-list, 
+.module.link-list .module, 
+.module.actions, 
+.module.actions .module, 
+.module.feed, 
+.module.feed .module {
+    background: #fff;
+}
+.link-list ul li, 
+.feed ul li, 
+.actions ul li, 
+.table-of-contents ul li {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+.actions ul li {
+    color: #999;
+}
+.actions ul li:first-child, 
+.link-list ul li:first-child, 
+.feed ul li:first-child, 
+.table-of-contents ul li:first-child {
+    border-top: 0;
+}
+.actions ul li:last-child, 
+.link-list ul li:last-child, 
+.feed ul li:last-child, 
+.table-of-contents ul li:last-child {
+    border-bottom: 0;
+}
+.link-list ul li.selected a, 
+.table-of-contents ul li.selected a {
+    color: #444;
+}
+a.internal:link, a.internal:visited {}
+a.internal:hover, a.internal:active, 
+.actions li.delete-link {
+    color: #666;
+}
+a.external:link, a.external:visited {
+    color: #83c3d9;
+}
+a.external:hover, a.external:active {
+    color: #666;
+}
+
+
+
+/*  Module Changelist Filters
+------------------------------------------------------------------------------------------------------ */
+
+.module.changelist-filters {
+    color: #666;
+    border: 1px solid #d4d4d4;
+}
+
+
+
+/*  Module Search & Module Filter
+------------------------------------------------------------------------------------------------------ */
+
+.module.search, 
+.module.filter {
+    border: 0;
+}
+.module.filter .pulldown-container {
+    border: 1px solid #fff;
+}
+.module.filter.open .pulldown-container {
+    border-color: #ccc;
+    box-shadow: 0 0 10px #444; -moz-box-shadow: 0 0 10px #444; -webkit-box-shadow: 0 0 10px #444;
+}
+
+.open a.button.toggle-filters, 
+.open.selected a.button.toggle-filters {
+    border-color: transparent !important;
+}
+a.button.toggle-filters:link, a.button.toggle-filters:visited {
+    color: #309bbf;
+    border-color: #ddd;
+}
+.selected a.button.toggle-filters:link, .selected a.button.toggle-filters:visited {
+    color: #444;
+    background-color: #e1f0f5;
+}
+.open a.button.toggle-filters, .selected a.button.toggle-filters, 
+.selected a.button.toggle-filters:hover, .selected a.button.toggle-filters:active, 
+a.button.toggle-filters:hover, a.button.toggle-filters:active {
+    color: #666;
+    border-color: #ccc;
+    background-color: #e1f0f5;
+}
+.selected a.button.toggle-filters:link, .selected a.button.toggle-filters:visited {
+    color: #666;
+    border-color: #ddd;
+    background-color: #e1f0f5;
+}
+.open a.button.toggle-filters, 
+.open.selected a.button.toggle-filters, 
+.selected a.button.toggle-filters:hover, .selected a.button.toggle-filters:active, 
+a.button.toggle-filters:hover, a.button.toggle-filters:active {
+    color: #666;
+    border-color: #ccc;
+    background-color: #e1f0f5;
+}
+
+.filter-pulldown {
+    border: 1px solid transparent;
+    border-top: 0;
+    background: #e1f0f5;
+}
+.filter-pulldown label {
+    color: #999;
+}
+
+
+
+/*  Module Date Hierarchy
+------------------------------------------------------------------------------------------------------ */
+
+.module.date-hierarchy {
+    border: 1px solid #d9d9d9;
+    background: #eee;
+}
+.module + .module.date-hierarchy .row {
+    border-top: 1px solid #fff !important;
+}
+.date-hierarchy a:link, .date-hierarchy a:visited {
+    color: #59afcc;
+}
+.date-hierarchy a:hover, .date-hierarchy a:active {
+    color: #444;
+}
+.date-hierarchy a.date-hierarchy-back:hover, .date-hierarchy a.date-hierarchy-back:active {
+    color: #666;
+}
+
+
+
+/*  Pagination
+------------------------------------------------------------------------------------------------------ */
+
+.module.pagination {
+    border: 1px solid #d9d9d9;
+}
+.module .module.pagination {
+    border: 0;
+}
+ul.pagination {
+    border-top: 0 !important;
+}
+ul.pagination li {
+    border: 1px solid #fff;
+}
+
+ul.pagination span, 
+ul.pagination a {
+    border: 1px solid;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+ul.pagination a:link, .pagination a:visited {
+    color: #59afcc;
+    border-color: #d9d9d9;
+}
+ul.pagination a:hover, .pagination a:active {
+    color: #444;
+    border-color: #bdbdbd;
+    background: #e0e0e0;
+}
+ul.pagination span {
+    color: #444;
+    border-color: #bdbdbd;
+    background: #e0e0e0;
+}
+ul.pagination li.separator span {
+    border-color: transparent;
+    background: transparent;
+}
+
+
+
+/*  Module Changelist-Results
+------------------------------------------------------------------------------------------------------ */
+
+.module.changelist-results {
+    background-color: #eee !important;
+}
+
+
+
+/*  Module Changelist Actions
+------------------------------------------------------------------------------------------------------ */
+
+.module.changelist-actions {
+    color: #ccc;
+    background: #eee;
+}
+.module.changelist-actions.all-selected, 
+.module.changelist-actions.all-selected + .module.changelist-results {
+    background: #ffffe6 !important;
+}
+.module.changelist-actions ul li {
+    border: 1px solid #444;
+}
+.module.changelist-actions ul a, 
+.module.changelist-actions ul span {
+    border: 1px solid;
+}
+.module.changelist-actions ul a:link, .module.changelist-actions ul a:visited {
+    color: #59afcc;
+    border-color: #333;
+    background: #333;
+}
+.module.changelist-actions ul a:hover, .module.changelist-actions ul a:active {
+    color: #ccc;
+    border-color: #333;
+    background: #555;
+}
+.module.changelist-actions ul span {
+    color: #ccc;
+    border-color: #333;
+}
+.module.changelist-actions ul span span {
+    border: 0;
+}
+
+
+
+/*  Module Footer
+------------------------------------------------------------------------------------------------------ */
+
+.module.footer {
+    border: 0;
+    border-top: 1px solid #bdbdbd;
+    background: #333;
+}
+
+
+
+/*  Submit Row
+------------------------------------------------------------------------------------------------------ */
+
+.module.submit-row {
+    border: 0;
+    background: transparent;
+}
+
+
+
+/*  Tooltips
+------------------------------------------------------------------------------------------------------ */
+
+.module.search .tooltip .tooltip-content {
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+
+
+/*  TOOLS
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+ul.tools li {
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+}
+
+
+
+/*  H1 + Tools
+------------------------------------------------------------------------------------------------------ */
+
+h1 + .tools a {
+    color: #fff;
+    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+h1 + .tools a:link, h1 + .tools a:visited {
+    background: #444;
+}
+h1 + .tools a:hover, h1 + .tools a:active {
+    border-color: transparent;
+    background: #309bbf;
+}
+h1 + .tools a.add-handler:link, h1 + .tools a.add-handler:visited {
+    background-color: #444;
+}
+h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
+    background-color: #309bbf;
+}
+
+
+
+/*  FORMS
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+
+/*  Errors
+------------------------------------------------------------------------------------------------------ */
+
+.errornote {
+    color: #f7f7f7;
+    background: #bf3030;
+}
+ul.errorlist {
+    color: #bf3030;
+}
+.error input, .error select, .errors input, .errors select {
+    border: 1px solid #bf3030 !important;
+}
+
+
+
+/*  Labels & Other Typographic Elements in Forms
+------------------------------------------------------------------------------------------------------ */
+
+label {
+    color: #444;
+}
+
+
+
+/*  Form Elements
+------------------------------------------------------------------------------------------------------ */
+
+input, textarea, select, button {
+    color: #666;
+    border: 1px solid #bbb;
+    border-color: #ccc #ddd #ddd #ccc;
+    outline: 0;
+}
+input, textarea, select {
+    box-shadow: 0 1px 3px #eaeaea inset; -moz-box-shadow: 0 1px 3px #eaeaea inset; -webkit-box-shadow: 0 1px 3px #eaeaea inset;
+}
+
+*:focus, input:focus, textarea:focus, select:focus {
+    border-color: #999 #bbb #bbb #999;
+}
+select:focus * {
+    border: 0 !important;
+    outline: 0 !important;
+}
+
+
+/*  Searchbar ................................................... */
+
+form#changelist-search {
+    border: 1px solid #fff;
+    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+input#searchbar {
+    border-radius: 14px; -moz-border-radius: 14px; -webkit-border-radius: 14px;
+}
+
+
+/*  Select ................................................... */
+
+option, 
+select[multiple=multiple] option {
+    border-bottom: 1px dotted #ddd !important;
+}
+option:last-child {
+    border-bottom: 0;
+}
+
+
+/*  Autocomplete Fields ................................................... */
+
+.vAutocompleteSearchField, 
+.vM2MAutocompleteSearchField {
+    background: #eaf5f8;
+}
+
+
+/*  Read Only ................................................... */
+
+input[readonly],
+textarea[readonly],
+select[readonly] {
+    background: #f4f4f4;
+}
+
+
+
+/*  BUTTONS
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+input[type=submit], input[type=reset], input[type=button], button {
+    color: #fff;
+    border: 0;
+    background: #acd7e5;
+}
+
+
+/*  Button Containers ................................................... */
+
+.submit-row>*[class*="-container"] {
+    box-shadow: 0 0 5px #666; -moz-box-shadow: 0 0 5px #666; -webkit-box-shadow: 0 0 5px #666;
+    background: #d6d6d6;
+}
+.submit-row>*[class*="-container"]:hover {
+    box-shadow: 0 0 5px #777; -moz-box-shadow: 0 0 5px #777; -webkit-box-shadow: 0 0 5px #777;
+    background: #d6d6d6;
+}
+.submit-row>*[class*="cancel-button-container"] {
+    box-shadow: 0 0 5px #aaa; -moz-box-shadow: 0 0 5px #aaa; -webkit-box-shadow: 0 0 5px #aaa;
+}
+.footer .submit-row>*[class*="-container"], 
+.footer .submit-row>*[class*="cancel-button-container"] {
+    border: 1px solid #666;
+    box-shadow: 0 0 5px #666; -moz-box-shadow: 0 0 5px #666; -webkit-box-shadow: 0 0 5px #666;
+    background: #666;
+}
+.submit-row>*[class*="cancel-button-container"] {
+    box-shadow: 0 0 5px #aaa; -moz-box-shadow: 0 0 5px #aaa; -webkit-box-shadow: 0 0 5px #aaa;
+}
+.footer .submit-row>*[class*="-container"]:hover, 
+.footer .submit-row>*[class*="cancel-button-container"]:hover {
+    border: 1px solid #777;
+    box-shadow: 0 0 5px #777; -moz-box-shadow: 0 0 5px #777; -webkit-box-shadow: 0 0 5px #777;
+    background: #777;
+}
+
+
+
+/*  Buttons & Buttonlike Links
+------------------------------------------------------------------------------------------------------ */
+
+.submit-row input[type=submit], 
+.submit-row a.submit-link:link, .submit-row a.submit-link:visited {
+    border: 1px solid #267c99;
+}
+
+input[type=submit], 
+#bookmark-add-cancel, 
+.submit-row a.delete-link:link, .submit-row a.delete-link:visited, 
+.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited, 
+.submit-row input[type=button] {
+    box-shadow: none !important; -moz-box-shadow: none !important; -webkit-box-shadow: none !important;
+}
+
+.submit-row a.delete-link:link, .submit-row a.delete-link:visited {
+    color: #fff;
+    border: 1px solid #992626;
+    background: #bf3030;
+}
+#bookmark-add-cancel, 
+.submit-row a.cancel-link:link, .submit-row a.cancel-link:visited, 
+.submit-row input.cancel:hover {
+    color: #fff;
+    border: 1px solid #444;
+    background: #666;
+}
+
+input[type=submit], 
+.submit-row a.submit-link:hover, .submit-row a.submit-link:active {
+    color: #fff;
+    background: #309bbf;
+}
+input[type=submit]:hover, 
+#bookmark-add-cancel:hover, 
+.submit-row a.submit-link:hover, .submit-row a.submit-link:active, 
+.submit-row a.delete-link:hover, .submit-row a.delete-link:active, 
+.submit-row a.cancel-link:hover, .submit-row a.cancel-link:active, 
+.submit-row input.cancel {
+    color: #444;
+    border: 1px solid #aaa;
+    background: #d6d6d6;
+}
+.footer input[type=submit]:hover, 
+.footer #bookmark-add-cancel:hover, 
+.footer .submit-row a.delete-link:hover, .footer .submit-row a.delete-link:active, 
+.footer .submit-row a.cancel-link:hover, .footer .submit-row a.cancel-link:active {
+    border: 1px solid #666;
+}
+
+button {
+    background: #309bbf;
+}
+button:hover {
+    background: #666;
+}
+
+button.fb_show, 
+button.ui-gAutocomplete-browse, 
+button.ui-gFacelist-browse, 
+button.ui-gAutoSlugField-toggle, 
+button.ui-datepicker-trigger, 
+button.ui-timepicker-trigger, 
+.tinyMCE .browse span {
+    border: 1px solid #ccc;
+    background-color: #e1f0f5;
+}
+button.fb_show:hover, 
+button.ui-gAutocomplete-browse:hover, 
+button.ui-gFacelist-browse:hover, 
+button.ui-gAutoSlugField-toggle:hover, 
+button.ui-datepicker-trigger:hover, 
+button.ui-timepicker-trigger:hover, 
+.tinyMCE .browse span:hover {
+    background-color: #e1e1e1;
+}
+button.fb_show[disabled], 
+button.ui-gAutocomplete-browse[disabled], 
+button.ui-gFacelist-browse[disabled], 
+button.ui-gAutoSlugField-toggle[disabled], 
+button.ui-datepicker-trigger[disabled], 
+button.ui-timepicker-trigger[disabled], 
+input[disabled] + a {
+    background-color: transparent !important;
+    opacity: 0.3;
+    cursor: auto !important;
+}
+
+
+/*  Search Button ......................................... */
+
+button.search {
+    border-color: transparent !important;
+    background-color: transparent;
+}
+
+
+
+/*  Links as Buttons
+------------------------------------------------------------------------------------------------------ */
+
+a.button, 
+.datecrumbs a, 
+.datecrumbs span {
+    border: 1px solid #e0e0e0;
+}
+
+
+/*  Drop-Down Button ......................................... */
+
+a.button.drop-down[class*="selected"] {
+    color: #444 !important;
+    border-color: #b0b0b0;
+    border-bottom-width: 0 !important;
+    box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+    -moz-box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+    -webkit-box-shadow: 0 -2px 3px #bbb, -2px -2px 3px #bbb, 2px -2px 3px #bbb;
+}
+a.button.drop-down:link, a.button.drop-down:visited {
+    color: #309bbf;
+    background-color: #fff;
+}
+a.button.drop-down[class*="selected"], 
+a.button.drop-down:hover, a.button.drop-down:active {
+    color: #666;
+    background-color: #e1f0f5;
+}
+
+
+/*  Filebrowser & Related Lookup ......................................... */
+
+a.fb_show, 
+a.related-lookup {
+    border: 1px solid #ccc;
+}
+a.fb_show:link, a.fb_show:visited, 
+a.related-lookup:link, a.related-lookup:visited {
+    background-color: #e1f0f5;
+}
+a.fb_show:hover, a.fb_show:active, 
+a.related-lookup:hover, a.related-lookup:active {
+    background-color: #e1e1e1;
+}
+a.related-lookup + strong {
+    color: #555;
+}
+
+
+/*  Buttons & Button Links in Errors ......................................... */
+
+.error input + button, 
+.error .vDateField + button, 
+.error .vTimeField + button, 
+.error input + a.fb_show, 
+.error input + a.related-lookup, 
+.error input + a.add-another, 
+.errors input + button, 
+.errors .vDateField + button, 
+.errors .vTimeField + button, 
+.errors input + a.fb_show, 
+.errors input + a.related-lookup, 
+.errors input + a.add-another {
+    border-color: #bf3030;
+}
+
+
+/*  Focused Buttons & Button Links ......................................... */
+
+input:focus + button, 
+.vDateField:focus + span a, 
+.vTimeField:focus + span a, 
+input:focus + a.fb_show, 
+input:focus + a.related-lookup, 
+input:focus + a.add-another {
+    border-color: #bbb;
+    border-left-color: #ccc;
+}
+
+
+
+/*  TABLES
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+tr.alt th, tr.alt td {
+    background: #f4f4f4;
+}
+.row1 th, .row1 td {
+    background: #f4f4f4;
+}
+.row2 th, .row2 td {
+    background: #fff;
+}
+.selected th, .selected td {
+    background: #ffd;
+}
+
+
+/*  Thead ................................................... */
+
+thead th,
+tfoot td {
+    color: #aaa;
+    border-left: 1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+    background: #eee;
+}
+thead th.sorted {
+    border-bottom: 1px solid #ccc;
+    background: #e0e0e0;
+}
+
+thead th a:link, thead th a:visited {
+    color: #59afcc;
+    border-top: 1px solid #fff;
+}
+thead th a:hover, thead th a:active, 
+thead th.sorted a {
+    color: #444;
+}
+thead th.sorted a {
+    border-top: 1px solid #ececec;
+}
+
+
+/*  Tbody ................................................... */
+
+tbody th, tbody td {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tfoot td {
+    border-bottom: 0;
+    border-top: 1px solid #d4d4d4;
+}
+
+thead th:first-child,
+tfoot td:first-child {
+    border-left: 0;
+}
+
+fieldset table {
+    border-right: 1px solid #eee;
+}
+
+tr.row-label td {
+    border-bottom: 0;
+    color: #666;
+}
+
+
+
+/*  Changelist Table
+------------------------------------------------------------------------------------------------------ */
+
+#changelist table {
+    border: 1px solid #bdbdbd;
+}
+#changelist tbody th, #changelist tbody td {
+    border: 0;
+    border-top: 1px solid #e8e8e8;
+    border-left: 1px solid #e0e0e0;
+}
+#changelist tbody tr:first-child th, #changelist tbody tr:first-child td {
+    border-top: 1px solid #fff;
+}
+#changelist tbody tr th:first-child, #changelist tbody tr td:first-child {
+    border-left: 0;
+}
+#changelist thead *[style^="display: none"] + *, 
+#changelist tbody tr *[style^="display: none"] + * {
+    border-left: 0;
+}
+
+
+
+/*  Overrides
+------------------------------------------------------------------------------------------------------ */
+
+tbody th:first-child, tbody td:first-child {
+    border-left: 0;
+}
+tbody tr:last-child td, tbody tr:last-child th {
+    border-bottom: 0;
+}
