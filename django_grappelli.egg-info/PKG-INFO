@@ -1,0 +1,17 @@
+Metadata-Version: 1.0
+Name: django-grappelli
+Version: 2.1
+Summary: A jazzy skin for the Django Admin-Interface.
+Home-page: http://code.google.com/p/django-grappelli/
+Author: Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)
+Author-email: werkstaetten@vonautomatisch.at
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Framework :: Django
