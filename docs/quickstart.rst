@@ -56,7 +56,7 @@ Set ``ADMIN_MEDIA_PREFIX``::
 .. note::
     Please refer to the `Staticfiles Documentation <http://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/>`_ for setting up and using ``staticfiles``.
 
-If you're not using ``staticfiles`` you can either use a symlink from your media-directory (given by ``MEDIA_ROOT`` and ``MEDIA_URL``) or copy the grappelli media-files to your media-directory. Don't forget to set ``ADMIN_MEDIA_PREFIX`` accordingly.
+If you're not using ``staticfiles`` you can either use a symlink from your media-directory (given by ``MEDIA_ROOT`` and ``MEDIA_URL``) or copy the Grappelli media-files to your media-directory. Don't forget to set ``ADMIN_MEDIA_PREFIX`` accordingly.
 
 Testing
 -------

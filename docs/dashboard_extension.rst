@@ -6,5 +6,6 @@
 Extending the Dashboard
 =======================
 
-TODO: Write docs about how to add bookmarks or custom menus.
+.. todo::
+    Write docs about how to add bookmarks or custom menus.
 

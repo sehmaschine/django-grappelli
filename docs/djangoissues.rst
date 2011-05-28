@@ -74,16 +74,7 @@ Ordering by multiple fields
 
 You can't order a changelist by multiple fields of a model.
 
-see http://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.ordering
-http://code.djangoproject.com/ticket/11868
-http://code.djangoproject.com/ticket/4926
-
-Popups, Actions and list_editables
-----------------------------------
-
-With the current version of Django, actions are visible within popups but delete confirmation doesn´t handle popups correctly. Moreover, list_editables are also visible. From our point of view, editing elements shouldn´t be possible with popups (and hasn´t been before actions are introduced).
-
-see http://code.djangoproject.com/ticket/11700
+see http://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.ordering and http://code.djangoproject.com/ticket/11868 and http://code.djangoproject.com/ticket/4926
 
 Admin Documentation
 -------------------

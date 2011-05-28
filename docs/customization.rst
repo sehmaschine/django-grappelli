@@ -45,6 +45,9 @@ An InlineModelAdmin example::
     class NavigationItemInline(admin.StackedInline):
         classes = ('collapse open',)
 
+.. note::
+    With Inlines, only the Inline-Group (and not the Inline-items) are affected by the ``classes`` property.
+
 .. _customizationinlinessortables:
 
 Inline Sortables

@@ -6,5 +6,6 @@
 Dashboard Layout
 ================
 
-TODO: Write docs about changing the default 3-column dashboard layout.
+.. todo::
+    Write docs about changing the default 3-column dashboard layout.
 
