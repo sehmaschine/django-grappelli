@@ -15,7 +15,7 @@
             <div class="tr">
                 {% for field in inline_admin_formset.fields %}
                     {% if not field.widget.is_hidden %}
-                        <div class="th {{ field.label|lower }}{% if field.required %} required{% endif %}">{{ field.label|capfirst }}</div>
+                        <div class="th {{ field.label|lower|slugify }}{% if field.required %} required{% endif %}">{{ field.label|capfirst }}</div>
                     {% endif %}
                 {% endfor %}
                 {% if inline_admin_formset.formset.can_delete %}<div class="th">&nbsp;</div>{% endif %}
