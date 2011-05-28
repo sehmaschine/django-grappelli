@@ -1,0 +1,62 @@
+:tocdepth: 1
+
+.. |grappelli| replace:: Grappelli
+.. |filebrowser| replace:: FileBrowser
+
+.. _templatetags:
+
+Templatetags
+============
+
+Additional templatetags available with |grappelli| (see ``/templatetags/grp_tags.py``).
+
+.. _templatetags_get_content_types:
+
+get_content_types
+-----------------
+
+TODO: write docs
+
+.. _templatetags_get_admin_title:
+
+get_admin_title
+---------------
+
+TODO: write docs
+
+.. _templatetags_get_date_format:
+
+get_date_format
+---------------
+
+TODO: write docs
+
+.. _templatetags_get_time_format:
+
+get_time_format
+---------------
+
+TODO: write docs
+
+.. _templatetags_get_datetime_format:
+
+get_datetime_format
+-------------------
+
+TODO: write docs
+
+.. _templatetags_get_search_fields_verbose:
+
+get_search_fields_verbose
+-------------------------
+
+TODO: write docs
+
+.. _templatetags_formsetsort:
+
+formsetsort
+-----------
+
+Sort a Formset according to a sortable-field.
+
+

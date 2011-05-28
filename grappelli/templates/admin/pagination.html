@@ -1,0 +1,30 @@
+{% load admin_list i18n %}
+
+{% spaceless %}
+    <div class="module pagination">
+        <ul class="pagination">
+            {% if cl.result_count != cl.full_result_count %}
+                <li class="results"><span>
+                    {% blocktrans count cl.result_count as counter %}1 result{% plural %}{{ counter }} results{% endblocktrans %}
+                </span></li>
+            {% endif %}
+            <li class="results">
+                {% if cl.result_count != cl.full_result_count or cl.show_all %}
+                    <a href="?{% if cl.is_popup %}pop=1{% endif %}" class="total">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
+                {% else %}
+                    <span>{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</span>
+                {% endif %}
+            </li>
+            {% if pagination_required %}
+                {% for i in page_range %}
+                    {% ifequal i "." %}
+                        <li class="separator"><span>...</span></li>
+                    {% else %}
+                        <li>{% paginator_number cl i %}</li>
+                    {% endifequal %}
+                {% endfor %}
+            {% endif %}
+            {% if show_all_url %}<li class="showall"><a href="{{ show_all_url }}">{% trans 'Show all' %}</a></li>{% endif %}
+        </ul><br clear="all" />
+    </div>
+{% endspaceless %}

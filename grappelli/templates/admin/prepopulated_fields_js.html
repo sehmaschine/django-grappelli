@@ -1,0 +1,17 @@
+<script type="text/javascript">
+    (function( $ ) {
+        {% for field in prepopulated_fields %}
+            $("#{{ field.field.auto_id }}").bind('change.grappelli', function() { 
+                $(this).data('changed', true); 
+            });
+            {% for dependency in field.dependencies %}
+            $("#{{ dependency.auto_id }}").bind('keyup.grappelli', function() {
+                var e = $("#{{ field.field.auto_id }}");
+                if (!e.data('changed')) { 
+                    e.val(URLify({% for innerdep in field.dependencies %}$("#{{ innerdep.auto_id }}").val(){% if not forloop.last %} + ' ' + {% endif %}{% endfor %}, {{ field.field.field.max_length|default_if_none:"50" }}));
+                }
+            });
+            {% endfor %}
+        {% endfor %}
+    })(django.jQuery);
+</script>

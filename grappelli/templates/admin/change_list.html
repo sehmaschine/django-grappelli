@@ -1,0 +1,161 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load adminmedia admin_list i18n grp_tags %}
+
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+    {{ media.css }}
+{% endblock %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    {% if cl.formset or action_form %}
+        {% url 'admin:jsi18n' as jsi18nurl %}
+        <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"></script>
+        <script type="text/javascript" charset="utf-8">
+            (function($) {
+                $(document).ready(function() {
+                    $("tr input.action-select").actions();
+                    grappelli.initDateAndTimePicker();
+                    var prefix = "form";
+                    var related_lookup_fields_fk = {% get_related_lookup_fields_fk cl.model_admin %};
+                    var related_lookup_fields_m2m = {% get_related_lookup_fields_m2m cl.model_admin %};
+                    var related_lookup_fields_generic = {% get_related_lookup_fields_generic cl.model_admin %};
+                    $.each(related_lookup_fields_fk, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
+                    });
+                    $.each(related_lookup_fields_m2m, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
+                    });
+                    $.each(related_lookup_fields_generic, function() {
+                        var content_type = this[0],
+                            object_id = this[1];
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                        .each(function() {
+                            var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
+                                obj_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + object_id;
+                            $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                        });
+                    });
+                });
+            })(django.jQuery);
+        </script>
+    {% endif %}
+    <script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                grappelli.initSearchbar();
+                grappelli.initFilter();
+                grappelli.initTableElements(); // HACK: add no-wrap to table-elements.
+            });
+        })(django.jQuery);
+    </script>
+    {{ media.js }}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS-- >
+{% block bodyclass %}change-list{% endblock %}
+{% block content-class %}content-flexible{% endblock %}
+
+<!-- BREADCRUMBS -- >
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <div id="breadcrumbs">
+            <a href="../../">{% trans "Home" %}</a> &rsaquo;
+            <a href="../">{% trans app_label|capfirst|escape %}</a> &rsaquo;
+            {{ cl.opts.verbose_name_plural|capfirst }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT-TITLE -->
+{% block content_title %}
+    <h1>{{ cl.opts.verbose_name_plural|capfirst }} {{ cl.model_admin }}</h1>
+{% endblock %}
+
+<!-- OBJECT-TOOLS -->
+{% block object-tools %}
+    {% if has_add_permission %}
+        <ul class="tools">
+            <li>
+                <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="add-handler focus">
+                    {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+                </a>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
+        <div class="module changelist-filters">
+            <!-- PAGINATION TOP -->
+            {% pagination cl %}
+            {% if cl.has_filters or cl.search_fields %}
+                <!-- FILTERS -->
+                {% if cl.has_filters %}
+                    <div id="filters" class="module filter span-6">
+                        <div class="pulldown-container">
+                            <a href="javascript://" class="button toggle-filters">{% trans 'Filter' %}</a>
+                            <div class="filter-pulldown">
+                                {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- SEARCH -->
+                {% if cl.search_fields %}
+                    <div id="search" class="module search span-6">
+                        {% block search %}{% search_form cl %}{% endblock %}
+                    </div>
+                {% endif %}
+            {% endif %}
+            <br clear="all" />
+        </div>
+        <!-- DATE HIERARCHY -->
+        {% if cl.date_hierarchy %}
+            {% date_hierarchy cl %}
+        {% endif %}
+    {% endif %}
+    <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+        <div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
+            <!-- POPUP -->
+            {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+            <!-- ERRORS -->
+            {% if cl.formset.errors %}
+                <p class="errornote">
+                    {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                </p>
+                {{ cl.formset.non_form_errors }}
+            {% endif %}
+            <!-- MANAGEMENT FORM -->
+            {% if cl.formset %}
+                {{ cl.formset.management_form }}
+            {% endif %}
+            <!-- CHANGELIST-RESULTS -->
+            {% block result_list %}
+                {% result_list cl %}
+            {% endblock %}
+            <!-- PAGINATION BOTTOM -->
+            {% pagination cl %}
+        </div><br clear="all" />
+        <!-- SUBMIT ROW -->
+        {% if cl.formset or action_form %}
+            <div id="submit" class="module footer">
+                {% if action_form %}{% admin_actions %}{% endif %}
+                <ul class="submit-row">
+                    <li class="submit-button-container"><input type="submit" class="default" name="_save" value="Save"/></li>
+                </ul>
+            </div>
+        {% endif %}
+    </form>
+{% endblock %}

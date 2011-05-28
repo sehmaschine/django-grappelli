@@ -1,0 +1,34 @@
+{% extends "grappelli/dashboard/module.html" %}
+{% load i18n %}
+{% block module_content %}
+    {% spaceless %}
+    {% for child in module.children %}
+        <div class="module">
+            <h{% if subindex %}4{% else %}3{% endif %}><a href="{{ child.url }}">{{ child.title }}</a></h{% if subindex %}4{% else %}3{% endif %}>
+            {% for model in child.models %}
+                <div class="row">
+                    {% if model.change_url %}
+                        <a href="{{ model.change_url }}">{{ model.title }}</a>
+                    {% else %}
+                        {{ model.title }}
+                    {% endif %}
+                    {% if model.add_url or model.change_url %}
+                        <ul class="actions">
+                            {% if model.add_url %}
+                                <li class="add-link">
+                                    <a href="{{ model.add_url }}">{% trans "Add" %}</a>
+                                </li>
+                            {% endif %}
+                            {% if model.change_url %}
+                                <li class="change-link">
+                                    <a href="{{ model.change_url }}">{% trans "Change" %}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    {% endspaceless %}
+{% endblock %}

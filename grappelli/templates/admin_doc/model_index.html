@@ -1,0 +1,45 @@
+{% extends "admin/base_site.html" %}
+{% load adminmedia %}
+{% load i18n %}
+{% block javascripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% admin_media_prefix %}js/documentation.js"></script>
+{% endblock %}
+
+{% block bodyclass %}documentation model-index{% endblock %}
+{% block content-class %}content-grid{% endblock %}
+{% block breadcrumbs %}<div id="breadcrumbs"><a href="../../">Home</a> &rsaquo; <a href="../">Documentation</a> &rsaquo; Models</div>{% endblock %}
+
+{% block title %}Models{% endblock %}
+
+{% block content %}
+    <h1>Model documentation</h1>
+    {% regroup models by app_label as grouped_models %}
+    <div class="container-grid">
+        <div class="column span-6">
+            <div class="module table-of-contents">
+                <h2>Model groups</h2>
+                <ul>
+                    {% regroup models by app_label as grouped_models %}
+                    {% for group in grouped_models %}
+                        <li><a href="#app-{{ group.grouper }}">{{ group.grouper|capfirst }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="column span-18 last rte">
+            {% for group in grouped_models %}
+                <div class="module">
+                    <h2 id="app-{{ group.grouper }}">{{ group.grouper|capfirst }}</h2>
+                    <table>
+                        {% for model in group.list %}
+                            <tr>
+                                <th><a href="{{ model.app_label }}.{{ model.object_name.lower }}/">{{ model.object_name }}</a></th>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

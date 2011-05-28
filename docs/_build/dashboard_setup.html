@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Dashboard Setup &mdash; Django Grappelli v2.3.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.3.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Django Grappelli v2.3.1 documentation" href="index.html" />
+    <link rel="next" title="Dashboard API" href="dashboard_api.html" />
+    <link rel="prev" title="Customization" href="customization.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dashboard_api.html" title="Dashboard API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="customization.html" title="Customization"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Django Grappelli v2.3.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dashboard-setup">
+<span id="id1"></span><h1>Dashboard Setup<a class="headerlink" href="#dashboard-setup" title="Permalink to this headline">¶</a></h1>
+<p class="versionadded">
+<span class="versionmodified">New in version 2.3.</span></p>
+<p>With the Django Admin-Interface, the admin index page reflects the structure of your applications/models. With <tt class="docutils literal"><span class="pre">grappelli.dashboard</span></tt> you are able to change that structure and rearrange (or group) apps and models.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">grappelli.dashboard</span></tt> is a simplified version of <a class="reference external" href="http://packages.python.org/django-admin-tools/">Django Admin Tools</a>: Bookmarks, Menus and the custom App-Index are <strong>not available with Grappelli</strong>.</p>
+</div>
+<div class="section" id="add-grappelli-dashboard-to-your-installed-apps">
+<h2>Add <tt class="docutils literal"><span class="pre">grappelli.dashboard</span></tt> to your Installed Apps<a class="headerlink" href="#add-grappelli-dashboard-to-your-installed-apps" title="Permalink to this headline">¶</a></h2>
+<p>Open <tt class="docutils literal"><span class="pre">settings.py</span></tt> and add <tt class="docutils literal"><span class="pre">grappelli.dashboard</span></tt> to your <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> (before <tt class="docutils literal"><span class="pre">grappelli</span></tt>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#39;grappelli.dashboard&#39;</span><span class="p">,</span>
+    <span class="s">&#39;grappelli&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-custom-dashboard">
+<h2>Create a custom Dashboard<a class="headerlink" href="#create-a-custom-dashboard" title="Permalink to this headline">¶</a></h2>
+<p>To customize the index dashboard, you first need to add a custom dashboard:</p>
+<div class="highlight-python"><pre>python manage.py customdashboard</pre>
+</div>
+<p>This will create a file named <tt class="docutils literal"><span class="pre">dashboard.py</span></tt> in your project directory.
+If you want another file name, type:</p>
+<div class="highlight-python"><pre>python manage.py customdashboard somefile.py</pre>
+</div>
+<p>The created file contains the class <tt class="docutils literal"><span class="pre">CustomIndexDashboard</span></tt> that corresponds to the admin index page dashboard.</p>
+<p>Now you need to add your custom dashboard.
+Open your <tt class="docutils literal"><span class="pre">settings.py</span></tt> file and add the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GRAPPELLI_INDEX_DASHBOARD</span> <span class="o">=</span> <span class="s">&#39;yourproject.dashboard.CustomIndexDashboard&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-custom-dashboards-for-multiple-admin-sites">
+<h2>Create custom Dashboards for multiple admin sites<a class="headerlink" href="#create-custom-dashboards-for-multiple-admin-sites" title="Permalink to this headline">¶</a></h2>
+<p>If you have several admin sites, you need to create a custom dashboard for each site:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf.urls.defaults</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">yourproject.admin</span> <span class="kn">import</span> <span class="n">admin_site</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s">r&#39;^myadmin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin_site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To configure your dashboards, you could do:</p>
+<div class="highlight-python"><pre>python manage.py customdashboard dashboard.py
+python manage.py customdashboard my_dashboard.py</pre>
+</div>
+<p>Open your <tt class="docutils literal"><span class="pre">settings.py</span></tt> file and add the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GRAPPELLI_INDEX_DASHBOARD</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;django.contrib.admin.site&#39;</span><span class="p">:</span> <span class="s">&#39;yourproject.dashboard.CustomIndexDashboard&#39;</span><span class="p">,</span>
+    <span class="s">&#39;yourproject.admin.admin_site&#39;</span><span class="p">:</span> <span class="s">&#39;yourproject.my_dashboard.CustomIndexDashboard&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Dashboard Setup</a><ul>
+<li><a class="reference internal" href="#add-grappelli-dashboard-to-your-installed-apps">Add <tt class="docutils literal"><span class="pre">grappelli.dashboard</span></tt> to your Installed Apps</a></li>
+<li><a class="reference internal" href="#create-a-custom-dashboard">Create a custom Dashboard</a></li>
+<li><a class="reference internal" href="#create-custom-dashboards-for-multiple-admin-sites">Create custom Dashboards for multiple admin sites</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="customization.html"
+                        title="previous chapter">Customization</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dashboard_api.html"
+                        title="next chapter">Dashboard API</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/dashboard_setup.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dashboard_api.html" title="Dashboard API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="customization.html" title="Customization"
+             >previous</a> |</li>
+        <li><a href="index.html">Django Grappelli v2.3.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Patrick Kranzlmueller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.5.
+    </div>
+  </body>
+</html>

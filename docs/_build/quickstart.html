@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Quick start guide &mdash; Django Grappelli v2.3.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.3.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Django Grappelli v2.3.1 documentation" href="index.html" />
+    <link rel="next" title="Customization" href="customization.html" />
+    <link rel="prev" title="Django Grappelli" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="customization.html" title="Customization"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Django Grappelli"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Django Grappelli v2.3.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="quick-start-guide">
+<span id="quickstart"></span><h1>Quick start guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this headline">¶</a></h1>
+<p>For using Grappelli, <a class="reference external" href="http://www.djangoproject.com">Django</a> needs to be installed and an <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/">Admin Site</a> has to be activated.</p>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>Using <tt class="docutils literal"><span class="pre">easy_install</span></tt>:</p>
+<div class="highlight-python"><pre>easy_install -Z django-grappelli</pre>
+</div>
+<p>Note that the <tt class="docutils literal"><span class="pre">-Z</span></tt> flag is required to tell <tt class="docutils literal"><span class="pre">easy_install</span></tt> not to
+create a zipped package (zipped packages prevent certain features of
+Django from working properly).</p>
+<p>Using <tt class="docutils literal"><span class="pre">pip</span></tt>:</p>
+<div class="highlight-python"><pre>pip install django-grappelli</pre>
+</div>
+<p>Using <tt class="docutils literal"><span class="pre">svn</span></tt> (recommended):</p>
+<div class="highlight-python"><pre>svn checkout http://django-grappelli.googlecode.com/svn/trunk/grappelli/ grappelli</pre>
+</div>
+<p>or download the package from <a class="reference external" href="http://code.google.com/p/django-grappelli/downloads/list">http://code.google.com/p/django-grappelli/downloads/list</a></p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Open <tt class="docutils literal"><span class="pre">settings.py</span></tt> and add <tt class="docutils literal"><span class="pre">grappelli</span></tt> to your <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> (before <tt class="docutils literal"><span class="pre">django.contrib.admin</span></tt>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#39;grappelli&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Add URL-patterns:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="p">(</span><span class="s">r&#39;^grappelli/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">grappelli</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Collect the media files:</p>
+<div class="highlight-python"><pre>python manage.py collectstatic</pre>
+</div>
+<p>Set <tt class="docutils literal"><span class="pre">ADMIN_MEDIA_PREFIX</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="n">STATIC_URL</span> <span class="o">+</span> <span class="s">&quot;grappelli/&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please refer to the <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/">Staticfiles Documentation</a> for setting up and using <tt class="docutils literal"><span class="pre">staticfiles</span></tt>.</p>
+</div>
+<p>If you&#8217;re not using <tt class="docutils literal"><span class="pre">staticfiles</span></tt> you can either use a symlink from your media-directory (given by <tt class="docutils literal"><span class="pre">MEDIA_ROOT</span></tt> and <tt class="docutils literal"><span class="pre">MEDIA_URL</span></tt>) or copy the grappelli media-files to your media-directory. Don&#8217;t forget to set <tt class="docutils literal"><span class="pre">ADMIN_MEDIA_PREFIX</span></tt> accordingly.</p>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Start the devserver and login to your admin site:</p>
+<div class="highlight-python"><pre>python manage.py runserver &lt;IP-address&gt;:8000</pre>
+</div>
+<p>Check if everything looks/works as expected. If you&#8217;re having problems, see <a class="reference internal" href="troubleshooting.html#troubleshooting"><em>Troubleshooting</em></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quick start guide</a><ul>
+<li><a class="reference internal" href="#download">Download</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Django Grappelli</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="customization.html"
+                        title="next chapter">Customization</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/quickstart.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="customization.html" title="Customization"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Django Grappelli"
+             >previous</a> |</li>
+        <li><a href="index.html">Django Grappelli v2.3.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Patrick Kranzlmueller.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.5.
+    </div>
+  </body>
+</html>
