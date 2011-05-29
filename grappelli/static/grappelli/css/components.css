@@ -310,7 +310,7 @@ h2 + * + * + .module.table {
     float: left;
     width: 366px;
 }
-.stacked .selector-available, .stacked .selector-chosen {
+.selector.stacked .selector-available, .selector.stacked .selector-chosen {
     width: 756px;
 }
 .selector h2, .inline-group .selector h2, 
@@ -397,16 +397,16 @@ a.selector-remove:link, a.selector-remove:visited {
 a.selector-remove:hover, a.selector-remove:active {
     background-image: url('../img/icons/icon-selector_remove-m2m_horizontal-hover.png');
 }
-.stacked a.selector-add:link, .stacked a.selector-add:visited {
+.selector.stacked a.selector-add:link, .selector.stacked a.selector-add:visited {
     background-image: url('../img/icons/icon-selector_add-m2m_vertical.png');
 }
-.stacked a.selector-add:hover, .stacked a.selector-add:active {
+.selector.stacked a.selector-add:hover, .selector.stacked a.selector-add:active {
     background-image: url('../img/icons/icon-selector_add-m2m_vertical-hover.png');
 }
-.stacked a.selector-remove:link, .stacked a.selector-remove:visited {
+.selector.stacked a.selector-remove:link, .selector.stacked a.selector-remove:visited {
     background-image: url('../img/icons/icon-selector_remove-m2m_vertical.png');
 }
-.stacked a.selector-remove:hover, .stacked a.selector-remove:active {
+.selector.stacked a.selector-remove:hover, .selector.stacked a.selector-remove:active {
     background-image: url('../img/icons/icon-selector_remove-m2m_vertical-hover.png');
 }
 a.selector-chooseall, a.selector-clearall {
