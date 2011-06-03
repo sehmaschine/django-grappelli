@@ -109,12 +109,13 @@
     background: transparent !important;
 }
 #mce_fullscreen_container {
-    height: 100% !important;
+/*    height: 100% !important;*/
     background: transparent;
+    background: #eee;
 }
 #mce_fullscreen_container table.mceLayout {
     height: 100% !important;
-    -moz-border-radius: 0; -webkit-border-radius: 0;
+    border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
     background: #eee !important;
 }
 

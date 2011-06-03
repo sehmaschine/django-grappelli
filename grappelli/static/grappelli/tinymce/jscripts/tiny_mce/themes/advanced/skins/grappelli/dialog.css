@@ -25,27 +25,28 @@
 ----------------------------------------------------------------------- */
 @import url('../../../../../../../css/base.css');
 
-/*.module {
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-    background-color: #eee;
-}
-.row.first { border-top: none !important; }
-.row.last { border-bottom: none !important; }
-.row.combine { border-bottom: none !important; }
-.row.combine + .row { padding-top: 0 !important; border-top: none !important; }*/
+
 
 /* Generic
 ----------------------------------------------------------------------- */
 body {
-    margin: 20px 0 0 20px; padding: 0 20px 0 0;
+    clear: both;
+    margin: 0;
+    padding: 0 20px 0;
+    height: 100%;
     background: #fff !important;
 }
 body.filebrowser {
     margin: 0 !important;
 }
+body > *:first-child {
+    margin-top: 20px;
+}
 
-html, body {
+html {
     height: 100%;
+}
+html, body {
     background: transparent;
     overflow-x: hidden !important;
     overflow-y: auto !important;
@@ -58,6 +59,9 @@ a:link, a:visited { color: black; }
 a:hover { color: #2B6FB6; }
 
 div.submit-row {
+    position: relative;
+    float: left;
+    clear: both;
     margin-top: 15px !important;
 }
 
@@ -65,9 +69,12 @@ div.submit-row {
 /* Tabs
 ----------------------------------------------------------------------- */
 .tabs {
+    position: relative;
     float: left;
+    clear: both;
     width: 100%;
-    font-size: 11px; line-height: normal;
+    font-size: 11px;
+    line-height: normal;
     background: transparent;
 }
 
@@ -82,9 +89,10 @@ div.submit-row {
     margin: 0 4px 0 0; padding: 2px 0 2px 12px;
     line-height: 18px;
     border: 1px solid #d4d4d4;
-    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
-    -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
+    border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    border-top-right-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px;
     border-bottom: none;
+    outline: 0;
     background: #e0f0f5;
     list-style: none;
 }
@@ -97,8 +105,9 @@ div.submit-row {
     float: left;
     display: block;
     padding: 0px 10px 0 0;
+    outline: 0;
 }
-.tabs a { text-decoration: none; }
+.tabs a { text-decoration: none; outline: 0; }
 .tabs a:link, .tabs a:visited, .tabs a:hover { color: #666 !important; font-weight: bold; }
 .tabs .current a, .tabs .current a:link, .tabs .current a:visited { color: #444 !important; font-weight: bold; }
 
@@ -106,16 +115,28 @@ div.submit-row {
 /* Panels
 ----------------------------------------------------------------------- */
 
-.panel_wrapper div.panel { display: none; padding-top: 0; }
+.panel_wrapper div.panel {
+    display: none;
+    position: relative;
+    float: none;
+    clear: both;
+    padding-top: 0;
+}
 .panel_wrapper div.current {
-    float: none; clear: both; display: block;
+    display: block;
     width: 100%;
     height: auto !important;
     overflow: visible; /* Should be auto but that breaks Safari */
     padding-top: 0;
 }
-.panel_wrapper { clear: both; }
-.tabs + .panel_wrapper { -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0; }
+.panel_wrapper {
+    position: relative;
+    float: none;
+    clear: both;
+}
+.tabs + .panel_wrapper {
+    border-top-left-radius: 0; -moz-border-radius-topleft: 0; -webkit-border-top-left-radius: 0;
+}
 
 .mceActionPanel {
 }
@@ -159,7 +180,7 @@ p.helptext { margin: -5px 0 5px; }
 ----------------------------------------------------------------------- */
 fieldset {
     margin: 0; padding: 0; width: 100% !important;
-    -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
+    border-top-left-radius: 0 !important; -moz-border-radius-topleft: 0 !important; -webkit-border-top-left-radius: 0 !important;
 }
 legend {
     margin: 20px 0 0;
@@ -309,7 +330,7 @@ textarea#htmlSource {
 }
 #charmap td#charmapView {
     border: 1px solid #d4d4d4 !important;
-    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #fff;
 }
 td#charmapView > table {
@@ -351,16 +372,16 @@ td#charmapView > table tr:last-child td.charmap {
     background: #e0f0f5;
 }
 td#charmapView > table tr:first-child td.charmap:first-child a {
-   -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+   border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
 }
 td#charmapView > table tr:first-child td.charmap:last-child a {
-   -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+   border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
 }
 td#charmapView > table tr:last-child td.charmap:first-child a {
-   -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+   border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
 }
 td#charmapView > table tr:last-child td.charmap:last-child a {
-   -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+   border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
 }
 
 .selected-character {
@@ -372,7 +393,7 @@ td#charmapView > table tr:last-child td.charmap:last-child a {
     height: 80px; margin-bottom: 5px;
     text-align: center; font-size: 40px; line-height: 80px !important;
     border: 1px solid #d4d4d4;
-    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #e0f0f5; color: #444;
 }
 #codeN {
@@ -384,7 +405,7 @@ td#charmapView > table tr:last-child td.charmap:last-child a {
     margin-left: 20px; padding: 5px;
     width: 70px;
     border: 1px solid #d4d4d4;
-    -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 .legend span { color: #aaa; font-size: 10px; }
 #codeA, #codeB { color: #444; }
