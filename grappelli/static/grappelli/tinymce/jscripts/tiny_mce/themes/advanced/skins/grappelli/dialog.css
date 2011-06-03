@@ -320,7 +320,10 @@ textarea#htmlSource {
 /* Charmap
 ----------------------------------------------------------------------- */
 #charmap table {
-    border: none;
+    border: 0;
+}
+#charmap tbody td {
+    border-bottom: 0;
 }
 #charmap td {
     padding: 0 !important;
@@ -329,18 +332,30 @@ textarea#htmlSource {
     border: 0 !important;
 }
 #charmap td#charmapView {
-    border: 1px solid #d4d4d4 !important;
-    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-    background: #fff;
+/*    border: 1px solid #d4d4d4 !important;*/
+/*    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;*/
+/*    background: #fff;*/
+    
+    border: 0 !important;
 }
 td#charmapView > table {
     border-collapse: collapse;
 }
 
-td#charmapView > table tr {
+#charmapgroup {
+    margin-right: 10px;
+}
+#charmapgroup table {
+    border: 1px solid #d4d4d4 !important;
+    border-collapse: collapse;
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+    background: #fff;
+}
+
+#charmapgroup table tr {
     height: 18px !important;
 }
-td#charmapView > table td.charmap {
+#charmapgroup table td.charmap {
     padding: 0 !important;
     width: 18px; height: 18px;
     text-align: center;
@@ -349,13 +364,13 @@ td#charmapView > table td.charmap {
     border-bottom: 1px solid #d4d4d4;
     cursor: pointer !important;
 }
-td#charmapView > table tr:first-child td.charmap {
+#charmapgroup table tr:first-child td.charmap {
    border-top: none;
 }
-td#charmapView > table tr td.charmap:first-child {
+#charmapgroup table tr td.charmap:first-child {
    border-left: none;
 }
-td#charmapView > table tr:last-child td.charmap {
+#charmapgroup table tr:last-child td.charmap {
    border-bottom: none;
 }
 
@@ -384,6 +399,10 @@ td#charmapView > table tr:last-child td.charmap:last-child a {
    border-bottom-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
 }
 
+#charmap > table tr:last-child table td {
+    border: 0 !important;
+}
+
 .selected-character {
     position: relative; float: left;
     margin-left: 20px;
@@ -392,7 +411,7 @@ td#charmapView > table tr:last-child td.charmap:last-child a {
 #codeV {
     height: 80px; margin-bottom: 5px;
     text-align: center; font-size: 40px; line-height: 80px !important;
-    border: 1px solid #d4d4d4;
+    border: 1px solid #d4d4d4 !important;
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
     background: #e0f0f5; color: #444;
 }
@@ -410,6 +429,3 @@ td#charmapView > table tr:last-child td.charmap:last-child a {
 .legend span { color: #aaa; font-size: 10px; }
 #codeA, #codeB { color: #444; }
 #codeA { margin-bottom: 5px; }
-
-
-
