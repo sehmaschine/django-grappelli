@@ -1,0 +1,36 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% comment %}
+{% block after_field_sets %}
+    <p>{% trans "First, enter a username and password. Then, you'll be able to edit more user options." %}</p>
+    <fieldset class="module aligned">
+        <div class="row">
+            {# TODO: get required class on label_tag #}
+            <div class="column span-4"><label for="id_username" class="required">{% trans 'Username' %}:</label></div>
+            <div class="column span-flexible">
+                {{ form.username }}
+                {{ form.username.errors }}
+                <p class="help">{{ form.username.help_text }}</p>
+            </div>
+        </div>
+        <div class="row">
+            {# TODO: get required class on label_tag #}
+            <div class="column span-4"><label for="id_password1" class="required">{% trans 'Password' %}:</label></div>
+            <div class="column span-flexible">
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </div>
+        </div>
+        <div class="row">
+            {# TODO: get required class on label_tag #}
+            <div class="column span-4"><label for="id_password2" class="required">{% trans 'Password (again)' %}:</label></div>
+            <div class="column span-flexible">
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+                <p class="help">{% trans 'Enter the same password as above, for verification.' %}</p>
+            </div>
+        </div>
+    </fieldset>
+{% endblock %}
+{% endcomment %}

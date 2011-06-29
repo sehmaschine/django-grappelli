@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block content-class %}content-flexible{% endblock %}
+
+{% block breadcrumbs %}{% comment %}<div id="breadcrumbs"><a href="../">{% trans 'Home' %}</a></div>{% endcomment %}{% endblock %}
+{% block content_title %}&nbsp;{% endblock %}
+
+{% block content %}
+    <div class="container-flexible logout">
+        <div class="column span-10 centered">
+            <h1>{{ title }}. <a href="../"><strong>{% trans 'Log in again' %}</strong></a></h1>
+            {% comment %}<div class="module">
+                <h2>{{ title }}, </h2>
+                <div class="row"><a href="../"><strong>{% trans 'Log in again' %}</strong></a></div>
+            </div>{% endcomment %}
+        </div>
+    </div>
+{% endblock %}

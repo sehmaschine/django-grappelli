@@ -1,0 +1,140 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n admin_modify adminmedia grp_tags %}
+
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    {% url admin:jsi18n as jsi18nurl %}
+    <script type="text/javascript" src="{{ jsi18nurl|default:'../../../jsi18n/' }}"></script>
+    <script src="{% admin_media_prefix %}js/grappelli/jquery.grp_inline.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                grappelli.initDateAndTimePicker();
+                $("div.container-flexible div.group").grp_collapsible_group();
+                $("div#content .collapse").grp_collapsible({
+                    on_init: function(elem, options) {
+                        // open collapse (and all collapse parents) in case of errors
+                        if (elem.find("ul.errorlist").length > 0) {
+                            elem.removeClass("closed")
+                                .addClass("open");
+                            elem.parents(".collapse")
+                                .removeClass("closed")
+                                .addClass("open");
+                        }
+                    }
+                });
+                var related_lookup_fields_fk = {% get_related_lookup_fields_fk adminform.model_admin %};
+                var related_lookup_fields_m2m = {% get_related_lookup_fields_m2m adminform.model_admin %};
+                var related_lookup_fields_generic = {% get_related_lookup_fields_generic adminform.model_admin %};
+                $.each(related_lookup_fields_fk, function() {
+                    $("#id_" + this).grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
+                });
+                $.each(related_lookup_fields_m2m, function() {
+                    $("#id_" + this).grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
+                });
+                $.each(related_lookup_fields_generic, function() {
+                    var content_type = "#id_" + this[0],
+                        object_id = "#id_" + this[1];
+                    $(object_id).grp_related_generic({content_type:content_type, object_id:object_id, lookup_url:"{% url grp_related_lookup %}"});
+                });
+            });
+        })(django.jQuery);
+    </script>
+    {{ media }}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
+{% block content-class %}content-flexible{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <div id="breadcrumbs">
+             <a href="../../../">{% trans "Home" %}</a> &rsaquo;
+             <a href="../../">{% trans app_label|capfirst|escape %}</a> &rsaquo;
+             {% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} &rsaquo; 
+             {% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!-- OBJECT TOOLS -->
+{% block object-tools %}
+    {% if change %}
+        {% if not is_popup %}
+            <ul class="tools">
+                <li><a href="history/">{% trans "History" %}</a></li>
+                {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
+            </ul>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <div class="container-flexible">
+        <div class="form-container">
+            <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
+                <div>
+                    <!-- Popup Hidden Field -->
+                    {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+                    
+                    <!-- Submit-Row -->
+                    {% if save_on_top %}{% submit_row %}{% endif %}
+                    
+                    <!-- Errors -->
+                    {% if errors %}
+                        <p class="errornote">{% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</p>
+                        <ul class="errorlist">{% for error in adminform.form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
+                    {% endif %}
+                    
+                    <!-- Fieldsets -->
+                    {% for fieldset in adminform %}
+                        {% include "admin/includes/fieldset.html" %}
+                    {% endfor %}
+                    
+                    {% block after_field_sets %}{% endblock %}
+                    
+                    <!-- Inlines -->
+                    {% for inline_admin_formset in inline_admin_formsets %}
+                        {% include inline_admin_formset.opts.template %}
+                    {% endfor %}
+                    
+                    {% block after_related_objects %}{% endblock %}
+                    
+                    <!-- Submit-Row -->
+                    {% submit_row %}
+                    
+                    {% if adminform and add %}
+                        {% block extrahead %}
+                            <script type="text/javascript">
+                                (function($){
+                                    $(function(){
+                                        try {
+                                            // focus on first form-field
+                                            $("#{{ adminform.first_field.auto_id }}, #{{ adminform.first_field.auto_id }}_0")
+                                            .eq(0).focus();
+                                        } catch(e) {}
+                                    });
+                                }(django.jQuery));
+                            </script>
+                        {% endblock %}
+                    {% endif %}
+                    
+                    <!-- JS for prepopulated fields -->
+                    {% prepopulated_fields_js %}
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
