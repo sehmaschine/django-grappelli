@@ -75,7 +75,7 @@ The inline-rows are being reordered based on the sortable-field (with a template
 In case of errors (somewhere within the form), the position of inline-rows are being preserved. This applies to rows prepeared for deletion as well. Empty rows are moved to the end of the formset.
 
 .. note::
-    The sortable-field will not automatically be hidden (use a ``Hidden Input Widget`` if needed). For continous position-numbers (in your database), use a ``PositionField`` (see `django-positions <https://github.com/jpwatts/django-positions>`_) instead of the ``PositiveIntegerField``.
+    The sortable-field will not automatically be hidden (use a ``Hidden Input Widget`` if needed).
 
 .. _customizationrelatedlookups:
 
