@@ -16,16 +16,28 @@
 <!-- CONTENT -->
 {% block content %}
     <div class="container-grid delete-confirmation">
-        {% if perms_lacking %}
+        {% if perms_lacking or protected %}
             <div class="module">
-                <h2>{% blocktrans %}Deleting the {{ objects_name }} would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h2>
-                <div class="row">
-                    <ul class="rte">
-                        {% for obj in perms_lacking %}
-                            <li>{{ obj }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                {% if perms_lacking %}
+                    <h2>{% blocktrans %}Deleting the {{ objects_name }} would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h2>
+                    <div class="row">
+                        <ul class="rte">
+                            {% for obj in perms_lacking %}
+                                <li>{{ obj }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% if protected %}
+                    <h2>{% blocktrans %}Deleting the selected {{ objects_name }} would require deleting the following protected related objects:{% endblocktrans %}</h2>
+                    <div class="row">
+                        <ul class="rte">
+                            {% for obj in protected %}
+                                <li>{{ obj }}</li>
+                            {% endfor %}
+                         </ul>
+                    </div>
+                {% endif %}
             </div>
         {% else %}
             <div class="module">
