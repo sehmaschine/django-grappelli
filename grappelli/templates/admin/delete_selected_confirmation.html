@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n %}
+{% load i18n l10n %}
 
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
@@ -51,7 +51,7 @@
             <form action="" method="post">{% csrf_token %}
                 <div class="module footer">
                     {% for obj in queryset %}
-                        <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk }}" />
+                        <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
                     {% endfor %}
                     <input type="hidden" name="action" value="delete_selected" />
                     <input type="hidden" name="post" value="yes" />
