@@ -136,6 +136,15 @@ With Grappelli, you're able to add the representation of an object for Generic R
 .. note::
     This is a workaround for a feature which should be implemented with the original admin-interface.
 
+If your generic relation points to a model using a custom primary key, you need to add a property ``id``::
+
+    class RelationModel(models.Model):
+        cpk  = models.IntegerField(primary_key=True, unique=True, editable=False)
+        
+        @property
+        def id(self):
+            return self.cpk
+
 .. _customizationtinymce:
 
 Using TinyMCE
