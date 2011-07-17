@@ -72,8 +72,10 @@
     {% if change %}
         {% if not is_popup %}
             <ul class="tools">
-                <li><a href="history/">{% trans "History" %}</a></li>
-                {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
+                {% block object-tools-items %}
+                    <li><a href="history/">{% trans "History" %}</a></li>
+                    {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
+                {% endblock %}
             </ul>
         {% endif %}
     {% endif %}
