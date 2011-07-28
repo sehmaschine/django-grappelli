@@ -1,0 +1,113 @@
+/* --------------------------------------------------------------
+
+   typography.css
+
+-------------------------------------------------------------- */
+
+body {
+    font-size: 12px;
+    line-height: 16px;
+    color: #999;
+    background: #eee;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    border-top: 4px solid #ddd;
+}
+
+/* Headings
+-------------------------------------------------------------- */
+
+h1,h2,h3 {
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 24px;
+    line-height: 24px;
+}
+h2 {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: normal;
+    padding: 16px 0 0 0;
+    border-top: 1px solid #fff;
+}
+h2.no-border {
+    border: none;
+}
+h2 span {
+    font-weight: normal;
+    color: #999;
+}
+h3 {
+    font-size: 12px;
+    line-height: 16px;
+    color: #333;
+    font-weight: normal;
+    padding: 16px 0 0 0;
+    border-top: 1px solid #fff;
+}
+
+/* Text elements
+-------------------------------------------------------------- */
+
+p {
+    margin: 4px 0;
+}
+p.description {
+    color: #333;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 16px 0 0 0;
+    margin: 0;
+}
+
+a,
+a:link,
+a:visited {
+    font-weight: bold;
+    color: #309BBF;
+    text-decoration: none;
+}
+
+a:focus,
+a:hover {
+    color: #333;
+}
+
+/* Lists
+-------------------------------------------------------------- */
+
+li ul,
+li ol {
+    margin: 0;
+}
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: disc;
+}
+ol {
+    list-style-type: decimal;
+}
+
+/* Borders
+-------------------------------------------------------------- */
+
+.border-top {
+    border-top: 1px solid #ddd;
+}
+
+.box {
+    border-top: 1px solid #ddd;
+}
+
+
+

@@ -1,0 +1,110 @@
+/* --------------------------------------------------------------
+
+   grid.css
+
+-------------------------------------------------------------- */
+
+div.wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div.container {
+  width: 941px;
+  margin: 0 auto;
+  /*background: url("../img/bg.png") top left repeat;*/
+}
+
+
+/* Columns
+-------------------------------------------------------------- */
+
+div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span-7, div.span-8, div.span-9, div.span-10, div.span-11, div.span-12 {float:left;margin-right: 20px;}
+div.last { margin-right: 0; }
+
+.span-1  { width: 60px;}
+.span-2  { width: 140px;}
+.span-3  { width: 220px;}
+.span-4  { width: 300px;}
+.span-5  { width: 380px;}
+.span-6  { width: 460px;}
+.span-7  { width: 540px;}
+.span-8  { width: 620px;}
+.span-9  { width: 700px;}
+.span-10 { width: 780px;}
+.span-11 { width: 860px;}
+.span-12, div.span-12 { width: 940px; margin: 0; }
+
+.append-1  { padding-right: 80px;}
+.append-2  { padding-right: 160px;}
+.append-3  { padding-right: 240px;}
+.append-4  { padding-right: 320px;}
+.append-5  { padding-right: 400px;}
+.append-6  { padding-right: 480px;}
+.append-7  { padding-right: 560px;}
+.append-8  { padding-right: 640px;}
+.append-9  { padding-right: 720px;}
+.append-10 { padding-right: 800px;}
+.append-11 { padding-right: 880px;}
+
+.prepend-1  { padding-left: 80px;}
+.prepend-2  { padding-left: 160px;}
+.prepend-3  { padding-left: 240px;}
+.prepend-4  { padding-left: 320px;}
+.prepend-5  { padding-left: 400px;}
+.prepend-6  { padding-left: 480px;}
+.prepend-7  { padding-left: 560px;}
+.prepend-8  { padding-left: 640px;}
+.prepend-9  { padding-left: 720px;}
+.prepend-10 { padding-left: 800px;}
+.prepend-11 { padding-left: 880px;}
+
+.pull-1 { margin-left: -80px;}
+.pull-2 { margin-left: -160px;}
+.pull-3 { margin-left: -240px;}
+.pull-4 { margin-left: -320px;}
+.pull-5 { margin-left: -400px;}
+.pull-6 { margin-left: -480px;}
+.pull-7 { margin-left: -560px;}
+.pull-8 { margin-left: -640px;}
+.pull-9 { margin-left: -720px;}
+.pull-10 { margin-left: -800px;}
+.pull-11 { margin-left: -880px;}
+.pull-12 { margin-left: -960px;}
+
+.pull-1, .pull-2, .pull-3, .pull-4, .pull-5, .pull-6, .pull-7, .pull-8, .pull-9, .pull-10, .pull-11, .pull-12 {float:left;position:relative;}
+
+.push-1 { margin: 0 -80px 1.5em 80px;}
+.push-2 { margin: 0 -160px 1.5em 160px;}
+.push-3 { margin: 0 -240px 1.5em 240px;}
+.push-4 { margin: 0 -320px 1.5em 320px;}
+.push-5 { margin: 0 -400px 1.5em 400px;}
+.push-6 { margin: 0 -480px 1.5em 480px;}
+.push-7 { margin: 0 -560px 1.5em 560px;}
+.push-8 { margin: 0 -640px 1.5em 640px;}
+.push-9 { margin: 0 -720px 1.5em 720px;}
+.push-10 { margin: 0 -800px 1.5em 800px;}
+.push-11 { margin: 0 -880px 1.5em 880px;}
+.push-12 { margin: 0 -960px 1.5em 960px;}
+
+.push-1, .push-2, .push-3, .push-4, .push-5, .push-6, .push-7, .push-8, .push-9, .push-10, .push-11, .push-12 {float:right;position:relative;}
+
+
+/* Misc
+-------------------------------------------------------------- */
+
+.clearfix:after, .container:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+.clearfix, .container {display: inline-block;}
+* html .clearfix,
+* html .container {height: 1%;}
+.clearfix, .container {display: block;}
+
+.clear { clear:both; }
+
