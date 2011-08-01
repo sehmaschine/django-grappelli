@@ -63,12 +63,12 @@
                                 <li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>
                             {% endif %}
                             {% if inline_admin_formset.formset.can_delete %}
-                                <li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a>
+                                <li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a></li>
                             {% else %}
                                 {% if inline_admin_form.original %}
                                     <li class="delete-handler-container">&nbsp;</li>
                                 {% else %}
-                                    <li class="delete-handler-container"><a href="javascript://" class="icon remove-handler" title="{% trans 'Remove' %}"> </a>
+                                    <li class="delete-handler-container"><a href="javascript://" class="icon remove-handler" title="{% trans 'Remove' %}"> </a></li>
                                 {% endif %}
                             {% endif %}
                         </ul>
