@@ -8,29 +8,17 @@ Quick start guide
 
 For using |grappelli|, `Django <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_ has to be activated.
 
-Download
---------
-
-Using ``easy_install``::
-
-    easy_install -Z django-grappelli
-
-Note that the ``-Z`` flag is required to tell ``easy_install`` not to
-create a zipped package (zipped packages prevent certain features of
-Django from working properly).
+Installation
+------------
 
 Using ``pip``::
 
     pip install django-grappelli
 
-Using ``svn`` (recommended)::
+Go to https://github.com/sehmaschine/django-grappelli if you need to download a package or clone the repo.
 
-    svn checkout http://django-grappelli.googlecode.com/svn/trunk/grappelli/ grappelli
-
-or download the package from http://code.google.com/p/django-grappelli/downloads/list
-
-Installation
-------------
+Setup
+-----
 
 Open ``settings.py`` and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``django.contrib.admin``)::
 

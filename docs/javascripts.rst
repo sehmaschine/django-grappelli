@@ -16,7 +16,7 @@ Grappelli only uses a subset of the original admin javascripts.
 * If there are major modifications, we use our own files as well (e.g. ``jquery.grp_inlines.js``).
 
 Original JS
-^^^^^^^^^^^
+-----------
 
 in ``/media/js/`` and ``/media/js/admin/``
 
@@ -46,7 +46,7 @@ in ``/media/js/`` and ``/media/js/admin/``
 
 
 Grappelli JS
-^^^^^^^^^^^^
+------------
 
 in ``/media/js/grappelli/``
 

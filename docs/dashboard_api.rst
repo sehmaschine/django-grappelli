@@ -100,7 +100,7 @@ Dashboard modules have the following properties:
     Default value: 'grappelli/dashboard/module.html'.
 
 The ``Group`` class
-------------------------------------
+-------------------
 
 Represents a group of modules::
 
@@ -126,7 +126,7 @@ Represents a group of modules::
             ))
 
 The ``LinkList`` class
--------------------------------------
+----------------------
 
 A module that displays a list of links.
 
@@ -172,7 +172,7 @@ Here's an example of building a link list module::
             ))
 
 The ``AppList`` class
-------------------------------------
+---------------------
 
 Module that lists installed apps and their models.
 As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
@@ -219,7 +219,7 @@ Here's an example of building an app list module::
     the django.contrib.auth.Group model won't be displayed.
 
 The ``ModelList`` class
---------------------------------------
+-----------------------
 
 Module that lists a set of models.
 As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
@@ -263,7 +263,7 @@ Here's a small example of building a model list module::
     the django.contrib.auth.Group model won't be displayed.
 
 The ``RecentActions`` class
-------------------------------------------
+---------------------------
 
 Module that lists the recent actions for the current user.
 As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
@@ -298,7 +298,7 @@ Here's an example of building a recent actions module::
             ))
 
 The ``Feed`` class
----------------------------------
+------------------
 
 Class that represents a feed dashboard module.
 

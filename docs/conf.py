@@ -42,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Django Grappelli'
-copyright = u'2010, Patrick Kranzlmueller'
+copyright = u'2011, Patrick Kranzlmueller'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -100,7 +100,7 @@ html_theme = 'default'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-#html_theme_path = []
+html_theme_path = ['.']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".

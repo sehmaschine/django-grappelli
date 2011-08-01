@@ -8,10 +8,10 @@
 Third Party Applications
 ========================
 
-A list of Third-Party Applications compatible with |grappelli|.
+A list of 3rd-party applications compatible with |grappelli|.
 
 
 Django FileBrowser
 ------------------
 
-No additional setup is needed when installing the `Django FileBrowser <http://code.google.com/p/django-filebrowser/>`_ with Grappelli.
+No additional setup is needed when installing the `Django FileBrowser <https://github.com/sehmaschine/django-filebrowser>`_ with Grappelli.

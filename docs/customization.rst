@@ -6,7 +6,7 @@
 Customization
 =============
 
-While |grappelli| is mainly about the look & feel of the Admin-Interface, it also adds some features.
+While |grappelli| is mainly about the look & feel of the admin interface, it also adds some features.
 
 .. _customizationsettings:
 
@@ -14,7 +14,7 @@ Available Settings
 ------------------
 
 ``GRAPPELLI_ADMIN_TITLE``
-    The Site Title of your Admin-Interface. Change this instead of changing index.html
+    The Site Title of your admin interface. Change this instead of changing index.html
 
 .. _customizationadmin:
 
@@ -101,7 +101,7 @@ With Grappelli, you're able to add the representation of an object beside the in
         }
 
 .. note::
-    This is a workaround for a feature which should be implemented with the original admin-interface.
+    This is a workaround for a feature which should be implemented with the original admin interface.
 
 .. _customizationgenericrelationships:
 
@@ -134,7 +134,7 @@ With Grappelli, you're able to add the representation of an object for Generic R
         }
 
 .. note::
-    This is a workaround for a feature which should be implemented with the original admin-interface.
+    This is a workaround for a feature which should be implemented with the original admin interface.
 
 If your generic relation points to a model using a custom primary key, you need to add a property ``id``::
 
