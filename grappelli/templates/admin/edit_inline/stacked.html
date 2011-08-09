@@ -127,8 +127,13 @@
             axis: "y",
             appendTo: 'body',
             forceHelperSize: true,
+            placeholder: 'ui-sortable-placeholder',
+            forcePlaceholderSize: true,
             containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.items',
             tolerance: 'pointer',
+            start: function(evt, ui) {
+                ui.placeholder.height(ui.item.height() + 12);
+            },
         });
         $("#{{ opts.module_name }}_form").bind("submit", function(){
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}";

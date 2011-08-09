@@ -39,11 +39,11 @@
     visibility: hidden !important;
 }
 
-.group.stacked .ui-sortable .module.ui-sortable-placeholder {
+.group.stacked div.ui-sortable-placeholder {
     display: block;
-    margin-top: 2px;
+    margin-top: 2px !important;
 }
-.group.tabular .ui-sortable .module.ui-sortable-placeholder {
+.group.tabular div.ui-sortable-placeholder {
     border: 0 !important;
     overflow: hidden;
 }
@@ -53,6 +53,12 @@
 .group.tabular .module.ui-sortable-helper {
     border-top: 0 !important;
     -moz-box-sizing: padding-box !important;
+}
+.group.tabular .ui-sortable-helper .th, .group.tabular .ui-sortable-helper .td {
+    background: #ffffcc !important;
+}
+.group.stacked .ui-sortable-helper, .group.stacked .ui-sortable-helper .module, .group.stacked .ui-sortable-helper h2, .group.stacked .ui-sortable-helper h3, .group.stacked .ui-sortable-helper h4 {
+    background: #ffffcc !important;
 }
 
 

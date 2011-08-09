@@ -159,8 +159,20 @@
             axis: "y",
             appendTo: 'body',
             forceHelperSize: true,
+            placeholder: 'ui-sortable-placeholder',
+            forcePlaceholderSize: true,
             containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.table',
             tolerance: 'pointer',
+            start: function(evt, ui) {
+                ui.placeholder.height(ui.item.height() + 12);
+                var template = "<div class='tr'>",
+                    len = ui.item.find("div.tr").children("div.td").length;
+                for (var i = 0; i < len; i++) {
+                    template += "<div class='td'></div>"
+                }
+                template += "</div>"
+                ui.placeholder.addClass("tbody module").append(template);
+            },
         });
         $("#{{ opts.module_name }}_form").bind("submit", function(){
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}";
