@@ -9,7 +9,7 @@
         var defaults = {
             open_handler_slctr: ".open-handler",
             close_handler_slctr: ".close-handler",
-            collapsible_container_slctr: ".collapse",
+            collapsible_container_slctr: "div.collapse",
             closed_css: "closed",
             open_css: "open",
             on_init: function() {},
