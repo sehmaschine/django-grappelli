@@ -31,14 +31,6 @@
     border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px;
     background: transparent url('../img/backgrounds/ui-sortable-placeholder.png') 0 0 repeat scroll !important;
 }
-.ui-sortable-placeholder.group {
-    border-width: 2px;
-    border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
-}
-.ui-sortable-placeholder.group * {
-    visibility: hidden !important;
-}
-
 .group.stacked div.ui-sortable-placeholder {
     display: block;
     margin-top: 2px !important;
@@ -50,14 +42,22 @@
 .group.tabular .ui-sortable .module.ui-sortable-placeholder .td {
     background: transparent;
 }
+.group.tabular .ui-sortable .module.ui-sortable-placeholder .th, 
+.group.tabular .ui-sortable .module.ui-sortable-placeholder .td {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
 .group.tabular .module.ui-sortable-helper {
     border-top: 0 !important;
-    -moz-box-sizing: padding-box !important;
 }
 .group.tabular .ui-sortable-helper .th, .group.tabular .ui-sortable-helper .td {
     background: #ffffcc !important;
 }
-.group.stacked .ui-sortable-helper, .group.stacked .ui-sortable-helper .module, .group.stacked .ui-sortable-helper h2, .group.stacked .ui-sortable-helper h3, .group.stacked .ui-sortable-helper h4 {
+.group.stacked .ui-sortable-helper, .group.stacked .ui-sortable-helper .module, .group.stacked .ui-sortable-helper h2, .group.stacked .ui-sortable-helper h3, .group.stacked .ui-sortable-helper h4, 
+.group.stacked .collapse.predelete.ui-sortable-helper > h3.collapse-handler, 
+.group.stacked .collapse.open.predelete.ui-sortable-helper > h3.collapse-handler, 
+.group.stacked .collapse.predelete.ui-sortable-helper h4.collapse-handler, 
+.group.stacked .collapse.open.predelete.ui-sortable-helper h4.collapse-handler {
     background: #ffffcc !important;
 }
 
