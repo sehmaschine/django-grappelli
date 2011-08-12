@@ -193,3 +193,40 @@ def get_related_lookup_fields_generic(model_admin):
 
 register.simple_tag(get_related_lookup_fields_generic)
 
+
+# AUTOCOMPLETES
+
+def get_autocomplete_fields_fk(model_admin):
+    try:
+        value = model_admin.autocomplete_fields.get("fk", [])
+        value = mark_safe(list(value))
+    except:
+        value = []
+    return value
+
+register.simple_tag(get_autocomplete_fields_fk)
+
+
+def get_autocomplete_fields_m2m(model_admin):
+    try:
+        value = model_admin.autocomplete_fields.get("m2m", [])
+        value = mark_safe(list(value))
+    except:
+        value = []
+    return value
+
+register.simple_tag(get_autocomplete_fields_m2m)
+
+
+def get_autocomplete_fields_generic(model_admin):
+    try:
+        value = model_admin.autocomplete_fields.get("generic", [])
+        value = mark_safe(list(value))
+    except:
+        value = []
+    return value
+
+register.simple_tag(get_autocomplete_fields_generic)
+
+
+
