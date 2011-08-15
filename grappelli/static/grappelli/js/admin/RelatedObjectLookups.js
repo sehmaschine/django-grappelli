@@ -55,6 +55,14 @@ function dismissRelatedLookupPopup(win, chosenId) {
     win.close();
 }
 
+// GRAPPELLI CUSTOM
+function removeRelatedObject(triggeringLink) {
+    var id = triggeringLink.id.replace(/^remove_/, '');
+    var elem = document.getElementById(id);
+    elem.value = "";
+    elem.focus();
+}
+
 function showAddAnotherPopup(triggeringLink) {
     var name = triggeringLink.id.replace(/^add_/, '');
     name = id_to_windowname(name);

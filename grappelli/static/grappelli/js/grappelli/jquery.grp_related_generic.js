@@ -3,76 +3,78 @@
  * generic lookup
  */
 
-
 (function($){
-    $.fn.grp_related_generic = function(options){
-        var defaults = {
-            placeholder: '&nbsp;<strong></strong>',
-            repr_max_length: 30,
-            content_type: '',
-            object_id: '',
-            lookup_url: ''
-        };
-        var opts = $.extend(defaults, options);
-        return this.each(function() {
-            _initialize($(this), opts);
-        });
+    
+    var methods = {
+        init: function(options) {
+            options = $.extend({}, $.fn.grp_related_generic.defaults, options);
+            return this.each(function() {
+                var $this = $(this);
+                // add placeholder
+                if ($(options.content_type).val()) {
+                    $this.after(options.placeholder).after(lookup_link($this.attr("id"),$(options.content_type).val()));
+                }
+                // lookup
+                lookup_id($this, options); // lookup when loading page
+                $this.bind("change focus keyup blur", function() { // id-handler
+                    lookup_id($this, options);
+                });
+                $(options.content_type).bind("change", function() { // content-type-handler
+                    update_lookup($(this), options);
+                });
+            });
+        }
     };
-    var _lookup_link = function(id, val) {
+    
+    $.fn.grp_related_generic = function(method) {
+        if (methods[method]) {
+            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || ! method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' +  method + ' does not exist on jQuery.grp_related_generic');
+        };
+        return false;
+    };
+    
+    var lookup_link = function(id, val) {
         var lookuplink = $('<a class="related-lookup"></a>');
         lookuplink.attr('id', 'lookup_'+id);
         lookuplink.attr('href', "../../../" + MODEL_URL_ARRAY[val].app + "/" + MODEL_URL_ARRAY[val].model + '/?t=id');
         lookuplink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
         return lookuplink;
     };
-    var _initialize = function(elem, options) {
-        var ct = $(options.content_type);
-        if (ct.val()) {
-            elem.after(options.placeholder).after(_lookup_link(elem.attr("id"),ct.val()));
-        }
-        _get_generic_repr(elem, options);
-        _register_handler(elem, options);
-        _register_ct_handler(ct, options);
-    };
-    var _register_handler = function(elem, options) {
-        elem.bind("change focus keyup blur", function() {
-            _get_generic_repr(elem, options);
-        });
-    };
-    var _register_ct_handler = function(elem, options) {
-        elem.bind("change", function() {
-            _update_lookup(elem, options);
-        });
-    };
-    var _update_lookup = function(elem, options) {
+    
+    var update_lookup = function(elem, options) {
         var obj = $(options.object_id);
         obj.val('');
         obj.next().remove();
         obj.next().remove();
-        if (elem.val()) {
-            obj.after(options.placeholder).after(_lookup_link(obj.attr('id'),elem.val()));
+        if ($(elem).val()) {
+            obj.after(options.placeholder).after(lookup_link(obj.attr('id'),$(elem).val()));
         }
     };
-    var _get_generic_repr = function(elem, options) {
+    
+    var lookup_id = function(elem, options) {
         var link = elem.next("a");
         if (link.length === 0) { return; }
-        var spliturl = link.attr('href').split('/');
-        var app_label = spliturl[spliturl.length-3];
-        var model_name= spliturl[spliturl.length-2];
+        var url = link.attr('href').split('/');
         var text = elem.next().next();
-        $.get(options.lookup_url, {
+        $.getJSON(options.lookup_url, {
             object_id: elem.val(),
-            app_label: app_label,
-            model_name: model_name
+            app_label: url[url.length-3],
+            model_name: url[url.length-2]
         }, function(data) {
-            text.text('');
-            if (data) {
-                if (data.length > options.repr_max_length) {
-                    text.text(decodeURI(data.substr(0,  options.repr_max_length) + " ..."));
-                } else {
-                    text.text(decodeURI(data));
-                }
-            }
+            text.text(data[0].label);
         });
     };
+    
+    $.fn.grp_related_generic.defaults = {
+        placeholder: '&nbsp;<strong></strong>',
+        repr_max_length: 30,
+        lookup_url: '',
+        content_type: '',
+        object_id: ''
+    };
+    
 })(django.jQuery);

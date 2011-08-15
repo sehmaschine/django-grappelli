@@ -34,6 +34,9 @@
                     var related_lookup_fields_fk = {% get_related_lookup_fields_fk cl.model_admin %};
                     var related_lookup_fields_m2m = {% get_related_lookup_fields_m2m cl.model_admin %};
                     var related_lookup_fields_generic = {% get_related_lookup_fields_generic cl.model_admin %};
+                    var autocomplete_fields_fk = {% get_autocomplete_lookup_fields_fk cl.model_admin %};
+                    var autocomplete_fields_m2m = {% get_autocomplete_lookup_fields_m2m cl.model_admin %};
+                    var autocomplete_fields_generic = {% get_autocomplete_lookup_fields_generic cl.model_admin %};
                     $.each(related_lookup_fields_fk, function() {
                         $("div.changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
@@ -53,6 +56,45 @@
                             var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
                                 obj_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + object_id;
                             $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                        });
+                    });
+                    $.each(autocomplete_fields_fk, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .each(function() {
+                            $(this).grp_autocomplete_fk({
+                                lookup_url:"{% url grp_related_lookup %}",
+                                autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                            });
+                        });
+                    });
+                    $.each(autocomplete_fields_m2m, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .each(function() {
+                            $(this).grp_autocomplete_m2m({
+                                lookup_url:"{% url grp_m2m_lookup %}",
+                                autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                            });
+                        });
+                    });
+                    $.each(autocomplete_fields_generic, function() {
+                        var content_type = this[0],
+                            object_id = this[1];
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                        .each(function() {
+                            var i = $(this).attr("id").match(/-\d+-/);
+                            if (i) {
+                                var ct_id = "#id_" + prefix + i[0] + content_type,
+                                    obj_id = "#id_" + prefix + i[0] + object_id;
+                                $(this).grp_autocomplete_generic({
+                                    content_type:ct_id,
+                                    object_id:obj_id,
+                                    lookup_url:"{% url grp_related_lookup %}",
+                                    autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                                });
+                            }
                         });
                     });
                 });

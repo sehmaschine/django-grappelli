@@ -854,19 +854,13 @@ input.vM2MAutocompleteSearchField {
 /*  Autocomplete Elements
 ------------------------------------------------------------------------------------------------------ */
 
-input.vAutocompleteField {
-    background: #E1F0F5 !important;
-    width: 630px;
-    margin-left: 10px;
-}
-div.autocomplete-wrapper {
+div.autocomplete-wrapper-m2m {
     display: inline-block;
     position: relative;
     overflow: hidden;
     background: #E1F0F5 !important;
-    width: 618px;
+    width: 758px;
     height: auto !important;
-    margin-left: 10px;
     padding: 0;
     -moz-box-shadow: 0 1px 3px #EAEAEA inset;
     border-color: #CCCCCC #DDDDDD #DDDDDD #CCCCCC;
@@ -875,35 +869,100 @@ div.autocomplete-wrapper {
     border-width: 1px;
     vertical-align: top;
 }
-/*div.autocomplete-wrapper ul {
-    height: auto !important;
+div.autocomplete-wrapper-fk {
+    display: inline-block;
     position: relative;
     overflow: hidden;
-}*/
-div.autocomplete-wrapper ul {
-    /*float: left;*/
+    background: transparent !important;
+    height: auto !important;
+    padding: 0;
+    vertical-align: top;
 }
-div.autocomplete-wrapper li {
+div.autocomplete-wrapper-m2m li {
     float: left;
-    margin-right: 5px;
+    margin-left: 3px;
 }
-div.autocomplete-wrapper li.repr {
+div.autocomplete-wrapper-m2m li.repr {
     font-weight: bold;
-    padding: 5px 0 5px 5px;
+    background: #eee;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border: 1px solid #ccc;
 }
-div.autocomplete-wrapper li.repr a {
+div.autocomplete-wrapper-m2m li.search {
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
-div.autocomplete-wrapper li.search input {
+div.autocomplete-wrapper-m2m li.repr span {
+    padding: 5px;
+    border-right: 1px solid #fff;
+    color: #666;
+}
+div.autocomplete-wrapper-m2m li.repr a {
+    padding: 5px;
+    border-left: 1px solid #ddd;
+}
+div.autocomplete-wrapper-m2m li.search input {
     background: none repeat scroll 0 0 transparent !important;
-    /*background: #fff;*/
     border: 0 none !important;
     box-shadow: none;
-    color: #666666;
-    margin: 1px 0;
+    color: #666;
+    margin: 0;
     outline: 0 none;
-    padding: 5px;
+    padding: 0px;
     width: 100px;
+    height: 20px;
     cursor: text;
-    /*height: 20px;*/
 }
+div.autocomplete-wrapper-fk input.vTextField {
+    background: #E1F0F5 !important;
+}
+
+div.autocomplete-wrapper-m2m a.related-lookup {
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    border: none !important;
+}
+div.autocomplete-wrapper-fk a.related-lookup {
+    position: absolute;
+    top: 1px;
+    right: 15px;
+    border: none !important;
+}
+
+/* we need to hide the input-field without actually saying display:none, because
+with display:none we can´t focus the field anymore */
+div.autocomplete-wrapper-m2m input.vManyToManyRawIdAdminField, div.autocomplete-wrapper-fk input.vForeignKeyRawIdAdminField, div.autocomplete-wrapper-fk input.vIntegerField  {
+    background: none repeat scroll 0 0 transparent !important;
+    border: 0 none !important;
+    box-shadow: none;
+    color: transparent !important;
+    margin: 0;
+    outline: 0 none;
+    padding: 0px;
+    width: 10px;
+    height: 10px;
+}
+
+a.related-remove {
+    display: inline-block;
+    border: medium none !important;
+    position: absolute;
+    right: 38px;
+    top: 1px;
+    background: none no-repeat scroll 50% 50% transparent;
+    background-image: url("../img/icons/icon-remove-related.png");
+    font-size: 0;
+    height: 23px;
+    line-height: 0;
+    width: 23px;
+}
+a.related-remove:hover {
+    background-image: url("../img/icons/icon-remove-related-hover.png");
+}
+
 

@@ -1,144 +1,132 @@
 /**
- * GRAPPELLI RELATED FK
- * foreign-key lookup with autocomplete
+ * GRAPPELLI AUTOCOMPLETE M2M
+ * many-to-many lookup with autocomplete
  */
 
 
 (function($){
-    $.fn.grp_autocomplete_m2m = function(options){
-        var defaults = {
-            input_field: "<div class='autocomplete-wrapper'><ul class='repr'></ul></div>",
-            search_fields: "",
-            autocomplete_lookup_url: '',
-            lookup_url: ''
+    
+    var methods = {
+        init: function(options) {
+            options = $.extend({}, $.fn.grp_autocomplete_m2m.defaults, options);
+            return this.each(function() {
+                var $this = $(this);
+                // build autocomplete wrapper
+                $this.parent().wrapInner("<div class='autocomplete-wrapper-m2m'></div>");
+                $this.parent().prepend("<ul class='search'><li class='search'><input type='text' class='vTextField' value='' /></li></ul>").prepend("<ul class='repr'></ul>");
+                // defaults
+                options = $.extend({
+                    wrapper_autocomplete: $this.parent(),
+                    wrapper_repr: $this.parent().find("ul.repr"),
+                    wrapper_search: $this.parent().find("ul.search"),
+                }, $.fn.grp_autocomplete_m2m.defaults, options);
+                // lookup
+                lookup_id($this, options);  // lookup when loading page
+                lookup_autocomplete($this, options);  // autocomplete-handler
+                $this.bind("change focus keyup blur", function() { // id-handler
+                    lookup_id($this, options);
+                });
+            });
+        }
+    };
+    
+    $.fn.grp_autocomplete_m2m = function(method) {
+        if (methods[method]) {
+            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || ! method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' +  method + ' does not exist on jQuery.grp_autocomplete_m2m');
         };
-        var opts = $.extend(defaults, options);
-        return this.each(function() {
-            _initialize($(this), opts);
-        });
+        return false;
     };
-    var _initialize = function(elem, options) {
-        // remove djangos object representation
-        elem.next().next().remove();
-        // add autocomplete input
-        //elem.next().after(options.input_field);
-        elem.parent().wrapInner(options.input_field);
-        // handlers
-        _get_m2m_repr(elem, options);
-        _autocomplete(elem, options);
-        _register_handler(elem, options);
-        // elem.next().next().bind("click", function() {
-        //     console.log($(this));
-        //     return false;
-        // });
-        $("a.repr-remove").live("click", function(e) {
-            var rel = $(this).attr("rel");
-            var values = split($(elem).val());
-            values = $.grep(values, function(val) { return val != rel; });
-            $(this).parent().remove();
-            elem.val(values);
-        });
-    };
-    var _register_handler = function(elem, options) {
-        elem.bind("change focus keyup blur", function() {
-            //elem.val(check(elem.val()));
-            _get_m2m_repr(elem, options);
-        });
-    };
-    var clean = function(value) {
-        if (value.charAt(0) == ",") value = value.substr(1);
-        if (value.charAt(value.length - 1) == ",") value = value.substr(0, value.length-1);
-        return value
-    };
-    var split = function(val) {
-        return val.split( /,\s*/ );
-    };
-    var extractLast = function(term) {
-        return split(term).pop();
-    };
-    var _autocomplete = function(elem, options) {
+    
+    var get_app_label = function(elem, options) {
         var link = elem.next("a");
         if (link.length === 0) { return; }
-        var spliturl = link.attr('href').split('/');
-        var app_label = spliturl[spliturl.length-3];
-        var model_name= spliturl[spliturl.length-2];
-        var repr_wrapper = elem.next().next();
-        repr_wrapper.append("<ul class='search'><li class='search'><input type='text' class='vTextField' value='' /></li></ul>");
-        elem.next().next().find("input:first")
-            // don't navigate away from the field on tab when selecting an item
-            .bind("keydown", function(event) {
+        var url = link.attr('href').split('/');
+        return url[url.length-3];
+    };
+    
+    var get_model_name = function(elem, options) {
+        var link = elem.next("a");
+        if (link.length === 0) { return; }
+        var url = link.attr('href').split('/');
+        return url[url.length-2];
+    };
+    
+    var value_add = function(elem, value, options) {
+        var values = [];
+        if (elem.val()) values = elem.val().split(",");
+        values.push(value);
+        elem.val(values.join(","));
+        return values.join(",");
+    };
+    
+    var value_remove = function(elem, position, options) {
+        var values = [];
+        if (elem.val()) values = elem.val().split(",");
+        values.splice(position,1);
+        elem.val(values.join(","));
+        return values.join(",");
+    };
+    
+    var repr_add = function(elem, label, options) {
+        var repr = $('<li class="repr"></li>');
+        var removelink = $('<a class="m2m-remove" href="javascript://">X</a>');
+        repr.append("<span>" + label + "</span").append(removelink);
+        options.wrapper_repr.append(repr);
+        removelink.bind("click", function() { // remove-handler
+            var pos = $(this).parent().parent().children("li").index($(this).parent());
+            value_remove(elem, pos, options);
+            $(this).parent().remove();
+        });
+    };
+    
+    var lookup_autocomplete = function(elem, options) {;
+        options.wrapper_search.find("input:first")
+            .bind("keydown", function(event) { // don't navigate away from the field on tab when selecting an item
                 if (event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active) {
                     event.preventDefault();
                 }
             })
-            // autocomplete m2m
             .autocomplete({
                 minLength: 1,
-                position: {
-                    my: "left top",
-                    at: "left bottom",
-                    of: elem.next().next()
-                },
-                open: function() {
-                    $('ul.ui-menu').width(elem.next().next().width());
-                },
+                position: {my: "left top", at: "left bottom", of: options.wrapper_autocomplete},
                 source: function(request, response ) {
                     $.getJSON(options.autocomplete_lookup_url, {
                         term: request.term,
-                        app_label: app_label,
-                        model_name: model_name,
-                        filters: "name__icontains",
-                        // display: "",
+                        app_label: get_app_label(elem, options),
+                        model_name: get_model_name(elem, options),
                     }, function(data) {
                         response($.map(data, function(item) {
-                            return {
-                                label: item.label,
-                                value: item.value
-                            }
+                            return {label: item.label, value: item.value};
                         }));
                     });
                 },
-                focus: function() {
-                    // prevent value inserted on focus
+                focus: function() { // prevent value inserted on focus
                     return false;
                 },
-                select: function(event, ui) {
-                    // don´t prevent adding items multiple times since these items are being removed by django anyway
-                    var values = $(elem).val().split(",");
-                    var value = ui.item.value+='';
-                    if ($.inArray(value, values) == -1) {
-                        // repr
-                        elem.next().next().children("ul.repr").append("<li class='repr'><a class='repr-remove' rel=" + ui.item.value + " href='javascript://'>" + ui.item.label + "</a></li>")
-                        // values
-                        var values = split($(elem).val());
-                        values.push(ui.item.value);
-                        values.push("");
-                        values = values.join(",");
-                        //values = values.substring(0, values.length-1)
-                        $(elem).val(clean(values));
-                    }
-                    $(this).val("");
-                    $(this).focus();
+                select: function(event, ui) { // add repr, add value
+                    repr_add(elem, ui.item.label, options);
+                    value_add(elem, ui.item.value, options);
+                    $(this).val("").focus();
                     return false;
                 }
-        });
+            });
     };
-    var _get_m2m_repr = function(elem, options) {
-        var link = elem.next("a");
-        if (link.length === 0) { return; }
-        var spliturl = link.attr('href').split('/');
-        var app_label = spliturl[spliturl.length-3];
-        var model_name= spliturl[spliturl.length-2];
-        var repr_wrapper = elem.next().next().children("ul.repr");
+    
+    var lookup_id = function(elem, options) {
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
-            app_label: app_label,
-            model_name: model_name
+            app_label: get_app_label(elem, options),
+            model_name: get_model_name(elem, options),
         }, function(data) {
-            repr_wrapper.find("li.repr").remove();
+            options.wrapper_repr.find("li.repr").remove();
             $.each(data, function(index) {
-                repr_wrapper.append("<li class='repr'><a class='repr-remove' rel=" + data[index].value + " href='javascript://'>" + data[index].label + "</a></li>")
-            })
+                repr_add(elem, data[index].label, options);
+            });
         });
     };
+
 })(django.jQuery);
