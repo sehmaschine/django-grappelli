@@ -96,6 +96,7 @@
         obj.next().remove();
         if ($(elem).val()) {
             obj.after(remove_link(obj.attr('id'))).after(lookup_link(obj.attr('id'),$(elem).val()));
+            options.remove_link = obj.next().next().hide();
         }
     };
     
