@@ -20,6 +20,10 @@
                     wrapper_repr: $this.parent().find("ul.repr"),
                     wrapper_search: $this.parent().find("ul.search")
                 }, $.fn.grp_autocomplete_m2m.defaults, options);
+                // move errorlist outside the wrapper
+                if ($this.parent().find("ul.errorlist")) {
+                    $this.parent().find("ul.errorlist").detach().appendTo($this.parent().parent());
+                }
                 // lookup
                 lookup_id($this, options);  // lookup when loading page
                 lookup_autocomplete($this, options);  // autocomplete-handler
