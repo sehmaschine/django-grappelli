@@ -95,6 +95,8 @@ def autocomplete_lookup(request):
             data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.all() if get_lookup(f,term)]
             if len(data):
                 return HttpResponse(simplejson.dumps(data[:10]), mimetype='application/javascript')
+            else:
+                return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
     data = [{"value":None,"label":""}]
     return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
 
