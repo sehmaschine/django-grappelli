@@ -859,7 +859,7 @@ input.vM2MAutocompleteSearchField {
 
 div.autocomplete-wrapper-m2m, 
 div.autocomplete-wrapper-fk input.ui-autocomplete-input {
-    padding-right: 26px;
+    padding-right: 42px;
     color: #666;
     border: 1px solid #ccc;
     border-color: #ccc #ddd #ddd #ccc;
@@ -872,7 +872,7 @@ div.autocomplete-wrapper-fk input.ui-autocomplete-input {
 }
 div.autocomplete-wrapper-m2m.state-focus, 
 div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus {
-    border-color: #999 #bbb #bbb #999;
+    border-color: #999;
     background: #e1f0f5;
 /*    border: 1px solid #309bbf;*/
 /*    background: #fff url('../img/backgrounds/autocomplete.png');*/
@@ -1000,6 +1000,14 @@ div.autocomplete-wrapper-fk a.related-remove:hover,
 div.autocomplete-wrapper-fk a.related-remove:active {
     background: transparent url('../img/icons/icon-autocomplete-fk-remove-hover.png') 50% 50% no-repeat scroll;
 }
+
+div.autocomplete-wrapper-m2m.state-focus a.related-lookup, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * +  a.related-lookup {
+    border-color: #999;
+}
+
+
+/*  Autocompletes in Changelists ......................................... */
 
 #changelist table div.autocomplete-wrapper-fk a.related-remove {
     top: 0;

@@ -1281,7 +1281,7 @@ input, textarea, select {
 }
 
 *:focus, input:focus, textarea:focus, select:focus {
-    border-color: #999 #bbb #bbb #999;
+    border-color: #999;
 }
 select:focus * {
     border: 0 !important;
@@ -1681,7 +1681,8 @@ a.add-another {
 .errors .vTimeField + button, 
 .errors input + a.fb_show, 
 .errors input + a.related-lookup, 
-.errors input + a.add-another {
+.errors input + a.add-another, 
+.errors .autocomplete-wrapper-m2m {
     border-color: #bf3030;
 }
 
