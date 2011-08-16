@@ -34,6 +34,10 @@
                 $("label[for='"+$this.attr('id')+"']").each(function() {
                     $(this).attr("for", $this.attr("id")+"-autocomplete");
                 });
+                // click on div > focus input
+                options.wrapper_autocomplete.bind("click", function() {
+                    options.wrapper_search.find("input:first").focus();
+                })
             });
         }
     };
@@ -88,10 +92,11 @@
         var removelink = $('<a class="m2m-remove" href="javascript://">X</a>');
         repr.append("<span>" + label + "</span").append(removelink);
         options.wrapper_repr.append(repr);
-        removelink.bind("click", function() { // remove-handler
+        removelink.bind("click", function(e) { // remove-handler
             var pos = $(this).parent().parent().children("li").index($(this).parent());
             value_remove(elem, pos, options);
             $(this).parent().remove();
+            e.stopPropagation(); // prevent focus on input
         });
         removelink.hover(function() {
             $(this).parent().toggleClass("autocomplete-preremove");
