@@ -110,6 +110,9 @@
             .autocomplete({
                 minLength: 1,
                 position: {my: "left top", at: "left bottom", of: options.wrapper_autocomplete},
+                open: function(event, ui) {
+                    $(".ui-menu").width(options.wrapper_autocomplete.outerWidth()-6);
+                },
                 source: function(request, response ) {
                     $.getJSON(options.autocomplete_lookup_url, {
                         term: request.term,
