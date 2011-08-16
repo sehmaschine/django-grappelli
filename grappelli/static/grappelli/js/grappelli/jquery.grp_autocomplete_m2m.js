@@ -13,7 +13,7 @@
                 var $this = $(this);
                 // build autocomplete wrapper
                 $this.parent().wrapInner("<div class='autocomplete-wrapper-m2m'></div>");
-                $this.parent().prepend("<ul class='search'><li class='search'><input type='text' class='vTextField' value='' /></li></ul>").prepend("<ul class='repr'></ul>");
+                $this.parent().prepend("<ul class='search'><li class='search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>").prepend("<ul class='repr'></ul>");
                 // defaults
                 options = $.extend({
                     wrapper_autocomplete: $this.parent(),
@@ -29,6 +29,10 @@
                 lookup_autocomplete($this, options);  // autocomplete-handler
                 $this.bind("change focus keyup blur", function() { // id-handler
                     lookup_id($this, options);
+                });
+                // labels
+                $("label[for='"+$this.attr('id')+"']").each(function() {
+                    $(this).attr("for", $this.attr("id")+"-autocomplete");
                 });
             });
         }

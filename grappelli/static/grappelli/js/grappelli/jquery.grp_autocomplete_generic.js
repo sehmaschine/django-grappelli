@@ -16,7 +16,7 @@
                 }
                 // build autocomplete wrapper
                 $this.parent().wrapInner("<div class='autocomplete-wrapper-fk'></div>");
-                $this.parent().prepend("<input type='text' class='vTextField' value='' />");
+                $this.parent().prepend("<input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' />");
                 // defaults
                 options = $.extend({
                     wrapper_autocomplete: $(this).parent(),
@@ -31,6 +31,10 @@
                 });
                 $(options.content_type).bind("change", function() {  // content-type-handler
                     update_lookup($(this), options);
+                });
+                // labels
+                $("label[for='"+$this.attr('id')+"']").each(function() {
+                    $(this).attr("for", $this.attr("id")+"-autocomplete");
                 });
             });
         }
