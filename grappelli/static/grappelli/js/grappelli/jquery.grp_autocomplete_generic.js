@@ -102,6 +102,9 @@
     
     var lookup_autocomplete = function(elem, options) {
         options.wrapper_autocomplete.find("input:first")
+            .bind("focus", function() {
+                $(this).data("autocomplete").term = ""; // reset term (hack!)
+            })
             .autocomplete({
                 minLength: 1,
                 source: function(request, response ) {

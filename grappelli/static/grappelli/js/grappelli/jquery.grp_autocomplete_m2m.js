@@ -106,6 +106,7 @@
                 }
             })
             .bind("focus", function() {
+                $(this).data("autocomplete").term = ""; // reset term (hack!)
                 options.wrapper_autocomplete.addClass("state-focus");
             })
             .bind("blur", function() {
