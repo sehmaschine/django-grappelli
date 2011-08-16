@@ -142,8 +142,8 @@ For the represantation of an object, we first check for a callable ``related_lab
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
 
-.. note::
-    This is a workaround for a feature which should be implemented with the original admin interface.
+.. warning::
+    Due to a django-bug, raw_id_fields (including related-lookups) are not working with list_editables.
 
 .. _customizationautocompletelookups:
 
@@ -212,7 +212,7 @@ The lookup checks for a callable ``related_autocomplete_lookup`` with your model
         return u"%s,%s,%s" % (self.id, self.name, self.category)
 
 .. warning::
-    Autocompletes are under development. Don´t expect the implementation to be stable.
+    Autocompletes are under development. Don´t expect the implementation to be stable. Due to a django-bug, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
 
 Using TinyMCE
 -------------
