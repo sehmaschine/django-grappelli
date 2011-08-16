@@ -68,6 +68,15 @@ in ``/media/js/grappelli/``
 ``jquery.grp_related_generic.js``
     generic lookup
 
+``jquery.grp_autocomplete_fk.js``
+    foreign-key lookup with autocomplete
+
+``jquery.grp_autocomplete_m2m.js``
+    m2m lookup with autocomplete
+
+``jquery.grp_autocomplete_generic.js``
+    generic lookup with autocomplete
+
 ``jquery.grp_timepicker.js``
     timepicker
 

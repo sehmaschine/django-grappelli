@@ -46,6 +46,11 @@ Currently, the admin index site reflects the structure of your applications/mode
 
 see http://code.djangoproject.com/ticket/7497
 
+The App Index
+-------------
+
+Again, which customer/editor is interested in your apps? Noone.
+
 Related Lookups
 ----------------
 
