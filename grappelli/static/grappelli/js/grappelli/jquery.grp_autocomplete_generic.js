@@ -20,7 +20,8 @@
                 // defaults
                 options = $.extend({
                     wrapper_autocomplete: $(this).parent(),
-                    input_field: $(this).prev()
+                    input_field: $(this).prev(),
+                    remove_link: $this.next().next().hide()
                 }, $.fn.grp_autocomplete_generic.defaults, options);
                 // lookup
                 lookup_id($this, options);  // lookup when loading page
@@ -112,6 +113,11 @@
                 select: function(event, ui) {
                     options.input_field.val(ui.item.label);
                     elem.val(ui.item.value);
+                    if (elem.val()) {
+                        $(options.remove_link).show();
+                    } else {
+                        $(options.remove_link).hide();
+                    }
                     return false;
                 }
             });
@@ -125,6 +131,11 @@
         }, function(data) {
             $.each(data, function(index) {
                 options.input_field.val(data[index].label);
+                if (elem.val()) {
+                    $(options.remove_link).show();
+                } else {
+                    $(options.remove_link).hide();
+                }
             });
         });
     };
