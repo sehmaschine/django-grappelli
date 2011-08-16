@@ -85,6 +85,7 @@
         obj.val('');
         obj.prev().val('');
         obj.next().remove();
+        obj.next().remove();
         if ($(elem).val()) {
             obj.after(remove_link(obj.attr('id'))).after(lookup_link(obj.attr('id'),$(elem).val()));
         }
