@@ -18,7 +18,7 @@
                 options = $.extend({
                     wrapper_autocomplete: $this.parent(),
                     wrapper_repr: $this.parent().find("ul.repr"),
-                    wrapper_search: $this.parent().find("ul.search"),
+                    wrapper_search: $this.parent().find("ul.search")
                 }, $.fn.grp_autocomplete_m2m.defaults, options);
                 // lookup
                 lookup_id($this, options);  // lookup when loading page
@@ -43,16 +43,20 @@
     
     var get_app_label = function(elem, options) {
         var link = elem.next("a");
-        if (link.length === 0) { return; }
-        var url = link.attr('href').split('/');
-        return url[url.length-3];
+        if (link.length > 0) {
+            var url = link.attr('href').split('/');
+            return url[url.length-3];
+        }
+        return false;
     };
     
     var get_model_name = function(elem, options) {
         var link = elem.next("a");
-        if (link.length === 0) { return; }
-        var url = link.attr('href').split('/');
-        return url[url.length-2];
+        if (link.length > 0) {
+            var url = link.attr('href').split('/');
+            return url[url.length-2];
+        }
+        return false;
     };
     
     var value_add = function(elem, value, options) {
@@ -97,7 +101,7 @@
                     $.getJSON(options.autocomplete_lookup_url, {
                         term: request.term,
                         app_label: get_app_label(elem, options),
-                        model_name: get_model_name(elem, options),
+                        model_name: get_model_name(elem, options)
                     }, function(data) {
                         response($.map(data, function(item) {
                             return {label: item.label, value: item.value};
@@ -120,7 +124,7 @@
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
             app_label: get_app_label(elem, options),
-            model_name: get_model_name(elem, options),
+            model_name: get_model_name(elem, options)
         }, function(data) {
             options.wrapper_repr.find("li.repr").remove();
             $.each(data, function(index) {
