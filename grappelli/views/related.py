@@ -52,7 +52,7 @@ def related_lookup(request):
                     return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
                 except:
                     pass
-    data.append({"value":None,"label":""})
+    data = [{"value":None,"label":""}]
     return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
 
 
@@ -77,7 +77,7 @@ def m2m_lookup(request):
                         except:
                             data.append({"value":obj_id,"label":_("?")})
             return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
-    data.append({"value":None,"label":""})
+    data = [{"value":None,"label":""}]
     return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
 
 
@@ -93,8 +93,9 @@ def autocomplete_lookup(request):
             model_name = request.GET.get('model_name')
             model = models.get_model(app_label, model_name)
             data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.all() if get_lookup(f,term)]
-            return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
-    data.append({"value":None,"label":""})
+            if len(data):
+                return HttpResponse(simplejson.dumps(data[:10]), mimetype='application/javascript')
+    data = [{"value":None,"label":""}]
     return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
 
 
