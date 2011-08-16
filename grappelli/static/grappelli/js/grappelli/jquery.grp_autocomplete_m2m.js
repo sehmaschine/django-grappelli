@@ -94,6 +94,12 @@
                     event.preventDefault();
                 }
             })
+            .bind("focus", function() {
+                options.wrapper_autocomplete.addClass("state-focus");
+            })
+            .bind("blur", function() {
+                options.wrapper_autocomplete.removeClass("state-focus");
+            })
             .autocomplete({
                 minLength: 1,
                 position: {my: "left top", at: "left bottom", of: options.wrapper_autocomplete},
@@ -127,6 +133,7 @@
             model_name: get_model_name(elem, options)
         }, function(data) {
             options.wrapper_repr.find("li.repr").remove();
+            options.wrapper_search.find("input").val("");
             $.each(data, function(index) {
                 repr_add(elem, data[index].label, options);
             });
