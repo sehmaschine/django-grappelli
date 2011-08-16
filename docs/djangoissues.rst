@@ -62,7 +62,15 @@ This issue is solved with Grappelli (unfortunately overly complex due to the lim
 Autocompletes
 -------------
 
-As an alternative to ``Related Lookups`` it should also be possible to implement ``Autocompletes``.
+As an alternative to ``Related Lookups`` it should also be possible to implement ``Autocompletes``. |grappelli| includes ``Autocompletes``, but it should be possible without hacking the admin-interface.
+
+``raw_id_fields`` and ``list_editables``
+----------------------------------------
+
+Due to a django-bug, the lookup for ``raw_id_fields`` is not correct if used with ``list_editables``. Therefore, ``Related Lookups`` and ``Autocomplete Lookups`` are currently not working on the changelist.
+This bug has been resolved with Django 1.2 ... unfortunately, with Django 1.3 it reoccurs.
+
+see https://code.djangoproject.com/ticket/11163
 
 Searching Generic Relations
 ---------------------------
