@@ -15,6 +15,7 @@ Changelog
 * Fixed a bug with the View on Site link (tabular/stacked inlines).
 * Added a placeholder for inline sortables.
 * Fixed a bug with collapse all (stacked inlines).
+* Added autocompletes.
 
 2.3.3 (28/05/2011)
 ------------------

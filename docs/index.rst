@@ -14,6 +14,9 @@ Documentation
 
 This documentation covers version 2.3.4 of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
 
+.. note::
+    |grappelli| 2.3.4 requires Django 1.3.
+
 Installation & Setup
 --------------------
 
