@@ -557,16 +557,16 @@ button.ui-datepicker-close {
 .ui-autocomplete {
     position: absolute;
     cursor: default;
-/*    max-height: 100px;*/
-/*    overflow-y: auto;*/
-    border-color: #999 #bbb #bbb #999;
+    padding: 3px;
+    border: 1px solid #ccc;
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
-    background: #fff;
+    background: #eee;
     box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
 }
-.ui-autocomplete-loading {
+/*.ui-autocomplete-loading {
     background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat;
 }
+*/
 * html .ui-autocomplete {
     width: 1px;
 }
@@ -577,96 +577,25 @@ button.ui-datepicker-close {
     margin: 0;
     padding: 5px;
 }
-.ui-autocomplete .ui-menu-item a {
-    padding: 5px;
-    font-weight: bold;
-    border-top: 1px solid #e0e0e0 !important;
-    border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
-}
-.ui-autocomplete .ui-menu-item a:hover, .ui-autocomplete .ui-menu-item a:active {
-    color: #fff;
-    border-top: 1px solid transparent !important;
-    background: #444;
-}
-.ui-autocomplete .ui-menu-item:first-child a {
+.ui-autocomplete .ui-menu-item + .ui-menu-item  {
+    margin-top: 2px;
     border-top: 0 !important;
 }
-.ui-autocomplete .ui-menu-item:hover + li a {
-    border-top-color: 0 !important;
-}
-
-
-
-/*  Facelist
------------------------------------------------------------------------------------------------------- */
-.ui-gFacelist-wrapper {
-    margin-left:160px;
-    width:758px;
-}
-
-.ui-gFacelist-wrapper.focus {
-    border-color: #999 #BBB #BBB #999;
-}
-
-.ui-gFacelist-toolbar button {
-    border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0; -webkit-border-bottom-right-radius: 0;
-}
-
-ul.ui-gFacelist-facelist {
-    clear:both;
-    padding: 5px 5px 5px 0;
-    position: relative; float: left; clear: both;
-    width:758px;
-    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-}
-
-li.ui-gFacelist-item {
-    cursor: pointer;
-    background:#ddd;
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ebf2f5), to(#e1f0f5));
-    background-image: -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: -o-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-repeat:no-repeat;
-    border:1px solid #ccc;
-    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
-    -webkit-box-sizing: border-box;
-    float: left;
+.ui-autocomplete .ui-menu-item a {
+    margin: 0;
+    padding: 3px 4px;
+    color: #444;
     font-weight: bold;
-    margin-top: 5px; 
-    margin-right: 5px;
-    padding: 4px 7px 3px 4px;
-    opacity: 1;    
-    position: relative; 
-    width: auto;
+    border: 1px solid #c7c7c7;
+    border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+    background: #cee9f2;
 }
-
-li.ui-gFacelist-item:hover {
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e1e1e1), to(#eee));
-    background-image: -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: -o-linear-gradient(top, #e1e1e1, #eee);
-}
-
-li.ui-gFacelist-item span {
-    background:transparent url('../img/icons/icon-bookmark_remove-inactive.png') no-repeat 2px 2px;
-    padding:0 0 0 18px;
-}
-
-li.ui-gFacelist-item:hover span {
-    background:transparent url('../img/icons/icon-bookmark_remove.png') no-repeat 2px 2px;
-}
-
-
-
-/*  AutoSlugField
------------------------------------------------------------------------------------------------------- */
-
-.ui-gAutoSlugField-preview {
-    display:block;
-    color:#999;
-    padding:2px 6px;
-    background:#eee;
-    border:1px solid #ddd;
-    border-width:0 1px 1px 1px;
-    margin-left:160px;
-    width:744px;
+.ui-autocomplete .ui-menu-item a.ui-state-hover, 
+.ui-autocomplete .ui-menu-item a:hover, .ui-autocomplete .ui-menu-item a:active {
+    margin: 0 !important;
+    padding: 3px 4px !important;
+    color: #fff !important;
+    border: 1px solid transparent !important;
+    border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+    background: #444 !important;
 }

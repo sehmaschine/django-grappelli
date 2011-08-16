@@ -854,115 +854,167 @@ input.vM2MAutocompleteSearchField {
 /*  Autocomplete Elements
 ------------------------------------------------------------------------------------------------------ */
 
+
+/*  Autocomplete Wrappers (Input and Input-Lookalike) ......................................... */
+
+div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input {
+    padding-right: 26px;
+    color: #666;
+    border: 1px solid #ccc;
+    border-color: #ccc #ddd #ddd #ccc;
+    border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+    box-shadow: 0 1px 3px #eaeaea inset; -moz-box-shadow: 0 1px 3px #eaeaea inset; -webkit-box-shadow: 0 1px 3px #eaeaea inset;
+    background: #fff url('../img/backgrounds/autocomplete.png') repeat-x scroll;
+    background: #fff;
+/*    background: #f2f8fa;*/
+/*    background: #e1f0f5;*/
+}
+div.autocomplete-wrapper-m2m.state-focus, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus {
+    border-color: #999 #bbb #bbb #999;
+    background: #e1f0f5;
+/*    border: 1px solid #309bbf;*/
+/*    background: #fff url('../img/backgrounds/autocomplete.png');*/
+}
+
 div.autocomplete-wrapper-m2m {
     display: inline-block;
     position: relative;
-    overflow: hidden;
-    background: #E1F0F5 !important;
+    padding: 0 35px 0 1px;
     width: 758px;
     height: auto !important;
-    padding: 0;
-    -moz-box-shadow: 0 1px 3px #EAEAEA inset;
-    border-color: #CCCCCC #DDDDDD #DDDDDD #CCCCCC;
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
     vertical-align: top;
+    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 }
 div.autocomplete-wrapper-fk {
     display: inline-block;
     position: relative;
-    overflow: hidden;
-    background: transparent !important;
+    width: auto !important;
     height: auto !important;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     vertical-align: top;
+    font-size: 0 !important; /* Set font-size and line-height to 0 to let the &nbsp; at the end of the autocomplete-wrapper disappear */
+    line-height: 0 !important;
+    background: transparent !important;
 }
+
+
+/*  M2M Listing ......................................... */
+
 div.autocomplete-wrapper-m2m li {
+    position: relative;
     float: left;
-    margin-left: 3px;
-}
-div.autocomplete-wrapper-m2m li.repr {
-    font-weight: bold;
-    background: #eee;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    border: 1px solid #ccc;
+/*    margin-right: 1px;*/
 }
 div.autocomplete-wrapper-m2m li.search {
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background: transparent;
 }
-div.autocomplete-wrapper-m2m li.repr span {
-    padding: 5px;
-    border-right: 1px solid #fff;
-    color: #666;
-}
-div.autocomplete-wrapper-m2m li.repr a {
-    padding: 5px;
-    border-left: 1px solid #ddd;
-}
-div.autocomplete-wrapper-m2m li.search input {
-    background: none repeat scroll 0 0 transparent !important;
-    border: 0 none !important;
-    box-shadow: none;
-    color: #666;
-    margin: 0;
-    outline: 0 none;
-    padding: 0px;
+div.autocomplete-wrapper-m2m li.search input[type=text] {
+    margin: 0 0 -1px !important;
+    padding: 0 4px !important;
     width: 100px;
-    height: 20px;
+    height: 22px !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    outline: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important; -moz-box-shadow: none !important; -webkit-box-shadow: none !important;
+    background: transparent !important;
     cursor: text;
 }
-div.autocomplete-wrapper-fk input.vTextField {
-    background: #E1F0F5 !important;
+div.autocomplete-wrapper-m2m li.repr {
+    margin-top: 2px;
+    margin-bottom: 0;
+    margin-right: 5px;
+    font-weight: bold;
+    line-height: 18px;
+}
+div.autocomplete-wrapper-m2m li.repr span {
+    display: inline-block;
+    padding: 1px 5px;
+    height: 17px;
+    color: #666;
 }
 
-div.autocomplete-wrapper-m2m a.related-lookup {
-    position: absolute;
-    top: 2px;
-    right: 3px;
-    border: none !important;
-}
-div.autocomplete-wrapper-fk a.related-lookup {
-    position: absolute;
+
+/*  Autocomplete Icons ......................................... */
+
+div.autocomplete-wrapper-m2m li.repr a.m2m-remove {
+    display: inline-block;
+    position: relative;
     top: 1px;
-    right: 15px;
-    border: none !important;
+    width: 11px;
+    height: 15px;
+    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+    color: transparent; /* temporary hide text */
+}
+div.autocomplete-wrapper-m2m li.repr a.m2m-remove:link, 
+div.autocomplete-wrapper-m2m li.repr a.m2m-remove:visited {
+    background: transparent url('../img/icons/icon-autocomplete-m2m-remove.png') 50% 50% no-repeat scroll;
+}
+div.autocomplete-wrapper-m2m li.repr a.m2m-remove:hover, 
+div.autocomplete-wrapper-m2m li.repr a.m2m-remove:active {
+    background: transparent url('../img/icons/icon-autocomplete-m2m-remove-hover.png') 50% 50% no-repeat scroll;
 }
 
-/* we need to hide the input-field without actually saying display:none, because
-with display:none we can´t focus the field anymore */
+div.autocomplete-wrapper-fk.autocomplete-preremove input.ui-autocomplete-input, 
+div.autocomplete-wrapper-m2m li.repr.autocomplete-preremove span {
+    color: #bf3030 !important;
+}
+
+div.autocomplete-wrapper-m2m a.related-lookup, 
+div.autocomplete-wrapper-fk  a.related-lookup {
+    position: absolute;
+    border: 1px solid #ccc;
+}
+div.autocomplete-wrapper-m2m a.related-lookup {
+    top: -1px;
+    right: -1px;
+    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+}
+
+div.autocomplete-wrapper-fk a.related-lookup {
+    top: 0;
+    right: 0;
+}
+div.autocomplete-wrapper-fk a.related-remove {
+    display: inline-block;
+    position: absolute;
+    right: 29px;
+    top: 5px;
+    font-size: 0;
+    line-height: 0;
+    width: 11px;
+    height: 15px;
+    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+div.autocomplete-wrapper-fk a.related-remove:link, 
+div.autocomplete-wrapper-fk a.related-remove:visited {
+    background: transparent url('../img/icons/icon-autocomplete-fk-remove.png') 50% 50% no-repeat scroll;
+}
+div.autocomplete-wrapper-fk a.related-remove:hover, 
+div.autocomplete-wrapper-fk a.related-remove:active {
+    background: transparent url('../img/icons/icon-autocomplete-fk-remove-hover.png') 50% 50% no-repeat scroll;
+}
+
+#changelist table div.autocomplete-wrapper-fk a.related-remove {
+    top: 0;
+}
+
+/* we need to "hide" the input-field without display:none, because with display:none we can´t focus the field anymore */
 div.autocomplete-wrapper-m2m input.vManyToManyRawIdAdminField, div.autocomplete-wrapper-fk input.vForeignKeyRawIdAdminField, div.autocomplete-wrapper-fk input.vIntegerField  {
-    background: none repeat scroll 0 0 transparent !important;
-    border: 0 none !important;
-    box-shadow: none;
-    color: transparent !important;
-    margin: 0;
-    outline: 0 none;
-    padding: 0px;
+    position: absolute;
+    left: 0;
+    top: -40px;
     width: 10px;
     height: 10px;
+    color: transparent !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important; -moz-box-shadow: none !important; -webkit-box-shadow: none !important;
+    cursor: default !important;
 }
-
-a.related-remove {
-    display: inline-block;
-    border: medium none !important;
-    position: absolute;
-    right: 38px;
-    top: 1px;
-    background: none no-repeat scroll 50% 50% transparent;
-    background-image: url("../img/icons/icon-remove-related.png");
-    font-size: 0;
-    height: 23px;
-    line-height: 0;
-    width: 23px;
-}
-a.related-remove:hover {
-    background-image: url("../img/icons/icon-remove-related-hover.png");
-}
-
-

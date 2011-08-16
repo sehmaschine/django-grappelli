@@ -85,6 +85,9 @@
             value_remove(elem, pos, options);
             $(this).parent().remove();
         });
+        removelink.hover(function() {
+            $(this).parent().toggleClass("autocomplete-preremove");
+        });
     };
     
     var lookup_autocomplete = function(elem, options) {;

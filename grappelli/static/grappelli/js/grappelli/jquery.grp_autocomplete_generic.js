@@ -69,6 +69,9 @@
         removelink.attr('id', 'remove_'+id);
         removelink.attr('href', 'javascript://');
         removelink.attr('onClick', 'return removeRelatedObject(this);');
+        removelink.hover(function() {
+            $(this).parent().toggleClass("autocomplete-preremove");
+        });
         return removelink;
     };
     
