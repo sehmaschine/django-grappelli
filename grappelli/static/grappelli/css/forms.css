@@ -906,7 +906,6 @@ div.autocomplete-wrapper-fk {
 div.autocomplete-wrapper-m2m li {
     position: relative;
     float: left;
-/*    margin-right: 1px;*/
 }
 div.autocomplete-wrapper-m2m li.search {
     margin-top: 1px;
