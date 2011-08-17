@@ -32,29 +32,11 @@
         return false;
     };
     
-    var get_app_label = function(elem, options) {
-        var link = elem.next("a");
-        if (link.length > 0) {
-            var url = link.attr('href').split('/');
-            return url[url.length-3];
-        }
-        return false;
-    };
-    
-    var get_model_name = function(elem, options) {
-        var link = elem.next("a");
-        if (link.length > 0) {
-            var url = link.attr('href').split('/');
-            return url[url.length-2];
-        }
-        return false;
-    };
-    
     var lookup_id = function(elem, options) {
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
-            app_label: get_app_label(elem, options),
-            model_name: get_model_name(elem, options)
+            app_label: grappelli.get_app_label(elem),
+            model_name: grappelli.get_model_name(elem)
         }, function(data) {
             values = $.map(data, function (a) { return a.label; });
             elem.next().next().text(values.join(", "));

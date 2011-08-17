@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFoun
 from django.db import models
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
+from django.utils.translation import ungettext
 import django.utils.simplejson as simplejson
 
 
@@ -93,11 +94,15 @@ def autocomplete_lookup(request):
             model_name = request.GET.get('model_name')
             model = models.get_model(app_label, model_name)
             data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.all() if get_lookup(f,term)]
-            if len(data):
-                return HttpResponse(simplejson.dumps(data[:10]), mimetype='application/javascript')
-            else:
-                return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
-    data = [{"value":None,"label":""}]
+            label = ungettext(
+                '%(counter)s result',
+                '%(counter)s results',
+            len(data)) % {
+                'counter': len(data),
+            }
+            data.insert(0, {"value":None,"label":label})
+            return HttpResponse(simplejson.dumps(data[:10]), mimetype='application/javascript')
+    data = [{"value":None,"label":_("Server error")}]
     return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
 
 

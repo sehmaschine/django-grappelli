@@ -53,24 +53,6 @@
         return false;
     };
     
-    var get_app_label = function(elem, options) {
-        var link = elem.next("a");
-        if (link.length > 0) {
-            var url = link.attr('href').split('/');
-            return url[url.length-3];
-        }
-        return false;
-    };
-    
-    var get_model_name = function(elem, options) {
-        var link = elem.next("a");
-        if (link.length > 0) {
-            var url = link.attr('href').split('/');
-            return url[url.length-2];
-        }
-        return false;
-    };
-    
     var value_add = function(elem, value, options) {
         var values = [];
         if (elem.val()) values = elem.val().split(",");
@@ -110,8 +92,8 @@
                     event.preventDefault();
                 }
             })
-            .bind("focus", function() {
-                $(this).data("autocomplete").term = ""; // reset term (hack!)
+            .bind("focus", function() { // reset term (hack!)
+                $(this).data("autocomplete").term = "";
                 options.wrapper_autocomplete.addClass("state-focus");
             })
             .bind("blur", function() {
@@ -126,8 +108,8 @@
                 source: function(request, response ) {
                     $.getJSON(options.autocomplete_lookup_url, {
                         term: request.term,
-                        app_label: get_app_label(elem, options),
-                        model_name: get_model_name(elem, options)
+                        app_label: grappelli.get_app_label(elem),
+                        model_name: grappelli.get_model_name(elem)
                     }, function(data) {
                         response($.map(data, function(item) {
                             return {label: item.label, value: item.value};
@@ -143,14 +125,18 @@
                     $(this).val("").focus();
                     return false;
                 }
-            });
+            })
+            .data("autocomplete")._renderItem = function(ul,item) {
+                var label = item.value ? "<a>" + item.label + "</a>" : "<span>" + item.label + "</span>";
+                return $("<li></li>").data("item.autocomplete", item).append(label).appendTo(ul);
+            };
     };
     
     var lookup_id = function(elem, options) {
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
-            app_label: get_app_label(elem, options),
-            model_name: get_model_name(elem, options)
+            app_label: grappelli.get_app_label(elem),
+            model_name: grappelli.get_model_name(elem)
         }, function(data) {
             options.wrapper_repr.find("li.repr").remove();
             options.wrapper_search.find("input").val("");

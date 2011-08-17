@@ -51,24 +51,6 @@
         return false;
     };
     
-    var get_app_label = function(elem, options) {
-        var link = elem.next("a");
-        if (link.length > 0) {
-            var url = link.attr('href').split('/');
-            return url[url.length-3];
-        }
-        return false;
-    };
-    
-    var get_model_name = function(elem, options) {
-        var link = elem.next("a");
-        if (link.length > 0) {
-            var url = link.attr('href').split('/');
-            return url[url.length-2];
-        }
-        return false;
-    };
-    
     var remove_link = function(id) {
         var removelink = $('<a class="related-remove"></a>');
         removelink.attr('id', 'remove_'+id);
@@ -102,16 +84,16 @@
     
     var lookup_autocomplete = function(elem, options) {
         options.wrapper_autocomplete.find("input:first")
-            .bind("focus", function() {
-                $(this).data("autocomplete").term = ""; // reset term (hack!)
+            .bind("focus", function() { // reset term (hack!)
+                $(this).data("autocomplete").term = "";
             })
             .autocomplete({
                 minLength: 1,
                 source: function(request, response ) {
                     $.getJSON(options.autocomplete_lookup_url, {
                         term: request.term,
-                        app_label: get_app_label(elem, options),
-                        model_name: get_model_name(elem, options)
+                        app_label: grappelli.get_app_label(elem),
+                        model_name: grappelli.get_model_name(elem)
                     }, function(data) {
                         response($.map(data, function(item) {
                             return {label: item.label, value: item.value};
@@ -121,29 +103,25 @@
                 select: function(event, ui) {
                     options.input_field.val(ui.item.label);
                     elem.val(ui.item.value);
-                    if (elem.val()) {
-                        $(options.remove_link).show();
-                    } else {
-                        $(options.remove_link).hide();
-                    }
+                    elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
                     return false;
                 }
-            });
+            })
+            .data("autocomplete")._renderItem = function(ul,item) {
+                var label = item.value ? "<a>" + item.label + "</a>" : "<span>" + item.label + "</span>";
+                return $("<li></li>").data("item.autocomplete", item).append(label).appendTo(ul);
+            };
     };
     
     var lookup_id = function(elem, options) {
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
-            app_label: get_app_label(elem, options),
-            model_name: get_model_name(elem, options)
+            app_label: grappelli.get_app_label(elem),
+            model_name: grappelli.get_model_name(elem)
         }, function(data) {
             $.each(data, function(index) {
                 options.input_field.val(data[index].label);
-                if (elem.val()) {
-                    $(options.remove_link).show();
-                } else {
-                    $(options.remove_link).hide();
-                }
+                elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
             });
         });
     };
