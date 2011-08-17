@@ -61,9 +61,6 @@
     
     var lookup_autocomplete = function(elem, options) {
         options.wrapper_autocomplete.find("input:first")
-            .bind("focus", function() { // reset term (hack!)
-                $(this).data("autocomplete").term = "";
-            })
             .autocomplete({
                 minLength: 1,
                 source: function(request, response) {
@@ -76,6 +73,9 @@
                             return {label: item.label, value: item.value};
                         }));
                     });
+                },
+                focus: function() { // prevent value inserted on focus
+                    return false;
                 },
                 select: function(event, ui) {
                     options.input_field.val(ui.item.label);

@@ -47,7 +47,7 @@ var django = {
             }
         };
         var dateFields = $("input[class*='vDateField']:not([id*='__prefix__'])");
-        dateFields.datepicker(options);
+        //dateFields.datepicker(options);
         
         if (typeof IS_POPUP != "undefined" && IS_POPUP) {
             dateFields.datepicker('disable');
@@ -64,14 +64,6 @@ var django = {
         // init timepicker
         $("input[class*='vTimeField']:not([id*='__prefix__'])").grp_timepicker();
     };
-    
-    // HACK: add no-wrap to table-elements.
-    // should be solved with http://code.djangoproject.com/changeset/15658
-    // grappelli.initTableElements = function() {
-    //     $("td input.vForeignKeyRawIdAdminField, td input.vFileBrowseField, td a.add-another").each(function() {
-    //         $(this).parent().addClass('nowrap');
-    //     });
-    // };
     
     // changelist: filter
     grappelli.initFilter = function() {

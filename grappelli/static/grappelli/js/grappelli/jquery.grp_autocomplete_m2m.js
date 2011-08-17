@@ -92,8 +92,7 @@
                     event.preventDefault();
                 }
             })
-            .bind("focus", function() { // reset term (hack!)
-                $(this).data("autocomplete").term = "";
+            .bind("focus", function() {
                 options.wrapper_autocomplete.addClass("state-focus");
             })
             .bind("blur", function() {
