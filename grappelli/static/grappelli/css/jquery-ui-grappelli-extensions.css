@@ -207,7 +207,10 @@
 ------------------------------------------------------------------------------------------------------ */
 
 .ui-datepicker {
-    width: auto !important; padding: 3px 3px 0;
+    position: absolute;
+    display: none;
+    padding: 3px 3px 0;
+    width: auto !important;
     border-color: #bdbdbd;
     box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
 }
@@ -386,6 +389,8 @@ button.ui-datepicker-close {
 ------------------------------------------------------------------------------------------------------ */
 
 #ui-timepicker {
+    position: absolute;
+    display: none;
     padding: 5px 3px 3px 5px;
     width: 216px;
     border: 1px solid #bdbdbd;

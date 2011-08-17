@@ -47,7 +47,7 @@ var django = {
             }
         };
         var dateFields = $("input[class*='vDateField']:not([id*='__prefix__'])");
-        //dateFields.datepicker(options);
+        dateFields.datepicker(options);
         
         if (typeof IS_POPUP != "undefined" && IS_POPUP) {
             dateFields.datepicker('disable');
