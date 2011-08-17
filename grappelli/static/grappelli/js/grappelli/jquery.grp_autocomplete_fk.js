@@ -66,7 +66,7 @@
             })
             .autocomplete({
                 minLength: 1,
-                source: function(request, response ) {
+                source: function(request, response) {
                     $.getJSON(options.autocomplete_lookup_url, {
                         term: request.term,
                         app_label: grappelli.get_app_label(elem),
