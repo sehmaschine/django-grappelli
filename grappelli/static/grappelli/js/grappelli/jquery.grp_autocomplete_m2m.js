@@ -128,7 +128,7 @@
                     $.ajax({
                         url: options.autocomplete_lookup_url,
                         dataType: 'json',
-                        data: "term=" + request.term + "&app_label=" + grappelli.get_app_label(elem) + "&model_name=" + grappelli.get_model_name(elem),
+                        data: "term=" + request.term + "&app_label=" + grappelli.get_app_label(elem) + "&model_name=" + grappelli.get_model_name(elem) + "&query_string=" + grappelli.get_query_string(elem),
                         beforeSend: function (XMLHttpRequest) {
                             options.loader.show();
                         },
@@ -171,7 +171,6 @@
                 repr_add(elem, data[index].label, options);
             });
             elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
-            console.log(options.remove_link);
         });
     };
 

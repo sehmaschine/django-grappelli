@@ -122,6 +122,14 @@ var django = {
         }
         return false;
     };
+    grappelli.get_query_string = function(elem) {
+        var link = elem.next("a");
+        if (link.length > 0) {
+            var url = link.attr('href').split('/');
+            return url[url.length-1].replace('?', '');
+        }
+        return false;
+    };
     
 })(django.jQuery);
 
