@@ -952,9 +952,7 @@ input[type=password],
 .vIntegerField, 
 .vPositiveSmallIntegerField, 
 .vManyToManyRawIdAdminField, 
-.vForeignKeyRawIdAdminField, 
-.vAutocompleteSearchField, 
-.vAutocompleteRawIdAdminField {
+.vForeignKeyRawIdAdminField {
     width: 118px;
 }
 
@@ -963,8 +961,7 @@ input.vURLField,
 input.vFileBrowseField, 
 textarea, 
 .vLargeTextField, 
-.vXMLLargeTextField, 
-input.vM2MAutocompleteSearchField {
+.vXMLLargeTextField {
     width: 278px;
 }
 
@@ -1046,10 +1043,10 @@ div.autocomplete-wrapper-fk input.ui-autocomplete-input {
     padding-right: 42px;
     color: #666;
     border: 1px solid #ccc;
-    border-color: #ccc #ddd #ddd #ccc;
+/*    border-color: #ccc #ddd #ddd #ccc;*/
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
     box-shadow: 0 1px 3px #eaeaea inset; -moz-box-shadow: 0 1px 3px #eaeaea inset; -webkit-box-shadow: 0 1px 3px #eaeaea inset;
-    background: #fff url('../img/backgrounds/autocomplete.png') repeat-x scroll;
+/*    background: #fff url('../img/backgrounds/autocomplete.png') repeat-x scroll;*/
     background: #fff;
 /*    background: #f2f8fa;*/
 /*    background: #e1f0f5;*/
@@ -1088,14 +1085,15 @@ div.autocomplete-wrapper-fk {
 /*  M2M Listing ......................................... */
 
 div.autocomplete-wrapper-m2m ul.repr {
-    position: relative;
+/*    position: relative;*/
     float: left;
-    clear: both;
+/*    clear: both;*/
     overflow: hidden;
 }
 div.autocomplete-wrapper-m2m li {
-    position: relative;
+/*    position: relative;*/
     float: left;
+    display: inline;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -1124,33 +1122,9 @@ div.autocomplete-wrapper-m2m li.repr {
     font-weight: bold;
     line-height: 18px;
 }
-/*div.autocomplete-wrapper-m2m li.repr span {
-    display: inline-block;
-    padding: 1px 5px;
-    height: 17px;
-    color: #666;
-}
-*/
+
 
 /*  Autocomplete Icons ......................................... */
-
-/*div.autocomplete-wrapper-m2m li.repr a.m2m-remove {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    width: 11px;
-    height: 15px;
-    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
-    color: transparent;
-}
-div.autocomplete-wrapper-m2m li.repr a.m2m-remove:link, 
-div.autocomplete-wrapper-m2m li.repr a.m2m-remove:visited {
-    background: transparent url('../img/icons/icon-autocomplete-m2m-remove.png') 50% 50% no-repeat scroll;
-}
-div.autocomplete-wrapper-m2m li.repr a.m2m-remove:hover, 
-div.autocomplete-wrapper-m2m li.repr a.m2m-remove:active {
-    background: transparent url('../img/icons/icon-autocomplete-m2m-remove-hover.png') 50% 50% no-repeat scroll;
-}*/
 
 div.autocomplete-wrapper-m2m li.repr a.m2m-remove {
     color: #666;
@@ -1213,11 +1187,11 @@ div.autocomplete-wrapper-m2m a.related-remove:active {
 }
 
 div.autocomplete-wrapper-m2m.state-focus a.related-lookup, 
-div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * +  a.related-lookup, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + a.related-lookup, 
 div.autocomplete-wrapper-m2m.state-focus a.related-remove, 
-div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * +  a.related-remove, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * + a.related-remove, 
 div.autocomplete-wrapper-m2m.state-focus .loader, 
-div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * + * +  .loader {
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * + * + .loader {
     border-color: #999;
 }
 
@@ -1239,7 +1213,7 @@ div.autocomplete-wrapper-m2m a.related-remove,
 div.autocomplete-wrapper-m2m a.related-remove + div.loader {
     top: -1px;
     right: 23px;
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+/*    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;*/
 }
 
 

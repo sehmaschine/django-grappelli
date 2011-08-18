@@ -1266,7 +1266,7 @@ label {
 input, textarea, select, button {
     color: #666;
     border: 1px solid #bbb;
-    border-color: #ccc #ddd #ddd #ccc;
+/*    border-color: #ccc #ddd #ddd #ccc;*/
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
     outline: 0;
 }
