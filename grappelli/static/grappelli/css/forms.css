@@ -989,7 +989,7 @@ div.autocomplete-wrapper-fk a.related-lookup {
     top: 0;
     right: 0;
 }
-div.autocomplete-wrapper-fk a.related-remove, div.autocomplete-wrapper-m2m a.related-remove  {
+div.autocomplete-wrapper-fk a.related-remove, div.autocomplete-wrapper-m2m a.related-remove, div.autocomplete-wrapper-fk div.loader, div.autocomplete-wrapper-m2m div.loader {
     display: inline-block;
     position: absolute;
     right: 29px;
@@ -1016,6 +1016,10 @@ div.autocomplete-wrapper-m2m a.related-remove:active {
 div.autocomplete-wrapper-m2m.state-focus a.related-lookup, 
 div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * +  a.related-lookup {
     border-color: #999;
+}
+
+div.autocomplete-wrapper-fk div.loader, div.autocomplete-wrapper-m2m div.loader {
+    background: transparent;
 }
 
 

@@ -12,7 +12,7 @@
             return this.each(function() {
                 var $this = $(this);
                 // build autocomplete wrapper
-                $this.next().after(remove_link($this.attr('id')));
+                $this.next().after(loader).after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='autocomplete-wrapper-m2m'></div>");
                 $this.parent().prepend("<ul class='search'><li class='search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>").prepend("<ul class='repr'></ul>");
                 // defaults
@@ -20,7 +20,8 @@
                     wrapper_autocomplete: $this.parent(),
                     wrapper_repr: $this.parent().find("ul.repr"),
                     wrapper_search: $this.parent().find("ul.search"),
-                    remove_link: $this.next().next().hide()
+                    remove_link: $this.next().next().hide(),
+                    loader: $this.next().next().next().hide()
                 }, $.fn.grp_autocomplete_m2m.defaults, options);
                 // move errorlist outside the wrapper
                 if ($this.parent().find("ul.errorlist")) {
@@ -71,6 +72,11 @@
         return values.join(",");
     };
     
+    var loader = function() {
+        var loader = $('<div class="loader">loader</div>');
+        return loader;
+    };
+    
     var remove_link = function(id) {
         var removelink = $('<a class="related-remove"></a>');
         removelink.attr('id', 'remove_'+id);
@@ -119,14 +125,21 @@
                     $(".ui-menu").width(options.wrapper_autocomplete.outerWidth()-6);
                 },
                 source: function(request, response) {
-                    $.getJSON(options.autocomplete_lookup_url, {
-                        term: request.term,
-                        app_label: grappelli.get_app_label(elem),
-                        model_name: grappelli.get_model_name(elem)
-                    }, function(data) {
-                        response($.map(data, function(item) {
-                            return {label: item.label, value: item.value};
-                        }));
+                    $.ajax({
+                        url: options.autocomplete_lookup_url,
+                        dataType: 'json',
+                        data: "term=" + request.term + "&app_label=" + grappelli.get_app_label(elem) + "&model_name=" + grappelli.get_model_name(elem),
+                        beforeSend: function (XMLHttpRequest) {
+                            options.loader.show();
+                        },
+                        success: function(data){
+                            response($.map(data, function(item) {
+                                return {label: item.label, value: item.value};
+                            }));
+                        },
+                        complete: function (XMLHttpRequest, textStatus) {
+                            options.loader.hide();
+                        }
                     });
                 },
                 focus: function() { // prevent value inserted on focus

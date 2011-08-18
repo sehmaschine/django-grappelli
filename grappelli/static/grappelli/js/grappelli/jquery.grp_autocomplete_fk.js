@@ -13,14 +13,15 @@
                 // remove djangos object representation (if given)
                 if ($this.next().next() && $this.next().next().attr("class") != "errorlist") $this.next().next().remove();
                 // build autocomplete wrapper
-                $this.next().after(remove_link($this.attr('id')));
+                $this.next().after(loader).after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='autocomplete-wrapper-fk'></div>");
                 $this.parent().prepend("<input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' />");
                 // extend options
                 options = $.extend({
                     wrapper_autocomplete: $this.parent(),
                     input_field: $this.prev(),
-                    remove_link: $this.next().next().hide()
+                    remove_link: $this.next().next().hide(),
+                    loader: $this.next().next().next().hide()
                 }, $.fn.grp_autocomplete_fk.defaults, options);
                 // lookup
                 lookup_id($this, options); // lookup when loading page
@@ -47,6 +48,11 @@
         return false;
     };
     
+    var loader = function() {
+        var loader = $('<div class="loader">loader</div>');
+        return loader;
+    };
+    
     var remove_link = function(id) {
         var removelink = $('<a class="related-remove"></a>');
         removelink.attr('id', 'remove_'+id);
@@ -63,14 +69,21 @@
             .autocomplete({
                 minLength: 1,
                 source: function(request, response) {
-                    $.getJSON(options.autocomplete_lookup_url, {
-                        term: request.term,
-                        app_label: grappelli.get_app_label(elem),
-                        model_name: grappelli.get_model_name(elem)
-                    }, function(data) {
-                        response($.map(data, function(item) {
-                            return {label: item.label, value: item.value};
-                        }));
+                    $.ajax({
+                        url: options.autocomplete_lookup_url,
+                        dataType: 'json',
+                        data: "term=" + request.term + "&app_label=" + grappelli.get_app_label(elem) + "&model_name=" + grappelli.get_model_name(elem),
+                        beforeSend: function (XMLHttpRequest) {
+                            options.loader.show();
+                        },
+                        success: function(data){
+                            response($.map(data, function(item) {
+                                return {label: item.label, value: item.value};
+                            }));
+                        },
+                        complete: function (XMLHttpRequest, textStatus) {
+                            options.loader.hide();
+                        }
                     });
                 },
                 focus: function() { // prevent value inserted on focus
