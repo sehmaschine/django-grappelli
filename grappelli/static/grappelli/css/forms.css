@@ -514,32 +514,64 @@ input[class*="span"], select[class*="span"], textarea[class*="span"] {
 input[type=text].span-24, input[type=password].span-24, 
 select.span-24, textarea.span-24, 
 .span-24 .ui-gFacelist-message, 
-.span-24 .ui-gFacelist-facelist {
+.span-24 .ui-gFacelist-facelist, 
+.span-24 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-24  {
     width: 918px;
+}
+.span-24 div.autocomplete-wrapper-m2m ul.repr, 
+.span-24 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-24 ul.repr, 
+div.autocomplete-wrapper-m2m.span-24 ul.repr li {
+    max-width: 910px;
 }
 .span-23 input[type=text], .span-23 input[type=password], 
 .span-23 select, .span-23 textarea, 
 input[type=text].span-23, input[type=password].span-23, 
 select.span-23, textarea.span-23, 
 .span-23 .ui-gFacelist-message, 
-.span-23 .ui-gFacelist-facelist {
+.span-23 .ui-gFacelist-facelist, 
+.span-23 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-23 {
     width: 878px;
+}
+.span-23 div.autocomplete-wrapper-m2m ul.repr, 
+.span-23 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-23 ul.repr, 
+div.autocomplete-wrapper-m2m.span-23 ul.repr li {
+    max-width: 870px;
 }
 .span-22 input[type=text], .span-22 input[type=password], 
 .span-22 select, .span-22 textarea, 
 input[type=text].span-22, input[type=password].span-22, 
 select.span-22, textarea.span-22, 
 .span-22 .ui-gFacelist-message, 
-.span-22 .ui-gFacelist-facelist {
+.span-22 .ui-gFacelist-facelist, 
+.span-22 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-22 {
     width: 838px;
+}
+.span-22 div.autocomplete-wrapper-m2m ul.repr, 
+.span-22 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-22 ul.repr, 
+div.autocomplete-wrapper-m2m.span-22 ul.repr li {
+    max-width: 830px;
 }
 .span-21 input[type=text], .span-21 input[type=password], 
 .span-21 select, .span-21 textarea, 
 input[type=text].span-21, input[type=password].span-21, 
 select.span-21, textarea.span-21, 
 .span-21 .ui-gFacelist-message, 
-.span-21 .ui-gFacelist-facelist {
+.span-21 .ui-gFacelist-facelist, 
+.span-21 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-21 {
     width: 798px;
+}
+.span-21 div.autocomplete-wrapper-m2m ul.repr, 
+.span-21 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-21 ul.repr, 
+div.autocomplete-wrapper-m2m.span-21 ul.repr li {
+    max-width: 790px;
 }
 .span-20 input[type=text], .span-20 input[type=password], 
 .span-20 select, .span-20 textarea, 
@@ -547,10 +579,17 @@ input[type=text].span-20, input[type=password].span-20,
 select.span-20, textarea.span-20, 
 .span-20 .ui-gFacelist-message, 
 .span-20 .ui-gFacelist-facelist, 
-
+.span-20 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-20, 
 .span-24 label + input[type=text], .span-24 label + input[type=password], 
 .span-24 label + select, .span-24 label + textarea {
     width: 758px;
+}
+.span-20 div.autocomplete-wrapper-m2m ul.repr, 
+.span-20 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-20 ul.repr, 
+div.autocomplete-wrapper-m2m.span-20 ul.repr li {
+    max-width: 750px;
 }
 .span-19 input[type=text], .span-19 input[type=password], 
 .span-19 select, .span-19 textarea, 
@@ -558,10 +597,17 @@ input[type=text].span-19, input[type=password].span-19,
 select.span-19, textarea.span-19, 
 .span-19 .ui-gFacelist-message, 
 .span-19 .ui-gFacelist-facelist, 
-
+.span-19 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-19, 
 .span-23 label + input[type=text], .span-23 label + input[type=password], 
 .span-23 label + select, .span-23 label + textarea {
     width: 718px;
+}
+.span-19 div.autocomplete-wrapper-m2m ul.repr, 
+.span-19 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-19 ul.repr, 
+div.autocomplete-wrapper-m2m.span-19 ul.repr li {
+    max-width: 710px;
 }
 .span-18 input[type=text], .span-18 input[type=password], 
 .span-18 select, .span-18 textarea, 
@@ -569,10 +615,17 @@ input[type=text].span-18, input[type=password].span-18,
 select.span-18, textarea.span-18, 
 .span-18 .ui-gFacelist-message, 
 .span-18 .ui-gFacelist-facelist, 
-
+.span-18 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-18, 
 .span-22 label + input[type=text], .span-22 label + input[type=password], 
 .span-22 label + select, .span-22 label + textarea {
     width: 678px;
+}
+.span-18 div.autocomplete-wrapper-m2m ul.repr, 
+.span-18 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-18 ul.repr, 
+div.autocomplete-wrapper-m2m.span-18 ul.repr li {
+    max-width: 670px;
 }
 .span-17 input[type=text], .span-17 input[type=password], 
 .span-17 select, .span-17 textarea, 
@@ -580,10 +633,17 @@ input[type=text].span-17, input[type=password].span-17,
 select.span-17, textarea.span-17, 
 .span-17 .ui-gFacelist-message, 
 .span-17 .ui-gFacelist-facelist, 
-
+.span-17 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-17, 
 .span-21 label + input[type=text], .span-21 label + input[type=password], 
 .span-1 label + select, .span-21 label + textarea {
     width: 638px;
+}
+.span-17 div.autocomplete-wrapper-m2m ul.repr, 
+.span-17 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-17 ul.repr, 
+div.autocomplete-wrapper-m2m.span-17 ul.repr li {
+    max-width: 630px;
 }
 .span-16 input[type=text], .span-16 input[type=password], 
 .span-16 select, .span-16 textarea, 
@@ -593,10 +653,17 @@ select.span-16, textarea.span-16,
 .span-16 .ui-gFacelist-facelist, 
 .span-24 input.vForeignKeyRawIdAdminField, 
 .span-24 input.vManyToManyRawIdAdminField, 
-
+.span-16 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-16, 
 .span-20 label + input[type=text], .span-20 label + input[type=password], 
 .span-20 label + select, .span-20 label + textarea {
     width: 598px;
+}
+.span-16 div.autocomplete-wrapper-m2m ul.repr, 
+.span-16 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-16 ul.repr, 
+div.autocomplete-wrapper-m2m.span-16 ul.repr li {
+    max-width: 590px;
 }
 .span-15 input[type=text], .span-15 input[type=password], 
 .span-15 select, .span-15 textarea, 
@@ -606,10 +673,17 @@ select.span-15, textarea.span-15,
 .span-15 .ui-gFacelist-facelist, 
 .span-23 input.vForeignKeyRawIdAdminField, 
 .span-23 input.vManyToManyRawIdAdminField, 
-
+.span-15 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-15, 
 .span-19 label + input[type=text], .span-19 label + input[type=password], 
 .span-19 label + select, .span-19 label + textarea {
     width: 558px;
+}
+.span-15 div.autocomplete-wrapper-m2m ul.repr, 
+.span-15 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-15 ul.repr, 
+div.autocomplete-wrapper-m2m.span-15 ul.repr li {
+    max-width: 550px;
 }
 .span-14 input[type=text], .span-14 input[type=password], 
 .span-14 select, .span-14 textarea, 
@@ -619,10 +693,17 @@ select.span-14, textarea.span-14,
 .span-14 .ui-gFacelist-facelist, 
 .span-22 input.vForeignKeyRawIdAdminField, 
 .span-22 input.vManyToManyRawIdAdminField, 
-
+.span-14 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-14, 
 .span-18 label + input[type=text], .span-18 label + input[type=password], 
 .span-18 label + select, .span-18 label + textarea {
     width: 518px;
+}
+.span-14 div.autocomplete-wrapper-m2m ul.repr, 
+.span-14 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-14 ul.repr, 
+div.autocomplete-wrapper-m2m.span-14 ul.repr li {
+    max-width: 510px;
 }
 .span-13 input[type=text], .span-13 input[type=password], 
 .span-13 select, .span-13 textarea, 
@@ -632,10 +713,17 @@ select.span-13, textarea.span-13,
 .span-13 .ui-gFacelist-facelist, 
 .span-21 input.vForeignKeyRawIdAdminField, 
 .span-21 input.vManyToManyRawIdAdminField, 
-
+.span-13 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-13, 
 .span-17 label + input[type=text], .span-17 label + input[type=password], 
 .span-17 label + select, .span-17 label + textarea {
     width: 478px;
+}
+.span-13 div.autocomplete-wrapper-m2m ul.repr, 
+.span-13 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-13 ul.repr, 
+div.autocomplete-wrapper-m2m.span-13 ul.repr li {
+    max-width: 470px;
 }
 .span-12 input[type=text], .span-12 input[type=password], 
 .span-12 select, .span-12 textarea, 
@@ -645,10 +733,17 @@ select.span-12, textarea.span-12,
 .span-12 .ui-gFacelist-facelist, 
 .span-20 input.vForeignKeyRawIdAdminField, 
 .span-20 input.vManyToManyRawIdAdminField, 
-
+.span-12 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-12, 
 .span-16 label + input[type=text], .span-16 label + input[type=password], 
 .span-16 label + select, .span-16 label + textarea {
     width: 438px;
+}
+.span-12 div.autocomplete-wrapper-m2m ul.repr, 
+.span-12 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-12 ul.repr, 
+div.autocomplete-wrapper-m2m.span-12 ul.repr li {
+    max-width: 430px;
 }
 .span-11 input[type=text], .span-11 input[type=password], 
 .span-11 select, .span-11 textarea, 
@@ -658,10 +753,17 @@ select.span-11, textarea.span-11,
 .span-11 .ui-gFacelist-facelist, 
 .span-19 input.vForeignKeyRawIdAdminField, 
 .span-19 input.vManyToManyRawIdAdminField, 
-
+.span-11 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-11, 
 .span-15 label + input[type=text], .span-15 label + input[type=password], 
 .span-15 label + select, .span-15 label + textarea {
     width: 398px;
+}
+.span-11 div.autocomplete-wrapper-m2m ul.repr, 
+.span-11 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-11 ul.repr, 
+div.autocomplete-wrapper-m2m.span-11 ul.repr li {
+    max-width: 390px;
 }
 .span-10 input[type=text], .span-10 input[type=password], 
 .span-10 select, .span-10 textarea, 
@@ -671,10 +773,17 @@ select.span-10, textarea.span-10,
 .span-10 .ui-gFacelist-facelist, 
 .span-18 input.vForeignKeyRawIdAdminField, 
 .span-18 input.vManyToManyRawIdAdminField, 
-
+.span-10 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-10, 
 .span-14 label + input[type=text], .span-4 label + input[type=password], 
 .span-14 label + select, .span-14 label + textarea {
     width: 358px;
+}
+.span-10 div.autocomplete-wrapper-m2m ul.repr, 
+.span-10 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-10 ul.repr, 
+div.autocomplete-wrapper-m2m.span-10 ul.repr li {
+    max-width: 350px;
 }
 .span-9 input[type=text], .span-9 input[type=password], 
 .span-9 select, .span-9 textarea, 
@@ -684,10 +793,17 @@ select.span-9, textarea.span-9,
 .span-9 .ui-gFacelist-facelist, 
 .span-17 input.vForeignKeyRawIdAdminField, 
 .span-17 input.vManyToManyRawIdAdminField, 
-
+.span-9 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-9, 
 .span-13 label + input[type=text], .span-13 label + input[type=password], 
 .span-13 label + select, .span-13 label + textarea {
     width: 318px;
+}
+.span-9 div.autocomplete-wrapper-m2m ul.repr, 
+.span-9 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-9 ul.repr, 
+div.autocomplete-wrapper-m2m.span-9 ul.repr li {
+    max-width: 310px;
 }
 .span-8 input[type=text], .span-8 input[type=password], 
 .span-8 select, .span-8 textarea, 
@@ -697,10 +813,17 @@ select.span-8, textarea.span-8,
 .span-8 .ui-gFacelist-facelist, 
 .span-16 input.vForeignKeyRawIdAdminField, 
 .span-16 input.vManyToManyRawIdAdminField, 
-
+.span-8 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-8, 
 .span-12 label + input[type=text], .span-12 label + input[type=password], 
 .span-12 label + select, .span-12 label + textarea {
     width: 278px;
+}
+.span-8 div.autocomplete-wrapper-m2m ul.repr, 
+.span-8 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-8 ul.repr, 
+div.autocomplete-wrapper-m2m.span-8 ul.repr li {
+    max-width: 270px;
 }
 .span-7 input[type=text], .span-7 input[type=password], 
 .span-7 select, .span-7 textarea, 
@@ -708,10 +831,17 @@ input[type=text].span-7, input[type=password].span-7,
 select.span-7, textarea.span-7, 
 .span-15 input.vForeignKeyRawIdAdminField, 
 .span-15 input.vManyToManyRawIdAdminField, 
-
+.span-7 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-7, 
 .span-11 label + input[type=text], .span-11 label + input[type=password], 
 .span-11 label + select, .span-11 label + textarea {
     width: 238px;
+}
+.span-7 div.autocomplete-wrapper-m2m ul.repr, 
+.span-7 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-7 ul.repr, 
+div.autocomplete-wrapper-m2m.span-7 ul.repr li {
+    max-width: 230px;
 }
 .span-6 input[type=text], .span-6 input[type=password], 
 .span-6 select, .span-6 textarea, 
@@ -719,10 +849,17 @@ input[type=text].span-6, input[type=password].span-6,
 select.span-6, textarea.span-6, 
 .span-14 input.vForeignKeyRawIdAdminField, 
 .span-14 input.vManyToManyRawIdAdminField, 
-
+.span-6 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-6, 
 .span-10 label + input[type=text], .span-10 label + input[type=password], 
 .span-10 label + select, .span-10 label + textarea {
     width: 198px;
+}
+.span-6 div.autocomplete-wrapper-m2m ul.repr, 
+.span-6 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-6 ul.repr, 
+div.autocomplete-wrapper-m2m.span-6 ul.repr li {
+    max-width: 190px;
 }
 .span-5 input[type=text], .span-5 input[type=password], 
 .span-5 select, .span-5 textarea, 
@@ -730,10 +867,17 @@ input[type=text].span-5, input[type=password].span-5,
 select.span-5, textarea.span-5, 
 .span-13 input.vForeignKeyRawIdAdminField, 
 .span-13 input.vManyToManyRawIdAdminField, 
-
+.span-5 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-5, 
 .span-9 label + input[type=text], .span-9 label + input[type=password], 
 .span-9 label + select, .span-9 label + textarea {
     width: 158px;
+}
+.span-5 div.autocomplete-wrapper-m2m ul.repr, 
+.span-5 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-5 ul.repr, 
+div.autocomplete-wrapper-m2m.span-5 ul.repr li {
+    max-width: 150px;
 }
 .span-4 input[type=text], .span-4 input[type=password], 
 .span-4 select, .span-4 textarea, 
@@ -741,10 +885,17 @@ input[type=text].span-4, input[type=password].span-4,
 select.span-4, textarea.span-4, 
 .span-12 input.vForeignKeyRawIdAdminField, 
 .span-12 input.vManyToManyRawIdAdminField, 
-
+.span-4 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-4, 
 .span-8 label + input[type=text], .span-8 label + input[type=password], 
 .span-8 label + select, .span-8 label + textarea  {
     width: 118px;
+}
+.span-4 div.autocomplete-wrapper-m2m ul.repr, 
+.span-4 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-4 ul.repr, 
+div.autocomplete-wrapper-m2m.span-4 ul.repr li {
+    max-width: 110px;
 }
 .span-3 input[type=text], .span-3 input[type=password], 
 .span-3 select, .span-3 textarea, 
@@ -752,10 +903,17 @@ input[type=text].span-3, input[type=password].span-3,
 select.span-3, textarea.span-3, 
 .span-11 input.vForeignKeyRawIdAdminField, 
 .span-11 input.vManyToManyRawIdAdminField, 
-
+.span-3 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-3, 
 .span-7 label + input[type=text], .span-7 label + input[type=password], 
 .span-7 label + select, .span-7 label + textarea {
     width: 78px;
+}
+.span-3 div.autocomplete-wrapper-m2m ul.repr, 
+.span-3 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-3 ul.repr, 
+div.autocomplete-wrapper-m2m.span-3 ul.repr li {
+    max-width: 70px;
 }
 .span-2 input[type=text], .span-2 input[type=password], 
 .span-2 select, .span-2 textarea, 
@@ -763,11 +921,19 @@ input[type=text].span-2, input[type=password].span-2,
 select.span-2, textarea.span-2, 
 .span-10 input.vForeignKeyRawIdAdminField, 
 .span-10 input.vManyToManyRawIdAdminField, 
-
+.span-2 div.autocomplete-wrapper-m2m, 
+div.autocomplete-wrapper-m2m.span-2, 
 .span-6 label + input[type=text], .span-6 label + input[type=password], 
 .span-6 label + select, .span-6 label + textarea {
     width: 38px;
 }
+.span-2 div.autocomplete-wrapper-m2m ul.repr, 
+.span-2 div.autocomplete-wrapper-m2m ul.repr li, 
+div.autocomplete-wrapper-m2m.span-2 ul.repr, 
+div.autocomplete-wrapper-m2m.span-2 ul.repr li {
+    max-width: 30px;
+}
+
 
 .container-grid .span-flexible input[type=text], .container-grid .span-flexible input[type=password], 
 .container-grid .span-flexible textarea, .container-grid .span-flexible select {
@@ -821,12 +987,15 @@ input.vM2MAutocompleteSearchField {
 .row textarea, 
 .row .vLargeTextField, 
 .row .vXMLLargeTextField, 
-.row .vAutocompleteSearchField, 
-.row .vM2MAutocompleteSearchField {
+div.autocomplete-wrapper-m2m {
     width: 758px;
 }
 .row select {
     max-width: 758px;
+}
+div.autocomplete-wrapper-m2m ul.repr, 
+div.autocomplete-wrapper-m2m ul.repr li {
+    max-width: 750px;
 }
 
 
@@ -835,10 +1004,17 @@ input.vM2MAutocompleteSearchField {
 ------------------------------------------------------------------------------------------------------ */
 
 .changelist-results table select, 
-.module.table select {
+.module.table select, 
+.module.table div.autocomplete-wrapper-m2m {
     max-width: 278px;
 }
-
+.module.table div.autocomplete-wrapper-m2m {
+    width: 278px;
+}
+.module.table div.autocomplete-wrapper-m2m ul.repr, 
+.module.table div.autocomplete-wrapper-m2m ul.repr li {
+    max-width: 272px;
+}
 
 
 /*  Form Elements Cells
@@ -846,8 +1022,16 @@ input.vM2MAutocompleteSearchField {
 
 .cell input[type=text], 
 .cell input[type=password], 
-.cell select {
+.cell select, 
+.cell div.autocomplete-wrapper-m2m {
     max-width: 280px;
+}
+.cell div.autocomplete-wrapper-m2m {
+    width: 280px;
+}
+.cell div.autocomplete-wrapper-m2m ul.repr, 
+.cell div.autocomplete-wrapper-m2m ul.repr li {
+    max-width: 272px;
 }
 
 
@@ -882,7 +1066,7 @@ div.autocomplete-wrapper-m2m {
     display: inline-block;
     position: relative;
     padding: 0 35px 0 1px;
-    width: 758px;
+/*    width: 758px;*/
     height: auto !important;
     vertical-align: top;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
@@ -903,9 +1087,17 @@ div.autocomplete-wrapper-fk {
 
 /*  M2M Listing ......................................... */
 
+div.autocomplete-wrapper-m2m ul.repr {
+    position: relative;
+    float: left;
+    clear: both;
+    overflow: hidden;
+}
 div.autocomplete-wrapper-m2m li {
     position: relative;
     float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 div.autocomplete-wrapper-m2m li.search {
     margin-top: 1px;
@@ -926,19 +1118,19 @@ div.autocomplete-wrapper-m2m li.search input[type=text] {
     cursor: text;
 }
 div.autocomplete-wrapper-m2m li.repr {
-    margin-top: 2px;
+    margin-top: 3px;
     margin-bottom: 0;
     margin-right: 5px;
     font-weight: bold;
     line-height: 18px;
 }
-div.autocomplete-wrapper-m2m li.repr span {
+/*div.autocomplete-wrapper-m2m li.repr span {
     display: inline-block;
     padding: 1px 5px;
     height: 17px;
     color: #666;
 }
-
+*/
 
 /*  Autocomplete Icons ......................................... */
 
@@ -975,52 +1167,81 @@ div.autocomplete-wrapper-m2m li.repr.autocomplete-preremove a {
 }
 
 div.autocomplete-wrapper-m2m a.related-lookup, 
-div.autocomplete-wrapper-fk  a.related-lookup {
+div.autocomplete-wrapper-fk a.related-lookup {
     position: absolute;
     border: 1px solid #ccc;
 }
 div.autocomplete-wrapper-m2m a.related-lookup {
     top: -1px;
     right: -1px;
-    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+/*    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;*/
 }
 
 div.autocomplete-wrapper-fk a.related-lookup {
     top: 0;
     right: 0;
 }
-div.autocomplete-wrapper-fk a.related-remove, div.autocomplete-wrapper-m2m a.related-remove, div.autocomplete-wrapper-fk div.loader, div.autocomplete-wrapper-m2m div.loader {
+div.autocomplete-wrapper-fk a.related-remove, 
+div.autocomplete-wrapper-m2m a.related-remove, 
+div.autocomplete-wrapper-fk div.loader, 
+div.autocomplete-wrapper-m2m div.loader {
     display: inline-block;
     position: absolute;
-    right: 29px;
-    top: 5px;
+    right: 24px;
+    top: 0;
     font-size: 0;
     line-height: 0;
-    width: 11px;
-    height: 15px;
-    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+    width: 23px;
+    height: 23px;
+    border: 1px solid #ccc;
+/*    border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;*/
+}
+div.autocomplete-wrapper-m2m a.related-remove + a.related-lookup {
+    border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; -webkit-border-bottom-left-radius: 0;
 }
 div.autocomplete-wrapper-fk a.related-remove:link, 
 div.autocomplete-wrapper-fk a.related-remove:visited,
 div.autocomplete-wrapper-m2m a.related-remove:link, 
 div.autocomplete-wrapper-m2m a.related-remove:visited {
-    background: transparent url('../img/icons/icon-autocomplete-fk-remove.png') 50% 50% no-repeat scroll;
+    background: #fff url('../img/icons/icon-autocomplete-fk-remove.png') 50% 50% no-repeat scroll;
 }
 div.autocomplete-wrapper-fk a.related-remove:hover, 
 div.autocomplete-wrapper-fk a.related-remove:active,
 div.autocomplete-wrapper-m2m a.related-remove:hover, 
 div.autocomplete-wrapper-m2m a.related-remove:active {
-    background: transparent url('../img/icons/icon-autocomplete-fk-remove-hover.png') 50% 50% no-repeat scroll;
+    background: #fff url('../img/icons/icon-autocomplete-fk-remove-hover.png') 50% 50% no-repeat scroll;
 }
 
 div.autocomplete-wrapper-m2m.state-focus a.related-lookup, 
-div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * +  a.related-lookup {
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * +  a.related-lookup, 
+div.autocomplete-wrapper-m2m.state-focus a.related-remove, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * +  a.related-remove, 
+div.autocomplete-wrapper-m2m.state-focus .loader, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * + * +  .loader {
     border-color: #999;
 }
 
-div.autocomplete-wrapper-fk div.loader, div.autocomplete-wrapper-m2m div.loader {
-    background: transparent;
+div.autocomplete-wrapper-fk div.loader, 
+div.autocomplete-wrapper-m2m div.loader {
+/*    display: inline-block !important;*/
+    width: 23px;
+    height: 23px;
+    background: #fff url('../img/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
 }
+/*div.autocomplete-wrapper-m2m.state-focus a.related-remove, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * +  a.related-remove, 
+div.autocomplete-wrapper-m2m.state-focus .loader, 
+div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * + * +  .loader {
+    background-color: #e1f0f5;
+}
+*/
+div.autocomplete-wrapper-m2m a.related-remove, 
+div.autocomplete-wrapper-m2m a.related-remove + div.loader {
+    top: -1px;
+    right: 23px;
+    border-bottom-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+}
+
 
 
 /*  Autocompletes in Changelists ......................................... */

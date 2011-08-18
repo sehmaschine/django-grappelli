@@ -582,15 +582,18 @@ button.ui-datepicker-close {
     margin: 0;
     padding: 5px;
 }
-.ui-autocomplete li:first-child span  {
+.ui-autocomplete li:first-child span {
     display: block;
-    padding: 1px 4px 5px;
+    padding: 1px 4px;
     color: #999;
     font-weight: bold;
 }
 .ui-autocomplete .ui-menu-item + .ui-menu-item  {
     margin-top: 2px;
     border-top: 0 !important;
+}
+.ui-autocomplete li:first-child + li {
+    margin-top: 4px;
 }
 .ui-autocomplete .ui-menu-item a {
     margin: 0;
