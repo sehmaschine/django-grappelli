@@ -97,7 +97,8 @@ def autocomplete_lookup(request):
                 lookup = request.GET.get('query_string')
                 filters = {}
                 for item in lookup.split("&"):
-                    filters[item.split("=")[0]]=item.split("=")[1]
+                    if item.split("=")[0] != "t":
+                        filters[item.split("=")[0]]=item.split("=")[1]
                 data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.filter(**filters) if get_lookup(f,term)]
             else:
                 data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.all() if get_lookup(f,term)]
