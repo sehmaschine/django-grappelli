@@ -14,12 +14,13 @@
                 // build autocomplete wrapper
                 $this.next().after(loader).after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='autocomplete-wrapper-m2m'></div>");
-                $this.parent().prepend("<ul class='search'><li class='search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>").prepend("<ul class='repr'></ul>");
+                //$this.parent().prepend("<ul class='search'><li class='search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>").prepend("<ul class='repr'></ul>");
+                $this.parent().prepend("<ul class='repr'><li class='search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>");
                 // defaults
                 options = $.extend({
                     wrapper_autocomplete: $this.parent(),
                     wrapper_repr: $this.parent().find("ul.repr"),
-                    wrapper_search: $this.parent().find("ul.search"),
+                    wrapper_search: $this.parent().find("li.search"),
                     remove_link: $this.next().next().hide(),
                     loader: $this.next().next().next().hide()
                 }, $.fn.grp_autocomplete_m2m.defaults, options);
@@ -40,7 +41,7 @@
                 // click on div > focus input
                 options.wrapper_autocomplete.bind("click", function() {
                     options.wrapper_search.find("input:first").focus();
-                })
+                });
             });
         }
     };
@@ -92,7 +93,7 @@
         var repr = $('<li class="repr"></li>');
         var removelink = $('<a class="m2m-remove" href="javascript://">' + label + '</a>');
         repr.append(removelink);
-        options.wrapper_repr.append(repr);
+        repr.insertBefore(options.wrapper_search);
         removelink.bind("click", function(e) { // remove-handler
             var pos = $(this).parent().parent().children("li").index($(this).parent());
             value_remove(elem, pos, options);
