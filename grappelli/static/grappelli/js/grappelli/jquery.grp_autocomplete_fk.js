@@ -12,9 +12,8 @@
                 var $this = $(this);
                 // remove djangos object representation (if given)
                 if ($this.next().next() && $this.next().next().attr("class") != "errorlist") $this.next().next().remove();
-                // build remove link
-                $this.next().after(remove_link($this.attr('id')));
                 // build autocomplete wrapper
+                $this.next().after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='autocomplete-wrapper-fk'></div>");
                 $this.parent().prepend("<input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' />");
                 // extend options

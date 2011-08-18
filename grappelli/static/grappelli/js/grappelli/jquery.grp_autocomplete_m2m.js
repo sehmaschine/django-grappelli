@@ -12,13 +12,15 @@
             return this.each(function() {
                 var $this = $(this);
                 // build autocomplete wrapper
+                $this.next().after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='autocomplete-wrapper-m2m'></div>");
                 $this.parent().prepend("<ul class='search'><li class='search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>").prepend("<ul class='repr'></ul>");
                 // defaults
                 options = $.extend({
                     wrapper_autocomplete: $this.parent(),
                     wrapper_repr: $this.parent().find("ul.repr"),
-                    wrapper_search: $this.parent().find("ul.search")
+                    wrapper_search: $this.parent().find("ul.search"),
+                    remove_link: $this.next().next().hide()
                 }, $.fn.grp_autocomplete_m2m.defaults, options);
                 // move errorlist outside the wrapper
                 if ($this.parent().find("ul.errorlist")) {
@@ -69,15 +71,27 @@
         return values.join(",");
     };
     
+    var remove_link = function(id) {
+        var removelink = $('<a class="related-remove"></a>');
+        removelink.attr('id', 'remove_'+id);
+        removelink.attr('href', 'javascript://');
+        removelink.attr('onClick', 'return removeRelatedObject(this);');
+        removelink.hover(function() {
+            $(this).parent().toggleClass("autocomplete-preremove");
+        });
+        return removelink;
+    };
+    
     var repr_add = function(elem, label, options) {
         var repr = $('<li class="repr"></li>');
-        var removelink = $('<a class="m2m-remove" href="javascript://">X</a>');
-        repr.append("<span>" + label + "</span").append(removelink);
+        var removelink = $('<a class="m2m-remove" href="javascript://">' + label + '</a>');
+        repr.append(removelink);
         options.wrapper_repr.append(repr);
         removelink.bind("click", function(e) { // remove-handler
             var pos = $(this).parent().parent().children("li").index($(this).parent());
             value_remove(elem, pos, options);
             $(this).parent().remove();
+            elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
             e.stopPropagation(); // prevent focus on input
         });
         removelink.hover(function() {
@@ -121,6 +135,7 @@
                 select: function(event, ui) { // add repr, add value
                     repr_add(elem, ui.item.label, options);
                     value_add(elem, ui.item.value, options);
+                    elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
                     $(this).val("").focus();
                     return false;
                 }
@@ -142,6 +157,8 @@
             $.each(data, function(index) {
                 repr_add(elem, data[index].label, options);
             });
+            elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
+            console.log(options.remove_link);
         });
     };
 

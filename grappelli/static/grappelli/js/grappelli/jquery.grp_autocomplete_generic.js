@@ -10,11 +10,10 @@
             options = $.extend({}, $.fn.grp_autocomplete_generic.defaults, options);
             return this.each(function() {
                 var $this = $(this);
-                // build remove link & lookup link
+                // build autocomplete wrapper
                 if ($(options.content_type).val()) {
                     $this.after(remove_link($this.attr('id'))).after(lookup_link($this.attr("id"),$(options.content_type).val()));
                 }
-                // build autocomplete wrapper
                 $this.parent().wrapInner("<div class='autocomplete-wrapper-fk'></div>");
                 $this.parent().prepend("<input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' />");
                 // defaults

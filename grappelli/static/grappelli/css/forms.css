@@ -942,14 +942,14 @@ div.autocomplete-wrapper-m2m li.repr span {
 
 /*  Autocomplete Icons ......................................... */
 
-div.autocomplete-wrapper-m2m li.repr a.m2m-remove {
+/*div.autocomplete-wrapper-m2m li.repr a.m2m-remove {
     display: inline-block;
     position: relative;
     top: 1px;
     width: 11px;
     height: 15px;
     border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
-    color: transparent; /* temporary hide text */
+    color: transparent;
 }
 div.autocomplete-wrapper-m2m li.repr a.m2m-remove:link, 
 div.autocomplete-wrapper-m2m li.repr a.m2m-remove:visited {
@@ -958,10 +958,19 @@ div.autocomplete-wrapper-m2m li.repr a.m2m-remove:visited {
 div.autocomplete-wrapper-m2m li.repr a.m2m-remove:hover, 
 div.autocomplete-wrapper-m2m li.repr a.m2m-remove:active {
     background: transparent url('../img/icons/icon-autocomplete-m2m-remove-hover.png') 50% 50% no-repeat scroll;
+}*/
+
+div.autocomplete-wrapper-m2m li.repr a.m2m-remove {
+    color: #666;
+    padding-left: 5px;
 }
 
 div.autocomplete-wrapper-fk.autocomplete-preremove input.ui-autocomplete-input, 
-div.autocomplete-wrapper-m2m li.repr.autocomplete-preremove span {
+div.autocomplete-wrapper-m2m.autocomplete-preremove li.repr a {
+    color: #bf3030 !important;
+}
+
+div.autocomplete-wrapper-m2m li.repr.autocomplete-preremove a {
     color: #bf3030 !important;
 }
 
@@ -980,7 +989,7 @@ div.autocomplete-wrapper-fk a.related-lookup {
     top: 0;
     right: 0;
 }
-div.autocomplete-wrapper-fk a.related-remove {
+div.autocomplete-wrapper-fk a.related-remove, div.autocomplete-wrapper-m2m a.related-remove  {
     display: inline-block;
     position: absolute;
     right: 29px;
@@ -992,11 +1001,15 @@ div.autocomplete-wrapper-fk a.related-remove {
     border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
 }
 div.autocomplete-wrapper-fk a.related-remove:link, 
-div.autocomplete-wrapper-fk a.related-remove:visited {
+div.autocomplete-wrapper-fk a.related-remove:visited,
+div.autocomplete-wrapper-m2m a.related-remove:link, 
+div.autocomplete-wrapper-m2m a.related-remove:visited {
     background: transparent url('../img/icons/icon-autocomplete-fk-remove.png') 50% 50% no-repeat scroll;
 }
 div.autocomplete-wrapper-fk a.related-remove:hover, 
-div.autocomplete-wrapper-fk a.related-remove:active {
+div.autocomplete-wrapper-fk a.related-remove:active,
+div.autocomplete-wrapper-m2m a.related-remove:hover, 
+div.autocomplete-wrapper-m2m a.related-remove:active {
     background: transparent url('../img/icons/icon-autocomplete-fk-remove-hover.png') 50% 50% no-repeat scroll;
 }
 
@@ -1008,7 +1021,7 @@ div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * +  a.related-l
 
 /*  Autocompletes in Changelists ......................................... */
 
-#changelist table div.autocomplete-wrapper-fk a.related-remove {
+#changelist table div.autocomplete-wrapper-fk a.related-remove, #changelist table div.autocomplete-wrapper-m2m a.related-remove {
     top: 0;
 }
 
