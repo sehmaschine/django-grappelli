@@ -8,11 +8,11 @@ body {
     font-size: 12px;
     line-height: 16px;
     color: #999;
-    background: #eee;
+    background: #222;
     font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    border-top: 4px solid #ddd;
+    border-top: 4px solid #222;
 }
 
 /* Headings
@@ -20,7 +20,7 @@ body {
 
 h1,h2,h3 {
     font-weight: bold;
-    color: #333;
+    color: #eee;
     margin: 0;
     padding: 0;
 }
@@ -34,22 +34,22 @@ h2 {
     line-height: 16px;
     font-weight: normal;
     padding: 16px 0 0 0;
-    border-top: 1px solid #fff;
+    border-top: 1px solid #444;
 }
 h2.no-border {
     border: none;
 }
 h2 span {
     font-weight: normal;
-    color: #999;
+    color: #666;
 }
 h3 {
     font-size: 12px;
     line-height: 16px;
-    color: #333;
+    color: #666;
     font-weight: normal;
     padding: 16px 0 0 0;
-    border-top: 1px solid #fff;
+    border-top: 1px solid #333;
 }
 
 /* Text elements
@@ -106,7 +106,7 @@ ol {
 }
 
 .box {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #111;
 }
 
 
