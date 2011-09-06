@@ -265,6 +265,12 @@ a.related-lookup:link, a.related-lookup:visited {
 a.related-lookup:hover, a.related-lookup:active {
     background-image: url('../img/icons/icon-related-lookup-hover.png');
 }
+div.autocomplete-wrapper-m2m a.related-lookup:link, div.autocomplete-wrapper-m2m a.related-lookup:visited {
+    background-image: url('../img/icons/icon-related-lookup-m2m.png');
+}
+div.autocomplete-wrapper-m2m a.related-lookup:hover, div.autocomplete-wrapper-m2m a.related-lookup:active {
+    background-image: url('../img/icons/icon-related-lookup-m2m-hover.png');
+}
 
 input[disabled] + a.fb_show {
     background-image: url('../img/icons/icon-fb-show-hover.png') !important;

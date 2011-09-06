@@ -1200,7 +1200,7 @@ div.autocomplete-wrapper-fk input.ui-autocomplete-input:focus + * + * + * + .loa
 
 div.autocomplete-wrapper-fk div.loader, 
 div.autocomplete-wrapper-m2m div.loader {
-/*    display: inline-block !important;*/
+    /*display: inline-block !important;*/
     width: 23px;
     height: 23px;
     background: #fff url('../img/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
@@ -1223,8 +1223,9 @@ div.autocomplete-wrapper-m2m a.related-remove + div.loader {
 
 /*  Autocompletes in Changelists ......................................... */
 
-#changelist table div.autocomplete-wrapper-fk a.related-remove, #changelist table div.autocomplete-wrapper-m2m a.related-remove {
-    top: 0;
+#changelist table div.autocomplete-wrapper-fk a.related-remove, #changelist table div.autocomplete-wrapper-m2m a.related-remove, 
+#changelist table div.autocomplete-wrapper-fk div.loader, #changelist table div.autocomplete-wrapper-m2m div.loader {
+    top: -5px;
 }
 
 /* we need to "hide" the input-field without display:none, because with display:none we can´t focus the field anymore */
