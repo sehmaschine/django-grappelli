@@ -1265,7 +1265,7 @@ label {
 
 input, textarea, select, button {
     color: #666;
-    border: 1px solid #bbb;
+    border: 1px solid #ccc;
 /*    border-color: #ccc #ddd #ddd #ccc;*/
     border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
     outline: 0;
@@ -1706,8 +1706,8 @@ input:focus + button,
 input:focus + a.fb_show, 
 input:focus + a.related-lookup, 
 input:focus + a.add-another {
-    border-color: #bbb;
-    border-left-color: #ccc;
+    border-color: #999;
+    /*border-left-color: #ccc;*/
 }
 
 
