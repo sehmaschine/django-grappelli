@@ -1709,7 +1709,12 @@ input:focus + a.add-another {
     border-color: #999;
     /*border-left-color: #ccc;*/
 }
-
+/*  Reset the style for focused links in autocompletes as there is an automatically
+    focused (invisible) input which causes the a.related-lookup to be "focused" though it's not */
+div.autocomplete-wrapper-fk input:focus + a.related-lookup, 
+div.autocomplete-wrapper-m2m input:focus + a.related-lookup {
+    border-color: #ccc !important;
+}
 
 
 /*  TABLES
