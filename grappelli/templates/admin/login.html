@@ -22,18 +22,18 @@
 
 <!-- CONTENT -->
 {% block content %}
-    {% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
-        <p class="errornote">
-            {% blocktrans count form.errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
-        </p>
-    {% endif %}
-    {% if form.non_field_errors or form.this_is_the_login_form.errors %}
-        {% for error in form.non_field_errors|add:form.this_is_the_login_form.errors %}
-            <p class="errornote">{{ error }}</p>
-        {% endfor %}
-    {% endif %}
     <div class="container-flexible login">
         <div class="column span-12 centered">
+            {% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
+                <p class="errornote">
+                    {% blocktrans count form.errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                </p>
+            {% endif %}
+            {% if form.non_field_errors or form.this_is_the_login_form.errors %}
+                {% for error in form.non_field_errors|add:form.this_is_the_login_form.errors %}
+                    <p class="errornote">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
             {% if error_message %}<p class="errornote login-errors">{{ error_message }}</p>{% endif %}
             <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
                 <fieldset class="module">
