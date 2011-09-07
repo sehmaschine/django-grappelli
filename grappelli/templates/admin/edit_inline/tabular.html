@@ -34,7 +34,7 @@
                 {% for fieldset in inline_admin_form %}
                     {% for line in fieldset %}
                         {% for field in line %}
-                            {% if field.is_hidden %} {{ field.field }} {% endif %}
+                            {% if field.field.is_hidden %} {{ field.field }} {% endif %}
                         {% endfor %}
                     {% endfor %}
                 {% endfor %}
@@ -43,15 +43,17 @@
                     {% for fieldset in inline_admin_form %}
                         {% for line in fieldset %}
                             {% for field in line %}
-                                <div class="td {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
-                                    {% if field.is_readonly %}
-                                        <p>{{ field.contents }}</p>
-                                    {% else %}
-                                        {{ field.field }}
-                                        {{ field.field.errors.as_ul }}
-                                    {% endif %}
-                                    {% if field.field.help_text %}<p class="help">{{ field.field.help_text }}</p>{% endif %}
-                                </div>
+                                {% if not field.field.is_hidden %}
+                                    <div class="td {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
+                                        {% if field.is_readonly %}
+                                            <p>{{ field.contents }}</p>
+                                        {% else %}
+                                            {{ field.field }}
+                                            {{ field.field.errors.as_ul }}
+                                        {% endif %}
+                                        {% if field.field.help_text %}<p class="help">{{ field.field.help_text }}</p>{% endif %}
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         {% endfor %}
                     {% endfor %}

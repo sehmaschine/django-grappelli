@@ -18,6 +18,7 @@ Changelog
 * Added autocompletes
 * Updated jQuery (to 1.6.2) and jQueryUI (to 1.8.15)
 * Added error-messages to the login form
+* Fixed a bug with hidden-fields in tabular-inlines
 
 2.3.3 (28/05/2011)
 ------------------
