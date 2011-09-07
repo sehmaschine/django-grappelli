@@ -842,6 +842,7 @@ ul.submit-row li.left:first-child {
     bottom: 0;
     margin: 0 -20px;
     padding: 12px 20px;
+    min-width: 100px;
     width: 100%;
     opacity: 1;
     box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
