@@ -153,6 +153,9 @@ Autocomplete Lookups
 .. versionadded:: 2.3.4
     ``autocomplete_lookup_fields``.
 
+.. note::
+    Please note that this feature is fairly new. It´s well tested, but we still consider it experimental with this version of |grappelli|.
+
 Defining autocomplete lookups is very similar to related lookups::
 
     class MyModel(models.Model):
