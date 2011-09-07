@@ -121,6 +121,7 @@
             })
             .autocomplete({
                 minLength: 1,
+                delay: 1000,
                 position: {my: "left top", at: "left bottom", of: options.wrapper_autocomplete},
                 open: function(event, ui) {
                     $(".ui-menu").width(options.wrapper_autocomplete.outerWidth()-6);

@@ -93,6 +93,7 @@
         options.wrapper_autocomplete.find("input:first")
             .autocomplete({
                 minLength: 1,
+                delay: 1000,
                 source: function(request, response) {
                     $.ajax({
                         url: options.autocomplete_lookup_url,
