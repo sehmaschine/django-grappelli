@@ -1655,22 +1655,17 @@ a.related-lookup:hover, a.related-lookup:active {
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
     background-image: url('../img/icons/icon-related-lookup-hover.png'), -o-linear-gradient(top, #e1e1e1, #eee);
 }
-a.related-lookup.m2m:link, a.related-lookup.m2m:visited {
-    background-image: url('../img/icons/icon-related-lookup-m2m.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
-    background-image: url('../img/icons/icon-related-lookup-m2m.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
-    background-image: url('../img/icons/icon-related-lookup-m2m.png'), -o-linear-gradient(top, #ebf2f5, #e1f0f5);
-}
-a.related-lookup.m2m:hover, a.related-lookup.m2m:active {
-    background-image: url('../img/icons/icon-related-lookup-m2m-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
-    background-image: url('../img/icons/icon-related-lookup-m2m-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
-    background-image: url('../img/icons/icon-related-lookup-m2m-hover.png'), -o-linear-gradient(top, #e1e1e1, #eee);
-}
 
+
+/*  Related Lookup M2M ......................................... */
+
+a.related-lookup.m2m:link, a.related-lookup.m2m:visited, 
 div.autocomplete-wrapper-m2m a.related-lookup:link, div.autocomplete-wrapper-m2m a.related-lookup:visited {
     background-image: url('../img/icons/icon-related-lookup-m2m.png'), -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
     background-image: url('../img/icons/icon-related-lookup-m2m.png'), -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
     background-image: url('../img/icons/icon-related-lookup-m2m.png'), -o-linear-gradient(top, #ebf2f5, #e1f0f5);
 }
+a.related-lookup.m2m:hover, a.related-lookup.m2m:active, 
 div.autocomplete-wrapper-m2m a.related-lookup:hover, div.autocomplete-wrapper-m2m a.related-lookup:active {
     background-image: url('../img/icons/icon-related-lookup-m2m-hover.png'), -moz-linear-gradient(top, #e1e1e1, #eee);
     background-image: url('../img/icons/icon-related-lookup-m2m-hover.png'), -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#eee));
