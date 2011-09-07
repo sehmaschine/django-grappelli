@@ -212,7 +212,7 @@ The lookup checks for a callable ``related_autocomplete_lookup`` with your model
         return u"%s,%s,%s" % (self.id, self.name, self.category)
 
 .. warning::
-    Autocompletes are under development. Don´t expect the implementation to be stable. Due to a bug in Django 1.3, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
+    Due to a bug in Django 1.3, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
 
 Using TinyMCE
 -------------

@@ -11,12 +11,13 @@ Changelog
 2.3.4 (not yet released)
 ------------------------
 
-* Moved |grappelli| to GitHub.
-* Fixed a bug with the View on Site link (tabular/stacked inlines).
-* Added a placeholder for inline sortables.
-* Fixed a bug with collapse all (stacked inlines).
-* Added autocompletes.
-* Updated jQuery (to 1.6.2) and jQueryUI (to 1.8.15).
+* Moved |grappelli| to GitHub
+* Fixed a bug with the View on Site link (tabular/stacked inlines)
+* Added a placeholder for inline sortables
+* Fixed a bug with collapse all (stacked inlines)
+* Added autocompletes
+* Updated jQuery (to 1.6.2) and jQueryUI (to 1.8.15)
+* Added error-messages to the login form
 
 2.3.3 (28/05/2011)
 ------------------
