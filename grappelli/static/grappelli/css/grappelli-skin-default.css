@@ -1239,7 +1239,10 @@ h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
     background: #bf3030;
 }
 /* little fix to accomodate the top aligned login form .. */
+.login .errornote, 
 .errornote.login-errors {
+    margin-bottom: 0 !important;
+    padding: 8px 10px 6px !important;
     border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;
 }
 ul.errorlist {
@@ -1247,6 +1250,9 @@ ul.errorlist {
 }
 .error input, .error select, .errors input, .errors select {
     border: 1px solid #bf3030 !important;
+}
+.login ul.errorlist {
+    color: #d93636;
 }
 
 
