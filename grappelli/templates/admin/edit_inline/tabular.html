@@ -244,14 +244,17 @@
             containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.table',
             tolerance: 'pointer',
             start: function(evt, ui) {
-                ui.placeholder.height(ui.item.height() + 12);
                 var template = "<div class='tr'>",
                     len = ui.item.find("div.tr").children("div.td").length;
                 for (var i = 0; i < len; i++) {
-                    template += "<div class='td'></div>"
+                    template += "<div class='td' style='height:" + (ui.item.outerHeight() + 12 ) + "px'>&nbsp;</div>"
                 }
                 template += "</div>"
                 ui.placeholder.addClass("tbody module").append(template);
+            },
+            stop: function(evt, ui) {
+                // Toggle div.table twice to remove webkits border-spacing bug
+                $("#{{ inline_admin_formset.formset.prefix }}-group > div.table").toggle().toggle();
             },
         });
         $("#{{ opts.module_name }}_form").bind("submit", function(){

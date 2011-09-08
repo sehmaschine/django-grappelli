@@ -588,18 +588,18 @@ ul.messagelist li + li {
 
 /*  3rd Level Collapsible-Handler ......................................... */
 
-.group .module .collapse h4.collapse-handler, 
-.module .module .collapse h4.collapse-handler {
+.group .module .collapse > h4.collapse-handler, 
+.module .module .collapse > h4.collapse-handler {
     border-top: 1px solid #f0f7fa;
     background: #e1f0f5;
     background: -moz-linear-gradient(top, #ebf2f5, #e1f0f5);
     background: -webkit-gradient(linear, left top, left bottom, from(#ebf2f5), to(#e1f0f5));
     background: -o-linear-gradient(top, #ebf2f5, #e1f0f5);
 }
-.group .collapse h4.collapse-handler:hover, 
-.module .collapse h4.collapse-handler:hover, 
-.group .collapse.open h4.collapse-handler, 
-.module .collapse.open h4.collapse-handler {
+.group .collapse > h4.collapse-handler:hover, 
+.module .collapse > h4.collapse-handler:hover, 
+.group .collapse.open > h4.collapse-handler, 
+.module .collapse.open > h4.collapse-handler {
     background: #ebf2f5;
     background: -moz-linear-gradient(top, #e1f0f5, #ebf2f5);
     background: -webkit-gradient(linear, left top, left bottom, from(#e1f0f5), to(#ebf2f5));
@@ -734,7 +734,7 @@ fieldset.module .cell.last + fieldset.module .cell {
 
 .predelete h2, .collapse.predelete > h2.collapse-handler, 
 .predelete h3, .collapse.predelete > h3.collapse-handler, 
-.predelete h4, .collapse.predelete > h4.collapse-handler {
+.predelete h4, .collapse.predelete .collapse > h4.collapse-handler {
     background: #f2e6e6;
     background: -moz-linear-gradient(top, #fff2f2, #f2e6e6);
     background: -webkit-gradient(linear, left top, left bottom, from(#fff2f2), to(#f2e6e6));
@@ -742,13 +742,13 @@ fieldset.module .cell.last + fieldset.module .cell {
 }
 .collapse.predelete > h2.collapse-handler:hover, 
 .collapse.predelete > h3.collapse-handler:hover, 
-.collapse.predelete > h4.collapse-handler:hover, 
+.predelete .collapse > h4.collapse-handler:hover, 
 .collapse.open.predelete > h2.collapse-handler, 
 .collapse.open.predelete > h3.collapse-handler, 
-.collapse.open.predelete > h4.collapse-handler {
+.predelete .collapse.open > h4.collapse-handler {
     background: #f2e6e6 !important;
     background: -moz-linear-gradient(top, #f2e6e6, #fff2f2) !important;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff2f2), to(#f2e6e6)) !important;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2e6e6), to(#fff2f2)) !important;
     background: -o-linear-gradient(top, #f2e6e6, #fff2f2) !important;
 }
 .predelete, 
