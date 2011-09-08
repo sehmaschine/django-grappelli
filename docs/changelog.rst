@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.3.4 (08/09/2011)
+2.3.5 (not yet released)
 ------------------------
+
+2.3.4 (08/09/2011)
+------------------
 
 * Moved |grappelli| to GitHub
 * Fixed a bug with the View on Site link (tabular/stacked inlines)
