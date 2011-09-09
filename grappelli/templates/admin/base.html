@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<!DOCTYPE html>
 {% load adminmedia i18n grp_tags %}
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
     {% block blockbots %}
         <meta name="robots" content="NONE,NOARCHIVE" />
     {% endblock %}
@@ -50,25 +50,33 @@
     {% block extrahead %}{% endblock %}
 </head>
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
-    <div id="container">
+    <div id="grp-container">
         <!-- HEADER -->
         {% if not is_popup %}
             {% include "admin/includes_grappelli/header.html" %}
             <!-- BREADCRUMBS -->
-            {% block breadcrumbs %}
-                <div id="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title }}{% endif %}</div>
-            {% endblock %}
+            <nav id="grp-breadcrumbs">
+                {% block breadcrumbs %}
+                    <ul>
+                        <li><a href="/">{% trans 'Home' %}</a></li>
+                        {% if title %}
+                            <li> &rsaquo; {{ title }}</li>
+                        {% endif %}
+                    </ul>
+                {% endblock %}
+            </nav>
+            
         {% endif %}
         <!-- MESSAGES -->
         {% if messages %}
-            <ul class="messagelist">
+            <ul class="grp-messagelist">
                 {% for message in messages %}
                     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
         <!-- CONTENT -->
-        <div id="content" class="{% block content-class %}{% endblock %}">
+        <div id="grp-content" class="{% block content-class %}{% endblock %}">
             {% block pretitle %}{% endblock %}
             {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
             {% block object-tools %}{% endblock %}
@@ -79,7 +87,7 @@
             <br class="clear" />
         </div>
         <!-- FOOTER -->
-        {% block footer %}<div id="footer"></div>{% endblock %}
+        {% block footer %}<div id="grp-footer"></div>{% endblock %}
     </div>
 </body>
 </html>

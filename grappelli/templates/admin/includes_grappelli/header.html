@@ -1,11 +1,11 @@
 {% load i18n grp_tags %}
 
-<div id="header">
-    <div class="branding">&nbsp;</div>
+<nav id="grp-header">
+    <div class="grp-branding">&nbsp;</div>
     <!-- Title -->
-    <div class="admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</div>
+    <div class="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</div>
     {% if user.is_authenticated and user.is_staff %}
-        <ul id="user-tools">
+        <ul id="grp-user-tools">
             <!-- Username -->
             <li class="user-options-container collapse closed">
                 <a href="javascript://" class="user-options-handler collapse-handler">{% firstof user.first_name user.username %}</a>
@@ -45,12 +45,12 @@
     {% endif %}
     {% block nav-global %}
     {% endblock %}
-</div>
+</nav>
 
 <script type="text/javascript" charset="utf-8">
     (function($) {
         $(document).ready(function() {
-            $("div#header .collapse").grp_collapsible();
+            $("div#grp-header .collapse").grp_collapsible();
         });
     })(django.jQuery);
 </script>
