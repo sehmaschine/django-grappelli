@@ -1,0 +1,16 @@
+
+
+
+/*  ACTIONS: BASIC SETTINGS;
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-actions {
+	@include horizontal-list(5px, left);
+	float: right;
+	@extend .grp-font-size-s;
+	@extend .grp-line-height;
+	font-weight: bold;
+}
+.grp-actions {
+	@include grp-actions;
+}

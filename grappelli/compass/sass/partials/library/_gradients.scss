@@ -1,0 +1,20 @@
+
+
+
+/*  GRADIENTS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-gradient-dark {
+	color: #fff;
+	@include background-image(linear-gradient(#333, #222));
+}
+.grp-gradient-dark {
+	@include grp-gradient-dark;
+}
+
+@mixin grp-gradient-mod-1 {
+	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
+}
+.grp-gradient-mod-1 {
+	@include grp-gradient-mod-1;
+}

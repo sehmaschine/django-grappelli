@@ -1,0 +1,65 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass";
+
+@import "blueprint";
+
+
+
+
+
+/*  BLUEPRINT GRID
+------------------------------------------------------------------------------------------------------ */
+
+$blueprint-grid-columns: 24;
+$blueprint-container-size: 950px;
+$blueprint-grid-margin: 20px;
+
+// Use this to calculate the width based on the total width.
+// Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
+$blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
+
+@include blueprint-grid;
+
+
+
+/*  CUSTOM IMPORTS (place them after blueprint because they might depend on blueprint constants)
+------------------------------------------------------------------------------------------------------ */
+
+// Import Custom Library
+@import "partials/library/colors";
+@import "partials/library/gradients";
+@import "partials/library/borders";
+@import "partials/library/margins-paddings";
+
+
+@import "partials/typography/base";
+
+@import "partials/layout/components";
+@import "partials/layout/modules";
+@import "partials/layout/actions";
+
+
+
+/*  BASE STYLES
+------------------------------------------------------------------------------------------------------ */
+
+body {
+	padding: 0 0 0 20px;
+	@extend .grp-font-color;
+	@extend .font-family;
+	@extend .grp-font-size;
+	@extend .grp-line-height;
+	background: #fff;
+}
+
+nav#grp-header {
+	// position: fixed;
+	margin-left: -20px;
+	padding-left: 20px;
+	@include grp-gradient-dark;
+}

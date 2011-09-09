@@ -1,0 +1,98 @@
+
+
+
+/*  MODULES
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-module {
+	position: relative;
+	float: left;
+	clear: both;
+	padding: 0;
+	width: 100%;
+	border: 1px solid $grp-module-border-color;
+	background: $grp-module-background-color;
+	@include grp-border-radius($grp-border-radius);
+	@include box-sizing(border-box);
+	@include clearfix;
+	.grp-module {
+		border: 0;
+	}
+}
+.grp-module {
+	@include grp-module;
+}
+.grp-module + .grp-module {
+	margin-top: 5px;
+}
+
+@mixin grp-module-h2 {
+	@include grp-padding($grp-padding-size-s $grp-padding-size);
+	border-bottom: 1px solid #ccc;
+	@include border-top-radius($grp-border-radius - 1px);
+	@include grp-gradient-mod-1;
+}
+.grp-module h2 {
+	@include grp-module-h2;
+}
+
+@mixin grp-module-h3 {
+	@include grp-padding($grp-padding-size-s $grp-padding-size);
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #ddd;
+}
+.grp-module h3 {
+	@include grp-module-h3;
+}
+
+
+
+/*  ROWS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-row {
+	position: relative;
+	float: left;
+	clear: both;
+	@include grp-padding($grp-padding-size-s $grp-padding-size);
+	width: 100%;
+	@include box-sizing(border-box);
+	@include clearfix;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #ddd;
+	&:first-child {
+		border-top: 0;
+		@include border-top-radius($grp-border-radius - 1px);
+	}
+	&:first-of-type {
+		// border-top: 0;
+	}
+	&:last-of-type {
+		border-bottom: 0;
+	}
+}
+.grp-row {
+	@include grp-row;
+}
+
+
+
+/*  LISTING
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-listing {
+	border-top: 1px solid #fff;
+	&:first-child {
+		border-top: 0;
+		@include border-top-radius($grp-border-radius - 1px);
+	}
+}
+.grp-listing {
+	@include grp-listing;
+}
+
+
+
+
+
+

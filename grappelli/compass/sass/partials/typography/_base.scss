@@ -1,0 +1,106 @@
+
+$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@mixin font-family {
+	font-family: $font-family;
+}
+.font-family {
+	@include font-family;
+}
+
+
+
+/*  FONT-SIZES & LINE-HEIGHTS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-font-size-xl: 20px;
+$grp-font-size-l: 14px;
+$grp-font-size-m: 13px;
+$grp-font-size: 12px;
+$grp-font-size-s: 11px;
+$grp-font-size-xs: 10px;
+
+$grp-line-height-xl: 24px;
+$grp-line-height-l: 18px;
+$grp-line-height-m: 16px;
+$grp-line-height: 16px;
+$grp-line-height-s: 15px;
+$grp-line-height-xs: 14px;
+
+.grp-font-size-xl {
+	font-size: $grp-font-size-xl;
+}
+.grp-font-size-l {
+	font-size: $grp-font-size-l;
+}
+.grp-font-size-m {
+	font-size: $grp-font-size-m;
+}
+.grp-font-size {
+	font-size: $grp-font-size;
+}
+.grp-font-size-s {
+	font-size: $grp-font-size-s;
+}
+.grp-font-size-xs {
+	font-size: $grp-font-size-xs;
+}
+
+.grp-line-height-xl {
+	line-height: $grp-line-height-xl;
+}
+.grp-line-height-l {
+	line-height: $grp-line-height-l;
+}
+.grp-line-height-m {
+	line-height: $grp-line-height-m;
+}
+.grp-line-height {
+	line-height: $grp-line-height;
+}
+.grp-line-height-s {
+	line-height: $grp-line-height-s;
+}
+.grp-line-height-xs {
+	line-height: $grp-line-height-xs;
+}
+
+
+
+/*  LINKS
+------------------------------------------------------------------------------------------------------ */
+
+a {
+	text-decoration: none;
+	color: $grp-link-color;
+	&:hover {
+		color: $grp-link-color-hover;
+	}
+}
+
+
+/*  BASIC TYPOGRAPHY
+------------------------------------------------------------------------------------------------------ */
+
+
+h1 {
+	@include grp-margin($grp-margin-size-l 0 $grp-margin-size);
+	@extend .grp-font-size-xl;
+	@extend .grp-line-height-xl;
+	font-weight: bold;
+}
+h2 {
+	@extend .grp-font-size-l;
+	@extend .grp-line-height-l;
+	font-weight: bold;
+}
+h3 {
+	@extend .grp-font-size-m;
+	@extend .grp-line-height-m;
+	font-weight: bold;
+}
+h4 {
+	@extend .grp-font-size;
+	@extend .grp-line-height;
+	font-weight: bold;
+}

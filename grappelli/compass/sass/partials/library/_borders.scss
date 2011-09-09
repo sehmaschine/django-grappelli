@@ -1,0 +1,21 @@
+
+
+
+/*  BORDERS
+------------------------------------------------------------------------------------------------------ */
+
+
+
+
+/*  BORDER-RADIUS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-border-radius: 5px;
+
+@mixin grp-border-radius($grp-border-radius) {
+	@include border-radius($grp-border-radius);
+}
+
+.grp-border-radius {
+	@include border-radius($grp-border-radius);
+}

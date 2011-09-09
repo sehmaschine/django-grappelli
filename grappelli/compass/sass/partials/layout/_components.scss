@@ -1,0 +1,18 @@
+
+
+
+/*  BREADCRUMBS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-breadcrumbs {
+	margin-left: -20px;
+	@include grp-padding($grp-padding-size-s 0 $grp-padding-size-s 20px);
+	ul {
+		@include horizontal-list(10px, left);
+	}
+	border-bottom: 1px solid $grp-breadcrumbs-border-color;
+	background: $grp-breadcrumbs-background-color;
+}
+#grp-breadcrumbs {
+	@include grp-breadcrumbs;
+}

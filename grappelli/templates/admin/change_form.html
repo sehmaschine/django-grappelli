@@ -83,12 +83,12 @@
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
     {% if not is_popup %}
-        <div id="breadcrumbs">
-             <a href="../../../">{% trans "Home" %}</a> &rsaquo;
-             <a href="../../">{% trans app_label|capfirst|escape %}</a> &rsaquo;
-             {% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} &rsaquo; 
-             {% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
-        </div>
+        <ul>
+            <li><a href="../../../">{% trans "Home" %}</a> &rsaquo;</li>
+            <li><a href="../../">{% trans app_label|capfirst|escape %}</a> &rsaquo;</li>
+            <li>{% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} &rsaquo;</li>
+            <li>{% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
+        </ul>
     {% endif %}
 {% endblock %}
 
@@ -96,7 +96,7 @@
 {% block object-tools %}
     {% if change %}
         {% if not is_popup %}
-            <ul class="tools">
+            <ul class="grp-tools">
                 {% block object-tools-items %}
                     <li><a href="history/">{% trans "History" %}</a></li>
                     {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
