@@ -16,7 +16,7 @@
 ------------------------------------------------------------------------------------------------------ */
 
 $blueprint-grid-columns: 24;
-$blueprint-container-size: 950px;
+$blueprint-container-size: 940px;
 $blueprint-grid-margin: 20px;
 
 // Use this to calculate the width based on the total width.
@@ -31,17 +31,31 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 ------------------------------------------------------------------------------------------------------ */
 
 // Import Custom Library
-@import "partials/library/colors";
-@import "partials/library/gradients";
+
+@import "partials/skins/grp-default";
+
+// @import "partials/library/colors";
+// @import "partials/library/gradients";
 @import "partials/library/borders";
 @import "partials/library/margins-paddings";
 
-
 @import "partials/typography/base";
 
+@import "partials/layout/sprites";
 @import "partials/layout/components";
 @import "partials/layout/modules";
+@import "partials/layout/buttons";
+@import "partials/layout/tools";
 @import "partials/layout/actions";
+
+@import "partials/forms/django-resets";
+@import "partials/forms/helpers";
+@import "partials/forms/base";
+
+
+
+
+
 
 
 
@@ -51,7 +65,7 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 body {
 	padding: 0 0 0 20px;
 	@extend .grp-font-color;
-	@extend .font-family;
+	@extend .grp-font-family;
 	@extend .grp-font-size;
 	@extend .grp-line-height;
 	background: #fff;
@@ -60,6 +74,28 @@ body {
 nav#grp-header {
 	// position: fixed;
 	margin-left: -20px;
-	padding-left: 20px;
+	padding: 10px 20px;
 	@include grp-gradient-dark;
+	@include clearfix;
+	#grp-branding {
+		display: none;
+	}
+	#grp-admin-title {
+		position: relative;
+		float: left;
+		font-weight: bold;
+	}
+	#grp-user-tools {
+		position: relative;
+		float: right;
+		font-weight: bold;
+	}
 }
+#grp-content {
+	@include clearfix;
+	overflow: visible;
+}
+.grp-container-flexible {
+	padding-right: 20px;
+}
+

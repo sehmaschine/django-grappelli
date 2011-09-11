@@ -65,7 +65,6 @@
                     </ul>
                 {% endblock %}
             </nav>
-            
         {% endif %}
         <!-- MESSAGES -->
         {% if messages %}
@@ -78,13 +77,12 @@
         <!-- CONTENT -->
         <div id="grp-content" class="{% block content-class %}{% endblock %}">
             {% block pretitle %}{% endblock %}
-            {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+            {% block content_title %}{% if title %}<header><h1>{{ title }}</h1></header>{% endif %}{% endblock %}
             {% block object-tools %}{% endblock %}
             {% block content %}
                 {{ content }}
                 {% block filters %}{% endblock %}
             {% endblock %}
-            <br class="clear" />
         </div>
         <!-- FOOTER -->
         {% block footer %}<div id="grp-footer"></div>{% endblock %}

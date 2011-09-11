@@ -4,10 +4,13 @@
 /*	BASIC COLORS
 ------------------------------------------------------------------------------------------------------ */
 
-$grp-font-color: #333;
+$grp-font-color: #333 !default;
 $grp-breadcrumbs-border-color: #ddd;
 
 .grp-font-color {
+	color: $grp-font-color;
+}
+@mixin grp-font-color($grp-font-color) {
 	color: $grp-font-color;
 }
 

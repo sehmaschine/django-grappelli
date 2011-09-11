@@ -12,9 +12,46 @@
 	@include grp-gradient-dark;
 }
 
-@mixin grp-gradient-mod-1 {
+
+
+/*  HEADING GRADIENTS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-gradient-module-h2 {
 	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
 }
-.grp-gradient-mod-1 {
-	@include grp-gradient-mod-1;
+.grp-gradient-module-h2 {
+	@include grp-gradient-module-h2;
+}
+@mixin grp-gradient-module-h3 {
+	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
+}
+.grp-gradient-module-h3 {
+	@include grp-gradient-module-h2;
+}
+
+@mixin grp-gradient-module-h2-collapse-handler {
+	@include background-image(linear-gradient(#bcdfeb, #a1d4e5));
+}
+.grp-gradient-module-h2-collapse-handler {
+	@include grp-gradient-module-h2-collapse-handler;
+}
+@mixin grp-gradient-module-h2-collapse-handler-hover {
+	@include background-image(linear-gradient(#a1d4e5, #bcdfeb));
+}
+.grp-gradient-module-h2-collapse-handler-hover {
+	@include grp-gradient-module-h2-collapse-handler-hover;
+}
+
+@mixin grp-gradient-module-h3-collapse-handler {
+	@include background-image(linear-gradient(#bcdfeb, #a1d4e5));
+}
+.grp-gradient-module-h3-collapse-handler {
+	@include grp-gradient-module-h3-collapse-handler;
+}
+@mixin grp-gradient-module-h3-collapse-handler-hover {
+	@include background-image(linear-gradient(#a1d4e5, #bcdfeb));
+}
+.grp-gradient-module-h3-collapse-handler-hover {
+	@include grp-gradient-module-h3-collapse-handler-hover;
 }

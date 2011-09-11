@@ -1,0 +1,83 @@
+
+
+
+
+@mixin grp-button-states {
+    // @include grp-gradient-module-h2-collapse-handler-hover;
+    border: $grp-button-border;
+    background-color: #e1f0f5;
+    &:hover {
+        border: $grp-button-border-hover;
+        background-color: #eee;
+    }
+}
+@mixin grp-button {
+    position: relative;
+    // float: right;
+    // top: 0;
+    // display: inline-block;
+    margin: 0 0 0 -25px;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    @include border-right-radius($grp-border-radius-s);
+    @include box-sizing(border-box);
+    cursor: pointer;
+    overflow: hidden;
+    vertical-align: top;
+    @include grp-button-states;
+}
+input[type=button], button, a.fb_show {
+    @include grp-button;
+}
+a.fb_show, a.related_lookup {
+    display: inline-block;
+    margin-bottom: -5px;
+}
+
+
+
+button.ui-datepicker-trigger {
+    @include icons-sprite(datepicker);
+    @include grp-button-states;
+}
+button.ui-timepicker-trigger {
+    @include icons-sprite(timepicker);
+    @include grp-button-states;
+}
+a.fb_show, 
+a.related_lookup {
+    @include icons-sprite(related-lookup);
+    @include grp-button-states;
+}
+
+
+
+
+
+
+
+/*  Focused Buttons & Button Links ......................................... */
+
+input:focus + button, 
+.vDateField:focus + span a, 
+.vTimeField:focus + span a, 
+input:focus + a.fb_show, 
+input:focus + a.related-lookup, 
+input:focus + a.add-another {
+    border: $grp-button-border-focus;
+}
+/*  Reset the style for focused links in autocompletes as there is an automatically
+    focused (invisible) input which causes the a.related-lookup to be "focused" though it's not */
+div.autocomplete-wrapper-fk input:focus + a.related-lookup, 
+div.autocomplete-wrapper-m2m input:focus + a.related-lookup {
+    border-color: #ccc !important;
+}
+
+
+
+
+
+
+
+

@@ -18,19 +18,6 @@
 // $grp-padding-size-s: $grp-custom-base-line-height / 3;
 // $grp-padding-size-xs: $grp-custom-base-line-height / 6;
 
-$grp-margin-size-xl: 30px;
-$grp-margin-size-l: 20px;
-$grp-margin-size-m: 15px;
-$grp-margin-size: 10px;
-$grp-margin-size-s: 5px;
-$grp-margin-size-xs: 2px;
-
-$grp-padding-size-xl: 30px;
-$grp-padding-size-l: 20px;
-$grp-padding-size-m: 15px;
-$grp-padding-size: 10px;
-$grp-padding-size-s: 5px;
-$grp-padding-size-xs: 2px;
 
 @mixin grp-margin($grp-margin) {
 	padding: $grp-margin;

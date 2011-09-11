@@ -18,16 +18,16 @@
         (function($) {
             $(document).ready(function() {
                 grappelli.initDateAndTimePicker();
-                $("div.container-flexible div.group").grp_collapsible_group();
-                $("div#content .collapse").grp_collapsible({
+                $("div.grp-container-flexible div.grp-group").grp_collapsible_group();
+                $("div#grp-content .grp-collapse").grp_collapsible({
                     on_init: function(elem, options) {
                         // open collapse (and all collapse parents) in case of errors
                         if (elem.find("ul.errorlist").length > 0) {
-                            elem.removeClass("closed")
-                                .addClass("open");
-                            elem.parents(".collapse")
-                                .removeClass("closed")
-                                .addClass("open");
+                            elem.removeClass("grp-closed")
+                                .addClass("grp-open");
+                            elem.parents(".grp-collapse")
+                                .removeClass("grp-closed")
+                                .addClass("grp-open");
                         }
                     }
                 });
@@ -108,8 +108,8 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <div class="container-flexible">
-        <div class="form-container">
+    <div class="grp-container-flexible">
+        <div class="grp-form-container">
             <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
                 <div>
                     <!-- Popup Hidden Field -->

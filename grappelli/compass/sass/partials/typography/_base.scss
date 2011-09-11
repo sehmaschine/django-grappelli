@@ -1,11 +1,16 @@
 
-$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-@mixin font-family {
-	font-family: $font-family;
+
+/*  FONT-FAMILIES
+------------------------------------------------------------------------------------------------------ */
+
+$grp-font-family: Arial, sans-serif;
+
+@mixin grp-font-family {
+	font-family: $grp-font-family;
 }
-.font-family {
-	@include font-family;
+.grp-font-family {
+	@include grp-font-family;
 }
 
 

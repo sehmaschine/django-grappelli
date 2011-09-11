@@ -19,3 +19,13 @@ $grp-border-radius: 5px;
 .grp-border-radius {
 	@include border-radius($grp-border-radius);
 }
+
+$grp-border-radius-s: 3px;
+
+@mixin grp-border-radius-s($grp-border-radius-s) {
+	@include border-radius($grp-border-radius-s);
+}
+
+.grp-border-radius-s {
+	@include border-radius($grp-border-radius-s);
+}
