@@ -2,20 +2,24 @@
 
 
 @mixin grp-tools {
-	@include horizontal-list(0px, left);
+	@include horizontal-list(1px, left);
 	position: relative;
 	float: right;
 	top: -24px;
 	margin: 0 0 -24px;
+	padding-right: 5px;
 	height: 24px;
 	li {
 		a {
 			display: block;
 			width: 24px;
 			height: 24px;
+			@include border-radius(12px);
+			background-color: rgba(255, 255, 255, 0.7) !important;
 		}
 		a.grp-add-handler {
 			@include icons-sprite(tools-add-handler);
+
 		}
 		a.grp-delete-handler {
 			@include icons-sprite(tools-delete-handler);

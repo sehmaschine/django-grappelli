@@ -235,7 +235,7 @@
         {% if inline_admin_formset.opts.sortable_field_name %}
         $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table").sortable({
             handle: "a.grp-drag-handler",
-            items: "div.dynamic-form",
+            items: "div.grp-dynamic-form",
             axis: "y",
             appendTo: 'body',
             forceHelperSize: true,

@@ -201,7 +201,7 @@
         {% if inline_admin_formset.opts.sortable_field_name %}
         $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items").sortable({
             handle: "a.grp-drag-handler",
-            items: "div.dynamic-form",
+            items: "div.grp-dynamic-form",
             axis: "y",
             appendTo: 'body',
             forceHelperSize: true,
@@ -216,7 +216,7 @@
         $("#{{ opts.module_name }}_form").bind("submit", function(){
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}";
             var i = 0;
-            $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.dynamic-form").each(function(){
+            $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-dynamic-form").each(function(){
                 var fields = $(this).find("fieldset :input[value]");
                 if (fields.serialize()) {
                     $(this).find("input[name$='"+sortable_field_name+"']").val(i);
