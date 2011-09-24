@@ -30,7 +30,7 @@ Open ``settings.py`` and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``
 Add URL-patterns::
 
     urlpatterns = patterns('',
-        (r'^grappelli/', include('grappelli.urls')),
+        url(r'^grappelli/', include('grappelli.urls')),
     )
 
 Collect the media files::
