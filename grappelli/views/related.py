@@ -6,6 +6,7 @@ from django.db import models
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
+from django.utils.encoding import smart_str
 import django.utils.simplejson as simplejson
 
 
@@ -98,7 +99,7 @@ def autocomplete_lookup(request):
                 filters = {}
                 for item in lookup.split("&"):
                     if item.split("=")[0] != "t":
-                        filters[item.split("=")[0]]=item.split("=")[1]
+                        filters[smart_str(item.split("=")[0])]=smart_str(item.split("=")[1])
                 data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.filter(**filters) if get_lookup(f,term)]
             else:
                 data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.all() if get_lookup(f,term)]
