@@ -568,10 +568,6 @@ button.ui-datepicker-close {
     background: #eee;
     box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
 }
-/*.ui-autocomplete-loading {
-    background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat;
-}
-*/
 * html .ui-autocomplete {
     width: 1px;
 }

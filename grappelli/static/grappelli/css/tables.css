@@ -98,8 +98,6 @@ table.orderable tbody tr td:hover {
 
 table.orderable tbody tr td:first-child {
     padding-left: 14px;
-    background-image: url(../img/admin/nav-bg-grabber.gif);
-    background-repeat: repeat-y;
 }
 
 table.orderable-initalized .order-cell, body>tr>td.order-cell {
