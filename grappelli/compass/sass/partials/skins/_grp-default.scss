@@ -5,7 +5,6 @@
 ------------------------------------------------------------------------------------------------------ */
 
 $grp-font-color: #333 !default;
-$grp-breadcrumbs-border-color: #ddd !default;
 
 .grp-font-color {
 	color: $grp-font-color;
@@ -31,7 +30,7 @@ $grp-link-color-quiet-hover: #333 !default;
 ------------------------------------------------------------------------------------------------------ */
 
 $grp-breadcrumbs-background-color: #eee !default;
-$grp-breadcrumbs-border-color: #ddd !default;
+$grp-breadcrumbs-border-color: #ccc !default;
 
 
 
@@ -75,9 +74,42 @@ $grp-form-font-color: #333 !default;
 $grp-form-label-font-size: 11px !default;
 $grp-form-label-font-color: #333 !default;
 
-$grp-form-field-background-color: #fff !default;
+$grp-form-field-background-color: #fdfdfd !default;
+$grp-form-field-background-color-focus: #fff !default;
 $grp-form-field-border: 1px solid #ccc !default;
 $grp-form-field-border-focus: 1px solid #888 !default;
+
+$grp-form-button-font-family: Arial, sans-serif !default;
+$grp-form-button-font-size: 12px !default;
+$grp-form-button-font-color: #333 !default;
+$grp-form-button-font-color-hover: #333 !default;
+// Form Button
+$grp-form-button-background-color: #fdfdfd !default;
+$grp-form-button-background-color-hover: #fff !default;
+// Form Button Default
+$grp-form-button-default-background-color: #fdfdfd !default;
+$grp-form-button-default-background-color-hover: #fff !default;
+// Reset Button
+$grp-form-button-reset-background-color: #fdfdfd !default;
+$grp-form-button-reset-background-color-hover: #fff !default;
+// Cancel Button
+$grp-form-button-cancel-background-color: #fdfdfd !default;
+$grp-form-button-cancel-background-color-hover: #fff !default;
+
+@mixin grp-form-button-default-gradient {
+	color: #fff;
+	border: 1px solid #2987a6;
+	@include background-image(linear-gradient(#36b0d9, #309bbf));
+	@include box-shadow(#fff 0 0 6px);
+	cursor: pointer;
+	&:hover {
+		color: #333;
+		@include background-image(linear-gradient(#fafafa, #fff));
+	}
+}
+.grp-form-button-default-gradient {
+	@include grp-form-button-default-gradient;
+}
 
 
 /*  Mixins ............................................................ */
@@ -86,7 +118,7 @@ $grp-form-field-border-focus: 1px solid #888 !default;
 	@include single-box-shadow(#eee 0 1px 3px inset);
 }
 @mixin grp-form-field-box-shadow-focus {
-	@include box-shadow(#eee 0 1px 3px inset, #999 0 0 3px);
+	@include box-shadow(#999 0 0 6px);
 }
 
 
@@ -116,25 +148,6 @@ $grp-button-border: 1px solid #ccc !default;
 $grp-button-border-hover: 1px solid #ccc !default;
 $grp-button-border-focus: 1px solid #888 !default;
 
-
-/*  MIXINS ............................................................ */
-
-@mixin grp-form-field-box-shadow {
-	@include single-box-shadow(#eee 0 1px 3px inset);
-}
-@mixin grp-form-field-box-shadow-focus {
-	@include box-shadow(#eee 0 1px 3px inset, #999 0 0 3px);
-}
-
-
-/*  CLASSES (OUT OF CONSTANTS) ............................................................ */
-
-.grp-form-font-family { font-family: $grp-form-font-family; }
-.grp-form-font-size { font-size: $grp-form-font-size; }
-
-.grp-form-field-background-color { background: $grp-form-field-background-color; }
-.grp-form-field-border-color { border: $grp-form-field-border; }
-.grp-form-field-border-color-focus { border: $grp-form-field-border-focus; }
 
 
 /*  GRADIENTS

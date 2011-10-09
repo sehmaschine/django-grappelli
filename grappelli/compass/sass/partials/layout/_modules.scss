@@ -40,7 +40,7 @@
 	@include grp-padding($grp-padding-size-s $grp-padding-size);
 	text-shadow: 0 1px 0 #f5f5f5;
 	border-bottom: 1px solid #ccc;
-	@include border-top-radius($grp-border-radius - 1px);
+	@include border-top-radius($grp-border-radius);
 	@include grp-gradient-module-h2;
 }
 .grp-module h2 {
@@ -50,7 +50,7 @@
 	> h2 {
 		@include grp-module-h2;
 		border: $grp-module-border;
-		@include border-radius($grp-border-radius - 1px);
+		@include border-radius($grp-border-radius);
 	}
 	&.grp-open > h2 {
 		margin-bottom: 2px;

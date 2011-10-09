@@ -10,7 +10,7 @@
 /*  BORDER-RADIUS
 ------------------------------------------------------------------------------------------------------ */
 
-$grp-border-radius: 5px;
+$grp-border-radius: 3px;
 
 @mixin grp-border-radius($grp-border-radius) {
 	@include border-radius($grp-border-radius);
@@ -20,7 +20,7 @@ $grp-border-radius: 5px;
 	@include border-radius($grp-border-radius);
 }
 
-$grp-border-radius-s: 3px;
+$grp-border-radius-s: 2px;
 
 @mixin grp-border-radius-s($grp-border-radius-s) {
 	@include border-radius($grp-border-radius-s);
@@ -28,4 +28,14 @@ $grp-border-radius-s: 3px;
 
 .grp-border-radius-s {
 	@include border-radius($grp-border-radius-s);
+}
+
+$grp-form-field-border-radius: 3px;
+
+@mixin grp-form-field-border-radius($grp-form-field-border-radius) {
+	@include border-radius($grp-form-field-border-radius);
+}
+
+.grp-form-field-border-radius {
+	@include border-radius($grp-form-field-border-radius);
 }

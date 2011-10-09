@@ -16,3 +16,38 @@
 #grp-breadcrumbs {
 	@include grp-breadcrumbs;
 }
+
+
+
+/*  FOOTER
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-footer {
+	position: relative;
+	float: none;
+	margin-left: -20px;
+	padding: 10px 20px;
+	@include grp-gradient-dark;
+	@include clearfix;
+	ul {
+		@include horizontal-list(10px, right);
+		overflow: visible;
+		li {
+			&.grp-left {
+				float: left;
+			}
+			input[type=submit] {
+				opacity: .75;
+				&.default {
+					opacity: 1;
+				}
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+#grp-footer {
+	@include grp-footer;
+}

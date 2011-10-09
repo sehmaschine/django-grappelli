@@ -57,7 +57,7 @@ fieldset.grp-module {
     line-height: 16px; // needed for -webkit line-height bug in input-fields
     font-weight: bold;
     border: $grp-form-field-border;
-    @include border-radius($grp-border-radius-s);
+    @include border-radius($grp-form-field-border-radius);
     background: $grp-form-field-background-color;
     @include box-sizing(border-box);
     @include grp-form-field-box-shadow;
@@ -66,6 +66,7 @@ fieldset.grp-module {
     &:focus {
         border: $grp-form-field-border-focus;
         @include grp-form-field-box-shadow-focus;
+        background: $grp-form-field-background-color-focus;
         outline: 0;
     }
 }
@@ -124,18 +125,18 @@ fieldset.monospace textarea {
 
 
 
+/*  BUTTONS (SUBMIT, RESET, CANCEL)
+------------------------------------------------------------------------------------------------------ */
 
-input[type="submit"] {
-    padding: 6px;
-    color: #fff;
-    font-weight: bold;
-    border-color: #b32424;
-    background: #e52e2e;
-    cursor: pointer;
-    &:hover {
-        border-color: #2a2a2a;
-        background: #3a3a3a;
+@mixin grp-form-button {
+    height: 28px;
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        @include grp-padding($grp-padding-size-s $grp-padding-size);
     }
+}
+input[type="submit"] {
+    @include grp-form-button;
+    @include grp-form-button-default-gradient;
 }
 
 
