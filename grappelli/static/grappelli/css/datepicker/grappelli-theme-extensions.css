@@ -114,16 +114,6 @@ body {
 /*	Datepicker
 ------------------------------------------------------------------------------------------------------ */
 
-
-/*button.ui-datepicker-trigger {
-    margin-left: 5px;
-    width: 25px;
-    background: #4ef url('/media/grappelli/img/icons/icon-calendar.png') 50% 50% no-repeat;
-}
-button.ui-datepicker-trigger:hover {
-    background: transparent url('/media/grappelli/img/icons/icon-calendar-hover.png') 50% 50% no-repeat;
-}*/
-
 .ui-datepicker {
     width: auto !important; padding: 3px 3px 0;
     border-color: #bdbdbd;
@@ -400,45 +390,3 @@ a.ui-gFacelist-item-remove {
     height: 16px;
     background: transparent 100% 3px no-repeat;
 }
-a.ui-gFacelist-item-remove:link, a.ui-gFacelist-item-remove:visited {
-    background-image: url('/media/grappelli/img/icons/icon-tools-delete-handler.png');
-}
-a.ui-gFacelist-item-remove:hover, a.ui-gFacelist-item-remove:active {
-    background-image: url('/media/grappelli/img/icons/icon-tools-delete-handler-hover.png');
-}
-
-
-
-
-
-/* Datepicker Fields in Grid (Normal - 22px)
------------------------------------------------------------------------------------------------------- */
-
-/*.span-24 input.vDateField.hasDatepicker { width: 880px; }
-.span-23 input.vDateField.hasDatepicker { width: 840px; }
-.span-22 input.vDateField.hasDatepicker { width: 800px; }
-.span-21 input.vDateField.hasDatepicker { width: 760px; }
-.span-20 input.vDateField.hasDatepicker { width: 720px; }
-.span-19 input.vDateField.hasDatepicker { width: 680px; }
-.span-18 input.vDateField.hasDatepicker { width: 640px; }
-.span-17 input.vDateField.hasDatepicker { width: 600px; }
-.span-16 input.vDateField.hasDatepicker { width: 560px; }
-.span-15 input.vDateField.hasDatepicker { width: 520px; }
-.span-14 input.vDateField.hasDatepicker { width: 480px; }
-.span-13 input.vDateField.hasDatepicker { width: 440px; }
-.span-12 input.vDateField.hasDatepicker { width: 400px; }
-.span-11 input.vDateField.hasDatepicker { width: 360px; }
-.span-10 input.vDateField.hasDatepicker { width: 320px; }
-.span-9 input.vDateField.hasDatepicker { width: 280px; }
-.span-8 input.vDateField.hasDatepicker { width: 240px; }
-.span-7 input.vDateField.hasDatepicker { width: 200px; }
-.span-6 input.vDateField.hasDatepicker { width: 160px; }
-.span-5 input.vDateField.hasDatepicker { width: 120px; }
-.span-4 input.vDateField.hasDatepicker { width: 80px; }
-
-.form-cell.span-12 label + input.vDateField.hasDatepicker {
-    width: 250px;
-}
-.form-cell.span-8 label + input[type=text].vDateField.hasDatepicker {
-    width: 90px;
-}*/
