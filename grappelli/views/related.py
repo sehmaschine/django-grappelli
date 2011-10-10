@@ -1,8 +1,12 @@
 # coding: utf-8
 
+# PYTHON IMPORTS
+import operator
+
 # DJANGO IMPORTS
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.db import models
+from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
@@ -19,21 +23,7 @@ def returnattr(obj, attr):
 def get_label(f):
     if getattr(f, "related_label", None):
         return f.related_label()
-    else:
-        return f.__unicode__()
-
-
-def get_lookup(f, term):
-    if getattr(f, "related_autocomplete_lookup", None):
-        if term in f.related_autocomplete_lookup():
-            return True
-        else:
-            return False
-    else:
-        if term in f.__unicode__():
-            return True
-        else:
-            return False
+    return f.__unicode__()
 
 
 @never_cache
@@ -94,23 +84,29 @@ def autocomplete_lookup(request):
             app_label = request.GET.get('app_label')
             model_name = request.GET.get('model_name')
             model = models.get_model(app_label, model_name)
+            filters = {}
+            # FILTER
             if request.GET.get('query_string', None):
-                lookup = request.GET.get('query_string')
-                filters = {}
-                for item in lookup.split("&"):
+                for item in request.GET.get('query_string').split("&"):
                     if item.split("=")[0] != "t":
                         filters[smart_str(item.split("=")[0])]=smart_str(item.split("=")[1])
-                data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.filter(**filters) if get_lookup(f,term)]
-            else:
-                data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in model.objects.all() if get_lookup(f,term)]
+            # SEARCH
+            qs = model._default_manager.all()
+            for bit in term.split():
+                search = [models.Q(**{smart_str(item):smart_str(bit)}) for item in model.autocomplete_search_fields()]
+                search_qs = QuerySet(model)
+                search_qs.dup_select_related(qs)
+                search_qs = search_qs.filter(reduce(operator.or_, search))
+                qs = qs & search_qs
+            data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in qs[:10]]
             label = ungettext(
                 '%(counter)s result',
                 '%(counter)s results',
             len(data)) % {
                 'counter': len(data),
             }
-            data.insert(0, {"value":None,"label":label})
-            return HttpResponse(simplejson.dumps(data[:10]), mimetype='application/javascript')
+            #data.insert(0, {"value":None,"label":label})
+            return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
     data = [{"value":None,"label":_("Server error")}]
     return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
 

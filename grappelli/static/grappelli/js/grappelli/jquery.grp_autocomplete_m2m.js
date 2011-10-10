@@ -156,8 +156,10 @@
                 }
             })
             .data("autocomplete")._renderItem = function(ul,item) {
-                var label = item.value ? "<a>" + item.label + "</a>" : "<span>" + item.label + "</span>";
-                return $("<li></li>").data("item.autocomplete", item).append(label).appendTo(ul);
+                return $("<li></li>")
+                    .data( "item.autocomplete", item )
+                    .append( "<a>" + item.label + " (" + item.value + ")")
+                    .appendTo(ul);
             };
     };
     
