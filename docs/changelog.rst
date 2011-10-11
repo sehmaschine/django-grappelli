@@ -8,11 +8,10 @@
 Changelog
 =========
 
-2.3.5 (not yet released)
-------------------------
+2.3.5 (11/10/2011)
+------------------
 
-* Improved performance for autocomplete lookups
-* staticmethod autocomplete_search_fields is mandatory from now on
+* Improved performance for autocomplete lookups (staticmethod autocomplete_search_fields is required from now on)
 
 2.3.4 (08/09/2011)
 ------------------
