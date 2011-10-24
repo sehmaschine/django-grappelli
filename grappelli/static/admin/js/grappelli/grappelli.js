@@ -86,11 +86,11 @@ var django = {
         if (typeof SelectFilter != "undefined"){
             form.find(".selectfilter").each(function(index, value){
                 var namearr = value.name.split('-');
-                SelectFilter.init(value.id, namearr[namearr.length-1], false, "{% admin_media_prefix %}");
+                SelectFilter.init(value.id, namearr[namearr.length-1], false, "{{ STATIC_URL }}admin/");
             });
             form.find(".selectfilterstacked").each(function(index, value){
                 var namearr = value.name.split('-');
-                SelectFilter.init(value.id, namearr[namearr.length-1], true, "{% admin_media_prefix %}");
+                SelectFilter.init(value.id, namearr[namearr.length-1], true, "{{ STATIC_URL }}admin/");
             });
         }
     };
