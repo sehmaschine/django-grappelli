@@ -1,3 +1,4 @@
+{% load url from future %}
 {% load i18n adminmedia grp_tags %}
 
 <!-- group -->
@@ -105,12 +106,12 @@
         $.each(related_lookup_fields_fk, function() {
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.table > div:not(.empty-form)")
             .find("input[name^='" + prefix + "'][name$='" + this + "']")
-            .grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
+            .grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
         });
         $.each(related_lookup_fields_m2m, function() {
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.table > div:not(.empty-form)")
             .find("input[name^='" + prefix + "'][name$='" + this + "']")
-            .grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
+            .grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
         });
         $.each(related_lookup_fields_generic, function() {
             var content_type = this[0],
@@ -122,7 +123,7 @@
                 if (i) {
                     var ct_id = "#id_" + prefix + i[0] + content_type,
                         obj_id = "#id_" + prefix + i[0] + object_id;
-                    $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                    $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url 'grp_related_lookup' %}"});
                 }
             });
         });
@@ -131,8 +132,8 @@
             .find("input[name^='" + prefix + "'][name$='" + this + "']")
             .each(function() {
                 $(this).grp_autocomplete_fk({
-                    lookup_url:"{% url grp_related_lookup %}",
-                    autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                    lookup_url:"{% url 'grp_related_lookup' %}",
+                    autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
                 });
             });
         });
@@ -141,8 +142,8 @@
             .find("input[name^='" + prefix + "'][name$='" + this + "']")
             .each(function() {
                 $(this).grp_autocomplete_m2m({
-                    lookup_url:"{% url grp_m2m_lookup %}",
-                    autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                    lookup_url:"{% url 'grp_m2m_lookup' %}",
+                    autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
                 });
             });
         });
@@ -159,8 +160,8 @@
                     $(this).grp_autocomplete_generic({
                         content_type:ct_id,
                         object_id:obj_id,
-                        lookup_url:"{% url grp_related_lookup %}",
-                        autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                        lookup_url:"{% url 'grp_related_lookup' %}",
+                        autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
                     });
                 }
             });
@@ -174,11 +175,11 @@
                 grappelli.updateSelectFilter(form);
                 $.each(related_lookup_fields_fk, function() {
                     form.find("input[name^='" + prefix + "'][name$='" + this + "']")
-                    .grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
+                    .grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
                 });
                 $.each(related_lookup_fields_m2m, function() {
                     form.find("input[name^='" + prefix + "'][name$='" + this + "']")
-                    .grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
+                    .grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
                 });
                 $.each(related_lookup_fields_generic, function() {
                     var content_type = this[0],
@@ -189,7 +190,7 @@
                         if (i) {
                             var ct_id = "#id_" + prefix + i[0] + content_type,
                                 obj_id = "#id_" + prefix + i[0] + object_id;
-                            $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url grp_related_lookup %}"});
+                            $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url 'grp_related_lookup' %}"});
                         }
                     });
                 });
@@ -197,8 +198,8 @@
                     form.find("input[name^='" + prefix + "'][name$='" + this + "']")
                     .each(function() {
                         $(this).grp_autocomplete_fk({
-                            lookup_url:"{% url grp_related_lookup %}",
-                            autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                            lookup_url:"{% url 'grp_related_lookup' %}",
+                            autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
                         });
                     });
                 });
@@ -206,8 +207,8 @@
                     form.find("input[name^='" + prefix + "'][name$='" + this + "']")
                     .each(function() {
                         $(this).grp_autocomplete_m2m({
-                            lookup_url:"{% url grp_m2m_lookup %}",
-                            autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                            lookup_url:"{% url 'grp_m2m_lookup' %}",
+                            autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
                         });
                     });
                 });
@@ -223,8 +224,8 @@
                             $(this).grp_autocomplete_generic({
                                 content_type:ct_id,
                                 object_id:obj_id,
-                                lookup_url:"{% url grp_related_lookup %}",
-                                autocomplete_lookup_url:"{% url grp_autocomplete_lookup %}"
+                                lookup_url:"{% url 'grp_related_lookup' %}",
+                                autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
                             });
                         }
                     });

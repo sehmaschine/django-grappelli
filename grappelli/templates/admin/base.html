@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+{% load url from future %}
 {% load adminmedia i18n grp_tags %}
 <head>
     <title>{% block title %}{% endblock %}</title>
@@ -21,7 +22,7 @@
             // GLOBALS
             var grappelli = {},
                 // TODO: klemens: drop ADMIN_URL
-                ADMIN_URL = "{% url admin:index %}",
+                ADMIN_URL = "{% url 'admin:index' %}",
                 MODEL_URL_ARRAY = {% get_content_types %},
                 DATE_FORMAT = "{% get_date_format %}",
                 TIME_FORMAT = "{% get_time_format %}",
