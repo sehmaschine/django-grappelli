@@ -8,6 +8,11 @@
 Changelog
 =========
 
+2.3.6 (not yet released)
+------------------------
+
+* Fixed a bug with toggle all actions on the changlist
+
 2.3.5 (11/10/2011)
 ------------------
 
