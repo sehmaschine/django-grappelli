@@ -3,7 +3,7 @@
 {% block module_content %}
     {% spaceless %}
     {% for child in module.children %}
-        <div class="module">
+        <div class="module" id="module-{{child.title|lower}}">
             <h{% if subindex %}4{% else %}3{% endif %}><a href="{{ child.url }}">{{ child.title }}</a></h{% if subindex %}4{% else %}3{% endif %}>
             {% for model in child.models %}
                 <div class="row">
