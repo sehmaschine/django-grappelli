@@ -221,7 +221,7 @@ class AppList(DashboardModule, AppListElementMixin):
     def __init__(self, title=None, **kwargs):
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
-        self.alphabetical_sort = list(kwargs.pop('alphabetical_sort', True))
+        self.alphabetical_sort = kwargs.pop('alphabetical_sort', True)
         super(AppList, self).__init__(title, **kwargs)
 
     def init_with_context(self, context):
