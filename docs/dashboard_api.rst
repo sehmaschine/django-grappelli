@@ -14,7 +14,7 @@ The ``Dashboard`` class
 -----------------------
 
 Base class for dashboards.
-The Dashboard class is a simple python list that has two additional
+The Dashboard class is a simple python list that has three additional
 properties:
 
 ``title``
@@ -24,6 +24,30 @@ properties:
 ``template``
     The template used to render the dashboard.
     Default value: 'grappelli/dashboard/dashboard.html'
+
+``columns``
+    An integer that represents the number of columns for the dashboard.
+    Default value: 2.
+
+If you want to customize the look of your dashboard and it's modules, you
+can declare css stylesheets and/or javascript files to include when
+rendering the dashboard (these files should be placed in your
+media path), for example::
+
+    from admin_tools.dashboard import Dashboard
+
+    class MyDashboard(Dashboard):
+        class Media:
+            css = {
+                'all': (
+                    'css/mydashboard.css',
+                    'css/mystyles.css',
+                ),
+            }
+            js = (
+                'js/mydashboard.js',
+                'js/myscript.js',
+            )
 
 Here's an example of a custom dashboard::
 
