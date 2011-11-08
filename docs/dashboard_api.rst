@@ -215,6 +215,13 @@ has two extra properties:
 
 If no models/exclude list is provided, **all apps** are shown.
 
+``alphabetical_sort``
+    Boolean. If ``True`` the list of apps will be displayed in alphabetical
+    order. If ``False`` they will be displayed in the order in which they
+    first appear in ``models``. If ``models`` is not specified then this
+    setting will be ignored and the list sorted alphabetically.
+    Default value: ``True``.
+
 Here's an example of building an app list module::
 
     from grappelli.dashboard import modules, Dashboard
