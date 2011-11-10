@@ -3,7 +3,7 @@
 {% load i18n %}
 {% block javascripts %}
     {{ block.super }}
-    <script type="text/javascript" src="{% admin_media_prefix %}js/documentation.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}admin/js/documentation.js"></script>
 {% endblock %}
 {% block bodyclass %}documentation{% endblock %}
 {% block content-class %}content-grid{% endblock %}
