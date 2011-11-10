@@ -1,3 +1,4 @@
+{% load url from future %}
 {% load i18n grp_tags %}
 
 <div id="header">
@@ -11,7 +12,7 @@
                 <a href="javascript://" class="user-options-handler collapse-handler">{% firstof user.first_name user.username %}</a>
                 <ul class="user-options">
                     <!-- Change Password -->
-                    {% url admin:password_change as password_change_url %}
+                    {% url 'admin:password_change' as password_change_url %}
                     {% if password_change_url %}
                         <li><a href="{{ password_change_url }}">
                     {% else %}
@@ -19,7 +20,7 @@
                     {% endif %}
                     {% trans 'Change password' %}</a></li>
                     <!-- Logout -->
-                    {% url admin:logout as logout_url %}
+                    {% url 'admin:logout' as logout_url %}
                     {% if logout_url %}
                         <li><a href="{{ logout_url }}">
                     {% else %}
@@ -31,12 +32,12 @@
             <!-- Userlinks -->
             {% block userlinks %}
                 <!-- JS tests -->
-                {% url test-index as testindexurl %}
+                {% url 'test-index' as testindexurl %}
                 {% if testindexurl %}
                     <li><a href="{{ testindexurl }}">{% trans 'Tests' %}</a></li>
                 {% endif %}
                 <!-- Documentation -->
-                {% url django-admindocs-docroot as docsroot %}
+                {% url 'django-admindocs-docroot' as docsroot %}
                 {% if docsroot %}
                     <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
                 {% endif %}
