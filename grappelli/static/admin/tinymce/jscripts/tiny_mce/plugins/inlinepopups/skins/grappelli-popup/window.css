@@ -1,0 +1,100 @@
+/* grappelli-popup skin for TinyMCE's inlinepopups plugin */
+
+/* Reset */
+.grappelli-popup, .grappelli-popup div, .grappelli-popup span, .grappelli-popup a {vertical-align:baseline; text-align:left; position:absolute; border:0; padding:0; margin:0; background:transparent; width:auto; height:auto; overflow:hidden; display:block}
+.grappelli-popup {
+	background: #fff; border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
+	box-shadow: 0 0 10px #444; -moz-box-shadow: 0 0 10px #444; -webkit-box-shadow: 0 0 10px #444;
+}
+
+/* General */
+.grappelli-popup {position:absolute; direction:ltr}
+.grappelli-popup .mceWrapper {position:static}
+.mceEventBlocker {position:fixed; left:0; top:0; background:url(img/horizontal.gif) no-repeat 0 -75px; width:100%; height:100%}
+.grappelli-popup .mcePlaceHolder {border:1px solid #000; background:#888; top:0; left:0; opacity:0.5; -ms-filter:'alpha(opacity=50)'; filter:alpha(opacity=50)}
+.grappelli-popup_modalBlocker {position:fixed; left:0; top:0; width:100%; height:100%; background:#FFF; opacity:0.6; -ms-filter:'alpha(opacity=60)'; filter:alpha(opacity=60); display:none}
+
+/* Top */
+.grappelli-popup .mceTop, .grappelli-popup .mceTop div {top:0; width:100%; height:23px}
+.grappelli-popup .mceTop .mceLeft {width:6px;}
+.grappelli-popup .mceTop .mceCenter {right:6px; width:100%; height:23px;}
+.grappelli-popup .mceTop .mceRight {right:0; width:6px; height:23px;}
+.grappelli-popup .mceTop span {width:100%; text-align:center; vertical-align:middle; line-height:23px; font-weight:bold}
+.grappelli-popup .mceFocus .mceTop .mceLeft {}
+.grappelli-popup .mceFocus .mceTop .mceCenter {}
+.grappelli-popup .mceFocus .mceTop .mceRight {}
+.grappelli-popup .mceFocus .mceTop span {color:#FFF}
+
+/* Middle */
+.grappelli-popup .mceMiddle, .grappelli-popup .mceMiddle div {top:0}
+.grappelli-popup .mceMiddle {width:100%; height:100%; clip:rect(23px auto auto auto)}
+.grappelli-popup .mceMiddle .mceLeft {left:0; width:5px; height:100%;}
+.grappelli-popup .mceMiddle span {top:23px; left:5px; width:100%; height:100%; background:#FFF}
+.grappelli-popup .mceMiddle .mceRight {right:0; width:5px; height:100%;}
+
+/* Bottom */
+.grappelli-popup .mceBottom, .grappelli-popup .mceBottom div {height:6px}
+.grappelli-popup .mceBottom {left:0; bottom:0; width:100%}
+.grappelli-popup .mceBottom div {top:0}
+.grappelli-popup .mceBottom .mceLeft {left:0; width:5px;}
+.grappelli-popup .mceBottom .mceCenter {left:5px; width:100%;}
+.grappelli-popup .mceBottom .mceRight {right:0; width:5px;}
+.grappelli-popup .mceBottom span {display:none}
+.grappelli-popup .mceStatusbar .mceBottom, .grappelli-popup .mceStatusbar .mceBottom div {height:23px}
+.grappelli-popup .mceStatusbar .mceBottom .mceLeft {}
+.grappelli-popup .mceStatusbar .mceBottom .mceCenter {}
+.grappelli-popup .mceStatusbar .mceBottom .mceRight {}
+.grappelli-popup .mceStatusbar .mceBottom span {display:block; left:7px; font-size:11px; line-height:23px}
+
+/* Actions */
+.grappelli-popup a {width:29px; height:16px; top:3px;}
+.grappelli-popup .mceClose {right:0px; background:url(img/close.png) no-repeat center;}
+.grappelli-popup .mceMove {display:none;width:100%;cursor:move;}
+.grappelli-popup .mceMovable .mceMove {display:block}
+.grappelli-popup .mceFocus .mceClose {right:0px; background:url(img/close.png) no-repeat center;}
+.grappelli-popup .mceFocus .mceClose:hover {right:0px; background:url(img/close-hover.png) no-repeat center;}
+
+/* Resize */
+.grappelli-popup .mceResize {top:auto; left:auto; display:none; width:5px; height:5px;}
+.grappelli-popup .mceResizable .mceResize {display:block}
+.grappelli-popup .mceResizable .mceMin, .grappelli-popup .mceMax {display:none}
+.grappelli-popup .mceMinimizable .mceMin {display:block}
+.grappelli-popup .mceMaximizable .mceMax {display:block}
+.grappelli-popup .mceMaximized .mceMed {display:block}
+.grappelli-popup .mceMaximized .mceMax {display:none}
+.grappelli-popup a.mceResizeN {top:0; left:0; width:100%; cursor:n-resize}
+.grappelli-popup a.mceResizeNW {top:0; left:0; cursor:nw-resize}
+.grappelli-popup a.mceResizeNE {top:0; right:0; cursor:ne-resize}
+.grappelli-popup a.mceResizeW {top:0; left:0; height:100%; cursor:w-resize;}
+.grappelli-popup a.mceResizeE {top:0; right:0; height:100%; cursor:e-resize}
+.grappelli-popup a.mceResizeS {bottom:0; left:0; width:100%; cursor:s-resize}
+.grappelli-popup a.mceResizeSW {bottom:0; left:0; cursor:sw-resize}
+.grappelli-popup a.mceResizeSE {bottom:0; right:0; cursor:se-resize}
+
+/* Alert/Confirm */
+.grappelli-popup .mceButton {
+	bottom:10px;
+	width:80px;
+	height:24px;
+	line-height:24px;
+	vertical-align:middle;
+	text-align:center;
+	font-weight: bold;
+    color: #fff;
+    background: #309bbf;
+    background: -moz-linear-gradient(top, #39bae5, #309bbf);
+    background: -webkit-gradient(linear, left top, left bottom, from(#39bae5), to(#309bbf));
+    background: -o-linear-gradient(top, #39bae5, #309bbf);
+    border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	border: 1px solid #267c99;
+	box-shadow: 0 0 5px #666; -moz-box-shadow: 0 0 5px #666; -webkit-box-shadow: 0 0 5px #666;
+}
+.grappelli-popup .mceMiddle .mceIcon {left:15px; top:35px; width:32px; height:32px}
+.grappelli-popup .mceAlert .mceMiddle span, .grappelli-popup .mceConfirm .mceMiddle span {background:transparent;left:60px; top:35px; width:320px; height:50px; font-weight:bold; overflow:auto; white-space:normal}
+.grappelli-popup a:hover {font-weight:bold;}
+.grappelli-popup .mceAlert .mceMiddle, .grappelli-popup .mceConfirm .mceMiddle {background:#fff}
+.grappelli-popup .mceAlert .mceOk {left:50%; top:auto; margin-left: -40px}
+.grappelli-popup .mceAlert .mceIcon {background:url(img/alert.png) no-repeat;}
+.grappelli-popup .mceConfirm .mceOk {left:50%; top:auto; margin-left: -90px}
+.grappelli-popup .mceConfirm .mceCancel {left:50%; top:auto}
+.grappelli-popup .mceConfirm .mceIcon {background:url(img/confirm.png) no-repeat;}
