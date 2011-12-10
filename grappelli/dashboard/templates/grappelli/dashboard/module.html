@@ -14,18 +14,13 @@
             <h{% if subindex %}3{% else %}2{% endif %} class="module_title{% if module.collapsible %} collapse-handler{% endif %}">{{ module.title }}</h{% if subindex %}3{% else %}2{% endif %}>
         {% endif %}
     {% endif %}
-    
-    {# TODO: need to know in what dom we wrap the pre_content/post_content #}
-    {# if module.pre_content %}{{ module.pre_content }}{% endif #}
-    
+    {% if module.pre_content %}{{ module.pre_content|safe }}{% endif %}
     {% block module_content %}
         {% for child in module.children %}
             {{ child }}
         {% endfor %}
     {% endblock %}
-    
-    {# TODO: need to know in what dom we wrap the pre_content/post_content #}
-    {# if module.post_content %}{{ module.post_content }}{% endif #}
+    {% if module.post_content %}{{ module.post_content|safe }}{% endif %}
     
 </div>
 
