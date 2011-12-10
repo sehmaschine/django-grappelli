@@ -15,6 +15,9 @@ Changelog
 * Fixed a bug with adding dynamic-forms to tabular and stacked inlines (which caused the remove-handler to throw an error)
 * Autocompletes: Only do a lookup with generics, if content-type is defined.
 * Support for new URL tags, see https://docs.djangoproject.com/en/dev/releases/1.3/#changes-to-url-and-ssi.
+* Fixed a bug with m2m-lookups (return obj.pk instead of obj.id).
+* Added support for non-integer IDs with generic relations.
+* Added pre_content and post_content to dashboard.
 
 2.3.5 (11/10/2011)
 ------------------
