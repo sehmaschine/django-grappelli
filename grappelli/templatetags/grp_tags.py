@@ -27,7 +27,7 @@ class do_get_generic_objects(template.Node):
     def render(self, context):
         return_string = "{"
         for c in ContentType.objects.all().order_by('id'):
-            return_string = "%s%d: {pk: %s, app: '%s', model: '%s'}," % (return_string, c.id, c.id, c.app_label, c.model)
+            return_string = "%s%s: {pk: %s, app: '%s', model: '%s'}," % (return_string, c.id, c.id, c.app_label, c.model)
         return_string = "%s}" % return_string[:-1]
         return return_string
 
