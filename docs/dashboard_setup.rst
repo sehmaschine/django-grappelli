@@ -55,6 +55,12 @@ Open your ``settings.py`` file and add the following::
 
     GRAPPELLI_INDEX_DASHBOARD = 'yourproject.dashboard.CustomIndexDashboard'
 
+If you´re using a custom admin-site (not ``django.contrib.admin.site``), you need to define the dashboard like this::
+
+    GRAPPELLI_INDEX_DASHBOARD = {
+        'yourproject.admin.admin_site': 'yourproject.my_dashboard.CustomIndexDashboard',
+    }
+
 Create custom Dashboards for multiple admin sites
 -------------------------------------------------
 
