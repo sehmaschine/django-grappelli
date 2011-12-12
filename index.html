@@ -9,204 +9,169 @@
         <link rel="stylesheet" href="css/grid.css" type="text/css" media="screen, projection" />
         <link rel="stylesheet" href="css/typography.css" type="text/css" media="screen, projection" />
         <link rel="stylesheet" href="css/marginspaddings.css" type="text/css" media="screen, projection" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <link rel="stylesheet" href="fancybox/jquery.fancybox.css?v=2.0.3" type="text/css" media="screen" />
+        <script type="text/javascript" src="fancybox/jquery.fancybox.js?v=2.0.3"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".fancybox").fancybox({
+                    arrows: false,
+                    nextClick: true,
+                    openEffect: 'fade',
+                    prevEffect: 'none',
+                    nextEffect: 'none',
+                    margin: 40,
+                    helpers: {
+                        overlay: {
+                            speedIn: 0,
+                            speedOut: 0,
+                            opacity: 1,
+                            css: {
+                                cursor: 'pointer',
+                                'background-color': '#333'
+                            },
+                            closeClick: true
+                        },
+                        title: {
+                            type: 'float' // 'float', 'inside', 'outside' or 'over'
+                        }
+                    }
+                });
+            });
+        </script>
     </head>
     <body>
-        <div class="wrapper" style="background: #eee;">
-            <div class="container">
-                <div class="column span-12 padding-top-xlarge last">
-                    <div class="column span-12 last" style="text-align: center;">
-                        <h1>
-                            <img src="img/logo.png" width="700" />
-                        </h1>
-                    </div>
-                </div>
-                <div class="column span-12 last">
-                    <div class="column span-12 last" style="text-align: center;">
-                        <img src="img/teaser.png" width="940" />
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="wrapper">
             <div class="container">
                 <div class="column span-12 padding-top last">
-                    <div class="column span-12 last">
-                        <div class="column span-12 last" style="text-align: center;">
-                            <img src="img/buttons.png" width="940" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="container">
-                <div class="column span-12 padding-top last">
-                    <div class="column span-3">
-                        <div class="box margin-top">
-                            <h3>
-                                about
-                            </h3>
-                            <p>
-                                The Django admin interface is a very simple but highly customizable app in order to manage your websites data
-                                &mdash; some might call it a CMS.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-3">
-                        <div class="box margin-top">
-                            <h3>
-                                &nbsp;
-                            </h3>
-                            <p>
-                                On top of Djangos admin interface, <strong>Grappelli</strong> gives you a consistend and grid-based look &amp; feel and
-                                adds some nifty features.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-3">
-                        <div class="box margin-top">
-                            <h3>
-                                features
-                            </h3>
-                            <p>
-                                Related lookups and Autocompletes for Foreign Keys, M2M– and Generic–Relationships
-                            </p>
-                            <p>
-                                Customizable dashboard
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-3 last">
-                        <div class="box margin-top">
-                            <h3>
-                                &nbsp;
-                            </h3>
-                            <p>
-                                Inline sortables with drag & drop
-                            </p>
-                            <p>
-                                Integrated TinyMCE theme
-                            </p>
-                            <p>
-                                Improved collabsibles
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="column span-12 padding-top last">
-                    <div class="column span-3">
-                        <div class="box margin-top">
-                            <h3>
-                                Customizable Dashboard
-                            </h3>
-                            <p class="padding-top-mini">
-                                <img src="img/screenshot_small_dashboard.png" width="220" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-3">
-                        <div class="box margin-top">
-                            <h3>
-                                Autocomplete lookups
-                            </h3>
-                            <p class="padding-top-mini">
-                                <img src="img/screenshot_small_dashboard.png" width="220" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-3">
-                        <div class="box margin-top">
-                            <h3>
-                                Inline sortables
-                            </h3>
-                            <p class="padding-top-mini">
-                                <img src="img/screenshot_small_dashboard.png" width="220" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-3 last">
-                        <div class="box margin-top">
-                            <h3>
-                                TinyMCE theme
-                            </h3>
-                            <p class="padding-top-mini">
-                                <img src="img/screenshot_small_dashboard.png" width="220" />
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="column span-12 padding-top padding-bottom-xlarge last">
-                    <div class="column span-2">
-                        <div class="box margin-top">
-                            <h3>
-                                latest stable version
-                            </h3>
-                            <p>
-                                2.3.3 May 2011
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-2">
-                        <div class="box margin-top">
-                            <h3>
-                                dependencies
-                            </h3>
-                            <p>
-                                <a href="http://www.djangoproject.com">Django 1.3</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-2">
-                        <div class="box margin-top">
-                            <h3>
-                                license
-                            </h3>
-                            <p>
-                                New BSD License
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-2 last">
-                        <div class="box margin-top">
-                            <h3>
-                                download
-                            </h3>
-                            <p>
-                                Download <a href="http://github.com/sehmaschine/django-grappelli/zipball/master">zip</a> or <a href="http://github.com/sehmaschine/django-grappelli/tarball/master">tar</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-2">
-                        <div class="box margin-top">
-                            <h3>
-                                supported browsers
-                            </h3>
-                            <p>
-                                Firefox, Chrome, Safari
-                            </p>
-                        </div>
-                    </div>
-                    <div class="column span-2 last">
-                        <div class="box margin-top">
-                            <h3>
-                                authors
-                            </h3>
-                            <p>
-                                <a href="http://twitter.com/sehmaschine/">Patrick Kranzlmueller</a><br>
-                                Axel Swoboda<br>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="container">
-                <div class="column span-12 padding-top-xlarge last">
-                    <div class="column span-12 last padding-top-xlarge" style="text-align: center;">
+                    <div class="column span-4">
                         <p>
-                            Grappelli is developed and maintained by
-                            <a href="http://www.vonautomatisch.at">vonautomatisch</a>
+                            <a href="http://sehmaschine.github.com/django-grappelli/" class="dark">django&mdash;<strong>grappelli</strong></a>
+                        </p>
+                    </div>
+                    <div class="column span-4">
+                        <p>
+                            <a href="http://www.vonautomatisch.at" class="logo"><span>vonautomatisch</span></a>
+                        </p>
+                    </div>
+                    <div class="column span-4 last">
+                        <p>
+                            <a href="http://sehmaschine.github.com/django-filebrowser/" class="dark">django&mdash;<strong>filebrowser</strong></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="container">
+                <div class="column span-12 padding-top-max last">
+                    <h1 class="title"><span>django-grappelli</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="container">
+                <div class="column span-12 padding-top-xlarge padding-bottom-xlarge last">
+                    <div class="column span-10 prepend-1 last">
+                        <p class="title" style="color: #333; font-weight: bold;">
+                            A jazzy skin for the Django admin interface.
+                        </p>
+                        <p class="title">
+                            The <a href="http://www.djangoproject.com" class="external">Django</a> <a href="https://docs.djangoproject.com/en/1.3/ref/contrib/admin/" class="external">admin interface</a> is a simple yet highly customizable app in order to manage your websites data
+                            &mdash; <i>some might call it a CMS.</i>
+                            On top of Djangos admin interface, <i>Grappelli</i> gives you a consistent and grid-based look &amp; feel and
+                            adds some nifty features.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="container" style="border-top: 1px solid #bbb;">
+                <div class="column span-12 padding-top-xlarge padding-bottom-xlarge last" style="border-top: 1px solid #fff;">
+                    <div class="column span-4">
+                        <h3>
+                            <a href="http://readthedocs.org/docs/django-grappelli/en/latest/" class="navigation">Documentation on <strong>RTD</strong></a>
+                        </h3>
+                    </div>
+                    <div class="column span-4">
+                        <h3>
+                            <a href="https://github.com/sehmaschine/django-grappelli" class="navigation">Code on <strong>GitHub</strong></a>
+                        </h3>
+                    </div>
+                    <div class="column span-4 last">
+                        <h3>
+                            <a href="http://pypi.python.org/pypi/django-grappelli" class="navigation">Package on <strong>PyPi</strong></a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper" id="screenshots">
+            <div class="container" style="border-top: 1px solid #bbb;">
+                <div class="column span-12 padding-top-xlarge padding-bottom-xlarge last" style="border-top: 1px solid #fff;">
+                    <div class="column span-3">
+                        <p class="screenshot">
+                            <a href="img/screenshot_changelist.png" class="fancybox" rel="grappelli" title="Changelist with activated filters, search-field, date-hierarchy, list-editables and actions."><img src="img/screenshot_changelist_thumb.png" width="204" /></a>
+                            <span class="zoom">&nbsp;</span>
+                        </p>
+                    </div>
+                    <div class="column span-3">
+                        <p class="screenshot">
+                            <a href="img/screenshot_changeform.png" class="fancybox" rel="grappelli" title="Changeform with TinyMCE theme and inline-sortables."><img src="img/screenshot_changeform_thumb.png" width="204" /></a>
+                            <span class="zoom">&nbsp;</span>
+                        </p>
+                    </div>
+                    <div class="column span-3">
+                        <p class="screenshot">
+                            <a href="img/screenshot_changeform_2.png" class="fancybox" rel="grappelli" title="Autocompletes for Foreign-Keys, M2M and Generic Relations"><img src="img/screenshot_changeform_2_thumb.png" width="204" /></a>
+                            <span class="zoom">&nbsp;</span>
+                        </p>
+                    </div>
+                    <div class="column span-3 last">
+                        <p class="screenshot">
+                            <a href="img/screenshot_dashboard.png" class="fancybox" rel="grappelli" title="Customizable Dashboard"><img src="img/screenshot_dashboard_thumb.png" width="204" /></a>
+                            <span class="zoom">&nbsp;</span>
+                        </p>
+                    </div>
+                </div>
+                <!--<div class="column span-12 padding-bottom-xlarge last">
+                    <p>
+                        <a href="#">Additional Screenshot &mdash; shows the original Django Admin Interface and Grappelli side by side</a><br />(opens in a new window)
+                    </p>
+                </div>-->
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="container" style="border-top: 1px solid #bbb;">
+                <div class="column span-12 padding-top-xlarge padding-bottom-xlarge last" style="border-top: 1px solid #fff;">
+                    <ul>
+                        <li>Consistent and grid-based look &amp; feel</li>
+                        <li>Related lookups with Autocompletes</li>
+                        <li class="last">Inline sortables with Drag &amp; Drop</li>
+                        <li>Compass-based CSS (coming with 2.4)</li>
+                        <li>Integrated TinyMCE theme</li>
+                        <li class="last">Customizable dashboard</li>
+                        <li>Improved collabsibles</li>
+                        <li>Unified JQuery-Plugins</li>
+                        <li class="last">Compatible with django&mdash;<strong>filebrowser</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="container" style="border-top: 1px solid #bbb; background: transparent url('img/featuresx.png') center center no-repeat;">
+                <div class="column span-12 padding-top-xlarge padding-bottom-xlarge last" style="border-top: 1px solid #fff;">
+                    <p>The latest stable version is 2.3.5, released in October 2011. Grappelli requires Django 1.3.x (official release) and is licensed under the New BSD License.<br />Grappelli is developed and maintained by <a href="http://www.vonautomatisch.at" class="external">vonautomatisch</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="container">
+                <div class="column span-12 padding-top-max padding-bottom-max last">
+                    <div class="column span-12 last">
+                        <p>
+                            <a href="https://twitter.com/sehmaschine" class="twitter"><span>Follow <i>sehmaschine</i> on Twitter</span></a>
                         </p>
                     </div>
                 </div>

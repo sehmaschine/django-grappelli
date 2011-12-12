@@ -75,9 +75,15 @@
 
 .padding-xlarge         { padding: 32px; }
 .padding-top-xlarge     { padding-top: 32px; }
-.padding-bottom-xlarge  { padding-bottom: 40px; }
+.padding-bottom-xlarge  { padding-bottom: 32px; }
 .padding-left-xlarge    { padding-left: 40px; }
 .padding-right-xlarge   { padding-right: 40px; }
+
+.padding-max	        { padding: 64px; }
+.padding-top-max     	{ padding-top: 64px; }
+.padding-bottom-max  	{ padding-bottom: 64px; }
+.padding-left-max    	{ padding-left: 80px; }
+.padding-right-max   	{ padding-right: 80px; }
 
 .no-padding             { padding: 0; }
 .no-padding-top         { padding-top: 0; }

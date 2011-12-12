@@ -7,12 +7,14 @@
 body {
     font-size: 12px;
     line-height: 16px;
-    color: #999;
-    background: #222;
+    color: #666;
+    background: #ddd;
     font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 200;
     margin: 0;
     padding: 0;
-    border-top: 4px solid #222;
+    border-top: 8px solid #ccc;
+    text-align: center;
 }
 
 /* Headings
@@ -20,36 +22,26 @@ body {
 
 h1,h2,h3 {
     font-weight: bold;
-    color: #eee;
+    color: #333;
     margin: 0;
     padding: 0;
 }
 
 h1 {
-    font-size: 24px;
-    line-height: 24px;
-}
-h2 {
     font-size: 16px;
     line-height: 16px;
-    font-weight: normal;
-    padding: 16px 0 0 0;
-    border-top: 1px solid #444;
+    color: #333;
 }
-h2.no-border {
-    border: none;
-}
-h2 span {
+h2 {
+    font-size: 32px;
+    line-height: 32px;
     font-weight: normal;
-    color: #666;
 }
 h3 {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 16px;
     color: #666;
-    font-weight: normal;
-    padding: 16px 0 0 0;
-    border-top: 1px solid #333;
+    font-weight: 200;
 }
 
 /* Text elements
@@ -58,25 +50,128 @@ h3 {
 p {
     margin: 4px 0;
 }
-p.description {
-    color: #333;
+p.title {
     font-size: 16px;
-    line-height: 16px;
-    padding: 16px 0 0 0;
-    margin: 0;
+    line-height: 24px;
+    color: #666;
 }
+
+/* Images
+-------------------------------------------------------------- */
+
+p.screenshot {
+    display: block;
+    width: 202px;
+    height: 129px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;
+    border: 1px solid #fff;
+/*    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);*/
+}
+/*p.screenshot:hover img {
+    opacity: 0.5;
+}*/
+
+p.screenshot span.zoom {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: transparent url(../img/screenshot_show.png) bottom right no-repeat;
+    float: left;
+    position: relative;
+    margin-top: -16px;
+    margin-left: 188px;
+}
+p.screenshot:hover span.zoom {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: transparent url(../img/screenshot_show_hover.png) bottom right no-repeat;
+    float: left;
+    position: relative;
+    margin-top: -16px;
+    margin-left: 188px;
+}
+
+/* Links
+-------------------------------------------------------------- */
 
 a,
 a:link,
 a:visited {
-    font-weight: bold;
+    font-weight: normal;
     color: #309BBF;
     text-decoration: none;
 }
 
 a:focus,
-a:hover {
+a:hover, a.dark:focus, a.dark:hover {
+    color: #222;
+}
+
+a.dark {
+    color: #309BBF;
+}
+
+a.navigation {
+    display: inline-block;
+    background: #ddd;
+    color: #309BBF;
+    background: #309BBF;
+    color: #ddd;
+    padding: 4px 20px;
+    border-radius: 16px; -webkit-border-radius: 16px; -moz-border-radius: 16px;
+    font-weight: normal;
+}
+a.navigation:hover {
+    background: #333;
+    color: #ddd;
+}
+
+a.external {
+    color: #666;
+    border-bottom: 2px solid #309BBF;
+}
+a.external:hover {
     color: #333;
+    border-color: #333;
+}
+
+a.logo {
+    display: inline-block;
+    width: 94px; height: 110px;
+    color: #333;
+    background: transparent url(../img/va_logo.png) 50% 50% no-repeat;
+    margin-top: -28px;
+}
+a.logo:hover {
+    background: transparent url(../img/va_logo_hover.png) 50% 50% no-repeat;
+}
+
+a.twitter {
+    display: inline-block;
+    width: 94px; height: 110px;
+    color: #333;
+    background: transparent url(../img/twitter.png) 50% 50% no-repeat;
+}
+a.twitter:hover {
+    background: transparent url(../img/twitter_hover.png) 50% 50% no-repeat;
+}
+a span {
+    display: none;
+}
+
+h1.title {
+    display: inline-block;
+    width: 460px; height: 64px;
+    color: #333;
+    background: transparent url(../img/grappelli_logo.png) 50% 50% no-repeat;
+}
+h1.title span {
+    display: none;
 }
 
 /* Lists
@@ -87,12 +182,30 @@ li ol {
     margin: 0;
 }
 ul, ol {
-    margin: 0;
+    margin: 4px 0;
     padding: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #666;
 }
 
 ul {
-    list-style-type: disc;
+    list-style-type: none;
+}
+ul li {
+    float: left;
+    width: 300px;
+    margin-right: 20px;
+    padding: 2px 0;
+}
+ul li.last {
+    margin-right: 0;
+}
+ul li.bottom {
+    border-bottom: 1px solid #111;
+}
+ul li.top {
+    border-top: 1px solid #333;
 }
 ol {
     list-style-type: decimal;
