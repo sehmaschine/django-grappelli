@@ -1248,7 +1248,7 @@ h1 + .tools a.add-handler:hover, h1 + .tools a.add-handler:active {
 ul.errorlist {
     color: #bf3030;
 }
-.error input, .error select, .errors input, .errors select {
+.error input, .error select, .errors input, .errors select, .errors textarea {
     border: 1px solid #bf3030 !important;
 }
 .login ul.errorlist {
