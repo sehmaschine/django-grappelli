@@ -3,3 +3,4 @@ docs/_build/
 .DS_Store
 dist/*
 django_grappelli.egg-info/*
+grappelli/compass/.sass-cache/
