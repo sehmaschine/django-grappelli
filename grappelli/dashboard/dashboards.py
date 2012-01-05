@@ -62,6 +62,7 @@ class Dashboard(object):
             columns = 3
             
             def __init__(self, **kwargs):
+                super(MyDashboard, self).__init__(**kwargs)
                 
                 # append an app list module for "Applications"
                 self.children.append(modules.AppList(
