@@ -40,7 +40,7 @@ A ModelAdmin example::
             }),
         )
 
-In the InlineModelAdmin, an additional property ``inline_classes`` is available to define the default collapsible state of the inline items (in contrast to the whole group)::
+In the `StackedInline <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of the inline items (in contrast to the whole group)::
 
     class NavigationItemInline(admin.StackedInline):
         classes = ('collapse open',)
