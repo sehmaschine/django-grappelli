@@ -40,13 +40,12 @@ A ModelAdmin example::
             }),
         )
 
-An InlineModelAdmin example::
+In the InlineModelAdmin, an additional property ``inline_classes`` is available to define the default collapsible state of the inline items (in contrast to the whole group)::
 
     class NavigationItemInline(admin.StackedInline):
         classes = ('collapse open',)
+        inline_classes = ('collapse open',)
 
-.. note::
-    With Inlines, only the Inline-Group (and not the Inline-items) are affected by the ``classes`` property.
 
 .. _customizationinlinessortables:
 
