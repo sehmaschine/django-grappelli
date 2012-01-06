@@ -17,7 +17,7 @@
         {% with inline_admin_formset.opts.sortable_field_name|default:"" as sortable_field_name %}
         {% for inline_admin_form in inline_admin_formset|formsetsort:sortable_field_name %}
             <!-- element -->
-            <div class="module collapse closed{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
+            <div class="module {{ inline_admin_formset.opts.inline_classes|join:" "|default:"collapse closed" }}{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
                 id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
                 <h3 class="collapse-handler">{{ inline_admin_formset.opts.verbose_name|title }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
                 <ul class="tools">
