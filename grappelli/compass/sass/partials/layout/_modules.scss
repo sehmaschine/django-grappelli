@@ -180,7 +180,7 @@
 
 
 
-/*  ROWS
+/*  ROWS & CELLS
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-row {
@@ -203,6 +203,24 @@
 	&:last-of-type {
 		border-bottom: 0;
 		@include border-bottom-radius($grp-border-radius - 1px);
+	}
+	.grp-cell {
+		position: relative;
+		float: left;
+		margin-top: -8px;
+		margin-bottom: -1000px;
+		padding-top: 8px;
+		padding-bottom: 1000px;
+		height: 100%;
+		white-space: nowrap;
+		border-right: 1px solid #ddd;
+		& + .grp-cell {
+			padding-left: 20px;
+			border-left: 1px solid #fff;
+		}
+		&:last-of-type {
+			border-right: 0 !important;
+		}
 	}
 }
 .grp-row {
