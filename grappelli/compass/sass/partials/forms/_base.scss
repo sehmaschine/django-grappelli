@@ -34,11 +34,12 @@ fieldset.grp-module {
     .grp-row label {
         margin: 6px 0 6px;
         display: inline-block;
-        color: $grp-form-label-font-color;
+        font-family: $grp-form-label-font-family;
         font-size: $grp-form-label-font-size;
-        line-height: 13px;
+        line-height: $grp-form-label-line-height;
+        color: $grp-form-label-font-color;
         &.required {
-            font-weight: bold;
+            @include grp-form-label-required;
         }
     }
 }
@@ -49,13 +50,13 @@ fieldset.grp-module {
 
 @mixin grp-form-field {
     margin: 0;
-    @include grp-padding($grp-padding-size-s);
+    @include grp-padding($grp-padding-size-xs $grp-padding-size-s);
     height: 25px;
-    color: $grp-form-font-color;
-    font-family: $grp-form-font-family;
-    font-size: $grp-form-font-size;
-    line-height: 16px; // needed for -webkit line-height bug in input-fields
+    font-family: $grp-form-field-font-family;
+    font-size: $grp-form-field-font-size;
+    line-height: $grp-form-field-line-height;
     font-weight: bold;
+    color: $grp-form-field-font-color;
     border: $grp-form-field-border;
     @include border-radius($grp-form-field-border-radius);
     background: $grp-form-field-background-color;
@@ -78,7 +79,8 @@ textarea,
 select {
     @include grp-form-field;
 }
-@include grp-helper-webkit-input–text-verticalcenter;
+// fix vertical text-centering in webkit browsers
+// @include grp-helper-webkit-input–text-verticalcenter;
 
 
 
@@ -114,7 +116,7 @@ select[multiple=multiple] {
 
 textarea {
     vertical-align: top;
-    padding: 3px 5px;
+    padding: 5px 5px;
     height: 60px;
 }
 fieldset.monospace textarea {

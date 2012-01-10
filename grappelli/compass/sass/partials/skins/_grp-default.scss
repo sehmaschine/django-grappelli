@@ -67,11 +67,14 @@ $grp-row-border-bottom-color: #ddd !default;
 
 /*  Constants ............................................................ */
 
-$grp-form-font-family: Arial, sans-serif !default;
-$grp-form-font-size: 12px !default;
-$grp-form-font-color: #333 !default;
+$grp-form-field-font-family: Arial, sans-serif !default;
+$grp-form-field-font-size: 12px !default;
+$grp-form-field-line-height: 14px !default;
+$grp-form-field-font-color: #333 !default;
 
+$grp-form-label-font-family: Arial, sans-serif !default;
 $grp-form-label-font-size: 11px !default;
+$grp-form-label-line-height: 13px !default;
 $grp-form-label-font-color: #333 !default;
 
 $grp-form-field-background-color: #fdfdfd !default;
@@ -96,6 +99,15 @@ $grp-form-button-reset-background-color-hover: #fff !default;
 $grp-form-button-cancel-background-color: #fdfdfd !default;
 $grp-form-button-cancel-background-color-hover: #fff !default;
 
+// Required Labels
+@mixin grp-form-label-required {
+	font-weight: bold;
+}
+.grp-form-label-required {
+	@include grp-form-label-required;
+}
+
+// Form Buttons Gradient
 @mixin grp-form-button-default-gradient {
 	color: #fff;
 	border: 1px solid #2987a6;
@@ -124,8 +136,8 @@ $grp-form-button-cancel-background-color-hover: #fff !default;
 
 /*  Classes (out of constants) ............................................................ */
 
-.grp-form-font-family { font-family: $grp-form-font-family; }
-.grp-form-font-size { font-size: $grp-form-font-size; }
+.grp-form-field-font-family { font-family: $grp-form-field-font-family; }
+.grp-form-field-font-size { font-size: $grp-form-field-font-size; }
 
 .grp-form-field-background-color { background: $grp-form-field-background-color; }
 .grp-form-field-border-color { border: $grp-form-field-border; }
