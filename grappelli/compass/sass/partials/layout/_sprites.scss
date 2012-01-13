@@ -1,6 +1,7 @@
 
 
 @import "icons/*.png";
+@include all-icons-sprites;
 // not necessarily needed, just use if you want to produce classes for certain buttons
 // .grp-actions {
 //     .grp-button-datepicker { @include icons-sprite(datepicker); }

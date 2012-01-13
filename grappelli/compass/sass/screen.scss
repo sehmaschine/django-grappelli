@@ -63,20 +63,40 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 ------------------------------------------------------------------------------------------------------ */
 
 body {
-	padding: 0 0 0 20px;
+	position: relative;
+	float: left;
+	clear: both;
+	@include clearfix;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	@include box-sizing(border-box);
 	@extend .grp-font-color;
 	@extend .grp-font-family;
 	@extend .grp-font-size;
 	@extend .grp-line-height;
 	background: #fff;
+	overflow: visible;
 }
 
-nav#grp-header {
-	// position: fixed;
-	margin-left: -20px;
-	padding: 10px 20px;
-	@include grp-gradient-dark;
-	@include clearfix;
+header#grp-header {
+	// display: none;
+	position: fixed;
+	z-index: 1000;
+	float: left;
+	clear: both;
+	width: 100%;
+	@include box-sizing(border-box);
+	nav#grp-navigation {
+		position: relative;
+		float: left;
+		clear: both;
+		width: 100%;
+		padding: 10px 20px;
+		@include box-sizing(border-box);
+		@include grp-gradient-dark;
+		@include clearfix;
+	}
 	#grp-branding {
 		display: none;
 	}
@@ -91,12 +111,203 @@ nav#grp-header {
 		font-weight: bold;
 	}
 }
-#grp-content {
+
+
+
+/*  CONTENT
+------------------------------------------------------------------------------------------------------ */
+
+article#grp-content {
+	position: relative;
+	float: left;
+	clear: both;
 	@include clearfix;
-	overflow: visible;
-}
-.grp-container-flexible {
-	padding-right: 20px;
+	margin-top: 180px;
+	padding: 0 20px 200px;
+	width: 100%;
+	@include box-sizing(border-box);
+	// overflow: visible;
+	// overflow: auto;
 }
 
+
+
+
+/*  BREADCRUMBS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-breadcrumbs {
+	position: relative;
+	float: left;
+	clear: both;
+	width: 100%;
+	@include box-sizing(border-box);
+	@include grp-padding($grp-padding-size-s 20px);
+	ul {
+		@include horizontal-list(10px, left);
+	}
+	border-bottom: 1px solid $grp-breadcrumbs-border-color;
+	background: $grp-breadcrumbs-background-color;
+}
+#grp-breadcrumbs {
+	@include grp-breadcrumbs;
+}
+
+
+
+/*  FOOTER
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-footer {
+	position: fixed;
+	bottom: 0;
+	float: left;
+	padding: 10px 20px;
+	width: 100%;
+	@include box-sizing(border-box);
+	@include grp-gradient-dark;
+	@include clearfix;
+	ul {
+		@include horizontal-list(10px, right);
+		overflow: visible;
+		li {
+			&.grp-left {
+				float: left;
+			}
+			input[type=submit] {
+				opacity: .75;
+				&.default {
+					opacity: 1;
+				}
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+#grp-footer {
+	@include grp-footer;
+}
+
+
+
+/*  LAYOUTS
+------------------------------------------------------------------------------------------------------ */
+
+
+.grp-layout-container {
+	position: relative;
+	float: left;
+	clear: both;
+	width: 100%;
+	@include box-sizing(border-box);
+	.grp-column-left, .grp-column-right {
+		@include box-sizing(border-box);
+	}
+}
+@function grp-column-width($n) {
+    @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
+}
+$n: $blueprint-grid-columns;
+@while $n > 0 {
+	.grp-layout-container {
+		&.grp-column-left-fluid.grp-column-right-span-#{$n} {
+	    	margin-right: - grp-column-width($n);
+	        .grp-column-left {
+	        	float: none;
+				clear: left;
+	        	margin-right: grp-column-width($n) + 20;
+				width: auto;
+			}
+	        .grp-column-right {
+		        float: right;
+				clear: right;
+	        	width: grp-column-width($n);
+				margin-right: 0;
+		    }
+	    }
+	    &.grp-column-left-span-#{$n}.grp-column-right-fluid {
+	    	.grp-column-left {
+	        	float: left;
+	        	clear: left;
+	        	margin-right: - grp-column-width($n);
+				width: grp-column-width($n);
+			}
+	        .grp-column-right {
+		        display: block;
+				float: left;
+				clear: right;
+	        	margin-right: 0;
+				padding-left: grp-column-width($n) + 20;
+		        width: 100%;
+		    }
+	    }
+	    $n: $n - 1;
+	}
+}
+
+
+
+
+// @mixin grp-layout($left-column, $right-column) {
+// 	@if $left-column == fluid and $right-column == fluid {
+// 		body {
+// 			background: #e4f;
+// 		}
+// 	} @else if $left-column == fluid {
+// 		body {
+// 			background: #4ef;
+// 		}
+// 	} @else if $right-column == fluid {
+// 		body {
+// 			background: #fe4;
+// 		}
+// 	}
+// }
+// @include grp-layout(220px, fluid);
+
+
+
+// body{
+//   margin:0;
+//   padding:200px 0 200px 0;
+//  }
+// #test-header {
+// 	position:absolute;
+// 	z-index: 1000;
+//   top:0;
+//   left:0;
+//   width:100%;
+//   height:200px;
+//   background: #4ef;
+// }
+// #test-content {
+// 	z-index: 100;
+// 	background: #e4f;
+// }
+// #test-footer {
+// 	position:absolute;
+// 	z-index: 1000;
+//   bottom:0;
+//   left:0;
+//   width:100%;
+//   height:200px;
+//   background: #000;
+// }
+// @media screen{
+//   body div#test-header{
+//    position:fixed;
+//   }
+//   body div#test-footer{
+//    position:fixed;
+//   }
+//  }
+//  * html body{
+//   overflow:hidden;
+//  } 
+//  * html div#test-content{
+//   height:100%;
+//   overflow:auto;
+//  }
 

@@ -173,6 +173,11 @@ $grp-button-border-focus: 1px solid #888 !default;
 	@include grp-gradient-dark;
 }
 
+@mixin grp-background-gradient-icon-combo($icon, $gradient-top, $gradient-bottom) {
+	@include background(sprite($icons-sprites, $icon) no-repeat, linear-gradient($gradient-top, $gradient-bottom));
+}
+
+
 
 
 /*  HEADING GRADIENTS

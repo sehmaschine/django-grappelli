@@ -1,0 +1,92 @@
+{% extends "grp_dom_documentation/base.html" %}
+
+<!-- LOADING -->
+{% load i18n admin_modify adminmedia grp_tags %}
+
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    
+    </script>
+    {{ media }}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block bodyclass %}change-form{% endblock %}
+{% block content-class %}{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <ul>
+            <li><a href="/grp-dom-documentation/">Grappelli DOM Documentation</a> &rsaquo;</li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+<!-- OBJECT TOOLS -->
+{% block object-tools %}
+    <ul class="grp-object-tools">
+        {% block object-tools-items %}
+            <li><a href="history/">{% trans "History" %}</a></li>
+            {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="grp-state-focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
+        {% endblock %}
+    </ul>
+{% endblock %}
+
+<!-- CONTENT-TITLE -->
+{% block content_title %}
+    <h1>Layouts <span>Grid, Fluid</span></h1>
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <section class="rte grp-content-container">
+        <h2>One Column <span>Full Width</span></h2>
+        <div class="grp-column">
+            <div class="grp-module">
+                <div class="grp-row">grp-column-left<br />öasldkasdölk</div>
+            </div>
+        </div>
+    </section>
+    <section class="rte grp-content-container grp-column-left-fluid grp-column-right-span-6">
+        <h2>Two Columns <span>Left Fluid, Right Grid</span></h2>
+        <div class="grp-column-left">
+            <div class="grp-module">
+                <div class="grp-row">grp-column-left<br />öasldkasdölk</div>
+            </div>
+        </div>
+        <div class="grp-column-right">
+            <div class="grp-module">
+                <div class="grp-row">grp-column-right</div>
+            </div>
+        </div>
+    </section>
+    <section class="rte grp-content-container grp-column-left-span-6 grp-column-right-fluid">
+        <h2>Two Columns <span>Left Grid, Right Fluid</span></h2>
+        <div class="grp-column-left">
+            <div class="grp-module">
+                <div class="grp-row">grp-column-left<br />öasldkasdölk</div>
+            </div>
+        </div>
+        <div class="grp-column-right">
+            <div class="grp-module">
+                <div class="grp-row">grp-column-right</div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+<!-- Submit-Row -->
+{% block footer %}
+    <footer id="grp-footer">
+        xxx
+    </footer>
+{% endblock %}
+                    
+                    

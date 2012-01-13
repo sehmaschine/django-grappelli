@@ -1,6 +1,60 @@
 
 
 
+
+/*  OJECT-TOOLS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-object-tools {
+	@include horizontal-list(5px, left);
+	position: relative;
+	float: right;
+	top: -40px;
+	margin: 0 0 -40px;
+	li {
+		a {
+			display: block;
+			padding: 4px 15px;
+			font-weight: bold;
+			@include border-radius(30px);
+			color: #fff;
+			border: 1px solid #777;
+			opacity: .5;
+			@include background(linear-gradient(#999, #888));
+			&.grp-state-focus {
+				opacity: 1;
+			}
+			&:hover {
+				opacity: 1 !important;
+				border: 1px solid #2987a6 !important;
+				@include background(linear-gradient(#36b0d9, #309bbf));
+			}
+			&.grp-add-handler {
+				padding-left: 25px;
+				@include grp-background-gradient-icon-combo(tools-add-handler, #999, #888);
+				&:hover {
+					@include grp-background-gradient-icon-combo(tools-add-handler, #36b0d9, #309bbf);
+				}
+			}
+			&[target="_blank"] {
+				padding-left: 25px;
+				@include grp-background-gradient-icon-combo(tools-add-handler, #999, #888);
+				&:hover {
+					@include grp-background-gradient-icon-combo(tools-add-handler, #36b0d9, #309bbf);
+				}
+			}
+		}
+	}
+}
+.grp-object-tools {
+	@include grp-object-tools;
+}
+
+
+
+/*  TOOLS
+------------------------------------------------------------------------------------------------------ */
+
 @mixin grp-tools {
 	@include horizontal-list(1px, left);
 	position: relative;

@@ -1,0 +1,94 @@
+{% extends "grp_dom_documentation/base.html" %}
+
+<!-- LOADING -->
+{% load i18n admin_modify adminmedia grp_tags %}
+
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    
+    </script>
+    {{ media }}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block bodyclass %}change-form{% endblock %}
+{% block content-class %}grp-content-grid{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <ul>
+            <li><a href="/grp-dom-documentation/">Grappelli DOM Documentation</a> &rsaquo;</li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+<!-- OBJECT TOOLS -->
+{% block object-tools %}
+    <ul class="grp-object-tools">
+        {% block object-tools-items %}
+            <li><a href="history/">{% trans "History" %}</a></li>
+            {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="grp-state-focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
+        {% endblock %}
+    </ul>
+{% endblock %}
+
+<!-- CONTENT-TITLE -->
+{% block content_title %}
+    <h1>Grappelli DOM Documentation</h1>
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <section class="rte">
+        <div class="column span-24">
+            <div class="column span-4">
+                <div class="grp-module">
+                    <div class="grp-row">span-4</div>
+                </div>
+            </div>
+            <div class="column span-16">
+                <div class="grp-module">
+                    <div class="grp-row">span-16</div>
+                </div>
+            </div>
+             <div class="column span-4 last">
+                <div class="grp-module">
+                    <div class="grp-row">span-4 last</div>
+                </div>
+            </div>
+        </div>
+        <div class="column span-24">
+            <div class="column span-8">
+                <div class="grp-module">
+                    <div class="grp-row">span-8</div>
+                </div>
+            </div>
+            <div class="column span-8">
+                <div class="grp-module">
+                    <div class="grp-row">span-8</div>
+                </div>
+            </div>
+             <div class="column span-8 last">
+                <div class="grp-module">
+                    <div class="grp-row">span-8 last</div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+<!-- Submit-Row -->
+{% block footer %}
+    <footer id="grp-footer">
+        xxx
+    </footer>
+{% endblock %}
+                    
+                    
