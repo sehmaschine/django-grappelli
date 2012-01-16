@@ -1,6 +1,6 @@
 ﻿/* French initialisation for the jQuery UI date picker plugin. */
 /* Written by Keith Wood (kbwood@virginbroadband.com.au) and Stéphane Nahmani (sholby@sholby.net). */
-jQuery(function($){
+(function($){
 	$.datepicker.regional['fr'] = {
 		closeText: 'Fermer',
 		prevText: '&#x3c;Préc',
@@ -16,4 +16,4 @@ jQuery(function($){
 		dateFormat: 'yy-mm-dd', firstDay: 1,
 		isRTL: false};
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
-});
+})(django.jQuery);
