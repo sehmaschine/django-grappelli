@@ -1,0 +1,149 @@
+# Unstranslated Django Grappelli messages.
+# I used this kind of command to generate the file : 
+#	 msgcat django.po django.orig.po django.admin.po --unique | msgattrib --untranslated >untranslated.po
+# where django.po is generated with the django makemessages command, django.orig.po is from conf/locale django directory
+# and django.admin.po is from django.contrib.admin directory
+# 
+# This file is distributed under the same license as the Django grappelli package.
+# 
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-30 15:19+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: gaftech <gabriel@gaftech.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+
+#: dashboard/dashboards.py:92
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: dashboard/dashboards.py:136
+msgid "Quick links"
+msgstr "Liens rapides"
+
+#: dashboard/dashboards.py:142
+msgid "Return to site"
+msgstr "Retour au site"
+
+#: dashboard/dashboards.py:151 dashboard/modules.py:215
+msgid "Applications"
+msgstr "Applications"
+
+#: dashboard/dashboards.py:157
+msgid "Administration"
+msgstr "Administration"
+
+#: dashboard/dashboards.py:166
+msgid "Latest Django News"
+msgstr "Les dernières nouvelles de Django"
+
+#: dashboard/dashboards.py:173
+msgid "Support"
+msgstr "Aide"
+
+#: dashboard/dashboards.py:176
+msgid "Django documentation"
+msgstr "Documentation de Django"
+
+#: dashboard/dashboards.py:181
+msgid "Django \"django-users\" mailing list"
+msgstr "Liste de diffusion \"django-users\""
+
+#: dashboard/dashboards.py:186
+msgid "Django irc channel"
+msgstr "Canal IRC Django"
+
+#: dashboard/modules.py:189
+msgid "Links"
+msgstr "Liens"
+
+#: dashboard/modules.py:344
+msgid "No recent actions."
+msgstr "Aucune action récente"
+
+#: dashboard/modules.py:353
+msgid "RSS Feed"
+msgstr "Flux RSS"
+
+#: templates/admin/csv_export_selected_confirmation.html:12
+msgid "Export selection as CSV"
+msgstr "Exporter la sélection en CSV"
+
+#: templates/admin/csv_export_selected_confirmation.html:31
+msgid "Export following fields:"
+msgstr "Exporter les champs suivants :"
+
+#: templates/admin/csv_export_selected_confirmation.html:34
+msgid "Select all"
+msgstr "Tout sélectionner"
+
+#: templates/admin/csv_export_selected_confirmation.html:54
+msgid "Back"
+msgstr "Retour"
+
+#: templates/admin/csv_export_selected_confirmation.html:55
+msgid "Export"
+msgstr "Exporter"
+
+#: templates/admin/delete_confirmation.html:53
+#: templates/admin/delete_selected_confirmation.html:59
+msgid "Cancel"
+msgstr "Annuler"
+
+#: templates/admin/object_history.html:37
+msgid "Created object"
+msgstr "Objet créé"
+
+#: templates/admin/edit_inline/stacked.html:9
+msgid "Open All Items"
+msgstr "Ouvrir tous les éléments"
+
+#: templates/admin/edit_inline/stacked.html:10
+msgid "Close All Items"
+msgstr "Fermer tous les éléments"
+
+#: templates/admin/edit_inline/stacked.html:11
+#: templates/admin/edit_inline/stacked.html:54
+#: templates/admin/edit_inline/tabular.html:90
+msgid "Add Item"
+msgstr "Ajouter un élément"
+
+#: templates/admin/edit_inline/stacked.html:26
+#: templates/admin/edit_inline/tabular.html:66
+msgid "Move Item"
+msgstr "Déplacer l'élément"
+
+#: templates/admin/edit_inline/stacked.html:30
+#: templates/admin/edit_inline/stacked.html:32
+msgid "Delete Item"
+msgstr "Supprimer l'élément"
+
+#: templates/admin/includes_grappelli/header.html:37
+msgid "Tests"
+msgstr "Tests"
+
+#: templates/registration/password_change_form.html:31
+msgid "Old password:"
+msgstr "Ancien mot de passe :"
+
+#: templates/registration/password_reset_confirm.html:21
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+"Le lien de mise à jour du mot de passe n'était pas valide, probablement en "
+"raison de sa précédente utilisation. Veuillez renouveler votre demande de "
+"mise à jour de mot de passe."
+
+#: views/related.py:70
+msgid "?"
+msgstr "?"
