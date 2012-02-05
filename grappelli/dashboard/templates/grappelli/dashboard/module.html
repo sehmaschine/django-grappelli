@@ -6,13 +6,15 @@
 {% else %}
     <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}group {% else %}module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentActions" %}actions {% endif %}{{ module.render_css_classes }}{% if module.collapsible %} collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} open{% endif %}{% endif %}">
 {% endif %}
-    
+
     {% if module.title %}
-        {% if module|classname:"group" %}
-            <h2 class="module_title{% if module.collapsible %} collapse-handler{% endif %}">{{ module.title }}</h2>
-        {% else %}
-            <h{% if subindex %}3{% else %}2{% endif %} class="module_title{% if module.collapsible %} collapse-handler{% endif %}">{{ module.title }}</h{% if subindex %}3{% else %}2{% endif %}>
-        {% endif %}
+        <h{% if subindex %}3{% else %}2{% endif %} class="module_title{% if module.collapsible %} collapse-handler{% endif %}">
+            {% if module.title_url %}
+                <a href="{{ module.title_url }}" title="{{ module.title }}">{{ module.title }}</a>
+            {% else %}
+                {{ module.title }}
+            {% endif %}
+        </h{% if subindex %}3{% else %}2{% endif %}>
     {% endif %}
     {% if module.pre_content %}{{ module.pre_content|safe }}{% endif %}
     {% block module_content %}
@@ -21,7 +23,7 @@
         {% endfor %}
     {% endblock %}
     {% if module.post_content %}{{ module.post_content|safe }}{% endif %}
-    
+
 </div>
 
 {% endif %}
