@@ -1,6 +1,8 @@
 # coding: utf-8
 
 # python imports
+from functools import wraps
+import json
 import re
 
 # django imports
@@ -161,72 +163,44 @@ def formsetsort(formset, arg):
 
 # RELATED LOOKUPS
 
+def safe_json_else_list_tag(f):
+    """
+    Decorator. Registers function as a simple_tag.
+    Try: Return value of the decorated function marked safe and json encoded.
+    Except: Return []
+    """
+    @wraps(f)
+    def inner(model_admin):
+        try:
+            return mark_safe(json.dumps(f(model_admin)))
+        except:
+            return []
+    return register.simple_tag(inner)
+
+@safe_json_else_list_tag
 def get_related_lookup_fields_fk(model_admin):
-    try:
-        value = model_admin.related_lookup_fields.get("fk", [])
-        value = mark_safe(list(value))
-    except:
-        value = []
-    return value
+    return model_admin.related_lookup_fields.get("fk", [])
 
-register.simple_tag(get_related_lookup_fields_fk)
-
-
+@safe_json_else_list_tag
 def get_related_lookup_fields_m2m(model_admin):
-    try:
-        value = model_admin.related_lookup_fields.get("m2m", [])
-        value = mark_safe(list(value))
-    except:
-        value = []
-    return value
+    return model_admin.related_lookup_fields.get("m2m", [])
 
-register.simple_tag(get_related_lookup_fields_m2m)
-
-
+@safe_json_else_list_tag
 def get_related_lookup_fields_generic(model_admin):
-    try:
-        value = model_admin.related_lookup_fields.get("generic", [])
-        value = mark_safe(list(value))
-    except:
-        value = []
-    return value
-
-register.simple_tag(get_related_lookup_fields_generic)
+    return model_admin.related_lookup_fields.get("generic", [])
 
 
 # AUTOCOMPLETES
 
+@safe_json_else_list_tag
 def get_autocomplete_lookup_fields_fk(model_admin):
-    try:
-        value = model_admin.autocomplete_lookup_fields.get("fk", [])
-        value = mark_safe(list(value))
-    except:
-        value = []
-    return value
+    return model_admin.autocomplete_lookup_fields.get("fk", [])
 
-register.simple_tag(get_autocomplete_lookup_fields_fk)
-
-
+@safe_json_else_list_tag
 def get_autocomplete_lookup_fields_m2m(model_admin):
-    try:
-        value = model_admin.autocomplete_lookup_fields.get("m2m", [])
-        value = mark_safe(list(value))
-    except:
-        value = []
-    return value
+    return model_admin.autocomplete_lookup_fields.get("m2m", [])
 
-register.simple_tag(get_autocomplete_lookup_fields_m2m)
-
-
+@safe_json_else_list_tag
 def get_autocomplete_lookup_fields_generic(model_admin):
-    try:
-        value = model_admin.autocomplete_lookup_fields.get("generic", [])
-        value = mark_safe(list(value))
-    except:
-        value = []
-    return value
-
-register.simple_tag(get_autocomplete_lookup_fields_generic)
-
-
+    return model_admin.autocomplete_lookup_fields.get("generic", [])
 
