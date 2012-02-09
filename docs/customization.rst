@@ -156,9 +156,7 @@ Autocomplete Lookups
 
 Add the staticmethod ``autocomplete_search_fields`` to all models you want to search for::
 
-    class     @staticmethod
-    def autocomplete_search_fields():
-       return ("id__iexact", "name__icontains",)(models.Model):
+    class MyModel(models.Model):
         name = models.CharField(u"Name", max_length=50)
     
         @staticmethod
@@ -221,6 +219,9 @@ For the represantation of an object, we first check for a callable ``related_lab
 
 .. warning::
     Due to a bug in Django 1.3, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
+
+.. warning::
+    When defining ``autocomplete_lookup_fields`` and ``related_lookup_fields``, you must use Python list objects instead of tuples.
 
 Using TinyMCE
 -------------
