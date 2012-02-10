@@ -18,4 +18,4 @@ http://readthedocs.org/docs/django-grappelli/
 Releases
 --------
 
-The latest release is Grappelli 2.3.5 (11/10/2011), which requires Django 1.3.
+The latest release is Grappelli 2.3.6 (10/02/2011), which requires Django 1.3.
