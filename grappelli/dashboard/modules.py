@@ -216,10 +216,12 @@ class AppList(DashboardModule, AppListElementMixin):
     template = 'grappelli/dashboard/modules/app_list.html'
     models = None
     exclude = None
-    
+    alphabetical_sort = True
+
     def __init__(self, title=None, **kwargs):
         self.models = list(kwargs.pop('models', []))
         self.exclude = list(kwargs.pop('exclude', []))
+        self.alphabetical_sort = kwargs.pop('alphabetical_sort', True)
         super(AppList, self).__init__(title, **kwargs)
     
     def init_with_context(self, context):
@@ -227,9 +229,11 @@ class AppList(DashboardModule, AppListElementMixin):
             return
         items = self._visible_models(context['request'])
         apps = {}
+        apps_sorted = []
         for model, perms in items:
             app_label = model._meta.app_label
             if app_label not in apps:
+                apps_sorted.append(app_label)
                 apps[app_label] = {
                     'title': capfirst(app_label.title()),
                     'url': self._get_admin_app_list_url(model, context),
@@ -242,9 +246,10 @@ class AppList(DashboardModule, AppListElementMixin):
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             apps[app_label]['models'].append(model_dict)
-        
-        apps_sorted = apps.keys()
-        apps_sorted.sort()
+
+        if self.alphabetical_sort or not self.models:
+            apps_sorted = apps.keys()
+            apps_sorted.sort()
         for app in apps_sorted:
             # sort model list alphabetically
             apps[app]['models'].sort(lambda x, y: cmp(x['title'], y['title']))

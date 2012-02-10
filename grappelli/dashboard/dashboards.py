@@ -33,8 +33,8 @@ class Dashboard(object):
     If you want to customize the look of your dashboard and it's modules, you
     can declare css stylesheets and/or javascript files to include when
     rendering the dashboard (these files should be placed in your
-    media path), for example::
-    
+    static media path), for example::
+
         from admin_tools.dashboard import Dashboard
         
         class MyDashboard(Dashboard):
