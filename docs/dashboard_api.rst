@@ -76,10 +76,6 @@ Dashboard modules have the following properties:
     gettext functions if your application is multilingual.
     Default value: ''.
 
-``title_url``
-    String that contains the module title URL. If given the module
-    title will be a link to this URL. Default value: ``None``.
-
 ``css_classes``
     A list of css classes to be added to the module ``div`` class
     attribute. Default value: ``None``.
