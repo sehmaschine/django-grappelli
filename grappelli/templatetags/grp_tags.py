@@ -2,8 +2,14 @@
 
 # python imports
 from functools import wraps
-import json
+
 import re
+
+# try to use json (2.6+) but stay compatible with 2.5.*
+try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
 
 # django imports
 from django import template
