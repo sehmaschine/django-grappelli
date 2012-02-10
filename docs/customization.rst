@@ -156,9 +156,7 @@ Autocomplete Lookups
 
 Add the staticmethod ``autocomplete_search_fields`` to all models you want to search for::
 
-    class     @staticmethod
-    def autocomplete_search_fields():
-       return ("id__iexact", "name__icontains",)(models.Model):
+    class MyModel(models.Model):
         name = models.CharField(u"Name", max_length=50)
     
         @staticmethod
