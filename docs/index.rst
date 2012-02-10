@@ -12,10 +12,10 @@ Documentation
 
 **A jazzy skin for the Django admin interface**.
 
-This documentation covers version 2.3.6 of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
+This documentation covers version 2.3.7 of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
 
 .. note::
-    |grappelli| 2.3.6 requires Django 1.3. |grappelli| is always developed against the lastest stable Django release and is NOT tested with Djangos trunk.
+    |grappelli| 2.3.7 requires Django 1.3. |grappelli| is always developed against the lastest stable Django release and is NOT tested with Djangos trunk.
 
 Installation & Setup
 --------------------
