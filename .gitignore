@@ -4,3 +4,4 @@ docs/_build/
 dist/*
 django_grappelli.egg-info/*
 grappelli/compass/.sass-cache/
+fabfile.py
