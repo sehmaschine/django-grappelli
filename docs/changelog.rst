@@ -8,11 +8,14 @@
 Changelog
 =========
 
-2.3.7 (not yet released)
-------------------------
+2.3.7 (February 11, 2012)
+-------------------------
 
-2.3.6 (10/02/2012)
-------------------
+* Fixed compatibility issue with Python 2.5.
+* Fixed some translations.
+
+2.3.6 (February 10, 2012)
+-------------------------
 
 * Fixed issue where autocomplete/related settings could not use tuples.
 * Fixed a bug with toggle all actions on the changlist
@@ -28,13 +31,13 @@ Changelog
 * Added polish translation for TinyMCE and grappelli contextmenu.
 * Removed ``title_url`` from dashboard-docs (it hasn´t been used anyway so far).
 
-2.3.5 (11/10/2011)
-------------------
+2.3.5 (October 11, 2011)
+------------------------
 
 * Improved performance for autocomplete lookups (staticmethod autocomplete_search_fields is required from now on)
 
-2.3.4 (08/09/2011)
-------------------
+2.3.4 (September 8, 2011)
+-------------------------
 
 * Moved |grappelli| to GitHub
 * Fixed a bug with the View on Site link (tabular/stacked inlines)
@@ -45,8 +48,8 @@ Changelog
 * Added error-messages to the login form
 * Fixed a bug with hidden-fields in tabular-inlines
 
-2.3.3 (28/05/2011)
-------------------
+2.3.3 (May 28, 2011)
+--------------------
 
 * Documentation update
 * FileBrowser-related updates
@@ -60,8 +63,8 @@ Changelog
 * Reversed asc-/desc-icons
 * Updated TinyMCE to 3.4.2
 
-2.3.2 (16/02/2011)
-------------------
+2.3.2 (February 16, 2011)
+-------------------------
 
 * Some smaller bugfixes on the changelist.
 * Finally deleted folder ``media`` (media-files are now in ``static``).
@@ -69,8 +72,8 @@ Changelog
 * Removed save-button on changelist if there is no formset.
 * Fixed a bug with using generic relations within generic-inlines (tabular and stacked).
 
-2.3.1 (03/02/2011)
-------------------
+2.3.1 (February 3, 2011)
+------------------------
 
 * Added ``related_lookup_fields`` for defining related lookups (fk, m2m, generic).
 * Fixed the limiation for using ``content_type_*`` and ``object_id_*`` with Generic Relations.
