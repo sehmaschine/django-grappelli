@@ -61,7 +61,7 @@
                     <div class="td tools">
                         {% spaceless %}
                         <ul class="tools">
-                            {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on Site' %}" target="_blank"> </a></li>{% endif %}
+                            {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on site' %}" target="_blank"> </a></li>{% endif %}
                             {% if inline_admin_formset.opts.sortable_field_name %}
                                 <li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>
                             {% endif %}
