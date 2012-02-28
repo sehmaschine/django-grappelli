@@ -204,7 +204,12 @@ $grp-button-border-focus: 1px solid #888 !default;
 	@include background(sprite($icons-sprites, $icon) no-repeat, linear-gradient($gradient-top, $gradient-bottom));
 }
 
-
+@mixin grp-gradient-predelete {
+	@include background-image(linear-gradient(#fff2f2, #f2e6e6));
+}
+@mixin grp-gradient-predelete-reverse {
+	@include background-image(linear-gradient(#f2e6e6, #fff2f2));
+}
 
 
 /*  HEADING GRADIENTS

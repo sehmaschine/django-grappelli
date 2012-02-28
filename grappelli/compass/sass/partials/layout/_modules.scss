@@ -384,6 +384,31 @@
 	}
 }
 
+.grp-predelete {
+	h2, h3, h4, 
+	&.grp-collapse > h2.grp-collapse-handler, &.grp-collapse > h3.grp-collapse-handler, &.grp-collapse > h4.grp-collapse-handler {
 
+	}
+	background: $grp-predelete-background-color;
+}
 
+.grp-predelete h2, .grp-collapse.grp-predelete > h2.grp-collapse-handler, 
+.grp-predelete h3, .grp-collapse.grp-predelete > h3.grp-collapse-handler, 
+.grp-predelete h4, .grp-collapse.grp-predelete .grp-collapse > h4.grp-collapse-handler {
+    @include grp-gradient-predelete();
+}
+.grp-collapse.grp-predelete > h2.grp-collapse-handler:hover, 
+.grp-collapse.grp-predelete > h3.grp-collapse-handler:hover, 
+.grp-predelete .grp-collapse > h4.grp-collapse-handler:hover, 
+.grp-collapse.grp-open.grp-predelete > h2.grp-collapse-handler, 
+.grp-collapse.grp-open.grp-predelete > h3.grp-collapse-handler, 
+.grp-predelete .grp-collapse.grp-open > h4.grp-collapse-handler {
+    @include grp-gradient-predelete-reverse();
+}
+.grp-predelete, 
+.grp-predelete .grp-module,
+.grp-predelete .grp-th, 
+.grp-predelete .grp-td {
+    background: $grp-predelete-background-color;
+}
 

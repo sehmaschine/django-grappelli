@@ -138,6 +138,8 @@
                     
                     {% block after_related_objects %}{% endblock %}
                     
+                    {% submit_row %}
+                    
                     {% if adminform and add %}
                         {% block extrahead %}
                             <script type="text/javascript">
@@ -164,6 +166,6 @@
 {% endblock %}
 
 <!-- Submit-Row -->
-{% block footer %}{% submit_row %}{% endblock %}
+{% block footer %}{% endblock %}
                     
                     

@@ -57,7 +57,7 @@
     };
     
     initInlineForms = function(elem, options) {
-        elem.find(".grp-tbody").each(function() {
+        elem.find(".grp-module").each(function() {
             var form = $(this);
             // callback
             options.onBeforeInit(form);
@@ -152,6 +152,7 @@
             // callback
             options.onBeforeDeleted(form);
             // toggle options.predeleteCssClass and toggle checkbox
+            console.log(form);
             if (form.hasClass("has_original")) {
                 form.toggleClass(options.predeleteCssClass);
                 if (deleteInput.attr("checked")) {
