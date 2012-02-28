@@ -77,13 +77,17 @@
         <article id="grp-content" class="{% block content-class %}{% endblock %}">
             
             <!-- MESSAGES -->
-            {% if messages %}
+            {% if messages %}{% endif %}
                 <ul class="grp-messagelist">
                     {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        <li{% if message.tags %} class="grp-{{ message.tags }}"{% endif %}>{{ message }}</li>
                     {% endfor %}
+                    <li class="grp-info">Info</li>
+                    <li class="grp-error">Error</li>
+                    <li class="grp-warning">Warning</li>
+                    <li class="grp-success">Success</li>
                 </ul>
-            {% endif %}
+            
 
             <!-- CONTENT TITLE -->
             <header id="grp-content-title">

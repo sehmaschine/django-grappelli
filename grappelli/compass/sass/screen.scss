@@ -159,13 +159,53 @@ article#grp-content {
 
 
 
+
+/*  MESSAGE-LIST
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-messagelist {
+	position: relative;
+	float: none;
+	clear: both;
+	@include grp-margin(0 0 $grp-margin-size-l);
+	width: 100%;
+	@include box-sizing(border-box);
+	li {
+		font-weight: bold;
+		@include grp-padding($grp-padding-size-s $grp-padding-size);
+		border: 1px solid $grp-messagelist-border-color;
+		@include border-radius($grp-border-radius);
+		background: $grp-messagelist-background-color;
+		&.grp-success {
+			border: 1px solid $grp-messagelist-success-border-color;
+			background: $grp-messagelist-success-background-color;
+		}
+		&.grp-warning {
+			border: 1px solid $grp-messagelist-warning-border-color;
+			background: $grp-messagelist-warning-background-color;
+		}
+		&.grp-error {
+			border: 1px solid $grp-messagelist-error-border-color;
+			background: $grp-messagelist-error-background-color;
+		}
+		& + li {
+			margin-top: 2px;
+		}
+	}
+}
+.grp-messagelist {
+	@include grp-messagelist;
+}
+
+
 /*  FOOTER
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-footer {
 	position: fixed;
-	bottom: 0;
 	float: left;
+	bottom: 0;
+	left: 0;
 	padding: 10px 20px;
 	width: 100%;
 	@include box-sizing(border-box);

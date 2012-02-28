@@ -41,6 +41,20 @@ $grp-link-color-quiet-hover: #333 !default;
 $grp-breadcrumbs-background-color: #eee !default;
 $grp-breadcrumbs-border-color: #ccc !default;
 
+$grp-messagelist-background-color: lighten(#309bbf, 35) !default;
+$grp-messagelist-border-color: darken($grp-messagelist-background-color, 10) !default;
+
+// $grp-messagelist-background: lighten(#309bbf, 35) url('/static/grappelli/images/backgrounds/messagelist.png') 0 0 repeat scroll !default;
+
+$grp-messagelist-success-background-color: lighten(#77bf30, 35) !default;
+$grp-messagelist-success-border-color: darken($grp-messagelist-success-background-color, 10) !default;
+
+$grp-messagelist-warning-background-color: lighten(#e5b217, 35) !default;
+$grp-messagelist-warning-border-color: darken($grp-messagelist-warning-background-color, 10) !default;
+
+$grp-messagelist-error-background-color: lighten(#bf3030, 35) !default;
+$grp-messagelist-error-border-color: darken($grp-messagelist-error-background-color, 10) !default;
+
 
 
 /*	GROUPS
