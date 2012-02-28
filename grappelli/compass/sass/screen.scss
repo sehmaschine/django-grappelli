@@ -53,9 +53,9 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/forms/base";
 @import "partials/forms/autocompletes";
 
-@import "partials/custom/jquery-ui-all";
+// @import "partials/custom/jquery-ui-all";
 
-// @import "partials/custom/jquery-ui";
+@import "partials/custom/jquery-ui";
 
 
 

@@ -67,6 +67,14 @@ button.ui-datepicker-trigger {
 button.ui-timepicker-trigger {
     @include icons-sprite(timepicker);
     @include grp-button-states(blue, grey);
+    & + button.ui-datetime-now {
+        margin-left: 6px !important;
+        @include border-radius($grp-form-field-border-radius);
+    }
+}
+button.ui-datetime-now {
+    @include icons-sprite(datetime-now);
+    @include grp-button-states(blue, grey);
 }
 a.fb_show, 
 a.related-lookup {

@@ -13,6 +13,15 @@ $grp-font-color: #333 !default;
 	color: $grp-font-color;
 }
 
+$grp-font-color-quiet: #888 !default;
+
+.grp-font-color-quiet {
+	color: $grp-font-color-quiet;
+}
+@mixin grp-font-color-quiet($grp-font-color-quiet) {
+	color: $grp-font-color-quiet;
+}
+
 
 
 /*  LINK COLORS
