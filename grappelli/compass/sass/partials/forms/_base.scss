@@ -127,6 +127,18 @@ fieldset.monospace textarea {
 
 
 
+/*  Checkboxes, Radiobuttons ................................................... */
+
+.grp-row input[type=checkbox] {
+    position: relative;
+    top: 1px;
+    & + label {
+        position: relative;
+        margin: 0 0 0 5px;
+    }
+}
+
+
 
 /*  BUTTONS (SUBMIT, RESET, CANCEL)
 ------------------------------------------------------------------------------------------------------ */
@@ -141,7 +153,15 @@ input[type="submit"] {
     @include grp-form-button;
     @include grp-form-button-default-gradient;
 }
-
+.grp-submit-row {
+    a.grp-delete-link {
+        display: block;
+        @include grp-form-field;
+        @include grp-form-button;
+        @include grp-form-button-delete-gradient;
+        line-height: 16px;
+    }
+}
 
 
 

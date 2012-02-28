@@ -68,7 +68,7 @@ $grp-module-border: 1px solid #ccc !default;
 $grp-row-border-top-color: #fff !default;
 $grp-row-border-bottom-color: #ddd !default;
 
-
+$grp-predelete-background-color: #f2e6e6 !default;
 
 /*	FORMS
 ------------------------------------------------------------------------------------------------------ */
@@ -126,11 +126,28 @@ $grp-form-button-cancel-background-color-hover: #fff !default;
 	cursor: pointer;
 	&:hover {
 		color: #333;
-		@include background-image(linear-gradient(#fafafa, #fff));
+		border-color: #666;
+		@include background-image(linear-gradient(#e3e3e3, #d6d6d6));
 	}
 }
 .grp-form-button-default-gradient {
 	@include grp-form-button-default-gradient;
+}
+
+@mixin grp-form-button-delete-gradient {
+	color: #fff;
+	border: 1px solid #992626;
+	@include background-image(linear-gradient(#d93636, #bf3030));
+	@include box-shadow(#fff 0 0 6px);
+	cursor: pointer;
+	&:hover {
+		color: #333;
+		border-color: #666;
+		@include background-image(linear-gradient(#e3e3e3, #d6d6d6));
+	}
+}
+.grp-form-button-delete-gradient {
+	@include grp-form-button-delete-gradient;
 }
 
 

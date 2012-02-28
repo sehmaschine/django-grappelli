@@ -57,7 +57,7 @@
     };
     
     initInlineForms = function(elem, options) {
-        elem.find(".grp-module").each(function() {
+        elem.find(".grp-tbody").each(function() {
             var form = $(this);
             // callback
             options.onBeforeInit(form);

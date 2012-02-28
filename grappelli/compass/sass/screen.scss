@@ -40,6 +40,7 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/library/margins-paddings";
 
 @import "partials/typography/base";
+@import "partials/typography/typo";
 
 @import "partials/layout/sprites";
 @import "partials/layout/components";
@@ -177,7 +178,8 @@ article#grp-content {
 			&.grp-left {
 				float: left;
 			}
-			input[type=submit] {
+			input[type=submit], 
+			a {
 				opacity: .75;
 				&.default {
 					opacity: 1;

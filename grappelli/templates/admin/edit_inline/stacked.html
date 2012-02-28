@@ -22,7 +22,7 @@
                 <ul class="grp-tools">
                     {% if inline_admin_form.show_url %}<li class="grp-viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
                     {% if inline_admin_formset.opts.sortable_field_name %}
-                        <li class="grp-drag-handler-container"><a href="javascript://" class="icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
+                        <li class="grp-drag-handler-container"><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
                     {% endif %}
                     {% if inline_admin_formset.formset.can_delete %}
                         {% if inline_admin_form.original %}
@@ -50,7 +50,7 @@
     <div class="grp-module grp-add-item">
         <a href="javascript://" class="grp-add-handler">{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</a>
         <ul class="grp-tools">
-            <li class="grp-grp-add-handler-container"><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"> </a></li>
+            <li class="grp-add-handler-container"><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"> </a></li>
         </ul>
     </div>
 </div>
@@ -205,13 +205,13 @@
             axis: "y",
             appendTo: 'body',
             forceHelperSize: true,
-            placeholder: 'grp-ui-sortable-placeholder',
+            placeholder: 'grp-module ui-sortable-placeholder',
             forcePlaceholderSize: true,
             containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items',
             tolerance: 'pointer',
             start: function(evt, ui) {
                 ui.placeholder.height(ui.item.height() + 12);
-            },
+            }
         });
         $("#{{ opts.module_name }}_form").bind("submit", function(){
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}";

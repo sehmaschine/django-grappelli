@@ -359,6 +359,12 @@
     				@include border-right-radius($grp-border-radius - 1px)
 				}
 			}
+			&.grp-predelete {
+				.grp-th, 
+				.grp-td {
+					background: $grp-predelete-background-color;
+				}
+			}
 		}
 		.grp-tfoot {
 			display: table-footer-group;
@@ -368,6 +374,12 @@
     				border-right: 0;
 	    		}
 			}
+		}
+		.grp-module {
+			float: none;
+			clear: none;
+			background: 0;
+			border: 0;
 		}
 	}
 }
