@@ -51,8 +51,11 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/forms/django-resets";
 // @import "partials/forms/helpers";
 @import "partials/forms/base";
+@import "partials/forms/autocompletes";
 
+@import "partials/custom/jquery-ui-all";
 
+// @import "partials/custom/jquery-ui";
 
 
 
@@ -122,7 +125,7 @@ article#grp-content {
 	float: left;
 	clear: both;
 	@include clearfix;
-	margin-top: 180px;
+	top: 80px;
 	padding: 0 20px 200px;
 	width: 100%;
 	@include box-sizing(border-box);
@@ -144,7 +147,7 @@ article#grp-content {
 	@include box-sizing(border-box);
 	@include grp-padding($grp-padding-size-s 20px);
 	ul {
-		@include horizontal-list(10px, left);
+		@include horizontal-list(5px, left);
 	}
 	border-bottom: 1px solid $grp-breadcrumbs-border-color;
 	background: $grp-breadcrumbs-background-color;

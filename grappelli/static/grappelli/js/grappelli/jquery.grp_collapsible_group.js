@@ -9,7 +9,7 @@
         var defaults = {
             open_handler_slctr: ".grp-open-handler",
             close_handler_slctr: ".grp-close-handler",
-            collapsible_container_slctr: "div.grp-collapse",
+            collapsible_container_slctr: ".grp-collapse",
             closed_css: "grp-closed",
             open_css: "grp-open",
             on_init: function() {},

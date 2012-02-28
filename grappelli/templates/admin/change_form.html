@@ -18,8 +18,8 @@
         (function($) {
             $(document).ready(function() {
                 grappelli.initDateAndTimePicker();
-                $("div.grp-container-flexible div.grp-group").grp_collapsible_group();
-                $("div#grp-content .grp-collapse").grp_collapsible({
+                $("#grp-content-container .grp-group").grp_collapsible_group();
+                $("#grp-content-container .grp-collapse").grp_collapsible({
                     on_init: function(elem, options) {
                         // open collapse (and all collapse parents) in case of errors
                         if (elem.find("ul.errorlist").length > 0) {
@@ -78,7 +78,7 @@
 
 <!-- COLTYPE/BODYCLASS -->
 {% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
-{% block content-class %}content-flexible{% endblock %}
+{% block content-class %}{% endblock %}
 
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
@@ -108,7 +108,7 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <div class="grp-container-flexible">
+    <div class="grp-layout-container">
         <div class="grp-form-container">
             <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
                 <div>

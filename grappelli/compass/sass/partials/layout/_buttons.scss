@@ -2,13 +2,32 @@
 
 
 
-@mixin grp-button-states {
-    // @include grp-gradient-module-h2-collapse-handler-hover;
-    border: $grp-button-border;
-    background-color: #e1f0f5;
+@mixin grp-button-states($state, $state-hover) {
+    @if $state == blue {
+        border: $grp-button-border;
+        background-color: #e1f0f5;
+    }
+    @if $state == white {
+        border: $grp-button-border;
+        background-color: #fdfdfd;
+    }
+    @if $state == red {
+        border: $grp-button-border;
+        background-color: #bf3030;
+    }
     &:hover {
-        border: $grp-button-border-hover;
-        background-color: #eee;
+        @if $state-hover == grey {
+            border: $grp-button-border-hover;
+            background-color: #eee;
+        }
+        @if $state-hover == white {
+            border: $grp-button-border;
+            background-color: #fdfdfd;
+        }
+        @if $state-hover == red {
+            border: $grp-button-border;
+            background-color: #bf3030;
+        }
     }
 }
 @mixin grp-button {
@@ -20,17 +39,21 @@
     padding: 0;
     width: 25px;
     height: 25px;
-    @include border-right-radius($grp-border-radius-s);
+    @include border-right-radius($grp-form-field-border-radius);
     @include box-sizing(border-box);
     cursor: pointer;
     overflow: hidden;
     vertical-align: top;
-    @include grp-button-states;
+    @include grp-button-states(blue, grey);
 }
-input[type=button], button, a.fb_show {
+
+input[type=button], 
+button, a.fb_show, 
+a.related-lookup {
     @include grp-button;
 }
-a.fb_show, a.related_lookup {
+a.fb_show, 
+a.related_lookup {
     display: inline-block;
     margin-bottom: -5px;
 }
@@ -39,21 +62,29 @@ a.fb_show, a.related_lookup {
 
 button.ui-datepicker-trigger {
     @include icons-sprite(datepicker);
-    @include grp-button-states;
+    @include grp-button-states(blue, grey);
 }
 button.ui-timepicker-trigger {
     @include icons-sprite(timepicker);
-    @include grp-button-states;
+    @include grp-button-states(blue, grey);
 }
 a.fb_show, 
-a.related_lookup {
+a.related-lookup {
     @include icons-sprite(related-lookup);
-    @include grp-button-states;
+    @include grp-button-states(blue, grey);
 }
 
+a.related-lookup.m2m, 
+.grp-autocomplete-wrapper-m2m a.related-lookup, 
+.grp-autocomplete-wrapper-fk a.related-lookup {
+    @include icons-sprite(related-lookup-m2m);
+    @include grp-button-states(blue, grey);
+}
 
-
-
+a.grp-related-remove {
+    @include icons-sprite(related-remove);
+    @include grp-button-states(white, white);
+}
 
 
 
@@ -64,15 +95,17 @@ input:focus + button,
 .vTimeField:focus + span a, 
 input:focus + a.fb_show, 
 input:focus + a.related-lookup, 
-input:focus + a.add-another {
-    border: $grp-button-border-focus;
+input:focus + * + a.related-lookup, 
+input:focus + a.add-another, 
+.grp-state-focus a.related-lookup {
+    border: $grp-button-border-focus !important;
 }
 /*  Reset the style for focused links in autocompletes as there is an automatically
     focused (invisible) input which causes the a.related-lookup to be "focused" though it's not */
-div.autocomplete-wrapper-fk input:focus + a.related-lookup, 
-div.autocomplete-wrapper-m2m input:focus + a.related-lookup {
-    border-color: #ccc !important;
-}
+// div.grp-autocomplete-wrapper-fk input:focus + a.related-lookup, 
+// div.grp-autocomplete-wrapper-m2m input:focus + a.related-lookup {
+//     border-color: #4ef !important;
+// }
 
 
 

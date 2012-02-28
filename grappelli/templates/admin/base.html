@@ -8,11 +8,11 @@
     {% endblock %}
     <!-- STYLESHEETS -->
     {% block stylesheets %}
+        <link href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.18.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8" />
         <link href="{% admin_media_prefix %}stylesheets/screen.css" rel="stylesheet" type="text/css" />
+        {% if LANGUAGE_BIDI %}<link href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" rel="stylesheet" type="text/css" />{% endif %}
         {% comment %}
         <link href="{% admin_media_prefix %}css/base.css" rel="stylesheet" type="text/css" />
-        {% if LANGUAGE_BIDI %}<link href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" rel="stylesheet" type="text/css" />{% endif %}
-        <link href="{% admin_media_prefix %}jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8" />
         <link href="{% admin_media_prefix %}css/jquery-ui-grappelli-extensions.css" rel="stylesheet" type="text/css" />
         {% endcomment %}
     {% endblock %}
@@ -49,43 +49,62 @@
     <!-- EXTRAHEAD -->
     {% block extrahead %}{% endblock %}
 </head>
-<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+<body class="{% if is_popup %}grp-popup {% endif %}{% block bodyclass %}{% endblock %}">
     <div id="grp-container">
+
         <!-- HEADER -->
-        {% if not is_popup %}
-            {% include "admin/includes_grappelli/header.html" %}
-            <!-- BREADCRUMBS -->
-            <nav id="grp-breadcrumbs">
-                {% block breadcrumbs %}
-                    <ul>
-                        <li><a href="/">{% trans 'Home' %}</a></li>
-                        {% if title %}
-                            <li> &rsaquo; {{ title }}</li>
-                        {% endif %}
-                    </ul>
-                {% endblock %}
-            </nav>
-        {% endif %}
-        <!-- MESSAGES -->
-        {% if messages %}
-            <ul class="grp-messagelist">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+        <header id="grp-header" class="{% block header-class %}{% endblock %}">
+            {% if not is_popup %}
+
+                <!-- NAVIGATION -->
+                {% include "admin/includes_grappelli/header.html" %}
+                
+                <!-- BREADCRUMBS -->
+                <nav id="grp-breadcrumbs" class="{% block breadcrumbs-class %}{% endblock %}">
+                    {% block breadcrumbs %}
+                        <ul>
+                            <li><a href="/">{% trans 'Home' %}</a></li>
+                            {% if title %}
+                                <li> &rsaquo; {{ title }}</li>
+                            {% endif %}
+                        </ul>
+                    {% endblock %}
+                </nav>
+            {% endif %}
+        </header>
+
         <!-- CONTENT -->
-        <div id="grp-content" class="{% block content-class %}{% endblock %}">
-            {% block pretitle %}{% endblock %}
-            {% block content_title %}{% if title %}<header><h1>{{ title }}</h1></header>{% endif %}{% endblock %}
-            {% block object-tools %}{% endblock %}
-            {% block content %}
-                {{ content }}
-                {% block filters %}{% endblock %}
-            {% endblock %}
-        </div>
+        <article id="grp-content" class="{% block content-class %}{% endblock %}">
+            
+            <!-- MESSAGES -->
+            {% if messages %}
+                <ul class="grp-messagelist">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <!-- CONTENT TITLE -->
+            <header id="grp-content-title">
+                {% block pretitle %}{% endblock %}
+                {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+                {% block object-tools %}{% endblock %}
+            </header>
+
+            <!-- CONTENT-CONTAINER -->
+            <div id="grp-content-container">
+                {% block content %}
+                    {{ content }}
+                    {% block filters %}{% endblock %}
+                {% endblock %}
+            </div>
+
+        </article>
+        
         <!-- FOOTER -->
         {% block footer %}{% endblock %}
+
     </div>
 </body>
 </html>

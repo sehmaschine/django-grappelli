@@ -30,7 +30,7 @@ $grp-border-radius-s: 2px;
 	@include border-radius($grp-border-radius-s);
 }
 
-$grp-form-field-border-radius: 3px;
+$grp-form-field-border-radius: 5px;
 
 @mixin grp-form-field-border-radius($grp-form-field-border-radius) {
 	@include border-radius($grp-form-field-border-radius);

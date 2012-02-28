@@ -14,7 +14,7 @@
                 if ($(options.content_type).val()) {
                     $this.after(loader).after(remove_link($this.attr('id'))).after(lookup_link($this.attr("id"),$(options.content_type).val()));
                 }
-                $this.parent().wrapInner("<div class='autocomplete-wrapper-fk'></div>");
+                $this.parent().wrapInner("<div class='grp-autocomplete-wrapper-fk'></div>");
                 $this.parent().prepend("<input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' />");
                 // defaults
                 options = $.extend({
@@ -52,17 +52,17 @@
     };
     
     var loader = function() {
-        var loader = $('<div class="loader">loader</div>');
+        var loader = $('<div class="grp-loader">loader</div>');
         return loader;
     };
     
     var remove_link = function(id) {
-        var removelink = $('<a class="related-remove"></a>');
+        var removelink = $('<a class="grp-related-remove"></a>');
         removelink.attr('id', 'remove_'+id);
         removelink.attr('href', 'javascript://');
         removelink.attr('onClick', 'return removeRelatedObject(this);');
         removelink.hover(function() {
-            $(this).parent().toggleClass("autocomplete-preremove");
+            $(this).parent().toggleClass("grp-autocomplete-preremove");
         });
         return removelink;
     };
@@ -91,6 +91,12 @@
     
     var lookup_autocomplete = function(elem, options) {
         options.wrapper_autocomplete.find("input:first")
+            .bind("focus", function() {
+                options.wrapper_autocomplete.addClass("grp-state-focus");
+            })
+            .bind("blur", function() {
+                options.wrapper_autocomplete.removeClass("grp-state-focus");
+            })
             .autocomplete({
                 minLength: 1,
                 delay: 1000,

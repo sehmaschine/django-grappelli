@@ -57,7 +57,7 @@
     };
     
     initInlineForms = function(elem, options) {
-        elem.find("div.grp-module").each(function() {
+        elem.find(".grp-module").each(function() {
             var form = $(this);
             // callback
             options.onBeforeInit(form);
@@ -88,7 +88,7 @@
     
     addButtonHandler = function(elem, options) {
         elem.bind("click", function() {
-            var inline = elem.parents("div.grp-group"),
+            var inline = elem.parents(".grp-group"),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
                 maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS"),
                 addButtons = inline.find("a." + options.addCssClass),
@@ -118,7 +118,7 @@
     
     removeButtonHandler = function(elem, options) {
         elem.bind("click", function() {
-            var inline = elem.parents("div.grp-group"),
+            var inline = elem.parents(".grp-group"),
                 form = $(this).parents("." + options.formCssClass).first(),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
                 maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS");
@@ -167,12 +167,12 @@
     
     hideAddBottons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
-        addButtons.hide().parents('div.grp-add-item').hide();
+        addButtons.hide().parents('.grp-add-item').hide();
     };
     
     showAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
-        addButtons.show().parents('div.grp-add-item').show();
+        addButtons.show().parents('.grp-add-item').show();
     };
     
 })(django.jQuery);

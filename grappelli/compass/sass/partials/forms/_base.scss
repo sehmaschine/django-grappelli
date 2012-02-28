@@ -64,7 +64,8 @@ fieldset.grp-module {
     @include grp-form-field-box-shadow;
     overflow: hidden;
     vertical-align: middle;
-    &:focus {
+    &:focus, 
+    &.grp-state-focus {
         border: $grp-form-field-border-focus;
         @include grp-form-field-box-shadow-focus;
         background: $grp-form-field-background-color-focus;

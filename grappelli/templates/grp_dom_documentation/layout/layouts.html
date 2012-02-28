@@ -11,7 +11,13 @@
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
-    
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $("article#content h2").each(function(){
+                var anchortext = $(this).text();
+                $(this).insertBefore("<span id=" + anchortext + " />")
+            });
+        });
     </script>
     {{ media }}
 {% endblock %}
@@ -46,12 +52,14 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <section class="rte grp-doc-section grp-layout-container" id="basic-knowledge">
+    <section class="rte grp-doc-section grp-layout-container">
+        <span id="fluid-layout" class="basic-knowledge">&nbsp;</span>
         <h2>Basic Knowledge <span>Layout Containers</span></h2>
         <div class="grp-doc-description">
             <p class="grp-doc-label"><span>Description</span></p>
             <p>Within the <code>&#123;% block content %&#125;</code> you may use one ore more different layouts. Each layout is held by a <code>.grp-layout-container</code>.</p>
-            <p>In the most cases it should be good enough to use one <code>.grp-layout-container</code> within the <code>&#123;% block content %&#125;</code> but one never knows so we made it possible to use different layouts at the same time.</p>
+            <p>In most cases it should be good enough to use one <code>.grp-layout-container</code> within the <code>&#123;% block content %&#125;</code> but one never knows so we made it possible to use different layouts at the same time.</p>
+            <p>There is a <a href="#fluid-layout">fluid layout</a>, a <a href="#grid-layout">grid layout</a> and <a href="#fluid-grid-combo-layout">combinations of fluid and grid layouts</a>.
         </div>
         <div class="grp-doc-example">
             <p class="grp-doc-label"><span>Example</span></p>
@@ -98,6 +106,7 @@
         </div>
     </section>
     <section class="rte grp-doc-section grp-layout-container">
+        <span id="fluid-layout" class="anchor-helper">&nbsp;</span>
         <h2>Fluid Layout <span>Full Width</span></h2>
         <div class="grp-doc-description">
             <p class="grp-doc-label"><span>Description</span></p>
@@ -126,6 +135,7 @@
         </div>
     </section>
     <section class="rte grp-doc-section grp-layout-container">
+        <span id="grid-layout" class="anchor-helper">&nbsp;</span>
         <h2>Grid Layout<span>24 Columns</span></h2>
         <div class="grp-doc-description">
             <p class="grp-doc-label"><span>Description</span></p>
@@ -170,6 +180,7 @@
         </div>
     </section>
     <section class="rte grp-doc-section grp-layout-container grp-column-left-fluid grp-column-right-span-6">
+        <span id="fluid-grid-combo-layout" class="anchor-helper">&nbsp;</span>
         <h2>Fluid-Grid Combo Layout <span>Left Fluid, Right Grid</span></h2>
         <div class="grp-doc-description">
             <p class="grp-doc-label"><span>Description</span></p>

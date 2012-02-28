@@ -2,3 +2,4 @@
 docs/_build/
 .DS_Store
 grappelli/compass/.sass-cache/*
+grappelli/compass/sass/partials/custom/_jquery-ui-all.scss
