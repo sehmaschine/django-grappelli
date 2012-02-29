@@ -122,11 +122,11 @@
 <!-- BREADCRUMBS -- >
 {% block breadcrumbs %}
     {% if not is_popup %}
-        <div id="breadcrumbs">
-            <a href="../../">{% trans "Home" %}</a> &rsaquo;
-            <a href="../">{% trans app_label|capfirst|escape %}</a> &rsaquo;
-            {{ cl.opts.verbose_name_plural|capfirst }}
-        </div>
+        <ul>
+            <li><a href="../../">{% trans "Home" %}</a></li>
+            <li><a href="../">{% trans app_label|capfirst|escape %}</a></li>
+            <li>{{ cl.opts.verbose_name_plural|capfirst }}</li>
+        </ul>
     {% endif %}
 {% endblock %}
 
@@ -148,14 +148,77 @@
 
 <!-- CONTENT -->
 {% block content %}
+
+
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                
+                    <th class=" action-checkbox-column">
+                        <input type="checkbox" id="action-toggle">
+                    </th>
+                
+                    <th class=" sortable">
+                        <a href="?ot=asc&amp;o=1">Title und gleich noch etwas Text damit das mehrzeilig wird</a>
+                    </th>
+                
+                    <th class=" sortable">
+                        <a href="?ot=asc&amp;o=2">Category</a>
+                    </th>
+                
+                    <th class=" sortable">
+                        <a href="?ot=asc&amp;o=3">Status</a>
+                    </th>
+                
+                    <th class=" sorted descending sortable">
+                        <a href="?ot=asc&amp;o=4">Date</a>
+                    </th>
+                
+                    <th class="">
+                        Thumbnail
+                    </th>
+                
+                    <th class="">
+                        Thumbnail
+                    </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+                
+                <tr class="row1"><td class="action-checkbox"><input type="checkbox" class="action-select" value="3" name="_selected_action"></td><th><a href="3/">Wunderkammer</a></th><td class="nowrap"><input class="vForeignKeyRawIdAdminField" type="text" name="form-0-category" id="id_form-0-category"><a href="../../../blog/blogcategory/?t=id" class="related-lookup" id="lookup_id_form-0-category" onclick="return showRelatedObjectLookupPopup(this);"> <img src="/static/grappelli/img/admin/selector-search.gif" width="16" height="16" alt="Suchen"></a></td><td>Online</td><td class="nowrap">29. Februar 2012 11:37:00</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            
+                
+                <tr class="row2"><td class="action-checkbox"><input type="checkbox" class="action-select" value="4" name="_selected_action"></td><th><a href="4/">Elevator Gymnastics<br />and some Others Blabla</a></th><td class="nowrap">Irgendwas und dann noch was<br />dann wird Alles zweizeilig</a></td><td>Draft</td><td class="nowrap">29. Februar 2012 11:37:00</td><td>&nbsp;</td><td>(leer)</td></tr>
+            
+                
+                <tr class="row1"><td class="action-checkbox"><input type="checkbox" class="action-select" value="2" name="_selected_action"></td><th><a href="2/">Alpha Charlie Foxtrott</a></th><td class="nowrap">Kochen</td><td>Online</td><td class="nowrap">29. Februar 2012 11:30:00</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            
+                
+                <tr class="row2"><td class="action-checkbox"><input type="checkbox" class="action-select" value="1" name="_selected_action"></td><th><a href="1/">Testeintrag</a></th><td class="nowrap"><input class="vForeignKeyRawIdAdminField" type="text" name="form-3-category" value="5" id="id_form-3-category"><a href="../../../blog/blogcategory/?t=id" class="related-lookup" id="lookup_id_form-3-category" onclick="return showRelatedObjectLookupPopup(this);"> <img src="/static/grappelli/img/admin/selector-search.gif" width="16" height="16" alt="Suchen"></a>&nbsp;<strong>Testeintrag</strong></td><td>Online</td><td class="nowrap">15. August 2011 18:02:00</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr class="row1"><td class="action-checkbox"><input type="checkbox" class="action-select" value="3" name="_selected_action"></td><th><a href="3/">Wunderkammer</a></th><td class="nowrap"><input class="vForeignKeyRawIdAdminField" type="text" name="form-0-category" id="id_form-0-category"><a href="../../../blog/blogcategory/?t=id" class="related-lookup" id="lookup_id_form-0-category" onclick="return showRelatedObjectLookupPopup(this);"> <img src="/static/grappelli/img/admin/selector-search.gif" width="16" height="16" alt="Suchen"></a></td><td>Online</td><td class="nowrap">29. Februar 2012 11:37:00</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            
+                
+                <tr class="row2"><td class="action-checkbox"><input type="checkbox" class="action-select" value="4" name="_selected_action"></td><th><a href="4/">Elevator Gymnastics<br />and some Others Blabla</a></th><td class="nowrap">Irgendwas und dann noch was<br />dann wird Alles zweizeilig</a></td><td>Draft</td><td class="nowrap">29. Februar 2012 11:37:00</td><td>&nbsp;</td><td>(leer)</td></tr>
+            
+                
+                <tr class="row1"><td class="action-checkbox"><input type="checkbox" class="action-select" value="2" name="_selected_action"></td><th><a href="2/">Alpha Charlie Foxtrott</a></th><td class="nowrap">Kochen</td><td>Online</td><td class="nowrap">29. Februar 2012 11:30:00</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            
+                
+                <tr class="row2"><td class="action-checkbox"><input type="checkbox" class="action-select" value="1" name="_selected_action"></td><th><a href="1/">Testeintrag</a></th><td class="nowrap"><input class="vForeignKeyRawIdAdminField" type="text" name="form-3-category" value="5" id="id_form-3-category"><a href="../../../blog/blogcategory/?t=id" class="related-lookup" id="lookup_id_form-3-category" onclick="return showRelatedObjectLookupPopup(this);"> <img src="/static/grappelli/img/admin/selector-search.gif" width="16" height="16" alt="Suchen"></a>&nbsp;<strong>Testeintrag</strong></td><td>Online</td><td class="nowrap">15. August 2011 18:02:00</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            
+        </tbody>
+    </table>
+
     {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
-        <div class="module changelist-filters">
+        <div class="grp-module grp-changelist-filters">
             <!-- PAGINATION TOP -->
             {% pagination cl %}
             {% if cl.has_filters or cl.search_fields %}
                 <!-- FILTERS -->
                 {% if cl.has_filters %}
-                    <div id="filters" class="module filter span-6">
+                    <div id="filters" class="grp-module filter span-6">
                         <div class="pulldown-container">
                             <a href="javascript://" class="button toggle-filters">{% trans 'Filter' %}</a>
                             <div class="filter-pulldown">
@@ -166,7 +229,7 @@
                 {% endif %}
                 <!-- SEARCH -->
                 {% if cl.search_fields %}
-                    <div id="search" class="module search span-6">
+                    <div id="search" class="grp-module search span-6">
                         {% block search %}{% search_form cl %}{% endblock %}
                     </div>
                 {% endif %}
@@ -202,13 +265,14 @@
         </div><br clear="all" />
         <!-- SUBMIT ROW -->
         {% if cl.formset or action_form %}
-            <div id="submit" class="module footer">
-                {% if action_form %}{% admin_actions %}{% endif %}
-                {% if cl.formset %}
-                <ul class="submit-row">
-                    <li class="submit-button-container"><input type="submit" class="default" name="_save" value="Save"/></li>
+            <div id="submit grp-footer" class="grp-module grp-footer">
+                
+                
+                <ul class="grp-submit-row">
+                    {% if action_form %}<li class="grp-submit-action-container">{% admin_actions %}</li>{% endif %}
+                    {% if cl.formset %}<li class="grp-submit-button-container"><input type="submit" class="default" name="_save" value="Save"/></li>{% endif %}
                 </ul>
-                {% endif %}
+                
             </div>
         {% endif %}
     </form>

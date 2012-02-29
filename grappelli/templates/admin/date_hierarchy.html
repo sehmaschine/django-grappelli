@@ -1,7 +1,7 @@
 {% load i18n %}
 {% if show and choices %}
-    <div id="date-hierarchy" class="module date-hierarchy">
-        <div class="row">
+    <div id="date-hierarchy" class="grp-module date-hierarchy">
+        <div class="grp-row">
             <ul>
                 {% if back %}<li><a href="{{ back.link }}" class="date-hierarchy-back">{{ back.title }}</a></li>{% endif %}
                 {% for choice in choices %}

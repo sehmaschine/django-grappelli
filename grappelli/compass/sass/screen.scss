@@ -48,6 +48,8 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/layout/buttons";
 @import "partials/layout/tools";
 @import "partials/layout/actions";
+@import "partials/layout/tables";
+@import "partials/layout/changelist";
 
 @import "partials/forms/django-resets";
 // @import "partials/forms/helpers";

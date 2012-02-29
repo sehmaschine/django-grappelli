@@ -1,0 +1,244 @@
+
+
+
+/*  Basic Table Settings
+------------------------------------------------------------------------------------------------------ */
+
+table {
+    margin: 0;
+    padding: 0;
+    border-spacing: none;
+    border-collapse: separate;
+    border: 1px solid #ccc;
+    @include border-radius($grp-border-radius);
+    td, th {
+        vertical-align: text-top;
+        padding: 10px;
+        font-size: 11px;
+        line-height: 14px;
+    }
+    thead {
+        th {
+            vertical-align: top;
+            padding: 5px 10px;
+            font-size: 11px;
+            line-height: 12px;
+            color: #aaa;
+            border-left: 1px solid $grp-table-border-color;
+            border-bottom: 1px solid $grp-table-border-color;
+            background: $grp-module-background-color;
+            @include background-image(linear-gradient(#eee, #e0e0e0));
+            &:first-child {
+                border-left: 0;
+            }
+            &:first-of-type {
+                @include border-top-left-radius($grp-border-radius - 1px)
+            }
+            &:last-of-type {
+                @include border-top-right-radius($grp-border-radius - 1px)
+            }
+        }
+        th {
+            a {
+                position: relative;
+                display: block;
+                margin: -5px -10px -5px;
+                padding: 5px 10px 6px;
+                height: 100% !important;
+                white-space: nowrap;
+                color: #59afcc;
+                // border-top: 1px solid #fff;
+                &:hover {
+                    color: #444;
+                    @include background-image(linear-gradient(#e0e0e0, #eee));
+                }
+            }
+            &.sorted {
+                // border-bottom: 1px solid lighten($grp-table-border-color, 5);
+                @include background-image(linear-gradient(#e0e0e0, #eee));
+                a {
+                    color: #444;
+                    font-weight: bold;
+                    // border-top: 1px solid #ececec;
+                }
+            }
+            &.ascending a:after {
+                content: url('../img/icons/icon-th-ascending.png');
+            }
+            &.descending a:after {
+                content: url('../img/icons/icon-th-descending.png');
+            }
+        }
+    }
+    tbody {
+        td, th {
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #e0e0e0;
+            border-left: 1px solid #f4f4f4;
+            &:first-child {
+                border-left: 0;
+            }
+        }
+        th {
+            font-size: $grp-font-size;
+            font-weight: bold;
+        }
+        tr {
+            &.row1 td, &.row1 th, 
+            &.alt td, &.alt th {
+                background: #f4f4f4;
+            }
+            &.row2 td, &.row2 th {
+                background: #fff;
+            }
+            &.selected {
+                background: #ffd;
+            }
+            &.row-label td {
+                border-bottom: 0;
+                color: #666;
+            }
+            &:last-child {
+                td, th {
+                    border-bottom: 0;
+                    &:first-child {
+                        @include border-bottom-left-radius($grp-border-radius - 1px);
+                    }
+                    &:last-child {
+                        @include border-bottom-right-radius($grp-border-radius - 1px);
+                    }
+                }
+            }
+        }
+    }
+    tfoot {
+        td {
+            border-bottom: 0;
+            border-top: 1px solid #d4d4d4;
+            &:first-child {
+                border-left: 0;
+            }
+        }
+
+    }
+    td, th {
+        input[type=text], 
+        input[type=password], 
+        input[type=file], 
+        select, 
+        textarea {
+            margin: -10px 0 -5px;
+        }
+    }
+}
+
+
+
+
+/*  Thead ................................................... */
+
+// thead th,
+// tfoot td {
+//     padding: 5px 10px;
+//     font-size: 11px;
+//     line-height: 12px;
+//     font-weight: normal;
+// }
+// thead th
+// thead th 
+// thead th.ascending a:after {
+//     content: url('../img/icons/icon-th-ascending.png');
+// }
+// thead th.descending a:after {
+//     content: url('../img/icons/icon-th-descending.png');
+// }
+
+
+/*  Tbody ................................................... */
+
+thead th.optional {
+    font-weight: normal !important;
+}
+tr.row-label td {
+    margin-top: -1px;
+    padding-top: 2px;
+    padding-bottom: 0;
+    font-size: 9px;
+}
+
+
+
+/*  Table XFull
+------------------------------------------------------------------------------------------------------ */
+
+table.xfull {
+    width: 100%;
+}
+
+
+
+// /*  Changelist Table
+// ------------------------------------------------------------------------------------------------------ */
+
+// #changelist {
+//     table {
+//         position: relative;
+//         margin: -1px !important;
+        
+//     }
+// }
+
+
+// /*  Orderable Tables
+// ------------------------------------------------------------------------------------------------------ */
+
+// table.orderable tbody tr td:hover {
+//     cursor: move;
+// }
+
+// table.orderable tbody tr td:first-child {
+//     padding-left: 14px;
+//     background-image: url(../img/admin/nav-bg-grabber.gif);
+//     background-repeat: repeat-y;
+// }
+
+// table.orderable-initalized .order-cell, body>tr>td.order-cell {
+//     display: none;
+// }
+
+
+
+// /*  Change History
+// ------------------------------------------------------------------------------------------------------ */
+
+// table#change-history {
+//     width: 100%;
+// }
+// table#change-history tbody th {
+//     width: 150px;
+// }
+
+
+
+// /*  Documentation
+// ------------------------------------------------------------------------------------------------------ */
+
+// .model-index table {
+//     width: 100%;
+// }
+// .model-index table th {
+//     padding: 7px 10px 8px;
+// }
+
+
+
+// /*  Other Classes
+// ------------------------------------------------------------------------------------------------------ */
+
+// table .nowrap {
+//     white-space: nowrap;
+// }
+
+
+
+
