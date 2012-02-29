@@ -136,7 +136,7 @@ $grp-form-button-cancel-background-color-hover: #fff !default;
 	color: #fff;
 	border: 1px solid #2987a6;
 	@include background-image(linear-gradient(#36b0d9, #309bbf));
-	@include box-shadow(#fff 0 0 6px);
+	// @include box-shadow(#fff 0 0 6px);
 	cursor: pointer;
 	&:hover {
 		color: #333;
@@ -152,7 +152,7 @@ $grp-form-button-cancel-background-color-hover: #fff !default;
 	color: #fff;
 	border: 1px solid #992626;
 	@include background-image(linear-gradient(#d93636, #bf3030));
-	@include box-shadow(#fff 0 0 6px);
+	// @include box-shadow(#fff 0 0 6px);
 	cursor: pointer;
 	&:hover {
 		color: #333;

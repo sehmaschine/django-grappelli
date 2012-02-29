@@ -212,11 +212,14 @@ article#grp-content {
 	@include grp-gradient-dark;
 	@include clearfix;
 	ul {
-		@include horizontal-list(10px, right);
+		@include horizontal-list(0, right);
 		overflow: visible;
 		li {
+			margin-left: 10px;
 			&.grp-left {
 				float: left;
+				margin-left: 0;
+				margin-right: 10px;
 			}
 			input[type=submit], 
 			a {

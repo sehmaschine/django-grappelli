@@ -145,6 +145,7 @@ fieldset.monospace textarea {
 
 @mixin grp-form-button {
     height: 28px;
+    @include border-radius($grp-form-button-border-radius !important);
     @media screen and (-webkit-min-device-pixel-ratio:0) {
         @include grp-padding($grp-padding-size-s $grp-padding-size);
     }
@@ -154,6 +155,11 @@ input[type="submit"] {
     @include grp-form-button-default-gradient;
 }
 .grp-submit-row {
+    li {
+        padding: 5px !important;
+        @include border-radius($grp-form-button-border-radius + 2px);
+        background: #444;
+    }
     a.grp-delete-link {
         display: block;
         @include grp-form-field;
