@@ -140,7 +140,7 @@
     {% if has_add_permission %}
         <ul class="grp-object-tools">
             {% block object-tools-items %}
-                <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="grp-add-handler grp-state-focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
+                <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="grp-add-link grp-state-focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
             {% endblock %}
         </ul>
     {% endif %}
