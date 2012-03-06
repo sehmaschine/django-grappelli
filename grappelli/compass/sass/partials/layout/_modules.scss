@@ -244,6 +244,7 @@
 		border-top: 0;
 		@include border-top-radius($grp-border-radius - 1px);
 	}
+	
 	@include grp-actions-links();
 	li {
 		&.grp-add-link, 
@@ -271,6 +272,9 @@
 		}
 		&.grp-delete-link > span:first-child {
 			background-position: 0 -1602px;
+		}
+		&:last-child {
+			padding-bottom: 0;
 		}
 	}
 }
