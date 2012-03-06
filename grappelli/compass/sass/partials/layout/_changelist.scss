@@ -1,6 +1,112 @@
 
 
 
+/*  PAGINATION
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-pagination {
+	li {
+	    position: relative;
+	    float: left;
+	    display: block;
+	    margin-right: 1px;
+	    border: 1px solid #fff;
+    	@include border-radius($grp-border-radius);
+		a, 
+		span {
+		    display: inline-block;
+		    padding: 4px 8px 4px;
+		    min-width: 25px;
+		    font-size: 11px;
+		    font-weight: bold;
+		    border: 1px solid;
+		    @include border-radius($grp-border-radius - 1);
+			@include box-sizing(border-box);
+		}
+		a {
+			color: #59afcc;
+		    border-color: #d9d9d9;
+		    &:hover {
+		    	color: #444;
+			    border-color: #bdbdbd;
+			    @include background-image(linear-gradient(#eee, #e0e0e0));
+		    }
+		}
+		span {
+			color: #444;
+		    border-color: #bdbdbd;
+		    @include background-image(linear-gradient(#eee, #e0e0e0));
+		}
+		&.results {
+		    margin-right: 4px;
+		}
+		&.separator {
+		    border-color: transparent;
+		    span {
+			    padding: 4px 0;
+			    min-width: 10px;
+			    font-size: 14px;
+			    border-color: transparent;
+			    background: transparent;
+			}
+		}
+		&.showall {
+		    margin-left: 4px;
+		}
+		&:last-child {
+		    clear: right;
+		}
+
+	}
+}
+ul.pagination {
+	@include grp-pagination();
+}
+
+
+
+/*  DATE HIERARCHY
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-date-hierarchy {
+	position: relative;
+    float: left;
+    clear: both;
+    margin-left: -3px;
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: bold;
+    li {
+	    position: relative;
+	    float: left;
+	    margin-right: 0px;
+	    a, 
+		span {
+		    padding: 2px 5px 1px;
+		}
+		a.grp-date-hierarchy-back {
+			color: #59afcc;
+			padding-left: 10px;
+			@include icons-sprite(date-hierarchy-back);
+		    &:hover {
+		    	color: #444;
+		    }
+		}
+	}
+}
+ul.grp-date-hierarchy {
+	@include grp-date-hierarchy();
+}
+
+
+
+
 .grp-changelist-results {
 	background: $grp-module-background-color url('../img/backgrounds/changelist-results.png') repeat scroll !important;
+}
+
+body.change-list {
+	table {
+		margin: -1px !important;
+	}
 }

@@ -140,6 +140,18 @@ fieldset.monospace textarea {
 
 
 
+/*  SEARCH
+------------------------------------------------------------------------------------------------------ */
+
+input[type=text].grp-search-field {
+    margin-right: -3px;
+    padding-right: 30px;
+    & + button {
+        // margin-left: 0;
+    }
+}
+
+
 /*  BUTTONS (SUBMIT, RESET, CANCEL)
 ------------------------------------------------------------------------------------------------------ */
 

@@ -23,7 +23,7 @@ table {
             padding: 6px 10px;
             font-size: 11px;
             line-height: 12px;
-            color: #888;
+            color: $grp-font-color-quiet;
             border-left: 1px solid $grp-table-border-color;
             border-bottom: 1px solid $grp-table-border-color;
             @include background-image(linear-gradient(#eee, #e0e0e0));

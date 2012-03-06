@@ -265,27 +265,33 @@ $n: $blueprint-grid-columns;
 		&.grp-column-left-fluid.grp-column-right-span-#{$n} {
 	    	margin-right: - grp-column-width($n);
 	        .grp-column-left {
-	        	float: none;
+	        	position: relative;
+				float: left;
 				clear: left;
-	        	margin-right: grp-column-width($n) + 20;
-				width: auto;
+	        	margin-right: - grp-column-width($n) + 20;
+	        	padding-right: grp-column-width($n) + 20;
+				width: 100%;
 			}
 	        .grp-column-right {
-		        float: right;
+		        position: relative;
+				float: right;
 				clear: right;
 	        	width: grp-column-width($n);
 				margin-right: 0;
-		    }
+				margin-left: - grp-column-width($n) + 20;
+			}
 	    }
 	    &.grp-column-left-span-#{$n}.grp-column-right-fluid {
 	    	.grp-column-left {
-	        	float: left;
+	        	position: relative;
+				float: left;
 	        	clear: left;
 	        	margin-right: - grp-column-width($n);
 				width: grp-column-width($n);
 			}
 	        .grp-column-right {
-		        display: block;
+		        position: relative;
+				display: block;
 				float: left;
 				clear: right;
 	        	margin-right: 0;
