@@ -43,11 +43,11 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/typography/typo";
 
 @import "partials/layout/sprites";
+@import "partials/layout/actions";
 @import "partials/layout/components";
 @import "partials/layout/modules";
 @import "partials/layout/buttons";
 @import "partials/layout/tools";
-@import "partials/layout/actions";
 @import "partials/layout/tables";
 @import "partials/layout/changelist";
 

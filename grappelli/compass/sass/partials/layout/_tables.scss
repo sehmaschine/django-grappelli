@@ -20,13 +20,12 @@ table {
     thead {
         th {
             vertical-align: top;
-            padding: 5px 10px;
+            padding: 6px 10px;
             font-size: 11px;
             line-height: 12px;
-            color: #aaa;
+            color: #888;
             border-left: 1px solid $grp-table-border-color;
             border-bottom: 1px solid $grp-table-border-color;
-            background: $grp-module-background-color;
             @include background-image(linear-gradient(#eee, #e0e0e0));
             &:first-child {
                 border-left: 0;
@@ -42,8 +41,8 @@ table {
             a {
                 position: relative;
                 display: block;
-                margin: -5px -10px -5px;
-                padding: 5px 10px 6px;
+                margin: -6px -10px;
+                padding: 6px 10px;
                 height: 100% !important;
                 white-space: nowrap;
                 color: #59afcc;
@@ -71,21 +70,22 @@ table {
         }
     }
     tbody {
-        td, th {
-            border-top: 1px solid #fff;
-            border-bottom: 1px solid #e0e0e0;
-            border-left: 1px solid #f4f4f4;
-            &:first-child {
-                border-left: 0;
-            }
-        }
-        th {
-            font-size: $grp-font-size;
-            font-weight: bold;
-        }
         tr {
+            td, th {
+                // border-top: 1px solid #fff;
+                border-bottom: 1px solid #e0e0e0;
+                border-left: 1px solid #e4e4e4;
+                &:first-child {
+                    border-left: 0 !important;
+                }
+            }
+            th {
+                font-size: $grp-font-size;
+                font-weight: bold;
+            }
             &.row1 td, &.row1 th, 
             &.alt td, &.alt th {
+                border-left: 1px solid #e0e0e0;
                 background: #f4f4f4;
             }
             &.row2 td, &.row2 th {
@@ -125,6 +125,8 @@ table {
         input[type=text], 
         input[type=password], 
         input[type=file], 
+        input[type=checkbox], 
+        input[type=radio], 
         select, 
         textarea {
             margin: -10px 0 -5px;

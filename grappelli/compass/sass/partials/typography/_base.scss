@@ -29,8 +29,8 @@ $grp-line-height-xl: 24px;
 $grp-line-height-l: 18px;
 $grp-line-height-m: 16px;
 $grp-line-height: 16px;
-$grp-line-height-s: 15px;
-$grp-line-height-xs: 14px;
+$grp-line-height-s: 14px;
+$grp-line-height-xs: 13px;
 
 .grp-font-size-xl {
 	font-size: $grp-font-size-xl;
@@ -115,6 +115,14 @@ h1, h2, h3, h4 {
 		margin-left: 10px;
 		font-weight: normal;
 	}
+}
+
+
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
 }
 
 
@@ -275,10 +283,8 @@ body.grp-doc {
 
 	em {
 		display: inline-block;
-		font-style: italic;
 	}
 	strong {
 		display: inline-block;
-		font-weight: bold;
 	}
 }
