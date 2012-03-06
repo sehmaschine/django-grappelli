@@ -90,6 +90,7 @@
 	@include grp-border-radius($grp-border-radius);
 	@include box-sizing(border-box);
 	@include clearfix;
+	overflow: visible;
 	.grp-module {
 		border: 0;
 	}
@@ -193,6 +194,7 @@
 	@include clearfix;
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #ddd;
+	overflow: visible;
 	&:first-child {
 		border-top: 0;
 		@include border-top-radius($grp-border-radius - 1px);

@@ -167,11 +167,11 @@
                             <!-- FILTERS -->
                             {% if cl.has_filters %}
                                 <div id="filters" class="grp-column filter span-6 last">
-                                    <div class="pulldown-container">
-                                        <a href="javascript://" class="button toggle-filters">{% trans 'Filter' %}</a>
-                                        <div class="filter-pulldown" style="display: none">
+                                    <div class="grp-pulldown-container">
+                                        <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
+                                        <ul class="grp-pulldown-content" style="display: none">
                                             {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
-                                        </div>
+                                        </ul>
                                     </div>
                                 </div>
                             {% endif %}

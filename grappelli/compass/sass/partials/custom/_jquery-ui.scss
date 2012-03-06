@@ -10,8 +10,7 @@
 }
 .ui-widget-content {
     border: 1px solid #ccc;
-    border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px;
+    @include border-bottom-radius($grp-border-radius);
     // background: #eee;
 }
 

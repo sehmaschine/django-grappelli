@@ -1,32 +1,57 @@
 
 
-
+.button-state-blue {
+    border: $grp-button-border;
+    background-color: #e1f0f5;
+}
+.button-state-grey {
+    border: $grp-button-border-hover;
+    background-color: #eee;
+}
+.button-state-white {
+    border: $grp-button-border;
+    background-color: #fdfdfd;
+}
+.button-state-red {
+    border: $grp-button-border;
+    background-color: #bf3030;
+}
+.button-state-transparent {
+    border: 1px solid transparent;
+    background-color: transparent;
+}
 
 @mixin grp-button-states($state, $state-hover) {
     @if $state == blue {
-        border: $grp-button-border;
-        background-color: #e1f0f5;
+        @extend .button-state-blue;
+    }
+    @if $state == grey {
+        @extend .button-state-grey;
     }
     @if $state == white {
-        border: $grp-button-border;
-        background-color: #fdfdfd;
+        @extend .button-state-white;
     }
     @if $state == red {
-        border: $grp-button-border;
-        background-color: #bf3030;
+        @extend .button-state-red;
+    }
+    @if $state == transparent {
+        @extend .button-state-transparent;
     }
     &:hover {
+        @if $state-hover == blue {
+            @extend .button-state-blue;
+        }
         @if $state-hover == grey {
-            border: $grp-button-border-hover;
-            background-color: #eee;
+            @extend .button-state-grey;
         }
         @if $state-hover == white {
-            border: $grp-button-border;
-            background-color: #fdfdfd;
+            @extend .button-state-white;
         }
         @if $state-hover == red {
-            border: $grp-button-border;
-            background-color: #bf3030;
+            @extend .button-state-red;
+        }
+        @if $state-hover == transparent {
+            @extend .button-state-transparent;
         }
     }
 }
@@ -94,7 +119,10 @@ a.grp-related-remove {
     @include grp-button-states(white, white);
 }
 
-
+.grp-search-button {
+    @include icons-sprite(related-lookup);
+    @include grp-button-states(transparent, transparent);
+}
 
 
 
@@ -109,6 +137,9 @@ input:focus + * + a.related-lookup,
 input:focus + a.add-another, 
 .grp-state-focus a.related-lookup {
     border: $grp-button-border-focus !important;
+}
+input:focus + .grp-search-button {
+    border-color: transparent !important;
 }
 /*  Reset the style for focused links in autocompletes as there is an automatically
     focused (invisible) input which causes the a.related-lookup to be "focused" though it's not */

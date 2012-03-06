@@ -23,24 +23,44 @@ $n: $blueprint-grid-columns;
     }
     $n: $n - 1;
 }
+@function formfield-contained($n) {
+    @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 2;
+}
 
+$n: $blueprint-grid-columns;
+@while $n > 0 {
+    .span-#{$n} input[type=text].grp-form-field-contained, 
+    .span-#{$n} input[type=password].grp-form-field-contained, 
+    .span-#{$n} select.grp-form-field-contained, 
+    .span-#{$n} textarea.grp-form-field-contained, 
+    input[type=text].span-#{$n}.grp-form-field-contained, 
+    input[type=password].span-#{$n}.grp-form-field-contained, 
+    select.span-#{$n}.grp-form-field-contained, 
+    textarea.span-#{$n}.grp-form-field-contained {
+        width: formfield-contained($n);
+    }
+    $n: $n - 1;
+}
 
 
 
 /*  LABELS
 ------------------------------------------------------------------------------------------------------ */
 
+@mixin grp-label {
+    display: inline-block;
+    font-family: $grp-form-label-font-family;
+    font-size: $grp-form-label-font-size;
+    line-height: $grp-form-label-line-height;
+    color: $grp-form-label-font-color;
+    &.required {
+        @include grp-form-label-required;
+    }
+}
 fieldset.grp-module {
     .grp-row label {
         margin: 6px 0 6px;
-        display: inline-block;
-        font-family: $grp-form-label-font-family;
-        font-size: $grp-form-label-font-size;
-        line-height: $grp-form-label-line-height;
-        color: $grp-form-label-font-color;
-        &.required {
-            @include grp-form-label-required;
-        }
+        @include grp-label;
     }
 }
 
@@ -144,8 +164,10 @@ fieldset.monospace textarea {
 ------------------------------------------------------------------------------------------------------ */
 
 input[type=text].grp-search-field {
-    margin-right: -3px;
+    margin-right: -5px;
+    padding-left: 10px;
     padding-right: 30px;
+    @include border-radius(20px);
     & + button {
         // margin-left: 0;
     }

@@ -42,6 +42,11 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/typography/base";
 @import "partials/typography/typo";
 
+@import "partials/forms/django-resets";
+// @import "partials/forms/helpers";
+@import "partials/forms/base";
+@import "partials/forms/autocompletes";
+
 @import "partials/layout/sprites";
 @import "partials/layout/actions";
 @import "partials/layout/components";
@@ -51,10 +56,6 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/layout/tables";
 @import "partials/layout/changelist";
 
-@import "partials/forms/django-resets";
-// @import "partials/forms/helpers";
-@import "partials/forms/base";
-@import "partials/forms/autocompletes";
 
 // @import "partials/custom/jquery-ui-all";
 
