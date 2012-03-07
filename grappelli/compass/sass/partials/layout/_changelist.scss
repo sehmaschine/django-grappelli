@@ -211,6 +211,7 @@ form#grp-changelist-search {
 		span {
 			color: lighten($grp-font-color-quiet, 20);
 			@include grp-button-states(transparent, transparent);
+			cursor: default !important;
 		}
 	}
 }

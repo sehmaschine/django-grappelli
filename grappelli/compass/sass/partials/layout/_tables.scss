@@ -122,14 +122,18 @@ table {
 
     }
     td, th {
-        input[type=text], 
-        input[type=password], 
-        input[type=file], 
-        input[type=checkbox], 
-        input[type=radio], 
-        select, 
-        textarea {
-            margin: -10px 0 -5px;
+        > input[type=text], 
+        > input[type=password], 
+        > input[type=file], 
+        > input[type=checkbox], 
+        > input[type=radio], 
+        > select, 
+        > textarea {
+            margin: -10px 0 -5px !important;
+        }
+        .grp-autocomplete-wrapper-m2m, 
+        .grp-autocomplete-wrapper-fk {
+            margin: -5px 0 !important;
         }
     }
 }
