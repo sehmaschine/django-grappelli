@@ -1,0 +1,129 @@
+/* Less Framework 4
+ * http://lessframework.com
+ * by Joni Korpi
+ * License: http://creativecommons.org/licenses/MIT/ */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em,
+img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figure, figcaption, hgroup,
+menu, footer, header, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+  display: block;
+}
+
+a img {
+  border: 0;
+}
+
+.gigantic {
+  font-size: 110px;
+  line-height: 120px;
+  letter-spacing: -2px;
+}
+
+.huge, h1 {
+  font-size: 68px;
+  line-height: 72px;
+  letter-spacing: -1px;
+}
+
+.large, h2 {
+  font-size: 42px;
+  line-height: 48px;
+}
+
+.bigger, h3 {
+  font-size: 26px;
+  line-height: 36px;
+}
+
+.big, h4 {
+  font-size: 22px;
+  line-height: 30px;
+}
+
+body {
+  font: 16px/24px Georgia, serif;
+}
+
+.small, small {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+body {
+  background: #e8e8e8;
+  color: #3c3c3c;
+  -webkit-text-size-adjust: 100%;
+}
+
+::selection {
+  background: rgb(255,255,158);
+}
+
+::-moz-selection {
+  background: rgb(255,255,158);
+}
+
+img::selection {
+  background: transparent;
+}
+
+img::-moz-selection {
+  background: transparent;
+}
+
+body {
+  -webkit-tap-highlight-color: rgb(255,255,158);
+}
+
+/* Default Layout: 992px.
+ * Gutters: 24px.
+ * Outer margins: 48px.
+ * Leftover space for scrollbars @1024px: 32px.  */
+body {
+  width: 896px;
+  padding: 72px 48px 84px;
+}
+
+/* Tablet Layout: 768px.
+ * Gutters: 24px.
+ * Outer margins: 28px.
+ * Inherits styles from: Default Layout.  */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  body {
+    width: 712px;
+    padding: 48px 28px 60px;
+  }
+}
+/* Mobile Layout: 320px.
+ * Gutters: 24px.
+ * Outer margins: 34px.
+ * Inherits styles from: Default Layout.  */
+@media only screen and (max-width: 767px) {
+  body {
+    width: 252px;
+    padding: 48px 34px 60px;
+  }
+}
+/* Wide Mobile Layout: 480px.
+ * Gutters: 24px.
+ * Outer margins: 22px.
+ * Inherits styles from: Default Layout, Mobile Layout.  */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  body {
+    width: 436px;
+    padding: 36px 22px 48px;
+  }
+}
+/* Retina media query.
+   Overrides styles for devices with a
+   device-pixel-ratio of 2+, such as iPhone 4.  */

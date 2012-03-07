@@ -1,0 +1,429 @@
+
+
+/*  Imports
+------------------------------------------------------------------------------------------------------ */
+
+@import "blueprint/reset";
+@import "partials/base";
+@import "blueprint";
+@import "compass/typography/links/link-colors";
+@import "compass/typography/vertical_rhythm";
+@import "compass/typography/lists/horizontal-list";
+@import "compass/typography/lists/inline-block-list";
+@import "compass/css3/border-radius";
+
+@include blueprint-grid;
+@include establish-baseline();
+
+
+/*  -------------------------------------------- */
+/*  Layout
+/*  -------------------------------------------- */
+
+body {
+    font-family: $font-family;
+    font-weight: 200;
+    color: $text-color;
+    background: $background-color;
+    text-align: center;
+    border-top: 2px solid $link-color;
+    div.wrapper {
+        width: 100%;
+        background: transparent url("../img/grid_horizontal.png") 0 0 repeat;
+    }
+    div.container {
+        @include container;
+        width: 942px;
+        padding: 48px 0 0 1px;
+        background: transparent url("../img/grid_vertical.png") 0 0 repeat;
+    }
+    div#header {
+        padding-top: 16px;
+    }
+    div#title {}
+    div#teaser {
+        padding-top: 0;
+        p {
+            @include adjust-font-size-to(16px, 1.5);
+            i {
+                line-height: 1em;
+            }
+            em {
+                font-style: normal;
+                color: $text-color-dark;
+                line-height: 1em;
+            }
+        }
+    }
+    div#screenshots {
+        h2 {
+            @include adjust-font-size-to(24px, 1.5);
+        }
+    }
+    div#links {
+        a {
+            @include adjust-font-size-to(16px, 1);
+            display: block;
+            background: $link-color;
+            color: $background-color;
+            border: 2px solid #ccc;
+            padding: 14px 0;
+            font-weight: 200;
+            @include border-radius(4px);
+            &:hover {
+                background: $text-color-dark;
+            }
+        }
+    }
+    div#features {
+        padding-top: 72px;
+        ul {
+            @include adjust-font-size-to(16px, 1.5);
+            @include inline-block-list();
+            & li {
+                @include column(4);
+                &.last {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    div#description {
+        padding-top: 72px;
+        h2 {
+            @include adjust-font-size-to(16px, 1.5);
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+        p {
+            @include adjust-font-size-to(12px, 1.5);
+            margin-top: 0;
+        }
+    }
+    div#details {
+        p {
+            @include adjust-font-size-to(16px, 1.5);
+            em {
+                font-style: normal;
+                border-bottom: 2px solid #999;
+                line-height: 1em;
+            }
+        }
+    }
+    div#credits {
+        p {
+            @include adjust-font-size-to(12px, 1.5);
+            color: $text-color-light;
+        }
+    }
+    div#footer {
+        padding-bottom: 64px;
+    }
+}
+
+
+/*  -------------------------------------------- */
+/*  General
+/*  -------------------------------------------- */
+
+p, ul, ol, pre {
+    padding: 0;
+    margin: 24px 0;
+    @include adjust-font-size-to(16px, 1.5);
+}
+
+img {
+    display: block; // removes vertical padding
+    margin: 0;
+    padding: 0;
+}
+
+.fontsize-small {
+    @include adjust-font-size-to(12px, 1);
+}
+.fontsize-big {
+    @include adjust-font-size-to(16px, 1.5);
+}
+.fontsize-large {
+    @include adjust-font-size-to(24px, 1.5);
+}
+.fontsize-max {
+    @include adjust-font-size-to(32px, 2);
+}
+.fancytype {
+    font-family: Baskerville, "Warnock Pro", "Goudy Old Style", Palatino, "Book Antiqua", serif;
+    font-style: italic;
+    line-height: 1px !important;
+}
+.code {
+    font-family: Menlo, "Andale Mono", Monaco, serif;
+}
+
+
+/*  -------------------------------------------- */
+/*  Links
+/*  -------------------------------------------- */
+
+a {
+    font-family: $link-family;
+    text-decoration: none;
+    font-weight: 200;
+    color: $link-color;
+    &:hover {
+        color: $link-color-hover;
+    }
+    &.twitter {
+        display: inline-block;
+        width: 96px; height: 96px;
+        background: transparent url(../img/twitter.png) 0 0 no-repeat;
+        &:hover {
+            background: transparent url(../img/twitter.png) 0 -96px no-repeat;
+        }
+        span { display: none; }
+    }
+    &.external {
+        color: $text-color;
+        border-bottom: 2px solid $link-color;
+        &:hover {
+            border-color: $link-color-hover;
+        }
+    }
+}
+
+
+/*  -------------------------------------------- */
+/*  Headlines
+/*  -------------------------------------------- */
+
+h1,h2,h3 {
+    @include adjust-font-size-to(24px, 1.5);
+    font-weight: 200;
+    margin: 24px 0;
+    color: $text-color-dark;
+}
+h1 {
+    @include adjust-font-size-to(24px, 1.5);
+    &.logo {
+        display: block;
+        width: 940px; height: 96px;
+        background: transparent url(../img/grappelli.png) 50% 50% no-repeat;
+        span { display: none; }
+    }
+    &.title {
+        display: block;
+        width: 460px; height: 64px;
+        background: transparent url(../img/grappelli_logo.png) 50% 50% no-repeat;
+        span { display: none; }
+    }
+}
+h2 {
+    @include adjust-font-size-to(24px, 1.5);
+    //@include border-bottom;
+    color: $text-color-dark;
+    text-transform: uppercase;
+}
+h3 {
+    @include adjust-font-size-to(12px, 1.5);
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+
+/*  -------------------------------------------- */
+/*  Borders
+/*  -------------------------------------------- */
+
+.border-top {
+    @include border-top;
+}
+
+
+/*  -------------------------------------------- */
+/*  Slider
+/*  -------------------------------------------- */
+
+.slider-container {
+    overflow: hidden;
+}
+.slider-list {
+    @include inline-block-list;
+    .slider-item {
+        float: left;
+        display: block;
+    }
+}
+
+ul.slider-buttons {
+    @include horizontal-list;
+    display: inline-block;
+    width: 272px;
+    li {
+        margin: 24px 5px 24px 5px; padding: 0;
+        width: 24px; height: 24px;
+        a {
+            display: block;
+            width: 24px; height: 24px;
+            span {
+                display: none;
+            }
+        }
+        &.slider-prev {
+            a {
+                background: transparent url(../img/sliderbuttons.png) -120px 0 no-repeat;
+                &:hover {
+                    background: transparent url(../img/sliderbuttons.png) -144px 0 no-repeat;
+                }
+            }
+            &.inactive a {
+                background: transparent url(../img/sliderbuttons.png) -168px 0 no-repeat;
+            }
+        }
+        &.slider-next {
+            a {
+                background: transparent url(../img/sliderbuttons.png) -48px 0 no-repeat;
+                &:hover {
+                    background: transparent url(../img/sliderbuttons.png) -72px 0 no-repeat;
+                }
+            }
+            &.inactive a {
+                background: transparent url(../img/sliderbuttons.png) -96px 0 no-repeat;
+            }
+        }
+        &.slider-button {
+            a {
+                background: transparent url(../img/sliderbuttons.png) 0 0 no-repeat;
+                &:hover {
+                    background: transparent url(../img/sliderbuttons.png) -24px 0 no-repeat;
+                }
+            }
+            &.active a {
+                background: transparent url(../img/sliderbuttons.png) -24px 0 no-repeat;
+            }
+        }  
+    }  
+}
+
+/*  -------------------------------------------- */
+/*  Padding/Margin
+/*  -------------------------------------------- */
+
+.padding-none {
+    padding: 0 !important;
+}
+.padding-top-none {
+    padding-top: 0 !important;
+}
+.padding-bottom-none {
+    padding-bottom: 0 !important;
+}
+.margin-none {
+    margin: 0 !important;
+}
+.margin-top-none {
+    margin-top: 0 !important;
+}
+.margin-bottom-none {
+    margin-bottom: 0 !important;
+}
+
+.padding-mini {
+    padding: $padding-mini !important;
+}
+.padding-top-mini {
+    padding-top: $padding-mini !important;
+}
+.padding-bottom-mini {
+    padding-bottom: $padding-mini !important;
+}
+
+.padding-small {
+    padding: $padding-small !important;
+}
+.padding-top-small {
+    padding-top: $padding-small !important;
+}
+.padding-bottom-small {
+    padding-bottom: $padding-small !important;
+}
+
+.padding-big {
+    padding: $padding-big !important;
+}
+.padding-top-big {
+    padding-top: $padding-big !important;
+}
+.padding-bottom-big {
+    padding-bottom: $padding-big !important;
+}
+
+.padding-large {
+    padding: $padding-large !important;
+}
+.padding-top-large {
+    padding-top: $padding-large !important;
+}
+.padding-bottom-large {
+    padding-bottom: $padding-large !important;
+}
+
+.padding-max {
+    padding: $padding-max !important;
+}
+.padding-top-max {
+    padding-top: $padding-max !important;
+}
+.padding-bottom-max {
+    padding-bottom: $padding-max !important;
+}
+
+.margin-mini {
+    margin: $margin-mini !important;
+}
+.margin-top-mini {
+    margin-top: $margin-mini !important;
+}
+.margin-bottom-mini {
+    margin-bottom: $margin-mini !important;
+}
+
+.margin-small {
+    margin: $margin-small !important;
+}
+.margin-top-small {
+    margin-top: $margin-small !important;
+}
+.margin-bottom-small {
+    margin-bottom: $margin-small !important;
+}
+
+.margin-big {
+    margin: $margin-big !important;
+}
+.margin-top-big {
+    margin-top: $margin-big !important;
+}
+.margin-bottom-big {
+    margin-bottom: $margin-big !important;
+}
+
+.margin-large {
+    margin: $margin-large !important;
+}
+.margin-top-large {
+    margin-top: $margin-large !important;
+}
+.margin-bottom-large {
+    margin-bottom: $margin-large !important;
+}
+
+.margin-max {
+    margin: $margin-max !important;
+}
+.margin-top-max {
+    margin-top: $margin-max !important;
+}
+.margin-bottom-max {
+    margin-bottom: $margin-max !important;
+}
+
+

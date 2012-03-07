@@ -1,0 +1,70 @@
+// Here is where you can define your constants for your application and to configure the blueprint framework.
+// Feel free to delete these if you want keep the defaults:
+
+// blueprint
+$blueprint-grid-columns: 12;
+$blueprint-grid-margin: 20px;
+$blueprint-grid-width: 60px;
+$min-line-padding: 0px;
+
+// font-family
+$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$link-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// base
+$base-font-size: 12px;
+$base-line-height: 16px;
+$relative-font-sizing: false;
+$min-line-padding: 0px;
+
+// colors
+$background-color: #ddd;
+$text-color: #666;
+$text-color-dark: #333;
+$text-color-light: #999;
+$text-color-colored: #309BBF;
+$link-color: #309BBF;
+$link-color-hover: #333;
+$border-color: #999;
+
+// paddings & margin
+$padding-mini: 4px;
+$padding-small: 8px;
+$padding-big: 16px;
+$padding-large: 24px;
+$padding-max: 32px;
+$margin-mini: 4px;
+$margin-small: 8px;
+$margin-big: 16px;
+$margin-large: 24px;
+$margin-max: 32px;
+
+// radius
+$radius-mini: 4px;
+$radius-small: 8px;
+$radius-big: 16px;
+$radius-large: 24px;
+$radius-max: 32px;
+
+// mixins
+@mixin border-top-light {
+	border-top: 1px dotted $border-color;
+	padding-top: 15px;
+}
+@mixin border-top-strong {
+	border-top: 1px dotted $border-color;
+	padding-top: 15px;
+}
+@mixin border-top {
+	border-top: 1px solid #eee;
+	padding-top: 23px;
+}
+@mixin border-top-colored {
+	border-top: 1px dotted $border-color-colored;
+	padding-top: 15px;
+}
+@mixin border-bottom {
+	border-bottom: 1px dotted $border-color;
+	padding-bottom: 15px;
+}
+

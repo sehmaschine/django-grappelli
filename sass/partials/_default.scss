@@ -1,0 +1,7 @@
+/* Default Layout: 992px.
+ * Gutters: 24px.
+ * Outer margins: 48px.
+ * Leftover space for scrollbars @1024px: 32px.  */
+
+#{$less-grid-element} {
+  @include grid(10); }

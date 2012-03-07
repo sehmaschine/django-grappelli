@@ -1,6 +1,6 @@
  /*!
  * Thumbnail helper for fancyBox
- * version: 1.0.1
+ * version: 1.0.2
  * @requires fancyBox v2.0 or later
  *
  * Usage: 
@@ -15,6 +15,7 @@
  *     width - thumbnail width
  *     height - thumbnail height
  *     source - function to obtain the URL of the thumbnail image
+ *     position - 'top' or 'bottom'
  * 
  */
 (function ($) {
@@ -45,10 +46,10 @@
 			list = '';
 
 			for (var n = 0; n < F.group.length; n++) {
-				list += '<li><a style="width:' + thumbWidth + 'px;height:' + thumbHeight + 'px;" href="javascript:$.fancybox.jumpto(' + n + ');"></a></li>';
+				list += '<li><a style="width:' + thumbWidth + 'px;height:' + thumbHeight + 'px;" href="javascript:jQuery.fancybox.jumpto(' + n + ');"></a></li>';
 			}
 
-			this.wrap = $('<div id="fancybox-thumbs"></div>').appendTo('body');
+			this.wrap = $('<div id="fancybox-thumbs"></div>').addClass(opts.position || 'bottom').appendTo('body');
 			this.list = $('<ul>' + list + '</ul>').appendTo(this.wrap);
 
 			//Load each thumbnail
@@ -116,7 +117,7 @@
 			}
 
 			//Increase bottom margin to give space for thumbs
-			F.coming.margin[2] = opts.height + 30;
+			F.coming.margin[ opts.position === 'top' ? 0 : 2 ] = opts.height + 30;
 		},
 
 		afterShow: function (opts) {
