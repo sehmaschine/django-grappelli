@@ -434,6 +434,41 @@
 }
 
 
+/*  LISTINGS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-list {
+	list-style-type: none;
+}
+// @mixin grp-horizontal-list($grp-direction) {
+// 	@include horizontal-list(5px, $grp-direction);
+// }
+// @mixin grp-inline-list {
+// 	@include inline-list;
+// }
+// @mixin grp-inline-block-list {
+// 	@include inline-block-list(5px);
+// }
+.grp-horizontal-list-container {
+	@include horizontal-list-container();
+}
+.grp-horizontal-list {
+	@include horizontal-list(5px, left);
+}
+.grp-horizontal-list-right {
+	> li {
+		@include horizontal-list-item(5px, right);
+	}
+}
+
+// We won't use those two
+.grp-inline-list {
+	@include inline-list;
+}
+.grp-inline-block-list {
+	@include inline-block-list(5px);
+}
+
 /*  PREDELETE
 ------------------------------------------------------------------------------------------------------ */
 

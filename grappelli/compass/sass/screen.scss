@@ -214,13 +214,11 @@ article#grp-content {
 	@include box-sizing(border-box);
 	@include grp-gradient-dark;
 	@include clearfix;
-	ul {
-		@include horizontal-list(0, right);
+	ul.grp-submit-row {
 		overflow: visible;
-		li {
+		> li {
 			margin-left: 10px;
-			&.grp-left {
-				float: left;
+			&.grp-float-left {
 				margin-left: 0;
 				margin-right: 10px;
 			}
@@ -237,8 +235,11 @@ article#grp-content {
 		}
 	}
 }
-#grp-footer {
+.grp-footer {
 	@include grp-footer;
+	margin: 0;
+	border: 0;
+	@include border-radius(0);
 }
 
 

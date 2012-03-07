@@ -57,6 +57,25 @@
 }
 @mixin grp-button {
     position: relative;
+    display: inline-block;
+    margin: 0;
+    @include grp-padding($grp-padding-size-xs $grp-padding-size-s);
+    height: 28px;
+    @include border-radius($grp-form-button-border-radius !important);
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        @include grp-padding($grp-padding-size-s $grp-padding-size);
+    }
+    @include box-sizing(border-box);
+    cursor: pointer;
+    overflow: hidden;
+    vertical-align: top;
+    @include grp-button-states(blue, grey);
+}
+.grp-button {
+    @include grp-button();
+}
+@mixin grp-icon-button {
+    position: relative;
     // float: right;
     // top: 0;
     // display: inline-block;
@@ -75,7 +94,7 @@
 input[type=button], 
 button, a.fb_show, 
 a.related-lookup {
-    @include grp-button;
+    @include grp-icon-button;
 }
 a.fb_show, 
 a.related_lookup {

@@ -189,7 +189,7 @@ input[type="submit"] {
     @include grp-form-button-default-gradient;
 }
 .grp-submit-row {
-    li {
+    > li {
         padding: 5px !important;
         @include border-radius($grp-form-button-border-radius + 2px);
         background: #444;

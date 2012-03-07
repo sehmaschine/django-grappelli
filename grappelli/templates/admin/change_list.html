@@ -38,19 +38,19 @@
                     var autocomplete_fields_m2m = {% get_autocomplete_lookup_fields_m2m cl.model_admin %};
                     var autocomplete_fields_generic = {% get_autocomplete_lookup_fields_generic cl.model_admin %};
                     $.each(related_lookup_fields_fk, function() {
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
                         .grp_related_fk({lookup_url:"{% url grp_related_lookup %}"});
                     });
                     $.each(related_lookup_fields_m2m, function() {
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
                         .grp_related_m2m({lookup_url:"{% url grp_m2m_lookup %}"});
                     });
                     $.each(related_lookup_fields_generic, function() {
                         var content_type = this[0],
                             object_id = this[1];
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
                         .each(function() {
                             var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
@@ -59,7 +59,7 @@
                         });
                     });
                     $.each(autocomplete_fields_fk, function() {
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
                         .each(function() {
                             $(this).grp_autocomplete_fk({
@@ -69,7 +69,7 @@
                         });
                     });
                     $.each(autocomplete_fields_m2m, function() {
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
                         .each(function() {
                             $(this).grp_autocomplete_m2m({
@@ -81,7 +81,7 @@
                     $.each(autocomplete_fields_generic, function() {
                         var content_type = this[0],
                             object_id = this[1];
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
                         .each(function() {
                             var i = $(this).attr("id").match(/-\d+-/);
@@ -117,7 +117,7 @@
 
 <!-- COLTYPE/BODYCLASS-- >
 {% block bodyclass %}change-list{% endblock %}
-{% block content-class %}content-flexible{% endblock %}
+{% block content-class %}{% endblock %}
 
 <!-- BREADCRUMBS -- >
 {% block breadcrumbs %}
@@ -160,7 +160,7 @@
                         <div class="grp-column-right">
                             <!-- SEARCH -->
                             {% if cl.search_fields %}
-                                <div id="search" class="grp-column search span-6">
+                                <div id="search" class="grp-column span-6">
                                     {% block search %}{% search_form cl %}{% endblock %}
                                 </div>
                             {% endif %}
@@ -211,14 +211,11 @@
         </div>
         <!-- SUBMIT ROW -->
         {% if cl.formset or action_form %}
-            <div id="submit grp-footer" class="grp-module grp-footer">
-                
-                
-                <ul class="grp-submit-row">
-                    {% if action_form %}<li class="grp-submit-action-container">{% admin_actions %}</li>{% endif %}
+            <div id="submit" class="grp-module grp-footer">
+                <ul class="grp-horizontal-list-right grp-submit-row">
+                    {% if action_form %}<li class="grp-submit-action-container grp-float-left">{% admin_actions %}</li>{% endif %}
                     {% if cl.formset %}<li class="grp-submit-button-container"><input type="submit" class="default" name="_save" value="Save"/></li>{% endif %}
                 </ul>
-                
             </div>
         {% endif %}
     </form>

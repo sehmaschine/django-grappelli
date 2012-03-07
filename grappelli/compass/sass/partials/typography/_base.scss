@@ -151,7 +151,7 @@ body.grp-doc {
 	}
 }
 
-.rte {
+body.grp-doc {
 	// h2, h3, h4, p, ul, ol, blockquote, pre {
 	// 	position: relative;
 	// 	float: left;
@@ -240,24 +240,24 @@ body.grp-doc {
 			top: -3px !important;
 		}
 	}
-	p, ul, ol, pre {
+	p pre {
 		margin: 10px 0;
 		font-size: 14px;
 		line-height: 20px;
 	}
-	ul {
-		list-style: disc outside;
-		margin-bottom: 20px;
-		padding: 0 0 0 40px;
-	}
-	ol {
-		list-style: decimal outside;
-		margin-bottom: 20px;
-		padding: 0 0 0 40px;
-	}
-	li + li {
-		margin-top: 10px;
-	}
+	// ul {
+	// 	list-style: disc outside;
+	// 	margin-bottom: 20px;
+	// 	padding: 0 0 0 40px;
+	// }
+	// ol {
+	// 	list-style: decimal outside;
+	// 	margin-bottom: 20px;
+	// 	padding: 0 0 0 40px;
+	// }
+	// li + li {
+	// 	margin-top: 10px;
+	// }
 	code {
 		position: relative;
 		top: -1px;
@@ -287,4 +287,14 @@ body.grp-doc {
 	strong {
 		display: inline-block;
 	}
+}
+
+
+
+
+.grp-float-left {
+	float: left !important;
+}
+.grp-float-right {
+	float: right !important;
 }
