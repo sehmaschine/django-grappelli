@@ -216,6 +216,7 @@
 		height: 100%;
 		white-space: nowrap;
 		border-right: 1px solid #ddd;
+		overflow: hidden;
 		& + .grp-cell {
 			padding-left: 20px;
 			border-left: 1px solid #fff;
@@ -227,6 +228,9 @@
 }
 .grp-row {
 	@include grp-row;
+}
+fieldset .grp-row {
+	overflow: hidden;
 }
 
 
