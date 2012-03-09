@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 {% load url from future %}
-{% load i18n grp_tags %}
+{% load i18n grp_tags staticfiles %}
 <head>
     <title>{% block title %}{% endblock %}</title>
     {% block blockbots %}
@@ -9,10 +9,10 @@
     {% endblock %}
     <!-- STYLESHEETS -->
     {% block stylesheets %}
-        <link href="{{ STATIC_URL }}grappelli/css/base.css" rel="stylesheet" type="text/css" />
-        {% if LANGUAGE_BIDI %}<link href="{% block stylesheet_rtl %}{{ STATIC_URL }}grappelli/css/rtl.css{% endblock %}" rel="stylesheet" type="text/css" />{% endif %}
-        <link href="{{ STATIC_URL }}grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8" />
-        <link href="{{ STATIC_URL }}grappelli/css/jquery-ui-grappelli-extensions.css" rel="stylesheet" type="text/css" />
+        <link href="{% static "grappelli/css/base.css" %}" rel="stylesheet" type="text/css" />
+        {% if LANGUAGE_BIDI %}<link href="{% block stylesheet_rtl %}{% static "grappelli/css/rtl.css" %}{% endblock %}" rel="stylesheet" type="text/css" />{% endif %}
+        <link href="{% static "grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" %}" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8" />
+        <link href="{% static "grappelli/css/jquery-ui-grappelli-extensions.css" %}" rel="stylesheet" type="text/css" />
     {% endblock %}
     <!-- EXTRASTYLES -->
     {% block extrastyle %}{% endblock %}
@@ -29,20 +29,21 @@
                 DATETIME_FORMAT = "{% get_datetime_format %}";
         </script>
         <!-- jQuery, jQuery-UI -->
-        <script src="{{ STATIC_URL }}grappelli/jquery/jquery-1.6.2.min.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/jquery/ui/js/jquery-ui-1.8.15.custom.min.js" type="text/javascript"></script>
+        <script src="{% static "grappelli/jquery/jquery-1.6.2.min.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/jquery/ui/js/jquery-ui-1.8.15.custom.min.js" %}" type="text/javascript"></script>
         <!-- Grappelli Main JS -->
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/grappelli.js" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/grappelli.js" %}" type="text/javascript"></script>
         <!-- Grappelli jQuery Plugins, Widgets -->
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_collapsible.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_collapsible_group.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_timepicker.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_related_fk.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_related_m2m.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_related_generic.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_autocomplete_fk.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_autocomplete_m2m.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}grappelli/js/grappelli/jquery.grp_autocomplete_generic.js" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_actions.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_collapsible.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_collapsible_group.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_timepicker.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_related_fk.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_related_m2m.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_related_generic.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_autocomplete_fk.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_autocomplete_m2m.js" %}" type="text/javascript"></script>
+        <script src="{% static "grappelli/js/jquery.grp_autocomplete_generic.js" %}" type="text/javascript"></script>
     {% endblock %}
     <!-- EXTRAHEAD -->
     {% block extrahead %}{% endblock %}

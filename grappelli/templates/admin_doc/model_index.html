@@ -1,8 +1,8 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n staticfiles %}
 {% block javascripts %}
     {{ block.super }}
-    <script type="text/javascript" src="{{ STATIC_URL }}grappelli/js/documentation.js"></script>
+    <script type="text/javascript" src="{% static "grappelli/js/documentation.js" %}"></script>
 {% endblock %}
 
 {% block bodyclass %}documentation model-index{% endblock %}
