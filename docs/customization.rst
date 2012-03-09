@@ -223,12 +223,15 @@ For the represantation of an object, we first check for a callable ``related_lab
 Using TinyMCE
 -------------
 
-Copy ``tinymce_setup.js`` to your media-directory, adjust the setup (see `TinyMCE Configuration <http://wiki.moxiecode.com/index.php/TinyMCE:Configuration>`_) and add the necessary javascripts::
+.. versionchanged:: 2.4
+    The admin media URLs has been changed to use a static URLs in compliance with Django 1.4
+
+Copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://wiki.moxiecode.com/index.php/TinyMCE:Configuration>`_) and add the necessary javascripts::
 
     class Media:
         js = [
-            '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/path/to/your/tinymce_setup.js',
+            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/static/path/to/your/tinymce_setup.js',
         ]
 
 Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form. You need to write a custom template and use the inline-callbacks to
