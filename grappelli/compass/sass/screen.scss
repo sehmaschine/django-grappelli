@@ -148,6 +148,7 @@ header#grp-header {
 	float: left;
 	clear: both;
 	width: 100%;
+	font-weight: bold;
 	@include box-sizing(border-box);
 	ul {
 		@include horizontal-list(5px, left);
