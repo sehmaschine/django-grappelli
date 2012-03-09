@@ -120,15 +120,15 @@
 {% block content-class %}{% endblock %}
 
 <!-- BREADCRUMBS -- >
-{% block breadcrumbs %}
-    {% if not is_popup %}
+{% if not is_popup %}
+    {% block breadcrumbs %}
         <ul>
             <li><a href="../../">{% trans "Home" %}</a></li>
             <li><a href="../">{% trans app_label|capfirst|escape %}</a></li>
             <li>{{ cl.opts.verbose_name_plural|capfirst }}</li>
         </ul>
-    {% endif %}
-{% endblock %}
+    {% endblock %}
+{% endif %}
 
 <!-- CONTENT-TITLE -->
 {% block content_title %}

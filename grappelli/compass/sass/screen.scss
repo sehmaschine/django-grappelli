@@ -124,7 +124,7 @@ header#grp-header {
 /*  CONTENT
 ------------------------------------------------------------------------------------------------------ */
 
-article#grp-content {
+#grp-content {
 	position: relative;
 	float: left;
 	clear: both;
@@ -149,9 +149,17 @@ article#grp-content {
 	clear: both;
 	width: 100%;
 	@include box-sizing(border-box);
-	@include grp-padding($grp-padding-size-s 20px);
 	ul {
 		@include horizontal-list(5px, left);
+		@include grp-padding($grp-padding-size-s 20px);
+		a {
+			display: block;
+			padding-right: 15px;
+			@include icons-sprite(breadcrumbs, $offset-x: 100%);
+			&:hover {
+				@include icons-sprite(breadcrumbs_hover, $offset-x: 100%);
+			}
+		}
 	}
 	border-bottom: 1px solid $grp-breadcrumbs-border-color;
 	background: $grp-breadcrumbs-background-color;
@@ -242,6 +250,23 @@ article#grp-content {
 	@include border-radius(0);
 }
 
+
+
+/*  POPUP
+------------------------------------------------------------------------------------------------------ */
+
+body.grp-popup {
+	#grp-navigation {
+		display: none;
+	}
+	#grp-breadcrumbs {
+		top: 0;
+	}
+	#grp-content {
+		// top: 40px; // if breadrumbs
+		top: 20px;
+	}
+}
 
 
 /*  LAYOUTS
