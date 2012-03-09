@@ -1,12 +1,12 @@
 
-$icons-sprites-breadcrumbs-position: 100%;
-$icons-sprites-breadcrumbs_hover-position: 100%;
+// $icons-sprites-breadcrumbs-position: 100%;
+// $icons-sprites-breadcrumbs_hover-position: 100%;
 @import "icons/*.png";
 @include all-icons-sprites;
 
 @import "icons-small/*.png";
-// $icons-small-change-link-position: auto;
 @include all-icons-small-sprites;
+
 // not necessarily needed, just use if you want to produce classes for certain buttons
 // .grp-actions {
 //     .grp-button-datepicker { @include icons-sprite(datepicker); }

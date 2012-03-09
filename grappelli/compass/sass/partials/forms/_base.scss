@@ -8,7 +8,6 @@
 @function formfield($n) {
     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
 }
-
 $n: $blueprint-grid-columns;
 @while $n > 0 {
     .span-#{$n} input[type=text], 
@@ -23,10 +22,10 @@ $n: $blueprint-grid-columns;
     }
     $n: $n - 1;
 }
+
 @function formfield-contained($n) {
     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 2;
 }
-
 $n: $blueprint-grid-columns;
 @while $n > 0 {
     .span-#{$n} input[type=text].grp-form-field-contained, 

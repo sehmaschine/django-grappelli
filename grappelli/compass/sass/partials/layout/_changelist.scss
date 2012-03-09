@@ -122,12 +122,11 @@ form#grp-changelist-search {
 	.grp-pulldown-handler {
 		display: block;
 	    margin: 0;
-	    padding: 4px 8px;
+	    // padding: 4px 8px;
 	    font-weight: bold;
 	    @include border-radius($grp-border-radius);
-	    @include box-sizing(border-box);
+	    // @include box-sizing(border-box);
 	    cursor: pointer;
-	    vertical-align: top;
 	    background-image: url('../images/icons/tools-arrow-down-handler_hover.png');
 	    background-position: 100% 0;
 	    background-repeat: no-repeat;
@@ -140,7 +139,7 @@ form#grp-changelist-search {
 		@include box-shadow(0 10px 50px #333);
 		.grp-pulldown-handler {
 			color: #444;
-			@include border-bottom-radius(0);
+			@include border-bottom-radius(0 !important);
 		    border-bottom: 0 !important;
 		    background-image: url('../images/icons/tools-arrow-down-handler.png');
 		    @include grp-button-states(blue, blue);

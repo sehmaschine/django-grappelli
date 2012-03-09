@@ -81,16 +81,16 @@
 {% block content-class %}{% endblock %}
 
 <!-- BREADCRUMBS -->
-{% block breadcrumbs %}
-    {% if not is_popup %}
-        <ul>
+{% if not is_popup %}
+    {% block breadcrumbs %}
+        <ul class="grp-horizontal-list">
             <li><a href="../../../">{% trans "Home" %}</a></li>
             <li><a href="../../">{% trans app_label|capfirst|escape %}</a></li>
             <li>{% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
             <li>{% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
         </ul>
-    {% endif %}
-{% endblock %}
+    {% endblock %}
+{% endif %}
 
 <!-- OBJECT TOOLS -->
 {% block object-tools %}
