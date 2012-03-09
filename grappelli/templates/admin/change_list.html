@@ -2,7 +2,7 @@
 
 <!-- LOADING -->
 {% load url from future %}
-{% load adminmedia admin_list i18n grp_tags %}
+{% load admin_list i18n grp_tags %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -13,6 +13,7 @@
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
+    {{ media.js }}
     {% if cl.formset or action_form %}
         {% url 'admin:jsi18n' as jsi18nurl %}
         <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"></script>

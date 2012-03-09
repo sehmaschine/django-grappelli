@@ -1,17 +1,28 @@
+{% load l10n %}
+
 <script type="text/javascript">
-    (function( $ ) {
-        {% for field in prepopulated_fields %}
-            $("#{{ field.field.auto_id }}").bind('change.grappelli', function() { 
-                $(this).data('changed', true); 
-            });
-            {% for dependency in field.dependencies %}
-            $("#{{ dependency.auto_id }}").bind('keyup.grappelli', function() {
-                var e = $("#{{ field.field.auto_id }}");
-                if (!e.data('changed')) { 
-                    e.val(URLify({% for innerdep in field.dependencies %}$("#{{ innerdep.auto_id }}").val(){% if not forloop.last %} + ' ' + {% endif %}{% endfor %}, {{ field.field.field.max_length|default_if_none:"50" }}));
-                }
-            });
-            {% endfor %}
-        {% endfor %}
-    })(django.jQuery);
+(function($) {
+    var field;
+
+{% for field in prepopulated_fields %}
+    field = {
+        id: '#{{ field.field.auto_id }}',
+        dependency_ids: [],
+        dependency_list: [],
+        maxLength: {{ field.field.field.max_length|default_if_none:"50"|unlocalize }}
+    };
+
+    {% for dependency in field.dependencies %}
+    field['dependency_ids'].push('#{{ dependency.auto_id }}');
+    field['dependency_list'].push('{{ dependency.name }}');
+    {% endfor %}
+
+    {% comment %}
+    Mark prepopulated fields in the main form and stacked inlines (.empty-form .form-row) and in tabular inlines (.empty-form.form-row)
+    {% endcomment %}
+    $('.empty-form .form-row .field-{{ field.field.name }}, .empty-form.form-row .field-{{ field.field.name }}').addClass('prepopulated_field');
+    $(field.id).data('dependency_list', field['dependency_list'])
+               .prepopulate(field['dependency_ids'], field.maxLength);
+{% endfor %}
+})(django.jQuery);
 </script>
