@@ -140,7 +140,7 @@ header#grp-header {
 
 
 
-/*  BREADCRUMBS
+/*  BREADCRUMBS & TOC
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-breadcrumbs {
@@ -149,6 +149,7 @@ header#grp-header {
 	clear: both;
 	width: 100%;
 	font-weight: bold;
+	@include box-shadow(0 5px 5px #ccc);
 	@include box-sizing(border-box);
 	ul {
 		// @include horizontal-list(5px, left);
@@ -169,7 +170,45 @@ header#grp-header {
 	@include grp-breadcrumbs;
 }
 
+span.grp-anchor {
+	position: relative;
+	float: left;
+	clear: both;
+	top: -80px;
+}
 
+#grp-toc {
+	position: relative;
+	float: left;
+	clear: both;
+	width: 100%;
+	height: 1px;
+	display: inline-block;
+	overflow: visible;
+	text-align: center;
+	// background: #d4f;
+	#grp-toc-handler {
+		position: relative;
+		display: block;
+		margin: 0 auto;
+		padding: 4px 8px;
+		width: 20px;
+		@include border-bottom-radius(5px);
+		@include box-shadow(0 5px 5px #ccc);
+		@include grp-button-states(blue, grey);
+	}
+	#grp-toc-content {
+		position: relative;
+		display: inline-block;
+		padding: 4px 20px 30px;
+		width: auto;
+		text-align: left;
+		@include box-shadow(0 5px 5px #ccc);
+		border: 1px solid #ddd;
+		@include border-bottom-radius(5px);
+		background: #eee;
+	}
+}
 
 
 /*  MESSAGE-LIST
