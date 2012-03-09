@@ -1782,6 +1782,15 @@ thead th.sorted a {
 thead th.sorted a {
     border-top: 1px solid #ececec;
 }
+thead th .sortoptions {
+    float: right;
+    margin: 0 -10px 0 0;
+    display: none;
+}
+thead th.sorted .sortoptions {
+    display: block;
+    margin-left: 4px;
+}
 
 
 /*  Tbody ................................................... */

@@ -42,11 +42,26 @@ thead th a {
     height: 100% !important;
     white-space: nowrap;
 }
-thead th.ascending a:after {
+thead th a.toggle.ascending:after {
     content: url('../img/icons/icon-th-ascending.png');
 }
-thead th.descending a:after {
+thead th a.toggle.descending:after {
     content: url('../img/icons/icon-th-descending.png');
+}
+thead th a.sortremove:after {
+    content: url('../img/icons/icon-th-reset.png');
+}
+thead th .sortoptions span,
+thead th .sortoptions a {
+    float: right;
+    width: 15px;
+    font-size: 0.6em;
+    padding: 5px 0 4px 0;
+    margin: -5px 0 -5px 0;
+    border-top: 1px solid #ECECEC;
+}
+thead th .text {
+    float: left;
 }
 
 
