@@ -55,10 +55,11 @@ thead th .sortoptions span,
 thead th .sortoptions a {
     float: right;
     width: 15px;
-    font-size: 0.6em;
+    font-size: 0.8em;
     padding: 5px 0 4px 0;
     margin: -5px 0 -5px 0;
-    border-top: 1px solid #ECECEC;
+    border-top: 1px solid #ececec;
+    line-height: 10px;
 }
 thead th .text {
     float: left;
