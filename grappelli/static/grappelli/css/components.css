@@ -182,13 +182,13 @@ fieldset.module .row + .module {
 ------------------------------------------------------------------------------------------------------ */
 
 fieldset.module .row {
-    overflow: hidden;
     padding: 8px 10px;
     line-height: 18px;
     font-weight: normal;
 }
 fieldset.module .row.cells {
     white-space: nowrap;
+    overflow: hidden;
 }
 
 
