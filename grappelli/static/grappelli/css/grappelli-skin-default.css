@@ -361,6 +361,14 @@ ul.messagelist li + li {
     border-top: 1px solid #444;
     border-bottom: 1px solid #222;
 }
+.login .module .row:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
 .login .module label {
     color: #eee;
 }
