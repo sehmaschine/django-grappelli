@@ -1,0 +1,176 @@
+
+
+.button-state-blue {
+    border: $grp-button-border;
+    background-color: #e1f0f5;
+}
+.button-state-grey {
+    border: $grp-button-border-hover;
+    background-color: #eee;
+}
+.button-state-white {
+    border: $grp-button-border;
+    background-color: #fdfdfd;
+}
+.button-state-red {
+    border: $grp-button-border;
+    background-color: #bf3030;
+}
+.button-state-transparent {
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+
+@mixin grp-button-states($state, $state-hover) {
+    @if $state == blue {
+        @extend .button-state-blue;
+    }
+    @if $state == grey {
+        @extend .button-state-grey;
+    }
+    @if $state == white {
+        @extend .button-state-white;
+    }
+    @if $state == red {
+        @extend .button-state-red;
+    }
+    @if $state == transparent {
+        @extend .button-state-transparent;
+    }
+    &:hover {
+        @if $state-hover == blue {
+            @extend .button-state-blue;
+        }
+        @if $state-hover == grey {
+            @extend .button-state-grey;
+        }
+        @if $state-hover == white {
+            @extend .button-state-white;
+        }
+        @if $state-hover == red {
+            @extend .button-state-red;
+        }
+        @if $state-hover == transparent {
+            @extend .button-state-transparent;
+        }
+    }
+}
+@mixin grp-button {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    @include grp-padding($grp-padding-size-xs $grp-padding-size-s);
+    height: 28px;
+    @include border-radius($grp-form-button-border-radius !important);
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        @include grp-padding($grp-padding-size-s $grp-padding-size);
+    }
+    @include box-sizing(border-box);
+    cursor: pointer;
+    overflow: hidden;
+    vertical-align: top;
+    @include grp-button-states(blue, grey);
+}
+.grp-button {
+    @include grp-button();
+}
+@mixin grp-icon-button {
+    position: relative;
+    // float: right;
+    // top: 0;
+    // display: inline-block;
+    margin: 0 0 0 -25px;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    @include border-right-radius($grp-form-field-border-radius);
+    @include box-sizing(border-box);
+    cursor: pointer;
+    overflow: hidden;
+    vertical-align: top;
+    @include grp-button-states(blue, grey);
+}
+
+input[type=button], 
+button, a.fb_show, 
+a.related-lookup {
+    @include grp-icon-button;
+}
+a.fb_show, 
+a.related_lookup {
+    display: inline-block;
+    margin-bottom: -5px;
+}
+
+
+
+button.ui-datepicker-trigger {
+    @include icons-sprite(datepicker);
+    @include grp-button-states(blue, grey);
+}
+button.ui-timepicker-trigger {
+    @include icons-sprite(timepicker);
+    @include grp-button-states(blue, grey);
+    & + button.ui-datetime-now {
+        margin-left: 6px !important;
+        @include border-radius($grp-form-field-border-radius);
+    }
+}
+button.ui-datetime-now {
+    @include icons-sprite(datetime-now);
+    @include grp-button-states(blue, grey);
+}
+a.fb_show, 
+a.related-lookup {
+    @include icons-sprite(related-lookup);
+    @include grp-button-states(blue, grey);
+}
+
+a.related-lookup.m2m, 
+.grp-autocomplete-wrapper-m2m a.related-lookup, 
+.grp-autocomplete-wrapper-fk a.related-lookup {
+    @include icons-sprite(related-lookup-m2m);
+    @include grp-button-states(blue, grey);
+}
+
+a.grp-related-remove {
+    @include icons-sprite(related-remove);
+    @include grp-button-states(white, white);
+}
+
+.grp-search-button {
+    @include icons-sprite(related-lookup);
+    @include grp-button-states(transparent, transparent);
+}
+
+
+
+/*  Focused Buttons & Button Links ......................................... */
+
+input:focus + button, 
+.vDateField:focus + span a, 
+.vTimeField:focus + span a, 
+input:focus + a.fb_show, 
+input:focus + a.related-lookup, 
+input:focus + * + a.related-lookup, 
+input:focus + a.add-another, 
+.grp-state-focus a.related-lookup {
+    border: $grp-button-border-focus !important;
+}
+input:focus + .grp-search-button {
+    border-color: transparent !important;
+}
+/*  Reset the style for focused links in autocompletes as there is an automatically
+    focused (invisible) input which causes the a.related-lookup to be "focused" though it's not */
+// div.grp-autocomplete-wrapper-fk input:focus + a.related-lookup, 
+// div.grp-autocomplete-wrapper-m2m input:focus + a.related-lookup {
+//     border-color: #4ef !important;
+// }
+
+
+
+
+
+
+
+

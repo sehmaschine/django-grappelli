@@ -1,0 +1,246 @@
+
+
+
+
+/*  GRID DEPENDENT FIELD SIZES
+------------------------------------------------------------------------------------------------------ */
+
+@function formfield($n) {
+    @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
+}
+$n: $blueprint-grid-columns;
+@while $n > 0 {
+    .span-#{$n} input[type=text], 
+    .span-#{$n} input[type=password], 
+    .span-#{$n} select, 
+    .span-#{$n} textarea, 
+    input[type=text].span-#{$n}, 
+    input[type=password].span-#{$n}, 
+    select.span-#{$n}, 
+    textarea.span-#{$n} {
+        width: formfield($n);
+    }
+    $n: $n - 1;
+}
+
+@function formfield-contained($n) {
+    @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 2;
+}
+$n: $blueprint-grid-columns;
+@while $n > 0 {
+    .span-#{$n} input[type=text].grp-form-field-contained, 
+    .span-#{$n} input[type=password].grp-form-field-contained, 
+    .span-#{$n} select.grp-form-field-contained, 
+    .span-#{$n} textarea.grp-form-field-contained, 
+    input[type=text].span-#{$n}.grp-form-field-contained, 
+    input[type=password].span-#{$n}.grp-form-field-contained, 
+    select.span-#{$n}.grp-form-field-contained, 
+    textarea.span-#{$n}.grp-form-field-contained {
+        width: formfield-contained($n);
+    }
+    $n: $n - 1;
+}
+
+
+
+/*  LABELS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-label {
+    display: inline-block;
+    font-family: $grp-form-label-font-family;
+    font-size: $grp-form-label-font-size;
+    line-height: $grp-form-label-line-height;
+    color: $grp-form-label-font-color;
+    &.required {
+        @include grp-form-label-required;
+    }
+}
+fieldset.grp-module {
+    .grp-row label {
+        margin: 6px 0 6px;
+        @include grp-label;
+    }
+}
+
+
+/*  FORM FIELDS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-form-field {
+    margin: 0;
+    @include grp-padding($grp-padding-size-xs $grp-padding-size-s);
+    height: 25px;
+    font-family: $grp-form-field-font-family;
+    font-size: $grp-form-field-font-size;
+    line-height: $grp-form-field-line-height;
+    font-weight: bold;
+    color: $grp-form-field-font-color;
+    border: $grp-form-field-border;
+    @include border-radius($grp-form-field-border-radius);
+    background: $grp-form-field-background-color;
+    @include box-sizing(border-box);
+    @include grp-form-field-box-shadow;
+    overflow: hidden;
+    vertical-align: middle;
+    &:focus, 
+    &.grp-state-focus {
+        border: $grp-form-field-border-focus;
+        @include grp-form-field-box-shadow-focus;
+        background: $grp-form-field-background-color-focus;
+        outline: 0;
+    }
+}
+input[type="text"], 
+input[type="password"], 
+input[type="submit"], 
+input[type="reset"], 
+textarea, 
+select {
+    @include grp-form-field;
+}
+// fix vertical text-centering in webkit browsers
+// @include grp-helper-webkit-input–text-verticalcenter;
+
+
+
+
+
+
+/*  Select ................................................... */
+
+select {
+    padding: 4px 3px 4px 2px;
+    // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {
+        padding: 4px 28px 4px 5px;
+        -webkit-appearance: textfield;
+        background: #fff url('../img/icons/icon-form-select.png') 100% 50% no-repeat;
+    }
+}
+select[multiple=multiple] {
+    padding-right: 5px;
+    height: 160px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select[multiple=multiple] {
+        background-image: none;
+    }
+}
+
+
+
+/*  Textarea ................................................... */
+
+textarea {
+    vertical-align: top;
+    padding: 5px 5px;
+    height: 60px;
+}
+fieldset.monospace textarea {
+    font-family: "Bitstream Vera Sans Mono",Monaco,"Courier New",Courier,monospace;
+}
+
+
+
+
+/*  Checkboxes, Radiobuttons ................................................... */
+
+.grp-row input[type=checkbox] {
+    position: relative;
+    top: 1px;
+    & + label {
+        position: relative;
+        margin: 0 0 0 5px;
+    }
+}
+
+
+
+/*  SEARCH
+------------------------------------------------------------------------------------------------------ */
+
+input[type=text].grp-search-field {
+    margin-right: -5px;
+    padding-left: 10px;
+    padding-right: 30px;
+    @include border-radius(20px);
+    & + button {
+        // margin-left: 0;
+    }
+}
+
+
+/*  BUTTONS (SUBMIT, RESET, CANCEL)
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-form-button {
+    height: 28px;
+    @include border-radius($grp-form-button-border-radius !important);
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        @include grp-padding($grp-padding-size-s $grp-padding-size);
+    }
+}
+input[type="submit"] {
+    @include grp-form-button;
+    @include grp-form-button-default-gradient;
+}
+.grp-submit-row {
+    > li {
+        padding: 5px !important;
+        @include border-radius($grp-form-button-border-radius + 2px);
+        background: #444;
+    }
+    a.grp-delete-link {
+        display: block;
+        @include grp-form-field;
+        @include grp-form-button;
+        @include grp-form-button-delete-gradient;
+        line-height: 16px;
+    }
+}
+
+
+
+
+/*  Form Elements: Basic Widths & Heights
+------------------------------------------------------------------------------------------------------ */
+
+input[type=text], 
+input[type=password], 
+.vDateField, 
+.vTimeField, 
+.vIntegerField, 
+.vPositiveSmallIntegerField, 
+.vManyToManyRawIdAdminField, 
+.vForeignKeyRawIdAdminField {
+    width: 118px;
+}
+
+input.vTextField, 
+input.vURLField, 
+input.vFileBrowseField, 
+textarea, 
+.vLargeTextField, 
+.vXMLLargeTextField {
+    width: 278px;
+}
+
+.row select {
+    min-width: 118px;
+}
+
+.vLargeTextField {
+    height: 118px;
+}
+
+
+// *:focus {
+//     @include single-box-shadow(#e4f, 0, 0, 5px, 5px);
+// }
+
+
+
+

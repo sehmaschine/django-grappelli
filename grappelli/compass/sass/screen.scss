@@ -1,0 +1,436 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass";
+
+@import "blueprint";
+
+
+
+
+
+/*  BLUEPRINT GRID
+------------------------------------------------------------------------------------------------------ */
+
+$blueprint-grid-columns: 24;
+$blueprint-container-size: 940px;
+$blueprint-grid-margin: 20px;
+
+// Use this to calculate the width based on the total width.
+// Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
+$blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
+
+@include blueprint-grid;
+
+
+
+/*  CUSTOM IMPORTS (place them after blueprint because they might depend on blueprint constants)
+------------------------------------------------------------------------------------------------------ */
+
+// Import Custom Library
+
+@import "partials/skins/grp-default";
+
+// @import "partials/library/colors";
+// @import "partials/library/gradients";
+@import "partials/library/borders";
+@import "partials/library/margins-paddings";
+
+@import "partials/typography/base";
+@import "partials/typography/typo";
+
+@import "partials/forms/django-resets";
+// @import "partials/forms/helpers";
+@import "partials/forms/base";
+@import "partials/forms/autocompletes";
+
+@import "partials/layout/sprites";
+@import "partials/layout/actions";
+@import "partials/layout/components";
+@import "partials/layout/modules";
+@import "partials/layout/buttons";
+@import "partials/layout/tools";
+@import "partials/layout/tables";
+@import "partials/layout/changelist";
+
+
+// @import "partials/custom/jquery-ui-all";
+
+@import "partials/custom/jquery-ui";
+
+
+
+
+
+
+/*  BASE STYLES
+------------------------------------------------------------------------------------------------------ */
+
+body {
+	position: relative;
+	float: left;
+	clear: both;
+	@include clearfix;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	@include box-sizing(border-box);
+	@extend .grp-font-color;
+	@extend .grp-font-family;
+	@extend .grp-font-size;
+	@extend .grp-line-height;
+	background: #fff;
+	overflow: visible;
+}
+
+header#grp-header {
+	// display: none;
+	position: fixed;
+	z-index: 1000;
+	float: left;
+	clear: both;
+	width: 100%;
+	@include box-sizing(border-box);
+	nav#grp-navigation {
+		position: relative;
+		float: left;
+		clear: both;
+		width: 100%;
+		padding: 10px 20px;
+		@include box-sizing(border-box);
+		@include grp-gradient-dark;
+		@include clearfix;
+	}
+	#grp-branding {
+		display: none;
+	}
+	#grp-admin-title {
+		position: relative;
+		float: left;
+		font-weight: bold;
+	}
+	#grp-user-tools {
+		position: relative;
+		float: right;
+		font-weight: bold;
+	}
+}
+
+
+
+/*  CONTENT
+------------------------------------------------------------------------------------------------------ */
+
+#grp-content {
+	position: relative;
+	float: left;
+	clear: both;
+	@include clearfix;
+	top: 80px;
+	padding: 0 20px 200px;
+	width: 100%;
+	@include box-sizing(border-box);
+	// overflow: visible;
+	// overflow: auto;
+}
+
+
+
+
+/*  BREADCRUMBS & TOC
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-breadcrumbs {
+	position: relative;
+	float: left;
+	clear: both;
+	width: 100%;
+	font-weight: bold;
+	@include box-shadow(0 5px 5px #ccc);
+	@include box-sizing(border-box);
+	ul {
+		// @include horizontal-list(5px, left);
+		@include grp-padding($grp-padding-size-s 20px);
+		a {
+			display: block;
+			padding-right: 15px;
+			@include icons-sprite(breadcrumbs, $offset-x: 100%);
+			&:hover {
+				@include icons-sprite(breadcrumbs_hover, $offset-x: 100%);
+			}
+		}
+	}
+	border-bottom: 1px solid $grp-breadcrumbs-border-color;
+	background: $grp-breadcrumbs-background-color;
+}
+#grp-breadcrumbs {
+	@include grp-breadcrumbs;
+}
+
+span.grp-anchor {
+	position: relative;
+	float: left;
+	clear: both;
+	top: -80px;
+}
+
+#grp-toc {
+	position: relative;
+	float: left;
+	clear: both;
+	width: 100%;
+	height: 1px;
+	display: inline-block;
+	overflow: visible;
+	text-align: center;
+	// background: #d4f;
+	#grp-toc-handler {
+		position: relative;
+		display: block;
+		margin: 0 auto;
+		padding: 4px 8px;
+		width: 20px;
+		@include border-bottom-radius(5px);
+		@include box-shadow(0 5px 5px #ccc);
+		@include grp-button-states(blue, grey);
+	}
+	#grp-toc-content {
+		position: relative;
+		display: inline-block;
+		padding: 4px 20px 30px;
+		width: auto;
+		text-align: left;
+		@include box-shadow(0 5px 5px #ccc);
+		border: 1px solid #ddd;
+		@include border-bottom-radius(5px);
+		background: #eee;
+	}
+}
+
+
+/*  MESSAGE-LIST
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-messagelist {
+	position: relative;
+	float: none;
+	clear: both;
+	@include grp-margin(0 0 $grp-margin-size-l);
+	width: 100%;
+	@include box-sizing(border-box);
+	li {
+		font-weight: bold;
+		@include grp-padding($grp-padding-size-s $grp-padding-size);
+		border: 1px solid $grp-messagelist-border-color;
+		@include border-radius($grp-border-radius);
+		background: $grp-messagelist-background-color;
+		&.grp-success {
+			border: 1px solid $grp-messagelist-success-border-color;
+			background: $grp-messagelist-success-background-color;
+		}
+		&.grp-warning {
+			border: 1px solid $grp-messagelist-warning-border-color;
+			background: $grp-messagelist-warning-background-color;
+		}
+		&.grp-error {
+			border: 1px solid $grp-messagelist-error-border-color;
+			background: $grp-messagelist-error-background-color;
+		}
+		& + li {
+			margin-top: 2px;
+		}
+	}
+}
+.grp-messagelist {
+	@include grp-messagelist;
+}
+
+
+/*  FOOTER
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-footer {
+	position: fixed;
+	float: left;
+	bottom: 0;
+	left: 0;
+	padding: 10px 20px;
+	width: 100%;
+	@include box-sizing(border-box);
+	@include grp-gradient-dark;
+	@include clearfix;
+	ul.grp-submit-row {
+		overflow: visible;
+		> li {
+			margin-left: 10px;
+			&.grp-float-left {
+				margin-left: 0;
+				margin-right: 10px;
+			}
+			input[type=submit], 
+			a {
+				opacity: .75;
+				&.default {
+					opacity: 1;
+				}
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+.grp-footer {
+	@include grp-footer;
+	margin: 0;
+	border: 0;
+	@include border-radius(0);
+}
+
+
+
+/*  POPUP
+------------------------------------------------------------------------------------------------------ */
+
+body.grp-popup {
+	#grp-navigation {
+		display: none;
+	}
+	#grp-breadcrumbs {
+		top: 0;
+	}
+	#grp-content {
+		// top: 40px; // if breadrumbs
+		top: 20px;
+	}
+}
+
+
+/*  LAYOUTS
+------------------------------------------------------------------------------------------------------ */
+
+
+.grp-layout-container {
+	position: relative;
+	float: left;
+	clear: both;
+	width: 100%;
+	@include box-sizing(border-box);
+	.grp-column-left, .grp-column-right {
+		@include box-sizing(border-box);
+	}
+}
+@function grp-column-width($n) {
+    @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
+}
+$n: $blueprint-grid-columns;
+@while $n > 0 {
+	.grp-layout-container {
+		&.grp-column-left-fluid.grp-column-right-span-#{$n} {
+	    	margin-right: - grp-column-width($n);
+	        .grp-column-left {
+	        	position: relative;
+				float: left;
+				clear: left;
+	        	margin-right: - grp-column-width($n) + 20;
+	        	padding-right: grp-column-width($n) + 20;
+				width: 100%;
+			}
+	        .grp-column-right {
+		        position: relative;
+				float: right;
+				clear: right;
+	        	width: grp-column-width($n);
+				margin-right: 0;
+				margin-left: - grp-column-width($n) + 20;
+			}
+	    }
+	    &.grp-column-left-span-#{$n}.grp-column-right-fluid {
+	    	.grp-column-left {
+	        	position: relative;
+				float: left;
+	        	clear: left;
+	        	margin-right: - grp-column-width($n);
+				width: grp-column-width($n);
+			}
+	        .grp-column-right {
+		        position: relative;
+				display: block;
+				float: left;
+				clear: right;
+	        	margin-right: 0;
+				padding-left: grp-column-width($n) + 20;
+		        width: 100%;
+		    }
+	    }
+	    $n: $n - 1;
+	}
+}
+
+
+
+
+// @mixin grp-layout($left-column, $right-column) {
+// 	@if $left-column == fluid and $right-column == fluid {
+// 		body {
+// 			background: #e4f;
+// 		}
+// 	} @else if $left-column == fluid {
+// 		body {
+// 			background: #4ef;
+// 		}
+// 	} @else if $right-column == fluid {
+// 		body {
+// 			background: #fe4;
+// 		}
+// 	}
+// }
+// @include grp-layout(220px, fluid);
+
+
+
+// body{
+//   margin:0;
+//   padding:200px 0 200px 0;
+//  }
+// #test-header {
+// 	position:absolute;
+// 	z-index: 1000;
+//   top:0;
+//   left:0;
+//   width:100%;
+//   height:200px;
+//   background: #4ef;
+// }
+// #test-content {
+// 	z-index: 100;
+// 	background: #e4f;
+// }
+// #test-footer {
+// 	position:absolute;
+// 	z-index: 1000;
+//   bottom:0;
+//   left:0;
+//   width:100%;
+//   height:200px;
+//   background: #000;
+// }
+// @media screen{
+//   body div#test-header{
+//    position:fixed;
+//   }
+//   body div#test-footer{
+//    position:fixed;
+//   }
+//  }
+//  * html body{
+//   overflow:hidden;
+//  } 
+//  * html div#test-content{
+//   height:100%;
+//   overflow:auto;
+//  }
+

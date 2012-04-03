@@ -1,0 +1,149 @@
+
+
+
+
+/*  OJECT-TOOLS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-object-tools {
+	@include horizontal-list(5px, left);
+	position: relative;
+	float: right;
+	top: -40px;
+	margin: 0 0 -40px;
+	li {
+		a {
+			display: block;
+			padding: 4px 15px;
+			font-weight: bold;
+			@include border-radius(30px);
+			color: #fff;
+			border: 1px solid #777;
+			opacity: .5;
+			@include background(linear-gradient(#999, #888));
+			&.grp-state-focus {
+				opacity: 1;
+			}
+			&:hover {
+				opacity: 1 !important;
+				border: 1px solid #2987a6 !important;
+				@include background(linear-gradient(#36b0d9, #309bbf));
+			}
+			&.grp-add-link {
+				padding-left: 28px;
+				@include grp-background-gradient-icon-combo(object-tools-add-link, #999, #888);
+				&:hover {
+					@include grp-background-gradient-icon-combo(object-tools-add-link, #36b0d9, #309bbf);
+				}
+			}
+			&[target="_blank"] {
+				padding-left: 28px;
+				@include grp-background-gradient-icon-combo(object-tools-viewsite-link, #999, #888);
+				&:hover {
+					@include grp-background-gradient-icon-combo(object-tools-viewsite-link, #36b0d9, #309bbf);
+				}
+			}
+		}
+	}
+}
+.grp-object-tools {
+	@include grp-object-tools;
+}
+
+
+
+/*  TOOLS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-tools {
+	@include horizontal-list(1px, left);
+	position: relative;
+	float: right;
+	top: -24px;
+	margin: 0 0 -24px;
+	padding-right: 5px;
+	height: 24px;
+	li {
+		a {
+			display: block;
+			width: 24px;
+			height: 24px;
+			// @include border-radius(2px);
+			// background-color: rgba(255, 255, 255, 0.7) !important;
+		}
+		a.grp-add-handler {
+			@include icons-sprite(tools-add-handler);
+
+		}
+		a.grp-delete-handler {
+			@include icons-sprite(tools-delete-handler);
+		}
+		a.grp-remove-handler {
+			@include icons-sprite(tools-remove-handler);
+		}
+		a.grp-drag-handler {
+			@include icons-sprite(tools-drag-handler);
+		}
+		a.grp-viewsite-link {
+			@include icons-sprite(tools-viewsite-link);
+		}
+		a.grp-open-handler {
+			@include icons-sprite(tools-open-handler);
+		}
+		a.grp-close-handler {
+			@include icons-sprite(tools-close-handler);
+		}
+
+
+		a.grp-arrow-down-handler {
+			@include icons-sprite(tools-arrow-down-handler);
+		}
+		a.grp-arrow-up-handler {
+			@include icons-sprite(tools-arrow-up-handler);
+		}
+		a.grp-trash-handler {
+			@include icons-sprite(tools-trash-handler);
+		}
+		a.grp-trash-list-toggle-handler {
+			@include icons-sprite(tools-trash-list-toggle-handler);
+		}
+	}
+	input {
+		position: absolute;
+		top: -30px;
+	}
+}
+.grp-tools {
+	@include grp-tools;
+}
+.grp-stacked h2 + .grp-tools {
+	top: -27px;
+	right: 1px;
+	margin-bottom: -27px;
+}
+.grp-stacked.grp-open > h2 + .grp-tools {
+	top: -29px;
+	right: 1px;
+	margin-bottom: -29px;
+}
+.grp-tabular h2 + .grp-tools {
+	top: -27px;
+	right: 1px;
+	margin-bottom: -27px;
+}
+h3 + .grp-tools {
+	top: -25px;
+	margin-bottom: -25px;
+}
+.grp-open > h3 + .grp-tools {
+	top: -26px;
+	margin-bottom: -26px;
+}
+.grp-tools-container .grp-tools {
+	top: 0;
+	right: -20px;
+	margin-bottom: 0;
+}
+.grp-module.grp-add-item .grp-tools {
+	top: 2px;
+}

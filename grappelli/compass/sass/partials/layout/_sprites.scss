@@ -1,0 +1,18 @@
+
+// $icons-sprites-breadcrumbs-position: 100%;
+// $icons-sprites-breadcrumbs_hover-position: 100%;
+@import "icons/*.png";
+@include all-icons-sprites;
+
+@import "icons-small/*.png";
+@include all-icons-small-sprites;
+
+// not necessarily needed, just use if you want to produce classes for certain buttons
+// .grp-actions {
+//     .grp-button-datepicker { @include icons-sprite(datepicker); }
+//     .grp-button-timepicker { @include icons-sprite(timepicker); }
+//     .grp-button-related-lookup { @include icons-sprite(related-lookup); }
+//     .grp-button-related-lookup-m2m { @include icons-sprite(related-lookup-m2m); }
+//     .grp-tools-add-handler { @include icons-sprite(tools-add-handler); }
+
+// }

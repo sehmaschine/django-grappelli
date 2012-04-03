@@ -1,0 +1,17 @@
+
+
+
+@mixin grp-webkit($argument) {
+	
+}
+
+// Alter line-height to get the text vertically centered in -webkit
+@mixin grp-helper-webkit-input–text-verticalcenter {
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	    input[type="text"], 
+	    input[type="password"] {
+	        @include grp-padding(0 $grp-padding-size-s 0);
+	        line-height: 25px;
+	    }
+	}
+}

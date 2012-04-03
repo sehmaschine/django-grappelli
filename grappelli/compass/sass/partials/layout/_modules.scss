@@ -1,0 +1,506 @@
+
+
+
+/*  MODULES: BASIC SETTINGS
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  GROUP
+.......................................................................................... */
+
+@mixin grp-group {
+	position: relative;
+	float: left;
+	clear: both;
+	margin: 0 -4px 5px;
+	padding: 2px;
+	width: 100%;
+	border: $grp-group-border;
+	@include grp-border-radius($grp-border-radius + 2px);
+	background: $grp-group-background-color; 
+	@include clearfix;
+	&.grp-closed {
+		border: $grp-group-border-closed;
+		&:hover {
+			border: $grp-group-border;
+		}
+	}
+}
+.grp-group {
+	@include grp-group;
+}
+
+
+
+/*  HEADINGS
+.......................................................................................... */
+
+
+@mixin grp-module-h2 {
+	@include grp-padding($grp-padding-size-s $grp-padding-size);
+	text-shadow: 0 1px 0 #f5f5f5;
+	border-bottom: 1px solid #ccc;
+	@include border-top-radius($grp-border-radius);
+	@include grp-gradient-module-h2;
+}
+.grp-module h2 {
+	@include grp-module-h2;
+}
+.grp-group {
+	> h2 {
+		@include grp-module-h2;
+		border: $grp-module-border;
+		@include border-radius($grp-border-radius);
+	}
+	&.grp-open > h2 {
+		margin-bottom: 2px;
+	}
+	&.grp-tabular.grp-open > h2 {
+		margin-bottom: 0;
+	}
+}
+
+@mixin grp-module-h3 {
+	@include grp-padding($grp-padding-size-s $grp-padding-size);
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	    @include grp-padding(6px $grp-padding-size 4px);
+	}
+	text-shadow: 0 1px 0 #f5f5f5;
+	border-top: 1px solid #f5f5f5;
+	border-bottom: 1px solid #ccc;
+	@include grp-gradient-module-h3;
+}
+.grp-module h3 {
+	@include grp-module-h3;
+}
+
+
+/*  MODULE
+.......................................................................................... */
+
+@mixin grp-module {
+	position: relative;
+	float: left;
+	clear: both;
+	margin: 0 0 5px;
+	padding: 0;
+	width: 100%;
+	border: $grp-module-border;
+	background: $grp-module-background-color;
+	@include grp-border-radius($grp-border-radius);
+	@include box-sizing(border-box);
+	@include clearfix;
+	overflow: visible;
+	.grp-module {
+		border: 0;
+	}
+}
+.grp-module {
+	@include grp-module;
+}
+.grp-group .grp-module {
+	margin: 2px 0 0;
+}
+.grp-empty-form {
+	display: none !important;
+}
+
+
+/*  COLLAPSE: BASIC SETTINGS
+------------------------------------------------------------------------------------------------------ */
+
+
+
+/*  HEADINGS: COLLAPSE HANDLERS
+.......................................................................................... */
+
+@mixin grp-module-h2-collapse-handler {
+	h2.grp-collapse-handler {
+		text-shadow: 0 1px 0 #c4e9f5;
+	}
+	&.grp-open > h2.grp-collapse-handler {
+		border-bottom: 1px solid #ccc;
+		@include border-top-radius($grp-border-radius - 1px);
+		@include grp-gradient-module-h2-collapse-handler-hover;
+	}
+	&.grp-closed > h2.grp-collapse-handler {
+		@include border-radius($grp-border-radius - 1px);
+		@include grp-gradient-module-h2-collapse-handler;
+		&:hover {
+			@include grp-gradient-module-h2-collapse-handler-hover;
+		}
+	}
+	&.grp-module.grp-closed > h2.grp-collapse-handler {
+		border-bottom: 0;
+	}
+}
+@mixin grp-module-h3-collapse-handler {
+	h3.grp-collapse-handler {
+		border-top: 0;
+		text-shadow: 0 1px 0 #fff;
+	}
+	&.grp-open > h3.grp-collapse-handler {
+		border-bottom: 1px solid #ccc;
+		@include border-top-radius($grp-border-radius - 1px);
+		@include grp-gradient-module-h3-collapse-handler-hover;
+	}
+	&.grp-closed > h3.grp-collapse-handler {
+		border-bottom: 0;
+		@include border-radius($grp-border-radius - 1px);
+		@include grp-gradient-module-h3-collapse-handler;
+		&:hover {
+			@include grp-gradient-module-h3-collapse-handler-hover;
+		}
+	}
+}
+
+
+/*  COLLAPSE
+.......................................................................................... */
+
+@mixin grp-collapse {
+	&.grp-closed {
+		*, .grp-table, .grp-table * {
+			display: none;
+		}
+		// Elements displayed even in collpase-closed
+		> .grp-collapse-handler, > .grp-collapse-handler *, 
+		.grp-tools, .grp-tools * {
+			display: block !important;
+		}
+	}
+	.grp-collapse-handler {
+		cursor: pointer;
+	}
+	@include grp-module-h2-collapse-handler;
+	@include grp-module-h3-collapse-handler;
+}
+.grp-collapse {
+	@include grp-collapse;
+}
+
+
+
+/*  ROWS & CELLS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-row {
+	position: relative;
+	float: left;
+	clear: both;
+	@include grp-padding($grp-padding-size-s $grp-padding-size);
+	width: 100%;
+	@include box-sizing(border-box);
+	@include clearfix;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #ddd;
+	overflow: visible;
+	&:first-child {
+		border-top: 0;
+		@include border-top-radius($grp-border-radius - 1px);
+	}
+	&:first-of-type {
+		// border-top: 0;
+	}
+	&:last-of-type {
+		border-bottom: 0;
+		@include border-bottom-radius($grp-border-radius - 1px);
+	}
+	.grp-cell {
+		position: relative;
+		float: left;
+		margin-top: -8px;
+		margin-bottom: -1000px;
+		padding-top: 8px;
+		padding-bottom: 1000px;
+		height: 100%;
+		white-space: nowrap;
+		border-right: 1px solid #ddd;
+		overflow: hidden;
+		& + .grp-cell {
+			padding-left: 20px;
+			border-left: 1px solid #fff;
+		}
+		&:last-of-type {
+			border-right: 0 !important;
+		}
+	}
+}
+.grp-row {
+	@include grp-row;
+}
+fieldset .grp-row {
+	overflow: hidden;
+}
+
+
+
+/*  ACTIONS
+------------------------------------------------------------------------------------------------------ */
+
+
+
+
+/*  LISTING
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-listing {
+	border-top: 1px solid #fff;
+	&:first-child {
+		border-top: 0;
+		@include border-top-radius($grp-border-radius - 1px);
+	}
+	
+	@include grp-actions-links();
+	li {
+		&.grp-add-link, 
+		&.grp-change-link, 
+		&.grp-delete-link {
+			padding-left: $grp-padding-size-l + 5;
+			a, 
+			> span:first-child {
+				display: block;
+				margin-left: - $grp-margin-size-m - 5;
+				padding-left: $grp-padding-size-m + 5;
+			}
+		}
+		&.grp-add-link a {
+			background-position: 0 -2px;
+			&:hover {
+				background-position: 0 -402px;
+			}
+		}
+		&.grp-change-link a {
+			background-position: 0 -802px;
+			&:hover {
+				background-position: 0 -1202px;
+			}
+		}
+		&.grp-delete-link > span:first-child {
+			background-position: 0 -1602px;
+		}
+		&:last-child {
+			padding-bottom: 0;
+		}
+	}
+}
+.grp-listing {
+	@include grp-listing;
+}
+@mixin grp-listing-small {
+	@include grp-listing();
+	font-size: $grp-font-size-s;
+	line-height: $grp-line-height-xs;
+
+}
+.grp-listing-small {
+	@include grp-listing-small;
+}
+
+
+
+
+/*  STACKED & TABULAR INLINE: COMMOM STYLES
+------------------------------------------------------------------------------------------------------ */
+
+.grp-stacked, 
+.grp-tabular {
+	.grp-module {
+		&:first-child {
+			margin-top: 0;
+		}
+		.grp-module {
+			margin-top: 0;
+		}
+	}
+	.grp-module.grp-add-item {
+		height: 28px;
+		font-weight: bold;
+		border-color: transparent;
+		background: transparent;
+		> a {
+			font-weight: bold;
+    		padding: 5px 10px;
+    		position: relative;
+    		top: 6px;
+		}
+	}
+}
+
+
+/*  STACKED INLINE
+------------------------------------------------------------------------------------------------------ */
+
+.grp-stacked {
+	.grp-module { // H2 + Module
+		.grp-module { // H3 + Module
+			@include border-radius(0);
+			border-top: 1px solid #fff;
+		}
+	}
+}
+
+
+/*  TABULAR INLINE
+------------------------------------------------------------------------------------------------------ */
+
+.grp-tabular {
+	.grp-table {
+		display: table;
+		margin: 0 0 -2px;
+		width: 100%;
+		border: 0 none;
+    	border-collapse: separate;
+    	border-spacing: 0 2px;
+    	@media screen and (-webkit-min-device-pixel-ratio:0) {
+		    margin-bottom: -1px;
+		    border-spacing: 0 1px !important;
+		}
+    	background: none;
+		.grp-tr {
+			display: table-row;
+		}
+		.grp-th, 
+		.grp-td {
+			display: table-cell;
+			float: none;
+		    height: 100%;
+		    margin-right: 0;
+		    overflow: hidden;
+		    padding: 1px 20px;
+		    vertical-align: top;
+		    white-space: nowrap;
+		    border-left: 1px solid #FFFFFF;
+    		border-right: 1px solid #E0E0E0;
+    		&:first-of-type {
+    			padding-left: 10px;
+    		}
+		}
+		.grp-thead {
+			display: table-header-group;
+			color: #aaa;
+			font-size: $grp-font-size-s;
+			font-weight: bold;
+			.grp-th, 
+			.grp-td {
+				background: none;
+    			border-top: 0;
+    			&:last-of-type {
+    				border-right: 0;
+	    		}
+			}
+		}
+		.grp-tbody {
+			display: table-row-group;
+			margin-top: 0;
+			.grp-th, 
+			.grp-td {
+				padding-bottom: 5px;
+    			padding-top: 5px;
+				border-bottom: 1px solid #D4D4D4;
+    			border-top: 1px solid #D4D4D4;
+				background: $grp-module-background-color;
+				&:first-of-type {
+					border-left: 1px solid #CCCCCC;
+				}
+				&:first-child {
+					@include border-left-radius($grp-border-radius - 1px)
+				}
+				&.grp-tools-container {
+					padding-left: 0;
+    				width: 100%;
+    				@include border-right-radius($grp-border-radius - 1px)
+				}
+			}
+			&.grp-predelete {
+				.grp-th, 
+				.grp-td {
+					background: $grp-predelete-background-color;
+				}
+			}
+		}
+		.grp-tfoot {
+			display: table-footer-group;
+			color: #aaa;
+			.grp-td {
+				&:last-of-type {
+    				border-right: 0;
+	    		}
+			}
+		}
+		.grp-module {
+			float: none;
+			clear: none;
+			background: 0;
+			border: 0;
+		}
+	}
+}
+
+
+/*  LISTINGS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-list {
+	list-style-type: none;
+}
+// @mixin grp-horizontal-list($grp-direction) {
+// 	@include horizontal-list(5px, $grp-direction);
+// }
+// @mixin grp-inline-list {
+// 	@include inline-list;
+// }
+// @mixin grp-inline-block-list {
+// 	@include inline-block-list(5px);
+// }
+.grp-horizontal-list-container {
+	@include horizontal-list-container();
+}
+.grp-horizontal-list {
+	@include horizontal-list(5px, left);
+}
+.grp-horizontal-list-right {
+	> li {
+		@include horizontal-list-item(5px, right);
+	}
+}
+
+// We won't use those two
+.grp-inline-list {
+	@include inline-list;
+}
+.grp-inline-block-list {
+	@include inline-block-list(5px);
+}
+
+/*  PREDELETE
+------------------------------------------------------------------------------------------------------ */
+
+.grp-predelete {
+	h2, h3, h4, 
+	&.grp-collapse > h2.grp-collapse-handler, &.grp-collapse > h3.grp-collapse-handler, &.grp-collapse > h4.grp-collapse-handler {
+
+	}
+	background: $grp-predelete-background-color;
+}
+
+.grp-predelete h2, .grp-collapse.grp-predelete > h2.grp-collapse-handler, 
+.grp-predelete h3, .grp-collapse.grp-predelete > h3.grp-collapse-handler, 
+.grp-predelete h4, .grp-collapse.grp-predelete .grp-collapse > h4.grp-collapse-handler {
+    @include grp-gradient-predelete();
+}
+.grp-collapse.grp-predelete > h2.grp-collapse-handler:hover, 
+.grp-collapse.grp-predelete > h3.grp-collapse-handler:hover, 
+.grp-predelete .grp-collapse > h4.grp-collapse-handler:hover, 
+.grp-collapse.grp-open.grp-predelete > h2.grp-collapse-handler, 
+.grp-collapse.grp-open.grp-predelete > h3.grp-collapse-handler, 
+.grp-predelete .grp-collapse.grp-open > h4.grp-collapse-handler {
+    @include grp-gradient-predelete-reverse();
+}
+.grp-predelete, 
+.grp-predelete .grp-module,
+.grp-predelete .grp-th, 
+.grp-predelete .grp-td {
+    background: $grp-predelete-background-color;
+}
+

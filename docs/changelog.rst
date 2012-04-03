@@ -8,6 +8,12 @@
 Changelog
 =========
 
+2.4.0 (not yet released)
+------------------------
+
+* Compatibility with Django 1.4
+
+
 2.3.8 (April 03, 2012)
 ----------------------
 

@@ -1,0 +1,31 @@
+p.grp-help {
+    padding: 3px 0 0;
+    font-size: 11px !important;
+    line-height: 14px;
+}
+
+p.grp-readonly {
+    margin: 0 !important;
+    padding: 3px 0 !important;
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.grp-row img {
+    font-size: 1px;
+    line-height: 1px;
+    vertical-align: middle;
+}
+
+.fb_show + p.grp-help a {
+    display: inline-block;
+    padding: 3px;
+    font-size: 0;
+    line-height: 0;
+}
+.fb_show + p.grp-help a img {
+    margin: 0;
+    font-size: 0;
+    line-height: 0;
+}

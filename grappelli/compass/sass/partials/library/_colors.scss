@@ -1,0 +1,41 @@
+
+
+
+/*	BASIC COLORS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-font-color: #333 !default;
+$grp-breadcrumbs-border-color: #ddd;
+
+.grp-font-color {
+	color: $grp-font-color;
+}
+@mixin grp-font-color($grp-font-color) {
+	color: $grp-font-color;
+}
+
+
+
+/*	COMPONENTS COLORS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-breadcrumbs-background-color: #eee;
+$grp-breadcrumbs-border-color: #ddd;
+
+
+/*	MODULE COLORS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-module-background-color: #eee;
+$grp-module-border-color: #ccc;
+
+$grp-row-border-top-color: #fff;
+$grp-row-border-bottom-color: #ddd;
+
+
+
+/*  LINK COLORS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-link-color: #309bbf;
+$grp-link-color-hover: #333;

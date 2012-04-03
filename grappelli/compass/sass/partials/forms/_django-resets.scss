@@ -1,0 +1,20 @@
+
+
+/*  Datetime ........................................... */
+
+p.datetime br {
+	display: none;
+}
+p.datetime input.vTimeField {
+    margin-left: 6px;
+}
+
+
+/*  Hide Images in Templates ........................................... */
+
+a.add-another img, a.related-lookup img {
+    opacity: 0;
+}
+a.related-lookup img {
+    display: none;
+}
