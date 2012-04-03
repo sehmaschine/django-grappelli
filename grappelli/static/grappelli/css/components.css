@@ -372,7 +372,7 @@ h2 + * + * + .module.table {
     max-width: 757px !important;
 }
 .selector h2 + select {
-    display: none;
+    /*display: none;*/
     position: relative;
     top: -1px;
 }
