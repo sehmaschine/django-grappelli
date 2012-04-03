@@ -116,9 +116,6 @@
                     <!-- Popup Hidden Field -->
                     {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
                     
-                    <!-- Submit-Row -->
-                    {% if save_on_top %}{% submit_row %}{% endif %}
-                    
                     <!-- Errors -->
                     {% if errors %}
                         <p class="errornote">{% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</p>
@@ -140,7 +137,7 @@
                     {% block after_related_objects %}{% endblock %}
                     
                     <!-- Submit-Row -->
-                    {% submit_row %}
+                    {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
                     
                     {% if adminform and add %}
                         {% block extrahead %}
