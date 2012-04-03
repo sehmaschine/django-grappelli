@@ -11,6 +11,7 @@
 
 <!-- EXTRAHEAD-->
 {% block extrahead %}
+    {{ block.super }}
     <script type="text/javascript">
         (function($) {
             $(window).load(function(){ $('#id_username').focus(); });
