@@ -9,14 +9,13 @@
     <script type="text/javascript" src="../../utils/form_utils.js"></script>
     <script type="text/javascript" src="../../utils/editable_selects.js"></script>
     <!-- <link href="css/media.css" rel="stylesheet" type="text/css" /> -->
-    <base target="_self" />
 </head>
 <body style="display: none" class="tinyMCE">
-    <form onsubmit="insertMedia();return false;" action="#">
+    <form onsubmit="Media.insert();return false;" action="#">
         <div class="tabs">
             <ul>
-                <li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');generatePreview();" onmousedown="return false;">{#media_dlg.general}</a></span></li>
-                <li id="advanced_tab"><span><a href="javascript:mcTabs.displayTab('advanced_tab','advanced_panel');" onmousedown="return false;">{#media_dlg.advanced}</a></span></li>
+                <li id="general_tab" class="current" aria-controls="general_panel"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');Media.formToData();" onmousedown="return false;">{#media_dlg.general}</a></span></li>
+                <li id="advanced_tab" aria-controls="advanced_panel"><span><a href="javascript:mcTabs.displayTab('advanced_tab','advanced_panel');Media.formToData();" onmousedown="return false;">{#media_dlg.advanced}</a></span></li>
                 <li id="source_tab" aria-controls="source_panel"><span><a href="javascript:mcTabs.displayTab('source_tab','source_panel');Media.formToData('source');" onmousedown="return false;">{#media_dlg.source}</a></span></li>
             </ul>
         </div>
@@ -27,39 +26,32 @@
                     <div class="row first">
                         <div class="column span-4"><label for="media_type">{#media_dlg.type}</label></div>
                         <div class="column span-flexible">
-                            <select id="media_type" name="media_type" onchange="changedType(this.value);generatePreview();">
-                                <option value="flash">Flash</option>
-                                <!-- <option value="flv">Flash video (FLV)</option> -->
-                                <option value="qt">Quicktime</option>
-                                <!-- <option value="shockwave">Shockwave</option> -->
-                                <!-- <option value="wmp">Windows Media</option> -->
-                                <!-- <option value="rmp">Real Media</option> -->
-                            </select>
+                            <select id="media_type"></select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="column span-4"><label for="src">{#media_dlg.file}</label></div>
                         <div class="column span-flexible">
-                            <input id="src" name="src" type="text" value="" class="mceFocus" onchange="switchType(this.value);generatePreview();" />
+                            <input id="src" name="src" type="text" value="" class="mceFocus" onchange="Media.formToData();" />
                             <div id="filebrowsercontainer">&nbsp;</div>
                         </div>
                     </div>
                     <div class="row" id="linklistrow">
                         <div class="column span-4"><label for="linklist">{#media_dlg.list}</label></div>
-                        <div class="column span-flexible"><div id="linklistcontainer">&nbsp;</div></div>
+                        <div class="column span-flexible"><div id="linklistcontainer"><select id="linklist"><option value=""></option></select></div></div>
                     </div>
                     <div class="row">
                         <div class="column span-4"><label for="width">{#media_dlg.size}</label></div>
                         <div class="column span-flexible">
-                            <input type="text" id="width" name="width" value="" class="size" onchange="generatePreview('width');" /> x 
-                            <input type="text" id="height" name="height" value="" class="size"  onchange="generatePreview('height');" /> px
+                            <input type="text" id="width" name="width" value="" class="size" onchange="Media.formToData('width');" onfocus="Media.beforeResize();" /> x 
+                            <input type="text" id="height" name="height" value="" class="size" onfocus="Media.beforeResize();" onchange="Media.formToData('height');" /> px
                             <p class="constrain">
-                                <input id="constrain" type="checkbox" name="constrain" class="checkbox" />
+                                <input id="constrain" type="checkbox" name="constrain" class="checkbox" checked="checked" />
                                 <label id="constrainlabel" for="constrain">{#media_dlg.constrain_proportions}</label>
                             </p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row last">
                         <fieldset style="border:none;">
                             <div class="column span-4"><label>{#media_dlg.preview}</label></div>
                             <div class="column span-flexible">
@@ -75,16 +67,16 @@
                     <legend>{#media_dlg.advanced}</legend>
                     <div class="row first">
                         <div class="column span-4"><label for="id">{#media_dlg.id}</label></div>
-                        <div class="column span-flexible"><input type="text" id="id" name="id" onchange="generatePreview();" /></div>
+                        <div class="column span-flexible"><input type="text" id="id" name="id" onchange="Media.formToData();" /></div>
                     </div>
                     <div class="row">
                         <div class="column span-4"><label for="name">{#media_dlg.name}</label></div>
-                        <div class="column span-flexible"><input type="text" id="name" name="name" onchange="generatePreview();" /></div>
+                        <div class="column span-flexible"><input type="text" id="name" name="name" onchange="Media.formToData();" /></div>
                     </div>
                     <div class="row">
                         <div class="column span-4"><label for="align">{#media_dlg.align}</label></div>
                         <div class="column span-flexible">
-                            <select id="align" name="align" onchange="generatePreview();">
+                            <select id="align" name="align" onchange="Media.formToData();">
                                 <option value="">{#not_set}</option> 
                                 <option value="top">{#media_dlg.align_top}</option>
                                 <option value="right">{#media_dlg.align_right}</option>
@@ -96,28 +88,160 @@
                     <div class="row">
                         <div class="column span-4"><label for="bgcolor">{#media_dlg.bgcolor}</label></div>
                         <div class="column span-flexible">
-                            <input id="bgcolor" name="bgcolor" type="text" value="" size="9" onchange="updateColor('bgcolor_pick','bgcolor');generatePreview();" />
+                            <input id="bgcolor" name="bgcolor" type="text" value="" size="9" onchange="updateColor('bgcolor_pick','bgcolor');Media.formToData();" />
                             <div id="bgcolor_pickcontainer" style="display: none">&nbsp;</div>
                         </div>
                     </div>
                     <div class="row combine">
                         <div class="column span-4"><label for="vspace">{#media_dlg.vspace}</label></div>
-                        <div class="column span-flexible"><input type="text" id="vspace" name="vspace" class="number" onchange="generatePreview();" /></div>
+                        <div class="column span-flexible"><input type="text" id="vspace" name="vspace" class="number" onchange="Media.formToData();" /></div>
                     </div>
                     <div class="row last">
                         <div class="column span-4"><label for="hspace">{#media_dlg.hspace}</label></div>
-                        <div class="column span-flexible"><input type="text" id="hspace" name="hspace" class="number" onchange="generatePreview();" /></div>
+                        <div class="column span-flexible"><input type="text" id="hspace" name="hspace" class="number" onchange="Media.formToData();" /></div>
                     </div>
                 </fieldset><br />
+
+                <div id="video_options">
+                    <fieldset class="module">
+                        <h2>{#media_dlg.html5_video_options}</h2>
+                        <div class="row first">
+                            <div class="column span-4"><label for="video_altsource1">{#media_dlg.altsource1}</label></div>
+                            <div class="column span-flexible">
+                                <input type="text" id="video_altsource1" name="video_altsource1" onchange="Media.formToData();" />
+                                <div id="video_altsource1_filebrowser">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="video_altsource2">{#media_dlg.altsource2}</label></div>
+                            <div class="column span-flexible">
+                                <input type="text" id="video_altsource2" name="video_altsource2" onchange="Media.formToData();" />
+                                <div id="video_altsource2_filebrowser">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="video_poster">{#media_dlg.poster}</label></div>
+                            <div class="column span-flexible">
+                                <input type="text" id="video_poster" name="video_poster" onchange="Media.formToData();" />
+                                <div id="video_poster_filebrowser">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="video_preload">{#media_dlg.preload}</label></div>
+                            <div class="column span-flexible">
+                                <select id="video_preload" name="video_preload" onchange="Media.formToData();">
+                                    <option value="none">{#media_dlg.preload_none}</option> 
+                                    <option value="metadata">{#media_dlg.preload_metadata}</option>
+                                    <option value="auto">{#media_dlg.preload_auto}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="video_autoplay">{#media_dlg.play}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="video_autoplay" name="video_autoplay" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="video_muted">{#media_dlg.mute}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="video_muted" name="video_muted" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="video_loop">{#media_dlg.loop}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="video_loop" name="video_loop" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row last">
+                            <div class="column span-4"><label for="video_controls">{#media_dlg.controls}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="video_controls" name="video_controls" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                    </fieldset><br />
+                </div>
+
+                <div id="embeddedaudio_options">
+                    <fieldset class="module">
+                        <h2>{#media_dlg.embedded_audio_options}</h2>
+                        <div class="row first">
+                            <div class="column span-4"><label for="audio_autoplay">{#media_dlg.play}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="embeddedaudio_autoplay" name="audio_autoplay" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="audio_loop">{#media_dlg.loop}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="embeddedaudio_loop" name="audio_loop" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row last">
+                            <div class="column span-4"><label for="audio_controls">{#media_dlg.controls}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="embeddedaudio_controls" name="audio_controls" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                    </fieldset><br />
+                </div>
+
+                <div id="audio_options">
+                    <fieldset class="module">
+                        <h2>{#media_dlg.html5_audio_options}</h2>
+                        <div class="row first">
+                            <div class="column span-4"><label for="audio_altsource1">{#media_dlg.altsource1}</label></div>
+                            <div class="column span-flexible">
+                                <input type="text" id="audio_altsource1" name="audio_altsource1" onchange="Media.formToData();" style="width: 240px" />
+                                <div id="audio_altsource1_filebrowser">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="audio_altsource2">{#media_dlg.altsource2}</label></div>
+                            <div class="column span-flexible">
+                                <input type="text" id="audio_altsource2" name="audio_altsource2" onchange="Media.formToData();" style="width: 240px" />
+                                <div id="audio_altsource2_filebrowser">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="audio_preload">{#media_dlg.preload}</label></div>
+                            <div class="column span-flexible">
+                                <select id="audio_preload" name="audio_preload" onchange="Media.formToData();">
+                                    <option value="none">{#media_dlg.preload_none}</option>
+                                    <option value="metadata">{#media_dlg.preload_metadata}</option>
+                                    <option value="auto">{#media_dlg.preload_auto}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="audio_autoplay">{#media_dlg.play}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="audio_autoplay" name="audio_autoplay" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="audio_loop">{#media_dlg.loop}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="audio_loop" name="audio_loop" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row last">
+                            <div class="column span-4"><label for="audio_controls">{#media_dlg.controls}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="audio_controls" name="audio_controls" onchange="Media.formToData();" />
+                            </div>
+                        </div> 
+                    </fieldset><br />
+                </div>
                 
                 <div id="flash_options">
                     <fieldset class="module">
                         <h2>{#media_dlg.flash_options}</h2>
-                        <legend>{#media_dlg.flash_options}</legend>
                         <div class="row first">
                             <div class="column span-4"><label for="flash_quality">{#media_dlg.quality}</label></div>
                             <div class="column span-flexible">
-                                <select id="flash_quality" name="flash_quality" onchange="generatePreview();">
+                                <select id="flash_quality" name="flash_quality" onchange="Media.formToData();">
                                     <option value="">{#not_set}</option> 
                                     <option value="high">high</option>
                                     <option value="low">low</option>
@@ -130,7 +254,7 @@
                         <div class="row">
                             <div class="column span-4"><label for="flash_scale">{#media_dlg.scale}</label></div>
                             <div class="column span-flexible">
-                                <select id="flash_scale" name="flash_scale" onchange="generatePreview();">
+                                <select id="flash_scale" name="flash_scale" onchange="Media.formToData();">
                                     <option value="">{#not_set}</option> 
                                     <option value="showall">showall</option>
                                     <option value="noborder">noborder</option>
@@ -142,7 +266,7 @@
                         <div class="row">
                             <div class="column span-4"><label for="flash_wmode">{#media_dlg.wmode}</label></div>
                             <div class="column span-flexible">
-                                <select id="flash_wmode" name="flash_wmode" onchange="generatePreview();">
+                                <select id="flash_wmode" name="flash_wmode" onchange="Media.formToData();">
                                     <option value="">{#not_set}</option> 
                                     <option value="window">window</option>
                                     <option value="opaque">opaque</option>
@@ -153,7 +277,7 @@
                         <div class="row">
                             <div class="column span-4"><label for="flash_salign">{#media_dlg.salign}</label></div>
                             <div class="column span-flexible">
-                                <select id="flash_salign" name="flash_salign" onchange="generatePreview();">
+                                <select id="flash_salign" name="flash_salign" onchange="Media.formToData();">
                                     <option value="">{#not_set}</option> 
                                     <option value="l">{#media_dlg.align_left}</option>
                                     <option value="t">{#media_dlg.align_top}</option>
@@ -168,143 +292,78 @@
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_play">{#media_dlg.play}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flash_play" name="flash_play" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flash_play" name="flash_play" checked="checked" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_loop">{#media_dlg.loop}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flash_loop" name="flash_loop" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flash_loop" name="flash_loop" checked="checked" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_menu">{#media_dlg.menu}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flash_menu" name="flash_menu" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flash_menu" name="flash_menu" checked="checked" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_swliveconnect">{#media_dlg.liveconnect}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flash_swliveconnect" name="flash_swliveconnect" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="flash_swliveconnect" name="flash_swliveconnect" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
                             <div class="column span-4"><label for="flash_base">{#media_dlg.base}</label></div>
-                            <div class="column span-flexible"><input type="text" id="flash_base" name="flash_base" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="text" id="flash_base" name="flash_base" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row last">
                             <div class="column span-4"><label for="flash_flashvars">{#media_dlg.flashvars}</label></div>
-                            <div class="column span-flexible"><input type="text" id="flash_flashvars" name="flash_flashvars" onchange="generatePreview();" /></div>
+                            <div class="column span-flexible"><input type="text" id="flash_flashvars" name="flash_flashvars" onchange="Media.formToData();" /></div>
                         </div>
-                    </fieldset>
+                    </fieldset><br />
                 </div>
 
-                <div id="flv_options">
-                    
-                    <fieldset class="module">
-                        <h2>{#media_dlg.flv_options}</h2>
-                        <legend>{#media_dlg.flv_options}</legend>
-                        <div class="row first">
-                            <div class="column span-4"><label for="flv_scalemode">{#media_dlg.flv_scalemode}</label>
-                            <div class="column span-flexible">
-                                <select id="flv_scalemode" name="flv_scalemode" onchange="generatePreview();">
-                                    <option value="">{#not_set}</option> 
-                                    <option value="none">none</option>
-                                    <option value="double">double</option>
-                                    <option value="full">full</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column span-4"><label for="flv_buffer">{#media_dlg.flv_buffer}</label></div>
-                            <div class="column span-flexible"><input type="text" id="flv_buffer" name="flv_buffer" onchange="generatePreview();" /></div>
-                        </div>
-                        <div class="row combine">
-                            <div class="column span-4"><label for="flv_startimage">{#media_dlg.flv_startimage}</label></div>
-                            <div class="column span-flexible"><input type="text" id="flv_startimage" name="flv_startimage" onchange="generatePreview();" /></div>
-                        </div>
-                        <div class="row combine">
-                            <div class="column span-4"><label for="flv_starttime">{#media_dlg.flv_starttime}</label></div>
-                            <div class="column span-flexible"><input type="text" id="flv_starttime" name="flv_starttime" onchange="generatePreview();" /></div>
-                        </div>
-                        <div class="row">
-                            <div class="column span-4"><label for="flv_defaultvolume">{#media_dlg.flv_defaultvolume}</label></div>
-                            <div class="column span-flexible"><input type="text" id="flv_defaultvolume" name="flv_defaultvolume" onchange="generatePreview();" /></div>
-                        </div>
-                        <!-- <div class="row">
-                            <label for="flv_starttime">{#media_dlg.flv_starttime}</label>
-                            <input type="text" id="flv_starttime" name="flv_starttime" onchange="generatePreview();" />
-                        </div> -->
-                        <div class="row combine">
-                            <div class="column span-4"><label for="flv_hiddengui">{#media_dlg.flv_hiddengui}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_hiddengui" name="flv_hiddengui" checked="checked" onchange="generatePreview();" /></div>
-                        </div>
-                        <div class="row combine">
-                            <div class="column span-4"><label for="flv_autostart">{#media_dlg.flv_autostart}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_autostart" name="flv_autostart" checked="checked" onchange="generatePreview();" /></div>
-                        </div>
-                        <div class="row combine">
-                            <div class="column span-4"><label for="flv_loop">{#media_dlg.flv_loop}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_loop" name="flv_loop" checked="checked" onchange="generatePreview();" /></div>
-                        </div>
-                        <div class="row combine">
-                            <div class="column span-4"><label for="flv_showscalemodes">{#media_dlg.flv_showscalemodes}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_showscalemodes" name="flv_showscalemodes" onchange="generatePreview();" /></div>
-                        </div>
-                        <div class="row combine">
-                            <div class="column span-4"><label for="flv_smoothvideo">{#media_dlg.flv_smoothvideo}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_smoothvideo" name="flash_flv_flv_smoothvideosmoothvideo" checked="checked" onchange="generatePreview();" /></div>
-                        </div>
-                        <div class="row last">
-                            <div class="column span-4"><label for="flv_jscallback">{#media_dlg.flv_jscallback}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="flv_jscallback" name="flv_jscallback" onchange="generatePreview();" /></div>
-                        </div>
-                    </fieldset>
-                </div>
-                
-                <div id="qt_options">
-                    
+                <div id="quicktime_options">
                     <fieldset class="module">
                         <h2>{#media_dlg.qt_options}</h2>
-                        <legend>{#media_dlg.qt_options}</legend>
                         <div class="row first">
-                            <div class="column span-4"><label for="qt_loop">{#media_dlg.loop}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_loop" name="qt_loop" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_loop">{#media_dlg.loop}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_loop" name="quicktime_loop" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_autoplay">{#media_dlg.play}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_autoplay" name="qt_autoplay" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_autoplay">{#media_dlg.play}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_autoplay" name="quicktime_autoplay" checked="checked" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_cache">{#media_dlg.cache}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_cache" name="qt_cache" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_cache">{#media_dlg.cache}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_cache" name="quicktime_cache" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_controller">{#media_dlg.controller}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_controller" name="qt_controller" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_controller">{#media_dlg.controller}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_controller" name="quicktime_controller" checked="checked" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_correction">{#media_dlg.correction}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_correction" name="qt_correction" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_correction">{#media_dlg.correction}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_correction" name="quicktime_correction" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_enablejavascript">{#media_dlg.enablejavascript}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_enablejavascript" name="qt_enablejavascript" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_enablejavascript">{#media_dlg.enablejavascript}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_enablejavascript" name="quicktime_enablejavascript" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_kioskmode">{#media_dlg.kioskmode}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_kioskmode" name="qt_kioskmode" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_kioskmode">{#media_dlg.kioskmode}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_kioskmode" name="quicktime_kioskmode" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_autohref">{#media_dlg.autohref}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_autohref" name="qt_autohref" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_autohref">{#media_dlg.autohref}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_autohref" name="quicktime_autohref" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_playeveryframe">{#media_dlg.playeveryframe}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_playeveryframe" name="qt_playeveryframe" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_playeveryframe">{#media_dlg.playeveryframe}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_playeveryframe" name="quicktime_playeveryframe" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_targetcache">{#media_dlg.targetcache}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox standalone" id="qt_targetcache" name="qt_targetcache" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_targetcache">{#media_dlg.targetcache}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="quicktime_targetcache" name="quicktime_targetcache" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_scale">{#media_dlg.scale}</label></div>
+                            <div class="column span-4"><label for="quicktime_scale">{#media_dlg.scale}</label></div>
                             <div class="column span-flexible">
-                                <select id="qt_scale" name="qt_scale" class="mceEditableSelect" onchange="generatePreview();">
+                                <select id="quicktime_scale" name="quicktime_scale" class="mceEditableSelect" onchange="Media.formToData();">
                                     <option value="">{#not_set}</option> 
                                     <option value="tofit">tofit</option>
                                     <option value="aspect">aspect</option>
@@ -312,326 +371,253 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_starttime">{#media_dlg.starttime}</label></div>
-                            <div class="column span-flexible"><input type="text" id="qt_starttime" name="qt_starttime" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_starttime">{#media_dlg.starttime}</label></div>
+                            <div class="column span-flexible"><input type="text" id="quicktime_starttime" name="quicktime_starttime" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_endtime">{#media_dlg.endtime}</label></div>
-                            <div class="column span-flexible"><input type="text" id="qt_endtime" name="qt_endtime" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_endtime">{#media_dlg.endtime}</label></div>
+                            <div class="column span-flexible"><input type="text" id="quicktime_endtime" name="quicktime_endtime" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_target">{#media_dlg.target}</label></div>
-                            <div class="column span-flexible"><input type="text" id="qt_target" name="qt_target" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_target">{#media_dlg.target}</label></div>
+                            <div class="column span-flexible"><input type="text" id="quicktime_target" name="quicktime_target" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_href">{#media_dlg.href}</label></div>
-                            <div class="column span-flexible"><input type="text" id="qt_href" name="qt_href" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_href">{#media_dlg.href}</label></div>
+                            <div class="column span-flexible"><input type="text" id="quicktime_href" name="quicktime_href" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_qtsrcchokespeed">{#media_dlg.qtsrcchokespeed}</label></div>
-                            <div class="column span-flexible"><input type="text" id="qt_qtsrcchokespeed" name="qt_qtsrcchokespeed" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_qtsrcchokespeed">{#media_dlg.qtsrcchokespeed}</label></div>
+                            <div class="column span-flexible"><input type="text" id="quicktime_qtsrcchokespeed" name="quicktime_qtsrcchokespeed" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="qt_volume">{#media_dlg.volume}</label></div>
-                            <div class="column span-flexible"><input type="text" id="qt_volume" name="qt_volume" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="quicktime_volume">{#media_dlg.volume}</label></div>
+                            <div class="column span-flexible"><input type="text" id="quicktime_volume" name="quicktime_volume" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row last">
-                            <div class="column span-4"><label for="qt_qtsrc">{#media_dlg.qtsrc}</label></div>
+                            <div class="column span-4"><label for="quicktime_qtsrc">{#media_dlg.qtsrc}</label></div>
                             <div class="column span-flexible">
-                                <input type="text" id="qt_qtsrc" name="qt_qtsrc" onchange="generatePreview();" />
-                                <div id="qtsrcfilebrowsercontainer">lolo</div>
+                                <input type="text" id="quicktime_qtsrc" name="quicktime_qtsrc" onchange="Media.formToData();" />
+                                <div id="qtsrcfilebrowsercontainer">&nbsp;</div>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset><br />
                 </div>
 
-                <div id="wmp_options">
-                    <div class="title">{#media_dlg.wmp_options}</div>
+                <div id="windowsmedia_options">
                     <fieldset class="module">
-                        <legend>{#media_dlg.wmp_options}</legend>
+                        <h2>{#media_dlg.wmp_options}</h2>
                         <div class="row first">
-                            <div class="column span-4"><label for="wmp_autostart">{#media_dlg.autostart}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="wmp_autostart" name="wmp_autostart" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_autostart">{#media_dlg.autostart}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="windowsmedia_autostart" name="windowsmedia_autostart" checked="checked" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_enabled">{#media_dlg.enabled}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="wmp_enabled" name="wmp_enabled" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_enabled">{#media_dlg.enabled}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="windowsmedia_enabled" name="windowsmedia_enabled" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_enablecontextmenu">{#media_dlg.menu}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="wmp_enablecontextmenu" name="wmp_enablecontextmenu" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_enablecontextmenu">{#media_dlg.menu}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="windowsmedia_enablecontextmenu" name="windowsmedia_enablecontextmenu" checked="checked" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_fullscreen">{#media_dlg.fullscreen}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="wmp_fullscreen" name="wmp_fullscreen" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_fullscreen">{#media_dlg.fullscreen}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="windowsmedia_fullscreen" name="windowsmedia_fullscreen" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_invokeurls">{#media_dlg.invokeurls}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="wmp_invokeurls" name="wmp_invokeurls" checked="checked" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_invokeurls">{#media_dlg.invokeurls}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="windowsmedia_invokeurls" name="windowsmedia_invokeurls" checked="checked" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_mute">{#media_dlg.mute}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="wmp_mute" name="wmp_mute" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_mute">{#media_dlg.mute}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="windowsmedia_mute" name="windowsmedia_mute" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_stretchtofit">{#media_dlg.stretchtofit}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="wmp_stretchtofit" name="wmp_stretchtofit" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_stretchtofit">{#media_dlg.stretchtofit}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="windowsmedia_stretchtofit" name="windowsmedia_stretchtofit" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_windowlessvideo">{#media_dlg.windowlessvideo}</label></div>
-                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="wmp_windowlessvideo" name="wmp_windowlessvideo" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_windowlessvideo">{#media_dlg.windowlessvideo}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="windowsmedia_windowlessvideo" name="windowsmedia_windowlessvideo" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_balance">{#media_dlg.balance}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_balance" name="wmp_balance" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_balance">{#media_dlg.balance}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_balance" name="windowsmedia_balance" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_baseurl">{#media_dlg.baseurl}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_baseurl" name="wmp_baseurl" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_baseurl">{#media_dlg.baseurl}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_baseurl" name="windowsmedia_baseurl" onchange="Media.formToData();" /><</div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_captioningid">{#media_dlg.captioningid}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_captioningid" name="wmp_captioningid" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_captioningid">{#media_dlg.captioningid}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_captioningid" name="windowsmedia_captioningid" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_currentmarker">{#media_dlg.currentmarker}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_currentmarker" name="wmp_currentmarker" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_currentmarker">{#media_dlg.currentmarker}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_currentmarker" name="windowsmedia_currentmarker" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_currentposition">{#media_dlg.currentposition}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_currentposition" name="wmp_currentposition" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_currentposition">{#media_dlg.currentposition}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_currentposition" name="windowsmedia_currentposition" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_defaultframe">{#media_dlg.defaultframe}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_defaultframe" name="wmp_defaultframe" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_defaultframe">{#media_dlg.defaultframe}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_defaultframe" name="windowsmedia_defaultframe" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_playcount">{#media_dlg.playcount}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_playcount" name="wmp_playcount" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_playcount">{#media_dlg.playcount}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_playcount" name="windowsmedia_playcount" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_rate">{#media_dlg.rate}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_rate" name="wmp_rate" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_rate">{#media_dlg.rate}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_rate" name="windowsmedia_rate" onchange="Media.formToData();" /></div>
                         </div>
                         <div class="row">
-                            <div class="column span-4"><label for="wmp_uimode">{#media_dlg.uimode}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_uimode" name="wmp_uimode" onchange="generatePreview();" /></div>
+                            <div class="column span-4"><label for="windowsmedia_uimode">{#media_dlg.uimode}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_uimode" name="windowsmedia_uimode" onchange="Media.formToData();" /></div>
                         </div>
-                        <div class="row">
-                            <div class="column span-4"><label for="wmp_volume">{#media_dlg.volume}</label></div>
-                            <div class="column span-flexible"><input type="text" id="wmp_volume" name="wmp_volume" onchange="generatePreview();" /></div>
+                        <div class="row last">
+                            <div class="column span-4"><label for="windowsmedia_volume">{#media_dlg.volume}</label></div>
+                            <div class="column span-flexible"><input type="text" id="windowsmedia_volume" name="windowsmedia_volume" onchange="Media.formToData();" /></div>
                         </div>
-                    </fieldset>
+                    </fieldset><br />
                 </div>
 
-				<fieldset id="rmp_options">
-					<legend>{#media_dlg.rmp_options}</legend>
+                <div id="realmedia_options">
+    				<fieldset class="module">
+    					<h2>{#media_dlg.rmp_options}</h2>
+                        <div class="row first">
+                            <div class="column span-4"><label for="realmedia_autostart">{#media_dlg.autostart}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_autostart" name="realmedia_autostart" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_loop">{#media_dlg.loop}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_loop" name="realmedia_loop" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_autogotourl">{#media_dlg.autogotourl}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_autogotourl" name="realmedia_autogotourl" checked="checked" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_center">{#media_dlg.center}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_center" name="realmedia_center" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_imagestatus">{#media_dlg.imagestatus}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_imagestatus" name="realmedia_imagestatus" checked="checked" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_maintainaspect">{#media_dlg.maintainaspect}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_maintainaspect" name="realmedia_maintainaspect" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_nojava">{#media_dlg.nojava}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_nojava" name="realmedia_nojava" onchange="Media.formToData();" /></div>
+                        </div> 
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_prefetch">{#media_dlg.prefetch}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_prefetch" name="realmedia_prefetch" onchange="Media.formToData();" /></div>
+                        </div>                   
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_shuffle">{#media_dlg.shuffle}</label></div>
+                            <div class="column span-flexible"><input type="checkbox" class="checkbox" id="realmedia_shuffle" name="realmedia_shuffle" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_console">{#media_dlg.console}</label></div>
+                            <div class="column span-flexible"><input type="text" id="realmedia_console" name="realmedia_console" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_controls">{#media_dlg.controls}</label></div>
+                            <div class="column span-flexible"><input type="text" id="realmedia_controls" name="realmedia_controls" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="realmedia_numloop">{#media_dlg.numloop}</label></div>
+                            <div class="column span-flexible"><input type="text" id="realmedia_numloop" name="realmedia_numloop" onchange="Media.formToData();" /></div>
+                        </div>
+                        <div class="row last">
+                            <div class="column span-4"><label for="realmedia_scriptcallbacks">{#media_dlg.scriptcallbacks}</label></div>
+                            <div class="column span-flexible"><input type="text" id="realmedia_scriptcallbacks" name="realmedia_scriptcallbacks" onchange="Media.formToData();" /></div>
+                        </div>
+    				</fieldset><br />
+                </div>
 
-					<table border="0" cellpadding="4" cellspacing="0">
-						<tr>
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_autostart" name="rmp_autostart" onchange="generatePreview();" /></td>
-										<td><label for="rmp_autostart">{#media_dlg.autostart}</label></td>
-									</tr>
-								</table>
-							</td>
-
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_loop" name="rmp_loop" onchange="generatePreview();" /></td>
-										<td><label for="rmp_loop">{#media_dlg.loop}</label></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr>
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_autogotourl" name="rmp_autogotourl" checked="checked" onchange="generatePreview();" /></td>
-										<td><label for="rmp_autogotourl">{#media_dlg.autogotourl}</label></td>
-									</tr>
-								</table>
-							</td>
-
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_center" name="rmp_center" onchange="generatePreview();" /></td>
-										<td><label for="rmp_center">{#media_dlg.center}</label></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr>
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_imagestatus" name="rmp_imagestatus" checked="checked" onchange="generatePreview();" /></td>
-										<td><label for="rmp_imagestatus">{#media_dlg.imagestatus}</label></td>
-									</tr>
-								</table>
-							</td>
-
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_maintainaspect" name="rmp_maintainaspect" onchange="generatePreview();" /></td>
-										<td><label for="rmp_maintainaspect">{#media_dlg.maintainaspect}</label></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr>
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_nojava" name="rmp_nojava" onchange="generatePreview();" /></td>
-										<td><label for="rmp_nojava">{#media_dlg.nojava}</label></td>
-									</tr>
-								</table>
-							</td>
-
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_prefetch" name="rmp_prefetch" onchange="generatePreview();" /></td>
-										<td><label for="rmp_prefetch">{#media_dlg.prefetch}</label></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr>
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="rmp_shuffle" name="rmp_shuffle" onchange="generatePreview();" /></td>
-										<td><label for="rmp_shuffle">{#media_dlg.shuffle}</label></td>
-									</tr>
-								</table>
-							</td>
-
-							<td colspan="2">
-								&nbsp;
-							</td>
-						</tr>
-
-						<tr>
-							<td><label for="rmp_console">{#media_dlg.console}</label></td>
-							<td><input type="text" id="rmp_console" name="rmp_console" onchange="generatePreview();" /></td>
-
-							<td><label for="rmp_controls">{#media_dlg.controls}</label></td>
-							<td><input type="text" id="rmp_controls" name="rmp_controls" onchange="generatePreview();" /></td>
-						</tr>
-
-						<tr>
-							<td><label for="rmp_numloop">{#media_dlg.numloop}</label></td>
-							<td><input type="text" id="rmp_numloop" name="rmp_numloop" onchange="generatePreview();" /></td>
-
-							<td><label for="rmp_scriptcallbacks">{#media_dlg.scriptcallbacks}</label></td>
-							<td><input type="text" id="rmp_scriptcallbacks" name="rmp_scriptcallbacks" onchange="generatePreview();" /></td>
-						</tr>
-					</table>
-				</fieldset>
-
-				<fieldset id="shockwave_options">
-					<legend>{#media_dlg.shockwave_options}</legend>
-
-					<table border="0" cellpadding="4" cellspacing="0">
-						<tr>
-							<td><label for="shockwave_swstretchstyle">{#media_dlg.swstretchstyle}</label></td>
-							<td>
-								<select id="shockwave_swstretchstyle" name="shockwave_swstretchstyle" onchange="generatePreview();">
-									<option value="none">{#not_set}</option>
-									<option value="meet">Meet</option>
-									<option value="fill">Fill</option>
-									<option value="stage">Stage</option>
-								</select>
-							</td>
-
-							<td><label for="shockwave_swvolume">{#media_dlg.volume}</label></td>
-							<td><input type="text" id="shockwave_swvolume" name="shockwave_swvolume" onchange="generatePreview();" /></td>
-						</tr>
-
-						<tr>
-							<td><label for="shockwave_swstretchhalign">{#media_dlg.swstretchhalign}</label></td>
-							<td>
-								<select id="shockwave_swstretchhalign" name="shockwave_swstretchhalign" onchange="generatePreview();">
-									<option value="none">{#not_set}</option>
-									<option value="left">{#media_dlg.align_left}</option>
-									<option value="center">{#media_dlg.align_center}</option>
-									<option value="right">{#media_dlg.align_right}</option>
-								</select>
-							</td>
-
-							<td><label for="shockwave_swstretchvalign">{#media_dlg.swstretchvalign}</label></td>
-							<td>
-								<select id="shockwave_swstretchvalign" name="shockwave_swstretchvalign" onchange="generatePreview();">
-									<option value="none">{#not_set}</option>
-									<option value="meet">Meet</option>
-									<option value="fill">Fill</option>
-									<option value="stage">Stage</option>
-								</select>
-							</td>
-						</tr>
-
-						<tr>
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="shockwave_autostart" name="shockwave_autostart" onchange="generatePreview();" checked="checked" /></td>
-										<td><label for="shockwave_autostart">{#media_dlg.autostart}</label></td>
-									</tr>
-								</table>
-							</td>
-
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="shockwave_sound" name="shockwave_sound" onchange="generatePreview();" checked="checked" /></td>
-										<td><label for="shockwave_sound">{#media_dlg.sound}</label></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-
-						<tr>
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="shockwave_swliveconnect" name="shockwave_swliveconnect" onchange="generatePreview();" /></td>
-										<td><label for="shockwave_swliveconnect">{#media_dlg.liveconnect}</label></td>
-									</tr>
-								</table>
-							</td>
-
-							<td colspan="2">
-								<table border="0" cellpadding="0" cellspacing="0">
-									<tr>
-										<td><input type="checkbox" class="checkbox" id="shockwave_progress" name="shockwave_progress" onchange="generatePreview();" checked="checked" /></td>
-										<td><label for="shockwave_progress">{#media_dlg.progress}</label></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-				</fieldset>
+                <div id="shockwave_options">
+                    <fieldset class="module">
+					   <h2>{#media_dlg.shockwave_options}</h2>
+                        <div class="row first">
+                            <div class="column span-4"><label for="shockwave_swstretchstyle">{#media_dlg.swstretchstyle}</label></div>
+                            <div class="column span-flexible">
+                                <select id="shockwave_swstretchstyle" name="shockwave_swstretchstyle" onchange="Media.formToData();">
+                                    <option value="none">{#not_set}</option>
+                                    <option value="meet">Meet</option>
+                                    <option value="fill">Fill</option>
+                                    <option value="stage">Stage</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="shockwave_swvolume">{#media_dlg.volume}</label></div>
+                            <div class="column span-flexible">
+                                <input type="text" id="shockwave_swvolume" name="shockwave_swvolume" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="shockwave_swstretchhalign">{#media_dlg.swstretchhalign}</label></div>
+                            <div class="column span-flexible">
+                                <select id="shockwave_swstretchhalign" name="shockwave_swstretchhalign" onchange="Media.formToData();">
+                                    <option value="none">{#not_set}</option>
+                                    <option value="left">{#media_dlg.align_left}</option>
+                                    <option value="center">{#media_dlg.align_center}</option>
+                                    <option value="right">{#media_dlg.align_right}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="shockwave_swstretchvalign">{#media_dlg.swstretchvalign}</label></div>
+                            <div class="column span-flexible">
+                                <select id="shockwave_swstretchvalign" name="shockwave_swstretchvalign" onchange="Media.formToData();">
+                                    <option value="none">{#not_set}</option>
+                                    <option value="meet">Meet</option>
+                                    <option value="fill">Fill</option>
+                                    <option value="stage">Stage</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="shockwave_autostart">{#media_dlg.autostart}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="shockwave_autostart" name="shockwave_autostart" onchange="Media.formToData();" checked="checked" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="shockwave_sound">{#media_dlg.sound}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="shockwave_sound" name="shockwave_sound" onchange="Media.formToData();" checked="checked" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column span-4"><label for="shockwave_swliveconnect">{#media_dlg.liveconnect}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="shockwave_swliveconnect" name="shockwave_swliveconnect" onchange="Media.formToData();" />
+                            </div>
+                        </div>
+                        <div class="row last">
+                            <div class="column span-4"><label for="shockwave_progress">{#media_dlg.progress}</label></div>
+                            <div class="column span-flexible">
+                                <input type="checkbox" class="checkbox" id="shockwave_progress" name="shockwave_progress" onchange="Media.formToData();" checked="checked" />
+                            </div>
+                        </div>
+				    </fieldset><br />
+                </div>
 			</div>
+
 			<div id="source_panel" class="panel">
 				<fieldset>
 					<legend>{#media_dlg.source}</legend>
 					<textarea id="source" style="width: 100%; height: 275px"></textarea>
 				</fieldset>
 			</div>
-		</div>
+		
+        </div>
         <div class="mceActionPanel module submit-row">
             <ul class="submit-row">
                 <li class="cancel-button-container left"><input type="button" id="cancel" class="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" /></li>

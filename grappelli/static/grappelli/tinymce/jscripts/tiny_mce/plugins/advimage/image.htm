@@ -9,7 +9,6 @@
     <script type="text/javascript" src="../../utils/editable_selects.js"></script>
     <script type="text/javascript" src="js/image.js"></script>
     <link href="css/advimage.css" rel="stylesheet" type="text/css" />
-    <base target="_self" />
 </head>
 <body id="advimage" style="display: none" class="tinyMCE">
     <form onsubmit="ImageDialog.insert();return false;" action="#"> 
@@ -38,7 +37,7 @@
                         <div class="column span-4"><label id="altlabel" for="alt">{#advimage_dlg.alt}</label></div>
                         <div class="column span-flexible"><input id="alt" name="alt" type="text" value="" /></div>
                     </div>
-                    <div class="row">
+                    <div class="row last">
                         <div class="column span-4"><label id="titlelabel" for="title">{#advimage_dlg.title}</label></div>
                         <div class="column span-flexible"><input id="title" name="title" type="text" value="" /></div>
                     </div>

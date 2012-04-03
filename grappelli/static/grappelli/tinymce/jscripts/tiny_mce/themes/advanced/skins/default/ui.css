@@ -103,6 +103,7 @@
 .defaultSkin .mceNoIcons .mceMenuItemSelected a {background:url(img/menu_arrow.gif) no-repeat -6px center}
 .defaultSkin .mceMenu span.mceMenuLine {display:none}
 .defaultSkin .mceMenuItemSub a {background:url(img/menu_arrow.gif) no-repeat top right;}
+.defaultSkin .mceMenuItem td, .defaultSkin .mceMenuItem th {line-height: normal}
 
 /* Progress,Resize */
 .defaultSkin .mceBlocker {position:absolute; left:0; top:0; z-index:1000; opacity:0.5; -ms-filter:'alpha(opacity=50)'; filter:alpha(opacity=50); background:#FFF}
@@ -211,3 +212,4 @@
 .defaultSkin span.mce_pagebreak {background-position:0 -40px}
 .defaultSkin span.mce_restoredraft {background-position:-20px -40px}
 .defaultSkin span.mce_spellchecker {background-position:-540px -20px}
+.defaultSkin span.mce_visualblocks {background-position: -40px -40px}

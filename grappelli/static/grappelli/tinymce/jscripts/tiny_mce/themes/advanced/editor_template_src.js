@@ -11,6 +11,85 @@
 (function(tinymce) {
 	var DOM = tinymce.DOM, Event = tinymce.dom.Event, extend = tinymce.extend, each = tinymce.each, Cookie = tinymce.util.Cookie, lastExtID, explode = tinymce.explode;
 
+	// Generates a preview for a format
+	function getPreviewCss(ed, fmt) {
+		var previewElm, dom = ed.dom, previewCss = '', parentFontSize, previewStylesName;
+
+		previewStyles = ed.settings.preview_styles;
+
+		// No preview forced
+		if (previewStyles === false)
+			return '';
+
+		// Default preview
+		if (!previewStyles)
+			previewStyles = 'font-family font-size font-weight text-decoration text-transform color background-color';
+
+		// Removes any variables since these can't be previewed
+		function removeVars(val) {
+			return val.replace(/%(\w+)/g, '');
+		};
+
+		// Create block/inline element to use for preview
+		name = fmt.block || fmt.inline || 'span';
+		previewElm = dom.create(name);
+
+		// Add format styles to preview element
+		each(fmt.styles, function(value, name) {
+			value = removeVars(value);
+
+			if (value)
+				dom.setStyle(previewElm, name, value);
+		});
+
+		// Add attributes to preview element
+		each(fmt.attributes, function(value, name) {
+			value = removeVars(value);
+
+			if (value)
+				dom.setAttrib(previewElm, name, value);
+		});
+
+		// Add classes to preview element
+		each(fmt.classes, function(value) {
+			value = removeVars(value);
+
+			if (!dom.hasClass(previewElm, value))
+				dom.addClass(previewElm, value);
+		});
+
+		// Add the previewElm outside the visual area
+		dom.setStyles(previewElm, {position: 'absolute', left: -0xFFFF});
+		ed.getBody().appendChild(previewElm);
+
+		// Get parent container font size so we can compute px values out of em/% for older IE:s
+		parentFontSize = dom.getStyle(ed.getBody(), 'fontSize', true);
+		parentFontSize = /px$/.test(parentFontSize) ? parseInt(parentFontSize, 10) : 0;
+
+		each(previewStyles.split(' '), function(name) {
+			var value = dom.getStyle(previewElm, name, true);
+
+			// Old IE won't calculate the font size so we need to do that manually
+			if (name == 'font-size') {
+				if (/em|%$/.test(value)) {
+					if (parentFontSize === 0) {
+						return;
+					}
+
+					// Convert font size from em/% to px
+					value = parseFloat(value, 10) / (/%$/.test(value) ? 100 : 1);
+					value = (value * parentFontSize) + 'px';
+				}
+			}
+
+			previewCss += name + ':' + value + ';';
+		});
+
+		dom.remove(previewElm);
+
+		return previewCss;
+	};
+
 	// Tell it to load theme specific language pack(s)
 	tinymce.ThemeManager.requireLangPack('advanced');
 
@@ -219,15 +298,21 @@
 
 			if (ctrl.getLength() == 0) {
 				each(ed.dom.getClasses(), function(o, idx) {
-					var name = 'style_' + idx;
+					var name = 'style_' + idx, fmt;
 
-					ed.formatter.register(name, {
+					fmt = {
 						inline : 'span',
 						attributes : {'class' : o['class']},
 						selector : '*'
-					});
+					};
 
-					ctrl.add(o['class'], name);
+					ed.formatter.register(name, fmt);
+
+					ctrl.add(o['class'], name, {
+						style: function() {
+							return getPreviewCss(ed, fmt);
+						}
+					});
 				});
 			}
 		},
@@ -239,7 +324,7 @@
 			ctrl = ctrlMan.createListBox('styleselect', {
 				title : 'advanced.style_select',
 				onselect : function(name) {
-					var matches, formatNames = [];
+					var matches, formatNames = [], removedFormat;
 
 					each(ctrl.items, function(item) {
 						formatNames.push(item.value);
@@ -248,12 +333,18 @@
 					ed.focus();
 					ed.undoManager.add();
 
-					// Toggle off the current format
+					// Toggle off the current format(s)
 					matches = ed.formatter.matchAll(formatNames);
-					if (!name || matches[0] == name) {
-						if (matches[0]) 
-							ed.formatter.remove(matches[0]);
-					} else
+					tinymce.each(matches, function(match) {
+						if (!name || match == name) {
+							if (match)
+								ed.formatter.remove(match);
+
+							removedFormat = true;
+						}
+					});
+
+					if (!removedFormat)
 						ed.formatter.apply(name);
 
 					ed.undoManager.add();
@@ -264,7 +355,7 @@
 			});
 
 			// Handle specified format
-			ed.onInit.add(function() {
+			ed.onPreInit.add(function() {
 				var counter = 0, formats = ed.getParam('style_formats');
 
 				if (formats) {
@@ -276,24 +367,32 @@
 						if (keys > 1) {
 							name = fmt.name = fmt.name || 'style_' + (counter++);
 							ed.formatter.register(name, fmt);
-							ctrl.add(fmt.title, name);
+							ctrl.add(fmt.title, name, {
+								style: function() {
+									return getPreviewCss(ed, fmt);
+								}
+							});
 						} else
 							ctrl.add(fmt.title);
 					});
 				} else {
 					each(ed.getParam('theme_advanced_styles', '', 'hash'), function(val, key) {
-						var name;
+						var name, fmt;
 
 						if (val) {
 							name = 'style_' + (counter++);
-
-							ed.formatter.register(name, {
+							fmt = {
 								inline : 'span',
 								classes : val,
 								selector : '*'
-							});
+							};
 
-							ctrl.add(t.editor.translate(key), name);
+							ed.formatter.register(name, fmt);
+							ctrl.add(t.editor.translate(key), name, {
+								style: function() {
+									return getPreviewCss(ed, fmt);
+								}
+							});
 						}
 					});
 				}
@@ -386,7 +485,7 @@
 					return v == sv;
 				});
 
-				if (cur && (cur.value.fontSize == v.fontSize || cur.value['class'] == v['class'])) {
+				if (cur && (cur.value.fontSize == v.fontSize || cur.value['class'] && cur.value['class'] == v['class'])) {
 					c.select(null);
 				}
 
@@ -433,7 +532,9 @@
 
 			if (c) {
 				each(t.editor.getParam('theme_advanced_blockformats', t.settings.theme_advanced_blockformats, 'hash'), function(v, k) {
-					c.add(t.editor.translate(k != v ? k : fmts[v]), v, {'class' : 'mce_formatPreview mce_' + v});
+					c.add(t.editor.translate(k != v ? k : fmts[v]), v, {'class' : 'mce_formatPreview mce_' + v, style: function() {
+						return getPreviewCss(t.editor, {block: v});
+					}});
 				});
 			}
 
@@ -552,8 +653,7 @@
 
 				if (e.nodeName == 'A') {
 					t._sel(e.className.replace(/^.*mcePath_([0-9]+).*$/, '$1'));
-
-					return Event.cancel(e);
+					return false;
 				}
 			});
 /*
@@ -593,6 +693,11 @@
 
 				if (evt.altKey) {
 		 			if (evt.keyCode === DOM_VK_F10) {
+						// Make sure focus is given to toolbar in Safari.
+						// We can't do this in IE as it prevents giving focus to toolbar when editor is in a frame
+						if (tinymce.isWebKit) {
+							window.focus();
+						}
 						t.toolbarGroup.focus();
 						return Event.cancel(evt);
 					} else if (evt.keyCode === DOM_VK_F11) {
@@ -869,7 +974,7 @@
 			
 
 			if (s.theme_advanced_resizing) {
-				DOM.add(td, 'a', {id : ed.id + '_resize', href : 'javascript:;', onclick : "return false;", 'class' : 'mceResize'});
+				DOM.add(td, 'a', {id : ed.id + '_resize', href : 'javascript:;', onclick : "return false;", 'class' : 'mceResize', tabIndex:"-1"});
 
 				if (s.theme_advanced_resizing_use_cookie) {
 					ed.onPostRender.add(function() {
@@ -936,10 +1041,10 @@
 		},
 
 		_updateUndoStatus : function(ed) {
-			var cm = ed.controlManager;
+			var cm = ed.controlManager, um = ed.undoManager;
 
-			cm.setDisabled('undo', !ed.undoManager.hasUndo() && !ed.typing);
-			cm.setDisabled('redo', !ed.undoManager.hasRedo());
+			cm.setDisabled('undo', !um.hasUndo() && !um.typing);
+			cm.setDisabled('redo', !um.hasRedo());
 		},
 
 		_nodeChanged : function(ed, cm, n, co, ob) {
@@ -999,6 +1104,11 @@
 
 				matches = ed.formatter.matchAll(formatNames);
 				c.select(matches[0]);
+				tinymce.each(matches, function(match, index) {
+					if (index > 0) {
+						c.mark(match);
+					}
+				});
 			}
 
 			if (c = cm.get('formatselect')) {
@@ -1095,11 +1205,8 @@
 				getParent(function(n) {
 					var na = n.nodeName.toLowerCase(), u, pi, ti = '';
 
-					if (n.getAttribute('data-mce-bogus'))
-						return;
-
-					// Ignore non element and hidden elements
-					if (n.nodeType != 1 || n.nodeName === 'BR' || (DOM.hasClass(n, 'mceItemHidden') || DOM.hasClass(n, 'mceItemRemoved')))
+					// Ignore non element and bogus/hidden elements
+					if (n.nodeType != 1 || na === 'br' || n.getAttribute('data-mce-bogus') || DOM.hasClass(n, 'mceItemHidden') || DOM.hasClass(n, 'mceItemRemoved'))
 						return;
 
 					// Handle prefix
@@ -1223,7 +1330,7 @@
 			ed.windowManager.open({
 				url : this.url + '/charmap.htm',
 				width : 550 + parseInt(ed.getLang('advanced.charmap_delta_width', 0)),
-				height : 250 + parseInt(ed.getLang('advanced.charmap_delta_height', 0)),
+				height : 265 + parseInt(ed.getLang('advanced.charmap_delta_height', 0)),
 				inline : true
 			}, {
 				theme_url : this.url
@@ -1292,7 +1399,7 @@
 			var ed = this.editor;
 
 			// Internal image object like a flash placeholder
-			if (ed.dom.getAttrib(ed.selection.getNode(), 'class').indexOf('mceItem') != -1)
+			if (ed.dom.getAttrib(ed.selection.getNode(), 'class', '').indexOf('mceItem') != -1)
 				return;
 
 			ed.windowManager.open({

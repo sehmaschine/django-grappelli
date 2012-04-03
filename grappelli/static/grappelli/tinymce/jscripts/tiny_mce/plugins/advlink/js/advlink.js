@@ -30,8 +30,6 @@ function init() {
 
 	document.getElementById('hrefbrowsercontainer').innerHTML = getBrowserHTML('hrefbrowser','href','file','advlink');
 	document.getElementById('popupurlbrowsercontainer').innerHTML = getBrowserHTML('popupurlbrowser','popupurl','file','advlink');
-	document.getElementById('linklisthrefcontainer').innerHTML = getLinkListHTML('linklisthref','href');
-	document.getElementById('anchorlistcontainer').innerHTML = getAnchorListHTML('anchorlist','href');
 	document.getElementById('targetlistcontainer').innerHTML = getTargetListHTML('targetlist','target');
 
 	// Link list
@@ -41,6 +39,13 @@ function init() {
 	else
 		document.getElementById("linklisthrefcontainer").innerHTML = html;
 
+	// Anchor list
+	html = getAnchorListHTML('anchorlist','href');
+	if (html == "")
+		document.getElementById("anchorlistrow").style.display = 'none';
+	else
+		document.getElementById("anchorlistcontainer").innerHTML = html;
+
 	// Resize some elements
 	if (isVisible('hrefbrowser'))
 		document.getElementById('href').style.width = '260px';
@@ -49,6 +54,13 @@ function init() {
 		document.getElementById('popupurl').style.width = '180px';
 
 	elm = inst.dom.getParent(elm, "A");
+	if (elm == null) {
+		var prospect = inst.dom.create("p", null, inst.selection.getContent());
+		if (prospect.childNodes.length === 1) {
+			elm = prospect.firstChild;
+		}
+	}
+
 	if (elm != null && elm.nodeName == "A")
 		action = "update";
 
@@ -116,7 +128,7 @@ function checkPrefix(n) {
 	if (n.value && Validator.isEmail(n) && !/^\s*mailto:/i.test(n.value) && confirm(tinyMCEPopup.getLang('advlink_dlg.is_email')))
 		n.value = 'mailto:' + n.value;
 
-	if (/^\s*www./i.test(n.value) && confirm(tinyMCEPopup.getLang('advlink_dlg.is_external')))
+	if (/^\s*www\./i.test(n.value) && confirm(tinyMCEPopup.getLang('advlink_dlg.is_external')))
 		n.value = 'http://' + n.value;
 }
 
@@ -354,26 +366,28 @@ function setAttrib(elm, attrib, value) {
 
 	// Clean up the style
 	if (attrib == 'style')
-		value = dom.serializeStyle(dom.parseStyle(value));
+		value = dom.serializeStyle(dom.parseStyle(value), 'a');
 
 	dom.setAttrib(elm, attrib, value);
 }
 
 function getAnchorListHTML(id, target) {
-	var inst = tinyMCEPopup.editor;
-	var nodes = inst.dom.select('a.mceItemAnchor,img.mceItemAnchor'), name, i;
-	var html = "";
+	var ed = tinyMCEPopup.editor, nodes = ed.dom.select('a'), name, i, len, html = "";
 
-	html += '<select id="' + id + '" name="' + id + '" class="mceAnchorList" o2nfocus="tinyMCE.addSelectAccessibility(event, this, window);" onchange="this.form.' + target + '.value=';
-	html += 'this.options[this.selectedIndex].value;">';
-	html += '<option value="">---</option>';
-
-	for (i=0; i<nodes.length; i++) {
-		if ((name = inst.dom.getAttrib(nodes[i], "name")) != "")
+	for (i=0, len=nodes.length; i<len; i++) {
+		if ((name = ed.dom.getAttrib(nodes[i], "name")) != "")
 			html += '<option value="#' + name + '">' + name + '</option>';
 	}
 
-	html += '</select>';
+	if (html == "")
+		return "";
+
+	html = '<select id="' + id + '" name="' + id + '" class="mceAnchorList"'
+		+ ' onchange="this.form.' + target + '.value=this.options[this.selectedIndex].value"'
+		+ '>'
+		+ '<option value="">---</option>'
+		+ html
+		+ '</select>';
 
 	return html;
 }
@@ -389,7 +403,6 @@ function insertAction() {
 
 	// Remove element if there is no href
 	if (!document.forms[0].href.value) {
-		tinyMCEPopup.execCommand("mceBeginUndoLevel");
 		i = inst.selection.getBookmark();
 		inst.dom.remove(elm, 1);
 		inst.selection.moveToBookmark(i);
@@ -398,11 +411,10 @@ function insertAction() {
 		return;
 	}
 
-	tinyMCEPopup.execCommand("mceBeginUndoLevel");
-
 	// Create new anchor elements
 	if (elm == null) {
-		tinyMCEPopup.execCommand("CreateLink", false, "#mce_temp_url#", {skip_undo : 1});
+		inst.getDoc().execCommand("unlink", false, null);
+		tinyMCEPopup.execCommand("mceInsertLink", false, "#mce_temp_url#", {skip_undo : 1});
 
 		elementArray = tinymce.grep(inst.dom.select("a"), function(n) {return inst.dom.getAttrib(n, 'href') == '#mce_temp_url#';});
 		for (i=0; i<elementArray.length; i++)
@@ -424,7 +436,7 @@ function insertAction() {
 
 function setAllAttribs(elm) {
 	var formObj = document.forms[0];
-	var href = formObj.href.value;
+	var href = formObj.href.value.replace(/ /g, '%20');
 	var target = getSelectValue(formObj, 'targetlist');
 
 	setAttrib(elm, 'href', href);
@@ -476,7 +488,7 @@ function getLinkListHTML(elm_id, target_form_element, onchange_func) {
 	var html = "";
 
 	html += '<select id="' + elm_id + '" name="' + elm_id + '"';
-	html += ' class="mceLinkList" onfoc2us="tinyMCE.addSelectAccessibility(event, this, window);" onchange="this.form.' + target_form_element + '.value=';
+	html += ' class="mceLinkList" onchange="this.form.' + target_form_element + '.value=';
 	html += 'this.options[this.selectedIndex].value;';
 
 	if (typeof(onchange_func) != "undefined")
@@ -498,7 +510,7 @@ function getTargetListHTML(elm_id, target_form_element) {
 	var targets = tinyMCEPopup.getParam('theme_advanced_link_targets', '').split(';');
 	var html = '';
 
-	html += '<select id="' + elm_id + '" name="' + elm_id + '" onf2ocus="tinyMCE.addSelectAccessibility(event, this, window);" onchange="this.form.' + target_form_element + '.value=';
+	html += '<select id="' + elm_id + '" name="' + elm_id + '" onchange="this.form.' + target_form_element + '.value=';
 	html += 'this.options[this.selectedIndex].value;">';
 	html += '<option value="_self">' + tinyMCEPopup.getLang('advlink_dlg.target_same') + '</option>';
 	html += '<option value="_blank">' + tinyMCEPopup.getLang('advlink_dlg.target_blank') + ' (_blank)</option>';
