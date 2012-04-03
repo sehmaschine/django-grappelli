@@ -5,7 +5,7 @@
 	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 	<script type="text/javascript" src="js/charmap.js"></script>
 </head>
-<body id="charmap" style="display:none">
+<body id="charmap" style="display:none" role="application">
 <table align="center" border="0" cellspacing="0" cellpadding="2" role="presentation">
 	<tr>
 		<td colspan="2" class="title" ><label for="charmapView" id="charmap_label">{#advanced_dlg.charmap_title}</label></td>
@@ -29,23 +29,27 @@
 		<td valign="bottom" style="padding-bottom: 3px;">
 			<table width="100" align="center" border="0" cellpadding="2" cellspacing="0" role="presentation">
 				<tr>
-					<td align="center" style="border-left: 1px solid #666699; border-top: 1px solid #666699; border-right: 1px solid #666699;"><label for="codeA">HTML-Code</label></td>
+					<td align="center"><label for="codeA">HTML-Code</label></td>
 				</tr>
 				<tr>
-					<td style="font-size: 16px; font-weight: bold; border-left: 1px solid #666699; border-bottom: 1px solid #666699; border-right: 1px solid #666699;" id="codeA" align="center">&nbsp;</td>
+					<td style="font-size: 16px; font-weight: bold;" id="codeA" align="center">&nbsp;</td>
 				</tr>
 				<tr>
 					<td style="font-size: 1px;">&nbsp;</td>
 				</tr>
 				<tr>
-					<td align="center" style="border-left: 1px solid #666699; border-top: 1px solid #666699; border-right: 1px solid #666699;"><label for="codeB">NUM-Code</label></td>
+					<td align="center"><label for="codeB">NUM-Code</label></td>
 				</tr>
 				<tr>
-					<td style="font-size: 16px; font-weight: bold; border-left: 1px solid #666699; border-bottom: 1px solid #666699; border-right: 1px solid #666699;" id="codeB" align="center">&nbsp;</td>
+					<td style="font-size: 16px; font-weight: bold;" id="codeB" align="center">&nbsp;</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
+	<tr>
+		<td colspan="2" id="charmap_usage">{#advanced_dlg.charmap_usage}</td>
+	</tr>
+	
 </table>
 </body>
 </html>

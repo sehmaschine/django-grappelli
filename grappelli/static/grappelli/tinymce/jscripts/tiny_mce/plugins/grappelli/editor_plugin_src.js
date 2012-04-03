@@ -191,7 +191,7 @@
                 author: "vonautomatisch (patrick kranzlmueller)",
                 authorurl: "http://vonautomatisch.at",
                 infourl: "http://code.google.com/p/django-grappelli/",
-                version: "1.0"
+                version: "1.1"
             }
         }
         

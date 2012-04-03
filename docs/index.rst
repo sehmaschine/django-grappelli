@@ -65,6 +65,11 @@ Code
 
 https://github.com/sehmaschine/django-grappelli
 
+Screenshots
+-----------
+
+http://sehmaschine.github.com/django-grappelli/
+
 Discussion
 ----------
 

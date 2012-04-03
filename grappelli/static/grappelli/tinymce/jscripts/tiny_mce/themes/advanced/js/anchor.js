@@ -30,10 +30,12 @@ var AnchorDialog = {
 			ed.selection.collapse(1);
 
 		elm = ed.dom.getParent(ed.selection.getNode(), 'A');
-		if (elm)
+		if (elm) {
+			elm.setAttribute('name', name);
 			elm.name = name;
-		else
-			ed.execCommand('mceInsertContent', 0, ed.dom.createHTML('a', {name : name, 'class' : 'mceItemAnchor'}, ''));
+		} else
+			// create with zero-sized nbsp so that in Webkit where anchor is on last line by itself caret cannot be placed after it
+			ed.execCommand('mceInsertContent', 0, ed.dom.createHTML('a', {name : name, 'class' : 'mceItemAnchor'}, '\uFEFF'));
 
 		tinyMCEPopup.close();
 	}
