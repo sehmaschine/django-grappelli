@@ -145,7 +145,7 @@ For the represantation of an object, we first check for a callable ``related_lab
         return u"%s (%s)" % (self.name, self.id)
 
 .. warning::
-    Due to a bug in Django 1.3, raw_id_fields (including related-lookups) are not working with list_editables.
+    Due to a bug in Django 1.4, raw_id_fields (including related-lookups) are not working with list_editables.
 
 .. _customizationautocompletelookups:
 
@@ -221,7 +221,7 @@ For the represantation of an object, we first check for a callable ``related_lab
         return u"%s (%s)" % (self.name, self.id)
 
 .. warning::
-    Due to a bug in Django 1.3, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
+    Due to a bug in Django 1.4, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
 
 .. _customizationtinymce:
 

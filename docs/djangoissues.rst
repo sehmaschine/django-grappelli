@@ -68,7 +68,7 @@ As an alternative to ``Related Lookups`` it should also be possible to implement
 ----------------------------------------
 
 Due to a django-bug, the lookup for ``raw_id_fields`` is not correct if used with ``list_editables``. Therefore, ``Related Lookups`` and ``Autocomplete Lookups`` are currently not working on the changelist.
-This bug has been resolved with Django 1.2 ... unfortunately, with Django 1.3 it reoccurs.
+This bug has been resolved with Django 1.2 ... unfortunately, with Django 1.3 and 1.4 it reoccurs.
 
 see https://code.djangoproject.com/ticket/11163
 
