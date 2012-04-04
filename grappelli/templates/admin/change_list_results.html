@@ -6,7 +6,7 @@
 {% endif %}
 
 {% if results %}
-<div class="module changelist-results">
+<div class="grp-module grp-changelist-results">
     <table cellspacing="0">
         <thead>
             <tr>
@@ -22,10 +22,10 @@
                         {% endif %}
                         {% endcomment %}
                         {% if header.sortable %}
-                            <a href="{{ header.url_primary }}">
+                            <a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>
+                        {% else %}
+                            {{ header.text|capfirst }}
                         {% endif %}
-                        {{ header.text|capfirst }}
-                        {% if header.sortable %}</a>{% endif %}
                     </th>
                 {% endfor %}
             </tr>
