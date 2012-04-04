@@ -2,16 +2,16 @@
 {% if not module.is_empty %}
 
 {% if dashboard.app_title %}
-    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}group {% else %}module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentactions" %}actions {% endif %}{{ module.render_css_classes|cut:"deletable"|cut:"draggable"|join:"" }}{% if module.collapsible %} collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} open{% endif %}{% endif %}">
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}grp-group {% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentactions" %}actions {% endif %}{{ module.render_css_classes|cut:"deletable"|cut:"draggable"|join:"" }}{% if module.collapsible %} grp-collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} grp-open{% endif %}{% endif %}">
 {% else %}
-    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}group {% else %}module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentActions" %}actions {% endif %}{{ module.render_css_classes }}{% if module.collapsible %} collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} open{% endif %}{% endif %}">
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}grp-group {% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentActions" %}actions {% endif %}{{ module.render_css_classes }}{% if module.collapsible %} grp-collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} grp-open{% endif %}{% endif %}">
 {% endif %}
     
     {% if module.title %}
         {% if module|classname:"group" %}
             <h2 class="module_title{% if module.collapsible %} collapse-handler{% endif %}">{{ module.title }}</h2>
         {% else %}
-            <h{% if subindex %}3{% else %}2{% endif %} class="module_title{% if module.collapsible %} collapse-handler{% endif %}">{{ module.title }}</h{% if subindex %}3{% else %}2{% endif %}>
+            <h{% if subindex %}3{% else %}2{% endif %} class="module_title{% if module.collapsible %} grp-collapse-handler{% endif %}">{{ module.title }}</h{% if subindex %}3{% else %}2{% endif %}>
         {% endif %}
     {% endif %}
     {% if module.pre_content %}{{ module.pre_content|safe }}{% endif %}
