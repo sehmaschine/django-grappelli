@@ -13,9 +13,9 @@
                 var $this = $(this);
                 // build autocomplete wrapper
                 $this.next().after(loader).after(remove_link($this.attr('id')));
-                $this.parent().wrapInner("<div class='autocomplete-wrapper-m2m'></div>");
+                $this.parent().wrapInner("<div class='grp-autocomplete-wrapper-m2m'></div>");
                 //$this.parent().prepend("<ul class='search'><li class='search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>").prepend("<ul class='repr'></ul>");
-                $this.parent().prepend("<ul class='repr'><li class='search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>");
+                $this.parent().prepend("<ul class='grp-repr'><li class='grp-search'><input id='" + $this.attr("id") + "-autocomplete' type='text' class='vTextField' value='' /></li></ul>");
                 // defaults
                 options = $.extend({
                     wrapper_autocomplete: $this.parent(),
@@ -25,8 +25,8 @@
                     loader: $this.next().next().next().hide()
                 }, $.fn.grp_autocomplete_m2m.defaults, options);
                 // move errorlist outside the wrapper
-                if ($this.parent().find("ul.errorlist")) {
-                    $this.parent().find("ul.errorlist").detach().appendTo($this.parent().parent());
+                if ($this.parent().find("ul.grp-errorlist")) {
+                    $this.parent().find("ul.grp-errorlist").detach().appendTo($this.parent().parent());
                 }
                 // lookup
                 lookup_id($this, options);  // lookup when loading page
@@ -74,24 +74,24 @@
     };
     
     var loader = function() {
-        var loader = $('<div class="loader">loader</div>');
+        var loader = $('<div class="grp-loader">loader</div>');
         return loader;
     };
     
     var remove_link = function(id) {
-        var removelink = $('<a class="related-remove"></a>');
+        var removelink = $('<a class="grp-related-remove"></a>');
         removelink.attr('id', 'remove_'+id);
         removelink.attr('href', 'javascript://');
         removelink.attr('onClick', 'return removeRelatedObject(this);');
         removelink.hover(function() {
-            $(this).parent().toggleClass("autocomplete-preremove");
+            $(this).parent().toggleClass("grp-autocomplete-preremove");
         });
         return removelink;
     };
     
     var repr_add = function(elem, label, options) {
-        var repr = $('<li class="repr"></li>');
-        var removelink = $('<a class="m2m-remove" href="javascript://">' + label + '</a>');
+        var repr = $('<li class="grp-repr"></li>');
+        var removelink = $('<a class="grp-m2m-remove" href="javascript://">' + label + '</a>');
         repr.append(removelink);
         repr.insertBefore(options.wrapper_search);
         removelink.bind("click", function(e) { // remove-handler
@@ -102,7 +102,7 @@
             e.stopPropagation(); // prevent focus on input
         });
         removelink.hover(function() {
-            $(this).parent().toggleClass("autocomplete-preremove");
+            $(this).parent().toggleClass("grp-autocomplete-preremove");
         });
     };
     
@@ -114,10 +114,10 @@
                 }
             })
             .bind("focus", function() {
-                options.wrapper_autocomplete.addClass("state-focus");
+                options.wrapper_autocomplete.addClass("grp-state-focus");
             })
             .bind("blur", function() {
-                options.wrapper_autocomplete.removeClass("state-focus");
+                options.wrapper_autocomplete.removeClass("grp-state-focus");
             })
             .autocomplete({
                 minLength: 1,

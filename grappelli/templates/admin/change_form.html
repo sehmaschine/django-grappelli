@@ -19,16 +19,16 @@
         (function($) {
             $(document).ready(function() {
                 grappelli.initDateAndTimePicker();
-                $("div.container-flexible div.group").grp_collapsible_group();
-                $("div#content .collapse").grp_collapsible({
+                $("#grp-content-container .grp-group").grp_collapsible_group();
+                $("#grp-content-container .grp-collapse").grp_collapsible({
                     on_init: function(elem, options) {
                         // open collapse (and all collapse parents) in case of errors
                         if (elem.find("ul.errorlist").length > 0) {
-                            elem.removeClass("closed")
-                                .addClass("open");
-                            elem.parents(".collapse")
-                                .removeClass("closed")
-                                .addClass("open");
+                            elem.removeClass("grp-closed")
+                                .addClass("grp-open");
+                            elem.parents(".grp-collapse")
+                                .removeClass("grp-closed")
+                                .addClass("grp-open");
                         }
                     }
                 });
@@ -69,6 +69,20 @@
                         object_id:object_id,
                         lookup_url:"{% url 'grp_related_lookup' %}",
                         autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
+                    });
+                });
+                // TOC Table of Contents (H2)
+                var h2 = $("#grp-content").find("h2");
+                $(h2).each(function() {
+                    var item = $(this).text().replace(/\s/g,"-");
+                    var anchor = $(this).text().replace(/\s/g,"-");
+                    $("<span id=" + anchor + " class='grp-anchor' />").insertBefore(this);
+                    $("#grp-toc-content").append("<li><a href='#" + anchor + "'>" + item + "</a></li>");
+                });
+                $("a#grp-toc-handler").bind("click", function(){
+                    $("#grp-toc-content").toggle();
+                    $("#grp-toc-content a").bind("click", function(){
+                        $("#grp-toc-content").hide();
                     });
                 });
             });

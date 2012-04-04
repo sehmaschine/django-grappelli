@@ -40,19 +40,19 @@
                     var autocomplete_fields_m2m = {% get_autocomplete_lookup_fields_m2m cl.model_admin %};
                     var autocomplete_fields_generic = {% get_autocomplete_lookup_fields_generic cl.model_admin %};
                     $.each(related_lookup_fields_fk, function() {
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
                         .grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
                     });
                     $.each(related_lookup_fields_m2m, function() {
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
                         .grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
                     });
                     $.each(related_lookup_fields_generic, function() {
                         var content_type = this[0],
                             object_id = this[1];
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
                         .each(function() {
                             var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
@@ -61,7 +61,7 @@
                         });
                     });
                     $.each(autocomplete_fields_fk, function() {
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
                         .each(function() {
                             $(this).grp_autocomplete_fk({
@@ -71,7 +71,7 @@
                         });
                     });
                     $.each(autocomplete_fields_m2m, function() {
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this + "']")
                         .each(function() {
                             $(this).grp_autocomplete_m2m({
@@ -83,7 +83,7 @@
                     $.each(autocomplete_fields_generic, function() {
                         var content_type = this[0],
                             object_id = this[1];
-                        $("div.changelist-results")
+                        $("div.grp-changelist-results")
                         .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
                         .each(function() {
                             var i = $(this).attr("id").match(/-\d+-/);

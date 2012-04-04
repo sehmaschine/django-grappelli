@@ -13,7 +13,7 @@
                 // add placeholder
                 $this.next().after(options.placeholder);
                 // change lookup class
-                $this.next().addClass("m2m");
+                $this.next().addClass("grp-m2m");
                 // lookup
                 lookup_id($this, options); // lookup when loading page
                 $this.bind("change focus keyup blur", function() { // id-handler

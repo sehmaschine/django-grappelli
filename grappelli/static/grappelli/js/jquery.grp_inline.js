@@ -10,12 +10,12 @@
             prefix: "form",                         // The form prefix for your django formset
             addText: "add another",                 // Text for the add link
             deleteText: "remove",                   // Text for the delete link
-            addCssClass: "add-handler",             // CSS class applied to the add link
-            removeCssClass: "remove-handler",       // CSS class applied to the remove link
-            deleteCssClass: "delete-handler",       // CSS class applied to the delete link
-            emptyCssClass: "empty-form",            // CSS class applied to the empty row
-            formCssClass: "dynamic-form",           // CSS class applied to each form in a formset
-            predeleteCssClass: "predelete",
+            addCssClass: "grp-add-handler",             // CSS class applied to the add link
+            removeCssClass: "grp-remove-handler",       // CSS class applied to the remove link
+            deleteCssClass: "grp-delete-handler",       // CSS class applied to the delete link
+            emptyCssClass: "grp-empty-form",            // CSS class applied to the empty row
+            formCssClass: "grp-dynamic-form",           // CSS class applied to each form in a formset
+            predeleteCssClass: "grp-predelete",
             onBeforeInit: function(form) {},        // Function called before a form is initialized
             onBeforeAdded: function(inline) {},     // Function called before a form is added
             onBeforeRemoved: function(form) {},     // Function called before a form is removed
@@ -67,7 +67,7 @@
                 form.not("." + options.emptyCssClass).not(".table").not(".thead").not(".add-item").addClass(options.formCssClass);
             }
             // add options.predeleteCssClass to forms with the delete checkbox checked
-            form.find("li.delete-handler-container input").each(function() {
+            form.find("li.grp-delete-handler-container input").each(function() {
                 if ($(this).attr("checked") && form.hasClass("has_original")) {
                     form.toggleClass(options.predeleteCssClass);
                 }
@@ -119,7 +119,7 @@
     
     removeButtonHandler = function(elem, options) {
         elem.bind("click", function() {
-            var inline = elem.parents("div.group"),
+            var inline = elem.parents(".grp-group"),
                 form = $(this).parents("." + options.formCssClass).first(),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
                 maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS");
@@ -168,12 +168,12 @@
     
     hideAddBottons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
-        addButtons.hide().parents('div.add-item').hide();
+        addButtons.hide().parents('.grp-add-item').hide();
     };
     
     showAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
-        addButtons.show().parents('div.add-item').show();
+        addButtons.show().parents('.grp-add-item').show();
     };
     
 })(django.jQuery);

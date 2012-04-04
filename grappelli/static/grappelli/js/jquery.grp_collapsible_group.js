@@ -7,11 +7,11 @@
 (function($) {
     $.fn.grp_collapsible_group = function(options){
         var defaults = {
-            open_handler_slctr: ".open-handler",
-            close_handler_slctr: ".close-handler",
-            collapsible_container_slctr: "div.collapse",
-            closed_css: "closed",
-            open_css: "open",
+            open_handler_slctr: ".grp-open-handler",
+            close_handler_slctr: ".grp-close-handler",
+            collapsible_container_slctr: ".grp-collapse",
+            closed_css: "grp-closed",
+            open_css: "grp-open",
             on_init: function() {},
             on_open: function() {},
             on_close: function() {}

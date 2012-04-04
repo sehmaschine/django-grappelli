@@ -63,22 +63,30 @@ var django = {
         
         // init timepicker
         $("input[class*='vTimeField']:not([id*='__prefix__'])").grp_timepicker();
+
+        // now-button for both date and time
+        $("<button class='ui-datetime-now' />").insertAfter("button.ui-timepicker-trigger");
+        $(".ui-datetime-now").live('click', function() {
+            alert("Now for date and time: grappelli.js line 68 ff.");
+            return false
+        });
+        
     };
     
     // changelist: filter
     grappelli.initFilter = function() {
-        $("a.toggle-filters").click(function() {
-            $(".filter-pulldown").toggle();
-            $("#filters").toggleClass("open");
+        $("a.grp-pulldown-handler").click(function() {
+            var pulldownContainer = $(this).closest(".grp-pulldown-container");
+            $(pulldownContainer).toggleClass("grp-pulldown-state-open").children(".grp-pulldown-content").toggle();
         });
-        $(".filter_choice").change(function(){
+        $(".grp-filter-choice").change(function(){
             location.href = $(this).val();
         });
     };
     
     // changelist: searchbar
     grappelli.initSearchbar = function() {
-        var searchbar = $("input#searchbar");
+        var searchbar = $("input.grp-search-field");
         searchbar.focus();
     };
     
