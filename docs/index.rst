@@ -16,7 +16,7 @@ Documentation
 This documentation covers version |version| of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
 
 .. note::
-    |grappelli| |version| requires Django 1.3. |grappelli| is always developed against the lastest stable Django release and is NOT tested with Djangos trunk.
+    |grappelli| |version| requires Django 1.4. |grappelli| is always developed against the lastest stable Django release and is NOT tested with Djangos trunk.
 
 Installation & Setup
 --------------------

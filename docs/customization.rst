@@ -16,12 +16,15 @@ Available Settings
 ``GRAPPELLI_ADMIN_TITLE``
     The Site Title of your admin interface. Change this instead of changing index.html
 
-.. _customizationadmin:
+.. _customizationcollapsibles:
 
 Collapsibles
 ------------
 
-Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``collapse open`` and ``collapse closed``.
+.. versionchanged:: 2.4.0
+    Added namespace ``grp-``.
+
+Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``.
 
 A ModelAdmin example::
 
@@ -31,11 +34,11 @@ A ModelAdmin example::
                 'fields': ('title', 'subtitle', 'slug', 'pub_date', 'status',),
             }),
             ('Flags', {
-                'classes': ('collapse closed',),
+                'classes': ('grp-collapse grp-closed',),
                 'fields' : ('flag_front', 'flag_sticky', 'flag_allow_comments', 'flag_comments_closed',),
             }),
             ('Tags', {
-                'classes': ('collapse open',),
+                'classes': ('grp-collapse grp-open',),
                 'fields' : ('tags',),
             }),
         )
@@ -43,8 +46,8 @@ A ModelAdmin example::
 With `StackedInlines <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of the inline items (in contrast to the whole group)::
 
     class NavigationItemInline(admin.StackedInline):
-        classes = ('collapse open',)
-        inline_classes = ('collapse open',)
+        classes = ('grp-collapse grp-open',)
+        inline_classes = ('grp-collapse grp-open',)
 
 
 .. _customizationinlinessortables:
@@ -220,13 +223,15 @@ For the represantation of an object, we first check for a callable ``related_lab
 .. warning::
     Due to a bug in Django 1.3, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
 
+.. _customizationtinymce:
+
 Using TinyMCE
 -------------
 
 .. versionchanged:: 2.4
     The admin media URLs has been changed to use a static URLs in compliance with Django 1.4
 
-Copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://wiki.moxiecode.com/index.php/TinyMCE:Configuration>`_) and add the necessary javascripts::
+Copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts::
 
     class Media:
         js = [

@@ -12,7 +12,9 @@ Changelog
 ------------------------
 
 * Compatibility with Django 1.4
-
+* New: Grappelli namespace (grp-)
+* New: Compass-based CSS
+* New: Added toggle-all with change-form
 
 2.3.8 (April 03, 2012)
 ----------------------

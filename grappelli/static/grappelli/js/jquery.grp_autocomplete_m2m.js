@@ -19,8 +19,8 @@
                 // defaults
                 options = $.extend({
                     wrapper_autocomplete: $this.parent(),
-                    wrapper_repr: $this.parent().find("ul.repr"),
-                    wrapper_search: $this.parent().find("li.search"),
+                    wrapper_repr: $this.parent().find("ul.grp-repr"),
+                    wrapper_search: $this.parent().find("li.grp-search"),
                     remove_link: $this.next().next().hide(),
                     loader: $this.next().next().next().hide()
                 }, $.fn.grp_autocomplete_m2m.defaults, options);
@@ -53,7 +53,7 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.grp_autocomplete_m2m');
-        };
+        }
         return false;
     };
     
@@ -106,7 +106,7 @@
         });
     };
     
-    var lookup_autocomplete = function(elem, options) {;
+    var lookup_autocomplete = function(elem, options) {
         options.wrapper_search.find("input:first")
             .bind("keydown", function(event) { // don't navigate away from the field on tab when selecting an item
                 if (event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active) {

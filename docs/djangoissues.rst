@@ -49,7 +49,7 @@ see http://code.djangoproject.com/ticket/7497
 The App Index
 -------------
 
-Again, which customer/editor is interested in your apps? Noone.
+Again, which customer/editor is interested in your apps? Noone (in our opinion).
 
 Related Lookups
 ----------------
