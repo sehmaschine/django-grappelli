@@ -57,7 +57,7 @@
     };
     
     initInlineForms = function(elem, options) {
-        elem.find("div.module").each(function() {
+        elem.find("div.grp-module").each(function() {
             var form = $(this);
             // callback
             options.onBeforeInit(form);
@@ -89,7 +89,7 @@
     
     addButtonHandler = function(elem, options) {
         elem.bind("click", function() {
-            var inline = elem.parents("div.group"),
+            var inline = elem.parents(".grp-group"),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
                 maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS"),
                 addButtons = inline.find("a." + options.addCssClass),
