@@ -98,11 +98,32 @@ input[type="reset"],
 textarea, 
 select {
     @include grp-form-field;
+    .grp-errors & {
+        border-color: #bf3030;
+    }
 }
 // fix vertical text-centering in webkit browsers
 // @include grp-helper-webkit-input–text-verticalcenter;
 
-
+.grp-errors {
+    label {
+        color: #bf3030 !important;
+    }
+    input[type="text"], 
+    input[type="password"], 
+    input[type="submit"], 
+    input[type="reset"], 
+    textarea, 
+    select {
+        border-color: #bf3030;
+    }
+    ul.errorlist {
+        padding: 3px 0 0;
+        color: #bf3030;
+        font-size: 11px !important;
+        line-height: 14px;
+    }
+}
 
 
 
