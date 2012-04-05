@@ -1,7 +1,9 @@
-{% load admin_static %}{% load url from future %}{% load i18n grp_tags %}<!DOCTYPE html>
+{% load admin_static %}{% load url from future %}{% load i18n grp_tags %}
+<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
     {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
     <!-- STYLESHEETS -->
     {% block stylesheets %}
@@ -42,7 +44,7 @@
     <!-- EXTRAHEAD -->
     {% block extrahead %}{% endblock %}
 </head>
-<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+<body class="{% if is_popup %}grp-popup {% endif %}{% block bodyclass %}{% endblock %}">
     <div id="grp-container">
 
         <!-- HEADER -->
