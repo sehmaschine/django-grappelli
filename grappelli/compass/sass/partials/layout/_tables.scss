@@ -38,9 +38,13 @@ table {
             }
         }
         th {
+            div {
+                position: relative;
+                display: inline-block;
+            }
             a {
                 position: relative;
-                display: block;
+                display: inline-block;
                 margin: -6px -10px;
                 padding: 6px 10px;
                 height: 100% !important;
@@ -51,6 +55,27 @@ table {
                     color: #444;
                     @include background-image(linear-gradient(#e0e0e0, #eee));
                 }
+                &.sortremove {
+                    margin-left: -4px;
+                    @include icons-small-sprite(sort-remove);
+                    background-color: #e4f;
+                }
+                &.ascending {
+                    @include icons-sprite(sorted-ascending);
+                    background-color: #4ef;
+                }
+                &.descending {
+                    @include icons-sprite(sorted-ascending);
+                    background-color: #4ef;
+                }
+            }
+            span.sortpriority {
+                display: inline-block;
+                width: 30px;
+                background: #333;
+            }
+            .text a {
+                background: #f30;
             }
             &.sorted {
                 // border-bottom: 1px solid lighten($grp-table-border-color, 5);
@@ -60,13 +85,16 @@ table {
                     font-weight: bold;
                     // border-top: 1px solid #ececec;
                 }
+                // &.ascending & {
+                //     background: url('../img/icons/icon-th-ascending.png');
+                // }
             }
-            &.ascending a:after {
-                content: url('../img/icons/icon-th-ascending.png');
-            }
-            &.descending a:after {
-                content: url('../img/icons/icon-th-descending.png');
-            }
+            // &.ascending a:after {
+            //     content: url('../img/icons/icon-th-ascending.png');
+            // }
+            // &.descending a:after {
+            //     content: url('../img/icons/icon-th-descending.png');
+            // }
         }
     }
     tbody {
