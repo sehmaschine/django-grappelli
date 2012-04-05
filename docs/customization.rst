@@ -77,7 +77,7 @@ The inline-rows are being reordered based on the sortable-field (with a template
 In case of errors (somewhere within the form), the position of inline-rows are being preserved. This applies to rows prepeared for deletion as well. Empty rows are moved to the end of the formset.
 
 .. note::
-    The sortable-field will not automatically be hidden (use a ``Hidden Input Widget`` if needed).
+    The limiations of this approach are that a) sortables won´t work with fields with default values and b) sortables won´t work with file-fields (because the serializer doesn´t pick them up).
 
 .. _customizationrelatedlookups:
 

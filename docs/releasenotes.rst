@@ -21,6 +21,7 @@ What's new in Grappelli 2.4.x
 * Compass-based CSS.
 * Grappelli namespace (grp-).
 * Added toggle-all with change-form
+* DOM-Documentation
 
 Update from Grappelli 2.3.x
 ---------------------------
