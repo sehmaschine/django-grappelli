@@ -150,7 +150,7 @@
     {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
         <div class="grp-module grp-changelist-filters">
             <div class="grp-row">
-                <div class="grp-layout-container grp-column-left-fluid grp-column-right-span-12">
+                <div class="grp-layout-container grp-column-left-fluid {% if cl.has_filters and cl.search_fields %}grp-column-right-span-12{% else %}{% if cl.has_filters or cl.search_fields %}grp-column-right-span-6{% endif %}{% endif %}">
                     <div class="grp-column-left">
                         <!-- PAGINATION TOP -->
                         {% pagination cl %}
@@ -178,6 +178,7 @@
                     {% endif %}
                 </div>
             </div>
+        </div>
         <!-- DATE HIERARCHY -->
         {% if cl.date_hierarchy %}
             {% date_hierarchy cl %}
