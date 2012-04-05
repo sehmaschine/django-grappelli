@@ -35,8 +35,6 @@ Dashboard
    
    dashboard_setup
    dashboard_api
-   dashboard_layout
-   dashboard_extension
 
 Internals
 ---------

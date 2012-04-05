@@ -18,6 +18,8 @@ Harcoded Stuff
 With "Hardcoded Stuff", I´m referring to HTML-Code within Views (instead of using Templates).
 There´s a lot of this within the admin interface and therefore it´s just not possible to style some elements. For other elements, we need to use ugly hacks or strange CSS.
 
+The solution is to implement floppy-forms (https://github.com/brutasse/django-floppyforms) with Django.
+
 Javascripts
 -----------
 
@@ -49,7 +51,7 @@ see http://code.djangoproject.com/ticket/7497
 The App Index
 -------------
 
-Again, which customer/editor is interested in your apps? Noone (in our opinion).
+Again, we don't think customers/editors are interested in your apps.
 
 Related Lookups
 ----------------
@@ -81,13 +83,6 @@ Save Object and return to Changelist
 ------------------------------------
 
 When you edit an object and save it, you are redirected to an unfiltered changelist. That's pretty annoying when you've filtered the changelist before editing the object.
-
-Ordering by multiple fields
----------------------------
-
-You can't order a changelist by multiple fields of a model.
-
-see http://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.ordering and http://code.djangoproject.com/ticket/11868 and http://code.djangoproject.com/ticket/4926
 
 Admin Documentation
 -------------------

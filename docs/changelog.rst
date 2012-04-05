@@ -15,6 +15,7 @@ Changelog
 * New: Grappelli namespace (grp-)
 * New: Compass-based CSS
 * New: Added toggle-all with change-form
+* New: DOM-Documentation
 
 2.3.8 (April 03, 2012)
 ----------------------
@@ -86,8 +87,10 @@ Changelog
 * Fixed a bug with using generic relations within generic-inlines (tabular and stacked).
 
 2.3.1 (February 3, 2011)
->>>>>>> grappelli_2_3
 ------------------------
 
-* Compatibility with Django 1.4
-* moved /static/grappelli/ to /static/admin/ (that´s needed because of using the static-tag)
+* Added ``related_lookup_fields`` for defining related lookups (fk, m2m, generic).
+* Fixed the limiation for using ``content_type_*`` and ``object_id_*`` with Generic Relations.
+* Deleted folder ``media`` (media-files are now in ``static``).
+* Fixed a bug in ``delete_selected_confirmation.html``.
+* Added block ``nav-global`` for adding custom elements to the header.
