@@ -11,7 +11,6 @@
             <thead>
                 <tr>
                     {% for header in result_headers %}
-                    {% spaceless %}
                         <th scope="col" {{ header.class_attrib }}>
                             {% if header.sortable %}
                                 {% if header.sort_priority > 0 %}
@@ -24,7 +23,6 @@
                             {% endif %}
                             <div class="grp-text">{% if header.sortable %}<a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>{% else %}<span>{{ header.text|capfirst }}</span>{% endif %}</div>
                         </th>
-                        {% endspaceless %}
                     {% endfor %}
                 </tr>
             </thead>
