@@ -54,19 +54,22 @@
                 <!-- NAVIGATION -->
                 {% include "admin/includes_grappelli/header.html" %}
                 
-                <!-- BREADCRUMBS -->
-                <nav id="grp-breadcrumbs" class="{% block breadcrumbs-class %}{% endblock %}">
-                    {% block breadcrumbs %}
-                        <ul>
-                            <li><a href="/">{% trans 'Home' %}</a></li>
-                            {% if title %}
-                                <li> &rsaquo; {{ title }}</li>
-                            {% endif %}
-                        </ul>
-                    {% endblock %}
+                <!-- CONTEXT NAVIGATION -->
+                <nav id="grp-context-navigation">
+                    <div id="grp-breadcrumbs" class="{% block breadcrumbs-class %}{% endblock %}">
+                        {% block breadcrumbs %}
+                            <ul>
+                                <li><a href="/">{% trans 'Home' %}</a></li>
+                                {% if title %}
+                                    <li> &rsaquo; {{ title }}</li>
+                                {% endif %}
+                            </ul>
+                        {% endblock %}
+                    </div>
+                    <div id="grp-page-tools">
+                        {% block page-tools %}{% endblock %}
+                    </div>
                 </nav>
-                <!-- TOC -->
-                {% block toc %}{% endblock %}
             {% endif %}
         </header>
 
