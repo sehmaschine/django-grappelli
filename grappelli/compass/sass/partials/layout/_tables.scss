@@ -142,7 +142,7 @@ table.grp-sortable {
                     padding: 0;
                     a {
                         margin: 0;
-                        padding: 6px 0 6px 10px;
+                        padding: 6px 10px;
                     }
                 }
                 .grp-sortoptions {
@@ -150,7 +150,7 @@ table.grp-sortable {
                     display: block;
                     float: right;
                     clear: right;
-                    margin: 0 4px 0 10px;
+                    margin: 0 5px 0 0;
                     // @include border-radius(12px);
                     // background: #fff;
                     a {
