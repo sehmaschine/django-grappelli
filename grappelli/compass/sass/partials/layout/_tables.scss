@@ -507,12 +507,17 @@ table.xfull {
 // /*  Change History
 // ------------------------------------------------------------------------------------------------------ */
 
-// table#change-history {
-//     width: 100%;
-// }
-// table#change-history tbody th {
-//     width: 150px;
-// }
+table#grp-change-history {
+    width: $blueprint-container-size;
+    tbody {
+        th {
+            width: 160px;
+        }
+        td, th {
+            background: $grp-module-background-color;
+        }
+    }
+}
 
 
 
