@@ -167,6 +167,19 @@ input:focus + .grp-search-button {
 //     border-color: #4ef !important;
 // }
 
+.grp-errors {
+    input + button, 
+    .vDateField + span a, 
+    .vTimeField + span a, 
+    input + a.fb_show, 
+    input + a.related-lookup, 
+    input + * + a.related-lookup, 
+    input + a.add-another, 
+    .grp-state-focus a.related-lookup {
+        border-color: #bf3030 !important;
+    }
+}
+
 
 
 
