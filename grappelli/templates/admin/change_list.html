@@ -178,11 +178,11 @@
                     {% endif %}
                 </div>
             </div>
+            <!-- DATE HIERARCHY -->
+            {% if cl.date_hierarchy %}
+                {% date_hierarchy cl %}
+            {% endif %}
         </div>
-        <!-- DATE HIERARCHY -->
-        {% if cl.date_hierarchy %}
-            {% date_hierarchy cl %}
-        {% endif %}
     {% endif %}
     <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
         <div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
