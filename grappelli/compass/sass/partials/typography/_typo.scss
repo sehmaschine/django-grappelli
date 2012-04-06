@@ -7,6 +7,27 @@ p.grp-help {
     font-size: 11px;
 }
 
+p.grp-errornote {
+    color: #fff;
+    font-weight: bold;
+    margin: 0 0 $grp-margin-size-s;
+    @include grp-padding($grp-padding-size-s $grp-padding-size);
+    @include border-radius($grp-border-radius);
+    background: #bf3030;
+}
+ul.grp-errorlist {
+    color: #bf3030;
+    font-weight: bold;
+    li {
+        @include grp-padding($grp-padding-size-s $grp-padding-size);
+        border-top: 1px solid #ccc;
+        &:first-child {
+            margin-top: -3px;
+            border-top: 2px solid #bf3030;
+        }
+    }
+}
+
 p.grp-readonly {
     margin: 0 !important;
     padding: 3px 0 !important;
