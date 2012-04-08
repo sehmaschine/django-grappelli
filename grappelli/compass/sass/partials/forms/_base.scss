@@ -281,7 +281,7 @@ a.add-another {
         padding: 3px 5px 2px 2px;
         min-height: 25px;
         font-weight: bold;
-            color: #666;
+        color: #666;
         border-top: 1px solid #e4e4e4;
         border-bottom: 1px solid #e4e4e4;
         @include border-top-radius($grp-border-radius);
@@ -389,7 +389,7 @@ a.add-another {
 /*  Errors
 ------------------------------------------------------------------------------------------------------ */
 
-p.grp-errornote {
+p.errornote {
     color: #fff;
     font-weight: bold;
     margin: 0 0 $grp-margin-size-s;
@@ -397,104 +397,188 @@ p.grp-errornote {
     @include border-radius($grp-border-radius);
     background: #bf3030;
 }
-ul.grp-errorlist {
-    color: #bf3030;
-    font-weight: bold;
-    li {
-        @include grp-padding($grp-padding-size-s $grp-padding-size);
-        border-top: 1px solid #ccc;
-        &:first-child {
-            margin-top: -3px;
-            border-top: 2px solid #bf3030;
-        }
-    }
-}
-
-.errornote {
-    margin-bottom: 7px;
-    padding: 8px 10px;
-    font-size: 12px;
-    font-weight: bold;
-}
-/* little fix to accomodate the top aligned login form .. */
-.errornote.login-errors {
-    margin-bottom: 0 !important;
-    padding: 8px 12px;
-}
 ul.errorlist {
-    margin: 6px 0 -3px;
+    @include legacy-pie-clearfix;
+    margin: 5px 0;
     font-size: 11px;
     line-height: 13px;
     font-weight: bold;
+    color: #bf3030;
+    
 }
-ul.errorlist li {
-    padding: 0 5px 0 0;
+@mixin errorlist-nonform {
+    margin: 5px 0 0;
+    li {
+        padding: 5px 10px;
+        & + li {
+            border-top: 1px solid #bf3030;
+        }
+    }
 }
-p.errornote + ul.errorlist {
-    margin-bottom: 8px;
-}
-ul.errorlist:empty {
-    display: none;
-    margin: 0;
-}
-.group.tabular ul.errorlist {
-    margin-left: 11px;
-}
-.group.stacked ul.errorlist {
-    margin-left: 11px;
-    margin-bottom: 5px;
-}
-.group.stacked h3 + * + ul.errorlist {
-    margin: 0 !important;
-    padding: 5px 11px;
-}
-.cell ul.errorlist {
-    padding-left: 0;
-}
-.cell ul.errorlist li {
-    padding-left: 0;
-}
-.cell label + * + ul.errorlist, 
-.cell label + * + * + ul.errorlist {
-    padding-left: 160px !important;
-}
-table ul.errorlist {
-    margin: -9px 0 6px;
-}
-.group.stacked .row ul.errorlist, 
-.module.table ul.errorlist {
-    margin-top: 5px;
-    margin-left: 0;
-    margin-bottom: -3px;
-}
-ul.radiolist.inline + ul.errorlist, 
-ul.radiolist.inline + * + ul.errorlist {
-    position: relative; clear: both;
-}
-ul.radiolist + ul.errorlist, 
-ul.radiolist + * + ul.errorlist {
-    margin-top: 0 !important;
+@mixin errorlist-field {
+    margin: 2px 0 0;
+    li {
+        padding: 3px 0 0;
+        border-top: 0 !important;
+    }
 }
 
-.module.table .tbody>ul.errorlist {
-    margin-top: 2px;
-    margin-left: 11px;
-    margin-bottom: 2px;
+/* little fix to accomodate the top aligned login form .. */
+.grp-login .errornote, 
+.errornote.grp-login-errors {
+    margin-bottom: 0 !important;
+    padding: 8px 10px 6px !important;
+    @include border-radius(0);
 }
-.module.table .tr ul.errorlist {
-    margin-left: 0;
+.errornote.grp-login-errors {
+    margin-bottom: 0 !important;
+    padding: 8px 12px;
 }
-.module.table ul.radiolist + ul.errorlist, 
-.module.table ul.radiolist + * + ul.errorlist {
-    margin: -2px 0 0;
+
+//  Errorlist in rows
+.grp-row {
+    ul.errorlist {
+        @include errorlist-field;
+    }
 }
-table ul.errorlist li, 
-.module.table ul.errorlist li {
-    padding-left: 0;
+
+//  Errorlist in tabular groups
+.grp-tabular {
+    p.errornote {
+        margin: 2px 0 0;
+        & + ul.errorlist {
+            margin: 0;
+        }
+    }
+    ul.errorlist {
+        @include errorlist-nonform;
+    }
+    .grp-td ul.errorlist {
+        @include errorlist-field;
+    }
 }
-p.errornote + ul.errorlist li {
-    padding-left: 10px;
+
+//  Errorlist in cells
+// .grp-cell ul.errorlist {
+//     padding-left: 0;
+// }
+// .grp-cell ul.errorlist li {
+//     padding-left: 0;
+// }
+// .grp-cell label + * + ul.errorlist, 
+// .grp-cell label + * + * + ul.errorlist {
+//     padding-left: 160px !important;
+// }
+
+//  Errorlist in stacked groups
+.grp-stacked {
+    ul.errorlist {
+        @include errorlist-nonform;
+    }
+    h3 + * + ul.errorlist {
+        @include errorlist-field;
+        margin: 0 !important;
+        padding: 5px 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    .grp-row ul.errorlist {
+        @include errorlist-field;
+    }
 }
+
+//  Errorlist in autocompletes
+// .grp-autocomplete-wrapper-m2m {
+//     ul.errorlist {
+//         position: absolute;
+//         top: 24px;
+//     }
+// }
+
+// .errornote {
+//     margin-bottom: 7px;
+//     padding: 8px 10px;
+//     font-size: 12px;
+//     font-weight: bold;
+// }
+// /* little fix to accomodate the top aligned login form .. */
+// .errornote.login-errors {
+//     margin-bottom: 0 !important;
+//     padding: 8px 12px;
+// }
+// ul.errorlist {
+//     margin: 6px 0 -3px;
+//     font-size: 11px;
+//     line-height: 13px;
+//     font-weight: bold;
+// }
+// ul.errorlist li {
+//     padding: 0 5px 0 0;
+// }
+// p.errornote + ul.errorlist {
+//     margin-bottom: 8px;
+// }
+// ul.errorlist:empty {
+//     display: none;
+//     margin: 0;
+// }
+// .group.tabular ul.errorlist {
+//     margin-left: 11px;
+// }
+// .group.stacked ul.errorlist {
+//     margin-left: 11px;
+//     margin-bottom: 5px;
+// }
+// .group.stacked h3 + * + ul.errorlist {
+//     margin: 0 !important;
+//     padding: 5px 11px;
+// }
+// .cell ul.errorlist {
+//     padding-left: 0;
+// }
+// .cell ul.errorlist li {
+//     padding-left: 0;
+// }
+// .cell label + * + ul.errorlist, 
+// .cell label + * + * + ul.errorlist {
+//     padding-left: 160px !important;
+// }
+// table ul.errorlist {
+//     margin: -9px 0 6px;
+// }
+// .group.stacked .row ul.errorlist, 
+// .module.table ul.errorlist {
+//     margin-top: 5px;
+//     margin-left: 0;
+//     margin-bottom: -3px;
+// }
+// ul.radiolist.inline + ul.errorlist, 
+// ul.radiolist.inline + * + ul.errorlist {
+//     position: relative; clear: both;
+// }
+// ul.radiolist + ul.errorlist, 
+// ul.radiolist + * + ul.errorlist {
+//     margin-top: 0 !important;
+// }
+
+// .module.table .tbody>ul.errorlist {
+//     margin-top: 2px;
+//     margin-left: 11px;
+//     margin-bottom: 2px;
+// }
+// .module.table .tr ul.errorlist {
+//     margin-left: 0;
+// }
+// .module.table ul.radiolist + ul.errorlist, 
+// .module.table ul.radiolist + * + ul.errorlist {
+//     margin: -2px 0 0;
+// }
+// table ul.errorlist li, 
+// .module.table ul.errorlist li {
+//     padding-left: 0;
+// }
+// p.errornote + ul.errorlist li {
+//     padding-left: 10px;
+// }
 
 
 

@@ -67,6 +67,7 @@
     height: auto !important;
     vertical-align: top;
     @include box-sizing(border-box);
+    overflow: visible;
     ul.grp-repr {
         float: left;
         padding-right: 55px;
