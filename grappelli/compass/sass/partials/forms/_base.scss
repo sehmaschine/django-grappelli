@@ -226,6 +226,19 @@ input[type="submit"] {
 
 
 
+/*  ADD ANOTHER
+------------------------------------------------------------------------------------------------------ */
+
+a.add-another {
+    display: block;
+    width: 16px;
+    height: 16px;
+    @include icons-sprite(add-another);
+}
+
+
+
+
 /*  Form Elements: Basic Widths & Heights
 ------------------------------------------------------------------------------------------------------ */
 

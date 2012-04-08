@@ -39,6 +39,8 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/library/borders";
 @import "partials/library/margins-paddings";
 
+@import "partials/layout/sprites";
+
 @import "partials/typography/base";
 @import "partials/typography/typo";
 
@@ -47,7 +49,6 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/forms/base";
 @import "partials/forms/autocompletes";
 
-@import "partials/layout/sprites";
 @import "partials/layout/actions";
 @import "partials/layout/components";
 @import "partials/layout/modules";
