@@ -239,6 +239,265 @@ a.add-another {
 
 
 
+
+/*  SELECTORS
+------------------------------------------------------------------------------------------------------ */
+
+.selector {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    width: 758px;
+    .selector-available, 
+    .selector-chosen {
+        float: left;
+        width: 366px;
+        border: 1px solid #ccc;
+        @include border-radius($grp-border-radius);
+        background: #ddd;
+        &.stacked {
+            width: 756px;
+        }
+        h2 {
+            padding: 7px 5px 6px 7px;
+            font-size: 12px;
+            line-height: 13px;
+            font-weight: bold;
+        }
+    }
+    .selector-available {
+
+    }
+    ul.selector-chooser {
+        float: left;
+        margin: 110px 2px 0;
+        padding: 0;
+        width: 18px;
+    }
+    .selector-chosen {
+
+    }
+    .selector-filter {
+        padding: 3px 5px 2px 2px;
+        min-height: 25px;
+        font-weight: bold;
+            color: #666;
+        border-top: 1px solid #e4e4e4;
+        border-bottom: 1px solid #e4e4e4;
+        @include border-top-radius($grp-border-radius);
+        .selector-available & {
+            line-height: 25px;
+            text-indent: 25px;
+                background: url('../img/icons/icon-searchbox.png') 6px 50% no-repeat;
+
+        }
+        .selector-chosen & {
+            margin: 0 0 -3px;
+            padding: 6px 5px 2px 26px;
+            background: url('../img/icons/icon-searchbox.png') 6px 8px no-repeat;
+            &:after {
+                content: " " url('../img/icons/icon-selector_filter.png');
+                opacity: .75;
+            }
+        }
+        input[type=text] {
+            position: relative;
+            margin: 0;
+            width: 326px !important;
+            max-width: 326px !important;
+        }
+        img {
+            display: none;
+        }
+        h2 + select {
+            /*display: none;*/
+            position: relative;
+            top: -1px;
+        }
+    }
+    select[multiple=multiple] {
+        margin: 0;
+        padding-left: 3px;
+        max-width: 367px !important;
+        width: 367px !important;
+        height: 200px;
+    }
+    &.stacked {
+        .selector-filter input[type=text] {
+            width: 716px !important;
+            max-width: 716px !important;
+        }
+        .selector-chosen .selector-filter:after {
+            content: " " url('../img/icons/icon-selector_add-m2m_vertical-hover.png');
+        }
+        select[multiple=multiple] {
+            width: 757px !important;
+            max-width: 757px !important;
+        }
+        ul.selector-chooser {
+            margin: 4px 0 0 356px;
+            width: 36px;
+            li {
+                float: left;
+            }
+        }
+    }
+    a.selector-add, a.selector-remove {
+        display: block;
+        width: 18px;
+        height: 18px;
+        color: transparent !important;
+        background-position: 50% 0;
+        background-repeat: no-repeat;
+    }
+    a.selector-add:link, a.selector-add:visited {
+        background-image: url('../img/icons/icon-selector_add-m2m_horizontal.png');
+    }
+    a.selector-add:hover, a.selector-add:active {
+        background-image: url('../img/icons/icon-selector_add-m2m_horizontal-hover.png');
+    }
+    a.selector-remove:link, a.selector-remove:visited {
+        background-image: url('../img/icons/icon-selector_remove-m2m_horizontal.png');
+    }
+    a.selector-remove:hover, a.selector-remove:active {
+        background-image: url('../img/icons/icon-selector_remove-m2m_horizontal-hover.png');
+    }
+    .selector.stacked a.selector-add:link, .selector.stacked a.selector-add:visited {
+        background-image: url('../img/icons/icon-selector_add-m2m_vertical.png');
+    }
+    .selector.stacked a.selector-add:hover, .selector.stacked a.selector-add:active {
+        background-image: url('../img/icons/icon-selector_add-m2m_vertical-hover.png');
+    }
+    .selector.stacked a.selector-remove:link, .selector.stacked a.selector-remove:visited {
+        background-image: url('../img/icons/icon-selector_remove-m2m_vertical.png');
+    }
+    .selector.stacked a.selector-remove:hover, .selector.stacked a.selector-remove:active {
+        background-image: url('../img/icons/icon-selector_remove-m2m_vertical-hover.png');
+    }
+    a.selector-chooseall, a.selector-clearall {
+        display: block;
+        margin: 0;
+        padding: 2px 7px;
+        font-size: 11px;
+        line-height: 13px;
+        font-weight: bold;
+    }
+}
+
+
+
+/*  Errors
+------------------------------------------------------------------------------------------------------ */
+
+p.grp-errornote {
+    color: #fff;
+    font-weight: bold;
+    margin: 0 0 $grp-margin-size-s;
+    @include grp-padding($grp-padding-size-s $grp-padding-size);
+    @include border-radius($grp-border-radius);
+    background: #bf3030;
+}
+ul.grp-errorlist {
+    color: #bf3030;
+    font-weight: bold;
+    li {
+        @include grp-padding($grp-padding-size-s $grp-padding-size);
+        border-top: 1px solid #ccc;
+        &:first-child {
+            margin-top: -3px;
+            border-top: 2px solid #bf3030;
+        }
+    }
+}
+
+.errornote {
+    margin-bottom: 7px;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+/* little fix to accomodate the top aligned login form .. */
+.errornote.login-errors {
+    margin-bottom: 0 !important;
+    padding: 8px 12px;
+}
+ul.errorlist {
+    margin: 6px 0 -3px;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: bold;
+}
+ul.errorlist li {
+    padding: 0 5px 0 0;
+}
+p.errornote + ul.errorlist {
+    margin-bottom: 8px;
+}
+ul.errorlist:empty {
+    display: none;
+    margin: 0;
+}
+.group.tabular ul.errorlist {
+    margin-left: 11px;
+}
+.group.stacked ul.errorlist {
+    margin-left: 11px;
+    margin-bottom: 5px;
+}
+.group.stacked h3 + * + ul.errorlist {
+    margin: 0 !important;
+    padding: 5px 11px;
+}
+.cell ul.errorlist {
+    padding-left: 0;
+}
+.cell ul.errorlist li {
+    padding-left: 0;
+}
+.cell label + * + ul.errorlist, 
+.cell label + * + * + ul.errorlist {
+    padding-left: 160px !important;
+}
+table ul.errorlist {
+    margin: -9px 0 6px;
+}
+.group.stacked .row ul.errorlist, 
+.module.table ul.errorlist {
+    margin-top: 5px;
+    margin-left: 0;
+    margin-bottom: -3px;
+}
+ul.radiolist.inline + ul.errorlist, 
+ul.radiolist.inline + * + ul.errorlist {
+    position: relative; clear: both;
+}
+ul.radiolist + ul.errorlist, 
+ul.radiolist + * + ul.errorlist {
+    margin-top: 0 !important;
+}
+
+.module.table .tbody>ul.errorlist {
+    margin-top: 2px;
+    margin-left: 11px;
+    margin-bottom: 2px;
+}
+.module.table .tr ul.errorlist {
+    margin-left: 0;
+}
+.module.table ul.radiolist + ul.errorlist, 
+.module.table ul.radiolist + * + ul.errorlist {
+    margin: -2px 0 0;
+}
+table ul.errorlist li, 
+.module.table ul.errorlist li {
+    padding-left: 0;
+}
+p.errornote + ul.errorlist li {
+    padding-left: 10px;
+}
+
+
+
 /*  Form Elements: Basic Widths & Heights
 ------------------------------------------------------------------------------------------------------ */
 
