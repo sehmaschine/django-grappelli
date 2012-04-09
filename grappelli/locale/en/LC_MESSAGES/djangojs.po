@@ -1,0 +1,233 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-09 16:14+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: static/grappelli/js/SelectFilter2.js:63
+msgid "Clear all"
+msgstr "Clear all"
+
+#: static/grappelli/js/actions.min.js:26
+msgid "%(sel)s of %(cnt)s selected"
+msgid_plural "%(sel)s of %(cnt)s selected"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/grappelli/js/grappelli/grappelli.js:12
+msgid "Done"
+msgstr "Done"
+
+#: static/grappelli/js/grappelli/grappelli.js:13
+msgid "Prev"
+msgstr "Prev"
+
+#: static/grappelli/js/grappelli/grappelli.js:14
+msgid "Next"
+msgstr "Next"
+
+#: static/grappelli/js/grappelli/grappelli.js:15
+msgid "Today"
+msgstr "Today"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "January"
+msgstr "January"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "February"
+msgstr "February"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "March"
+msgstr "March"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "April"
+msgstr "April"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "May"
+msgstr "May"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "June"
+msgstr "June"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "July"
+msgstr "July"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "August"
+msgstr "August"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "September"
+msgstr "September"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "October"
+msgstr "October"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "November"
+msgstr "November"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "December"
+msgstr "December"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Jan"
+msgstr "Jan"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Feb"
+msgstr "Feb"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Mar"
+msgstr "Mar"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Apr"
+msgstr "Apr"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Jun"
+msgstr "Jun"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Jul"
+msgstr "Jul"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Aug"
+msgstr "Aug"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Sep"
+msgstr "Sep"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Oct"
+msgstr "Oct"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Nov"
+msgstr "Nov"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Dec"
+msgstr "Dec"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Sunday"
+msgstr "Sunday"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Monday"
+msgstr "Monday"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Tuesday"
+msgstr "Tuesday"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Wednesday"
+msgstr "Wednesday"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Thursday"
+msgstr "Thursday"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Friday"
+msgstr "Friday"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Saturday"
+msgstr "Saturday"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Sun"
+msgstr "Sun"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Mon"
+msgstr "Mon"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Tue"
+msgstr "Tue"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Wed"
+msgstr "Wed"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Thu"
+msgstr "Thu"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Fri"
+msgstr "Fri"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Sat"
+msgstr "Sat"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Su"
+msgstr "Su"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Mo"
+msgstr "Mo"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Tu"
+msgstr "Tu"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "We"
+msgstr "We"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Th"
+msgstr "Th"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Fr"
+msgstr "Fr"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Sa"
+msgstr "Sa"
+
+#: static/grappelli/js/grappelli/grappelli.js:21
+msgid "Wk"
+msgstr "Wk"
+
+#: static/grappelli/js/grappelli/grappelli.js:22
+msgid "yy-mm-dd"
+msgstr "yy-mm-dd"
+
+#: static/grappelli/js/grappelli/grappelli.js:23
+msgid "7"
+msgstr "7"

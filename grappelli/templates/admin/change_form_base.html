@@ -11,9 +11,9 @@
 
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
-    {{ block.super }}
-    {% url 'admin:jsi18n' as jsi18nurl %}
+    {% url 'grp_jsi18' as jsi18nurl %}
     <script type="text/javascript" src="{{ jsi18nurl|default:'../../../jsi18n/' }}"></script>
+    {{ block.super }}
     <script src="{% admin_media_prefix %}js/grappelli/jquery.grp_inline.js" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
         (function($) {
