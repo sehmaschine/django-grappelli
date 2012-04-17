@@ -125,6 +125,9 @@ a.related-lookup {
     @include icons-sprite(related-lookup);
     @include grp-button-states(blue, grey);
 }
+a.related-lookup + strong {
+    margin-left: 5px;
+}
 
 a.related-lookup.m2m, 
 .grp-autocomplete-wrapper-m2m a.related-lookup, 
@@ -142,6 +145,52 @@ a.grp-related-remove {
     @include icons-sprite(related-lookup);
     @include grp-button-states(transparent, transparent);
 }
+
+
+/*  Add Another ......................................... */
+
+a.add-another {
+    position: relative;
+    display: inline-block;
+    margin-left: 3px;
+    width: 18px;
+    height: 18px;
+    vertical-align: top;
+    font-size: 11px;
+    line-height: 16px;
+    @include icons-sprite(add-another);
+}
+// a.add-another:link, a.add-another:visited {
+//     background-image: url('../images/icons/add_another.png');
+// }
+// a.add-another:hover, a.add-another:active {
+//     background-image: url('../images/icons/add_another-hover.png');
+// }
+
+p.grp-help + * + a.add-another {
+    float: right;
+    top: -20px;
+    margin-bottom: -20px;
+}
+
+
+.change-list table tbody a.add-another {
+    position: relative;
+    top: -7px;
+}
+
+.radiolist.inline + a.add-another, 
+.checkboxlist.inline + a.add-another {
+    float: left;
+    margin-left: -20px;
+    margin-right: -10000px;
+}
+.grp-row.grp-cells ul.radiolist.inline + a.add-another, 
+.grp-row.grp-cells ul.checkboxlist.inline + a.add-another {
+    float: none;
+    margin-right: 0;
+}
+
 
 
 

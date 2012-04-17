@@ -2,6 +2,9 @@ p.grp-help {
     padding: 3px 0 0;
     font-size: 11px !important;
     line-height: 14px;
+    &:first-child {
+        margin-top: 5px;
+    }
 }
 .grp-description {
     font-size: 11px;

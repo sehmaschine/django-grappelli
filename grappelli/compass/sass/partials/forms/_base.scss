@@ -225,18 +225,74 @@ input[type="submit"] {
 
 
 
-
-/*  ADD ANOTHER
+/*  RADIO- & CHECKBOX-LISTS
 ------------------------------------------------------------------------------------------------------ */
 
-a.add-another {
-    display: block;
-    width: 16px;
-    height: 16px;
-    @include icons-sprite(add-another);
+@mixin radio-checkbox-list {
+    position: relative;
+    float: none;
+    display: inline-block;
+    margin: 5px 0 0;
+    padding: 0;
+    font-size: 11px;
+    line-height: 15px;
+    font-weight: normal;
+    label {
+        float: none;
+        display: inline-block;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: auto !important;
+        white-space: nowrap;
+    }
+    li + li {
+        margin-top: 2px;
+    }
+}
+@mixin radio-checkbox-list-inline {
+    @include radio-checkbox-list;
+    float: left;
+    display: inline;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    padding-right: 20px;
+    li {
+        float: left;
+        display: inline;
+        margin-top: 0 !important;
+        margin-bottom: 2px;
+        padding-right: 20px;
+    }
+}
+ul.radiolist, 
+ul.checkboxlist {
+    @include radio-checkbox-list;
 }
 
+.grp-row > ul.radiolist, 
+.grp-row > ul.checkboxlist {
+    margin: 0;
+}
 
+ul.radiolist.inline, ul.checkboxlist.inline {
+    @include radio-checkbox-list-inline;
+}
+th ul.radiolist.inline, th ul.checkboxlist.inline, 
+td ul.radiolist.inline, td ul.checkboxlist.inline {
+    margin-top: 0;
+}
+.grp-module.grp-tbody ul.radiolist.inline, .grp-module.grp-tbody ul.checkboxlist.inline {
+    white-space: normal;
+    li {
+        position: relative;
+        float: left;
+        display: inline;
+    }
+}
+
+.grp-row.grp-cells ul.radiolist.inline li, .grp-row.grp-cells ul.checkboxlist.inline li {
+    float: none;
+}
 
 
 
@@ -263,10 +319,10 @@ a.add-another {
             font-size: 12px;
             line-height: 13px;
             font-weight: bold;
+            img {
+                display: none;
+            }
         }
-    }
-    .selector-available {
-
     }
     ul.selector-chooser {
         float: left;
@@ -274,8 +330,8 @@ a.add-another {
         padding: 0;
         width: 18px;
     }
-    .selector-chosen {
-
+    .selector-chosen h2 {
+        border-bottom: 0 !important;
     }
     .selector-filter {
         padding: 3px 5px 2px 2px;
@@ -285,21 +341,13 @@ a.add-another {
         border-top: 1px solid #e4e4e4;
         border-bottom: 1px solid #e4e4e4;
         @include border-top-radius($grp-border-radius);
-        .selector-available & {
-            line-height: 25px;
-            text-indent: 25px;
-                background: url('../img/icons/icon-searchbox.png') 6px 50% no-repeat;
-
-        }
-        .selector-chosen & {
-            margin: 0 0 -3px;
-            padding: 6px 5px 2px 26px;
-            background: url('../img/icons/icon-searchbox.png') 6px 8px no-repeat;
-            &:after {
-                content: " " url('../img/icons/icon-selector_filter.png');
-                opacity: .75;
-            }
-        }
+        line-height: 25px;
+        text-indent: 25px;
+        background: url('../images/icons/searchbox.png') 6px 50% no-repeat;
+        // &:after {
+        //     content: " " url('../images/icons/selector-filter.png');
+        //     opacity: .75;
+        // }
         input[type=text] {
             position: relative;
             margin: 0;
@@ -316,29 +364,66 @@ a.add-another {
         }
     }
     select[multiple=multiple] {
-        margin: 0;
+        margin: 0 0 0 -1px;
         padding-left: 3px;
-        max-width: 367px !important;
-        width: 367px !important;
+        max-width: 368px !important;
+        width: 368px !important;
         height: 200px;
+        @include border-radius(0);
+    }
+    a.selector-add {
+        background-image: url('../images/icons/selector-add-m2m-horizontal.png');
+        &:hover {
+            background-image: url('../images/icons/selector-add-m2m-horizontal_hover.png');
+        }
+    }
+    a.selector-remove {
+        background-image: url('../images/icons/selector-remove-m2m-horizontal.png');
+        &:hover {
+            background-image: url('../images/icons/selector-remove-m2m-horizontal_hover.png');
+        }
+    }
+    a.selector-chooseall, a.selector-clearall {
+        display: block;
+        margin: 0;
+        padding: 2px 7px;
+        font-size: 11px;
+        line-height: 13px;
+        font-weight: bold;
     }
     &.stacked {
+        .selector-available, 
+        .selector-chosen {
+            width: 756px;
+        }
         .selector-filter input[type=text] {
             width: 716px !important;
             max-width: 716px !important;
         }
         .selector-chosen .selector-filter:after {
-            content: " " url('../img/icons/icon-selector_add-m2m_vertical-hover.png');
+            content: " " url('../images/icons/selector-add-m2m-vertical_hover.png');
         }
         select[multiple=multiple] {
-            width: 757px !important;
-            max-width: 757px !important;
+            width: 758px !important;
+            max-width: 758px !important;
         }
         ul.selector-chooser {
             margin: 4px 0 0 356px;
             width: 36px;
             li {
                 float: left;
+            }
+        }
+        a.selector-add {
+            background-image: url('../images/icons/selector-add-m2m-vertical.png');
+            &:hover {
+                background-image: url('../images/icons/selector-add-m2m-vertical_hover.png');
+            }
+        }
+        a.selector-remove {
+            background-image: url('../images/icons/selector-remove-m2m-vertical.png');
+            &:hover {
+                background-image: url('../images/icons/selector-remove-m2m-vertical_hover.png');
             }
         }
     }
@@ -350,46 +435,27 @@ a.add-another {
         background-position: 50% 0;
         background-repeat: no-repeat;
     }
-    a.selector-add:link, a.selector-add:visited {
-        background-image: url('../img/icons/icon-selector_add-m2m_horizontal.png');
-    }
-    a.selector-add:hover, a.selector-add:active {
-        background-image: url('../img/icons/icon-selector_add-m2m_horizontal-hover.png');
-    }
-    a.selector-remove:link, a.selector-remove:visited {
-        background-image: url('../img/icons/icon-selector_remove-m2m_horizontal.png');
-    }
-    a.selector-remove:hover, a.selector-remove:active {
-        background-image: url('../img/icons/icon-selector_remove-m2m_horizontal-hover.png');
-    }
-    .selector.stacked a.selector-add:link, .selector.stacked a.selector-add:visited {
-        background-image: url('../img/icons/icon-selector_add-m2m_vertical.png');
-    }
-    .selector.stacked a.selector-add:hover, .selector.stacked a.selector-add:active {
-        background-image: url('../img/icons/icon-selector_add-m2m_vertical-hover.png');
-    }
-    .selector.stacked a.selector-remove:link, .selector.stacked a.selector-remove:visited {
-        background-image: url('../img/icons/icon-selector_remove-m2m_vertical.png');
-    }
-    .selector.stacked a.selector-remove:hover, .selector.stacked a.selector-remove:active {
-        background-image: url('../img/icons/icon-selector_remove-m2m_vertical-hover.png');
-    }
-    a.selector-chooseall, a.selector-clearall {
-        display: block;
-        margin: 0;
-        padding: 2px 7px;
-        font-size: 11px;
-        line-height: 13px;
-        font-weight: bold;
-    }
 }
-
+ul.errorlist + .selector {
+    margin-top: 8px !important;
+}
 
 
 /*  Errors
 ------------------------------------------------------------------------------------------------------ */
 
-p.errornote {
+// ul.errorlist {
+//     @include legacy-pie-clearfix;
+//     margin: 5px 0;
+//     font-size: 11px;
+//     line-height: 13px;
+//     font-weight: bold;
+//     color: #bf3030;
+    
+// }
+@mixin errornote {
+    position: relative;
+    clear: both;
     color: #fff;
     font-weight: bold;
     margin: 0 0 $grp-margin-size-s;
@@ -397,16 +463,15 @@ p.errornote {
     @include border-radius($grp-border-radius);
     background: #bf3030;
 }
-ul.errorlist {
+@mixin errorlist {
     @include legacy-pie-clearfix;
-    margin: 5px 0;
     font-size: 11px;
     line-height: 13px;
     font-weight: bold;
     color: #bf3030;
-    
 }
 @mixin errorlist-nonform {
+    @include errorlist;
     margin: 5px 0 0;
     li {
         padding: 5px 10px;
@@ -416,12 +481,25 @@ ul.errorlist {
     }
 }
 @mixin errorlist-field {
+    @include errorlist;
     margin: 2px 0 0;
     li {
         padding: 3px 0 0;
         border-top: 0 !important;
     }
 }
+
+p.errornote {
+    @include errornote;
+    & + ul.errorlist {
+        @include errorlist-nonform;
+        margin: -5px 0 0;
+    }
+}
+ul.errorlist {
+    @include errorlist;
+}
+
 
 /* little fix to accomodate the top aligned login form .. */
 .grp-login .errornote, 
@@ -454,24 +532,20 @@ ul.errorlist {
         @include errorlist-nonform;
     }
     .grp-td ul.errorlist {
+        clear: both;
         @include errorlist-field;
     }
 }
 
-//  Errorlist in cells
-// .grp-cell ul.errorlist {
-//     padding-left: 0;
-// }
-// .grp-cell ul.errorlist li {
-//     padding-left: 0;
-// }
-// .grp-cell label + * + ul.errorlist, 
-// .grp-cell label + * + * + ul.errorlist {
-//     padding-left: 160px !important;
-// }
 
 //  Errorlist in stacked groups
 .grp-stacked {
+    p.errornote {
+        margin: 0;
+        & + ul.errorlist {
+            margin: 0;
+        }
+    }
     ul.errorlist {
         @include errorlist-nonform;
     }
@@ -486,6 +560,14 @@ ul.errorlist {
     }
 }
 
+//  Errors with TinyMCE
+.grp-error {
+    td.mceIframeContainer {
+        border: 1px solid #bf3030 !important;
+        @include border-radius($grp-border-radius);
+    }
+}
+
 //  Errorlist in autocompletes
 // .grp-autocomplete-wrapper-m2m {
 //     ul.errorlist {
@@ -494,91 +576,7 @@ ul.errorlist {
 //     }
 // }
 
-// .errornote {
-//     margin-bottom: 7px;
-//     padding: 8px 10px;
-//     font-size: 12px;
-//     font-weight: bold;
-// }
-// /* little fix to accomodate the top aligned login form .. */
-// .errornote.login-errors {
-//     margin-bottom: 0 !important;
-//     padding: 8px 12px;
-// }
-// ul.errorlist {
-//     margin: 6px 0 -3px;
-//     font-size: 11px;
-//     line-height: 13px;
-//     font-weight: bold;
-// }
-// ul.errorlist li {
-//     padding: 0 5px 0 0;
-// }
-// p.errornote + ul.errorlist {
-//     margin-bottom: 8px;
-// }
-// ul.errorlist:empty {
-//     display: none;
-//     margin: 0;
-// }
-// .group.tabular ul.errorlist {
-//     margin-left: 11px;
-// }
-// .group.stacked ul.errorlist {
-//     margin-left: 11px;
-//     margin-bottom: 5px;
-// }
-// .group.stacked h3 + * + ul.errorlist {
-//     margin: 0 !important;
-//     padding: 5px 11px;
-// }
-// .cell ul.errorlist {
-//     padding-left: 0;
-// }
-// .cell ul.errorlist li {
-//     padding-left: 0;
-// }
-// .cell label + * + ul.errorlist, 
-// .cell label + * + * + ul.errorlist {
-//     padding-left: 160px !important;
-// }
-// table ul.errorlist {
-//     margin: -9px 0 6px;
-// }
-// .group.stacked .row ul.errorlist, 
-// .module.table ul.errorlist {
-//     margin-top: 5px;
-//     margin-left: 0;
-//     margin-bottom: -3px;
-// }
-// ul.radiolist.inline + ul.errorlist, 
-// ul.radiolist.inline + * + ul.errorlist {
-//     position: relative; clear: both;
-// }
-// ul.radiolist + ul.errorlist, 
-// ul.radiolist + * + ul.errorlist {
-//     margin-top: 0 !important;
-// }
 
-// .module.table .tbody>ul.errorlist {
-//     margin-top: 2px;
-//     margin-left: 11px;
-//     margin-bottom: 2px;
-// }
-// .module.table .tr ul.errorlist {
-//     margin-left: 0;
-// }
-// .module.table ul.radiolist + ul.errorlist, 
-// .module.table ul.radiolist + * + ul.errorlist {
-//     margin: -2px 0 0;
-// }
-// table ul.errorlist li, 
-// .module.table ul.errorlist li {
-//     padding-left: 0;
-// }
-// p.errornote + ul.errorlist li {
-//     padding-left: 10px;
-// }
 
 
 

@@ -117,6 +117,13 @@ table {
         .grp-autocomplete-wrapper-fk {
             margin: -5px 0 !important;
         }
+        a.fb_show, 
+        a.related-lookup {
+            margin: -6px 0 -11px -25px;
+        }
+        > ul.errorlist {
+            margin-bottom: 14px;
+        }
     }
 }
 
