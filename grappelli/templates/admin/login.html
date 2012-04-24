@@ -5,8 +5,8 @@
 {% load i18n %}
 
 <!-- BODYCLASS -->
-{% block bodyclass %}login{% endblock %}
-{% block content-class %}content-flexible{% endblock %}
+{% block bodyclass %}grp-login{% endblock %}
+{% block content-class %}{% endblock %}
 {% block content_title %}{% endblock %}
 
 <!-- EXTRAHEAD-->
@@ -24,8 +24,8 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <div class="container-flexible login">
-        <div class="column span-12 centered">
+    <div class="grp-layout-container">
+        <div class="grp-column span-12 grp-centered grp-login">
             {% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
                 <p class="errornote">
                     {% blocktrans count form.errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
@@ -36,18 +36,17 @@
                     <p class="errornote">{{ error }}</p>
                 {% endfor %}
             {% endif %}
-            {% if error_message %}<p class="errornote login-errors">{{ error_message }}</p>{% endif %}
-            <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-                <fieldset class="module">
-                    <div class="row">
-                        
+            {% if error_message %}<p class="errornote grp-login-errors">{{ error_message }}</p>{% endif %}
+            <form action="{{ app_path }}" method="post" id="grp-login-form">{% csrf_token %}
+                <fieldset class="grp-module">
+                    <div class="grp-row">
                         <div class="column span-4"><label for="id_username" class="required">{% trans 'Username:' %}</label></div>
                         <div class="column span-8 last">
                             <input type="text" name="username" id="id_username" />
                             {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="grp-row">
                         <div class="column span-4"><label for="id_password" class="required">{% trans 'Password:' %}</label></div>
                         <div class="column span-8 last">
                             <input type="password" name="password" id="id_password" />
@@ -57,9 +56,9 @@
                         </div>
                     </div>
                 </fieldset>
-                <div class="module submit-row">
-                    <ul class="submit-row">
-                        <li class="submit-button-container"><input type="submit" class="default" value="{% trans 'Log in' %}" /></li>
+                <div class="grp-module grp-submit-row">
+                    <ul class="grp-submit-row">
+                        <li class="grp-submit-button-container"><input type="submit" class="grp-button" value="{% trans 'Log in' %}" /></li>
                     </ul>
                 </div>
             </form>

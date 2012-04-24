@@ -212,7 +212,7 @@ input[type="submit"] {
     > li {
         padding: 5px !important;
         @include border-radius($grp-form-button-border-radius + 2px);
-        background: #444;
+        // background: #444;
     }
     a.grp-delete-link {
         display: block;

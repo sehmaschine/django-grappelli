@@ -87,6 +87,55 @@ body {
 	overflow: visible;
 }
 
+.grp-column {
+	&.grp-centered {
+		position: relative;
+		display: block;
+		float: none !important;
+		margin: 0 auto !important;
+	}
+}
+
+body.grp-login {
+	#grp-context-navigation {
+		display: none;
+	}
+	#grp-content {
+		top: 36px;
+	}
+	.grp-column.grp-login {
+		width: 482px;
+		fieldset.grp-module {
+			@include border-top-radius(0);
+			border-color: #222;
+			border-top: 1px solid #111 !important;
+			background: #222;
+			.grp-row {
+				@include grp-padding($grp-padding-size);
+				border-top: 1px solid #333 !important;
+				border-bottom: 1px solid #111 !important;
+				label {
+					color: #fff;
+				}
+				.errorlist {
+					color: lighten(#bf3030, 5);
+				}
+			}
+		}
+		.grp-module.grp-submit-row, 
+		.grp-module.grp-submit-row ul {
+			padding: 0;
+			border: 0;
+			background: transparent;
+			li {
+				float: right;
+				margin-right: -5px;
+			}
+		}
+	}
+}
+
+
 header#grp-header {
 	// display: none;
 	position: fixed;
@@ -150,7 +199,7 @@ header#grp-header {
 	clear: both;
 	width: 100%;
 	font-weight: bold;
-	@include box-shadow(0 5px 5px #ccc);
+	// @include box-shadow(0 5px 5px #ccc);
 	@include box-sizing(border-box);
 	border-bottom: 1px solid $grp-breadcrumbs-border-color;
 	background: $grp-breadcrumbs-background-color;
