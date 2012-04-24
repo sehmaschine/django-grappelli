@@ -84,6 +84,51 @@ $grp-row-border-bottom-color: #ddd !default;
 $grp-predelete-background-color: #f2e6e6 !default;
 
 
+/*  H2, H3 ............................................................ */
+
+@mixin grp-gradient-module-h2 {
+	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
+}
+.grp-gradient-module-h2 {
+	@include grp-gradient-module-h2;
+}
+@mixin grp-gradient-module-h3 {
+	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
+}
+.grp-gradient-module-h3 {
+	@include grp-gradient-module-h2;
+}
+
+
+/*  Collapse Handlers ............................................................ */
+
+@mixin grp-gradient-module-h2-collapse-handler {
+	@include background-image(linear-gradient(#bcdfeb, #a1d4e5));
+}
+.grp-gradient-module-h2-collapse-handler {
+	@include grp-gradient-module-h2-collapse-handler;
+}
+@mixin grp-gradient-module-h2-collapse-handler-hover {
+	@include background-image(linear-gradient(#a1d4e5, #bcdfeb));
+}
+.grp-gradient-module-h2-collapse-handler-hover {
+	@include grp-gradient-module-h2-collapse-handler-hover;
+}
+
+@mixin grp-gradient-module-h3-collapse-handler {
+	@include background-image(linear-gradient(#e1f0f5, #cee9f2));
+}
+.grp-gradient-module-h3-collapse-handler {
+	@include grp-gradient-module-h3-collapse-handler;
+}
+@mixin grp-gradient-module-h3-collapse-handler-hover {
+	@include background-image(linear-gradient(#cee9f2, #e1f0f5));
+}
+.grp-gradient-module-h3-collapse-handler-hover {
+	@include grp-gradient-module-h3-collapse-handler-hover;
+}
+
+
 
 
 /*	TABLES
@@ -206,6 +251,9 @@ $grp-button-border-focus: 1px solid #888 !default;
 /*  GRADIENTS
 ------------------------------------------------------------------------------------------------------ */
 
+
+/*  Dark Gradient ............................................................ */
+
 @mixin grp-gradient-dark {
 	color: #fff;
 	@include background-image(linear-gradient(#333, #222));
@@ -214,9 +262,15 @@ $grp-button-border-focus: 1px solid #888 !default;
 	@include grp-gradient-dark;
 }
 
+
+/*  Gradient Icon-Sprite Combo ............................................................ */
+
 @mixin grp-background-gradient-icon-combo($icon, $gradient-top, $gradient-bottom) {
 	@include background(sprite($icons-sprites, $icon) no-repeat, linear-gradient($gradient-top, $gradient-bottom));
 }
+
+
+/*  Predelete Gradients ............................................................ */
 
 @mixin grp-gradient-predelete {
 	@include background-image(linear-gradient(#fff2f2, #f2e6e6));
@@ -225,48 +279,6 @@ $grp-button-border-focus: 1px solid #888 !default;
 	@include background-image(linear-gradient(#f2e6e6, #fff2f2));
 }
 
-
-/*  HEADING GRADIENTS
------------------------------------------------------------------------------------------------------- */
-
-@mixin grp-gradient-module-h2 {
-	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
-}
-.grp-gradient-module-h2 {
-	@include grp-gradient-module-h2;
-}
-@mixin grp-gradient-module-h3 {
-	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
-}
-.grp-gradient-module-h3 {
-	@include grp-gradient-module-h2;
-}
-
-@mixin grp-gradient-module-h2-collapse-handler {
-	@include background-image(linear-gradient(#bcdfeb, #a1d4e5));
-}
-.grp-gradient-module-h2-collapse-handler {
-	@include grp-gradient-module-h2-collapse-handler;
-}
-@mixin grp-gradient-module-h2-collapse-handler-hover {
-	@include background-image(linear-gradient(#a1d4e5, #bcdfeb));
-}
-.grp-gradient-module-h2-collapse-handler-hover {
-	@include grp-gradient-module-h2-collapse-handler-hover;
-}
-
-@mixin grp-gradient-module-h3-collapse-handler {
-	@include background-image(linear-gradient(#e1f0f5, #cee9f2));
-}
-.grp-gradient-module-h3-collapse-handler {
-	@include grp-gradient-module-h3-collapse-handler;
-}
-@mixin grp-gradient-module-h3-collapse-handler-hover {
-	@include background-image(linear-gradient(#cee9f2, #e1f0f5));
-}
-.grp-gradient-module-h3-collapse-handler-hover {
-	@include grp-gradient-module-h3-collapse-handler-hover;
-}
 
 
 
