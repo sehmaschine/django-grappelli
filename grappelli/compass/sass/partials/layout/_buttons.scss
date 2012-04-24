@@ -126,6 +126,8 @@ a.related-lookup {
     @include grp-button-states(blue, grey);
 }
 a.related-lookup + strong {
+    position: relative;
+    top: 2px;
     margin-left: 5px;
 }
 
