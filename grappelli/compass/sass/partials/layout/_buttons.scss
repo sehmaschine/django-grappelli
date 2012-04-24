@@ -148,6 +148,18 @@ a.grp-related-remove {
     @include grp-button-states(transparent, transparent);
 }
 
+
+/*  File Uploads & Preview Images ......................................... */
+
+p.file-upload {
+    margin: 6px 0 3px;
+    font-size: 11px;
+    line-height: 14px;
+    span.clearable-file-input {
+        display: block;
+        margin: 5px 0 -12px;
+    }
+}
 p.preview {
     margin: 5px 0 0;
     a {
