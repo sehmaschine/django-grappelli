@@ -162,9 +162,14 @@ p.file-upload {
 }
 p.preview {
     margin: 5px 0 0;
+    tr & {
+        margin-top: 10px;
+    }
     a {
         display: inline-block;
         padding: 3px;
+        font-size: 0;
+        line-height: 0;
         border: 1px solid $grp-link-color;
         @include border-radius($grp-border-radius-s);
         &:hover {
