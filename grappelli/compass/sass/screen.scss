@@ -56,6 +56,7 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "partials/layout/tools";
 @import "partials/layout/tables";
 @import "partials/layout/changelist";
+@import "partials/layout/delete-confirmation";
 
 
 // @import "partials/custom/jquery-ui-all";
@@ -326,7 +327,7 @@ header#grp-header {
 			input[type=submit], 
 			a {
 				opacity: .75;
-				&.default {
+				&.grp-default {
 					opacity: 1;
 				}
 				&:hover {

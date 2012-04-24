@@ -1,10 +1,12 @@
 
 
 .button-state-blue {
+    color: #fff;
     border: $grp-button-border;
     background-color: #e1f0f5;
 }
 .button-state-grey {
+    color: $grp-font-color;
     border: $grp-button-border-hover;
     background-color: #eee;
 }
@@ -13,6 +15,7 @@
     background-color: #fdfdfd;
 }
 .button-state-red {
+    color: #fff;
     border: $grp-button-border;
     background-color: #bf3030;
 }
@@ -61,6 +64,7 @@
     margin: 0;
     @include grp-padding($grp-padding-size-xs $grp-padding-size-s);
     height: 28px;
+    font-weight: bold;
     @include border-radius($grp-form-button-border-radius !important);
     @media screen and (-webkit-min-device-pixel-ratio:0) {
         @include grp-padding($grp-padding-size-s $grp-padding-size);
@@ -90,6 +94,12 @@
     vertical-align: top;
     @include grp-button-states(blue, grey);
 }
+
+
+.grp-cancel-link {
+    @include grp-button-states(grey, grey);
+}
+
 
 input[type=button], 
 button, a.fb_show, 
