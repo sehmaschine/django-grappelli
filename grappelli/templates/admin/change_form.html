@@ -71,29 +71,6 @@
                         autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
                     });
                 });
-                // TOC Table of Contents (H2)
-                // var h2 = $("#grp-content").find("h2");
-                // $(h2).each(function() {
-                //     var item = $(this).text().replace(/\s/g,"-");
-                //     var anchor = $(this).text().replace(/\s/g,"-");
-                //     $("<span id=" + anchor + " class='grp-anchor' />").insertBefore(this);
-                //     $("ul#grp-outline-content").append("<li><a href='#" + anchor + "'>" + item + "</a></li>");
-                // });
-
-                var outlineContainers = $("#grp-content").find("fieldset.grp-module, div.grp-group");
-                var outlineItems = $(outlineContainers).find("h2");
-                $(outlineItems).each(function() {
-                    var item = $(this).text().replace(/\s/g,"-");
-                    var anchor = $(this).text().replace(/\s/g,"-");
-                    $("<span id=" + anchor + " class='grp-anchor' />").insertBefore(this);
-                    $("ul#grp-outline-content").append("<li><a href='#" + anchor + "'>" + item + "</a></li>");
-                });
-                $("a#grp-outline-toggle").bind("click", function(){
-                    $("ul#grp-outline-content").toggle();
-                    $("ul#grp-outline-content a").bind("click", function(){
-                        $("ul#grp-outline-content").hide();
-                    });
-                });
                 $("a#grp-open-all").bind("click", function(){
                     $("div.grp-form-container .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
@@ -130,12 +107,8 @@
 {% block page-tools %}
     {% if not is_popup %}
         <ul class="grp-horizontal-list grp-page-tools">
-            <li><a href="javascript://" id="grp-open-all">Open</a></li>
-            <li><a href="javascript://" id="grp-close-all">Close</a></li>
-            <li>
-                <a href="javascript://" id="grp-outline-toggle">Outline</a>
-                <ul id="grp-outline-content" class="grp-vertical-list" style="display:none"></ul>
-            </li>
+            <li><a href="javascript://" id="grp-open-all">&nbsp;</a></li>
+            <li><a href="javascript://" id="grp-close-all">&nbsp;</a></li>
         </ul>
     {% endif %}
 {% endblock %}
