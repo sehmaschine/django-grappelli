@@ -46,7 +46,7 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 
 @import "partials/forms/django-resets";
 // @import "partials/forms/helpers";
-@import "partials/forms/base";
+@import "partials/forms/forms";
 @import "partials/forms/autocompletes";
 
 @import "partials/layout/actions";
@@ -202,8 +202,8 @@ header#grp-header {
 	font-weight: bold;
 	// @include box-shadow(0 5px 5px #ccc);
 	@include box-sizing(border-box);
-	border-bottom: 1px solid $grp-breadcrumbs-border-color;
-	background: $grp-breadcrumbs-background-color;
+	border-bottom: 1px solid $grp-context-navigation-border-color;
+	background: $grp-context-navigation-background-color;
 }
 #grp-context-navigation {
 	@include grp-context-navigation;

@@ -4,6 +4,9 @@
 /*	TYPOGRAPHY
 ------------------------------------------------------------------------------------------------------ */
 
+
+/*  Font Colors ............................................................ */
+
 $grp-font-color: #333 !default;
 .grp-font-color {
 	color: $grp-font-color;
@@ -15,10 +18,7 @@ $grp-font-color-quiet: #888 !default;
 }
 
 
-
-
-/*  LINK COLORS
------------------------------------------------------------------------------------------------------- */
+/*  Link Colors ............................................................ */
 
 $grp-link-color: #309bbf !default;
 $grp-link-color-hover: #333 !default;
@@ -28,16 +28,21 @@ $grp-link-color-quiet-hover: #333 !default;
 
 
 
-/*	COMPONENTS COLORS
+
+/*	COMPONENTS
 ------------------------------------------------------------------------------------------------------ */
 
-$grp-breadcrumbs-background-color: #eee !default;
-$grp-breadcrumbs-border-color: #ccc !default;
+
+/*  Context Navigation ............................................................ */
+
+$grp-context-navigation-background-color: #eee !default;
+$grp-context-navigation-border-color: #ccc !default;
+
+
+/*  Message List ............................................................ */
 
 $grp-messagelist-background-color: lighten(#309bbf, 35) !default;
 $grp-messagelist-border-color: darken($grp-messagelist-background-color, 10) !default;
-
-// $grp-messagelist-background: lighten(#309bbf, 35) url('/static/grappelli/images/backgrounds/messagelist.png') 0 0 repeat scroll !default;
 
 $grp-messagelist-success-background-color: lighten(#77bf30, 35) !default;
 $grp-messagelist-success-border-color: darken($grp-messagelist-success-background-color, 10) !default;
@@ -50,30 +55,31 @@ $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-co
 
 
 
-/*	GROUPS
+
+/*	GROUPS, MODULES, ROWS
 ------------------------------------------------------------------------------------------------------ */
 
 
-/*  Constants ............................................................ */
+/*  Groups ............................................................ */
 
 $grp-group-background-color: #fff !default;
 $grp-group-border: 2px solid #ccc !default;
 $grp-group-border-closed: 2px solid #ddd !default;
 
 
-
-
-/*	MODULES
------------------------------------------------------------------------------------------------------- */
-
-
-/*  Constants ............................................................ */
+/*  Modules ............................................................ */
 
 $grp-module-background-color: #eee !default;
 $grp-module-border: 1px solid #ccc !default;
 
+
+/*  Rows ............................................................ */
+
 $grp-row-border-top-color: #fff !default;
 $grp-row-border-bottom-color: #ddd !default;
+
+
+/*  Predelete ............................................................ */
 
 $grp-predelete-background-color: #f2e6e6 !default;
 
@@ -84,11 +90,9 @@ $grp-predelete-background-color: #f2e6e6 !default;
 ------------------------------------------------------------------------------------------------------ */
 
 
-/*  Constants ............................................................ */
+/*  Table ............................................................ */
 
-$grp-module-background-color: #eee !default;
-// $grp-table-border: 1px solid #ccc !default;
-
+$grp-table-background-color: #eee !default;
 $grp-table-border-color: #ccc !default;
 
 
@@ -96,42 +100,35 @@ $grp-table-border-color: #ccc !default;
 ------------------------------------------------------------------------------------------------------ */
 
 
-/*  Constants ............................................................ */
+/*  Form Fields ............................................................ */
 
 $grp-form-field-font-family: Arial, sans-serif !default;
 $grp-form-field-font-size: 12px !default;
 $grp-form-field-line-height: 14px !default;
 $grp-form-field-font-color: #333 !default;
 
+$grp-form-field-background-color: #fdfdfd !default;
+$grp-form-field-background-color-focus: #fff !default;
+$grp-form-field-background-color-interactive: #e1f0f5 !default;
+
+$grp-form-field-border: 1px solid #ccc !default;
+$grp-form-field-border-focus: 1px solid #888 !default;
+
+@mixin grp-form-field-box-shadow {
+	@include single-box-shadow(#eee 0 1px 3px inset);
+}
+@mixin grp-form-field-box-shadow-focus {
+	@include box-shadow(#999 0 0 6px);
+}
+
+
+/*  Labels ............................................................ */
+
 $grp-form-label-font-family: Arial, sans-serif !default;
 $grp-form-label-font-size: 11px !default;
 $grp-form-label-line-height: 13px !default;
 $grp-form-label-font-color: #333 !default;
 
-$grp-form-field-background-color: #fdfdfd !default;
-$grp-form-field-background-color-focus: #fff !default;
-$grp-form-field-background-color-interactive: #e1f0f5 !default;
-$grp-form-field-border: 1px solid #ccc !default;
-$grp-form-field-border-focus: 1px solid #888 !default;
-
-$grp-form-button-font-family: Arial, sans-serif !default;
-$grp-form-button-font-size: 12px !default;
-$grp-form-button-font-color: #333 !default;
-$grp-form-button-font-color-hover: #333 !default;
-// Form Button
-$grp-form-button-background-color: #fdfdfd !default;
-$grp-form-button-background-color-hover: #fff !default;
-// Form Button Default
-$grp-form-button-default-background-color: #fdfdfd !default;
-$grp-form-button-default-background-color-hover: #fff !default;
-// Reset Button
-$grp-form-button-reset-background-color: #fdfdfd !default;
-$grp-form-button-reset-background-color-hover: #fff !default;
-// Cancel Button
-$grp-form-button-cancel-background-color: #fdfdfd !default;
-$grp-form-button-cancel-background-color-hover: #fff !default;
-
-// Required Labels
 @mixin grp-form-label-required {
 	font-weight: bold;
 }
@@ -139,7 +136,26 @@ $grp-form-button-cancel-background-color-hover: #fff !default;
 	@include grp-form-label-required;
 }
 
-// Form Buttons Gradient
+
+/*  Buttons ............................................................ */
+
+$grp-form-button-font-family: Arial, sans-serif !default;
+$grp-form-button-font-size: 12px !default;
+$grp-form-button-font-color: #333 !default;
+$grp-form-button-font-color-hover: #333 !default;
+
+$grp-form-button-background-color: #fdfdfd !default;
+$grp-form-button-background-color-hover: #fff !default;
+
+$grp-form-button-default-background-color: #fdfdfd !default;
+$grp-form-button-default-background-color-hover: #fff !default;
+
+$grp-form-button-reset-background-color: #fdfdfd !default;
+$grp-form-button-reset-background-color-hover: #fff !default;
+
+$grp-form-button-cancel-background-color: #fdfdfd !default;
+$grp-form-button-cancel-background-color-hover: #fff !default;
+
 @mixin grp-form-button-default-gradient {
 	color: #fff;
 	border: 1px solid #2987a6;
@@ -173,38 +189,14 @@ $grp-form-button-cancel-background-color-hover: #fff !default;
 }
 
 
-/*  Mixins ............................................................ */
-
-@mixin grp-form-field-box-shadow {
-	@include single-box-shadow(#eee 0 1px 3px inset);
-}
-@mixin grp-form-field-box-shadow-focus {
-	@include box-shadow(#999 0 0 6px);
-}
-
-
-/*  Classes (out of constants) ............................................................ */
-
-// .grp-form-field-font-family { font-family: $grp-form-field-font-family; }
-// .grp-form-field-font-size { font-size: $grp-form-field-font-size; }
-
-// .grp-form-field-background-color { background: $grp-form-field-background-color; }
-// .grp-form-field-border-color { border: $grp-form-field-border; }
-// .grp-form-field-border-color-focus { border: $grp-form-field-border-focus; }
 
 
 /*	BUTTONS
 ------------------------------------------------------------------------------------------------------ */
 
-
-/*  Constants ............................................................ */
-
-// $grp-form-font-family: Arial, sans-serif !default;
-// $grp-form-font-size: 12px !default;
-// $grp-form-font-color: #333 !default;
-
 $grp-button-background-color: #e1f0f5 !default;
 $grp-button-background-color-hover: #eee !default;
+
 $grp-button-border: 1px solid #ccc !default;
 $grp-button-border-hover: 1px solid #ccc !default;
 $grp-button-border-focus: 1px solid #888 !default;

@@ -9,7 +9,7 @@ table {
     padding: 0;
     border-spacing: none;
     border-collapse: separate;
-    border: 1px solid #ccc;
+    border: 1px solid $grp-table-border-color;
     @include border-radius($grp-border-radius);
     td, th {
         vertical-align: text-top;
@@ -90,6 +90,9 @@ table {
                         @include border-bottom-right-radius($grp-border-radius - 1px);
                     }
                 }
+            }
+            a.related-lookup + strong {
+                top: 0;
             }
         }
     }
@@ -212,7 +215,7 @@ table.grp-sortable {
                         }
                     }
                     a {
-                        color: #444;
+                        color: $grp-font-color;
                         font-weight: bold;
                         // border-top: 1px solid #ececec;
                     }
