@@ -444,22 +444,16 @@ ul.errorlist + .selector {
 /*  Errors
 ------------------------------------------------------------------------------------------------------ */
 
-// ul.errorlist {
-//     @include legacy-pie-clearfix;
-//     margin: 5px 0;
-//     font-size: 11px;
-//     line-height: 13px;
-//     font-weight: bold;
-//     color: #bf3030;
-    
-// }
 @mixin errornote {
     position: relative;
+    float: left;
     clear: both;
-    color: #fff;
-    font-weight: bold;
     margin: 0 0 $grp-margin-size-s;
     @include grp-padding($grp-padding-size-s $grp-padding-size);
+    width: 100%;
+    @include box-sizing(border-box);
+    color: #fff;
+    font-weight: bold;
     @include border-radius($grp-border-radius);
     background: #bf3030;
 }
@@ -610,11 +604,6 @@ textarea,
 .vLargeTextField {
     height: 118px;
 }
-
-
-// *:focus {
-//     @include single-box-shadow(#e4f, 0, 0, 5px, 5px);
-// }
 
 
 

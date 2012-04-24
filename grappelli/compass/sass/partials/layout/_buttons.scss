@@ -148,6 +148,19 @@ a.grp-related-remove {
     @include grp-button-states(transparent, transparent);
 }
 
+p.preview {
+    margin: 5px 0 0;
+    a {
+        display: inline-block;
+        padding: 3px;
+        border: 1px solid $grp-link-color;
+        @include border-radius($grp-border-radius-s);
+        &:hover {
+            border: 1px solid $grp-link-color-hover;
+        }
+    }
+}
+
 
 /*  Add Another ......................................... */
 
