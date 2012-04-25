@@ -212,8 +212,8 @@
         </div>
         <!-- SUBMIT ROW -->
         {% if cl.formset or action_form %}
-            <div id="submit" class="grp-module grp-footer">
-                <ul class="grp-horizontal-list-right grp-submit-row">
+            <div id="submit" class="grp-module grp-footer grp-submit-row">
+                <ul>
                     {% if action_form %}<li class="grp-submit-action-container grp-float-left">{% admin_actions %}</li>{% endif %}
                     {% if cl.formset %}<li class="grp-submit-button-container"><input type="submit" class="grp-default" name="_save" value="Save"/></li>{% endif %}
                 </ul>

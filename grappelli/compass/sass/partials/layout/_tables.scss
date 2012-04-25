@@ -65,12 +65,12 @@ table {
                 font-size: $grp-font-size;
                 font-weight: bold;
             }
-            &.grp-row1 td, &.grp-row1 th, 
+            &.grp-row-even td, &.grp-row-even th, 
             &.grp-alt td, &.grp-alt th {
                 border-left: 1px solid #e0e0e0;
                 background: #f4f4f4;
             }
-            &.grp-row2 td, &.grp-row2 th {
+            &.grp-row-odd td, &.grp-row-odd th {
                 background: #fff;
             }
             &.grp-selected {

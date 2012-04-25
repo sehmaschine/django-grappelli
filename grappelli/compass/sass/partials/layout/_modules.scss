@@ -226,7 +226,7 @@
 		}
 	}
 }
-.grp-row {
+.grp-row:not(tr) {
 	@include grp-row;
 }
 fieldset .grp-row {

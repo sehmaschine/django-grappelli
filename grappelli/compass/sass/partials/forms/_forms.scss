@@ -5,23 +5,43 @@
 /*  GRID DEPENDENT FIELD SIZES
 ------------------------------------------------------------------------------------------------------ */
 
-@function formfield($n) {
-    @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
-}
-$n: $blueprint-grid-columns;
-@while $n > 0 {
-    .span-#{$n} input[type=text], 
-    .span-#{$n} input[type=password], 
-    .span-#{$n} select, 
-    .span-#{$n} textarea, 
-    input[type=text].span-#{$n}, 
-    input[type=password].span-#{$n}, 
-    select.span-#{$n}, 
-    textarea.span-#{$n} {
-        width: formfield($n);
-    }
-    $n: $n - 1;
-}
+
+
+// @function formfield($n) {
+//     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
+// }
+// $n: $blueprint-grid-columns;
+// @while $n > 0 {
+//     .span-#{$n} input[type=text], 
+//     .span-#{$n} input[type=password], 
+//     .span-#{$n} select, 
+//     .span-#{$n} textarea, 
+//     input[type=text].span-#{$n}, 
+//     input[type=password].span-#{$n}, 
+//     select.span-#{$n}, 
+//     textarea.span-#{$n} {
+//         width: formfield($n);
+//     }
+//     $n: $n - 1;
+// }
+
+// @function formfield-module($n) {
+//     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 60;
+// }
+// $n: $blueprint-grid-columns;
+// @while $n > 0 {
+//     .grp-module .span-#{$n} input[type=text], 
+//     .grp-module .span-#{$n} input[type=password], 
+//     .grp-module .span-#{$n} select, 
+//     .grp-module .span-#{$n} textarea, 
+//     .grp-module input[type=text].span-#{$n}, 
+//     .grp-module input[type=password].span-#{$n}, 
+//     .grp-module select.span-#{$n}, 
+//     .grp-module textarea.span-#{$n} {
+//         width: formfield-module($n);
+//     }
+//     $n: $n - 1;
+// }
 
 @function formfield-contained($n) {
     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 2;
@@ -40,6 +60,9 @@ $n: $blueprint-grid-columns;
     }
     $n: $n - 1;
 }
+
+
+
 
 
 
@@ -193,35 +216,6 @@ input[type=text].grp-search-field {
     }
 }
 
-
-/*  BUTTONS (SUBMIT, RESET, CANCEL)
------------------------------------------------------------------------------------------------------- */
-
-@mixin grp-form-button {
-    height: 28px;
-    @include border-radius($grp-form-button-border-radius !important);
-    @media screen and (-webkit-min-device-pixel-ratio:0) {
-        @include grp-padding($grp-padding-size-s $grp-padding-size);
-    }
-}
-input[type="submit"] {
-    @include grp-form-button;
-    @include grp-form-button-default-gradient;
-}
-.grp-submit-row {
-    > li {
-        padding: 5px !important;
-        @include border-radius($grp-form-button-border-radius + 2px);
-        background: #444;
-    }
-    a.grp-delete-link {
-        display: block;
-        @include grp-form-field;
-        @include grp-form-button;
-        @include grp-form-button-delete-gradient;
-        line-height: 16px;
-    }
-}
 
 
 
@@ -576,6 +570,16 @@ ul.errorlist {
 
 /*  Form Elements: Basic Widths & Heights
 ------------------------------------------------------------------------------------------------------ */
+
+.grp-span-fluid {
+    input[type=text], 
+    input[type=password], 
+    textarea, 
+    select {
+        // width: 100%;
+        // width: auto;
+    }
+}
 
 input[type=text], 
 input[type=password], 

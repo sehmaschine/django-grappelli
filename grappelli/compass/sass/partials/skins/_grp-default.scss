@@ -189,48 +189,114 @@ $grp-form-button-font-size: 12px !default;
 $grp-form-button-font-color: #333 !default;
 $grp-form-button-font-color-hover: #333 !default;
 
-$grp-form-button-background-color: #fdfdfd !default;
-$grp-form-button-background-color-hover: #fff !default;
+// $grp-form-button-background-color: #fdfdfd !default;
+// $grp-form-button-background-color-hover: #fff !default;
 
-$grp-form-button-default-background-color: #fdfdfd !default;
-$grp-form-button-default-background-color-hover: #fff !default;
+// $grp-form-button-default-background-color: #fdfdfd !default;
+// $grp-form-button-default-background-color-hover: #fff !default;
 
-$grp-form-button-reset-background-color: #fdfdfd !default;
-$grp-form-button-reset-background-color-hover: #fff !default;
+// $grp-form-button-reset-background-color: #fdfdfd !default;
+// $grp-form-button-reset-background-color-hover: #fff !default;
 
-$grp-form-button-cancel-background-color: #fdfdfd !default;
-$grp-form-button-cancel-background-color-hover: #fff !default;
+// $grp-form-button-cancel-background-color: #fdfdfd !default;
+// $grp-form-button-cancel-background-color-hover: #fff !default;
 
-@mixin grp-form-button-default-gradient {
+
+
+
+
+
+
+$grp-form-button-background-color: #309bbf !default;
+$grp-form-button-background-color-hover: #333 !default;
+$grp-footer-form-button-background-color-hover: #eee !default;
+
+$grp-form-button-delete-background-color: #bf3030 !default;
+$grp-form-button-delete-background-color-hover: #333 !default;
+$grp-footer-form-button-delete-background-color-hover: #eee !default;
+
+$grp-form-button-reset-background-color: #888 !default;
+$grp-form-button-reset-background-color-hover: #333 !default;
+$grp-footer-form-button-reset-background-color-hover: #eee !default;
+
+$grp-form-button-cancel-background-color: #888 !default;
+$grp-form-button-cancel-background-color-hover: #333 !default;
+$grp-footer-form-button-cancel-background-color-hover: #eee !default;
+
+@mixin grp-form-button-style {
 	color: #fff;
-	border: 1px solid #2987a6;
-	@include background-image(linear-gradient(#36b0d9, #309bbf));
-	// @include box-shadow(#fff 0 0 6px);
-	cursor: pointer;
+	border: 1px solid darken($grp-form-button-background-color, 5);
+	@include background-image(linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color));
 	&:hover {
-		color: #333;
-		border-color: #666;
-		@include background-image(linear-gradient(#e3e3e3, #d6d6d6));
+		color: #fff;
+		border: 1px solid darken($grp-form-button-background-color-hover, 5);
+		@include background-image(linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover));
+		.grp-footer & {
+			color: #333;
+			border: 1px solid darken($grp-footer-form-button-background-color-hover, 15);
+			@include background-image(linear-gradient(lighten($grp-footer-form-button-background-color-hover, 15), $grp-footer-form-button-background-color-hover));
+		}
 	}
 }
-.grp-form-button-default-gradient {
-	@include grp-form-button-default-gradient;
+.grp-form-button {
+	@include grp-form-button-style;
 }
 
-@mixin grp-form-button-delete-gradient {
+@mixin grp-form-button-delete-style {
 	color: #fff;
-	border: 1px solid #992626;
-	@include background-image(linear-gradient(#d93636, #bf3030));
-	// @include box-shadow(#fff 0 0 6px);
-	cursor: pointer;
+	border: 1px solid darken($grp-form-button-delete-background-color, 5);
+	@include background-image(linear-gradient(lighten($grp-form-button-delete-background-color, 10), $grp-form-button-delete-background-color));
 	&:hover {
-		color: #333;
-		border-color: #666;
-		@include background-image(linear-gradient(#e3e3e3, #d6d6d6));
+		color: #fff;
+		border: 1px solid darken($grp-form-button-delete-background-color-hover, 5);
+		@include background-image(linear-gradient(lighten($grp-form-button-delete-background-color-hover, 10), $grp-form-button-delete-background-color-hover));
+		.grp-footer & {
+			color: #333;
+			border: 1px solid darken($grp-footer-form-button-delete-background-color-hover, 15);
+			@include background-image(linear-gradient(lighten($grp-footer-form-button-delete-background-color-hover, 15), $grp-footer-form-button-delete-background-color-hover));
+		}
 	}
 }
-.grp-form-button-delete-gradient {
-	@include grp-form-button-delete-gradient;
+.grp-form-button-delete {
+	@include grp-form-button-delete-style;
+}
+
+@mixin grp-form-button-cancel-style {
+	color: #fff;
+	border: 1px solid darken($grp-form-button-cancel-background-color, 5);
+	@include background-image(linear-gradient(lighten($grp-form-button-cancel-background-color, 10), $grp-form-button-cancel-background-color));
+	&:hover {
+		color: #fff;
+		border: 1px solid darken($grp-form-button-cancel-background-color-hover, 5);
+		@include background-image(linear-gradient(lighten($grp-form-button-cancel-background-color-hover, 10), $grp-form-button-cancel-background-color-hover));
+		.grp-footer & {
+			color: #333;
+			border: 1px solid darken($grp-footer-form-button-cancel-background-color-hover, 15);
+			@include background-image(linear-gradient(lighten($grp-footer-form-button-cancel-background-color-hover, 15), $grp-footer-form-button-cancel-background-color-hover));
+		}
+	}
+}
+.grp-form-button-cancel {
+	@include grp-form-button-cancel-style;
+}
+
+@mixin grp-form-button-reset-style {
+	color: #fff;
+	border: 1px solid darken($grp-form-button-reset-background-color, 5);
+	@include background-image(linear-gradient(lighten($grp-form-button-reset-background-color, 10), $grp-form-button-reset-background-color));
+	&:hover {
+		color: #fff;
+		border: 1px solid darken($grp-form-button-reset-background-color-hover, 5);
+		@include background-image(linear-gradient(lighten($grp-form-button-reset-background-color-hover, 10), $grp-form-button-reset-background-color-hover));
+		.grp-footer & {
+			color: #333;
+			border: 1px solid darken($grp-footer-form-button-reset-background-color-hover, 15);
+			@include background-image(linear-gradient(lighten($grp-footer-form-button-reset-background-color-hover, 15), $grp-footer-form-button-reset-background-color-hover));
+		}
+	}
+}
+.grp-form-button-reset {
+	@include grp-form-button-reset-style;
 }
 
 

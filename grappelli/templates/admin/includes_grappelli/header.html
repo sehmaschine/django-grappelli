@@ -45,12 +45,11 @@
     {% endblock %}
 </div>
 
-{% comment %}
 <script type="text/javascript" charset="utf-8">
     (function($) {
         $(document).ready(function() {
-            $("div#grp-header .grp-collapse").grp_collapsible();
+            $("#grp-navigation .grp-collapse").grp_collapsible();
         });
     })(django.jQuery);
 </script>
-{% endcomment %}
+

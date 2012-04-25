@@ -1,5 +1,10 @@
 
 
+
+
+/*  BUTTON STATES
+------------------------------------------------------------------------------------------------------ */
+
 .button-state-blue {
     color: #fff;
     border: $grp-button-border;
@@ -58,6 +63,15 @@
         }
     }
 }
+
+
+
+
+
+/*  BUTTONS
+------------------------------------------------------------------------------------------------------ */
+
+
 @mixin grp-button {
     position: relative;
     display: inline-block;
@@ -78,6 +92,38 @@
 .grp-button {
     @include grp-button();
 }
+
+
+
+
+/*  SUBMIT BUTTON & BUTTONS IN SUBMIT-ROW
+------------------------------------------------------------------------------------------------------ */
+
+input[type="submit"] {
+    @include grp-button();
+    // @include grp-form-button;
+    @include grp-form-button-style;
+}
+a.grp-button {
+    @include grp-button();
+    &.grp-delete-link {
+        @include grp-form-button-delete-style;
+    }
+    &.grp-cancel-link {
+        @include grp-form-button-cancel-style;
+    }
+    &.grp-reset-link {
+        @include grp-form-button-reset-style;
+    }
+}
+
+
+
+
+
+/*  BUTTONS WITH/AS ICONS
+------------------------------------------------------------------------------------------------------ */
+
 @mixin grp-icon-button {
     position: relative;
     // float: right;
@@ -96,42 +142,23 @@
 }
 
 
-.grp-cancel-link {
-    @include grp-button-states(grey, grey);
-}
-
+/*  Basic assignments ......................................... */
 
 input[type=button], 
-button, a.fb_show, 
+button, 
+a.fb_show, 
 a.related-lookup {
     @include grp-icon-button;
 }
-a.fb_show, 
-a.related_lookup {
-    display: inline-block;
-    margin-bottom: -5px;
-}
 
 
 
-button.ui-datepicker-trigger {
-    @include icons-sprite(datepicker);
-    @include grp-button-states(blue, grey);
-}
-button.ui-timepicker-trigger {
-    @include icons-sprite(timepicker);
-    @include grp-button-states(blue, grey);
-    & + button.ui-datetime-now {
-        margin-left: 6px !important;
-        @include border-radius($grp-form-field-border-radius);
-    }
-}
-button.ui-datetime-now {
-    @include icons-sprite(datetime-now);
-    @include grp-button-states(blue, grey);
-}
+/*  Filebrowser, Related Lookup, M2M, FK, Related Remove ......................................... */
+
 a.fb_show, 
 a.related-lookup {
+    display: inline-block;
+    margin-bottom: -5px;
     @include icons-sprite(related-lookup);
     @include grp-button-states(blue, grey);
 }
@@ -153,46 +180,40 @@ a.grp-related-remove {
     @include grp-button-states(white, white);
 }
 
+
+/*  Datepicker, Timepicker ......................................... */
+
+button.ui-datepicker-trigger {
+    @include icons-sprite(datepicker);
+    @include grp-button-states(blue, grey);
+}
+button.ui-timepicker-trigger {
+    @include icons-sprite(timepicker);
+    @include grp-button-states(blue, grey);
+    & + button.ui-datetime-now {
+        margin-left: 6px !important;
+        @include border-radius($grp-form-field-border-radius);
+    }
+}
+button.ui-datetime-now {
+    @include icons-sprite(datetime-now);
+    @include grp-button-states(blue, grey);
+}
+
+
+/*  Search ......................................... */
+
 .grp-search-button {
     @include icons-sprite(related-lookup);
     @include grp-button-states(transparent, transparent);
 }
 
 
-/*  File Uploads & Preview Images ......................................... */
-
-p.file-upload {
-    margin: 6px 0 3px;
-    font-size: 11px;
-    line-height: 14px;
-    span.clearable-file-input {
-        display: block;
-        margin: 5px 0 -12px;
-    }
-    tr & {
-        margin: 0;
-    }
-}
-p.preview {
-    margin: 5px 0 0;
-    tr & {
-        margin: 9px 0 -6px;
-    }
-    a {
-        display: inline-block;
-        padding: 3px;
-        font-size: 0;
-        line-height: 0;
-        border: 1px solid $grp-link-color;
-        @include border-radius($grp-border-radius-s);
-        &:hover {
-            border: 1px solid $grp-link-color-hover;
-        }
-    }
-}
 
 
-/*  Add Another ......................................... */
+
+/*  ADD ANOTHER
+------------------------------------------------------------------------------------------------------ */
 
 a.add-another {
     position: relative;
@@ -205,19 +226,12 @@ a.add-another {
     line-height: 16px;
     @include icons-sprite(add-another);
 }
-// a.add-another:link, a.add-another:visited {
-//     background-image: url('../images/icons/add_another.png');
-// }
-// a.add-another:hover, a.add-another:active {
-//     background-image: url('../images/icons/add_another-hover.png');
-// }
 
 p.grp-help + * + a.add-another {
     float: right;
     top: -20px;
     margin-bottom: -20px;
 }
-
 
 .change-list table tbody a.add-another {
     position: relative;
@@ -239,7 +253,8 @@ p.grp-help + * + a.add-another {
 
 
 
-/*  Focused Buttons & Button Links ......................................... */
+/*  CONTEXT_DEPENDENT BUTTON STYLES (FOCUS, ERROR)
+------------------------------------------------------------------------------------------------------ */
 
 input:focus + button, 
 .vDateField:focus + span a, 

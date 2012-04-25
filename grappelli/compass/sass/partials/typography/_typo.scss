@@ -37,3 +37,37 @@ p.grp-readonly {
     font-size: 0;
     line-height: 0;
 }
+
+
+
+/*  File Uploads & Preview Images ......................................... */
+
+p.file-upload {
+    margin: 6px 0 3px;
+    font-size: 11px;
+    line-height: 14px;
+    span.clearable-file-input {
+        display: block;
+        margin: 5px 0 -12px;
+    }
+    tr & {
+        margin: 0;
+    }
+}
+p.preview {
+    margin: 5px 0 0;
+    tr & {
+        margin: 9px 0 -6px;
+    }
+    a {
+        display: inline-block;
+        padding: 3px;
+        font-size: 0;
+        line-height: 0;
+        border: 1px solid $grp-link-color;
+        @include border-radius($grp-border-radius-s);
+        &:hover {
+            border: 1px solid $grp-link-color-hover;
+        }
+    }
+}
