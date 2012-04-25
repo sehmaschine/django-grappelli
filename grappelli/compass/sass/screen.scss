@@ -146,7 +146,7 @@ header#grp-header {
 	clear: both;
 	width: 100%;
 	@include box-sizing(border-box);
-	nav#grp-navigation {
+	#grp-navigation {
 		position: relative;
 		float: left;
 		clear: both;
@@ -155,9 +155,12 @@ header#grp-header {
 		@include box-sizing(border-box);
 		@include grp-gradient-dark;
 		@include clearfix;
-	}
-	#grp-branding {
-		display: none;
+		header h1 {
+			margin: 0;
+			padding: 0;
+			font-size: 12px;
+			line-height: 16px;
+		}
 	}
 	#grp-admin-title {
 		position: relative;

@@ -55,8 +55,9 @@
                 {% include "admin/includes_grappelli/header.html" %}
                 
                 <!-- CONTEXT NAVIGATION -->
-                <nav id="grp-context-navigation">
-                    <div id="grp-breadcrumbs" class="{% block breadcrumbs-class %}{% endblock %}">
+                <div id="grp-context-navigation">
+                    <nav id="grp-breadcrumbs" class="{% block breadcrumbs-class %}{% endblock %}">
+                        <header style="display:none"><h1>Breadcrumbs</h1></header>
                         {% block breadcrumbs %}
                             <ul>
                                 <li><a href="/">{% trans 'Home' %}</a></li>
@@ -65,11 +66,12 @@
                                 {% endif %}
                             </ul>
                         {% endblock %}
-                    </div>
-                    <div id="grp-page-tools">
+                    </nav>
+                    <nav id="grp-page-tools">
+                        <header style="display:none"><h1>Page Tools</h1></header>
                         {% block page-tools %}{% endblock %}
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             {% endif %}
         </header>
 

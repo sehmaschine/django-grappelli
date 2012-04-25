@@ -1,9 +1,7 @@
 {% load i18n grp_tags %}
 
-<nav id="grp-navigation">
-    <div id="grp-branding">&nbsp;</div>
-    <!-- Title -->
-    <div id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</div>
+<div id="grp-navigation">
+    <header id="grp-admin-title"><h1>{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1></header>
     {% if user.is_authenticated and user.is_staff %}
         <ul id="grp-user-tools">
             <!-- Username -->
@@ -45,7 +43,7 @@
     {% endif %}
     {% block nav-global %}
     {% endblock %}
-</nav>
+</div>
 
 {% comment %}
 <script type="text/javascript" charset="utf-8">
