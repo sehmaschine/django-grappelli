@@ -116,7 +116,7 @@
 
 <!-- COLTYPE/BODYCLASS-- >
 {% block bodyclass %}grp-change-list{% endblock %}
-{% block content-class %}content-flexible{% endblock %}
+{% block content-class %}{% endblock %}
 
 <!-- BREADCRUMBS -- >
 {% block breadcrumbs %}
@@ -156,7 +156,8 @@
                         {% pagination cl %}
                     </div>
                     {% if cl.has_filters or cl.search_fields %}
-                        <div class="grp-column-right">
+                        <aside class="grp-column-right">
+                            <header style="display:none"><h1>{% if cl.search_fields %}Search{% if cl.has_filters %} &amp; {% endif %}{% endif %}{% if cl.has_filters %}Filters{% endif %}</h1></header>
                             <!-- SEARCH -->
                             {% if cl.search_fields %}
                                 <div id="search" class="grp-column span-6">
@@ -174,18 +175,19 @@
                                     </div>
                                 </div>
                             {% endif %}
-                        </div>
+                        </aside>
                     {% endif %}
                 </div>
             </div>
             <!-- DATE HIERARCHY -->
             {% if cl.date_hierarchy %}
-                {% date_hierarchy cl %}
+                <div class="grp-row">{% date_hierarchy cl %}</div>
             {% endif %}
         </div>
     {% endif %}
-    <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-        <div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
+    <form id="grp-changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+        <section id="grp-changelist" class="{% if cl.list_editable %} grp-editable{% endif %}">
+            <header style="display:none"><h1>Results</h1></header>
             <!-- POPUP -->
             {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
             <!-- ERRORS -->
@@ -203,10 +205,10 @@
             {% block result_list %}
                 {% result_list cl %}
             {% endblock %}
-            <!-- PAGINATION BOTTOM -->
-            <div class="grp-module">
-                <div class="grp-row">{% pagination cl %}</div>
-            </div>
+        </section>
+        <!-- PAGINATION BOTTOM -->
+        <div class="grp-module">
+            <div class="grp-row">{% pagination cl %}</div>
         </div>
         <!-- SUBMIT ROW -->
         {% if cl.formset or action_form %}

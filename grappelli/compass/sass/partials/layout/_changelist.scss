@@ -5,62 +5,64 @@
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-pagination {
-	@include horizontal-list(0, left);
-	li {
-	    // position: relative;
-	    // float: left;
-	    // display: block;
-	    margin-right: 1px;
-	    border: 1px solid #fff;
-    	@include border-radius($grp-border-radius);
-		a, 
-		span {
-		    display: inline-block;
-		    padding: 4px 8px 4px;
-		    min-width: 25px;
-		    font-size: 11px;
-		    font-weight: bold;
-		    border: 1px solid;
-		    @include border-radius($grp-border-radius - 1);
-			@include box-sizing(border-box);
-		}
-		a {
-			color: #59afcc;
-		    border-color: #d9d9d9;
-		    &:hover {
-		    	color: #444;
+	ul {
+		@include horizontal-list(0, left);
+		li {
+		    // position: relative;
+		    // float: left;
+		    // display: block;
+		    margin-right: 1px;
+		    border: 1px solid #fff;
+	    	@include border-radius($grp-border-radius);
+			a, 
+			span {
+			    display: inline-block;
+			    padding: 4px 8px 4px;
+			    min-width: 25px;
+			    font-size: 11px;
+			    font-weight: bold;
+			    border: 1px solid;
+			    @include border-radius($grp-border-radius - 1);
+				@include box-sizing(border-box);
+			}
+			a {
+				color: #59afcc;
+			    border-color: #d9d9d9;
+			    &:hover {
+			    	color: #444;
+				    border-color: #bdbdbd;
+				    @include background-image(linear-gradient(#eee, #e0e0e0));
+			    }
+			}
+			span {
+				color: #444;
 			    border-color: #bdbdbd;
 			    @include background-image(linear-gradient(#eee, #e0e0e0));
-		    }
-		}
-		span {
-			color: #444;
-		    border-color: #bdbdbd;
-		    @include background-image(linear-gradient(#eee, #e0e0e0));
-		}
-		&.grp-results {
-		    margin-right: 4px;
-		}
-		&.grp-separator {
-		    border-color: transparent;
-		    span {
-			    padding: 4px 0;
-			    min-width: 10px;
-			    font-size: 14px;
-			    border-color: transparent;
-			    background: transparent;
 			}
-		}
-		&.grp-showall {
-		    margin-left: 4px;
-		}
-		&:last-child {
-		    clear: right;
-		}
+			&.grp-results {
+			    margin-right: 4px;
+			}
+			&.grp-separator {
+			    border-color: transparent;
+			    span {
+				    padding: 4px 0;
+				    min-width: 10px;
+				    font-size: 14px;
+				    border-color: transparent;
+				    background: transparent;
+				}
+			}
+			&.grp-showall {
+			    margin-left: 4px;
+			}
+			&:last-child {
+			    clear: right;
+			}
 
+		}
 	}
 }
-ul.grp-pagination {
+.grp-pagination {
 	@include grp-pagination();
 }
 
@@ -70,30 +72,32 @@ ul.grp-pagination {
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-date-hierarchy {
-	position: relative;
-    float: left;
-    clear: both;
-    font-size: 11px;
-    line-height: 16px;
-    font-weight: bold;
-    li {
-	    position: relative;
+	ul {
+		position: relative;
 	    float: left;
-	    a, 
-		span {
-		    padding: 2px 5px;
-		}
-		a.grp-date-hierarchy-back {
-			color: #59afcc;
-			padding-left: 10px;
-			@include icons-sprite(date-hierarchy-back);
-		    &:hover {
-		    	color: #444;
-		    }
+	    clear: both;
+	    font-size: 11px;
+	    line-height: 16px;
+	    font-weight: bold;
+	    li {
+		    position: relative;
+		    float: left;
+		    a, 
+			span {
+			    padding: 2px 5px;
+			}
+			a.grp-date-hierarchy-back {
+				color: #59afcc;
+				padding-left: 10px;
+				@include icons-sprite(date-hierarchy-back);
+			    &:hover {
+			    	color: #444;
+			    }
+			}
 		}
 	}
 }
-ul.grp-date-hierarchy {
+.grp-date-hierarchy {
 	@include grp-date-hierarchy();
 }
 
@@ -222,7 +226,7 @@ form#grp-changelist-search {
 	background: $grp-module-background-color url('../img/backgrounds/changelist-results.png') repeat scroll !important;
 }
 
-body.change-list {
+body.grp-change-list {
 	.grp-pulldown-container {
 		border: 1px solid #fff;
 		&.grp-pulldown-state-open {

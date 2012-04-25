@@ -1,11 +1,12 @@
 {% load i18n %}
 {% if show and choices %}
-    <div id="date-hierarchy" class="grp-row" style="position: relative; z-index: 1 !important">
-        <ul class="grp-date-hierarchy">
+    <nav id="date-hierarchy" class="grp-date-hierarchy" style="position: relative; z-index: 1 !important">
+    	<header style="display:none"><h1>Date Hierarchy</h1></header>
+        <ul>
             {% if back %}<li><a href="{{ back.link }}" class="grp-date-hierarchy-back">{{ back.title }}</a></li>{% endif %}
             {% for choice in choices %}
                 <li>{% if choice.link %}<a href="{{ choice.link }}">{{ choice.title }}</a>{% else %}<span>{{ choice.title }}</span>{% endif %}</li>
             {% endfor %}
         </ul>
-    </div>
+    </nav>
 {% endif %}

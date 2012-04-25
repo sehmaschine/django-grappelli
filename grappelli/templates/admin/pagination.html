@@ -1,6 +1,8 @@
 {% load admin_list i18n %}
 {% spaceless %}
-    <ul class="grp-horizontal-list grp-pagination">
+<nav class="grp-pagination">
+    <header style="display:none"><h1>Pagination</h1></header>
+    <ul class="grp-horizontal-list">
         {% if cl.result_count != cl.full_result_count %}
             <li class="grp-results"><span>
                 {% blocktrans count cl.result_count as counter %}{{ counter }} result{% plural %}{{ counter }} results{% endblocktrans %}
@@ -24,4 +26,5 @@
         {% endif %}
         {% if show_all_url %}<li class="grp-showall"><a href="{{ show_all_url }}">{% trans 'Show all' %}</a></li>{% endif %}
     </ul>
+</nav>
 {% endspaceless %}
