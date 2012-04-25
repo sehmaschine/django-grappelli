@@ -169,6 +169,9 @@ p.file-upload {
         display: block;
         margin: 5px 0 -12px;
     }
+    tr & {
+        margin: 0;
+    }
 }
 p.preview {
     margin: 5px 0 0;
