@@ -210,8 +210,8 @@ header#grp-header {
 						position: absolute;
 						z-index: 1010;
 						display: block;
-						margin: 9px 0 0 -10px;
-						width: inherit;
+						margin: -1px 0 0 -1px;
+						width: 207px;
 						border-top: 1px solid darken(#222, 10);
 						@include border-bottom-radius($grp-border-radius);
 						background: #222;
@@ -230,13 +230,25 @@ header#grp-header {
 				}
 			}
 			&#grp-user-tools {
+				
 				margin: 0;
 				border-left: 1px solid darken(#222, 10);
-				li.grp-user-options-container {
-					padding: 10px 0 10px 10px;
-					width: 200px;
+				> li {
+					@include horizontal-list-item(5px, left);
 					border-left: 1px solid lighten(#222, 7);
+					border-right: 1px solid darken(#222, 10);
+					&.grp-user-options-container {
+						width: 200px;
+					}
+					&:last-child {
+						border-right: 0;
+					}
+					a {
+						display: block;
+						padding: 10px;
+					}
 				}
+				
 			}
 		}
 		
@@ -295,7 +307,7 @@ header#grp-header {
 @mixin grp-breadcrumbs {
 	float: left;
 	> ul {
-		// @include horizontal-list(5px, left);
+		@include horizontal-list(5px, left);
 		@include grp-padding($grp-padding-size-s 20px);
 		a {
 			display: block;
