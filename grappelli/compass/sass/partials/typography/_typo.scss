@@ -76,12 +76,60 @@ p.preview {
 
 
 .grp-rte {
-    p, ul, ol, blockquote, dl, dt, dd {
-        font-size: 13px;
-        line-height: 18px;
+    font-size: 13px;
+    line-height: 18px;
+    h4 {
+        margin: 5px 0;
     }
-    
+    p, ul, ol, blockquote, dl, dt, dd {
+        margin: 10px 0;
+        &:only-child {
+            margin: 5px 0;
+        }
+    }
+    ul {
+        margin-left: 30px;
+        list-style-type: disc;
+        list-style-position: outside;
+    }
 }
+
+
+
+.grp-docutils {
+    h4 p {
+        margin: 0;
+    }
+    table p {
+        margin: 0 !important;
+    }
+    code, pre {
+        font-size: 11px;
+        font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    }
+    pre.literal-block {
+        margin: 10px;
+        padding: 6px 8px;
+        background: #fff;
+    }
+}
+
+
+span.grp-anchor {
+    position: relative;
+    float: left;
+    clear: both;
+    top: -80px;
+}
+
+
+.grp-nowrap {
+    white-space: nowrap;
+}
+
+
+
+
 
 
 

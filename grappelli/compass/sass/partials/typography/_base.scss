@@ -81,6 +81,19 @@ a {
 	&:hover {
 		color: $grp-link-color-hover;
 	}
+	&.grp-back-link {
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		@include icons-sprite(back-link, $offset-y: -3px);
+		&:hover {
+			@include icons-sprite(back-link_hover, $offset-y: -3px);
+		}
+		&.grp-icon-text {
+			padding-left: 24px;
+			width: auto;
+		}
+	}
 }
 
 

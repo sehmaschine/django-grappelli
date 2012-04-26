@@ -534,12 +534,16 @@ table#grp-change-history {
 // /*  Documentation
 // ------------------------------------------------------------------------------------------------------ */
 
-// .model-index table {
-//     width: 100%;
-// }
-// .model-index table th {
-//     padding: 7px 10px 8px;
-// }
+table.grp-full {
+    width: 100%;
+    .grp-module > & {
+        border: 0;
+        @include border-radius(0);
+    }
+}
+.model-index table th {
+    padding: 7px 10px 8px;
+}
 
 
 

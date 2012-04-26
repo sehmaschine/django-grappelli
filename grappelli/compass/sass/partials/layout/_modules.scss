@@ -46,19 +46,6 @@
 .grp-module h2 {
 	@include grp-module-h2;
 }
-.grp-group {
-	> h2 {
-		@include grp-module-h2;
-		border: $grp-module-border;
-		@include border-radius($grp-border-radius);
-	}
-	&.grp-open > h2 {
-		margin-bottom: 2px;
-	}
-	&.grp-tabular.grp-open > h2 {
-		margin-bottom: 0;
-	}
-}
 
 @mixin grp-module-h3 {
 	@include grp-padding($grp-padding-size-s $grp-padding-size);
@@ -72,6 +59,28 @@
 }
 .grp-module h3 {
 	@include grp-module-h3;
+}
+
+.grp-group {
+	> h2 {
+		@include grp-module-h2;
+		border: $grp-module-border;
+		@include border-radius($grp-border-radius);
+	}
+	&.grp-open > h2 {
+		margin-bottom: 2px;
+	}
+	&.grp-tabular.grp-open > h2 {
+		margin-bottom: 0;
+	}
+	.grp-module > h3 {
+		border-top: 0;
+		@include border-top-radius($grp-border-radius);
+		&:only-child, 
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
 }
 
 
@@ -92,14 +101,20 @@
 	@include clearfix;
 	overflow: visible;
 	.grp-module {
+		margin: 0;
 		border: 0;
 	}
 }
 .grp-module {
 	@include grp-module;
 }
-.grp-group .grp-module {
-	margin: 2px 0 0;
+.grp-group {
+	.grp-module {
+		margin: 2px 0 0;
+	}
+	h2.grp-collapse-handler + .grp-module {
+		margin-top: 0;
+	}
 }
 .grp-empty-form {
 	display: none !important;
@@ -278,9 +293,6 @@ fieldset .grp-row {
 		}
 		&.grp-delete-link > span:first-child {
 			background-position: 0 -1602px;
-		}
-		&:last-child {
-			padding-bottom: 0;
 		}
 	}
 }
