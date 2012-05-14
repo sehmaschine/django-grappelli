@@ -21,6 +21,7 @@ $show-grid-background: false;
 // GENERAL MIXINS
 
 @mixin centered {
+    float: none;
     margin: 0 auto;
 }
 
@@ -40,8 +41,10 @@ $show-grid-background: false;
 // this one does not have a width. That is assigned
 // on a per-media basis.
 @mixin container {
-    // @include centered;
     @include pie-clearfix;
+    &.g-centered {
+        @include centered;
+    }
 }
 
 // The basic structure for a column aligned to a grid.

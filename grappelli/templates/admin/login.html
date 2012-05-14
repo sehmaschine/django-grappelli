@@ -24,8 +24,8 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <div class="g-d-c">
-        <div class="g-d-12 grp-centered grp-login">
+    <div class="g-d-c g-d-12 g-centered">
+        <div class="g-d-12 grp-login">
             {% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
                 <p class="errornote">
                     {% blocktrans count form.errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
@@ -40,15 +40,15 @@
             <form action="{{ app_path }}" method="post" id="grp-login-form">{% csrf_token %}
                 <fieldset class="grp-module">
                     <div class="grp-row">
-                        <div class="column span-4"><label for="id_username" class="required">{% trans 'Username:' %}</label></div>
-                        <div class="column span-8 last">
+                        <div class="g-d-4"><label for="id_username" class="required">{% trans 'Username:' %}</label></div>
+                        <div class="g-d-fluid g-d-l">
                             <input type="text" name="username" id="id_username" />
                             {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
                         </div>
                     </div>
                     <div class="grp-row">
-                        <div class="column span-4"><label for="id_password" class="required">{% trans 'Password:' %}</label></div>
-                        <div class="column span-8 last">
+                        <div class="g-d-4"><label for="id_password" class="required">{% trans 'Password:' %}</label></div>
+                        <div class="g-d-fluid g-d-l">
                             <input type="password" name="password" id="id_password" />
                             <input type="hidden" name="this_is_the_login_form" value="1" />
                             <input type="hidden" name="next" value="{{ next }}" />
