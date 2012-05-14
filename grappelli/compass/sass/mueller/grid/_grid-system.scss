@@ -158,11 +158,20 @@ $show-grid-background: false;
         .g-d-c-fluid .g-#{$media}-#{$n} {
             $width: column-width($n, $col-width, $gutter-width) + $gm;
             width: $width;
+            &.g-d-l {
+                width: $width - 20;
+            }
+            @each $n in $units {
+                .g-#{$media}-#{$n} {
+                    width: column-width($n, $col-width, $gutter-width);
+                }
+            }
         }
     }
     // ADDED generate form field widths
     @each $n in $units {
-        .g-#{$media}-#{$n} input, 
+        .g-#{$media}-#{$n} input[type=text], 
+        .g-#{$media}-#{$n} input[type=password], 
         .g-#{$media}-#{$n} select, 
         .g-#{$media}-#{$n} textarea {
             width: 100%;

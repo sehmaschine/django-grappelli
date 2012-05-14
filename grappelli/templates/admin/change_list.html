@@ -150,23 +150,23 @@
     {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
         <div class="grp-module grp-changelist-filters">
             <div class="grp-row">
-                <div class="grp-layout-container grp-column-left-fluid {% if cl.has_filters and cl.search_fields %}grp-column-right-span-12{% else %}{% if cl.has_filters or cl.search_fields %}grp-column-right-span-6{% endif %}{% endif %}">
-                    <div class="grp-column-left">
+                <div class="g-d-c-fluid">
+                    <div class="g-d-fluid">
                         <!-- PAGINATION TOP -->
                         {% pagination cl %}
                     </div>
                     {% if cl.has_filters or cl.search_fields %}
-                        <aside class="grp-column-right">
+                        <aside class="{% if cl.has_filters and cl.search_fields %}g-d-12{% else %}{% if cl.has_filters or cl.search_fields %}g-d-6{% endif %}{% endif %} g-d-l">
                             <header style="display:none"><h1>{% if cl.search_fields %}Search{% if cl.has_filters %} &amp; {% endif %}{% endif %}{% if cl.has_filters %}Filters{% endif %}</h1></header>
                             <!-- SEARCH -->
                             {% if cl.search_fields %}
-                                <div id="search" class="grp-column span-6">
+                                <div id="search" class="g-d-6">
                                     {% block search %}{% search_form cl %}{% endblock %}
                                 </div>
                             {% endif %}
                             <!-- FILTERS -->
                             {% if cl.has_filters %}
-                                <div id="filters" class="grp-column filter span-6 last">
+                                <div id="filters" class="filter g-d-6 g-d-l">
                                     <div class="grp-pulldown-container">
                                         <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
                                         <ul class="grp-pulldown-content" style="display: none">
@@ -185,6 +185,7 @@
             {% endif %}
         </div>
     {% endif %}
+    <div class="g-d-fluid">
     <form id="grp-changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
         <section id="grp-changelist" class="{% if cl.list_editable %} grp-editable{% endif %}">
             <header style="display:none"><h1>Results</h1></header>
@@ -220,4 +221,5 @@
             </div>
         {% endif %}
     </form>
+</div>
 {% endblock %}

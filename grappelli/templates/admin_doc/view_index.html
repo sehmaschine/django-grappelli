@@ -30,8 +30,8 @@
 {% block content %}
     <h1>View documentation</h1>
     {% regroup views|dictsort:"site_id" by site as views_by_site %}
-    <div class="grp-layout-container">
-        <div class="column span-6">
+    <div class="g-d-c">
+        <div class="g-d-6">
             <div class="grp-module">
                 <h2>Jump to site</h2>
                 <ul class="grp-listing-small">
@@ -41,7 +41,7 @@
                 </ul>
             </div>
         </div>
-        <div class="column span-18 last grp-rte" id="grp-docutils-content">
+        <div class="g-d-18 g-d-l grp-rte" id="grp-docutils-content">
             {% for site_views in views_by_site %}
                 <div class="grp-group">
                     <h2 id="site{{ site_views.grouper.id }}">Views by URL on {{ site_views.grouper.name }}</h2>

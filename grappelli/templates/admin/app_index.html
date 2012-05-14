@@ -18,8 +18,8 @@
 {% endif %}
 
 {% block content %}
-   <div class="grp-layout-container">
-        <div class="grp-column span-12" id="apps_init">
+   <div class="g-d-c">
+        <div class="g-d-12" id="apps_init">
             {% for app in app_list %}
                 <div class="grp-module" id="app_{{ app.name|lower }}">
                     <h2><a href="{{ app.app_url }}" class="grp-section">{% trans app.name %}</a></h2>

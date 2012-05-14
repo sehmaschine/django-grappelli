@@ -52,7 +52,7 @@ $gm: 20px; // grid margin
     }
 }
 
-.grp-module {
+fieldset.grp-module {
     .g-d-fluid {
         position: relative;
         float: none;
@@ -66,16 +66,13 @@ $gm: 20px; // grid margin
     display: table;
     width: 100%;
     table-layout: fixed;
-    [class^=g-d] {
+    > *[class^=g-d] {
         position: relative;
         display: table-cell;
         float: none;
-        margin-right: 0;
+        margin-right: 0 !important;
         padding-right: $gm;
         vertical-align: top;
-        &.g-d-fluid {
-            float: none;
-        }
         &.g-d-l {
             padding-right: 0;
         }

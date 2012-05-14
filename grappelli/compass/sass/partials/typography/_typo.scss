@@ -89,8 +89,10 @@ p.preview {
     }
     ul {
         margin-left: 30px;
-        list-style-type: disc;
-        list-style-position: outside;
+        li {
+            list-style-type: disc;
+            list-style-position: outside;
+        }
     }
 }
 
