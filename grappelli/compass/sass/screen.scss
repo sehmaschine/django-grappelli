@@ -422,7 +422,8 @@ header#grp-header {
 				&.grp-default {
 					@include opacity(1);
 				}
-				&:hover {
+				&:hover, 
+				&:focus {
 					@include opacity(1);
 				}
 			}
