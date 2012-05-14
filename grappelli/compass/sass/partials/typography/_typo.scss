@@ -90,8 +90,15 @@ p.preview {
     ul {
         margin-left: 30px;
         li {
+            margin-left: 20px;
             list-style-type: disc;
             list-style-position: outside;
+            ul {
+                margin-top: -5px !important;
+                li {
+                    list-style-type: circle;
+                }
+            }
         }
     }
 }
