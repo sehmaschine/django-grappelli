@@ -1,0 +1,261 @@
+{% extends "grp_dom_documentation/base.html" %}
+
+<!-- LOADING -->
+{% load i18n admin_modify adminmedia grp_tags %}
+
+<!-- CONTENT-TITLE -->
+{% block content_title %}
+    <h1>Layouts <span>Mueller</span></h1>
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+
+
+	<div class="g-d-c">
+        <section>
+            <h1>Basic Grid</h1>
+            <div id="example_media" class="g-d-24">
+                <p>
+                    Defining Columns with basic media-classes.
+                </p>
+                <div class="g-d-6">
+                    <div class="grp-module">
+		                <div class="grp-row"><p>XXX</p></div>
+		            </div>
+                </div>
+                <div class="g-d-6">
+                    <div class="grp-module">
+		                <div class="grp-row"><p>XXX</p></div>
+		            </div>
+                </div>
+                <div class="g-d-12 g-d-l">
+                    <div class="grp-module">
+		                <div class="grp-row"><p>XXX</p></div>
+		            </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h1>Basic Grid</h1>
+            <div id="example_media" class="g-d-24">
+                <div class="g-d-12">
+                    <fieldset class="grp-module">
+                    	<div class="grp-row">
+                    		<div class="g-d-6">
+                    			<label>Label</label>
+                			</div>
+	                    	<div class="g-d-fluid g-d-l">
+	                    		<input type="text" value="" />
+                    		</div>
+                    	</div>
+		            </fieldset>
+                </div>
+                <div class="g-d-12 g-d-l">
+                    <fieldset class="grp-module">
+                    	<div class="grp-row">
+                    		<div class="g-d-4">
+                    			<label>Label</label>
+                			</div>
+	                    	<div class="g-d-fluid g-d-l">
+	                    		<input type="text" value="" />
+                    		</div>
+                    	</div>
+		            </fieldset>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h1>Forms in Grid</h1>
+            <form class="g-d-24">
+                <div class="g-d-2">
+                    <input type="text" value="" />
+                </div>
+                <div class="g-d-4">
+                    <input type="text" value="" />
+                </div>
+                <div class="g-d-6">
+                    <input type="text" value="" />
+                </div>
+                <div class="g-d-12 g-d-l">
+                    <input type="text" value="" />
+                </div>
+                <div class="g-d-2">
+                    <textarea></textarea>
+                </div>
+                <div class="g-d-4">
+                    <textarea></textarea>
+                </div>
+                <div class="g-d-6">
+                    <textarea></textarea>
+                </div>
+                <div class="g-d-12 g-d-l">
+                    <textarea></textarea>
+                </div>
+                <div class="g-d-2">
+                    <select><option>Select this</option><option>Select this</option></select>
+                </div>
+                <div class="g-d-4">
+                    <select><option>Select this</option><option>Select this</option></select>
+                </div>
+                <div class="g-d-6">
+                    <select><option>Select this</option><option>Select this</option></select>
+                </div>
+                <div class="g-d-12 g-d-l">
+                    <select><option>Select this</option><option>Select this</option></select>
+                </div>
+            </form>
+        </section>
+        <section>
+            <h1>Forms in Grid</h1>
+            <form class="g-d-24">
+                <div class="g-d-6">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<input type="text" value="" />
+		                </div>
+		            </div>
+                </div>
+                <div class="g-d-6">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<input type="text" value="" />
+		                </div>
+		            </div>
+                </div>
+                <div class="g-d-12 g-d-l">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<input type="text" value="" />
+		                </div>
+		            </div>
+                </div>
+                <div class="g-d-6">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<textarea></textarea>
+		                </div>
+		            </div>
+                </div>
+                <div class="g-d-6">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<textarea></textarea>
+		                </div>
+		            </div>
+                </div>
+                <div class="g-d-12 g-d-l">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<textarea></textarea>
+		                </div>
+		            </div>
+                </div>
+                <div class="g-d-6">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<select><option>Select this</option><option>Select this</option></select>
+		                </div>
+		            </div>
+                </div>
+                <div class="g-d-6">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<select><option>Select this</option><option>Select this</option></select>
+		                </div>
+		            </div>
+                </div>
+                <div class="g-d-12 g-d-l">
+                    <div class="grp-module">
+		                <div class="grp-row">
+		                	<select><option>Select this</option><option>Select this</option></select>
+		                </div>
+		            </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <section class="rte grp-content-container">
+        <h1>Two Columns <span>Left Grid, Right Fluid</span></h1>
+        <div class="g-d-c-fluid">
+	        <div class="g-d-6 g-d-f">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Left Column</p></div>
+	            </div>
+	        </div>
+	        <div class="g-d-fluid g-d-l">
+	            <div class="grp-module">
+	                <div class="grp-row">
+	                	<p>Right Column</p>
+	                	<p>alksjd alskdj alsdk jalsdkja ldaksjd alskdj alsdkj alsdkj alsdk jasdlkaj dlakjd ladksj alsdkj alsdkj aldk jalsdkj alsdkjalsdjaldkjadsl akjsdlakjsd alksdj alsdkj alsd kjalsdjkalsdjkalsdj aldjaldj alsdjk alsdj alsd jalsdj lakdjaldkj aljd lasdjk lakjsd lasdj aldj kaldskj aldj ladj aldj aldj ald jk</p>
+	            	</div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+    <section class="rte grp-content-container">
+        <h1>Two Columns <span>Left Fluid, Right Grid</span></h1>
+        <div class="g-d-c-fluid">
+	        <div class="g-d-fluid g-d-f">
+	            <div class="grp-module">
+	                <div class="grp-row">
+	                	<p>Left Column</p>
+		                <p>alksjd alskdj alsdk jalsdkja ldaksjd alskdj alsdkj alsdkj alsdk jasdlkaj dlakjd ladksj alsdkj alsdkj aldk jalsdkj alsdkjalsdjaldkjadsl akjsdlakjsd alksdj alsdkj alsd kjalsdjkalsdjkalsdj aldjaldj alsdjk alsdj alsd jalsdj lakdjaldkj aljd lasdjk lakjsd lasdj aldj kaldskj aldj ladj aldj aldj ald jk</p>
+		            </div>
+	            </div>
+	        </div>
+	        <div class="g-d-6 g-d-l">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Right Column</p></div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+    <section class="rte grp-content-container">
+        <h1>Three Columns <span>Left Grid, Middle Fluid, Right Grid</span></h1>
+        <div class="g-d-c-fluid">
+        	<div class="g-d-6 g-d-f">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Left Column</p></div>
+	            </div>
+	        </div>
+	        <div class="g-d-fluid">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Middle Column</p><p>alksjd alskdj alsdk jalsdkja ldaksjd alskdj alsdkj alsdkj alsdk jasdlkaj dlakjd ladksj alsdkj alsdkj aldk jalsdkj alsdkjalsdjaldkjadsl akjsdlakjsd alksdj alsdkj alsd kjalsdjkalsdjkalsdj aldjaldj alsdjk alsdj alsd jalsdj lakdjaldkj aljd lasdjk lakjsd lasdj aldj kaldskj aldj ladj aldj aldj ald jk</p></div>
+	            </div>
+	        </div>
+	        <div class="g-d-6 g-d-l">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Right Column</p></div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+    <section class="rte grp-content-container">
+        <h1>Three Columns <span>Left Grid, Middle 1 Fluid, Middle 2 Fluid, Right Grid</span></h1>
+        <div class="g-d-c-fluid">
+        	<div class="g-d-6 g-d-f">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Left Column</p></div>
+	            </div>
+	        </div>
+	        <div class="g-d-fluid">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Middle Column</p><p>alksjd alskdj alsdk jalsdkja ldaksjd alskdj alsdkj alsdkj alsdk jasdlkaj dlakjd ladksj alsdkj alsdkj aldk jalsdkj alsdkjalsdjaldkjadsl akjsdlakjsd alksdj alsdkj alsd kjalsdjkalsdjkalsdj aldjaldj alsdjk alsdj alsd jalsdj lakdjaldkj aljd lasdjk lakjsd lasdj aldj kaldskj aldj ladj aldj aldj ald jk</p></div>
+	            </div>
+	        </div>
+	        <div class="g-d-fluid">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Middle Column</p></div>
+	            </div>
+	        </div>
+	        <div class="g-d-6 g-d-l">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Right Column</p></div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+
+{% endblock %}

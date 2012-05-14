@@ -43,23 +43,23 @@
 //     $n: $n - 1;
 // }
 
-@function formfield-contained($n) {
-    @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 2;
-}
-$n: $blueprint-grid-columns;
-@while $n > 0 {
-    .span-#{$n} input[type=text].grp-form-field-contained, 
-    .span-#{$n} input[type=password].grp-form-field-contained, 
-    .span-#{$n} select.grp-form-field-contained, 
-    .span-#{$n} textarea.grp-form-field-contained, 
-    input[type=text].span-#{$n}.grp-form-field-contained, 
-    input[type=password].span-#{$n}.grp-form-field-contained, 
-    select.span-#{$n}.grp-form-field-contained, 
-    textarea.span-#{$n}.grp-form-field-contained {
-        width: formfield-contained($n);
-    }
-    $n: $n - 1;
-}
+// @function formfield-contained($n) {
+//     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 2;
+// }
+// $n: $blueprint-grid-columns;
+// @while $n > 0 {
+//     .span-#{$n} input[type=text].grp-form-field-contained, 
+//     .span-#{$n} input[type=password].grp-form-field-contained, 
+//     .span-#{$n} select.grp-form-field-contained, 
+//     .span-#{$n} textarea.grp-form-field-contained, 
+//     input[type=text].span-#{$n}.grp-form-field-contained, 
+//     input[type=password].span-#{$n}.grp-form-field-contained, 
+//     select.span-#{$n}.grp-form-field-contained, 
+//     textarea.span-#{$n}.grp-form-field-contained {
+//         width: formfield-contained($n);
+//     }
+//     $n: $n - 1;
+// }
 
 
 
@@ -124,6 +124,7 @@ select {
     .grp-errors & {
         border-color: #bf3030;
     }
+    // width: 100%;
 }
 // fix vertical text-centering in webkit browsers
 // @include grp-helper-webkit-input–text-verticalcenter;
@@ -570,16 +571,6 @@ ul.errorlist {
 
 /*  Form Elements: Basic Widths & Heights
 ------------------------------------------------------------------------------------------------------ */
-
-.grp-span-fluid {
-    input[type=text], 
-    input[type=password], 
-    textarea, 
-    select {
-        // width: 100%;
-        // width: auto;
-    }
-}
 
 input[type=text], 
 input[type=password], 

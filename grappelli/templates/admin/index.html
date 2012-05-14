@@ -26,8 +26,8 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <div class="grp-layout-container">
-        <div class="grp-column span-12">
+    <div class="grp-layout-container g-all-full">
+        <div class="g-d-12 g-d-f">
             {% for app in app_list %}
                 <div class="grp-module" id="app_{{ app.name|lower }}">
                     <h2><a href="{{ app.app_url }}" class="grp-section">{% trans app.name %}</a></h2>
@@ -47,7 +47,7 @@
                 <p>{% trans "You don´t have permission to edit anything." %}</p>
             {% endfor %}
         </div>
-        <div class="grp-column span-6 last">
+        <div class="g-d-6 g-d-l">
             <div class="grp-module" id="grp-recent-actions-module">
                 <h2>{% trans 'Recent Actions' %}</h2>
                 <div class="grp-module">

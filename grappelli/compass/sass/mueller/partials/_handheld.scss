@@ -1,0 +1,16 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _handheld.scss
+//
+// <479px: fluid grid
+// overwrite styles from _default.scss
+//
+// **************************************************
+
+@import "partials/base";
+
+@media screen and (max-width: 479px) {
+}

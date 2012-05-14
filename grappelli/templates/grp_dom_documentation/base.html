@@ -10,7 +10,11 @@
     {% block stylesheets %}
         <link href="{% static "grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.18.custom.css" %}" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8" />
         <link href="{% static "grappelli/stylesheets/screen.css" %}" rel="stylesheet" type="text/css" />
+        <link href="{% static "grappelli/stylesheets/mueller/grid/output.css" %}" rel="stylesheet" type="text/css" />
         {% if LANGUAGE_BIDI %}<link href="{% block stylesheet_rtl %}{% static "grappelli/css/rtl.css" %}{% endblock %}" rel="stylesheet" type="text/css" />{% endif %}
+        <!--[if IE 7]>
+            <link href="{% static "grappelli/stylesheets/ie7.css" %}" media="screen, projection" rel="stylesheet" type="text/css" />
+        <![endif]-->
     {% endblock %}
     <!-- EXTRASTYLES -->
     {% block extrastyle %}{% endblock %}

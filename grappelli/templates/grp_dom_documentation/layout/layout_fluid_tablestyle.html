@@ -1,0 +1,95 @@
+{% extends "grp_dom_documentation/base.html" %}
+
+<!-- LOADING -->
+{% load i18n admin_modify adminmedia grp_tags %}
+
+<!-- CONTENT-TITLE -->
+{% block content_title %}
+    <h1>Layouts <span>Grid, Fluid</span></h1>
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <section class="rte grp-content-container">
+        <h2>Two Columns <span>Left Grid, Right Fluid</span></h2>
+        <div class="grp-layout-container-fluid">
+	        <div class="column span-6">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Left Column</p></div>
+	            </div>
+	        </div>
+	        <div class="column span-fluid last">
+	            <div class="grp-module">
+	                <div class="grp-row">
+	                	<p>Right Column</p>
+	                	<p>alksjd alskdj alsdk jalsdkja ldaksjd alskdj alsdkj alsdkj alsdk jasdlkaj dlakjd ladksj alsdkj alsdkj aldk jalsdkj alsdkjalsdjaldkjadsl akjsdlakjsd alksdj alsdkj alsd kjalsdjkalsdjkalsdj aldjaldj alsdjk alsdj alsd jalsdj lakdjaldkj aljd lasdjk lakjsd lasdj aldj kaldskj aldj ladj aldj aldj ald jk</p>
+	            	</div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+    <section class="rte grp-content-container">
+        <h2>Two Columns <span>Left Fluid, Right Grid</span></h2>
+        <div class="grp-layout-container-fluid">
+	        <div class="column span-fluid">
+	            <div class="grp-module">
+	                <div class="grp-row">
+	                	<p>Left Column</p>
+		                <p>alksjd alskdj alsdk jalsdkja ldaksjd alskdj alsdkj alsdkj alsdk jasdlkaj dlakjd ladksj alsdkj alsdkj aldk jalsdkj alsdkjalsdjaldkjadsl akjsdlakjsd alksdj alsdkj alsd kjalsdjkalsdjkalsdj aldjaldj alsdjk alsdj alsd jalsdj lakdjaldkj aljd lasdjk lakjsd lasdj aldj kaldskj aldj ladj aldj aldj ald jk</p>
+		            </div>
+	            </div>
+	        </div>
+	        <div class="column span-6 last">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Right Column</p></div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+    <section class="rte grp-content-container">
+        <h2>Three Columns <span>Left Grid, Middle Fluid, Right Grid</span></h2>
+        <div class="grp-layout-container-fluid">
+        	<div class="column span-6">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Left Column</p></div>
+	            </div>
+	        </div>
+	        <div class="column span-fluid">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Middle Column</p><p>alksjd alskdj alsdk jalsdkja ldaksjd alskdj alsdkj alsdkj alsdk jasdlkaj dlakjd ladksj alsdkj alsdkj aldk jalsdkj alsdkjalsdjaldkjadsl akjsdlakjsd alksdj alsdkj alsd kjalsdjkalsdjkalsdj aldjaldj alsdjk alsdj alsd jalsdj lakdjaldkj aljd lasdjk lakjsd lasdj aldj kaldskj aldj ladj aldj aldj ald jk</p></div>
+	            </div>
+	        </div>
+	        <div class="column span-6 last">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Right Column</p></div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+    <section class="rte grp-content-container">
+        <h2>Three Columns <span>Left Grid, Middle 1 Fluid, Middle 2 Fluid, Right Grid</span></h2>
+        <div class="grp-layout-container-fluid">
+        	<div class="column span-6">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Left Column</p></div>
+	            </div>
+	        </div>
+	        <div class="column span-fluid">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Middle Column</p><p>alksjd alskdj alsdk jalsdkja ldaksjd alskdj alsdkj alsdkj alsdk jasdlkaj dlakjd ladksj alsdkj alsdkj aldk jalsdkj alsdkjalsdjaldkjadsl akjsdlakjsd alksdj alsdkj alsd kjalsdjkalsdjkalsdj aldjaldj alsdjk alsdj alsd jalsdj lakdjaldkj aljd lasdjk lakjsd lasdj aldj kaldskj aldj ladj aldj aldj ald jk</p></div>
+	            </div>
+	        </div>
+	        <div class="column span-fluid">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Middle Column</p></div>
+	            </div>
+	        </div>
+	        <div class="column span-6 last">
+	            <div class="grp-module">
+	                <div class="grp-row"><p>Right Column</p></div>
+	            </div>
+	        </div>
+	    </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _media-handheld-landscape.scss
+//
+// <767px
+//
+// **************************************************
+
+@import "compass/layout/grid-background";
+@import "compass/typography/vertical_rhythm";
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+
+    // baseline
+    $relative-font-sizing: false;
+    $base-font-size: 16px;
+    $base-line-height: 24px;
+    @include establish-baseline(12px);
+
+    $gc: 6; // grid columns
+    $gw: 55px; // grid width
+    $gm: 20px; // grid margin
+  
+    .g-hl-c {
+        @extend .g-base-c;
+        width: $gw*$gc+$gm*($gc - 1); // 460px
+        // uncomment for a background-grid
+        // @include grid-background($gc, $gw, $gm, 18px, 0, #ccc, #ddd, #999, false);
+    }
+    
+    @include grids(hl,
+        0 1 2 3 4 6, // only add the columns you really need
+        $gc,
+        $gw,
+        $gm,
+        0 1 2 4); // only add the pad-units you really need to push/pull/append/prepend
+
+    // visibility
+    .l-show, .d-show, .h-show, .hp-show, .t-show, .tp-show, .tl-show {
+        display: none !important;
+    }
+    .hl-hide {
+        display: none !important;
+    }
+    .hl-show {
+        display: block !important;
+    }
+    #{elements-of-type(inline)} {
+        &.h-show {
+            display: inline !important;
+        }
+    }
+
+}

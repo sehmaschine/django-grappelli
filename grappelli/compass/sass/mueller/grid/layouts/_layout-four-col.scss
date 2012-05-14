@@ -1,0 +1,55 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _layout-four-col.scss
+//
+// Example of a 4 column layout
+//
+// **************************************************
+
+.l-4c {
+    @extend .g-d-24;
+    @extend .g-tp-12;
+    @extend .g-hl-6;
+    @extend .g-h-6;
+    // Column 1
+    .c-1 {
+        @extend .g-d-6;
+        @extend .g-d-f;
+        @extend .g-tp-6;
+        @extend .g-tp-f;
+        @extend .g-hl-3;
+        @extend .g-hl-f;
+        @extend .g-h-6;
+    }
+    // Column 2
+    .c-2 {
+        @extend .g-d-6;
+        @extend .g-tp-6;
+        @extend .g-tp-l;
+        @extend .g-hl-3;
+        @extend .g-hl-l;
+        @extend .g-h-6;
+    }
+    // Column 3
+    .c-3 {
+        @extend .g-d-6;
+        @extend .g-tp-6;
+        @extend .g-tp-f;
+        @extend .g-hl-3;
+        @extend .g-hl-f;
+        @extend .g-h-6;
+    }
+    // Column 4
+    .c-4 {
+        @extend .g-d-6;
+        @extend .g-d-l;
+        @extend .g-tp-6;
+        @extend .g-tp-l;
+        @extend .g-hl-3;
+        @extend .g-hl-l;
+        @extend .g-h-6;
+    }
+}

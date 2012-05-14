@@ -7,12 +7,12 @@
                 {% for field in line %}
                     <div{% if not line.fields|length_is:"1" %} class="grp-cell {{ field.field.name }}{% if field.field.errors %} grp-error{% endif %}"{% endif %}>
                         {% if field.is_checkbox %}
-                            <div class="column span-4">&nbsp;</div>
-                            <div class="column span-flexible">
+                            <div class="g-d-4">&nbsp;</div>
+                            <div class="g-d-fluid">
                                 {{ field.field }}{{ field.label_tag }}
                         {% else %}
-                            <div class="column span-4">{{ field.label_tag }}</div>
-                            <div class="column span-flexible">
+                            <div class="g-d-4">{{ field.label_tag }}</div>
+                            <div class="g-d-fluid">
                                 {% if field.is_readonly %}
                                     <p class="grp-readonly">{{ field.contents }}</p>
                                 {% else %}

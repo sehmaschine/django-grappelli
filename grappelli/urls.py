@@ -16,6 +16,7 @@ urlpatterns = patterns('',
    (r'^grp-dom-documentation/components', 'django.views.generic.simple.direct_to_template', {'template': 'grp_dom_documentation/components/components.html'}),
    (r'^grp-dom-documentation/layout-grid', 'django.views.generic.simple.direct_to_template', {'template': 'grp_dom_documentation/layout/layout_grid.html'}),
    (r'^grp-dom-documentation/layout-fluid', 'django.views.generic.simple.direct_to_template', {'template': 'grp_dom_documentation/layout/layout_fluid.html'}),
+   (r'^grp-dom-documentation/layout-mueller', 'django.views.generic.simple.direct_to_template', {'template': 'grp_dom_documentation/layout/layout_mueller.html'}),
    (r'^grp-dom-documentation/layouts', 'django.views.generic.simple.direct_to_template', {'template': 'grp_dom_documentation/layout/layouts.html'}),
    (r'^grp-dom-documentation', 'django.views.generic.simple.direct_to_template', {'template': 'grp_dom_documentation/index.html'}),
     

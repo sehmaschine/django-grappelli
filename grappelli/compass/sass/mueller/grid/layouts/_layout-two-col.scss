@@ -1,0 +1,77 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _layout-two-col.scss
+//
+// Example of a 2 column layout
+//
+// **************************************************
+
+.l-2c {
+    @extend .g-d-24;
+    @extend .g-tp-12;
+    @extend .g-hl-6;
+    @extend .g-h-6;
+    // Column 1
+    .c-1 {
+        @extend .g-d-16;
+        @extend .g-d-f;
+        @extend .g-tp-8;
+        @extend .g-tp-f;
+        @extend .g-hl-4;
+        @extend .g-hl-f;
+        @extend .g-h-4;
+        @extend .g-h-f;
+    }
+    // Column 2
+    .c-2 {
+        @extend .g-d-8;
+        @extend .g-d-l;
+        @extend .g-tp-4;
+        @extend .g-tp-l;
+        @extend .g-hl-2;
+        @extend .g-hl-l;
+        @extend .g-h-2;
+        @extend .g-h-l;
+    }
+}
+
+// switched columns
+.l-2cr {
+    @extend .g-d-24;
+    @extend .g-tp-12;
+    @extend .g-hl-6;
+    @extend .g-h-6;
+    // Column 1
+    .c-1 {
+        @extend .g-d-16;
+        @extend .g-d-f;
+        @extend .g-d-push8;
+        @extend .g-tp-8;
+        @extend .g-tp-f;
+        @extend .g-tp-push4;
+        @extend .g-hl-4;
+        @extend .g-hl-f;
+        @extend .g-hl-push2;
+        @extend .g-h-4;
+        @extend .g-h-f;
+        @extend .g-h-push2;
+    }
+    // Column 1
+    .c-2 {
+        @extend .g-d-8;
+        @extend .g-d-l;
+        @extend .g-d-pull16;
+        @extend .g-tp-4;
+        @extend .g-tp-l;
+        @extend .g-tp-pull8;
+        @extend .g-hl-2;
+        @extend .g-hl-l;
+        @extend .g-hl-pull4;
+        @extend .g-h-2;
+        @extend .g-h-l;
+        @extend .g-h-pull4;
+    }
+}

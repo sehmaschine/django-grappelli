@@ -1,0 +1,18 @@
+
+
+
+.grp-layout-container-fluid {
+    .column {
+        float: left;
+        // overflow: visible;
+        &.span-fluid {
+            float: left;
+            // width: 200px;
+            // width: 200px;
+            // display: inline;
+            white-space: normal;
+            overflow: hidden;
+        }
+
+    }
+}

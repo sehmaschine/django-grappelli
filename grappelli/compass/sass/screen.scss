@@ -6,7 +6,7 @@
 @import "compass/reset";
 @import "compass";
 
-@import "blueprint";
+// @import "blueprint";
 
 
 
@@ -15,15 +15,15 @@
 /*  BLUEPRINT GRID
 ------------------------------------------------------------------------------------------------------ */
 
-$blueprint-grid-columns: 24;
-$blueprint-container-size: 940px;
-$blueprint-grid-margin: 20px;
+// $blueprint-grid-columns: 24;
+// $blueprint-container-size: 940px;
+// $blueprint-grid-margin: 20px;
 
-// Use this to calculate the width based on the total width.
-// Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
-$blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
+// // Use this to calculate the width based on the total width.
+// // Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
+// $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
 
-@include blueprint-grid;
+// @include blueprint-grid;
 
 
 // $blueprint-grid-columns-module: 24;
@@ -485,141 +485,110 @@ body.grp-popup {
 ------------------------------------------------------------------------------------------------------ */
 
 
-.grp-layout-container {
-	position: relative;
-	float: left;
-	clear: both;
-	width: 100%;
-	@include box-sizing(border-box);
-	.grp-column-left, .grp-column-right {
-		@include box-sizing(border-box);
-	}
-}
-@function grp-column-width($n) {
-    @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
-}
-$n: $blueprint-grid-columns;
-@while $n > 0 {
-	.grp-layout-container {
-		// Basic column-left and -right
-		.grp-column-left {
-        	position: relative;
-			float: left;
-			clear: left;
-        }
-        .grp-column-right {
-	        position: relative;
-			float: right;
-			clear: right;
-        	margin-right: 0;
-		}
-		// Basic settings for a fluid left column
-		&.grp-column-left-fluid {
-			.grp-column-left {
-	        	width: 100%;
-			}
-			.grp-column-right {
-		        position: relative;
-				float: right;
-				clear: right;
-	        	margin-right: 0;
-			}
-		}
-		// Specific settings for a fluid left column
-	    &.grp-column-right-span-#{$n} {
-	    	margin-right: - grp-column-width($n);
-	        .grp-column-left {
-	        	margin-right: - grp-column-width($n) + 20;
-	        	padding-right: grp-column-width($n) + 20;
-			}
-	        .grp-column-right {
-		        width: grp-column-width($n);
-				margin-left: - grp-column-width($n) + 20;
-			}
-	    }
-	    // Basic settings for a fluid right column
-		&.grp-column-right-fluid {
-			.grp-column-right {
-		        display: block;
-				float: left;
-				width: 100%;
-		    }
-		}
-		// Specific settings for a fluid right column
-	    &.grp-column-left-span-#{$n} {
-	    	.grp-column-left {
-	        	margin-right: - grp-column-width($n);
-				width: grp-column-width($n);
-			}
-	        .grp-column-right {
-		        padding-left: grp-column-width($n) + 20;
-		    }
-	    }
-	    $n: $n - 1;
-	}
-}
-
-
-
-
-// @mixin grp-layout($left-column, $right-column) {
-// 	@if $left-column == fluid and $right-column == fluid {
-// 		body {
-// 			background: #e4f;
+// .grp-layout-container {
+// 	position: relative;
+// 	float: left;
+// 	clear: both;
+// 	width: 100%;
+// 	@include box-sizing(border-box);
+// 	.grp-column-left, .grp-column-right {
+// 		@include box-sizing(border-box);
+// 	}
+// }
+// @function grp-column-width($n) {
+//     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
+// }
+// $n: $blueprint-grid-columns;
+// @while $n > 0 {
+// 	.grp-layout-container {
+// 		// Basic column-left and -right
+// 		.grp-column-left {
+//         	position: relative;
+// 			float: left;
+// 			clear: left;
+//         }
+//         .grp-column-right {
+// 	        position: relative;
+// 			float: right;
+// 			clear: right;
+//         	margin-right: 0;
 // 		}
-// 	} @else if $left-column == fluid {
-// 		body {
-// 			background: #4ef;
+// 		// Basic settings for a fluid left column
+// 		&.grp-column-left-fluid {
+// 			.grp-column-left {
+// 	        	width: 100%;
+// 			}
+// 			.grp-column-right {
+// 		        position: relative;
+// 				float: right;
+// 				clear: right;
+// 	        	margin-right: 0;
+// 			}
 // 		}
-// 	} @else if $right-column == fluid {
-// 		body {
-// 			background: #fe4;
+// 		// Specific settings for a fluid left column
+// 	    &.grp-column-right-span-#{$n} {
+// 	    	margin-right: - grp-column-width($n);
+// 	        .grp-column-left {
+// 	        	margin-right: - grp-column-width($n) + 20;
+// 	        	padding-right: grp-column-width($n) + 20;
+// 			}
+// 	        .grp-column-right {
+// 		        width: grp-column-width($n);
+// 				margin-left: - grp-column-width($n) + 20;
+// 			}
+// 	    }
+// 	    // Basic settings for a fluid right column
+// 		&.grp-column-right-fluid {
+// 			.grp-column-right {
+// 		        display: block;
+// 				float: left;
+// 				width: 100%;
+// 		    }
+// 		}
+// 		// Specific settings for a fluid right column
+// 	    &.grp-column-left-span-#{$n} {
+// 	    	.grp-column-left {
+// 	        	margin-right: - grp-column-width($n);
+// 				width: grp-column-width($n);
+// 			}
+// 	        .grp-column-right {
+// 		        padding-left: grp-column-width($n) + 20;
+// 		    }
+// 	    }
+// 	    $n: $n - 1;
+// 	}
+// }
+
+
+
+
+
+
+// .grp-layout-container-fluid {
+// 	position: relative;
+// 	display: table;
+// 	width: 100%;
+// 	table-layout: fixed;
+// 	.column {
+// 		position: relative;
+// 		display: table-cell;
+// 		float: none;
+// 		margin-right: 0;
+// 		padding-right: 20px;
+// 		vertical-align: top;
+// 		&.span-fluid {
+// 			float: none;
+// 		}
+// 		&.last {
+// 			padding-right: 0;
 // 		}
 // 	}
 // }
-// @include grp-layout(220px, fluid);
 
 
 
-// body{
-//   margin:0;
-//   padding:200px 0 200px 0;
-//  }
-// #test-header {
-// 	position:absolute;
-// 	z-index: 1000;
-//   top:0;
-//   left:0;
-//   width:100%;
-//   height:200px;
-//   background: #4ef;
-// }
-// #test-content {
-// 	z-index: 100;
-// 	background: #e4f;
-// }
-// #test-footer {
-// 	position:absolute;
-// 	z-index: 1000;
-//   bottom:0;
-//   left:0;
-//   width:100%;
-//   height:200px;
-//   background: #000;
-// }
-// @media screen{
-//   body div#test-header{
-//    position:fixed;
-//   }
-//   body div#test-footer{
-//    position:fixed;
-//   }
-//  }
-//  * html body{
-//   overflow:hidden;
-//  } 
-//  * html div#test-content{
-//   height:100%;
-//   overflow:auto;
-//  }
+
+
+
+
 

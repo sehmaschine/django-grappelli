@@ -1,0 +1,16 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _tablet-portrait.scss
+//
+// >768px, <980px
+// overwrite styles from _default.scss
+//
+// **************************************************
+
+@import "partials/base";
+
+@media screen and (min-width: 768px) and (max-width: 980px) {
+}
