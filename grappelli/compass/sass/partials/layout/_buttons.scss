@@ -226,22 +226,26 @@ a.add-another {
     line-height: 16px;
     @include icons-sprite(add-another);
 }
-
+.grp-row {
+    a.add-another {
+        top: -7px;
+    }
+    ul.radiolist + a.add-another, 
+    ul.checkboxlist + a.add-another {
+        top: 3px;
+    }
+}
 p.grp-help + * + a.add-another {
     float: right;
     top: -20px;
     margin-bottom: -20px;
 }
-
 .change-list table tbody a.add-another {
-    position: relative;
     top: -7px;
 }
-
 .grp-td a.add-another {
     float: right;
 }
-
 .radiolist.inline + a.add-another, 
 .checkboxlist.inline + a.add-another {
     float: left;
