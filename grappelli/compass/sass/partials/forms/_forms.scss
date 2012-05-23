@@ -193,7 +193,8 @@ fieldset.monospace textarea {
 
 /*  Checkboxes, Radiobuttons ................................................... */
 
-.grp-row input[type=checkbox] {
+.grp-row input[type=checkbox], 
+.grp-row input[type=radio] {
     position: relative;
     top: 1px;
     & + label {
@@ -239,6 +240,9 @@ input[type=text].grp-search-field {
         padding: 0 !important;
         width: auto !important;
         white-space: nowrap;
+        input {
+
+        }
     }
     li + li {
         margin-top: 2px;
@@ -272,10 +276,7 @@ ul.checkboxlist {
 ul.radiolist.inline, ul.checkboxlist.inline {
     @include radio-checkbox-list-inline;
 }
-th ul.radiolist.inline, th ul.checkboxlist.inline, 
-td ul.radiolist.inline, td ul.checkboxlist.inline {
-    margin-top: 0;
-}
+
 .grp-module.grp-tbody ul.radiolist.inline, .grp-module.grp-tbody ul.checkboxlist.inline {
     white-space: normal;
     li {

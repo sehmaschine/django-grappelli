@@ -116,6 +116,13 @@ table {
         > textarea {
             margin: -10px 0 -5px !important;
         }
+        ul.radiolist, 
+        ul.checkboxlist {
+            margin: -3px 0 -7px;
+            &.inline {
+                margin: -3px 0 -7px;
+            }
+        }
         .grp-autocomplete-wrapper-m2m, 
         .grp-autocomplete-wrapper-fk {
             margin: -5px 0 !important;
@@ -123,6 +130,13 @@ table {
         a.fb_show, 
         a.related-lookup {
             margin: -6px 0 -11px -25px;
+        }
+        a.add-another {
+            top: -13px;
+        }
+        ul.radiolist.inline + a.add-another, 
+        ul.checkboxlist.inline + a.add-another {
+            top: -5px;
         }
         > ul.errorlist {
             margin-bottom: 14px;
