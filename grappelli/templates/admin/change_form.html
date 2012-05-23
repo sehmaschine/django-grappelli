@@ -72,12 +72,12 @@
                     });
                 });
                 $("a#grp-open-all").bind("click", function(){
-                    $("div.grp-form-container .grp-collapse-handler").each(function() {
+                    $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
                     });   
                 });
                 $("a#grp-close-all").bind("click", function(){
-                    $("div.grp-form-container .grp-collapse-handler").each(function() {
+                    $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-open").addClass("grp-closed");
                     });
                 });
