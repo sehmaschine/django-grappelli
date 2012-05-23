@@ -244,10 +244,8 @@ header#grp-header {
 						padding: 10px;
 					}
 				}
-				
 			}
 		}
-		
 	}
 	#grp-admin-title {
 		position: relative;
@@ -272,11 +270,9 @@ header#grp-header {
 	clear: both;
 	@include clearfix;
 	top: 80px;
-	padding: 0 20px 200px;
+	padding: 0 20px 120px;
 	width: 100%;
 	@include box-sizing(border-box);
-	// overflow: visible;
-	// overflow: auto;
 }
 
 
