@@ -123,13 +123,16 @@ table {
                 margin: -3px 0 -7px;
             }
         }
-        .grp-autocomplete-wrapper-m2m, 
-        .grp-autocomplete-wrapper-fk {
-            margin: -5px 0 !important;
-        }
         a.fb_show, 
         a.related-lookup {
             margin: -6px 0 -11px -25px;
+        }
+        .grp-autocomplete-wrapper-m2m, 
+        .grp-autocomplete-wrapper-fk {
+            margin: -5px 0 !important;
+            a.related-lookup {
+                margin-top: 0;
+            }
         }
         a.add-another {
             top: -13px;

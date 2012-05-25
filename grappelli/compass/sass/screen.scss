@@ -287,7 +287,6 @@ header#grp-header {
 	clear: both;
 	width: 100%;
 	font-weight: bold;
-	// @include box-shadow(0 5px 5px #ccc);
 	@include box-sizing(border-box);
 	border-bottom: 1px solid $grp-context-navigation-border-color;
 	background: $grp-context-navigation-background-color;
