@@ -62,15 +62,17 @@ $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-co
 
 /*  Groups ............................................................ */
 
+$grp-group-border-color: #ccc;
 $grp-group-background-color: #fff !default;
-$grp-group-border: 2px solid #ccc !default;
+$grp-group-border: 2px solid $grp-group-border-color !default;
 $grp-group-border-closed: 2px solid #ddd !default;
 
 
 /*  Modules ............................................................ */
 
+$grp-module-border-color: #ccc;
 $grp-module-background-color: #eee !default;
-$grp-module-border: 1px solid #ccc !default;
+$grp-module-border: 1px solid $grp-module-border-color !default;
 
 
 /*  Rows ............................................................ */
@@ -96,7 +98,13 @@ $grp-predelete-background-color: #f2e6e6 !default;
 	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
 }
 .grp-gradient-module-h3 {
-	@include grp-gradient-module-h2;
+	@include grp-gradient-module-h3;
+}
+@mixin grp-gradient-module-h4 {
+	@include background-image(linear-gradient(lighten(#e5e5e5, 2), lighten(#dbdbdb, 2)));
+}
+.grp-gradient-module-h4 {
+	@include grp-gradient-module-h4;
 }
 
 

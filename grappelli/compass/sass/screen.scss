@@ -323,7 +323,8 @@ header#grp-header {
 	#grp-toc-content {
 		display: none;
 	}
-	ul.grp-page-tools {
+	ul {
+		@include horizontal-list(5px, left);
 		@include grp-padding(0 20px);
 		overflow: visible;
 		li {
@@ -331,8 +332,13 @@ header#grp-header {
 			padding: 1px 0 0;
 			a {
 				display: block;
-				width: 18px;
-				height: 24px;
+				padding: 4px 5px 4px 0;
+				&.grp-tool {
+					padding: 0;
+					width: 18px;
+					height: 24px;
+				}
+				
 				&#grp-open-all {
 					@include icons-sprite(tools-open-handler);
 				}

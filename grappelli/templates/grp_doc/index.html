@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block bodyclass %}grp-doc{% endblock %}
+{% block content-class %}{% endblock %}
+{% block title %}Grappelli Documentation{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="{{ root_path }}">{% trans "Home" %}</a></li>
+        <li>Grappelli Documentation</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1>Grappelli Documentation</h1>
+    <div class="g-d-c">
+        <div class="grp-module">
+            <h2><a href="tags/">Tags</a></h2>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Modules</strong></span> <a href="/grp-doc/modules/">Modules, rows &amp; cells</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Groups</strong></span> <a href="/grp-doc/groups/">Stacking modules in groups</a></p></div>
+        </div>
+        <div class="grp-module">
+            <h2>Components</h2>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Context Navigation</strong></span> <a href="/grp-doc/context-navigation/">Breadcrumbs &amp; Page-Tools</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Groups</strong></span> <a href="/grp-doc/groups/">Stacking modules in groups</a></p></div>
+        </div>
+    </div>
+{% endblock %}
+

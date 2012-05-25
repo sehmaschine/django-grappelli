@@ -18,7 +18,7 @@
 	border: $grp-group-border;
 	@include grp-border-radius($grp-border-radius + 2px);
 	background: $grp-group-background-color; 
-	@include clearfix;
+	// @include clearfix;
 	&.grp-closed {
 		border: $grp-group-border-closed;
 		&:hover {
@@ -61,6 +61,20 @@
 	@include grp-module-h3;
 }
 
+@mixin grp-module-h4 {
+	@include grp-padding($grp-padding-size-s $grp-padding-size);
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	    @include grp-padding(6px $grp-padding-size 4px);
+	}
+	text-shadow: 0 1px 0 #f5f5f5;
+	border-top: 1px solid #f5f5f5;
+	border-bottom: 1px solid #ccc;
+	@include grp-gradient-module-h4;
+}
+.grp-module h4 {
+	@include grp-module-h4;
+}
+
 .grp-group {
 	> h2 {
 		@include grp-module-h2;
@@ -74,7 +88,7 @@
 		margin-bottom: 0;
 	}
 	.grp-module > h3 {
-		border-top: 0;
+		border-top: 0 !important;
 		@include border-top-radius($grp-border-radius);
 		&:only-child, 
 		&:last-child {
@@ -98,19 +112,26 @@
 	background: $grp-module-background-color;
 	@include grp-border-radius($grp-border-radius);
 	@include box-sizing(border-box);
-	@include clearfix;
-	overflow: visible;
+	// @include clearfix;
+	// overflow: visible;
 	.grp-module {
 		margin: 0;
 		border: 0;
+		+ .grp-module {
+			border-top: 1px solid lighten($grp-module-border-color, 5);
+			@include border-top-radius(0);
+		}
 	}
 }
 .grp-module {
 	@include grp-module;
 }
 .grp-group {
-	.grp-module {
+	> .grp-module {
 		margin: 2px 0 0;
+		&:first-child {
+			margin-top: 0;
+		}
 	}
 	h2.grp-collapse-handler + .grp-module {
 		margin-top: 0;
@@ -151,11 +172,11 @@
 }
 @mixin grp-module-h3-collapse-handler {
 	h3.grp-collapse-handler {
-		border-top: 0;
 		text-shadow: 0 1px 0 #fff;
 	}
 	&.grp-open > h3.grp-collapse-handler {
-		border-bottom: 1px solid #ccc;
+		border-top: 1px solid lighten(#cee9f2, 5);
+		border-bottom: 1px solid #d9d9d9;
 		@include border-top-radius($grp-border-radius - 1px);
 		@include grp-gradient-module-h3-collapse-handler-hover;
 	}
@@ -206,10 +227,10 @@
 	@include grp-padding($grp-padding-size-s $grp-padding-size);
 	width: 100%;
 	@include box-sizing(border-box);
-	@include clearfix;
+	// @include clearfix;
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #ddd;
-	overflow: visible;
+	// overflow: visible;
 	&:first-child {
 		border-top: 0;
 		@include border-top-radius($grp-border-radius - 1px);
@@ -221,28 +242,46 @@
 		border-bottom: 0;
 		@include border-bottom-radius($grp-border-radius - 1px);
 	}
-	.grp-cell {
-		position: relative;
-		float: left;
-		margin-top: -8px;
-		margin-bottom: -1000px;
-		padding-top: 8px;
-		padding-bottom: 1000px;
-		height: 100%;
-		white-space: nowrap;
-		border-right: 1px solid #ddd;
-		overflow: hidden;
-		& + .grp-cell {
-			padding-left: 20px;
-			border-left: 1px solid #fff;
-		}
-		&:last-of-type {
-			border-right: 0 !important;
+	&.grp-cells {
+		display: table-row;
+		padding-top: 0;
+		padding-bottom: 0;
+		.grp-cell {
+			display: table-cell;
+			position: relative;
+			// float: left;
+			// margin-top: -7px;
+			// margin-bottom: -1000px;
+			// margin-bottom: -7px;
+			padding-top: 7px;
+			// padding-bottom: 1000px;
+			padding-bottom: 7px;
+			padding-right: 20px;
+			height: 100%;
+			white-space: nowrap;
+			border-right: 1px solid #ddd;
+			overflow: hidden;
+			& + .grp-cell {
+				padding-left: 20px;
+				border-left: 1px solid #fff;
+			}
+			&:last-of-type {
+				padding-right: 0;
+				border-right: 0 !important;
+			}
+			.g-d-fluid {
+				width: auto !important;
+			}
 		}
 	}
 }
-.grp-row:not(tr) {
-	@include grp-row;
+.grp-module {
+	.grp-row:not(tr) {
+		@include grp-row;
+	}
+	.grp-row + .grp-module .grp-row:first-child {
+		border-top: 1px solid #fff;
+	}
 }
 fieldset .grp-row {
 	overflow: hidden;
@@ -346,7 +385,7 @@ fieldset .grp-row {
 .grp-stacked {
 	.grp-module { // H2 + Module
 		.grp-module { // H3 + Module
-			@include border-radius(0);
+			@include border-radius(0 0 2px 2px);
 			border-top: 1px solid #fff;
 		}
 	}

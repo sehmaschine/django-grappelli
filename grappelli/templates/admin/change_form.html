@@ -94,7 +94,7 @@
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
     {% if not is_popup %}
-        <ul class="grp-horizontal-list">
+        <ul>
             <li><a href="../../../">{% trans "Home" %}</a></li>
             <li><a href="../../">{% trans app_label|capfirst|escape %}</a></li>
             <li>{% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
@@ -106,9 +106,9 @@
 <!-- PAGE-TOOLS -->
 {% block page-tools %}
     {% if not is_popup %}
-        <ul class="grp-horizontal-list grp-page-tools">
-            <li><a href="javascript://" id="grp-open-all">&nbsp;</a></li>
-            <li><a href="javascript://" id="grp-close-all">&nbsp;</a></li>
+        <ul>
+            <li><a href="javascript://" class="grp-tool" id="grp-open-all">&nbsp;</a></li>
+            <li><a href="javascript://" class="grp-tool" id="grp-close-all">&nbsp;</a></li>
         </ul>
     {% endif %}
 {% endblock %}

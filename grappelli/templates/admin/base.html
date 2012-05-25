@@ -20,7 +20,7 @@
     <!-- JAVASCRIPTS -->
     {% block javascripts %}
         <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "grappelli/" %}{% endfilter %}";</script>
-        <script type="text/javascript">
+        <script type="text/javascript" charset="utf-8">
             // GLOBALS
             var grappelli = {},
                 ADMIN_URL = "{% url 'admin:index' %}",
