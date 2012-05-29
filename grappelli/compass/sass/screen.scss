@@ -427,7 +427,7 @@ header#grp-header {
 }
 .grp-submit-row {
 	@include grp-submit-row;
-	&.grp-footer {
+	&.grp-fixed-footer {
 		> ul {
 			margin-top: 0;
 			> li {
@@ -439,7 +439,7 @@ header#grp-header {
 	}
 }
 
-@mixin grp-footer {
+@mixin grp-fixed-footer {
 	position: fixed;
 	float: left;
 	bottom: 0;
@@ -453,9 +453,8 @@ header#grp-header {
 	@include grp-gradient-dark;
 	@include clearfix;
 }
-.grp-footer {
-	@include grp-footer;
-	
+.grp-fixed-footer {
+	@include grp-fixed-footer;
 }
 
 
