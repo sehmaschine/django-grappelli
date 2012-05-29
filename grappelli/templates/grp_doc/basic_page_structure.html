@@ -235,61 +235,11 @@
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
-		            <h1>Footer with submit buttons</h1>
-		            <p>Use the <span class="grp-doc-django">{% templatetag openblock %} block footer {% templatetag closeblock %}</span> to add possible footer content to your template.</p>
+		            <h1>Submit Row</h1>
+		            <p>For detailled instructions on how to construct submit-rows <a href="/admin/grp-doc/submit-rows/">click here</a>.</p>
 		        </div>
 		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
-<footer class="grp-module grp-submit-row">
-    <header style="display:none"><h1>Submit Options</h1></header>
-    <ul>
-        <li class="grp-float-left grp-cancel-link-container">
-            <a href="delete/" class="grp-button grp-cancel-link">Cancel</a>
-        </li>
-        <li class="grp-float-left grp-delete-link-container">
-            <a href="delete/" class="grp-button grp-delete-link">Delete</a>
-        </li>
-    	<li class="grp-submit-button-container">
-    	    <input type="submit" value="Save" class="grp-button grp-default" />
-    	</li>
-    	<li class="grp-submit-button-container">
-    	    <input type="submit" value="Save and continue editing" class="grp-button" />
-    	</li>
-    </ul>
-</footer>
-{% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
-	    <section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>Fixed footer with submit buttons</h1>
-		            <p>To fix the footer at the bottom of the browser window you have to add <span class="grp-doc-class">.grp-fixed-footer</span> to the <span class="grp-doc-class">.grp-module.grp-submit-row</span></p>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
-<footer class="grp-module grp-submit-row grp-fixed-footer">
-    <header style="display:none"><h1>Submit Options</h1></header>
-    <ul>
-        <li class="grp-float-left grp-cancel-link-container">
-            <a href="delete/" class="grp-button grp-cancel-link">Cancel</a>
-        </li>
-        <li class="grp-float-left grp-delete-link-container">
-            <a href="delete/" class="grp-button grp-delete-link">Delete</a>
-        </li>
-    	<li class="grp-submit-button-container">
-    	    <input type="submit" value="Save" class="grp-button grp-default" />
-    	</li>
-    	<li class="grp-submit-button-container">
-    	    <input type="submit" value="Save and continue editing" class="grp-button" />
-    	</li>
-    </ul>
-</footer>
-{% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
+		</section>
     </div>
 {% endblock %}
 
