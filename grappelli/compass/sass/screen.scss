@@ -410,9 +410,9 @@ header#grp-header {
 				margin-left: 0;
 				margin-right: 10px;
 			}
-			input[type=submit], 
-			a, 
-			button {
+			input.grp-button, 
+			a.grp-button, 
+			button.grp-button {
 				@include opacity(.75);
 				&.grp-default {
 					@include opacity(1);
@@ -422,7 +422,7 @@ header#grp-header {
 					@include opacity(1);
 				}
 			}
-			button {
+			button.grp-button {
 				width: auto;
 			}
 			.grp-button {
