@@ -48,15 +48,15 @@
                 {% endfor %}
             </div>
             <form action="" method="post">{% csrf_token %}
-                <div id="submit" class="grp-module grp-footer">
+                <div id="submit" class="grp-module grp-submit-row grp-fixed-footer">
                     {% for obj in queryset %}
                         <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
                     {% endfor %}
                     <input type="hidden" name="action" value="delete_selected" />
                     <input type="hidden" name="post" value="yes" />
-                    <ul class="grp-horizontal-list-right grp-submit-row">
-                        <li class="grp-submit-action-container grp-float-left"><a href="." class="grp-button grp-cancel-link">{% trans "Cancel" %}</a></li>
-                        <li class="grp-submit-button-container"><input type="submit" value="{% trans "Yes, I'm sure" %}" class="grp-default" /></li>
+                    <ul>
+                        <li class="grp-float-left"><a href="." class="grp-button grp-cancel-link">{% trans "Cancel" %}</a></li>
+                        <li><input type="submit" value="{% trans "Yes, I'm sure" %}" class="grp-default" /></li>
                     </ul>
                     <input type="hidden" name="post" value="yes" />
                 </div>

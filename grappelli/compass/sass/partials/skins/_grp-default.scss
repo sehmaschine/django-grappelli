@@ -240,7 +240,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		color: #fff;
 		border: 1px solid darken($grp-form-button-background-color-hover, 5);
 		@include background-image(linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover));
-		.grp-footer & {
+		.grp-fixed-footer & {
 			color: #333;
 			border: 1px solid darken($grp-footer-form-button-background-color-hover, 15);
 			@include background-image(linear-gradient(lighten($grp-footer-form-button-background-color-hover, 15), $grp-footer-form-button-background-color-hover));
@@ -260,7 +260,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		color: #fff;
 		border: 1px solid darken($grp-form-button-delete-background-color-hover, 5);
 		@include background-image(linear-gradient(lighten($grp-form-button-delete-background-color-hover, 10), $grp-form-button-delete-background-color-hover));
-		.grp-footer & {
+		.grp-fixed-footer & {
 			color: #333;
 			border: 1px solid darken($grp-footer-form-button-delete-background-color-hover, 15);
 			@include background-image(linear-gradient(lighten($grp-footer-form-button-delete-background-color-hover, 15), $grp-footer-form-button-delete-background-color-hover));
@@ -280,7 +280,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		color: #fff;
 		border: 1px solid darken($grp-form-button-cancel-background-color-hover, 5);
 		@include background-image(linear-gradient(lighten($grp-form-button-cancel-background-color-hover, 10), $grp-form-button-cancel-background-color-hover));
-		.grp-footer & {
+		.grp-fixed-footer & {
 			color: #333;
 			border: 1px solid darken($grp-footer-form-button-cancel-background-color-hover, 15);
 			@include background-image(linear-gradient(lighten($grp-footer-form-button-cancel-background-color-hover, 15), $grp-footer-form-button-cancel-background-color-hover));
@@ -300,7 +300,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		color: #fff;
 		border: 1px solid darken($grp-form-button-reset-background-color-hover, 5);
 		@include background-image(linear-gradient(lighten($grp-form-button-reset-background-color-hover, 10), $grp-form-button-reset-background-color-hover));
-		.grp-footer & {
+		.grp-fixed-footer & {
 			color: #333;
 			border: 1px solid darken($grp-footer-form-button-reset-background-color-hover, 15);
 			@include background-image(linear-gradient(lighten($grp-footer-form-button-reset-background-color-hover, 15), $grp-footer-form-button-reset-background-color-hover));

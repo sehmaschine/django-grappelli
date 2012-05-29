@@ -165,22 +165,32 @@ body.grp-doc {
 		position: relative;
 		top: -80px;
 	}
+	.grp-doc-code-source {
+		padding-top: 15px;
+		border-top: 1px dashed #c30;
+	}
+	
 	.grp-doc-description {
 		margin-bottom: 20px;
+		h1 {
+			margin-top: 30px;
+			padding-top: 40px;
+			border-top: 3px solid #c30;
+		}
 		h2 {
 			font-size: 24px;
-			line-height: 20px;
+			line-height: 24px;
 			margin: 40px 0 10px;
 		}
 		h3 {
 			font-size: 16px;
-			line-height: 20px;
+			line-height: 24px;
 			margin: 20px 0 10px;
 		}
 		p {
 			margin: 10px 0;
 			font-size: 14px;
-			line-height: 20px;
+			line-height: 24px;
 		}
 	}
 	.grp-doc-class, 
@@ -192,6 +202,7 @@ body.grp-doc {
 		padding: 0 5px;
 		font-size: 12px;
 		font-weight: bold;
+		line-height: 18px;
 		border: 1px solid #d9d9c3;
 		@include border-radius(2px);
 		background: #f2f2e6;

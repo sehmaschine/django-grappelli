@@ -47,10 +47,10 @@
                 <ul class="grp-nested-list">{{ deleted_objects|unordered_list }}</ul>
             </div>
             <form action="" method="post">{% csrf_token %}
-                <div class="grp-module grp-footer">
+                <div class="grp-module grp-submit-row grp-fixed-footer">
                     <ul class="grp-horizontal-list-right grp-submit-row">
-                        <li class="grp-submit-action-container grp-float-left"><a href="../" class="grp-button grp-cancel-link">{% trans "Cancel" %}</a></li>
-                        <li class="grp-submit-button-container"><input type="submit" value="{% trans "Yes, I'm sure" %}" class="grp-default" /></li>
+                        <li class="grp-float-left"><a href="../" class="grp-button grp-cancel-link">{% trans "Cancel" %}</a></li>
+                        <li><input type="submit" value="{% trans "Yes, I'm sure" %}" class="grp-default" /></li>
                     </ul>
                     <input type="hidden" name="post" value="yes" />
                 </div>

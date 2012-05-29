@@ -102,24 +102,24 @@
 /*  SUBMIT BUTTON & BUTTONS IN SUBMIT-ROW
 ------------------------------------------------------------------------------------------------------ */
 
+input[type="submit"] {
+    @include grp-button();
+    // @include grp-form-button;
+    @include grp-form-button-style;
+}
+a.grp-button {
+    @include grp-button();
+    &.grp-delete-link {
+        @include grp-form-button-delete-style;
+    }
+    &.grp-cancel-link {
+        @include grp-form-button-cancel-style;
+    }
+    &.grp-reset-link {
+        @include grp-form-button-reset-style;
+    }
+}
 .grp-submit-row {
-    input[type="submit"] {
-        @include grp-button();
-        // @include grp-form-button;
-        @include grp-form-button-style;
-    }
-    a.grp-button {
-        @include grp-button();
-        &.grp-delete-link {
-            @include grp-form-button-delete-style;
-        }
-        &.grp-cancel-link {
-            @include grp-form-button-cancel-style;
-        }
-        &.grp-reset-link {
-            @include grp-form-button-reset-style;
-        }
-    }
     button.grp-button {
         @include grp-button();
         // @include grp-form-button;
