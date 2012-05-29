@@ -69,6 +69,40 @@
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
+		            <h1>Rows split into cells</h1>
+		            <p>Rows might be split into two or more cells.</p>
+		            <p>To do so assign <span class="grp-doc-class">.grp-cells</span> to the <span class="grp-doc-class">.grp-row</span> you want to carry the cells.</p>
+		            <p>Each cell within that row is a <span class="grp-doc-class">.grp-cell</span> then.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+	    			<div class="grp-module">
+	    				<h2>Module</h2>
+					    <div class="grp-row grp-cells">
+					    	<div class="grp-cell"><p>Cell</p></div>
+					    	<div class="grp-cell"><p>Cell</p></div>
+					    	<div class="grp-cell"><p>Cell</p></div>
+					    </div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-module">
+    <h2>Module</h2>
+    <div class="grp-row grp-cells">
+    	<div class="grp-cell"><p>Cell</p></div>
+    	<div class="grp-cell"><p>Cell</p></div>
+    	<div class="grp-cell"><p>Cell</p></div>
+    </div>
+</div>
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
 		            <h1>Nesting modules</h1>
 		            <p>Modules may be nested up to three levels.</p>
 		        </div>
@@ -103,23 +137,23 @@
 <div class="grp-module">
     <h2>Parent Module</h2>
     <div class="grp-module">
-	    <h3>Child Module</h3>
-	    <div class="grp-row"><p>Row</p></div>
-	    <div class="grp-row"><p>Row</p></div>
-	</div>
-	<div class="grp-module">
-	    <h3>Child Module</h3>
-	    <div class="grp-module">
-		    <h4>Grandchild Module</h4>
-		    <div class="grp-row"><p>Row</p></div>
-		    <div class="grp-row"><p>Row</p></div>
-		</div>
-		<div class="grp-module">
-		    <h4>Grandchild Module</h4>
-		    <div class="grp-row"><p>Row</p></div>
-		    <div class="grp-row"><p>Row</p></div>
-		</div>
-	</div>
+        <h3>Child Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+    <div class="grp-module">
+        <h3>Child Module</h3>
+        <div class="grp-module">
+            <h4>Grandchild Module</h4>
+            <div class="grp-row"><p>Row</p></div>
+            <div class="grp-row"><p>Row</p></div>
+        </div>
+        <div class="grp-module">
+            <h4>Grandchild Module</h4>
+            <div class="grp-row"><p>Row</p></div>
+            <div class="grp-row"><p>Row</p></div>
+        </div>
+    </div>
 </div>
 	    		{% endfilter %}</code></pre></div>
 	    	</div>
@@ -206,15 +240,15 @@
 <div class="grp-module grp-collapse grp-open">
     <h2 class="grp-collapse-handler">Parent Module</h2>
     <div class="grp-module grp-collapse grp-open">
-	    <h3 class="grp-collapse-handler">Child Module</h3>
-	    <div class="grp-row"><p>Row</p></div>
-	    <div class="grp-row"><p>Row</p></div>
-	</div>
-	<div class="grp-module grp-collapse grp-closed">
-	    <h3 class="grp-collapse-handler">Child Module</h3>
-	    <div class="grp-row"><p>Row</p></div>
-	    <div class="grp-row"><p>Row</p></div>
-	</div>
+        <h3 class="grp-collapse-handler">Child Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+    <div class="grp-module grp-collapse grp-closed">
+        <h3 class="grp-collapse-handler">Child Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
 </div>
 		    		{% endfilter %}</code></pre></div>
 		    	</div>
@@ -227,40 +261,6 @@
 })(django.jQuery);
 		    		{% endfilter %}</code></pre></div>
 		    	</div>
-	    	</div>
-	    </section>
-	    <section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>Rows split into cells</h1>
-		            <p>Rows might be split into two or more cells.</p>
-		            <p>To do so assign <span class="grp-doc-class">.grp-cells</span> to the <span class="grp-doc-class">.grp-row</span> you want to carry the cells.</p>
-		            <p>Each cell within that row is a <span class="grp-doc-class">.grp-cell</span> then.</p>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code-source">
-	    			<div class="grp-module">
-	    				<h2>Module</h2>
-					    <div class="grp-row grp-cells">
-					    	<div class="grp-cell"><p>Cell</p></div>
-					    	<div class="grp-cell"><p>Cell</p></div>
-					    	<div class="grp-cell"><p>Cell</p></div>
-					    </div>
-					</div>
-				</div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
-<div class="grp-module">
-    <h2>Module</h2>
-    <div class="grp-row grp-cells">
-    	<div class="grp-cell"><p>Cell</p></div>
-    	<div class="grp-cell"><p>Cell</p></div>
-    	<div class="grp-cell"><p>Cell</p></div>
-    </div>
-</div>
-{% endfilter %}</code></pre></div>
 	    	</div>
 	    </section>
 	    <section>
