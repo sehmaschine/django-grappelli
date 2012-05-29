@@ -171,7 +171,6 @@ header#grp-header {
 	clear: both;
 	width: 100%;
 	@include box-sizing(border-box);
-
 	#grp-navigation {
 		position: relative;
 		float: left;
@@ -182,11 +181,15 @@ header#grp-header {
 		@include grp-gradient-dark;
 		@include clearfix;
 		overflow: visible;
-		header h1 {
-			margin: 0;
-			padding: 10px 0;
-			font-size: 12px;
-			line-height: 16px;
+		#grp-admin-title {
+			position: relative;
+			float: left;
+			h1 {
+				margin: 0;
+				padding: 10px 0;
+				font-size: 12px;
+				line-height: 16px;
+			}
 		}
 		a {
 			color: lighten($grp-link-color, 10);
@@ -246,11 +249,6 @@ header#grp-header {
 				}
 			}
 		}
-	}
-	#grp-admin-title {
-		position: relative;
-		float: left;
-		font-weight: bold;
 	}
 	#grp-user-tools {
 		position: relative;
