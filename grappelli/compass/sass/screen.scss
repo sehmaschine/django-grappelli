@@ -403,16 +403,16 @@ header#grp-header {
 		margin-top: 10px;
 		overflow: visible;
 		> li {
-			@include horizontal-list-item(5px, right);
+			@include horizontal-list-item(0, right);
 			margin-left: 10px;
 			@include border-radius($grp-form-button-border-radius + 2px);
-	        @include box-shadow(0 0 10px #bbb);
 			&.grp-float-left {
 				margin-left: 0;
 				margin-right: 10px;
 			}
 			input[type=submit], 
-			a {
+			a, 
+			button {
 				@include opacity(.75);
 				&.grp-default {
 					@include opacity(1);
@@ -421,6 +421,12 @@ header#grp-header {
 				&:focus {
 					@include opacity(1);
 				}
+			}
+			button {
+				width: auto;
+			}
+			.grp-button {
+		        @include box-shadow(0 0 10px #bbb);
 			}
 		}
 	}
@@ -433,7 +439,9 @@ header#grp-header {
 			> li {
 				padding: 5px !important;
 				background: #444;
-		        @include box-shadow(none);
+		        .grp-button {
+		        	@include box-shadow(none);
+		        }
 			}
 		}
 	}
