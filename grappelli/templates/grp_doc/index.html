@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n admin_static admin_modify %}
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation{% endblock %}
@@ -15,14 +15,14 @@
     <h1>Grappelli Documentation</h1>
     <div class="g-d-c">
         <div class="grp-module">
-            <h2><a href="tags/">Tags</a></h2>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Modules</strong></span> <a href="/grp-doc/modules/">Modules, rows &amp; cells</a></p></div>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Groups</strong></span> <a href="/grp-doc/groups/">Stacking modules in groups</a></p></div>
+            <h2>Modules &amp; Groups</h2>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Modules</strong></span> <a href="/admin/grp-doc/modules/">Modules, rows &amp; cells</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Groups</strong></span> <a href="/admin/grp-doc/groups/">Stacking modules in groups</a></p></div>
         </div>
         <div class="grp-module">
             <h2>Components</h2>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Context Navigation</strong></span> <a href="/grp-doc/context-navigation/">Breadcrumbs &amp; Page-Tools</a></p></div>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Groups</strong></span> <a href="/grp-doc/groups/">Stacking modules in groups</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Context Navigation</strong></span> <a href="/admin/grp-doc/context-navigation/">Breadcrumbs &amp; Page-Tools</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Groups</strong></span> <a href="/admin/grp-doc/groups/">Stacking modules in groups</a></p></div>
         </div>
     </div>
 {% endblock %}

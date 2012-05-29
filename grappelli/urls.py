@@ -21,9 +21,9 @@ urlpatterns = patterns('',
     (r'^grp-dom-documentation', 'django.views.generic.simple.direct_to_template', {'template': 'grp_dom_documentation/index.html'}),
 
 
-    (r'^grp-doc/modules/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/modules.html'}),
-    (r'^grp-doc/groups/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/groups.html'}),
-    (r'^grp-doc/context-navigation/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/context_navigation.html'}),
-    (r'^grp-doc', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/index.html'}),
+    (r'^admin/grp-doc/modules/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/modules.html'}),
+    (r'^admin/grp-doc/groups/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/groups.html'}),
+    (r'^admin/grp-doc/context-navigation/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/context_navigation.html'}),
+    (r'^admin/grp-doc', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/index.html'}),
     
 )
