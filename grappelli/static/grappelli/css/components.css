@@ -302,7 +302,7 @@ h2 + * + * + .module.table {
 
 .selector {
     position: relative;
-    float: left;
+    /*float: left;*/
     overflow: hidden;
     width: 758px;
 }
