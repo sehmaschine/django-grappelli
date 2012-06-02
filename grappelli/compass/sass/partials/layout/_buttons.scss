@@ -283,7 +283,6 @@ p.grp-help + * + a.add-another {
 
 
 
-
 /*  CONTEXT_DEPENDENT BUTTON STYLES (FOCUS, ERROR)
 ------------------------------------------------------------------------------------------------------ */
 
@@ -321,6 +320,36 @@ input:focus + .grp-search-button {
 }
 
 
+
+/*  Unknown, Yes & No Workaround
+------------------------------------------------------------------------------------------------------ */
+
+// Replacing Djangos original images with hiding them and inserting content :after
+// Using http://stackoverflow.com/questions/5843035/does-before-not-work-on-img-tags
+img[src$="admin/img/icon-unknown.gif"], 
+img[src$="admin/img/icon-no.gif"], 
+img[src$="admin/img/icon-yes.gif"] {
+    height: 0;
+    width: 0;
+    font-size: 0;
+    color: transparent;
+    position: relative;
+    content: "x";
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+img[src$="admin/img/icon-unknown.gif"]:after {
+    content: url('../img/icons/icon-unknown.png') 0 50% no-repeat;
+}
+img[src$="admin/img/icon-no.gif"]:after {
+    content: url('../img/icons/icon-no.png') 0 50% no-repeat;
+}
+img[src$="admin/img/icon-yes.gif"]:after {
+    content: url('../img/icons/icon-yes.png') 0 50% no-repeat;
+}
 
 
 
