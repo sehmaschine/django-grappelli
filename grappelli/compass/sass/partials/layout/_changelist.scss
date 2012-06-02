@@ -135,6 +135,7 @@ form#grp-changelist-search {
 	    background-repeat: no-repeat;
 	    @include grp-button-states(grey, blue);
 	    &:hover {
+	    	color: #444;
 	    	background-image: url('../images/icons/tools-arrow-down-handler.png');
 	    }
 	}
