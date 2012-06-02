@@ -37,48 +37,43 @@
 {% block content %}
     <h1>Navigation</h1>
     <div class="grp-doc-description">
-    	<p>The <span class="grp-doc-id">#grp-navigation</span> carries global navigation possibilities.</p>
-    	<p>For now these are the admin-title and the so called user-tools.</p>
+    	<p>The <span class="grp-doc-id">#grp-navigation</span> carries your admin title and the so called user-tools.</p>
     </div>
     <div class="g-d-c">
     	<section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Admin Title</h1>
-		            <p>The title of your admin is defined in a <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatetag-block" target="_blank" class="grp-external">block</a> <span class="grp-doc-django">{% templatetag openblock %} block breadcrumbs {% templatetag closeblock %}</span>.</p>
-		            <p>They are always written as a plain <span class="grp-doc-dom"><span>ul</span></span> with <span class="grp-doc-dom"><span>li</span></span> containing links whereas the last <span class="grp-doc-dom"><span>li</span></span> contains no link but just the title of the page you are currently dealing with.</p>
+		            <p>The title of your admin is defined in your <span class="grp-doc-file">settings.py</span>.</p>
+		            <p>It will be delivered in as a <span class="grp-doc-dom"><span>h1 id="grp-admin-title"</span></span>.</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">
 	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
-{% templatetag openblock %} block breadcrumbs {% templatetag closeblock %}
-<ul>
-    <li><a href="link goes in here">{% trans "Home" %}</a></li>
-    <li><a href="link goes in here">Link</a></li>
-    <li>That's where you are</li>
-</ul>
-{% templatetag openblock %} endblock {% templatetag closeblock %}
+<h1 id="grp-admin-title">Grappelli TEST –locale</h1>
 {% endfilter %}</code></pre></div>
 	    	</div>
 	    </section>
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
-		            <h1>Page-Tools</h1>
-		            <p>The page-tools represent some container for contextual interactions. Currently they are used with the change-form where they carry options for expanding and collapsing all collapsible items.</p>
-		            <p>They've been introduced as a kind of placeholder for any sort of contextual options which might be needed or possible in the future of Grappelli. Feel free to use it for your own customized page-specific purposes if there are any.</p> 
-		            <p>They are defined in a <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatetag-block" target="_blank" class="grp-external">block</a> <span class="grp-doc-django">{% templatetag openblock %} block page-tools {% templatetag closeblock %}</span>.</p>
-		            <p>They are always written as a plain <span class="grp-doc-dom"><span>ul</span></span> with <span class="grp-doc-dom"><span>li</span></span> containing links for the interactions. Those might be plain text or icons. Using the latter ones requires to add <span class="grp-doc-class">.grp-tools</span> to the link. Make sure to use a custom icon fitting the size then.</p>
+		            <h1>User-Tools</h1>
+		            <p>The user-tools always come as a <span class="grp-doc-dom"><span>ul id="grp-user-tools"</span></span> and carry options for an authenticated user and a possible link to the django-documentation.</p>
+                    <p>As you usually don't need to customize them we will give no further explanation.</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">
 	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
-{% templatetag openblock %} block page-tools {% templatetag closeblock %}
-<ul>
-    <li><a href="link goes in here">Do something with the current page or its elements</a></li>
-    <li><a href="link goes in here" class="grp-tool">Icon</a></li>
+<ul id="grp-user-tools">
+    <li class="grp-user-options-container grp-collapse grp-closed">
+        <a href="javascript://" class="user-options-handler grp-collapse-handler">Username</a>
+        <ul class="grp-user-options">
+            <li><a href="/admin/password_change/">Change Password</a></li>
+            <li><a href="/admin/logout/">Logout</a></li>
+        </ul>
+    </li>
+    <li><a href="/admin/doc/">Documentation</a></li>
 </ul>
-{% templatetag openblock %} endblock {% templatetag closeblock %}
 {% endfilter %}</code></pre></div>
 	    	</div>
 	    </section>

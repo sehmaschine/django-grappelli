@@ -181,15 +181,13 @@ header#grp-header {
 		@include grp-gradient-dark;
 		@include clearfix;
 		overflow: visible;
-		#grp-admin-title {
+		h1#grp-admin-title {
 			position: relative;
 			float: left;
-			h1 {
-				margin: 0;
-				padding: 10px 0;
-				font-size: 12px;
-				line-height: 16px;
-			}
+			margin: 0;
+			padding: 10px 0;
+			font-size: 12px;
+			line-height: 16px;
 		}
 		a {
 			color: lighten($grp-link-color, 10);
