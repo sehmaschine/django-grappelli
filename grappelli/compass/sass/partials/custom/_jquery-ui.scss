@@ -514,7 +514,9 @@ button.ui-datepicker-close {
             @include border-radius($grp-form-field-border-radius - 1px);
             background: #cee9f2;
             cursor: pointer;
-            &:hover {
+            &:hover, 
+            &.ui-state-hover, 
+            &.ui-state-active {
                 color: #fff;
                 border: 1px solid #333;
                 background: #444;
