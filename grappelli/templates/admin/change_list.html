@@ -208,9 +208,11 @@
             {% endblock %}
         </section>
         <!-- PAGINATION BOTTOM -->
-        <div class="grp-module">
-            <div class="grp-row">{% pagination cl %}</div>
-        </div>
+        {% if not cl.result_count == 0 %}
+            <div class="grp-module">
+                <div class="grp-row">{% pagination cl %}</div>
+            </div>
+        {% endif %}
         <!-- SUBMIT ROW -->
         {% if cl.formset or action_form %}
             <footer id="submit" class="grp-module grp-submit-row grp-fixed-footer">
