@@ -51,56 +51,50 @@
 /*  Sortable
 ------------------------------------------------------------------------------------------------------ */
 
-
 .ui-sortable {
     position: relative;
     float: left;
     clear: both;
     width: 100%;
-}
-
-.ui-sortable-helper, 
-.ui-sortable-placeholder {
-    opacity: .8;
-}
-
-.ui-sortable-helper {
-    margin: 0;
-    width: 100% !important;
-    height: auto !important;
-    overflow: visible;
-}
-
-
-.ui-sortable .grp-module.ui-sortable-placeholder {
-    border: $grp-module-border !important;
-    background: transparent url('../img/backgrounds/ui-sortable-placeholder.png') 0 0 repeat scroll !important;
+    .ui-sortable-helper, 
+    .ui-sortable-placeholder {
+        opacity: .8;
+    }
+    .ui-sortable-helper {
+        margin: 0;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible;
+    }
+    .grp-module.ui-sortable-placeholder {
+        border: $grp-module-border !important;
+        background: transparent url('../img/backgrounds/ui-sortable-placeholder.png') 0 0 repeat scroll !important;
+    }
 }
 .grp-group.grp-stacked .ui-sortable-placeholder {
     // @include grp-module;
-    margin: 2px 0 0;
+    margin: 0 0 2px;
     &:first-child {
         margin-top: 0;
     }
 }
-.grp-group.grp-tabular .ui-sortable-placeholder {
-    // border: 0 !important;
-    overflow: hidden;
-}
-.grp-group.grp-tabular .ui-sortable .grp-module.ui-sortable-placeholder .grp-td {
-    background: transparent !important;
-}
-.grp-group.grp-tabular .ui-sortable .grp-module.ui-sortable-placeholder .grp-th, 
-.grp-group.grp-tabular .ui-sortable .grp-module.ui-sortable-placeholder .grp-td {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    background: transparent !important;
-}
-.grp-group.grp-tabular .grp-module.ui-sortable-helper {
-    border-top: 0 !important;
-}
-.grp-group.grp-tabular .ui-sortable-helper .grp-th, .grp-group.grp-tabular .ui-sortable-helper .grp-td {
-    background: #ffffcc !important;
+.grp-group.grp-tabular .ui-sortable {
+    .grp-module.ui-sortable-placeholder {
+        overflow: hidden;
+        .grp-th, 
+        .grp-td {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            background: transparent !important;
+        }
+    }
+    .grp-module.ui-sortable-helper {
+        border-top: 0 !important;
+        .grp-th, 
+        .grp-td {
+            background: #ffffcc !important;
+        }
+    }
 }
 .grp-group.grp-stacked .ui-sortable-helper, 
 .grp-group.grp-stacked .ui-sortable-helper .grp-module, 
@@ -118,6 +112,7 @@
 
 /*  Datepicker
 ----------------------------------*/
+
 .datetime br {
     display: none;
 }
@@ -125,24 +120,16 @@
     width: 40px;
     position: relative;
     margin-left: 10px;
+    a {
+        margin-left: 0 !important;
+    }
 }
-.datetimeshortcuts a {
-    margin-left: 0 !important;
-}
-
 
 
 
 /*  Datepicker
 ------------------------------------------------------------------------------------------------------ */
 
-.ui-datepicker {
-    // 
-    
-    // border-color: #bdbdbd;
-    // box-shadow: 0 10px 50px #333; -moz-box-shadow: 0 10px 50px #333; -webkit-box-shadow: 0 10px 50px #333;
-    
-}
 .ui-datepicker {
     position: absolute;
     display: none;
@@ -347,6 +334,8 @@ button.ui-datepicker-close {
     float: left !important;
     margin-right: 4px !important;
 }
+
+
 
 /*  Timepicker
 ------------------------------------------------------------------------------------------------------ */
