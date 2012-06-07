@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-09 16:14+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+
+#: static/grappelli/js/SelectFilter2.js:63
+msgid "Clear all"
+msgstr "Odstranit vše"
+
+#: static/grappelli/js/actions.min.js:26
+msgid "%(sel)s of %(cnt)s selected"
+msgid_plural "%(sel)s of %(cnt)s selected"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/grappelli/js/grappelli/grappelli.js:12
+msgid "Done"
+msgstr "Hotovo"
+
+#: static/grappelli/js/grappelli/grappelli.js:13
+msgid "Prev"
+msgstr "Předchozí"
+
+#: static/grappelli/js/grappelli/grappelli.js:14
+msgid "Next"
+msgstr "Další"
+
+#: static/grappelli/js/grappelli/grappelli.js:15
+msgid "Today"
+msgstr "Dnes"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "January"
+msgstr "Leden"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "February"
+msgstr "Únor"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "March"
+msgstr "Březen"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "April"
+msgstr "Duben"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "May"
+msgstr "Květen"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "June"
+msgstr "Červen"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "July"
+msgstr "Červenec"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "August"
+msgstr "Srpen"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "September"
+msgstr "Září"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "October"
+msgstr "Říjen"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "November"
+msgstr "Listopad"
+
+#: static/grappelli/js/grappelli/grappelli.js:16
+msgid "December"
+msgstr "Prosinec"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Jan"
+msgstr "Led"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Feb"
+msgstr "Úno"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Mar"
+msgstr "Bře"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Apr"
+msgstr "Dub"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Jun"
+msgstr "Čer"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Jul"
+msgstr "Červ"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Aug"
+msgstr "Srp"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Sep"
+msgstr "Zář"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Oct"
+msgstr "Říj"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Nov"
+msgstr "Lis"
+
+#: static/grappelli/js/grappelli/grappelli.js:17
+msgid "Dec"
+msgstr "Pro"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Sunday"
+msgstr "Neděle"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Monday"
+msgstr "Pondělí"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Tuesday"
+msgstr "Úterý"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Wednesday"
+msgstr "Středa"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Thursday"
+msgstr "Čtvrtek"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Friday"
+msgstr "Pátek"
+
+#: static/grappelli/js/grappelli/grappelli.js:18
+msgid "Saturday"
+msgstr "Sobota"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Sun"
+msgstr "Ned"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Mon"
+msgstr "Pon"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Tue"
+msgstr "Úte"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Wed"
+msgstr "Stř"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Thu"
+msgstr "Čtv"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Fri"
+msgstr "Pát"
+
+#: static/grappelli/js/grappelli/grappelli.js:19
+msgid "Sat"
+msgstr "Sob"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Su"
+msgstr "Ne"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Mo"
+msgstr "Po"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Tu"
+msgstr "Út"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "We"
+msgstr "St"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Th"
+msgstr "Čt"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Fr"
+msgstr "Pá"
+
+#: static/grappelli/js/grappelli/grappelli.js:20
+msgid "Sa"
+msgstr "So"
+
+#: static/grappelli/js/grappelli/grappelli.js:21
+msgid "Wk"
+msgstr "Týd"
+
+#: static/grappelli/js/grappelli/grappelli.js:22
+msgid "yy-mm-dd"
+msgstr "dd.mm.yy"
+
+#: static/grappelli/js/grappelli/grappelli.js:23
+msgid "7"
+msgstr "1"
