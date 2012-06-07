@@ -7,7 +7,7 @@
 	<base target="_self" />
 </head>
 <body onresize="PasteWordDialog.resize();" style="display:none; overflow:visible;">
-    <form name="source" onsubmit="saveContent();" action="#">
+    <form name="source" onsubmit="return PasteWordDialog.insert();" action="#">
         <div class="title">{#paste.paste_word_desc}</div>
         <p class="helptext">{#paste_dlg.word_title}</p>
         <div id="iframecontainer"></div>
