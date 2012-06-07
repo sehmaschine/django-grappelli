@@ -604,3 +604,60 @@ textarea,
 
 
 
+/*  Large Form Elements in Change-Form: Widths & Heights
+------------------------------------------------------------------------------------------------------ */
+
+.grp-row .vTextField, 
+.grp-row .vURLField, 
+.grp-row .vFileBrowseField, 
+.grp-row textarea, 
+.grp-row .vLargeTextField, 
+.grp-row .vXMLLargeTextField, 
+div.grp-autocomplete-wrapper-m2m {
+    width: 758px;
+}
+.grp-row select {
+    max-width: 758px;
+}
+div.grp-autocomplete-wrapper-m2m ul.repr, 
+div.grp-autocomplete-wrapper-m2m ul.repr li {
+    max-width: 700px;
+}
+
+
+
+/*  Form Elements in Changelist-Results Table & Tabular Modules: Widths & Heights
+------------------------------------------------------------------------------------------------------ */
+
+.changelist-results table select, 
+.grp-module.grp-table select, 
+.grp-module.grp-table div.grp-autocomplete-wrapper-m2m {
+    max-width: 278px;
+}
+.grp-module.grp-table div.grp-autocomplete-wrapper-m2m {
+    width: 278px;
+}
+.grp-module.grp-table div.grp-autocomplete-wrapper-m2m ul.grp-repr, 
+.grp-module.grp-table div.grp-autocomplete-wrapper-m2m ul.grp-repr li {
+    max-width: 222px;
+}
+
+
+/*  Form Elements Cells
+------------------------------------------------------------------------------------------------------ */
+
+.grp-cell input[type=text], 
+.grp-cell input[type=password], 
+.grp-cell select, 
+.grp-cell div.grp-autocomplete-wrapper-m2m {
+    max-width: 280px;
+}
+.grp-cell div.grp-autocomplete-wrapper-m2m {
+    width: 280px;
+}
+.grp-cell div.grp-autocomplete-wrapper-m2m ul.grp-repr, 
+.grp-cell div.grp-autocomplete-wrapper-m2m ul.grp-repr li {
+    max-width: 222px;
+}
+
+
