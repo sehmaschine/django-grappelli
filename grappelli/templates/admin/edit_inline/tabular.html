@@ -264,7 +264,7 @@
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}";
             var i = 0;
             $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-tbody.grp-dynamic-form").each(function(){
-                var fields = $(this).find("div.grp-td :input[value]");
+                var fields = $(this).find("div.grp-td :input[value][value!='']");
                 if (fields.serialize()) {
                     $(this).find("input[name$='"+sortable_field_name+"']").val(i);
                     i++;
