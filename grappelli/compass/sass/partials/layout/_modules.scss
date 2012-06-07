@@ -384,6 +384,7 @@ fieldset .grp-row {
 
 .grp-stacked {
 	.grp-module { // H2 + Module
+		margin-bottom: 2px;
 		.grp-module { // H3 + Module
 			@include border-radius(0 0 2px 2px);
 			border-top: 1px solid #fff;
