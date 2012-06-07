@@ -101,7 +101,7 @@ a {
 ------------------------------------------------------------------------------------------------------ */
 
 
-h1 {
+h1, .h1 {
 	@include grp-margin($grp-margin-size-l 0 $grp-margin-size);
 	@extend .grp-font-size-xl;
 	@extend .grp-line-height-xl;
@@ -178,8 +178,8 @@ body.grp-doc {
 			border-top: 3px solid #c30;
 		}
 		h2 {
-			font-size: 24px;
-			line-height: 24px;
+			font-size: 16px;
+			line-height: 16px;
 			margin: 40px 0 10px;
 		}
 		h3 {
@@ -389,4 +389,8 @@ body.grp-doc {
 }
 .grp-float-right {
 	float: right !important;
+}
+.grp-transparent {
+	border: 0 !important;
+	background-color: transparent !important;
 }

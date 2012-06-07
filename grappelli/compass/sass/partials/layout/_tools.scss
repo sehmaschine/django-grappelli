@@ -36,6 +36,7 @@
 					@include grp-background-gradient-icon-combo(object-tools-add-link, #36b0d9, #309bbf);
 				}
 			}
+			&.grp-viewsite-link, 
 			&[target="_blank"] {
 				padding-left: 28px;
 				@include grp-background-gradient-icon-combo(object-tools-viewsite-link, #999, #888);
@@ -68,12 +69,23 @@
 			display: block;
 			width: 24px;
 			height: 24px;
-			// @include border-radius(2px);
-			// background-color: rgba(255, 255, 255, 0.7) !important;
+			&.grp-icon-text, 
+			&.grp-text {
+				padding-left: 24px;
+				padding-right: 6px;
+				width: auto;
+				line-height: 24px;
+				color: $grp-link-color-hover;
+				&:hover {
+					color: $grp-link-color;
+				}
+			}
+			&.grp-text {
+				padding-left: 8px;
+			}
 		}
 		a.grp-add-handler {
 			@include icons-sprite(tools-add-handler);
-
 		}
 		a.grp-delete-handler {
 			@include icons-sprite(tools-delete-handler);
@@ -93,8 +105,6 @@
 		a.grp-close-handler {
 			@include icons-sprite(tools-close-handler);
 		}
-
-
 		a.grp-arrow-down-handler {
 			@include icons-sprite(tools-arrow-down-handler);
 		}
@@ -116,6 +126,23 @@
 .grp-tools {
 	@include grp-tools;
 }
+.grp-module {
+	> h2 + .grp-tools {
+		top: -27px;
+		right: 1px;
+		margin-bottom: -27px;
+	}
+	.grp-row > .grp-tools {
+		top: -4px;
+		right: -9px;
+	}
+}
+fieldset.grp-module {
+	.grp-row > .grp-tools {
+		top: 0;
+	}
+}
+.grp-group > h2 + .grp-tools, 
 .grp-stacked h2 + .grp-tools {
 	top: -27px;
 	right: 1px;
