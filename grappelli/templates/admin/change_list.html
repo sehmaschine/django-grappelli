@@ -181,7 +181,7 @@
             </div>
             <!-- DATE HIERARCHY -->
             {% if cl.date_hierarchy %}
-                <div class="grp-row">{% date_hierarchy cl %}</div>
+                {% if show and choices %}<div class="grp-row">{% date_hierarchy cl %}</div>{% endif %}
             {% endif %}
         </div>
     {% endif %}
