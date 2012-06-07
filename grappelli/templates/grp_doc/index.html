@@ -16,29 +16,34 @@
     <div class="g-d-c">
         <div class="grp-module">
             <h2>Basics</h2>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Basic Page Structure</strong></span> <a href="/admin/grp-doc/basic-page-structure/">How a custom template is built</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Basic Page Structure</strong></span> <a href="{% url grp_doc_basic_page_structure %}">How a custom template is built</a></p></div>
         </div>
         <div class="grp-module">
             <h2>Header</h2>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Navigation</strong></span> <a href="/admin/grp-doc/navigation/">Admin-Title &amp; User-Tools</a></p></div>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Context Navigation</strong></span> <a href="/admin/grp-doc/context-navigation/">Breadcrumbs &amp; Page-Tools</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Navigation</strong></span> <a href="{% url grp_doc_navigation %}">Admin-Title &amp; User-Tools</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Context Navigation</strong></span> <a href="{% url grp_doc_context_navigation %}">Breadcrumbs &amp; Page-Tools</a></p></div>
         </div>
         <div class="grp-module">
             <h2>Modules &amp; Groups</h2>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Modules</strong></span> <a href="/admin/grp-doc/modules/">Modules, rows &amp; cells</a></p></div>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Groups</strong></span> <a href="/admin/grp-doc/groups/">Stacking modules in groups</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Modules</strong></span> <a href="{% url grp_doc_modules %}">Modules, rows &amp; cells</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Groups</strong></span> <a href="{% url grp_doc_groups %}">Stacking modules in groups</a></p></div>
         </div>
         <div class="grp-module">
             <h2>Tools</h2>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Object-Tools</strong></span> <a href="/admin/grp-doc/object-tools/">Tools for objects</a></p></div>
-            <div class="grp-row"><p><span class="g-d-4"><strong>Tools</strong></span> <a href="/admin/grp-doc/tools/">Tools for modules, rows &amp; groups</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Object-Tools</strong></span> <a href="{% url grp_doc_object_tools %}">Tools for objects</a></p></div>
+            <div class="grp-row"><p><span class="g-d-4"><strong>Tools</strong></span> <a href="{% url grp_doc_tools %}">Tools for modules, rows &amp; groups</a></p></div>
         </div>
         <div class="grp-module">
             <h2>Forms</h2>
+<<<<<<< HEAD
             <div class="grp-row"><p><span class="g-d-4"><strong>Fieldsets</strong></span> <a href="/admin/grp-doc/fieldsets/">xxx</a></p></div>
             <div class="grp-row"><p><span class="g-d-4"><strong>Stacked Groups</strong></span> <a href="/admin/grp-doc/stacked-groups/">xxx</a></p></div>
             <div class="grp-row"><p><span class="g-d-4"><strong>Tabular Groups</strong></span> <a href="/admin/grp-doc/tabular-groups/">xxx</a></p></div>
             <div class="grp-row"><p><span class="g-d-4"><strong>Submit-Rows</strong></span> <a href="/admin/grp-doc/submit-rows/">Defining submit-rows</a></p></div>
+=======
+            <div class="grp-row"><p><span class="g-d-4"><strong>Submit-Rows</strong></span> <a href="{% url grp_doc_submit_rows %}">Defining submit-rows</a></p></div>
+
+>>>>>>> 1ec9bec01aa4b14c2a238fe0fbd0268528e7909b
         </div>
     </div>
 {% endblock %}

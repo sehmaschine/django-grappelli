@@ -2,6 +2,7 @@
 
 # DJANGO IMPORTS
 from django.conf.urls.defaults import *
+from django.views.generic.base import TemplateView
 from django.conf import settings
 
 
@@ -13,12 +14,14 @@ urlpatterns = patterns('',
     url(r'^lookup/autocomplete/$', 'grappelli.views.related.autocomplete_lookup', name="grp_autocomplete_lookup"),
 
     # GRAPPELLI DOM DOCUMENTATION
-    (r'^admin/grp-doc/submit-rows/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/submit_rows.html'}),
-    (r'^admin/grp-doc/modules', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/modules.html'}),
-    (r'^admin/grp-doc/groups/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/groups.html'}),
-    (r'^admin/grp-doc/navigation/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/navigation.html'}),
-    (r'^admin/grp-doc/context-navigation/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/context_navigation.html'}),
-    (r'^admin/grp-doc/basic-page-structure/', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/basic_page_structure.html'}),
-    (r'^admin/grp-doc', 'django.views.generic.simple.direct_to_template', {'template': 'grp_doc/index.html'}),
-    
+    url(r'^admin/grp-doc/submit-rows/', TemplateView.as_view(template_name='grp_doc/submit_rows.html'), name="grp_doc_submit_rows"),
+    url(r'^admin/grp-doc/modules', TemplateView.as_view(template_name='grp_doc/modules.html'), name="grp_doc_modules"),
+    url(r'^admin/grp-doc/groups/', TemplateView.as_view(template_name='grp_doc/groups.html'), name="grp_doc_groups"),
+    url(r'^admin/grp-doc/navigation/', TemplateView.as_view(template_name='grp_doc/navigation.html'), name="grp_doc_navigation"),
+    url(r'^admin/grp-doc/context-navigation/', TemplateView.as_view(template_name='grp_doc/context_navigation.html'), name="grp_doc_context_navigation"),
+    url(r'^admin/grp-doc/basic-page-structure/', TemplateView.as_view(template_name='grp_doc/basic_page_structure.html'), name="grp_doc_basic_page_structure"),
+    url(r'^admin/grp-doc/tools/', TemplateView.as_view(template_name='grp_doc/tools.html'), name="grp_doc_tools"),
+    url(r'^admin/grp-doc/object-tools/', TemplateView.as_view(template_name='grp_doc/object_tools.html'), name="grp_doc_object_tools"),
+    url(r'^admin/grp-doc', TemplateView.as_view(template_name='grp_doc/index.html'), name="grp_doc"),
+
 )
