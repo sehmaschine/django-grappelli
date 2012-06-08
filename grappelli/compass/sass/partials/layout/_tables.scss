@@ -15,7 +15,10 @@ table {
         vertical-align: text-top;
         padding: 10px;
         font-size: 11px;
-        line-height: 14px;
+        line-height: 15px;
+        &.nowrap {
+            white-space: nowrap;
+        }
     }
     thead {
         th {
@@ -43,10 +46,8 @@ table {
                 padding: 6px 10px;
                 height: 100%;
                 color: #59afcc;
-                // border-top: 1px solid #fff;
                 &:hover {
                     color: #444;
-                    // @include background-image(linear-gradient(#e0e0e0, #eee));
                 }
             }
         }
@@ -107,6 +108,12 @@ table {
 
     }
     td, th {
+        > a:first-child {
+            @media screen and (-webkit-min-device-pixel-ratio:0) {
+                position: relative;
+                top: 1px;
+            }
+        }
         > input[type=text], 
         > input[type=password], 
         > input[type=file], 
@@ -114,13 +121,25 @@ table {
         > input[type=radio], 
         > select, 
         > textarea {
-            margin: -10px 0 -5px !important;
+            position: relative;
+            // top: -6px;
+            // margin-bottom: -10px;
+            margin: -8px 0 -5px !important;
+            @media screen and (-webkit-min-device-pixel-ratio:0) {
+                margin: -10px 0 -5px !important;
+            }
+        }
+        > input[type=checkbox], 
+        > input[type=radio] {
+            // display: none !important;
+            // margin: 0 ;
         }
         ul.radiolist, 
         ul.checkboxlist {
             margin: -3px 0 -7px;
             &.inline {
-                margin: -3px 0 -7px;
+                white-space: normal !important;
+                max-width: 400px;
             }
         }
         a.fb_show, 
@@ -241,21 +260,21 @@ table.grp-sortable {
 
         }
     }
-    td, th {
-        > input[type=text], 
-        > input[type=password], 
-        > input[type=file], 
-        > input[type=checkbox], 
-        > input[type=radio], 
-        > select, 
-        > textarea {
-            margin: -10px 0 -5px !important;
-        }
-        .grp-autocomplete-wrapper-m2m, 
-        .grp-autocomplete-wrapper-fk {
-            margin: -5px 0 !important;
-        }
-    }
+    // td, th {
+    //     > input[type=text], 
+    //     > input[type=password], 
+    //     > input[type=file], 
+    //     > input[type=checkbox], 
+    //     > input[type=radio], 
+    //     > select, 
+    //     > textarea {
+    //         margin: -10px 0 -5px !important;
+    //     }
+    //     .grp-autocomplete-wrapper-m2m, 
+    //     .grp-autocomplete-wrapper-fk {
+    //         margin: -5px 0 !important;
+    //     }
+    // }
 }
 
 

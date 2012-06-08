@@ -182,6 +182,7 @@ form#grp-changelist-search {
 }
 .grp-pulldown-container {
 	@include grp-pulldown();
+	margin: -1px 0 0;
 }
 
 
