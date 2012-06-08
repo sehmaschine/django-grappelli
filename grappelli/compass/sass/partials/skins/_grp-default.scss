@@ -5,6 +5,17 @@
 ------------------------------------------------------------------------------------------------------ */
 
 
+/*  Font Family ............................................................ */
+
+$grp-font-family: Arial, sans-serif;
+@mixin grp-font-family {
+	font-family: $grp-font-family;
+}
+.grp-font-family {
+	@include grp-font-family;
+}
+
+
 /*  Font Colors ............................................................ */
 
 $grp-font-color: #333 !default;

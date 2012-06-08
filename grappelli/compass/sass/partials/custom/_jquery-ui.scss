@@ -13,7 +13,7 @@
 }
 
 @mixin grp-ui-widget {
-    font-family: Arial,sans-serif;
+    @extend .grp-font-family;
     font-size: 12px;
     border: 1px solid #888;
     @include border-radius($grp-border-radius);
