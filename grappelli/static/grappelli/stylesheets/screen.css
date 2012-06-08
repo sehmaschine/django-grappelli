@@ -161,130 +161,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /*  Buttons ............................................................ */
-.grp-form-button {
-  color: #fff;
-  border: 1px solid #2b8aab;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4fb2d3), color-stop(100%, #309bbf));
-  background-image: -webkit-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -moz-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -o-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -ms-linear-gradient(#4fb2d3, #309bbf);
-  background-image: linear-gradient(#4fb2d3, #309bbf);
-}
-.grp-form-button:hover, .grp-form-button:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-form-button:hover, .grp-fixed-footer .grp-form-button:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-
-.grp-form-button-delete {
-  color: #fff;
-  border: 1px solid #ab2b2b;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d34f4f), color-stop(100%, #bf3030));
-  background-image: -webkit-linear-gradient(#d34f4f, #bf3030);
-  background-image: -moz-linear-gradient(#d34f4f, #bf3030);
-  background-image: -o-linear-gradient(#d34f4f, #bf3030);
-  background-image: -ms-linear-gradient(#d34f4f, #bf3030);
-  background-image: linear-gradient(#d34f4f, #bf3030);
-}
-.grp-form-button-delete:hover, .grp-form-button-delete:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-form-button-delete:hover, .grp-fixed-footer .grp-form-button-delete:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-
-.grp-form-button-cancel {
-  color: #fff;
-  border: 1px solid #7b7b7b;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2a2a2), color-stop(100%, #888888));
-  background-image: -webkit-linear-gradient(#a2a2a2, #888888);
-  background-image: -moz-linear-gradient(#a2a2a2, #888888);
-  background-image: -o-linear-gradient(#a2a2a2, #888888);
-  background-image: -ms-linear-gradient(#a2a2a2, #888888);
-  background-image: linear-gradient(#a2a2a2, #888888);
-}
-.grp-form-button-cancel:hover, .grp-form-button-cancel:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-form-button-cancel:hover, .grp-fixed-footer .grp-form-button-cancel:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-
-.grp-form-button-reset {
-  color: #fff;
-  border: 1px solid #7b7b7b;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2a2a2), color-stop(100%, #888888));
-  background-image: -webkit-linear-gradient(#a2a2a2, #888888);
-  background-image: -moz-linear-gradient(#a2a2a2, #888888);
-  background-image: -o-linear-gradient(#a2a2a2, #888888);
-  background-image: -ms-linear-gradient(#a2a2a2, #888888);
-  background-image: linear-gradient(#a2a2a2, #888888);
-}
-.grp-form-button-reset:hover, .grp-form-button-reset:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-form-button-reset:hover, .grp-fixed-footer .grp-form-button-reset:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-
 /*	BUTTONS
 ------------------------------------------------------------------------------------------------------ */
 /*  GRADIENTS
@@ -1003,7 +879,8 @@ a.related-lookup, a.related-lookup.m2m,
 
 /*  FONT-FAMILIES
 ------------------------------------------------------------------------------------------------------ */
-.grp-font-family, .grp-button, input[type="submit"], a.grp-button, .grp-submit-row a.grp-button, .grp-submit-row button.grp-button, body {
+.grp-font-family, .grp-button, input[type="submit"], a.grp-button,
+button.grp-button, body {
   font-family: Arial, sans-serif;
 }
 
@@ -1021,7 +898,8 @@ a.related-lookup, a.related-lookup.m2m,
   font-size: 13px;
 }
 
-.grp-font-size, h4, .grp-button, input[type="submit"], a.grp-button, .grp-submit-row a.grp-button, .grp-submit-row button.grp-button, body {
+.grp-font-size, h4, .grp-button, input[type="submit"], a.grp-button,
+button.grp-button, body {
   font-size: 12px;
 }
 
@@ -1045,7 +923,8 @@ a.related-lookup, a.related-lookup.m2m,
   line-height: 16px;
 }
 
-.grp-line-height, h4, .grp-actions, .grp-button, input[type="submit"], a.grp-button, .grp-submit-row a.grp-button, .grp-submit-row button.grp-button, body {
+.grp-line-height, h4, .grp-actions, .grp-button, input[type="submit"], a.grp-button,
+button.grp-button, body {
   line-height: 16px;
 }
 
@@ -2750,6 +2629,7 @@ textarea,
   border-right: 0 !important;
 }
 .grp-module .grp-row:not(tr).grp-cells .grp-cell .g-d-fluid {
+  display: inline !important;
   width: auto !important;
 }
 .grp-module .grp-row + .grp-module .grp-row:first-child {
@@ -3179,7 +3059,7 @@ fieldset .grp-row {
 
 /*  BUTTON STATES
 ------------------------------------------------------------------------------------------------------ */
-.button-state-blue, .grp-button, input[type="submit"], a.grp-button, .grp-submit-row a.grp-button, .grp-submit-row button.grp-button, input[type=button],
+.button-state-blue, input[type=button],
 button,
 a.fb_show,
 a.related-lookup, a.related-lookup.m2m,
@@ -3190,7 +3070,7 @@ a.related-lookup, a.related-lookup.m2m,
   background-color: #e1f0f5;
 }
 
-.button-state-grey, .grp-button:hover, input[type="submit"]:hover, a.grp-button:hover, .grp-submit-row a.grp-button:hover, .grp-submit-row button.grp-button:hover, input[type=button]:hover,
+.button-state-grey, input[type=button]:hover,
 button:hover,
 a.fb_show:hover,
 a.related-lookup:hover, a.related-lookup.m2m:hover,
@@ -3303,7 +3183,8 @@ input[type="submit"]:hover, input[type="submit"]:focus {
   background-image: linear-gradient(#ffffff, #eeeeee);
 }
 
-a.grp-button {
+a.grp-button,
+button.grp-button {
   position: relative;
   display: inline-block;
   margin: 0;
@@ -3323,14 +3204,48 @@ a.grp-button {
   cursor: pointer;
   overflow: hidden;
   vertical-align: top;
+  color: #fff;
+  border: 1px solid #2b8aab;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4fb2d3), color-stop(100%, #309bbf));
+  background-image: -webkit-linear-gradient(#4fb2d3, #309bbf);
+  background-image: -moz-linear-gradient(#4fb2d3, #309bbf);
+  background-image: -o-linear-gradient(#4fb2d3, #309bbf);
+  background-image: -ms-linear-gradient(#4fb2d3, #309bbf);
+  background-image: linear-gradient(#4fb2d3, #309bbf);
   padding: 5px 10px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-  a.grp-button {
+  a.grp-button,
+  button.grp-button {
     padding: 5px 10px;
   }
 }
-a.grp-button.grp-delete-link {
+a.grp-button:hover, a.grp-button:focus,
+button.grp-button:hover,
+button.grp-button:focus {
+  color: #fff;
+  border: 1px solid #262626;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
+  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
+  background-image: -moz-linear-gradient(#4d4d4d, #333333);
+  background-image: -o-linear-gradient(#4d4d4d, #333333);
+  background-image: -ms-linear-gradient(#4d4d4d, #333333);
+  background-image: linear-gradient(#4d4d4d, #333333);
+}
+.grp-fixed-footer a.grp-button:hover, .grp-fixed-footer a.grp-button:focus, .grp-fixed-footer
+button.grp-button:hover, .grp-fixed-footer
+button.grp-button:focus {
+  color: #333;
+  border: 1px solid #c8c8c8;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
+  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
+  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
+  background-image: -o-linear-gradient(#ffffff, #eeeeee);
+  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
+  background-image: linear-gradient(#ffffff, #eeeeee);
+}
+a.grp-button.grp-delete-link,
+button.grp-button.grp-delete-link {
   color: #fff;
   border: 1px solid #ab2b2b;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d34f4f), color-stop(100%, #bf3030));
@@ -3340,7 +3255,9 @@ a.grp-button.grp-delete-link {
   background-image: -ms-linear-gradient(#d34f4f, #bf3030);
   background-image: linear-gradient(#d34f4f, #bf3030);
 }
-a.grp-button.grp-delete-link:hover, a.grp-button.grp-delete-link:focus {
+a.grp-button.grp-delete-link:hover, a.grp-button.grp-delete-link:focus,
+button.grp-button.grp-delete-link:hover,
+button.grp-button.grp-delete-link:focus {
   color: #fff;
   border: 1px solid #262626;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
@@ -3350,7 +3267,9 @@ a.grp-button.grp-delete-link:hover, a.grp-button.grp-delete-link:focus {
   background-image: -ms-linear-gradient(#4d4d4d, #333333);
   background-image: linear-gradient(#4d4d4d, #333333);
 }
-.grp-fixed-footer a.grp-button.grp-delete-link:hover, .grp-fixed-footer a.grp-button.grp-delete-link:focus {
+.grp-fixed-footer a.grp-button.grp-delete-link:hover, .grp-fixed-footer a.grp-button.grp-delete-link:focus, .grp-fixed-footer
+button.grp-button.grp-delete-link:hover, .grp-fixed-footer
+button.grp-button.grp-delete-link:focus {
   color: #333;
   border: 1px solid #c8c8c8;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
@@ -3360,7 +3279,8 @@ a.grp-button.grp-delete-link:hover, a.grp-button.grp-delete-link:focus {
   background-image: -ms-linear-gradient(#ffffff, #eeeeee);
   background-image: linear-gradient(#ffffff, #eeeeee);
 }
-a.grp-button.grp-cancel-link {
+a.grp-button.grp-cancel-link,
+button.grp-button.grp-cancel-link {
   color: #fff;
   border: 1px solid #7b7b7b;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2a2a2), color-stop(100%, #888888));
@@ -3370,7 +3290,9 @@ a.grp-button.grp-cancel-link {
   background-image: -ms-linear-gradient(#a2a2a2, #888888);
   background-image: linear-gradient(#a2a2a2, #888888);
 }
-a.grp-button.grp-cancel-link:hover, a.grp-button.grp-cancel-link:focus {
+a.grp-button.grp-cancel-link:hover, a.grp-button.grp-cancel-link:focus,
+button.grp-button.grp-cancel-link:hover,
+button.grp-button.grp-cancel-link:focus {
   color: #fff;
   border: 1px solid #262626;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
@@ -3380,7 +3302,9 @@ a.grp-button.grp-cancel-link:hover, a.grp-button.grp-cancel-link:focus {
   background-image: -ms-linear-gradient(#4d4d4d, #333333);
   background-image: linear-gradient(#4d4d4d, #333333);
 }
-.grp-fixed-footer a.grp-button.grp-cancel-link:hover, .grp-fixed-footer a.grp-button.grp-cancel-link:focus {
+.grp-fixed-footer a.grp-button.grp-cancel-link:hover, .grp-fixed-footer a.grp-button.grp-cancel-link:focus, .grp-fixed-footer
+button.grp-button.grp-cancel-link:hover, .grp-fixed-footer
+button.grp-button.grp-cancel-link:focus {
   color: #333;
   border: 1px solid #c8c8c8;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
@@ -3390,7 +3314,8 @@ a.grp-button.grp-cancel-link:hover, a.grp-button.grp-cancel-link:focus {
   background-image: -ms-linear-gradient(#ffffff, #eeeeee);
   background-image: linear-gradient(#ffffff, #eeeeee);
 }
-a.grp-button.grp-reset-link {
+a.grp-button.grp-reset-link,
+button.grp-button.grp-reset-link {
   color: #fff;
   border: 1px solid #7b7b7b;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2a2a2), color-stop(100%, #888888));
@@ -3400,7 +3325,9 @@ a.grp-button.grp-reset-link {
   background-image: -ms-linear-gradient(#a2a2a2, #888888);
   background-image: linear-gradient(#a2a2a2, #888888);
 }
-a.grp-button.grp-reset-link:hover, a.grp-button.grp-reset-link:focus {
+a.grp-button.grp-reset-link:hover, a.grp-button.grp-reset-link:focus,
+button.grp-button.grp-reset-link:hover,
+button.grp-button.grp-reset-link:focus {
   color: #fff;
   border: 1px solid #262626;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
@@ -3410,206 +3337,9 @@ a.grp-button.grp-reset-link:hover, a.grp-button.grp-reset-link:focus {
   background-image: -ms-linear-gradient(#4d4d4d, #333333);
   background-image: linear-gradient(#4d4d4d, #333333);
 }
-.grp-fixed-footer a.grp-button.grp-reset-link:hover, .grp-fixed-footer a.grp-button.grp-reset-link:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-
-.grp-submit-row a.grp-button {
-  position: relative;
-  display: inline-block;
-  margin: 0;
-  padding: 5px;
-  height: 28px;
-  font-weight: bold;
-  -moz-border-radius: 5px !important;
-  -webkit-border-radius: 5px !important;
-  -o-border-radius: 5px !important;
-  -ms-border-radius: 5px !important;
-  -khtml-border-radius: 5px !important;
-  border-radius: 5px !important;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  cursor: pointer;
-  overflow: hidden;
-  vertical-align: top;
-  color: #fff;
-  border: 1px solid #2b8aab;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4fb2d3), color-stop(100%, #309bbf));
-  background-image: -webkit-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -moz-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -o-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -ms-linear-gradient(#4fb2d3, #309bbf);
-  background-image: linear-gradient(#4fb2d3, #309bbf);
-}
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .grp-submit-row a.grp-button {
-    padding: 5px 10px;
-  }
-}
-.grp-submit-row a.grp-button:hover, .grp-submit-row a.grp-button:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-submit-row a.grp-button:hover, .grp-fixed-footer .grp-submit-row a.grp-button:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-.grp-submit-row a.grp-button.grp-delete-link {
-  color: #fff;
-  border: 1px solid #ab2b2b;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d34f4f), color-stop(100%, #bf3030));
-  background-image: -webkit-linear-gradient(#d34f4f, #bf3030);
-  background-image: -moz-linear-gradient(#d34f4f, #bf3030);
-  background-image: -o-linear-gradient(#d34f4f, #bf3030);
-  background-image: -ms-linear-gradient(#d34f4f, #bf3030);
-  background-image: linear-gradient(#d34f4f, #bf3030);
-}
-.grp-submit-row a.grp-button.grp-delete-link:hover, .grp-submit-row a.grp-button.grp-delete-link:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-submit-row a.grp-button.grp-delete-link:hover, .grp-fixed-footer .grp-submit-row a.grp-button.grp-delete-link:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-.grp-submit-row a.grp-button.grp-cancel-link {
-  color: #fff;
-  border: 1px solid #7b7b7b;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2a2a2), color-stop(100%, #888888));
-  background-image: -webkit-linear-gradient(#a2a2a2, #888888);
-  background-image: -moz-linear-gradient(#a2a2a2, #888888);
-  background-image: -o-linear-gradient(#a2a2a2, #888888);
-  background-image: -ms-linear-gradient(#a2a2a2, #888888);
-  background-image: linear-gradient(#a2a2a2, #888888);
-}
-.grp-submit-row a.grp-button.grp-cancel-link:hover, .grp-submit-row a.grp-button.grp-cancel-link:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-submit-row a.grp-button.grp-cancel-link:hover, .grp-fixed-footer .grp-submit-row a.grp-button.grp-cancel-link:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-.grp-submit-row a.grp-button.grp-reset-link {
-  color: #fff;
-  border: 1px solid #7b7b7b;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2a2a2), color-stop(100%, #888888));
-  background-image: -webkit-linear-gradient(#a2a2a2, #888888);
-  background-image: -moz-linear-gradient(#a2a2a2, #888888);
-  background-image: -o-linear-gradient(#a2a2a2, #888888);
-  background-image: -ms-linear-gradient(#a2a2a2, #888888);
-  background-image: linear-gradient(#a2a2a2, #888888);
-}
-.grp-submit-row a.grp-button.grp-reset-link:hover, .grp-submit-row a.grp-button.grp-reset-link:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-submit-row a.grp-button.grp-reset-link:hover, .grp-fixed-footer .grp-submit-row a.grp-button.grp-reset-link:focus {
-  color: #333;
-  border: 1px solid #c8c8c8;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#ffffff, #eeeeee);
-  background-image: -moz-linear-gradient(#ffffff, #eeeeee);
-  background-image: -o-linear-gradient(#ffffff, #eeeeee);
-  background-image: -ms-linear-gradient(#ffffff, #eeeeee);
-  background-image: linear-gradient(#ffffff, #eeeeee);
-}
-.grp-submit-row button.grp-button {
-  position: relative;
-  display: inline-block;
-  margin: 0;
-  padding: 5px;
-  height: 28px;
-  font-weight: bold;
-  -moz-border-radius: 5px !important;
-  -webkit-border-radius: 5px !important;
-  -o-border-radius: 5px !important;
-  -ms-border-radius: 5px !important;
-  -khtml-border-radius: 5px !important;
-  border-radius: 5px !important;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  cursor: pointer;
-  overflow: hidden;
-  vertical-align: top;
-  color: #fff;
-  border: 1px solid #2b8aab;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4fb2d3), color-stop(100%, #309bbf));
-  background-image: -webkit-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -moz-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -o-linear-gradient(#4fb2d3, #309bbf);
-  background-image: -ms-linear-gradient(#4fb2d3, #309bbf);
-  background-image: linear-gradient(#4fb2d3, #309bbf);
-}
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .grp-submit-row button.grp-button {
-    padding: 5px 10px;
-  }
-}
-.grp-submit-row button.grp-button:hover, .grp-submit-row button.grp-button:focus {
-  color: #fff;
-  border: 1px solid #262626;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #333333));
-  background-image: -webkit-linear-gradient(#4d4d4d, #333333);
-  background-image: -moz-linear-gradient(#4d4d4d, #333333);
-  background-image: -o-linear-gradient(#4d4d4d, #333333);
-  background-image: -ms-linear-gradient(#4d4d4d, #333333);
-  background-image: linear-gradient(#4d4d4d, #333333);
-}
-.grp-fixed-footer .grp-submit-row button.grp-button:hover, .grp-fixed-footer .grp-submit-row button.grp-button:focus {
+.grp-fixed-footer a.grp-button.grp-reset-link:hover, .grp-fixed-footer a.grp-button.grp-reset-link:focus, .grp-fixed-footer
+button.grp-button.grp-reset-link:hover, .grp-fixed-footer
+button.grp-button.grp-reset-link:focus {
   color: #333;
   border: 1px solid #c8c8c8;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));

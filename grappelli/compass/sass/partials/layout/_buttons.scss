@@ -90,7 +90,7 @@
     cursor: pointer;
     overflow: hidden;
     vertical-align: top;
-    @include grp-button-states(blue, grey);
+    // @include grp-button-states(blue, grey);
 }
 .grp-button {
     @include grp-button();
@@ -104,11 +104,12 @@
 
 input[type="submit"] {
     @include grp-button();
-    // @include grp-form-button;
     @include grp-form-button-style;
 }
-a.grp-button {
+a.grp-button, 
+button.grp-button {
     @include grp-button();
+    @include grp-form-button-style;
     @include grp-padding($grp-padding-size-s $grp-padding-size);
     &.grp-delete-link {
         @include grp-form-button-delete-style;
@@ -121,25 +122,25 @@ a.grp-button {
     }
 }
 
-.grp-submit-row {
-    a.grp-button {
-        @include grp-button();
-        @include grp-form-button-style;
-        &.grp-delete-link {
-            @include grp-form-button-delete-style;
-        }
-        &.grp-cancel-link {
-            @include grp-form-button-cancel-style;
-        }
-        &.grp-reset-link {
-            @include grp-form-button-reset-style;
-        }
-    }
-    button.grp-button {
-        @include grp-button();
-        @include grp-form-button-style;
-    }
-}
+// .grp-submit-row {
+//     a.grp-button {
+//         @include grp-button();
+//         @include grp-form-button-style;
+//         &.grp-delete-link {
+//             @include grp-form-button-delete-style;
+//         }
+//         &.grp-cancel-link {
+//             @include grp-form-button-cancel-style;
+//         }
+//         &.grp-reset-link {
+//             @include grp-form-button-reset-style;
+//         }
+//     }
+//     button.grp-button {
+//         @include grp-button();
+//         @include grp-form-button-style;
+//     }
+// }
 
 
 
@@ -149,8 +150,6 @@ a.grp-button {
 
 @mixin grp-icon-button {
     position: relative;
-    // float: right;
-    // top: 0;
     display: inline-block;
     margin: 0 0 0 -25px;
     padding: 0;

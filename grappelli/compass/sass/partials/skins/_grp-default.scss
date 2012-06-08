@@ -247,9 +247,9 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		}
 	}
 }
-.grp-form-button {
-	@include grp-form-button-style;
-}
+// .grp-form-button {
+// 	@include grp-form-button-style;
+// }
 
 @mixin grp-form-button-delete-style {
 	color: #fff;
@@ -267,9 +267,9 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		}
 	}
 }
-.grp-form-button-delete {
-	@include grp-form-button-delete-style;
-}
+// .grp-delete-link {
+// 	@include grp-form-button-delete-style;
+// }
 
 @mixin grp-form-button-cancel-style {
 	color: #fff;
@@ -287,9 +287,9 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		}
 	}
 }
-.grp-form-button-cancel {
-	@include grp-form-button-cancel-style;
-}
+// .grp-cancel-link {
+// 	@include grp-form-button-cancel-style;
+// }
 
 @mixin grp-form-button-reset-style {
 	color: #fff;
@@ -307,9 +307,9 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		}
 	}
 }
-.grp-form-button-reset {
-	@include grp-form-button-reset-style;
-}
+// .grp-reset-link {
+// 	@include grp-form-button-reset-style;
+// }
 
 
 
