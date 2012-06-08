@@ -76,7 +76,7 @@
     position: relative;
     display: inline-block;
     margin: 0;
-    @include grp-padding($grp-padding-size-xs $grp-padding-size-s);
+    @include grp-padding($grp-padding-size-s);
     height: 28px;
     @extend .grp-font-family;
     @extend .grp-font-size;
@@ -109,6 +109,7 @@ input[type="submit"] {
 }
 a.grp-button {
     @include grp-button();
+    @include grp-padding($grp-padding-size-s $grp-padding-size);
     &.grp-delete-link {
         @include grp-form-button-delete-style;
     }
@@ -136,7 +137,6 @@ a.grp-button {
     }
     button.grp-button {
         @include grp-button();
-        // @include grp-form-button;
         @include grp-form-button-style;
     }
 }
