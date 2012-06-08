@@ -453,10 +453,8 @@ header#grp-header {
 	padding: 10px 20px;
 	width: 100%;
 	border: 0;
-	@include border-radius(0);
 	@include box-sizing(border-box);
 	@include grp-gradient-dark;
-	@include clearfix;
 }
 .grp-fixed-footer {
 	@include grp-fixed-footer;
