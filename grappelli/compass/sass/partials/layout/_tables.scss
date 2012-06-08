@@ -129,15 +129,11 @@ table {
                 margin: -10px 0 -5px !important;
             }
         }
-        > input[type=checkbox], 
-        > input[type=radio] {
-            // display: none !important;
-            // margin: 0 ;
-        }
         ul.radiolist, 
         ul.checkboxlist {
             margin: -3px 0 -7px;
             &.inline {
+                margin: -3px 0 -7px;
                 white-space: normal !important;
                 max-width: 400px;
             }
