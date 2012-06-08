@@ -395,6 +395,7 @@ header#grp-header {
 @mixin grp-submit-row {
 	padding: 0;
     border: 0;
+    @include border-radius(0);
     background: transparent;
 	> ul {
 		margin-top: 10px;
