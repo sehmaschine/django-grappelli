@@ -173,3 +173,11 @@ def get_autocomplete_lookup_fields_m2m(model_admin):
 def get_autocomplete_lookup_fields_generic(model_admin):
     return model_admin.autocomplete_lookup_fields.get("generic", [])
 
+
+# SORTABLE EXCLUDES
+@safe_json_else_list_tag
+def get_sortable_excludes(model_admin):
+    return model_admin.sortable_excludes
+
+
+
