@@ -169,7 +169,7 @@
             app_label: grappelli.get_app_label(elem),
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
-            options.wrapper_repr.find("li.repr").remove();
+            options.wrapper_repr.find("li.grp-repr").remove();
             options.wrapper_search.find("input").val("");
             $.each(data, function(index) {
                 repr_add(elem, data[index].label, options);
