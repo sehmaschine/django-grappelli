@@ -13,11 +13,11 @@
             if (checked) {
                 showQuestion();
                 $(actionCheckboxes).attr("checked", true)
-                    .parent().parent().toggleClass(options.selectedClass, checked);
+                    .parent().parent().addClass(options.selectedClass);
             } else {
                 reset();
                 $(actionCheckboxes).attr("checked", false)
-                    .parent().parent().toggleClass(options.selectedClass, checked);
+                    .parent().parent().removeClass(options.selectedClass);
             }
         };
         updateCounter = function() {
