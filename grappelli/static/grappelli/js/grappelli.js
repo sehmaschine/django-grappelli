@@ -65,11 +65,11 @@ var django = {
         $("input[class*='vTimeField']:not([id*='__prefix__'])").grp_timepicker();
 
         // now-button for both date and time
-        $("<button class='ui-datetime-now' />").insertAfter("button.ui-timepicker-trigger");
-        $(".ui-datetime-now").live('click', function() {
-            alert("Now for date and time: grappelli.js line 68 ff.");
-            return false
-        });
+        // $("<button class='ui-datetime-now' />").insertAfter("button.ui-timepicker-trigger");
+        // $(".ui-datetime-now").live('click', function() {
+        //     alert("Now for date and time: grappelli.js line 68 ff.");
+        //     return false
+        // });
         
     };
     
