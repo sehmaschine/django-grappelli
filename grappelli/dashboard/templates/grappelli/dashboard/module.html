@@ -9,7 +9,7 @@
     
     {% if module.title %}
         {% if module|classname:"group" %}
-            <h2 class="module_title{% if module.collapsible %} collapse-handler{% endif %}">{{ module.title }}</h2>
+            <h2 class="module_title{% if module.collapsible %} grp-collapse-handler{% endif %}">{{ module.title }}</h2>
         {% else %}
             <h{% if subindex %}3{% else %}2{% endif %} class="module_title{% if module.collapsible %} grp-collapse-handler{% endif %}">{{ module.title }}</h{% if subindex %}3{% else %}2{% endif %}>
         {% endif %}

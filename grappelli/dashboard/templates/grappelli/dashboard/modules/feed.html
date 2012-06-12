@@ -1,10 +1,10 @@
 {% extends "grappelli/dashboard/module.html" %}
 {% load i18n %}
 {% block module_content %}
-    <ul>
+    <ul class="grp-listing-small">
         {% spaceless %}
         {% for child in module.children %}
-        <li>
+        <li class="grp-row">
             {% if child.date %}<span class="date mini quiet">{{ child.date|date }}&nbsp;</span>{% endif %}
             {% if child.warning %}<span class="warning">{{ child.title }}</span>{% else %}<a class="external" href="{{ child.url }}">{{ child.title }}</a>{% endif %}
         </li>

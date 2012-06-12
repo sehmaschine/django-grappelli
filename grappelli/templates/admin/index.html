@@ -64,7 +64,8 @@
                                     {% else %}
                                         <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
                                     {% endif %}
-                                    <span class="grp-font-color-quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span></li>
+                                    <span class="grp-font-color-quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span>
+                                </li>
                             {% endfor %}
                         </ul>
                     {% endif %}
