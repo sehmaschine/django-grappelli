@@ -16,6 +16,10 @@ Changelog
 * New: Compass-based CSS
 * New: Added toggle-all with change-form
 * New: DOM-Documentation
+* New: ``sortable_excludes``
+* New: 2 different Changelists (one with sidebar filters)
+* Changed: Selectors with Inlines in order to update the sortable-field (now also works with File-Fields)
+* Changed: Updated jQuery to 1.7.2
 
 2.3.8 (April 03, 2012)
 ----------------------

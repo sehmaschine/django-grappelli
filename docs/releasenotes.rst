@@ -22,6 +22,8 @@ What's new in Grappelli 2.4.x
 * Grappelli namespace (grp-).
 * Added toggle-all with change-form
 * DOM-Documentation
+* ``sortable_excludes``
+* 2 different Changelists (one with sidebar filters)
 
 Update from Grappelli 2.3.x
 ---------------------------
@@ -31,4 +33,5 @@ Update from Grappelli 2.3.x
 * Change your admin-classes (collapse > grp-collapse, open > grp-open, closed > grp-closed)
 * Check/Update your custom templates, custom css and custom javascripts (if any)
 
-A special thanks goes Maxime Haineault for his help and feedback.
+A special thanks goes Maxime Haineault for his help and feedback on the 2.4-branch.
+Thanks to Kyle MacFarlane for his help with the new inline selectors (when reordering inlines).

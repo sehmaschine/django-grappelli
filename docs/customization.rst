@@ -76,8 +76,21 @@ Now, define the ``sortable_field_name`` with your ``InlineModelAdmin``::
 The inline-rows are being reordered based on the sortable-field (with a templatetag ``formsetsort``). When submitting a form, the values of the sortable-field are re-indexed according to the position of each row.
 In case of errors (somewhere within the form), the position of inline-rows are being preserved. This applies to rows prepeared for deletion as well. Empty rows are moved to the end of the formset.
 
-.. note::
-    The limiations of this approach are that a) sortables won´t work with fields with default values and b) sortables won´t work with file-fields (because the serializer doesn´t pick them up).
+.. _customizationsortableexcludes:
+
+Sortables Excludes
+------------------
+
+.. versionadded:: 2.4
+
+You may want to define ``sortable_excludes`` (either list or tuple) in order to exclude certain fields from having an effect on the position field. This is especially useful if a field has a default value::
+
+    class MyInlineModelOptions(admin.TabularInline):
+        fields = (... , "position",)
+        # define the sortable
+        sortable_field_name = "position"
+        # define sortable_excludes
+        sortable_excludes = ("field_1", "field_2",)
 
 .. _customizationrelatedlookups:
 
@@ -247,3 +260,13 @@ Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form
 
 .. note::
     TinyMCE with Inlines is not supported by default.
+
+.. _changelistfilters:
+
+Changelist Filters
+------------------
+
+.. versionadded:: 2.4
+
+TODO: Explain how to use different filter-styles with the changelist.
+

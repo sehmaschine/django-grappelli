@@ -41,4 +41,4 @@ If you think you've found a bug, please `add a ticket <https://github.com/sehmas
 * At best: add a patch.
 
 .. note::
-    Be aware that we may close issues not following these guidlines without further notifications.
+    Be aware that we may close issues not following these guidlines without further notification.

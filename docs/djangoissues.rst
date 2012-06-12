@@ -87,7 +87,7 @@ When you edit an object and save it, you are redirected to an unfiltered changel
 Admin Documentation
 -------------------
 
-The document structure of the admin_doc templates is a bit messy (about every second template has a different structure). Therefore, it´s hard to style these pages. Trying to do our best to give it a decent look though.
+The document structure of the admin_doc templates is messy (about every second template has a different structure). Therefore, it´s hard to style these pages. Trying to do our best to give it a decent look though.
 
 Moreover, all admin-views lead to an error.
 

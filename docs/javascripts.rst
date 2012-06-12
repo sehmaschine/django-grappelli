@@ -33,7 +33,7 @@ in ``/static/admin/js/``
     original
 
 ``SelectFilter2.js``
-    original
+    minor modifiations, marked with GRAPPELLI CUSTOM (e.g. removed help-text, because trusted editors should know what to do)
 
 ``urlify.js``
     original
