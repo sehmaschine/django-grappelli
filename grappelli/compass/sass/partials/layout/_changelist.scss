@@ -200,29 +200,23 @@ form#grp-changelist-search {
 	.grp-horizontal-list {
 		@include horizontal-list(1px, left);
 		.grp-button {
-			padding: 6px 10px 4px;
-			border: 0;
-			background: #333;
-			&:hover {
-				color: #fff;
-				border: 0;
-				background: #333;
-			}
+			padding-left: 5px;
+			padding-right: 5px;
 		}
 		a {
 			opacity: 1 !important;
 			color: #59AFCC;
 			font-weight: bold;
+			@include grp-button-states(transparent, transparent);
+			&:hover {
+				color: #fff;
+			}
 		}
 		span {
-			color: lighten($grp-font-color-quiet, 20) !important;
+			color: lighten($grp-font-color-quiet, 20);
+			@include grp-button-states(transparent, transparent);
 			cursor: default !important;
 		}
-	}
-	li.grp-all, 
-	li.grp-question, 
-	li.grp-clear-selection {
-		display: none;
 	}
 }
 
