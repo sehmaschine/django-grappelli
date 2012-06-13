@@ -359,14 +359,14 @@ fieldset .grp-row {
 
 .grp-stacked, 
 .grp-tabular {
-	.grp-module {
-		&:first-child {
-			margin-top: 0;
-		}
-		.grp-module {
-			margin-top: 0;
-		}
-	}
+	// .grp-module {
+	// 	&:first-child {
+	// 		margin-top: 0;
+	// 	}
+	// 	.grp-module {
+	// 		margin-top: 0;
+	// 	}
+	// }
 	.grp-module.grp-add-item {
 		height: 28px;
 		font-weight: bold;
@@ -391,6 +391,14 @@ fieldset .grp-row {
 		.grp-module { // H3 + Module
 			@include border-radius(0 0 2px 2px);
 			border-top: 1px solid #fff;
+		}
+	}
+	h2 {
+		margin-bottom: 2px;
+	}
+	&.grp-closed {
+		h2 {
+			margin-bottom: 0;
 		}
 	}
 }
