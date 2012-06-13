@@ -196,7 +196,7 @@
 
 @mixin grp-collapse {
 	&.grp-closed {
-		*, .grp-table, .grp-table * {
+		*, .grp-row:not(tr).grp-cells, .grp-table, .grp-table * {
 			display: none;
 		}
 		// Elements displayed even in collpase-closed
