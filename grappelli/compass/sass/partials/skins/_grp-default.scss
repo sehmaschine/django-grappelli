@@ -176,13 +176,13 @@ $grp-form-field-background-color-focus: #fff !default;
 $grp-form-field-background-color-interactive: #e1f0f5 !default;
 
 $grp-form-field-border: 1px solid #ccc !default;
-$grp-form-field-border-focus: 1px solid #888 !default;
+$grp-form-field-border-focus: 1px solid #aaa !default;
 
 @mixin grp-form-field-box-shadow {
 	@include single-box-shadow(#eee 0 1px 3px inset);
 }
 @mixin grp-form-field-box-shadow-focus {
-	@include box-shadow(#999 0 0 6px);
+	@include box-shadow(#ccc 0 0 6px);
 }
 
 
