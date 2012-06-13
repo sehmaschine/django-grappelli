@@ -14,12 +14,15 @@ p.grp-help {
 
 p.grp-readonly {
     position: relative;
-    display: block;
+    display: inline-block;
     margin: 4px 0 0 !important;
     padding: 0 !important;
     color: #666;
     font-size: 12px;
     font-weight: bold;
+    & + p.grp-readonly {
+        margin-left: 20px;
+    }
 }
 .grp-tabular {
     p.grp-readonly {
