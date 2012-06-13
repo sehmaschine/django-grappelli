@@ -280,7 +280,9 @@
 	.grp-row:not(tr) {
 		@include grp-row;
 	}
-	.grp-row + .grp-module .grp-row:first-child {
+	.grp-row + .grp-module > .grp-row:first-child, 
+	h2 + .grp-module > .grp-row:first-child, 
+	.grp-module + .grp-module > .grp-row:first-child {
 		border-top: 1px solid #fff;
 	}
 }
