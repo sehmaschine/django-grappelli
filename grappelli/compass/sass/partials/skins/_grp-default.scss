@@ -28,6 +28,11 @@ $grp-font-color-quiet: #888 !default;
 	color: $grp-font-color-quiet;
 }
 
+$grp-font-color-error: #bf3030 !default;
+.grp-font-color-error {
+	color: $grp-font-color-error;
+}
+
 
 /*  Link Colors ............................................................ */
 

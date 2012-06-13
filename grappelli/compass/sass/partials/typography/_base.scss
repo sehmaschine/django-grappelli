@@ -80,6 +80,18 @@ a {
 			width: auto;
 		}
 	}
+	&.grp-link-external {
+		padding-left: 18px;
+		color: $grp-link-color-quiet;
+		@include icons-small-sprite(link-external);
+		&:hover {
+			color: $grp-link-color-quiet-hover;
+		}
+	}
+	&.grp-link-internal {
+		padding-left: 18px;
+		@include icons-small-sprite(link-internal);
+	}
 }
 
 
