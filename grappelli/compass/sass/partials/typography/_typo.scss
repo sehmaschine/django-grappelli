@@ -116,8 +116,15 @@ p.preview {
 
 
 .grp-docutils {
-    h4 p {
-        margin: 0;
+    .grp-module {
+        h4 {
+            padding: 0;
+            border: 0;
+            background: none;
+            p {
+                margin: 0;
+            }
+        }
     }
     table p {
         margin: 0 !important;
