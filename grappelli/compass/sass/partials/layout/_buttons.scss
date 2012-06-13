@@ -294,7 +294,7 @@ input:focus + a.related-lookup,
 input:focus + * + a.related-lookup, 
 input:focus + a.add-another, 
 .grp-state-focus a.related-lookup {
-    border: $grp-button-border-focus !important;
+    border: $grp-form-field-border-focus !important;
 }
 input:focus + .grp-search-button {
     border-color: transparent !important;
