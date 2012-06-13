@@ -55,10 +55,17 @@ $gm: 20px; // grid margin
 fieldset.grp-module {
     .g-d-fluid {
         position: relative;
-        float: left;
-        // float: none;
-        // display: table-cell;
-        // width: 10000px;
+        float: none;
+        display: table-cell;
+        width: 10000px;
+    }
+    // Reset the table-cell solution in cells as it cause bad behaviour of fields and readonly fields
+    .grp-cell {
+        .g-d-fluid {
+            float: left;
+            width: auto;
+            display: block;
+        }
     }
 }
 
