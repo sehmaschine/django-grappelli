@@ -134,6 +134,7 @@ form#grp-changelist-search {
 	    background-position: 100% 0;
 	    background-repeat: no-repeat;
 	    @include grp-button-states(grey, blue);
+	    color: $grp-link-color;
 	    &:hover {
 	    	color: #444;
 	    	background-image: url('../images/icons/tools-arrow-down-handler.png');
