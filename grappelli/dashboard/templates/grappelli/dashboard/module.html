@@ -2,9 +2,9 @@
 {% if not module.is_empty %}
 
 {% if dashboard.app_title %}
-    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}grp-group {% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentactions" %}actions {% endif %}{{ module.render_css_classes|cut:"deletable"|cut:"draggable"|join:"" }}{% if module.collapsible %} grp-collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} grp-open{% endif %}{% endif %}">
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"grp-group" %}grp-group {% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentactions" %}actions {% endif %}{{ module.render_css_classes|cut:"deletable"|cut:"draggable"|join:"" }}{% if module.collapsible %} grp-collapse{% if not "grp-open" in module.css_classes and not "grp-closed" in module.css_classes %} grp-open{% endif %}{% endif %}">
 {% else %}
-    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}grp-group {% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentActions" %}actions {% endif %}{{ module.render_css_classes }}{% if module.collapsible %} grp-collapse{% if not "open" in module.css_classes and not "closed" in module.css_classes %} grp-open{% endif %}{% endif %}">
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"grp-group" %}grp-group {% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentActions" %}actions {% endif %}{{ module.render_css_classes }}{% if module.collapsible %} grp-collapse{% if not "grp-open" in module.css_classes and not "grp-closed" in module.css_classes %} grp-open{% endif %}{% endif %}">
 {% endif %}
     
     {% if module.title %}
