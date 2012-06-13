@@ -13,11 +13,18 @@ p.grp-help {
 
 
 p.grp-readonly {
-    margin: 0 !important;
-    padding: 3px 0 !important;
+    position: relative;
+    display: block;
+    margin: 4px 0 0 !important;
+    padding: 0 !important;
     color: #666;
     font-size: 12px;
     font-weight: bold;
+}
+.grp-tabular {
+    p.grp-readonly {
+        margin-top: 5px !important;
+    }
 }
 
 .grp-row img {

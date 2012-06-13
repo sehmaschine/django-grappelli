@@ -55,9 +55,10 @@ $gm: 20px; // grid margin
 fieldset.grp-module {
     .g-d-fluid {
         position: relative;
-        float: none;
-        display: table-cell;
-        width: 10000px;
+        float: left;
+        // float: none;
+        // display: table-cell;
+        // width: 10000px;
     }
 }
 
