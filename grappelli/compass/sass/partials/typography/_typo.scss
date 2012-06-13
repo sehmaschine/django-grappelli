@@ -113,8 +113,6 @@ p.preview {
     }
 }
 
-
-
 .grp-docutils {
     .grp-module {
         h4 {
@@ -138,6 +136,9 @@ p.preview {
         margin: 10px;
         padding: 6px 8px;
         background: #fff;
+    }
+    .grp-group h2 + .grp-row > p {
+        padding: 3px 10px 0;
     }
 }
 
