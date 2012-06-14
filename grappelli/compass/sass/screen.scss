@@ -294,6 +294,7 @@ header#grp-header {
 	> ul {
 		@include horizontal-list(5px, left);
 		@include grp-padding($grp-padding-size-s 20px);
+		text-shadow: 0 1px 0 #f5f5f5;
 		a {
 			display: block;
 			padding-right: 15px;

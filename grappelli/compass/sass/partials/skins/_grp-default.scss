@@ -18,7 +18,7 @@ $grp-font-family: Arial, sans-serif;
 
 /*  Font Colors ............................................................ */
 
-$grp-font-color: #333 !default;
+$grp-font-color: #444 !default;
 .grp-font-color {
 	color: $grp-font-color;
 }
@@ -37,10 +37,10 @@ $grp-font-color-error: #bf3030 !default;
 /*  Link Colors ............................................................ */
 
 $grp-link-color: #309bbf !default;
-$grp-link-color-hover: #333 !default;
+$grp-link-color-hover: #444 !default;
 
 $grp-link-color-quiet: #62bbd9 !default;
-$grp-link-color-quiet-hover: #333 !default;
+$grp-link-color-quiet-hover: #444 !default;
 
 
 
@@ -174,7 +174,7 @@ $grp-table-border-color: #ccc !default;
 $grp-form-field-font-family: Arial, sans-serif !default;
 $grp-form-field-font-size: 12px !default;
 $grp-form-field-line-height: 14px !default;
-$grp-form-field-font-color: #333 !default;
+$grp-form-field-font-color: #555 !default;
 
 $grp-form-field-background-color: #fdfdfd !default;
 $grp-form-field-background-color-focus: #fff !default;
@@ -196,7 +196,7 @@ $grp-form-field-border-focus: 1px solid #aaa !default;
 $grp-form-label-font-family: Arial, sans-serif !default;
 $grp-form-label-font-size: 11px !default;
 $grp-form-label-line-height: 13px !default;
-$grp-form-label-font-color: #333 !default;
+$grp-form-label-font-color: #444 !default;
 
 @mixin grp-form-label-required {
 	font-weight: bold;
@@ -210,8 +210,8 @@ $grp-form-label-font-color: #333 !default;
 
 $grp-form-button-font-family: Arial, sans-serif !default;
 $grp-form-button-font-size: 12px !default;
-$grp-form-button-font-color: #333 !default;
-$grp-form-button-font-color-hover: #333 !default;
+$grp-form-button-font-color: #444 !default;
+$grp-form-button-font-color-hover: #444 !default;
 
 // $grp-form-button-background-color: #fdfdfd !default;
 // $grp-form-button-background-color-hover: #fff !default;
@@ -232,19 +232,19 @@ $grp-form-button-font-color-hover: #333 !default;
 
 
 $grp-form-button-background-color: #309bbf !default;
-$grp-form-button-background-color-hover: #333 !default;
+$grp-form-button-background-color-hover: #444 !default;
 $grp-footer-form-button-background-color-hover: #eee !default;
 
 $grp-form-button-delete-background-color: #bf3030 !default;
-$grp-form-button-delete-background-color-hover: #333 !default;
+$grp-form-button-delete-background-color-hover: #444 !default;
 $grp-footer-form-button-delete-background-color-hover: #eee !default;
 
 $grp-form-button-reset-background-color: #888 !default;
-$grp-form-button-reset-background-color-hover: #333 !default;
+$grp-form-button-reset-background-color-hover: #444 !default;
 $grp-footer-form-button-reset-background-color-hover: #eee !default;
 
 $grp-form-button-cancel-background-color: #888 !default;
-$grp-form-button-cancel-background-color-hover: #333 !default;
+$grp-form-button-cancel-background-color-hover: #444 !default;
 $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 
 @mixin grp-form-button-style {
@@ -257,7 +257,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		border: 1px solid darken($grp-form-button-background-color-hover, 5);
 		@include background-image(linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover));
 		.grp-fixed-footer & {
-			color: #333;
+			color: #444;
 			border: 1px solid darken($grp-footer-form-button-background-color-hover, 15);
 			@include background-image(linear-gradient(lighten($grp-footer-form-button-background-color-hover, 15), $grp-footer-form-button-background-color-hover));
 		}
@@ -277,7 +277,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		border: 1px solid darken($grp-form-button-delete-background-color-hover, 5);
 		@include background-image(linear-gradient(lighten($grp-form-button-delete-background-color-hover, 10), $grp-form-button-delete-background-color-hover));
 		.grp-fixed-footer & {
-			color: #333;
+			color: #444;
 			border: 1px solid darken($grp-footer-form-button-delete-background-color-hover, 15);
 			@include background-image(linear-gradient(lighten($grp-footer-form-button-delete-background-color-hover, 15), $grp-footer-form-button-delete-background-color-hover));
 		}
@@ -297,7 +297,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		border: 1px solid darken($grp-form-button-cancel-background-color-hover, 5);
 		@include background-image(linear-gradient(lighten($grp-form-button-cancel-background-color-hover, 10), $grp-form-button-cancel-background-color-hover));
 		.grp-fixed-footer & {
-			color: #333;
+			color: #444;
 			border: 1px solid darken($grp-footer-form-button-cancel-background-color-hover, 15);
 			@include background-image(linear-gradient(lighten($grp-footer-form-button-cancel-background-color-hover, 15), $grp-footer-form-button-cancel-background-color-hover));
 		}
@@ -317,7 +317,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		border: 1px solid darken($grp-form-button-reset-background-color-hover, 5);
 		@include background-image(linear-gradient(lighten($grp-form-button-reset-background-color-hover, 10), $grp-form-button-reset-background-color-hover));
 		.grp-fixed-footer & {
-			color: #333;
+			color: #444;
 			border: 1px solid darken($grp-footer-form-button-reset-background-color-hover, 15);
 			@include background-image(linear-gradient(lighten($grp-footer-form-button-reset-background-color-hover, 15), $grp-footer-form-button-reset-background-color-hover));
 		}
@@ -350,7 +350,7 @@ $grp-button-border-focus: 1px solid #888 !default;
 
 @mixin grp-gradient-dark {
 	color: #fff;
-	@include background-image(linear-gradient(#333, #222));
+	@include background-image(linear-gradient(#444, #222));
 }
 // .grp-gradient-dark {
 // 	@include grp-gradient-dark;
