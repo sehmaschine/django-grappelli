@@ -1,3 +1,4 @@
+{% load grp_tags %}
 {% spaceless %}
     <fieldset class="grp-module {{ fieldset.classes }}">
         {% if fieldset.name %}<h4 class="grp-collapse-handler">{{ fieldset.name }}</h4>{% endif %}
@@ -9,9 +10,9 @@
                         {% if field.is_checkbox %}
                             <div class="g-d-4">&nbsp;</div>
                             <div class="g-d-fluid">
-                                {{ field.field }}{{ field.label_tag }}
+                                {{ field.field }}{{ field.label_tag|prettylabel }}
                         {% else %}
-                            <div class="g-d-4">{{ field.label_tag }}</div>
+                            <div class="g-d-4">{{ field.label_tag|prettylabel }}</div>
                             <div class="g-d-fluid">
                                 {% if field.is_readonly %}
                                     <p class="grp-readonly">{{ field.contents }}</p>

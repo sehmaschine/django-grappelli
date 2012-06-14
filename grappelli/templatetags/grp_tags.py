@@ -180,4 +180,9 @@ def get_sortable_excludes(model_admin):
     return model_admin.sortable_excludes
 
 
+@register.filter
+def prettylabel(value):
+    return mark_safe(value.replace(":</label>", "</label>"))
+
+
 
