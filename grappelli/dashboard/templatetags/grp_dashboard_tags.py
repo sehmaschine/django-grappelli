@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
 Dashboard template tags, the following dashboard tags are available:
  * ``{% grp_render_dashboard %}``
@@ -6,11 +8,14 @@ Dashboard template tags, the following dashboard tags are available:
 To load the dashboard tags: ``{% load grp_dashboard_tags %}``.
 """
 
+# PYTHON IMPORTS
 import math
 
+# DJANGO IMPORTS
 from django import template
 from django.core.urlresolvers import reverse
 
+# GRAPPELLI IMPORTS
 from grappelli.dashboard.utils import get_admin_site_name, get_index_dashboard
 
 register = template.Library()
@@ -31,6 +36,7 @@ def grp_render_dashboard(context, location='index', dashboard=None):
         with the ``get_index_dashboard`` or ``get_app_index_dashboard``
         functions, depending on the ``location`` argument.
     """
+
     if dashboard is None:
         dashboard = get_index_dashboard(context)
     
@@ -51,6 +57,7 @@ def grp_render_dashboard_module(context, module, index=None, subindex=None):
     ``DashboardModule`` instance as first parameter and an integer ``index`` as
     second parameter, that is the index of the module in the dashboard.
     """
+    
     module.init_with_context(context)
     context.update({
         'template': module.template,
