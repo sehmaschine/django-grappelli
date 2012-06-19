@@ -224,7 +224,7 @@
 	position: relative;
 	float: left;
 	clear: both;
-	@include grp-padding(8px $grp-padding-size);
+	@include grp-padding(5px $grp-padding-size 4px);
 	width: 100%;
 	@include box-sizing(border-box);
 	// @include clearfix;
@@ -286,7 +286,8 @@
 		border-top: 1px solid #fff;
 	}
 }
-fieldset .grp-row {
+fieldset.grp-module .grp-row {
+	@include grp-padding(8px $grp-padding-size);
 	overflow: hidden;
 }
 
