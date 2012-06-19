@@ -218,7 +218,7 @@
             <footer id="submit" class="grp-module grp-submit-row grp-fixed-footer">
                 <header style="display:none"><h1>Submit Options</h1></header>
                 <ul>
-                    {% if action_form %}<li class="grp-float-left">{% admin_actions %}</li>{% endif %}
+                    {% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}
                     {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="Save"/></li>{% endif %}
                 </ul>
             </footer>

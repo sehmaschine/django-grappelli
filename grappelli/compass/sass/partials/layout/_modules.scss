@@ -224,7 +224,7 @@
 	position: relative;
 	float: left;
 	clear: both;
-	@include grp-padding(5px $grp-padding-size 4px);
+	@include grp-padding(5px $grp-padding-size);
 	width: 100%;
 	@include box-sizing(border-box);
 	// @include clearfix;

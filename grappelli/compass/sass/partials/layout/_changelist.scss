@@ -191,34 +191,45 @@ form#grp-changelist-search {
 /*  ACTIONS
 ------------------------------------------------------------------------------------------------------ */
 
-.grp-changelist-actions {
+li.grp-changelist-actions {
+	padding: 5px 0 !important;
+	background: transparent !important;
 	select {
 		position: relative;
 		float: left;
-		margin-right: 5px;
-		height: 28px;
-		@include border-radius($grp-form-button-border-radius);
+		margin: 2px 5px 0 0;
+		// height: 28px;
+		// @include border-radius($grp-form-button-border-radius);
 	}
 	.grp-horizontal-list {
-		@include horizontal-list(1px, left);
+		@include horizontal-list(0, left);
+		margin: -1px 0;
+		li {
+			border: 1px solid #333;
+			@include border-radius($grp-border-radius + 1);
+		}
 		.grp-button {
 			padding: 6px 10px 4px;
-			border: 0;
-			background: #333;
-			&:hover {
-				color: #fff;
-				border: 0;
-				background: #333;
-			}
+			// @include border-radius($grp-border-radius - 1 !important);
 		}
 		a {
 			opacity: 1 !important;
-			color: #59AFCC;
+			color: #59afcc;
 			font-weight: bold;
+			border: 1px solid #222;
+			background: #333;
+			// @include background-image(linear-gradient(lighten(#333, 5), lighten(#333, 2)));
+			&:hover {
+				color: #fff;
+				border: 1px solid #222;
+				background: #555;
+			}
 		}
 		span {
 			color: lighten($grp-font-color-quiet, 20) !important;
 			cursor: default !important;
+			border: 1px solid #222 !important;
+			background: #333 !important;
 		}
 	}
 	li.grp-all, 
@@ -226,6 +237,9 @@ form#grp-changelist-search {
 	li.grp-clear-selection {
 		display: none;
 	}
+}
+.grp-submit-row.grp-fixed-footer > ul > li.grp-changelist-actions {
+	padding: 5px 0 !important;
 }
 
 
