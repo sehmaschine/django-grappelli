@@ -205,6 +205,7 @@ li.grp-changelist-actions {
 		@include horizontal-list(0, left);
 		margin: -1px 0;
 		li {
+			margin-right: 4px;
 			border: 1px solid #333;
 			@include border-radius($grp-border-radius + 1);
 		}
