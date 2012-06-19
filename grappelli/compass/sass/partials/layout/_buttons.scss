@@ -228,7 +228,8 @@ button.ui-datetime-now {
 
 .grp-search-button {
     @include icons-sprite(related-lookup);
-    @include grp-button-states(transparent, transparent);
+    border-color: transparent !important;
+    background-color: transparent !important;
 }
 
 
