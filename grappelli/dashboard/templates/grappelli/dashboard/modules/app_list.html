@@ -8,9 +8,9 @@
             {% for model in child.models %}
                 <div class="grp-row">
                     {% if model.change_url %}
-                        <a href="{{ model.change_url }}">{{ model.title }}</a>
+                        <a href="{{ model.change_url }}"><strong>{{ model.title }}</strong></a>
                     {% else %}
-                        {{ model.title }}
+                        <strong>{{ model.title }}</strong>
                     {% endif %}
                     {% if model.add_url or model.change_url %}
                         <ul class="grp-actions">
