@@ -197,7 +197,7 @@ li.grp-changelist-actions {
 	select {
 		position: relative;
 		float: left;
-		margin: 2px 5px 0 0;
+		margin: 1px 5px 0 0;
 		// height: 28px;
 		// @include border-radius($grp-form-button-border-radius);
 	}
@@ -210,15 +210,16 @@ li.grp-changelist-actions {
 			@include border-radius($grp-border-radius + 1);
 		}
 		.grp-button {
-			padding: 6px 10px 4px;
+			padding: 5px 10px 4px;
+			height: 27px;
 			// @include border-radius($grp-border-radius - 1 !important);
 		}
 		a {
 			opacity: 1 !important;
 			color: #59afcc;
 			font-weight: bold;
-			border: 1px solid #222;
-			background: #333;
+			border: 1px solid #111;
+			background: #222;
 			// @include background-image(linear-gradient(lighten(#333, 5), lighten(#333, 2)));
 			&:hover {
 				color: #fff;
@@ -229,8 +230,8 @@ li.grp-changelist-actions {
 		span {
 			color: lighten($grp-font-color-quiet, 20) !important;
 			cursor: default !important;
-			border: 1px solid #222 !important;
-			background: #333 !important;
+			border: 1px solid #111 !important;
+			background: #222 !important;
 		}
 	}
 	li.grp-all, 
