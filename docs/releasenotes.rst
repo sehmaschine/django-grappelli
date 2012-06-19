@@ -34,4 +34,4 @@ Update from Grappelli 2.3.x
 * Check/Update your custom templates, custom css and custom javascripts (if any)
 
 A special thanks goes Maxime Haineault for his help and feedback on the 2.4-branch.
-Thanks to Kyle MacFarlane for his help with the new inline selectors (when reordering inlines).
+Thanks to Kyle MacFarlane for his help with the new inline selectors (when reordering inlines) and Curtis Maloney for his feedback on several issues.
