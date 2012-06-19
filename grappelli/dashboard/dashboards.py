@@ -120,7 +120,7 @@ class Dashboard(object):
         """
         Internal method used to distinguish different dashboards in js code.
         """
-        return 'dashboard'
+        return 'grp-dashboard'
 
 
 class DefaultIndexDashboard(Dashboard):
@@ -140,9 +140,6 @@ class DefaultIndexDashboard(Dashboard):
         # append a link list module for "quick links"
         self.children.append(modules.LinkList(
             _('Quick links'),
-            layout='inline',
-            draggable=False,
-            deletable=False,
             collapsible=False,
             children=[
                 [_('Return to site'), '/'],
