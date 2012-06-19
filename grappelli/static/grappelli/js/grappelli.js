@@ -79,6 +79,9 @@ var django = {
             var pulldownContainer = $(this).closest(".grp-pulldown-container");
             $(pulldownContainer).toggleClass("grp-pulldown-state-open").children(".grp-pulldown-content").toggle();
         });
+        $("a.grp-pulldown-handler").bind('mouseout', function() {
+            $(this).blur();
+        });
         $(".grp-filter-choice").change(function(){
             location.href = $(this).val();
         });
