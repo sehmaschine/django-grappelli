@@ -212,7 +212,7 @@ li.grp-changelist-actions {
 		.grp-button {
 			padding: 5px 10px 4px;
 			height: 27px;
-			// @include border-radius($grp-border-radius - 1 !important);
+			@include border-radius($grp-border-radius !important);
 		}
 		a {
 			opacity: 1 !important;
