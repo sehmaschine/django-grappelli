@@ -59,6 +59,12 @@ p.file-upload {
     span.clearable-file-input {
         display: block;
         margin: 5px 0 -12px;
+        input {
+            margin: 1px 0 0;
+        }
+        label {
+            margin: 0 0 0 5px;
+        }
     }
     tr & {
         margin: 0;
