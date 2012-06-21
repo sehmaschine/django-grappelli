@@ -1,0 +1,34 @@
+
+
+body.grp-filebrowser {
+
+	table {
+		td, th {
+			> a {
+				&:first-child {
+					position: relative;
+					top: 0;
+				}
+
+			}
+			&.grp-sorted {
+				a {
+					padding-right: 30px;
+					color: $grp-font-color;
+					font-weight: bold;
+				}
+				&.grp-ascending {
+                    a {
+                    	@include icons-sprite(sorted-ascending, $offset-x: 100%);
+                    }
+                }
+                &.grp-descending {
+                	a {
+	                    @include icons-sprite(sorted-descending, $offset-x: 100%);                		
+                	}
+                }
+			}
+		}
+	}
+}
+
