@@ -4,6 +4,7 @@ p.grp-help {
     color: lighten($grp-font-color-quiet, 7);
     font-size: 11px !important;
     line-height: 14px;
+    white-space: normal !important;
     &:first-child {
         margin-top: 5px;
     }
@@ -11,7 +12,8 @@ p.grp-help {
 .grp-description {
     font-size: 11px;
 }
-.grp-cells p.grp-help {
+.grp-cells p.grp-help, 
+.grp-td p.grp-help {
     max-width: 278px;
 }
 

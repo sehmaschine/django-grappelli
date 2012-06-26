@@ -437,11 +437,6 @@ ul.errorlist + .selector {
     margin-top: 8px !important;
 }
 
-.grp-td {
-    .selector {
-        margin-right: 20px;
-    }
-}
 
 
 /*  Errors
@@ -648,10 +643,12 @@ textarea,
     }
 }
 .grp-module.grp-table select, 
-.grp-module.grp-table .grp-autocomplete-wrapper-m2m {
+.grp-module.grp-table .grp-autocomplete-wrapper-m2m, 
+.grp-module.grp-table .grp-autocomplete-wrapper-fk {
     max-width: 278px;
 }
-.grp-module.grp-table .grp-autocomplete-wrapper-m2m {
+.grp-module.grp-table .grp-autocomplete-wrapper-m2m, 
+.grp-module.grp-table .grp-autocomplete-wrapper-fk {
     width: 278px;
 }
 .grp-module.grp-table .grp-autocomplete-wrapper-m2m ul.grp-repr, 
@@ -666,10 +663,12 @@ textarea,
 .grp-cell input[type=text], 
 .grp-cell input[type=password], 
 .grp-cell select, 
-.grp-cell .grp-autocomplete-wrapper-m2m {
+.grp-cell .grp-autocomplete-wrapper-m2m, 
+.grp-cell .grp-autocomplete-wrapper-fk {
     max-width: 280px;
 }
-.grp-cell .grp-autocomplete-wrapper-m2m {
+.grp-cell .grp-autocomplete-wrapper-m2m, 
+.grp-cell .grp-autocomplete-wrapper-fk {
     width: 280px;
 }
 .grp-cell .grp-autocomplete-wrapper-m2m ul.grp-repr, 
