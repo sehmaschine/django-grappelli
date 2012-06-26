@@ -10,8 +10,6 @@
     </ul>
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}
-    
-    <ul class="errorlist"><li>Non Form Error</li></ul>
     <!-- container -->
     <div class="grp-module grp-table">
         <div class="grp-module grp-thead">
@@ -32,7 +30,6 @@
                 {% if inline_admin_form.form.non_field_errors %}
                     {{ inline_admin_form.form.non_field_errors }}
                 {% endif %}
-                <ul class="errorlist"><li>Non Field Error</li></ul>
                 <h3 style="display: none;"><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</h3>
                 {% spaceless %}
                 {% for fieldset in inline_admin_form %}
