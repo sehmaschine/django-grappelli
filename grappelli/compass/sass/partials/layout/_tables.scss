@@ -157,8 +157,12 @@ table {
             top: -5px;
         }
         > ul.errorlist {
-            margin-bottom: 14px;
+            margin-top: 5px !important;
+            &:first-child {
+                margin: -2px 0 8px !important;
+            }
         }
+
     }
 }
 
