@@ -139,7 +139,7 @@ select {
     input[type="reset"], 
     textarea, 
     select {
-        border-color: #bf3030;
+        border-color: #bf3030 !important;
     }
     ul.errorlist {
         padding: 3px 0 0;
@@ -544,7 +544,8 @@ ul.errorlist {
     h3 + * + ul.errorlist {
         @include errorlist-field;
         margin: 0 !important;
-        padding: 5px 10px;
+        padding: 5px 10px 8px;
+        border-top: 1px solid #fff;
         border-bottom: 1px solid #ddd;
     }
     .grp-row ul.errorlist {

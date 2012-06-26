@@ -12,6 +12,7 @@
     </ul>
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}
+    <ul class="errorlist"><li>Non Form Error</li></ul>
     <!-- container -->
     <div class="grp-items">
         {% with inline_admin_formset.opts.sortable_field_name|default:"" as sortable_field_name %}
@@ -36,6 +37,7 @@
                 {% if inline_admin_form.form.non_field_errors %}
                     {{ inline_admin_form.form.non_field_errors }}
                 {% endif %}
+                <ul class="errorlist"><li>Non Field Error</li></ul>
                 {% for fieldset in inline_admin_form %}
                     {% include "admin/includes/fieldset_inline.html" %}
                 {% endfor %}

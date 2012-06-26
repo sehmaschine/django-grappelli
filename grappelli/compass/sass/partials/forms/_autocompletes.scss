@@ -140,7 +140,12 @@
 }
 
 
-
+.grp-errors {
+    .grp-autocomplete-wrapper-m2m, .grp-autocomplete-wrapper-fk input.ui-autocomplete-input, 
+    a.grp-related-remove {
+        border-color: #bf3030 !important;
+    }
+}
 
 
 
