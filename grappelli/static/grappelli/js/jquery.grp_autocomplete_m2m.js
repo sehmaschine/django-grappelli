@@ -25,8 +25,8 @@
                     loader: $this.next().next().next().hide()
                 }, $.fn.grp_autocomplete_m2m.defaults, options);
                 // move errorlist outside the wrapper
-                if ($this.parent().find("ul.grp-errorlist")) {
-                    $this.parent().find("ul.grp-errorlist").detach().appendTo($this.parent().parent());
+                if ($this.parent().find("ul.errorlist")) {
+                    $this.parent().find("ul.errorlist").detach().appendTo($this.parent().parent());
                 }
                 // lookup
                 lookup_id($this, options);  // lookup when loading page

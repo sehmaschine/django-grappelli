@@ -11,7 +11,7 @@
             return this.each(function() {
                 var $this = $(this);
                 // remove djangos object representation
-                if ($this.next().next() && $this.next().next().attr("class") != "grp-errorlist") {
+                if ($this.next().next() && $this.next().next().attr("class") != "errorlist") {
                     $this.next().next().remove();
                 }
                 // add placeholder
