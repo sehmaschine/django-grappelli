@@ -133,6 +133,12 @@ select {
     label {
         color: #bf3030 !important;
     }
+    ul.radiolist.inline, 
+    ul.checkboxlist.inline {
+        label {
+            color: $grp-form-label-font-color !important;
+        }
+    }
     input[type="text"], 
     input[type="password"], 
     input[type="submit"], 
@@ -140,6 +146,13 @@ select {
     textarea, 
     select {
         border-color: #bf3030 !important;
+    }
+    .selector {
+        input, 
+        select, 
+        textarea {
+            border: $grp-form-field-border !important;
+        }
     }
     ul.errorlist {
         padding: 3px 0 0;
@@ -523,6 +536,9 @@ ul.errorlist {
     ul.errorlist {
         @include errorlist-nonform;
     }
+    .grp-tbody ul.errorlist  {
+        margin: 0;
+    }
     .grp-td ul.errorlist {
         clear: both;
         @include errorlist-field;
@@ -540,6 +556,7 @@ ul.errorlist {
     }
     ul.errorlist {
         @include errorlist-nonform;
+        margin: 3px 0;
     }
     h3 + * + ul.errorlist {
         @include errorlist-field;
@@ -560,6 +577,14 @@ ul.errorlist {
         @include border-radius($grp-border-radius);
     }
 }
+
+.grp-errors {
+    // errorlist after add-another (e.g. with radiolist-inline)
+    a.add-another + ul.errorlist {
+        clear: both;
+    }
+}
+
 
 //  Errorlist in autocompletes
 // .grp-autocomplete-wrapper-m2m {
