@@ -34,9 +34,7 @@
                     {% endif %}
                 </ul>
                 {% if inline_admin_form.form.non_field_errors %}
-                    <ul class="errorlist">
-                        <li>{{ inline_admin_form.form.non_field_errors }}</li>
-                    </ul>
+                    {{ inline_admin_form.form.non_field_errors }}
                 {% endif %}
                 {% for fieldset in inline_admin_form %}
                     {% include "admin/includes/fieldset_inline.html" %}
