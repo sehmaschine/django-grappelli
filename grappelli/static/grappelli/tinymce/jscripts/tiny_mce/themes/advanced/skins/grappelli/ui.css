@@ -43,6 +43,7 @@
 .grappelliSkin table, .grappelliSkin tbody, .grappelliSkin tr, .grappelliSkin td {
     margin: 0 !important;
     border: 0 !important;
+    outline: 0 !important;
 }
 .grappelliSkin a {
     text-decoration: none;
