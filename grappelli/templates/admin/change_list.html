@@ -151,37 +151,45 @@
         <div class="grp-module grp-changelist-filters">
             <div class="grp-row">
                 <div class="g-d-c-fluid">
-                    <div class="g-d-fluid">
-                        <!-- PAGINATION TOP -->
-                        {% pagination cl %}
-                    </div>
+                    {% block pagination_top %}
+                        <div class="g-d-fluid">
+                            <!-- PAGINATION TOP -->
+                            {% pagination cl %}
+                        </div>
+                    {% endblock %}
                     {% if cl.has_filters or cl.search_fields %}
-                        <aside class="{% if cl.has_filters and cl.search_fields %}g-d-12{% else %}{% if cl.has_filters or cl.search_fields %}g-d-6{% endif %}{% endif %} g-d-l">
-                            <header style="display:none"><h1>{% if cl.search_fields %}Search{% if cl.has_filters %} &amp; {% endif %}{% endif %}{% if cl.has_filters %}Filters{% endif %}</h1></header>
-                            <!-- SEARCH -->
-                            {% if cl.search_fields %}
-                                <div id="search" class="g-d-6">
-                                    {% block search %}{% search_form cl %}{% endblock %}
-                                </div>
-                            {% endif %}
-                            <!-- FILTERS -->
-                            {% if cl.has_filters %}
-                                <div id="filters" class="filter g-d-6 g-d-l">
-                                    <div class="grp-pulldown-container">
-                                        <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
-                                        <ul class="grp-pulldown-content" style="display: none">
-                                            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </aside>
+                        {% block aside %}
+                            <aside class="{% if cl.has_filters and cl.search_fields %}g-d-12{% else %}{% if cl.has_filters or cl.search_fields %}g-d-6{% endif %}{% endif %} g-d-l">
+                                <header style="display:none"><h1>{% if cl.search_fields %}Search{% if cl.has_filters %} &amp; {% endif %}{% endif %}{% if cl.has_filters %}Filters{% endif %}</h1></header>
+                                <!-- SEARCH -->
+                                {% if cl.search_fields %}
+                                    {% block search %}
+                                        <div id="search" class="g-d-6">
+                                            {% search_form cl %}
+                                        </div>
+                                    {% endblock %}
+                                {% endif %}
+                                <!-- FILTERS -->
+                                {% if cl.has_filters %}
+                                    {% block filters %}
+                                        <div id="filters" class="filter g-d-6 g-d-l">
+                                            <div class="grp-pulldown-container">
+                                                <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
+                                                <ul class="grp-pulldown-content" style="display: none">
+                                                    {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+                                {% endif %}
+                            </aside>
+                        {% endblock %}
                     {% endif %}
                 </div>
             </div>
             <!-- DATE HIERARCHY -->
             {% if cl.date_hierarchy %}
-                {% if show and choices %}<div class="grp-row">{% date_hierarchy cl %}</div>{% endif %}
+                {% block date_hierarchy %}<div class="grp-row">{% date_hierarchy cl %}</div>{% endblock %}
             {% endif %}
         </div>
     {% endif %}
@@ -209,9 +217,11 @@
         </section>
         <!-- PAGINATION BOTTOM -->
         {% if not cl.result_count == 0 %}
-            <div class="grp-module">
-                <div class="grp-row">{% pagination cl %}</div>
-            </div>
+            {% block pagination_bottom %}
+                <div class="grp-module">
+                    <div class="grp-row">{% pagination cl %}</div>
+                </div>
+            {% endblock %}
         {% endif %}
         <!-- SUBMIT ROW -->
         {% if cl.formset or action_form %}
