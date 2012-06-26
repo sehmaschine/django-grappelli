@@ -171,6 +171,13 @@ $show-grid-background: false;
             }
         }
     }
+    // ADDED generate margin-left for fluid columns in .grp-cell depending on g-d-columns, related to #150
+    @each $n in $units {
+        .grp-cell .g-#{$media}-#{$n} + .g-d-fluid {
+            $width: column-width($n, $col-width, $gutter-width) + $gm + $gm;
+            margin-left: $width;
+        }
+    }
     // ADDED generate form field widths
     @each $n in $units {
         .g-#{$media}-#{$n} input[type=text], 

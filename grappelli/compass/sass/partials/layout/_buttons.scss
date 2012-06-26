@@ -269,6 +269,7 @@ p.grp-help + * + a.add-another {
 }
 .grp-td a.add-another {
     float: right;
+    margin-bottom: -20px !important;
 }
 .radiolist.inline + a.add-another, 
 .checkboxlist.inline + a.add-another {

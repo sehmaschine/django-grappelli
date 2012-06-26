@@ -250,6 +250,7 @@ input[type=text].grp-search-field {
 }
 @mixin radio-checkbox-list-inline {
     @include radio-checkbox-list;
+    max-width: 760px;
     float: left;
     display: inline;
     margin-top: 5px;
@@ -434,6 +435,12 @@ ul.radiolist.inline, ul.checkboxlist.inline {
 }
 ul.errorlist + .selector {
     margin-top: 8px !important;
+}
+
+.grp-td {
+    .selector {
+        margin-right: 20px;
+    }
 }
 
 

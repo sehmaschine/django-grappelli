@@ -137,6 +137,9 @@
 		margin-top: 0;
 	}
 }
+.grp-change-form .grp-module {
+	min-width: 960px;
+}
 .grp-empty-form {
 	display: none !important;
 }
@@ -227,7 +230,6 @@
 	@include grp-padding(5px $grp-padding-size);
 	width: 100%;
 	@include box-sizing(border-box);
-	// @include clearfix;
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #ddd;
 	// overflow: visible;
@@ -248,19 +250,13 @@
 		padding-bottom: 0;
 		.grp-cell {
 			display: table-cell;
+			vertical-align: top;
 			position: relative;
-			// float: left;
-			// margin-top: -7px;
-			// margin-bottom: -1000px;
-			// margin-bottom: -7px;
-			padding-top: 8px;
-			// padding-bottom: 1000px;
-			padding-bottom: 8px;
-			padding-right: 20px;
+			padding: 8px 20px 8px 0;
 			height: 100%;
 			white-space: nowrap;
 			border-right: 1px solid #ddd;
-			overflow: hidden;
+			overflow: visible;
 			& + .grp-cell {
 				padding-left: 20px;
 				border-left: 1px solid #fff;
@@ -270,7 +266,8 @@
 				border-right: 0 !important;
 			}
 			.g-d-fluid {
-				display: inline !important;
+				white-space: normal;
+				float: none;
 				width: auto !important;
 			}
 		}
@@ -360,14 +357,6 @@ fieldset.grp-module .grp-row {
 
 .grp-stacked, 
 .grp-tabular {
-	// .grp-module {
-	// 	&:first-child {
-	// 		margin-top: 0;
-	// 	}
-	// 	.grp-module {
-	// 		margin-top: 0;
-	// 	}
-	// }
 	.grp-module.grp-add-item {
 		height: 28px;
 		font-weight: bold;
@@ -433,7 +422,7 @@ fieldset.grp-module .grp-row {
 		    overflow: hidden;
 		    padding: 1px 20px;
 		    vertical-align: top;
-		    white-space: nowrap;
+		    // white-space: nowrap;
 		    border-left: 1px solid #FFFFFF;
     		border-right: 1px solid #E0E0E0;
     		&:first-of-type {
