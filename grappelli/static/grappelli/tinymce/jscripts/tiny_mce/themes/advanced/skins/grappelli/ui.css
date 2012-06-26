@@ -53,6 +53,11 @@
     padding: 0;
     vertical-align: middle;
 }
+.grappelliSkin table td > a:first-child, 
+.grappelliSkin table th > a:first-child {
+    position: relative;
+    top: 0 !important;
+}
 
 
 

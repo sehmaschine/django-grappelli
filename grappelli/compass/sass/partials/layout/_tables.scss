@@ -4,7 +4,7 @@
 /*  Basic Table Settings
 ------------------------------------------------------------------------------------------------------ */
 
-table:not(.mceLayout, .mceToolbar) { // exclude tinymce tables
+table {
     margin: 0;
     padding: 0;
     border-spacing: none;
