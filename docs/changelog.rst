@@ -12,7 +12,8 @@ Changelog
 ------------------------
 
 * Compatibility with Django 1.4
-* New: Grappelli namespace (grp-)
+* New: Grappelli namespace (grp-) for css-classes.
+* New: Grappelli namespace (grp.jQuery) for jQuery.
 * New: Compass-based CSS
 * New: Added toggle-all with change-form
 * New: DOM-Documentation

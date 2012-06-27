@@ -52,6 +52,7 @@ Help
    :maxdepth: 1
    
    faq
+   bestpractice
    thirdparty
    troubleshooting
    djangoissues
