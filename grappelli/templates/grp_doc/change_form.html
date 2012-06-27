@@ -1,0 +1,140 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block bodyclass %}grp-doc{% endblock %}
+{% block content-class %}{% endblock %}
+{% block title %}Grappelli Documentation &raquo; Change Form{% endblock %}
+
+{% block extrahead %}
+	<script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                $("#grp-content-container .grp-group").grp_collapsible_group();
+                $("#grp-content-container .grp-collapse").grp_collapsible({
+                    on_init: function(elem, options) {
+                        // open collapse (and all collapse parents) in case of errors
+                        if (elem.find("ul.errorlist").length > 0) {
+                            elem.removeClass("grp-closed")
+                                .addClass("grp-open");
+                            elem.parents(".grp-collapse")
+                                .removeClass("grp-closed")
+                                .addClass("grp-open");
+                        }
+                    }
+                });
+            });
+        })(django.jQuery);
+	</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="../">Grappelli Documentation</a></li>
+        <li>Change Form</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1>Change Form</h1>
+    <div class="g-d-c">
+    	<section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Stacking modules in groups</h1>
+		            <p>A <span class="grp-doc-class">.grp-group</span> enclose <a href="{% url grp_doc_modules %}">modules</a> which belong together or should appear in a more associated way.</p>
+		            <p>Usually a group starts with a heading but you might as well use it without one. <br />Just be aware of the fact that groups without headings do not appear in document outlines.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+	    			<div class="grp-group">
+	    				<h2>Group</h2>
+	    				<div class="grp-module">
+		    				<h3>Module</h3>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+						<div class="grp-module">
+		    				<h3>Module</h3>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-group">
+    <h2>Group</h2>
+    <div class="grp-module">
+        <h3>Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+    <div class="grp-module">
+        <h3>Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+</div>
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Collapsible groups</h1>
+		            <p>Groups can also easily be supplied with a collapsible mechanism.</p>
+		            <p>To do so just add <span class="grp-doc-class">.grp-collapse</span> to the <span class="grp-doc-class">.grp-group</span> you want to be collapsible.</p>
+		            <p>With adding <span class="grp-doc-class">.grp-open</span> or <span class="grp-doc-class">.grp-closed</span> you define whether the collapsible group is opened or closed initially.</p>
+		            <p>Now you have to define a <span class="grp-doc-class">.grp-collapse-handler</span>. Usually that's the heading of the collapsible group but you may assign it to other elements as well.</p>
+		            <p>Finally you have to use some javascript code (e.g. with the source code below).</p>
+		            <p>Feel free to combine collapsible groups with collapsible modules, non-collapsible modules and collapsible ones with groups, collapsible or not.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+	    			<div class="grp-group grp-collapse grp-open">
+	    				<h2 class="grp-collapse-handler">Group</h2>
+	    				<div class="grp-module">
+		    				<h3>Module</h3>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+						<div class="grp-module grp-collapse grp-open">
+		    				<h3 class="grp-collapse-handler">Module</h3>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-group">
+    <h2>Group</h2>
+    <div class="grp-module">
+        <h3>Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+    <div class="grp-module">
+        <h3>Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+</div>
+{% endfilter %}</code></pre></div>
+				<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+(function($) {
+    $(document).ready(function() {
+    	$("#grp-content-container .grp-group").grp_collapsible_group();
+        $("#grp-content-container .grp-collapse").grp_collapsible();
+    });
+})(django.jQuery);
+		    		{% endfilter %}</code></pre></div>
+		    	</div>
+	    	</div>
+	    </section>
+    </div>
+{% endblock %}
+

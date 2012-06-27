@@ -14,14 +14,21 @@ urlpatterns = patterns('',
     url(r'^lookup/autocomplete/$', 'grappelli.views.related.autocomplete_lookup', name="grp_autocomplete_lookup"),
 
     # GRAPPELLI DOM DOCUMENTATION
+    url(r'^grp-doc/change-form/', TemplateView.as_view(template_name='grp_doc/change_form.html'), name="grp_doc_change_form"),
+    url(r'^grp-doc/change-list/', TemplateView.as_view(template_name='grp_doc/change_list.html'), name="grp_doc_change_list"),
+    url(r'^grp-doc/admin-index/', TemplateView.as_view(template_name='grp_doc/admin-index.html'), name="grp_doc_admin_index"),
+    url(r'^grp-doc/fieldsets/', TemplateView.as_view(template_name='grp_doc/fieldsets.html'), name="grp_doc_fieldsets"),
+    url(r'^grp-doc/errors/', TemplateView.as_view(template_name='grp_doc/errors.html'), name="grp_doc_errors"),
+    url(r'^grp-doc/form-fields/', TemplateView.as_view(template_name='grp_doc/form_fields.html'), name="grp_doc_form_fields"),
     url(r'^grp-doc/submit-rows/', TemplateView.as_view(template_name='grp_doc/submit_rows.html'), name="grp_doc_submit_rows"),
-    url(r'^grp-doc/modules', TemplateView.as_view(template_name='grp_doc/modules.html'), name="grp_doc_modules"),
+    url(r'^grp-doc/modules/', TemplateView.as_view(template_name='grp_doc/modules.html'), name="grp_doc_modules"),
     url(r'^grp-doc/groups/', TemplateView.as_view(template_name='grp_doc/groups.html'), name="grp_doc_groups"),
     url(r'^grp-doc/navigation/', TemplateView.as_view(template_name='grp_doc/navigation.html'), name="grp_doc_navigation"),
     url(r'^grp-doc/context-navigation/', TemplateView.as_view(template_name='grp_doc/context_navigation.html'), name="grp_doc_context_navigation"),
     url(r'^grp-doc/basic-page-structure/', TemplateView.as_view(template_name='grp_doc/basic_page_structure.html'), name="grp_doc_basic_page_structure"),
     url(r'^grp-doc/tools/', TemplateView.as_view(template_name='grp_doc/tools.html'), name="grp_doc_tools"),
     url(r'^grp-doc/object-tools/', TemplateView.as_view(template_name='grp_doc/object_tools.html'), name="grp_doc_object_tools"),
+    url(r'^grp-doc/mueller-grid-system/', TemplateView.as_view(template_name='grp_doc/mueller_grid_system.html'), name="grp_doc_mueller_grid_system"),
     url(r'^grp-doc', TemplateView.as_view(template_name='grp_doc/index.html'), name="grp_doc"),
 
 )

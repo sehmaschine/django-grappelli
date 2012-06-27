@@ -42,12 +42,14 @@
 		            <h1>Modules &amp; Rows</h1>
 		            <p>The very essential component of Grappelli is a <span class="grp-doc-class">.grp-module</span>. <br />It wraps pieces of content which belong together.</p>
 		            <p>The horizontal layout within a module is basically structured by one ore more <span class="grp-doc-class">.grp-row</span>. <br />A row stretches over the full width of the parent module. <br />It represents one piece of content or contains multiple pieces of content which belong together.</p>
+		            <p>There might be a description for a module - just put a <span class="grp-doc-dom"><span>p.grp-description</span></span> in a <span class="grp-doc-class">.grp-row</span>.</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">
 	    		<div class="grp-doc-code-source">
 	    			<div class="grp-module">
 	    				<h2>Module</h2>
+					    <div class="grp-row"><p class="grp-description">Some text describing the module</p></div>
 					    <div class="grp-row"><p>Row</p></div>
 					    <div class="grp-row"><p>Row</p></div>
 					    <div class="grp-row"><p>Row</p></div>
@@ -58,6 +60,7 @@
 	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
 <div class="grp-module">
     <h2>Module</h2>
+    <div class="grp-row"><p class="grp-description">Some text describing the module</p></div>
     <div class="grp-row"><p>Row</p></div>
     <div class="grp-row"><p>Row</p></div>
     <div class="grp-row"><p>Row</p></div>
@@ -68,7 +71,7 @@
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
-		            <h1>Rows split into cells</h1>
+		            <h1>Rows Split into Cells</h1>
 		            <p>Rows might be split into two or more cells.</p>
 		            <p>To do so assign <span class="grp-doc-class">.grp-cells</span> to the <span class="grp-doc-class">.grp-row</span> you want to carry the cells.</p>
 		            <p>Each cell within that row is a <span class="grp-doc-class">.grp-cell</span> then.</p>
@@ -102,7 +105,7 @@
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
-		            <h1>Nesting modules</h1>
+		            <h1>Nested Modules</h1>
 		            <p>Modules may be nested up to three levels.</p>
 		        </div>
 		    </div>
@@ -160,7 +163,7 @@
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
-		            <h1>Headings in modules</h1>
+		            <h1>Headings in Modules</h1>
 		            <p>Usually a module starts with a heading but you might as well use it without one. <br />Just be aware of the fact that modules without headings do not appear in document outlines.</p>
 		            <p>Especially when nesting modules headings are meaningful because they give a description of the nested levels.</p>
 		            <p>If you are going to use collapsible modules you have to use headings (as they act as collapsible-handlers).</p>
@@ -208,7 +211,7 @@
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
-		            <h1>Collapsible modules</h1>
+		            <h1>Collapsible Modules</h1>
 		            <p>It's very easy to turn modules into collapsible ones.</p>
 		            <p>To do so just add <span class="grp-doc-class">.grp-collapse</span> to the <span class="grp-doc-class">.grp-module</span> you want to be collapsible.</p>
 		            <p>With adding <span class="grp-doc-class">.grp-open</span> or <span class="grp-doc-class">.grp-closed</span> you define whether the collapsible module is opened or closed initially.</p>
@@ -265,8 +268,8 @@
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
-		            <h1>Stacking modules in groups</h1>
-		            <p><a href="/admin/grp-doc/groups/">Find out</a> how you may stack modules in <a href="/admin/grp-doc/groups/">groups</a>.</p>
+		            <h1>Nesting Modules in Groups</h1>
+		            <p><a href="{% url grp_doc_groups %}">Find out</a> how you may nest modules in stacked &amp; tabular <a href="{% url grp_doc_groups %}">groups</a>.</p>
 		        </div>
 		    </div>
 	    </section>

@@ -2,9 +2,9 @@
 {% if not module.is_empty %}
 
 {% if dashboard.app_title %}
-    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}grp-group {% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentactions" %}actions {% endif %}{{ module.render_css_classes|cut:"deletable"|cut:"draggable"|join:"" }}">
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}grp-group grp-stacked{% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentactions" %}actions {% endif %}{{ module.render_css_classes|cut:"deletable"|cut:"draggable"|join:"" }}">
 {% else %}
-    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}grp-group {% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentActions" %}actions {% endif %}{{ module.render_css_classes }}">
+    <div{% if index %} id="module_{{ index }}{% if subindex %}_{{ subindex }}{% endif %}"{% endif %} class="{% if module|classname:"group" %}grp-group  grp-stacked{% else %}grp-module {% endif %}{% if module|classname:"feed" %}feed {% endif %}{% if module|classname:"linklist" %}link-list {% endif %}{% if module|classname:"recentActions" %}actions {% endif %}{{ module.render_css_classes }}">
 {% endif %}
     
     {% if module.title %}
