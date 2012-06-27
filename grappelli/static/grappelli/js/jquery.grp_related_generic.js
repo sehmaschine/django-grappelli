@@ -74,4 +74,4 @@
         object_id: ''
     };
     
-})(django.jQuery);
+})(grp.jQuery);

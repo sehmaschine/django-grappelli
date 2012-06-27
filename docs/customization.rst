@@ -78,8 +78,8 @@ In case of errors (somewhere within the form), the position of inline-rows are b
 
 .. _customizationsortableexcludes:
 
-Sortables Excludes
-------------------
+Sortable Excludes
+-----------------
 
 .. versionadded:: 2.4
 

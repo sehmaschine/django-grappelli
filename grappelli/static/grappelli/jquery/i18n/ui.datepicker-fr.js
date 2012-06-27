@@ -16,4 +16,4 @@
 		dateFormat: 'yy-mm-dd', firstDay: 1,
 		isRTL: false};
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
-})(django.jQuery);
+})(grp.jQuery);

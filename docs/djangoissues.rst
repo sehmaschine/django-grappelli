@@ -84,6 +84,11 @@ Save Object and return to Changelist
 
 When you edit an object and save it, you are redirected to an unfiltered changelist. That's pretty annoying when you've filtered the changelist before editing the object.
 
+Javascript loading
+------------------
+
+Unfortunately, it´s not possible to combine all django javascripts.
+
 Admin Documentation
 -------------------
 

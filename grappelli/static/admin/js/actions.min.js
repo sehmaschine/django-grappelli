@@ -131,5 +131,5 @@
         selectedClass: "grp-selected",
         actionSelect: "div.grp-changelist-actions select"
     };
-})(django.jQuery);
+})(grp.jQuery);
 
