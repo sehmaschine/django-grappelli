@@ -162,4 +162,4 @@ window.SelectFilter = {
     }
 }
 
-})(django.jQuery);
+})(grp.jQuery);

@@ -176,4 +176,4 @@
         addButtons.show().parents('.grp-add-item').show();
     };
     
-})(django.jQuery);
+})(grp.jQuery);

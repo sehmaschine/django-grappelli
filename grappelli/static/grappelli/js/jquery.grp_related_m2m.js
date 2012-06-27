@@ -51,4 +51,4 @@
         lookup_url: ''
     };
     
-})(django.jQuery);
+})(grp.jQuery);

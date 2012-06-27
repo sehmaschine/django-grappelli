@@ -3,7 +3,7 @@
  * functions needed for Grappelli
  */
  
-var django = {
+var grp = {
     "jQuery": jQuery.noConflict(true)
 };
 
@@ -142,5 +142,5 @@ var django = {
         return false;
     };
     
-})(django.jQuery);
+})(grp.jQuery);
 

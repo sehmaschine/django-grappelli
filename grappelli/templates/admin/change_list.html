@@ -24,7 +24,7 @@
                 $(document).ready(function() {
                     $("tr input.action-select").actions();
                 });
-            })(django.jQuery);
+            })(grp.jQuery);
         </script>
     {% endif %}
     {% if cl.formset %}
@@ -100,7 +100,7 @@
                         });
                     });
                 });
-            })(django.jQuery);
+            })(grp.jQuery);
         </script>
     {% endif %}
     <script type="text/javascript" charset="utf-8">
@@ -109,7 +109,7 @@
                 grappelli.initSearchbar();
                 grappelli.initFilter();
             });
-        })(django.jQuery);
+        })(grp.jQuery);
     </script>
     {{ media.js }}
 {% endblock %}
