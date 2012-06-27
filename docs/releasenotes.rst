@@ -26,6 +26,7 @@ What's new in Grappelli 2.4.x
 * ``sortable_excludes``
 * 2 different Changelists (one with sidebar filters)
 * Added a "Best Practice" section to the docs.
+* Minified Grappelli Javascripts.
 
 Update from Grappelli 2.3.x
 ---------------------------
