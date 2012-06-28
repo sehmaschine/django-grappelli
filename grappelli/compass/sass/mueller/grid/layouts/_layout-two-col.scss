@@ -164,3 +164,40 @@
         $n: $n - 1;
     }
 }
+
+.grp-module {
+    .l-2c-fluid {
+        .c-2 {
+            padding-right: 10px;
+        }
+        &.grp-cell {
+            // width: auto;
+            // display: table !important;
+        }
+    }
+    .l-2c-fluid-cell {
+        .c-1 {
+            display: table-cell;
+        }
+        .c-2 {
+            display: table-cell;
+            white-space: normal;
+            float: none;
+            width: auto !important;
+        }
+        $n: 24;
+        @while $n > 0 {
+            &.l-2c-d-#{$n} {
+                .c-1 {
+                    @extend .g-d-#{$n}-td;
+                }
+            }
+            $n: $n - 1;
+        }
+    }
+}
+
+
+
+
+

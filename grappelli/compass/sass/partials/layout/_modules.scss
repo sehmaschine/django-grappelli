@@ -265,13 +265,15 @@
 				padding-right: 0;
 				border-right: 0 !important;
 			}
-			.g-d-fluid {
-				white-space: normal;
-				float: none;
-				width: auto !important;
-			}
+			
 		}
 	}
+	// &.grp-cells {
+	// 	.grp-cell {
+	// 		position: relative;
+	// 		float: left;
+	// 	}
+	// }
 }
 .grp-module {
 	.grp-row:not(tr) {
