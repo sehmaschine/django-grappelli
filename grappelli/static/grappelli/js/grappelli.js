@@ -2,9 +2,15 @@
  * GRAPPELLI UTILS
  * functions needed for Grappelli
  */
- 
+
+// grp jQuery namespace
 var grp = {
     "jQuery": jQuery.noConflict(true)
+};
+
+// django jQuery namespace
+var django = {
+    "jQuery": grp.jQuery.noConflict(true)
 };
 
 (function($) {
