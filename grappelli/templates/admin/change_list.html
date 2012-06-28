@@ -150,21 +150,15 @@
     {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
         <div class="grp-module grp-changelist-filters">
             <div class="grp-row">
-                <div class="g-d-c-fluid">
-                    {% block pagination_top %}
-                        <div class="g-d-fluid">
-                            <!-- PAGINATION TOP -->
-                            {% pagination cl %}
-                        </div>
-                    {% endblock %}
+                <div class="l-2cr-fluid {% if cl.has_filters and cl.search_fields %}l-2c-d-12{% else %}{% if cl.has_filters or cl.search_fields %}l-2c-d-6{% endif %}{% endif %}">
                     {% if cl.has_filters or cl.search_fields %}
                         {% block aside %}
-                            <aside class="{% if cl.has_filters and cl.search_fields %}g-d-12{% else %}{% if cl.has_filters or cl.search_fields %}g-d-6{% endif %}{% endif %} g-d-l">
+                            <aside class="c-1">
                                 <header style="display:none"><h1>{% if cl.search_fields %}Search{% if cl.has_filters %} &amp; {% endif %}{% endif %}{% if cl.has_filters %}Filters{% endif %}</h1></header>
                                 <!-- SEARCH -->
                                 {% if cl.search_fields %}
                                     {% block search %}
-                                        <div id="search" class="g-d-6">
+                                        <div id="search" class="g-d-6 g-d-f">
                                             {% search_form cl %}
                                         </div>
                                     {% endblock %}
@@ -185,6 +179,13 @@
                             </aside>
                         {% endblock %}
                     {% endif %}
+                    {% block pagination_top %}
+                        <div class="c-2">
+                            <!-- PAGINATION TOP -->
+                            {% pagination cl %}
+                        </div>
+                    {% endblock %}
+
                 </div>
             </div>
             <!-- DATE HIERARCHY -->

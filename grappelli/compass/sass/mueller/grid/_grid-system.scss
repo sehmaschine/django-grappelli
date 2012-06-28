@@ -90,7 +90,11 @@ $show-grid-background: false;
     position: relative;
     margin-left: -$n*($col-width+$gutter-width) + $gutter-width !important;
 }
-
+// ADDED double pull for elements with display: table-cell
+@mixin doublepull($n, $col-width, $gutter-width) {
+    position: relative;
+    margin-left: -($n*($col-width+$gutter-width) + $gutter-width)*2 !important;
+}
 
 // The column mixin can be used in two different ways.
 // Where base classes are provided they are extended to
@@ -121,6 +125,34 @@ $show-grid-background: false;
     width: column-width($n, $col-width, $gutter-width);
 }
 
+
+// ADDED replace margins with paddings for elements with display: table-cell plus additional settings
+@mixin column-table-cell($n, $max-unit, $col-width, $gutter-width, $base-class: false, $first-column-class: false, $last-column-class: false) {
+    @if $base-class {
+        @extend .#{$base-class};
+    } @else {
+        @include column-base;
+    }
+    @if $n == $max-unit {
+        @if $first-column-class {
+            @extend .#{$first-column-class};
+        } @else {
+            padding-left: 0;
+        }
+        @if $last-column-class {
+            @extend .#{$last-column-class}; 
+        } @else {
+            padding-right: 0;
+        }
+        @extend .#{$last-column-class};
+    } @else {
+        padding-right: $gutter-width;
+    }
+    width: column-width($n, $col-width, $gutter-width);
+    float: none;
+    display: table-cell;
+}
+
 // Generate grid classes according to a common naming convention
 // $media is the media prefix. E.g. d (deskotop), t (tablet), tp (tablet portrait), h (handheld), or hl (handheld landscape)
 // $max-unit is how many columns are in this grid system.
@@ -149,11 +181,20 @@ $show-grid-background: false;
         .g-#{$media}-pull#{$n} {
             @include pull($n, $col-width, $gutter-width);
         }
+        .g-#{$media}-doublepull#{$n} {
+            @include doublepull($n, $col-width, $gutter-width);
+        }
     }
     // generate grid classes
     @each $n in $units {
         .g-#{$media}-#{$n} {
             @include column($n, $max-unit, $col-width, $gutter-width, $base-class, $first-column-class, $last-column-class);
+        }
+    }
+    // generate table-cell grid classes
+    @each $n in $units {
+        .g-#{$media}-#{$n}-td {
+            @include column-table-cell($n, $max-unit, $col-width, $gutter-width, $base-class, $first-column-class, $last-column-class);
         }
     }
     // // ADDED generate new width for table-cell-style columns
@@ -176,6 +217,17 @@ $show-grid-background: false;
         .grp-cell .g-#{$media}-#{$n} + .g-d-fluid {
             $width: column-width($n, $col-width, $gutter-width) + $gm;
             margin-left: $width;
+        }
+    }
+    // ADDED generate classes for elements-width
+    @each $n in $units {
+        .g-#{$media}-#{$n}-width {
+            $width: column-width($n, $col-width, $gutter-width);
+            width: $width;
+        }
+        .g-#{$media}-#{$n}-paddingright {
+            $width: column-width($n, $col-width, $gutter-width) + $gm;
+            padding-right: $width;
         }
     }
     // ADDED generate form field widths

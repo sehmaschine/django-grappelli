@@ -28,7 +28,9 @@ urlpatterns = patterns('',
     url(r'^grp-doc/basic-page-structure/', TemplateView.as_view(template_name='grp_doc/basic_page_structure.html'), name="grp_doc_basic_page_structure"),
     url(r'^grp-doc/tools/', TemplateView.as_view(template_name='grp_doc/tools.html'), name="grp_doc_tools"),
     url(r'^grp-doc/object-tools/', TemplateView.as_view(template_name='grp_doc/object_tools.html'), name="grp_doc_object_tools"),
+    url(r'^grp-doc/mueller-grid-system-tests/', TemplateView.as_view(template_name='grp_doc/mueller_grid_system_tests.html'), name="grp_doc_mueller_grid_system_tests"),
     url(r'^grp-doc/mueller-grid-system/', TemplateView.as_view(template_name='grp_doc/mueller_grid_system.html'), name="grp_doc_mueller_grid_system"),
+    url(r'^grp-doc/mueller-grid-system-layouts/', TemplateView.as_view(template_name='grp_doc/mueller_grid_system_layouts.html'), name="grp_doc_mueller_grid_system_layouts"),
     url(r'^grp-doc', TemplateView.as_view(template_name='grp_doc/index.html'), name="grp_doc"),
 
 )

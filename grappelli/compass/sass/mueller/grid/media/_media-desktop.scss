@@ -9,6 +9,7 @@
 //
 // **************************************************
 
+@import "compass";
 @import "compass/layout/grid-background";
 @import "compass/typography/vertical_rhythm";
 
@@ -52,6 +53,10 @@ $gm: 20px; // grid margin
     }
 }
 
+.g-d-c {
+    @include legacy-pie-clearfix;
+    
+}
 fieldset.grp-module {
     .g-d-fluid {
         position: relative;
@@ -69,11 +74,32 @@ fieldset.grp-module {
     }
 }
 
+.g-d-c, 
+*[class^=g-d]:not([class$=fluid]) {
+    *[class^=g-d]:not([class$=fluid]) + .g-d-fluid {
+        position: relative;
+        float: none;
+        display: table-cell;
+        width: 10000px;
+    }
+}
+.grp-cell {
+    .g-d-fluid {
+        float: left;
+        width: auto;
+        display: block;
+    }
+}
 .g-d-c-fluid {
     position: relative;
+    float: none;
+    clear: both;
     display: table;
-    width: 100%;
     table-layout: fixed;
+    width: 100%;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    @include legacy-pie-clearfix;
     > *[class^=g-d] {
         position: relative;
         display: table-cell;

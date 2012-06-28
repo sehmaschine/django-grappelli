@@ -9,69 +9,158 @@
 //
 // **************************************************
 
+
+@import "compass";
+
 .l-2c {
     @extend .g-d-24;
-    @extend .g-tp-12;
-    @extend .g-hl-6;
-    @extend .g-h-6;
     // Column 1
     .c-1 {
-        @extend .g-d-16;
+        @extend .g-d-8;
         @extend .g-d-f;
-        @extend .g-tp-8;
-        @extend .g-tp-f;
-        @extend .g-hl-4;
-        @extend .g-hl-f;
-        @extend .g-h-4;
-        @extend .g-h-f;
     }
     // Column 2
     .c-2 {
-        @extend .g-d-8;
+        @extend .g-d-16;
         @extend .g-d-l;
-        @extend .g-tp-4;
-        @extend .g-tp-l;
-        @extend .g-hl-2;
-        @extend .g-hl-l;
-        @extend .g-h-2;
-        @extend .g-h-l;
     }
 }
 
 // switched columns
 .l-2cr {
     @extend .g-d-24;
-    @extend .g-tp-12;
-    @extend .g-hl-6;
-    @extend .g-h-6;
     // Column 1
     .c-1 {
-        @extend .g-d-16;
+        @extend .g-d-8;
         @extend .g-d-f;
-        @extend .g-d-push8;
-        @extend .g-tp-8;
-        @extend .g-tp-f;
-        @extend .g-tp-push4;
-        @extend .g-hl-4;
-        @extend .g-hl-f;
-        @extend .g-hl-push2;
-        @extend .g-h-4;
-        @extend .g-h-f;
-        @extend .g-h-push2;
+        @extend .g-d-push16;
     }
     // Column 1
     .c-2 {
-        @extend .g-d-8;
+        @extend .g-d-16;
         @extend .g-d-l;
-        @extend .g-d-pull16;
-        @extend .g-tp-4;
-        @extend .g-tp-l;
-        @extend .g-tp-pull8;
-        @extend .g-hl-2;
-        @extend .g-hl-l;
-        @extend .g-hl-pull4;
-        @extend .g-h-2;
-        @extend .g-h-l;
-        @extend .g-h-pull4;
+        @extend .g-d-pull8;
+    }
+}
+
+.l-2c-fluid {
+    @extend .g-d-c-fluid;
+    // Column 1
+    .c-1 {
+        margin-right: 0;
+        padding-right: 20px;
+    }
+    // Column 2
+    .c-2 {
+        float: none;
+        display: table-cell;
+        width: 100%;
+    }
+    $n: 24;
+    @while $n > 0 {
+        &.l-2c-d-#{$n} {
+            .c-1 {
+                @extend .g-d-#{$n}-td;
+            }
+        }
+        $n: $n - 1;
+    }
+}
+.l-2cr-fluid {
+    @extend .g-d-c-fluid;
+    // Column 1
+    .c-1 {
+        float: right !important;
+        display: table-cell;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        padding-left: 20px !important;
+    }
+    // Column 2
+    .c-2 {
+        float: right !important;
+        display: table-cell;
+        margin-right: 0 !important;
+        width: 100%;
+        @include box-sizing(border-box);
+    }
+    $n: 24;
+    @while $n > 0 {
+        &.l-2c-d-#{$n} {
+            .c-1 {
+                @extend .g-d-#{$n};
+                @extend .g-d-doublepull#{$n};
+            }
+            .c-2 {
+                @extend .g-d-append#{$n};
+            }
+        }
+        $n: $n - 1;
+    }
+}
+
+.rtl .l-2c-fluid {
+    @extend .g-d-c-fluid;
+    margin-right: 0 !important;
+    // Column 1
+    .c-1 {
+        @extend .g-d-l;
+        float: right !important;
+        display: table-cell;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0;
+        padding-left: 20px !important;
+    }
+    // Column 2
+    .c-2 {
+        @extend .g-d-f;
+        float: right !important;
+        display: table-cell;
+        margin-right: 0 !important;
+        width: 100%;
+        @include box-sizing(border-box);
+    }
+    $n: 24;
+    @while $n > 0 {
+        &.l-2c-d-#{$n} {
+            .c-1 {
+                @extend .g-d-#{$n};
+                @extend .g-d-doublepull#{$n};
+            }
+            .c-2 {
+                @extend .g-d-append#{$n};
+            }
+        }
+        $n: $n - 1;
+    }
+}
+.rtl .l-2cr-fluid {
+    @extend .g-d-c-fluid;
+    // Column 1
+    .c-1 {
+        float: none !important;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        margin-right: 0 !important;
+        padding-right: 20px !important;
+    }
+    // Column 2
+    .c-2 {
+        float: none !important;
+        display: table-cell;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        width: 100%;
+    }
+    $n: 24;
+    @while $n > 0 {
+        &.l-2c-d-#{$n} {
+            .c-1 {
+                @extend .g-d-#{$n}-td;
+            }
+        }
+        $n: $n - 1;
     }
 }
