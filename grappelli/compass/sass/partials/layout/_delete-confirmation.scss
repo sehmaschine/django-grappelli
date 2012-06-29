@@ -2,6 +2,11 @@
 
 body.grp-delete-confirmation {
 	ul.grp-nested-list {
+		position: relative;
+		float: left;
+		clear: both;
+		width: 100%;
+		margin: -2px 0 2px;
 		li {
 			font-size: 12px;
 			font-weight: normal;
