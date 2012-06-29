@@ -4,6 +4,7 @@
 
 /* -- Language Specific Settings ---------- */
 
+body#tinymce h1:before          { content: "Überschrift 1"; }
 body#tinymce h2:before          { content: "Überschrift 2"; }
 body#tinymce h3:before          { content: "Überschrift 3"; }
 body#tinymce h4:before          { content: "Überschrift 4"; }
