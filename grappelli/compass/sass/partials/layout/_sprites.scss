@@ -4,15 +4,7 @@ $icons-spacing: 20px;
 @import "icons/*.png";
 @include all-icons-sprites;
 
+$icons-small-spacing: 400px;
+
 @import "icons-small/*.png";
 @include all-icons-small-sprites;
-
-// not necessarily needed, just use if you want to produce classes for certain buttons
-// .grp-actions {
-//     .grp-button-datepicker { @include icons-sprite(datepicker); }
-//     .grp-button-timepicker { @include icons-sprite(timepicker); }
-//     .grp-button-related-lookup { @include icons-sprite(related-lookup); }
-//     .grp-button-related-lookup-m2m { @include icons-sprite(related-lookup-m2m); }
-//     .grp-tools-add-handler { @include icons-sprite(tools-add-handler); }
-
-// }

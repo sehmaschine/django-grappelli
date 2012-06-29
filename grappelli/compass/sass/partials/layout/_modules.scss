@@ -321,21 +321,6 @@ fieldset.grp-module .grp-row {
 				padding-left: $grp-padding-size-m + 5;
 			}
 		}
-		&.grp-add-link a {
-			background-position: 0 -2px;
-			&:hover {
-				background-position: 0 -402px;
-			}
-		}
-		&.grp-change-link a {
-			background-position: 0 -802px;
-			&:hover {
-				background-position: 0 -1202px;
-			}
-		}
-		&.grp-delete-link > span:first-child {
-			background-position: 0 -1602px;
-		}
 	}
 }
 .grp-listing {
@@ -344,8 +329,17 @@ fieldset.grp-module .grp-row {
 @mixin grp-listing-small {
 	@include grp-listing();
 	font-size: $grp-font-size-s;
-	line-height: $grp-line-height-xs;
-
+	a + span, 
+	span + span {
+		position: relative;
+		display: block;
+		line-height: 11px;
+		margin: -1px 0 3px;
+	}
+	p {
+		margin: 2px 0 4px;
+		line-height: 13px;
+	}
 }
 .grp-listing-small {
 	@include grp-listing-small;
