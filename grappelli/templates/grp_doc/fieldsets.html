@@ -42,7 +42,7 @@
 		            <h1>Modules in Forms</h1>
 		            <p>A fieldset basically is a <a href="{% url grp_doc_modules %}">module</a> within a form. Therefore it's always a <span class="grp-doc-dom"><span>fieldset</span></span> with the class <span class="grp-doc-class">.grp-module</span>. It may carry all sorts of <a href="{% url grp_doc_form_fields %}">form fields</a>.</p>
 		            <p>If it has a name it starts with a heading and if you want it to be collapsible it has to have a name.</p>
-		            <p>The grid-like structure within fieldsets is based on the <a href="{% url grp_doc_mueller_grid_system %}">Mueller Grid System</a>.<br />Within each <span class="grp-doc-class">.grp-row</span> (or <span class="grp-doc-class">.grp-cell</span> if you got cells) there is a <span class="grp-doc-class">.g-d-4</span> and a <span class="grp-doc-class">.g-d-fluid</span>: The <span class="grp-doc-class">.g-d-4</span> has a fixed width and usually carries the label whereas the <span class="grp-doc-class">.g-d-fluid</span> has fluid width and carries some sort of form field.</p>
+		            <p>The grid-like structure within fieldsets is based on a <a href="{% url grp_doc_mueller_grid_system_layouts %}">predefined layout based on the Mueller Grid System</a>.<br />Within each <span class="grp-doc-class">.grp-row</span> there is a layout-container <span class="grp-doc-class">.l-2c-fluid.l-d-4</span> (or <span class="grp-doc-class">.grp-cell.l-2c-fluid.l-d-4</span> if you got cells) where the <span class="grp-doc-class">.l-d-4</span> sets the width of the fixed column. The layout container carries two columns: The <span class="grp-doc-class">.c-1</span> has a fixed width and usually carries the label whereas the <span class="grp-doc-class">.c-2</span> has fluid width and carries some sort of form field.</p>
 		            <p>There might be a description for a module - just put a <span class="grp-doc-dom"><span>p.grp-description</span></span> in a <span class="grp-doc-class">.grp-row</span>.</p>
 		            <p>Make sure to wrap the fieldset with spaceless-tags to avoid whitespaces.</p>
 		        </div>
@@ -54,33 +54,37 @@
 					        <h2 class="grp-collapse-handler">Fieldset Name</h2>
 					        <div class="grp-row"><p class="grp-description">Some text describing the fieldset</p></div>
 					        <div class="grp-row">
-					        	<div class="g-d-4"><label class="required">Label</label></div>
-					            <div class="g-d-fluid">
-					            	<input type="text" value="" />
-						            <p class="grp-help">Helptext</p>
-						        </div>
+					        	<div class="l-2c-fluid l-d-4">
+						        	<div class="c-1"><label class="required">Label</label></div>
+						            <div class="c-2">
+						            	<input type="text" value="" />
+							            <p class="grp-help">Helptext</p>
+							        </div>
+							    </div>
 					        </div>
 					        <div class="grp-row grp-cells">
-					        	<div class="grp-cell">
-						        	<div class="g-d-4"><label>Label</label></div>
-						            <div class="g-d-fluid">
+					        	<div class="grp-cell l-2c-fluid l-d-4">
+						        	<div class="c-1"><label>Label</label></div>
+						            <div class="c-2">
 						            	<input type="text" value="" />
 							        </div>
 						        </div>
-						        <div class="grp-cell">
-						        	<div class="g-d-4"><label>Label</label></div>
-						            <div class="g-d-fluid">
+						        <div class="grp-cell l-2c-fluid l-d-4">
+						        	<div class="c-1"><label>Label</label></div>
+						            <div class="c-2">
 						            	<input type="text" value="" />
 							        </div>
 						        </div>
 					        </div>
 					        <div class="grp-row grp-errors">
-					        	<div class="g-d-4"><label class="required">Label</label></div>
-					            <div class="g-d-fluid">
-					            	<input type="text" value="" />
-					            	<ul class="errorlist"><li>Errorlist</li></ul>
-						            <p class="grp-help">Helptext</p>
-						        </div>
+					        	<div class="l-2c-fluid l-d-4">
+						        	<div class="c-1"><label class="required">Label</label></div>
+						            <div class="c-2">
+						            	<input type="text" value="" />
+						            	<ul class="errorlist"><li>Errorlist</li></ul>
+							            <p class="grp-help">Helptext</p>
+							        </div>
+							    </div>
 					        </div>
 					    </fieldset>
 					{% endspaceless %}
@@ -93,40 +97,36 @@
         <h2 class="grp-collapse-handler">Fieldset Name</h2>
         <div class="grp-row"><p class="grp-description">Some text describing the fieldset</p></div>
         <div class="grp-row">
-            <div class="g-d-4">
-                <label class="required">Label</label>
-            </div>
-            <div class="g-d-fluid">
-                <input type="text" value="" />
-                <p class="grp-help">Helptext</p>
+            <div class="l-2c-fluid l-d-4">
+                <div class="c-1"><label class="required">Label</label></div>
+                <div class="c-2">
+                    <input type="text" value="" />
+                    <p class="grp-help">Helptext</p>
+                </div>
             </div>
         </div>
         <div class="grp-row grp-cells">
-            <div class="grp-cell">
-                <div class="g-d-4">
-                    <label>Label</label>
-                </div>
-                <div class="g-d-fluid">
+            <div class="grp-cell l-2c-fluid l-d-4">
+            <div class="c-1"><label>Label</label></div>
+                <div class="c-2">
                     <input type="text" value="" />
                 </div>
             </div>
-            <div class="grp-cell">
-                <div class="g-d-4">
-                    <label>Label</label>
-                </div>
-                <div class="g-d-fluid">
+            <div class="grp-cell l-2c-fluid l-d-4">
+                <div class="c-1"><label>Label</label></div>
+                <div class="c-2">
                     <input type="text" value="" />
                 </div>
             </div>
         </div>
         <div class="grp-row grp-errors">
-            <div class="g-d-4">
-                <label class="required">Label</label>
-            </div>
-            <div class="g-d-fluid">
-                <input type="text" value="" />
-                <ul class="errorlist"><li>Errorlist</li></ul>
-                <p class="grp-help">Helptext</p>
+            <div class="l-2c-fluid l-d-4">
+                <div class="c-1"><label class="required">Label</label></div>
+                <div class="c-2">
+                    <input type="text" value="" />
+                    <ul class="errorlist"><li>Errorlist</li></ul>
+                    <p class="grp-help">Helptext</p>
+                </div>
             </div>
         </div>
     </fieldset>

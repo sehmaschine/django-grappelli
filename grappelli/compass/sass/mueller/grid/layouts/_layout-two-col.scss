@@ -43,7 +43,7 @@
     }
 }
 
-.l-2c-fluid {
+.l-2c-fluid:not(.grp-cell) {
     @extend .g-d-c-fluid;
     // Column 1
     .c-1 {
@@ -60,7 +60,7 @@
     }
     $n: 24;
     @while $n > 0 {
-        &.l-2c-d-#{$n} {
+        &.l-d-#{$n} {
             .c-1 {
                 @extend .g-d-#{$n}-td;
             }
@@ -91,7 +91,7 @@
     }
     $n: 24;
     @while $n > 0 {
-        &.l-2c-d-#{$n} {
+        &.l-d-#{$n} {
             .c-1 {
                 @extend .g-d-#{$n};
                 @extend .g-d-doublepull#{$n};
@@ -130,7 +130,7 @@
     }
     $n: 24;
     @while $n > 0 {
-        &.l-2c-d-#{$n} {
+        &.l-d-#{$n} {
             .c-1 {
                 @extend .g-d-#{$n};
                 @extend .g-d-doublepull#{$n};
@@ -164,7 +164,7 @@
     }
     $n: 24;
     @while $n > 0 {
-        &.l-2c-d-#{$n} {
+        &.l-d-#{$n} {
             .c-1 {
                 @extend .g-d-#{$n}-td;
             }
@@ -179,30 +179,26 @@
             padding-right: 10px;
         }
         &.grp-cell {
-            // width: auto;
-            // display: table !important;
-        }
-    }
-    .l-2c-fluid-cell {
-        .c-1 {
-            display: table-cell;
-            vertical-align: top;
-        }
-        .c-2 {
-            display: table-cell;
-            white-space: normal;
-            float: none;
-            width: auto !important;
-            vertical-align: top;
-        }
-        $n: 24;
-        @while $n > 0 {
-            &.l-2c-d-#{$n} {
-                .c-1 {
-                    @extend .g-d-#{$n}-td;
-                }
+            .c-1 {
+                display: table-cell;
+                vertical-align: top;
             }
-            $n: $n - 1;
+            .c-2 {
+                display: table-cell;
+                white-space: normal;
+                float: none;
+                width: auto !important;
+                vertical-align: top;
+            }
+            $n: 24;
+            @while $n > 0 {
+                &.l-d-#{$n} {
+                    .c-1 {
+                        @extend .g-d-#{$n}-td;
+                    }
+                }
+                $n: $n - 1;
+            }
         }
     }
 }

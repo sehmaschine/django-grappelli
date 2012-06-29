@@ -7,9 +7,9 @@
             <div class="grp-row grp-cells-{{ line.fields|length }}{% if not line.fields|length_is:"1" %} grp-cells{% else %}{% if line.errors %} grp-errors{% endif %}{% endif %}{% for field in line %} {{ field.field.name }}{% endfor %} ">
                 {% for field in line %}
                     {% if line.fields|length_is:"1" %}
-                        <div class="l-2c-fluid l-2c-d-4">
+                        <div class="l-2c-fluid l-d-4">
                     {% else %}
-                        <div class="l-2c-fluid-cell l-2c-d-4 grp-cell {{ field.field.name }}{% if field.field.errors %} grp-errors{% endif %}">
+                        <div class="grp-cell l-2c-fluid l-d-4 {{ field.field.name }}{% if field.field.errors %} grp-errors{% endif %}">
                     {% endif %}
                         {% if field.is_checkbox %}
                             <div class="c-1">&nbsp;</div>

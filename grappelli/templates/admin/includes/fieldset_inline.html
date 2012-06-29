@@ -6,14 +6,18 @@
         {% for line in fieldset %}
             <div class="grp-row grp-cells-{{ line.fields|length }}{% if not line.fields|length_is:"1" %} grp-cells{% else %}{% if line.errors %} grp-errors{% endif %}{% endif %}{% for field in line %} {{ field.field.name }}{% endfor %} ">
                 {% for field in line %}
-                    <div{% if not line.fields|length_is:"1" %} class="grp-cell {{ field.field.name }}{% if field.field.errors %} grp-errors{% endif %}"{% endif %}>
+                    {% if line.fields|length_is:"1" %}
+                        <div class="l-2c-fluid l-d-4">
+                    {% else %}
+                        <div class="grp-cell l-2c-fluid l-d-4 {{ field.field.name }}{% if field.field.errors %} grp-errors{% endif %}">
+                    {% endif %}
                         {% if field.is_checkbox %}
-                            <div class="g-d-4">&nbsp;</div>
-                            <div class="g-d-fluid">
+                            <div class="c-1">&nbsp;</div>
+                            <div class="c-2">
                                 {{ field.field }}{{ field.label_tag|prettylabel }}
                         {% else %}
-                            <div class="g-d-4">{{ field.label_tag|prettylabel }}</div>
-                            <div class="g-d-fluid">
+                            <div class="c-1">{{ field.label_tag|prettylabel }}</div>
+                            <div class="c-2">
                                 {% if field.is_readonly %}
                                     <p class="grp-readonly">{{ field.contents }}</p>
                                 {% else %}
