@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     # GRAPPELLI DOM DOCUMENTATION
     url(r'^grp-doc/change-form/', TemplateView.as_view(template_name='grp_doc/change_form.html'), name="grp_doc_change_form"),
     url(r'^grp-doc/change-list/', TemplateView.as_view(template_name='grp_doc/change_list.html'), name="grp_doc_change_list"),
-    url(r'^grp-doc/admin-index/', TemplateView.as_view(template_name='grp_doc/admin-index.html'), name="grp_doc_admin_index"),
+    url(r'^grp-doc/admin-index/', TemplateView.as_view(template_name='grp_doc/admin_index.html'), name="grp_doc_admin_index"),
     url(r'^grp-doc/fieldsets/', TemplateView.as_view(template_name='grp_doc/fieldsets.html'), name="grp_doc_fieldsets"),
     url(r'^grp-doc/errors/', TemplateView.as_view(template_name='grp_doc/errors.html'), name="grp_doc_errors"),
     url(r'^grp-doc/form-fields/', TemplateView.as_view(template_name='grp_doc/form_fields.html'), name="grp_doc_form_fields"),
