@@ -57,39 +57,6 @@ $gm: 20px; // grid margin
     @include legacy-pie-clearfix;
     
 }
-fieldset.grp-module {
-    .g-d-fluid {
-        position: relative;
-        float: none;
-        display: table-cell;
-        width: 10000px;
-    }
-    // Reset the table-cell solution in cells as it cause bad behaviour of fields and readonly fields
-    .grp-cell {
-        .g-d-fluid {
-            float: left;
-            width: auto;
-            display: block;
-        }
-    }
-}
-
-.g-d-c, 
-*[class^=g-d]:not([class$=fluid]) {
-    *[class^=g-d]:not([class$=fluid]) + .g-d-fluid {
-        position: relative;
-        float: none;
-        display: table-cell;
-        width: 10000px;
-    }
-}
-.grp-cell {
-    .g-d-fluid {
-        float: left;
-        width: auto;
-        display: block;
-    }
-}
 .g-d-c-fluid {
     position: relative;
     float: none;
@@ -112,3 +79,36 @@ fieldset.grp-module {
         }
     }
 }
+// fieldset.grp-module {
+//     .g-d-fluid {
+//         position: relative;
+//         float: none;
+//         display: table-cell;
+//         width: 10000px;
+//     }
+//     // Reset the table-cell solution in cells as it cause bad behaviour of fields and readonly fields
+//     .grp-cell {
+//         .g-d-fluid {
+//             float: left;
+//             width: auto;
+//             display: block;
+//         }
+//     }
+// }
+
+// .g-d-c, 
+// *[class^=g-d]:not([class$=fluid]) {
+//     *[class^=g-d]:not([class$=fluid]) + .g-d-fluid {
+//         position: relative;
+//         float: none;
+//         display: table-cell;
+//         width: 10000px;
+//     }
+// }
+// .grp-cell {
+//     .g-d-fluid {
+//         float: left;
+//         width: auto;
+//         display: block;
+//     }
+// }
