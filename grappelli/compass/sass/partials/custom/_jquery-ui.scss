@@ -66,7 +66,7 @@
     }
     .grp-module.ui-sortable-placeholder {
         border: $grp-module-border !important;
-        background: transparent url('../img/backgrounds/ui-sortable-placeholder.png') 0 0 repeat scroll !important;
+        background: transparent url('../images/backgrounds/ui-sortable-placeholder.png') 0 0 repeat scroll !important;
     }
 }
 .grp-group.grp-stacked .ui-sortable-placeholder {
@@ -193,6 +193,7 @@
         width: 100%;
         font-size: 11px;
         margin: 0 0 2px;
+        border: 0;
         th {
             padding: 5px 0;
             text-align: center;
@@ -233,9 +234,13 @@
         }
     }
     .ui-datepicker-buttonpane {
+        position: relative;
+        float: left;
+        clear: both;
         background-image: none;
-        margin: .7em 0 0 0;
-        padding:0 .2em;
+        width: 100%;
+        margin: 5px 0 1px;
+        padding: 0;
         border: 0;
         button {
             float: left;

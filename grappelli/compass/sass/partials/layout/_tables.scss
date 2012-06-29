@@ -105,7 +105,6 @@ table {
                 border-left: 0;
             }
         }
-
     }
     td, th {
         > a:first-child {
@@ -197,8 +196,6 @@ table.grp-sortable {
                     float: right;
                     clear: right;
                     margin: 0 5px 0 0;
-                    // @include border-radius(12px);
-                    // background: #fff;
                     a {
                         position: relative;
                         float: left;
@@ -253,50 +250,12 @@ table.grp-sortable {
                     a {
                         color: $grp-font-color;
                         font-weight: bold;
-                        // border-top: 1px solid #ececec;
                     }
                 }
             }
-
         }
     }
-    // td, th {
-    //     > input[type=text], 
-    //     > input[type=password], 
-    //     > input[type=file], 
-    //     > input[type=checkbox], 
-    //     > input[type=radio], 
-    //     > select, 
-    //     > textarea {
-    //         margin: -10px 0 -5px !important;
-    //     }
-    //     .grp-autocomplete-wrapper-m2m, 
-    //     .grp-autocomplete-wrapper-fk {
-    //         margin: -5px 0 !important;
-    //     }
-    // }
 }
-
-
-
-
-/*  Thead ................................................... */
-
-// thead th,
-// tfoot td {
-//     padding: 5px 10px;
-//     font-size: 11px;
-//     line-height: 12px;
-//     font-weight: normal;
-// }
-// thead th
-// thead th 
-// thead th.ascending a:after {
-//     content: url('../img/icons/icon-th-ascending.png');
-// }
-// thead th.descending a:after {
-//     content: url('../img/icons/icon-th-descending.png');
-// }
 
 
 /*  Tbody ................................................... */
@@ -322,236 +281,27 @@ table.xfull {
 
 
 
-// /*  Changelist Table
-// ------------------------------------------------------------------------------------------------------ */
+/*  Orderable Tables
+------------------------------------------------------------------------------------------------------ */
 
-// table {
-//     margin: 0;
-//     padding: 0;
-//     border-spacing: none;
-//     border-collapse: separate;
-//     border: 1px solid #ccc;
-//     @include border-radius($grp-border-radius);
-//     td, th {
-//         vertical-align: text-top;
-//         padding: 10px;
-//         font-size: 11px;
-//         line-height: 14px;
-//     }
-//     thead {
-//         th {
-//             vertical-align: top;
-//             padding: 6px 10px 6px;
-//             font-size: 11px;
-//             line-height: 12px;
-//             color: $grp-font-color-quiet;
-//             white-space: nowrap;
-//             border-left: 1px solid $grp-table-border-color;
-//             border-bottom: 1px solid $grp-table-border-color;
-//             @include background-image(linear-gradient(#eee, #e0e0e0));
-//             &:first-child {
-//                 border-left: 0;
-//             }
-//             &:first-of-type {
-//                 @include border-top-left-radius($grp-border-radius - 1px)
-//             }
-//             &:last-of-type {
-//                 @include border-top-right-radius($grp-border-radius - 1px)
-//             }
-//         }
-//         th {
-//             a {
-//                 display: block;
-//                 margin: -6px -10px;
-//                 padding: 6px 10px;
-//                 height: 100%;
-//                 color: #59afcc;
-//                 // border-top: 1px solid #fff;
-//                 &:hover {
-//                     color: #444;
-//                     // @include background-image(linear-gradient(#e0e0e0, #eee));
-//                 }
-//             }
-//             &.sortable {
-//                 padding-bottom: 0;
-//                 div {
-//                     position: relative;
-//                     display: block;
-                    
-//                     &.text {
-//                         float: left;
-//                         // width: 100%;
-//                         margin: -6px -10px;
-//                         // padding: 6px 10px;
-//                         // background: #f30;
-//                         a {
-//                             // top: -4px;
-//                             margin: 0;
-//                             padding: 6px 30px 6px 10px;
-//                             background: #fe4;
-//                         }
-//                     }
-//                     &.sortoptions {
-//                         float: right;
-//                         clear: right;
-//                         top: -6px;
-//                         margin: 0 0 -6px 10px;
-//                         @include border-radius(12px);
-//                         background: #fff;
-//                         a {
-//                             position: relative;
-//                             float: left;
-//                             display: inline-block;
-//                             margin: 0;
-//                             padding: 0;
-//                             &.sortremove, 
-//                             &.ascending, 
-//                             &.descending {
-//                                 width: 24px;
-//                                 height: 24px;
-//                             }
-//                             &.sortremove {
-//                                 visibility: hidden;
-//                                 @include icons-sprite(sort-remove);
-//                                 background-color: #e4f;
-//                             }
-//                             &.ascending {
-//                                 @include icons-sprite(sorted-ascending);
-//                                 background-color: #4ef;
-//                             }
-//                             &.descending {
-//                                 @include icons-sprite(sorted-ascending);
-//                                 background-color: #4ef;
-//                             }
-//                         }
-//                         &:hover a.sortremove {
-//                             visibility: visible;
-//                         }
-//                         span.sortpriority {
-//                             position: relative;
-//                             float: left;
-//                             display: block;
-//                             padding: 3px 4px 0;
-//                             height: 21px;
-//                         }
-//                     }
-//                 }
-//                 &:hover {
-//                     @include background-image(linear-gradient(#e0e0e0, #eee));
-//                 }
-//                 &.sorted {
-//                     &.ascending {
-//                         @include background-image(linear-gradient(#e0e0e0, #eee));
-//                         &:hover {
-//                             @include background-image(linear-gradient(#eee, #e0e0e0));
-//                         }
-//                     }
-//                     &.descending {
-//                         @include background-image(linear-gradient(#eee, #e0e0e0));
-//                         &:hover {
-//                             @include background-image(linear-gradient(#e0e0e0, #eee));
-//                         }
-//                     }
-//                     a {
-//                         color: #444;
-//                         font-weight: bold;
-//                         // border-top: 1px solid #ececec;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-//     tbody {
-//         tr {
-//             td, th {
-//                 // border-top: 1px solid #fff;
-//                 border-bottom: 1px solid #e0e0e0;
-//                 border-left: 1px solid #e4e4e4;
-//                 &:first-child {
-//                     border-left: 0 !important;
-//                 }
-//             }
-//             th {
-//                 font-size: $grp-font-size;
-//                 font-weight: bold;
-//             }
-//             &.row1 td, &.row1 th, 
-//             &.alt td, &.alt th {
-//                 border-left: 1px solid #e0e0e0;
-//                 background: #f4f4f4;
-//             }
-//             &.row2 td, &.row2 th {
-//                 background: #fff;
-//             }
-//             &.selected {
-//                 background: #ffd;
-//             }
-//             &.row-label td {
-//                 border-bottom: 0;
-//                 color: #666;
-//             }
-//             &:last-child {
-//                 td, th {
-//                     border-bottom: 0;
-//                     &:first-child {
-//                         @include border-bottom-left-radius($grp-border-radius - 1px);
-//                     }
-//                     &:last-child {
-//                         @include border-bottom-right-radius($grp-border-radius - 1px);
-//                     }
-//                 }
-//             }
-//         }
-//     }
-//     tfoot {
-//         td {
-//             border-bottom: 0;
-//             border-top: 1px solid #d4d4d4;
-//             &:first-child {
-//                 border-left: 0;
-//             }
-//         }
+table.orderable tbody tr td:hover {
+    cursor: move;
+}
 
-//     }
-//     td, th {
-//         > input[type=text], 
-//         > input[type=password], 
-//         > input[type=file], 
-//         > input[type=checkbox], 
-//         > input[type=radio], 
-//         > select, 
-//         > textarea {
-//             margin: -10px 0 -5px !important;
-//         }
-//         .grp-autocomplete-wrapper-m2m, 
-//         .grp-autocomplete-wrapper-fk {
-//             margin: -5px 0 !important;
-//         }
-//     }
-// }
+table.orderable tbody tr td:first-child {
+    padding-left: 14px;
+    background-image: url('../images/backgrounds/nav-grabber.gif');
+    background-repeat: repeat-y;
+}
 
-
-// /*  Orderable Tables
-// ------------------------------------------------------------------------------------------------------ */
-
-// table.orderable tbody tr td:hover {
-//     cursor: move;
-// }
-
-// table.orderable tbody tr td:first-child {
-//     padding-left: 14px;
-//     background-image: url(../img/admin/nav-bg-grabber.gif);
-//     background-repeat: repeat-y;
-// }
-
-// table.orderable-initalized .order-cell, body>tr>td.order-cell {
-//     display: none;
-// }
+table.orderable-initalized .order-cell, body>tr>td.order-cell {
+    display: none;
+}
 
 
 
-// /*  Change History
-// ------------------------------------------------------------------------------------------------------ */
+/*  Change History
+------------------------------------------------------------------------------------------------------ */
 
 table#grp-change-history {
     width: 100%;
@@ -567,8 +317,8 @@ table#grp-change-history {
 
 
 
-// /*  Documentation
-// ------------------------------------------------------------------------------------------------------ */
+/*  Documentation
+------------------------------------------------------------------------------------------------------ */
 
 table.grp-full {
     width: 100%;
@@ -580,15 +330,6 @@ table.grp-full {
 .model-index table th {
     padding: 7px 10px 8px;
 }
-
-
-
-// /*  Other Classes
-// ------------------------------------------------------------------------------------------------------ */
-
-// table .nowrap {
-//     white-space: nowrap;
-// }
 
 
 

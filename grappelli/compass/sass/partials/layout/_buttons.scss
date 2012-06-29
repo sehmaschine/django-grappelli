@@ -340,13 +340,13 @@ img[src$="admin/img/icon-yes.gif"] {
     font-size: 0;
 }
 img[src$="admin/img/icon-unknown.gif"] {
-    background: url('../img/icons/icon-unknown.png') 0 0 no-repeat;
+    @include icons-sprite(status-unknown);
 }
 img[src$="admin/img/icon-no.gif"] {
-    background: url('../img/icons/icon-no.png') 0 0 no-repeat;
+    @include icons-sprite(status-no);
 }
 img[src$="admin/img/icon-yes.gif"] {
-    background: url('../img/icons/icon-yes.png') 0 0 no-repeat;
+    @include icons-sprite(status-yes);
 }
 
 

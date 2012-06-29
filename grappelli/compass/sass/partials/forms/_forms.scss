@@ -1,71 +1,6 @@
 
 
 
-
-/*  GRID DEPENDENT FIELD SIZES
------------------------------------------------------------------------------------------------------- */
-
-
-
-// @function formfield($n) {
-//     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1);
-// }
-// $n: $blueprint-grid-columns;
-// @while $n > 0 {
-//     .span-#{$n} input[type=text], 
-//     .span-#{$n} input[type=password], 
-//     .span-#{$n} select, 
-//     .span-#{$n} textarea, 
-//     input[type=text].span-#{$n}, 
-//     input[type=password].span-#{$n}, 
-//     select.span-#{$n}, 
-//     textarea.span-#{$n} {
-//         width: formfield($n);
-//     }
-//     $n: $n - 1;
-// }
-
-// @function formfield-module($n) {
-//     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 60;
-// }
-// $n: $blueprint-grid-columns;
-// @while $n > 0 {
-//     .grp-module .span-#{$n} input[type=text], 
-//     .grp-module .span-#{$n} input[type=password], 
-//     .grp-module .span-#{$n} select, 
-//     .grp-module .span-#{$n} textarea, 
-//     .grp-module input[type=text].span-#{$n}, 
-//     .grp-module input[type=password].span-#{$n}, 
-//     .grp-module select.span-#{$n}, 
-//     .grp-module textarea.span-#{$n} {
-//         width: formfield-module($n);
-//     }
-//     $n: $n - 1;
-// }
-
-// @function formfield-contained($n) {
-//     @return $blueprint-grid-width * $n + $blueprint-grid-margin * ($n - 1) - 2;
-// }
-// $n: $blueprint-grid-columns;
-// @while $n > 0 {
-//     .span-#{$n} input[type=text].grp-form-field-contained, 
-//     .span-#{$n} input[type=password].grp-form-field-contained, 
-//     .span-#{$n} select.grp-form-field-contained, 
-//     .span-#{$n} textarea.grp-form-field-contained, 
-//     input[type=text].span-#{$n}.grp-form-field-contained, 
-//     input[type=password].span-#{$n}.grp-form-field-contained, 
-//     select.span-#{$n}.grp-form-field-contained, 
-//     textarea.span-#{$n}.grp-form-field-contained {
-//         width: formfield-contained($n);
-//     }
-//     $n: $n - 1;
-// }
-
-
-
-
-
-
 /*  LABELS
 ------------------------------------------------------------------------------------------------------ */
 
@@ -85,6 +20,7 @@ fieldset.grp-module {
         @include grp-label;
     }
 }
+
 
 
 /*  FORM FIELDS
@@ -172,10 +108,13 @@ select {
     // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    select {
+    select, 
+    select:focus {
         padding: 4px 28px 4px 5px;
         -webkit-appearance: textfield;
-        background: #fff url('../img/icons/icon-form-select.png') 100% 50% no-repeat;
+        background-image: url('../images/icons/form-select.png');
+        background-position: 100% 50%;
+        background-repeat: no-repeat;
     }
 }
 select[multiple=multiple] {
