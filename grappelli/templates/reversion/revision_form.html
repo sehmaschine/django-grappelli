@@ -1,0 +1,29 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <ul class="grp-horizontal-list">
+            <li><a href="{% url admin:index %}">{% trans "Home" %}</a></li>
+            <li><a href="{% url admin:app_list app_label %}">{{ app_label|capfirst|escape }}</a></li>
+            <li><a href="{{changelist_url}}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+            <li><a href="{{change_url}}">{{ original|truncatewords:"18" }}</a></li>
+            <li><a href="../">{% trans "History" %}</a></li>
+            <li>{% blocktrans with opts.verbose_name as verbose_name %}Revert {{ verbose_name }}{% endblocktrans %}</li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block object-tools %}{% endblock%}
+
+{% block content %}
+    {% with 1 as is_popup %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block form_top %}
+    <div class="grp-rte">
+        <p>{% blocktrans %}Press the save button below to revert to this version of the object.{% endblocktrans %}</p>
+    </div>
+{% endblock %}
