@@ -18,8 +18,9 @@ Changelog
 * New: Added toggle-all with change-form
 * New: DOM-Documentation
 * New: ``sortable_excludes``
-* New: 2 different Changelists (one with sidebar filters)
-* New: Minified Grappelli Javascripts
+* New: 2 different Changelists (one with sidebar filters).
+* New: Minified Grappelli Javascripts.
+* New: Added support for django-reversion.
 * Changed: Selectors with Inlines in order to update the sortable-field (now also works with File-Fields)
 * Changed: Updated jQuery to 1.7.2
 

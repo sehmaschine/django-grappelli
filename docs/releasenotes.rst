@@ -27,6 +27,7 @@ What's new in Grappelli 2.4.x
 * 2 different Changelists (one with sidebar filters)
 * Added a "Best Practice" section to the docs.
 * Minified Grappelli Javascripts.
+* Added support for django-reversion.
 
 Update from Grappelli 2.3.x
 ---------------------------
