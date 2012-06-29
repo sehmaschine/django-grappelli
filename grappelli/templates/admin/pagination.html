@@ -2,7 +2,7 @@
 {% spaceless %}
 <nav class="grp-pagination">
     <header style="display:none"><h1>Pagination</h1></header>
-    <ul class="grp-horizontal-list">
+    <ul>
         {% if cl.result_count != cl.full_result_count %}
             <li class="grp-results"><span>
                 {% blocktrans count cl.result_count as counter %}{{ counter }} result{% plural %}{{ counter }} results{% endblocktrans %}

@@ -1,0 +1,136 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block bodyclass %}grp-doc{% endblock %}
+{% block content-class %}{% endblock %}
+{% block title %}Grappelli Documentation &raquo; Filter{% endblock %}
+
+{% block extrahead %}
+	<script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                $("a.grp-pulldown-handler").click(function() {
+		            var pulldownContainer = $(this).closest(".grp-pulldown-container");
+		            $(pulldownContainer).toggleClass("grp-pulldown-state-open").children(".grp-pulldown-content").toggle();
+		        });
+		        $("a.grp-pulldown-handler").bind('mouseout', function() {
+		            $(this).blur();
+		        });
+            });
+        })(django.jQuery);
+	</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="../">Grappelli Documentation</a></li>
+        <li>Filter</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1>Filter</h1>
+    <div class="g-d-c">
+    	<section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Basics</h1>
+		            <p>A filter is meant to appear in a <span class="grp-doc-class">.grp-row</span> within a <span class="grp-doc-class">.grp-module</span>.</p>
+		            <p>Basically it is a <span class="grp-doc-dom"><span>.grp-filter</span></span> containing an <span class="grp-doc-dom"><span>.grp-pulldown-container</span></span> width an <span class="grp-doc-dom"><span>a.grp-button.grp-pulldown-handler</span></span> and an <span class="grp-doc-dom"><span>ul.grp-pulldown-content</span></span>.</p>
+		            <p>Each <span class="grp-doc-dom"><span>li</span></span> contains a <span class="grp-doc-dom"><span>label</span></span> with the title of the actual filter and a <span class="grp-doc-dom"><span>select</span></span> carrying the filter <span class="grp-doc-dom"><span>options</span></span>.</p>
+		            <p>You have to use some javascript code to make the pulldown work (e.g. with the source code below).</p>
+					<p>Make sure to wrap the filter with spaceless-tags to avoid whitespaces.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+	    			<div class="grp-module">
+	    				<div class="grp-row">
+	    					<div class="grp-filter">
+				    			<div class="grp-pulldown-container">
+				                    <a href="javascript://" class="grp-button grp-pulldown-handler">Filter</a>
+				                    <ul class="grp-pulldown-content" style="display: none">
+				                        <li>
+										    <label>Filter 1</label>
+										    <select class="grp-filter-choice">
+										        <option value="1" selected="selected">Option 1</option>
+										        <option value="2">Option 2</option>
+										        <option value="3">Option 3</option>
+										    </select>
+										</li>
+										<li>
+										    <label>Filter 1</label>
+										    <select class="grp-filter-choice">
+										        <option value="1" selected="selected">Option 1</option>
+										        <option value="2">Option 2</option>
+										        <option value="3">Option 3</option>
+										    </select>
+										</li>
+				                    </ul>
+				                </div>
+				            </div>
+						</div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-module">
+    <div class="grp-row">
+        {% templatetag openblock %} spaceless {% templatetag closeblock %}
+            <div class="grp-filter">
+                <div class="grp-pulldown-container">
+                    <a href="javascript://" class="grp-button grp-pulldown-handler">Filter</a>
+                    <ul class="grp-pulldown-content" style="display: none">
+                        <li>
+                            <label>Filter 1</label>
+                            <select class="grp-filter-choice">
+                                <option value="1" selected="selected">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label>Filter 2</label>
+                            <select class="grp-filter-choice">
+                                <option value="1" selected="selected">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% templatetag openblock %} endspaceless {% templatetag closeblock %}
+    </div>
+</div>
+{% endfilter %}</code></pre></div>
+				<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+(function($) {
+    $(document).ready(function() {
+        $("a.grp-pulldown-handler").click(function() {
+            var pulldownContainer = $(this).closest(".grp-pulldown-container");
+            $(pulldownContainer).toggleClass("grp-pulldown-state-open").children(".grp-pulldown-content").toggle();
+        });
+        $("a.grp-pulldown-handler").bind('mouseout', function() {
+            $(this).blur();
+        });
+        $(".grp-filter-choice").change(function(){
+            location.href = $(this).val();
+        });
+    });
+})(grp.jQuery);
+		    		{% endfilter %}</code></pre></div>
+		    	</div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Full Code of a Filter</h1>
+		            <p>Take a look at Grappellis filter.html to get the full code of a filter (e.g. like it is used in a <a href="{% url grp_doc_change_list %}">change-list</a>).</p>
+		        </div>
+		    </div>
+	    </section>
+    </div>
+{% endblock %}
+

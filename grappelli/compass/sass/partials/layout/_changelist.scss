@@ -173,11 +173,13 @@ form#grp-changelist-search {
 			margin-bottom: $grp-margin-size-s;
 			label {
 				@include grp-label();
+				display: block;
 				color: $grp-font-color-quiet;
 				font-weight: bold;
 			}
 			select {
 				width: 100% !important;
+				max-width: 100% !important;
 			}
 		}
 	}
@@ -186,6 +188,20 @@ form#grp-changelist-search {
 	@include grp-pulldown();
 	margin: -1px 0 0;
 }
+.grp-filter {
+	position: relative;
+	float: left;
+	clear: both;
+	width: 100%;
+	height: 28px;
+	.grp-pulldown-container {
+		border: 1px solid #fff;
+	}
+	@include legacy-pie-clearfix;
+}
+// .grp-row {
+// 	@include legacy-pie-clearfix;
+// }
 
 
 /*  ACTIONS

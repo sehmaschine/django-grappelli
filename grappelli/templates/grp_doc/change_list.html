@@ -36,51 +36,170 @@
 {% block content %}
     <h1>Change List</h1>
     <div class="g-d-c">
-    	<section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>Nesting Modules in Groups</h1>
-		            <p>A <span class="grp-doc-class">.grp-group</span> encloses <a href="{% url grp_doc_modules %}">modules</a> which belong together or should appear in a more associated way.</p>
-		            <p>Usually a group starts with a heading but you might as well use it without one. <br />Just be aware of the fact that groups without headings do not appear in document outlines.</p>
-		            <p>There are two different types of groups: <strong>Stacked Groups</strong> and <strong>Tabular Groups</strong>.</p>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code-source">
-	    			<div class="grp-group">
-	    				<h2>Group</h2>
-	    				<div class="grp-module">
-		    				<h3>Module</h3>
-						    <div class="grp-row"><p>Row</p></div>
-						    <div class="grp-row"><p>Row</p></div>
-						</div>
-						<div class="grp-module">
-		    				<h3>Module</h3>
-						    <div class="grp-row"><p>Row</p></div>
-						    <div class="grp-row"><p>Row</p></div>
-						</div>
-					</div>
-				</div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
-<div class="grp-group">
-    <h2>Group</h2>
-    <div class="grp-module">
-        <h3>Module</h3>
-        <div class="grp-row"><p>Row</p></div>
-        <div class="grp-row"><p>Row</p></div>
-    </div>
-    <div class="grp-module">
-        <h3>Module</h3>
-        <div class="grp-row"><p>Row</p></div>
-        <div class="grp-row"><p>Row</p></div>
-    </div>
-</div>
+    	<div class="grp-doc-description">
+            <p>A change-list lists objects of a model. Its basic structure and most important components are explained below.<br />At the end of the page you'll find a whole change-list template put together.</p>
+            <p>Make sure to read about <a href="{% url grp_doc_basic_page_structure %}">how a custom template is built</a> first to gain basic understanding.</p>
+        </div>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Extend the Base, Load Stuff You Need, Define the Body-Class</h1>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} extends "admin/base_site.html" {% templatetag closeblock %}
+{% templatetag openblock %} load i18n admin_static admin_modify grp_tags {% templatetag closeblock %}
+{% templatetag openblock %} block bodyclass {% templatetag closeblock %}grp-change-list{% templatetag openblock %} endblock {% templatetag closeblock %}
 {% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
-	    
+            </div>
+        </section>
+	    <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Custom Stylesheets, Javascripts</h1>
+                    <p>Link some custom stylesheets if you need them.</p>
+                    <p>Regarding javascripts you should take a look at Grappellis change_list.html as there is a lot.<br />Mentioned below are just the lines you need for the actions.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block stylesheets {% templatetag closeblock %}
+    {% endfilter %}&#123;&#123; block.super &#125;&#125;{% filter force_escape %}
+    {% endfilter %}&#123;&#123; media.css &#125;&#125;{% filter force_escape %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% templatetag openblock %} block extrastyle {% templatetag closeblock %}
+    <link href="Path to your custom stylesheet" rel="stylesheet" type="text/css" />
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% templatetag openblock %} block javascripts {% templatetag closeblock %}
+    {% endfilter %}&#123;&#123; block.super &#125;&#125;{% filter force_escape %}
+    {% endfilter %}&#123;&#123; media.js &#125;&#125;{% filter force_escape %}
+    {% templatetag openblock %} if cl.formset or action_form {% templatetag closeblock %}
+        {% templatetag openblock %} url 'admin:jsi18n' as jsi18nurl {% templatetag closeblock %}
+        <script type="text/javascript" src="{% endfilter %}&#123;&#123; jsi18nurl|default:'../../jsi18n/' &#125;&#125;{% filter force_escape %}"></script>
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} if action_form {% templatetag closeblock %}
+        <script type="text/javascript" charset="utf-8">
+            (function($) {
+                $(document).ready(function() {
+                    $("tr input.action-select").actions();
+                });
+            })(grp.jQuery);
+        </script>
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+    {% templatetag openblock %} if cl.formset {% templatetag closeblock %}
+        <script type="text/javascript" charset="utf-8">
+            (function($) {
+                $(document).ready(function() {
+
+                    Take a look at Grappellis change_list.html to find out what js you might need
+
+                });
+            })(grp.jQuery);
+        </script>
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Breadcrumbs</h1>
+                    <p>A detailled explanation on how breadcrumbs are built can be found <a href="{% url grp_doc_context_navigation %}">here</a>.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block breadcrumbs {% templatetag closeblock %}
+    {% templatetag openblock %} if not is_popup {% templatetag closeblock %}
+        <ul>
+            <li><a href="../../">{% templatetag openblock %} trans "Home" {% templatetag closeblock %}</a></li>
+            <li><a href="../">{% templatetag openblock %} trans app_label|capfirst|escape {% templatetag closeblock %}</a></li>
+            <li>{% endfilter %}&#123;&#123; opts.verbose_name_plural|capfirst &#125;&#125;{% filter force_escape %}</li>
+        </ul>
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Content Title</h1>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block content_title {% templatetag closeblock %}
+    <h1>{% endfilter %}&#123;&#123; cl.opts.verbose_name_plural|capfirst &#125;&#125;{% filter force_escape %}</h1>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Object Tools</h1>
+                    <p>A detailled explanation on how object-tools are built can be found <a href="{% url grp_doc_object_tools %}">here</a>.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block object-tools {% templatetag closeblock %}
+    {% templatetag openblock %} if has_add_permission {% templatetag closeblock %}
+        <ul class="grp-object-tools">
+            {% templatetag openblock %} block object-tools-items {% templatetag closeblock %}
+                <li>
+                    <a href="add/{% templatetag openblock %} if is_popup {% templatetag closeblock %}?_popup=1{% templatetag openblock %} endif {% templatetag closeblock %}" class="grp-add-link grp-state-focus">
+                        {% templatetag openblock %} blocktrans with cl.opts.verbose_name as name {% templatetag closeblock %}Add {% endfilter %}&#123;&#123; name &#125;&#125;{% filter force_escape %}{% templatetag openblock %} endblocktrans {% templatetag closeblock %}
+                    </a>
+                </li>
+            {% templatetag openblock %} endblock {% templatetag closeblock %}
+        </ul>
+    {% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Content</h1>
+                    <p>Within the content block there are some components which will be explained separately below.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block content {% templatetag closeblock %}
+    
+    – Pagination, Searchfield, Filters, Date Hierarchy
+    – Result-List
+    – Pagination
+    – Submit-Row
+
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h2>Content</h2>
+                    <p>Within the content block there are some components which will be explained separately below.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block content {% templatetag closeblock %}
+    
+    – Pagination, Searchfield, Filters, Date Hierarchy
+    – Result-List
+    – Pagination
+    – Submit-Row
+
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+            </div>
+        </section>
     </div>
 {% endblock %}
 
