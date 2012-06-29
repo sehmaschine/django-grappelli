@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^grp-doc/change-list/', TemplateView.as_view(template_name='grp_doc/change_list.html'), name="grp_doc_change_list"),
     url(r'^grp-doc/admin-index/', TemplateView.as_view(template_name='grp_doc/admin_index.html'), name="grp_doc_admin_index"),
     
+    url(r'^grp-doc/tables/', TemplateView.as_view(template_name='grp_doc/tables.html'), name="grp_doc_tables"),
+    
     url(r'^grp-doc/pagination/', TemplateView.as_view(template_name='grp_doc/pagination.html'), name="grp_doc_pagination"),
     url(r'^grp-doc/search-form/', TemplateView.as_view(template_name='grp_doc/search_form.html'), name="grp_doc_search_form"),
     url(r'^grp-doc/filter/', TemplateView.as_view(template_name='grp_doc/filter.html'), name="grp_doc_filter"),

@@ -52,6 +52,16 @@ table {
             }
         }
     }
+    tfoot {
+        td {
+            vertical-align: top;
+            padding: 6px 10px 6px;
+            font-size: 11px;
+            line-height: 12px;
+            color: $grp-font-color-quiet;
+            white-space: nowrap;
+        }
+    }
     tbody {
         tr {
             td, th {
@@ -94,6 +104,16 @@ table {
             }
             a.related-lookup + strong {
                 top: 0;
+            }
+            &.grp-errors {
+                td, th {
+                    padding-top: 6px;
+                    padding-bottom: 0;
+                    // border-bottom-color: #bf3030;
+                    ul.errorlist {
+                        margin: 0 0 3px !important;
+                    }
+                }
             }
         }
     }
@@ -156,12 +176,14 @@ table {
             top: -5px;
         }
         > ul.errorlist {
-            margin-top: 5px !important;
+            margin-top: 8px !important;
             &:first-child {
                 margin: -2px 0 8px !important;
             }
         }
-
+        p.preview + ul.errorlist {
+            margin-top: 5px !important;
+        }
     }
 }
 
@@ -275,7 +297,8 @@ tr.row-label td {
 /*  Table XFull
 ------------------------------------------------------------------------------------------------------ */
 
-table.xfull {
+table.xfull, 
+table.grp-full-width {
     width: 100%;
 }
 

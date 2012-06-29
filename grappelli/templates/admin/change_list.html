@@ -148,7 +148,7 @@
 <!-- CONTENT -->
 {% block content %}
     {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
-        <div class="grp-module grp-changelist-filters">
+        <div class="grp-module">
             <div class="grp-row">
                 <div class="l-2cr-fluid {% if cl.has_filters and cl.search_fields %}l-d-12{% else %}{% if cl.has_filters or cl.search_fields %}l-d-6{% endif %}{% endif %}">
                     {% if cl.has_filters or cl.search_fields %}
