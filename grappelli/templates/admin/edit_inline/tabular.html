@@ -256,8 +256,10 @@
                 ui.placeholder.addClass("grp-tbody grp-module").append(template);
             },
             stop: function(evt, ui) {
+                var lastScrollTop = $(window).scrollTop();
                 // Toggle div.table twice to remove webkits border-spacing bug
                 $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table").toggle().toggle();
+                $(window).scrollTop(lastScrollTop);
             },
         });
         $("#{{ opts.module_name }}_form").bind("submit", function(){
