@@ -23,7 +23,8 @@
 
 /* Import & Modifications of Django/Grappelli styles
 ----------------------------------------------------------------------- */
-@import url('../../../../../../../css/base.css');
+@import url('../../../../../../../stylesheets/screen.css');
+@import url('../../../../../../../stylesheets/mueller/grid/output.css');
 
 
 
@@ -187,7 +188,7 @@ legend {
     font-size: 15px; font-weight: bold;
     color:#2B6FB6; display: none;
 }
-legend + .row { border-top: none !important; }
+legend + .grp-row { border-top: none !important; }
 
 /*label {
     display: block; float: left;
@@ -226,8 +227,8 @@ input.checkbox {
     position: relative;
     margin: 0 5px 13px 0 !important;
 }
-.row input[type=radio], 
-.row input[type=radio] {
+.grp-row input[type=radio], 
+.grp-row input[type=radio] {
 /*    top: 0 !important;*/
 }
 input[type=radio].standalone, 
@@ -255,18 +256,18 @@ input.checkbox.inline {
     position: relative; top: -1px;
     margin: 0 5px 0 0 !important;
 }
-/*.row.inline label {
+/*.grp-row.inline label {
     margin: 0;
 }*/
-.row.inline input.radio + label, .row.inline input.checkbox + label {
+.grp-row.inline input.radio + label, .grp-row.inline input.checkbox + label {
     display: inline; float: none; position: relative; top: -1px !important;
     margin-right: 30px;
 }
-.row.inline input.radio {
+.grp-row.inline input.radio {
     position: relative; top: -1px;
     margin: 0 5px 0 0 !important;
 }
-.row.inline input.checkbox {
+.grp-row.inline input.checkbox {
     position: relative; top: -2px;
     margin: 0 5px 0 0 !important;
 }
@@ -299,6 +300,12 @@ textarea#htmlSource {
 
 /* Browse-Icons
 ----------------------------------------------------------------------- */
+#srcbrowsercontainer {
+    position: relative;
+    float: right;
+    display: inline-block;
+    margin-top: -25px;
+}
 .browse span { position: relative; top: -25px; margin-bottom: -25px; }
 .browse span {
     position: relative; display: block; float: right;

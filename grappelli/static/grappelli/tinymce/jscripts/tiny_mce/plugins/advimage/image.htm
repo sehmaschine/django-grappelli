@@ -21,25 +21,33 @@
         </div>
         <div class="panel_wrapper">
             <div id="general_panel" class="panel current">
-                <fieldset class="module properties">
-                    <div class="row">
-                        <div class="column span-4"><label id="srclabel" for="src" class="required">{#advimage_dlg.src}</label></div>
-                        <div class="column span-flexible">
-                            <input name="src" type="text" id="src" value="" class="mceFocus" onchange="ImageDialog.showPreviewImage(this.value);" />
-                            <div id="srcbrowsercontainer">&nbsp;</div>
+                <fieldset class="grp-module properties">
+                    <div class="grp-row">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="srclabel" for="src" class="required">{#advimage_dlg.src}</label></div>
+                            <div class="c-2">
+                                <input name="src" type="text" id="src" value="" class="mceFocus" onchange="ImageDialog.showPreviewImage(this.value);" />
+                                <div id="srcbrowsercontainer">&nbsp;</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="display:none">
-                        <div class="column span-4"><label for="src_list">{#advimage_dlg.image_list}</label></div>
-                        <div class="column span-flexible"><select id="src_list" name="src_list" onchange="document.getElementById('src').value=this.options[this.selectedIndex].value;document.getElementById('alt').value=this.options[this.selectedIndex].text;document.getElementById('title').value=this.options[this.selectedIndex].text;ImageDialog.showPreviewImage(this.options[this.selectedIndex].value);"></select></div>
+                    <div class="grp-row" style="display:none">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label for="src_list">{#advimage_dlg.image_list}</label></div>
+                            <div class="c-2"><select id="src_list" name="src_list" onchange="document.getElementById('src').value=this.options[this.selectedIndex].value;document.getElementById('alt').value=this.options[this.selectedIndex].text;document.getElementById('title').value=this.options[this.selectedIndex].text;ImageDialog.showPreviewImage(this.options[this.selectedIndex].value);"></select></div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="column span-4"><label id="altlabel" for="alt">{#advimage_dlg.alt}</label></div>
-                        <div class="column span-flexible"><input id="alt" name="alt" type="text" value="" /></div>
+                    <div class="grp-row">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="altlabel" for="alt">{#advimage_dlg.alt}</label></div>
+                            <div class="c-2"><input id="alt" name="alt" type="text" value="" /></div>
+                        </div>
                     </div>
-                    <div class="row last">
-                        <div class="column span-4"><label id="titlelabel" for="title">{#advimage_dlg.title}</label></div>
-                        <div class="column span-flexible"><input id="title" name="title" type="text" value="" /></div>
+                    <div class="grp-row grp-last">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="titlelabel" for="title">{#advimage_dlg.title}</label></div>
+                            <div class="c-2"><input id="title" name="title" type="text" value="" /></div>
+                        </div>
                     </div>
                 </fieldset>
                 <fieldset style="display: none;">
@@ -48,64 +56,80 @@
                 </fieldset>
             </div>
             <div id="appearance_panel" class="panel">
-                <fieldset class="module">
+                <fieldset class="grp-module">
                     <legend>{#advimage_dlg.tab_appearance}</legend>
-                    <div class="row" style="display:none">
-                        <div class="column span-4"><label id="alignlabel" for="align">{#advimage_dlg.align}</label></div>
-                        <div class="column span-flexible"><select id="align" name="align" onchange="ImageDialog.updateStyle('align');ImageDialog.changeAppearance();"> 
-                            <option value="">{#not_set}</option> 
-                            <option value="baseline">{#advimage_dlg.align_baseline}</option>
-                            <option value="top">{#advimage_dlg.align_top}</option>
-                            <option value="middle">{#advimage_dlg.align_middle}</option>
-                            <option value="bottom">{#advimage_dlg.align_bottom}</option>
-                            <option value="text-top">{#advimage_dlg.align_texttop}</option>
-                            <option value="text-bottom">{#advimage_dlg.align_textbottom}</option>
-                            <option value="left">{#advimage_dlg.align_left}</option>
-                            <option value="right">{#advimage_dlg.align_right}</option>
-                        </select>
-                        <br clear="all">
-                        <div class="alignPreview">
-                            <img id="alignSampleImg" src="img/sample.gif" alt="{#advimage_dlg.example_img}" />
-                            Lorem ipsum, Dolor sit amet, consectetuer adipiscing loreum ipsum edipiscing elit, sed diam
-                            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Loreum ipsum
-                            edipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                            erat volutpat.
-                        </div></div>
-                    </div>
-                    <div class="row first">
-                        <div class="column span-4"><label id="widthlabel" for="width">{#advimage_dlg.dimensions}</label></div>
-                        <div class="column span-flexible">
-                            <input name="width" type="text" id="width" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeHeight();" /> x 
-                            <input name="height" type="text" id="height" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeWidth();" /> px
-                            <p class="constrain">
-                                <input id="constrain" type="checkbox" name="constrain" class="checkbox" />
-                                <label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label>
-                            </p>
+                    <div class="grp-row" style="display:none">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="alignlabel" for="align">{#advimage_dlg.align}</label></div>
+                            <div class="c-2"><select id="align" name="align" onchange="ImageDialog.updateStyle('align');ImageDialog.changeAppearance();"> 
+                                <option value="">{#not_set}</option> 
+                                <option value="baseline">{#advimage_dlg.align_baseline}</option>
+                                <option value="top">{#advimage_dlg.align_top}</option>
+                                <option value="middle">{#advimage_dlg.align_middle}</option>
+                                <option value="bottom">{#advimage_dlg.align_bottom}</option>
+                                <option value="text-top">{#advimage_dlg.align_texttop}</option>
+                                <option value="text-bottom">{#advimage_dlg.align_textbottom}</option>
+                                <option value="left">{#advimage_dlg.align_left}</option>
+                                <option value="right">{#advimage_dlg.align_right}</option>
+                            </select>
+                            <br clear="all">
+                            <div class="alignPreview">
+                                <img id="alignSampleImg" src="img/sample.gif" alt="{#advimage_dlg.example_img}" />
+                                Lorem ipsum, Dolor sit amet, consectetuer adipiscing loreum ipsum edipiscing elit, sed diam
+                                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Loreum ipsum
+                                edipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+                                erat volutpat.
+                            </div></div>
                         </div>
                     </div>
-                    <div class="row" style="display:none">
-                        <div class="column span-4"><label id="vspacelabel" for="vspace">{#advimage_dlg.vspace}</label></div>
-                        <div class="column span-flexible"><input name="vspace" type="text" id="vspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" /></div>
+                    <div class="grp-row grp-first">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="widthlabel" for="width">{#advimage_dlg.dimensions}</label></div>
+                            <div class="c-2">
+                                <input name="width" type="text" id="width" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeHeight();" /> x 
+                                <input name="height" type="text" id="height" value="" size="5" maxlength="5" class="size" onchange="ImageDialog.changeWidth();" /> px
+                                <p class="constrain">
+                                    <input id="constrain" type="checkbox" name="constrain" class="checkbox" />
+                                    <label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row" style="display:none">
-                        <div class="column span-4"><label id="hspacelabel" for="hspace">{#advimage_dlg.hspace}</label></div>
-                        <div class="column span-flexible"><input name="hspace" type="text" id="hspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" /></div>
+                    <div class="grp-row" style="display:none">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="vspacelabel" for="vspace">{#advimage_dlg.vspace}</label></div>
+                            <div class="c-2"><input name="vspace" type="text" id="vspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('vspace');ImageDialog.changeAppearance();" /></div>
+                        </div>
                     </div>
-                    <div class="row" style="display:none">
-                        <div class="column span-4"><label id="borderlabel" for="border">{#advimage_dlg.border}</label></div>
-                        <div class="column span-flexible"><input id="border" name="border" type="text" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" /></div>
+                    <div class="grp-row" style="display:none">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="hspacelabel" for="hspace">{#advimage_dlg.hspace}</label></div>
+                            <div class="c-2"><input name="hspace" type="text" id="hspace" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('hspace');ImageDialog.changeAppearance();" /></div>
+                        </div>
                     </div>
-                    <div class="row last">
-                        <div class="column span-4"><label for="class_list">{#class_name}</label></div>
-                        <div class="column span-flexible"><select id="class_list" name="class_list" class="mceEditableSelect"></select></div>
+                    <div class="grp-row" style="display:none">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="borderlabel" for="border">{#advimage_dlg.border}</label></div>
+                            <div class="c-2"><input id="border" name="border" type="text" value="" size="3" maxlength="3" class="number" onchange="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" onblur="ImageDialog.updateStyle('border');ImageDialog.changeAppearance();" /></div>
+                        </div>
                     </div>
-                    <div class="row" style="display:none">
-                        <div class="column span-4"><label id="stylelabel" for="style">{#advimage_dlg.style}</label></div>
-                        <div class="column span-flexible"><input id="style" name="style" type="text" value="" onchange="ImageDialog.changeAppearance();" /></div>
+                    <div class="grp-row grp-last">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label for="class_list">{#class_name}</label></div>
+                            <div class="c-2"><select id="class_list" name="class_list" class="mceEditableSelect"></select></div>
+                        </div>
                     </div>
-                    <div class="row" style="display:none">
-                        <div class="column span-4"><label id="classeslabel" for="classes">{#advimage_dlg.classes}</label></div>
-                        <div class="column span-flexible"><input id="classes" name="classes" type="text" value="" onchange="selectByValue(this.form,'classlist',this.value,true);" /></div>
+                    <div class="grp-row" style="display:none">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="stylelabel" for="style">{#advimage_dlg.style}</label></div>
+                            <div class="c-2"><input id="style" name="style" type="text" value="" onchange="ImageDialog.changeAppearance();" /></div>
+                        </div>
+                    </div>
+                    <div class="grp-row" style="display:none">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label id="classeslabel" for="classes">{#advimage_dlg.classes}</label></div>
+                            <div class="c-2"><input id="classes" name="classes" type="text" value="" onchange="selectByValue(this.form,'classlist',this.value,true);" /></div>
+                        </div>
                     </div>
                 </fieldset>
             </div>
@@ -187,10 +211,10 @@
                 </fieldset>
             </div>
         </div>
-        <div class="mceActionPanel module submit-row">
-            <ul class="submit-row">
-                <li class="cancel-button-container left"><input type="button" id="cancel" class="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" /></li>
-                <li class="submit-button-container"><input type="submit" id="insert" class="default" name="insert" value="{#insert}" /></li>
+        <div class="mceActionPanel grp-module grp-submit-row">
+            <ul>
+                <li class="grp-float-left"><input type="button" id="cancel" class="grp-button grp-cancel-link" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" /></li>
+                <li><input type="submit" id="insert" class="grp-button grp-default" name="insert" value="{#insert}" /></li>
             </ul>
         </div>
     </form>

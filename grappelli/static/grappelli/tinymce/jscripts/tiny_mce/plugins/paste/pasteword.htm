@@ -11,10 +11,10 @@
         <div class="title">{#paste.paste_word_desc}</div>
         <p class="helptext">{#paste_dlg.word_title}</p>
         <div id="iframecontainer"></div>
-        <div class="mceActionPanel module submit-row">
-            <ul class="submit-row">
-                <li class="cancel-button-container left"><input type="button" id="cancel" class="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" /></li>
-                <li class="submit-button-container"><input type="submit" id="insert" class="default" name="insert" value="{#insert}" onclick="saveContent();" /></li>
+        <div class="mceActionPanel grp-module grp-submit-row">
+            <ul>
+                <li class="grp-float-left"><input type="button" id="cancel" class="grp-button grp-cancel-link" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" /></li>
+                <li><input type="submit" id="insert" class="grp-button grp-default" name="insert" value="{#insert}" onclick="saveContent();" /></li>
             </ul>
         </div>
     </form>

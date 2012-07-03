@@ -411,6 +411,11 @@ header#grp-header {
 				margin-left: 0;
 				margin-right: 10px;
 			}
+			input[type=button] {
+				margin: 0;
+				width: auto;
+				display: block;
+			}
 			input.grp-button, 
 			a.grp-button, 
 			button.grp-button {

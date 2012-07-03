@@ -233,14 +233,16 @@
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #ddd;
 	// overflow: visible;
-	&:first-child {
+	&:first-child, 
+	&.grp-first {
 		border-top: 0;
 		@include border-top-radius($grp-border-radius - 1px);
 	}
 	&:first-of-type {
 		// border-top: 0;
 	}
-	&:last-of-type {
+	&:last-of-type, 
+	&.grp-last {
 		border-bottom: 0;
 		@include border-bottom-radius($grp-border-radius - 1px);
 	}

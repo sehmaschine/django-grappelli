@@ -108,7 +108,8 @@ input[type="submit"] {
     @include grp-form-button-style;
 }
 a.grp-button, 
-button.grp-button {
+button.grp-button,
+input[type=button].grp-button {
     @include grp-button();
     @include grp-form-button-style;
     @include grp-padding($grp-padding-size-s $grp-padding-size);
@@ -170,16 +171,17 @@ button.grp-button {
 input[type=button], 
 button, 
 a.fb_show, 
-a.related-lookup {
+a.related-lookup, 
+#srcbrowsercontainer a {
     @include grp-icon-button;
 }
-
 
 
 /*  Filebrowser, Related Lookup, M2M, FK, Related Remove ......................................... */
 
 a.fb_show, 
-a.related-lookup {
+a.related-lookup, 
+#srcbrowsercontainer a {
     display: inline-block;
     margin-bottom: -5px;
     @include icons-sprite(related-lookup);
@@ -294,7 +296,8 @@ input:focus + a.fb_show,
 input:focus + a.related-lookup, 
 input:focus + * + a.related-lookup, 
 input:focus + a.add-another, 
-.grp-state-focus a.related-lookup {
+.grp-state-focus a.related-lookup, 
+input:focus + #srcbrowsercontainer a {
     border: $grp-form-field-border-focus !important;
 }
 input:focus + .grp-search-button {
@@ -317,7 +320,8 @@ input:focus + .grp-search-button {
     input + a.add-another, 
     .grp-state-focus a.related-lookup, 
     a.grp-related-remove, 
-    .grp-state-focus a.related-remove {
+    .grp-state-focus a.related-remove, 
+    input:focus + #srcbrowsercontainer a {
         border-color: #bf3030 !important;
     }
 }
