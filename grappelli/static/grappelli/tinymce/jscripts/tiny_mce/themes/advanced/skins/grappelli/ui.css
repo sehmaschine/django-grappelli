@@ -328,15 +328,17 @@
 .grappelliSkin .mceMenu .mceText {
     position: relative; display: block;
     margin: 0; padding: 0 25px 0 4px;
+    background: transparent !important;
 }
 .grappelliSkin .mceMenu .mceIcon {
     display: none;
     width: 0; height: 0;
+    background: transparent !important;
 }
 .grappelliSkin .mceMenu .mceMenuItemEnabled a:hover,
 .grappelliSkin .mceMenu .mceMenuItemEnabled a:active, 
 .grappelliSkin .mceMenu .mceMenuItemActive {
-    background-color: #e1f0f5;
+    background-color: #e1f0f5 !important;
 }
 .grappelliSkin .mceMenuItemSelected a {
     background-color: #ddd;
