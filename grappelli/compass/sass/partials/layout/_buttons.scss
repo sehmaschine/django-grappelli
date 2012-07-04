@@ -172,7 +172,7 @@ input[type=button],
 button, 
 a.fb_show, 
 a.related-lookup, 
-#srcbrowsercontainer a {
+body.tinyMCE input[name="src"] + div a {
     @include grp-icon-button;
 }
 
@@ -181,7 +181,7 @@ a.related-lookup,
 
 a.fb_show, 
 a.related-lookup, 
-#srcbrowsercontainer a {
+body.tinyMCE input[name="src"] + div a {
     display: inline-block;
     margin-bottom: -5px;
     @include icons-sprite(related-lookup);
@@ -297,7 +297,7 @@ input:focus + a.related-lookup,
 input:focus + * + a.related-lookup, 
 input:focus + a.add-another, 
 .grp-state-focus a.related-lookup, 
-input:focus + #srcbrowsercontainer a {
+body.tinyMCE input[name="src"]:focus + div a {
     border: $grp-form-field-border-focus !important;
 }
 input:focus + .grp-search-button {
@@ -320,8 +320,7 @@ input:focus + .grp-search-button {
     input + a.add-another, 
     .grp-state-focus a.related-lookup, 
     a.grp-related-remove, 
-    .grp-state-focus a.related-remove, 
-    input:focus + #srcbrowsercontainer a {
+    .grp-state-focus a.related-remove {
         border-color: #bf3030 !important;
     }
 }
