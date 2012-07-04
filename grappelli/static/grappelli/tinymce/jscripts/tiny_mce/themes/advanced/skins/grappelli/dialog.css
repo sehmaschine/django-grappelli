@@ -24,6 +24,7 @@
 /* Import & Modifications of Django/Grappelli styles
 ----------------------------------------------------------------------- */
 @import url('../../../../../../../stylesheets/screen.css');
+@import url('../../../../../../../stylesheets/partials/custom/tinymce.css');
 @import url('../../../../../../../stylesheets/mueller/grid/output.css');
 
 
