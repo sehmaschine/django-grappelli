@@ -135,6 +135,7 @@ textarea {
     vertical-align: top;
     padding: 5px 5px;
     height: 60px;
+    overflow: auto;
 }
 fieldset.monospace textarea {
     font-family: "Bitstream Vera Sans Mono",Monaco,"Courier New",Courier,monospace;
