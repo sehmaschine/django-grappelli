@@ -8,9 +8,6 @@
 	ul {
 		@include horizontal-list(0, left);
 		li {
-		    // position: relative;
-		    // float: left;
-		    // display: block;
 		    margin-right: 1px;
 		    border: 1px solid #fff;
 	    	@include border-radius($grp-border-radius);
@@ -59,7 +56,6 @@
 			&:last-child {
 			    clear: right;
 			}
-
 		}
 	}
 }
@@ -126,19 +122,15 @@ form#grp-changelist-search {
 	.grp-pulldown-handler {
 		display: block;
 	    margin: 0;
-	    // padding: 4px 8px;
 	    font-weight: bold;
 	    @include border-radius($grp-border-radius);
-	    // @include box-sizing(border-box);
 	    cursor: pointer;
-	    background-image: url('../images/icons/tools-arrow-down-handler_hover.png');
-	    background-position: 100% 0;
-	    background-repeat: no-repeat;
+	    @include icons-sprite(pulldown-handler, $offset-x: 100%);
 	    @include grp-button-states(grey, blue);
 	    color: $grp-link-color;
 	    &:hover {
 	    	color: #444;
-	    	background-image: url('../images/icons/tools-arrow-down-handler.png');
+	    	@include icons-sprite(pulldown-handler_hover, $offset-x: 100%);
 	    }
 	}
 	&.grp-pulldown-state-open {
@@ -147,12 +139,12 @@ form#grp-changelist-search {
 			color: #444;
 			@include border-bottom-radius(0 !important);
 		    border-bottom: 0 !important;
-		    background-image: url('../images/icons/tools-arrow-down-handler.png');
+		    @include icons-sprite(pulldown-handler_selected, $offset-x: 100%);
 		    @include grp-button-states(blue, blue);
 		    &:hover {
 		    	color: #444;
 		    	border-bottom: 0 !important;
-		    	background-image: url('../images/icons/tools-arrow-down-handler.png');
+		    	@include icons-sprite(pulldown-handler_selected, $offset-x: 100%);
 		    }
 		}
 	}
@@ -199,9 +191,7 @@ form#grp-changelist-search {
 	}
 	@include legacy-pie-clearfix;
 }
-// .grp-row {
-// 	@include legacy-pie-clearfix;
-// }
+
 
 
 /*  ACTIONS
@@ -214,8 +204,6 @@ li.grp-changelist-actions {
 		position: relative;
 		float: left;
 		margin: 1px 5px 0 0;
-		// height: 28px;
-		// @include border-radius($grp-form-button-border-radius);
 	}
 	.grp-horizontal-list {
 		@include horizontal-list(0, left);
@@ -236,7 +224,6 @@ li.grp-changelist-actions {
 			font-weight: bold;
 			border: 1px solid #111;
 			background: #222;
-			// @include background-image(linear-gradient(lighten(#333, 5), lighten(#333, 2)));
 			&:hover {
 				color: #fff;
 				border: 1px solid #222;
@@ -261,6 +248,7 @@ li.grp-changelist-actions {
 }
 
 
+
 /*  RESULTS
 ------------------------------------------------------------------------------------------------------ */
 
@@ -271,10 +259,6 @@ li.grp-changelist-actions {
 body.grp-change-list {
 	.grp-pulldown-container {
 		border: 1px solid #fff;
-		&.grp-pulldown-state-open {
-			// padding: 1px;
-			// border: $grp-button-border !important;
-		}
 	}
 	table {
 		margin: -1px !important;

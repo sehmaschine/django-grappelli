@@ -1,7 +1,6 @@
 
 
 
-
 /*  BUTTON STATES
 ------------------------------------------------------------------------------------------------------ */
 
@@ -67,11 +66,8 @@
 
 
 
-
-
 /*  BUTTONS
 ------------------------------------------------------------------------------------------------------ */
-
 
 @mixin grp-button {
     position: relative;
@@ -91,12 +87,10 @@
     cursor: pointer;
     overflow: hidden;
     vertical-align: top;
-    // @include grp-button-states(blue, grey);
 }
 .grp-button {
     @include grp-button();
 }
-
 
 
 
@@ -123,27 +117,6 @@ input[type=button].grp-button {
         @include grp-form-button-reset-style;
     }
 }
-
-// .grp-submit-row {
-//     a.grp-button {
-//         @include grp-button();
-//         @include grp-form-button-style;
-//         &.grp-delete-link {
-//             @include grp-form-button-delete-style;
-//         }
-//         &.grp-cancel-link {
-//             @include grp-form-button-cancel-style;
-//         }
-//         &.grp-reset-link {
-//             @include grp-form-button-reset-style;
-//         }
-//     }
-//     button.grp-button {
-//         @include grp-button();
-//         @include grp-form-button-style;
-//     }
-// }
-
 
 
 
@@ -236,8 +209,6 @@ button.ui-datetime-now {
 
 
 
-
-
 /*  ADD ANOTHER
 ------------------------------------------------------------------------------------------------------ */
 
@@ -266,9 +237,6 @@ p.grp-help + * + a.add-another {
     top: -20px;
     margin-bottom: -20px;
 }
-// .grp-change-list table tbody a.add-another {
-//     top: -7px;
-// }
 .grp-td a.add-another {
     float: right;
 }
@@ -286,7 +254,7 @@ p.grp-help + * + a.add-another {
 
 
 
-/*  CONTEXT_DEPENDENT BUTTON STYLES (FOCUS, ERROR)
+/*  CONTEXT-DEPENDENT BUTTON STYLES (FOCUS, ERROR)
 ------------------------------------------------------------------------------------------------------ */
 
 input:focus + button, 
@@ -303,12 +271,6 @@ body.tinyMCE input[name="src"]:focus + div a {
 input:focus + .grp-search-button {
     border-color: transparent !important;
 }
-/*  Reset the style for focused links in autocompletes as there is an automatically
-    focused (invisible) input which causes the a.related-lookup to be "focused" though it's not */
-// div.grp-autocomplete-wrapper-fk input:focus + a.related-lookup, 
-// div.grp-autocomplete-wrapper-m2m input:focus + a.related-lookup {
-//     border-color: #4ef !important;
-// }
 
 .grp-errors {
     input + button, 
@@ -321,16 +283,15 @@ input:focus + .grp-search-button {
     .grp-state-focus a.related-lookup, 
     a.grp-related-remove, 
     .grp-state-focus a.related-remove {
-        border-color: #bf3030 !important;
+        border-color: $grp-font-color-error !important;
     }
 }
 
 
 
-/*  Unknown, Yes & No Workaround
+/*  UNKNOWN, YES, NO: REPLACING DJANGOS IMAGES
 ------------------------------------------------------------------------------------------------------ */
 
-// Replacing Djangos original images
 img[src$="admin/img/icon-unknown.gif"], 
 img[src$="admin/img/icon-no.gif"], 
 img[src$="admin/img/icon-yes.gif"] {

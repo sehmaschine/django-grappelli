@@ -1,7 +1,7 @@
 
 
 
-/*  Basic Table Settings
+/*  TABLE
 ------------------------------------------------------------------------------------------------------ */
 
 table {
@@ -109,7 +109,6 @@ table {
                 td, th {
                     padding-top: 6px;
                     padding-bottom: 0;
-                    // border-bottom-color: #bf3030;
                     ul.errorlist {
                         margin: 0 0 3px !important;
                     }
@@ -141,8 +140,6 @@ table {
         > select, 
         > textarea {
             position: relative;
-            // top: -6px;
-            // margin-bottom: -10px;
             margin: -7px 0 -5px !important;
             @media screen and (-webkit-min-device-pixel-ratio:0) {
                 margin: -9px 0 -5px !important;
@@ -280,7 +277,7 @@ table.grp-sortable {
 }
 
 
-/*  Tbody ................................................... */
+/*  Additional ................................................... */
 
 thead th.optional {
     font-weight: normal !important;
@@ -294,7 +291,7 @@ tr.row-label td {
 
 
 
-/*  Table XFull
+/*  TABLE FULL WIDTH
 ------------------------------------------------------------------------------------------------------ */
 
 table.xfull, 
@@ -304,7 +301,7 @@ table.grp-full-width {
 
 
 
-/*  Orderable Tables
+/*  ORDERABLE TABLES
 ------------------------------------------------------------------------------------------------------ */
 
 table.orderable tbody tr td:hover {
@@ -323,7 +320,7 @@ table.orderable-initalized .order-cell, body>tr>td.order-cell {
 
 
 
-/*  Change History
+/*  TABLE CHANGE HISTORY
 ------------------------------------------------------------------------------------------------------ */
 
 table#grp-change-history {
@@ -340,7 +337,7 @@ table#grp-change-history {
 
 
 
-/*  Documentation
+/*  TABLE DOCUMENTATION
 ------------------------------------------------------------------------------------------------------ */
 
 table.grp-full {

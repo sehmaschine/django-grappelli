@@ -1,23 +1,8 @@
 
 
 
-/*  CONSTANTS // Margins & Paddings
+/*  CONSTANTS
 ------------------------------------------------------------------------------------------------------ */
-
-// $grp-margin-size-xl: $grp-custom-base-line-height * 2;
-// $grp-margin-size-l: ceil($grp-custom-base-line-height * 1.333);
-// $grp-margin-size-m: $grp-custom-base-line-height;
-// $grp-margin-size: $grp-custom-base-line-height / 2;
-// $grp-margin-size-s: $grp-custom-base-line-height / 3;
-// $grp-margin-size-xs: $grp-custom-base-line-height / 6;
-
-// $grp-padding-size-xl: $grp-custom-base-line-height * 1;
-// $grp-padding-size-l: ceil($grp-custom-base-line-height * 1.333);
-// $grp-padding-size-m: $grp-custom-base-line-height;
-// $grp-padding-size: $grp-custom-base-line-height / 2;
-// $grp-padding-size-s: $grp-custom-base-line-height / 3;
-// $grp-padding-size-xs: $grp-custom-base-line-height / 6;
-
 
 @mixin grp-margin($grp-margin) {
 	padding: $grp-margin;
@@ -28,8 +13,7 @@
 
 
 
-
-/*  EXTENSIONS // Margins & Paddings
+/*  EXTENSIONS (VALUES DEFINED IN SKIN/GRP_DEFAULT)
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-margin-xl { margin: $grp-margin-size-xl !important; }

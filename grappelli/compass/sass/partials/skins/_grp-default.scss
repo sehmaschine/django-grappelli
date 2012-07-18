@@ -107,21 +107,12 @@ $grp-predelete-background-color: #f2e6e6 !default;
 @mixin grp-gradient-module-h2 {
 	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
 }
-// .grp-gradient-module-h2 {
-// 	@include grp-gradient-module-h2;
-// }
 @mixin grp-gradient-module-h3 {
 	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
 }
-// .grp-gradient-module-h3 {
-// 	@include grp-gradient-module-h3;
-// }
 @mixin grp-gradient-module-h4 {
 	@include background-image(linear-gradient(lighten(#e5e5e5, 2), lighten(#dbdbdb, 2)));
 }
-// .grp-gradient-module-h4 {
-// 	@include grp-gradient-module-h4;
-// }
 
 
 /*  Collapse Handlers ............................................................ */
@@ -129,29 +120,16 @@ $grp-predelete-background-color: #f2e6e6 !default;
 @mixin grp-gradient-module-h2-collapse-handler {
 	@include background-image(linear-gradient(#bcdfeb, #a1d4e5));
 }
-// .grp-gradient-module-h2-collapse-handler {
-// 	@include grp-gradient-module-h2-collapse-handler;
-// }
 @mixin grp-gradient-module-h2-collapse-handler-hover {
 	@include background-image(linear-gradient(#a1d4e5, #bcdfeb));
 }
-// .grp-gradient-module-h2-collapse-handler-hover {
-// 	@include grp-gradient-module-h2-collapse-handler-hover;
-// }
 
 @mixin grp-gradient-module-h3-collapse-handler {
 	@include background-image(linear-gradient(#e1f0f5, #cee9f2));
 }
-// .grp-gradient-module-h3-collapse-handler {
-// 	@include grp-gradient-module-h3-collapse-handler;
-// }
 @mixin grp-gradient-module-h3-collapse-handler-hover {
 	@include background-image(linear-gradient(#cee9f2, #e1f0f5));
 }
-// .grp-gradient-module-h3-collapse-handler-hover {
-// 	@include grp-gradient-module-h3-collapse-handler-hover;
-// }
-
 
 
 
@@ -163,6 +141,7 @@ $grp-predelete-background-color: #f2e6e6 !default;
 
 $grp-table-background-color: #eee !default;
 $grp-table-border-color: #ccc !default;
+
 
 
 /*	FORMS
@@ -201,9 +180,6 @@ $grp-form-label-font-color: #444 !default;
 @mixin grp-form-label-required {
 	font-weight: bold;
 }
-// .grp-form-label-required {
-// 	@include grp-form-label-required;
-// }
 
 
 /*  Buttons ............................................................ */
@@ -212,24 +188,6 @@ $grp-form-button-font-family: Arial, sans-serif !default;
 $grp-form-button-font-size: 12px !default;
 $grp-form-button-font-color: #444 !default;
 $grp-form-button-font-color-hover: #444 !default;
-
-// $grp-form-button-background-color: #fdfdfd !default;
-// $grp-form-button-background-color-hover: #fff !default;
-
-// $grp-form-button-default-background-color: #fdfdfd !default;
-// $grp-form-button-default-background-color-hover: #fff !default;
-
-// $grp-form-button-reset-background-color: #fdfdfd !default;
-// $grp-form-button-reset-background-color-hover: #fff !default;
-
-// $grp-form-button-cancel-background-color: #fdfdfd !default;
-// $grp-form-button-cancel-background-color-hover: #fff !default;
-
-
-
-
-
-
 
 $grp-form-button-background-color: #309bbf !default;
 $grp-form-button-background-color-hover: #444 !default;
@@ -263,9 +221,6 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		}
 	}
 }
-// .grp-form-button {
-// 	@include grp-form-button-style;
-// }
 
 @mixin grp-form-button-delete-style {
 	color: #fff;
@@ -283,9 +238,6 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		}
 	}
 }
-// .grp-delete-link {
-// 	@include grp-form-button-delete-style;
-// }
 
 @mixin grp-form-button-cancel-style {
 	color: #fff;
@@ -303,9 +255,6 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		}
 	}
 }
-// .grp-cancel-link {
-// 	@include grp-form-button-cancel-style;
-// }
 
 @mixin grp-form-button-reset-style {
 	color: #fff;
@@ -323,10 +272,6 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 		}
 	}
 }
-// .grp-reset-link {
-// 	@include grp-form-button-reset-style;
-// }
-
 
 
 
@@ -352,9 +297,6 @@ $grp-button-border-focus: 1px solid #888 !default;
 	color: #fff;
 	@include background-image(linear-gradient(#333, #222));
 }
-// .grp-gradient-dark {
-// 	@include grp-gradient-dark;
-// }
 
 
 /*  Gradient Icon-Sprite Combo ............................................................ */
@@ -392,3 +334,5 @@ $grp-padding-size-m: 15px !default;
 $grp-padding-size: 10px !default;
 $grp-padding-size-s: 5px !default;
 $grp-padding-size-xs: 2px !default;
+
+

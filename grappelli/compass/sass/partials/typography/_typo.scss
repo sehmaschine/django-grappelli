@@ -1,3 +1,12 @@
+
+
+
+/*  TYPOGRAPHIC ELEMENTS
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  Help ......................................... */
+
 p.grp-help {
     max-width: 758px;
     padding: 3px 0 0;
@@ -9,14 +18,20 @@ p.grp-help {
         margin-top: 5px;
     }
 }
-.grp-description {
-    font-size: 11px;
-}
 .grp-cells p.grp-help, 
 .grp-td p.grp-help {
     max-width: 278px;
 }
 
+
+/*  Description ......................................... */
+
+.grp-description {
+    font-size: 11px;
+}
+
+
+/*  Read Only ......................................... */
 
 p.grp-readonly {
     position: relative;
@@ -36,11 +51,17 @@ p.grp-readonly {
     }
 }
 
+
+/*  Images ......................................... */
+
 .grp-row img {
     font-size: 1px;
     line-height: 1px;
     vertical-align: middle;
 }
+
+
+/*  FB-Show ......................................... */
 
 .fb_show + p.grp-help a {
     display: inline-block;
@@ -53,7 +74,6 @@ p.grp-readonly {
     font-size: 0;
     line-height: 0;
 }
-
 
 
 /*  File Uploads & Preview Images ......................................... */
@@ -95,7 +115,7 @@ p.preview {
 }
 
 
-
+/*  RTE Rich Text Edited ......................................... */
 
 .grp-rte {
     font-size: 13px;
@@ -124,6 +144,9 @@ p.preview {
         }
     }
 }
+
+
+/*  Docutils ......................................... */
 
 .grp-docutils {
     .grp-module {
@@ -154,15 +177,12 @@ p.preview {
     }
 }
 
-
 span.grp-anchor {
     position: relative;
     float: left;
     clear: both;
     top: -80px;
 }
-
-
 .grp-nowrap {
     white-space: nowrap;
 }

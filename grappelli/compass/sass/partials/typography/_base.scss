@@ -95,9 +95,9 @@ a {
 }
 
 
+
 /*  BASIC TYPOGRAPHY
 ------------------------------------------------------------------------------------------------------ */
-
 
 h1, .h1 {
 	@include grp-margin($grp-margin-size-l 0 $grp-margin-size);
@@ -128,7 +128,6 @@ h1, h2, h3, h4 {
 	}
 }
 
-
 em {
 	font-style: italic;
 }
@@ -138,16 +137,26 @@ strong {
 
 
 
+/*  FLOATS
+------------------------------------------------------------------------------------------------------ */
+
+.grp-float-left {
+	float: left !important;
+}
+.grp-float-right {
+	float: right !important;
+}
+.grp-transparent {
+	border: 0 !important;
+	background-color: transparent !important;
+}
+
+
 
 /*  RTE TYPOGRAPHY (Rich Text Edited)
 ------------------------------------------------------------------------------------------------------ */
 
-$grp-doc-color: #e5e500;
-$grp-doc-color: #e5e5b8;
 $grp-doc-color: #d94800;
-
-
-
 
 body.grp-doc {
 	article#grp-content {
@@ -246,158 +255,4 @@ body.grp-doc {
 			padding: 0 20px 15px;
 		}
 	}
-}
-
-
-
-// body.grp-doc {
-// 	// h2, h3, h4, p, ul, ol, blockquote, pre {
-// 	// 	position: relative;
-// 	// 	float: left;
-// 	// 	clear: both;
-// 	// 	width: 100%;
-// 	// 	@include box-sizing(border-box);
-// 	// }
-// 	div.grp-doc-description, 
-// 	div.grp-doc-example, 
-// 	div.grp-doc-source {
-// 		position: relative;
-// 		float: left;
-// 		clear: both;
-// 		width: 100%;
-// 		@include box-sizing(border-box);
-// 		.grp-doc-label {
-// 			display: block;
-// 			position: relative;
-// 			float: left;
-// 			clear: both;
-// 			@include clearfix;
-// 			margin: 20px 0 20px;
-// 			padding-bottom: 5px;
-// 			width: 100%;
-// 			@include box-sizing(border-box);
-// 			border-bottom: 1px dashed $grp-doc-color;
-// 			span {
-// 				display: inline-block;
-// 				// padding: 5px 10px;
-// 				color: darken($grp-doc-color, 20);
-// 				color: $grp-doc-color;
-// 				font-size: 11px;
-// 				line-height: 11px;
-// 				font-weight: bold;
-// 				text-transform: uppercase;
-// 				// border: 1px solid darken($grp-doc-color, 5);
-// 				// @include border-radius($grp-border-radius);
-// 				// background: $grp-doc-color;
-// 			}
-// 			& + * {
-// 				position: relative;
-// 				clear: left !important;
-// 				margin-top: 0 !important;
-// 			}
-// 		}
-// 		& + * {
-// 			position: relative;
-// 			float: left;
-// 			clear: both;
-// 			margin-top: 20px;
-// 			width: 100%;
-// 			@include box-sizing(border-box);
-// 		}
-// 	}
-// 	div.grp-doc-description {
-// 		*:last-child {
-// 			margin-bottom: 0 !important;
-// 		}
-// 	}
-// 	div.grp-doc-source {
-// 		*:last-child {
-// 			margin-bottom: 0 !important;
-// 		}
-// 	}
-// 	// div.grp-doc-description {
-// 	// 	padding: 20px 0;
-// 	// 	border-top: 1px dashed #333;
-// 	// }
-// 	// div.grp-doc-example {
-// 	// 	padding: 20px 0;
-// 	// 	border-top: 1px dashed #309bbf;
-// 	// }
-// 	h2 {
-// 		// color: #fff;
-// 		font-size: 24px;
-// 		line-height: 20px;
-// 		margin: 40px 0 10px;
-// 		// padding: 10px 20px;
-// 		// background: $grp-doc-color;
-// 	}
-// 	h3 {
-// 		font-size: 16px;
-// 		line-height: 20px;
-// 		margin: 20px 0 10px;
-// 		code {
-// 			top: -3px !important;
-// 		}
-// 	}
-// 	p pre {
-// 		margin: 10px 0;
-// 		font-size: 14px;
-// 		line-height: 20px;
-// 	}
-// 	// ul {
-// 	// 	list-style: disc outside;
-// 	// 	margin-bottom: 20px;
-// 	// 	padding: 0 0 0 40px;
-// 	// }
-// 	// ol {
-// 	// 	list-style: decimal outside;
-// 	// 	margin-bottom: 20px;
-// 	// 	padding: 0 0 0 40px;
-// 	// }
-// 	// li + li {
-// 	// 	margin-top: 10px;
-// 	// }
-// 	code {
-// 		position: relative;
-// 		top: -1px;
-// 		display: inline-block;
-// 		margin: 0 5px;
-// 		padding: 0 10px;
-// 		font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-// 		font-size: 11px;
-// 		border: 1px solid #d9d9c3;
-// 		background: #f2f2e6;
-// 		@include grp-border-radius($grp-border-radius);
-// 		@include box-sizing(border-box);
-// 	}
-// 	pre {
-// 		margin: 10px 0;
-// 		padding: 0;
-// 		code {
-// 			display: block;
-// 			margin: 0;
-// 			padding: 0 20px;
-// 		}
-// 	}
-
-// 	em {
-// 		display: inline-block;
-// 	}
-// 	strong {
-// 		display: inline-block;
-// 	}
-// }
-
-
-
-
-.grp-float-left {
-	float: left !important;
-}
-.grp-float-right {
-	float: right !important;
-}
-.grp-transparent {
-	border: 0 !important;
-	background-color: transparent !important;
 }

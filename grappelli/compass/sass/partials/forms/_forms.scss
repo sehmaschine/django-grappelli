@@ -58,16 +58,16 @@ textarea,
 select {
     @include grp-form-field;
     .grp-errors & {
-        border-color: #bf3030;
+        border-color: $grp-font-color-error;
     }
-    // width: 100%;
 }
-// fix vertical text-centering in webkit browsers
-// @include grp-helper-webkit-input–text-verticalcenter;
+
+
+/*  Form Field Errors ................................................... */
 
 .grp-errors {
     label {
-        color: #bf3030 !important;
+        color: $grp-font-color-error !important;
     }
     ul.radiolist.inline, 
     ul.checkboxlist.inline {
@@ -81,7 +81,7 @@ select {
     input[type="reset"], 
     textarea, 
     select {
-        border-color: #bf3030 !important;
+        border-color: $grp-font-color-error !important;
     }
     .selector {
         input, 
@@ -92,13 +92,11 @@ select {
     }
     ul.errorlist {
         padding: 3px 0 0;
-        color: #bf3030;
+        color: $grp-font-color-error;
         font-size: 11px !important;
         line-height: 14px;
     }
 }
-
-
 
 
 /*  Select ................................................... */
@@ -128,7 +126,6 @@ select[multiple=multiple] {
 }
 
 
-
 /*  Textarea ................................................... */
 
 textarea {
@@ -140,8 +137,6 @@ textarea {
 fieldset.monospace textarea {
     font-family: "Bitstream Vera Sans Mono",Monaco,"Courier New",Courier,monospace;
 }
-
-
 
 
 /*  Checkboxes, Radiobuttons ................................................... */
@@ -166,11 +161,7 @@ input[type=text].grp-search-field {
     padding-left: 10px;
     padding-right: 30px;
     @include border-radius(20px);
-    & + button {
-        // margin-left: 0;
-    }
 }
-
 
 
 
@@ -294,10 +285,6 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         line-height: 25px;
         text-indent: 25px;
         background: url('../images/icons/searchbox.png') 6px 50% no-repeat;
-        // &:after {
-        //     content: " " url('../images/icons/selector-filter.png');
-        //     opacity: .75;
-        // }
         input[type=text] {
             position: relative;
             margin: 0;
@@ -308,7 +295,6 @@ ul.radiolist.inline, ul.checkboxlist.inline {
             display: none;
         }
         h2 + select {
-            /*display: none;*/
             position: relative;
             top: -1px;
         }
@@ -392,7 +378,7 @@ ul.errorlist + .selector {
 
 
 
-/*  Errors
+/*  ERRORNOTE & -LIST
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin errornote {
@@ -406,14 +392,14 @@ ul.errorlist + .selector {
     color: #fff;
     font-weight: bold;
     @include border-radius($grp-border-radius);
-    background: #bf3030;
+    background: $grp-font-color-error;
 }
 @mixin errorlist {
     @include legacy-pie-clearfix;
     font-size: 11px;
     line-height: 13px;
     font-weight: bold;
-    color: #bf3030;
+    color: $grp-font-color-error;
 }
 @mixin errorlist-nonform {
     @include errorlist;
@@ -421,7 +407,7 @@ ul.errorlist + .selector {
     li {
         padding: 5px 10px;
         & + li {
-            border-top: 1px solid #bf3030;
+            border-top: 1px solid $grp-font-color-error;
         }
     }
 }
@@ -446,7 +432,8 @@ ul.errorlist {
 }
 
 
-/* little fix to accomodate the top aligned login form .. */
+/*  Login Form ................................................... */
+
 .grp-login .errornote, 
 .errornote.grp-login-errors {
     margin-bottom: 0 !important;
@@ -458,14 +445,18 @@ ul.errorlist {
     padding: 8px 12px;
 }
 
-//  Errorlist in rows
+
+/*  Errorlist in rows ................................................... */
+
 .grp-row {
     ul.errorlist {
         @include errorlist-field;
     }
 }
 
-//  Errorlist in tabular groups
+
+/*  Errornote & -list in tabular groups ................................................... */
+
 .grp-tabular {
     p.errornote {
         margin: 2px 0 0;
@@ -486,7 +477,8 @@ ul.errorlist {
 }
 
 
-//  Errorlist in stacked groups
+/*  Errornote & -list in stacked groups ................................................... */
+
 .grp-stacked {
     p.errornote {
         margin: 0;
@@ -510,37 +502,28 @@ ul.errorlist {
     }
 }
 
-//  Errors with TinyMCE
-.grp-error {
-    td.mceIframeContainer {
-        border: 1px solid #bf3030 !important;
-        @include border-radius($grp-border-radius);
-    }
-}
+
+/*  Errorlist after add-another (e.g. with radiolist-inline) ................................................... */
 
 .grp-errors {
-    // errorlist after add-another (e.g. with radiolist-inline)
     a.add-another + ul.errorlist {
         clear: both;
     }
 }
 
 
-//  Errorlist in autocompletes
-// .grp-autocomplete-wrapper-m2m {
-//     ul.errorlist {
-//         position: absolute;
-//         top: 24px;
-//     }
-// }
+/*  Errors with tinyMCE ................................................... */
+
+.grp-error {
+    td.mceIframeContainer {
+        border: 1px solid $grp-font-color-error !important;
+        @include border-radius($grp-border-radius);
+    }
+}
 
 
 
-
-
-
-
-/*  Form Elements: Basic Widths & Heights
+/*  FORM FIELDS: BASIC DIMENSIONS
 ------------------------------------------------------------------------------------------------------ */
 
 input[type=text], 
@@ -574,7 +557,7 @@ textarea,
 
 
 
-/*  Large Form Elements in Change-Form: Widths & Heights
+/*  FORM FIELDS: LARGE DIMENSIONS
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-row .vTextField, 
@@ -596,7 +579,7 @@ textarea,
 
 
 
-/*  Form Elements in Changelist-Results Table & Tabular Modules: Widths & Heights
+/*  FORM FIELDS: DIMENSION IN CHANGELIST TABLE & TABULAR GROUPS
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-changelist-results table {
@@ -625,7 +608,8 @@ textarea,
 }
 
 
-/*  Form Elements Cells
+
+/*  FORM FIELDS IN CELLS
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-cell input[type=text], 

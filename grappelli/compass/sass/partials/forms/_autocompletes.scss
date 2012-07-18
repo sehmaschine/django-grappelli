@@ -1,9 +1,8 @@
 
 
 
-/*  Autocomplete Elements
+/*  AUTOCOMPLETES
 ------------------------------------------------------------------------------------------------------ */
-
 
 
 /*  Autocomplete Wrappers Basic Styles (Input and Input-Lookalike) ......................................... */
@@ -49,11 +48,11 @@
     &.grp-autocomplete-preremove {
         input.ui-autocomplete-input, 
         li.grp-repr a {
-            color: #bf3030 !important;
+            color: $grp-font-color-error !important;
         }
     }
     li.grp-repr.grp-autocomplete-preremove a {
-        color: #bf3030 !important;
+        color: $grp-font-color-error !important;
     }
 }
 
@@ -140,13 +139,14 @@
 }
 
 
+/*  Errors with autocompletes ......................................... */
+
 .grp-errors {
     .grp-autocomplete-wrapper-m2m, .grp-autocomplete-wrapper-fk input.ui-autocomplete-input, 
     a.grp-related-remove {
-        border-color: #bf3030 !important;
+        border-color: $grp-font-color-error !important;
     }
 }
-
 
 
 /*  Autocompletes in Changelists ......................................... */
@@ -156,7 +156,9 @@
     top: -5px;
 }
 
+
 /* We need to "hide" the input-field without display:none, because with display:none we can´t focus the field anymore */
+
 .grp-autocomplete-wrapper-m2m input.vManyToManyRawIdAdminField, 
 .grp-autocomplete-wrapper-fk input.vForeignKeyRawIdAdminField, 
 .grp-autocomplete-wrapper-fk input.vIntegerField  {
@@ -168,6 +170,6 @@
     color: transparent !important;
     border: 0 !important;
     background: transparent !important;
-    box-shadow: none !important; -moz-box-shadow: none !important; -webkit-box-shadow: none !important;
+    @include box-shadow(none !important);
     cursor: default !important;
 }

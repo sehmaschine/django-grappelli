@@ -1,7 +1,6 @@
 
 
 
-
 /*  OJECT-TOOLS
 ------------------------------------------------------------------------------------------------------ */
 
@@ -126,6 +125,10 @@
 .grp-tools {
 	@include grp-tools;
 }
+
+
+/*  Tools in modules ................................................... */
+
 .grp-module {
 	> h2 + .grp-tools {
 		top: -26px;
@@ -136,12 +139,24 @@
 		top: -4px;
 		right: -9px;
 	}
+	> h3 + .grp-tools {
+		top: -25px;
+		margin-bottom: -25px;
+	}
+	&.grp-closed > h3 + .grp-tools {
+		top: -24px;
+		margin-bottom: -24px;
+	}
 }
 fieldset.grp-module {
 	.grp-row > .grp-tools {
 		top: 0;
 	}
 }
+
+
+/*  Tools in groups ................................................... */
+
 .grp-group {
 	> h2 + .grp-tools {
 		top: -28px;
@@ -159,22 +174,22 @@ fieldset.grp-module {
 	right: 1px;
 	margin-bottom: -27px;
 }
-.grp-module {
-	> h3 + .grp-tools {
-		top: -25px;
-		margin-bottom: -25px;
-	}
-	&.grp-closed > h3 + .grp-tools {
-		top: -24px;
-		margin-bottom: -24px;
-	}
-}
+
+
+/*  Tools Container ................................................... */
 
 .grp-tools-container .grp-tools {
 	top: 0;
 	right: -20px;
 	margin-bottom: 0;
 }
+
+
+/*  Tools module.add-item ................................................... */
+
 .grp-module.grp-add-item .grp-tools {
 	top: 2px;
 }
+
+
+

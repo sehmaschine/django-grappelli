@@ -1,74 +1,27 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+
+
+/*  IMPORT COMPASS
+------------------------------------------------------------------------------------------------------ */
 
 @import "compass/reset";
 @import "compass";
 
-// @import "blueprint";
 
 
-
-
-
-/*  BLUEPRINT GRID
+/*  GRAPPELLI IMPORTS
 ------------------------------------------------------------------------------------------------------ */
-
-// $blueprint-grid-columns: 24;
-// $blueprint-container-size: 940px;
-// $blueprint-grid-margin: 20px;
-
-// // Use this to calculate the width based on the total width.
-// // Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
-// $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
-
-// @include blueprint-grid;
-
-
-// $blueprint-grid-columns-module: 24;
-// $blueprint-container-size-module: 918px;
-// $blueprint-grid-margin-module: 18px;
-// $blueprint-grid-width-module: ($blueprint-container-size-module + $blueprint-grid-margin-module) / $blueprint-grid-columns-module - $blueprint-grid-margin-module;
-
-// @function grp-module-width($n) {
-//     @return $blueprint-grid-width-module * $n + $blueprint-grid-margin-module * ($n - 1);
-// }
-// $n: $blueprint-grid-columns-module;
-// @while $n > 0 {
-//     .grp-module .span-#{$n} {
-//     	margin-right: $blueprint-grid-margin-module;
-//         width: grp-module-width($n);
-//         background: #e4f;
-//         &.last {
-//         	margin-right: 0;
-//         }
-//     }
-//     $n: $n - 1;
-// }
-
-
-
-
-/*  CUSTOM IMPORTS (place them after blueprint because they might depend on blueprint constants)
------------------------------------------------------------------------------------------------------- */
-
-// Import Custom Library
 
 @import "partials/skins/grp-default";
 
-// @import "partials/library/colors";
-// @import "partials/library/gradients";
 @import "partials/library/borders";
 @import "partials/library/margins-paddings";
-
-@import "partials/layout/sprites";
+@import "partials/library/sprites";
 
 @import "partials/typography/base";
 @import "partials/typography/typo";
 
 @import "partials/forms/django-resets";
-// @import "partials/forms/helpers";
 @import "partials/forms/forms";
 @import "partials/forms/autocompletes";
 
@@ -81,14 +34,11 @@
 @import "partials/layout/delete-confirmation";
 @import "partials/layout/filebrowser";
 
-
-// @import "partials/custom/jquery-ui-all";
-
 @import "partials/custom/jquery-ui";
 
 
 
-/*  BASE STYLES
+/*  BODY
 ------------------------------------------------------------------------------------------------------ */
 
 body {
@@ -120,7 +70,6 @@ body {
 	float: none;
 	display: table-cell;
 	width: 10000px;
-	// @include box-sizing(border-box);
 }
 
 body.grp-login {
@@ -159,6 +108,10 @@ body.grp-login {
 	}
 }
 
+
+
+/*  HEADER
+------------------------------------------------------------------------------------------------------ */
 
 header#grp-header {
 	// display: none;
@@ -389,7 +342,8 @@ header#grp-header {
 }
 
 
-/*  FOOTER
+
+/*  FOOTER & SUBMIT-ROW
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-submit-row {
@@ -479,7 +433,6 @@ body.grp-popup {
 		top: 0;
 	}
 	#grp-content {
-		// top: 40px; // if breadrumbs
 		top: 20px;
 	}
 }

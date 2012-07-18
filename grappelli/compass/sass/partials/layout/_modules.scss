@@ -5,8 +5,7 @@
 ------------------------------------------------------------------------------------------------------ */
 
 
-/*  GROUP
-.......................................................................................... */
+/*  Group ................................................... */
 
 @mixin grp-group {
 	position: relative;
@@ -18,7 +17,6 @@
 	border: $grp-group-border;
 	@include grp-border-radius($grp-border-radius + 2px);
 	background: $grp-group-background-color; 
-	// @include clearfix;
 	&.grp-closed {
 		border: $grp-group-border-closed;
 		&:hover {
@@ -31,10 +29,7 @@
 }
 
 
-
-/*  HEADINGS
-.......................................................................................... */
-
+/*  Headings ................................................... */
 
 @mixin grp-module-h2 {
 	@include grp-padding(5px $grp-padding-size 4px);
@@ -98,8 +93,7 @@
 }
 
 
-/*  MODULE
-.......................................................................................... */
+/*  Module ................................................... */
 
 @mixin grp-module {
 	position: relative;
@@ -112,8 +106,6 @@
 	background: $grp-module-background-color;
 	@include grp-border-radius($grp-border-radius);
 	@include box-sizing(border-box);
-	// @include clearfix;
-	// overflow: visible;
 	.grp-module {
 		margin: 0;
 		border: 0;
@@ -126,17 +118,6 @@
 .grp-module {
 	@include grp-module;
 }
-// .grp-group {
-// 	> .grp-module {
-// 		margin: 2px 0 0;
-// 		&:first-child {
-// 			margin-top: 0;
-// 		}
-// 	}
-// 	h2.grp-collapse-handler + .grp-module {
-// 		margin-top: 0;
-// 	}
-// }
 .grp-change-form .grp-module {
 	min-width: 960px;
 }
@@ -145,13 +126,12 @@
 }
 
 
+
 /*  COLLAPSE: BASIC SETTINGS
 ------------------------------------------------------------------------------------------------------ */
 
 
-
-/*  HEADINGS: COLLAPSE HANDLERS
-.......................................................................................... */
+/*  Collapse Handlers ................................................... */
 
 @mixin grp-module-h2-collapse-handler {
 	h2.grp-collapse-handler {
@@ -194,8 +174,7 @@
 }
 
 
-/*  COLLAPSE
-.......................................................................................... */
+/*  Collapse ................................................... */
 
 @mixin grp-collapse {
 	&.grp-closed {
@@ -232,14 +211,10 @@
 	@include box-sizing(border-box);
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #ddd;
-	// overflow: visible;
 	&:first-child, 
 	&.grp-first {
 		border-top: 0;
 		@include border-top-radius($grp-border-radius - 1px);
-	}
-	&:first-of-type {
-		// border-top: 0;
 	}
 	&:last-of-type, 
 	&.grp-last {
@@ -270,12 +245,6 @@
 			
 		}
 	}
-	// &.grp-cells {
-	// 	.grp-cell {
-	// 		position: relative;
-	// 		float: left;
-	// 	}
-	// }
 }
 .grp-module {
 	.grp-row:not(tr) {
@@ -291,12 +260,6 @@ fieldset.grp-module .grp-row {
 	@include grp-padding(8px $grp-padding-size);
 	overflow: hidden;
 }
-
-
-
-/*  ACTIONS
------------------------------------------------------------------------------------------------------- */
-
 
 
 
@@ -349,8 +312,7 @@ fieldset.grp-module .grp-row {
 
 
 
-
-/*  STACKED & TABULAR INLINE: COMMOM STYLES
+/*  STACKED & TABULAR INLINE
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-stacked, 
@@ -369,6 +331,7 @@ fieldset.grp-module .grp-row {
 		}
 	}
 }
+
 
 
 /*  STACKED INLINE
@@ -393,6 +356,7 @@ fieldset.grp-module .grp-row {
 		}
 	}
 }
+
 
 
 /*  TABULAR INLINE
@@ -424,8 +388,8 @@ fieldset.grp-module .grp-row {
 		    padding: 1px 20px;
 		    vertical-align: top;
 		    white-space: nowrap;
-		    border-left: 1px solid #FFFFFF;
-    		border-right: 1px solid #E0E0E0;
+		    border-left: 1px solid #fff;
+    		border-right: 1px solid #e0e0e0;
     		&:first-of-type {
     			padding-left: 10px;
     		}
@@ -451,17 +415,17 @@ fieldset.grp-module .grp-row {
 			.grp-td {
 				padding-bottom: 5px;
     			padding-top: 5px;
-				border-bottom: 1px solid #D4D4D4;
-    			border-top: 1px solid #D4D4D4;
+				border-bottom: 1px solid #d4d4d4;
+    			border-top: 1px solid #d4d4d4;
 				background: $grp-module-background-color;
 				&:first-of-type {
-					border-left: 1px solid #D4D4D4;
+					border-left: 1px solid #d4d4d4;
 				}
 				&:first-child {
 					@include border-left-radius($grp-border-radius - 1px)
 				}
 				&:last-of-type {
-					border-right: 1px solid #D4D4D4;
+					border-right: 1px solid #d4d4d4;
 					@include border-right-radius($grp-border-radius - 1px)
 				}
 				&.grp-tools-container {
@@ -499,21 +463,13 @@ fieldset.grp-module .grp-row {
 }
 
 
+
 /*  LISTINGS
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-list {
 	list-style-type: none;
 }
-// @mixin grp-horizontal-list($grp-direction) {
-// 	@include horizontal-list(5px, $grp-direction);
-// }
-// @mixin grp-inline-list {
-// 	@include inline-list;
-// }
-// @mixin grp-inline-block-list {
-// 	@include inline-block-list(5px);
-// }
 .grp-horizontal-list-container {
 	@include horizontal-list-container();
 }
@@ -526,13 +482,7 @@ fieldset.grp-module .grp-row {
 	}
 }
 
-// We won't use those two
-.grp-inline-list {
-	@include inline-list;
-}
-.grp-inline-block-list {
-	@include inline-block-list(5px);
-}
+
 
 /*  PREDELETE
 ------------------------------------------------------------------------------------------------------ */
