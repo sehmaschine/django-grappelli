@@ -8,8 +8,8 @@
 Changelog
 =========
 
-2.4.0 (not yet released)
-------------------------
+2.4.0 (July 20, 2012)
+---------------------
 
 * Compatibility with Django 1.4
 * New: Grappelli namespace (grp-) for css-classes.
