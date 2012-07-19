@@ -137,13 +137,16 @@ table {
         > input[type=file], 
         > input[type=checkbox], 
         > input[type=radio], 
-        > select, 
-        > textarea {
+        > select {
             position: relative;
             margin: -7px 0 -5px !important;
             @media screen and (-webkit-min-device-pixel-ratio:0) {
                 margin: -9px 0 -5px !important;
             }
+        }
+        > textarea {
+            position: relative;
+            margin: -5px 0 -5px !important;
         }
         ul.radiolist, 
         ul.checkboxlist {
