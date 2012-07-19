@@ -170,6 +170,8 @@ Autocomplete Lookups
 .. versionadded:: 2.3.4
     ``autocomplete_lookup_fields``.
 
+Autocomplete Lookups are an alternative to Related Lookups (for Foreign Keys, Many-to-Many relations and Generic relations).
+
 Add the staticmethod ``autocomplete_search_fields`` to all models you want to search for::
 
     class MyModel(models.Model):
