@@ -13,6 +13,8 @@ var django = {
     "jQuery": grp.jQuery.noConflict(true)
 };
 
+var jQuery = grp.jQuery.noConflict(true);
+
 (function($) {
     
     // dateformat
