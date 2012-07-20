@@ -188,9 +188,9 @@
                 </div>
             </div>
             <!-- DATE HIERARCHY -->
-            {% if cl.date_hierarchy %}
-                {% block date_hierarchy %}<div class="grp-row">{% date_hierarchy cl %}</div>{% endblock %}
-            {% endif %}
+            {% block date_hierarchy %}
+                {% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}
+            {% endblock %}
         </div>
     {% endif %}
     <form id="grp-changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
