@@ -4,6 +4,7 @@
 
 /* -- Language Specific Settings ---------- */
 
+body#tinymce h2:before          { content: "Nagłówek 1"; }
 body#tinymce h2:before          { content: "Nagłówek 2"; }
 body#tinymce h3:before          { content: "Nagłówek 3"; }
 body#tinymce h4:before          { content: "Nagłówek 4"; }

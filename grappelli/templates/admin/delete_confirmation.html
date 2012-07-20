@@ -1,58 +1,58 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n %}
+{% load url from future %}
+{% load i18n admin_urls %}
+
+<!-- COLTYPE/BODYCLASS-- >
+{% block bodyclass %}grp-delete-confirmation{% endblock %}
+{% block content-class %}{% endblock %}
 
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
-    <div id="breadcrumbs">
-        <a href="../../../../">{% trans "Home" %}</a> &rsaquo;
-        <a href="../../../">{{ app_label|capfirst }}</a> &rsaquo;
-        <a href="../../">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
-        <a href="../">{{ object|truncatewords:"18" }}</a> &rsaquo;
-        {% trans 'Delete' %}
-    </div>
+    <ul class="grp-horizontal-list">
+        <li><a href="../../../">{% trans "Home" %}</a></li>
+        <li><a href="../../">{% trans app_label|capfirst|escape %}</a></li>
+        <li><a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst|escape }}</a></li>
+        <li><a href="{% url opts|admin_urlname:'changelist' %}{{ object.pk }}">{{ object|truncatewords:"18" }}</a></lI>
+        <li>{% trans 'Delete' %}</li>
+    </ul>
 {% endblock %}
 
 <!-- CONTENT -->
 {% block content %}
-    <div class="container-grid delete-confirmation">
+    <div class="g-d-c">
         {% if perms_lacking or protected %}
-            <div class="module">
+            <div class="grp-group">
                 {% if perms_lacking %}
-                <h2>{% blocktrans with object as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h2>
-                <div class="row">
-                    <ul class="rte">
+                    <h2>{% blocktrans with object as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h2>
+                    <ul class="grp-nested-list">
                         {% for obj in perms_lacking %}
                             <li>{{ obj }}</li>
                         {% endfor %}
                     </ul>
-                </div>
                 {% endif %}
                 {% if protected %}
-                <h2>{% blocktrans with object as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would require deleting the following protected related objects:{% endblocktrans %}</h2>
-                <div class="row">
-                    <ul class="rte">
+                    <h2>{% blocktrans with object as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would require deleting the following protected related objects:{% endblocktrans %}</h2>
+                    <ul class="grp-nested-list">
                         {% for obj in protected %}
                             <li>{{ obj }}</li>
                         {% endfor %}
                     </ul>
-                </div>
                 {% endif %}
             </div>
         {% else %}
-            <div class="module">
+            <div class="grp-group">
                 <h2>{% blocktrans with object as escaped_object %}Are you sure you want to delete the {{ object_name }} "{{ escaped_object }}"? All of the following related items will be deleted:{% endblocktrans %}</h2>
-                <div class="row">
-                    <ul class="rte">{{ deleted_objects|unordered_list }}</ul>
-                </div>
+                <ul class="grp-nested-list">{{ deleted_objects|unordered_list }}</ul>
             </div>
             <form action="" method="post">{% csrf_token %}
-                <div class="module footer">
-                    <ul class="submit-row" {% if is_popup %}style="overflow: auto;"{% endif %}>
-                        <li class="left cancel-button-container"><a href="../" class="cancel-link">{% trans "Cancel" %}</a></li>
-                        <li class="submit-button-container"><input type="submit" value="{% trans "Yes, I'm sure" %}" class="default" /></li>
-                    </ul><input type="hidden" name="post" value="yes" />
+                <div class="grp-module grp-submit-row grp-fixed-footer">
+                    <ul>
+                        <li class="grp-float-left"><a href="../" class="grp-button grp-cancel-link">{% trans "Cancel" %}</a></li>
+                        <li><input type="submit" value="{% trans "Yes, I'm sure" %}" class="grp-button grp-default" /></li>
+                    </ul>
+                    <input type="hidden" name="post" value="yes" />
                 </div>
             </form>
         {% endif %}

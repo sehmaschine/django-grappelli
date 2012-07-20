@@ -1,0 +1,22 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _invariant-half.scss
+//
+// Split a column into 3 cols
+// only used with 2cols and headline right
+//
+// **************************************************
+
+.g-all-thirds {
+
+    .l-1c .c-1 & {
+        @extend .g-d-8;
+        @extend .g-tp-4;
+        @extend .g-hl-2;
+        @extend .g-h-2;
+    }
+
+}

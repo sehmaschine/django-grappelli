@@ -1,0 +1,278 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block bodyclass %}grp-doc{% endblock %}
+{% block content-class %}{% endblock %}
+{% block title %}Grappelli Documentation &raquo; Modules{% endblock %}
+
+{% block extrahead %}
+	<script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                $("#grp-content-container .grp-group").grp_collapsible_group();
+                $("#grp-content-container .grp-collapse").grp_collapsible({
+                    on_init: function(elem, options) {
+                        // open collapse (and all collapse parents) in case of errors
+                        if (elem.find("ul.errorlist").length > 0) {
+                            elem.removeClass("grp-closed")
+                                .addClass("grp-open");
+                            elem.parents(".grp-collapse")
+                                .removeClass("grp-closed")
+                                .addClass("grp-open");
+                        }
+                    }
+                });
+            });
+        })(grp.jQuery);
+	</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="../">Grappelli Documentation</a></li>
+        <li>Modules</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1>Modules</h1>
+    <div class="g-d-c">
+    	<section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Modules &amp; Rows</h1>
+		            <p>The very essential component of Grappelli is a <span class="grp-doc-class">.grp-module</span>. <br />It wraps pieces of content which belong together.</p>
+		            <p>The horizontal layout within a module is basically structured by one ore more <span class="grp-doc-class">.grp-row</span>. <br />A row stretches over the full width of the parent module. <br />It represents one piece of content or contains multiple pieces of content which belong together.</p>
+		            <p>There might be a description for a module - just put a <span class="grp-doc-dom"><span>p.grp-description</span></span> in a <span class="grp-doc-class">.grp-row</span>.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+	    			<div class="grp-module">
+	    				<h2>Module</h2>
+					    <div class="grp-row"><p class="grp-description">Some text describing the module</p></div>
+					    <div class="grp-row"><p>Row</p></div>
+					    <div class="grp-row"><p>Row</p></div>
+					    <div class="grp-row"><p>Row</p></div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-module">
+    <h2>Module</h2>
+    <div class="grp-row"><p class="grp-description">Some text describing the module</p></div>
+    <div class="grp-row"><p>Row</p></div>
+    <div class="grp-row"><p>Row</p></div>
+    <div class="grp-row"><p>Row</p></div>
+</div>
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Rows Split into Cells</h1>
+		            <p>Rows might be split into two or more cells.</p>
+		            <p>To do so assign <span class="grp-doc-class">.grp-cells</span> to the <span class="grp-doc-class">.grp-row</span> you want to carry the cells.</p>
+		            <p>Each cell within that row is a <span class="grp-doc-class">.grp-cell</span> then.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+	    			<div class="grp-module">
+	    				<h2>Module</h2>
+					    <div class="grp-row grp-cells">
+					    	<div class="grp-cell"><p>Cell</p></div>
+					    	<div class="grp-cell"><p>Cell</p></div>
+					    	<div class="grp-cell"><p>Cell</p></div>
+					    </div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-module">
+    <h2>Module</h2>
+    <div class="grp-row grp-cells">
+    	<div class="grp-cell"><p>Cell</p></div>
+    	<div class="grp-cell"><p>Cell</p></div>
+    	<div class="grp-cell"><p>Cell</p></div>
+    </div>
+</div>
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Nested Modules</h1>
+		            <p>Modules may be nested up to three levels.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+		    		<div class="grp-module">
+					    <h2>Parent Module</h2>
+					    <div class="grp-module">
+						    <h3>Child Module</h3>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+						<div class="grp-module">
+						    <h3>Child Module</h3>
+						    <div class="grp-module">
+							    <h4>Grandchild Module</h4>
+							    <div class="grp-row"><p>Row</p></div>
+							    <div class="grp-row"><p>Row</p></div>
+							</div>
+							<div class="grp-module">
+							    <h4>Grandchild Module</h4>
+							    <div class="grp-row"><p>Row</p></div>
+							    <div class="grp-row"><p>Row</p></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-module">
+    <h2>Parent Module</h2>
+    <div class="grp-module">
+        <h3>Child Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+    <div class="grp-module">
+        <h3>Child Module</h3>
+        <div class="grp-module">
+            <h4>Grandchild Module</h4>
+            <div class="grp-row"><p>Row</p></div>
+            <div class="grp-row"><p>Row</p></div>
+        </div>
+        <div class="grp-module">
+            <h4>Grandchild Module</h4>
+            <div class="grp-row"><p>Row</p></div>
+            <div class="grp-row"><p>Row</p></div>
+        </div>
+    </div>
+</div>
+	    		{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Headings in Modules</h1>
+		            <p>Usually a module starts with a heading but you might as well use it without one. <br />Just be aware of the fact that modules without headings do not appear in document outlines.</p>
+		            <p>Especially when nesting modules headings are meaningful because they give a description of the nested levels.</p>
+		            <p>If you are going to use collapsible modules you have to use headings (as they act as collapsible-handlers).</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+		    		<div class="g-d-12">
+		    			<div class="grp-module">
+						    <h2>Heading 2</h2>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+					</div>
+					<div class="g-d-12 g-d-l">
+		    			<div class="grp-module">
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="g-d-12">
+	    			<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-module">
+    <h2>Heading 2</h2>
+    <div class="grp-row"><p>Row</p></div>
+    <div class="grp-row"><p>Row</p></div>
+</div>
+		    		{% endfilter %}</code></pre></div>
+		    	</div>
+		    	<div class="g-d-12 g-d-l">
+	    			<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-module">
+    <div class="grp-row"><p>Row</p></div>
+    <div class="grp-row"><p>Row</p></div>
+    <div class="grp-row"><p>Row</p></div>
+</div>
+		    		{% endfilter %}</code></pre></div>
+		    	</div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Collapsible Modules</h1>
+		            <p>It's very easy to turn modules into collapsible ones.</p>
+		            <p>To do so just add <span class="grp-doc-class">.grp-collapse</span> to the <span class="grp-doc-class">.grp-module</span> you want to be collapsible.</p>
+		            <p>With adding <span class="grp-doc-class">.grp-open</span> or <span class="grp-doc-class">.grp-closed</span> you define whether the collapsible module is opened or closed initially.</p>
+		            <p>Now you have to define a <span class="grp-doc-class">.grp-collapse-handler</span>. Usually that's the heading of the collapsible module but you may assign to other elements as well.</p>
+		            <p>Finally you have to use some javascript code (e.g. with the source code below).</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+		    		<div class="grp-module grp-collapse grp-open">
+					    <h2 class="grp-collapse-handler">Parent Module</h2>
+					    <div class="grp-module grp-collapse grp-open">
+						    <h3 class="grp-collapse-handler">Child Module</h3>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+						<div class="grp-module grp-collapse grp-closed">
+						    <h3 class="grp-collapse-handler">Child Module</h3>
+						    <div class="grp-row"><p>Row</p></div>
+						    <div class="grp-row"><p>Row</p></div>
+						</div>
+					</div>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="g-d-24">
+		    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="grp-module grp-collapse grp-open">
+    <h2 class="grp-collapse-handler">Parent Module</h2>
+    <div class="grp-module grp-collapse grp-open">
+        <h3 class="grp-collapse-handler">Child Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+    <div class="grp-module grp-collapse grp-closed">
+        <h3 class="grp-collapse-handler">Child Module</h3>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+</div>
+		    		{% endfilter %}</code></pre></div>
+		    	</div>
+		    	<div class="g-d-24">
+		    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+(function($) {
+    $(document).ready(function() {
+        $("#grp-content-container .grp-collapse").grp_collapsible();
+    });
+})(grp.jQuery);
+		    		{% endfilter %}</code></pre></div>
+		    	</div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Nesting Modules in Groups</h1>
+		            <p><a href="{% url grp_doc_groups %}">Find out</a> how you may nest modules in stacked &amp; tabular <a href="{% url grp_doc_groups %}">groups</a>.</p>
+		        </div>
+		    </div>
+	    </section>
+    </div>
+{% endblock %}
+

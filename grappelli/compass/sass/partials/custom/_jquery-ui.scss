@@ -1,0 +1,460 @@
+
+
+
+/*  WIDGET BASICS
+------------------------------------------------------------------------------------------------------ */
+
+.grp-module.ui-widget {
+    border: none;
+}
+.ui-widget-content {
+    border: 1px solid #ccc;
+    @include border-bottom-radius($grp-border-radius);
+}
+
+@mixin grp-ui-widget {
+    @extend .grp-font-family;
+    font-size: 12px;
+    border: 1px solid #888;
+    @include border-radius($grp-border-radius);
+    background: #eee;
+    @include box-shadow(0 10px 50px #333);
+    input, 
+    select, 
+    textarea, 
+    button {
+        @include grp-form-field;
+    }
+    .ui-widget-content {
+        background: #eee;
+        color: #222222;
+        a {
+            color: $grp-font-color;
+        }
+    }
+    .ui-widget-header {
+        padding: 2px 0;
+        height: 25px;
+        background: #cccccc;
+        color: #222222;
+        font-weight: bold;
+        a {
+            color: $grp-font-color;
+        }
+    }
+}
+
+
+
+/*  SORTABLE
+------------------------------------------------------------------------------------------------------ */
+
+.ui-sortable {
+    position: relative;
+    float: left;
+    clear: both;
+    width: 100%;
+    .ui-sortable-helper, 
+    .ui-sortable-placeholder {
+        opacity: .8;
+    }
+    .ui-sortable-helper {
+        margin: 0;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible;
+    }
+    .grp-module.ui-sortable-placeholder {
+        border: $grp-module-border !important;
+        background: transparent url('../images/backgrounds/ui-sortable-placeholder.png') 0 0 repeat scroll !important;
+    }
+}
+.grp-group.grp-stacked .ui-sortable-placeholder {
+    margin: 0 0 2px;
+    &:first-child {
+        margin-top: 0;
+    }
+}
+.grp-group.grp-tabular .ui-sortable {
+    .grp-module.ui-sortable-placeholder {
+        overflow: hidden;
+        .grp-th, 
+        .grp-td {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            background: transparent !important;
+        }
+    }
+    .grp-module.ui-sortable-helper {
+        border-top: 0 !important;
+        .grp-th, 
+        .grp-td {
+            background: #ffffcc !important;
+        }
+    }
+}
+.grp-group.grp-stacked .ui-sortable-helper, 
+.grp-group.grp-stacked .ui-sortable-helper .grp-module, 
+.grp-group.grp-stacked .ui-sortable-helper h2, 
+.grp-group.grp-stacked .ui-sortable-helper h3, 
+.grp-group.grp-stacked .ui-sortable-helper h4, 
+.grp-group.grp-stacked .grp-collapse.grp-predelete.ui-sortable-helper > h3.grp-collapse-handler, 
+.grp-group.grp-stacked .grp-collapse.grp-open.predelete.ui-sortable-helper > h3.grp-collapse-handler, 
+.grp-group.grp-stacked .grp-collapse.grp-predelete.ui-sortable-helper h4.grp-collapse-handler, 
+.grp-group.grp-stacked .grp-collapse.grp-open.grp-predelete.ui-sortable-helper h4.grp-collapse-handler {
+    background: #ffffcc !important;
+}
+
+
+
+/*  DATETIME
+------------------------------------------------------------------------------------------------------ */
+
+.datetime br {
+    display: none;
+}
+.datetimeshortcuts {
+    width: 40px;
+    position: relative;
+    margin-left: 10px;
+    a {
+        margin-left: 0 !important;
+    }
+}
+
+
+
+/*  DATEPICKER
+------------------------------------------------------------------------------------------------------ */
+
+.ui-datepicker {
+    position: absolute;
+    display: none;
+    margin: -1px 0 0 !important;
+    padding: 3px 3px 0;
+    width: auto !important;
+    @include grp-ui-widget();
+    .ui-datepicker-header {
+        position:relative;
+        padding:.2em 0;
+    }
+    .ui-datepicker-prev, 
+    .ui-datepicker-next {
+        position: absolute;
+        top: 4px;
+        width: 20px;
+        height: 30px;
+        background-color: transparent;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        span {
+            display: none;
+        }
+    }
+    .ui-datepicker-prev {
+        left: 3px;
+        @include icons-sprite(ui-datepicker-prev);
+    }
+    .ui-datepicker-next {
+        right: 3px;
+        @include icons-sprite(ui-datepicker-next);
+    }
+    .ui-datepicker-prev-hover {
+        left: 3px;
+        border: none;
+    }
+    .ui-datepicker-next-hover {
+        right: 3px;
+        border: none;
+    }
+    .ui-datepicker-title {
+        margin: 3px 25px 2px;
+        line-height: 1.8em;
+        text-align: center;
+        select {
+            float:left;
+            font-size:1em;
+            margin: -3px 0 -1px !important;
+            min-width: 30px;
+            &.ui-datepicker-month-year {
+                width: 100%;
+            }
+            &.ui-datepicker-month, 
+            &.ui-datepicker-year {
+                width: 49%;
+            }
+            &.ui-datepicker-year {
+                float: right;
+            }
+        }
+    }
+    table {
+        width: 100%;
+        font-size: 11px;
+        margin: 0 0 2px;
+        border: 0;
+        th {
+            padding: 5px 0;
+            text-align: center;
+            color: $grp-font-color-quiet;
+            font-weight: bold;
+            border: 0;
+            background: transparent;
+        }
+        td {
+            min-width: 25px;
+            border: 0;
+            padding: 1px;
+            span, 
+            a {
+                padding: 3px 0 3px;
+                margin: 0 !important;
+                text-align: center;
+                display: block;
+                color: $grp-font-color;
+                font-size: 11px;
+                @include border-radius($grp-border-radius);
+                &.ui-state-default {
+                    color: $grp-font-color;
+                }
+                &.ui-state-hover {
+                    color: #fff !important;
+                    border-color: transparent !important;
+                    background: #444 !important;
+                }
+                &.ui-state-active {
+                    background: #fff;
+                }
+                &.ui-state-highlight {
+                    border-color: #bababa;
+                    background: #d6d6d6;
+                }
+            }
+        }
+    }
+    .ui-datepicker-buttonpane {
+        position: relative;
+        float: left;
+        clear: both;
+        background-image: none;
+        width: 100%;
+        margin: 5px 0 1px;
+        padding: 0;
+        border: 0;
+        button {
+            float: left;
+            margin: 3px 0;
+            padding: 4px 5px 5px;
+            height: 25px;
+            color: #aaa; font-size: 11px;
+            border: 1px solid #c7c7c7;
+            @include border-radius($grp-border-radius);
+            background: transparent;
+            cursor: pointer;
+            &.ui-datepicker-current {
+                float: right;
+                opacity: 1 !important;
+                color: #444;
+                font-weight: bold;
+                background: #cee9f2;
+                &.ui-state-hover {
+                    color: #fff !important;
+                    border-color: #444 !important;
+                    background: #444 !important;
+                }
+            }
+        }
+    }
+    /* with multiple calendars */
+    &.ui-datepicker-multi {
+        width:auto;
+        .ui-datepicker-group {
+            float:left;
+            table {
+                width:95%;
+                margin:0 auto .4em;
+            }
+        }
+        .ui-datepicker-group-first {
+            .ui-datepicker-title {
+                margin-right: 5px !important;
+            }
+            table {
+                margin-right: 5px !important;
+            }
+        }
+        .ui-datepicker-group-middle {
+            .ui-datepicker-title {
+                margin-right: 5px !important;
+                margin-left: 5px !important;
+            }
+            table {
+                margin-right: 5px !important;
+                margin-left: 3px !important;
+            }
+        }
+        .ui-datepicker-group-last {
+            .ui-datepicker-title {
+                margin-left: 5px !important;
+            }
+            table {
+                margin-left: 5px !important;
+            }
+        }
+        .ui-datepicker-buttonpane {
+            border: none;
+        }
+    }
+    &.ui-datepicker-multi-2 .ui-datepicker-group {
+        width:50%;
+    }
+    &.ui-datepicker-multi-3 .ui-datepicker-group {
+        width:33.3%;
+    }
+    &.ui-datepicker-multi-4 .ui-datepicker-group {
+        width:25%;
+    }
+}
+.ui-datepicker-row-break { clear:both; width:100%; font-size:0em; }
+
+.ui-datepicker-append {
+    margin-left: 6px; color: #999; font-size: 10px;
+}
+.ui-datepicker td.ui-state-disabled {
+    padding:1px;
+    text-align: center;
+}
+.ui-datepicker td.ui-state-disabled span {
+    background: #ccc;
+    color: #555 !important;
+    font-weight: bold;
+    font-size: 11px;
+    @include border-radius($grp-border-radius);
+}
+button.ui-datepicker-close {
+    float: left !important;
+    margin-right: 4px !important;
+}
+
+
+
+/*  TIMEPICKER
+------------------------------------------------------------------------------------------------------ */
+
+#ui-timepicker {
+    position: absolute;
+    display: none;
+    margin: -1px 0 0 !important;
+    padding: 5px 3px 3px 5px;
+    width: 216px;
+    @include grp-ui-widget();
+    ul {
+        position: relative;
+        float: left;
+        clear: both;
+        width: auto;
+        li.row {
+            position: relative;
+            float: left;
+            display: block;
+            margin: 0 2px 2px 0;
+            padding: 2px 10px 1px;
+            width: 30px;
+            font-size: 11px;
+            text-align: center;
+            border: 0;
+            @include border-radius($grp-border-radius);
+            cursor: pointer;
+            &.ui-state-default {
+                color: $grp-font-color;
+                border: 1px solid #c7c7c7 !important;
+                background: #e1f0f5;
+                &:hover {
+                    color: #fff;
+                    border: 1px solid #666 !important;
+                    background: #444;
+                }
+            }
+            &.ui-state-active {
+                border: 1px solid #bababa !important;
+                background: #d6d6d6;
+            }
+        }
+    }
+}
+
+
+
+/*  MENU
+------------------------------------------------------------------------------------------------------ */
+
+.ui-menu {
+    display: block;
+    margin: 0;
+    padding: 2px;
+    list-style: none;
+    li:first-child {
+        span {
+            display: block;
+            padding: 1px 4px;
+            color: #888;
+            font-weight: bold;
+        }
+        & + li {
+            margin-top: 3px; 
+        }
+    } 
+    li.ui-menu-item {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        a {
+            display: block;
+            margin: 0;
+            padding: 3px 4px;
+            color: #444;
+            font-weight: bold;
+            border: 1px solid #c7c7c7;
+            @include border-radius($grp-form-field-border-radius - 1px);
+            background: #cee9f2;
+            cursor: pointer;
+            &:hover, 
+            &.ui-state-hover, 
+            &.ui-state-active {
+                color: #fff;
+                border: 1px solid #333;
+                background: #444;
+            }
+        }
+        a.ui-state-hover,
+        a.ui-state-active {
+            font-weight: bold;
+            margin: 0;
+        }
+        & + li.ui-menu-item {
+            margin-top: 2px;
+            border-top: 0 !important;
+        }
+    }
+    .ui-menu {
+        margin-top: -3px;
+    }
+}
+
+
+
+/*  AUTOCOMPLETE
+------------------------------------------------------------------------------------------------------ */
+
+.ui-autocomplete {
+    position: absolute;
+    cursor: default;
+    margin: -1px 0 0 !important;
+    padding: 3px;
+    @include grp-ui-widget();
+    @include border-radius($grp-form-field-border-radius);
+}
+* html .ui-autocomplete {
+    width: 1px;
+}

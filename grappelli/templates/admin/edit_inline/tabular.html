@@ -1,34 +1,34 @@
 {% load url from future %}
-{% load i18n adminmedia grp_tags %}
+{% load i18n grp_tags %}
 
 <!-- group -->
-<div class="group tabular{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
+<div class="grp-group grp-tabular{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
     id="{{ inline_admin_formset.formset.prefix }}-group" >
-    <h2 class="collapse-handler">{% if inline_admin_formset.opts.title %}{{ inline_admin_formset.opts.title }}{% else %}{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}{% endif %}</h2>
-    <ul class="tools">
-        <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Another' %}"> </a></li>
+    <h2 class="grp-collapse-handler">{% if inline_admin_formset.opts.title %}{{ inline_admin_formset.opts.title }}{% else %}{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}{% endif %}</h2>
+    <ul class="grp-tools">
+        <li><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Another' %}"> </a></li>
     </ul>
     {{ inline_admin_formset.formset.management_form }}
     {{ inline_admin_formset.formset.non_form_errors }}
     <!-- container -->
-    <div class="module table">
-        <div class="module thead">
-            <div class="tr">
+    <div class="grp-module grp-table">
+        <div class="grp-module grp-thead">
+            <div class="grp-tr">
                 {% for field in inline_admin_formset.fields %}
                     {% if not field.widget.is_hidden %}
-                        <div class="th {{ field.label|lower|slugify }}{% if field.required %} required{% endif %}">{{ field.label|capfirst }}</div>
+                        <div class="grp-th {{ field.label|lower|slugify }}{% if field.required %} required{% endif %}">{{ field.label|capfirst }}</div>
                     {% endif %}
                 {% endfor %}
-                {% if inline_admin_formset.formset.can_delete %}<div class="th">&nbsp;</div>{% endif %}
+                {% if inline_admin_formset.formset.can_delete %}<div class="grp-th">&nbsp;</div>{% endif %}
             </div>
         </div>
         {% with inline_admin_formset.opts.sortable_field_name|default:"" as sortable_field_name %}
         {% for inline_admin_form in inline_admin_formset|formsetsort:sortable_field_name %}
             <!-- element -->
-            <div class="module tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form{% endif %}"
+            <div class="grp-module grp-tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} grp-empty-form{% endif %}"
                 id="{{ inline_admin_formset.formset.prefix }}{% if not forloop.last %}{{ forloop.counter0 }}{% else %}-empty{% endif %}">
                 {% if inline_admin_form.form.non_field_errors %}
-                    <ul class="errorlist"><li>{{ inline_admin_form.form.non_field_errors }}</li></ul>
+                    {{ inline_admin_form.form.non_field_errors }}
                 {% endif %}
                 <h3 style="display: none;"><b>{{ inline_admin_formset.opts.verbose_name|title }} #{{ forloop.counter }}</b>&nbsp;&nbsp;{% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}</h3>
                 {% spaceless %}
@@ -40,38 +40,38 @@
                     {% endfor %}
                 {% endfor %}
                 {% endspaceless %}
-                <div class="tr">
+                <div class="grp-tr">
                     {% for fieldset in inline_admin_form %}
                         {% for line in fieldset %}
                             {% for field in line %}
                                 {% if not field.field.is_hidden %}
-                                    <div class="td {{ field.field.name }} {% if field.field.errors %} error{% endif %}">
+                                    <div class="grp-td {{ field.field.name }} {% if field.field.errors %} grp-error{% endif %}">
                                         {% if field.is_readonly %}
-                                            <p>{{ field.contents }}</p>
+                                            <p class="grp-readonly">{{ field.contents }}</p>
                                         {% else %}
                                             {{ field.field }}
                                             {{ field.field.errors.as_ul }}
                                         {% endif %}
-                                        {% if field.field.help_text %}<p class="help">{{ field.field.help_text }}</p>{% endif %}
+                                        {% if field.field.help_text %}<p class="grp-help">{{ field.field.help_text }}</p>{% endif %}
                                     </div>
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
                     {% endfor %}
-                    <div class="td tools">
+                    <div class="grp-td grp-tools-container">
                         {% spaceless %}
-                        <ul class="tools">
-                            {% if inline_admin_form.show_url %}<li class="viewsite-link-container"><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="icon viewsite-link" title="{% trans 'View on site' %}" target="_blank"> </a></li>{% endif %}
+                        <ul class="grp-tools">
+                            {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
                             {% if inline_admin_formset.opts.sortable_field_name %}
-                                <li class="drag-handler-container"><a href="javascript://" class="icon drag-handler" title="{% trans 'Move Item' %}"></a></li>
+                                <li><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
                             {% endif %}
                             {% if inline_admin_formset.formset.can_delete %}
-                                <li class="delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="icon {% if inline_admin_form.original %}delete-handler{% else %}remove-handler{% endif %}" title="{% trans 'Remove' %}"> </a></li>
+                                <li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon {% if inline_admin_form.original %}grp-delete-handler{% else %}grp-remove-handler{% endif %}" title="{% trans 'Remove' %}"></a></li>
                             {% else %}
                                 {% if inline_admin_form.original %}
-                                    <li class="delete-handler-container">&nbsp;</li>
+                                    <li>&nbsp;</li>
                                 {% else %}
-                                    <li class="delete-handler-container"><a href="javascript://" class="icon remove-handler" title="{% trans 'Remove' %}"> </a></li>
+                                    <li><a href="javascript://" class="grp-icon grp-remove-handler" title="{% trans 'Remove' %}"></a></li>
                                 {% endif %}
                             {% endif %}
                         </ul>
@@ -84,11 +84,13 @@
         {% endfor %}
         {% endwith %}
     </div>
-    <div class="module add-item">
-        <a href="javascript://" class="add-handler">{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</a>
-        <ul class="tools">
-            <li class="add-handler-container"><a href="javascript://" class="icon add-handler" title="{% trans 'Add Item' %}"> </a></li>
-        </ul><br clear="all" />
+    <div class="grp-module grp-transparent">
+        <div class="grp-row">
+            <a href="javascript://" class="grp-add-handler"><strong>{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</strong></a>
+            <ul class="grp-tools">
+                <li><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"></a></li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -104,19 +106,19 @@
         var autocomplete_fields_m2m = {% get_autocomplete_lookup_fields_m2m inline_admin_formset.opts %};
         var autocomplete_fields_generic = {% get_autocomplete_lookup_fields_generic inline_admin_formset.opts %};
         $.each(related_lookup_fields_fk, function() {
-            $("#{{ inline_admin_formset.formset.prefix }}-group > div.table > div:not(.empty-form)")
+            $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table > div:not(.grp-empty-form)")
             .find("input[name^='" + prefix + "'][name$='" + this + "']")
             .grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
         });
         $.each(related_lookup_fields_m2m, function() {
-            $("#{{ inline_admin_formset.formset.prefix }}-group > div.table > div:not(.empty-form)")
+            $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table > div:not(.grp-empty-form)")
             .find("input[name^='" + prefix + "'][name$='" + this + "']")
             .grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
         });
         $.each(related_lookup_fields_generic, function() {
             var content_type = this[0],
                 object_id = this[1];
-            $("#{{ inline_admin_formset.formset.prefix }}-group > div.table > div:not(.empty-form)")
+            $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table > div:not(.grp-empty-form)")
             .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
             .each(function() {
                 var i = $(this).attr("id").match(/-\d+-/);
@@ -128,7 +130,7 @@
             });
         });
         $.each(autocomplete_fields_fk, function() {
-            $("#{{ inline_admin_formset.formset.prefix }}-group > div.table > div:not(.empty-form)")
+            $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table > div:not(.grp-empty-form)")
             .find("input[name^='" + prefix + "'][name$='" + this + "']")
             .each(function() {
                 $(this).grp_autocomplete_fk({
@@ -138,7 +140,7 @@
             });
         });
         $.each(autocomplete_fields_m2m, function() {
-            $("#{{ inline_admin_formset.formset.prefix }}-group > div.table > div:not(.empty-form)")
+            $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table > div:not(.grp-empty-form)")
             .find("input[name^='" + prefix + "'][name$='" + this + "']")
             .each(function() {
                 $(this).grp_autocomplete_m2m({
@@ -150,7 +152,7 @@
         $.each(autocomplete_fields_generic, function() {
             var content_type = this[0],
                 object_id = this[1];
-            $("#{{ inline_admin_formset.formset.prefix }}-group > div.table > div:not(.empty-form)")
+            $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table > div:not(.grp-empty-form)")
             .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
             .each(function() {
                 var i = $(this).attr("id").match(/-\d+-/);
@@ -234,36 +236,48 @@
         });
         
         {% if inline_admin_formset.opts.sortable_field_name %}
-        $("#{{ inline_admin_formset.formset.prefix }}-group > div.table").sortable({
-            handle: "a.drag-handler",
-            items: "div.dynamic-form",
+        $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table").sortable({
+            handle: "a.grp-drag-handler",
+            items: "div.grp-dynamic-form",
             axis: "y",
             appendTo: 'body',
             forceHelperSize: true,
-            placeholder: 'ui-sortable-placeholder',
+            placeholder: 'grp-module ui-sortable-placeholder',
             forcePlaceholderSize: true,
-            containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.table',
+            containment: '#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table',
             tolerance: 'pointer',
             start: function(evt, ui) {
-                var template = "<div class='tr'>",
-                    len = ui.item.find("div.tr").children("div.td").length;
+                var template = "<div class='grp-tr'>",
+                    len = ui.item.find("div.grp-tr").children("div.grp-td").length;
                 for (var i = 0; i < len; i++) {
-                    template += "<div class='td' style='height:" + (ui.item.outerHeight() + 12 ) + "px'>&nbsp;</div>"
+                    template += "<div class='grp-td' style='height:" + (ui.item.outerHeight() + 12 ) + "px'>&nbsp;</div>"
                 }
                 template += "</div>"
-                ui.placeholder.addClass("tbody module").append(template);
+                ui.placeholder.addClass("grp-tbody grp-module").append(template);
             },
             stop: function(evt, ui) {
+                var lastScrollTop = $(window).scrollTop();
                 // Toggle div.table twice to remove webkits border-spacing bug
-                $("#{{ inline_admin_formset.formset.prefix }}-group > div.table").toggle().toggle();
+                $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table").toggle().toggle();
+                $(window).scrollTop(lastScrollTop);
             },
         });
         $("#{{ opts.module_name }}_form").bind("submit", function(){
-            var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}";
-            var i = 0;
-            $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.tbody.dynamic-form").each(function(){
-                var fields = $(this).find("div.td :input[value]");
-                if (fields.serialize()) {
+            var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}",
+                sortable_excludes = {% get_sortable_excludes inline_admin_formset.opts %},
+                i = 0;
+            $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-tbody.grp-dynamic-form").each(function(){
+                var fields = $(this).find("div.grp-td :input[value][value!=''][type!=radio][type!=checkbox],input:checked,input[type=file]"),
+                    submit_values = false;
+                $(fields).each(function() {
+                    // position is being updated if
+                    // a) the field has a value
+                    // b) if the field is not exluded with sortable_excludes (e.g. with default values)
+                    if ($(this).val() && $(this).attr("name") && $.inArray($(this).attr("name").split("-").pop(), sortable_excludes) == -1) {
+                        submit_values = true;
+                    };
+                });
+                if (submit_values) {
                     $(this).find("input[name$='"+sortable_field_name+"']").val(i);
                     i++;
                 }
@@ -272,5 +286,5 @@
         {% endif %}
         
     });
-})(django.jQuery);
+})(grp.jQuery);
 </script>

@@ -16,12 +16,15 @@ Available Settings
 ``GRAPPELLI_ADMIN_TITLE``
     The Site Title of your admin interface. Change this instead of changing index.html
 
-.. _customizationadmin:
+.. _customizationcollapsibles:
 
 Collapsibles
 ------------
 
-Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``collapse open`` and ``collapse closed``.
+.. versionchanged:: 2.4.0
+    Added namespace ``grp-``.
+
+Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``.
 
 A ModelAdmin example::
 
@@ -31,11 +34,11 @@ A ModelAdmin example::
                 'fields': ('title', 'subtitle', 'slug', 'pub_date', 'status',),
             }),
             ('Flags', {
-                'classes': ('collapse closed',),
+                'classes': ('grp-collapse grp-closed',),
                 'fields' : ('flag_front', 'flag_sticky', 'flag_allow_comments', 'flag_comments_closed',),
             }),
             ('Tags', {
-                'classes': ('collapse open',),
+                'classes': ('grp-collapse grp-open',),
                 'fields' : ('tags',),
             }),
         )
@@ -43,8 +46,8 @@ A ModelAdmin example::
 With `StackedInlines <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of the inline items (in contrast to the whole group)::
 
     class NavigationItemInline(admin.StackedInline):
-        classes = ('collapse open',)
-        inline_classes = ('collapse open',)
+        classes = ('grp-collapse grp-open',)
+        inline_classes = ('grp-collapse grp-open',)
 
 
 .. _customizationinlinessortables:
@@ -73,8 +76,21 @@ Now, define the ``sortable_field_name`` with your ``InlineModelAdmin``::
 The inline-rows are being reordered based on the sortable-field (with a templatetag ``formsetsort``). When submitting a form, the values of the sortable-field are re-indexed according to the position of each row.
 In case of errors (somewhere within the form), the position of inline-rows are being preserved. This applies to rows prepeared for deletion as well. Empty rows are moved to the end of the formset.
 
-.. note::
-    The sortable-field will not automatically be hidden (use a ``Hidden Input Widget`` if needed).
+.. _customizationsortableexcludes:
+
+Sortable Excludes
+-----------------
+
+.. versionadded:: 2.4
+
+You may want to define ``sortable_excludes`` (either list or tuple) in order to exclude certain fields from having an effect on the position field. This is especially useful if a field has a default value::
+
+    class MyInlineModelOptions(admin.TabularInline):
+        fields = (... , "position",)
+        # define the sortable
+        sortable_field_name = "position"
+        # define sortable_excludes
+        sortable_excludes = ("field_1", "field_2",)
 
 .. _customizationrelatedlookups:
 
@@ -142,7 +158,7 @@ For the represantation of an object, we first check for a callable ``related_lab
         return u"%s (%s)" % (self.name, self.id)
 
 .. warning::
-    Due to a bug in Django 1.3, raw_id_fields (including related-lookups) are not working with list_editables.
+    Due to a bug in Django 1.4, raw_id_fields (including related-lookups) are not working with list_editables.
 
 .. _customizationautocompletelookups:
 
@@ -153,6 +169,8 @@ Autocomplete Lookups
     staticmethod ``autocomplete_search_fields`` is required, ``related_autocomplete_lookup`` has been removed.
 .. versionadded:: 2.3.4
     ``autocomplete_lookup_fields``.
+
+Autocomplete Lookups are an alternative to Related Lookups (for Foreign Keys, Many-to-Many relations and Generic relations).
 
 Add the staticmethod ``autocomplete_search_fields`` to all models you want to search for::
 
@@ -218,17 +236,22 @@ For the represantation of an object, we first check for a callable ``related_lab
         return u"%s (%s)" % (self.name, self.id)
 
 .. warning::
-    Due to a bug in Django 1.3, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
+    Due to a bug in Django 1.4, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
+
+.. _customizationtinymce:
 
 Using TinyMCE
 -------------
 
-Copy ``tinymce_setup.js`` to your media-directory, adjust the setup (see `TinyMCE Configuration <http://wiki.moxiecode.com/index.php/TinyMCE:Configuration>`_) and add the necessary javascripts::
+.. versionchanged:: 2.4
+    The admin media URLs has been changed to use a static URLs in compliance with Django 1.4
+
+Copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts::
 
     class Media:
         js = [
-            '/media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/path/to/your/tinymce_setup.js',
+            '/static/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/static/path/to/your/tinymce_setup.js',
         ]
 
 Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form. You need to write a custom template and use the inline-callbacks to
@@ -239,3 +262,13 @@ Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form
 
 .. note::
     TinyMCE with Inlines is not supported by default.
+
+.. _changelistfilters:
+
+Changelist Filters
+------------------
+
+.. versionadded:: 2.4
+
+TODO: Explain how to use different filter-styles with the changelist.
+

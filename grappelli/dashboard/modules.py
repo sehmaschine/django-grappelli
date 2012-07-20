@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
 Module where grappelli dashboard modules classes are defined.
 """
@@ -9,7 +11,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 from django.utils.itercompat import is_iterable
 
-# GRAPPELL IMPORTS
+# GRAPPELLI IMPORTS
 from grappelli.dashboard.utils import AppListElementMixin
 
 
@@ -124,9 +126,11 @@ class DashboardModule(object):
         Return a string containing the css classes for the module.
         """
         
-        ret = ['dashboard-module']
+        ret = ['grp-dashboard-module']
         if self.collapsible:
-            ret.append('collapsible')
+            ret.append('grp-collapse')
+            if not "grp-open" in self.css_classes and not "grp-closed" in self.css_classes:
+                ret.append('grp-open')
         ret += self.css_classes
         return ' '.join(ret)
 

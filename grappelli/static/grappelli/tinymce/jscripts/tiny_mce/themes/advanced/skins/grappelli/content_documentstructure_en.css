@@ -4,6 +4,7 @@
 
 /* -- Language Specific Settings ---------- */
 
+body#tinymce h1:before          { content: "Heading 1"; }
 body#tinymce h2:before          { content: "Heading 2"; }
 body#tinymce h3:before          { content: "Heading 3"; }
 body#tinymce h4:before          { content: "Heading 4"; }

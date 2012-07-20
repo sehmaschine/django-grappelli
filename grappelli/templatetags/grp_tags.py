@@ -93,43 +93,6 @@ def grappelli_admin_title():
 register.simple_tag(grappelli_admin_title)
 
 
-# SEARCH FIELDS VERBOSE
-class GetSearchFields(template.Node):
-    
-    def __init__(self, opts, var_name):
-        self.opts = template.Variable(opts)
-        self.var_name = var_name
-    
-    def render(self, context):
-        opts = str(self.opts.resolve(context)).split('.')
-        model = models.get_model(opts[0], opts[1])
-        try:
-            field_list = admin.site._registry[model].search_fields_verbose
-        except:
-            field_list = ""
-        
-        context[self.var_name] = ", ".join(field_list)
-        return ""
-
-
-def do_get_search_fields_verbose(parser, token):
-    """
-    Get search_fields_verbose in order to display on the Changelist.
-    """
-    
-    try:
-        tag, arg = token.contents.split(None, 1)
-    except:
-        raise template.TemplateSyntaxError, "%s tag requires arguments" % token.contents.split()[0]
-    m = re.search(r'(.*?) as (\w+)', arg)
-    if not m:
-        raise template.TemplateSyntaxError, "%r tag had invalid arguments" % tag
-    opts, var_name = m.groups()
-    return GetSearchFields(opts, var_name)
-
-register.tag('get_search_fields_verbose', do_get_search_fields_verbose)
-
-
 @register.filter
 def classname(obj, arg=None):
     classname = obj.__class__.__name__.lower()
@@ -209,4 +172,17 @@ def get_autocomplete_lookup_fields_m2m(model_admin):
 @safe_json_else_list_tag
 def get_autocomplete_lookup_fields_generic(model_admin):
     return model_admin.autocomplete_lookup_fields.get("generic", [])
+
+
+# SORTABLE EXCLUDES
+@safe_json_else_list_tag
+def get_sortable_excludes(model_admin):
+    return model_admin.sortable_excludes
+
+
+@register.filter
+def prettylabel(value):
+    return mark_safe(value.replace(":</label>", "</label>"))
+
+
 

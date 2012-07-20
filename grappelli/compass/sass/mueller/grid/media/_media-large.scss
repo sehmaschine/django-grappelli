@@ -1,0 +1,58 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _media-large.scss
+//
+// >1250px
+//
+// **************************************************
+
+@import "compass/layout/grid-background";
+@import "compass/typography/vertical_rhythm";
+
+
+@media screen and (min-width: 1250px) {
+
+    // baseline
+    $relative-font-sizing: false;
+    $base-font-size: 16px;
+    $base-line-height: 24px;
+    @include establish-baseline(16px);
+
+    $gc: 24; // grid columns
+    $gw: 25px; // grid width
+    $gm: 25px; // grid margin
+
+    .g-l-c {
+        @extend .g-base-c;
+        width: $gw*$gc+$gm*($gc - 1); // 1175px
+        // uncomment for a background-grid
+        // @include grid-background($gc, $gw, $gm, 24px, 0, #ccc, #ddd, #999, false);
+    }
+    
+    @include grids(d,
+        0 2 3 4 6 8 9 12 16 18 24, // only add the columns you really need
+        $gc,
+        $gw,
+        $gm,
+        0 2 3 4 6 8 9 12 16 18 24); // only add the pad-units you really need to push/pull/append/prepend
+
+    // visibility (l,d,t/tp/tl,h/hp/hl)
+    .d-show, .h-show, .hp-show, .hl-show, .t-show, .tp-show, .tl-show {
+        display: none !important;
+    }
+    .l-hide {
+        display: none !important;
+    }
+    .l-show {
+        display: block !important;
+    }
+    #{elements-of-type(inline)} {
+        &.l-show {
+            display: inline !important;
+        }
+    }
+
+}

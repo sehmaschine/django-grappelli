@@ -1,19 +1,21 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n %} {# grp_csrf #}
+{% load url from future %}
+{% load i18n %}
 
 <!-- BODYCLASS -->
-{% block bodyclass %}login{% endblock %}
-{% block content-class %}content-flexible{% endblock %}
+{% block bodyclass %}grp-login{% endblock %}
+{% block content-class %}{% endblock %}
 {% block content_title %}{% endblock %}
 
 <!-- EXTRAHEAD-->
 {% block extrahead %}
+    {{ block.super }}
     <script type="text/javascript">
         (function($) {
             $(window).load(function(){ $('#id_username').focus(); });
-        })(django.jQuery);
+        })(grp.jQuery);
     </script>
 {% endblock %}
 
@@ -22,8 +24,8 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <div class="container-flexible login">
-        <div class="column span-12 centered">
+    <div class="g-d-c g-d-12 g-centered">
+        <div class="grp-login">
             {% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
                 <p class="errornote">
                     {% blocktrans count form.errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
@@ -34,30 +36,33 @@
                     <p class="errornote">{{ error }}</p>
                 {% endfor %}
             {% endif %}
-            {% if error_message %}<p class="errornote login-errors">{{ error_message }}</p>{% endif %}
-            <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-                <fieldset class="module">
-                    <div class="row">
-                        
-                        <div class="column span-4"><label for="id_username" class="required">{% trans 'Username:' %}</label></div>
-                        <div class="column span-8 last">
-                            <input type="text" name="username" id="id_username" />
-                            {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
+            {% if error_message %}<p class="errornote grp-login-errors">{{ error_message }}</p>{% endif %}
+            <form action="{{ app_path }}" method="post" id="grp-login-form">{% csrf_token %}
+                <fieldset class="grp-module">
+                    <div class="grp-row">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label for="id_username" class="required">{% trans 'Username:' %}</label></div>
+                            <div class="c-2">
+                                <input type="text" name="username" id="id_username" />
+                                {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="column span-4"><label for="id_password" class="required">{% trans 'Password:' %}</label></div>
-                        <div class="column span-8 last">
-                            <input type="password" name="password" id="id_password" />
-                            <input type="hidden" name="this_is_the_login_form" value="1" />
-                            <input type="hidden" name="next" value="{{ next }}" />
-                            {% if not form.this_is_the_login_form.errors %}{{ form.password.errors }}{% endif %}
+                    <div class="grp-row">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label for="id_password" class="required">{% trans 'Password:' %}</label></div>
+                            <div class="c-2">
+                                <input type="password" name="password" id="id_password" />
+                                <input type="hidden" name="this_is_the_login_form" value="1" />
+                                <input type="hidden" name="next" value="{{ next }}" />
+                                {% if not form.this_is_the_login_form.errors %}{{ form.password.errors }}{% endif %}
+                            </div>
                         </div>
                     </div>
                 </fieldset>
-                <div class="module submit-row">
-                    <ul class="submit-row">
-                        <li class="submit-button-container"><input type="submit" class="default" value="{% trans 'Log in' %}" /></li>
+                <div class="grp-module grp-submit-row">
+                    <ul>
+                        <li><input type="submit" class="grp-button" value="{% trans 'Log in' %}" /></li>
                     </ul>
                 </div>
             </form>

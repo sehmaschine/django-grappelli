@@ -1,10 +1,16 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
+{% load url from future %}
 {% load i18n %}
 
 <!-- BREADCRUMBS -->
-{% block breadcrumbs %}<div id="breadcrumbs"><a href="../../">{% trans 'Home' %}</a> &rsaquo; {{ title }}</div>{% endblock %}
+{% block breadcrumbs %}
+	<ul class="grp-horizontal-list">
+	    <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+	    <li>{{ title }}</li>
+	</ul>
+{% endblock %}
 
 <!-- CONTENT -->
 {% block content %}

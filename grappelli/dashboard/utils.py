@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
 Admin ui common utilities.
 """
@@ -16,7 +18,7 @@ from django.utils.importlib import import_module
 
 def _get_dashboard_cls(dashboard_cls, context):
     if type(dashboard_cls) is types.DictType:
-        curr_url = context.get('request').META['PATH_INFO']
+        curr_url = context.get('request').path
         for key in dashboard_cls:
             admin_site_mod, admin_site_inst = key.rsplit('.', 1)
             admin_site_mod = import_module(admin_site_mod)
@@ -117,7 +119,10 @@ def filter_models(request, models, exclude):
         for item in included:
             model, perms = item
             if fnmatch(full_name(model), pattern):
-                result.remove(item)
+                try:
+                    result.remove(item)
+                except ValueError:  # if the item was already removed skip
+                    pass
     return result
 
 

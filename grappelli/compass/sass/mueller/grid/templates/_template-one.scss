@@ -1,0 +1,23 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _template_one.scss
+//
+// define templates based on layouts/grids
+// note that this will bloat your resulting CSS
+//
+// **************************************************
+
+.template-1 {
+    #page { 
+        @extend .l-2c;
+    }
+    #content {
+        @extend .c-1;
+    }
+    #sidebar {
+        @extend .c-2;
+    }
+}

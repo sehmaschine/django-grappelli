@@ -1,0 +1,175 @@
+
+
+
+/*  AUTOCOMPLETES
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  Autocomplete Wrappers Basic Styles (Input and Input-Lookalike) ......................................... */
+
+.grp-autocomplete-wrapper-m2m, 
+.grp-autocomplete-wrapper-fk input.ui-autocomplete-input {
+    @include grp-form-field;
+    &:focus, 
+    &.grp-state-focus {
+        background-color: $grp-form-field-background-color-interactive;
+    }
+}
+
+
+/*  Autocomplete Icons, Preremove ......................................... */
+
+.grp-autocomplete-wrapper-m2m, 
+.grp-autocomplete-wrapper-fk {
+    a.related-lookup {
+        position: absolute;
+    }
+    &.grp-state-focus {
+        a.grp-related-remove, 
+        a.related-lookup {
+            border: $grp-form-field-border-focus !important;
+        }
+    }
+    a.grp-related-remove, 
+    div.grp-loader {
+        display: inline-block;
+        position: absolute;
+        right: 24px;
+        top: 0;
+        font-size: 0;
+        line-height: 0;
+        width: 23px;
+        height: 23px;
+        border: $grp-form-field-border; 
+    }
+    div.grp-loader {
+        background: #fdfdfd url('../images/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
+    }
+    &.grp-autocomplete-preremove {
+        input.ui-autocomplete-input, 
+        li.grp-repr a {
+            color: $grp-font-color-error !important;
+        }
+    }
+    li.grp-repr.grp-autocomplete-preremove a {
+        color: $grp-font-color-error !important;
+    }
+}
+
+
+/*  Autocomplete Wrappers Specific Styles ......................................... */
+
+.grp-autocomplete-wrapper-m2m {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    height: auto !important;
+    vertical-align: top;
+    @include box-sizing(border-box);
+    overflow: visible;
+    ul.grp-repr {
+        float: left;
+        padding-right: 55px;
+        width: 100%;
+        max-width: 700px;
+        overflow: hidden;
+        @include box-sizing(border-box);
+        li {
+            float: left;
+            display: inline;
+            overflow: hidden;
+            @include ellipsis;
+            max-width: 700px;
+            &.grp-repr {
+                margin: 3px 5px 0 1px;
+                font-weight: bold;
+                line-height: 18px;
+                a.grp-m2m-remove {
+                    color: #555;
+                    padding-left: 5px;
+                }
+            }
+            &.grp-search {
+                margin-top: 1px;
+                margin-bottom: 1px;
+                background: transparent;
+                input[type=text] {
+                    margin: 0 0 -1px;
+                    padding: 0 4px;
+                    width: 100px;
+                    height: 22px;
+                    font-size: 12px;
+                    line-height: 16px;
+                    outline: 0;
+                    border: 0;
+                    @include box-shadow(none);
+                    background: transparent;
+                    cursor: text;
+                }
+            }
+        }
+    }
+    a.related-lookup {
+        top: -1px;
+        right: -1px;
+    }
+    a.grp-related-remove + a.grp-related-lookup {
+        @include border-bottom-left-radius(0);
+    }
+    a.grp-related-remove, 
+    a.grp-related-remove + div.grp-loader {
+        top: -1px;
+        right: 23px;
+    }
+}
+.grp-autocomplete-wrapper-fk {
+    display: inline-block;
+    position: relative;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    vertical-align: top;
+    font-size: 0 !important; /* Set font-size and line-height to 0 to let the &nbsp; at the end of the autocomplete-wrapper disappear */
+    line-height: 0 !important;
+    background: transparent !important;
+    input.ui-autocomplete-input {
+        padding-right: 55px;
+    }
+}
+
+
+/*  Errors with autocompletes ......................................... */
+
+.grp-errors {
+    .grp-autocomplete-wrapper-m2m, .grp-autocomplete-wrapper-fk input.ui-autocomplete-input, 
+    a.grp-related-remove {
+        border-color: $grp-font-color-error !important;
+    }
+}
+
+
+/*  Autocompletes in Changelists ......................................... */
+
+#changelist table div.autocomplete-wrapper-fk a.grp-related-remove, #changelist table div.autocomplete-wrapper-m2m a.grp-related-remove, 
+#changelist table div.autocomplete-wrapper-fk div.grp-loader, #changelist table div.autocomplete-wrapper-m2m div.grp-loader {
+    top: -5px;
+}
+
+
+/* We need to "hide" the input-field without display:none, because with display:none we can´t focus the field anymore */
+
+.grp-autocomplete-wrapper-m2m input.vManyToManyRawIdAdminField, 
+.grp-autocomplete-wrapper-fk input.vForeignKeyRawIdAdminField, 
+.grp-autocomplete-wrapper-fk input.vIntegerField  {
+    position: absolute;
+    left: 0;
+    top: -40px;
+    width: 10px;
+    height: 10px;
+    color: transparent !important;
+    border: 0 !important;
+    background: transparent !important;
+    @include box-shadow(none !important);
+    cursor: default !important;
+}

@@ -1,0 +1,41 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _media-all.scss
+//
+// helper classes
+//
+// **************************************************
+
+.g-base-c {
+    @include container;
+}
+
+.g-all-c {
+    @extend .g-d-c;
+    @extend .g-l-c;
+    @extend .g-tp-c;
+    @extend .g-hl-c;
+    @extend .g-h-c;
+}
+
+.g-all-f {
+    @extend .g-d-f;
+    @extend .g-tp-f;
+    @extend .g-hl-f;
+    @extend .g-h-f;
+}
+
+.g-all-l {
+    @extend .g-d-l;
+    @extend .g-tp-l;
+    @extend .g-hl-l;
+    @extend .g-h-l;
+}
+
+.g-all-fl {
+    @extend .g-all-f;
+    @extend .g-all-l;
+}

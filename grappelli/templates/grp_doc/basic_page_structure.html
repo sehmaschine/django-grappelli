@@ -1,0 +1,244 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block bodyclass %}grp-doc{% endblock %}
+{% block content-class %}{% endblock %}
+{% block title %}Grappelli Documentation &raquo; Basic Page Structure{% endblock %}
+
+{% block extrahead %}
+	<script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                $("#grp-content-container .grp-group").grp_collapsible_group();
+                $("#grp-content-container .grp-collapse").grp_collapsible({
+                    on_init: function(elem, options) {
+                        // open collapse (and all collapse parents) in case of errors
+                        if (elem.find("ul.errorlist").length > 0) {
+                            elem.removeClass("grp-closed")
+                                .addClass("grp-open");
+                            elem.parents(".grp-collapse")
+                                .removeClass("grp-closed")
+                                .addClass("grp-open");
+                        }
+                    }
+                });
+            });
+        })(grp.jQuery);
+	</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="../">Grappelli Documentation</a></li>
+        <li>Basic Page Structure</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1>Basic Page Structure</h1>
+    <div class="g-d-c">
+	    <div class="grp-doc-description">
+	    	<p>This page provides an overlook of all basic elements you should keep in mind when writing custom templates in Grappelli.</p>
+	    	<p>The following descriptions assume that you extend Grappellis <span class="grp-doc-file">base.html</span> from your custom template (which is actually the easiest way to access all Grappellis basic styles, scripts, functions ...)</p>
+	    </div>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Extending the base</h1>
+		            <p>As said the easiest way of writing custom templates starts with <a href="https://docs.djangoproject.com/en/1.4/ref/templates/builtins/#std:templatetag-extends" target="_blank" class="grp-external">extending</a> the template <span class="grp-doc-file">base_site.html</span>.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} extends "admin/base_site.html" {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Load stuff you need</h1>
+		            <p>You should <a href="https://docs.djangoproject.com/en/1.4/ref/templates/builtins/#std:templatetag-load" target="_blank" class="grp-external">load</a> all custom template tag sets you need.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} load i18n admin_static admin_modify grp_tags {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Title of the browser-window</h1>
+		            <p>The <span class="grp-doc-django">{% templatetag openblock %} block title {% templatetag closeblock %}</span> carries the text shown as title of the browser window or tab.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block title {% templatetag closeblock %}Your title goes in here{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Stylesheets</h1>
+		            <p>Your possible custom stylesheets should be included with using the <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatetag-block" target="_blank" class="grp-external">block</a> <span class="grp-doc-django">{% templatetag openblock %} extrastyle {% templatetag closeblock %}</span>.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block extrastyle {% templatetag closeblock %}
+    <link href="Path to your custom stylesheet" rel="stylesheet" type="text/css" />
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Javascripts</h1>
+		            <p>Your possible custom javascript files should be included with using the <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatetag-block" target="_blank" class="grp-external">block</a> <span class="grp-doc-django">{% templatetag openblock %} extrahead {% templatetag closeblock %}</span>.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block extrahead {% templatetag closeblock %}
+    <script src="Path to your custom javascript" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                Your code goes in here
+            });
+        })(grp.jQuery);
+	</script>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+    	<section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Breadcrumbs</h1>
+		            <p>The breadcrumbs are defined in a <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatetag-block" target="_blank" class="grp-external">block</a> <span class="grp-doc-django">{% templatetag openblock %} block breadcrumbs {% templatetag closeblock %}</span>.</p>
+		            <p>They are always written as a plain <span class="grp-doc-dom"><span>ul</span></span> with <span class="grp-doc-dom"><span>li</span></span> containing links whereas the last <span class="grp-doc-dom"><span>li</span></span> contains no link but just the title of the page you are currently dealing with.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block breadcrumbs {% templatetag closeblock %}
+<ul>
+    <li><a href="link goes in here">{% trans "Home" %}</a></li>
+    <li><a href="link goes in here">Link</a></li>
+    <li>That's where you are</li>
+</ul>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Page-Tools</h1>
+		            <p>The page-tools represent some container for contextual interactions. Currently they are used with the change-form where they carry options for expanding and collapsing all collapsible items.</p>
+		            <p>They've been introduced as a kind of placeholder for any sort of contextual options which might be needed or possible in the future of Grappelli. Feel free to use it for your own customized page-specific purposes if there are any.</p> 
+		            <p>They are defined in a <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#std:templatetag-block" target="_blank" class="grp-external">block</a> <span class="grp-doc-django">{% templatetag openblock %} block page-tools {% templatetag closeblock %}</span>.</p>
+		            <p>They are always written as a plain <span class="grp-doc-dom"><span>ul</span></span> with <span class="grp-doc-dom"><span>li</span></span> containing links for the interactions. Those might be plain text or icons. Using the latter ones requires to add <span class="grp-doc-class">.grp-tools</span> to the link. Make sure to use a custom icon fitting the size then.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block page-tools {% templatetag closeblock %}
+<ul>
+    <li><a href="link goes in here">Do something with the current page or its elements</a></li>
+    <li><a href="link goes in here" class="grp-tool">Icon</a></li>
+</ul>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+    	<section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Content-Title</h1>
+		            <p>The title of your custom template is a <span class="grp-doc-dom"><span>h1</span></span> contained in the <span class="grp-doc-django">{% templatetag openblock %} block content_title {% templatetag closeblock %}</span>.</p>
+		            {% comment %}<p>If there is any need you might also use a <span class="grp-doc-django">{% templatetag openblock %} block pretitle {% templatetag closeblock %}</span>.</p>{% endcomment %}
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block content_title {% templatetag closeblock %}
+    <h1>My custom template</h1>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Object-Tools</h1>
+		            <p>The object-tools carry certain actions which apply directly to an object. They appear on the right-hand side of the page beside the content-title.</p>
+		            <p>They are always written as a <span class="grp-doc-dom"><span>ul class="grp-object-tools"</span></span> carrying a <span class="grp-doc-django">{% templatetag openblock %} block object-tools-items {% templatetag closeblock %}</span> which contains <span class="grp-doc-dom"><span>li</span></span> with links representing the actual actions.</p>
+		            <p>There are two visual states for those actions: a default one (which has no own class) and a <span class="grp-doc-class">.grp-state-focus</span>. <br />The latter one can be applied to <span class="grp-doc-dom"><span>a</span></span> which should visually appear as major actions.</p>
+		            <p>Based on Django/Grappelli there are two possibilities to prepend an icon to the text of an action. <br />Adding <span class="grp-doc-class">.grp-add-link</span> to an <span class="grp-doc-dom"><span>a</span></span> prepends a <em>plus</em> to the text of the action. <br />Adding a <span class="grp-doc-dom">target="_blank"</span> to an <span class="grp-doc-dom"><span>a</span></span> prepends an <em>arrow</em> to the text of the action, indicating that you'll leave the page when clicking the link.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block object-tools {% templatetag closeblock %}
+    <ul class="grp-object-tools">
+        {% templatetag openblock %} block object-tools-items {% templatetag closeblock %}
+            <li><a href="url">Action</a></li>
+            <li><a href="url" class="grp-state-focus">Action</a></li>
+            <li><a href="url" class="grp-add-link">Add something</a></li>
+            <li><a href="url" target="_blank">View something externally</a></li>
+        {% templatetag openblock %} endblock {% templatetag closeblock %}
+    </ul>
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Content</h1>
+		            <p>The <span class="grp-doc-django">{% templatetag openblock %} block content {% templatetag closeblock %}</span> contains the actual content of your template.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block content {% templatetag closeblock %}
+    Your content goes in here
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    {% comment %}
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Footer</h1>
+		            <p>Use the <span class="grp-doc-django">{% templatetag openblock %} block footer {% templatetag closeblock %}</span> to add possible footer content to your template.</p>
+		            <p>The footer may contain any type of content but usually it carries the options for submitting a form.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+{% templatetag openblock %} block footer {% templatetag closeblock %}
+    Your footer content goes in here
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    {% endcomment %}
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
+		            <h1>Submit-Row</h1>
+		            <p>For detailled instructions on how to construct submit-rows <a href="{% url grp_doc_submit_rows %}">click here</a>.</p>
+		        </div>
+		    </div>
+		</section>
+    </div>
+{% endblock %}
+

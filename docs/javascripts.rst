@@ -6,8 +6,8 @@
 Javascripts
 ===========
 
-.. versionchanged:: 2.3
-    The Grappelli javascripts have been refactored.
+.. versionchanged:: 2.4
+    The admin media URLs has been changed to use a static URLs in compliance with Django 1.4
 
 Grappelli only uses a subset of the original admin javascripts.
 
@@ -18,7 +18,7 @@ Grappelli only uses a subset of the original admin javascripts.
 Original JS
 -----------
 
-in ``/media/js/`` and ``/media/js/admin/``
+in ``/static/admin/js/``
 
 ``calendar.js``, ``collapse.js``, ``collapse.min.js``, ``dateparse.js``, ``inlines.js``, ``inlines.min.js``, ``jquery.init.js``, ``jquery.js``, ``jquery.min.js``, ``prepopulate.js``, ``prepopulate.min.js``, ``timeparse.js``, ``DateTimeShortcuts.js``, ``ordering.js``
     not used (empty to prevent 404)
@@ -33,7 +33,7 @@ in ``/media/js/`` and ``/media/js/admin/``
     original
 
 ``SelectFilter2.js``
-    original
+    minor modifiations, marked with GRAPPELLI CUSTOM (e.g. removed help-text, because trusted editors should know what to do)
 
 ``urlify.js``
     original
@@ -48,7 +48,7 @@ in ``/media/js/`` and ``/media/js/admin/``
 Grappelli JS
 ------------
 
-in ``/media/js/grappelli/``
+in ``/static/admin/js/``
 
 ``jquery.grp_collapsible.js``
     collapsibles

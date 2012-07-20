@@ -6,7 +6,7 @@
 Quick start guide
 =================
 
-For using |grappelli|, `Django 1.3 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_ has to be activated.
+For using |grappelli|, `Django 1.4 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_ has to be activated.
 
 Installation
 ------------
@@ -36,15 +36,6 @@ Add URL-patterns::
 Collect the media files::
 
     python manage.py collectstatic
-
-Set ``ADMIN_MEDIA_PREFIX``::
-
-    ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
-
-.. note::
-    Please refer to the `Staticfiles Documentation <http://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/>`_ for setting up and using ``staticfiles``.
-
-If you're not using ``staticfiles`` you can either use a symlink from your media-directory (given by ``MEDIA_ROOT`` and ``MEDIA_URL``) or copy the Grappelli media-files to your media-directory. Don't forget to set ``ADMIN_MEDIA_PREFIX`` accordingly.
 
 Testing
 -------

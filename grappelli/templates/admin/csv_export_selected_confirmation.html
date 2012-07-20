@@ -5,12 +5,12 @@
 
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
-    <div id="breadcrumbs">
-        <a href="../../">{% trans "Home" %}</a> &rsaquo;
-        <a href="../">{{ app_label|capfirst }}</a> &rsaquo;
-        <a href="./">{{ opts.verbose_name_plural|capfirst }}</a> &rsaquo;
-        {% trans 'Export selection as CSV' %}
-    </div>
+    <ul class="grp-horizontal-list">
+        <li><a href="../../">{% trans "Home" %}</a></li>
+        <li><a href="../">{% trans app_label|capfirst|escape %}</a></li>
+        <li><a href="./">{{ opts.verbose_name_plural|capfirst }}</a></li>
+        <li>{% trans 'Export selection as CSV' %}</li>
+    </ul>
 {% endblock %}
 
 <!-- CONTENT -->
@@ -23,18 +23,18 @@
                     $("._fields").attr('checked', $(this).attr('checked'));
                 });
             });
-        })(django.jQuery);
+        })(grp.jQuery);
     </script>
-    <div class="container-grid csv-export-confirmation">
+    <div class="g-d-c csv-export-confirmation">
         <form action="" method="post">{% csrf_token %}
-            <fieldset class="module">
+            <fieldset class="grp-module">
                 <h2>{% blocktrans %}Export following fields:{% endblocktrans %}</h2>
-                <div class="row">
+                <div class="grp-row">
                     <ul class="checkboxlist">
                         <li><label for="select_all"><input type="checkbox" name="select_all" value="" id="select_all" /> {% blocktrans %}Select all{% endblocktrans %}</label></li>
                     </ul>
                 </div>
-                <div class="row">
+                <div class="grp-row">
                     <ul class="checkboxlist">
                         {% for item in fields %}
                             <li>
@@ -44,15 +44,15 @@
                     </ul>
                 </div>
             </fieldset>
-            <div class="module footer">
+            <div class="grp-module grp-footer">
                 {% for obj in queryset %}
                     <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk }}" />
                 {% endfor %}
                 <input type="hidden" name="action" value="csv_export_selected" />
                 <input type="hidden" name="post" value="yes" />
-                <ul class="submit-row" {% if is_popup %}style="overflow: auto;"{% endif %}>
-                    <li class="left cancel-button-container"><a href="../" class="cancel-link">{% trans "Back" %}</a></li>
-                    <li class="submit-button-container"><input type="submit" value="{% trans "Export" %}" class="default" /></li>
+                <ul class="grp-horizontal-list-right grp-submit-row">
+                    <li class="grp-float-left grp-submit-button-container"><a href="../" class="grp-cancel-link">{% trans "Back" %}</a></li>
+                    <li class="grp-submit-button-container"><input type="submit" value="{% trans "Export" %}" class="grp-default" /></li>
                 </ul>
             </div>
         </form>

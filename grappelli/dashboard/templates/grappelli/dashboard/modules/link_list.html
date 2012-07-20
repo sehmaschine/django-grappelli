@@ -1,11 +1,11 @@
 {% extends "grappelli/dashboard/module.html" %}
 {% load i18n %}
 {% block module_content %}
-    <ul>
+    <ul class="grp-listing-small">
         {% spaceless %}
             {% for child in module.children %}
-                <li>
-                    <a class="{% if child.external %}external{% else %}internal{% endif %}" href="{{ child.url }}" {% if child.description %} title="{{ child.description }}"{% endif %}>{{ child.title }}</a>
+                <li class="grp-row">
+                    <a class="{% if child.external %}grp-link-external{% else %}grp-link-internal{% endif %}" href="{{ child.url }}" {% if child.description %} title="{{ child.description }}"{% endif %}>{{ child.title }}</a>
                 </li>
             {% endfor %}
         {% endspaceless %}

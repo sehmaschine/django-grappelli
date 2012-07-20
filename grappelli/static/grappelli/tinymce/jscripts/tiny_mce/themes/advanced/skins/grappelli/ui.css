@@ -43,6 +43,7 @@
 .grappelliSkin table, .grappelliSkin tbody, .grappelliSkin tr, .grappelliSkin td {
     margin: 0 !important;
     border: 0 !important;
+    outline: 0 !important;
 }
 .grappelliSkin a {
     text-decoration: none;
@@ -51,6 +52,11 @@
 .grappelliSkin table td {
     padding: 0;
     vertical-align: middle;
+}
+.grappelliSkin table td > a:first-child, 
+.grappelliSkin table th > a:first-child {
+    position: relative;
+    top: 0 !important;
 }
 
 
@@ -160,7 +166,7 @@
     border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 }
 .grappelliSkin a.mceButtonEnabled:hover {
-    background: #e0f0f5;
+    background: #e1f0f5;
 }
 .grappelliSkin a.mceButtonActive, .grappelliSkin a.mceButtonSelected {
     border-color: #c0c0c0 #d2d2d2 #d2d2d2 #c0c0c0 !important;
@@ -233,7 +239,7 @@
 .grappelliSkin .mceListBoxHover .mceOpen, 
 .grappelliSkin .mceListBoxSelected .mceOpen {
     border-color: #c4c4c4 #d4d4d4 #d4d4d4 #c4c4c4;
-    background-color: #e0f0f5;
+    background-color: #e1f0f5;
 }
 .grappelliSkin .mceListBoxSelected .mceText, 
 .grappelliSkin .mceListBoxSelected .mceOpen {
@@ -322,15 +328,17 @@
 .grappelliSkin .mceMenu .mceText {
     position: relative; display: block;
     margin: 0; padding: 0 25px 0 4px;
+    background: transparent !important;
 }
 .grappelliSkin .mceMenu .mceIcon {
     display: none;
     width: 0; height: 0;
+    background: transparent !important;
 }
 .grappelliSkin .mceMenu .mceMenuItemEnabled a:hover,
 .grappelliSkin .mceMenu .mceMenuItemEnabled a:active, 
 .grappelliSkin .mceMenu .mceMenuItemActive {
-    background-color: #e0f0f5;
+    background-color: #e1f0f5 !important;
 }
 .grappelliSkin .mceMenuItemSelected a {
     background-color: #ddd;

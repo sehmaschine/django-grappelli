@@ -2,12 +2,12 @@
 {% load i18n %}
 {% block module_content %}
     {% for child in module.children %}
-        <div class="row">
-            {% if child.change_url %}<a href="{{ child.change_url }}">{{ child.title }}</a>{% else %}{{ child.title }}{% endif %}
+        <div class="grp-row">
+            {% if child.change_url %}<a href="{{ child.change_url }}"><strong>{{ child.title }}</strong></a>{% else %}<strong>{{ child.title }}</strong>{% endif %}
             {% if child.add_url or child.change_url %}
-                <ul class="actions">
-                    {% if child.add_url %}<li class="add-link"><a href="{{ child.add_url }}">{% trans "Add" %}</a></li>{% endif %}
-                    {% if child.change_url %}<li class="change-link"><a href="{{ child.change_url }}">{% trans "Change" %}</a></li>{% endif %}
+                <ul class="grp-actions">
+                    {% if child.add_url %}<li class="grp-add-link"><a href="{{ child.add_url }}">{% trans "Add" %}</a></li>{% endif %}
+                    {% if child.change_url %}<li class="grp-change-link"><a href="{{ child.change_url }}">{% trans "Change" %}</a></li>{% endif %}
                 </ul>
             {% endif %}
         </div>

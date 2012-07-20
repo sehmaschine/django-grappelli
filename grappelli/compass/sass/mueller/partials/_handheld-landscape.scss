@@ -1,0 +1,16 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _handheld-landscape.scss
+//
+// <767px
+// overwrite styles from _default.scss
+//
+// **************************************************
+
+@import "partials/base";
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+}

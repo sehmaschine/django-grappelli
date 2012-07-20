@@ -1,0 +1,163 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block bodyclass %}grp-doc{% endblock %}
+{% block content-class %}{% endblock %}
+{% block title %}Grappelli Documentation &raquo; Mueller Grid System{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="../">Grappelli Documentation</a></li>
+        <li>Mueller Grid System</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1>Mueller Grid System</h1>
+    <div class="xg-d-c-fluid">
+        <div class="grp-doc-description">
+            <div class="g-d-24">
+                <p>Grappelli uses the <a href="http://www.muellergridsystem.com/" target="_blank">Mueller Grid System</a> – a modular grid system for responsive/adaptive and non–responsive layouts, based on Compass.</p>
+                <p>Though the Mueller Grid System provides powerful possibilities for responsive layouts Grappelli does not use them for now. But that may change. And that's why we skipped using <a href="http://blueprintcss.org/" target="_blank">Blueprint</a> and developed something which rather fits our and the futures needs.</p>
+                <p>As Grappelli solely supports desktop resolutions this documentation refers to <span class="grp-doc-class">.g-d-*</span> classes only (the "d" represents media "desktop").</p>
+            </div>
+        </div>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Grid Container</h1>
+                    <p>The grid container <span class="grp-doc-class">.g-d-c</span> (its outline is dotted in the following example) maintains the maximum column width and impacts all child elements.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code-source">
+                    <div class="g-d-c" style="outline: 1px dotted #000; padding: 10px; margin: 0 -10px;">
+                        <div class="grp-module">
+                            <h2>Module</h2>
+                            <div class="grp-row"><p>Row</p></div>
+                            <div class="grp-row"><p>Row</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="g-d-c">
+    <div class="grp-module">
+        <h2>Module</h2>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+</div>
+{% endfilter %}</code></pre></div>
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Fluid Container</h1>
+                    <p>The fluid container <span class="grp-doc-class">.g-d-c-fluid</span> (its outline is dotted in the following example) maintains the full page width and impacts all child elements.</p>
+                </div>
+            </div>
+            <div style="position: relative; float: left; clear: both; width: 100%;">
+                <div class="grp-doc-code-source">
+                    <div class="g-d-c-fluid" style="outline: 1px dotted #000; padding: 10px !important; margin: 0 -10px;">
+                        <div class="grp-module">
+                            <h2>Module</h2>
+                            <div class="grp-row"><p>Row</p></div>
+                            <div class="grp-row"><p>Row</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="g-d-c-fluid">
+    <div class="grp-module">
+        <h2>Module</h2>
+        <div class="grp-row"><p>Row</p></div>
+        <div class="grp-row"><p>Row</p></div>
+    </div>
+</div>
+{% endfilter %}</code></pre></div>
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Grid Columns</h1>
+                    <p>Grappellis Grid consists of 24 columns.</p>
+                    <p>To define the span of columns use <span class="grp-doc-class">.g-d-#</span>, e.g. <span class="grp-doc-class">.g-d-4</span> for an element which stretches over 4 columns. Make sure to add <span class="grp-doc-class">.g-d-f</span> to the first and <span class="grp-doc-class">.g-d-l</span> to the last element while counting 24 columns.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code-source">
+                    <div class="g-d-c">
+                        <div class="g-d-4 g-d-f"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-4</span> <span class="grp-doc-class">.g-d-f</span></p></div>
+                        <div class="g-d-8"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-8</span></p></div>
+                        <div class="g-d-6"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-6</span></p></div>
+                        <div class="g-d-6 g-d-l"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-6</span> <span class="grp-doc-class">.g-d-l</span></p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="g-d-c">
+    <div class="g-d-4 g-d-f">...</div>
+    <div class="g-d-8">...</div>
+    <div class="g-d-6">...</div>
+    <div class="g-d-6 g-d-l">...</div>
+</div>
+{% endfilter %}</code></pre></div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h2>Multiple Lines in a Grid Container</h2>
+                    <p>When constructing a grid container with multiple lines carrying (different) grid columns the best practice is to wrap each line with a <span class="grp-doc-class">.g-d-24</span>.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code-source">
+                    <div class="g-d-c">
+                        <div class="g-d-24">
+                            <div class="g-d-4 g-d-f"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-4</span> <span class="grp-doc-class">.g-d-f</span></p></div>
+                            <div class="g-d-8"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-8</span></p></div>
+                            <div class="g-d-6"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-6</span></p></div>
+                            <div class="g-d-6 g-d-l"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-6</span> <span class="grp-doc-class">.g-d-l</span></p></div>
+                        </div>
+                        <div class="g-d-24">
+                            <div class="g-d-8 g-d-f"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-8</span> <span class="grp-doc-class">.g-d-f</span></p></div>
+                            <div class="g-d-8"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-8</span></p></div>
+                            <div class="g-d-8 g-d-l"><p style="margin: 10px 0; padding: 7px 5px; background: #c30;"><span class="grp-doc-class">.g-d-8</span> <span class="grp-doc-class">.g-d-l</span></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<div class="g-d-c">
+    <div class="g-d-24">
+        <div class="g-d-4 g-d-f">...</div>
+        <div class="g-d-8">...</div>
+        <div class="g-d-6">...</div>
+        <div class="g-d-6 g-d-l">...</div>
+    </div>
+    <div class="g-d-24">
+        <div class="g-d-8 g-d-f">...</div>
+        <div class="g-d-8">...</div>
+        <div class="g-d-8 g-d-l">...</div>
+    </div>
+</div>
+{% endfilter %}</code></pre></div>
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Predefined Layouts</h1>
+                    <p>There are several <a href="{% url grp_doc_mueller_grid_system_layouts %}">predefined layouts based on the Mueller Grid System</a>.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+

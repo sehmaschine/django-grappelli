@@ -1,0 +1,20 @@
+{% extends "reversion/revision_form.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <ul class="breadcrumbs">
+            <li><a href="{% url admin:index %}">{% trans "Home" %}</a></li>
+            <li><a href="{% url admin:app_list app_label %}">{{ app_label|capfirst|escape }}</a></li>
+            <li><a href="{{ changelist_url }}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+            <li><a href="{{ recoverlist_url }}">{% blocktrans with opts.verbose_name_plural as name %}Recover deleted {{ name }}{% endblocktrans %}</a></li>
+            <li>{{ title }}</li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block form_top %}
+    <div class="grp-rte">
+        <p>{% blocktrans %}Press the save button below to recover this version of the object.{% endblocktrans %}</p>
+    </div>
+{% endblock %}

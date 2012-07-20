@@ -1,0 +1,258 @@
+
+
+
+/*  FONT-SIZES & LINE-HEIGHTS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-font-size-xl: 20px;
+$grp-font-size-l: 13px;
+$grp-font-size-m: 12px;
+$grp-font-size: 12px;
+$grp-font-size-s: 11px;
+$grp-font-size-xs: 10px;
+
+$grp-line-height-xl: 24px;
+$grp-line-height-l: 18px;
+$grp-line-height-m: 16px;
+$grp-line-height: 16px;
+$grp-line-height-s: 14px;
+$grp-line-height-xs: 13px;
+
+.grp-font-size-xl {
+	font-size: $grp-font-size-xl;
+}
+.grp-font-size-l {
+	font-size: $grp-font-size-l;
+}
+.grp-font-size-m {
+	font-size: $grp-font-size-m;
+}
+.grp-font-size {
+	font-size: $grp-font-size;
+}
+.grp-font-size-s {
+	font-size: $grp-font-size-s;
+}
+.grp-font-size-xs {
+	font-size: $grp-font-size-xs;
+}
+
+.grp-line-height-xl {
+	line-height: $grp-line-height-xl;
+}
+.grp-line-height-l {
+	line-height: $grp-line-height-l;
+}
+.grp-line-height-m {
+	line-height: $grp-line-height-m;
+}
+.grp-line-height {
+	line-height: $grp-line-height;
+}
+.grp-line-height-s {
+	line-height: $grp-line-height-s;
+}
+.grp-line-height-xs {
+	line-height: $grp-line-height-xs;
+}
+
+
+
+/*  LINKS
+------------------------------------------------------------------------------------------------------ */
+
+a {
+	text-decoration: none;
+	color: $grp-link-color;
+	&:hover {
+		color: $grp-link-color-hover;
+	}
+	&.grp-back-link {
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		@include icons-sprite(back-link, $offset-y: -3px);
+		&:hover {
+			@include icons-sprite(back-link_hover, $offset-y: -3px);
+		}
+		&.grp-icon-text {
+			padding-left: 24px;
+			width: auto;
+		}
+	}
+	&.grp-link-external {
+		padding-left: 18px;
+		color: $grp-link-color-quiet;
+		@include icons-small-sprite(link-external);
+		&:hover {
+			color: $grp-link-color-quiet-hover;
+		}
+	}
+	&.grp-link-internal {
+		padding-left: 18px;
+		@include icons-small-sprite(link-internal);
+	}
+}
+
+
+
+/*  BASIC TYPOGRAPHY
+------------------------------------------------------------------------------------------------------ */
+
+h1, .h1 {
+	@include grp-margin($grp-margin-size-l 0 $grp-margin-size);
+	@extend .grp-font-size-xl;
+	@extend .grp-line-height-xl;
+	font-weight: bold;
+}
+h2 {
+	@extend .grp-font-size-l;
+	@extend .grp-line-height-l;
+	font-weight: bold;
+}
+h3 {
+	@extend .grp-font-size-m;
+	@extend .grp-line-height-m;
+	font-weight: bold;
+}
+h4 {
+	@extend .grp-font-size;
+	@extend .grp-line-height;
+	font-weight: bold;
+}
+h1, h2, h3, h4 {
+	span {
+		display: inline-block;
+		margin-left: 10px;
+		font-weight: normal;
+	}
+}
+
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
+}
+
+
+
+/*  FLOATS
+------------------------------------------------------------------------------------------------------ */
+
+.grp-float-left {
+	float: left !important;
+}
+.grp-float-right {
+	float: right !important;
+}
+.grp-transparent {
+	border: 0 !important;
+	background-color: transparent !important;
+}
+
+
+
+/*  RTE TYPOGRAPHY (Rich Text Edited)
+------------------------------------------------------------------------------------------------------ */
+
+$grp-doc-color: #d94800;
+
+body.grp-doc {
+	article#grp-content {
+		section.grp-doc-section {
+			margin-top: 40px;
+			border-top: 5px solid $grp-doc-color;
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+	span.anchor-helper {
+		position: relative;
+		top: -80px;
+	}
+	.grp-doc-code-source {
+		padding-top: 15px;
+		border-top: 1px dashed #c30;
+	}
+	
+	.grp-doc-description {
+		margin-bottom: 20px;
+		h1 {
+			margin-top: 30px;
+			padding-top: 40px;
+			border-top: 3px solid #c30;
+		}
+		h2 {
+			font-size: 16px;
+			line-height: 16px;
+			margin: 40px 0 10px;
+		}
+		h3 {
+			font-size: 16px;
+			line-height: 24px;
+			margin: 20px 0 10px;
+		}
+		p, ul, ol {
+			margin: 10px 0;
+			font-size: 14px;
+			line-height: 24px;
+		}
+		ul {
+			list-style-type: disc;
+			li {
+				margin-left: 20px;
+			}
+		}
+		small {
+			font-size: 11px;
+		}
+	}
+	.grp-doc-class, 
+	.grp-doc-id, 
+	.grp-doc-dom,
+	.grp-doc-file,
+	.grp-doc-django {
+		display: inline-block;
+		margin: -2px 0;
+		padding: 0 5px;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 18px;
+		border: 1px solid #d9d9c3;
+		@include border-radius(2px);
+		background: #f2f2e6;
+	}
+	.grp-doc-dom {
+		span {
+			&:before {
+				content: "<";
+			}
+			&:after {
+				content: ">";
+			}
+		}
+	}
+	code {
+		position: relative;
+		display: inline-block;
+		margin: 0 5px;
+		padding: 0 10px 20px;
+		font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+		font-size: 11px;
+		border: 1px solid #d9d9c3;
+		background: #f2f2e6;
+		@include grp-border-radius($grp-border-radius);
+		@include box-sizing(border-box);
+	}
+	pre {
+		margin: 10px 0;
+		padding: 0;
+		code {
+			display: block;
+			margin: 0;
+			padding: 0 20px 15px;
+		}
+	}
+}

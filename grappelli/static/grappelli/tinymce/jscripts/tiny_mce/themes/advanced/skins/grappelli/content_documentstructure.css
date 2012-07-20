@@ -11,6 +11,7 @@ body#tinymce.fullscreen {
 
 /* -- Typographic Elements ---------- */
 
+body#tinymce h1, 
 body#tinymce h2, 
 body#tinymce h3, 
 body#tinymce h4, 
@@ -34,6 +35,7 @@ body#tinymce p.mce-grid-container {
 body#tinymce table.mceItemTable td {
     border: 1px dashed #bbb !important;
 }
+body#tinymce div h1, 
 body#tinymce div h2, 
 body#tinymce div h3, 
 body#tinymce div h4, 
@@ -43,6 +45,7 @@ body#tinymce div pre {
     padding-left: 0;
 }
 
+body#tinymce h1:before, 
 body#tinymce h2:before, 
 body#tinymce h3:before, 
 body#tinymce h4:before, 

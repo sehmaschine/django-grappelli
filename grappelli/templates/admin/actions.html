@@ -1,14 +1,14 @@
 {% load i18n %}
-<div class="changelist-actions">
+<div class="grp-changelist-actions">
     {% for field in action_form %}{{ field }}{% endfor %}
     {% if actions_selection_counter %}
         <script type="text/javascript">var _actions_icnt="{{ cl.result_list|length|default:"0" }}";</script>
-        <ul>
-            <li class="action-counter"><span class="action-counter">{{ selection_note }}</span></li>
+        <ul class="grp-horizontal-list grp-float-left">
+            <li class="grp-action-counter"><span class="grp-button grp-button-state-inactive grp-action-counter">{{ selection_note }}</span></li>
             {% if cl.result_count != cl.result_list|length %}
-                <li class="all"><span class="all">{{ selection_note_all }}</span></li>
-                <li class="question"><a href="javascript:;" title="{% trans "Click here to select the objects across all pages" %}">{% blocktrans with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktrans %}</a></li>
-                <li class="clear-selection"><a href="javascript://" class="clear">{% trans "Clear selection" %}</a></li>
+                <li class="grp-all"><span class="all grp-button grp-button-state-inactive">{{ selection_note_all }}</span></li>
+                <li class="grp-question"><a href="javascript://" class="grp-button" title="{% trans "Click here to select the objects across all pages" %}">{% blocktrans with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktrans %}</a></li>
+                <li class="grp-clear-selection"><a href="javascript://" class="grp-button grp-clear">{% trans "Clear selection" %}</a></li>
             {% endif %}
         </ul>
     {% endif %}

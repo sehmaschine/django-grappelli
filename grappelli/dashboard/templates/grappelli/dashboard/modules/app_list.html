@@ -3,24 +3,24 @@
 {% block module_content %}
     {% spaceless %}
     {% for child in module.children %}
-        <div class="module" id="module-{{child.title|lower}}">
+        <div class="grp-module" id="module-{{child.title|lower}}">
             <h{% if subindex %}4{% else %}3{% endif %}><a href="{{ child.url }}">{{ child.title }}</a></h{% if subindex %}4{% else %}3{% endif %}>
             {% for model in child.models %}
-                <div class="row">
+                <div class="grp-row">
                     {% if model.change_url %}
-                        <a href="{{ model.change_url }}">{{ model.title }}</a>
+                        <a href="{{ model.change_url }}"><strong>{{ model.title }}</strong></a>
                     {% else %}
-                        {{ model.title }}
+                        <strong>{{ model.title }}</strong>
                     {% endif %}
                     {% if model.add_url or model.change_url %}
-                        <ul class="actions">
+                        <ul class="grp-actions">
                             {% if model.add_url %}
-                                <li class="add-link">
+                                <li class="grp-add-link">
                                     <a href="{{ model.add_url }}">{% trans "Add" %}</a>
                                 </li>
                             {% endif %}
                             {% if model.change_url %}
-                                <li class="change-link">
+                                <li class="grp-change-link">
                                     <a href="{{ model.change_url }}">{% trans "Change" %}</a>
                                 </li>
                             {% endif %}

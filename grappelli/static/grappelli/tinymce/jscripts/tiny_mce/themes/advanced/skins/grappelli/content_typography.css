@@ -1,5 +1,6 @@
 /* -- Typographic Elements ---------- */
 
+body#tinymce h1, 
 body#tinymce h2, 
 body#tinymce h3, 
 body#tinymce h4, 
@@ -8,6 +9,7 @@ body#tinymce li,
 body#tinymce pre {
 	color: #666 !important;
 }
+body#tinymce h1, 
 body#tinymce h2, 
 body#tinymce h3, 
 body#tinymce h4, 
@@ -19,6 +21,9 @@ body#tinymce pre,
 body#tinymce blockquote, 
 body#tinymce div {
     margin: 0 0 10px; padding: 0;
+}
+body#tinymce h1 {
+    font-size: 19px; line-height: 23px;
 }
 body#tinymce h2 {
     font-size: 17px; line-height: 21px;

@@ -1,0 +1,21 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _invariant-half.scss
+//
+// Split a column into 2 cols
+//
+// **************************************************
+
+.g-all-half {
+
+    .l-1c .c-1 & {
+        @extend .g-d-12;
+        @extend .g-tp-6;
+        @extend .g-hl-3;
+        @extend .g-h-3;
+    }
+
+}

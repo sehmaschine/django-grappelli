@@ -1,0 +1,46 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _media-tablet-portrait.scss
+//
+// >768px, <980px
+//
+// **************************************************
+
+@media screen and (min-width: 768px) and (max-width: 980px) {
+
+    $gc: 12; // grid columns
+    $gw: 40px; // grid width
+    $gm: 20px; // grid margin
+    
+    .g-tp-c {
+        @extend .g-base-c;
+        width: $gw*$gc+$gm*($gc - 1); // 700px
+    }
+    
+    @include grids(tp,
+        0 1 2 3 4 5 6 7 8 9 10 11 12, // only add the columns you really need
+        $gc,
+        $gw,
+        $gm,
+        0 1 2 3 4 5 6 7 8 9 10 11 12); // only add the pad-units you really need to push/pull/append/prepend
+
+    // visibility
+    .d-show, .dl-show, .h-show, .hp-show, .hl-show, .tl-show {
+        display: none !important;
+    }
+    .tp-hide {
+        display: none !important;
+    }
+    .tp-show {
+        display: block !important;
+    }
+    #{elements-of-type(inline)} {
+        &.tp-show {
+            display: inline !important;
+        }
+    }
+
+}

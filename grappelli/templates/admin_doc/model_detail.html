@@ -1,5 +1,4 @@
 {% extends "admin/base_site.html" %}
-{% load adminmedia %}
 {% load i18n %}
 {% block javascripts %}
     {{ block.super }}
@@ -11,41 +10,46 @@
                     $('.rte .module').css("width", childWidth);
                 });
             });
-        })(django.jQuery);
+        })(grp.jQuery);
     </script>
 {% endblock %}
-{% block bodyclass %}documentation{% endblock %}
-{% block content-class %}content-grid{% endblock %}
-{% block breadcrumbs %}<div id="breadcrumbs"><a href="../../../">Home</a> &rsaquo; <a href="../../">Documentation</a> &rsaquo; <a href="../">Models</a> &rsaquo; {{ name }}</div>{% endblock %}
+{% block bodyclass %}grp-docutils{% endblock %}
+{% block content-class %}{% endblock %}
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="../../../">{% trans "Home" %}</a></li>
+        <li><a href="../../">Documentation</a></li>
+        <li><a href="../">Models</a></li>
+        <li>{{ name }}</li>
+    </ul>
+{% endblock %}
 
 {% block title %}Model: {{ name }}{% endblock %}
 
 {% block content %}
     <h1>{{ summary }}</h1>
-    <div class="container-grid rte">
+    <div class="g-d-c grp-rte">
         {% if description %}
-            <p>{% filter linebreaksbr %}{% trans description %}{% endfilter %}</p>
+            <p>{% trans description %}</p>
         {% endif %}
-        <div class="module model">
-            <table class="model" style="width: auto">
-                <thead>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for field in fields|dictsort:"name" %}
                     <tr>
-                        <th>Field</th>
-                        <th>Type</th>
-                        <th>Description</th>
+                        <td class="grp-nowrap"><strong>{{ field.name }}</strong></td>
+                        <td class="grp-nowrap">{{ field.data_type }}</td>
+                        <td>{{ field.verbose }}{% if field.help_text %} - {{ field.help_text|safe }}{% endif %}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for field in fields|dictsort:"name" %}
-                        <tr>
-                            <td class="nowrap focus">{{ field.name }}</td>
-                            <td class="nowrap">{{ field.data_type }}</td>
-                            <td>{{ field.verbose }}{% if field.help_text %} - {{ field.help_text|safe }}{% endif %}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <a href="../" class="back">&lsaquo; Back to Models Documentation</a>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><a href="../" class="grp-back-link grp-icon-text">Back to Models Documentation</a></p>
     </div>
 {% endblock %}

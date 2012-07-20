@@ -1,11 +1,17 @@
 {% extends "grappelli/dashboard/module.html" %}
 {% load i18n %}
 {% block module_content %}
-    <div class="module">
+    <div class="grp-module">
         {% if module.children %}
-            <ul>
+            <ul class="grp-listing-small">
                 {% for entry in module.children %}
-                    <li class="{% if entry.is_addition %}add-link{% endif %}{% if entry.is_change %}change-link{% endif %}{% if entry.is_deletion %}delete-link{% endif %}">{% if not entry.is_deletion %}<a href="{{ entry.get_admin_url }}">{% endif %}{{ entry.object_repr }}{% if not entry.is_deletion %}</a>{% endif %}<br /><span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span></li>
+                    <li class="grp-row {% if entry.is_addition %}grp-add-link{% endif %}{% if entry.is_change %}grp-change-link{% endif %}{% if entry.is_deletion %}grp-delete-link{% endif %}">
+                        {% if entry.is_deletion %}
+                            <span>{{ entry.object_repr }}</span>
+                        {% else %}
+                            <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                        {% endif %}
+                        <span class="grp-font-color-quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span></li>
                 {% endfor %}
             </ul>
         {% else %}

@@ -5,28 +5,37 @@
 
 .. _releasenotes:
 
-Grappelli 2.3.x Release Notes
+Grappelli 2.4.x Release Notes
 =============================
 
-**Grappelli 2.3.x is compatible with Django 1.3**. We tried to simplify the codebase, cleaned up the javascripts and added this (sphinx-based) documentation.
+**Grappelli 2.4.x is compatible with Django 1.4**.
 
 Overview
 --------
 
-* Javascript cleanup: we changed some js-locations and tried to use a consistent and comprehensible naming-scheme. Grappelli javascripts have been reworked as jQuery-plugins/widgets. See :ref:`Javascripts <javascripts>`.
-* Documentation: Added sphinx-based documentation.
-* Simplified the Installation.
+* The main change (compared with Grappelli 2.3.x) is that all CSS is based on Compass.
 
-What's new in Grappelli 2.3.x
+What's new in Grappelli 2.4.x
 -----------------------------
 
-* Drag/drop for Inlines, see :ref:`Inline Sortables <customizationinlinessortables>`.
-* Grappelli Dashboard, see :ref:`Dashboard <dashboard_setup>`.
+* Compass-based CSS.
+* Grappelli namespace (grp-) for css-classes.
+* Grappelli namespace (grp.jQuery) for jQuery.
+* Added toggle-all with change-form
+* DOM-Documentation
+* ``sortable_excludes``
+* 2 different Changelists (one with sidebar filters)
+* Added a "Best Practice" section to the docs.
+* Minified Grappelli Javascripts.
+* Added support for django-reversion.
 
-Deprecated in 2.3.x
--------------------
+Update from Grappelli 2.3.x
+---------------------------
 
-* Actions for CSV-Export.
-* Support for Admin-Tools.
+* Update Django to 1.4 and check https://docs.djangoproject.com/en/dev/releases/1.4/
+* Update Grappelli to 2.4.x
+* Change your admin-classes (collapse > grp-collapse, open > grp-open, closed > grp-closed) ... sorry!
+* Check/Update your custom templates, custom css and custom javascripts (if any)
 
-A special thanks goes to David Jean-Louis, who's responsible for `Django Admin Tools <http://packages.python.org/django-admin-tools/>`_. We also thank Klemens Mantzos and Maxime Haineault for their help with js-refactoring.
+A special thanks goes Maxime Haineault for his help and feedback on the 2.4-branch.
+Thanks to Kyle MacFarlane for his help with the new inline selectors (when reordering inlines) and Curtis Maloney for his feedback on several issues.

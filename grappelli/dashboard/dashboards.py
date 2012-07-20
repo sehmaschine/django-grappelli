@@ -1,16 +1,21 @@
+# coding: utf-8
+
 """
-Module where admin tools dashboard classes are defined.
+Module where grappelli dashboard classes are defined.
 """
 
+# DJANGO IMPORTS
 from django.template.defaultfilters import slugify
 from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
+from django import forms
 
+# GRAPPELLI IMPORTS
 from grappelli.dashboard import modules
 from grappelli.dashboard.utils import get_admin_site_name
-from django import forms
+
 
 class Dashboard(object):
     """
@@ -115,7 +120,7 @@ class Dashboard(object):
         """
         Internal method used to distinguish different dashboards in js code.
         """
-        return 'dashboard'
+        return 'grp-dashboard'
 
 
 class DefaultIndexDashboard(Dashboard):
@@ -135,9 +140,6 @@ class DefaultIndexDashboard(Dashboard):
         # append a link list module for "quick links"
         self.children.append(modules.LinkList(
             _('Quick links'),
-            layout='inline',
-            draggable=False,
-            deletable=False,
             collapsible=False,
             children=[
                 [_('Return to site'), '/'],
