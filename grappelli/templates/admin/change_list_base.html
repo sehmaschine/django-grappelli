@@ -1,0 +1,216 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load url from future %}
+{% load adminmedia admin_list i18n grp_tags %}
+
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+    {{ media.css }}
+{% endblock %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    {% if cl.formset or action_form %}
+        {% url 'admin:jsi18n' as jsi18nurl %}
+        <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"></script>
+    {% endif %}
+    {% if action_form %}
+        <script type="text/javascript" charset="utf-8">
+            (function($) {
+                $(document).ready(function() {
+                    $("tr input.action-select").actions();
+                });
+            })(django.jQuery);
+        </script>
+    {% endif %}
+    {% if cl.formset %}
+        <script type="text/javascript" charset="utf-8">
+            (function($) {
+                $(document).ready(function() {
+                    grappelli.initDateAndTimePicker();
+                    var prefix = "form";
+                    var related_lookup_fields_fk = {% get_related_lookup_fields_fk cl.model_admin %};
+                    var related_lookup_fields_m2m = {% get_related_lookup_fields_m2m cl.model_admin %};
+                    var related_lookup_fields_generic = {% get_related_lookup_fields_generic cl.model_admin %};
+                    var autocomplete_fields_fk = {% get_autocomplete_lookup_fields_fk cl.model_admin %};
+                    var autocomplete_fields_m2m = {% get_autocomplete_lookup_fields_m2m cl.model_admin %};
+                    var autocomplete_fields_generic = {% get_autocomplete_lookup_fields_generic cl.model_admin %};
+                    $.each(related_lookup_fields_fk, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
+                    });
+                    $.each(related_lookup_fields_m2m, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
+                    });
+                    $.each(related_lookup_fields_generic, function() {
+                        var content_type = this[0],
+                            object_id = this[1];
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                        .each(function() {
+                            var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
+                                obj_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + object_id;
+                            $(this).grp_related_generic({content_type:ct_id, object_id:obj_id, lookup_url:"{% url 'grp_related_lookup' %}"});
+                        });
+                    });
+                    $.each(autocomplete_fields_fk, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .each(function() {
+                            $(this).grp_autocomplete_fk({
+                                lookup_url:"{% url 'grp_related_lookup' %}",
+                                autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
+                            });
+                        });
+                    });
+                    $.each(autocomplete_fields_m2m, function() {
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .each(function() {
+                            $(this).grp_autocomplete_m2m({
+                                lookup_url:"{% url 'grp_m2m_lookup' %}",
+                                autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
+                            });
+                        });
+                    });
+                    $.each(autocomplete_fields_generic, function() {
+                        var content_type = this[0],
+                            object_id = this[1];
+                        $("div.changelist-results")
+                        .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                        .each(function() {
+                            var i = $(this).attr("id").match(/-\d+-/);
+                            if (i) {
+                                var ct_id = "#id_" + prefix + i[0] + content_type,
+                                    obj_id = "#id_" + prefix + i[0] + object_id;
+                                $(this).grp_autocomplete_generic({
+                                    content_type:ct_id,
+                                    object_id:obj_id,
+                                    lookup_url:"{% url 'grp_related_lookup' %}",
+                                    autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
+                                });
+                            }
+                        });
+                    });
+                });
+            })(django.jQuery);
+        </script>
+    {% endif %}
+    <script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                grappelli.initSearchbar();
+                grappelli.initFilter();
+                // HACK: add no-wrap to table-elements.
+                // should be solved with http://code.djangoproject.com/changeset/15658
+                // grappelli.initTableElements(); 
+            });
+        })(django.jQuery);
+    </script>
+    {{ media.js }}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS-- >
+{% block bodyclass %}change-list{% endblock %}
+{% block content-class %}content-flexible{% endblock %}
+
+<!-- BREADCRUMBS -- >
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <div id="breadcrumbs">
+            <a href="../../">{% trans "Home" %}</a> &rsaquo;
+            <a href="../">{% trans app_label|capfirst|escape %}</a> &rsaquo;
+            {{ cl.opts.verbose_name_plural|capfirst }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT-TITLE -->
+{% block content_title %}
+    <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
+{% endblock %}
+
+<!-- OBJECT-TOOLS -->
+{% block object-tools %}
+    {% if has_add_permission %}
+        <ul class="tools">
+            {% block object-tools-items %}
+                <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="add-handler focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
+            {% endblock %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
+        <div class="module changelist-filters">
+            <!-- PAGINATION TOP -->
+            {% pagination cl %}
+            {% if cl.has_filters or cl.search_fields %}
+                <!-- FILTERS -->
+                {% if cl.has_filters %}
+                    <div id="filters" class="module filter span-6">
+                        <div class="pulldown-container">
+                            <a href="javascript://" class="button toggle-filters">{% trans 'Filter' %}</a>
+                            <div class="filter-pulldown">
+                                {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                <!-- SEARCH -->
+                {% if cl.search_fields %}
+                    <div id="search" class="module search span-6">
+                        {% block search %}{% search_form cl %}{% endblock %}
+                    </div>
+                {% endif %}
+            {% endif %}
+            <br clear="all" />
+        </div>
+        <!-- DATE HIERARCHY -->
+        {% if cl.date_hierarchy %}
+            {% date_hierarchy cl %}
+        {% endif %}
+    {% endif %}
+    <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+        <div id="changelist" class="container-full{% if cl.list_editable %} editable{% endif %}" style="">
+            <!-- POPUP -->
+            {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+            <!-- ERRORS -->
+            {% if cl.formset.errors %}
+                <p class="errornote">
+                    {% blocktrans count cl.formset.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                </p>
+                {{ cl.formset.non_form_errors }}
+            {% endif %}
+            <!-- MANAGEMENT FORM -->
+            {% if cl.formset %}
+                {{ cl.formset.management_form }}
+            {% endif %}
+            <!-- CHANGELIST-RESULTS -->
+            {% block result_list %}
+                {% result_list cl %}
+            {% endblock %}
+            <!-- PAGINATION BOTTOM -->
+            {% pagination cl %}
+        </div><br clear="all" />
+        <!-- SUBMIT ROW -->
+        {% if cl.formset or action_form %}
+            <div id="submit" class="module footer">
+                {% if action_form %}{% admin_actions %}{% endif %}
+                {% if cl.formset %}
+                <ul class="submit-row">
+                    <li class="submit-button-container"><input type="submit" class="default" name="_save" value="Save"/></li>
+                </ul>
+                {% endif %}
+            </div>
+        {% endif %}
+    </form>
+{% endblock %}
