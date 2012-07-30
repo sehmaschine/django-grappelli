@@ -118,7 +118,7 @@
 .grp-module {
 	@include grp-module;
 }
-.grp-change-form .grp-module {
+.grp-change-form .grp-module:not(.grp-submit-row) {
 	min-width: 960px;
 }
 .grp-empty-form {

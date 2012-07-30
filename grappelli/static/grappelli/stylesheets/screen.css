@@ -2516,7 +2516,7 @@ textarea,
   border-top-right-radius: 0;
 }
 
-.grp-change-form .grp-module {
+.grp-change-form .grp-module:not(.grp-submit-row) {
   min-width: 960px;
 }
 
@@ -5947,6 +5947,7 @@ header#grp-header #grp-user-tools {
   -khtml-border-radius: 0;
   border-radius: 0;
   background: transparent;
+  min-width: auto;
 }
 .grp-submit-row > ul {
   margin-top: 10px;
@@ -6020,6 +6021,7 @@ header#grp-header #grp-user-tools {
   margin-top: 0;
 }
 .grp-submit-row.grp-fixed-footer > ul > li {
+  margin-bottom: 5px;
   padding: 5px !important;
   background: #444;
 }
@@ -6036,7 +6038,7 @@ header#grp-header #grp-user-tools {
   bottom: 0;
   left: 0;
   margin: 0;
-  padding: 10px 20px;
+  padding: 10px 20px 5px;
   width: 100%;
   border: 0;
   -moz-box-sizing: border-box;

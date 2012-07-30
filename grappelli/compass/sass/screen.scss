@@ -350,7 +350,7 @@ header#grp-header {
 
 @mixin grp-submit-row {
 	padding: 0;
-    border: 0;
+	border: 0;
     @include border-radius(0);
     background: transparent;
 	> ul {
@@ -392,10 +392,12 @@ header#grp-header {
 }
 .grp-submit-row {
 	@include grp-submit-row;
-	&.grp-fixed-footer {
+	min-width: auto;
+    &.grp-fixed-footer {
 		> ul {
 			margin-top: 0;
 			> li {
+				margin-bottom: 5px;
 				padding: 5px !important;
 				background: #444;
 		        .grp-button {
@@ -412,7 +414,7 @@ header#grp-header {
 	bottom: 0;
 	left: 0;
 	margin: 0;
-	padding: 10px 20px;
+	padding: 10px 20px 5px;
 	width: 100%;
 	border: 0;
 	@include box-sizing(border-box);
