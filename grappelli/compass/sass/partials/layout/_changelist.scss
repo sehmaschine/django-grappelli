@@ -127,6 +127,7 @@ form#grp-changelist-search {
 	    cursor: pointer;
 	    @include icons-sprite(pulldown-handler, $offset-x: 100%);
 	    @include grp-button-states(grey, blue);
+	    -webkit-background-size: auto !important;
 	    color: $grp-link-color;
 	    &:hover {
 	    	color: #444;
@@ -149,7 +150,7 @@ form#grp-changelist-search {
 		}
 	}
 	.grp-pulldown-content {
-		padding: 4px 8px;
+		padding: 5px 10px;
 		width: 100%;
 		@include border-bottom-radius($grp-border-radius);
 		@include grp-button-states(blue, blue);
@@ -166,6 +167,7 @@ form#grp-changelist-search {
 			label {
 				@include grp-label();
 				display: block;
+				margin: 0 0 2px;
 				color: $grp-font-color-quiet;
 				font-weight: bold;
 			}

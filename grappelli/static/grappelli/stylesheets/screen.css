@@ -4542,6 +4542,7 @@ form#grp-changelist-search {
   border-radius: 3px;
   cursor: pointer;
   background-position: 100% -645px;
+  -webkit-background-size: auto !important;
   color: #309bbf;
 }
 .grp-pulldown-container .grp-pulldown-handler:hover, .grp-pulldown-container .grp-pulldown-handler.pulldown-handler_hover, .grp-pulldown-container .grp-pulldown-handler.pulldown-handler-hover {
@@ -4580,7 +4581,7 @@ form#grp-changelist-search {
   background-position: 100% -733px;
 }
 .grp-pulldown-container .grp-pulldown-content {
-  padding: 4px 8px;
+  padding: 5px 10px;
   width: 100%;
   -moz-border-radius-bottomleft: 3px;
   -webkit-border-bottom-left-radius: 3px;
@@ -4614,6 +4615,7 @@ form#grp-changelist-search {
   line-height: 13px;
   color: #444444;
   display: block;
+  margin: 0 0 2px;
   color: #888888;
   font-weight: bold;
 }
