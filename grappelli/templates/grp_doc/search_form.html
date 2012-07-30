@@ -3,6 +3,7 @@
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; Search-Form{% endblock %}
+{% load url from future %}
 
 {% block extrahead %}
 	<script type="text/javascript" charset="utf-8">
@@ -76,7 +77,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Full Code of a Search-Form</h1>
-		            <p>Take a look at Grappellis search_form.html to get the full code of a search-form (e.g. like it is used in a <a href="{% url grp_doc_change_list %}">change-list</a>).</p>
+		            <p>Take a look at Grappellis search_form.html to get the full code of a search-form (e.g. like it is used in a <a href="{% url 'grp_doc_change_list' %}">change-list</a>).</p>
 		        </div>
 		    </div>
 	    </section>

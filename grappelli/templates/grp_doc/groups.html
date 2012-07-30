@@ -3,6 +3,7 @@
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; Groups{% endblock %}
+{% load url from future %}
 
 {% block extrahead %}
 	<script type="text/javascript" charset="utf-8">
@@ -40,7 +41,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Nesting Modules in Groups</h1>
-		            <p>A <span class="grp-doc-class">.grp-group</span> encloses <a href="{% url grp_doc_modules %}">modules</a> which belong together or should appear in a more associated way.</p>
+		            <p>A <span class="grp-doc-class">.grp-group</span> encloses <a href="{% url 'grp_doc_modules' %}">modules</a> which belong together or should appear in a more associated way.</p>
 		            <p>Usually a group starts with a heading but you might as well use it without one. <br />Just be aware of the fact that groups without headings do not appear in document outlines.</p>
 		            <p>There are two different types of groups: <strong>Stacked Groups</strong> and <strong>Tabular Groups</strong>.</p>
 		        </div>
@@ -86,7 +87,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Stacked Groups</h1>
-		            <p>A <span class="grp-doc-class">.grp-group</span> with the additional class <span class="grp-doc-class">.grp-stacked</span> carries <a href="{% url grp_doc_modules %}">modules</a> with the default layout (whereas modules in a tabular group appear in a table-like layout).</p>
+		            <p>A <span class="grp-doc-class">.grp-group</span> with the additional class <span class="grp-doc-class">.grp-stacked</span> carries <a href="{% url 'grp_doc_modules' %}">modules</a> with the default layout (whereas modules in a tabular group appear in a table-like layout).</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">
@@ -181,7 +182,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Tabular Groups</h1>
-		            <p>A <span class="grp-doc-class">.grp-group</span> with the additional class <span class="grp-doc-class">.grp-tabular</span> carries <a href="{% url grp_doc_modules %}">modules</a> with a table-like layout (whereas modules in a stacked group appear in the default way).</p>
+		            <p>A <span class="grp-doc-class">.grp-group</span> with the additional class <span class="grp-doc-class">.grp-tabular</span> carries <a href="{% url 'grp_doc_modules' %}">modules</a> with a table-like layout (whereas modules in a stacked group appear in the default way).</p>
 		            <p>To accomplish that table-like structure we have to do a specific nesting the following elements:</p>
 		            <ul>
 		            	<li>The <span class="grp-doc-dom"><span>table</span></span> is represented by a <span class="grp-doc-class">div.grp-module.grp-table</span></li>
@@ -251,7 +252,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		        	<h3>Tools for Modules in a Tabular Group</h3>
-		            <p>In case you need <a href="{% url grp_doc_tools %}">tools</a> for the <span class="grp-doc-class">div.grp-module.grp-tbody</span> you have to put them in a <span class="grp-doc-class">div.grp-td</span> with the additional class <span class="grp-doc-class">.grp-tools-container</span>.</p>
+		            <p>In case you need <a href="{% url 'grp_doc_tools' %}">tools</a> for the <span class="grp-doc-class">div.grp-module.grp-tbody</span> you have to put them in a <span class="grp-doc-class">div.grp-td</span> with the additional class <span class="grp-doc-class">.grp-tools-container</span>.</p>
 		            <p>And of course you have to add an empty <span class="grp-doc-class">div.grp-th</span> to the <span class="grp-doc-class">div.grp-module.grp-thead</span> to preserve the table-like structure.</p>
 		        </div>
 		    </div>
