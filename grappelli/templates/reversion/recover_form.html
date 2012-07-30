@@ -1,11 +1,12 @@
 {% extends "reversion/revision_form.html" %}
 {% load i18n %}
+{% load url from future %}
 
 {% block breadcrumbs %}
     {% if not is_popup %}
         <ul class="breadcrumbs">
-            <li><a href="{% url admin:index %}">{% trans "Home" %}</a></li>
-            <li><a href="{% url admin:app_list app_label %}">{{ app_label|capfirst|escape }}</a></li>
+            <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+            <li><a href="{% url 'admin:app_list' app_label %}">{{ app_label|capfirst|escape }}</a></li>
             <li><a href="{{ changelist_url }}">{{ opts.verbose_name_plural|capfirst }}</a></li>
             <li><a href="{{ recoverlist_url }}">{% blocktrans with opts.verbose_name_plural as name %}Recover deleted {{ name }}{% endblocktrans %}</a></li>
             <li>{{ title }}</li>

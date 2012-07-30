@@ -3,6 +3,7 @@
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; Basic Page Structure{% endblock %}
+{% load url from future %}
 
 {% block extrahead %}
 	<script type="text/javascript" charset="utf-8">
@@ -235,7 +236,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Submit-Row</h1>
-		            <p>For detailled instructions on how to construct submit-rows <a href="{% url grp_doc_submit_rows %}">click here</a>.</p>
+		            <p>For detailled instructions on how to construct submit-rows <a href="{% url 'grp_doc_submit_rows' %}">click here</a>.</p>
 		        </div>
 		    </div>
 		</section>

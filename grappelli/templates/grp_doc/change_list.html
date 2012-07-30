@@ -3,6 +3,7 @@
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; Change List{% endblock %}
+{% load url from future %}
 
 {% block extrahead %}
 	<script type="text/javascript" charset="utf-8">
@@ -38,7 +39,7 @@
     <div class="g-d-c">
     	<div class="grp-doc-description">
             <p>A change-list lists objects of a model. Its basic structure and most important components are explained below.<br />At the end of the page you'll find a whole change-list template put together.</p>
-            <p>Make sure to read about <a href="{% url grp_doc_basic_page_structure %}">how a custom template is built</a> first to gain basic understanding.</p>
+            <p>Make sure to read about <a href="{% url 'grp_doc_basic_page_structure' %}">how a custom template is built</a> first to gain basic understanding.</p>
         </div>
         <section>
             <div class="g-d-24">
@@ -106,7 +107,7 @@
             <div class="g-d-24">
                 <div class="grp-doc-description">
                     <h1>Breadcrumbs</h1>
-                    <p>A detailled explanation on how breadcrumbs are built can be found <a href="{% url grp_doc_context_navigation %}">here</a>.</p>
+                    <p>A detailled explanation on how breadcrumbs are built can be found <a href="{% url 'grp_doc_context_navigation' %}">here</a>.</p>
                 </div>
             </div>
             <div class="g-d-24">
@@ -141,7 +142,7 @@
             <div class="g-d-24">
                 <div class="grp-doc-description">
                     <h1>Object Tools</h1>
-                    <p>A detailled explanation on how object-tools are built can be found <a href="{% url grp_doc_object_tools %}">here</a>.</p>
+                    <p>A detailled explanation on how object-tools are built can be found <a href="{% url 'grp_doc_object_tools' %}">here</a>.</p>
                 </div>
             </div>
             <div class="g-d-24">
@@ -166,7 +167,7 @@
             <div class="g-d-24">
                 <div class="grp-doc-description">
                     <h1>Content</h1>
-                    <p>Within the content block there are some components which are explained separately.<br />Use the following links: <a href="{% url grp_doc_pagination %}">Pagination</a>, <a href="{% url grp_doc_search_form %}">Search-Form</a>, <a href="{% url grp_doc_filter %}">Filter</a>, <a href="{% url grp_doc_date_hierarchy %}">Date-Hierarchy</a>, <a href="{% url grp_doc_tables %}">Tables (Result-List)</a> and <a href="{% url grp_doc_submit_rows %}">Submit-Rows</a>.</p>
+                    <p>Within the content block there are some components which are explained separately.<br />Use the following links: <a href="{% url 'grp_doc_pagination %}">Pagination</a>, <a href="{% url 'grp_doc_search_form' %}">Search-Form</a>, <a href="{% url 'grp_doc_filter' %}">Filter</a>, <a href="{% url 'grp_doc_date_hierarchy' %}">Date-Hierarchy</a>, <a href="{% url 'grp_doc_tables' %}">Tables (Result-List)</a> and <a href="{% url 'grp_doc_submit_rows' %}">Submit-Rows</a>.</p>
                 </div>
             </div>
             <div class="g-d-24">
