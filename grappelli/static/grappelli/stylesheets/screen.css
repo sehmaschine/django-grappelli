@@ -1131,24 +1131,7 @@ p.grp-help:first-child {
   font-size: 11px;
 }
 
-/*  Read Only ......................................... */
-p.grp-readonly {
-  position: relative;
-  display: inline-block;
-  margin: 4px 0 0 !important;
-  padding: 0 !important;
-  color: #666;
-  font-size: 12px;
-  font-weight: bold;
-}
-p.grp-readonly + p.grp-readonly {
-  margin-left: 20px;
-}
-
-.grp-tabular p.grp-readonly {
-  margin-top: 5px !important;
-}
-
+/*  Read Only (transferred to _forms.scss) ......................................... */
 /*  Images ......................................... */
 .grp-row img {
   font-size: 1px;
@@ -1372,6 +1355,51 @@ input[type="reset"], .grp-errors
 textarea, .grp-errors
 select {
   border-color: #bf3030;
+}
+
+input[readonly],
+input[disabled],
+textarea[readonly],
+select[disabled] {
+  border: 1px solid #cccccc !important;
+  border-style: dotted !important;
+  background: transparent !important;
+}
+input[readonly]:focus,
+input[disabled]:focus,
+textarea[readonly]:focus,
+select[disabled]:focus {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+
+p.grp-readonly {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 4px 5px 3px !important;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: bold;
+  color: #555555;
+  min-width: 118px;
+  max-width: 758px;
+  border: 1px dotted #ccc;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+p.grp-readonly + p.grp-readonly {
+  margin-left: 20px;
 }
 
 /*  Form Field Errors ................................................... */
@@ -4139,7 +4167,8 @@ table td > select, table th > input[type=text], table th > input[type=password],
     margin: -9px 0 -5px !important;
   }
 }
-table td > textarea, table th > textarea {
+table td > textarea,
+table td p.grp-readonly, table th > textarea, table th p.grp-readonly {
   position: relative;
   margin: -5px 0 -5px !important;
 }

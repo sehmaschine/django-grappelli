@@ -144,7 +144,8 @@ table {
                 margin: -9px 0 -5px !important;
             }
         }
-        > textarea {
+        > textarea, 
+        p.grp-readonly {
             position: relative;
             margin: -5px 0 -5px !important;
         }
