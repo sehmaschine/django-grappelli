@@ -1126,6 +1126,11 @@ p.grp-help:first-child {
   max-width: 278px;
 }
 
+.grp-row p.grp-help:first-child,
+.grp-td p.grp-help:first-child {
+  margin: -2px 0 8px;
+}
+
 /*  Description ......................................... */
 .grp-description {
   font-size: 11px;
@@ -1357,6 +1362,7 @@ select {
   border-color: #bf3030;
 }
 
+/*  Readonly/Disabled ................................................... */
 input[readonly],
 input[disabled],
 textarea[readonly],
