@@ -95,8 +95,8 @@
 {% block page-tools %}
     {% if not is_popup %}
         <ul>
-            <li><a href="javascript://" class="grp-tool" id="grp-open-all">&nbsp;</a></li>
-            <li><a href="javascript://" class="grp-tool" id="grp-close-all">&nbsp;</a></li>
+            <li><a href="javascript://" class="grp-tool" id="grp-open-all" title="{% trans 'Open All Items' %}">&nbsp;</a></li>
+            <li><a href="javascript://" class="grp-tool" id="grp-close-all" title="{% trans 'Close All Items' %}">&nbsp;</a></li>
         </ul>
     {% endif %}
 {% endblock %}
