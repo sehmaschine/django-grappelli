@@ -8,6 +8,19 @@
 Changelog
 =========
 
+2.4.1 (not yet released)
+------------------------
+
+* Fixed: Footer buttons in change_form.html do not flow correctly when screen width is reduced
+* Fixed: Breadcrumbs of delete_selected_confirmation
+* Fixed: Added titles for page-tools (open/close)
+* Fixed: Margins and capfirst for filter labels
+* Added: Compass experimental svg support (for IE9)
+* Removed double dots for labels with auth- and registration-templates
+* Reset actions select box with javascript
+* Fixed: Delete persmissions with inlines (stacked and tabular)
+* Improved sortables with django file uploads
+
 2.4.0 (July 20, 2012)
 ---------------------
 
