@@ -25,12 +25,14 @@
                     {% if inline_admin_formset.opts.sortable_field_name %}
                         <li><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
                     {% endif %}
-                    {% if inline_admin_formset.formset.can_delete %}
-                        {% if inline_admin_form.original %}
+                    {% if inline_admin_form.original %}
+                        {% if inline_admin_formset.formset.can_delete %}
                             <li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon grp-delete-handler" title="{% trans 'Delete Item' %}"></a></li>
                         {% else %}
-                            <li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon grp-remove-handler" title="{% trans 'Delete Item' %}"></a></li>
+                            <li><span class="grp-icon">&nbsp;</span></li>
                         {% endif %}
+                    {% else %}
+                        <li><a href="javascript://" class="grp-icon grp-remove-handler" title="{% trans 'Delete Item' %}"></a></li>
                     {% endif %}
                 </ul>
                 {% if inline_admin_form.form.non_field_errors %}
