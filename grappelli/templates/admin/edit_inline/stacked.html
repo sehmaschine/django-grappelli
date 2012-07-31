@@ -287,12 +287,14 @@
                 i = 0;
             $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-dynamic-form").each(function(){
                 var fields = $(this).find("fieldset :input[value][value!=''][type!=radio][type!=checkbox],input:checked,input[type=file]"),
-                    submit_values = false;
+                    submit_values = false,
+                    has_value;
                 $(fields).each(function() {
                     // position is being updated if
                     // a) the field has a value
                     // b) if the field is not exluded with sortable_excludes (e.g. with default values)
-                    if ($(this).val() && $(this).attr("name") && $.inArray($(this).attr("name").split("-").pop(), sortable_excludes) == -1) {
+                    has_value = $(this).val() || ($(this).attr('type') == 'file' && $(this).siblings('a').length);
+                    if (has_value && $(this).attr("name") && $.inArray($(this).attr("name").split("-").pop(), sortable_excludes) == -1) {
                         submit_values = true;
                     };
                 });
