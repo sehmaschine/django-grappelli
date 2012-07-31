@@ -64,7 +64,8 @@
 	padding-right: 5px;
 	height: 24px;
 	li {
-		a {
+		a, 
+		span {
 			display: block;
 			width: 24px;
 			height: 24px;
@@ -124,6 +125,10 @@
 }
 .grp-tools {
 	@include grp-tools;
+	span {
+		color: transparent !important;
+		cursor: default !important;
+	}
 }
 
 
