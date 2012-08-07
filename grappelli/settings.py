@@ -10,3 +10,6 @@ ADMIN_TITLE = getattr(settings, "GRAPPELLI_ADMIN_TITLE", 'Grappelli')
 
 # Link to your Main Admin Site (no slashes at start and end)
 ADMIN_URL = getattr(settings, "GRAPPELLI_ADMIN_URL", '/admin/')
+
+# Limit for autocomplete lookups
+AUTOCOMPLETE_LIMIT = getattr(settings, "GRAPPELLI_AUTOCOMPLETE_LIMIT", 10)
