@@ -54,7 +54,7 @@
                     <h3>{% trans 'My Actions' %}</h3>
                     {% get_admin_log 10 as admin_log for_user user %}
                     {% if not admin_log %}
-                        <p>{% trans 'None available' %}</p>
+                        <div class="grp-row"><p>{% trans 'None available' %}</p></div>
                     {% else %}
                         <ul class="grp-listing-small">
                             {% for entry in admin_log %}
