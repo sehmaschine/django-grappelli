@@ -29,13 +29,13 @@ body {
     border-top: 2px solid $link-color;
     div.wrapper {
         width: 100%;
-        background: transparent url("../img/grid_horizontal.png") 0 0 repeat;
+        //background: transparent url("../img/grid_horizontal.png") 0 0 repeat;
     }
     div.container {
         @include container;
         width: 942px;
         padding: 48px 0 0 1px;
-        background: transparent url("../img/grid_vertical.png") 0 0 repeat;
+        //background: transparent url("../img/grid_vertical.png") 0 0 repeat;
     }
     div#header {
         padding-top: 16px;

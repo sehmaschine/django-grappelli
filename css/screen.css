@@ -383,7 +383,6 @@ body {
 }
 body div.wrapper {
   width: 100%;
-  background: transparent url("../img/grid_horizontal.png") 0 0 repeat;
 }
 body div.container {
   width: 940px;
@@ -392,7 +391,6 @@ body div.container {
   *zoom: 1;
   width: 942px;
   padding: 48px 0 0 1px;
-  background: transparent url("../img/grid_vertical.png") 0 0 repeat;
 }
 body div#header {
   padding-top: 16px;
