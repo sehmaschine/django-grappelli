@@ -13,8 +13,14 @@ While |grappelli| is mainly about the look & feel of the admin interface, it als
 Available Settings
 ------------------
 
+.. versionadded:: 2.4.1
+    Added setting AUTOCOMPLETE_LIMIT
+
 ``GRAPPELLI_ADMIN_TITLE``
     The Site Title of your admin interface. Change this instead of changing index.html
+
+``AUTOCOMPLETE_LIMIT``
+    Number of items to show with autocomplete drop-downs.
 
 .. _customizationcollapsibles:
 
