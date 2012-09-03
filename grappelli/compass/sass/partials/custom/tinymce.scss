@@ -228,6 +228,23 @@ textarea#htmlSource {
 
 
 
+/*  HREF BROWSE ICONS
+------------------------------------------------------------------------------------------------------ */
+
+input[name="href"] + div {
+    position: relative;
+    float: right;
+    display: inline-block;
+    margin-top: -25px;
+    a {
+        span {
+            display: none;
+        }
+    }
+}
+
+
+
 /*  FILEBROWSER ICONS
 ------------------------------------------------------------------------------------------------------ */
 

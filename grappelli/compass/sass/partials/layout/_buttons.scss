@@ -145,7 +145,8 @@ input[type=button],
 button, 
 a.fb_show, 
 a.related-lookup, 
-body.tinyMCE input[name="src"] + div a {
+body.tinyMCE input[name="src"] + div a, 
+body.tinyMCE input[name="href"] + div a {
     @include grp-icon-button;
 }
 
@@ -154,7 +155,8 @@ body.tinyMCE input[name="src"] + div a {
 
 a.fb_show, 
 a.related-lookup, 
-body.tinyMCE input[name="src"] + div a {
+body.tinyMCE input[name="src"] + div a, 
+body.tinyMCE input[name="href"] + div a {
     display: inline-block;
     margin-bottom: -5px;
     @include icons-sprite(related-lookup);
@@ -265,7 +267,8 @@ input:focus + a.related-lookup,
 input:focus + * + a.related-lookup, 
 input:focus + a.add-another, 
 .grp-state-focus a.related-lookup, 
-body.tinyMCE input[name="src"]:focus + div a {
+body.tinyMCE input[name="src"]:focus + div a, 
+body.tinyMCE input[name="href"]:focus + div a {
     border: $grp-form-field-border-focus !important;
 }
 input:focus + .grp-search-button {
