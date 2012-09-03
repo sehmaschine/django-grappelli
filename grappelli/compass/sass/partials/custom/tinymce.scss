@@ -234,8 +234,9 @@ textarea#htmlSource {
 input[name="href"] + div {
     position: relative;
     float: right;
-    display: inline-block;
-    margin-top: -25px;
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        margin-top: -25px;
+    }
     a {
         span {
             display: none;
@@ -251,8 +252,9 @@ input[name="href"] + div {
 input[name="src"] + div {
     position: relative;
     float: right;
-    display: inline-block;
-    margin-top: -25px;
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        margin-top: -25px;
+    }
     a {
         span {
             display: none;
