@@ -246,7 +246,7 @@ Using TinyMCE
 .. versionchanged:: 2.4
     The admin media URLs has been changed to use a static URLs in compliance with Django 1.4
 
-Copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts::
+|grappelli| already comes with TinyMCE and a minimal theme as well. In order to use TinyMCE, you need to copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts to your ModelAdmin definition (see `ModelAdmin Media definitions <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/#modeladmin-media-definitions>`_)::
 
     class Media:
         js = [
