@@ -232,11 +232,15 @@ textarea#htmlSource {
 ------------------------------------------------------------------------------------------------------ */
 
 input[name="href"] + div {
-    position: relative;
-    float: right;
-    @media screen and (-webkit-min-device-pixel-ratio:0) {
-        margin-top: -25px;
-    }
+    position: absolute;
+    top: 0;
+    right: 10px;
+    display: inline-block;
+    // position: relative;
+    // float: right;
+    // @media screen and (-webkit-min-device-pixel-ratio:0) {
+    //     margin-top: -25px;
+    // }
     a {
         span {
             display: none;
@@ -250,11 +254,14 @@ input[name="href"] + div {
 ------------------------------------------------------------------------------------------------------ */
 
 input[name="src"] + div {
-    position: relative;
-    float: right;
-    @media screen and (-webkit-min-device-pixel-ratio:0) {
-        margin-top: -25px;
-    }
+    position: absolute;
+    top: 0;
+    right: 10px;
+    display: inline-block;
+    // float: right;
+    // @media screen and (-webkit-min-device-pixel-ratio:0) {
+    //     margin-top: -25px;
+    // }
     a {
         span {
             display: none;
