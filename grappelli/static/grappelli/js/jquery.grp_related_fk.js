@@ -43,7 +43,7 @@
             app_label: grappelli.get_app_label(elem),
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
-            text.text(data[0].label);
+            text.html(data[0].label);
         });
     };
 
