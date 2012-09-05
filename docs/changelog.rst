@@ -18,6 +18,7 @@ Changelog
 * Fixed: Delete persmissions with inlines (stacked and tabular).
 * Fixed: Removed double dots for labels with auth- and registration-templates.
 * Fixed: Button with TinyMCE AdvLink.
+* Fixed: Timepicker closes with ESC.
 * Added: Compass experimental svg support (for IE9).
 * Added: Reset actions select box with javascript.
 * Added setting ``AUTOCOMPLETE_LIMIT``.
