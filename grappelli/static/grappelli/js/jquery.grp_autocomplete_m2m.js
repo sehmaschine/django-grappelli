@@ -11,6 +11,8 @@
             options = $.extend({}, $.fn.grp_autocomplete_m2m.defaults, options);
             return this.each(function() {
                 var $this = $(this);
+                // tabindex
+                $this.attr("tabindex", "-1");
                 // build autocomplete wrapper
                 $this.next().after(loader).after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='grp-autocomplete-wrapper-m2m'></div>");
