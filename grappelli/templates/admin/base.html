@@ -1,6 +1,6 @@
 {% load admin_static %}{% load url from future %}{% load i18n grp_tags %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}{% endif %}dir="rtl">
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
     <title>{% block title %}{% endblock %}</title>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
     {% block stylesheets %}
         <link href="{% static "grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.18.custom.css" %}" rel="stylesheet" type="text/css" media="screen" />
         <link href="{% static "grappelli/stylesheets/screen.css" %}" rel="stylesheet" type="text/css" media="screen" />
-        {% if not LANGUAGE_BIDI %}
+        {% if LANGUAGE_BIDI %}
             <link href="{% static "grappelli/stylesheets/mueller/grid/output-rtl.css" %}" rel="stylesheet" type="text/css" media="screen" />
             <link href="{% block stylesheet_rtl %}{% static "grappelli/stylesheets/rtl.css" %}{% endblock %}" rel="stylesheet" type="text/css" media="screen" />
         {% else %}
@@ -55,7 +55,7 @@
     <!-- EXTRAHEAD -->
     {% block extrahead %}{% endblock %}
 </head>
-<body class="{% if is_popup %}grp-popup {% endif %}{% block bodyclass %}{% endblock %}{% if LANGUAGE_BIDI %}{% endif %} rtl">
+<body class="{% if is_popup %}grp-popup {% endif %}{% block bodyclass %}{% endblock %}{% if LANGUAGE_BIDI %} rtl{% endif %}">
     <div id="grp-container">
 
         <!-- HEADER -->
