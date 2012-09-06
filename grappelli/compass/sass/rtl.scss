@@ -1,0 +1,175 @@
+
+
+
+/*  IMPORT COMPASS
+------------------------------------------------------------------------------------------------------ */
+
+@import "compass";
+
+
+
+/*  GRAPPELLI IMPORTS
+------------------------------------------------------------------------------------------------------ */
+
+@import "partials/library/borders";
+
+
+
+/*  RTL STYLES
+------------------------------------------------------------------------------------------------------ */
+
+body.rtl {
+
+	// SUBMIT-ROW
+	.grp-submit-row > ul > li {
+		float: left;
+		margin-left: 0;
+		margin-right: 10px;
+		&.grp-float-left {
+			float: right !important;
+			margin-left: 10px;
+			margin-right: 0;
+		}
+	}
+
+	// OBJECT TOOLS
+	ul.grp-object-tools {
+		float: left;
+		li {
+			float: right;
+			padding-right: 5px;
+			padding-left: 5px;
+			&:first-child {
+				padding-right: 0;
+			}
+			&:last-child {
+				padding-left: 0;
+			}
+		}
+	}
+
+	// TOOLS
+	.grp-tools {
+		float: left;
+		padding-left: 5px;
+		li {
+			float: right;
+			padding-right: 1px;
+			padding-left: 1px;
+			&:first-child {
+				padding-right: 0;
+			}
+			&:last-child {
+				padding-left: 0;
+			}
+		}
+	}
+	.grp-tools-container .grp-tools {
+		right: 0;
+		// margin-left: -20px;
+	}
+	.grp-module .grp-row > .grp-tools {
+		right: 0;
+		margin-left: -9px;
+	}
+	.grp-group > h2 + .grp-tools {
+		right: 0;
+		margin-left: 1px;
+	}
+
+	// BUTTONS
+	input[type="button"], 
+	button, 
+	a.fb_show, 
+	a.related-lookup, 
+	body.tinyMCE input[name="src"] + div a, 
+	body.tinyMCE input[name="href"] + div a {
+		margin: 0 -25px 0 0;
+		@include border-right-radius(0);
+		@include border-left-radius($grp-form-field-border-radius);
+	}
+
+	// DATE/TIME
+	p.datetime {
+		white-space: nowrap;
+		position: relative;
+		display: inline-block;
+		input.vTimeField {
+			margin-left: 0;
+			margin-right: 6px;
+		}
+	}
+
+	// RELATED LOOKUP
+	a.related-lookup + strong {
+		margin-left: 0;
+		margin-right: 5px;
+	}
+
+	// TABULAR
+	.grp-tabular {
+		.grp-table {
+			.grp-th, 
+			.grp-td {
+			    margin-right: 0;
+			    border-left: 1px solid #fff;
+	    		border-right: 1px solid #e0e0e0;
+	    		&:first-of-type {
+	    			padding-left: 20px;
+	    			padding-right: 10px;
+	    		}
+	    		&:last-child {
+	    			padding-left: 10px;
+	    		}
+			}
+			.grp-thead {
+				.grp-th, 
+				.grp-td {
+					background: none;
+	    			border-top: 0;
+	    			// &:last-of-type {
+	    			// 	border-right: 0;
+		    		// }
+				}
+			}
+			.grp-tbody {
+				.grp-th, 
+				.grp-td {
+					border-bottom: 1px solid #d4d4d4;
+	    			border-top: 1px solid #d4d4d4;
+					&:last-of-type {
+						border-left: 1px solid #d4d4d4;
+					}
+					&:last-child {
+						@include border-left-radius(0);
+						@include border-right-radius($grp-border-radius - 1px);
+					}
+					&:first-of-type {
+						border-left: 1px solid #fff;
+						border-right: 1px solid #d4d4d4;
+						@include border-left-radius(0);
+						@include border-right-radius($grp-border-radius - 1px);
+					}
+					&.grp-tools-container {
+						padding-left: 0;
+	    				@include border-right-radius(0);
+	    				@include border-left-radius($grp-border-radius - 1px);
+					}
+				}
+			}
+			.grp-tfoot {
+				.grp-td {
+					&:last-of-type {
+	    				border-right: 0;
+		    		}
+				}
+			}
+		}
+	}
+
+	// FORMS
+	.grp-row input[type="checkbox"] + label, 
+	.grp-row input[type="radio"] + label {
+		margin: 0 5px 0 0;
+	}
+}
