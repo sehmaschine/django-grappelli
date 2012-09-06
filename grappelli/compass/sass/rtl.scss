@@ -113,6 +113,25 @@ body.rtl {
 			&:last-child {
 				padding-left: 0;
 			}
+			a {
+				&.grp-add-link {
+					padding-right: 28px;
+					padding-left: 15px;
+					@include grp-background-gradient-icon-combo(object-tools-add-link, 95%, #999, #888);
+					&:hover {
+						@include grp-background-gradient-icon-combo(object-tools-add-link, 95%, #36b0d9, #309bbf);
+					}
+				}
+				&.grp-viewsite-link, 
+				&[target="_blank"] {
+					padding-right: 28px;
+					padding-left: 15px;
+					@include grp-background-gradient-icon-combo(object-tools-viewsite-link, 95%, #999, #888);
+					&:hover {
+						@include grp-background-gradient-icon-combo(object-tools-viewsite-link, 95%, #36b0d9, #309bbf);
+					}
+				}
+			}
 		}
 	}
 
@@ -353,8 +372,6 @@ body.rtl {
 	        }
 	    }
 	}
-
-
 	table.grp-sortable {
 	    thead {
 	        th {
@@ -376,6 +393,76 @@ body.rtl {
 	            }
 	        }
 	    }
+	}
+
+	// PAGINATION
+	.grp-pagination ul {
+		float: right;
+		li {
+			float: right;
+			margin-left: 1px;
+			margin-right: 0;
+			&.grp-results {
+				margin-left: 4px;
+				margin-right: 0;
+			}
+			&:last-child {
+				clear: left;
+			}
+		}
+	}
+
+	// DATE HIERARCHY
+	.grp-date-hierarchy ul {
+		float: right;
+		li {
+			float: right;
+			a.grp-date-hierarchy-back {
+				padding-right: 10px;
+				padding-left: 5px;
+				@include icons-sprite(date-hierarchy-back-rtl, $offset-x: 100%);
+			}
+		}
+	}
+
+	// SEARCH
+	input[type="text"].grp-search-field {
+		margin-left: -5px;
+		margin-right: 0;
+		padding-left: 30px;
+		padding-right: 10px;
+	}
+
+	// FILTER
+	.grp-pulldown-container {
+		.grp-pulldown-handler {
+			@include icons-sprite(pulldown-handler);
+		}
+		&.grp-pulldown-state-open {
+			.grp-pulldown-handler {
+				@include icons-sprite(pulldown-handler_selected);
+				background-color: #e1f0f5;
+			}
+		}
+	}
+
+	// CHANGELIST-ACTIONS
+	li.grp-changelist-actions {
+		select {
+			float: right;
+			margin: 1px 0 0 5px;
+		}
+		li {
+			margin-left: 4px;
+			margin-right: 0;
+			float: right !important;
+			&:first-child {
+				padding-right: 0;
+			}
+			&:last-child {
+				padding-left: 0;
+			}
+		}
 	}
 
 	// FORMS
@@ -404,5 +491,12 @@ body.rtl {
 	// TYPOGRAPHY
 	caption, th, td {
 		text-align: right;
+	}
+
+	.grp-float-left {
+		float: right !important;
+	}
+	.grp-float-right {
+		float: left !important;
 	}
 }
