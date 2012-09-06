@@ -49,12 +49,14 @@
             $(options.actionContainer).toggleClass(options.selectedClass);
             $(options.allContainer).show();
             $(options.counterContainer).hide();
+            $(options.counterContainer).parent('li').hide();
         };
         reset = function() {
             $(options.acrossClears).hide();
             $(options.acrossQuestions).hide();
             $(options.allContainer).hide();
             $(options.counterContainer).show();
+            $(options.counterContainer).parent('li').show();
         };
         clearAcross = function() {
             reset();
