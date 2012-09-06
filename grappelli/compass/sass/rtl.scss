@@ -258,6 +258,36 @@ body.rtl {
 		}
 	}
 
+	// MODULES, ROWS, CELLS
+	.grp-module {
+		.grp-row:not(tr) {
+			float: right;
+			&.grp-cells {
+				.grp-cell {
+					display: table-cell;
+					vertical-align: top;
+					position: relative;
+					padding: 8px 0 8px 20px;
+					border-left: 1px solid #fff;
+					border-right: 0;
+					& + .grp-cell {
+						padding-left: 20px;
+						padding-right: 0;
+						border-right: 1px solid #ddd;
+						border-left: 0;
+					}
+					&:last-of-type {
+						padding-left: 0;
+						padding-right: 20px;
+						border-left: 0 !important;
+						border-right: 1px solid #ddd !important;
+					}
+					
+				}
+			}
+		}
+	}
+
 	// TABULAR
 	.grp-tabular {
 		.grp-table {
