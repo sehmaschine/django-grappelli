@@ -8,8 +8,8 @@
 Changelog
 =========
 
-2.4.1 (September 04, 2012)
---------------------------
+2.4.1 (not yet released)
+------------------------
 
 * Fixed: Footer buttons in change_form.html do not flow correctly when screen width is reduced.
 * Fixed: Breadcrumbs of delete_selected_confirmation.
