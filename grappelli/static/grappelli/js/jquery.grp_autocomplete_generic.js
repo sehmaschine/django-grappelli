@@ -49,7 +49,7 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.grp_autocomplete_generic');
-        };
+        }
         return false;
     };
     

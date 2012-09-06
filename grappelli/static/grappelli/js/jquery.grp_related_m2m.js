@@ -30,7 +30,7 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.grp_related_m2m');
-        };
+        }
         return false;
     };
     
