@@ -152,7 +152,8 @@ body.rtl {
 	a.related-lookup, 
 	body.tinyMCE input[name="src"] + div a, 
 	body.tinyMCE input[name="href"] + div a {
-		margin: 0 -25px 0 0;
+		margin-left: 0;
+		margin-right: -25px;
 		@include border-right-radius(0);
 		@include border-left-radius($grp-form-field-border-radius);
 	}
@@ -296,5 +297,22 @@ body.rtl {
 	.grp-row input[type="checkbox"] + label, 
 	.grp-row input[type="radio"] + label {
 		margin: 0 5px 0 0;
+	}
+	select {
+	    padding: 4px 2px 4px 3px;
+	    // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
+	}
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	    select, 
+	    select:focus {
+	        padding: 4px 5px 4px 28px;
+	        -webkit-appearance: textfield;
+	        background-image: url('../images/icons/form-select.png');
+	        background-position: 0 50%;
+	        background-repeat: no-repeat;
+	    }
+	    select[multiple=multiple] {
+	        background-image: none;
+	    }
 	}
 }
