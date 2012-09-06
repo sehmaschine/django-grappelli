@@ -11,7 +11,11 @@
 /*  GRAPPELLI IMPORTS
 ------------------------------------------------------------------------------------------------------ */
 
+@import "partials/skins/grp-default";
+
 @import "partials/library/borders";
+@import "partials/library/margins-paddings";
+@import "partials/library/sprites";
 
 
 
@@ -19,6 +23,70 @@
 ------------------------------------------------------------------------------------------------------ */
 
 body.rtl {
+
+	// HEADER
+	header#grp-header {
+		#grp-navigation {
+			h1#grp-admin-title {
+				float: right;
+			}
+			ul#grp-user-tools {
+				float: left;
+				margin: 0 0 0 -10px;
+				border-right: 1px solid #343434;
+				border-left: 0 !important;
+				li {
+					&:last-child {
+						border-right: 1px solid #090909;
+						border-left: 0;
+					}
+					&.grp-user-options-container:last-child {
+						margin-right: 0;
+						margin-left: 11px;
+					}
+				}
+			}
+			ul li.grp-collapse.grp-open > ul {
+				position: absolute;
+				z-index: 1010;
+				display: block;
+				margin: -1px -1px 0 0;
+				width: 202px;
+				li {
+					border-right: 0 !important
+				}
+			}
+		}
+	}
+	#grp-page-tools {
+		float: left;
+		right: 0;
+		margin-left: -10px;
+		li {
+			float: right;
+			&:first-child {
+				padding-right: 5px;
+				padding-left: 0;
+			}
+			&:last-child {
+				padding-left: 5px;
+				padding-right: 0;
+			}
+		}
+	}
+	#grp-breadcrumbs {
+		float: right;
+		> ul {
+			@include horizontal-list(5px, right);
+			@include grp-padding($grp-padding-size-s 20px);
+			a {
+				padding-right: 0;
+				padding-left: 15px;
+				@include icons-sprite(breadcrumbs-rtl);
+			}
+		}
+	}
+
 
 	// SUBMIT-ROW
 	.grp-submit-row > ul > li {
