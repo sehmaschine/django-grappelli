@@ -8,6 +8,11 @@
 Changelog
 =========
 
+2.3.9 (September 06, 2012)
+--------------------------
+
+* Fixed: Pastetext/Pasteword plugin with TinyMCE.
+
 2.3.8 (April 03, 2012)
 ----------------------
 
