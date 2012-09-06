@@ -293,6 +293,91 @@ body.rtl {
 		}
 	}
 
+	// TABLES
+	table {
+		thead {
+	        th {
+	            border-right: 1px solid $grp-table-border-color;
+	            border-left: 0;
+	            &:first-child {
+	                border-right: 0;
+	            }
+	            &:first-of-type {
+	                @include border-top-right-radius($grp-border-radius - 1px);
+	                @include border-top-left-radius(0);
+	            }
+	            &:last-of-type {
+	                @include border-top-left-radius($grp-border-radius - 1px);
+	                @include border-top-right-radius(0);
+	            }
+	        }
+	    }
+	    tbody {
+	        tr {
+	            td, th {
+	                border-right: 1px solid #e4e4e4;
+	                &:first-child {
+	                    border-right: 0 !important;
+	                }
+	            }
+	            &.grp-row-even td, &.grp-row-even th, 
+	            &.grp-row-odd td, &.grp-row-odd th {
+	            	border-left: 0;
+	                border-right: 1px solid #e0e0e0;
+	            }
+	            &:last-child {
+	                td, th {
+	                    &:first-child {
+	                    	@include border-bottom-right-radius($grp-border-radius - 1px);
+	                        @include border-bottom-left-radius(0);
+	                    }
+	                    &:last-child {
+	                    	@include border-bottom-left-radius($grp-border-radius - 1px);
+	                        @include border-bottom-right-radius(0);
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    tfoot {
+	        td {
+	            &:first-child {
+	                border-right: 0;
+	            }
+	        }
+	    }
+	    td, th {
+	        a.fb_show, 
+	        a.related-lookup {
+	            margin: -5px -25px -11px 0;
+	        }
+	    }
+	}
+
+
+	table.grp-sortable {
+	    thead {
+	        th {
+	            &.sortable {
+	                .grp-text {
+	                    float: right;
+	                }
+	                .grp-sortoptions {
+	                    float: left;
+	                    clear: left;
+	                    margin: 0 0 0 5px;
+	                    a {
+	                        float: right;
+	                    }
+	                    span.grp-sortpriority {
+	                        float: right;
+	                    }
+	                }
+	            }
+	        }
+	    }
+	}
+
 	// FORMS
 	.grp-row input[type="checkbox"] + label, 
 	.grp-row input[type="radio"] + label {
@@ -314,5 +399,10 @@ body.rtl {
 	    select[multiple=multiple] {
 	        background-image: none;
 	    }
+	}
+
+	// TYPOGRAPHY
+	caption, th, td {
+		text-align: right;
 	}
 }
