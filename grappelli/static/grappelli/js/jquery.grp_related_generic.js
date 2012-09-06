@@ -4,7 +4,7 @@
  */
 
 (function($){
-    
+
     var methods = {
         init: function(options) {
             options = $.extend({}, $.fn.grp_related_generic.defaults, options);
@@ -25,7 +25,7 @@
             });
         }
     };
-    
+
     $.fn.grp_related_generic = function(method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -33,10 +33,10 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.grp_related_generic');
-        };
+        }
         return false;
     };
-    
+
     var lookup_link = function(id, val) {
         var lookuplink = $('<a class="related-lookup"></a>');
         lookuplink.attr('id', 'lookup_'+id);
@@ -44,7 +44,7 @@
         lookuplink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
         return lookuplink;
     };
-    
+
     var update_lookup = function(elem, options) {
         var obj = $(options.object_id);
         obj.val('');
@@ -54,7 +54,7 @@
             obj.after(options.placeholder).after(lookup_link(obj.attr('id'),$(elem).val()));
         }
     };
-    
+
     var lookup_id = function(elem, options) {
         var text = elem.next().next();
         $.getJSON(options.lookup_url, {
@@ -62,10 +62,10 @@
             app_label: grappelli.get_app_label(elem),
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
-            text.text(data[0].label);
+            text.html(data[0].label);
         });
     };
-    
+
     $.fn.grp_related_generic.defaults = {
         placeholder: '&nbsp;<strong></strong>',
         repr_max_length: 30,
@@ -73,5 +73,5 @@
         content_type: '',
         object_id: ''
     };
-    
+
 })(grp.jQuery);

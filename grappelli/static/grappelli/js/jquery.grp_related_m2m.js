@@ -4,7 +4,7 @@
  */
 
 (function($){
-    
+
     var methods = {
         init: function(options) {
             options = $.extend({}, $.fn.grp_related_m2m.defaults, options);
@@ -22,7 +22,7 @@
             });
         }
     };
-    
+
     $.fn.grp_related_m2m = function(method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -30,10 +30,10 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.grp_related_m2m');
-        };
+        }
         return false;
     };
-    
+
     var lookup_id = function(elem, options) {
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
@@ -41,14 +41,14 @@
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
             values = $.map(data, function (a) { return a.label; });
-            elem.next().next().text(values.join(", "));
+            elem.next().next().html(values.join('<span class="sep">, </span>'));
         });
     };
-    
+
     $.fn.grp_related_m2m.defaults = {
         placeholder: '&nbsp;<strong></strong>',
         repr_max_length: 30,
         lookup_url: ''
     };
-    
+
 })(grp.jQuery);
