@@ -194,6 +194,13 @@ body.rtl {
 		margin-right: 5px;
 	}
 
+	// ADD ANOTHER
+	.grp-td a.add-another {
+		float: left;
+		margin-left: -10px;
+		margin-right: 3px;
+	}
+
 	// ACTIONS
 	.grp-actions {
 		@include horizontal-list(5px, right);
@@ -485,6 +492,59 @@ body.rtl {
 	    }
 	    select[multiple=multiple] {
 	        background-image: none;
+	    }
+	}
+	ul.radiolist.inline, 
+	ul.checkboxlist.inline {
+		float: right;
+		padding-left: 20px;
+		padding-right: 0;
+		li {
+			float: right;
+			padding-left: 20px;
+			padding-right: 0;
+		}
+	}
+	.grp-module.grp-tbody ul.radiolist.inline li, 
+	.grp-module.grp-tbody ul.checkboxlist.inline li {
+		float: right;
+		padding-left: 20px;
+		padding-right: 0;
+	}
+
+	// SELECTORS
+	.selector {
+	    float: right;
+	    .selector-available, 
+	    .selector-chosen {
+	        float: right;
+	        h2 {
+	            padding: 7px 7px 6px 5px;
+	        }
+	    }
+	    ul.selector-chooser {
+	        float: right;
+	    }
+	    .selector-filter {
+	        padding: 3px 2px 2px 5px;
+	        background-position: 10px 50%;
+	        input[type="text"] {
+				float: right;
+				margin-right: 3px;
+			}
+	    }
+	    select[multiple=multiple] {
+	        margin: 0 -1px 0 0;
+	        padding-right: 3px;
+	        padding-left: 0;
+	    }
+	    &.stacked {
+	        ul.selector-chooser {
+	            margin: 4px 356px 0 0;
+	            li {
+	                float: right;
+	            }
+	        }
 	    }
 	}
 
