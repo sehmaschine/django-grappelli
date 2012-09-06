@@ -195,10 +195,14 @@ body.rtl {
 	}
 
 	// ADD ANOTHER
+	a.add-another {
+		margin-left: 0;
+		margin-right: 7px;
+	}
 	.grp-td a.add-another {
 		float: left;
 		margin-left: -10px;
-		margin-right: 3px;
+		margin-right: 7px;
 	}
 
 	// ACTIONS
