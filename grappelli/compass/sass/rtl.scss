@@ -204,6 +204,12 @@ body.rtl {
 		margin-left: -10px;
 		margin-right: 7px;
 	}
+	.radiolist.inline + a.add-another, 
+	.checkboxlist.inline + a.add-another {
+		float: none;
+		margin-left: -10px;
+		margin-right: 0;
+	}
 
 	// ACTIONS
 	.grp-actions {
@@ -544,6 +550,57 @@ body.rtl {
 		float: right;
 		padding-left: 20px;
 		padding-right: 0;
+	}
+
+	// AUTOCOMPLETES
+	.grp-autocomplete-wrapper-m2m, 
+	.grp-autocomplete-wrapper-fk {
+	    a.grp-related-remove, 
+	    div.grp-loader {
+	        display: inline-block;
+	        position: absolute;
+	        left: 24px !important;
+	        right: auto;
+	    }
+	    div.grp-loader {
+	        background: #fdfdfd url('../images/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
+	    }
+	}
+	.grp-autocomplete-wrapper-m2m {
+	    ul.grp-repr {
+	        float: right;
+	        padding-left: 55px;
+	        padding-right: 5px;
+	        li {
+	            float: right;
+	            &.grp-repr {
+	                margin: 3px 1px 0 5px;
+	                a.grp-m2m-remove {
+	                    padding-right: 5px;
+	                    padding-left: 0;
+	                }
+	            }
+	        }
+	    }
+	    a.related-lookup {
+	        left: -1px;
+	        right: auto;
+	    }
+	    a.grp-related-remove + a.grp-related-lookup {
+	        @include border-bottom-left-radius(3px);
+	        @include border-bottom-right-radius(0);
+	    }
+	    a.grp-related-remove, 
+	    a.grp-related-remove + div.grp-loader {
+	        left: 23px !important;
+	        right: auto;
+	    }
+	}
+	.grp-autocomplete-wrapper-fk {
+	    input.ui-autocomplete-input {
+	        padding-left: 55px;
+	        padding-right: 5px;
+	    }
 	}
 
 	// SELECTORS
