@@ -650,4 +650,11 @@ body.rtl {
 	.grp-float-right {
 		float: left !important;
 	}
+
+	// FILEBROWSER
+	&.grp-filebrowser table td ul.grp-actions {
+		right: -5px;
+		left: 0;
+		margin: 0 0 -1px -5px;
+	}
 }

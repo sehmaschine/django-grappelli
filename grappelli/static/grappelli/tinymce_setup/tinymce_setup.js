@@ -38,6 +38,7 @@ tinyMCE.init({
     language: 'en',
     object_resizing: false,
     plugins: 'advimage,advlink,fullscreen,paste,media,searchreplace,grappelli,template',
+    // directionality : "rtl",
     
     // Callbacks
     file_browser_callback: 'CustomFileBrowser',
