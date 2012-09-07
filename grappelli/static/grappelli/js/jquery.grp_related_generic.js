@@ -67,7 +67,7 @@
     };
     
     $.fn.grp_related_generic.defaults = {
-        placeholder: '&nbsp;<strong></strong>',
+        placeholder: '<div class="grp-placeholder-generic"></div>',
         repr_max_length: 30,
         lookup_url: '',
         content_type: '',

@@ -48,7 +48,7 @@
     };
     
     $.fn.grp_related_fk.defaults = {
-        placeholder: '&nbsp;<strong></strong>',
+        placeholder: '<div class="grp-placeholder-fk"></div>',
         repr_max_length: 30,
         lookup_url: ''
     };

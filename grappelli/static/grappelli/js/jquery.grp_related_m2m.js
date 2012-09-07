@@ -41,12 +41,12 @@
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
             values = $.map(data, function (a) { return a.label; });
-            elem.next().next().text(values.join(", "));
+            elem.next().next().html(values.join('<span class="grp-seperator-m2m"></span>'));
         });
     };
     
     $.fn.grp_related_m2m.defaults = {
-        placeholder: '&nbsp;<strong></strong>',
+        placeholder: '<div class="grp-placeholder-m2m"></div>',
         repr_max_length: 30,
         lookup_url: ''
     };
