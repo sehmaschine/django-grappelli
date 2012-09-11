@@ -62,7 +62,12 @@
             app_label: grappelli.get_app_label(elem),
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
-            text.html(data[0].label);
+            if (data[0].label == "") {
+                text.hide();
+            } else {
+                text.show();
+            }
+            text.html('<span class="grp-placeholder-label">' + data[0].label + '</span>');
         });
     };
     

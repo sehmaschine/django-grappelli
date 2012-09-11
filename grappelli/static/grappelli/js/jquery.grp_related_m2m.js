@@ -40,7 +40,12 @@
             app_label: grappelli.get_app_label(elem),
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
-            values = $.map(data, function (a) { return a.label; });
+            values = $.map(data, function (a) { return '<span class="grp-placeholder-label">' + a.label + '</span>'; });
+            if (values == "") {
+                elem.next().next().hide();
+            } else {
+                elem.next().next().show();
+            }
             elem.next().next().html(values.join('<span class="grp-separator"></span>'));
         });
     };

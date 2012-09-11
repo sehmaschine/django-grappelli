@@ -15,7 +15,7 @@
                     $this.next().next().remove();
                 }
                 // add placeholder
-                $this.next().after(options.placeholder);
+                $this.parent().append(options.placeholder);
                 // lookup
                 lookup_id($this, options); // lookup when loading page
                 $this.bind("change focus keyup blur", function() { // id-handler
@@ -43,7 +43,12 @@
             app_label: grappelli.get_app_label(elem),
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
-            text.html(data[0].label);
+            if (data[0].label == "") {
+                text.hide();
+            } else {
+                text.show();
+            }
+            text.html('<span class="grp-placeholder-label">' + data[0].label + '</span>');
         });
     };
     
@@ -51,6 +56,6 @@
         placeholder: '<div class="grp-placeholder-related-fk"></div>',
         repr_max_length: 30,
         lookup_url: ''
-    };
+    };   
     
 })(grp.jQuery);
