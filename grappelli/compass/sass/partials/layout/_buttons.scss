@@ -167,6 +167,34 @@ a.related-lookup + strong {
     top: 2px;
     margin-left: 5px;
 }
+@mixin grp-placeholder {
+    position: relative;
+    display: inline;
+    top: 2px;
+    margin: 0 0 -10px 5px;
+    padding: 5px 0 0;
+    font-weight: bold;
+    &:empty {
+        margin-left: 0
+    }
+    table & {
+        top: 0;
+    }
+}
+@mixin grp-separator {
+    &:after {
+        content: ", ";
+    }
+}
+.grp-placeholder-related-fk, 
+.grp-placeholder-related-m2m, 
+.grp-placeholder-related-generic {
+    @include grp-placeholder;
+}
+.grp-separator {
+    @include grp-separator;
+}
+
 
 a.related-lookup.m2m, 
 .grp-autocomplete-wrapper-m2m a.related-lookup, 

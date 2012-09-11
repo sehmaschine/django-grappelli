@@ -149,6 +149,7 @@ $show-grid-background: false;
         padding-right: $gutter-width;
     }
     width: column-width($n, $col-width, $gutter-width);
+    min-width: column-width($n, $col-width, $gutter-width);
     float: none;
     display: table-cell;
 }
