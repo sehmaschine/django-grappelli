@@ -20,6 +20,7 @@
 			border: 1px solid #777;
 			opacity: .5;
 			@include background(linear-gradient(#999, #888));
+            background-color:#888;
 			&.grp-state-focus {
 				opacity: 1;
 			}
@@ -27,6 +28,7 @@
 				opacity: 1 !important;
 				border: 1px solid #2987a6 !important;
 				@include background(linear-gradient(#36b0d9, #309bbf));
+                background-color:#309bbf;
 			}
 			&.grp-add-link {
 				padding-left: 28px;
