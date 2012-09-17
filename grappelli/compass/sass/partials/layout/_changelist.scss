@@ -194,6 +194,19 @@ form#grp-changelist-search {
 	@include legacy-pie-clearfix;
 }
 
+.grp-module#grp-filters {
+	li {
+		@include grp-row;
+		label {
+			@include grp-label();
+			display: block;
+			margin: 0 0 2px;
+			color: $grp-font-color-quiet;
+			font-weight: bold;
+		}
+	}
+}
+
 
 
 /*  ACTIONS
