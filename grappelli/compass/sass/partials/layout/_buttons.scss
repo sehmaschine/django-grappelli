@@ -170,6 +170,12 @@ body.tinyMCE input[name="href"] + div a {
         * {
             margin-top: -4px;
         }
+        table & {
+            margin-top: 5px;
+            * {
+                margin-top: -5px;
+            }
+        }
     }
     img {
         vertical-align: top;
