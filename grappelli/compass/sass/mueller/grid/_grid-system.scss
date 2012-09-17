@@ -102,23 +102,11 @@ $show-grid-background: false;
 // mixin produces output generally equivalent to the
 // blueprint column mixin.
 @mixin column($n, $max-unit, $col-width, $gutter-width, $base-class: false, $first-column-class: false, $last-column-class: false) {
-    @if $base-class {
-        @extend .#{$base-class};
-    } @else {
-        @include column-base;
-    }
+    @include column-base;
     @if $n == $max-unit {
-        @if $first-column-class {
-            @extend .#{$first-column-class};
-        } @else {
-            margin-left: 0;
-        }
-        @if $last-column-class {
-            @extend .#{$last-column-class}; 
-        } @else {
-            margin-right: 0;
-        }
-        @extend .#{$last-column-class};
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        clear: both;
     } @else {
         margin-right: $gutter-width;
     }
@@ -128,23 +116,12 @@ $show-grid-background: false;
 
 // ADDED replace margins with paddings for elements with display: table-cell plus additional settings
 @mixin column-table-cell($n, $max-unit, $col-width, $gutter-width, $base-class: false, $first-column-class: false, $last-column-class: false) {
-    @if $base-class {
-        @extend .#{$base-class};
-    } @else {
-        @include column-base;
-    }
+    @include column-base;
     @if $n == $max-unit {
-        @if $first-column-class {
-            @extend .#{$first-column-class};
-        } @else {
-            padding-left: 0;
-        }
-        @if $last-column-class {
-            @extend .#{$last-column-class}; 
-        } @else {
-            padding-right: 0;
-        }
-        @extend .#{$last-column-class};
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        clear: both;
     } @else {
         padding-right: $gutter-width;
     }
@@ -155,7 +132,7 @@ $show-grid-background: false;
 }
 
 // Generate grid classes according to a common naming convention
-// $media is the media prefix. E.g. d (deskotop), t (tablet), tp (tablet portrait), h (handheld), or hl (handheld landscape)
+// $media is the media prefix. E.g. d (desktop), t (tablet), tp (tablet portrait), h (handheld), or hl (handheld landscape)
 // $max-unit is how many columns are in this grid system.
 // $col-width is the width of a column.
 // $gutter-width is the width of a gutter (margin-right).
