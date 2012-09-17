@@ -19,10 +19,12 @@ Changelog
 * Fixed: Removed double dots for labels with auth- and registration-templates.
 * Fixed: Button with TinyMCE AdvLink.
 * Fixed: Timepicker closes with ESC.
+* Fixed: Window width with popups.
 * Added: Compass experimental svg support (for IE9).
 * Added: Reset actions select box with javascript.
 * Added setting ``AUTOCOMPLETE_LIMIT``.
 * Improved: sortables with django file uploads.
+* Improved: HTML is now allowed for object representation with related-lookups.
 * Improved: Documentation with using TinyMCE.
 
 2.4.0 (July 20, 2012)
