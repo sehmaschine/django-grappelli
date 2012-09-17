@@ -18,6 +18,7 @@ http://readthedocs.org/docs/django-grappelli/
 Releases
 --------
 
+* Grappelli 2.4.2 (development version, not yet released): Compatible with Django 1.4
 * Grappelli 2.4.1 (September 17 2012): Compatible with Django 1.4
 * Grappelli 2.3.9 (September 06 2012): Compatible with Django 1.3
 
