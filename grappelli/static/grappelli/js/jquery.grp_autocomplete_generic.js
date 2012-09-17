@@ -10,6 +10,8 @@
             options = $.extend({}, $.fn.grp_autocomplete_generic.defaults, options);
             return this.each(function() {
                 var $this = $(this);
+                // tabindex
+                $this.attr("tabindex", "-1");
                 // build autocomplete wrapper
                 if ($(options.content_type).val()) {
                     $this.after(loader).after(remove_link($this.attr('id'))).after(lookup_link($this.attr("id"),$(options.content_type).val()));
@@ -47,7 +49,7 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.grp_autocomplete_generic');
-        };
+        }
         return false;
     };
     

@@ -24,7 +24,7 @@ $gw: 20px; // grid width
 $gm: 20px; // grid margin
 
 .g-d-c {
-    @extend .g-base-c;
+    @include container;
     width: $gw*$gc+$gm*($gc - 1);
     // uncomment for a background-grid
     // @include grid-background($gc, $gw, $gm, 21px, 0, #ccc, #ddd, #999, false);
@@ -64,51 +64,37 @@ $gm: 20px; // grid margin
     display: table;
     table-layout: fixed;
     width: 100%;
-    margin-right: 0 !important;
-    padding-right: 0 !important;
     @include legacy-pie-clearfix;
     > *[class^=g-d] {
         position: relative;
         display: table-cell;
         float: none;
-        margin-right: 0 !important;
-        padding-right: $gm;
         vertical-align: top;
-        &.g-d-l {
-            padding-right: 0;
+    }
+}
+body:not(.rtl) {
+    .g-d-c-fluid {
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        > *[class^=g-d] {
+            pmargin-right: 0 !important;
+            padding-right: $gm;
+            &.g-d-l {
+                padding-right: 0;
+            }
         }
     }
 }
-// fieldset.grp-module {
-//     .g-d-fluid {
-//         position: relative;
-//         float: none;
-//         display: table-cell;
-//         width: 10000px;
-//     }
-//     // Reset the table-cell solution in cells as it cause bad behaviour of fields and readonly fields
-//     .grp-cell {
-//         .g-d-fluid {
-//             float: left;
-//             width: auto;
-//             display: block;
-//         }
-//     }
-// }
-
-// .g-d-c, 
-// *[class^=g-d]:not([class$=fluid]) {
-//     *[class^=g-d]:not([class$=fluid]) + .g-d-fluid {
-//         position: relative;
-//         float: none;
-//         display: table-cell;
-//         width: 10000px;
-//     }
-// }
-// .grp-cell {
-//     .g-d-fluid {
-//         float: left;
-//         width: auto;
-//         display: block;
-//     }
-// }
+body.rtl {
+    .g-d-c-fluid {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        > *[class^=g-d] {
+            margin-left: 0 !important;
+            padding-left: $gm;
+            &.g-d-l {
+                padding-left: 0;
+            }
+        }
+    }
+}

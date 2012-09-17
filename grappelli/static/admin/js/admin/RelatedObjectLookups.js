@@ -37,7 +37,7 @@ function showRelatedObjectLookupPopup(triggeringLink) {
         href = triggeringLink.href + '?pop=1';
     }
     // GRAPPELLI CUSTOM: changed width
-    var win = window.open(href, name, 'height=500,width=980,resizable=yes,scrollbars=yes');
+    var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
     win.focus();
     return false;
 }
@@ -73,7 +73,7 @@ function showAddAnotherPopup(triggeringLink) {
         href  += '&_popup=1';
     }
     // GRAPPELLI CUSTOM: changed width
-    var win = window.open(href, name, 'height=500,width=980,resizable=yes,scrollbars=yes');
+    var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
     win.focus();
     return false;
 }

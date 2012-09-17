@@ -14,7 +14,7 @@
 
 @import "compass/utilities/general/clearfix";
 
-$float-direction: left;
+$float-direction: right;
 $show-grid-background: false;
 
 // **************************************************
@@ -59,41 +59,41 @@ $show-grid-background: false;
         @include column-base;
     }
     .#{$first-column-class} {
-        margin-left: 0 !important;
-        margin-right: $gutter-width !important; // needed to overwrite last with first
-        clear: left;
+        margin-right: 0 !important;
+        margin-left: $gutter-width !important; // needed to overwrite last with first
+        clear: right;
     }
     .#{$last-column-class} {
-        margin-right: 0 !important;
+        margin-left: 0 !important;
     }
 }
 
 // add $n grid units worth of space to the left of a column
 @mixin prepend($n, $col-width, $gutter-width) {
-    padding-left: column-width($n, $col-width, $gutter-width) + $gutter-width !important;
+    padding-right: column-width($n, $col-width, $gutter-width) + $gutter-width !important;
 }
 
 // add $n grid units worth of space to the left of a column
 @mixin append($n, $col-width, $gutter-width) {
-    padding-right: column-width($n, $col-width, $gutter-width) + $gutter-width !important;
+    padding-left: column-width($n, $col-width, $gutter-width) + $gutter-width !important;
 }
 
 @mixin push($n, $col-width, $gutter-width) {
     position: relative;
-    margin-left: $n*($col-width+$gutter-width) !important;
-    margin-right: -$n*($col-width+$gutter-width) !important;
+    margin-right: $n*($col-width+$gutter-width) !important;
+    margin-left: -$n*($col-width+$gutter-width) !important;
     margin-top: 0; margin-bottom: 0;
 }
 
 // add $n grid units worth of space to the left of a column
 @mixin pull($n, $col-width, $gutter-width) {
     position: relative;
-    margin-left: -$n*($col-width+$gutter-width) + $gutter-width !important;
+    margin-right: -$n*($col-width+$gutter-width) + $gutter-width !important;
 }
 // ADDED double pull for elements with display: table-cell
 @mixin doublepull($n, $col-width, $gutter-width) {
     position: relative;
-    margin-left: -($n*($col-width+$gutter-width) + $gutter-width)*2 !important;
+    margin-right: -($n*($col-width+$gutter-width) + $gutter-width)*2 !important;
 }
 
 // The column mixin can be used in two different ways.
@@ -108,7 +108,7 @@ $show-grid-background: false;
         margin-right: 0 !important;
         clear: both;
     } @else {
-        margin-right: $gutter-width;
+        margin-left: $gutter-width;
     }
     width: column-width($n, $col-width, $gutter-width);
 }
@@ -120,10 +120,10 @@ $show-grid-background: false;
     @if $n == $max-unit {
         margin-left: 0 !important;
         margin-right: 0 !important;
-        padding-right: 0 !important;
+        padding-left: 0 !important;
         clear: both;
     } @else {
-        padding-right: $gutter-width;
+        padding-left: $gutter-width;
     }
     width: column-width($n, $col-width, $gutter-width);
     min-width: column-width($n, $col-width, $gutter-width);
@@ -132,7 +132,7 @@ $show-grid-background: false;
 }
 
 // Generate grid classes according to a common naming convention
-// $media is the media prefix. E.g. d (desktop), t (tablet), tp (tablet portrait), h (handheld), or hl (handheld landscape)
+// $media is the media prefix. E.g. d (deskotop), t (tablet), tp (tablet portrait), h (handheld), or hl (handheld landscape)
 // $max-unit is how many columns are in this grid system.
 // $col-width is the width of a column.
 // $gutter-width is the width of a gutter (margin-right).

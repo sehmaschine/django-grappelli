@@ -141,10 +141,11 @@ table {
             position: relative;
             margin: -7px 0 -5px !important;
             @media screen and (-webkit-min-device-pixel-ratio:0) {
-                margin: -9px 0 -5px !important;
+                margin: -9px 0 -6px !important;
             }
         }
-        > textarea {
+        > textarea, 
+        p.grp-readonly {
             position: relative;
             margin: -5px 0 -5px !important;
         }

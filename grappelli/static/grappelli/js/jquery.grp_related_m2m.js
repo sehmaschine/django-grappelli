@@ -30,7 +30,7 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.grp_related_m2m');
-        };
+        }
         return false;
     };
     
@@ -40,13 +40,18 @@
             app_label: grappelli.get_app_label(elem),
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
-            values = $.map(data, function (a) { return a.label; });
-            elem.next().next().text(values.join(", "));
+            values = $.map(data, function (a) { return '<span class="grp-placeholder-label">' + a.label + '</span>'; });
+            if (values == "") {
+                elem.next().next().hide();
+            } else {
+                elem.next().next().show();
+            }
+            elem.next().next().html(values.join('<span class="grp-separator"></span>'));
         });
     };
     
     $.fn.grp_related_m2m.defaults = {
-        placeholder: '&nbsp;<strong></strong>',
+        placeholder: '<div class="grp-placeholder-related-m2m"></div>',
         repr_max_length: 30,
         lookup_url: ''
     };

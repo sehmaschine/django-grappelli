@@ -301,8 +301,8 @@ $grp-button-border-focus: 1px solid #888 !default;
 
 /*  Gradient Icon-Sprite Combo ............................................................ */
 
-@mixin grp-background-gradient-icon-combo($icon, $gradient-top, $gradient-bottom) {
-	@include background(sprite($icons-sprites, $icon) no-repeat, linear-gradient($gradient-top, $gradient-bottom));
+@mixin grp-background-gradient-icon-combo($icon, $offset, $gradient-top, $gradient-bottom) {
+	@include background(sprite($icons-sprites, $icon, $offset) no-repeat, linear-gradient($gradient-top, $gradient-bottom));
 }
 
 

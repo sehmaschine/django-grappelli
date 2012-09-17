@@ -8,6 +8,28 @@
 Changelog
 =========
 
+2.4.2 (not yet released)
+------------------------
+
+2.4.1 (September 17, 2012)
+--------------------------
+
+* Fixed: Footer buttons in change_form.html do not flow correctly when screen width is reduced.
+* Fixed: Breadcrumbs of delete_selected_confirmation.
+* Fixed: Added titles for page-tools (open/close).
+* Fixed: Margins and capfirst for filter labels.
+* Fixed: Delete persmissions with inlines (stacked and tabular).
+* Fixed: Removed double dots for labels with auth- and registration-templates.
+* Fixed: Button with TinyMCE AdvLink.
+* Fixed: Timepicker closes with ESC.
+* Fixed: Window width with popups.
+* Added: Compass experimental svg support (for IE9).
+* Added: Reset actions select box with javascript.
+* Added setting ``AUTOCOMPLETE_LIMIT``.
+* Improved: sortables with django file uploads.
+* Improved: HTML is now allowed for object representation with related-lookups.
+* Improved: Documentation with using TinyMCE.
+
 2.4.0 (July 20, 2012)
 ---------------------
 

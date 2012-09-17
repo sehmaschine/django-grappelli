@@ -47,8 +47,8 @@
     @extend .g-d-c-fluid;
     // Column 1
     .c-1 {
-        margin-right: 0;
-        padding-right: 20px;
+        margin-left: 0;
+        padding-left: 20px;
         vertical-align: top;
     }
     // Column 2
@@ -72,19 +72,19 @@
     @extend .g-d-c-fluid;
     // Column 1
     .c-1 {
-        float: right !important;
+        float: left !important;
         display: table-cell;
-        margin-right: 0 !important;
-        padding-right: 0 !important;
         margin-left: 0 !important;
-        padding-left: 20px !important;
+        padding-left: 0 !important;
+        margin-right: 0 !important;
+        padding-right: 20px !important;
         vertical-align: top;
     }
     // Column 2
     .c-2 {
         float: right !important;
         display: table-cell;
-        margin-right: 0 !important;
+        margin-left: 0 !important;
         width: 100%;
         @include box-sizing(border-box);
         vertical-align: top;
@@ -107,7 +107,7 @@
 .grp-module {
     .l-2c-fluid {
         .c-2 {
-            padding-right: 10px;
+            padding-left: 10px;
         }
         &.grp-cell {
             .c-1 {
@@ -118,7 +118,7 @@
                 display: table-cell;
                 white-space: normal;
                 float: none;
-                padding-right: 0;
+                padding-left: 0;
                 width: auto !important;
                 vertical-align: top;
             }

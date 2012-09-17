@@ -22,6 +22,12 @@ p.grp-help {
 .grp-td p.grp-help {
     max-width: 278px;
 }
+.grp-row p.grp-help, 
+.grp-td p.grp-help {
+    &:first-child {
+        margin: -2px 0 8px;
+    }
+}
 
 
 /*  Description ......................................... */
@@ -31,25 +37,25 @@ p.grp-help {
 }
 
 
-/*  Read Only ......................................... */
+/*  Read Only (transferred to _forms.scss) ......................................... */
 
-p.grp-readonly {
-    position: relative;
-    display: inline-block;
-    margin: 4px 0 0 !important;
-    padding: 0 !important;
-    color: #666;
-    font-size: 12px;
-    font-weight: bold;
-    & + p.grp-readonly {
-        margin-left: 20px;
-    }
-}
-.grp-tabular {
-    p.grp-readonly {
-        margin-top: 5px !important;
-    }
-}
+// p.grp-readonly {
+//     position: relative;
+//     display: inline-block;
+//     margin: 4px 0 0 !important;
+//     padding: 0 !important;
+//     color: #666;
+//     font-size: 12px;
+//     font-weight: bold;
+//     & + p.grp-readonly {
+//         margin-left: 20px;
+//     }
+// }
+// .grp-tabular {
+//     p.grp-readonly {
+//         margin-top: 5px !important;
+//     }
+// }
 
 
 /*  Images ......................................... */

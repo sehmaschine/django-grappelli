@@ -67,6 +67,12 @@
                     }
                 }
             });
+            // close on esc
+            $(document).keyup(function(e) {
+                if (e.keyCode == 27) {
+                    self.timepicker.hide();
+                }
+            });
             
             // get/create timepicker's container
             if ($(this.options.timepicker_selector).size() === 0) {

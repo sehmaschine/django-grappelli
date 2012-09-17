@@ -1,0 +1,22 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _output.scss
+//
+// imports all necessary partials
+// remove partials which are not needed
+// remove sub-partials in _media, _layouts, 
+// _invariants & _templates
+//
+// **************************************************
+
+@import "grid-system-rtl";
+@import "media";
+@import "layouts/layout-2c-rtl";
+// @import "invariants";
+
+// Uncomment this if you want crazy selector bloat.
+// see http://chriseppstein.github.com/blog/2011/08/21/responsive-layouts-with-sass/
+// @import "templates";

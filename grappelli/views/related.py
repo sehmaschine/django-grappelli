@@ -13,6 +13,9 @@ from django.utils.translation import ungettext
 from django.utils.encoding import smart_str
 import django.utils.simplejson as simplejson
 
+# GRAPPELLI IMPORTS
+from grappelli.settings import AUTOCOMPLETE_LIMIT
+
 
 def returnattr(obj, attr):
     if callable(getattr(obj, attr)):
@@ -98,7 +101,7 @@ def autocomplete_lookup(request):
                 search_qs.dup_select_related(qs)
                 search_qs = search_qs.filter(reduce(operator.or_, search))
                 qs = qs & search_qs
-            data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in qs[:10]]
+            data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in qs[:AUTOCOMPLETE_LIMIT]]
             label = ungettext(
                 '%(counter)s result',
                 '%(counter)s results',

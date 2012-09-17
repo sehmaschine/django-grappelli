@@ -65,14 +65,14 @@
                             {% if inline_admin_formset.opts.sortable_field_name %}
                                 <li><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
                             {% endif %}
-                            {% if inline_admin_formset.formset.can_delete %}
-                                <li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon {% if inline_admin_form.original %}grp-delete-handler{% else %}grp-remove-handler{% endif %}" title="{% trans 'Remove' %}"></a></li>
-                            {% else %}
-                                {% if inline_admin_form.original %}
-                                    <li>&nbsp;</li>
+                            {% if inline_admin_form.original %}
+                                {% if inline_admin_formset.formset.can_delete %}
+                                    <li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon grp-delete-handler" title="{% trans 'Delete Item' %}"></a></li>
                                 {% else %}
-                                    <li><a href="javascript://" class="grp-icon grp-remove-handler" title="{% trans 'Remove' %}"></a></li>
+                                    <li><span class="grp-icon">&nbsp;</span></li>
                                 {% endif %}
+                            {% else %}
+                                <li><a href="javascript://" class="grp-icon grp-remove-handler" title="{% trans 'Delete Item' %}"></a></li>
                             {% endif %}
                         </ul>
                         {% endspaceless %}
@@ -268,12 +268,15 @@
                 i = 0;
             $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-tbody.grp-dynamic-form").each(function(){
                 var fields = $(this).find("div.grp-td :input[value][value!=''][type!=radio][type!=checkbox],input:checked,input[type=file]"),
-                    submit_values = false;
+                    submit_values = false,
+                    has_value;
                 $(fields).each(function() {
                     // position is being updated if
                     // a) the field has a value
                     // b) if the field is not exluded with sortable_excludes (e.g. with default values)
-                    if ($(this).val() && $(this).attr("name") && $.inArray($(this).attr("name").split("-").pop(), sortable_excludes) == -1) {
+                    has_value = $(this).val() || ($(this).attr('type') == 'file' && $(this).siblings('a').length);
+                    console.log(has_value);
+                    if (has_value && $(this).attr("name") && $.inArray($(this).attr("name").split("-").pop(), sortable_excludes) == -1) {
                         submit_values = true;
                     };
                 });

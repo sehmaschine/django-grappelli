@@ -10,6 +10,8 @@
             options = $.extend({}, $.fn.grp_autocomplete_fk.defaults, options);
             return this.each(function() {
                 var $this = $(this);
+                // tabindex
+                $this.attr("tabindex", "-1");
                 // remove djangos object representation (if given)
                 if ($this.next().next() && $this.next().next().attr("class") != "errorlist") $this.next().next().remove();
                 // build autocomplete wrapper
@@ -44,7 +46,7 @@
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.grp_autocomplete_fk');
-        };
+        }
         return false;
     };
     

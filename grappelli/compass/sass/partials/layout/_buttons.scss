@@ -145,8 +145,54 @@ input[type=button],
 button, 
 a.fb_show, 
 a.related-lookup, 
-body.tinyMCE input[name="src"] + div a {
+body.tinyMCE input[name="src"] + div a, 
+body.tinyMCE input[name="href"] + div a {
     @include grp-icon-button;
+}
+
+
+/*  Related Lookup Placeholders ......................................... */
+
+@mixin grp-placeholder {
+    position: relative;
+    display: block;
+    top: -24px;
+    margin: 0 0 -22px 123px;
+    padding: 0;
+    font-weight: bold;
+    table & {
+        top: -20px;
+        margin-bottom: -25px;
+    }
+    .grp-placeholder-label:first-child {
+        display: inline-block;
+        margin-top: 4px;
+        * {
+            margin-top: -4px;
+        }
+        table & {
+            margin-top: 5px;
+            * {
+                margin-top: -5px;
+            }
+        }
+    }
+    img {
+        vertical-align: top;
+    }
+}
+@mixin grp-separator {
+    &:after {
+        content: ", ";
+    }
+}
+.grp-placeholder-related-fk, 
+.grp-placeholder-related-m2m, 
+.grp-placeholder-related-generic {
+    @include grp-placeholder;
+}
+.grp-separator {
+    @include grp-separator;
 }
 
 
@@ -154,7 +200,8 @@ body.tinyMCE input[name="src"] + div a {
 
 a.fb_show, 
 a.related-lookup, 
-body.tinyMCE input[name="src"] + div a {
+body.tinyMCE input[name="src"] + div a, 
+body.tinyMCE input[name="href"] + div a {
     display: inline-block;
     margin-bottom: -5px;
     @include icons-sprite(related-lookup);
@@ -265,7 +312,8 @@ input:focus + a.related-lookup,
 input:focus + * + a.related-lookup, 
 input:focus + a.add-another, 
 .grp-state-focus a.related-lookup, 
-body.tinyMCE input[name="src"]:focus + div a {
+body.tinyMCE input[name="src"]:focus + div a, 
+body.tinyMCE input[name="href"]:focus + div a {
     border: $grp-form-field-border-focus !important;
 }
 input:focus + .grp-search-button {

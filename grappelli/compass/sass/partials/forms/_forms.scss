@@ -63,6 +63,50 @@ select {
 }
 
 
+/*  Readonly/Disabled ................................................... */
+
+input[readonly], 
+input[disabled], 
+textarea[readonly], 
+select[disabled] {
+    // Appearing as a form field with dotted border and no background
+    border: $grp-form-field-border !important;
+    border-style: dotted !important;
+    background: transparent !important;
+    &:focus {
+        @include box-shadow(none);
+    }
+    // Same style as p.grp-readonly (no border, no background)
+    // padding-left: 0 !important;
+    // padding-right: 0 !important;
+    // border: 0 !important;
+    // background: transparent !important;
+    // &:focus {
+    //     @include box-shadow(none);
+    //     border: 0 !important;
+    //     background: transparent !important;
+    // }
+}
+p.grp-readonly {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 4px 5px 3px !important;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: bold;
+    color: #555555;
+    min-width: 118px;
+    max-width: 758px;
+    border: 1px dotted #ccc;
+    @include border-radius($grp-form-field-border-radius);
+    @include box-sizing(border-box);
+    & + p.grp-readonly {
+        margin-left: 20px;
+    }
+}
+
+
 /*  Form Field Errors ................................................... */
 
 .grp-errors {
