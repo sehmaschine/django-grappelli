@@ -19,6 +19,8 @@ from django.utils.safestring import mark_safe
 from django.db import models
 from django.contrib import admin
 from django.conf import settings
+from django.template.loader import get_template
+from django.template.context import Context
 
 # grappelli imports
 from grappelli.settings import *
@@ -185,4 +187,17 @@ def prettylabel(value):
     return mark_safe(value.replace(":</label>", "</label>"))
 
 
+# CUSTOM ADMIN LIST FILTER
+# WITH TEMPLATE DEFINITION
+@register.simple_tag
+def admin_list_filter(cl, spec):
+    try:
+        tpl = get_template(cl.model_admin.list_filter_template)
+    except:
+        tpl = get_template(spec.template)
+    return tpl.render(Context({
+        'title': spec.title,
+        'choices' : list(spec.choices(cl)),
+        'spec': spec,
+    }))
 
