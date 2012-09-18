@@ -99,7 +99,8 @@ p.file-upload {
         }
     }
     tr & {
-        margin: 0;
+        margin: 1px 0 -2px;
+        line-height: 13px; // Firefox needs this, otherwise related-lookup buttons in context have an offset
     }
 }
 p.preview {

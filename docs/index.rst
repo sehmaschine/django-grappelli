@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |version| replace:: 2.4.1
+.. |version| replace:: 2.4.2
 
 .. _index:
 
@@ -64,10 +64,10 @@ Code
 
 https://github.com/sehmaschine/django-grappelli
 
-Screenshots
------------
+Website
+-------
 
-http://sehmaschine.github.com/django-grappelli/
+http://www.grappelliproject.com
 
 Discussion
 ----------
