@@ -154,11 +154,9 @@
             <div class="c-1">
                 <!-- FILTERS -->
                 {% block filters %}
-                    <div id="grp-filters" class="grp-module filter">
+                    <div id="grp-filters" class="grp-module grp-filter">
                         <h2>{% trans 'Filter' %}</h2>
-                        <ul>
-                            {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
-                        </ul>
+                        {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
                     </div>
                 {% endblock %}
             </div>

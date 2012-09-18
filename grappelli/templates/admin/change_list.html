@@ -167,12 +167,14 @@
                                 <!-- FILTERS -->
                                 {% if cl.has_filters %}
                                     {% block filters %}
-                                        <div id="grp-filters" class="filter g-d-6 g-d-l">
-                                            <div class="grp-pulldown-container">
-                                                <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
-                                                <ul class="grp-pulldown-content" style="display: none">
-                                                    {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
-                                                </ul>
+                                        <div id="grp-filters" class="g-d-6 g-d-l">
+                                            <div class="grp-filter">
+                                                <div class="grp-pulldown-container">
+                                                    <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
+                                                    <div class="grp-pulldown-content" style="display: none;">
+                                                        {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     {% endblock %}

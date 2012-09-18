@@ -14,6 +14,12 @@
     border: $grp-button-border-hover;
     background-color: #eee;
 }
+.button-state-dark-grey {
+    color: $grp-font-color;
+    border: $grp-button-border-hover;
+    border-color: #ccc;
+    background-color: #dbdbdb;
+}
 .button-state-white {
     border: $grp-button-border;
     background-color: #fdfdfd;
@@ -36,6 +42,9 @@
     @if $state == grey {
         @extend .button-state-grey;
     }
+    @if $state == darkgrey {
+        @extend .button-state-dark-grey;
+    }
     @if $state == white {
         @extend .button-state-white;
     }
@@ -51,6 +60,9 @@
         }
         @if $state-hover == grey {
             @extend .button-state-grey;
+        }
+        @if $state-hover == darkgrey {
+            @extend .button-state-dark-grey;
         }
         @if $state-hover == white {
             @extend .button-state-white;

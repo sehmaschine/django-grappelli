@@ -410,6 +410,7 @@ header#grp-header {
 
 @mixin grp-fixed-footer {
 	position: fixed;
+	z-index: 900;
 	float: left;
 	bottom: 0;
 	left: 0;
