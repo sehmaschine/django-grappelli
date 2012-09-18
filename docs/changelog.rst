@@ -8,8 +8,15 @@
 Changelog
 =========
 
-2.4.2 (not yet released)
+2.4.3 (not yet released)
 ------------------------
+
+2.4.2 (September 18, 2012)
+--------------------------
+
+* Fixed: Bug with change-permissions on ModelList (grappelli.dashboard).
+* Added: Alternative ChangeList Template (with filters on the right hand side).
+* Added: Alternative ChangeList Filter Template (displaying filters as list/options).
 
 2.4.1 (September 17, 2012)
 --------------------------

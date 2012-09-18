@@ -271,10 +271,29 @@ Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form
 
 .. _changelistfilters:
 
+Changelist Templates
+--------------------
+
+.. versionadded:: 2.4.2
+
+Grappelli comes with 2 different change–list templates. The standard template shows filters with a drop–down, the alternative template shows filters on the right hand side of the results (similar to djangos admin interface).
+
+To use the alternative template, you need to add ``change_list_template`` to your ModelAdmin definition::
+
+    class MyModelOptions(admin.ModelAdmin):
+        change_list_template = "admin/change_list_filter_sidebar.html"
+
+
 Changelist Filters
 ------------------
 
-.. versionadded:: 2.4
+.. versionadded:: 2.4.2
 
-TODO: Explain how to use different filter-styles with the changelist.
+Grappelli comes with 2 different change–list filters. The standard filters are drop–downs, the alternative filters are list of options (similar to djangos admin interface).
+
+To use the alternative filters, you need to add ``change_list_filter_template`` to your ModelAdmin definition::
+
+    class MyModelOptions(admin.ModelAdmin):
+        change_list_filter_template = "admin/filter_list.html"
+
 

@@ -64,10 +64,10 @@ Code
 
 https://github.com/sehmaschine/django-grappelli
 
-Screenshots
------------
+Website
+-------
 
-http://sehmaschine.github.com/django-grappelli/
+http://www.grappelliproject.com
 
 Discussion
 ----------
