@@ -192,7 +192,7 @@ def prettylabel(value):
 @register.simple_tag
 def admin_list_filter(cl, spec):
     try:
-        tpl = get_template(cl.model_admin.list_filter_template)
+        tpl = get_template(cl.model_admin.change_list_filter_template)
     except:
         tpl = get_template(spec.template)
     return tpl.render(Context({
