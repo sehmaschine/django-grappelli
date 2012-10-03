@@ -294,6 +294,6 @@ Grappelli comes with 2 different change–list filters. The standard filters are
 To use the alternative filters, you need to add ``change_list_filter_template`` to your ModelAdmin definition::
 
     class MyModelOptions(admin.ModelAdmin):
-        change_list_filter_template = "admin/filter_list.html"
+        change_list_filter_template = "admin/filter_listing.html"
 
 
