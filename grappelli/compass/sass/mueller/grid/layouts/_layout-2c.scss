@@ -57,6 +57,9 @@
         display: table-cell;
         width: 100%;
         vertical-align: top;
+        .grp-row > & {
+            padding-right: 0;
+        }
     }
     $n: 24;
     @while $n > 0 {
