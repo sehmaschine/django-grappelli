@@ -62,6 +62,12 @@
                 </fieldset>
                 <div class="grp-module grp-submit-row">
                     <ul>
+                        {% url 'admin_password_reset' as password_reset_url %}
+                        {% if password_reset_url %}
+                            <li class="grp-float-left">
+                                <p style="margin-top: 6px; max-width: 360px; white-space: normal;"><a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a></p>
+                            </li>
+                        {% endif %}
                         <li><input type="submit" class="grp-button" value="{% trans 'Log in' %}" /></li>
                     </ul>
                 </div>

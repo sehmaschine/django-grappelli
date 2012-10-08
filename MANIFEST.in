@@ -5,3 +5,4 @@ recursive-include docs *
 recursive-include grappelli/static *
 recursive-include grappelli/templates *
 recursive-include grappelli/dashboard/templates *
+recursive-include grappelli/locale *

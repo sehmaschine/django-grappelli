@@ -503,6 +503,19 @@ body.rtl {
 			}
 		}
 	}
+	.grp-filter {
+		.grp-row {
+			&.grp-selected {
+				a {
+					padding-right: 17px;
+					padding-left: 10px;
+					color: $grp-font-color;
+					@include icons-small-sprite(filter-choice-selected, $offset-x: 100%);
+				}
+			}
+		}
+		@include legacy-pie-clearfix;
+	}
 
 	// CHANGELIST-ACTIONS
 	li.grp-changelist-actions {

@@ -11,6 +11,9 @@ Changelog
 2.4.3 (not yet released)
 ------------------------
 
+* Fixed: i18n of the Save-Button.
+* Added: Password reset (on login page).
+
 2.4.2 (September 18, 2012)
 --------------------------
 
