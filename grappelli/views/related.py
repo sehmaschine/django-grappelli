@@ -24,7 +24,9 @@ def returnattr(obj, attr):
 
 
 def get_label(f):
-    return returnattr(f, "related_label") or unicode(f)
+    if getattr(f, "related_label", None):
+        return f.related_label()
+    return f.__unicode__()
 
 
 @never_cache
