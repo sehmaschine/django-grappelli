@@ -43,16 +43,18 @@
     };
     
     updateFormIndex = function(elem, options, replace_regex, replace_with) {
-        elem.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
+        elem.find(':input,span,table,iframe,label,a,ul,p,img,div').each(function() {
             var node = $(this),
                 node_id = node.attr('id'),
                 node_name = node.attr('name'),
                 node_for = node.attr('for'),
-                node_href = node.attr("href");
+                node_href = node.attr("href"),
+                node_class = node.attr("class");
             if (node_id) { node.attr('id', node_id.replace(replace_regex, replace_with)); }
             if (node_name) { node.attr('name', node_name.replace(replace_regex, replace_with)); }
             if (node_for) { node.attr('for', node_for.replace(replace_regex, replace_with)); }
             if (node_href) { node.attr('href', node_href.replace(replace_regex, replace_with)); }
+            if (node_class) { node.attr('class', node_class.replace(replace_regex, replace_with)); }
         });
     };
     
