@@ -147,6 +147,7 @@ p.grp-readonly {
 
 select {
     padding: 4px 3px 4px 2px;
+    min-width: 118px;
     // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
