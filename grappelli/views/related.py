@@ -24,9 +24,7 @@ def returnattr(obj, attr):
 
 
 def get_label(f):
-    if getattr(f, "related_label", None):
-        return f.related_label()
-    return f.__unicode__()
+    return returnattr(f, "related_label") or unicode(f)
 
 
 @never_cache
@@ -101,14 +99,13 @@ def autocomplete_lookup(request):
                 search_qs.dup_select_related(qs)
                 search_qs = search_qs.filter(reduce(operator.or_, search))
                 qs = qs & search_qs
-            data = [{"value":f.pk,"label":u'%s' % get_label(f)} for f in qs[:AUTOCOMPLETE_LIMIT]]
+            data = [{"value":f.pk,"label":get_label(f)} for f in qs[:AUTOCOMPLETE_LIMIT]]
             label = ungettext(
                 '%(counter)s result',
                 '%(counter)s results',
-            len(data)) % {
+                len(data)) % {
                 'counter': len(data),
             }
-            #data.insert(0, {"value":None,"label":label})
             return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
     data = [{"value":None,"label":_("Server error")}]
     return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
