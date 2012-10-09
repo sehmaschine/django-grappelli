@@ -12,6 +12,8 @@ Changelog
 ------------------------
 
 * Fixed: i18n of the Save-Button.
+* Fixed: Cloning inlines now works with django-autocomplete-light.
+* Fixed: ``related_label`` used for autocomplete list.
 * Added: Password reset (on login page).
 
 2.4.2 (September 18, 2012)

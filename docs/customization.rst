@@ -155,10 +155,18 @@ If your generic relation points to a model using a custom primary key, you need 
 .. versionadded:: 2.3.4
     ``related_label``.
 
-For the represantation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
+For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
 
     def __unicode__(self):
         return u"%s" % self.name
+    
+    def related_label(self):
+        return u"%s (%s)" % (self.name, self.id)
+
+.. versionadded:: 2.4.3
+    ``related_label``.
+
+For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
     
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
@@ -233,7 +241,7 @@ If your generic relation points to a model using a custom primary key, you need 
         def id(self):
             return self.cpk
 
-For the represantation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
+For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
 
     def __unicode__(self):
         return u"%s" % self.name
