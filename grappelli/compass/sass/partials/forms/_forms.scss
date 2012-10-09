@@ -92,17 +92,21 @@ p.grp-readonly {
     display: inline-block;
     margin: 0;
     padding: 4px 5px 3px !important;
+    min-width: 106px;
+    max-width: 746px;
+    min-height: 16px;
     font-size: 12px;
     line-height: 16px;
     font-weight: bold;
     color: #555555;
-    min-width: 118px;
-    max-width: 758px;
     border: 1px dotted #ccc;
     @include border-radius($grp-form-field-border-radius);
-    @include box-sizing(border-box);
+    // @include box-sizing(border-box);
     & + p.grp-readonly {
         margin-left: 20px;
+    }
+    &:empty {
+        margin-bottom: -5px !important;
     }
 }
 
