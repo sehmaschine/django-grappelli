@@ -10,12 +10,24 @@
             options = $.extend({}, $.fn.grp_related_fk.defaults, options);
             return this.each(function() {
                 var $this = $(this);
+                var $parent = $this.parent();
                 // remove djangos object representation
-                if ($this.next().next() && $this.next().next().attr("class") != "errorlist") {
-                    $this.next().next().remove();
+                if ($parent.find('a.related-lookup').next().is('strong')) {
+                    $parent.find('a.related-lookup').next('strong').remove();
                 }
-                // add placeholder
-                $this.parent().append(options.placeholder);
+                // add placeholder:
+                // as the &nbsp; from djangos object representation has to be placed after the a.related-lookup
+                // we have to place the placeholder right after it (which means to place if before a possible errorlist/helptext)
+                if ($parent.hasClass('grp-error')) {
+                    console.log('error');
+                    $parent.find('ul.errorlist').before(options.placeholder);
+                } else {
+                    if ($parent.find('p').hasClass('grp-help')) {
+                        $parent.find('p.grp-help').before(options.placeholder);
+                    } else {
+                        $parent.append(options.placeholder);
+                    }
+                }
                 // lookup
                 lookup_id($this, options); // lookup when loading page
                 $this.bind("change focus keyup blur", function() { // id-handler
@@ -37,7 +49,7 @@
     };
     
     var lookup_id = function(elem, options) {
-        var text = elem.next().next();
+        var text = elem.parent().find('.grp-placeholder-related-fk');
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
             app_label: grappelli.get_app_label(elem),

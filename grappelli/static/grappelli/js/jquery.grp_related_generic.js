@@ -48,8 +48,8 @@
     var update_lookup = function(elem, options) {
         var obj = $(options.object_id);
         obj.val('');
-        obj.next().remove();
-        obj.next().remove();
+        obj.parent().find('a.related-lookup').remove();
+        obj.parent().find('.grp-placeholder-related-generic').remove();
         if ($(elem).val()) {
             obj.after(options.placeholder).after(lookup_link(obj.attr('id'),$(elem).val()));
         }
@@ -72,7 +72,7 @@
     };
     
     $.fn.grp_related_generic.defaults = {
-        placeholder: '<div class="grp-placeholder-related-generic"></div>',
+        placeholder: '<div class="grp-placeholder-related-generic" style="display:none"></div>',
         repr_max_length: 30,
         lookup_url: '',
         content_type: '',
