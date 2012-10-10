@@ -449,6 +449,7 @@ ul.errorlist + .selector {
     line-height: 13px;
     font-weight: bold;
     color: $grp-font-color-error;
+    white-space: normal;
 }
 @mixin errorlist-nonform {
     @include errorlist;

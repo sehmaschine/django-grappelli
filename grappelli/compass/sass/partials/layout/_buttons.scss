@@ -169,8 +169,9 @@ body.tinyMCE input[name="href"] + div a {
     position: relative;
     display: block;
     top: -24px;
-    margin: 0 0 -22px 123px;
+    margin: 0 0 -20px 123px;
     padding: 0;
+    // min-height: 20px;
     font-weight: bold;
     table & {
         top: -20px;
@@ -202,6 +203,9 @@ body.tinyMCE input[name="href"] + div a {
 .grp-placeholder-related-m2m, 
 .grp-placeholder-related-generic {
     @include grp-placeholder;
+    .grp-error & {
+        display: none;
+    }
 }
 .grp-separator {
     @include grp-separator;
@@ -296,8 +300,13 @@ p.grp-help + * + a.add-another {
     top: -20px;
     margin-bottom: -20px;
 }
-.grp-td a.add-another {
-    float: right;
+.grp-td {
+    a.add-another {
+        float: none;
+    }
+    select + a.add-another {
+        top: -6px;
+    }
 }
 .radiolist.inline + a.add-another, 
 .checkboxlist.inline + a.add-another {
