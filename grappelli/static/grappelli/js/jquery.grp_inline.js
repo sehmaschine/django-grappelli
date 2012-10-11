@@ -102,12 +102,16 @@
             var index = parseInt(totalForms.val(), 10),
                 form = empty_template.clone(true);
             form.removeClass(options.emptyCssClass)
-                .attr("id", empty_template.attr('id').replace("-empty", index))
-                .insertBefore(empty_template)
-                .addClass(options.formCssClass);
+                .attr("id", empty_template.attr('id').replace("-empty", index));
             // update form index
             var re = /__prefix__/g;
             updateFormIndex(form, options, re, index);
+            // after "__prefix__" strings has been substituted with the number
+            // of the inline, we can add the form to DOM, not earlier.
+            // This way we can support handlers that track live element
+            // adding/removing, like those used in django-autocomplete-light
+            form.insertBefore(empty_template)
+                .addClass(options.formCssClass);
             // update total forms
             totalForms.val(index + 1);
             // hide add button in case we've hit the max, except we want to add infinitely
