@@ -74,6 +74,11 @@ This bug has been resolved with Django 1.2 ... unfortunately, with Django 1.3 an
 
 see https://code.djangoproject.com/ticket/11163
 
+``help_text`` and Many-to-Many Fields
+-------------------------------------
+
+The ``help_text`` doesn´t show up with M2M-Fields, when using the RawID-Widget (e.g. with Autocompletes). Nothing we can do about that.
+
 Searching Generic Relations
 ---------------------------
 
