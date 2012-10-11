@@ -101,6 +101,10 @@
                     });
                     // reset actions select box
                     $('.grp-changelist-actions select').val(-1);
+                    // find errors and move (because errors should be below form elements)
+                    $("ul.errorlist").each(function() {
+                        $(this).parents("td").append($(this));
+                    });
                 });
             })(grp.jQuery);
         </script>
