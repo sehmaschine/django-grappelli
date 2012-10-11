@@ -56,19 +56,21 @@
     };
     
     var lookup_id = function(elem, options) {
-        var text = elem.next().next();
-        $.getJSON(options.lookup_url, {
-            object_id: elem.val(),
-            app_label: grappelli.get_app_label(elem),
-            model_name: grappelli.get_model_name(elem)
-        }, function(data) {
-            if (data[0].label == "") {
-                text.hide();
-            } else {
-                text.show();
-            }
-            text.html('<span class="grp-placeholder-label">' + data[0].label + '</span>');
-        });
+        if ($(options.content_type).val()) {
+            var text = elem.next().next();
+            $.getJSON(options.lookup_url, {
+                object_id: elem.val(),
+                app_label: grappelli.get_app_label(elem),
+                model_name: grappelli.get_model_name(elem)
+            }, function(data) {
+                if (data[0].label == "") {
+                    text.hide();
+                } else {
+                    text.show();
+                }
+                text.html('<span class="grp-placeholder-label">' + data[0].label + '</span>');
+            });
+        }
     };
     
     $.fn.grp_related_generic.defaults = {

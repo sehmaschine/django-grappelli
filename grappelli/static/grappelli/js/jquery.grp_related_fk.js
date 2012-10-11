@@ -13,21 +13,11 @@
                 var $parent = $this.parent();
                 // remove djangos object representation
                 if ($parent.find('a.related-lookup').next().is('strong')) {
+                    $parent.find('a.related-lookup').get(0).nextSibling.nodeValue="";
                     $parent.find('a.related-lookup').next('strong').remove();
                 }
-                // add placeholder:
-                // as the &nbsp; from djangos object representation has to be placed after the a.related-lookup
-                // we have to place the placeholder right after it (which means to place if before a possible errorlist/helptext)
-                if ($parent.hasClass('grp-error')) {
-                    console.log('error');
-                    $parent.find('ul.errorlist').before(options.placeholder);
-                } else {
-                    if ($parent.find('p').hasClass('grp-help')) {
-                        $parent.find('p.grp-help').before(options.placeholder);
-                    } else {
-                        $parent.append(options.placeholder);
-                    }
-                }
+                // add placeholder
+                $parent.find('a.related-lookup').after(options.placeholder);
                 // lookup
                 lookup_id($this, options); // lookup when loading page
                 $this.bind("change focus keyup blur", function() { // id-handler
