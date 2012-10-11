@@ -139,7 +139,7 @@ p.grp-readonly {
         }
     }
     ul.errorlist {
-        padding: 3px 0 0;
+        padding: 5px 0 0;
         color: $grp-font-color-error;
         font-size: 11px !important;
         line-height: 14px;
@@ -463,10 +463,13 @@ ul.errorlist + .selector {
 }
 @mixin errorlist-field {
     @include errorlist;
-    margin: 2px 0 0;
+    margin: 0;
     li {
-        padding: 3px 0 0;
+        padding: 2px 0 0;
         border-top: 0 !important;
+        &:first-child {
+            padding-top: 0;
+        }
     }
 }
 
@@ -479,6 +482,9 @@ p.errornote {
 }
 ul.errorlist {
     @include errorlist;
+    + ul.errorlist {
+        padding-top: 2px;
+    }
 }
 
 
@@ -564,7 +570,7 @@ ul.errorlist {
 
 /*  Errors with tinyMCE ................................................... */
 
-.grp-error {
+.grp-errors {
     td.mceIframeContainer {
         border: 1px solid $grp-font-color-error !important;
         @include border-radius($grp-border-radius);

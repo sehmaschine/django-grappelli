@@ -9,13 +9,16 @@
 
 p.grp-help {
     max-width: 758px;
-    padding: 3px 0 0;
+    padding: 5px 0 0;
     color: lighten($grp-font-color-quiet, 7);
     font-size: 11px !important;
-    line-height: 14px;
+    line-height: 13px;
     white-space: normal !important;
     &:first-child {
         margin-top: 5px;
+    }
+    .errorlist + & {
+        padding-top: 2px;
     }
 }
 .grp-cells p.grp-help, 
@@ -27,6 +30,9 @@ p.grp-help {
     &:first-child {
         margin: -2px 0 8px;
     }
+}
+.grp-row p.grp-help {
+    margin-bottom: -2px;
 }
 
 
