@@ -14,7 +14,8 @@ Changelog
 * Fixed: i18n of the Save-Button.
 * Fixed: Cloning inlines now works with django-autocomplete-light.
 * Fixed: ``related_label`` used for autocomplete list.
-* Fixed: help_text with related–lookups (help_text with M2M is not possible because of a django–bug).
+* Fixed: help_text with related–lookups and autocomplete lookups (help_text with M2M is not possible because of a django–bug).
+* Improved: Error messages on Change–List are now below form fields (not above).
 * Added: Password reset (on login page).
 
 2.4.2 (September 18, 2012)
