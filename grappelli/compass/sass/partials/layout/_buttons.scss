@@ -203,7 +203,7 @@ body.tinyMCE input[name="href"] + div a {
 .grp-placeholder-related-m2m, 
 .grp-placeholder-related-generic {
     @include grp-placeholder;
-    .grp-error & {
+    .grp-errors & {
         display: none;
     }
 }
