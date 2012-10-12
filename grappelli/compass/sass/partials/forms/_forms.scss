@@ -488,20 +488,6 @@ ul.errorlist {
 }
 
 
-/*  Login Form ................................................... */
-
-.grp-login .errornote, 
-.errornote.grp-login-errors {
-    margin-bottom: 0 !important;
-    padding: 8px 10px 6px !important;
-    @include border-radius(0);
-}
-.errornote.grp-login-errors {
-    margin-bottom: 0 !important;
-    padding: 8px 12px;
-}
-
-
 /*  Errorlist in rows ................................................... */
 
 .grp-row {
