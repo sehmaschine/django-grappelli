@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n %}{% load url from future %}
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; Form Fields{% endblock %}
@@ -90,7 +90,7 @@
 		        <div class="grp-doc-description">
 		            <h1>Form Field Widths</h1>
 		            <p>The following classes basically handle the widths of form fields in different contexts.</p>
-		            <p>They <strong>apply only to form fields</strong> which are <strong>not children of any grid-container</strong> (e.g. <span class="grp-doc-class">.g-d-c</span> or <span class="grp-doc-class">.g-d-24</span>).<br />Form fields which are children of a grid-container always stretch to 100% width.<br />For more detailled informations about the grid Grappelli uses take a look at the <a href="{% url grp_doc_mueller_grid_system %}">grid system we use</a>.</p>
+		            <p>They <strong>apply only to form fields</strong> which are <strong>not children of any grid-container</strong> (e.g. <span class="grp-doc-class">.g-d-c</span> or <span class="grp-doc-class">.g-d-24</span>).<br />Form fields which are children of a grid-container always stretch to 100% width.<br />For more detailled informations about the grid Grappelli uses take a look at the <a href="{% url 'grp_doc_mueller_grid_system' %}">grid system we use</a>.</p>
 		        </div>
 		    </div>
 	    	<div class="xg-d-24 g-d-c-fluid">
@@ -254,7 +254,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Errors in Forms</h1>
-		            <p>Please take a look at <a href="{% url grp_doc_errors %}">errors in forms</a>.</p>
+		            <p>Please take a look at <a href="{% url 'grp_doc_errors' %}">errors in forms</a>.</p>
 		        </div>
 		    </div>
 	    </section>
