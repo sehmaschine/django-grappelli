@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n %}{% load url from future %}
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; Errors in Forms{% endblock %}
@@ -123,7 +123,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Non-Form &amp; Non-Field Errors in Stacked Groups</h1>
-		            <p>They have to be placed <strong>directly after</strong> the <a href="{% url grp_doc_groups %}">groups</a>/<a href="{% url grp_doc_modules %}">modules</a> heading or <strong>directly after</strong> the <a href="{% url grp_doc_tools %}">tools</a> if there are any.</p>
+		            <p>They have to be placed <strong>directly after</strong> the <a href="{% url 'grp_doc_groups' %}">groups</a>/<a href="{% url 'grp_doc_modules' %}">modules</a> heading or <strong>directly after</strong> the <a href="{% url 'grp_doc_tools' %}">tools</a> if there are any.</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">
@@ -168,7 +168,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Non-Form &amp; Non-Field Errors in Tabular Groups</h1>
-		            <p>The non-form errorlist has to be placed <strong>directly after</strong> the <a href="{% url grp_doc_groups %}">groups</a> heading or <strong>directly after</strong> the <a href="{% url grp_doc_tools %}">tools</a> if there are any.</p>
+		            <p>The non-form errorlist has to be placed <strong>directly after</strong> the <a href="{% url 'grp_doc_groups' %}">groups</a> heading or <strong>directly after</strong> the <a href="{% url 'grp_doc_tools' %}">tools</a> if there are any.</p>
 		            <p>The non-field errorlist has to be the first child of the <span class="grp-doc-class">.grp-module.grp-tbody</span>.</p>
 		        </div>
 		    </div>
@@ -247,7 +247,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Errornote</h1>
-		            <p>The <span class="grp-doc-dom"><span>p.errornote</span></span> is currently used before the very first <a href="{% url grp_doc_groups %}">group</a> or <a href="{% url grp_doc_modules %}">module</a>, e.g. with the <a href="{% url grp_doc_change_form %}">change form</a>.</p>
+		            <p>The <span class="grp-doc-dom"><span>p.errornote</span></span> is currently used before the very first <a href="{% url 'grp_doc_groups' %}">group</a> or <a href="{% url 'grp_doc_modules' %}">module</a>, e.g. with the <a href="{% url 'grp_doc_change_form' %}">change form</a>.</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">

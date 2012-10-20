@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n %}{% load url from future %}
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; >Predefined Layouts{% endblock %}
@@ -16,7 +16,7 @@
     <div class="xg-d-c-fluid">
         <div class="grp-doc-description">
             <div class="g-d-24">
-                <p>There are several predefined layouts based on the <a href="{% url grp_doc_mueller_grid_system %}">grid system</a> Grappelli uses.</p>
+                <p>There are several predefined layouts based on the <a href="{% url 'grp_doc_mueller_grid_system' %}">grid system</a> Grappelli uses.</p>
             </div>
         </div>
         <section>
