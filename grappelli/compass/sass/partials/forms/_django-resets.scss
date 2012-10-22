@@ -2,11 +2,14 @@
 
 /*  Datetime ........................................... */
 
-p.datetime br {
-	display: none;
-}
-p.datetime input.vTimeField {
-    margin-left: 6px;
+p.datetime {
+	white-space: nowrap !important;
+	br {
+		display: none;
+	}
+	input.vTimeField {
+	    margin-left: 6px;
+	}
 }
 
 
