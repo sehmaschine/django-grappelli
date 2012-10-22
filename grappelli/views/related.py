@@ -69,7 +69,7 @@ def m2m_lookup(request):
                         try:
                             obj = model.objects.get(pk=obj_id)
                             data.append({"value":obj.pk,"label":get_label(obj)})
-                        except obj.DoesNotExist:
+                        except model.DoesNotExist:
                             data.append({"value":obj_id,"label":_("?")})
             return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
     data = [{"value":None,"label":""}]
