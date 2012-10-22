@@ -8,15 +8,23 @@
 Changelog
 =========
 
-2.4.3 (not yet released)
+2.4.4 (not yet released)
+------------------------
+
+2.4.3 (October 15, 2012)
 ------------------------
 
 * Fixed: i18n of the Save-Button.
-* Fixed: Cloning inlines now works with django-autocomplete-light.
 * Fixed: ``related_label`` used for autocomplete list.
 * Fixed: help_text with related–lookups and autocomplete lookups (help_text with M2M is not possible because of a django–bug).
+* Fixed: Bug with model does not exist and m2m lookups.
+* Fixed: Calendar button with Chrome and zooming.
 * Improved: Error messages on Change–List are now below form fields (not above).
+* Improved: Design of the Login screen.
+* Improved: Cloning inlines now works with django-autocomplete-light.
 * Added: Password reset (on login page).
+* New: New Login screen.
+* New: Support for Django 1.5.
 
 2.4.2 (September 18, 2012)
 --------------------------
