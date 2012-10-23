@@ -11,7 +11,7 @@ Changelog
 2.4.4 (not yet released)
 ------------------------
 
-2.4.3 (October 15, 2012)
+2.4.3 (October 23, 2012)
 ------------------------
 
 * Fixed: i18n of the Save-Button.
