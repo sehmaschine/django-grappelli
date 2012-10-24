@@ -21,3 +21,11 @@ a.add-another img, a.related-lookup img {
 a.related-lookup img {
     display: none;
 }
+
+
+/*  Hide Images in Templates ........................................... */
+
+.deletelink {
+    padding-left: 12px;
+    background: url(../../admin/img/icon_deletelink.gif) 0 .25em no-repeat;
+}
