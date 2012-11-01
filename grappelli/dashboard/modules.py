@@ -284,6 +284,7 @@ class ModelList(DashboardModule, AppListElementMixin):
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             self.children.append(model_dict)
+        self.children.sort(key=lambda x: x['title'])
         self._initialized = True
 
 
