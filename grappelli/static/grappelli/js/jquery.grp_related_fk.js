@@ -10,12 +10,14 @@
             options = $.extend({}, $.fn.grp_related_fk.defaults, options);
             return this.each(function() {
                 var $this = $(this);
+                var $parent = $this.parent();
                 // remove djangos object representation
-                if ($this.next().next() && $this.next().next().attr("class") != "errorlist") {
-                    $this.next().next().remove();
+                if ($parent.find('a.related-lookup').next().is('strong')) {
+                    $parent.find('a.related-lookup').get(0).nextSibling.nodeValue="";
+                    $parent.find('a.related-lookup').next('strong').remove();
                 }
                 // add placeholder
-                $this.parent().append(options.placeholder);
+                $parent.find('a.related-lookup').after(options.placeholder);
                 // lookup
                 lookup_id($this, options); // lookup when loading page
                 $this.bind("change focus keyup blur", function() { // id-handler
@@ -37,7 +39,7 @@
     };
     
     var lookup_id = function(elem, options) {
-        var text = elem.next().next();
+        var text = elem.parent().find('.grp-placeholder-related-fk');
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
             app_label: grappelli.get_app_label(elem),

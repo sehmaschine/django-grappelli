@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n %}{% load url from future %}
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; Change-Form{% endblock %}
@@ -38,7 +38,7 @@
     <div class="g-d-c">
     	<div class="grp-doc-description">
             <p>A change-form is used for adding/editing the data of an object. Its basic structure and most important components are explained below.<br />At the end of the page you'll find a whole change-form template put together.</p>
-            <p>Make sure to read about <a href="{% url grp_doc_basic_page_structure %}">how a custom template is built</a> first to gain basic understanding.</p>
+            <p>Make sure to read about <a href="{% url 'grp_doc_basic_page_structure' %}">how a custom template is built</a> first to gain basic understanding.</p>
         </div>
         <section>
 	    	<div class="g-d-24">
@@ -114,7 +114,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Page-Tools &amp; Breadcrumbs</h1>
-		            <p>A detailled explanation on how breadcrumbs &amp; page-tools are built can be found <a href="{% url grp_doc_context_navigation %}">here</a>.</p>
+		            <p>A detailled explanation on how breadcrumbs &amp; page-tools are built can be found <a href="{% url 'grp_doc_context_navigation' %}">here</a>.</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">
@@ -157,7 +157,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>The Actual Content</h1>
-		            <p>A detailled explanation on how the different components of the content are built can be found using the following links: <a href="{% url grp_doc_modules %}">Modules, Rows &amp; Cells, Collapsible Modules</a>, <a href="{% url grp_doc_groups %}">Stacked &amp; Tabular Groups, Collapsible Groups</a>, <a href="{% url grp_doc_form_fields %}">Labels, Form Fields &amp; Widths</a>, <a href="{% url grp_doc_fieldsets %}">Fieldsets</a> and <a href="{% url grp_doc_submit_rows %}">Submit Rows</a>.</p>
+		            <p>A detailled explanation on how the different components of the content are built can be found using the following links: <a href="{% url 'grp_doc_modules' %}">Modules, Rows &amp; Cells, Collapsible Modules</a>, <a href="{% url 'grp_doc_groups' %}">Stacked &amp; Tabular Groups, Collapsible Groups</a>, <a href="{% url 'grp_doc_form_fields' %}">Labels, Form Fields &amp; Widths</a>, <a href="{% url 'grp_doc_fieldsets' %}">Fieldsets</a> and <a href="{% url 'grp_doc_submit_rows' %}">Submit Rows</a>.</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">

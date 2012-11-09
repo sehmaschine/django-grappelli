@@ -45,7 +45,7 @@
                         {% for line in fieldset %}
                             {% for field in line %}
                                 {% if not field.field.is_hidden %}
-                                    <div class="grp-td {{ field.field.name }} {% if field.field.errors %} grp-error{% endif %}">
+                                    <div class="grp-td {{ field.field.name }} {% if field.field.errors %} grp-errors{% endif %}">
                                         {% if field.is_readonly %}
                                             <p class="grp-readonly">{{ field.contents }}</p>
                                         {% else %}
@@ -275,7 +275,7 @@
                     // a) the field has a value
                     // b) if the field is not exluded with sortable_excludes (e.g. with default values)
                     has_value = $(this).val() || ($(this).attr('type') == 'file' && $(this).siblings('a').length);
-                    console.log(has_value);
+                    //console.log(has_value);
                     if (has_value && $(this).attr("name") && $.inArray($(this).attr("name").split("-").pop(), sortable_excludes) == -1) {
                         submit_values = true;
                     };

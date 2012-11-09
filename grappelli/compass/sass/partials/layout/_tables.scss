@@ -132,16 +132,23 @@ table {
                 top: 1px;
             }
         }
+        > input[type=checkbox], 
+        > input[type=radio] {
+            margin: 0;
+        }
         > input[type=text], 
         > input[type=password], 
         > input[type=file], 
         > input[type=checkbox], 
         > input[type=radio], 
-        > select {
+        > select,
+        p input[type=text] {
             position: relative;
-            margin: -7px 0 -5px !important;
+            margin-top: -7px !important;
+            margin-bottom: -5px !important;
             @media screen and (-webkit-min-device-pixel-ratio:0) {
-                margin: -9px 0 -6px !important;
+                margin-top: -9px !important;
+                margin-bottom: -6px !important;
             }
         }
         > textarea, 
@@ -159,7 +166,9 @@ table {
             }
         }
         a.fb_show, 
-        a.related-lookup {
+        a.related-lookup, 
+        .ui-datepicker-trigger,
+        .ui-timepicker-trigger {
             margin: -5px 0 -11px -25px;
         }
         .grp-autocomplete-wrapper-m2m, 
@@ -177,7 +186,7 @@ table {
             top: -5px;
         }
         > ul.errorlist {
-            margin-top: 8px !important;
+            margin: 8px 0 -7px !important;
             &:first-child {
                 margin: -2px 0 8px !important;
             }

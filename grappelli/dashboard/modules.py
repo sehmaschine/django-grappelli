@@ -344,8 +344,6 @@ class RecentActions(DashboardModule):
             qs = qs.exclude(get_qset(self.exclude_list))
             
         self.children = qs.select_related('content_type', 'user')[:self.limit]
-        if not len(self.children):
-            self.pre_content = _('No recent actions.')
         self._initialized = True
 
 

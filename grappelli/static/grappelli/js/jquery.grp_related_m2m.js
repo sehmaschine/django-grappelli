@@ -11,7 +11,7 @@
             return this.each(function() {
                 var $this = $(this);
                 // add placeholder
-                $this.next().after(options.placeholder);
+                $this.parent().find('a.related-lookup').after(options.placeholder);
                 // change lookup class
                 $this.next().addClass("grp-m2m");
                 // lookup
@@ -42,11 +42,11 @@
         }, function(data) {
             values = $.map(data, function (a) { return '<span class="grp-placeholder-label">' + a.label + '</span>'; });
             if (values == "") {
-                elem.next().next().hide();
+                elem.parent().find('.grp-placeholder-related-m2m').hide();
             } else {
-                elem.next().next().show();
+                elem.parent().find('.grp-placeholder-related-m2m').show();
             }
-            elem.next().next().html(values.join('<span class="grp-separator"></span>'));
+            elem.parent().find('.grp-placeholder-related-m2m').html(values.join('<span class="grp-separator"></span>'));
         });
     };
     

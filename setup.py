@@ -27,6 +27,6 @@ setup(
     ],
     zip_safe = False,
     install_requires = [
-        'django>=1.4,<1.4.99',
+        'django>=1.4,<1.5.99',
     ],
 )

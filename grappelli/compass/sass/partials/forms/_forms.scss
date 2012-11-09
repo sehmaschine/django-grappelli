@@ -92,17 +92,21 @@ p.grp-readonly {
     display: inline-block;
     margin: 0;
     padding: 4px 5px 3px !important;
+    min-width: 106px;
+    max-width: 746px;
+    min-height: 16px;
     font-size: 12px;
     line-height: 16px;
     font-weight: bold;
     color: #555555;
-    min-width: 118px;
-    max-width: 758px;
     border: 1px dotted #ccc;
     @include border-radius($grp-form-field-border-radius);
-    @include box-sizing(border-box);
+    // @include box-sizing(border-box);
     & + p.grp-readonly {
         margin-left: 20px;
+    }
+    &:empty {
+        margin-bottom: -5px !important;
     }
 }
 
@@ -135,7 +139,7 @@ p.grp-readonly {
         }
     }
     ul.errorlist {
-        padding: 3px 0 0;
+        padding: 5px 0 0;
         color: $grp-font-color-error;
         font-size: 11px !important;
         line-height: 14px;
@@ -147,6 +151,7 @@ p.grp-readonly {
 
 select {
     padding: 4px 3px 4px 2px;
+    min-width: 118px;
     // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -444,6 +449,7 @@ ul.errorlist + .selector {
     line-height: 13px;
     font-weight: bold;
     color: $grp-font-color-error;
+    white-space: normal;
 }
 @mixin errorlist-nonform {
     @include errorlist;
@@ -457,10 +463,13 @@ ul.errorlist + .selector {
 }
 @mixin errorlist-field {
     @include errorlist;
-    margin: 2px 0 0;
+    margin: 0;
     li {
-        padding: 3px 0 0;
+        padding: 2px 0 0;
         border-top: 0 !important;
+        &:first-child {
+            padding-top: 0;
+        }
     }
 }
 
@@ -473,20 +482,9 @@ p.errornote {
 }
 ul.errorlist {
     @include errorlist;
-}
-
-
-/*  Login Form ................................................... */
-
-.grp-login .errornote, 
-.errornote.grp-login-errors {
-    margin-bottom: 0 !important;
-    padding: 8px 10px 6px !important;
-    @include border-radius(0);
-}
-.errornote.grp-login-errors {
-    margin-bottom: 0 !important;
-    padding: 8px 12px;
+    + ul.errorlist {
+        padding-top: 2px;
+    }
 }
 
 
@@ -558,7 +556,7 @@ ul.errorlist {
 
 /*  Errors with tinyMCE ................................................... */
 
-.grp-error {
+.grp-errors {
     td.mceIframeContainer {
         border: 1px solid $grp-font-color-error !important;
         @include border-radius($grp-border-radius);

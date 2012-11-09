@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n %}{% load url from future %}
 {% block bodyclass %}grp-doc{% endblock %}
 {% block content-class %}{% endblock %}
 {% block title %}Grappelli Documentation &raquo; Tables{% endblock %}
@@ -203,7 +203,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Sortable Tables</h1>
-		            <p>Tables may be sortable (e.g. in <a href="{% url grp_doc_change_list %}">change-lists</a>) - to do so just add the class <span class="grp-doc-class">.grp-sortable</span> to the table.</p>
+		            <p>Tables may be sortable (e.g. in <a href="{% url 'grp_doc_change_list' %}">change-lists</a>) - to do so just add the class <span class="grp-doc-class">.grp-sortable</span> to the table.</p>
 		            <p>To define a <span class="grp-doc-dom"><span>th</span></span> as a sortable one you have to add  <span class="grp-doc-class">.sortable</span>. If it's already sorted you further have to add <span class="grp-doc-class">.sorted.ascending</span> or <span class="grp-doc-class">.sorted.descending</span>.</p>
 		            <p>Each <span class="grp-doc-dom"><span>th</span></span> in a sortable table has to contain the one or more of the following elements:</p>
 		            <ul>
@@ -331,7 +331,7 @@
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
 		            <h1>Form Fields &amp; Errors in Tables</h1>
-		            <p>You may use all types of <a href="{% url grp_doc_form_fields %}">form fields</a> in tables. As they might throw some errors you can use the common elements for displaying <a href="{% url grp_doc_errors %}">errors</a>.</p>
+		            <p>You may use all types of <a href="{% url 'grp_doc_form_fields' %}">form fields</a> in tables. As they might throw some errors you can use the common elements for displaying <a href="{% url 'grp_doc_errors' %}">errors</a>.</p>
 		        </div>
 		    </div>
 	    	<div class="g-d-24">

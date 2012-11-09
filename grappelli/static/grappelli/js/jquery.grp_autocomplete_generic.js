@@ -22,11 +22,13 @@
                 options = $.extend({
                     wrapper_autocomplete: $(this).parent(),
                     input_field: $(this).prev(),
-                    remove_link: $this.next().next().hide(),
-                    loader: $this.next().next().next().hide()
+                    remove_link: $this.nextAll("a.grp-related-remove").hide(),
+                    loader: $this.nextAll("div.grp-loader").hide()
                 }, $.fn.grp_autocomplete_generic.defaults, options);
                 // lookup
-                lookup_id($this, options);  // lookup when loading page
+                if ($(options.content_type).val()) {
+                    lookup_id($this, options);  // lookup when loading page
+                }
                 lookup_autocomplete($this, options);  // autocomplete-handler
                 $this.bind("change focus keyup blur", function() {  // id-handler
                     lookup_id($this, options);
@@ -81,13 +83,14 @@
         var obj = $(options.object_id);
         obj.val('');
         obj.prev().val('');
-        obj.next().remove();
-        obj.next().remove();
-        obj.next().remove();
+        // remove loader, a-related, related-lookup
+        obj.nextAll("a.related-lookup").remove();
+        obj.nextAll("a.grp-related-remove").remove();
+        obj.nextAll("div.grp-loader").remove();
         if ($(elem).val()) {
             obj.after(loader).after(remove_link(obj.attr('id'))).after(lookup_link(obj.attr('id'),$(elem).val()));
-            options.remove_link = obj.next().next().hide();
-            options.loader = obj.next().next().next().hide();
+            options.remove_link = obj.nextAll("a.grp-related-remove").hide();
+            options.loader = obj.nextAll("div.grp-loader").hide();
         }
     };
     
@@ -137,7 +140,7 @@
             .data("autocomplete")._renderItem = function(ul,item) {
                 return $("<li></li>")
                     .data( "item.autocomplete", item )
-                    .append( "<a>" + item.label + " (" + item.value + ")")
+                    .append( "<a>" + item.label)
                     .appendTo(ul);
             };
     };
