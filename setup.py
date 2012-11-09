@@ -7,7 +7,7 @@ def read(fname):
 
 setup(
     name='django-grappelli',
-    version='2.4.3',
+    version='2.4.4',
     description='A jazzy skin for the Django Admin-Interface.',
     long_description = read('README.rst'),
     author='Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)',
