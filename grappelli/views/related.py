@@ -57,23 +57,10 @@ def ajax_GET_view(fn):
     return inner
 
 
-@never_cache
-@ajax_GET_view
-def related_lookup(request):
-    GET = request.GET
-    if 'object_id' in GET and model_in_GET(GET):
-        object_id = GET.get('object_id')
-        app_label = GET.get('app_label')
-        model_name = GET.get('model_name')
-        model = models.get_model(app_label, model_name)
-        data = []
-        if object_id:
-            try:
-                object = model.objects.get(pk=object_id)
-                data.append({"value": object.id, "label": get_label(object)})
-                return ajax_response(data)
-            except:
-                pass
+def get_model_from_GET(GET):
+    app_label = GET.get('app_label')
+    model_name = GET.get('model_name')
+    return models.get_model(app_label, model_name)
 
 
 @never_cache
@@ -82,18 +69,17 @@ def m2m_lookup(request):
     GET = request.GET
     if 'object_id' in GET and model_in_GET(GET):
         object_ids = GET.get('object_id').split(',')
-        app_label = GET.get('app_label')
-        model_name = GET.get('model_name')
-        model = models.get_model(app_label, model_name)
+        model = get_model_from_GET(GET)
         data = []
-        for object_id in object_ids:
-            if object_id:
-                try:
-                    object = model.objects.get(pk=object_id)
-                    data.append({"value": object.pk, "label": get_label(object)})
-                except model.DoesNotExist:
-                    data.append({"value": object_id, "label": _("?")})
-        return ajax_response(data)
+        for object_id in (i for i in object_ids if i):
+            try:
+                object = model.objects.get(pk=object_id)
+                label = get_label(object)
+            except model.DoesNotExist:
+                label = _("?")
+            data.append({"value": object_id, "label": label})
+        if data:
+            return ajax_response(data)
 
 
 @never_cache
@@ -102,9 +88,7 @@ def autocomplete_lookup(request):
     GET = request.GET
     if 'term' in GET and model_in_GET(GET):
         term = GET.get("term")
-        app_label = GET.get('app_label')
-        model_name = GET.get('model_name')
-        model = models.get_model(app_label, model_name)
+        model = get_model_from_GET(GET)
         filters = {}
         # FILTER
         if GET.get('query_string', None):
