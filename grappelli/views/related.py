@@ -9,7 +9,6 @@ from django.db import models
 from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
 from django.utils.encoding import smart_str
 import django.utils.simplejson as simplejson
 from django.core.exceptions import PermissionDenied
@@ -41,19 +40,23 @@ def ajax_response(data):
                         mimetype='application/javascript')
 
 
+def model_in_GET(GET):
+    return 'app_label' in GET and 'model_name' in GET
+
+
 @never_cache
 def related_lookup(request):
     check_user_permission(request)
-    data = []
     if request.method == 'GET':
         GET = request.GET
-        if 'object_id' in GET and 'app_label' in GET and 'model_name' in GET:
+        if 'object_id' in GET and model_in_GET(GET):
             object_id = GET.get('object_id')
             app_label = GET.get('app_label')
             model_name = GET.get('model_name')
+            model = models.get_model(app_label, model_name)
+            data = []
             if object_id:
                 try:
-                    model = models.get_model(app_label, model_name)
                     obj = model.objects.get(pk=object_id)
                     data.append({"value": obj.id, "label": get_label(obj)})
                     return ajax_response(data)
@@ -68,20 +71,19 @@ def m2m_lookup(request):
     check_user_permission(request)
     if request.method == 'GET':
         GET = request.GET
-        if 'object_id' in GET and 'app_label' in GET and 'model_name' in GET:
+        if 'object_id' in GET and model_in_GET(GET):
             object_ids = GET.get('object_id').split(',')
             app_label = GET.get('app_label')
             model_name = GET.get('model_name')
             model = models.get_model(app_label, model_name)
             data = []
-            if len(object_ids):
-                for obj_id in object_ids:
-                    if obj_id:
-                        try:
-                            obj = model.objects.get(pk=obj_id)
-                            data.append({"value": obj.pk, "label": get_label(obj)})
-                        except model.DoesNotExist:
-                            data.append({"value": obj_id, "label": _("?")})
+            for object_id in object_ids:
+                if object_id:
+                    try:
+                        obj = model.objects.get(pk=object_id)
+                        data.append({"value": obj.pk, "label": get_label(obj)})
+                    except model.DoesNotExist:
+                        data.append({"value": object_id, "label": _("?")})
             return ajax_response(data)
     data = [{"value": None, "label": ""}]
     return ajax_response(data)
@@ -92,7 +94,7 @@ def autocomplete_lookup(request):
     check_user_permission(request)
     if request.method == 'GET':
         GET = request.GET
-        if 'term' in GET and 'app_label' in GET and 'model_name' in GET:
+        if 'term' in GET and model_in_GET(GET):
             term = GET.get("term")
             app_label = GET.get('app_label')
             model_name = GET.get('model_name')
@@ -110,10 +112,9 @@ def autocomplete_lookup(request):
                 search_qs = QuerySet(model)
                 search_qs.dup_select_related(qs)
                 search_qs = search_qs.filter(reduce(operator.or_, search))
-                qs = qs & search_qs
+                qs &= search_qs
             data = [{"value": f.pk, "label": get_label(f)} for f in qs[:AUTOCOMPLETE_LIMIT]]
             return ajax_response(data)
     data = [{"value" :None, "label": _("Server error")}]
     return ajax_response(data)
-
 
