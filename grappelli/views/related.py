@@ -18,12 +18,6 @@ from django.core.exceptions import PermissionDenied
 from grappelli.settings import AUTOCOMPLETE_LIMIT
 
 
-def returnattr(obj, attr):
-    if callable(getattr(obj, attr)):
-        return getattr(obj, attr)()
-    return getattr(obj, attr)
-
-
 def get_label(f):
     if getattr(f, "related_label", None):
         return f.related_label()
@@ -50,8 +44,8 @@ class M2MLookup(View):
 
     def get_model(self):
         GET = self.GET
-        app_label = GET.get('app_label')
-        model_name = GET.get('model_name')
+        app_label = GET['app_label']
+        model_name = GET['model_name']
         self.model = models.get_model(app_label, model_name)
         return self.model
 
@@ -59,7 +53,7 @@ class M2MLookup(View):
         return self.model._default_manager.all()
 
     def get_data(self):
-        object_ids = self.GET.get('object_id').split(',')
+        object_ids = self.GET['object_id'].split(',')
         data = []
         for object_id in (i for i in object_ids if i):
             try:
@@ -91,19 +85,19 @@ class AutocompleteLookup(M2MLookup):
 
     def get_data(self):
         GET = self.GET
-        term = GET.get("term")
+        term = GET["term"]
         model = self.model
         filters = {}
         # FILTER
         if GET.get('query_string', None):
-            for item in GET.get('query_string').split("&"):
+            for item in GET['query_string'].split("&"):
                 k, v = item.split("=")
                 if k != "t":
                     filters[smart_str(k)] = smart_str(v)
         # SEARCH
         qs = self.get_queryset().filter(**filters)
-        for bit in term.split():
-            search = [models.Q(**{smart_str(item):smart_str(bit)})
+        for word in term.split():
+            search = [models.Q(**{smart_str(item): smart_str(word)})
                                 for item in model.autocomplete_search_fields()]
             search_qs = QuerySet(model)
             search_qs.dup_select_related(qs)
