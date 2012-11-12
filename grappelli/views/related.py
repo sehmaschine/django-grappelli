@@ -112,12 +112,6 @@ def autocomplete_lookup(request):
                 search_qs = search_qs.filter(reduce(operator.or_, search))
                 qs = qs & search_qs
             data = [{"value": f.pk, "label": get_label(f)} for f in qs[:AUTOCOMPLETE_LIMIT]]
-            label = ungettext(
-                '%(counter)s result',
-                '%(counter)s results',
-                len(data)) % {
-                'counter': len(data),
-            }
             return ajax_response(data)
     data = [{"value" :None, "label": _("Server error")}]
     return ajax_response(data)
