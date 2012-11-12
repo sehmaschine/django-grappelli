@@ -4,7 +4,7 @@
 import operator
 
 # DJANGO IMPORTS
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
+from django.http import HttpResponse
 from django.db import models
 from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.utils.encoding import smart_str
 import django.utils.simplejson as simplejson
+from django.core.exceptions import PermissionDenied
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT
@@ -29,10 +30,15 @@ def get_label(f):
     return f.__unicode__()
 
 
+def check_user_permission(request):
+    user = request.user
+    if not (user.is_active and user.is_staff):
+        raise PermissionDenied
+
+
 @never_cache
 def related_lookup(request):
-    if not (request.user.is_active and request.user.is_staff):
-        return HttpResponseForbidden('<h1>Permission denied</h1>')
+    check_user_permission(request)
     data = []
     if request.method == 'GET':
         if request.GET.has_key('object_id') and request.GET.has_key('app_label') and request.GET.has_key('model_name'):
@@ -53,8 +59,7 @@ def related_lookup(request):
 
 @never_cache
 def m2m_lookup(request):
-    if not (request.user.is_active and request.user.is_staff):
-        return HttpResponseForbidden('<h1>Permission denied</h1>')
+    check_user_permission(request)
     data = []
     if request.method == 'GET':
         if request.GET.has_key('object_id') and request.GET.has_key('app_label') and request.GET.has_key('model_name'):
@@ -78,8 +83,7 @@ def m2m_lookup(request):
 
 @never_cache
 def autocomplete_lookup(request):
-    if not (request.user.is_active and request.user.is_staff):
-        return HttpResponseForbidden('<h1>Permission denied</h1>')
+    check_user_permission(request)
     data = []
     if request.method == 'GET':
         if request.GET.has_key('term') and request.GET.has_key('app_label') and request.GET.has_key('model_name'):
