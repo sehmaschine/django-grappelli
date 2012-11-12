@@ -41,10 +41,11 @@ def related_lookup(request):
     check_user_permission(request)
     data = []
     if request.method == 'GET':
-        if request.GET.has_key('object_id') and request.GET.has_key('app_label') and request.GET.has_key('model_name'):
-            object_id = request.GET.get('object_id')
-            app_label = request.GET.get('app_label')
-            model_name = request.GET.get('model_name')
+        GET = request.GET
+        if 'object_id' in GET and 'app_label' in GET and 'model_name' in GET:
+            object_id = GET.get('object_id')
+            app_label = GET.get('app_label')
+            model_name = GET.get('model_name')
             if object_id:
                 try:
                     model = models.get_model(app_label, model_name)
@@ -62,10 +63,11 @@ def m2m_lookup(request):
     check_user_permission(request)
     data = []
     if request.method == 'GET':
-        if request.GET.has_key('object_id') and request.GET.has_key('app_label') and request.GET.has_key('model_name'):
-            object_ids = request.GET.get('object_id').split(',')
-            app_label = request.GET.get('app_label')
-            model_name = request.GET.get('model_name')
+        GET = request.GET
+        if 'object_id' in GET and 'app_label' in GET and 'model_name' in GET:
+            object_ids = GET.get('object_id').split(',')
+            app_label = GET.get('app_label')
+            model_name = GET.get('model_name')
             model = models.get_model(app_label, model_name)
             data = []
             if len(object_ids):
@@ -86,15 +88,16 @@ def autocomplete_lookup(request):
     check_user_permission(request)
     data = []
     if request.method == 'GET':
-        if request.GET.has_key('term') and request.GET.has_key('app_label') and request.GET.has_key('model_name'):
-            term = request.GET.get("term")
-            app_label = request.GET.get('app_label')
-            model_name = request.GET.get('model_name')
+        GET = request.GET
+        if 'term' in GET and 'app_label' in GET and 'model_name' in GET:
+            term = GET.get("term")
+            app_label = GET.get('app_label')
+            model_name = GET.get('model_name')
             model = models.get_model(app_label, model_name)
             filters = {}
             # FILTER
-            if request.GET.get('query_string', None):
-                for item in request.GET.get('query_string').split("&"):
+            if GET.get('query_string', None):
+                for item in GET.get('query_string').split("&"):
                     if item.split("=")[0] != "t":
                         filters[smart_str(item.split("=")[0])]=smart_str(item.split("=")[1])
             # SEARCH
