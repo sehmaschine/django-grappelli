@@ -36,6 +36,11 @@ def check_user_permission(request):
         raise PermissionDenied
 
 
+def ajax_response(data):
+    return HttpResponse(simplejson.dumps(data),
+                        mimetype='application/javascript')
+
+
 @never_cache
 def related_lookup(request):
     check_user_permission(request)
@@ -50,18 +55,17 @@ def related_lookup(request):
                 try:
                     model = models.get_model(app_label, model_name)
                     obj = model.objects.get(pk=object_id)
-                    data.append({"value":obj.id,"label":get_label(obj)})
-                    return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
+                    data.append({"value": obj.id, "label": get_label(obj)})
+                    return ajax_response(data)
                 except:
                     pass
-    data = [{"value":None,"label":""}]
-    return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
+    data = [{"value": None, "label": ""}]
+    return ajax_response(data)
 
 
 @never_cache
 def m2m_lookup(request):
     check_user_permission(request)
-    data = []
     if request.method == 'GET':
         GET = request.GET
         if 'object_id' in GET and 'app_label' in GET and 'model_name' in GET:
@@ -75,18 +79,17 @@ def m2m_lookup(request):
                     if obj_id:
                         try:
                             obj = model.objects.get(pk=obj_id)
-                            data.append({"value":obj.pk,"label":get_label(obj)})
+                            data.append({"value": obj.pk, "label": get_label(obj)})
                         except model.DoesNotExist:
-                            data.append({"value":obj_id,"label":_("?")})
-            return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
-    data = [{"value":None,"label":""}]
-    return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
+                            data.append({"value": obj_id, "label": _("?")})
+            return ajax_response(data)
+    data = [{"value": None, "label": ""}]
+    return ajax_response(data)
 
 
 @never_cache
 def autocomplete_lookup(request):
     check_user_permission(request)
-    data = []
     if request.method == 'GET':
         GET = request.GET
         if 'term' in GET and 'app_label' in GET and 'model_name' in GET:
@@ -108,15 +111,15 @@ def autocomplete_lookup(request):
                 search_qs.dup_select_related(qs)
                 search_qs = search_qs.filter(reduce(operator.or_, search))
                 qs = qs & search_qs
-            data = [{"value":f.pk,"label":get_label(f)} for f in qs[:AUTOCOMPLETE_LIMIT]]
+            data = [{"value": f.pk, "label": get_label(f)} for f in qs[:AUTOCOMPLETE_LIMIT]]
             label = ungettext(
                 '%(counter)s result',
                 '%(counter)s results',
                 len(data)) % {
                 'counter': len(data),
             }
-            return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
-    data = [{"value":None,"label":_("Server error")}]
-    return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
+            return ajax_response(data)
+    data = [{"value" :None, "label": _("Server error")}]
+    return ajax_response(data)
 
 
