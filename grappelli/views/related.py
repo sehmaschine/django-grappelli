@@ -83,25 +83,30 @@ class AutocompleteLookup(M2MLookup):
     def has_valid_request(self):
         return 'term' in self.GET and self.model_in_GET()
 
-    def get_data(self):
-        GET = self.GET
-        term = GET["term"]
+    def search_term(self, qs, term):
         model = self.model
+        for word in term.split():
+            search = [models.Q(**{smart_str(item): smart_str(word)})
+                      for item in model.autocomplete_search_fields()]
+            search_qs = QuerySet(model)
+            search_qs.dup_select_related(qs)
+            search_qs = search_qs.filter(reduce(operator.or_, search))
+            qs &= search_qs
+        return qs
+
+    def get_queryset(self):
+        qs = super(AutocompleteLookup, self).get_queryset()
+        GET = self.GET
         filters = {}
-        # FILTER
         if GET.get('query_string', None):
             for item in GET['query_string'].split("&"):
                 k, v = item.split("=")
                 if k != "t":
                     filters[smart_str(k)] = smart_str(v)
-        # SEARCH
-        qs = self.get_queryset().filter(**filters)
-        for word in term.split():
-            search = [models.Q(**{smart_str(item): smart_str(word)})
-                                for item in model.autocomplete_search_fields()]
-            search_qs = QuerySet(model)
-            search_qs.dup_select_related(qs)
-            search_qs = search_qs.filter(reduce(operator.or_, search))
-            qs &= search_qs
+        qs = qs.filter(**filters)
+        term = GET["term"]
+        return self.search_term(qs, term)
+
+    def get_data(self):
         return [{"value": f.pk, "label": get_label(f)}
-                                              for f in qs[:AUTOCOMPLETE_LIMIT]]
+                             for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
