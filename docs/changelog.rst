@@ -11,6 +11,10 @@ Changelog
 2.4.4 (not yet released)
 ------------------------
 
+* Fixed: set correct case-sensitive dependency for Django in setup.py.
+* Fixed: Breadcrumbs with delete_confirmation.
+* Fixed: Showing help-text with empty FK autocompletes.
+
 2.4.3 (November 09, 2012)
 -------------------------
 
