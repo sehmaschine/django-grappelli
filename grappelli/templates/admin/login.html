@@ -47,7 +47,7 @@
                     {% endif %}
 
                     <div class="grp-row{% if form.username.errors %} grp-errors{% endif %}">
-                        <label for="id_username" class="required">{% trans 'Username:' %}</label>
+                        <label for="id_username" class="required">{{ form.username.label }}:</label>
                         <input type="text" name="username" id="id_username" />
                         {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
                     </div>
