@@ -38,6 +38,7 @@ class do_get_generic_objects(template.Node):
         return return_string
 
 
+@register.tag
 def get_content_types(parser, token):
     """
     Returns a list of installed applications and models.
@@ -45,51 +46,50 @@ def get_content_types(parser, token):
     """
     tokens = token.contents.split()
     return do_get_generic_objects()
-register.tag('get_content_types', get_content_types)
 
 
 # ADMIN_TITLE
+@register.simple_tag
 def get_admin_title():
     """
     Returns the Title for the Admin-Interface.
     """
     return ADMIN_TITLE
-register.simple_tag(get_admin_title)
 
 
 # RETURNS CURRENT LANGUAGE
+@register.simple_tag
 def get_lang():
     return get_language()
-register.simple_tag(get_lang)
 
 
 # ADMIN_URL
+@register.simple_tag
 def get_admin_url():
     """
     Returns the URL for the Admin-Interface.
     """
     return ADMIN_URL
-register.simple_tag(get_admin_url)
 
 
+@register.simple_tag
 def get_date_format():
     return get_format('DATE_INPUT_FORMATS')[0]
-register.simple_tag(get_date_format)
 
 
+@register.simple_tag
 def get_time_format():
     return get_format('TIME_INPUT_FORMATS')[0]
-register.simple_tag(get_time_format)
 
 
+@register.simple_tag
 def get_datetime_format():
     return get_format('DATETIME_INPUT_FORMATS')[0]
-register.simple_tag(get_datetime_format)
 
 
+@register.simple_tag
 def grappelli_admin_title():
     return ADMIN_TITLE
-register.simple_tag(grappelli_admin_title)
 
 
 @register.filter
