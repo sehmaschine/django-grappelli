@@ -25,43 +25,36 @@ def get_label(f):
 
 
 def ajax_response(data):
-    return HttpResponse(simplejson.dumps(data),
-                        mimetype='application/javascript')
+    return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
 
 
-class M2MLookup(View):
+class RelatedLookup(View):
+    u"""
+    Related Lookup
+    """
+
     def check_user_permission(self):
-        user = self.request.user
-        if not (user.is_active and user.is_staff):
+        if not (self.request.user.is_active and self.request.user.is_staff):
             raise PermissionDenied
 
-    def model_in_GET(self):
-        GET = self.GET
-        return 'app_label' in GET and 'model_name' in GET
-
-    def has_valid_request(self):
-        return 'object_id' in self.GET and self.model_in_GET()
+    def request_is_valid(self):
+        return 'object_id' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
 
     def get_model(self):
-        GET = self.GET
-        app_label = GET['app_label']
-        model_name = GET['model_name']
-        self.model = models.get_model(app_label, model_name)
+        self.model = models.get_model(self.GET['app_label'], self.GET['model_name'])
         return self.model
 
     def get_queryset(self):
         return self.model._default_manager.all()
 
     def get_data(self):
-        object_ids = self.GET['object_id'].split(',')
+        obj_id = self.GET['object_id']
         data = []
-        for object_id in (i for i in object_ids if i):
-            try:
-                object = self.get_queryset().get(pk=object_id)
-                label = get_label(object)
-            except self.model.DoesNotExist:
-                label = _("?")
-            data.append({"value": object_id, "label": label})
+        try:
+            obj = self.get_queryset().get(pk=obj_id)
+            data.append({"value": obj_id, "label": get_label(obj)})
+        except self.model.DoesNotExist:
+            data.append({"value": obj_id, "label": _("?")})
         return data
 
     @never_cache
@@ -69,7 +62,7 @@ class M2MLookup(View):
         self.check_user_permission()
         self.GET = self.request.GET
 
-        if self.has_valid_request():
+        if self.request_is_valid():
             self.get_model()
             data = self.get_data()
             if data:
@@ -79,15 +72,48 @@ class M2MLookup(View):
         return ajax_response(data)
 
 
-class AutocompleteLookup(M2MLookup):
-    def has_valid_request(self):
-        return 'term' in self.GET and self.model_in_GET()
+class M2MLookup(RelatedLookup):
+    u"""
+    M2M Lookup
+    """
 
-    def search_term(self, qs, term):
+    def get_data(self):
+        obj_ids = self.GET['object_id'].split(',')
+        data = []
+        for obj_id in (i for i in obj_ids if i):
+            try:
+                obj = self.get_queryset().get(pk=obj_id)
+                data.append({"value": obj_id, "label": get_label(obj)})
+            except self.model.DoesNotExist:
+                data.append({"value": obj_id, "label": _("?")})
+        return data
+
+
+class AutocompleteLookup(RelatedLookup):
+    u"""
+    AutocompleteLookup
+    """
+
+    def request_is_valid(self):
+        return 'term' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
+
+    def get_filtered_queryset(self, qs):
+        filters = {}
+        query_string = self.GET.get('query_string', None)
+
+        if query_string:
+            for item in query_string.split("&"):
+                k, v = item.split("=")
+                if k != "t":
+                    filters[smart_str(k)] = smart_str(v)
+        return qs.filter(**filters)
+
+    def get_searched_queryset(self, qs):
         model = self.model
+        term = self.GET["term"]
+
         for word in term.split():
-            search = [models.Q(**{smart_str(item): smart_str(word)})
-                      for item in model.autocomplete_search_fields()]
+            search = [models.Q(**{smart_str(item): smart_str(word)}) for item in model.autocomplete_search_fields()]
             search_qs = QuerySet(model)
             search_qs.dup_select_related(qs)
             search_qs = search_qs.filter(reduce(operator.or_, search))
@@ -96,17 +122,11 @@ class AutocompleteLookup(M2MLookup):
 
     def get_queryset(self):
         qs = super(AutocompleteLookup, self).get_queryset()
-        GET = self.GET
-        filters = {}
-        if GET.get('query_string', None):
-            for item in GET['query_string'].split("&"):
-                k, v = item.split("=")
-                if k != "t":
-                    filters[smart_str(k)] = smart_str(v)
-        qs = qs.filter(**filters)
-        term = GET["term"]
-        return self.search_term(qs, term)
+        qs = self.get_filtered_queryset(qs)
+        qs = self.get_searched_queryset(qs)
+        return qs
 
     def get_data(self):
-        return [{"value": f.pk, "label": get_label(f)}
-                             for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
+        return [{"value": f.pk, "label": get_label(f)} for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
+
+

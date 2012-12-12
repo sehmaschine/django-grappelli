@@ -3,13 +3,13 @@
 # DJANGO IMPORTS
 from django.conf.urls import *
 from django.views.generic.base import TemplateView
-from .views.related import M2MLookup, AutocompleteLookup
+from .views.related import RelatedLookup, M2MLookup, AutocompleteLookup
 
 
 urlpatterns = patterns('',
     
     # FOREIGNKEY & GENERIC LOOKUP
-    url(r'^lookup/related/$', M2MLookup.as_view(), name="grp_related_lookup"),
+    url(r'^lookup/related/$', RelatedLookup.as_view(), name="grp_related_lookup"),
     url(r'^lookup/m2m/$', M2MLookup.as_view(), name="grp_m2m_lookup"),
     url(r'^lookup/autocomplete/$', AutocompleteLookup.as_view(), name="grp_autocomplete_lookup"),
 
