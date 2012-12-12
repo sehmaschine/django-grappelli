@@ -13,7 +13,7 @@
                 // tabindex
                 $this.attr("tabindex", "-1");
                 // remove djangos object representation (if given)
-                if ($this.next().next() && $this.next().next().attr("class") != "errorlist") $this.next().next().remove();
+                if ($this.next().next() && $this.next().next().attr("class") != "errorlist" && $this.next().next().attr("class") != "grp-help") $this.next().next().remove();
                 // build autocomplete wrapper
                 $this.next().after(loader).after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='grp-autocomplete-wrapper-fk'></div>");

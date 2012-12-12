@@ -264,7 +264,7 @@ Using TinyMCE
 
     class Media:
         js = [
-            '/static/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
             '/static/path/to/your/tinymce_setup.js',
         ]
 
