@@ -14,6 +14,7 @@ Changelog
 * Fixed: set correct case-sensitive dependency for Django in setup.py.
 * Fixed: Breadcrumbs with delete_confirmation.
 * Fixed: Showing help-text with empty FK autocompletes.
+* Fixed: Custom USERNAME_FIELD names for Django 1.5.
 * Improved: Rewrites views into class-based views.
 
 2.4.3 (November 09, 2012)
