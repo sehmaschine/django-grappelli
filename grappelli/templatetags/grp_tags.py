@@ -27,16 +27,14 @@ register = template.Library()
 
 # GENERIC OBJECTS
 class do_get_generic_objects(template.Node):
-
     def __init__(self):
         pass
 
     def render(self, context):
-        return_string = "{"
+        objects = {}
         for c in ContentType.objects.all().order_by('id'):
-            return_string = "%s%s: {pk: %s, app: '%s', model: '%s'}," % (return_string, c.id, c.id, c.app_label, c.model)
-        return_string = "%s}" % return_string[:-1]
-        return return_string
+            objects[c.id] = {'pk': c.id, 'app': c.app_label, 'model': c.model}
+        return json.dumps(objects)
 
 
 @register.tag
