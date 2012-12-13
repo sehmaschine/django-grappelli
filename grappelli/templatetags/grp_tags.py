@@ -16,9 +16,6 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
-from django.db import models
-from django.contrib import admin
-from django.conf import settings
 from django.template.loader import get_template
 from django.template.context import Context
 
@@ -30,16 +27,17 @@ register = template.Library()
 
 # GENERIC OBJECTS
 class do_get_generic_objects(template.Node):
-    
+
     def __init__(self):
         pass
-    
+
     def render(self, context):
         return_string = "{"
         for c in ContentType.objects.all().order_by('id'):
             return_string = "%s%s: {pk: %s, app: '%s', model: '%s'}," % (return_string, c.id, c.id, c.app_label, c.model)
         return_string = "%s}" % return_string[:-1]
         return return_string
+
 
 def get_content_types(parser, token):
     """
@@ -114,7 +112,7 @@ def formsetsort(formset, arg):
     """
     Takes a list of formset dicts, returns that list sorted by the sortable field.
     """
-    
+
     if arg:
         sorted_list = []
         for item in formset:
@@ -148,13 +146,16 @@ def safe_json_else_list_tag(f):
             return []
     return register.simple_tag(inner)
 
+
 @safe_json_else_list_tag
 def get_related_lookup_fields_fk(model_admin):
     return model_admin.related_lookup_fields.get("fk", [])
 
+
 @safe_json_else_list_tag
 def get_related_lookup_fields_m2m(model_admin):
     return model_admin.related_lookup_fields.get("m2m", [])
+
 
 @safe_json_else_list_tag
 def get_related_lookup_fields_generic(model_admin):
@@ -167,9 +168,11 @@ def get_related_lookup_fields_generic(model_admin):
 def get_autocomplete_lookup_fields_fk(model_admin):
     return model_admin.autocomplete_lookup_fields.get("fk", [])
 
+
 @safe_json_else_list_tag
 def get_autocomplete_lookup_fields_m2m(model_admin):
     return model_admin.autocomplete_lookup_fields.get("m2m", [])
+
 
 @safe_json_else_list_tag
 def get_autocomplete_lookup_fields_generic(model_admin):
@@ -197,7 +200,6 @@ def admin_list_filter(cl, spec):
         tpl = get_template(spec.template)
     return tpl.render(Context({
         'title': spec.title,
-        'choices' : list(spec.choices(cl)),
+        'choices': list(spec.choices(cl)),
         'spec': spec,
     }))
-
