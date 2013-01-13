@@ -1,7 +1,7 @@
 # coding: utf-8
 
 # DJANGO IMPORTS
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from django.views.generic.base import TemplateView
 from django.conf import settings
 
