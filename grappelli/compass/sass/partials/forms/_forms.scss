@@ -324,8 +324,9 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         border-bottom: 0 !important;
     }
     .selector-filter {
+        display: block !important;
+        height: 27px;
         padding: 3px 5px 2px 2px;
-        min-height: 25px;
         font-weight: bold;
         color: #666;
         border-top: 1px solid #e4e4e4;
@@ -355,6 +356,10 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         width: 368px !important;
         height: 200px;
         @include border-radius(0);
+        
+    }
+    .selector-chosen select[multiple=multiple] {
+        height: 235px;
     }
     a.selector-add {
         background-image: url('../images/icons/selector-add-m2m-horizontal.png');
