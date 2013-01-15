@@ -309,6 +309,11 @@ header#grp-header {
 	}
 }
 
+@media only screen and (max-device-width:600px), only screen and (max-device-height:600px) {
+    html header#grp-header {
+	    position: static;
+    }
+}
 
 
 /*  CONTENT
@@ -523,6 +528,15 @@ header#grp-header {
 }
 .grp-fixed-footer {
 	@include grp-fixed-footer;
+}
+
+@media only screen and (max-device-width:600px), only screen and (max-device-height:600px) {
+    html .grp-fixed-footer {
+	    position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
 }
 
 
