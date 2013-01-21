@@ -128,5 +128,3 @@ class AutocompleteLookup(RelatedLookup):
 
     def get_data(self):
         return [{"value": f.pk, "label": get_label(f)} for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
-
-
