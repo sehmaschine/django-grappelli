@@ -1,7 +1,11 @@
 # coding: utf-8
 
 # DJANGO IMPORTS
-from django.conf.urls import patterns, url
+try:
+    from django.conf.urls.defaults import *  
+except ImportError:
+    from django.conf.urls import *
+
 from django.views.generic.base import TemplateView
 from .views.related import RelatedLookup, M2MLookup, AutocompleteLookup
 
