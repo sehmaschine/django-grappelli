@@ -50,11 +50,12 @@ class RelatedLookup(View):
     def get_data(self):
         obj_id = self.GET['object_id']
         data = []
-        try:
-            obj = self.get_queryset().get(pk=obj_id)
-            data.append({"value": obj_id, "label": get_label(obj)})
-        except self.model.DoesNotExist:
-            data.append({"value": obj_id, "label": _("?")})
+        if obj_id:
+            try:
+                obj = self.get_queryset().get(pk=obj_id)
+                data.append({"value": obj_id, "label": get_label(obj)})
+            except self.model.DoesNotExist:
+                data.append({"value": obj_id, "label": _("?")})
         return data
 
     @never_cache
@@ -124,7 +125,7 @@ class AutocompleteLookup(RelatedLookup):
         qs = super(AutocompleteLookup, self).get_queryset()
         qs = self.get_filtered_queryset(qs)
         qs = self.get_searched_queryset(qs)
-        return qs
+        return qs.distinct()
 
     def get_data(self):
         return [{"value": f.pk, "label": get_label(f)} for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]

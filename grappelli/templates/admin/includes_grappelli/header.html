@@ -9,13 +9,15 @@
                 <a href="javascript://" class="user-options-handler grp-collapse-handler">{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</a>
                 <ul class="grp-user-options">
                     <!-- Change Password -->
-                    {% url 'admin:password_change' as password_change_url %}
-                    {% if password_change_url %}
-                        <li><a href="{{ password_change_url }}">
-                    {% else %}
-                        <li><a href="{{ root_path }}password_change/">
+                    {% if user.has_usable_password %}
+                        {% url 'admin:password_change' as password_change_url %}
+                        {% if password_change_url %}
+                            <li><a href="{{ password_change_url }}">
+                        {% else %}
+                            <li><a href="{{ root_path }}password_change/">
+                        {% endif %}
+                        {% trans 'Change password' %}</a></li>
                     {% endif %}
-                    {% trans 'Change password' %}</a></li>
                     <!-- Logout -->
                     {% url 'admin:logout' as logout_url %}
                     {% if logout_url %}
