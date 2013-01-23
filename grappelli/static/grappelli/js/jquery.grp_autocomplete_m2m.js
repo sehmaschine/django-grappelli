@@ -174,7 +174,7 @@
             options.wrapper_repr.find("li.grp-repr").remove();
             options.wrapper_search.find("input").val("");
             $.each(data, function(index) {
-                repr_add(elem, data[index].label, options);
+                if (data[index].value) repr_add(elem, data[index].label, options);
             });
             elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
         });
