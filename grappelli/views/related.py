@@ -9,7 +9,7 @@ from django.db import models
 from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
-from django.utils.translation import ugettext as _
+from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_str
 import django.utils.simplejson as simplejson
 from django.core.exceptions import PermissionDenied
@@ -130,4 +130,23 @@ class AutocompleteLookup(RelatedLookup):
     def get_data(self):
         return [{"value": f.pk, "label": get_label(f)} for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
 
+    @never_cache
+    def get(self, request, *args, **kwargs):
+        self.check_user_permission()
+        self.GET = self.request.GET
 
+        if self.request_is_valid():
+            self.get_model()
+            data = self.get_data()
+            if data:
+                return ajax_response(data)
+
+        # overcomplicated label translation
+        label = ungettext(
+            '%(counter)s result',
+            '%(counter)s results',
+        0) % {
+            'counter': 0,
+        }
+        data = [{"value": None, "label": label}]
+        return ajax_response(data)
