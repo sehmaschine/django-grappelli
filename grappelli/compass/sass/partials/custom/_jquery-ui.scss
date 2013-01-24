@@ -416,7 +416,13 @@ button.ui-datepicker-close {
         & + li {
             margin-top: 3px; 
         }
-    } 
+    }
+    li > span.error {
+        display: block;
+        margin: 0;
+        padding: 5px 5px 5px;
+        color: $grp-font-color-error;
+    }
     li.ui-menu-item {
         margin: 0;
         padding: 0;
