@@ -16,7 +16,7 @@
                 $this.next().addClass("grp-m2m");
                 // lookup
                 lookup_id($this, options); // lookup when loading page
-                $this.bind("change focus keyup blur", function() { // id-handler
+                $this.bind("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
             });

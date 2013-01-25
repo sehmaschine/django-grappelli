@@ -28,7 +28,7 @@
                 // lookup
                 lookup_id($this, options); // lookup when loading page
                 lookup_autocomplete($this, options); // autocomplete-handler
-                $this.bind("change focus keyup blur", function() { // id-handler
+                $this.bind("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
                 // labels

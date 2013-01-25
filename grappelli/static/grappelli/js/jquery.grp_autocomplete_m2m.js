@@ -33,7 +33,7 @@
                 // lookup
                 lookup_id($this, options);  // lookup when loading page
                 lookup_autocomplete($this, options);  // autocomplete-handler
-                $this.bind("change focus keyup blur", function() { // id-handler
+                $this.bind("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
                 // labels
@@ -41,8 +41,11 @@
                     $(this).attr("for", $this.attr("id")+"-autocomplete");
                 });
                 // click on div > focus input
-                options.wrapper_autocomplete.bind("click", function() {
-                    options.wrapper_search.find("input:first").focus();
+                options.wrapper_autocomplete.bind("click", function(e) {
+                    // prevent focus when clicking on remove/select
+                    if (!$(e.target).hasClass("related-lookup") && !$(e.target).hasClass("grp-related-remove")) {
+                        options.wrapper_search.find("input:first").focus();
+                    }
                 });
             });
         }
