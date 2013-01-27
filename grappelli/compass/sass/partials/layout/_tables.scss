@@ -146,10 +146,26 @@ table {
             position: relative;
             margin-top: -7px !important;
             margin-bottom: -5px !important;
-            @media screen and (-webkit-min-device-pixel-ratio:0) {
-                margin-top: -9px !important;
-                margin-bottom: -6px !important;
-            }
+            // @media screen and (-webkit-min-device-pixel-ratio:0) {
+            //     margin-top: -9px !important;
+            //     margin-bottom: -6px !important;
+            // }
+        }
+        // > input[type=text], 
+        // > input[type=password],
+        // > select,
+        // p input[type=text] {
+        //     vertical-align: text-top;
+        //     margin-top: -6px !important;
+        //     margin-bottom: -5px !important;
+        // }
+        > input[type=text], 
+        > input[type=password],
+        > select,
+        p input[type=text] {
+            vertical-align: top;
+            margin-top: -5px !important;
+            margin-bottom: -5px !important;
         }
         > textarea, 
         p.grp-readonly {
@@ -158,9 +174,9 @@ table {
         }
         ul.radiolist, 
         ul.checkboxlist {
-            margin: -3px 0 -7px;
+            margin: -3px 0 -5px;
             &.inline {
-                margin: -3px 0 -7px;
+                margin: -3px 0 -5px;
                 white-space: normal !important;
                 max-width: 400px;
             }
@@ -191,9 +207,9 @@ table {
                 margin: -2px 0 8px !important;
             }
         }
-        p.preview + ul.errorlist {
-            margin-top: 5px !important;
-        }
+        // p.preview + ul.errorlist {
+        //     margin-top: 8px !important;
+        // }
     }
 }
 
