@@ -222,31 +222,38 @@ table.grp-sortable {
             div.grp-text span {
                 display: block;
                 padding: 6px 10px;
+                white-space: nowrap;
                 input[type=checkbox] {
                     margin: -6px 0 !important;
                 }
             }
             &.sortable {
+                white-space: nowrap;
                 .grp-text {
                     position: relative;
-                    float: left;
+                    z-index: 400;
                     display: block;
                     margin: 0;
                     padding: 0;
+                    white-space: nowrap;
                     a {
                         margin: 0;
                         padding: 6px 10px;
+                        display: block;
                     }
                 }
                 .grp-sortoptions {
                     position: relative;
+                    z-index: 410;
                     display: block;
                     float: right;
                     clear: right;
-                    margin: 0 5px 0 0;
+                    margin: 0 5px 0 0px;
+                    width: 50px;
+                    white-space: nowrap;
                     a {
                         position: relative;
-                        float: left;
+                        float: right;
                         display: inline-block;
                         margin: 0;
                         padding: 0;
@@ -272,7 +279,7 @@ table.grp-sortable {
                     }
                     span.grp-sortpriority {
                         position: relative;
-                        float: left;
+                        float: right;
                         display: block;
                         padding: 6px 0 0;
                         height: 16px;
@@ -298,6 +305,9 @@ table.grp-sortable {
                     a {
                         color: $grp-font-color;
                         font-weight: bold;
+                    }
+                    .grp-text a {
+                        padding-right: 60px;
                     }
                 }
             }
