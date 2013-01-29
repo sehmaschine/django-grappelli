@@ -63,7 +63,12 @@
 	margin: 0 0 -24px;
 	padding-right: 5px;
 	height: 24px;
+	white-space: nowrap;
 	li {
+		.grp-tools-container & { // IE9 needs that, otherwise the tools break in oversized tabular modules
+			float: none !important;
+			display: inline-block;
+		}
 		a, 
 		span {
 			display: block;
