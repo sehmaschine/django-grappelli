@@ -25,7 +25,4 @@ setup(
         'Programming Language :: Python',
     ],
     zip_safe = False,
-    install_requires = [
-        'Django>=1.4,<1.5.99',
-    ],
 )
