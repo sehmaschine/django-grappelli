@@ -11,11 +11,21 @@ Changelog
 2.4.4 (not yet released)
 ------------------------
 
+* New: Added Czech translation for TinyMCE.
 * Fixed: set correct case-sensitive dependency for Django in setup.py.
+* Fixed: Make setup.py work with Python 3.
 * Fixed: Breadcrumbs with delete_confirmation.
 * Fixed: Showing help-text with empty FK autocompletes.
 * Fixed: Custom USERNAME_FIELD names for Django 1.5.
+* Fixed: Updated grappelli/urls to support Django 1.5.
+* Fixed: Added has_usable_password.
+* Fixed: Distinct results with Autocompletes.
+* Fixed: Fix RelatedLookup when called with empty string as object_id.
+* Fixed: 2 clicks to remove items with m2m–autocompletes.
+* Improved: App titles are now translatable with the dashboards app list.
 * Improved: Rewrites views into class-based views.
+* Improved: Better messages with autocompletes and no results.
+* Improved: Removed Django as a requirement with the setup file.
 
 2.4.3 (November 09, 2012)
 -------------------------
