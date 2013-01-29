@@ -47,7 +47,7 @@
                                 {% if not field.field.is_hidden %}
                                     <div class="grp-td {{ field.field.name }} {% if field.field.errors %} grp-errors{% endif %}">
                                         {% if field.is_readonly %}
-                                            <p class="grp-readonly">{{ field.contents }}</p>
+                                            <div class="grp-readonly">{{ field.contents }}</div>
                                         {% else %}
                                             {{ field.field }}
                                             {{ field.field.errors.as_ul }}
