@@ -443,17 +443,23 @@ body.rtl {
             th {
                 &.sortable {
                     .grp-text {
-                        float: right;
+                        // float: right;
                     }
                     .grp-sortoptions {
                         float: left;
                         clear: left;
                         margin: 0 0 0 5px;
                         a {
-                            float: right;
+                            float: left;
                         }
                         span.grp-sortpriority {
-                            float: right;
+                            float: left;
+                        }
+                    }
+                    &.sorted {
+                        .grp-text a {
+                            padding-right: 10px;
+                            padding-left: 60px;
                         }
                     }
                 }
