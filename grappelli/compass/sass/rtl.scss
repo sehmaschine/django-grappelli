@@ -637,6 +637,10 @@ body.rtl {
             padding-right: 5px;
         }
     }
+    td .grp-autocomplete-wrapper-m2m a.related-lookup, 
+    td .grp-autocomplete-wrapper-fk a.related-lookup {
+        margin-top: 0 !important;
+    }
 
     // SELECTORS
     .selector {
