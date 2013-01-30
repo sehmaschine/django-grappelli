@@ -22,10 +22,12 @@ Changelog
 * Fixed: Distinct results with Autocompletes.
 * Fixed: Fix RelatedLookup when called with empty string as object_id.
 * Fixed: 2 clicks to remove items with m2m–autocompletes.
+* Fixed: Error with adding values to hidden–fields with autocomplets (after using the pop up window).
 * Improved: App titles are now translatable with the dashboards app list.
 * Improved: Rewrites views into class-based views.
 * Improved: Better messages with autocompletes and no results.
 * Improved: Removed Django as a requirement with the setup file.
+* Improved: Replaced p.grp-readonly with div.grp-readonly (in order to show contents with mark_safe).
 
 2.4.3 (November 09, 2012)
 -------------------------
