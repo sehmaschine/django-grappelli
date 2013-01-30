@@ -25,6 +25,10 @@
         position: absolute;
         right: 0;
     }
+    a.related-lookup, 
+    input:focus + a.related-lookup {
+        border: $grp-form-field-border !important;
+    }
     &.grp-state-focus {
         a.grp-related-remove, 
         a.related-lookup {
