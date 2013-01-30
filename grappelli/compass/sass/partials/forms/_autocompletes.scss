@@ -168,8 +168,7 @@
 .grp-autocomplete-wrapper-fk input.vForeignKeyRawIdAdminField, 
 .grp-autocomplete-wrapper-fk input.vIntegerField  {
     position: absolute;
-    left: -10000px;
-    top: -100px;
+    top: -100000px;
     width: 10px;
     height: 10px;
     color: transparent !important;
@@ -177,5 +176,5 @@
     background: transparent !important;
     @include box-shadow(none !important);
     @include opacity(0);
-    cursor: wait !important;
+    cursor: default !important;
 }
