@@ -12,6 +12,7 @@
                 var $this = $(this);
                 // tabindex
                 $this.attr("tabindex", "-1");
+                $this.attr("readonly", "readonly");
                 // remove djangos object representation (if given)
                 if ($this.next().next() && $this.next().next().attr("class") != "errorlist" && $this.next().next().attr("class") != "grp-help") $this.next().next().remove();
                 // build autocomplete wrapper
