@@ -188,6 +188,14 @@ body.rtl {
         }
     }
 
+    // READONLY
+    div.grp-readonly {
+        & + div.grp-readonly {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+    }
+
     // RELATED LOOKUP
     a.related-lookup + strong {
         margin-left: 0;
