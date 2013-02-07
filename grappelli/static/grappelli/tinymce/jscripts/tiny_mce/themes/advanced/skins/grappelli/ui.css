@@ -508,3 +508,65 @@ body.rtl .grappelliSkin .mceButton {
 .grappelliSkin span.mce_grappelli_adv { background-image: url('img/buttons/show_advanced.png'); }
 .grappelliSkin span.mce_grappelli_documentstructure { background-image: url('img/buttons/visualchars.png'); }
 
+/* forecolor button */
+#id_descrip_forecolor {
+    background-image: url('img/buttons/color_picker.png');
+    background-repeat: no-repeat;
+    width:23px; height: 23px;
+    border: 1px solid;
+    border-color: #d4d4d4 #c4c4c4 #c4c4c4 #d4d4d4;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #fff;
+}
+
+#id_descrip_forecolor:hover{
+    background-color: #e1f0f5;
+    cursor: pointer;
+}
+
+#id_descrip_forecolor_menu .mceColorSplitMenu{
+    background: #eee;
+    border: 1px solid gray;
+}
+#id_descrip_forecolor_menu .mceColorSplitMenu tbody tr td{
+    padding: 2px;
+}
+
+#id_descrip_forecolor_menu .mceColorSplitMenu a.mceMoreColors {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-family: Tahoma,Verdana,Arial,Helvetica;
+    font-size: 11px;
+    line-height: 20px;
+    border: 1px solid #FFF;
+}
+
+#id_descrip_forecolor_menu .mceColorSplitMenu a.mceMoreColors:hover{
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+#id_descrip_forecolor_menu .mceColorSplitMenu tbody tr td a{
+    padding: 1px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    overflow: hidden;
+    border: 1px solid #808080;
+}
+
+#id_descrip_forecolor_menu .mceColorSplitMenu tbody tr td a:hover {
+    border: 2px solid #777;
+    width: 10px;
+    height: 10px;
+}
+
+/* text align*/
+.grappelliSkin span.mce_justifyleft { background-image: url('img/buttons/left.png'); }
+.grappelliSkin span.mce_justifycenter { background-image: url('img/buttons/center.png'); }
+.grappelliSkin span.mce_justifyright { background-image: url('img/buttons/right.png'); }
+.grappelliSkin span.mce_justifyfull { background-image: url('img/buttons/justify.png'); }
