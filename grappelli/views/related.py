@@ -54,7 +54,7 @@ class RelatedLookup(View):
             try:
                 obj = self.get_queryset().get(pk=obj_id)
                 data.append({"value": obj_id, "label": get_label(obj)})
-            except self.model.DoesNotExist:
+            except (self.model.DoesNotExist, ValueError):
                 data.append({"value": obj_id, "label": _("?")})
         return data
 
@@ -85,7 +85,7 @@ class M2MLookup(RelatedLookup):
             try:
                 obj = self.get_queryset().get(pk=obj_id)
                 data.append({"value": obj_id, "label": get_label(obj)})
-            except self.model.DoesNotExist:
+            except (self.model.DoesNotExist, ValueError):
                 data.append({"value": obj_id, "label": _("?")})
         return data
 
