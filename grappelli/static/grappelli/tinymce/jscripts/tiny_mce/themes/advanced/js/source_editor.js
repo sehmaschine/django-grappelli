@@ -73,6 +73,6 @@ function resizeInputs() {
 
 	if (el) {
 		el.style.width = (vp.w - 20) + 'px';
-		el.style.height = (vp.h - 110) + 'px';
+		el.style.height = (vp.h - 65) + 'px';
 	}
 }

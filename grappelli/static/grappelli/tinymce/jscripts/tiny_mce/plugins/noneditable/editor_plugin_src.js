@@ -14,10 +14,7 @@
 	var VK = tinymce.VK;
 
 	function handleContentEditableSelection(ed) {
-		var dom = ed.dom, selection = ed.selection, invisibleChar, caretContainerId = 'mce_noneditablecaret';
-
-		// Setup invisible character use zero width space on Gecko since it doesn't change the height of the container
-		invisibleChar = tinymce.isGecko ? '\u200B' : '\uFEFF';
+		var dom = ed.dom, selection = ed.selection, invisibleChar, caretContainerId = 'mce_noneditablecaret', invisibleChar = '\uFEFF';
 
 		// Returns the content editable state of a node "true/false" or null
 		function getContentEditable(node) {
@@ -261,12 +258,96 @@
 				selection.collapse(start);
 			}
 
+			function canDelete(backspace) {
+				var rng, container, offset, nonEditableParent;
+
+				function removeNodeIfNotParent(node) {
+					var parent = container;
+
+					while (parent) {
+						if (parent === node) {
+							return;
+						}
+
+						parent = parent.parentNode;
+					}
+
+					dom.remove(node);
+					moveSelection();
+				}
+
+				function isNextPrevTreeNodeNonEditable() {
+					var node, walker, nonEmptyElements = ed.schema.getNonEmptyElements();
+
+					walker = new tinymce.dom.TreeWalker(container, ed.getBody());
+					while (node = (backspace ? walker.prev() : walker.next())) {
+						// Found IMG/INPUT etc
+						if (nonEmptyElements[node.nodeName.toLowerCase()]) {
+							break;
+						}
+
+						// Found text node with contents
+						if (node.nodeType === 3 && tinymce.trim(node.nodeValue).length > 0) {
+							break;
+						}
+
+						// Found non editable node
+						if (getContentEditable(node) === "false") {
+							removeNodeIfNotParent(node);
+							return true;
+						}
+					}
+
+					// Check if the content node is within a non editable parent
+					if (getNonEditableParent(node)) {
+						return true;
+					}
+
+					return false;
+				}
+
+				if (selection.isCollapsed()) {
+					rng = selection.getRng(true);
+					container = rng.startContainer;
+					offset = rng.startOffset;
+					container = getParentCaretContainer(container) || container;
+
+					// Is in noneditable parent
+					if (nonEditableParent = getNonEditableParent(container)) {
+						removeNodeIfNotParent(nonEditableParent);
+						return false;
+					}
+
+					// Check if the caret is in the middle of a text node
+					if (container.nodeType == 3 && (backspace ? offset > 0 : offset < container.nodeValue.length)) {
+						return true;
+					}
+
+					// Resolve container index
+					if (container.nodeType == 1) {
+						container = container.childNodes[offset] || container;
+					}
+
+					// Check if previous or next tree node is non editable then block the event
+					if (isNextPrevTreeNodeNonEditable()) {
+						return false;
+					}
+				}
+
+				return true;
+			}
+
 			startElement = selection.getStart()
 			endElement = selection.getEnd();
 
 			// Disable all key presses in contentEditable=false except delete or backspace
 			nonEditableParent = getNonEditableParent(startElement) || getNonEditableParent(endElement);
 			if (nonEditableParent && (keyCode < 112 || keyCode > 124) && keyCode != VK.DELETE && keyCode != VK.BACKSPACE) {
+				// Is Ctrl+c, Ctrl+v or Ctrl+x then use default browser behavior
+				if ((tinymce.isMac ? e.metaKey : e.ctrlKey) && (keyCode == 67 || keyCode == 88 || keyCode == 86)) {
+					return;
+				}
+
 				e.preventDefault();
 
 				// Arrow left/right select the element and collapse left/right
@@ -298,6 +379,7 @@
 									positionCaretOnElement(nonEditableParent, true);
 								} else {
 									dom.remove(nonEditableParent);
+									return;
 								}
 							} else {
 								removeCaretContainer(caretContainer);
@@ -315,23 +397,31 @@
 									positionCaretOnElement(nonEditableParent, false);
 								} else {
 									dom.remove(nonEditableParent);
+									return;
 								}
 							} else {
 								removeCaretContainer(caretContainer);
 							}
 						}
 					}
+
+					if ((keyCode == VK.BACKSPACE || keyCode == VK.DELETE) && !canDelete(keyCode == VK.BACKSPACE)) {
+						e.preventDefault();
+						return false;
+					}
 				}
 			}
 		};
 
-		ed.onMouseDown.addToTop(function(ed, e){
-			// prevent collapsing selection to caret when clicking in a non-editable section
+		ed.onMouseDown.addToTop(function(ed, e) {
 			var node = ed.selection.getNode();
+
 			if (getContentEditable(node) === "false" && node == e.target) {
-				e.preventDefault();
+				// Expand selection on mouse down we can't block the default event since it's used for drag/drop
+				moveSelection();
 			}
 		});
+
 		ed.onMouseUp.addToTop(moveSelection);
 		ed.onKeyDown.addToTop(handleKey);
 		ed.onKeyUp.addToTop(moveSelection);
@@ -341,6 +431,31 @@
 		init : function(ed, url) {
 			var editClass, nonEditClass, nonEditableRegExps;
 
+			// Converts configured regexps to noneditable span items
+			function convertRegExpsToNonEditable(ed, args) {
+				var i = nonEditableRegExps.length, content = args.content, cls = tinymce.trim(nonEditClass);
+
+				// Don't replace the variables when raw is used for example on undo/redo
+				if (args.format == "raw") {
+					return;
+				}
+
+				while (i--) {
+					content = content.replace(nonEditableRegExps[i], function(match) {
+						var args = arguments, index = args[args.length - 2];
+
+						// Is value inside an attribute then don't replace
+						if (index > 0 && content.charAt(index - 1) == '"') {
+							return match;
+						}
+
+						return '<span class="' + cls + '" data-mce-content="' + ed.dom.encode(args[0]) + '">' + ed.dom.encode(typeof(args[1]) === "string" ? args[1] : args[0]) + '</span>';
+					});
+				}
+
+				args.content = content;
+			};
+			
 			editClass = " " + tinymce.trim(ed.getParam("noneditable_editable_class", "mceEditable")) + " ";
 			nonEditClass = " " + tinymce.trim(ed.getParam("noneditable_noneditable_class", "mceNonEditable")) + " ";
 
@@ -354,26 +469,10 @@
 				handleContentEditableSelection(ed);
 
 				if (nonEditableRegExps) {
-					ed.onBeforeSetContent.add(function(ed, args) {
-						var i = nonEditableRegExps.length, content = args.content, cls = tinymce.trim(nonEditClass);
-
-						// Don't replace the variables when raw is used for example on undo/redo
-						if (args.format == "raw") {
-							return;
-						}
-
-						while (i--) {
-							content = content.replace(nonEditableRegExps[i], function() {
-								var args = arguments;
-
-								return '<span class="' + cls + '" data-mce-content="' + ed.dom.encode(args[0]) + '">' + ed.dom.encode(typeof(args[1]) === "string" ? args[1] : args[0]) + '</span>';
-							});
-						}
-
-						args.content = content;
-					});
+					ed.selection.onBeforeSetContent.add(convertRegExpsToNonEditable);
+					ed.onBeforeSetContent.add(convertRegExpsToNonEditable);
 				}
-				
+
 				// Apply contentEditable true/false on elements with the noneditable/editable classes
 				ed.parser.addAttributeFilter('class', function(nodes) {
 					var i = nodes.length, className, node;
