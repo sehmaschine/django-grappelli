@@ -502,6 +502,16 @@ body.rtl .grappelliSkin .mceButton {
 .grappelliSkin span.mce_pasteword { background-image: url('img/buttons/pasteword.png'); }
 .grappelliSkin span.mce_template { background-image: url('img/buttons/template.png'); }
 .grappelliSkin span.mce_table { background-image: url('img/buttons/table.png'); }
+.grappelliSkin span.mce_row_props { background-image: url('img/buttons/table_row_props.png'); }
+.grappelliSkin span.mce_cell_props { background-image: url('img/buttons/table_cell_props.png'); }
+.grappelliSkin span.mce_delete_row { background-image: url('img/buttons/table_delete_row.png'); }
+.grappelliSkin span.mce_delete_col { background-image: url('img/buttons/table_delete_col.png'); }
+.grappelliSkin span.mce_row_before { background-image: url('img/buttons/table_row_before.png'); }
+.grappelliSkin span.mce_row_after { background-image: url('img/buttons/table_row_after.png'); }
+.grappelliSkin span.mce_col_before { background-image: url('img/buttons/table_col_before.png'); }
+.grappelliSkin span.mce_col_after { background-image: url('img/buttons/table_col_after.png'); }
+.grappelliSkin span.mce_split_cells { background-image: url('img/buttons/table_split_cells.png'); }
+.grappelliSkin span.mce_merge_cells { background-image: url('img/buttons/table_merge_cells.png'); }
 .grappelliSkin span.mce_search { background-image: url('img/buttons/search.png'); }
 .grappelliSkin span.mce_cleanup { background-image: url('img/buttons/cleanup.png'); }
 
