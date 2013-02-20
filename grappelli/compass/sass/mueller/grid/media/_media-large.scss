@@ -26,7 +26,7 @@
     $gm: 25px; // grid margin
 
     .g-l-c {
-        @extend .g-base-c;
+        @include container;
         width: $gw*$gc+$gm*($gc - 1); // 1175px
         // uncomment for a background-grid
         // @include grid-background($gc, $gw, $gm, 24px, 0, #ccc, #ddd, #999, false);

@@ -59,6 +59,13 @@
     top: 0 !important;
 }
 
+body.rtl .grappelliSkin table, body.rtl .grappelliSkin tbody, body.rtl .grappelliSkin tr, body.rtl .grappelliSkin td, 
+body.rtl .grappelliSkin div, body.rtl .grappelliSkin iframe, 
+body.rtl .grappelliSkin a, body.rtl .grappelliSkin img, body.rtl .grappelliSkin span, 
+body.rtl .grappelliSkin *, body.rtl .grappelliSkin .text {
+    text-align: right;
+}
+
 
 
 /* Containers
@@ -145,6 +152,10 @@
     width: 20px; height: 20px;
 }
 
+body.rtl .grappelliSkin span.mceIcon, body.rtl .grappelliSkin img.mceIcon {
+    width: 23px;
+}
+
 
 
 /* Buttons
@@ -183,6 +194,11 @@
 }
 .grappelliSkin .mceButtonDisabled span {
     opacity: 0.4;
+}
+
+body.rtl .grappelliSkin .mceButton {
+    margin-left: 2px;
+    margin-right: 0;
 }
 
 

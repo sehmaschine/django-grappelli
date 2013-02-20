@@ -8,6 +8,50 @@
 Changelog
 =========
 
+2.4.4 (not yet released)
+------------------------
+
+2.4.3 (November 09, 2012)
+-------------------------
+
+* Fixed: i18n of the Save-Button.
+* Fixed: ``related_label`` used for autocomplete list.
+* Fixed: help_text with related–lookups and autocomplete lookups (help_text with M2M is not possible because of a django–bug).
+* Fixed: Bug with model does not exist and m2m lookups.
+* Fixed: Calendar button with Chrome and zooming.
+* Improved: Error messages on Change–List are now below form fields (not above).
+* Improved: Design of the Login screen.
+* Improved: Cloning inlines now works with django-autocomplete-light.
+* Added: Password reset (on login page).
+* New: New Login screen.
+* New: Support for Django 1.5.
+
+2.4.2 (September 18, 2012)
+--------------------------
+
+* Fixed: Bug with change-permissions on ModelList (grappelli.dashboard).
+* Added: Alternative ChangeList Template (with filters on the right hand side).
+* Added: Alternative ChangeList Filter Template (displaying filters as list/options).
+
+2.4.1 (September 17, 2012)
+--------------------------
+
+* Fixed: Footer buttons in change_form.html do not flow correctly when screen width is reduced.
+* Fixed: Breadcrumbs of delete_selected_confirmation.
+* Fixed: Added titles for page-tools (open/close).
+* Fixed: Margins and capfirst for filter labels.
+* Fixed: Delete persmissions with inlines (stacked and tabular).
+* Fixed: Removed double dots for labels with auth- and registration-templates.
+* Fixed: Button with TinyMCE AdvLink.
+* Fixed: Timepicker closes with ESC.
+* Fixed: Window width with popups.
+* Added: Compass experimental svg support (for IE9).
+* Added: Reset actions select box with javascript.
+* Added setting ``AUTOCOMPLETE_LIMIT``.
+* Improved: sortables with django file uploads.
+* Improved: HTML is now allowed for object representation with related-lookups.
+* Improved: Documentation with using TinyMCE.
+
 2.4.0 (July 20, 2012)
 ---------------------
 

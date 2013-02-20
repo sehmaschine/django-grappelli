@@ -16,7 +16,7 @@
     $gm: 20px; // grid margin
     
     .g-tp-c {
-        @extend .g-base-c;
+        @include container;
         width: $gw*$gc+$gm*($gc - 1); // 700px
     }
     

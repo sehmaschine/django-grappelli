@@ -242,7 +242,7 @@ class AppList(DashboardModule, AppListElementMixin):
             model_dict = {}
             model_dict['title'] = capfirst(model._meta.verbose_name_plural)
             if perms['change']:
-                model_dict['change_url'] = self._get_admin_change_url(model, context)
+                model_dict['admin_url'] = self._get_admin_change_url(model, context)
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             apps[app_label]['models'].append(model_dict)
@@ -280,7 +280,7 @@ class ModelList(DashboardModule, AppListElementMixin):
             model_dict = {}
             model_dict['title'] = capfirst(model._meta.verbose_name_plural)
             if perms['change']:
-                model_dict['change_url'] = self._get_admin_change_url(model, context)
+                model_dict['admin_url'] = self._get_admin_change_url(model, context)
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             self.children.append(model_dict)
@@ -344,8 +344,6 @@ class RecentActions(DashboardModule):
             qs = qs.exclude(get_qset(self.exclude_list))
             
         self.children = qs.select_related('content_type', 'user')[:self.limit]
-        if not len(self.children):
-            self.pre_content = _('No recent actions.')
         self._initialized = True
 
 

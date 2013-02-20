@@ -99,6 +99,12 @@
                             }
                         });
                     });
+                    // reset actions select box
+                    $('.grp-changelist-actions select').val(-1);
+                    // find errors and move (because errors should be below form elements)
+                    $("ul.errorlist").each(function() {
+                        $(this).parents("td").append($(this));
+                    });
                 });
             })(grp.jQuery);
         </script>
@@ -165,12 +171,14 @@
                                 <!-- FILTERS -->
                                 {% if cl.has_filters %}
                                     {% block filters %}
-                                        <div id="grp-filters" class="filter g-d-6 g-d-l">
-                                            <div class="grp-pulldown-container">
-                                                <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
-                                                <ul class="grp-pulldown-content" style="display: none">
-                                                    {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
-                                                </ul>
+                                        <div id="grp-filters" class="g-d-6 g-d-l">
+                                            <div class="grp-filter">
+                                                <div class="grp-pulldown-container">
+                                                    <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
+                                                    <div class="grp-pulldown-content" style="display: none;">
+                                                        {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     {% endblock %}
@@ -228,7 +236,7 @@
                 <header style="display:none"><h1>Submit Options</h1></header>
                 <ul>
                     {% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}
-                    {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="Save"/></li>{% endif %}
+                    {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="{% trans "Save" %}"/></li>{% endif %}
                 </ul>
             </footer>
         {% endif %}

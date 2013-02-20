@@ -14,6 +14,12 @@
     border: $grp-button-border-hover;
     background-color: #eee;
 }
+.button-state-dark-grey {
+    color: $grp-font-color;
+    border: $grp-button-border-hover;
+    border-color: #ccc;
+    background-color: #dbdbdb;
+}
 .button-state-white {
     border: $grp-button-border;
     background-color: #fdfdfd;
@@ -36,6 +42,9 @@
     @if $state == grey {
         @extend .button-state-grey;
     }
+    @if $state == darkgrey {
+        @extend .button-state-dark-grey;
+    }
     @if $state == white {
         @extend .button-state-white;
     }
@@ -51,6 +60,9 @@
         }
         @if $state-hover == grey {
             @extend .button-state-grey;
+        }
+        @if $state-hover == darkgrey {
+            @extend .button-state-dark-grey;
         }
         @if $state-hover == white {
             @extend .button-state-white;
@@ -145,8 +157,58 @@ input[type=button],
 button, 
 a.fb_show, 
 a.related-lookup, 
-body.tinyMCE input[name="src"] + div a {
+body.tinyMCE input[name="src"] + div a, 
+body.tinyMCE input[name="href"] + div a {
     @include grp-icon-button;
+}
+
+
+/*  Related Lookup Placeholders ......................................... */
+
+@mixin grp-placeholder {
+    position: relative;
+    display: block;
+    top: -24px;
+    margin: 0 0 -20px 123px;
+    padding: 0;
+    // min-height: 20px;
+    font-weight: bold;
+    table & {
+        top: -20px;
+        margin-bottom: -25px;
+    }
+    .grp-placeholder-label:first-child {
+        display: inline-block;
+        margin-top: 4px;
+        * {
+            margin-top: -4px;
+        }
+        table & {
+            margin-top: 5px;
+            * {
+                margin-top: -5px;
+            }
+        }
+    }
+    img {
+        vertical-align: top;
+    }
+}
+@mixin grp-separator {
+    &:after {
+        content: ", ";
+    }
+}
+.grp-placeholder-related-fk, 
+.grp-placeholder-related-m2m, 
+.grp-placeholder-related-generic {
+    @include grp-placeholder;
+    .grp-errors & {
+        display: none;
+    }
+}
+.grp-separator {
+    @include grp-separator;
 }
 
 
@@ -154,7 +216,8 @@ body.tinyMCE input[name="src"] + div a {
 
 a.fb_show, 
 a.related-lookup, 
-body.tinyMCE input[name="src"] + div a {
+body.tinyMCE input[name="src"] + div a, 
+body.tinyMCE input[name="href"] + div a {
     display: inline-block;
     margin-bottom: -5px;
     @include icons-sprite(related-lookup);
@@ -237,8 +300,13 @@ p.grp-help + * + a.add-another {
     top: -20px;
     margin-bottom: -20px;
 }
-.grp-td a.add-another {
-    float: right;
+.grp-td {
+    a.add-another {
+        float: none;
+    }
+    select + a.add-another {
+        top: -6px;
+    }
 }
 .radiolist.inline + a.add-another, 
 .checkboxlist.inline + a.add-another {
@@ -265,7 +333,8 @@ input:focus + a.related-lookup,
 input:focus + * + a.related-lookup, 
 input:focus + a.add-another, 
 .grp-state-focus a.related-lookup, 
-body.tinyMCE input[name="src"]:focus + div a {
+body.tinyMCE input[name="src"]:focus + div a, 
+body.tinyMCE input[name="href"]:focus + div a {
     border: $grp-form-field-border-focus !important;
 }
 input:focus + .grp-search-button {

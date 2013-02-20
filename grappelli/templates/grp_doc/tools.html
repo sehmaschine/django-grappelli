@@ -155,6 +155,60 @@
 	    <section>
 	    	<div class="g-d-24">
 		        <div class="grp-doc-description">
+		            <h1>Placeholders for certain tools</h1>
+		            <p>You might need to add placeholders within tools, e.g. when a certain tool is currently not available. It might be important to sustain the order of the tools in that case (e.g. when tools are located beyond each other in different rows).</p>
+		            <p>To achieve that you have to replace <span class="grp-doc-dom"><span>a</span></span> with an empty <span class="grp-doc-dom"><span>span</span></span> and make sure that you add the additional class of the former <span class="grp-doc-dom"><span>a</span></span> to the empty <span class="grp-doc-dom"><span>span</span></span>. Those classes may be <span class="grp-doc-class">.grp-icon</span>, <span class="grp-doc-class">.grp-text</span> or <span class="grp-doc-class">.grp-icon-text</span>.</p>
+		            <p>In case of tools as text or as icons with text you also have to apply the text to the <span class="grp-doc-dom"><span>span</span></span> to make it keep its width.</p>
+		        </div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code-source">
+	    			<ul class="grp-tools" style="margin: 20px 0 0; clear: both !important;">
+					    <li><a href="#" class="grp-icon grp-viewsite-link"></a></li>
+					    <li><a href="#" class="grp-text">Tool as text</a></li>
+					    <li><a href="#" class="grp-icon grp-delete-handler"></a></li>
+					    <li><a href="#" class="grp-icon-text grp-remove-handler">Tool as icon with text</a></li>
+					    <li><a href="#" class="grp-icon grp-drag-handler"></a></li>
+					    <li><a href="#" class="grp-icon grp-open-handler"></a></li>
+					    <li><a href="#" class="grp-icon grp-close-handler"></a></li>
+					</ul>
+	    			<ul class="grp-tools" style="clear: both !important">
+					    <li><a href="#" class="grp-icon grp-viewsite-link"></a></li>
+					    <li><span class="grp-text">Tool as text</span></li>
+					    <li><a href="#" class="grp-icon grp-delete-handler"></a></li>
+					    <li><span class="grp-icon-text">Tool as icon with text</span></li>
+					    <li><a href="#" class="grp-icon grp-drag-handler"></a></li>
+					    <li><span class="grp-icon"></span></li>
+				        <li><a href="#" class="grp-icon grp-close-handler"></a></li>
+					</ul>
+				</div>
+		    </div>
+	    	<div class="g-d-24">
+	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+<ul class="grp-tools">
+    <li><a href="#" class="grp-icon grp-viewsite-link"></a></li>
+    <li><a href="#" class="grp-text">Tool as text</a></li>
+    <li><a href="#" class="grp-icon grp-delete-handler"></a></li>
+    <li><a href="#" class="grp-icon-text grp-remove-handler">Tool as icon with text</a></li>
+    <li><a href="#" class="grp-icon grp-drag-handler"></a></li>
+    <li><a href="#" class="grp-icon grp-open-handler"></a></li>
+    <li><a href="#" class="grp-icon grp-close-handler"></a></li>
+</ul>
+<ul class="grp-tools">
+    <li><a href="#" class="grp-icon grp-viewsite-link"></a></li>
+    <li><span class="grp-text">Tool as text</span></li>
+    <li><a href="#" class="grp-icon grp-delete-handler"></a></li>
+    <li><span class="grp-icon-text">Tool as icon with text</span></li>
+    <li><a href="#" class="grp-icon grp-drag-handler"></a></li>
+    <li><span class="grp-icon"></span></li>
+    <li><a href="#" class="grp-icon grp-close-handler"></a></li>
+</ul>
+{% endfilter %}</code></pre></div>
+	    	</div>
+	    </section>
+	    <section>
+	    	<div class="g-d-24">
+		        <div class="grp-doc-description">
 		            <h1>Tools for modules</h1>
 		            <p>Tools refering to modules have to be placed directly after the modules heading.</p>
 		        </div>

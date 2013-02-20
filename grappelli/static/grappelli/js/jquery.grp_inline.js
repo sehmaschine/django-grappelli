@@ -43,16 +43,18 @@
     };
     
     updateFormIndex = function(elem, options, replace_regex, replace_with) {
-        elem.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
+        elem.find(':input,span,table,iframe,label,a,ul,p,img,div').each(function() {
             var node = $(this),
                 node_id = node.attr('id'),
                 node_name = node.attr('name'),
                 node_for = node.attr('for'),
                 node_href = node.attr("href");
+                node_class = node.attr("class");
             if (node_id) { node.attr('id', node_id.replace(replace_regex, replace_with)); }
             if (node_name) { node.attr('name', node_name.replace(replace_regex, replace_with)); }
             if (node_for) { node.attr('for', node_for.replace(replace_regex, replace_with)); }
             if (node_href) { node.attr('href', node_href.replace(replace_regex, replace_with)); }
+            if (node_class) { node.attr('class', node_class.replace(replace_regex, replace_with)); }
         });
     };
     
@@ -100,16 +102,20 @@
             var index = parseInt(totalForms.val(), 10),
                 form = empty_template.clone(true);
             form.removeClass(options.emptyCssClass)
-                .attr("id", empty_template.attr('id').replace("-empty", index))
-                .insertBefore(empty_template)
-                .addClass(options.formCssClass);
+                .attr("id", empty_template.attr('id').replace("-empty", index));
             // update form index
             var re = /__prefix__/g;
             updateFormIndex(form, options, re, index);
+            // after "__prefix__" strings has been substituted with the number
+            // of the inline, we can add the form to DOM, not earlier.
+            // This way we can support handlers that track live element
+            // adding/removing, like those used in django-autocomplete-light
+            form.insertBefore(empty_template)
+                .addClass(options.formCssClass);
             // update total forms
             totalForms.val(index + 1);
             // hide add button in case we've hit the max, except we want to add infinitely
-            if ((maxForms.val() !== 0) && (maxForms.val() != "") && (maxForms.val() - totalForms.val()) <= 0) {
+            if ((maxForms.val() !== 0) && (maxForms.val() !== "") && (maxForms.val() - totalForms.val()) <= 0) {
                 hideAddBottons(inline, options);
             }
             // callback

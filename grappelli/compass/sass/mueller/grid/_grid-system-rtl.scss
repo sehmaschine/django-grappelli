@@ -1,0 +1,193 @@
+// **************************************************
+//
+// MUELLER
+// modular grid system
+//
+// _grid_system.scss
+//
+// the basic grid implementation
+//
+// **************************************************
+
+// **************************************************
+// IMPORTS & VARIABLES
+
+@import "compass/utilities/general/clearfix";
+
+$float-direction: right;
+$show-grid-background: false;
+
+// **************************************************
+// GENERAL MIXINS
+
+@mixin centered {
+    float: none;
+    margin: 0 auto;
+}
+
+@mixin floated($side: $float-direction) {
+    float: $side;
+}
+
+// **************************************************
+// THE GRID SYSTEM
+
+// The width of a column given the units and unit width of the grid.
+@function column-width($n, $col-width, $gutter-width: $gutter-width) {
+    @return $col-width * $n + $gutter-width * ($n - 1);
+}
+
+// A grid container. Unlike most grid containers,
+// this one does not have a width. That is assigned
+// on a per-media basis.
+@mixin container {
+    @include pie-clearfix;
+    &.g-centered {
+        @include centered;
+    }
+}
+
+// The basic structure for a column aligned to a grid.
+@mixin column-base {
+    @include floated; // make this column floated to the left
+    @include pie-clearfix;
+}
+
+// Generates the base classes needed for a grid system
+@mixin grid-base($gutter-width, $base-class: grid-column, $first-column-class: g-all-f, $last-column-class: g-all-l) {
+    .#{$base-class} {
+        @include column-base;
+    }
+    .#{$first-column-class} {
+        margin-right: 0 !important;
+        margin-left: $gutter-width !important; // needed to overwrite last with first
+        clear: right;
+    }
+    .#{$last-column-class} {
+        margin-left: 0 !important;
+    }
+}
+
+// add $n grid units worth of space to the left of a column
+@mixin prepend($n, $col-width, $gutter-width) {
+    padding-right: column-width($n, $col-width, $gutter-width) + $gutter-width !important;
+}
+
+// add $n grid units worth of space to the left of a column
+@mixin append($n, $col-width, $gutter-width) {
+    padding-left: column-width($n, $col-width, $gutter-width) + $gutter-width !important;
+}
+
+@mixin push($n, $col-width, $gutter-width) {
+    position: relative;
+    margin-right: $n*($col-width+$gutter-width) !important;
+    margin-left: -$n*($col-width+$gutter-width) !important;
+    margin-top: 0; margin-bottom: 0;
+}
+
+// add $n grid units worth of space to the left of a column
+@mixin pull($n, $col-width, $gutter-width) {
+    position: relative;
+    margin-right: -$n*($col-width+$gutter-width) + $gutter-width !important;
+}
+// ADDED double pull for elements with display: table-cell
+@mixin doublepull($n, $col-width, $gutter-width) {
+    position: relative;
+    margin-right: -($n*($col-width+$gutter-width) + $gutter-width)*2 !important;
+}
+
+// The column mixin can be used in two different ways.
+// Where base classes are provided they are extended to
+// produce less css output. When not provided this
+// mixin produces output generally equivalent to the
+// blueprint column mixin.
+@mixin column($n, $max-unit, $col-width, $gutter-width, $base-class: false, $first-column-class: false, $last-column-class: false) {
+    @include column-base;
+    @if $n == $max-unit {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        clear: both;
+    } @else {
+        margin-left: $gutter-width;
+    }
+    width: column-width($n, $col-width, $gutter-width);
+}
+
+
+// ADDED replace margins with paddings for elements with display: table-cell plus additional settings
+@mixin column-table-cell($n, $max-unit, $col-width, $gutter-width, $base-class: false, $first-column-class: false, $last-column-class: false) {
+    @include column-base;
+    @if $n == $max-unit {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        clear: both;
+    } @else {
+        padding-left: $gutter-width;
+    }
+    width: column-width($n, $col-width, $gutter-width);
+    min-width: column-width($n, $col-width, $gutter-width);
+    float: none;
+    display: table-cell;
+}
+
+// Generate grid classes according to a common naming convention
+// $media is the media prefix. E.g. d (deskotop), t (tablet), tp (tablet portrait), h (handheld), or hl (handheld landscape)
+// $max-unit is how many columns are in this grid system.
+// $col-width is the width of a column.
+// $gutter-width is the width of a gutter (margin-right).
+// The column base class and gutter removal class names are derived
+// from the prefix, but can be overridden.
+@mixin grids($media, $units, $max-unit, $col-width, $gutter-width,
+            $pad-units: 12 11 10 9 8 7 6 5 4 3 2 1 0,
+            $base-class: "g-#{$media}",
+            $first-column-class: "g-#{$media}-f",
+            $last-column-class: "g-#{$media}-l") {
+    // establish the base classes
+    @include grid-base($gutter-width, $base-class, $first-column-class, $last-column-class);
+    // generate padding classes
+    @each $n in $pad-units {
+        .g-#{$media}-prepend#{$n} {
+            @include prepend($n, $col-width, $gutter-width);
+        }
+        .g-#{$media}-append#{$n} {
+            @include append($n, $col-width, $gutter-width);
+        }
+        .g-#{$media}-push#{$n} {
+            @include push($n, $col-width, $gutter-width);
+        }
+        .g-#{$media}-pull#{$n} {
+            @include pull($n, $col-width, $gutter-width);
+        }
+        .g-#{$media}-doublepull#{$n} {
+            @include doublepull($n, $col-width, $gutter-width);
+        }
+    }
+    // generate grid classes
+    @each $n in $units {
+        .g-#{$media}-#{$n} {
+            @include column($n, $max-unit, $col-width, $gutter-width, $base-class, $first-column-class, $last-column-class);
+        }
+    }
+    // generate table-cell grid classes
+    @each $n in $units {
+        .g-#{$media}-#{$n}-td {
+            @include column-table-cell($n, $max-unit, $col-width, $gutter-width, $base-class, $first-column-class, $last-column-class);
+            // seems to be obsolete: assign different width for webkit because of safaris different interpretation of table-layout:fixed (does not add padding to width)
+            // @media screen and (-webkit-min-device-pixel-ratio:0) {
+            //     width: column-width($n, $col-width, $gutter-width) + $gutter-width;
+            //    -webkit-box-sizing: border-box;
+            // }
+        }
+    }
+    // ADDED generate form field widths
+    @each $n in $units {
+        .g-#{$media}-#{$n} input[type=text], 
+        .g-#{$media}-#{$n} input[type=password], 
+        .g-#{$media}-#{$n} select, 
+        .g-#{$media}-#{$n} textarea {
+            width: 100%;
+            // width: column-width($n, $col-width, $gutter-width);
+        }
+    }
+}

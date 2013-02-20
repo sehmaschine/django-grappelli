@@ -1,4 +1,4 @@
-{% load i18n grp_tags %}
+{% load i18n grp_tags %}{% load url from future %}
 
 <div id="grp-navigation">
     <h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>
@@ -6,10 +6,10 @@
         <ul id="grp-user-tools">
             <!-- Username -->
             <li class="grp-user-options-container grp-collapse grp-closed">
-                <a href="javascript://" class="user-options-handler grp-collapse-handler">{% firstof user.first_name user.username %}</a>
+                <a href="javascript://" class="user-options-handler grp-collapse-handler">{% firstof user.first_name user.username user.get_short_name user.get_username %}</a>
                 <ul class="grp-user-options">
                     <!-- Change Password -->
-                    {% url admin:password_change as password_change_url %}
+                    {% url 'admin:password_change' as password_change_url %}
                     {% if password_change_url %}
                         <li><a href="{{ password_change_url }}">
                     {% else %}
@@ -17,7 +17,7 @@
                     {% endif %}
                     {% trans 'Change password' %}</a></li>
                     <!-- Logout -->
-                    {% url admin:logout as logout_url %}
+                    {% url 'admin:logout' as logout_url %}
                     {% if logout_url %}
                         <li><a href="{{ logout_url }}">
                     {% else %}
@@ -29,12 +29,12 @@
             <!-- Userlinks -->
             {% block userlinks %}
                 <!-- JS tests -->
-                {% url test-index as testindexurl %}
+                {% url 'test-index' as testindexurl %}
                 {% if testindexurl %}
                     <li><a href="{{ testindexurl }}">{% trans 'Tests' %}</a></li>
                 {% endif %}
                 <!-- Documentation -->
-                {% url django-admindocs-docroot as docsroot %}
+                {% url 'django-admindocs-docroot' as docsroot %}
                 {% if docsroot %}
                     <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
                 {% endif %}

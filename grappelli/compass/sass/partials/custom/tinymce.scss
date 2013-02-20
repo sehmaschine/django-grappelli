@@ -228,14 +228,40 @@ textarea#htmlSource {
 
 
 
+/*  HREF BROWSE ICONS
+------------------------------------------------------------------------------------------------------ */
+
+input[name="href"] + div {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    display: inline-block;
+    // position: relative;
+    // float: right;
+    // @media screen and (-webkit-min-device-pixel-ratio:0) {
+    //     margin-top: -25px;
+    // }
+    a {
+        span {
+            display: none;
+        }
+    }
+}
+
+
+
 /*  FILEBROWSER ICONS
 ------------------------------------------------------------------------------------------------------ */
 
 input[name="src"] + div {
-    position: relative;
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 10px;
     display: inline-block;
-    margin-top: -25px;
+    // float: right;
+    // @media screen and (-webkit-min-device-pixel-ratio:0) {
+    //     margin-top: -25px;
+    // }
     a {
         span {
             display: none;

@@ -7,6 +7,8 @@
 @import "compass/reset";
 @import "compass";
 
+$experimental-support-for-svg: true;
+
 
 
 /*  GRAPPELLI IMPORTS
@@ -73,28 +75,128 @@ body {
 }
 
 body.grp-login {
-	#grp-context-navigation {
+	#grp-header, 
+	#grp-context-navigation, 
+	#grp-content-title {
 		display: none;
 	}
 	#grp-content {
-		top: 36px;
+		top: 140px;
 	}
-	fieldset.grp-module {
-		@include border-top-radius(0);
-		border-color: #222;
-		border-top: 1px solid #111 !important;
-		background: #222;
-		.grp-row {
+	.grp-module-login {
+		border: 0 !important;
+		@include border-radius($grp-border-radius + 3);
+		background: #222 !important;
+		> .grp-row {
 			@include grp-padding($grp-padding-size);
 			border-top: 1px solid #333 !important;
-			border-bottom: 1px solid #111 !important;
+			border-bottom: 1px solid #000 !important;
 			label {
 				color: #fff;
 			}
-			.errorlist {
-				color: lighten(#bf3030, 5);
+			// .errorlist {
+			// 	color: lighten(#bf3030, 5);
+			// }
+		}
+		h1 {
+			font-size: 18px;
+			@include grp-padding(35px 0 0);
+			border: 1px solid #111;
+			border-bottom: 0;
+			@include border-top-radius($grp-border-radius + 1);
+			@include background-image(linear-gradient(#333, #222));
+			span {
+				display: block;
+				margin: 0;
+				color: #eee;
+				&.grp-admin-title {
+					padding: 5px 10px 7px;
+					font-weight: bold;
+					a {
+						color: #eee;
+						&:hover {
+							color: lighten($grp-link-color, 10);
+						}
+					}
+				}
+				&.grp-current-page {
+					margin: 0 -1px;
+					padding: 5px 11px 4px;
+					border-top: 0;
+					border-bottom: 0;
+					border-left: 1px solid darken(#309bbf, 4);
+					border-right: 1px solid darken(#309bbf, 4);
+					color: #fff;
+					font-size: $grp-font-size-l;
+					font-weight: bold;
+					@include background-image(linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color));
+				}
+			}
+			+ .grp-row {
+				border: 0;
+				border-top: 1px solid #333;
 			}
 		}
+		.grp-module {
+			border: $grp-module-border;
+			border-top: 1px solid #f6f6f6;
+			@include border-top-radius(0);
+			.grp-row {
+				padding-bottom: 12px;
+				&:first-child {
+					border-top: 0;
+				}
+				&.grp-connected {
+					margin-top: -5px;
+					padding-top: 0;
+					border-top: 1px solid #eee;
+					background: #eee;
+				}
+				&.grp-error-row {
+					margin: 0 -1px;
+					padding: 0;
+					border-left: 1px solid darken($grp-font-color-error, 4);
+					border-right: 1px solid darken($grp-font-color-error, 4);
+					border-bottom: 1px solid darken($grp-font-color-error, 5);
+					border-top: 1px solid lighten($grp-font-color-error, 5);
+					@include box-sizing(content-box);
+					&:first-child {
+						margin-top: -1px;
+						border-top: 0;
+						@include border-top-radius(0);
+					}
+				}
+			}
+			label {
+				margin: 0 0 4px;
+				&:first-child {
+					margin-top: -2px;
+				}
+			}
+			.grp-description {
+				margin: 3px 0 -3px;
+				font-size: 13px;
+				line-height: 15px;
+			}
+			ul.errorlist {
+				margin: 5px 0 0;
+				padding: 0;
+				&:last-child {
+					margin-bottom: -2px;
+				}
+			}
+			.errornote {
+				margin: 0;
+				padding: 9px 10px 7px;
+				font-size: 13px;
+				@include border-radius(0);
+				& + .errornote {
+					margin-top: -3px;
+					padding-top: 0;
+				}
+			}
+		}
+		
 	}
 	.grp-module.grp-submit-row, 
 	.grp-module.grp-submit-row ul {
@@ -348,7 +450,7 @@ header#grp-header {
 
 @mixin grp-submit-row {
 	padding: 0;
-    border: 0;
+	border: 0;
     @include border-radius(0);
     background: transparent;
 	> ul {
@@ -390,10 +492,12 @@ header#grp-header {
 }
 .grp-submit-row {
 	@include grp-submit-row;
-	&.grp-fixed-footer {
+	min-width: auto;
+    &.grp-fixed-footer {
 		> ul {
 			margin-top: 0;
 			> li {
+				margin-bottom: 5px;
 				padding: 5px !important;
 				background: #444;
 		        .grp-button {
@@ -406,11 +510,12 @@ header#grp-header {
 
 @mixin grp-fixed-footer {
 	position: fixed;
+	z-index: 900;
 	float: left;
 	bottom: 0;
 	left: 0;
 	margin: 0;
-	padding: 10px 20px;
+	padding: 10px 20px 5px;
 	width: 100%;
 	border: 0;
 	@include box-sizing(border-box);

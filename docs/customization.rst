@@ -13,8 +13,14 @@ While |grappelli| is mainly about the look & feel of the admin interface, it als
 Available Settings
 ------------------
 
+.. versionadded:: 2.4.1
+    Added setting AUTOCOMPLETE_LIMIT
+
 ``GRAPPELLI_ADMIN_TITLE``
     The Site Title of your admin interface. Change this instead of changing index.html
+
+``AUTOCOMPLETE_LIMIT``
+    Number of items to show with autocomplete drop-downs.
 
 .. _customizationcollapsibles:
 
@@ -149,10 +155,18 @@ If your generic relation points to a model using a custom primary key, you need 
 .. versionadded:: 2.3.4
     ``related_label``.
 
-For the represantation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
+For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
 
     def __unicode__(self):
         return u"%s" % self.name
+    
+    def related_label(self):
+        return u"%s (%s)" % (self.name, self.id)
+
+.. versionadded:: 2.4.3
+    ``related_label``.
+
+For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
     
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
@@ -227,7 +241,7 @@ If your generic relation points to a model using a custom primary key, you need 
         def id(self):
             return self.cpk
 
-For the represantation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
+For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
 
     def __unicode__(self):
         return u"%s" % self.name
@@ -246,7 +260,7 @@ Using TinyMCE
 .. versionchanged:: 2.4
     The admin media URLs has been changed to use a static URLs in compliance with Django 1.4
 
-Copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts::
+|grappelli| already comes with TinyMCE and a minimal theme as well. In order to use TinyMCE, you need to copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts to your ModelAdmin definition (see `ModelAdmin Media definitions <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/#modeladmin-media-definitions>`_)::
 
     class Media:
         js = [
@@ -265,10 +279,29 @@ Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form
 
 .. _changelistfilters:
 
+Changelist Templates
+--------------------
+
+.. versionadded:: 2.4.2
+
+Grappelli comes with 2 different change–list templates. The standard template shows filters with a drop–down, the alternative template shows filters on the right hand side of the results (similar to djangos admin interface).
+
+To use the alternative template, you need to add ``change_list_template`` to your ModelAdmin definition::
+
+    class MyModelOptions(admin.ModelAdmin):
+        change_list_template = "admin/change_list_filter_sidebar.html"
+
+
 Changelist Filters
 ------------------
 
-.. versionadded:: 2.4
+.. versionadded:: 2.4.2
 
-TODO: Explain how to use different filter-styles with the changelist.
+Grappelli comes with 2 different change–list filters. The standard filters are drop–downs, the alternative filters are list of options (similar to djangos admin interface).
+
+To use the alternative filters, you need to add ``change_list_filter_template`` to your ModelAdmin definition::
+
+    class MyModelOptions(admin.ModelAdmin):
+        change_list_filter_template = "admin/filter_listing.html"
+
 

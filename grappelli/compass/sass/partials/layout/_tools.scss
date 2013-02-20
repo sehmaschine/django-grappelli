@@ -30,17 +30,17 @@
 			}
 			&.grp-add-link {
 				padding-left: 28px;
-				@include grp-background-gradient-icon-combo(object-tools-add-link, #999, #888);
+				@include grp-background-gradient-icon-combo(object-tools-add-link, 0, #999, #888);
 				&:hover {
-					@include grp-background-gradient-icon-combo(object-tools-add-link, #36b0d9, #309bbf);
+					@include grp-background-gradient-icon-combo(object-tools-add-link, 0, #36b0d9, #309bbf);
 				}
 			}
 			&.grp-viewsite-link, 
 			&[target="_blank"] {
 				padding-left: 28px;
-				@include grp-background-gradient-icon-combo(object-tools-viewsite-link, #999, #888);
+				@include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #999, #888);
 				&:hover {
-					@include grp-background-gradient-icon-combo(object-tools-viewsite-link, #36b0d9, #309bbf);
+					@include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #36b0d9, #309bbf);
 				}
 			}
 		}
@@ -64,7 +64,8 @@
 	padding-right: 5px;
 	height: 24px;
 	li {
-		a {
+		a, 
+		span {
 			display: block;
 			width: 24px;
 			height: 24px;
@@ -124,6 +125,10 @@
 }
 .grp-tools {
 	@include grp-tools;
+	span {
+		color: transparent !important;
+		cursor: default !important;
+	}
 }
 
 

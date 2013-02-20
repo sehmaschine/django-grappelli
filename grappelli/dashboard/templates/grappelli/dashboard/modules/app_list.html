@@ -7,21 +7,21 @@
             <h{% if subindex %}4{% else %}3{% endif %}><a href="{{ child.url }}">{{ child.title }}</a></h{% if subindex %}4{% else %}3{% endif %}>
             {% for model in child.models %}
                 <div class="grp-row">
-                    {% if model.change_url %}
-                        <a href="{{ model.change_url }}"><strong>{{ model.title }}</strong></a>
+                    {% if model.admin_url %}
+                        <a href="{{ model.admin_url }}"><strong>{{ model.title }}</strong></a>
                     {% else %}
                         <strong>{{ model.title }}</strong>
                     {% endif %}
-                    {% if model.add_url or model.change_url %}
+                    {% if model.add_url or model.admin_url %}
                         <ul class="grp-actions">
                             {% if model.add_url %}
                                 <li class="grp-add-link">
                                     <a href="{{ model.add_url }}">{% trans "Add" %}</a>
                                 </li>
                             {% endif %}
-                            {% if model.change_url %}
+                            {% if model.admin_url %}
                                 <li class="grp-change-link">
-                                    <a href="{{ model.change_url }}">{% trans "Change" %}</a>
+                                    <a href="{{ model.admin_url }}">{% trans "Change" %}</a>
                                 </li>
                             {% endif %}
                         </ul>

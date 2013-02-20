@@ -9,18 +9,30 @@
 
 p.grp-help {
     max-width: 758px;
-    padding: 3px 0 0;
+    padding: 5px 0 0;
     color: lighten($grp-font-color-quiet, 7);
     font-size: 11px !important;
-    line-height: 14px;
+    line-height: 13px;
     white-space: normal !important;
     &:first-child {
         margin-top: 5px;
+    }
+    .errorlist + & {
+        padding-top: 2px;
     }
 }
 .grp-cells p.grp-help, 
 .grp-td p.grp-help {
     max-width: 278px;
+}
+.grp-row p.grp-help, 
+.grp-td p.grp-help {
+    &:first-child {
+        margin: -2px 0 8px;
+    }
+}
+.grp-row p.grp-help {
+    margin-bottom: -2px;
 }
 
 
@@ -31,25 +43,25 @@ p.grp-help {
 }
 
 
-/*  Read Only ......................................... */
+/*  Read Only (transferred to _forms.scss) ......................................... */
 
-p.grp-readonly {
-    position: relative;
-    display: inline-block;
-    margin: 4px 0 0 !important;
-    padding: 0 !important;
-    color: #666;
-    font-size: 12px;
-    font-weight: bold;
-    & + p.grp-readonly {
-        margin-left: 20px;
-    }
-}
-.grp-tabular {
-    p.grp-readonly {
-        margin-top: 5px !important;
-    }
-}
+// p.grp-readonly {
+//     position: relative;
+//     display: inline-block;
+//     margin: 4px 0 0 !important;
+//     padding: 0 !important;
+//     color: #666;
+//     font-size: 12px;
+//     font-weight: bold;
+//     & + p.grp-readonly {
+//         margin-left: 20px;
+//     }
+// }
+// .grp-tabular {
+//     p.grp-readonly {
+//         margin-top: 5px !important;
+//     }
+// }
 
 
 /*  Images ......................................... */
@@ -93,7 +105,8 @@ p.file-upload {
         }
     }
     tr & {
-        margin: 0;
+        margin: 1px 0 -2px;
+        line-height: 13px; // Firefox needs this, otherwise related-lookup buttons in context have an offset
     }
 }
 p.preview {
