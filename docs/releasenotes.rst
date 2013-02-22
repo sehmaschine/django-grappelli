@@ -8,7 +8,7 @@
 Grappelli 2.4.x Release Notes
 =============================
 
-**Grappelli 2.4.x is compatible with Django 1.4**.
+**Grappelli 2.4.x is compatible with Django 1.4/1.5**.
 
 Overview
 --------
@@ -32,7 +32,7 @@ What's new in Grappelli 2.4.x
 Update from Grappelli 2.3.x
 ---------------------------
 
-* Update Django to 1.4 and check https://docs.djangoproject.com/en/dev/releases/1.4/
+* Update Django to 1.4 or 1.5 and check https://docs.djangoproject.com/en/dev/releases/1.4/ or https://docs.djangoproject.com/en/dev/releases/1.5/
 * Update Grappelli to 2.4.x
 * Change your admin-classes (collapse > grp-collapse, open > grp-open, closed > grp-closed) ... sorry!
 * Check/Update your custom templates, custom css and custom javascripts (if any)

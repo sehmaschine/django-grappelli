@@ -8,7 +8,10 @@
 Changelog
 =========
 
-2.4.4 (not yet released)
+2.4.5 (not yet released)
+------------------------
+
+2.4.4 (February 22, 2013)
 ------------------------
 
 * New: Added Czech translation for TinyMCE.
@@ -23,6 +26,7 @@ Changelog
 * Fixed: Fix RelatedLookup when called with empty string as object_id.
 * Fixed: 2 clicks to remove items with m2m–autocompletes.
 * Fixed: Error with adding values to hidden–fields with autocomplets (after using the pop up window).
+* Fixed: Autocomplete generic lookups when object_id is not an integer field.
 * Improved: App titles are now translatable with the dashboards app list.
 * Improved: Rewrites views into class-based views.
 * Improved: Better messages with autocompletes and no results.
@@ -112,7 +116,7 @@ Changelog
 * Added pre_content and post_content to dashboard.
 * Added inline_classes.
 * Added polish translation for TinyMCE and grappelli contextmenu.
-* Removed ``title_url`` from dashboard-docs (it hasn´t been used anyway so far).
+* Removed ``title_url`` from dashboard-docs (it hasn't been used anyway so far).
 
 2.3.5 (October 11, 2011)
 ------------------------

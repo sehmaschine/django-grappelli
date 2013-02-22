@@ -82,3 +82,6 @@ in ``/static/admin/js/``
 
 ``grappelli.js``
     main grappelli js
+
+``grappelli.min.js``
+    minified version of all Grappelli JS

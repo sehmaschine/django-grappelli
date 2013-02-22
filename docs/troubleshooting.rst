@@ -16,7 +16,7 @@ Check your setup
 First, please check if the problem is caused by your setup.
 
 * Read :ref:`quickstart` and :ref:`customization`.
-* Check if the static/media-files are served correctly.
+* Check if the static/media files are served correctly.
 * Make sure you have removed all customized admin templates from all locations in TEMPLATE_DIRS paths or check that these templates are compatible with Grappelli.
 
 Check issues
@@ -36,7 +36,7 @@ If you think you've found a bug, please `add a ticket <https://github.com/sehmas
 * Tell us what you did in order to solve the problem.
 * Tell us what version of |grappelli| you are using.
 * Tell us what version of Django you are using.
-* Please do NOT add tickets if you´re having problems with serving static/media-files (because this is not related to |grappelli|).
+* Please do NOT add tickets if you're having problems with serving static/media files (because this is not related to |grappelli|).
 * Please do NOT add tickets referring to Djangos trunk version.
 * At best: add a patch.
 
