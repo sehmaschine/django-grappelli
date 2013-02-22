@@ -167,13 +167,13 @@
 .grp-autocomplete-wrapper-m2m .grp-autocomplete-hidden-field,
 .grp-autocomplete-wrapper-fk .grp-autocomplete-hidden-field  {
     position: absolute !important;
-    top: -100000px !important;
-    width: 10px !important;
-    height: 10px !important;
+    z-index: 0 !important;
+    padding: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
     color: transparent !important;
     border: 0 !important;
     background: transparent !important;
-    @include box-shadow(none !important);
-    @include opacity(0);
-    cursor: default !important;
 }

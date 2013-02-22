@@ -13,10 +13,9 @@
                 var $this = $(this);
                 // assign attributes
                 $this.attr({
-                    "class": "grp-autocomplete-hidden-field",
                     "tabindex": "-1",
                     "readonly": "readonly"
-                });
+                }).addClass("grp-autocomplete-hidden-field");
                 // build autocomplete wrapper
                 $this.next().after(loader).after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='grp-autocomplete-wrapper-m2m'></div>");

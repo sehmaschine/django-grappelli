@@ -12,10 +12,9 @@
                 var $this = $(this);
                 // assign attributes
                 $this.attr({
-                    "class": "grp-autocomplete-hidden-field",
                     "tabindex": "-1",
                     "readonly": "readonly"
-                });
+                }).addClass("grp-autocomplete-hidden-field");
                 // remove djangos object representation (if given)
                 if ($this.next().next() && $this.next().next().attr("class") != "errorlist" && $this.next().next().attr("class") != "grp-help") $this.next().next().remove();
                 // build autocomplete wrapper
