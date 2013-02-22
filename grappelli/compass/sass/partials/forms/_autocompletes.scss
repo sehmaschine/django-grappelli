@@ -164,9 +164,8 @@
 
 /* We need to "hide" the input-field without display:none, because with display:none we can´t focus the field anymore */
 
-.grp-autocomplete-wrapper-m2m input.vManyToManyRawIdAdminField, 
-.grp-autocomplete-wrapper-fk input.vForeignKeyRawIdAdminField, 
-.grp-autocomplete-wrapper-fk input.vIntegerField  {
+.grp-autocomplete-wrapper-m2m input.grp-autocomplete-hidden-field,
+.grp-autocomplete-wrapper-fk input.grp-autocomplete-hidden-field  {
     position: absolute;
     top: -100000px;
     width: 10px;

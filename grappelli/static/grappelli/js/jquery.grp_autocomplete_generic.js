@@ -10,9 +10,12 @@
             options = $.extend({}, $.fn.grp_autocomplete_generic.defaults, options);
             return this.each(function() {
                 var $this = $(this);
-                // tabindex
-                $this.attr("tabindex", "-1");
-                $this.attr("readonly", "readonly");
+                // assign attributes
+                $this.attr({
+                    "class": "grp-autocomplete-hidden-field",
+                    "tabindex": "-1",
+                    "readonly": "readonly"
+                });
                 // build autocomplete wrapper
                 if ($(options.content_type).val()) {
                     $this.after(loader).after(remove_link($this.attr('id'))).after(lookup_link($this.attr("id"),$(options.content_type).val()));

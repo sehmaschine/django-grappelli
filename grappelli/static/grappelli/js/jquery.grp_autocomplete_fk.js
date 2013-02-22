@@ -10,9 +10,12 @@
             options = $.extend({}, $.fn.grp_autocomplete_fk.defaults, options);
             return this.each(function() {
                 var $this = $(this);
-                // tabindex
-                $this.attr("tabindex", "-1");
-                $this.attr("readonly", "readonly");
+                // assign attributes
+                $this.attr({
+                    "class": "grp-autocomplete-hidden-field",
+                    "tabindex": "-1",
+                    "readonly": "readonly"
+                });
                 // remove djangos object representation (if given)
                 if ($this.next().next() && $this.next().next().attr("class") != "errorlist" && $this.next().next().attr("class") != "grp-help") $this.next().next().remove();
                 // build autocomplete wrapper
