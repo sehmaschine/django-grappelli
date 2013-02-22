@@ -234,7 +234,7 @@ textarea#htmlSource {
 input[name="href"] + div {
     position: absolute;
     top: 0;
-    right: 10px;
+    right: 0;
     display: inline-block;
     // position: relative;
     // float: right;
@@ -256,7 +256,7 @@ input[name="href"] + div {
 input[name="src"] + div {
     position: absolute;
     top: 0;
-    right: 10px;
+    right: 0;
     display: inline-block;
     // float: right;
     // @media screen and (-webkit-min-device-pixel-ratio:0) {

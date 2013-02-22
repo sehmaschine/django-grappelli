@@ -10,8 +10,11 @@
             options = $.extend({}, $.fn.grp_autocomplete_generic.defaults, options);
             return this.each(function() {
                 var $this = $(this);
-                // tabindex
-                $this.attr("tabindex", "-1");
+                // assign attributes
+                $this.attr({
+                    "tabindex": "-1",
+                    "readonly": "readonly"
+                }).addClass("grp-autocomplete-hidden-field");
                 // build autocomplete wrapper
                 if ($(options.content_type).val()) {
                     $this.after(loader).after(remove_link($this.attr('id'))).after(lookup_link($this.attr("id"),$(options.content_type).val()));
@@ -30,7 +33,7 @@
                     lookup_id($this, options);  // lookup when loading page
                 }
                 lookup_autocomplete($this, options);  // autocomplete-handler
-                $this.bind("change focus keyup blur", function() {  // id-handler
+                $this.bind("change focus keyup", function() {  // id-handler
                     lookup_id($this, options);
                 });
                 $(options.content_type).bind("change", function() {  // content-type-handler
@@ -138,10 +141,17 @@
                 }
             })
             .data("autocomplete")._renderItem = function(ul,item) {
-                return $("<li></li>")
-                    .data( "item.autocomplete", item )
-                    .append( "<a>" + item.label)
-                    .appendTo(ul);
+                if (!item.value) {
+                    return $("<li></li>")
+                        .data( "item.autocomplete", item )
+                        .append( "<span class='error'>" + item.label)
+                        .appendTo(ul);
+                } else {
+                    return $("<li></li>")
+                        .data( "item.autocomplete", item )
+                        .append( "<a>" + item.label)
+                        .appendTo(ul);
+                }
             };
     };
     

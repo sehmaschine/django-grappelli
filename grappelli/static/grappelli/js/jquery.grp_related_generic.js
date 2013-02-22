@@ -18,7 +18,7 @@
                 if ($(options.content_type).val()) {
                     lookup_id($this, options); // lookup when loading page
                 }
-                $this.bind("change focus keyup blur", function() { // id-handler
+                $this.bind("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
                 $(options.content_type).bind("change", function() { // content-type-handler

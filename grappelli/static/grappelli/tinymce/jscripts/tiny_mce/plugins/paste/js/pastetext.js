@@ -29,7 +29,7 @@ var PasteTextDialog = {
 		el = document.getElementById('content');
 
 		el.style.width  = (vp.w - 20) + 'px';
-		el.style.height = (vp.h - 130) + 'px';
+		el.style.height = (vp.h - 90) + 'px';
 	}
 };
 

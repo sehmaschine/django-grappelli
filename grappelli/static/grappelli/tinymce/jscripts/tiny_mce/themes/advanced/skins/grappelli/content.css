@@ -25,3 +25,6 @@
 @import url('content_base.css');
 @import url('content_typography.css');
 @import url('content_grid.css');
+
+/* All other custom styles (everything else what Grappelli users might want to deploy) */
+@import url('customized.css');

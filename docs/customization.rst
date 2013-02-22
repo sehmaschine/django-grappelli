@@ -20,7 +20,7 @@ Available Settings
     The Site Title of your admin interface. Change this instead of changing index.html
 
 ``AUTOCOMPLETE_LIMIT``
-    Number of items to show with autocomplete drop-downs.
+    Number of items to show with autocomplete drop–downs.
 
 .. _customizationcollapsibles:
 
@@ -49,7 +49,7 @@ A ModelAdmin example::
             }),
         )
 
-With `StackedInlines <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of the inline items (in contrast to the whole group)::
+With `StackedInlines <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of inline items (as opposed to the inline group)::
 
     class NavigationItemInline(admin.StackedInline):
         classes = ('grp-collapse grp-open',)
@@ -63,7 +63,7 @@ Inline Sortables
 
 .. versionadded:: 2.3
 
-For using drag/drop with Inlines, you need to add a ``PositiveIntegerField`` to your Model::
+For using drag/drop with inlines, you need to add a ``PositiveIntegerField`` to your Model::
 
     class MyInlineModel(models.Model):
         mymodel = models.ForeignKey(MyModel)
@@ -79,8 +79,8 @@ Now, define the ``sortable_field_name`` with your ``InlineModelAdmin``::
         # define the sortable
         sortable_field_name = "position"
 
-The inline-rows are being reordered based on the sortable-field (with a templatetag ``formsetsort``). When submitting a form, the values of the sortable-field are re-indexed according to the position of each row.
-In case of errors (somewhere within the form), the position of inline-rows are being preserved. This applies to rows prepeared for deletion as well. Empty rows are moved to the end of the formset.
+The inline rows are reordered based on the sortable field (with a templatetag ``formsetsort``). When submitting a form, the values of the sortable field are reindexed according to the position of each row.
+In case of errors (somewhere within the form), the position of inline rows is preserved. This also applies to rows prepared for deletion while empty rows are being moved to the end of the formset.
 
 .. _customizationsortableexcludes:
 
@@ -106,7 +106,7 @@ Related Lookups
 .. versionchanged:: 2.3.1
     Added ``related_lookup_fields``.
 
-With Grappelli, you're able to add the representation of an object beneath the input-field (for fk- and m2m-fields)::
+With Grappelli, you're able to add the representation of an object beneath the input field (for fk– and m2m–fields)::
 
     class MyModel(models.Model):
         related_fk = models.ForeignKey(RelatedModel, verbose_name=u"Related Lookup (FK)")
@@ -121,7 +121,7 @@ With Grappelli, you're able to add the representation of an object beneath the i
             'm2m': ['related_m2m'],
         }
 
-With Generic Relations, related lookups are defined like this::
+With generic relations, related lookups are defined like this::
 
     from django.contrib.contenttypes import generic
     from django.contrib.contenttypes.models import ContentType
@@ -163,17 +163,6 @@ For the representation of an object, we first check for a callable ``related_lab
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
 
-.. versionadded:: 2.4.3
-    ``related_label``.
-
-For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
-    
-    def related_label(self):
-        return u"%s (%s)" % (self.name, self.id)
-
-.. warning::
-    Due to a bug in Django 1.4, raw_id_fields (including related-lookups) are not working with list_editables.
-
 .. _customizationautocompletelookups:
 
 Autocomplete Lookups
@@ -184,7 +173,7 @@ Autocomplete Lookups
 .. versionadded:: 2.3.4
     ``autocomplete_lookup_fields``.
 
-Autocomplete Lookups are an alternative to Related Lookups (for Foreign Keys, Many-to-Many relations and Generic relations).
+Autocomplete lookups are an alternative to related lookups (for foreign keys, many–to-many relations and generic relations).
 
 Add the staticmethod ``autocomplete_search_fields`` to all models you want to search for::
 
@@ -249,33 +238,32 @@ For the representation of an object, we first check for a callable ``related_lab
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
 
-.. warning::
-    Due to a bug in Django 1.4, raw_id_fields (including autocomplete-lookups) are not working with list_editables.
-
 .. _customizationtinymce:
 
 Using TinyMCE
 -------------
 
 .. versionchanged:: 2.4
-    The admin media URLs has been changed to use a static URLs in compliance with Django 1.4
+    The admin media URLs has been changed to use static URLs in compliance with Django 1.4
 
-|grappelli| already comes with TinyMCE and a minimal theme as well. In order to use TinyMCE, you need to copy ``tinymce_setup.js`` to your static-directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts to your ModelAdmin definition (see `ModelAdmin Media definitions <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/#modeladmin-media-definitions>`_)::
+|grappelli| already comes with TinyMCE and a minimal theme as well. In order to use TinyMCE, copy ``tinymce_setup.js`` to your static directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts to your ModelAdmin definition (see `ModelAdmin Media definitions <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/#modeladmin-media-definitions>`_)::
 
     class Media:
         js = [
-            '/static/admin/tinymce/jscripts/tiny_mce/tiny_mce.js',
+            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
             '/static/path/to/your/tinymce_setup.js',
         ]
 
-Using TinyMCE with Inlines is a bit more tricky because of the hidden empty-form. You need to write a custom template and use the inline-callbacks to
+Using TinyMCE with inlines is a bit more tricky because of the hidden extra inline. You need to write a custom template and use the inline callbacks to
 
-* ``onInit``: remove TinyMCE instances from the the empty-form.
+* ``onInit``: remove TinyMCE instances from the the empty form.
 * ``onAfterAdded``: initialize TinyMCE instance(s) from the form.
 * ``onBeforeRemoved``: remove TinyMCE instance(s) from the form.
 
 .. note::
-    TinyMCE with Inlines is not supported by default.
+    TinyMCE with inlines is not supported by default.
+
+If our version of TinyMCE does not fit your needs, add a different version to your static directory and change the above mentioned ModelAdmin setup (paths to js–files).
 
 .. _changelistfilters:
 
@@ -303,5 +291,3 @@ To use the alternative filters, you need to add ``change_list_filter_template`` 
 
     class MyModelOptions(admin.ModelAdmin):
         change_list_filter_template = "admin/filter_listing.html"
-
-

@@ -6,24 +6,22 @@
 Dashboard API
 =============
 
-This section describe the API of the Grappelli dashboard and
-dashboard modules.
-
+This section describe the API of the Grappelli dashboard and dashboard modules.
 
 The ``Dashboard`` class
 -----------------------
 
 Base class for dashboards.
-The Dashboard class is a simple python list that has two additional
+The dashboard class is a simple python list that has two additional
 properties:
 
 ``title``
-    The dashboard title, by default, it is displayed above the dashboard
-    in a ``h2`` tag. Default value: 'Dashboard'.
+    | The dashboard title, by default, it is displayed above the dashboard in a ``h2`` tag.
+    | Default: 'Dashboard'
 
 ``template``
-    The template used to render the dashboard.
-    Default value: 'grappelli/dashboard/dashboard.html'
+    | The template used to render the dashboard.
+    | Default: 'grappelli/dashboard/dashboard.html'
 
 Here's an example of a custom dashboard::
 
@@ -65,35 +63,36 @@ Base class for all dashboard modules.
 Dashboard modules have the following properties:
 
 ``collapsible``
-    Boolean that determines whether the module is collapsible. Default: ``True``.
+    | Boolean that determines whether the module is collapsible.
+    | Default: ``True``
 
-``column``
-    **required** Integer that corresponds to the column.
-    Default: None.
+``column`` (required)
+    | Integer that corresponds to the column.
+    | Default: None
 
 ``title``
-    String that contains the module title, make sure you use the django
-    gettext functions if your application is multilingual.
-    Default value: ''.
+    | String that contains the module title, make sure you use the django gettext functions if your application is multilingual.
+    | Default: ''
 
 ``css_classes``
-    A list of css classes to be added to the module ``div`` class
-    attribute. Default value: ``None``.
+    | A list of css classes to be added to the module ``div`` class attribute.
+    | Default: ``None``
 
 ``pre_content``
-    Text or HTML content to display above the module content.
-    Default value: ``None``.
+    | Text or HTML content to display above the module content.
+    | Default: ``None``
 
 ``content``
-    The module text or HTML content. Default value: ``None``.
+    | The module text or HTML content.
+    | Default: ``None``
 
 ``post_content``
-    Text or HTML content to display under the module content.
-    Default value: ``None``.
+    | Text or HTML content to display under the module content.
+    | Default: ``None``
 
 ``template``
-    The template used to render the module.
-    Default value: 'grappelli/dashboard/module.html'.
+    | The template used to render the module. 
+    | Default: 'grappelli/dashboard/module.html'
 
 The ``Group`` class
 -------------------
@@ -277,7 +276,8 @@ takes three extra keyword arguments:
     displayed.
 
 ``limit``
-    The maximum number of children to display. Default value: 10.
+    | The maximum number of children to display.
+    | Default: 10.
 
 Here's an example of building a recent actions module::
 
@@ -311,8 +311,8 @@ extra keyword arguments:
     The URL of the feed.
 
 ``limit``
-    The maximum number of feed children to display. Default value: None,
-    which means that all children are displayed.
+    | The maximum number of feed children to display.
+    | Default: ``None`` (which means that all children are displayed)
 
 Here's an example of building a recent actions module::
 

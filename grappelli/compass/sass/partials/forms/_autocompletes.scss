@@ -23,6 +23,11 @@
 .grp-autocomplete-wrapper-fk {
     a.related-lookup {
         position: absolute;
+        right: 0;
+    }
+    a.related-lookup, 
+    input:focus + a.related-lookup {
+        border: $grp-form-field-border !important;
     }
     &.grp-state-focus {
         a.grp-related-remove, 
@@ -159,17 +164,16 @@
 
 /* We need to "hide" the input-field without display:none, because with display:none we can´t focus the field anymore */
 
-.grp-autocomplete-wrapper-m2m input.vManyToManyRawIdAdminField, 
-.grp-autocomplete-wrapper-fk input.vForeignKeyRawIdAdminField, 
-.grp-autocomplete-wrapper-fk input.vIntegerField  {
-    position: absolute;
-    left: 0;
-    top: -40px;
-    width: 10px;
-    height: 10px;
+.grp-autocomplete-wrapper-m2m .grp-autocomplete-hidden-field,
+.grp-autocomplete-wrapper-fk .grp-autocomplete-hidden-field  {
+    position: absolute !important;
+    z-index: 0 !important;
+    padding: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
     color: transparent !important;
     border: 0 !important;
     background: transparent !important;
-    @include box-shadow(none !important);
-    cursor: default !important;
 }

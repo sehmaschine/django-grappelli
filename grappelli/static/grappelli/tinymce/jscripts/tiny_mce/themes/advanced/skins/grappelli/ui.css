@@ -480,7 +480,7 @@ body.rtl .grappelliSkin .mceButton {
 
 
 
-/* Button Icons
+/* Grappelli Button Icons
 ----------------------------------------------------------------------- */
 
 .grappelliSkin span.mce_bold { background-image: url('img/buttons/bold.png'); }
@@ -507,4 +507,12 @@ body.rtl .grappelliSkin .mceButton {
 
 .grappelliSkin span.mce_grappelli_adv { background-image: url('img/buttons/show_advanced.png'); }
 .grappelliSkin span.mce_grappelli_documentstructure { background-image: url('img/buttons/visualchars.png'); }
+
+
+
+/* Customized Button Icons
+----------------------------------------------------------------------- */
+
+.grappelliSkin span.mce_pagebreak { background-image: url('img/customized/button_pagebreak.png'); }
+
 

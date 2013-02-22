@@ -52,8 +52,8 @@ window.SelectFilter = {
         filter_p.className = 'selector-filter';
 
         var search_filter_label = quickElement('label', filter_p, '', 'for', field_id + "_input");
-
-        var search_selector_img = quickElement('img', search_filter_label, '', 'src', admin_media_prefix + 'img/selector-search.gif', 'class', 'help-tooltip', 'alt', '', 'title', interpolate(gettext("Type into this box to filter down the list of available %s."), [field_name]));
+        // GRAPPELLI CUSTOM: removed search-icon as it is provided via css
+        // var search_selector_img = quickElement('img', search_filter_label, '', 'src', admin_media_prefix + 'img/selector-search.gif', 'class', 'help-tooltip', 'alt', '', 'title', interpolate(gettext("Type into this box to filter down the list of available %s."), [field_name]));
 
         filter_p.appendChild(document.createTextNode(' '));
 
@@ -99,18 +99,19 @@ window.SelectFilter = {
         // Move selected from_box options to to_box
         SelectBox.move(field_id + '_from', field_id + '_to');
 
-        if (!is_stacked) {
-            // In horizontal mode, give the same height to the two boxes.
-            var j_from_box = $(from_box);
-            var j_to_box = $(to_box);
-            var resize_filters = function() { j_to_box.height($(filter_p).outerHeight() + j_from_box.outerHeight()); }
-            if (j_from_box.outerHeight() > 0) {
-                resize_filters(); // This fieldset is already open. Resize now.
-            } else {
-                // This fieldset is probably collapsed. Wait for its 'show' event.
-                j_to_box.closest('fieldset').one('show.fieldset', resize_filters);
-            }
-        }
+        // GRAPPELLI: We don't need this as we assigned a fixed height to the elements
+        // if (!is_stacked) {
+        //     // In horizontal mode, give the same height to the two boxes.
+        //     var j_from_box = $(from_box);
+        //     var j_to_box = $(to_box);
+        //     var resize_filters = function() { j_to_box.height($(filter_p).outerHeight() + j_from_box.outerHeight()); }
+        //     if (j_from_box.outerHeight() > 0) {
+        //         resize_filters(); // This fieldset is already open. Resize now.
+        //     } else {
+        //         // This fieldset is probably collapsed. Wait for its 'show' event.
+        //         j_to_box.closest('fieldset').one('show.fieldset', resize_filters);
+        //     }
+        // }
 
         // Initial icon refresh
         SelectFilter.refresh_icons(field_id);

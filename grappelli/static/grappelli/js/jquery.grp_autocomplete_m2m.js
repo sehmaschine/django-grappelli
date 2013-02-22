@@ -11,8 +11,11 @@
             options = $.extend({}, $.fn.grp_autocomplete_m2m.defaults, options);
             return this.each(function() {
                 var $this = $(this);
-                // tabindex
-                $this.attr("tabindex", "-1");
+                // assign attributes
+                $this.attr({
+                    "tabindex": "-1",
+                    "readonly": "readonly"
+                }).addClass("grp-autocomplete-hidden-field");
                 // build autocomplete wrapper
                 $this.next().after(loader).after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='grp-autocomplete-wrapper-m2m'></div>");
@@ -33,7 +36,7 @@
                 // lookup
                 lookup_id($this, options);  // lookup when loading page
                 lookup_autocomplete($this, options);  // autocomplete-handler
-                $this.bind("change focus keyup blur", function() { // id-handler
+                $this.bind("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
                 // labels
@@ -41,8 +44,11 @@
                     $(this).attr("for", $this.attr("id")+"-autocomplete");
                 });
                 // click on div > focus input
-                options.wrapper_autocomplete.bind("click", function() {
-                    options.wrapper_search.find("input:first").focus();
+                options.wrapper_autocomplete.bind("click", function(e) {
+                    // prevent focus when clicking on remove/select
+                    if (!$(e.target).hasClass("related-lookup") && !$(e.target).hasClass("grp-related-remove")) {
+                        options.wrapper_search.find("input:first").focus();
+                    }
                 });
             });
         }
@@ -158,10 +164,17 @@
                 }
             })
             .data("autocomplete")._renderItem = function(ul,item) {
-                return $("<li></li>")
-                    .data( "item.autocomplete", item )
-                    .append( "<a>" + item.label)
-                    .appendTo(ul);
+                if (!item.value) {
+                    return $("<li></li>")
+                        .data( "item.autocomplete", item )
+                        .append( "<span class='error'>" + item.label)
+                        .appendTo(ul);
+                } else {
+                    return $("<li></li>")
+                        .data( "item.autocomplete", item )
+                        .append( "<a>" + item.label)
+                        .appendTo(ul);
+                }
             };
     };
     
@@ -174,7 +187,7 @@
             options.wrapper_repr.find("li.grp-repr").remove();
             options.wrapper_search.find("input").val("");
             $.each(data, function(index) {
-                repr_add(elem, data[index].label, options);
+                if (data[index].value) repr_add(elem, data[index].label, options);
             });
             elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
         });

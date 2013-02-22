@@ -146,21 +146,37 @@ table {
             position: relative;
             margin-top: -7px !important;
             margin-bottom: -5px !important;
-            @media screen and (-webkit-min-device-pixel-ratio:0) {
-                margin-top: -9px !important;
-                margin-bottom: -6px !important;
-            }
+            // @media screen and (-webkit-min-device-pixel-ratio:0) {
+            //     margin-top: -9px !important;
+            //     margin-bottom: -6px !important;
+            // }
+        }
+        // > input[type=text], 
+        // > input[type=password],
+        // > select,
+        // p input[type=text] {
+        //     vertical-align: text-top;
+        //     margin-top: -6px !important;
+        //     margin-bottom: -5px !important;
+        // }
+        > input[type=text], 
+        > input[type=password],
+        > select,
+        p input[type=text] {
+            vertical-align: top;
+            margin-top: -5px !important;
+            margin-bottom: -5px !important;
         }
         > textarea, 
-        p.grp-readonly {
+        div.grp-readonly {
             position: relative;
             margin: -5px 0 -5px !important;
         }
         ul.radiolist, 
         ul.checkboxlist {
-            margin: -3px 0 -7px;
+            margin: -3px 0 -5px;
             &.inline {
-                margin: -3px 0 -7px;
+                margin: -3px 0 -5px;
                 white-space: normal !important;
                 max-width: 400px;
             }
@@ -175,11 +191,13 @@ table {
         .grp-autocomplete-wrapper-fk {
             margin: -5px 0 !important;
             a.related-lookup {
+                top: 0;
                 margin-top: 0;
             }
         }
         a.add-another {
             top: -13px;
+            margin-bottom: -5px;
         }
         ul.radiolist.inline + a.add-another, 
         ul.checkboxlist.inline + a.add-another {
@@ -191,9 +209,9 @@ table {
                 margin: -2px 0 8px !important;
             }
         }
-        p.preview + ul.errorlist {
-            margin-top: 5px !important;
-        }
+        // p.preview + ul.errorlist {
+        //     margin-top: 8px !important;
+        // }
     }
 }
 
@@ -206,31 +224,38 @@ table.grp-sortable {
             div.grp-text span {
                 display: block;
                 padding: 6px 10px;
+                white-space: nowrap;
                 input[type=checkbox] {
                     margin: -6px 0 !important;
                 }
             }
             &.sortable {
+                white-space: nowrap;
                 .grp-text {
                     position: relative;
-                    float: left;
+                    z-index: 400;
                     display: block;
                     margin: 0;
                     padding: 0;
+                    white-space: nowrap;
                     a {
                         margin: 0;
                         padding: 6px 10px;
+                        display: block;
                     }
                 }
                 .grp-sortoptions {
                     position: relative;
+                    z-index: 410;
                     display: block;
                     float: right;
                     clear: right;
-                    margin: 0 5px 0 0;
+                    margin: 0 5px 0 0px;
+                    width: 50px;
+                    white-space: nowrap;
                     a {
                         position: relative;
-                        float: left;
+                        float: right;
                         display: inline-block;
                         margin: 0;
                         padding: 0;
@@ -256,7 +281,7 @@ table.grp-sortable {
                     }
                     span.grp-sortpriority {
                         position: relative;
-                        float: left;
+                        float: right;
                         display: block;
                         padding: 6px 0 0;
                         height: 16px;
@@ -282,6 +307,9 @@ table.grp-sortable {
                     a {
                         color: $grp-font-color;
                         font-weight: bold;
+                    }
+                    .grp-text a {
+                        padding-right: 60px;
                     }
                 }
             }

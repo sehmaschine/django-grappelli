@@ -8,8 +8,30 @@
 Changelog
 =========
 
-2.4.4 (not yet released)
+2.4.5 (not yet released)
 ------------------------
+
+2.4.4 (February 22, 2013)
+------------------------
+
+* New: Added Czech translation for TinyMCE.
+* Fixed: set correct case-sensitive dependency for Django in setup.py.
+* Fixed: Make setup.py work with Python 3.
+* Fixed: Breadcrumbs with delete_confirmation.
+* Fixed: Showing help-text with empty FK autocompletes.
+* Fixed: Custom USERNAME_FIELD names for Django 1.5.
+* Fixed: Updated grappelli/urls to support Django 1.5.
+* Fixed: Added has_usable_password.
+* Fixed: Distinct results with Autocompletes.
+* Fixed: Fix RelatedLookup when called with empty string as object_id.
+* Fixed: 2 clicks to remove items with m2m–autocompletes.
+* Fixed: Error with adding values to hidden–fields with autocomplets (after using the pop up window).
+* Fixed: Autocomplete generic lookups when object_id is not an integer field.
+* Improved: App titles are now translatable with the dashboards app list.
+* Improved: Rewrites views into class-based views.
+* Improved: Better messages with autocompletes and no results.
+* Improved: Removed Django as a requirement with the setup file.
+* Improved: Replaced p.grp-readonly with div.grp-readonly (in order to show contents with mark_safe).
 
 2.4.3 (November 09, 2012)
 -------------------------
@@ -94,7 +116,7 @@ Changelog
 * Added pre_content and post_content to dashboard.
 * Added inline_classes.
 * Added polish translation for TinyMCE and grappelli contextmenu.
-* Removed ``title_url`` from dashboard-docs (it hasn´t been used anyway so far).
+* Removed ``title_url`` from dashboard-docs (it hasn't been used anyway so far).
 
 2.3.5 (October 11, 2011)
 ------------------------
