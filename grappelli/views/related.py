@@ -11,8 +11,13 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import View
 from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_str
-import django.utils.simplejson as simplejson
 from django.core.exceptions import PermissionDenied
+
+# try to use json (2.6+) but stay compatible with 2.5.*
+try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT
@@ -25,7 +30,7 @@ def get_label(f):
 
 
 def ajax_response(data):
-    return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
+    return HttpResponse(json.dumps(data), mimetype='application/javascript')
 
 
 class RelatedLookup(View):
