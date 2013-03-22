@@ -99,6 +99,7 @@ class AutocompleteLookup(RelatedLookup):
         return 'term' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
 
     def get_filtered_queryset(self, qs):
+        from django.contrib.admin.util import prepare_lookup_value
         filters = {}
         query_string = self.GET.get('query_string', None)
 
@@ -106,7 +107,7 @@ class AutocompleteLookup(RelatedLookup):
             for item in query_string.split("&"):
                 k, v = item.split("=")
                 if k != "t":
-                    filters[smart_str(k)] = smart_str(v)
+                    filters[smart_str(k)] = prepare_lookup_value(smart_str(k), smart_str(v))
         return qs.filter(**filters)
 
     def get_searched_queryset(self, qs):
