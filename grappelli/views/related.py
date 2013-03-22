@@ -13,6 +13,7 @@ from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_str
 import django.utils.simplejson as simplejson
 from django.core.exceptions import PermissionDenied
+from django.contrib.admin.util import prepare_lookup_value
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT
@@ -106,7 +107,7 @@ class AutocompleteLookup(RelatedLookup):
             for item in query_string.split("&"):
                 k, v = item.split("=")
                 if k != "t":
-                    filters[smart_str(k)] = smart_str(v)
+                    filters[smart_str(k)] = prepare_lookup_value(smart_str(k), smart_str(v))
         return qs.filter(**filters)
 
     def get_searched_queryset(self, qs):
