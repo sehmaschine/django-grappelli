@@ -13,6 +13,7 @@ from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_str
 import django.utils.simplejson as simplejson
 from django.core.exceptions import PermissionDenied
+from django.contrib.admin.util import prepare_lookup_value
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT
@@ -99,7 +100,6 @@ class AutocompleteLookup(RelatedLookup):
         return 'term' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
 
     def get_filtered_queryset(self, qs):
-        from django.contrib.admin.util import prepare_lookup_value
         filters = {}
         query_string = self.GET.get('query_string', None)
 
