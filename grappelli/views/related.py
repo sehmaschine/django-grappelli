@@ -11,7 +11,11 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import View
 from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_str
-import django.utils.simplejson as simplejson
+# fix for django 1.5 throwing deprecation warning
+try:
+    import json
+except ImportError:
+    import django.utils.simplejson as json
 from django.core.exceptions import PermissionDenied
 
 # GRAPPELLI IMPORTS
@@ -25,7 +29,7 @@ def get_label(f):
 
 
 def ajax_response(data):
-    return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
+    return HttpResponse(json.dumps(data), mimetype='application/javascript')
 
 
 class RelatedLookup(View):
