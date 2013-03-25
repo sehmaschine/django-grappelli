@@ -29,7 +29,7 @@ def get_label(f):
 
 
 def ajax_response(data):
-    return HttpResponse(simplejson.dumps(data), mimetype='application/javascript')
+    return HttpResponse(json.dumps(data), mimetype='application/javascript')
 
 
 class RelatedLookup(View):
