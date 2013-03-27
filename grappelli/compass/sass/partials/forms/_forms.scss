@@ -105,6 +105,9 @@ div.grp-readonly {
     * {
         white-space: normal !important; // reset white-space:nowrap e.g. given in .grp-tabular
     }
+    pre {
+        white-space: pre !important;
+    }
     & + div.grp-readonly {
         margin-left: 20px;
     }
