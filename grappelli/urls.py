@@ -2,9 +2,9 @@
 
 # DJANGO IMPORTS
 try:
-    from django.conf.urls import *
+    from django.conf.urls import patterns, url
 except ImportError:
-    from django.conf.urls.defaults import *
+    from django.conf.urls.defaults import patterns, url
 
 from django.views.generic.base import TemplateView
 from .views.related import RelatedLookup, M2MLookup, AutocompleteLookup
