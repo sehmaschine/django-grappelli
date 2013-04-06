@@ -45,9 +45,6 @@ class DashboardModule(object):
         Text or HTML content to display above the module content.
         Default value: ``None``.
     
-    ``content``
-        The module text or HTML content. Default value: ``None``.
-    
     ``post_content``
         Text or HTML content to display under the module content.
         Default value: ``None``.
