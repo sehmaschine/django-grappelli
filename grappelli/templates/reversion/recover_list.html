@@ -2,10 +2,10 @@
 {% load i18n %}{% load url from future %}
 
 {% block breadcrumbs %}
-    <ul class="breadcrumbs">
+    <ul>
         <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
-        <li><a href="{% url 'admin:app_list' app_label %}">{{ app_label|capfirst|escape }}</a></li>
-        <li><a href="{{changelist_url}}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+        <li><a href="{% url 'admin:app_list' app_label %}">{% trans app_label|capfirst|escape %}</a></li>
+        <li><a href="{{ changelist_url }}">{% trans opts.verbose_name_plural|capfirst %}</a></li>
         <li>{% blocktrans with opts.verbose_name_plural|escape as name %}Recover deleted {{ name }}{% endblocktrans %}</li>
     </ul>
 {% endblock %}
