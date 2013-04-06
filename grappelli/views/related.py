@@ -12,6 +12,7 @@ from django.views.generic import View
 from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_str
 from django.core.exceptions import PermissionDenied
+from django.contrib.admin.util import prepare_lookup_value
 
 # try to use json (2.6+) but stay compatible with 2.5.*
 try:
@@ -111,7 +112,7 @@ class AutocompleteLookup(RelatedLookup):
             for item in query_string.split("&"):
                 k, v = item.split("=")
                 if k != "t":
-                    filters[smart_str(k)] = smart_str(v)
+                    filters[smart_str(k)] = prepare_lookup_value(smart_str(k), smart_str(v))
         return qs.filter(**filters)
 
     def get_searched_queryset(self, qs):
