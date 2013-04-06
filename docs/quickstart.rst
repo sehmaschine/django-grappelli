@@ -33,6 +33,13 @@ Add URL-patterns::
         (r'^grappelli/', include('grappelli.urls')),
     )
 
+Make sure ``AppDirectoriesFinder`` is first with your ``STATICFILES_FINDERS``::
+
+    STATICFILES_FINDERS = (
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+    )
+
 Collect the media files::
 
     python manage.py collectstatic
