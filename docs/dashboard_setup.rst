@@ -40,7 +40,7 @@ Create a custom dashboard
 -------------------------
 
 To customize the index dashboard, you first need to add a custom dashboard::
-    
+
     python manage.py customdashboard
 
 This will create a file named ``dashboard.py`` in your project directory.
@@ -66,7 +66,7 @@ Create custom dashboards for multiple admin sites
 
 If you have several admin sites, you need to create a custom dashboard for each site::
 
-    from django.conf.urls.defaults import *
+    from django.conf.urls import include, patterns
     from django.contrib import admin
     from yourproject.admin import admin_site
 
