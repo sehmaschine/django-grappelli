@@ -1,8 +1,14 @@
 # coding: utf-8
 
 # DJANGO IMPORTS
+import django
+from distutils.version import LooseVersion
 try:
-    from django.conf.urls.defaults import *  
+    # prevents deprecated warning in 1.5
+    if LooseVersion('1.4') < django.get_version():
+        from django.conf.urls import *
+    else:
+        from django.conf.urls.defaults import *
 except ImportError:
     from django.conf.urls import *
 
