@@ -186,6 +186,10 @@
 		.grp-tools, .grp-tools * {
 			display: block !important;
 		}
+		// Hide elements with "display:none" in collapse-closed
+		.grp-tools li *[style^="display: none"] {
+			display: none !important;
+		}
 	}
 	.grp-collapse-handler {
 		cursor: pointer;
