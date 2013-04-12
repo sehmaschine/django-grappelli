@@ -85,7 +85,7 @@
         var addButtons = elem.find("a." + options.addCssClass);
         // hide add button in case we've hit the max, except we want to add infinitely
         if ((maxForms.val() !== '') && (maxForms.val()-totalForms.val()) <= 0) {
-            hideAddBottons(elem, options);
+            hideAddButtons(elem, options);
         }
     };
     
@@ -116,7 +116,7 @@
             totalForms.val(index + 1);
             // hide add button in case we've hit the max, except we want to add infinitely
             if ((maxForms.val() !== 0) && (maxForms.val() !== "") && (maxForms.val() - totalForms.val()) <= 0) {
-                hideAddBottons(inline, options);
+                hideAddButtons(inline, options);
             }
             // callback
             options.onAfterAdded(form);
@@ -172,7 +172,7 @@
         });
     };
     
-    hideAddBottons = function(elem, options) {
+    hideAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
         addButtons.hide().parents('.grp-add-item').hide();
     };
