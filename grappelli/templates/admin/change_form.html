@@ -80,6 +80,14 @@
                         $(this).parent(".grp-collapse").removeClass("grp-open").addClass("grp-closed");
                     });
                 });
+                // HACK: get rid of currently/change with URL–fields. F**K!!!
+                $('p.url').each(function() {
+                    $(this).find("a").remove();
+                    var text = $(this).html();
+                    text = text.replace(/^\w*: /, "");
+                    text = text.replace(/<br>.*: /, "");
+                    $(this).html(text);
+                });
             });
         })(grp.jQuery);
     </script>
