@@ -11,14 +11,15 @@ Changelog
 2.4.5 (not yet released)
 ------------------------
 
-* Fixed: Simplejson deprecated in Django 1.5+
-* Fixed: Docs referred to setting AUTOCOMPLETE_LIMIT instead of GRAPPELLI_AUTOCOMPLETE_LIMIT
-* Fixed: Fixed inconsistencies in the breadcrumb section of reversion templates
-* Fixed: autocomplete lookup not parsing query_string properly
-* Fixed: Deprecation warning with importing URLs
-* Fixed: Removed content from dashboard module docstring
-* Improved: Renamed js-function HideAddBottons to HideAddButtons
-* Improved: Hide add button with inlines if no permissions are given
+* Fixed: Simplejson deprecated in Django 1.5+.
+* Fixed: Docs referred to setting ``AUTOCOMPLETE_LIMIT`` instead of ``GRAPPELLI_AUTOCOMPLETE_LIMIT``.
+* Fixed: Fixed inconsistencies in the breadcrumb section of reversion templates.
+* Fixed: autocomplete lookup not parsing query_string properly.
+* Fixed: Deprecation warning with importing URLs.
+* Fixed: Removed content from dashboard module docstring.
+* Fixed: Generic lookup (related and autocompletes) when ``content_type`` is in ``radio_fields``.
+* Improved: Renamed js-function HideAddBottons to HideAddButtons.
+* Improved: Hide add button with inlines if no permissions are given.
 
 2.4.4 (February 22, 2013)
 ------------------------

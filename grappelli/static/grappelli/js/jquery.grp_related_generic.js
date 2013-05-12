@@ -11,11 +11,12 @@
             return this.each(function() {
                 var $this = $(this);
                 // add placeholder
-                if ($(options.content_type).val()) {
-                    $this.after(options.placeholder).after(lookup_link($this.attr("id"),$(options.content_type).val()));
+                var val = $(options.content_type).val() || $(options.content_type).find(':checked').val();
+                if (val) {
+                    $this.after(options.placeholder).after(lookup_link($this.attr('id'),val));
                 }
                 // lookup
-                if ($(options.content_type).val()) {
+                if (val) {
                     lookup_id($this, options); // lookup when loading page
                 }
                 $this.bind("change focus keyup", function() { // id-handler
@@ -52,8 +53,9 @@
         obj.val('');
         obj.parent().find('a.related-lookup').remove();
         obj.parent().find('.grp-placeholder-related-generic').remove();
-        if ($(elem).val()) {
-            obj.after(options.placeholder).after(lookup_link(obj.attr('id'),$(elem).val()));
+        var val = $(elem).val() || $(elem).find(':checked').val();
+        if (val) {
+            obj.after(options.placeholder).after(lookup_link(obj.attr('id'),val));
         }
     };
     
