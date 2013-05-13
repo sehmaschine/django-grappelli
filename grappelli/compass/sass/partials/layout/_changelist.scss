@@ -1,6 +1,5 @@
 
 
-
 /*  PAGINATION
 ------------------------------------------------------------------------------------------------------ */
 
@@ -294,6 +293,9 @@ li.grp-changelist-actions {
 
 .grp-changelist-results {
 	background: $grp-module-background-color url('../images/backgrounds/changelist-results.png') repeat scroll !important;
+	overflow: auto;
+	overflow-y: hidden;
+	-ms-overflow-y: hidden;
 }
 
 body.grp-change-list {
