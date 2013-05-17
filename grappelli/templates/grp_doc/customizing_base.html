@@ -5,7 +5,7 @@
 {% block title %}Grappelli Documentation &raquo; Customizing the Base{% endblock %}
 
 {% block extrahead %}
-	<script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8">
         (function($) {
             $(document).ready(function() {
                 $("#grp-content-container .grp-group").grp_collapsible_group();
@@ -23,7 +23,7 @@
                 });
             });
         })(grp.jQuery);
-	</script>
+    </script>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -36,18 +36,18 @@
 {% block content %}
     <h1>Customizing the Base</h1>
     <div class="grp-doc-description">
-    	<p>This page provides an overlook of what a basic Grappelli admin template looks like.</p>
+        <p>This page provides an overlook of what a basic Grappelli admin template looks like.</p>
     </div>
     <div class="g-d-c">
-    	<section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>Doctype</h1>
-		            <p>Since Grappelli is HTML5 you have to define the following <span class="grp-doc-dom"><span>doctype</span></span>.</p>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Doctype</h1>
+                    <p>Since Grappelli is HTML5 you have to define the following <span class="grp-doc-dom"><span>doctype</span></span>.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 <!DOCTYPE html>
 <html lang="Your Language Code e.g. en-us">
 <head>
@@ -126,8 +126,8 @@
 </body>
 </html>
 {% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
+            </div>
+        </section>
     </div>
 {% endblock %}
 

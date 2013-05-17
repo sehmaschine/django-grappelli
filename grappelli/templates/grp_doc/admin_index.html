@@ -5,7 +5,7 @@
 {% block title %}Grappelli Documentation &raquo; Admin Index{% endblock %}
 
 {% block extrahead %}
-	<script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8">
         (function($) {
             $(document).ready(function() {
                 $("#grp-content-container .grp-group").grp_collapsible_group();
@@ -23,7 +23,7 @@
                 });
             });
         })(django.jQuery);
-	</script>
+    </script>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -36,34 +36,34 @@
 {% block content %}
     <h1>Admin Index</h1>
     <div class="g-d-c">
-    	<section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>Basics</h1>
-		            <p>A <span class="grp-doc-class">.grp-group</span> encloses <a href="{% url 'grp_doc_modules' %}">modules</a> which belong together or should appear in a more associated way.</p>
-		            <p>Usually a group starts with a heading but you might as well use it without one. <br />Just be aware of the fact that groups without headings do not appear in document outlines.</p>
-		            <p>There are two different types of groups: <strong>Stacked Groups</strong> and <strong>Tabular Groups</strong>.</p>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code-source">
-	    			<div class="grp-group">
-	    				<h2>Group</h2>
-	    				<div class="grp-module">
-		    				<h3>Module</h3>
-						    <div class="grp-row"><p>Row</p></div>
-						    <div class="grp-row"><p>Row</p></div>
-						</div>
-						<div class="grp-module">
-		    				<h3>Module</h3>
-						    <div class="grp-row"><p>Row</p></div>
-						    <div class="grp-row"><p>Row</p></div>
-						</div>
-					</div>
-				</div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Basics</h1>
+                    <p>A <span class="grp-doc-class">.grp-group</span> encloses <a href="{% url 'grp_doc_modules' %}">modules</a> which belong together or should appear in a more associated way.</p>
+                    <p>Usually a group starts with a heading but you might as well use it without one. <br />Just be aware of the fact that groups without headings do not appear in document outlines.</p>
+                    <p>There are two different types of groups: <strong>Stacked Groups</strong> and <strong>Tabular Groups</strong>.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code-source">
+                    <div class="grp-group">
+                        <h2>Group</h2>
+                        <div class="grp-module">
+                            <h3>Module</h3>
+                            <div class="grp-row"><p>Row</p></div>
+                            <div class="grp-row"><p>Row</p></div>
+                        </div>
+                        <div class="grp-module">
+                            <h3>Module</h3>
+                            <div class="grp-row"><p>Row</p></div>
+                            <div class="grp-row"><p>Row</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 <div class="grp-group">
     <h2>Group</h2>
     <div class="grp-module">
@@ -78,9 +78,9 @@
     </div>
 </div>
 {% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
-	    
+            </div>
+        </section>
+        
     </div>
 {% endblock %}
 
