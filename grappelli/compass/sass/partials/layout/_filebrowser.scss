@@ -5,41 +5,41 @@
 ------------------------------------------------------------------------------------------------------ */
 
 body.grp-filebrowser {
-	table {
-		td, th {
-			> a {
-				&:first-child {
-					position: relative;
-					top: 0;
-				}
-			}
-			&.grp-sorted {
-				a {
-					padding-right: 30px;
-					color: $grp-font-color;
-					font-weight: bold;
-				}
-				&.grp-ascending {
+    table {
+        td, th {
+            > a {
+                &:first-child {
+                    position: relative;
+                    top: 0;
+                }
+            }
+            &.grp-sorted {
+                a {
+                    padding-right: 30px;
+                    color: $grp-font-color;
+                    font-weight: bold;
+                }
+                &.grp-ascending {
                     a {
-                    	@include icons-sprite(sorted-ascending, $offset-x: 100%);
+                        @include icons-sprite(sorted-ascending, $offset-x: 100%);
                     }
                 }
                 &.grp-descending {
-                	a {
-	                    @include icons-sprite(sorted-descending, $offset-x: 100%);                		
-                	}
+                    a {
+                        @include icons-sprite(sorted-descending, $offset-x: 100%);                      
+                    }
                 }
-			}
-		}
-		td {
-			padding: 10px 10px 8px;
-			ul.grp-actions {
-				position: relative;
-				top: -1px;
-				left: -5px;
-				margin: 0 -5px -1px 0;
-			}
-		}
-	}
+            }
+        }
+        td {
+            padding: 10px 10px 8px;
+            ul.grp-actions {
+                position: relative;
+                top: -1px;
+                left: -5px;
+                margin: 0 -5px -1px 0;
+            }
+        }
+    }
 }
 
