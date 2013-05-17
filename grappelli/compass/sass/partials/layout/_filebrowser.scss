@@ -26,7 +26,7 @@ body.grp-filebrowser {
                 }
                 &.grp-descending {
                     a {
-                        @include icons-sprite(sorted-descending, $offset-x: 100%);                      
+                        @include icons-sprite(sorted-descending, $offset-x: 100%);
                     }
                 }
             }

@@ -3,9 +3,9 @@
         /*
             Depends on urlify.js
             Populates a selected field with the values of the dependent fields,
-            URLifies and shortens the string. 
-            dependencies - array of dependent fields id's 
-            maxLength - maximum length of the URLify'd string 
+            URLifies and shortens the string.
+            dependencies - array of dependent fields id's
+            maxLength - maximum length of the URLify'd string
         */
         return this.each(function() {
             var field = $(this);
@@ -18,7 +18,7 @@
             var populate = function () {
                 // Bail if the fields value has changed
                 if (field.data('_changed') == true) return;
- 
+
                 var values = [];
                 $.each(dependencies, function(i, field) {
                   if ($(field).val().length > 0) {

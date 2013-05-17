@@ -97,7 +97,7 @@
 <script type="text/javascript">
 (function($) {
     $(document).ready(function($) {
-        
+
         var prefix = "{{ inline_admin_formset.formset.prefix }}";
         var related_lookup_fields_fk = {% get_related_lookup_fields_fk inline_admin_formset.opts %};
         var related_lookup_fields_m2m = {% get_related_lookup_fields_m2m inline_admin_formset.opts %};
@@ -168,7 +168,7 @@
                 }
             });
         });
-        
+
         $("#{{ inline_admin_formset.formset.prefix }}-group").grp_inline({
             prefix: "{{ inline_admin_formset.formset.prefix }}",
             onBeforeAdded: function(inline) {},
@@ -234,7 +234,7 @@
                 });
             },
         });
-        
+
         {% if inline_admin_formset.opts.sortable_field_name %}
         $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table").sortable({
             handle: "a.grp-drag-handler",
@@ -287,7 +287,7 @@
             });
         });
         {% endif %}
-        
+
     });
 })(grp.jQuery);
 </script>

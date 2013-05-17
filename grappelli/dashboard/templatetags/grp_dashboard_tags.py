@@ -25,12 +25,12 @@ tag_func = register.inclusion_tag('grappelli/dashboard/dummy.html', takes_contex
 def grp_render_dashboard(context, location='index', dashboard=None):
     """
     Template tag that renders the dashboard, it takes two optional arguments:
-    
+
     ``location``
         The location of the dashboard, it can be 'index' (for the admin index
         dashboard) or 'app_index' (for the app index dashboard), the default
         value is 'index'.
-    
+
     ``dashboard``
         An instance of ``Dashboard``, if not given, the dashboard is retrieved
         with the ``get_index_dashboard`` or ``get_app_index_dashboard``
@@ -39,9 +39,9 @@ def grp_render_dashboard(context, location='index', dashboard=None):
 
     if dashboard is None:
         dashboard = get_index_dashboard(context)
-    
+
     dashboard.init_with_context(context)
-    
+
     context.update({
         'template': dashboard.template,
         'dashboard': dashboard,
@@ -57,7 +57,7 @@ def grp_render_dashboard_module(context, module, index=None, subindex=None):
     ``DashboardModule`` instance as first parameter and an integer ``index`` as
     second parameter, that is the index of the module in the dashboard.
     """
-    
+
     module.init_with_context(context)
     context.update({
         'template': module.template,

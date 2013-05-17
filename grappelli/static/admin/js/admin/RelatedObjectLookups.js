@@ -13,7 +13,7 @@ function html_unescape(text) {
 
 // IE doesn't accept periods or dashes in the window name, but the element IDs
 // we use to generate popup window names may contain them, therefore we map them
-// to allowed characters in a reversible way so that we can locate the correct 
+// to allowed characters in a reversible way so that we can locate the correct
 // element when the popup window is dismissed.
 function id_to_windowname(text) {
     text = text.replace(/\./g, '__dot__');
@@ -134,7 +134,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         // might be a SelectBox
         var toId = name + "_to";
         elem = document.getElementById(toId);
-        
+
         // GRAPPELLI CUSTOM
         // SelectBox code isn't customized, but CheckboxSelectMultiple doesn't exist in the original
         if (elem) {
@@ -148,7 +148,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             var list = document.getElementById(name + "_0").parentNode.parentNode.parentNode;
             var inputId = name + '_' + list.childNodes.length;
             var newText = document.createTextNode(' '+newRepr);
-            
+
             // create a new list item with a checkbox and label in it
             var newInput = document.createElement('input');
             newInput.setAttribute('type', 'checkbox');
@@ -156,21 +156,21 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             newInput.setAttribute('value', newId);
             newInput.setAttribute('id', inputId);
             newInput.setAttribute('checked', 'checked');
-            
+
             var newLabel = document.createElement('label');
             newLabel.setAttribute('for', inputId);
-            
+
             newLabel.appendChild(newInput);
-            
+
             if (newRepr.charAt(0) == '<' && newRepr.charAt(newRepr.length-1) == '>') {
                 newLabel.innerHTML += newRepr;
             } else {
                 newLabel.appendChild(newText);
             }
-            
+
             var newLi = document.createElement('li');
             newLi.appendChild(newLabel);
-            
+
             // append the new list item to the list
             list.appendChild(newLi);
         }

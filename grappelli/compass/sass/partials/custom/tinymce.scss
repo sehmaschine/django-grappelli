@@ -143,7 +143,7 @@ label.additional { position: relative; display: inline; float: none; top: 1px; }
 .description label { margin: 0 0 12px !important; padding: 0 !important; }
 #constrainlabel { display: inline; float: none; position: relative; top: 1px !important; }
 
-input[type=text], input[type=password], 
+input[type=text], input[type=password],
 select {
     width: 100% !important;
 }
@@ -171,12 +171,12 @@ input.checkbox {
 .c-2 {
     vertical-align: baseline !important;
 }
-.c-2 > input[type=radio]:first-child, 
+.c-2 > input[type=radio]:first-child,
 .c-2 > input[type=checkbox]:first-child {
     top: 5px !important;
     &+ label {
         top: 4px;
-        &+ input[type=radio], 
+        &+ input[type=radio],
         &+ input[type=checkbox] {
             top: 5px;
             margin-left: 30px;
@@ -185,7 +185,7 @@ input.checkbox {
             }
         }
     }
-    
+
 }
 
 input.radio.additional, input.checkbox.additional {
@@ -286,7 +286,7 @@ input[name="src"] + div {
     border: 0;
     td {
         padding: 0 !important;
-        &.title, 
+        &.title,
         &#charmapView {
             border: 0 !important;
             > table {

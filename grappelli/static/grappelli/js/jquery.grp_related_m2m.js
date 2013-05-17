@@ -4,7 +4,7 @@
  */
 
 (function($){
-    
+
     var methods = {
         init: function(options) {
             options = $.extend({}, $.fn.grp_related_m2m.defaults, options);
@@ -22,7 +22,7 @@
             });
         }
     };
-    
+
     $.fn.grp_related_m2m = function(method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -33,7 +33,7 @@
         }
         return false;
     };
-    
+
     var lookup_id = function(elem, options) {
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
@@ -49,11 +49,11 @@
             elem.parent().find('.grp-placeholder-related-m2m').html(values.join('<span class="grp-separator"></span>'));
         });
     };
-    
+
     $.fn.grp_related_m2m.defaults = {
         placeholder: '<div class="grp-placeholder-related-m2m"></div>',
         repr_max_length: 30,
         lookup_url: ''
     };
-    
+
 })(grp.jQuery);

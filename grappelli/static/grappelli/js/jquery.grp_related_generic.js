@@ -4,7 +4,7 @@
  */
 
 (function($){
-    
+
     var methods = {
         init: function(options) {
             options = $.extend({}, $.fn.grp_related_generic.defaults, options);
@@ -28,7 +28,7 @@
             });
         }
     };
-    
+
     $.fn.grp_related_generic = function(method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -39,7 +39,7 @@
         }
         return false;
     };
-    
+
     var lookup_link = function(id, val) {
         var lookuplink = $('<a class="related-lookup"></a>');
         lookuplink.attr('id', 'lookup_'+id);
@@ -47,7 +47,7 @@
         lookuplink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
         return lookuplink;
     };
-    
+
     var update_lookup = function(elem, options) {
         var obj = $(options.object_id);
         obj.val('');
@@ -58,7 +58,7 @@
             obj.after(options.placeholder).after(lookup_link(obj.attr('id'),val));
         }
     };
-    
+
     var lookup_id = function(elem, options) {
         var text = elem.next().next();
         $.getJSON(options.lookup_url, {
@@ -74,7 +74,7 @@
             text.html('<span class="grp-placeholder-label">' + data[0].label + '</span>');
         });
     };
-    
+
     $.fn.grp_related_generic.defaults = {
         placeholder: '<div class="grp-placeholder-related-generic" style="display:none"></div>',
         repr_max_length: 30,
@@ -82,5 +82,5 @@
         content_type: '',
         object_id: ''
     };
-    
+
 })(grp.jQuery);

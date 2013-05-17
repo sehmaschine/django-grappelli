@@ -26,7 +26,7 @@
             onAfterDeleted: function(form) {}       // Function called after a form has been deleted
         };
         options = $.extend(defaults, options);
-        
+
         return this.each(function() {
             var inline = $(this); // the current inline node
             var totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS");
@@ -41,7 +41,7 @@
             deleteButtonHandler(inline.find("a." + options.deleteCssClass), options);
         });
     };
-    
+
     updateFormIndex = function(elem, options, replace_regex, replace_with) {
         elem.find(':input,span,table,iframe,label,a,ul,p,img,div').each(function() {
             var node = $(this),
@@ -57,7 +57,7 @@
             if (node_class) { node.attr('class', node_class.replace(replace_regex, replace_with)); }
         });
     };
-    
+
     initInlineForms = function(elem, options) {
         elem.find("div.grp-module").each(function() {
             var form = $(this);
@@ -78,7 +78,7 @@
             options.onAfterInit(form);
         });
     };
-    
+
     initAddButtons = function(elem, options) {
         var totalForms = elem.find("#id_" + options.prefix + "-TOTAL_FORMS");
         var maxForms = elem.find("#id_" + options.prefix + "-MAX_NUM_FORMS");
@@ -88,7 +88,7 @@
             hideAddButtons(elem, options);
         }
     };
-    
+
     addButtonHandler = function(elem, options) {
         elem.bind("click", function() {
             var inline = elem.parents(".grp-group"),
@@ -122,7 +122,7 @@
             options.onAfterAdded(form);
         });
     };
-    
+
     removeButtonHandler = function(elem, options) {
         elem.bind("click", function() {
             var inline = elem.parents(".grp-group"),
@@ -151,7 +151,7 @@
             options.onAfterRemoved(inline);
         });
     };
-    
+
     deleteButtonHandler = function(elem, options) {
         elem.bind("click", function() {
             var deleteInput = $(this).prev(),
@@ -171,15 +171,15 @@
             options.onAfterDeleted(form);
         });
     };
-    
+
     hideAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
         addButtons.hide().parents('.grp-add-item').hide();
     };
-    
+
     showAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
         addButtons.show().parents('.grp-add-item').show();
     };
-    
+
 })(grp.jQuery);
