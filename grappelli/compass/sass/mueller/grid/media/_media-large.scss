@@ -31,7 +31,7 @@
         // uncomment for a background-grid
         // @include grid-background($gc, $gw, $gm, 24px, 0, #ccc, #ddd, #999, false);
     }
-    
+
     @include grids(d,
         0 2 3 4 6 8 9 12 16 18 24, // only add the columns you really need
         $gc,

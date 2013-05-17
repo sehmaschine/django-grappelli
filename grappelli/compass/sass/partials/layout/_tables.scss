@@ -76,7 +76,7 @@ table {
                 font-size: $grp-font-size;
                 font-weight: bold;
             }
-            &.grp-row-even td, &.grp-row-even th, 
+            &.grp-row-even td, &.grp-row-even th,
             &.grp-alt td, &.grp-alt th {
                 border-left: 1px solid #e0e0e0;
                 background: #f4f4f4;
@@ -132,15 +132,15 @@ table {
                 top: 1px;
             }
         }
-        > input[type=checkbox], 
+        > input[type=checkbox],
         > input[type=radio] {
             margin: 0;
         }
-        > input[type=text], 
-        > input[type=password], 
-        > input[type=file], 
-        > input[type=checkbox], 
-        > input[type=radio], 
+        > input[type=text],
+        > input[type=password],
+        > input[type=file],
+        > input[type=checkbox],
+        > input[type=radio],
         > select,
         p input[type=text] {
             position: relative;
@@ -151,7 +151,7 @@ table {
             //     margin-bottom: -6px !important;
             // }
         }
-        // > input[type=text], 
+        // > input[type=text],
         // > input[type=password],
         // > select,
         // p input[type=text] {
@@ -159,7 +159,7 @@ table {
         //     margin-top: -6px !important;
         //     margin-bottom: -5px !important;
         // }
-        > input[type=text], 
+        > input[type=text],
         > input[type=password],
         > select,
         p input[type=text] {
@@ -167,12 +167,12 @@ table {
             margin-top: -5px !important;
             margin-bottom: -5px !important;
         }
-        > textarea, 
+        > textarea,
         div.grp-readonly {
             position: relative;
             margin: -5px 0 -5px !important;
         }
-        ul.radiolist, 
+        ul.radiolist,
         ul.checkboxlist {
             margin: -3px 0 -5px;
             &.inline {
@@ -181,13 +181,13 @@ table {
                 max-width: 400px;
             }
         }
-        a.fb_show, 
-        a.related-lookup, 
+        a.fb_show,
+        a.related-lookup,
         .ui-datepicker-trigger,
         .ui-timepicker-trigger {
             margin: -5px 0 -11px -25px;
         }
-        .grp-autocomplete-wrapper-m2m, 
+        .grp-autocomplete-wrapper-m2m,
         .grp-autocomplete-wrapper-fk {
             margin: -5px 0 !important;
             a.related-lookup {
@@ -199,7 +199,7 @@ table {
             top: -13px;
             margin-bottom: -5px;
         }
-        ul.radiolist.inline + a.add-another, 
+        ul.radiolist.inline + a.add-another,
         ul.checkboxlist.inline + a.add-another {
             top: -5px;
         }
@@ -259,8 +259,8 @@ table.grp-sortable {
                         display: inline-block;
                         margin: 0;
                         padding: 0;
-                        &.grp-sortremove, 
-                        &.grp-ascending, 
+                        &.grp-sortremove,
+                        &.grp-ascending,
                         &.grp-descending {
                             width: 21px;
                             height: 24px;
@@ -335,7 +335,7 @@ tr.row-label td {
 /*  TABLE FULL WIDTH
 ------------------------------------------------------------------------------------------------------ */
 
-table.xfull, 
+table.xfull,
 table.grp-full-width {
     width: 100%;
 }

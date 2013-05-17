@@ -75,8 +75,8 @@ body {
 }
 
 body.grp-login {
-    #grp-header, 
-    #grp-context-navigation, 
+    #grp-header,
+    #grp-context-navigation,
     #grp-content-title {
         display: none;
     }
@@ -196,9 +196,9 @@ body.grp-login {
                 }
             }
         }
-        
+
     }
-    .grp-module.grp-submit-row, 
+    .grp-module.grp-submit-row,
     .grp-module.grp-submit-row ul {
         padding: 0;
         border: 0;
@@ -387,7 +387,7 @@ header#grp-header {
                     width: 18px;
                     height: 24px;
                 }
-                
+
                 &#grp-open-all {
                     @include icons-sprite(tools-open-handler);
                 }
@@ -468,14 +468,14 @@ header#grp-header {
                 width: auto;
                 display: block;
             }
-            input.grp-button, 
-            a.grp-button, 
+            input.grp-button,
+            a.grp-button,
             button.grp-button {
                 @include opacity(.75);
                 &.grp-default {
                     @include opacity(1);
                 }
-                &:hover, 
+                &:hover,
                 &:focus {
                     @include opacity(1);
                 }

@@ -23,14 +23,14 @@
     $gc: 6; // grid columns
     $gw: 12.5%; // grid width
     $gm: 5%; // grid margin
-  
+
     .g-h-c {
         @include container;
         width: $gw*$gc+$gm*($gc - 1); // 300px
         // uncomment for a background-grid
         // @include grid-background($gc, $gw, $gm, 18px, 0, #ccc, #ddd, #999, false);
     }
-    
+
     @include grids(h,
         0 1 2 3 4 6, // only add the columns you really need
         $gc,

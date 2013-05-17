@@ -5,49 +5,49 @@
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-object-tools {
-	@include horizontal-list(5px, left);
-	position: relative;
-	float: right;
-	top: -40px;
-	margin: 0 0 -40px;
-	li {
-		a {
-			display: block;
-			padding: 4px 15px;
-			font-weight: bold;
-			@include border-radius(30px);
-			color: #fff;
-			border: 1px solid #777;
-			opacity: .5;
-			@include background(linear-gradient(#999, #888));
-			&.grp-state-focus {
-				opacity: 1;
-			}
-			&:hover {
-				opacity: 1 !important;
-				border: 1px solid #2987a6 !important;
-				@include background(linear-gradient(#36b0d9, #309bbf));
-			}
-			&.grp-add-link {
-				padding-left: 28px;
-				@include grp-background-gradient-icon-combo(object-tools-add-link, 0, #999, #888);
-				&:hover {
-					@include grp-background-gradient-icon-combo(object-tools-add-link, 0, #36b0d9, #309bbf);
-				}
-			}
-			&.grp-viewsite-link, 
-			&[target="_blank"] {
-				padding-left: 28px;
-				@include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #999, #888);
-				&:hover {
-					@include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #36b0d9, #309bbf);
-				}
-			}
-		}
-	}
+    @include horizontal-list(5px, left);
+    position: relative;
+    float: right;
+    top: -40px;
+    margin: 0 0 -40px;
+    li {
+        a {
+            display: block;
+            padding: 4px 15px;
+            font-weight: bold;
+            @include border-radius(30px);
+            color: #fff;
+            border: 1px solid #777;
+            opacity: .5;
+            @include background(linear-gradient(#999, #888));
+            &.grp-state-focus {
+                opacity: 1;
+            }
+            &:hover {
+                opacity: 1 !important;
+                border: 1px solid #2987a6 !important;
+                @include background(linear-gradient(#36b0d9, #309bbf));
+            }
+            &.grp-add-link {
+                padding-left: 28px;
+                @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #999, #888);
+                &:hover {
+                    @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #36b0d9, #309bbf);
+                }
+            }
+            &.grp-viewsite-link,
+            &[target="_blank"] {
+                padding-left: 28px;
+                @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #999, #888);
+                &:hover {
+                    @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #36b0d9, #309bbf);
+                }
+            }
+        }
+    }
 }
 .grp-object-tools {
-	@include grp-object-tools;
+    @include grp-object-tools;
 }
 
 
@@ -56,149 +56,149 @@
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-tools {
-	@include horizontal-list(1px, left);
-	position: relative;
-	float: right;
-	top: -24px;
-	margin: 0 0 -24px;
-	padding-right: 5px;
-	height: 24px;
-	white-space: nowrap;
-	li {
-		.grp-tools-container & { // IE9 needs that, otherwise the tools break in oversized tabular modules
-			float: none !important;
-			display: inline-block;
-		}
-		a, 
-		span {
-			display: block;
-			width: 24px;
-			height: 24px;
-			&.grp-icon-text, 
-			&.grp-text {
-				padding-left: 24px;
-				padding-right: 6px;
-				width: auto;
-				line-height: 24px;
-				color: $grp-link-color-hover;
-				&:hover {
-					color: $grp-link-color;
-				}
-			}
-			&.grp-text {
-				padding-left: 8px;
-			}
-		}
-		a.grp-add-handler {
-			@include icons-sprite(tools-add-handler);
-		}
-		a.grp-delete-handler {
-			@include icons-sprite(tools-delete-handler);
-		}
-		a.grp-remove-handler {
-			@include icons-sprite(tools-remove-handler);
-		}
-		a.grp-drag-handler {
-			@include icons-sprite(tools-drag-handler);
-		}
-		a.grp-viewsite-link {
-			@include icons-sprite(tools-viewsite-link);
-		}
-		a.grp-open-handler {
-			@include icons-sprite(tools-open-handler);
-		}
-		a.grp-close-handler {
-			@include icons-sprite(tools-close-handler);
-		}
-		a.grp-arrow-down-handler {
-			@include icons-sprite(tools-arrow-down-handler);
-		}
-		a.grp-arrow-up-handler {
-			@include icons-sprite(tools-arrow-up-handler);
-		}
-		a.grp-trash-handler {
-			@include icons-sprite(tools-trash-handler);
-		}
-		a.grp-trash-list-toggle-handler {
-			@include icons-sprite(tools-trash-list-toggle-handler);
-		}
-	}
-	input {
-		position: absolute;
-		top: -30px;
-	}
+    @include horizontal-list(1px, left);
+    position: relative;
+    float: right;
+    top: -24px;
+    margin: 0 0 -24px;
+    padding-right: 5px;
+    height: 24px;
+    white-space: nowrap;
+    li {
+        .grp-tools-container & { // IE9 needs that, otherwise the tools break in oversized tabular modules
+            float: none !important;
+            display: inline-block;
+        }
+        a,
+        span {
+            display: block;
+            width: 24px;
+            height: 24px;
+            &.grp-icon-text,
+            &.grp-text {
+                padding-left: 24px;
+                padding-right: 6px;
+                width: auto;
+                line-height: 24px;
+                color: $grp-link-color-hover;
+                &:hover {
+                    color: $grp-link-color;
+                }
+            }
+            &.grp-text {
+                padding-left: 8px;
+            }
+        }
+        a.grp-add-handler {
+            @include icons-sprite(tools-add-handler);
+        }
+        a.grp-delete-handler {
+            @include icons-sprite(tools-delete-handler);
+        }
+        a.grp-remove-handler {
+            @include icons-sprite(tools-remove-handler);
+        }
+        a.grp-drag-handler {
+            @include icons-sprite(tools-drag-handler);
+        }
+        a.grp-viewsite-link {
+            @include icons-sprite(tools-viewsite-link);
+        }
+        a.grp-open-handler {
+            @include icons-sprite(tools-open-handler);
+        }
+        a.grp-close-handler {
+            @include icons-sprite(tools-close-handler);
+        }
+        a.grp-arrow-down-handler {
+            @include icons-sprite(tools-arrow-down-handler);
+        }
+        a.grp-arrow-up-handler {
+            @include icons-sprite(tools-arrow-up-handler);
+        }
+        a.grp-trash-handler {
+            @include icons-sprite(tools-trash-handler);
+        }
+        a.grp-trash-list-toggle-handler {
+            @include icons-sprite(tools-trash-list-toggle-handler);
+        }
+    }
+    input {
+        position: absolute;
+        top: -30px;
+    }
 }
 .grp-tools {
-	@include grp-tools;
-	span {
-		color: transparent !important;
-		cursor: default !important;
-	}
+    @include grp-tools;
+    span {
+        color: transparent !important;
+        cursor: default !important;
+    }
 }
 
 
 /*  Tools in modules ................................................... */
 
 .grp-module {
-	> h2 + .grp-tools {
-		top: -26px;
-		right: 1px;
-		margin-bottom: -26px;
-	}
-	.grp-row > .grp-tools {
-		top: -4px;
-		right: -9px;
-	}
-	> h3 + .grp-tools {
-		top: -25px;
-		margin-bottom: -25px;
-	}
-	&.grp-closed > h3 + .grp-tools {
-		top: -24px;
-		margin-bottom: -24px;
-	}
+    > h2 + .grp-tools {
+        top: -26px;
+        right: 1px;
+        margin-bottom: -26px;
+    }
+    .grp-row > .grp-tools {
+        top: -4px;
+        right: -9px;
+    }
+    > h3 + .grp-tools {
+        top: -25px;
+        margin-bottom: -25px;
+    }
+    &.grp-closed > h3 + .grp-tools {
+        top: -24px;
+        margin-bottom: -24px;
+    }
 }
 fieldset.grp-module {
-	.grp-row > .grp-tools {
-		top: 0;
-	}
+    .grp-row > .grp-tools {
+        top: 0;
+    }
 }
 
 
 /*  Tools in groups ................................................... */
 
 .grp-group {
-	> h2 + .grp-tools {
-		top: -28px;
-		right: 1px;
-		margin-bottom: -28px;
-	}
-	&.grp-closed > h2 + .grp-tools {
-		top: -26px;
-		right: 1px;
-		margin-bottom: -26px;
-	}
+    > h2 + .grp-tools {
+        top: -28px;
+        right: 1px;
+        margin-bottom: -28px;
+    }
+    &.grp-closed > h2 + .grp-tools {
+        top: -26px;
+        right: 1px;
+        margin-bottom: -26px;
+    }
 }
 .grp-group.grp-tabular h2 + .grp-tools {
-	top: -27px;
-	right: 1px;
-	margin-bottom: -27px;
+    top: -27px;
+    right: 1px;
+    margin-bottom: -27px;
 }
 
 
 /*  Tools Container ................................................... */
 
 .grp-tools-container .grp-tools {
-	top: 0;
-	right: -20px;
-	margin-bottom: 0;
+    top: 0;
+    right: -20px;
+    margin-bottom: 0;
 }
 
 
 /*  Tools module.add-item ................................................... */
 
 .grp-module.grp-add-item .grp-tools {
-	top: 2px;
+    top: 2px;
 }
 
 
