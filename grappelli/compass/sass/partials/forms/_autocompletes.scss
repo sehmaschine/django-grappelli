@@ -7,10 +7,10 @@
 
 /*  Autocomplete Wrappers Basic Styles (Input and Input-Lookalike) ......................................... */
 
-.grp-autocomplete-wrapper-m2m, 
+.grp-autocomplete-wrapper-m2m,
 .grp-autocomplete-wrapper-fk input.ui-autocomplete-input {
     @include grp-form-field;
-    &:focus, 
+    &:focus,
     &.grp-state-focus {
         background-color: $grp-form-field-background-color-interactive;
     }
@@ -19,23 +19,23 @@
 
 /*  Autocomplete Icons, Preremove ......................................... */
 
-.grp-autocomplete-wrapper-m2m, 
+.grp-autocomplete-wrapper-m2m,
 .grp-autocomplete-wrapper-fk {
     a.related-lookup {
         position: absolute;
         right: 0;
     }
-    a.related-lookup, 
+    a.related-lookup,
     input:focus + a.related-lookup {
         border: $grp-form-field-border !important;
     }
     &.grp-state-focus {
-        a.grp-related-remove, 
+        a.grp-related-remove,
         a.related-lookup {
             border: $grp-form-field-border-focus !important;
         }
     }
-    a.grp-related-remove, 
+    a.grp-related-remove,
     div.grp-loader {
         display: inline-block;
         position: absolute;
@@ -45,13 +45,13 @@
         line-height: 0;
         width: 23px;
         height: 23px;
-        border: $grp-form-field-border; 
+        border: $grp-form-field-border;
     }
     div.grp-loader {
         background: #fdfdfd url('../images/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
     }
     &.grp-autocomplete-preremove {
-        input.ui-autocomplete-input, 
+        input.ui-autocomplete-input,
         li.grp-repr a {
             color: $grp-font-color-error !important;
         }
@@ -121,7 +121,7 @@
     a.grp-related-remove + a.grp-related-lookup {
         @include border-bottom-left-radius(0);
     }
-    a.grp-related-remove, 
+    a.grp-related-remove,
     a.grp-related-remove + div.grp-loader {
         top: -1px;
         right: 23px;
@@ -147,7 +147,7 @@
 /*  Errors with autocompletes ......................................... */
 
 .grp-errors {
-    .grp-autocomplete-wrapper-m2m, .grp-autocomplete-wrapper-fk input.ui-autocomplete-input, 
+    .grp-autocomplete-wrapper-m2m, .grp-autocomplete-wrapper-fk input.ui-autocomplete-input,
     a.grp-related-remove {
         border-color: $grp-font-color-error !important;
     }
@@ -156,7 +156,7 @@
 
 /*  Autocompletes in Changelists ......................................... */
 
-#changelist table div.autocomplete-wrapper-fk a.grp-related-remove, #changelist table div.autocomplete-wrapper-m2m a.grp-related-remove, 
+#changelist table div.autocomplete-wrapper-fk a.grp-related-remove, #changelist table div.autocomplete-wrapper-m2m a.grp-related-remove,
 #changelist table div.autocomplete-wrapper-fk div.grp-loader, #changelist table div.autocomplete-wrapper-m2m div.grp-loader {
     top: -5px;
 }

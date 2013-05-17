@@ -172,7 +172,7 @@
             <div class="g-d-24">
                 <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} block content {% templatetag closeblock %}
-    
+
     – Pagination, Searchfield, Filters, Date Hierarchy
     – Result-List
     – Pagination
@@ -190,12 +190,12 @@
             <div class="g-d-24">
                 <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} block content {% templatetag closeblock %}
-    
+
     <!-- Pagination, Searchfield, Filters, Date Hierarchy -->
     {% templatetag openblock %} if cl.search_fields or cl.has_filters or cl.date_hierarchy {% templatetag closeblock %}
         <div class="grp-module">
             <div class="grp-row">
-                <div class="l-2cr-fluid 
+                <div class="l-2cr-fluid
                     {% templatetag openblock %} if cl.has_filters and cl.search_fields {% templatetag closeblock %}
                         l-d-12
                     {% templatetag openblock %} else {% templatetag closeblock %}
@@ -382,12 +382,12 @@
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 
 {% templatetag openblock %} block content {% templatetag closeblock %}
-    
+
     <!-- Pagination, Searchfield, Filters, Date Hierarchy -->
     {% templatetag openblock %} if cl.search_fields or cl.has_filters or cl.date_hierarchy {% templatetag closeblock %}
         <div class="grp-module">
             <div class="grp-row">
-                <div class="l-2cr-fluid 
+                <div class="l-2cr-fluid
                     {% templatetag openblock %} if cl.has_filters and cl.search_fields {% templatetag closeblock %}
                         l-d-12
                     {% templatetag openblock %} else {% templatetag closeblock %}

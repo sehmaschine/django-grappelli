@@ -19,9 +19,9 @@
     @include border-radius($grp-border-radius);
     background: #eee;
     @include box-shadow(0 10px 50px #333);
-    input, 
-    select, 
-    textarea, 
+    input,
+    select,
+    textarea,
     button {
         @include grp-form-field;
     }
@@ -54,7 +54,7 @@
     float: left;
     clear: both;
     width: 100%;
-    .ui-sortable-helper, 
+    .ui-sortable-helper,
     .ui-sortable-placeholder {
         opacity: .8;
     }
@@ -78,7 +78,7 @@
 .grp-group.grp-tabular .ui-sortable {
     .grp-module.ui-sortable-placeholder {
         overflow: hidden;
-        .grp-th, 
+        .grp-th,
         .grp-td {
             padding-top: 0 !important;
             padding-bottom: 0 !important;
@@ -87,20 +87,20 @@
     }
     .grp-module.ui-sortable-helper {
         border-top: 0 !important;
-        .grp-th, 
+        .grp-th,
         .grp-td {
             background: #ffffcc !important;
         }
     }
 }
-.grp-group.grp-stacked .ui-sortable-helper, 
-.grp-group.grp-stacked .ui-sortable-helper .grp-module, 
-.grp-group.grp-stacked .ui-sortable-helper h2, 
-.grp-group.grp-stacked .ui-sortable-helper h3, 
-.grp-group.grp-stacked .ui-sortable-helper h4, 
-.grp-group.grp-stacked .grp-collapse.grp-predelete.ui-sortable-helper > h3.grp-collapse-handler, 
-.grp-group.grp-stacked .grp-collapse.grp-open.predelete.ui-sortable-helper > h3.grp-collapse-handler, 
-.grp-group.grp-stacked .grp-collapse.grp-predelete.ui-sortable-helper h4.grp-collapse-handler, 
+.grp-group.grp-stacked .ui-sortable-helper,
+.grp-group.grp-stacked .ui-sortable-helper .grp-module,
+.grp-group.grp-stacked .ui-sortable-helper h2,
+.grp-group.grp-stacked .ui-sortable-helper h3,
+.grp-group.grp-stacked .ui-sortable-helper h4,
+.grp-group.grp-stacked .grp-collapse.grp-predelete.ui-sortable-helper > h3.grp-collapse-handler,
+.grp-group.grp-stacked .grp-collapse.grp-open.predelete.ui-sortable-helper > h3.grp-collapse-handler,
+.grp-group.grp-stacked .grp-collapse.grp-predelete.ui-sortable-helper h4.grp-collapse-handler,
 .grp-group.grp-stacked .grp-collapse.grp-open.grp-predelete.ui-sortable-helper h4.grp-collapse-handler {
     background: #ffffcc !important;
 }
@@ -138,7 +138,7 @@
         position:relative;
         padding:.2em 0;
     }
-    .ui-datepicker-prev, 
+    .ui-datepicker-prev,
     .ui-datepicker-next {
         position: absolute;
         top: 4px;
@@ -182,7 +182,7 @@
             &.ui-datepicker-month-year {
                 width: 100%;
             }
-            &.ui-datepicker-month, 
+            &.ui-datepicker-month,
             &.ui-datepicker-year {
                 width: 49%;
             }
@@ -191,7 +191,7 @@
             }
         }
         @media screen and (-webkit-min-device-pixel-ratio:0) {
-            select, 
+            select,
             select:focus {
                 padding: 4px 28px 4px 5px;
                 -webkit-appearance: textfield;
@@ -218,7 +218,7 @@
             min-width: 25px;
             border: 0;
             padding: 1px;
-            span, 
+            span,
             a {
                 padding: 3px 0 3px;
                 margin: 0 !important;
@@ -414,7 +414,7 @@ button.ui-datepicker-close {
             font-weight: bold;
         }
         & + li {
-            margin-top: 3px; 
+            margin-top: 3px;
         }
     }
     li > span.error {
@@ -437,8 +437,8 @@ button.ui-datepicker-close {
             @include border-radius($grp-form-field-border-radius - 1px);
             background: #cee9f2;
             cursor: pointer;
-            &:hover, 
-            &.ui-state-hover, 
+            &:hover,
+            &.ui-state-hover,
             &.ui-state-active {
                 color: #fff;
                 border: 1px solid #333;

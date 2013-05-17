@@ -73,7 +73,7 @@
                 $("a#grp-open-all").bind("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
-                    });   
+                    });
                 });
                 $("a#grp-close-all").bind("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
@@ -137,11 +137,11 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
         <div>
             <!-- Popup Hidden Field -->
             {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
-            
+
             <!-- No Submit-Row on Top -->
 
             <!-- Errors -->
@@ -149,28 +149,28 @@
                 <p class="errornote">{% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</p>
                 <ul class="errorlist">{% for error in adminform.form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
             {% endif %}
-            
+
             <!-- Fieldsets -->
             {% block field_sets %}
                 {% for fieldset in adminform %}
                     {% include "admin/includes/fieldset.html" %}
                 {% endfor %}
             {% endblock %}
-            
+
             {% block after_field_sets %}{% endblock %}
-            
+
             <!-- Inlines -->
             {% block inline_field_sets %}
                 {% for inline_admin_formset in inline_admin_formsets %}
                     {% include inline_admin_formset.opts.template %}
                 {% endfor %}
             {% endblock %}
-            
+
             {% block after_related_objects %}{% endblock %}
-            
+
             <!-- Submit-Row -->
             {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
-            
+
             {% if adminform and add %}
                 {% block extrahead %}
                     {{ block.super }}
@@ -187,10 +187,10 @@
                     </script>
                 {% endblock %}
             {% endif %}
-            
+
             <!-- JS for prepopulated fields -->
             {% prepopulated_fields_js %}
-            
+
         </div>
     </form>
 {% endblock %}

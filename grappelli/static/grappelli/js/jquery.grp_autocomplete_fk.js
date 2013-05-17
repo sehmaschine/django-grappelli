@@ -4,7 +4,7 @@
  */
 
 (function($){
-    
+
     var methods = {
         init: function(options) {
             options = $.extend({}, $.fn.grp_autocomplete_fk.defaults, options);
@@ -41,7 +41,7 @@
             });
         }
     };
-    
+
     $.fn.grp_autocomplete_fk = function(method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -52,12 +52,12 @@
         }
         return false;
     };
-    
+
     var loader = function() {
         var loader = $('<div class="grp-loader">loader</div>');
         return loader;
     };
-    
+
     var remove_link = function(id) {
         var removelink = $('<a class="grp-related-remove"></a>');
         removelink.attr('id', 'remove_'+id);
@@ -68,7 +68,7 @@
         });
         return removelink;
     };
-    
+
     var lookup_autocomplete = function(elem, options) {
         options.wrapper_autocomplete.find("input:first")
             .bind("focus", function() {
@@ -122,7 +122,7 @@
                 }
             };
     };
-    
+
     var lookup_id = function(elem, options) {
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
@@ -135,10 +135,10 @@
             });
         });
     };
-    
+
     $.fn.grp_autocomplete_fk.defaults = {
         autocomplete_lookup_url: '',
         lookup_url: ''
     };
-    
+
 })(grp.jQuery);

@@ -16,7 +16,7 @@ var django = {
 // var jQuery = grp.jQuery.noConflict(true);
 
 (function($) {
-    
+
     // dateformat
     grappelli.getFormat = function(type) {
         if (type == "date") {
@@ -27,10 +27,10 @@ var django = {
             return format;
         }
     };
-    
+
     // datepicker, timepicker init
     grappelli.initDateAndTimePicker = function() {
-        
+
         // HACK: get rid of text after DateField (hardcoded in django.admin)
         $('p.datetime').each(function() {
             var text = $(this).html();
@@ -38,7 +38,7 @@ var django = {
             text = text.replace(/<br>.*: /, "<br>");
             $(this).html(text);
         });
-        
+
         var options = {
             //appendText: '(mm/dd/yyyy)',
             showOn: 'button',
@@ -56,11 +56,11 @@ var django = {
         };
         var dateFields = $("input[class*='vDateField']:not([id*='__prefix__'])");
         dateFields.datepicker(options);
-        
+
         if (typeof IS_POPUP != "undefined" && IS_POPUP) {
             dateFields.datepicker('disable');
         }
-        
+
         // HACK: adds an event listener to the today button of datepicker
         // if clicked today gets selected and datepicker hides.
         // use live() because couldn't find hook after datepicker generates it's complete dom.
@@ -68,7 +68,7 @@ var django = {
             $.datepicker._selectDate(grappelli.datepicker_instance);
             grappelli.datepicker_instance = null;
         });
-        
+
         // init timepicker
         $("input[class*='vTimeField']:not([id*='__prefix__'])").grp_timepicker();
 
@@ -78,9 +78,9 @@ var django = {
         //     alert("Now for date and time: grappelli.js line 68 ff.");
         //     return false
         // });
-        
+
     };
-    
+
     // changelist: filter
     grappelli.initFilter = function() {
         $("a.grp-pulldown-handler").click(function() {
@@ -94,13 +94,13 @@ var django = {
             location.href = $(this).val();
         });
     };
-    
+
     // changelist: searchbar
     grappelli.initSearchbar = function() {
         var searchbar = $("input.grp-search-field");
         searchbar.focus();
     };
-    
+
     grappelli.updateSelectFilter = function(form) {
         if (typeof SelectFilter != "undefined"){
             form.find(".selectfilter").each(function(index, value){
@@ -113,7 +113,7 @@ var django = {
             });
         }
     };
-    
+
     grappelli.reinitDateTimeFields = function(form) {
         form.find(".vDateField").datepicker({
             showOn: 'button',
@@ -123,7 +123,7 @@ var django = {
         });
         form.find(".vTimeField").grp_timepicker();
     };
-    
+
     // autocomplete helpers
     grappelli.get_app_label = function(elem) {
         var link = elem.next("a");
@@ -149,6 +149,6 @@ var django = {
         }
         return false;
     };
-    
+
 })(grp.jQuery);
 

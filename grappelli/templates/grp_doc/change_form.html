@@ -81,7 +81,7 @@
                 $("a#grp-open-all").bind("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
-                    });   
+                    });
                 });
                 $("a#grp-close-all").bind("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
@@ -168,7 +168,7 @@
 
         <!-- POPUP -->
         {% templatetag openblock %} if is_popup {% templatetag closeblock %}<input type="hidden" name="_popup" value="1" />{% templatetag openblock %} endif {% templatetag closeblock %}
-        
+
         <!-- ERRORS -->
         {% templatetag openblock %} if errors {% templatetag closeblock %}
             <p class="errornote">
@@ -189,7 +189,7 @@
             {% templatetag openblock %} endfor {% templatetag closeblock %}
         {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} block after_field_sets {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        
+
         <!-- INLINES -->
         {% templatetag openblock %} block inline_field_sets {% templatetag closeblock %}
             {% templatetag openblock %} for inline_admin_formset in inline_admin_formsets {% templatetag closeblock %}
@@ -198,7 +198,7 @@
             {% templatetag openblock %} endfor {% templatetag closeblock %}
         {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} block after_related_objects {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        
+
         <!-- SUBMIT ROW -->
         {% templatetag openblock %} block submit_buttons_bottom {% templatetag closeblock %}{% templatetag openblock %} submit_row {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
@@ -219,7 +219,7 @@
                 </script>
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} endif {% templatetag closeblock %}
-        
+
         <!-- JS FOR PREPOPULATED FIELDS -->
         {% templatetag openblock %} prepopulated_fields_js {% templatetag closeblock %}
     </form>
@@ -256,7 +256,7 @@
                 $("a#grp-open-all").bind("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
-                    });   
+                    });
                 });
                 $("a#grp-close-all").bind("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
@@ -323,7 +323,7 @@
 
         <!-- POPUP -->
         {% templatetag openblock %} if is_popup {% templatetag closeblock %}<input type="hidden" name="_popup" value="1" />{% templatetag openblock %} endif {% templatetag closeblock %}
-        
+
         <!-- ERRORS -->
         {% templatetag openblock %} if errors {% templatetag closeblock %}
             <p class="errornote">
@@ -344,7 +344,7 @@
             {% templatetag openblock %} endfor {% templatetag closeblock %}
         {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} block after_field_sets {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        
+
         <!-- INLINES -->
         {% templatetag openblock %} block inline_field_sets {% templatetag closeblock %}
             {% templatetag openblock %} for inline_admin_formset in inline_admin_formsets {% templatetag closeblock %}
@@ -353,7 +353,7 @@
             {% templatetag openblock %} endfor {% templatetag closeblock %}
         {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} block after_related_objects {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        
+
         <!-- SUBMIT ROW -->
         {% templatetag openblock %} block submit_buttons_bottom {% templatetag closeblock %}{% templatetag openblock %} submit_row {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
@@ -374,7 +374,7 @@
                 </script>
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} endif {% templatetag closeblock %}
-        
+
         <!-- JS FOR PREPOPULATED FIELDS -->
         {% templatetag openblock %} prepopulated_fields_js {% templatetag closeblock %}
     </form>

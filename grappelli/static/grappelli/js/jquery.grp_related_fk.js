@@ -4,7 +4,7 @@
  */
 
 (function($){
-    
+
     var methods = {
         init: function(options) {
             options = $.extend({}, $.fn.grp_related_fk.defaults, options);
@@ -28,7 +28,7 @@
             });
         }
     };
-    
+
     $.fn.grp_related_fk = function(method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -39,7 +39,7 @@
         }
         return false;
     };
-    
+
     var lookup_id = function(elem, options) {
         var text = elem.parent().find('.grp-placeholder-related-fk');
         $.getJSON(options.lookup_url, {
@@ -55,11 +55,11 @@
             text.html('<span class="grp-placeholder-label">' + data[0].label + '</span>');
         });
     };
-    
+
     $.fn.grp_related_fk.defaults = {
         placeholder: '<div class="grp-placeholder-related-fk"></div>',
         repr_max_length: 30,
         lookup_url: ''
-    };   
-    
+    };
+
 })(grp.jQuery);
