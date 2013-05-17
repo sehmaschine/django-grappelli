@@ -6,6 +6,10 @@ root = true
 indent_style = space
 indent_size = 4
 end_of_line = lf
+insert_final_newline = true
+
+[*.min.js]
+insert_final_newline = ignore
 
 [getElementsBySelector.js]
 indent_size = 2
@@ -13,3 +17,4 @@ indent_size = 2
 [**/{tinymce,jquery}/**]
 indent_style = ignore
 end_of_line = ignore
+insert_final_newline = ignore
