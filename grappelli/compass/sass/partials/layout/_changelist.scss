@@ -5,62 +5,62 @@
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-pagination {
-	ul {
-		@include horizontal-list(0, left);
-		li {
-		    margin-right: 1px;
-		    border: 1px solid #fff;
-	    	@include border-radius($grp-border-radius);
-			a, 
-			span {
-			    display: inline-block;
-			    padding: 4px 8px 4px;
-			    min-width: 25px;
-			    font-size: 11px;
-			    font-weight: bold;
-			    text-align: center;
-			    border: 1px solid;
-			    @include border-radius($grp-border-radius - 1);
-				@include box-sizing(border-box);
-			}
-			a {
-				color: #59afcc;
-			    border-color: #d9d9d9;
-			    &:hover {
-			    	color: #444;
-				    border-color: #bdbdbd;
-				    @include background-image(linear-gradient(#eee, #e0e0e0));
-			    }
-			}
-			span {
-				color: #444;
-			    border-color: #bdbdbd;
-			    @include background-image(linear-gradient(#eee, #e0e0e0));
-			}
-			&.grp-results {
-			    margin-right: 4px;
-			}
-			&.grp-separator {
-			    border-color: transparent;
-			    span {
-				    padding: 4px 0;
-				    min-width: 10px;
-				    font-size: 14px;
-				    border-color: transparent;
-				    background: transparent;
-				}
-			}
-			&.grp-showall {
-			    margin-left: 4px;
-			}
-			&:last-child {
-			    clear: right;
-			}
-		}
-	}
+    ul {
+        @include horizontal-list(0, left);
+        li {
+            margin-right: 1px;
+            border: 1px solid #fff;
+            @include border-radius($grp-border-radius);
+            a, 
+            span {
+                display: inline-block;
+                padding: 4px 8px 4px;
+                min-width: 25px;
+                font-size: 11px;
+                font-weight: bold;
+                text-align: center;
+                border: 1px solid;
+                @include border-radius($grp-border-radius - 1);
+                @include box-sizing(border-box);
+            }
+            a {
+                color: #59afcc;
+                border-color: #d9d9d9;
+                &:hover {
+                    color: #444;
+                    border-color: #bdbdbd;
+                    @include background-image(linear-gradient(#eee, #e0e0e0));
+                }
+            }
+            span {
+                color: #444;
+                border-color: #bdbdbd;
+                @include background-image(linear-gradient(#eee, #e0e0e0));
+            }
+            &.grp-results {
+                margin-right: 4px;
+            }
+            &.grp-separator {
+                border-color: transparent;
+                span {
+                    padding: 4px 0;
+                    min-width: 10px;
+                    font-size: 14px;
+                    border-color: transparent;
+                    background: transparent;
+                }
+            }
+            &.grp-showall {
+                margin-left: 4px;
+            }
+            &:last-child {
+                clear: right;
+            }
+        }
+    }
 }
 .grp-pagination {
-	@include grp-pagination();
+    @include grp-pagination();
 }
 
 
@@ -69,33 +69,33 @@
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-date-hierarchy {
-	ul {
-		position: relative;
-	    float: left;
-	    clear: both;
-	    font-size: 11px;
-	    line-height: 16px;
-	    font-weight: bold;
-	    li {
-		    position: relative;
-		    float: left;
-		    a, 
-			span {
-			    padding: 2px 5px;
-			}
-			a.grp-date-hierarchy-back {
-				color: #59afcc;
-				padding-left: 10px;
-				@include icons-sprite(date-hierarchy-back);
-			    &:hover {
-			    	color: #444;
-			    }
-			}
-		}
-	}
+    ul {
+        position: relative;
+        float: left;
+        clear: both;
+        font-size: 11px;
+        line-height: 16px;
+        font-weight: bold;
+        li {
+            position: relative;
+            float: left;
+            a, 
+            span {
+                padding: 2px 5px;
+            }
+            a.grp-date-hierarchy-back {
+                color: #59afcc;
+                padding-left: 10px;
+                @include icons-sprite(date-hierarchy-back);
+                &:hover {
+                    color: #444;
+                }
+            }
+        }
+    }
 }
 .grp-date-hierarchy {
-	@include grp-date-hierarchy();
+    @include grp-date-hierarchy();
 }
 
 
@@ -104,9 +104,9 @@
 ------------------------------------------------------------------------------------------------------ */
 
 form#grp-changelist-search {
-	margin: 1px 0 0;
-	border: 1px solid #fff;
-	@include border-radius(20px);
+    margin: 1px 0 0;
+    border: 1px solid #fff;
+    @include border-radius(20px);
 }
 
 
@@ -115,121 +115,121 @@ form#grp-changelist-search {
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-pulldown {
-	position: relative;
-	top: 0;
-	width: inherit;
-	@include box-sizing(border-box);
-	@include border-radius($grp-border-radius + 1);
-	.grp-pulldown-handler {
-		display: block;
-	    margin: 0;
-	    font-weight: bold;
-	    @include border-radius($grp-border-radius);
-	    cursor: pointer;
-	    @include icons-sprite(pulldown-handler, $offset-x: 100%);
-	    @include grp-button-states(grey, blue);
-	    -webkit-background-size: auto !important;
-	    color: $grp-link-color;
-	    &:hover {
-	    	color: #444;
-	    	@include icons-sprite(pulldown-handler_hover, $offset-x: 100%);
-	    }
-	}
-	&.grp-pulldown-state-open {
-		z-index: 910;
-		float: left;
-		clear: both;
-		@include box-shadow(0 10px 50px #333);
-		.grp-pulldown-handler {
-			color: #444;
-			text-shadow: 0 1px 0 #fff;
-			@include border-bottom-radius(0 !important);
-		    border-bottom: 1px solid #ccc !important;
-		    @include icons-sprite(pulldown-handler_selected, $offset-x: 100%);
-		    @include grp-button-states(blue, blue);
-		    &:hover {
-		    	color: #444;
-		    	@include icons-sprite(pulldown-handler_selected, $offset-x: 100%);
-		    }
-		}
-		.grp-pulldown-content {
-			float: left;
-			clear: both;
-		}
-	}
-	.grp-pulldown-content {
-		padding: 0;
-		width: 100%;
-		@include border-bottom-radius($grp-border-radius);
-		@include grp-button-states(grey, grey);
-		border-top: 1px solid #fff !important;
-		@include box-sizing(border-box);
-		color: $grp-font-color;
-	    &:hover {
-	    	color: $grp-font-color;
-		}
-	}
+    position: relative;
+    top: 0;
+    width: inherit;
+    @include box-sizing(border-box);
+    @include border-radius($grp-border-radius + 1);
+    .grp-pulldown-handler {
+        display: block;
+        margin: 0;
+        font-weight: bold;
+        @include border-radius($grp-border-radius);
+        cursor: pointer;
+        @include icons-sprite(pulldown-handler, $offset-x: 100%);
+        @include grp-button-states(grey, blue);
+        -webkit-background-size: auto !important;
+        color: $grp-link-color;
+        &:hover {
+            color: #444;
+            @include icons-sprite(pulldown-handler_hover, $offset-x: 100%);
+        }
+    }
+    &.grp-pulldown-state-open {
+        z-index: 910;
+        float: left;
+        clear: both;
+        @include box-shadow(0 10px 50px #333);
+        .grp-pulldown-handler {
+            color: #444;
+            text-shadow: 0 1px 0 #fff;
+            @include border-bottom-radius(0 !important);
+            border-bottom: 1px solid #ccc !important;
+            @include icons-sprite(pulldown-handler_selected, $offset-x: 100%);
+            @include grp-button-states(blue, blue);
+            &:hover {
+                color: #444;
+                @include icons-sprite(pulldown-handler_selected, $offset-x: 100%);
+            }
+        }
+        .grp-pulldown-content {
+            float: left;
+            clear: both;
+        }
+    }
+    .grp-pulldown-content {
+        padding: 0;
+        width: 100%;
+        @include border-bottom-radius($grp-border-radius);
+        @include grp-button-states(grey, grey);
+        border-top: 1px solid #fff !important;
+        @include box-sizing(border-box);
+        color: $grp-font-color;
+        &:hover {
+            color: $grp-font-color;
+        }
+    }
 }
 .grp-pulldown-container {
-	@include grp-pulldown();
-	margin: -1px 0 0;
+    @include grp-pulldown();
+    margin: -1px 0 0;
 }
 
 
 #grp-filters {
-	position: relative;
-	&.grp-module {
-		z-index: 800;
-	}
+    position: relative;
+    &.grp-module {
+        z-index: 800;
+    }
 }
 
 .grp-filter {
-	position: relative;
-	float: left;
-	clear: both;
-	width: 100%;
-	&:not(.grp-module) {
-		height: 28px;
-	}
-	.grp-pulldown-container {
-		border: 1px solid #fff;
-	}
-	.grp-module:first-child {
-		h3 {
-			border-top: 0;
-		}
-	}
-	.grp-row {
-		label {
-			@include grp-label();
-			display: block;
-			margin: 0 0 2px;
-			color: $grp-font-color-quiet;
-			font-weight: bold;
-		}
-		select {
-			width: 100% !important;
-			max-width: 100% !important;
-		}
-		a {
-			display: block;
-			margin: -5px -10px;
-			padding: 2px 10px;
-			color: #59afcc;
-			font-size: $grp-font-size-s;
-			&:hover {
-		    	color: #444;
-		    }
-		}
-		&.grp-selected {
-			a {
-				padding-left: 17px;
-				color: $grp-font-color;
-				@include icons-small-sprite(filter-choice-selected);
-			}
-		}
-	}
-	@include legacy-pie-clearfix;
+    position: relative;
+    float: left;
+    clear: both;
+    width: 100%;
+    &:not(.grp-module) {
+        height: 28px;
+    }
+    .grp-pulldown-container {
+        border: 1px solid #fff;
+    }
+    .grp-module:first-child {
+        h3 {
+            border-top: 0;
+        }
+    }
+    .grp-row {
+        label {
+            @include grp-label();
+            display: block;
+            margin: 0 0 2px;
+            color: $grp-font-color-quiet;
+            font-weight: bold;
+        }
+        select {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        a {
+            display: block;
+            margin: -5px -10px;
+            padding: 2px 10px;
+            color: #59afcc;
+            font-size: $grp-font-size-s;
+            &:hover {
+                color: #444;
+            }
+        }
+        &.grp-selected {
+            a {
+                padding-left: 17px;
+                color: $grp-font-color;
+                @include icons-small-sprite(filter-choice-selected);
+            }
+        }
+    }
+    @include legacy-pie-clearfix;
 }
 
 
@@ -238,53 +238,53 @@ form#grp-changelist-search {
 ------------------------------------------------------------------------------------------------------ */
 
 li.grp-changelist-actions {
-	padding: 5px 0 !important;
-	background: transparent !important;
-	select {
-		position: relative;
-		float: left;
-		margin: 1px 5px 0 0;
-	}
-	.grp-horizontal-list {
-		@include horizontal-list(0, left);
-		margin: -1px 0;
-		li {
-			margin-right: 4px;
-			border: 1px solid #333;
-			@include border-radius($grp-border-radius + 1);
-		}
-		.grp-button {
-			padding: 5px 10px 4px;
-			height: 27px;
-			@include border-radius($grp-border-radius !important);
-		}
-		a {
-			opacity: 1 !important;
-			color: #59afcc;
-			font-weight: bold;
-			border: 1px solid #111;
-			background: #222;
-			&:hover {
-				color: #fff;
-				border: 1px solid #222;
-				background: #555;
-			}
-		}
-		span {
-			color: lighten($grp-font-color-quiet, 20) !important;
-			cursor: default !important;
-			border: 1px solid #111 !important;
-			background: #222 !important;
-		}
-	}
-	li.grp-all, 
-	li.grp-question, 
-	li.grp-clear-selection {
-		display: none;
-	}
+    padding: 5px 0 !important;
+    background: transparent !important;
+    select {
+        position: relative;
+        float: left;
+        margin: 1px 5px 0 0;
+    }
+    .grp-horizontal-list {
+        @include horizontal-list(0, left);
+        margin: -1px 0;
+        li {
+            margin-right: 4px;
+            border: 1px solid #333;
+            @include border-radius($grp-border-radius + 1);
+        }
+        .grp-button {
+            padding: 5px 10px 4px;
+            height: 27px;
+            @include border-radius($grp-border-radius !important);
+        }
+        a {
+            opacity: 1 !important;
+            color: #59afcc;
+            font-weight: bold;
+            border: 1px solid #111;
+            background: #222;
+            &:hover {
+                color: #fff;
+                border: 1px solid #222;
+                background: #555;
+            }
+        }
+        span {
+            color: lighten($grp-font-color-quiet, 20) !important;
+            cursor: default !important;
+            border: 1px solid #111 !important;
+            background: #222 !important;
+        }
+    }
+    li.grp-all, 
+    li.grp-question, 
+    li.grp-clear-selection {
+        display: none;
+    }
 }
 .grp-submit-row.grp-fixed-footer > ul > li.grp-changelist-actions {
-	padding: 5px 0 !important;
+    padding: 5px 0 !important;
 }
 
 
@@ -293,16 +293,24 @@ li.grp-changelist-actions {
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-changelist-results {
-	background: $grp-module-background-color url('../images/backgrounds/changelist-results.png') repeat scroll !important;
+    background: $grp-module-background-color url('../images/backgrounds/changelist-results.png') repeat scroll !important;
+    .grp-result-overflow-scroll & {
+        overflow: auto;
+        overflow-y: hidden;
+        -ms-overflow-y: hidden;
+        table {
+            border-right: 0 !important;
+        }
+    }
 }
 
 body.grp-change-list {
-	table {
-		margin: -1px !important;
-		tr.grp-selected {
-			th, td {
-				background: #ffd;
-			}
-		}
-	}
+    table {
+        margin: -1px !important;
+        tr.grp-selected {
+            th, td {
+                background: #ffd;
+            }
+        }
+    }
 }
