@@ -17,7 +17,7 @@ from django.utils.importlib import import_module
 
 
 def _get_dashboard_cls(dashboard_cls, context):
-    if type(dashboard_cls) is types.DictType:
+    if isinstance(dashboard_cls, dict):
         curr_url = context.get('request').path
         for key in dashboard_cls:
             admin_site_mod, admin_site_inst = key.rsplit('.', 1)
@@ -54,7 +54,7 @@ def get_admin_site(context=None, request=None):
         'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
     )
     
-    if type(dashboard_cls) is types.DictType:
+    if isinstance(dashboard_cls, dict):
         if context:
             request = context.get('request')
         curr_url = request.META['PATH_INFO']
