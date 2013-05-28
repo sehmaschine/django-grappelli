@@ -590,6 +590,16 @@ input[type=password],
     width: 118px;
 }
 
+input.grp-has-related-lookup,
+// input.vManyToManyRawIdAdminField,
+// input.vForeignKeyRawIdAdminField, 
+// input.vRelatedGeneric, 
+input.vDateField.hasDatepicker, 
+input.vTimeField.hasTimepicker, 
+input.vFileBrowseField {
+    padding-right: 24px !important;
+}
+
 input.vTextField, 
 input.vURLField, 
 input.vFileBrowseField, 
