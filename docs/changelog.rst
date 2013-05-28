@@ -14,6 +14,8 @@ Changelog
 2.4.5 (May 28th, 2013)
 ----------------------
 
+* New: Added templates for django-smuggler.
+* New: Added table-icons for TinyMCE.
 * Fixed: Simplejson deprecated in Django 1.5+.
 * Fixed: Docs referred to setting ``AUTOCOMPLETE_LIMIT`` instead of ``GRAPPELLI_AUTOCOMPLETE_LIMIT``.
 * Fixed: Fixed inconsistencies in the breadcrumb section of reversion templates.
@@ -25,6 +27,7 @@ Changelog
 * Fixed: Formatting of read–only fields (including linebreaks).
 * Improved: Renamed js-function HideAddBottons to HideAddButtons.
 * Improved: Hide add button with inlines if no permissions are given.
+* Improved: Python 3 support.
 
 2.4.4 (February 22, 2013)
 ------------------------
