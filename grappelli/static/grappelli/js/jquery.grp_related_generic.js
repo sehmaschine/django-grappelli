@@ -15,6 +15,8 @@
                 if (val) {
                     $this.after(options.placeholder).after(lookup_link($this.attr('id'),val));
                 }
+                // add related class
+                $this.addClass('grp-has-related-lookup');
                 // lookup
                 if (val) {
                     lookup_id($this, options); // lookup when loading page
