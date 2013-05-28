@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.4.5 (not yet released)
+2.4.6 (not yet released)
 ------------------------
+
+2.4.5 (May 28th, 2013)
+----------------------
 
 * Fixed: Simplejson deprecated in Django 1.5+.
 * Fixed: Docs referred to setting ``AUTOCOMPLETE_LIMIT`` instead of ``GRAPPELLI_AUTOCOMPLETE_LIMIT``.
@@ -18,6 +21,8 @@ Changelog
 * Fixed: Deprecation warning with importing URLs.
 * Fixed: Removed content from dashboard module docstring.
 * Fixed: Generic lookup (related and autocompletes) when ``content_type`` is in ``radio_fields``.
+* Fixed: Related lookup button overlaps m2m raw id inputs.
+* Fixed: Formatting of read–only fields (including linebreaks).
 * Improved: Renamed js-function HideAddBottons to HideAddButtons.
 * Improved: Hide add button with inlines if no permissions are given.
 
