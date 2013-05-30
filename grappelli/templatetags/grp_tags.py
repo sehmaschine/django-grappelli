@@ -14,6 +14,7 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
+from django.utils.translation import get_language
 from django.template.loader import get_template
 from django.template.context import Context
 
