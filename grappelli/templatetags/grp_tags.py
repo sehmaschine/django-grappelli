@@ -3,8 +3,6 @@
 # python imports
 from functools import wraps
 
-import re
-
 # try to use json (2.6+) but stay compatible with 2.5.*
 try:
     import json
@@ -97,10 +95,8 @@ def classname(obj, arg=None):
     if arg:
         if arg.lower() == classname:
             return True
-        else:
-            return False
-    else:
-        return classname
+        return False
+    return classname
 
 
 # FORMSETSORT FOR SORTABLE INLINES
