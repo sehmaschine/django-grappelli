@@ -41,6 +41,7 @@ var django = {
         
         var options = {
             //appendText: '(mm/dd/yyyy)',
+            constrainInput: false,
             showOn: 'button',
             buttonImageOnly: false,
             buttonText: '',
@@ -116,6 +117,7 @@ var django = {
     
     grappelli.reinitDateTimeFields = function(form) {
         form.find(".vDateField").datepicker({
+            constrainInput: false,
             showOn: 'button',
             buttonImageOnly: false,
             buttonText: '',
