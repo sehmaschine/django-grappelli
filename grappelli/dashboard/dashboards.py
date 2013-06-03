@@ -5,11 +5,8 @@ Module where grappelli dashboard classes are defined.
 """
 
 # DJANGO IMPORTS
-from django.template.defaultfilters import slugify
-from django.utils.importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from django.contrib.contenttypes.models import ContentType
 from django import forms
 
 # GRAPPELLI IMPORTS

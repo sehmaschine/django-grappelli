@@ -5,8 +5,6 @@ Admin ui common utilities.
 """
 
 # PYTHON IMPORTS
-import types
-import warnings
 from fnmatch import fnmatch
 
 # DJANGO IMPORTS

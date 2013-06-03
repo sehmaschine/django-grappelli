@@ -8,9 +8,6 @@ Dashboard template tags, the following dashboard tags are available:
 To load the dashboard tags: ``{% load grp_dashboard_tags %}``.
 """
 
-# PYTHON IMPORTS
-import math
-
 # DJANGO IMPORTS
 from django import template
 from django.core.urlresolvers import reverse
