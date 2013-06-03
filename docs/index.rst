@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |version| replace:: 2.4.5
+.. |version| replace:: 2.4.6
 
 .. _index:
 
@@ -77,8 +77,8 @@ Use the `Grappelli Google Group <http://groups.google.com/group/django-grappelli
 Versions and Compatibility
 --------------------------
 
-* |grappelli| 2.4.5 (Development version, not yet released, see branch Stable/2.4.x)
-* |grappelli| 2.4.4 (February 22 2013): Compatible with Django 1.4/1.5
+* |grappelli| 2.4.6 (Development version, not yet released, see branch Stable/2.4.x)
+* |grappelli| 2.4.5 (June 03 2013): Compatible with Django 1.4/1.5
 * |grappelli| 2.3.9 (September 06 2012): Compatible with Django 1.3
 
 Older versions are availabe at GitHub, but are not supported anymore.
