@@ -11,7 +11,7 @@ Changelog
 2.4.6 (not yet released)
 ------------------------
 
-2.4.5 (May 28th, 2013)
+2.4.5 (June 3rd, 2013)
 ----------------------
 
 * New: Added templates for django-smuggler.
@@ -25,6 +25,7 @@ Changelog
 * Fixed: Generic lookup (related and autocompletes) when ``content_type`` is in ``radio_fields``.
 * Fixed: Related lookup button overlaps m2m raw id inputs.
 * Fixed: Formatting of read–only fields (including linebreaks).
+* Fixed: Removed restriction for datefields input.
 * Improved: Renamed js-function HideAddBottons to HideAddButtons.
 * Improved: Hide add button with inlines if no permissions are given.
 * Improved: Python 3 support.
