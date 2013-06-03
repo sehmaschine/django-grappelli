@@ -3,8 +3,6 @@
 # python imports
 from functools import wraps
 
-import re
-
 # try to use json (2.6+) but stay compatible with 2.5.*
 try:
     import json
@@ -16,6 +14,7 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
+from django.utils.translation import get_language
 from django.template.loader import get_template
 from django.template.context import Context
 
@@ -97,10 +96,8 @@ def classname(obj, arg=None):
     if arg:
         if arg.lower() == classname:
             return True
-        else:
-            return False
-    else:
-        return classname
+        return False
+    return classname
 
 
 # FORMSETSORT FOR SORTABLE INLINES
