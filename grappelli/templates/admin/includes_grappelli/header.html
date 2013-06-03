@@ -4,32 +4,32 @@
     <h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>
     {% if user.is_authenticated and user.is_staff %}
         <ul id="grp-user-tools">
-            <!-- Username -->
-            <li class="grp-user-options-container grp-collapse grp-closed">
-                <a href="javascript://" class="user-options-handler grp-collapse-handler">{% filter force_escape %}{% firstof user.first_name user.username user.get_short_name user.get_username %}{% endfilter %}</a>
-                <ul class="grp-user-options">
-                    <!-- Change Password -->
-                    {% if user.has_usable_password %}
-                        {% url 'admin:password_change' as password_change_url %}
-                        {% if password_change_url %}
-                            <li><a href="{{ password_change_url }}">
-                        {% else %}
-                            <li><a href="{{ root_path }}password_change/">
-                        {% endif %}
-                        {% trans 'Change password' %}</a></li>
-                    {% endif %}
-                    <!-- Logout -->
-                    {% url 'admin:logout' as logout_url %}
-                    {% if logout_url %}
-                        <li><a href="{{ logout_url }}">
-                    {% else %}
-                        <li><a href="{{ root_path }}logout/">
-                    {% endif %}
-                    {% trans 'Log out' %}</a></li>
-                </ul>
-            </li>
             <!-- Userlinks -->
             {% block userlinks %}
+                <!-- Username -->
+                <li class="grp-user-options-container grp-collapse grp-closed">
+                    <a href="javascript://" class="user-options-handler grp-collapse-handler">{% filter force_escape %}{% firstof user.first_name user.username user.get_short_name user.get_username %}{% endfilter %}</a>
+                    <ul class="grp-user-options">
+                        <!-- Change Password -->
+                        {% if user.has_usable_password %}
+                            {% url 'admin:password_change' as password_change_url %}
+                            {% if password_change_url %}
+                                <li><a href="{{ password_change_url }}">
+                            {% else %}
+                                <li><a href="{{ root_path }}password_change/">
+                            {% endif %}
+                            {% trans 'Change password' %}</a></li>
+                        {% endif %}
+                        <!-- Logout -->
+                        {% url 'admin:logout' as logout_url %}
+                        {% if logout_url %}
+                            <li><a href="{{ logout_url }}">
+                        {% else %}
+                            <li><a href="{{ root_path }}logout/">
+                        {% endif %}
+                        {% trans 'Log out' %}</a></li>
+                    </ul>
+                </li>
                 <!-- JS tests -->
                 {% url 'test-index' as testindexurl %}
                 {% if testindexurl %}
@@ -43,8 +43,8 @@
             {% endblock %}
         </ul>
     {% endif %}
-    {% block nav-global %}
-    {% endblock %}
+    <!-- Nav-Global -->
+    {% block nav-global %}{% endblock %}
 </div>
 
 <script type="text/javascript" charset="utf-8">
