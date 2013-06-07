@@ -1,4 +1,5 @@
 {% extends "admin/base_site.html" %}
+{% load url from future %}
 {% load i18n %}
 {% block javascripts %}
     {{ block.super }}
@@ -48,9 +49,9 @@
                     {% for view in site_views.list|dictsort:"url" %}
                         {% ifchanged %}
                             <div class="grp-module">
-                                <h3><a href="{{ view.module }}.{{ view.name }}/">{{ view.url }}</a></h3>
+                                <h3><a href="{% url 'django-admindocs-views-detail' view=view.full_name %}">{{ view.url }}</a></h3>
                                 <div class="grp-row">
-                                    <p>View function: {{ view.module }}.{{ view.name }}</p>
+                                    <p>View function: {{ view.full_name }}</p>
                                     {% if view.title %}<p>{{ view.title }}</p>{% endif %}
                                 </div>
                             </div>

@@ -16,7 +16,7 @@
     <h1>{{ name }}</h1>
     <div class="g-d-c grp-rte">
         <div class="grp-module">
-            <h2>{{ summary }}</h2>
+            <h2>{{ summary|striptags }}</h2>
             <div class="grp-row" style="border: 0">
                 <p>{{ body }}</p>
             </div>
