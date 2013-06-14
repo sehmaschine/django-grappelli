@@ -179,9 +179,15 @@
 			</div>
 		</div>
 
-		<div class="mceActionPanel">
-			<input type="submit" id="insert" name="insert" value="{#insert}" />
-			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+		<div class="mceActionPanel grp-module grp-submit-row">
+			<ul>
+				<li class="grp-float-left">
+					<input type="submit" id="insert" name="insert" value="{#insert}" />
+				</li>
+				<li>
+					<input type="button" id="cancel" name="cancel" value="{#cancel}" class="grp-button grp-cancel-link" onclick="tinyMCEPopup.close();" />
+				</li>
+			</ul>
 		</div>
 	</form>
 </body>
