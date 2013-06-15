@@ -1,0 +1,104 @@
+{% extends "admin/base_site.html" %}
+
+{% load admin_list %}
+{% load i18n %}
+{% load static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ media.js }}
+    {{ media.css }}
+    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+    <script type="text/javascript">
+        (function($) {
+            $(document).ready(function() {
+                grappelli.initDateAndTimePicker();
+            });
+        })(grp.jQuery);
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <ul class="grp-horizontal-list">
+            <li>
+                <a href="../../">
+                    {% trans "Home" %}
+                </a>
+            </li>
+            <li>
+                <a href="../">
+                    {{ app_label|capfirst }}
+                </a>
+            </li>
+            <li>
+                {{ opts.verbose_name_plural|capfirst }}
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block bodyclass %}change-form{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <table cellspacing="0" style="width:100%;">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <div class="grp-text">
+                            <span>{% trans "Name" %}</span>
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="grp-text">
+                            <span>{% trans "Default" %}</span>
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="grp-text">
+                            <span>{% trans "Value" %}</span>
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="grp-text">
+                            <span>{% trans "Is modified" %}</span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            {% for item in config %}
+                <tr class="grp-row grp-row-{% cycle 'odd' 'even' %}">
+                    <td>
+                        <div class="grp-text"><span>{{item.name}}</span></div>
+                        <p class="grp-help">{{item.help_text}}</p>
+                    </td>
+                    <td>
+                        <div class="grp-text"><span>{{ item.default }}</span></div>
+                    </td>
+                    <td>
+                        {% if item.form_field.errors %}
+                            <ul class="errorlist">
+                                {% for error in item.form_field.errors %}<li>{{ error }}</li>{% endfor %}
+                            </ul>
+                        {% endif %}
+                        {{ item.form_field }}
+                    </td>
+                    <td style="text-align:center; vertical-align:middle;">
+                        <img src="{{ STATIC_URL }}admin/img/icon-{% if item.modified %}yes{% else %}no{% endif %}.gif" alt="{{ item.modified }}" />
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <footer class="grp-submit-row grp-fixed-footer">
+            <ul>
+                <li class="grp-float-right">
+                    <input type="submit" name="_save" class="grp-button grp-default" value="{% trans 'Save' %}"/>
+                </li>
+            </ul>
+        </footer>
+    </form>
+{% endblock %}
+
+
