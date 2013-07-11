@@ -21,7 +21,7 @@ except ImportError:
     from django.utils import simplejson as json
 
 # GRAPPELLI IMPORTS
-from grappelli.settings import AUTOCOMPLETE_LIMIT
+from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
 
 
 def get_label(f):
@@ -118,6 +118,13 @@ class AutocompleteLookup(RelatedLookup):
     def get_searched_queryset(self, qs):
         model = self.model
         term = self.GET["term"]
+
+        try:
+            search_fields = model.autocomplete_search_fields()
+        except AttributeError:
+            search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
+        except KeyError:
+            search_fields = ()
 
         for word in term.split():
             search = [models.Q(**{smart_str(item): smart_str(word)}) for item in model.autocomplete_search_fields()]
