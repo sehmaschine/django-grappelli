@@ -35,9 +35,7 @@ def ajax_response(data):
 
 
 class RelatedLookup(View):
-    u"""
-    Related Lookup
-    """
+    "Related Lookup"
 
     def check_user_permission(self):
         if not (self.request.user.is_active and self.request.user.is_staff):
@@ -80,9 +78,7 @@ class RelatedLookup(View):
 
 
 class M2MLookup(RelatedLookup):
-    u"""
-    M2M Lookup
-    """
+    "M2M Lookup"
 
     def get_data(self):
         obj_ids = self.GET['object_id'].split(',')
@@ -97,9 +93,7 @@ class M2MLookup(RelatedLookup):
 
 
 class AutocompleteLookup(RelatedLookup):
-    u"""
-    AutocompleteLookup
-    """
+    "AutocompleteLookup"
 
     def request_is_valid(self):
         return 'term' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
