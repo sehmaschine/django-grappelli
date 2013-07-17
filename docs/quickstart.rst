@@ -27,10 +27,11 @@ Open ``settings.py`` and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``
         'django.contrib.admin',
     )
 
-Add URL-patterns::
+Add URL-patterns. The grappelli URLs are needed for related–lookups and autocompletes. Your admin interface is available with the URL you defined for ``admin.site``::
 
     urlpatterns = patterns('',
-        (r'^grappelli/', include('grappelli.urls')),
+        (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+        (r'^admin/',  include(admin.site.urls)), # admin site
     )
 
 Make sure ``AppDirectoriesFinder`` is first with your ``STATICFILES_FINDERS``::
