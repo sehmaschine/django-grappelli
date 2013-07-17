@@ -13,6 +13,8 @@ While |grappelli| is mainly about the look & feel of the admin interface, it als
 Available Settings
 ------------------
 
+.. versionadded:: 2.4.6
+    Added setting GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS
 .. versionadded:: 2.4.1
     Added setting GRAPPELLI_AUTOCOMPLETE_LIMIT
 
@@ -21,6 +23,9 @@ Available Settings
 
 ``GRAPPELLI_AUTOCOMPLETE_LIMIT``
     Number of items to show with autocomplete drop–downs.
+
+``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS``
+    A dictionary containing search patterns for models you cannot (or should not) alter.
 
 .. _customizationcollapsibles:
 
@@ -163,11 +168,16 @@ For the representation of an object, we first check for a callable ``related_lab
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
 
+.. note::
+    In order to use related lookups, you need to register both ends (models) of the relationship with your ``admin.site``.
+
 .. _customizationautocompletelookups:
 
 Autocomplete Lookups
 --------------------
 
+.. versionchanged:: 2.4.6
+    staticmethod ``autocomplete_search_fields`` is optional if ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS`` is being used.
 .. versionchanged:: 2.3.5
     staticmethod ``autocomplete_search_fields`` is required, ``related_autocomplete_lookup`` has been removed.
 .. versionadded:: 2.3.4
@@ -183,6 +193,14 @@ Add the staticmethod ``autocomplete_search_fields`` to all models you want to se
         @staticmethod
         def autocomplete_search_fields():
             return ("id__iexact", "name__icontains",)
+
+If the staticmethod is not given, ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS`` will be used if the app/model is defined::
+
+    GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS = {
+        "myapp": {
+            "mymodel": ("id__iexact", "name__icontains",)
+        }
+    }
 
 Defining autocomplete lookups is very similar to related lookups::
 
@@ -237,6 +255,9 @@ For the representation of an object, we first check for a callable ``related_lab
     
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
+
+.. note::
+    In order to use autocompletes, you need to register both ends (models) of the relationship with your ``admin.site``.
 
 .. _customizationtinymce:
 

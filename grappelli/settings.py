@@ -12,3 +12,6 @@ ADMIN_URL = getattr(settings, "GRAPPELLI_ADMIN_URL", '/admin/')
 
 # AUTOCOMPLETE LIMIT
 AUTOCOMPLETE_LIMIT = getattr(settings, "GRAPPELLI_AUTOCOMPLETE_LIMIT", 10)
+
+# Alternative approach to define autocomplete search fields
+AUTOCOMPLETE_SEARCH_FIELDS = getattr(settings, "GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS", {})

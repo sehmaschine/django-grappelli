@@ -21,7 +21,7 @@ except ImportError:
     from django.utils import simplejson as json
 
 # GRAPPELLI IMPORTS
-from grappelli.settings import AUTOCOMPLETE_LIMIT
+from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
 
 
 def get_label(f):
@@ -35,9 +35,7 @@ def ajax_response(data):
 
 
 class RelatedLookup(View):
-    u"""
-    Related Lookup
-    """
+    "Related Lookup"
 
     def check_user_permission(self):
         if not (self.request.user.is_active and self.request.user.is_staff):
@@ -80,9 +78,7 @@ class RelatedLookup(View):
 
 
 class M2MLookup(RelatedLookup):
-    u"""
-    M2M Lookup
-    """
+    "M2M Lookup"
 
     def get_data(self):
         obj_ids = self.GET['object_id'].split(',')
@@ -97,9 +93,7 @@ class M2MLookup(RelatedLookup):
 
 
 class AutocompleteLookup(RelatedLookup):
-    u"""
-    AutocompleteLookup
-    """
+    "AutocompleteLookup"
 
     def request_is_valid(self):
         return 'term' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
@@ -119,8 +113,15 @@ class AutocompleteLookup(RelatedLookup):
         model = self.model
         term = self.GET["term"]
 
+        try:
+            search_fields = model.autocomplete_search_fields()
+        except AttributeError:
+            search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
+        except KeyError:
+            search_fields = ()
+
         for word in term.split():
-            search = [models.Q(**{smart_str(item): smart_str(word)}) for item in model.autocomplete_search_fields()]
+            search = [models.Q(**{smart_str(item): smart_str(word)}) for item in search_fields]
             search_qs = QuerySet(model)
             search_qs.dup_select_related(qs)
             search_qs = search_qs.filter(reduce(operator.or_, search))

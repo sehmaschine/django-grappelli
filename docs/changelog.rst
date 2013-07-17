@@ -11,6 +11,14 @@ Changelog
 2.4.6 (not yet released)
 ------------------------
 
+* New: Setting AUTOCOMPLETE_SEARCH_FIELDS. Useful if you need to add autocompletes to a model you cannot alter.
+* Fixed: Removed unicode literals (for building grappelli with Python 3.2 correctly).
+* Fixed: Added docs about registering both ends of a relationship with related lookups and autocompletes.
+* Fixed: Escape autocompletion terms before passing them on to the request.
+* Fixed: TinyMCE table layout.
+* Fixed: Deleted compress.by from admin folder.
+* Fixed: Removed the css–reference within TinyMCE paste plugin.
+
 2.4.5 (June 3rd, 2013)
 ----------------------
 
@@ -31,7 +39,7 @@ Changelog
 * Improved: Python 3 support.
 
 2.4.4 (February 22, 2013)
-------------------------
+-------------------------
 
 * New: Added Czech translation for TinyMCE.
 * Fixed: set correct case-sensitive dependency for Django in setup.py.
