@@ -168,6 +168,9 @@ For the representation of an object, we first check for a callable ``related_lab
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
 
+.. note::
+    In order to use related lookups, you need to register both ends (models) of the relationship with your ``admin.site``.
+
 .. _customizationautocompletelookups:
 
 Autocomplete Lookups
@@ -252,6 +255,9 @@ For the representation of an object, we first check for a callable ``related_lab
     
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
+
+.. note::
+    In order to use autocompletes, you need to register both ends (models) of the relationship with your ``admin.site``.
 
 .. _customizationtinymce:
 
