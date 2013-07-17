@@ -26,3 +26,14 @@ Django Reversion
 .. note::
 
 	``grappelli`` needs to be before ``reversion`` within ``INSTALLED_APPS``.
+
+Django Smuggler
+---------------
+
+.. versionadded:: 2.4.5
+
+|grappelli| includes all necessary templates for `Django Smuggler <https://github.com/etianen/django-reversion/>`_.
+
+.. note::
+
+	``grappelli`` needs to be before ``smuggler`` within ``INSTALLED_APPS``.
