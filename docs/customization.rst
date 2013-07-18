@@ -286,6 +286,9 @@ Using TinyMCE with inlines is a bit more tricky because of the hidden extra inli
 
 If our version of TinyMCE does not fit your needs, add a different version to your static directory and change the above mentioned ModelAdmin setup (paths to js–files).
 
+.. warning::
+    TinyMCE will be removed with version 2.5 of |grappelli|, because TinyMCE version 4.x comes with a decent skin.
+
 .. _changelistfilters:
 
 Changelist Templates
