@@ -2,7 +2,7 @@
 
 <!-- LOADING -->
 {% load url from future %}
-{% load admin_static i18n admin_modify grp_tags %}
+{% load admin_static i18n admin_modify grp_tags admin_urls %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -107,7 +107,7 @@
         <ul>
             <li><a href="../../../">{% trans "Home" %}</a></li>
             <li><a href="../../">{% trans app_label|capfirst|escape %}</a></li>
-            <li>{% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
+            <li>{% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
             <li>{% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
         </ul>
     {% endif %}

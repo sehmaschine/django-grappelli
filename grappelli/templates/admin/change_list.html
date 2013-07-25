@@ -2,7 +2,7 @@
 
 <!-- LOADING -->
 {% load url from future %}
-{% load admin_list i18n grp_tags %}
+{% load admin_list i18n grp_tags admin_urls %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -144,7 +144,7 @@
     {% if has_add_permission %}
         <ul class="grp-object-tools">
             {% block object-tools-items %}
-                <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="grp-add-link grp-state-focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
+                <li><a href="{% url cl.opts|admin_urlname:'add' %}{% if is_popup %}?_popup=1{% endif %}" class="grp-add-link grp-state-focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
             {% endblock %}
         </ul>
     {% endif %}
