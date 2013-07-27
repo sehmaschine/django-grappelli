@@ -88,6 +88,11 @@
                     text = text.replace(/<br>.*: /, "");
                     $(this).html(text);
                 });
+                // HACK: rearrange inlines
+                $('div.grp-group').each(function() {
+                    var placeholder = $("fieldset.placeholder."+$(this).attr("id"));
+                    $(placeholder).replaceWith($(this));
+                });
             });
         })(grp.jQuery);
     </script>

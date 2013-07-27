@@ -60,7 +60,6 @@ With `StackedInlines <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#d
         classes = ('grp-collapse grp-open',)
         inline_classes = ('grp-collapse grp-open',)
 
-
 .. _customizationinlinessortables:
 
 Inline Sortables
@@ -102,6 +101,29 @@ You may want to define ``sortable_excludes`` (either list or tuple) in order to 
         sortable_field_name = "position"
         # define sortable_excludes
         sortable_excludes = ("field_1", "field_2",)
+
+.. _customizationrearrangeinlines:
+
+Rearrange Inlines
+-----------------
+
+.. versionadded:: 2.4.6
+
+Sometimes it might make sense to not show inlines at the bottom of the page/form, but somewhere in–between. In order to achieve this, you need to define a placeholder with your fields/fieldsets in admin.py::
+
+    ("Some Fieldset", {
+        "classes": ("grp-collapse grp-open",),
+        "fields": ("whatever",)
+    }),
+    ("Image Inlines", {"classes": ("placeholder images-group",), "fields" : ()}),
+    ("Another Fieldset", {
+        "classes": ("grp-collapse grp-open",),
+        "fields": ("whatever",)
+    }),
+
+    inlines = [ImageInlines]
+
+The two classes for the placeholder are important. First, you need a class ``placeholder``. The second class needs to match the ``id`` of the inline–group.
 
 .. _customizationrelatedlookups:
 
