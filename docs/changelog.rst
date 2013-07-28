@@ -20,6 +20,7 @@ Changelog
 * Fixed: Deleted compress.by from admin folder.
 * Fixed: Removed the css–reference within TinyMCE paste plugin.
 * Fixed: URLField with changelist.
+* Fixed: Bug with TinyMCE plugin grappelli, when toolbar2 is not defined.
 
 2.4.5 (June 3rd, 2013)
 ----------------------
