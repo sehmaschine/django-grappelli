@@ -678,17 +678,22 @@ textarea,
 .grp-cell input[type=text], 
 .grp-cell input[type=password], 
 .grp-cell select, 
+.grp-cell input[readonly], 
+.grp-cell input[disabled], 
+.grp-cell textarea[readonly], 
+.grp-cell select[disabled], 
 .grp-cell .grp-autocomplete-wrapper-m2m, 
 .grp-cell .grp-autocomplete-wrapper-fk {
-    max-width: 280px;
+    max-width: 278px;
 }
-.grp-cell .grp-autocomplete-wrapper-m2m, 
-.grp-cell .grp-autocomplete-wrapper-fk {
-    width: 280px;
-}
+
 .grp-cell .grp-autocomplete-wrapper-m2m ul.grp-repr, 
 .grp-cell .grp-autocomplete-wrapper-m2m ul.grp-repr li {
-    max-width: 222px;
+    max-width: 220px;
+}
+
+.grp-cell div.grp-readonly {
+    max-width: 266px;
 }
 
 
