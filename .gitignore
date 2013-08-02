@@ -4,6 +4,7 @@ docs/_build/
 dist/*
 django_grappelli.egg-info/*
 grappelli/compass/.sass-cache/
+grappelli/static/tinymce_dev
 fabfile.py
 .sass-cache
 .project
