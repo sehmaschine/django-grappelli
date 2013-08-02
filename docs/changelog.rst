@@ -13,6 +13,7 @@ Changelog
 
 * New: Rearrange inlines within the changeform (see :ref:`customizationrearrangeinlines`)
 * New: Setting AUTOCOMPLETE_SEARCH_FIELDS. Useful if you need to add autocompletes to a model you cannot alter.
+* New: Added compatibility with django–constance.
 * Fixed: Removed unicode literals (for building grappelli with Python 3.2 correctly).
 * Fixed: Added docs about registering both ends of a relationship with related lookups and autocompletes.
 * Fixed: Escape autocompletion terms before passing them on to the request.
