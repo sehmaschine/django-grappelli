@@ -10,7 +10,7 @@ setup(
     description='A jazzy skin for the Django Admin-Interface.',
     long_description = read('README.rst'),
     author='Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)',
-    author_email='werkstaetten@vonautomatisch.at',
+    author_email='office@vonautomatisch.at',
     url = 'http://django-grappelli.readthedocs.org',
     download_url='',
     packages=find_packages(),
