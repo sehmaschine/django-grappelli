@@ -43,7 +43,7 @@
             model_name: grappelli.get_model_name(elem)
         }, function(data) {
             values = $.map(data, function (a) { return '<span class="grp-placeholder-label">' + a.label + '</span>'; });
-            if (values == "") {
+            if (values === "") {
                 elem.parent().find('.grp-placeholder-related-m2m').hide();
             } else {
                 elem.parent().find('.grp-placeholder-related-m2m').show();

@@ -232,7 +232,7 @@
                         }
                     });
                 });
-            },
+            }
         });
         
         {% if inline_admin_formset.opts.sortable_field_name %}
@@ -250,9 +250,9 @@
                 var template = "<div class='grp-tr'>",
                     len = ui.item.find("div.grp-tr").children("div.grp-td").length;
                 for (var i = 0; i < len; i++) {
-                    template += "<div class='grp-td' style='height:" + (ui.item.outerHeight() + 12 ) + "px'>&nbsp;</div>"
+                    template += "<div class='grp-td' style='height:" + (ui.item.outerHeight() + 12 ) + "px'>&nbsp;</div>";
                 }
-                template += "</div>"
+                template += "</div>";
                 ui.placeholder.addClass("grp-tbody grp-module").append(template);
             },
             stop: function(evt, ui) {
@@ -260,7 +260,7 @@
                 // Toggle div.table twice to remove webkits border-spacing bug
                 $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-table").toggle().toggle();
                 $(window).scrollTop(lastScrollTop);
-            },
+            }
         });
         $("#{{ opts.module_name }}_form").bind("submit", function(){
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}",
@@ -278,7 +278,7 @@
                     //console.log(has_value);
                     if (has_value && $(this).attr("name") && $.inArray($(this).attr("name").split("-").pop(), sortable_excludes) == -1) {
                         submit_values = true;
-                    };
+                    }
                 });
                 if (submit_values) {
                     $(this).find("input[name$='"+sortable_field_name+"']").val(i);

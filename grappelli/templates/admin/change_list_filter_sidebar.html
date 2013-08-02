@@ -101,6 +101,18 @@
                     });
                     // reset actions select box
                     $('.grp-changelist-actions select').val(-1);
+                    // find errors and move (because errors should be below form elements)
+                    $("ul.errorlist").each(function() {
+                        $(this).parents("td").append($(this));
+                    });
+                    // HACK: get rid of currently/change with URL–fields. F**K!!!
+                    $('p.url').each(function() {
+                        $(this).find("a").remove();
+                        var text = $(this).html();
+                        text = text.replace(/^\w*: /, "");
+                        text = text.replace(/<br>.*: /, "");
+                        $(this).html(text);
+                    });
                     // check result list overflow
                     checkOverflow = function(){
                         var resultModuleWidth = $('.grp-changelist-results').width();
