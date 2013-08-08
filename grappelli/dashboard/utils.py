@@ -49,7 +49,7 @@ def get_admin_site(context=None, request=None):
     dashboard_cls = getattr(
         settings,
         'GRAPPELLI_INDEX_DASHBOARD',
-        'admin_tools.dashboard.dashboards.DefaultIndexDashboard'
+        'grappelli.dashboard.dashboards.DefaultIndexDashboard'
     )
     
     if isinstance(dashboard_cls, dict):
