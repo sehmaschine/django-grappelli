@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.4.6 (not yet released)
+2.4.7 (not yet released)
 ------------------------
+
+2.4.6 (August 22nd, 2013)
+-------------------------
 
 * New: Rearrange inlines within the changeform (see :ref:`customizationrearrangeinlines`)
 * New: Setting AUTOCOMPLETE_SEARCH_FIELDS. Useful if you need to add autocompletes to a model you cannot alter.
@@ -17,10 +20,10 @@ Changelog
 * Fixed: Removed unicode literals (for building grappelli with Python 3.2 correctly).
 * Fixed: Added docs about registering both ends of a relationship with related lookups and autocompletes.
 * Fixed: Escape autocompletion terms before passing them on to the request.
-* Fixed: TinyMCE table layout.
 * Fixed: Deleted compress.by from admin folder.
-* Fixed: Removed the css–reference within TinyMCE paste plugin.
 * Fixed: URLField with changelist.
+* Fixed: TinyMCE table layout.
+* Fixed: Removed the css–reference within TinyMCE paste plugin.
 * Fixed: Bug with TinyMCE plugin grappelli, when toolbar2 is not defined.
 * Improved: removed title–tag from inline verbose_name.
 
