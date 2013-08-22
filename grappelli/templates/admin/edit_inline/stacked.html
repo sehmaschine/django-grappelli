@@ -19,7 +19,7 @@
             <!-- element -->
             <div class="grp-module {{ inline_admin_formset.opts.inline_classes|join:" "|default:"grp-collapse grp-closed" }}{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} grp-empty-form{% endif %}"
                 id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
-                <h3 class="grp-collapse-handler">{{ inline_admin_formset.opts.verbose_name|title }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
+                <h3 class="grp-collapse-handler">{{ inline_admin_formset.opts.verbose_name }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
                 <ul class="grp-tools">
                     {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
                     {% if inline_admin_formset.opts.sortable_field_name %}
@@ -50,7 +50,7 @@
     </div>
     <div class="grp-module grp-transparent">
         <div class="grp-row">
-            <a href="javascript://" class="grp-add-handler"><strong>{% blocktrans with inline_admin_formset.opts.verbose_name|title as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</strong></a>
+            <a href="javascript://" class="grp-add-handler"><strong>{% blocktrans with inline_admin_formset.opts.verbose_name as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</strong></a>
             <ul class="grp-tools">
                 <li><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"> </a></li>
             </ul>
