@@ -278,6 +278,21 @@ For the representation of an object, we first check for a callable ``related_lab
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
 
+If the human-readable value of a field you are searching on is too large to be indexed (e.g. long text as SHA key) or is saved in a different format (e.g. date as integer timestamp), add a ``autocomplete_term_adjust`` staticmethod to the corresponding model with the appropriate transformation and perform the lookup on the indexed field::
+
+    class MyModel(models.Model):
+        text = models.TextField(u"Long text")
+        text_hash = models.CharField(u"Text hash", max_length=40, unique=True)
+    
+        @staticmethod
+        def autocomplete_term_adjust(term):
+            return hashlib.sha1(term).hexdigest()
+    
+        @staticmethod
+        def autocomplete_search_fields():
+            return ("text_hash__iexact",)
+
+
 .. note::
     In order to use autocompletes, you need to register both ends (models) of the relationship with your ``admin.site``.
 
