@@ -27,7 +27,7 @@
                     {% endif %}
                     {% if inline_admin_form.original %}
                         {% if inline_admin_formset.formset.can_delete %}
-                            <li>{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon grp-delete-handler" title="{% trans 'Delete Item' %}"></a></li>
+                            <li class="grp-delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon grp-delete-handler" title="{% trans 'Delete Item' %}"></a></li>
                         {% else %}
                             <li><span class="grp-icon">&nbsp;</span></li>
                         {% endif %}
