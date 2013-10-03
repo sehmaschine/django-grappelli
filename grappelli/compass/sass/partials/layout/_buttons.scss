@@ -230,9 +230,12 @@ a.related-lookup + strong {
 }
 
 a.related-lookup.m2m, 
-.grp-autocomplete-wrapper-m2m a.related-lookup, 
-.grp-autocomplete-wrapper-fk a.related-lookup {
+.grp-autocomplete-wrapper-m2m a.related-lookup {
     @include icons-sprite(related-lookup-m2m);
+    @include grp-button-states(blue, grey);
+}
+.grp-autocomplete-wrapper-fk a.related-lookup {
+    @include icons-sprite(related-lookup);
     @include grp-button-states(blue, grey);
 }
 
