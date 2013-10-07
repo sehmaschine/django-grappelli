@@ -10,7 +10,7 @@ from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
 from django.utils.translation import ungettext, ugettext as _
-from django.utils.encoding import smart_str
+from django.utils.encoding import smart_bytes, smart_text
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.util import prepare_lookup_value
 
@@ -27,7 +27,7 @@ from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
 def get_label(f):
     if getattr(f, "related_label", None):
         return f.related_label()
-    return f.__unicode__()
+    return smart_text(f)
 
 
 def ajax_response(data):
@@ -106,7 +106,7 @@ class AutocompleteLookup(RelatedLookup):
             for item in query_string.split("&"):
                 k, v = item.split("=")
                 if k != "t":
-                    filters[smart_str(k)] = prepare_lookup_value(smart_str(k), smart_str(v))
+                    filters[smart_bytes(k)] = prepare_lookup_value(smart_bytes(k), smart_bytes(v))
         return qs.filter(**filters)
 
     def get_searched_queryset(self, qs):
@@ -121,7 +121,7 @@ class AutocompleteLookup(RelatedLookup):
             search_fields = ()
 
         for word in term.split():
-            search = [models.Q(**{smart_str(item): smart_str(word)}) for item in search_fields]
+            search = [models.Q(**{smart_bytes(item): smart_bytes(word)}) for item in search_fields]
             search_qs = QuerySet(model)
             search_qs.dup_select_related(qs)
             search_qs = search_qs.filter(reduce(operator.or_, search))
