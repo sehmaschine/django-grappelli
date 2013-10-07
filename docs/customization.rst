@@ -182,13 +182,23 @@ If your generic relation points to a model using a custom primary key, you need 
 .. versionadded:: 2.3.4
     ``related_label``.
 
-For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
+For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used in Python 2.x or ``__str__`` in Python 3.x.
+
+Example in Python 2 ::
 
     def __unicode__(self):
         return u"%s" % self.name
     
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
+
+Example in Python 3 ::
+
+    def __str__(self):
+        return "%s" % self.name
+    
+    def related_label(self):
+        return "%s (%s)" % (self.name, self.id)
 
 .. note::
     In order to use related lookups, you need to register both ends (models) of the relationship with your ``admin.site``.
@@ -270,13 +280,23 @@ If your generic relation points to a model using a custom primary key, you need 
         def id(self):
             return self.cpk
 
-For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used::
+For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being usedin Python 2.x or ``__str__`` in Python 3.x.
+
+Example in Python 2 ::
 
     def __unicode__(self):
         return u"%s" % self.name
     
     def related_label(self):
         return u"%s (%s)" % (self.name, self.id)
+
+Example in Python 3 ::
+
+    def __str__(self):
+        return "%s" % self.name
+    
+    def related_label(self):
+        return "%s (%s)" % (self.name, self.id)
 
 .. note::
     In order to use autocompletes, you need to register both ends (models) of the relationship with your ``admin.site``.
