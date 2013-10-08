@@ -280,6 +280,20 @@ If your generic relation points to a model using a custom primary key, you need 
         def id(self):
             return self.cpk
 
+If the human-readable value of a field you are searching on is too large to be indexed (e.g. long text as SHA key) or is saved in a different format (e.g. date as integer timestamp), add a staticmethod ``autocomplete_term_adjust`` to the corresponding model with the appropriate transformation and perform the lookup on the indexed field::
+    
+    class MyModel(models.Model):
+        text = models.TextField(u"Long text")
+        text_hash = models.CharField(u"Text hash", max_length=40, unique=True)
+
+        @staticmethod
+        def autocomplete_term_adjust(term):
+            return hashlib.sha1(term).hexdigest()
+
+        @staticmethod
+        def autocomplete_search_fields():
+            return ("text_hash__iexact",)
+
 For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being usedin Python 2.x or ``__str__`` in Python 3.x.
 
 Example in Python 2 ::

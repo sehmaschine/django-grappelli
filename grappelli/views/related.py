@@ -114,6 +114,11 @@ class AutocompleteLookup(RelatedLookup):
         term = self.GET["term"]
 
         try:
+            term = model.autocomplete_term_adjust(term)
+        except AttributeError:
+            pass
+
+        try:
             search_fields = model.autocomplete_search_fields()
         except AttributeError:
             search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
