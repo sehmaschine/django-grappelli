@@ -35,7 +35,7 @@ var django = {
         $('p.datetime').each(function() {
             var text = $(this).html();
             text = text.replace(/^\w*: /, "");
-            text = text.replace(/<br>.*: /, "<br>");
+            text = text.replace(/<br>[^<]*: /g, "<br>");
             $(this).html(text);
         });
         
