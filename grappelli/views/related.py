@@ -2,7 +2,6 @@
 
 # PYTHON IMPORTS
 import operator
-from functools import reduce
 
 # DJANGO IMPORTS
 from django.http import HttpResponse
@@ -113,11 +112,6 @@ class AutocompleteLookup(RelatedLookup):
     def get_searched_queryset(self, qs):
         model = self.model
         term = self.GET["term"]
-
-        try:
-            term = model.autocomplete_term_adjust(term)
-        except AttributeError:
-            pass
 
         try:
             search_fields = model.autocomplete_search_fields()
