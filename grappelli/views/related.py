@@ -2,6 +2,7 @@
 
 # PYTHON IMPORTS
 import operator
+from functools import reduce
 
 # DJANGO IMPORTS
 from django.http import HttpResponse
