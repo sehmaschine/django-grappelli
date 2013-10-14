@@ -5,7 +5,7 @@
 {% block title %}Grappelli Documentation &raquo; Change-Form{% endblock %}
 
 {% block extrahead %}
-	<script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8">
         (function($) {
             $(document).ready(function() {
                 $("#grp-content-container .grp-group").grp_collapsible_group();
@@ -23,7 +23,7 @@
                 });
             });
         })(django.jQuery);
-	</script>
+    </script>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -36,34 +36,35 @@
 {% block content %}
     <h1>Change-Form</h1>
     <div class="g-d-c">
-    	<div class="grp-doc-description">
-            <p>A change-form is used for adding/editing the data of an object. Its basic structure and most important components are explained below.<br />At the end of the page you'll find a whole change-form template put together.</p>
-            <p>Make sure to read about <a href="{% url 'grp_doc_basic_page_structure' %}">how a custom template is built</a> first to gain basic understanding.</p>
+        <div class="g-d-24">
+            <div class="grp-doc-description">
+                <p>A change-form is used for adding/editing the data of an object. Its basic structure and most important components are explained below. At the end of the page, you'll find a complete change-form template. Make sure to read about <a href="{% url 'grp_doc_basic_page_structure' %}">how a custom template is built</a> first to gain basic understanding.</p>
+            </div>
         </div>
         <section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>Extend the Base, Load Stuff You Need, Define the Body-Class</h1>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Extend the Base, Load Stuff You Need, Define the Body-Class</h1>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} extends "admin/base_site.html" {% templatetag closeblock %}
+{% templatetag openblock %} load url from future {% templatetag closeblock %}
 {% templatetag openblock %} load i18n admin_static admin_modify grp_tags {% templatetag closeblock %}
 {% templatetag openblock %} block bodyclass {% templatetag closeblock %}grp-change-form{% templatetag openblock %} endblock {% templatetag closeblock %}
 {% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
-	    <section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>Custom Stylesheets, Javascripts</h1>
-		            <p>Link some custom stylesheets if you need them.</p>
-		            <p>Regarding javascripts you should take a look at Grappellis change_form.html as there is a lot. Mentioned below are just the lines you need for the page-tools and the collapsibles.</p>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Custom Stylesheets, Javascripts</h1>
+                    <p>Link custom stylesheets if needed. Regarding javascripts, you should take a look at Grappellis change_list.html &mdash; mentioned below are just the parts you need for the page-tools and collapsibles.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} block extrastyle {% templatetag closeblock %}
     <link href="Path to your custom stylesheet" rel="stylesheet" type="text/css" />
 {% templatetag openblock %} endblock {% templatetag closeblock %}
@@ -108,17 +109,17 @@
     </script>
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 {% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
-	    <section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>Page-Tools &amp; Breadcrumbs</h1>
-		            <p>A detailled explanation on how breadcrumbs &amp; page-tools are built can be found <a href="{% url 'grp_doc_context_navigation' %}">here</a>.</p>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>Page-Tools &amp; Breadcrumbs</h1>
+                    <p>A detailed explanation on how breadcrumbs &amp; page-tools are built can be found <a href="{% url 'grp_doc_context_navigation' %}">here</a>.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} block page-tools {% templatetag closeblock %}
     {% templatetag openblock %} if not is_popup {% templatetag closeblock %}
         <ul>
@@ -151,22 +152,22 @@
     {% templatetag openblock %} endif {% templatetag closeblock %}
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 {% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
-	    <section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>The Actual Content</h1>
-		            <p>A detailled explanation on how the different components of the content are built can be found using the following links: <a href="{% url 'grp_doc_modules' %}">Modules, Rows &amp; Cells, Collapsible Modules</a>, <a href="{% url 'grp_doc_groups' %}">Stacked &amp; Tabular Groups, Collapsible Groups</a>, <a href="{% url 'grp_doc_form_fields' %}">Labels, Form Fields &amp; Widths</a>, <a href="{% url 'grp_doc_fieldsets' %}">Fieldsets</a> and <a href="{% url 'grp_doc_submit_rows' %}">Submit Rows</a>.</p>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>The Actual Content</h1>
+                    <p>A detailed explanation on how the different components of the content are built can be found using the following links: <a href="{% url 'grp_doc_modules' %}">Modules, Rows &amp; Cells, Collapsible Modules</a>, <a href="{% url 'grp_doc_groups' %}">Stacked &amp; Tabular Groups, Collapsible Groups</a>, <a href="{% url 'grp_doc_form_fields' %}">Labels, Form Fields &amp; Widths</a>, <a href="{% url 'grp_doc_fieldsets' %}">Fieldsets</a> and <a href="{% url 'grp_doc_submit_rows' %}">Submit Rows</a>.</p>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} block content {% templatetag closeblock %}
     <form {% templatetag openblock %} if has_file_field {% templatetag closeblock %}enctype="multipart/form-data"{% templatetag openblock %} endif {% templatetag closeblock %} action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% templatetag openblock %} csrf_token {% templatetag closeblock %}
         {% templatetag openblock %} block form_top {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-    	<!-- POPUP -->
+        <!-- POPUP -->
         {% templatetag openblock %} if is_popup {% templatetag closeblock %}<input type="hidden" name="_popup" value="1" />{% templatetag openblock %} endif {% templatetag closeblock %}
         
         <!-- ERRORS -->
@@ -226,16 +227,16 @@
 
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 {% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
-	    <section>
-	    	<div class="g-d-24">
-		        <div class="grp-doc-description">
-		            <h1>The Whole Change-Form Template Put Together</h1>
-		        </div>
-		    </div>
-	    	<div class="g-d-24">
-	    		<div class="grp-doc-code"><pre><code>{% filter force_escape %}
+            </div>
+        </section>
+        <section>
+            <div class="g-d-24">
+                <div class="grp-doc-description">
+                    <h1>The complete change–form template</h1>
+                </div>
+            </div>
+            <div class="g-d-24">
+                <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} extends "admin/base_site.html" {% templatetag closeblock %}
 {% templatetag openblock %} load i18n admin_static admin_modify grp_tags {% templatetag closeblock %}
 
@@ -321,7 +322,7 @@
     <form {% templatetag openblock %} if has_file_field {% templatetag closeblock %}enctype="multipart/form-data"{% templatetag openblock %} endif {% templatetag closeblock %} action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% templatetag openblock %} csrf_token {% templatetag closeblock %}
         {% templatetag openblock %} block form_top {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-    	<!-- POPUP -->
+        <!-- POPUP -->
         {% templatetag openblock %} if is_popup {% templatetag closeblock %}<input type="hidden" name="_popup" value="1" />{% templatetag openblock %} endif {% templatetag closeblock %}
         
         <!-- ERRORS -->
@@ -382,8 +383,8 @@
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 
 {% endfilter %}</code></pre></div>
-	    	</div>
-	    </section>
+            </div>
+        </section>
     </div>
 {% endblock %}
 
