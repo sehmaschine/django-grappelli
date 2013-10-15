@@ -8,8 +8,26 @@
 Changelog
 =========
 
-2.4.7 (not yet released)
+2.4.8 (not yet released)
 ------------------------
+
+2.4.7 (October 16th, 2013)
+--------------------------
+
+* New: ``autocomplete_term_adjust`` function for alternative lookups with autocompletes.
+* New: Added block ``messages`` with base.html.
+* New: Added block ``admin_title`` that allows for greater customization of the main header title.
+* Fixed: Added support for ``needs_explicit_pk_field``.
+* Fixed: Preserved predelete class for inlines.
+* Fixed: Re–implemented visual distinction between FK–Autocompletes and M2M–Autocompletes.
+* Fixed: Removed comma from pagination separator.
+* Improved: Change encoding functions to new django 1.4.2+/1.5 (smart_bytes, smart_text).
+* Improved: Only exposing the project models when the user is authenticated to tighten security.
+* Improved: Some Minor fixes with Python 3.
+* Improved: Fixed some typos with grp-doc and extended the template documentation.
+
+.. warning::
+	Grappelli 2.4.7 requires Django >= 1.4.2 because of the new string handling.
 
 2.4.6 (August 22nd, 2013)
 -------------------------
