@@ -94,6 +94,9 @@
 		}
 		a.grp-delete-handler {
 			@include icons-sprite(tools-delete-handler);
+			.grp-predelete & {
+				@include icons-sprite(tools-delete-handler_hover);
+			}
 		}
 		a.grp-remove-handler {
 			@include icons-sprite(tools-remove-handler);

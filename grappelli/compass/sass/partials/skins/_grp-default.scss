@@ -99,7 +99,7 @@ $grp-row-border-bottom-color: #ddd !default;
 
 /*  Predelete ............................................................ */
 
-$grp-predelete-background-color: #f2e6e6 !default;
+$grp-predelete-background-color: #f7e4e4 !default;
 
 
 /*  H2, H3 ............................................................ */
@@ -309,10 +309,10 @@ $grp-button-border-focus: 1px solid #888 !default;
 /*  Predelete Gradients ............................................................ */
 
 @mixin grp-gradient-predelete {
-	@include background-image(linear-gradient(#fff2f2, #f2e6e6));
+	@include background-image(linear-gradient($grp-predelete-background-color, darken($grp-predelete-background-color, 3)));
 }
 @mixin grp-gradient-predelete-reverse {
-	@include background-image(linear-gradient(#f2e6e6, #fff2f2));
+	@include background-image(linear-gradient(darken($grp-predelete-background-color, 3), $grp-predelete-background-color));
 }
 
 
