@@ -95,11 +95,6 @@
 		a.grp-delete-handler {
 			@include icons-sprite(tools-delete-handler);
 			.grp-predelete & {
-				// @include icons-sprite(tools-delete-handler_hover);
-				// background-color: #fff;
-				// @include border-radius(24px);
-				// border: 1px solid darken($grp-predelete-background-color, 6);
-				// margin: -1px;
 				@include icons-sprite(tools-delete-handler-predelete);
 			}
 		}
