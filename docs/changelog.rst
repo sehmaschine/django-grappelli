@@ -25,6 +25,7 @@ Changelog
 * Improved: Only exposing the project models when the user is authenticated to tighten security.
 * Improved: Some Minor fixes with Python 3.
 * Improved: Fixed some typos with grp-doc and extended the template documentation.
+* Improved: Better inline delete icon.
 
 .. warning::
 	Grappelli 2.4.7 requires Django >= 1.4.2 because of the new string handling.
