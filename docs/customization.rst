@@ -208,6 +208,8 @@ Example in Python 3 ::
 Autocomplete Lookups
 --------------------
 
+.. versionadded:: 2.4.7
+    staticmethod ``autocomplete_term_adjust`` for better search optimization.
 .. versionchanged:: 2.4.6
     staticmethod ``autocomplete_search_fields`` is optional if ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS`` is being used.
 .. versionchanged:: 2.3.5

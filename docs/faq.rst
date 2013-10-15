@@ -33,12 +33,12 @@ Of course.
 Why are you using TinyMCE and not RedactorJS?
 ---------------------------------------------
 
-Unfortunately, Redactor currently produces strange/wrong HTML. Moreover, we're missing an easy way to define formatting–options as well as a possibility to insert classes. Once these issue are resolved, we'll probably switch.
+Unfortunately, Redactor currently produces strange/wrong HTML. Moreover, we're missing an easy way to define formatting–options as well as a possibility to insert classes. That being said, TinyMCE will be removed with version 2.5 of |grappelli|. Instead, we will add a skin for TinyMCE.
 
 Why don't you use Twitter Bootstrap?
 ------------------------------------
 
-For now, custom Compass-based stylesheets gives us much more flexibility. But we do understand the need to easily customize the admin interface and we're discussing this issue on a regular basis.
+For now, custom Compass-based stylesheets gives us much more options. But we do understand the need to easily customize the admin interface and we're discussing this issue on a regular basis.
 
 Do you guys cooperate with the Django–Devs?
 -------------------------------------------
@@ -57,7 +57,7 @@ Help is very much appreciated.
 What is your goal with |grappelli|?
 -----------------------------------
 
-Our goal is that |grappelli| will be redundant eventually.
+Our goal is that |grappelli| will be redundant eventually (though we doubt that will happen).
 
 Who develops |grappelli|?
 -------------------------
