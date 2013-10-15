@@ -206,10 +206,10 @@ body.rtl {
     .grp-placeholder-related-generic {
         margin-left: 0;
         margin-right: 123px;
-    }
-    .grp-separator {
-        &:after {
-            content: " ,";
+        .grp-separator {
+            &:after {
+                content: " ,";
+            }
         }
     }
 

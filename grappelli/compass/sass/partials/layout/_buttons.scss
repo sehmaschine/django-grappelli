@@ -206,10 +206,11 @@ body.tinyMCE input[name="href"] + div a {
     .grp-errors & {
         display: none;
     }
+    .grp-separator {
+        @include grp-separator;
+    }
 }
-.grp-separator {
-    @include grp-separator;
-}
+
 
 
 /*  Filebrowser, Related Lookup, M2M, FK, Related Remove ......................................... */
