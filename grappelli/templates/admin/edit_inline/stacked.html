@@ -134,8 +134,31 @@
         
         $("#{{ inline_admin_formset.formset.prefix }}-group").grp_inline({
             prefix: "{{ inline_admin_formset.formset.prefix }}",
+            onBeforeAdded:function(form) {
+                // New inlines start as a hidden template with class grp-empty-form.
+                // This contains a textarea, which TinyMCE converts correctly, but
+                // something about the transformation from template to visible 
+                // form breaks TinyMCE, so:
+                
+                // We need to find every tinyMCE instance...
+               django.jQuery(tinyMCE.get()).each(function() { 
+                   // ...that is inside a grp-empty-form...
+                   django.jQuery(".grp-empty-form #" + django.jQuery(this).attr("id")).each(function() { 
+                       // ...and remove it, so it can be re-initialized in onAfterAdded()
+                       tinyMCE.execCommand("mceRemoveControl",false,django.jQuery(this).attr("id")) 
+                    }) 
+                })
+            },
             onAfterRemoved: function(inline) {},
-            onAfterAdded: function(form) {
+            onAfterAdded: function(form) {               
+                if (tinyMCE != undefined) {
+                  // re-initialise tinyMCE
+                  tinyMCE.init(tinyMCE.settings);
+                }
+                // Ensure that the new inline appears
+                // un-collapsed, even if inlines are collapsed by default
+                django.jQuery(form).removeClass("grp-closed").addClass("grp-open");
+                
                 grappelli.reinitDateTimeFields(form);
                 grappelli.updateSelectFilter(form);
                 $.each(related_lookup_fields_fk, function() {
