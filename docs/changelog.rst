@@ -11,6 +11,10 @@ Changelog
 2.4.8 (not yet released)
 ------------------------
 
+* Fixed: Removed safe from sidebar filters (changelist).
+* Fixed: Translated app_label with object_history.html.
+* Fixed: Renamed the 'mimetype' arg to 'content_type' (compatibility with Django 1.6).
+
 2.4.7 (October 16th, 2013)
 --------------------------
 
