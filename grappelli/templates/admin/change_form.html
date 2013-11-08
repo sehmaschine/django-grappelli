@@ -117,8 +117,8 @@
 {% block breadcrumbs %}
     {% if not is_popup %}
         <ul>
-            <li><a href="../../../">{% trans "Home" %}</a></li>
-            <li><a href="../../">{% trans app_label|capfirst|escape %}</a></li>
+            <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+            <li><a href="{% url 'admin:app_list' app_label=opts.app_label %}">{% trans app_label|capfirst|escape %}</a></li>
             <li>{% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
             <li>{% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
         </ul>
@@ -141,10 +141,11 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
         <div>
             <!-- Popup Hidden Field -->
             {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+            {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}" />{% endif %}
             
             <!-- No Submit-Row on Top -->
 
@@ -180,12 +181,8 @@
                     {{ block.super }}
                     <script type="text/javascript">
                         (function($){
-                            $(function(){
-                                try {
-                                    // focus on first form-field
-                                    $("#{{ adminform.first_field.auto_id }}, #{{ adminform.first_field.auto_id }}_0")
-                                    .eq(0).focus();
-                                } catch(e) {}
+                            $(document).ready(function() {
+                                $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
                             });
                         }(grp.jQuery));
                     </script>

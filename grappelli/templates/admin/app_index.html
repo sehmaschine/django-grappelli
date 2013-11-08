@@ -9,7 +9,7 @@
 {% if not is_popup %}
     {% block breadcrumbs %}
         <ul class="grp-horizontal-list">
-            <li><a href="../">{% trans "Home" %}</a></li>
+            <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
             {% for app in app_list %}
                 {% blocktrans with app.name as name %}<li>{{ name }}</li>{% endblocktrans %}
             {% endfor %}
