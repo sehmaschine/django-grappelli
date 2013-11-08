@@ -13,6 +13,8 @@ While |grappelli| is mainly about the look & feel of the admin interface, it als
 Available Settings
 ------------------
 
+.. versionadded:: 2.4.8
+    Added setting GRAPPELLI_SWITCH_USER, GRAPPELLI_SWITCH_USER_ORIGINAL, GRAPPELLI_SWITCH_USER_TARGET
 .. versionadded:: 2.4.6
     Added setting GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS
 .. versionadded:: 2.4.1
@@ -26,6 +28,17 @@ Available Settings
 
 ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS``
     A dictionary containing search patterns for models you cannot (or should not) alter.
+
+``GRAPPELLI_SWITCH_USER``
+    Set to ``True`` if you want to activate the switch user functionality.
+
+``GRAPPELLI_SWITCH_USER_ORIGINAL``
+    A function which defines if a User is able to switch to another User (returns either ``True`` or ``False``).
+    Defaults to all superusers.
+
+``GRAPPELLI_SWITCH_USER_TARGET``
+    A function which defines if a User is a valid switch target (returns either ``True`` or ``False``).
+    Defaults to all staff users, excluding superusers.
 
 .. _customizationcollapsibles:
 
@@ -373,3 +386,16 @@ To use the alternative filters, you need to add ``change_list_filter_template`` 
 
     class MyModelOptions(admin.ModelAdmin):
         change_list_filter_template = "admin/filter_listing.html"
+
+
+.. _switchuser:
+
+Switch User
+-----------
+
+.. versionadded:: 2.4.8
+
+You sometimes might need to see the admin interface as a different user (e.g. in order to verify if permissions are set correctly or to follow an editors explanation). If you set ``GRAPPELLI_SWITCH_USER`` to ``True``, you'll get additional users with your user dropdown. Moreover, you can easily switch back to the original User.
+
+.. note::
+    This functionality might change with future releases.

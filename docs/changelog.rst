@@ -8,12 +8,20 @@
 Changelog
 =========
 
+2.5.0 (not yet released)
+------------------------
+
+* Compatibility with Django 1.6.
+
 2.4.8 (not yet released)
 ------------------------
 
+* New: Switch user.
 * Fixed: Removed safe from sidebar filters (changelist).
 * Fixed: Translated app_label with object_history.html.
-* Fixed: Renamed the 'mimetype' arg to 'content_type' (compatibility with Django 1.6).
+* Fixed: Renamed the 'mimetype' arg to 'content_type'.
+* Fixed: Removed dup_select_related with autocomplete lookups.
+* Fixed: Removed some hardcoded URLs.
 
 2.4.7 (October 16th, 2013)
 --------------------------
