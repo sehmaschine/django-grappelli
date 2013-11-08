@@ -40,7 +40,7 @@ function showRelatedObjectLookupPopup(triggeringLink) {
     var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
     win.focus();
     return false;
-    }
+}
 
 function dismissRelatedLookupPopup(win, chosenId) {
     var name = windowname_to_id(win.name);
