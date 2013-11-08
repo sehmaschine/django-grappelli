@@ -1,4 +1,4 @@
-{% load url from future %}
+{% load cycle from future %}
 {% load i18n grp_tags %}
 
 <!-- group -->
@@ -61,7 +61,7 @@
                     <div class="grp-td grp-tools-container">
                         {% spaceless %}
                         <ul class="grp-tools">
-                            {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
+                            {% if inline_admin_form.show_url %}<li><a href="{% url 'admin:view_on_site' inline_admin_form.original_content_type_id inline_admin_form.original.pk %}" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
                             {% if inline_admin_formset.opts.sortable_field_name %}
                                 <li><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
                             {% endif %}
@@ -262,7 +262,7 @@
                 $(window).scrollTop(lastScrollTop);
             }
         });
-        $("#{{ opts.module_name }}_form").bind("submit", function(){
+        $("#{{ opts.model_name }}_form").bind("submit", function(){
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}",
                 sortable_excludes = {% get_sortable_excludes inline_admin_formset.opts %},
                 i = 0;

@@ -21,7 +21,7 @@
                 id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
                 <h3 class="grp-collapse-handler">{{ inline_admin_formset.opts.verbose_name }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
                 <ul class="grp-tools">
-                    {% if inline_admin_form.show_url %}<li><a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
+                    {% if inline_admin_form.show_url %}<li><a href="{% url 'admin:view_on_site' inline_admin_form.original_content_type_id inline_admin_form.original.pk %}" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
                     {% if inline_admin_formset.opts.sortable_field_name %}
                         <li><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
                     {% endif %}
@@ -215,7 +215,7 @@
                 ui.placeholder.height(ui.item.height() + 12);
             }
         });
-        $("#{{ opts.module_name }}_form").bind("submit", function(){
+        $("#{{ opts.model_name }}_form").bind("submit", function(){
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}",
                 sortable_excludes = {% get_sortable_excludes inline_admin_formset.opts %},
                 i = 0;

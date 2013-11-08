@@ -131,8 +131,9 @@
         {% if not is_popup %}
             <ul class="grp-object-tools">
                 {% block object-tools-items %}
-                    <li><a href="history/">{% trans "History" %}</a></li>
-                    {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="grp-state-focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
+                    {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+                    <li><a href="{% add_preserved_filters history_url %}">{% trans "History" %}</a></li>
+                    {% if has_absolute_url %}<li><a href="{% url 'admin:view_on_site' content_type_id original.pk %}" class="grp-state-focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
                 {% endblock %}
             </ul>
         {% endif %}
@@ -141,11 +142,10 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
         <div>
             <!-- Popup Hidden Field -->
             {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
-            {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}" />{% endif %}
             
             <!-- No Submit-Row on Top -->
 
@@ -182,7 +182,7 @@
                     <script type="text/javascript">
                         (function($){
                             $(document).ready(function() {
-                                $('form#{{ opts.module_name }}_form :input:visible:enabled:first').focus()
+                                $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
                             });
                         }(grp.jQuery));
                     </script>

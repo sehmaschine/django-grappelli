@@ -1,8 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load url from future %}
-{% load admin_list i18n grp_tags admin_urls %}
+{% load i18n grp_tags admin_urls admin_static admin_list %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -152,7 +151,8 @@
     {% if has_add_permission %}
         <ul class="grp-object-tools">
             {% block object-tools-items %}
-                <li><a href="{% url cl.opts|admin_urlname:'add' %}{% if is_popup %}?_popup=1{% endif %}" class="grp-add-link grp-state-focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
+                {% url cl.opts|admin_urlname:'add' as add_url %}
+                <li><a href="{% add_preserved_filters add_url is_popup %}" class="addlink">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
             {% endblock %}
         </ul>
     {% endif %}
