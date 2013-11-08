@@ -78,15 +78,15 @@
                             <!-- Userlinks -->
                             {% block userlinks %}
                                 <!-- Username -->
-                                <li class="grp-user-options-container grp-collapse grp-closed">
-                                    <a href="javascript://" class="user-options-handler grp-collapse-handler">{% filter force_escape %}{% firstof user.first_name user.username user.get_short_name user.get_username %}{% endfilter %}</a>
+                                <li class="grp-user-options-container grp-collapse grp-closed {% if request.session.original_user %}grp-switch-user-is-target{% endif %}">
+                                    <a href="javascript://" class="user-options-handler grp-collapse-handler {% if request.session.original_user %}grp-switch-user-is-target{% else %}grp-switch-user-is-original{% endif %}">{% filter force_escape %}{% firstof user.first_name user.username user.get_short_name user.get_username %}{% endfilter %}</a>
                                     <ul class="grp-user-options">
                                         <!-- Change Password -->
                                         {% if user.has_usable_password %}
-                                            <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> 
+                                            <li><a href="{% url 'admin:password_change' %}" class="grp-change-password">{% trans 'Change password' %}</a></li>
                                         {% endif %}
                                         <!-- Logout -->
-                                        <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+                                        <li><a href="{% url 'admin:logout' %}" class="grp-logout">{% trans 'Log out' %}</a></li>
                                         <!-- Switch -->
                                         {% switch_user_dropdown %}
                                     </ul>
