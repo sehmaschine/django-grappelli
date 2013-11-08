@@ -21,6 +21,7 @@
     <!-- JAVASCRIPTS -->
     {% block javascripts %}
         <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "grappelli/" %}{% endfilter %}";</script>
+        <script type="text/javascript">window.__admin_utc_offset__ = "{% filter escapejs %}{% now "Z" %}{% endfilter %}";</script>
         <script type="text/javascript" charset="utf-8">
             // GLOBALS
             var grappelli = {},
@@ -82,29 +83,14 @@
                                     <ul class="grp-user-options">
                                         <!-- Change Password -->
                                         {% if user.has_usable_password %}
-                                            {% url 'admin:password_change' as password_change_url %}
-                                            {% if password_change_url %}
-                                                <li><a href="{{ password_change_url }}">
-                                            {% else %}
-                                                <li><a href="{{ root_path }}password_change/">
-                                            {% endif %}
-                                            {% trans 'Change password' %}</a></li>
+                                            <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> 
                                         {% endif %}
                                         <!-- Logout -->
-                                        {% url 'admin:logout' as logout_url %}
-                                        {% if logout_url %}
-                                            <li><a href="{{ logout_url }}">
-                                        {% else %}
-                                            <li><a href="{{ root_path }}logout/">
-                                        {% endif %}
-                                        {% trans 'Log out' %}</a></li>
+                                        <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+                                        <!-- Switch -->
+                                        {% switch_user_dropdown %}
                                     </ul>
                                 </li>
-                                <!-- JS tests -->
-                                {% url 'test-index' as testindexurl %}
-                                {% if testindexurl %}
-                                    <li><a href="{{ testindexurl }}">{% trans 'Tests' %}</a></li>
-                                {% endif %}
                                 <!-- Documentation -->
                                 {% url 'django-admindocs-docroot' as docsroot %}
                                 {% if docsroot %}
@@ -123,7 +109,7 @@
                         <header style="display:none"><h1>Breadcrumbs</h1></header>
                         {% block breadcrumbs %}
                             <ul>
-                                <li><a href="/">{% trans 'Home' %}</a></li>
+                                <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
                                 {% if title %}
                                     <li> &rsaquo; {{ title }}</li>
                                 {% endif %}

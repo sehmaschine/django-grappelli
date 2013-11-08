@@ -9,6 +9,12 @@ try:
 except ImportError:
     from django.utils import simplejson as json
 
+try:
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+except ImportError:
+    from django.contrib.auth.models import User
+
 # django imports
 from django import template
 from django.contrib.contenttypes.models import ContentType
@@ -197,3 +203,20 @@ def admin_list_filter(cl, spec):
         'choices': list(spec.choices(cl)),
         'spec': spec,
     }))
+
+
+@register.simple_tag(takes_context=True)
+def switch_user_dropdown(context):
+    if SWITCH_USER:
+        tpl = get_template("admin/includes_grappelli/switch_user_dropdown.html")
+        request = context["request"]
+        session_user = request.session.get("original_user", {"id": request.user.id, "username": request.user.username})
+        original_user = User.objects.get(pk=session_user["id"], is_staff=True)
+        object_list = [user for user in User.objects.filter(is_staff=True).exclude(pk=original_user.pk) if SWITCH_USER_TARGET(original_user, user)]
+        return tpl.render(Context({
+            'request': request,
+            'object_list': object_list,
+        }))
+    return ""
+
+

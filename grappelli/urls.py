@@ -9,6 +9,7 @@ except ImportError:
 
 from django.views.generic.base import TemplateView
 from .views.related import RelatedLookup, M2MLookup, AutocompleteLookup
+from .views.switch import switch_user
 
 
 urlpatterns = patterns('',
@@ -17,6 +18,9 @@ urlpatterns = patterns('',
     url(r'^lookup/related/$', RelatedLookup.as_view(), name="grp_related_lookup"),
     url(r'^lookup/m2m/$', M2MLookup.as_view(), name="grp_m2m_lookup"),
     url(r'^lookup/autocomplete/$', AutocompleteLookup.as_view(), name="grp_autocomplete_lookup"),
+
+    # SWITCH USER
+    url(r'^switch/user/(?P<object_id>\d+)/$', switch_user, name="grp_switch_user"),
 
     # GRAPPELLI DOM DOCUMENTATION
     url(r'^grp-doc/change-form/', TemplateView.as_view(template_name='grp_doc/change_form.html'), name="grp_doc_change_form"),
