@@ -212,11 +212,12 @@ def switch_user_dropdown(context):
         request = context["request"]
         session_user = request.session.get("original_user", {"id": request.user.id, "username": request.user.username})
         original_user = User.objects.get(pk=session_user["id"], is_staff=True)
-        object_list = [user for user in User.objects.filter(is_staff=True).exclude(pk=original_user.pk) if SWITCH_USER_TARGET(original_user, user)]
-        return tpl.render(Context({
-            'request': request,
-            'object_list': object_list,
-        }))
+        if SWITCH_USER_ORIGINAL(original_user):
+            object_list = [user for user in User.objects.filter(is_staff=True).exclude(pk=original_user.pk) if SWITCH_USER_TARGET(original_user, user)]
+            return tpl.render(Context({
+                'request': request,
+                'object_list': object_list,
+            }))
     return ""
 
 
