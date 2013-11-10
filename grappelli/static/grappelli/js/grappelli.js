@@ -147,7 +147,8 @@ var django = {
         var link = elem.next("a");
         if (link.length > 0) {
             var url = link.attr('href').split('/');
-            return url[url.length-1].replace('?', '');
+            pairs = url[url.length-1].replace('?', '').split("&");
+            return pairs.join(":");
         }
         return false;
     };

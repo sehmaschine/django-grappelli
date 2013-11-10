@@ -49,8 +49,21 @@ class RelatedLookup(View):
         self.model = models.get_model(self.GET['app_label'], self.GET['model_name'])
         return self.model
 
+    def get_filtered_queryset(self, qs):
+        filters = {}
+        query_string = self.GET.get('query_string', None)
+
+        if query_string:
+            for item in query_string.split(":"):
+                k, v = item.split("=")
+                if k != "t":
+                    filters[smart_bytes(k)] = prepare_lookup_value(smart_bytes(k), smart_bytes(v))
+        return qs.filter(**filters)
+
     def get_queryset(self):
-        return self.model._default_manager.all()
+        qs = self.model._default_manager.all()
+        qs = self.get_filtered_queryset(qs)
+        return qs
 
     def get_data(self):
         obj_id = self.GET['object_id']
@@ -98,17 +111,6 @@ class AutocompleteLookup(RelatedLookup):
 
     def request_is_valid(self):
         return 'term' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
-
-    def get_filtered_queryset(self, qs):
-        filters = {}
-        query_string = self.GET.get('query_string', None)
-
-        if query_string:
-            for item in query_string.split("&"):
-                k, v = item.split("=")
-                if k != "t":
-                    filters[smart_bytes(k)] = prepare_lookup_value(smart_bytes(k), smart_bytes(v))
-        return qs.filter(**filters)
 
     def get_searched_queryset(self, qs):
         model = self.model
