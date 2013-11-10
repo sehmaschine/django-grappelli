@@ -26,7 +26,7 @@ from grappelli.tests.models import Category, Entry
 
 @override_settings(GRAPPELLI_AUTOCOMPLETE_LIMIT=10)
 @override_settings(GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS={})
-class SwitchTests(TestCase):
+class RelatedTests(TestCase):
     urls = "grappelli.tests.urls"
     
     def setUp(self):
@@ -180,5 +180,3 @@ class SwitchTests(TestCase):
         response = self.client.get("%s?term=Category&app_label=%s&model_name=%s&query_string=name__icontains=99:id__gte=99" % (reverse("grp_autocomplete_lookup"), "grappelli", "category"))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, json.dumps([{"value": 100, "label": "Category No 99 (100)"}]))
-
-
