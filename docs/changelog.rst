@@ -8,15 +8,14 @@
 Changelog
 =========
 
-2.5.0 (not yet released)
+2.4.9 (not yet released)
 ------------------------
 
-* Compatibility with Django 1.6.
-
-2.4.8 (not yet released)
-------------------------
+2.4.8 (November 12th, 2013)
+---------------------------
 
 * New: Switch user.
+* New: Unit-Tests for switch user and related lookups resp. autocompletes.
 * Fixed: Removed safe from sidebar filters (changelist).
 * Fixed: Translated app_label with object_history.html.
 * Fixed: Renamed the 'mimetype' arg to 'content_type'.

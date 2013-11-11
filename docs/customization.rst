@@ -48,7 +48,7 @@ Collapsibles
 .. versionchanged:: 2.4.0
     Added namespace ``grp-``.
 
-Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``.
+Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/1.5/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/1.5/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``.
 
 A ModelAdmin example::
 
@@ -67,7 +67,7 @@ A ModelAdmin example::
             }),
         )
 
-With `StackedInlines <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of inline items (as opposed to the inline group)::
+With `StackedInlines <https://docs.djangoproject.com/en/1.5/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of inline items (as opposed to the inline group)::
 
     class NavigationItemInline(admin.StackedInline):
         classes = ('grp-collapse grp-open',)
@@ -143,7 +143,7 @@ The two classes for the placeholder are important. First, you need a class ``pla
 Related Lookups
 ---------------
 
-.. versionchanged:: 2.3.1
+.. versionchanged:: 2.3
     Added ``related_lookup_fields``.
 
 With Grappelli, you're able to add the representation of an object beneath the input field (for fk– and m2m–fields)::
@@ -192,7 +192,7 @@ If your generic relation points to a model using a custom primary key, you need 
         def id(self):
             return self.cpk
 
-.. versionadded:: 2.3.4
+.. versionadded:: 2.3
     ``related_label``.
 
 For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used in Python 2.x or ``__str__`` in Python 3.x.
@@ -225,9 +225,9 @@ Autocomplete Lookups
     staticmethod ``autocomplete_term_adjust`` for better search optimization.
 .. versionchanged:: 2.4.6
     staticmethod ``autocomplete_search_fields`` is optional if ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS`` is being used.
-.. versionchanged:: 2.3.5
+.. versionchanged:: 2.3
     staticmethod ``autocomplete_search_fields`` is required, ``related_autocomplete_lookup`` has been removed.
-.. versionadded:: 2.3.4
+.. versionadded:: 2.3
     ``autocomplete_lookup_fields``.
 
 Autocomplete lookups are an alternative to related lookups (for foreign keys, many–to-many relations and generic relations).
@@ -338,7 +338,7 @@ Using TinyMCE
 .. versionchanged:: 2.4
     The admin media URLs has been changed to use static URLs in compliance with Django 1.4
 
-|grappelli| already comes with TinyMCE and a minimal theme as well. In order to use TinyMCE, copy ``tinymce_setup.js`` to your static directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts to your ModelAdmin definition (see `ModelAdmin Media definitions <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/#modeladmin-media-definitions>`_)::
+|grappelli| already comes with TinyMCE and a minimal theme as well. In order to use TinyMCE, copy ``tinymce_setup.js`` to your static directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts to your ModelAdmin definition (see `ModelAdmin Media definitions <https://docs.djangoproject.com/en/1.5/ref/contrib/admin/#modeladmin-media-definitions>`_)::
 
     class Media:
         js = [

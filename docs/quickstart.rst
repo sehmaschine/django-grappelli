@@ -1,19 +1,20 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
+.. |grappelliversion| replace:: 2.4.8
 
 .. _quickstart:
 
 Quick start guide
 =================
 
-For using |grappelli|, `Django <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/dev/ref/contrib/admin/>`_ has to be activated.
+For using |grappelli| |grappelliversion|, `Django 1.4/1.5 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/1.5/ref/contrib/admin/>`_ has to be activated.
 
 Installation
 ------------
 
 Using ``pip``::
 
-    pip install django-grappelli
+    pip install django-grappelli==2.4.8
 
 Go to https://github.com/sehmaschine/django-grappelli if you need to download a package or clone the repo.
 
