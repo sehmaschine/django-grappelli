@@ -90,7 +90,9 @@
                 // HACK: rearrange inlines
                 $('div.grp-group').each(function() {
                     var placeholder = $("fieldset.placeholder."+$(this).attr("id"));
-                    $(placeholder).replaceWith($(this));
+                    if (placeholder.length) {
+                        $(placeholder).replaceWith($(this));
+                    }
                 });
             });
         })(grp.jQuery);

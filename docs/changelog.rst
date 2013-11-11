@@ -18,6 +18,7 @@ Changelog
 * New: Unit-Tests for switch user and related lookups resp. autocompletes.
 * Fixed: ``limit_choices_to`` is being used for related lookups (FK/M2M) as well.
 * Fixed: Related/Autocomplete lookups with multiple items within ``limit_choices_to`` (so far, only the first dictionary item has been used).
+* Improved: Updated jQuery to 1.9.1 and jQueryUI to 1.10.3.
 
 2.4.8 (November 12th, 2013)
 ---------------------------
