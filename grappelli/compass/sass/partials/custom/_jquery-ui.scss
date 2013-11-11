@@ -402,6 +402,7 @@ button.ui-datepicker-close {
 ------------------------------------------------------------------------------------------------------ */
 
 .ui-menu {
+    z-index: 1000;
     display: block;
     margin: 0;
     padding: 2px;
@@ -429,10 +430,10 @@ button.ui-datepicker-close {
         width: 100%;
         a {
             display: block;
-            margin: 0;
+            margin: 0 !important;
             padding: 3px 4px;
             color: #444;
-            font-weight: bold;
+            font-weight: bold !important;
             border: 1px solid #c7c7c7;
             @include border-radius($grp-form-field-border-radius - 1px);
             background: #cee9f2;
@@ -444,11 +445,6 @@ button.ui-datepicker-close {
                 border: 1px solid #333;
                 background: #444;
             }
-        }
-        a.ui-state-hover,
-        a.ui-state-active {
-            font-weight: bold;
-            margin: 0;
         }
         & + li.ui-menu-item {
             margin-top: 2px;
