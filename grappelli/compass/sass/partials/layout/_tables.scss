@@ -132,17 +132,23 @@ table {
                 top: 1px;
             }
         }
-        > input[type=checkbox], 
-        > input[type=radio] {
+        > input[type="checkbox"], 
+        > input[type="radio"] {
             margin: 0;
         }
-        > input[type=text], 
-        > input[type=password], 
-        > input[type=file], 
-        > input[type=checkbox], 
-        > input[type=radio], 
+        // > input[type="text"], 
+        // > input[type="password"], 
+        // > input[type="url"], 
+        // > input[type="email"], 
+        // > input[type="number"], 
+        > input[type="file"], 
+        > input[type="checkbox"], 
+        > input[type="radio"], 
         > select,
-        p input[type=text] {
+        // p input[type="url"],
+        // p input[type="email"],
+        // p input[type="number"],
+        p input[type="text"] {
             position: relative;
             margin-top: -7px !important;
             margin-bottom: -5px !important;
@@ -151,18 +157,16 @@ table {
             //     margin-bottom: -6px !important;
             // }
         }
-        // > input[type=text], 
-        // > input[type=password],
-        // > select,
-        // p input[type=text] {
-        //     vertical-align: text-top;
-        //     margin-top: -6px !important;
-        //     margin-bottom: -5px !important;
-        // }
-        > input[type=text], 
-        > input[type=password],
+        > input[type="text"], 
+        > input[type="password"],
+        > input[type="url"], 
+        > input[type="email"], 
+        > input[type="number"], 
         > select,
-        p input[type=text] {
+        p input[type="text"],
+        p input[type="url"],
+        p input[type="email"],
+        p input[type="number"] {
             vertical-align: top;
             margin-top: -5px !important;
             margin-bottom: -5px !important;
@@ -225,7 +229,7 @@ table.grp-sortable {
                 display: block;
                 padding: 6px 10px;
                 white-space: nowrap;
-                input[type=checkbox] {
+                input[type="checkbox"] {
                     margin: -6px 0 !important;
                 }
             }

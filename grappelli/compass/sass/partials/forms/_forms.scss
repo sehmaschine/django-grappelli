@@ -52,6 +52,9 @@ fieldset.grp-module {
 }
 input[type="text"], 
 input[type="password"], 
+input[type="url"], 
+input[type="email"], 
+input[type="number"], 
 input[type="submit"], 
 input[type="reset"], 
 textarea, 
@@ -131,6 +134,9 @@ div.grp-readonly {
     }
     input[type="text"], 
     input[type="password"], 
+    input[type="url"], 
+    input[type="email"], 
+    input[type="number"], 
     input[type="submit"], 
     input[type="reset"], 
     textarea, 
@@ -581,6 +587,7 @@ ul.errorlist {
 
 input[type=text], 
 input[type=password], 
+input[type="number"], 
 .vDateField, 
 .vTimeField, 
 .vIntegerField, 
@@ -600,6 +607,8 @@ input.vFileBrowseField {
     padding-right: 24px !important;
 }
 
+input[type="url"], 
+input[type="email"], 
 input.vTextField, 
 input.vURLField, 
 input.vFileBrowseField, 
@@ -623,6 +632,8 @@ textarea,
 /*  FORM FIELDS: LARGE DIMENSIONS
 ------------------------------------------------------------------------------------------------------ */
 
+.grp-row input[type="url"], 
+.grp-row input[type="email"], 
 .grp-row .vTextField, 
 .grp-row .vURLField, 
 .grp-row .vFileBrowseField, 
@@ -646,6 +657,8 @@ textarea,
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-changelist-results table {
+    input[type="url"], 
+    input[type="email"], 
     .vTextField, 
     .vURLField, 
     .vFileBrowseField, 
@@ -675,6 +688,9 @@ textarea,
 /*  FORM FIELDS IN CELLS
 ------------------------------------------------------------------------------------------------------ */
 
+.grp-cell input[type="url"], 
+.grp-cell input[type="email"],
+.grp-cell input[type="number"], 
 .grp-cell input[type=text], 
 .grp-cell input[type=password], 
 .grp-cell select, 
