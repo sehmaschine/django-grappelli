@@ -44,6 +44,25 @@
     }
 }
 
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    font-weight: bold;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    font-weight: bold;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+    font-weight: bold;
+}
+
 
 
 /*  SORTABLE
@@ -137,6 +156,7 @@
     .ui-datepicker-header {
         position:relative;
         padding:.2em 0;
+        border: 1px solid #bdbdbd;
     }
     .ui-datepicker-prev, 
     .ui-datepicker-next {
@@ -229,6 +249,7 @@
                 @include border-radius($grp-border-radius);
                 &.ui-state-default {
                     color: $grp-font-color;
+                    border-color: #ccc;
                 }
                 &.ui-state-hover {
                     color: #fff !important;
