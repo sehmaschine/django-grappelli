@@ -14,7 +14,7 @@ Installation
 
 Using ``pip``::
 
-    pip install django-grappelli==|grappelliversion|
+    pip install django-grappelli==2.5.0
 
 Go to https://github.com/sehmaschine/django-grappelli if you need to download a package or clone the repo.
 
