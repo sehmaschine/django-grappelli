@@ -8,13 +8,19 @@
 Changelog
 =========
 
-2.5.0 (not yet released)
+2.5.1 (not yet released)
 ------------------------
 
-* Compatibility with Django 1.6.
+2.5.0 (November 13th, 2013)
+---------------------------
 
-2.4.8 (not yet released)
-------------------------
+* New: Compatibility with Django 1.6.
+* New: Unit-Tests for switch user and related lookups resp. autocompletes.
+* Fixed: ``limit_choices_to`` is being used for related lookups (FK/M2M) as well.
+* Fixed: Related/Autocomplete lookups with multiple items within ``limit_choices_to`` (so far, only the first dictionary item has been used).
+
+2.4.8 (November 12th, 2013)
+---------------------------
 
 * New: Switch user.
 * Fixed: Removed safe from sidebar filters (changelist).

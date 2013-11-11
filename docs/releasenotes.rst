@@ -10,10 +10,7 @@ Grappelli 2.5.x Release Notes
 
 **Grappelli 2.5.x is compatible with Django 1.6**.
 
-What's new in Grappelli 2.5.x
------------------------------
-
-* There are no new features with Grappelli 2.5.x.
+This release does not introduce any new features (besides Unit–Tests).
 
 Update from Grappelli 2.4.x
 ---------------------------

@@ -6,8 +6,6 @@
 Dashboard Setup
 ===============
 
-.. versionadded:: 2.3
-
 With the Django admin interface, the admin index page reflects the structure of your applications/models. With ``grappelli.dashboard`` you are able to change that structure and rearrange (or group) apps and models.
 
 .. note::

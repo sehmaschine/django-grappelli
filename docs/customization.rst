@@ -13,12 +13,8 @@ While |grappelli| is mainly about the look & feel of the admin interface, it als
 Available Settings
 ------------------
 
-.. versionadded:: 2.4.8
-    Added setting GRAPPELLI_SWITCH_USER, GRAPPELLI_SWITCH_USER_ORIGINAL, GRAPPELLI_SWITCH_USER_TARGET
-.. versionadded:: 2.4.6
-    Added setting GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS
-.. versionadded:: 2.4.1
-    Added setting GRAPPELLI_AUTOCOMPLETE_LIMIT
+.. versionadded:: 2.4
+    Added settings ``GRAPPELLI_SWITCH_USER``, ``GRAPPELLI_SWITCH_USER_ORIGINAL``, ``GRAPPELLI_SWITCH_USER_TARGET``, ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS``, ``GRAPPELLI_AUTOCOMPLETE_LIMIT``
 
 ``GRAPPELLI_ADMIN_TITLE``
     The Site Title of your admin interface. Change this instead of changing index.html
@@ -45,10 +41,10 @@ Available Settings
 Collapsibles
 ------------
 
-.. versionchanged:: 2.4.0
+.. versionchanged:: 2.4
     Added namespace ``grp-``.
 
-Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``.
+Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/1.6/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/1.6/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``.
 
 A ModelAdmin example::
 
@@ -67,7 +63,7 @@ A ModelAdmin example::
             }),
         )
 
-With `StackedInlines <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of inline items (as opposed to the inline group)::
+With `StackedInlines <https://docs.djangoproject.com/en/1.6/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of inline items (as opposed to the inline group)::
 
     class NavigationItemInline(admin.StackedInline):
         classes = ('grp-collapse grp-open',)
@@ -77,8 +73,6 @@ With `StackedInlines <https://docs.djangoproject.com/en/dev/ref/contrib/admin/#d
 
 Inline Sortables
 ----------------
-
-.. versionadded:: 2.3
 
 For using drag/drop with inlines, you need to add a ``PositiveIntegerField`` to your Model::
 
@@ -120,7 +114,7 @@ You may want to define ``sortable_excludes`` (either list or tuple) in order to 
 Rearrange Inlines
 -----------------
 
-.. versionadded:: 2.4.6
+.. versionadded:: 2.4
 
 Sometimes it might make sense to not show inlines at the bottom of the page/form, but somewhere in–between. In order to achieve this, you need to define a placeholder with your fields/fieldsets in admin.py::
 
@@ -142,9 +136,6 @@ The two classes for the placeholder are important. First, you need a class ``pla
 
 Related Lookups
 ---------------
-
-.. versionchanged:: 2.3.1
-    Added ``related_lookup_fields``.
 
 With Grappelli, you're able to add the representation of an object beneath the input field (for fk– and m2m–fields)::
 
@@ -192,9 +183,6 @@ If your generic relation points to a model using a custom primary key, you need 
         def id(self):
             return self.cpk
 
-.. versionadded:: 2.3.4
-    ``related_label``.
-
 For the representation of an object, we first check for a callable ``related_label``. If not given, ``__unicode__`` is being used in Python 2.x or ``__str__`` in Python 3.x.
 
 Example in Python 2 ::
@@ -221,14 +209,10 @@ Example in Python 3 ::
 Autocomplete Lookups
 --------------------
 
-.. versionadded:: 2.4.7
+.. versionadded:: 2.4
     staticmethod ``autocomplete_term_adjust`` for better search optimization.
-.. versionchanged:: 2.4.6
+.. versionchanged:: 2.4
     staticmethod ``autocomplete_search_fields`` is optional if ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS`` is being used.
-.. versionchanged:: 2.3.5
-    staticmethod ``autocomplete_search_fields`` is required, ``related_autocomplete_lookup`` has been removed.
-.. versionadded:: 2.3.4
-    ``autocomplete_lookup_fields``.
 
 Autocomplete lookups are an alternative to related lookups (for foreign keys, many–to-many relations and generic relations).
 
@@ -358,14 +342,14 @@ Using TinyMCE with inlines is a bit more tricky because of the hidden extra inli
 If our version of TinyMCE does not fit your needs, add a different version to your static directory and change the above mentioned ModelAdmin setup (paths to js–files).
 
 .. warning::
-    TinyMCE will be removed with version 2.5 of |grappelli|, because TinyMCE version 4.x comes with a decent skin.
+    TinyMCE will be removed with version 3.0 of |grappelli|, because TinyMCE version 4.x comes with a decent skin.
 
 .. _changelistfilters:
 
 Changelist Templates
 --------------------
 
-.. versionadded:: 2.4.2
+.. versionadded:: 2.4
 
 Grappelli comes with 2 different change–list templates. The standard template shows filters with a drop–down, the alternative template shows filters on the right hand side of the results (similar to djangos admin interface).
 
@@ -378,7 +362,7 @@ To use the alternative template, you need to add ``change_list_template`` to you
 Changelist Filters
 ------------------
 
-.. versionadded:: 2.4.2
+.. versionadded:: 2.4
 
 Grappelli comes with 2 different change–list filters. The standard filters are drop–downs, the alternative filters are list of options (similar to djangos admin interface).
 
@@ -393,7 +377,7 @@ To use the alternative filters, you need to add ``change_list_filter_template`` 
 Switch User
 -----------
 
-.. versionadded:: 2.4.8
+.. versionadded:: 2.4
 
 You sometimes might need to see the admin interface as a different user (e.g. in order to verify if permissions are set correctly or to follow an editors explanation). If you set ``GRAPPELLI_SWITCH_USER`` to ``True``, you'll get additional users with your user dropdown. Moreover, you can easily switch back to the original User.
 

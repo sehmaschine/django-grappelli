@@ -14,7 +14,4 @@ Templates
 
 If you're using the default URL-pattern (see :ref:`quickstart`) you'll find the documentation at::
 
-	/grappelli/grp-doc/
-
-.. note::
-	This is fairly new and will be improved with future releases.
+    /grappelli/grp-doc/
