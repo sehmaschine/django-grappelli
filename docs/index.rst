@@ -82,7 +82,7 @@ Versions and Compatibility
 **Grappelli is always developed against the latest stable Django release and is NOT tested with Djangos trunk.**
 
 * |grappelli| 2.5.0 (November 13th, 2013): Compatible with Django 1.6
-* |grappelli| 2.4.8 (November 12th, 2013): Compatible with Django 1.4.2+/1.5
+* |grappelli| 2.4.8 (November 12th, 2013): Compatible with Django 1.4/1.5
 
 Current development branches:
 
