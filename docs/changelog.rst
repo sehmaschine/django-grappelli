@@ -32,7 +32,7 @@ Changelog
 * Fixed: Preserved predelete class for inlines.
 * Fixed: Re–implemented visual distinction between FK–Autocompletes and M2M–Autocompletes.
 * Fixed: Removed comma from pagination separator.
-* Improved: Change encoding functions to new django 1.4.2+/1.5 (smart_bytes, smart_text).
+* Improved: Change encoding functions to new django 1.4/1.5 (smart_bytes, smart_text).
 * Improved: Only exposing the project models when the user is authenticated to tighten security.
 * Improved: Some Minor fixes with Python 3.
 * Improved: Fixed some typos with grp-doc and extended the template documentation.
