@@ -219,7 +219,7 @@
                 sortable_excludes = {% get_sortable_excludes inline_admin_formset.opts %},
                 i = 0;
             $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-dynamic-form").each(function(){
-                var fields = $(this).find("fieldset :input[value][value!=''][type!=radio][type!=checkbox],input:checked,input[type=file]"),
+                var fields = $(this).find("fieldset :input[type!=radio][type!=checkbox],input:checked,input[type=file]"),
                     submit_values = false,
                     has_value;
                 $(fields).each(function() {

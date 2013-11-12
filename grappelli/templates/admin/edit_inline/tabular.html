@@ -267,9 +267,10 @@
                 sortable_excludes = {% get_sortable_excludes inline_admin_formset.opts %},
                 i = 0;
             $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-tbody.grp-dynamic-form").each(function(){
-                var fields = $(this).find("div.grp-td :input[value][value!=''][type!=radio][type!=checkbox],input:checked,input[type=file]"),
+                var fields = $(this).find("div.grp-td :input[type!=radio][type!=checkbox],input:checked,input[type=file]"),
                     submit_values = false,
                     has_value;
+                console.log(fields);
                 $(fields).each(function() {
                     // position is being updated if
                     // a) the field has a value
@@ -280,11 +281,13 @@
                         submit_values = true;
                     }
                 });
+                console.log(submit_values);
                 if (submit_values) {
                     $(this).find("input[name$='"+sortable_field_name+"']").val(i);
                     i++;
                 }
             });
+            return false;
         });
         {% endif %}
         
