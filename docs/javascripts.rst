@@ -20,13 +20,16 @@ Original JS
 
 in ``/static/admin/js/``
 
-``calendar.js``, ``collapse.js``, ``collapse.min.js``, ``dateparse.js``, ``inlines.js``, ``inlines.min.js``, ``jquery.init.js``, ``jquery.js``, ``jquery.min.js``, ``prepopulate.js``, ``prepopulate.min.js``, ``timeparse.js``, ``DateTimeShortcuts.js``, ``ordering.js``
+``calendar.js``, ``collapse.js``, ``collapse.min.js``, ``dateparse.js``, ``inlines.js``, ``inlines.min.js``, ``jquery.init.js``, ``jquery.js``, ``jquery.min.js``, ``timeparse.js``, ``DateTimeShortcuts.js``
     not used (empty to prevent 404)
+
+``actions.js``, ``actions.min.js``
+    minor modifiations, marked with GRAPPELLI CUSTOM
 
 ``core.js``
     original
 
-``getElementsBySelector.js``
+``prepopulate``, ``prepopulate.min.js``
     original
 
 ``SelectBox.js``
@@ -37,9 +40,6 @@ in ``/static/admin/js/``
 
 ``urlify.js``
     original
-
-``actions``, ``actions.min.js``
-    minor modifiations, marked with GRAPPELLI CUSTOM
 
 ``RelatedObjectLookups.js``
     minor modifiations, marked with GRAPPELLI CUSTOM
