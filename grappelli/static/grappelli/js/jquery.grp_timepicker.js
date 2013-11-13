@@ -87,8 +87,8 @@
             this.element.after(this.button);
             
             // disable button if element is disabled
-            if (this.element.attr("disabled")) {
-                this.button.attr("disabled", true);
+            if (this.element.prop("disabled")) {
+                this.button.prop("disabled", true);
             } else {
                 // register event
                 this.button.click(function() {

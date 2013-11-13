@@ -70,7 +70,7 @@
             }
             // add options.predeleteCssClass to forms with the delete checkbox checked
             form.find("li.grp-delete-handler-container input").each(function() {
-                if ($(this).attr("checked") && form.hasClass("has_original")) {
+                if ($(this).is(":checked") && form.hasClass("has_original")) {
                     form.toggleClass(options.predeleteCssClass);
                 }
             });
@@ -161,10 +161,10 @@
             // toggle options.predeleteCssClass and toggle checkbox
             if (form.hasClass("has_original")) {
                 form.toggleClass(options.predeleteCssClass);
-                if (deleteInput.attr("checked")) {
+                if (deleteInput.prop("checked")) {
                     deleteInput.removeAttr("checked");
                 } else {
-                    deleteInput.attr("checked", 'checked');
+                    deleteInput.prop("checked", true);
                 }
             }
             // callback
