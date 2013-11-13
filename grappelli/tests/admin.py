@@ -20,10 +20,10 @@ class EntryOptions(admin.ModelAdmin):
     list_display_links = ("title",)
 
     def get_queryset(self, request):
-        qs = super(MyModelAdmin, self).get_queryset(request)
+        qs = super(EntryOptions, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(author=request.user)
+        return qs.filter(user=request.user)
 
 
 site.register(Category, CategoryOptions)
