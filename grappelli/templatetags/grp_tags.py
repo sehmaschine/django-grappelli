@@ -106,6 +106,13 @@ def classname(obj, arg=None):
     return classname
 
 
+@register.filter
+def classpath(obj):
+    module = obj.__module__
+    classname = obj.__class__.__name__
+    return "%s,%s" % (module, classname)
+
+
 # FORMSETSORT FOR SORTABLE INLINES
 
 @register.filter

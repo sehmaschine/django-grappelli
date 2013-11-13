@@ -30,6 +30,9 @@ def get_label(f):
         return f.related_label()
     return smart_text(f)
 
+def import_from(module, name):
+    module = __import__(module, fromlist=[name])
+    return getattr(module, name)
 
 def ajax_response(data):
     return HttpResponse(json.dumps(data), content_type='application/javascript')
@@ -61,7 +64,7 @@ class RelatedLookup(View):
         return qs.filter(**filters)
 
     def get_queryset(self):
-        qs = self.model._default_manager.all()
+        qs = self.model._default_manager.get_queryset()
         qs = self.get_filtered_queryset(qs)
         return qs
 
