@@ -11,6 +11,12 @@ Changelog
 2.5.1 (not yet released)
 ------------------------
 
+* Fixed: Translation with error messages on change_form and change_list_filter_sidebar.
+* Fixed: Error (missing argument) with SelectFilter2.js (this is a django bug as well).
+* Improved: Added attribute on click to updateformindex with inlines.
+* Improved: Added info about the jQuery update to release notes.
+* Improved: Added help_text for password1 with with user/change_password.html.
+
 2.5.0 (November 13th, 2013)
 ---------------------------
 
