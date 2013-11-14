@@ -17,3 +17,4 @@ Update from Grappelli 2.4.x
 
 * Update Django to 1.6 and check https://docs.djangoproject.com/en/dev/releases/1.6/
 * Update Grappelli to 2.5.x
+* If you have custom javascripts, check the guide to upgrade for jQuery 1.9: http://jquery.com/upgrade-guide/1.9/
