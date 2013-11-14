@@ -38,6 +38,7 @@ window.SelectFilter = {
         }
 
         // <div class="selector"> or <div class="selector stacked">
+        // GRAPPELLI CUSTOM: fixed a bug with original django js
         var selector_div = quickElement('div', from_box.parentNode, '');
         selector_div.className = is_stacked ? 'selector stacked' : 'selector';
 
