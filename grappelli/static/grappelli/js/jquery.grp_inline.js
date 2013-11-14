@@ -48,13 +48,15 @@
                 node_id = node.attr('id'),
                 node_name = node.attr('name'),
                 node_for = node.attr('for'),
-                node_href = node.attr("href");
-                node_class = node.attr("class");
+                node_href = node.attr("href"),
+                node_class = node.attr("class"),
+                node_onclick = node.attr("onclick");
             if (node_id) { node.attr('id', node_id.replace(replace_regex, replace_with)); }
             if (node_name) { node.attr('name', node_name.replace(replace_regex, replace_with)); }
             if (node_for) { node.attr('for', node_for.replace(replace_regex, replace_with)); }
             if (node_href) { node.attr('href', node_href.replace(replace_regex, replace_with)); }
             if (node_class) { node.attr('class', node_class.replace(replace_regex, replace_with)); }
+            if (node_onclick) { node.attr('onclick', node_onclick.replace(replace_regex, replace_with)); }
         });
     };
     
