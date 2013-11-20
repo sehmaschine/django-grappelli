@@ -32,7 +32,7 @@ Django Smuggler
 
 .. versionadded:: 2.4
 
-|grappelli| includes all necessary templates for `Django Smuggler <https://github.com/etianen/django-reversion/>`_.
+|grappelli| includes all necessary templates for `Django Smuggler <https://github.com/semente/django-smuggler/>`_.
 
 .. note::
 
