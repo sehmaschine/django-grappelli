@@ -95,8 +95,10 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
         } else if (elemName == 'INPUT') {
             if (elem.className.indexOf('vManyToManyRawIdAdminField') != -1 && elem.value) {
                 elem.value += ',' + newId;
+                elem.focus();
             } else {
                 elem.value = newId;
+                elem.focus();
             }
         }
     } else {
