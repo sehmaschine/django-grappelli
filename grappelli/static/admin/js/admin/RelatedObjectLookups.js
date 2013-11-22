@@ -98,6 +98,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             } else {
                 elem.value = newId;
             }
+            elem.focus();
         }
     } else {
         var toId = name + "_to";
