@@ -114,7 +114,7 @@ You may want to define ``sortable_excludes`` (either list or tuple) in order to 
 Rearrange Inlines
 -----------------
 
-.. versionadded:: 2.4
+.. versionadded:: 2.4.6
 
 Sometimes it might make sense to not show inlines at the bottom of the page/form, but somewhere in–between. In order to achieve this, you need to define a placeholder with your fields/fieldsets in admin.py::
 
