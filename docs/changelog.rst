@@ -11,6 +11,8 @@ Changelog
 2.5.1 (not yet released)
 ------------------------
 
+* Improved: Support setting negative sortable field order values in sortable inlines, so that they get moved to the top on submit.
+
 2.5.0 (November 13th, 2013)
 ---------------------------
 
