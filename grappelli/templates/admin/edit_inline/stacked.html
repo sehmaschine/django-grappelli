@@ -130,7 +130,7 @@
                 }
             });
         });
-        
+
         $("#{{ inline_admin_formset.formset.prefix }}-group").grp_inline({
             prefix: "{{ inline_admin_formset.formset.prefix }}",
             onAfterRemoved: function(inline) {},
@@ -198,7 +198,7 @@
                 form.find(".grp-collapse").grp_collapsible();
             }
         });
-        
+
         {% if inline_admin_formset.opts.sortable_field_name %}
         $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items").sortable({
             handle: "a.grp-drag-handler",
@@ -218,6 +218,24 @@
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}",
                 sortable_excludes = {% get_sortable_excludes inline_admin_formset.opts %},
                 i = 0;
+
+            // Move items with a manually set, negative index to the top before auto updating positions.
+            var _pos_id_list = new Array();
+            // Find all items with negative positions and add save both their position and id attributes.
+            $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-dynamic-form").each(function(){
+                var pos_val = parseInt($(this).find("input[name$='"+sortable_field_name+"']").val());
+                if (pos_val < 0) {
+                    _pos_id_list.push({'pos': pos_val, 'id': $(this).attr('id')});
+                }
+            });
+            // Reverse sort the position-id-objects
+            _pos_id_list.sort(function(obj1, obj2) { return obj2.pos - obj1.pos });
+            // Iterate through the reversed position-id-objects and move the items to the top.
+            $.each(_pos_id_list, function() {
+                var obj = $('#' + this.id);
+                obj.parent().prepend(obj);
+            });
+
             $("#{{ inline_admin_formset.formset.prefix }}-group").find("div.grp-dynamic-form").each(function(){
                 var fields = $(this).find("fieldset :input[type!=radio][type!=checkbox],input:checked,input[type=file]"),
                     submit_values = false,
@@ -238,7 +256,7 @@
             });
         });
         {% endif %}
-        
+
     });
 })(grp.jQuery);
 </script>
