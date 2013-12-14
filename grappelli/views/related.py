@@ -132,7 +132,7 @@ class AutocompleteLookup(RelatedLookup):
             search_fields = ()
 
         for word in term.split():
-            search = [models.Q(**{smart_bytes(item): smart_bytes(word)}) for item in search_fields]
+            search = [models.Q(**{smart_text(item): smart_text(word)}) for item in search_fields]
             search_qs = QuerySet(model)
             search_qs.query.select_related = qs.query.select_related
             search_qs = search_qs.filter(reduce(operator.or_, search))
