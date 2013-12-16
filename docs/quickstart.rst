@@ -42,6 +42,13 @@ Make sure ``AppDirectoriesFinder`` is first with your ``STATICFILES_FINDERS``::
         'django.contrib.staticfiles.finders.FileSystemFinder',
     )
 
+Add the request context processor::
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        ...
+        "django.core.context_processors.request",
+    )
+
 Collect the media files::
 
     python manage.py collectstatic
