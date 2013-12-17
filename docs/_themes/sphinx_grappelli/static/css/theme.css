@@ -5335,3 +5335,20 @@ footer p {
 span[id*='MathJax-Span'] {
   color: #404040;
 }
+
+/* Left for CSS overrides we need to make in the future */
+/* Fix badge on RTD Theme */
+/* line 5, /Users/patrick/srv/grappelli_2_5/src/sphinx-rtd-theme/sass/_theme_custom.sass */
+.rst-other-versions {
+  text-align: left;
+}
+
+/* line 8, /Users/patrick/srv/grappelli_2_5/src/sphinx-rtd-theme/sass/_theme_custom.sass */
+.rst-other-versions a {
+  border: 0;
+}
+
+/* line 11, /Users/patrick/srv/grappelli_2_5/src/sphinx-rtd-theme/sass/_theme_custom.sass */
+.rst-other-versions dl {
+  margin: 0;
+}
