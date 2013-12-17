@@ -5352,3 +5352,8 @@ span[id*='MathJax-Span'] {
 .rst-other-versions dl {
   margin: 0;
 }
+
+/* line 14, /Users/patrick/srv/grappelli_2_5/src/sphinx-rtd-theme/sass/_theme_custom.sass */
+div.injected {
+  display: none;
+}
