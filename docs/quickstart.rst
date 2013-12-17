@@ -48,7 +48,7 @@ Make sure ``AppDirectoriesFinder`` is first with your ``STATICFILES_FINDERS``:
         'django.contrib.staticfiles.finders.FileSystemFinder',
     )
 
-Add the request context processor:
+Add the request context processor (needed for the Dasbhaord and the Switch User feature):
 
 .. code-block:: python
 

@@ -391,9 +391,7 @@ Changelist Templates
 
 .. versionadded:: 2.4
 
-Grappelli comes with 2 different change–list templates. The standard template shows filters with a drop–down, the alternative template shows filters on the right hand side of the results (similar to djangos admin interface).
-
-To use the alternative template, you need to add ``change_list_template`` to your ModelAdmin definition:
+Grappelli comes with 2 different change–list templates. The standard template shows filters with a drop–down, the alternative template shows filters on the right hand side of the results (similar to djangos admin interface). To use the alternative template, you need to add ``change_list_template`` to your ModelAdmin definition:
 
 .. code-block:: python
 
@@ -406,9 +404,7 @@ Changelist Filters
 
 .. versionadded:: 2.4
 
-Grappelli comes with 2 different change–list filters. The standard filters are drop–downs, the alternative filters are list of options (similar to djangos admin interface).
-
-To use the alternative filters, you need to add ``change_list_filter_template`` to your ModelAdmin definition:
+Grappelli comes with 2 different change–list filters. The standard filters are selects, the alternative filters are list of options (similar to djangos admin interface). To use the alternative filters, you need to add ``change_list_filter_template`` to your ModelAdmin definition:
 
 .. code-block:: python
 
