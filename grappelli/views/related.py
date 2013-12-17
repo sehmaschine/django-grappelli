@@ -11,7 +11,7 @@ from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
 from django.utils.translation import ungettext, ugettext as _
-from django.utils.encoding import smart_bytes, smart_text
+from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.util import prepare_lookup_value
 
@@ -60,7 +60,7 @@ class RelatedLookup(View):
             for item in query_string.split(":"):
                 k, v = item.split("=")
                 if k != "t":
-                    filters[smart_bytes(k)] = prepare_lookup_value(smart_bytes(k), smart_bytes(v))
+                    filters[smart_text(k)] = prepare_lookup_value(smart_text(k), smart_text(v))
         return qs.filter(**filters)
 
     def get_queryset(self):
@@ -132,7 +132,7 @@ class AutocompleteLookup(RelatedLookup):
             search_fields = ()
 
         for word in term.split():
-            search = [models.Q(**{smart_bytes(item): smart_bytes(word)}) for item in search_fields]
+            search = [models.Q(**{smart_text(item): smart_text(word)}) for item in search_fields]
             search_qs = QuerySet(model)
             search_qs.query.select_related = qs.query.select_related
             search_qs = search_qs.filter(reduce(operator.or_, search))
