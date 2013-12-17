@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.5.1 (not yet released)
+2.5.2 (not yet released)
 ------------------------
+
+2.5.1 (December 17th, 2013)
+---------------------------
 
 * Fixed: Translation with error messages on change_form and change_list_filter_sidebar.
 * Fixed: Error (missing argument) with SelectFilter2.js (this is a django bug as well).

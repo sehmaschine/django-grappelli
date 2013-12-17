@@ -12,52 +12,64 @@ For using |grappelli| |grappelliversion|, `Django 1.6 <http://www.djangoproject.
 Installation
 ------------
 
-Using ``pip``::
+.. code-block:: bash
 
-    pip install django-grappelli==2.5.1
+    $ pip install django-grappelli==2.5.1
 
-Go to https://github.com/sehmaschine/django-grappelli if you need to download a package or clone the repo.
+Go to https://github.com/sehmaschine/django-grappelli if you need to download a package or clone/fork the repository.
 
 Setup
 -----
 
-Open ``settings.py`` and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``django.contrib.admin``)::
+Open ``settings.py`` and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``django.contrib.admin``):
+
+.. code-block:: python
 
     INSTALLED_APPS = (
         'grappelli',
         'django.contrib.admin',
     )
 
-Add URL-patterns. The grappelli URLs are needed for related–lookups and autocompletes. Your admin interface is available with the URL you defined for ``admin.site``::
+Add URL-patterns. The grappelli URLs are needed for related–lookups and autocompletes. Your admin interface is available with the URL you defined for ``admin.site``:
+
+.. code-block:: python
 
     urlpatterns = patterns('',
         (r'^grappelli/', include('grappelli.urls')), # grappelli URLS
         (r'^admin/',  include(admin.site.urls)), # admin site
     )
 
-Make sure ``AppDirectoriesFinder`` is first with your ``STATICFILES_FINDERS``::
+Make sure ``AppDirectoriesFinder`` is first with your ``STATICFILES_FINDERS``:
+
+.. code-block:: python
 
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
         'django.contrib.staticfiles.finders.FileSystemFinder',
     )
 
-Add the request context processor::
+Add the request context processor:
+
+.. code-block:: python
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...
         "django.core.context_processors.request",
     )
 
-Collect the media files::
+Collect the media files:
 
-    python manage.py collectstatic
+.. code-block:: bash
+
+    $ python manage.py collectstatic
 
 Testing
 -------
 
-Start the devserver and login to your admin site::
+Start the devserver and login to your admin site:
 
-    python manage.py runserver <IP-address>:8000
+.. code-block:: bash
+
+    $ python manage.py runserver <IP-address>:8000
 
 Check if everything looks/works as expected. If you're having problems, see :ref:`troubleshooting`.
