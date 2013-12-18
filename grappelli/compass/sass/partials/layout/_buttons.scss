@@ -365,9 +365,9 @@ input:focus + .grp-search-button {
 /*  UNKNOWN, YES, NO: REPLACING DJANGOS IMAGES
 ------------------------------------------------------------------------------------------------------ */
 
-img[src$="admin/img/icon-unknown.gif"], 
-img[src$="admin/img/icon-no.gif"], 
-img[src$="admin/img/icon-yes.gif"] {
+img[src*="admin/img/icon-unknown"][src$=".gif"], 
+img[src*="admin/img/icon-no"][src$=".gif"], 
+img[src*="admin/img/icon-yes"][src$=".gif"] {
     position: relative;
     height: 0;
     width: 0;
@@ -376,13 +376,13 @@ img[src$="admin/img/icon-yes.gif"] {
     padding: 8px;
     font-size: 0;
 }
-img[src$="admin/img/icon-unknown.gif"] {
+img[src*="admin/img/icon-unknown"][src$=".gif"] {
     @include icons-sprite(status-unknown);
 }
-img[src$="admin/img/icon-no.gif"] {
+img[src*="admin/img/icon-no"][src$=".gif"] {
     @include icons-sprite(status-no);
 }
-img[src$="admin/img/icon-yes.gif"] {
+img[src*="admin/img/icon-yes"][src$=".gif"] {
     @include icons-sprite(status-yes);
 }
 
