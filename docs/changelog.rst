@@ -11,7 +11,7 @@ Changelog
 2.5.2 (not yet released)
 ------------------------
 
-2.5.1 (December 17th, 2013)
+2.5.1 (December 18th, 2013)
 ---------------------------
 
 * Fixed: Translation with error messages on change_form and change_list_filter_sidebar.
@@ -21,9 +21,11 @@ Changelog
 * Fixed: Some translations with password templates.
 * Fixed: Added a note about the required request context processor to quickstart.
 * Fixed: Deleted outdated jquery files.
+* Fixed: Icons with CachedStaticFilesStorage.
 * Improved: Added attribute on click to updateformindex with inlines.
 * Improved: Added info about the jQuery update to release notes.
 * Improved: Added help_text for password1 with with user/change_password.html.
+* Improved: Readability with the RTD sphinx theme.
 
 2.5.0 (November 13th, 2013)
 ---------------------------
