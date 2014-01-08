@@ -187,40 +187,37 @@
             </div>
         {% endif %}
         <div class="c-2">
-            {% if cl.search_fields or cl.date_hierarchy %}
-                <div class="grp-module">
-                    <div class="grp-row">
-                        <div class="l-2cr-fluid{% if cl.search_fields %} l-d-6{% endif %}">
-                            {% if cl.has_filters or cl.search_fields %}
-                                {% block aside %}
-                                    <aside class="c-1">
-                                        <header style="display:none"><h1>{% if cl.search_fields %}Search{% endif %}</h1></header>
-                                        <!-- SEARCH -->
-                                        {% if cl.search_fields %}
-                                            {% block search %}
-                                                <div id="search" class="g-d-6 g-d-f g-d-l">
-                                                    {% search_form cl %}
-                                                </div>
-                                            {% endblock %}
-                                        {% endif %}
-                                    </aside>
-                                {% endblock %}
-                            {% endif %}
-                            {% block pagination_top %}
-                                <div class="c-2">
-                                    <!-- PAGINATION TOP -->
-                                    {% pagination cl %}
-                                </div>
+            <div class="grp-module">
+                <div class="grp-row">
+                    <div class="l-2cr-fluid{% if cl.search_fields %} l-d-6{% endif %}">
+                        {% if cl.has_filters or cl.search_fields %}
+                            {% block aside %}
+                                <aside class="c-1">
+                                    <header style="display:none"><h1>{% if cl.search_fields %}Search{% endif %}</h1></header>
+                                    <!-- SEARCH -->
+                                    {% if cl.search_fields %}
+                                        {% block search %}
+                                            <div id="search" class="g-d-6 g-d-f g-d-l">
+                                                {% search_form cl %}
+                                            </div>
+                                        {% endblock %}
+                                    {% endif %}
+                                </aside>
                             {% endblock %}
-                        </div>
+                        {% endif %}
+                        {% block pagination_top %}
+                            <div class="c-2">
+                                <!-- PAGINATION TOP -->
+                                {% pagination cl %}
+                            </div>
+                        {% endblock %}
                     </div>
-                    <!-- DATE HIERARCHY -->
-                    {% block date_hierarchy %}
-                        {% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}
-                    {% endblock %}
                 </div>
-            {% endif %}
-            
+                <!-- DATE HIERARCHY -->
+                {% block date_hierarchy %}
+                    {% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}
+                {% endblock %}
+            </div>
             <form id="grp-changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
                 <section id="grp-changelist" class="{% if cl.list_editable %} grp-editable{% endif %}">
                     <header style="display:none"><h1>Results</h1></header>
