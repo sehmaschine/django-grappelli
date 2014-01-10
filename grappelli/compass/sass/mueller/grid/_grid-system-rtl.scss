@@ -182,8 +182,9 @@ $show-grid-background: false;
     }
     // ADDED generate form field widths
     @each $n in $units {
-        .g-#{$media}-#{$n} input[type=text], 
-        .g-#{$media}-#{$n} input[type=password], 
+        .g-#{$media}-#{$n} input[type="text"], 
+        .g-#{$media}-#{$n} input[type="email"], 
+        .g-#{$media}-#{$n} input[type="password"], 
         .g-#{$media}-#{$n} select, 
         .g-#{$media}-#{$n} textarea {
             width: 100%;
