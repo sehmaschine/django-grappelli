@@ -34,16 +34,16 @@
 body {
     clear: both;
     margin: 0;
-    padding: 0 20px 0;
+    padding: 20px 20px 0;
     height: 100%;
     background: #fff !important;
 }
 body.filebrowser {
     margin: 0 !important;
 }
-body > *:first-child {
+/*body > *:first-child {
     margin-top: 20px;
-}
+}*/
 
 html {
     height: 100%;
