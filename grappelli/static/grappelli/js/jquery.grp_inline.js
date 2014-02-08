@@ -126,26 +126,36 @@
     removeButtonHandler = function(elem, options) {
         elem.bind("click", function() {
             var inline = elem.parents(".grp-group"),
-                form = $(this).parents("." + options.formCssClass).first(),
+                removedForm = $(this).parents("." + options.formCssClass).first(),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
-                maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS");
+                maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS"),
+                getFormIndex = function(form) {
+                    var indexedId = form.find("[id^='id_" + options.prefix + "']").attr('id'),
+                        re = /-(\d+)-/;
+                    if (!indexedId) {
+                        return -1;
+                    }
+                    return parseInt(re.exec(indexedId)[1], 10);
+                },
+                removedIndex = getFormIndex(removedForm);
             // callback
-            options.onBeforeRemoved(form);
+            options.onBeforeRemoved(removedForm);
             // remove form
-            form.remove();
+            removedForm.remove();
             // update total forms
-            var index = parseInt(totalForms.val(), 10);
-            totalForms.val(index - 1);
+            totalForms.val(parseInt(totalForms.val(), 10) - 1);
             // show add button in case we've dropped below max
             if ((maxForms.val() !== 0) && (maxForms.val() - totalForms.val()) > 0) {
                 showAddButtons(inline, options);
             }
             // update form index (for all forms)
-            var re = /-\d+-/g,
-                i = 0;
+            var re = /-\d+-/g;
             inline.find("." + options.formCssClass).each(function() {
-                updateFormIndex($(this), options, re, "-" + i + "-");
-                i++;
+                var form = $(this),
+                    formIndex = getFormIndex(form);
+                if (formIndex > removedIndex) {
+                    updateFormIndex($(this), options, re, "-" + (formIndex-1) + "-");
+                }
             });
             // callback
             options.onAfterRemoved(inline);
