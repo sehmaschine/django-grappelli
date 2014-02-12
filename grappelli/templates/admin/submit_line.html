@@ -6,16 +6,16 @@
             <li class="grp-float-left"><a href="delete/" class="grp-button grp-delete-link">{% trans "Delete" %}</a></li>
         {% endif %}
         {% if show_save %}
-        	<li><input type="submit" value="{% trans 'Save' %}" class="grp-button grp-default" name="_save" {{ onclick_attrib }}/></li>
+        	<li><input type="submit" value="{% trans 'Save' %}" class="grp-button grp-default" name="_save" /></li>
         {% endif %}
         {% if show_save_as_new %}
-        	<li><input type="submit" value="{% trans 'Save as new' %}" class="grp-button" name="_saveasnew" {{ onclick_attrib }}/></li>
+        	<li><input type="submit" value="{% trans 'Save as new' %}" class="grp-button" name="_saveasnew" /></li>
         {% endif %}
         {% if show_save_and_add_another %}
-        	<li><input type="submit" value="{% trans 'Save and add another' %}" class="grp-button" name="_addanother" {{ onclick_attrib }} /></li>
+        	<li><input type="submit" value="{% trans 'Save and add another' %}" class="grp-button" name="_addanother" /></li>
         {% endif %}
         {% if show_save_and_continue %}
-        	<li><input type="submit" value="{% trans 'Save and continue editing' %}" class="grp-button" name="_continue" {{ onclick_attrib }}/></li>
+        	<li><input type="submit" value="{% trans 'Save and continue editing' %}" class="grp-button" name="_continue" /></li>
         {% endif %}
     </ul>
 </footer>
