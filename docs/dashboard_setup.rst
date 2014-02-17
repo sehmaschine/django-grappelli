@@ -32,12 +32,13 @@ Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` 
 Custom dashboard
 ----------------
 
-To customize the index dashboard, you first need to add a custom dashboard:
+To customize the index dashboard, you first need to add a custom dashboard, located within your project directory. Depending on the location of manage.py, you might need to add the project directory to the management command (see last example below):
 
 .. code-block:: bash
     
     $ python manage.py customdashboard  # creates dashboard.py
     $ python manage.py customdashboard somefile.py  # creates somefile.py
+    $ python manage.py customdashboard projdir/somefile.py  # creates somefile.py in projdir
 
 The created file contains the class ``CustomIndexDashboard`` that corresponds to the admin index page dashboard. Now you need to add your custom dashboard. Open your ``settings.py`` file and define ``GRAPPELLI_INDEX_DASHBOARD``:
 
