@@ -127,9 +127,10 @@ class AutocompleteLookup(RelatedLookup):
         try:
             search_fields = model.autocomplete_search_fields()
         except AttributeError:
-            search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
-        except KeyError:
-            search_fields = ()
+            try:
+                search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
+            except KeyError:
+                search_fields = ()
 
         for word in term.split():
             search = [models.Q(**{smart_text(item): smart_text(word)}) for item in search_fields]
