@@ -11,6 +11,16 @@ Changelog
 2.5.2 (not yet released)
 ------------------------
 
+* Fixed: Exception chain with autocompletes.
+* Fixed: Reindexing with inline sortables.
+* Fixed: Fixed duplicate with search form.
+* Fixed: Removed onclick_attribs in submit line.
+* Improved: Added note about the location of customdashboard (docs).
+* Improved: Load cycle from future.
+* Improved: TinyMCE dialog layout.
+* Improved: Added input type email to grid system.
+* Improved: Compatibility with adminplus.
+
 2.5.1 (December 18th, 2013)
 ---------------------------
 
