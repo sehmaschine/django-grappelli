@@ -122,16 +122,20 @@ class AutocompleteLookup(RelatedLookup):
         try:
             search_fields = model.autocomplete_search_fields()
         except AttributeError:
-            search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
-        except KeyError:
-            search_fields = ()
+            try:
+                search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
+            except KeyError:
+                search_fields = ()
 
-        for word in term.split():
-            search = [models.Q(**{smart_bytes(item): smart_bytes(word)}) for item in search_fields]
-            search_qs = QuerySet(model)
-            search_qs.query.select_related = qs.query.select_related
-            search_qs = search_qs.filter(reduce(operator.or_, search))
-            qs &= search_qs
+        if search_fields:
+            for word in term.split():
+                search = [models.Q(**{smart_text(item): smart_text(word)}) for item in search_fields]
+                search_qs = QuerySet(model)
+                search_qs.query.select_related = qs.query.select_related
+                search_qs = search_qs.filter(reduce(operator.or_, search))
+                qs &= search_qs
+        else:
+            qs = model.objects.none()
         return qs
 
     def get_queryset(self):
