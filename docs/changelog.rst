@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.4.9 (not yet released)
-------------------------
+2.4.10 (not yet released)
+-------------------------
+
+2.4.9 (February 20th, 2014)
+---------------------------
 
 * Fixed: Exception chain with autocompletes.
 * Fixed: Reindexing with inline sortables.
