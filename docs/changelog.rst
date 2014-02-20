@@ -11,6 +11,14 @@ Changelog
 2.4.9 (not yet released)
 ------------------------
 
+* Fixed: Exception chain with autocompletes.
+* Fixed: Reindexing with inline sortables.
+* Fixed: Removed onclick_attribs in submit line.
+* Fixed: Fixed duplicate with search form.
+* Fixed: Link to django–smuggler with docs/thirdparty.
+* Improved: Added help_text for password1 with with user/change_password.html
+* Improved: TinyMCE dialog layout.
+
 2.4.8 (November 12th, 2013)
 ---------------------------
 
