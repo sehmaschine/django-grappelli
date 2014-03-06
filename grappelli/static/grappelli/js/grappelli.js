@@ -131,6 +131,7 @@ var django = {
         var link = elem.next("a");
         if (link.length > 0) {
             var url = link.attr('href').split('/');
+            url = url.filter( function(part){ return part.length > 0 } );
             return url[url.length-3];
         }
         return false;
@@ -139,6 +140,7 @@ var django = {
         var link = elem.next("a");
         if (link.length > 0) {
             var url = link.attr('href').split('/');
+            url = url.filter( function(part){ return part.length > 0 } );
             return url[url.length-2];
         }
         return false;
@@ -147,6 +149,7 @@ var django = {
         var link = elem.next("a");
         if (link.length > 0) {
             var url = link.attr('href').split('/');
+            url = url.filter( function(part){ return part.length > 0 } );
             return url[url.length-1].replace('?', '');
         }
         return false;
