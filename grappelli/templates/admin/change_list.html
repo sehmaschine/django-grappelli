@@ -148,14 +148,14 @@
 
 <!-- OBJECT-TOOLS -->
 {% block object-tools %}
-    {% if has_add_permission %}
-        <ul class="grp-object-tools">
-            {% block object-tools-items %}
+    <ul class="grp-object-tools">
+        {% block object-tools-items %}
+            {% if has_add_permission %}
                 {% url cl.opts|admin_urlname:'add' as add_url %}
                 <li><a href="{% add_preserved_filters add_url is_popup %}" class="addlink">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
-            {% endblock %}
-        </ul>
-    {% endif %}
+            {% endif %}
+        {% endblock %}
+    </ul>
 {% endblock %}
 
 <!-- CONTENT -->
