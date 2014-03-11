@@ -8,7 +8,7 @@
 Changelog
 =========
 
-2.5.2 (not yet released)
+2.5.2 (February 20th, 2014)
 ------------------------
 
 * Fixed: Exception chain with autocompletes.
