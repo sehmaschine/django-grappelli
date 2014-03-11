@@ -169,8 +169,9 @@ body.tinyMCE input[name="href"] + div a {
     position: relative;
     display: block;
     top: -24px;
-    margin: 0 0 -22px 123px;
+    margin: 0 0 -20px 123px;
     padding: 0;
+    // min-height: 20px;
     font-weight: bold;
     table & {
         top: -20px;
@@ -202,10 +203,14 @@ body.tinyMCE input[name="href"] + div a {
 .grp-placeholder-related-m2m, 
 .grp-placeholder-related-generic {
     @include grp-placeholder;
+    .grp-errors & {
+        display: none;
+    }
+    .grp-separator {
+        @include grp-separator;
+    }
 }
-.grp-separator {
-    @include grp-separator;
-}
+
 
 
 /*  Filebrowser, Related Lookup, M2M, FK, Related Remove ......................................... */
@@ -226,9 +231,12 @@ a.related-lookup + strong {
 }
 
 a.related-lookup.m2m, 
-.grp-autocomplete-wrapper-m2m a.related-lookup, 
-.grp-autocomplete-wrapper-fk a.related-lookup {
+.grp-autocomplete-wrapper-m2m a.related-lookup {
     @include icons-sprite(related-lookup-m2m);
+    @include grp-button-states(blue, grey);
+}
+.grp-autocomplete-wrapper-fk a.related-lookup {
+    @include icons-sprite(related-lookup);
     @include grp-button-states(blue, grey);
 }
 
@@ -296,8 +304,13 @@ p.grp-help + * + a.add-another {
     top: -20px;
     margin-bottom: -20px;
 }
-.grp-td a.add-another {
-    float: right;
+.grp-td {
+    a.add-another {
+        float: none;
+    }
+    select + a.add-another {
+        top: -6px;
+    }
 }
 .radiolist.inline + a.add-another, 
 .checkboxlist.inline + a.add-another {
@@ -352,9 +365,9 @@ input:focus + .grp-search-button {
 /*  UNKNOWN, YES, NO: REPLACING DJANGOS IMAGES
 ------------------------------------------------------------------------------------------------------ */
 
-img[src$="admin/img/icon-unknown.gif"], 
-img[src$="admin/img/icon-no.gif"], 
-img[src$="admin/img/icon-yes.gif"] {
+img[src*="admin/img/icon-unknown"][src$=".gif"], 
+img[src*="admin/img/icon-no"][src$=".gif"], 
+img[src*="admin/img/icon-yes"][src$=".gif"] {
     position: relative;
     height: 0;
     width: 0;
@@ -363,13 +376,13 @@ img[src$="admin/img/icon-yes.gif"] {
     padding: 8px;
     font-size: 0;
 }
-img[src$="admin/img/icon-unknown.gif"] {
+img[src*="admin/img/icon-unknown"][src$=".gif"] {
     @include icons-sprite(status-unknown);
 }
-img[src$="admin/img/icon-no.gif"] {
+img[src*="admin/img/icon-no"][src$=".gif"] {
     @include icons-sprite(status-no);
 }
-img[src$="admin/img/icon-yes.gif"] {
+img[src*="admin/img/icon-yes"][src$=".gif"] {
     @include icons-sprite(status-yes);
 }
 

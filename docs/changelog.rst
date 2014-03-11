@@ -8,125 +8,40 @@
 Changelog
 =========
 
-2.4.3 (not yet released)
+2.5.2 (not yet released)
 ------------------------
 
-2.4.2 (September 18, 2012)
---------------------------
+* Fixed: Exception chain with autocompletes.
+* Fixed: Reindexing with inline sortables.
+* Fixed: Fixed duplicate with search form.
+* Fixed: Removed onclick_attribs in submit line.
+* Improved: Added note about the location of customdashboard (docs).
+* Improved: Load cycle from future.
+* Improved: TinyMCE dialog layout.
+* Improved: Added input type email to grid system.
+* Improved: Compatibility with adminplus.
 
-* Fixed: Bug with change-permissions on ModelList (grappelli.dashboard).
-* Added: Alternative ChangeList Template (with filters on the right hand side).
-* Added: Alternative ChangeList Filter Template (displaying filters as list/options).
+2.5.1 (December 18th, 2013)
+---------------------------
 
-2.4.1 (September 17, 2012)
---------------------------
+* Fixed: Translation with error messages on change_form and change_list_filter_sidebar.
+* Fixed: Error (missing argument) with SelectFilter2.js (this is a django bug as well).
+* Fixed: Link to django–smuggler with docs/thirdparty.
+* Fixed: RelatedObjectLookup elem.focus().
+* Fixed: Some translations with password templates.
+* Fixed: Added a note about the required request context processor to quickstart.
+* Fixed: Deleted outdated jquery files.
+* Fixed: Icons with CachedStaticFilesStorage.
+* Improved: Added attribute on click to updateformindex with inlines.
+* Improved: Added info about the jQuery update to release notes.
+* Improved: Added help_text for password1 with with user/change_password.html.
+* Improved: Readability with the RTD sphinx theme.
 
-* Fixed: Footer buttons in change_form.html do not flow correctly when screen width is reduced.
-* Fixed: Breadcrumbs of delete_selected_confirmation.
-* Fixed: Added titles for page-tools (open/close).
-* Fixed: Margins and capfirst for filter labels.
-* Fixed: Delete persmissions with inlines (stacked and tabular).
-* Fixed: Removed double dots for labels with auth- and registration-templates.
-* Fixed: Button with TinyMCE AdvLink.
-* Fixed: Timepicker closes with ESC.
-* Fixed: Window width with popups.
-* Added: Compass experimental svg support (for IE9).
-* Added: Reset actions select box with javascript.
-* Added setting ``AUTOCOMPLETE_LIMIT``.
-* Improved: sortables with django file uploads.
-* Improved: HTML is now allowed for object representation with related-lookups.
-* Improved: Documentation with using TinyMCE.
+2.5.0 (November 13th, 2013)
+---------------------------
 
-2.4.0 (July 20, 2012)
----------------------
-
-* Compatibility with Django 1.4
-* New: Grappelli namespace (grp-) for css-classes.
-* New: Grappelli namespace (grp.jQuery) for jQuery.
-* New: Compass-based CSS
-* New: Added toggle-all with change-form
-* New: DOM-Documentation
-* New: ``sortable_excludes``
-* New: 2 different Changelists (one with sidebar filters).
-* New: Minified Grappelli Javascripts.
-* New: Added support for django-reversion.
-* Changed: Selectors with Inlines in order to update the sortable-field (now also works with File-Fields)
-* Changed: Updated jQuery to 1.7.2
-
-2.3.8 (April 03, 2012)
-----------------------
-
-* TinyMCE Update (3.5b2)
-
-2.3.7 (February 11, 2012)
--------------------------
-
-* Fixed compatibility issue with Python 2.5.
-* Fixed some translations.
-
-2.3.6 (February 10, 2012)
--------------------------
-
-* Fixed issue where autocomplete/related settings could not use tuples.
-* Fixed a bug with toggle all actions on the changlist
-* Fixed a bug with adding dynamic-forms to tabular and stacked inlines (which caused the remove-handler to throw an error)
-* Autocompletes: Only do a lookup with generics, if content-type is defined.
-* Support for new URL tags, see https://docs.djangoproject.com/en/dev/releases/1.3/#changes-to-url-and-ssi.
-* Fixed a bug with m2m-lookups (return obj.pk instead of obj.id).
-* Fixed a bug with very long filters (hidden behind the footer).
-* Added german and french UI-datepicker.
-* Added support for non-integer IDs with generic relations.
-* Added pre_content and post_content to dashboard.
-* Added inline_classes.
-* Added polish translation for TinyMCE and grappelli contextmenu.
-* Removed ``title_url`` from dashboard-docs (it hasn´t been used anyway so far).
-
-2.3.5 (October 11, 2011)
-------------------------
-
-* Improved performance for autocomplete lookups (staticmethod autocomplete_search_fields is required from now on)
-
-2.3.4 (September 8, 2011)
--------------------------
-
-* Moved |grappelli| to GitHub
-* Fixed a bug with the View on Site link (tabular/stacked inlines)
-* Added a placeholder for inline sortables
-* Fixed a bug with collapse all (stacked inlines)
-* Added autocompletes
-* Updated jQuery (to 1.6.2) and jQueryUI (to 1.8.15)
-* Added error-messages to the login form
-* Fixed a bug with hidden-fields in tabular-inlines
-
-2.3.3 (May 28, 2011)
---------------------
-
-* Documentation update
-* FileBrowser-related updates
-* Fixed a bug with delete-confirmation
-* Removed the js for adding nowrap-class (fixed with the latest django-version)
-* Stable sorting for dashboard.ModelList
-* Added collapse-handler to h4 for stacked-inlines
-* Help-text is now available with tabular-inlines
-* Fixed some translation-issues
-* Fixed loading-issues with Chrome
-* Reversed asc-/desc-icons
-* Updated TinyMCE to 3.4.2
-
-2.3.2 (February 16, 2011)
--------------------------
-
-* Some smaller bugfixes on the changelist.
-* Finally deleted folder ``media`` (media-files are now in ``static``).
-* Added class submit-link for custom admin-pages.
-* Removed save-button on changelist if there is no formset.
-* Fixed a bug with using generic relations within generic-inlines (tabular and stacked).
-
-2.3.1 (February 3, 2011)
-------------------------
-
-* Added ``related_lookup_fields`` for defining related lookups (fk, m2m, generic).
-* Fixed the limiation for using ``content_type_*`` and ``object_id_*`` with Generic Relations.
-* Deleted folder ``media`` (media-files are now in ``static``).
-* Fixed a bug in ``delete_selected_confirmation.html``.
-* Added block ``nav-global`` for adding custom elements to the header.
+* New: Compatibility with Django 1.6.
+* Fixed: ``limit_choices_to`` is being used for related lookups (FK/M2M) as well (so far, it has only been used with autocompletes).
+* Fixed: Related/Autocomplete lookups with multiple items within ``limit_choices_to`` (so far, only the first dictionary item has been used).
+* Improved: Updated jQuery to 1.9.1 and jQueryUI to 1.10.3.
+* Improved: Unit-Tests for switch user and related lookups resp. autocompletes.

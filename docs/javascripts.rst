@@ -15,18 +15,21 @@ Grappelli only uses a subset of the original admin javascripts.
 * If we add functionality, we use our own jQuery-plugins (e.g. ``jquery.grp_collapsible.js``) or jQuery-widgets (e.g. ``jquery.grp_timepicker.js``)
 * If there are major modifications, we use our own files as well (e.g. ``jquery.grp_inlines.js``).
 
-Original JS
------------
+Original Javascripts
+--------------------
 
 in ``/static/admin/js/``
 
-``calendar.js``, ``collapse.js``, ``collapse.min.js``, ``dateparse.js``, ``inlines.js``, ``inlines.min.js``, ``jquery.init.js``, ``jquery.js``, ``jquery.min.js``, ``prepopulate.js``, ``prepopulate.min.js``, ``timeparse.js``, ``DateTimeShortcuts.js``, ``ordering.js``
+``calendar.js``, ``collapse.js``, ``collapse.min.js``, ``dateparse.js``, ``inlines.js``, ``inlines.min.js``, ``jquery.init.js``, ``jquery.js``, ``jquery.min.js``, ``timeparse.js``, ``DateTimeShortcuts.js``
     not used (empty to prevent 404)
+
+``actions.js``, ``actions.min.js``
+    minor modifiations, marked with GRAPPELLI CUSTOM
 
 ``core.js``
     original
 
-``getElementsBySelector.js``
+``prepopulate``, ``prepopulate.min.js``
     original
 
 ``SelectBox.js``
@@ -38,15 +41,12 @@ in ``/static/admin/js/``
 ``urlify.js``
     original
 
-``actions``, ``actions.min.js``
-    minor modifiations, marked with GRAPPELLI CUSTOM
-
 ``RelatedObjectLookups.js``
     minor modifiations, marked with GRAPPELLI CUSTOM
 
 
-Grappelli JS
-------------
+Grappelli Javascripts
+---------------------
 
 in ``/static/admin/js/``
 
@@ -82,3 +82,6 @@ in ``/static/admin/js/``
 
 ``grappelli.js``
     main grappelli js
+
+``grappelli.min.js``
+    minified version of all Grappelli JS

@@ -1,7 +1,7 @@
 
 
 
-/*	TYPOGRAPHY
+/*  TYPOGRAPHY
 ------------------------------------------------------------------------------------------------------ */
 
 
@@ -9,10 +9,10 @@
 
 $grp-font-family: Arial, sans-serif;
 @mixin grp-font-family {
-	font-family: $grp-font-family;
+    font-family: $grp-font-family;
 }
 .grp-font-family {
-	@include grp-font-family;
+    @include grp-font-family;
 }
 
 
@@ -20,17 +20,17 @@ $grp-font-family: Arial, sans-serif;
 
 $grp-font-color: #444 !default;
 .grp-font-color {
-	color: $grp-font-color;
+    color: $grp-font-color;
 }
 
 $grp-font-color-quiet: #888 !default;
 .grp-font-color-quiet {
-	color: $grp-font-color-quiet;
+    color: $grp-font-color-quiet;
 }
 
 $grp-font-color-error: #bf3030 !default;
 .grp-font-color-error {
-	color: $grp-font-color-error;
+    color: $grp-font-color-error;
 }
 
 
@@ -45,7 +45,7 @@ $grp-link-color-quiet-hover: #444 !default;
 
 
 
-/*	COMPONENTS
+/*  COMPONENTS
 ------------------------------------------------------------------------------------------------------ */
 
 
@@ -72,7 +72,7 @@ $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-co
 
 
 
-/*	GROUPS, MODULES, ROWS
+/*  GROUPS, MODULES, ROWS
 ------------------------------------------------------------------------------------------------------ */
 
 
@@ -99,41 +99,41 @@ $grp-row-border-bottom-color: #ddd !default;
 
 /*  Predelete ............................................................ */
 
-$grp-predelete-background-color: #f2e6e6 !default;
+$grp-predelete-background-color: #f7e4e4 !default;
 
 
 /*  H2, H3 ............................................................ */
 
 @mixin grp-gradient-module-h2 {
-	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
+    @include background-image(linear-gradient(#e5e5e5, #dbdbdb));
 }
 @mixin grp-gradient-module-h3 {
-	@include background-image(linear-gradient(#e5e5e5, #dbdbdb));
+    @include background-image(linear-gradient(#e5e5e5, #dbdbdb));
 }
 @mixin grp-gradient-module-h4 {
-	@include background-image(linear-gradient(lighten(#e5e5e5, 2), lighten(#dbdbdb, 2)));
+    @include background-image(linear-gradient(lighten(#e5e5e5, 2), lighten(#dbdbdb, 2)));
 }
 
 
 /*  Collapse Handlers ............................................................ */
 
 @mixin grp-gradient-module-h2-collapse-handler {
-	@include background-image(linear-gradient(#bcdfeb, #a1d4e5));
+    @include background-image(linear-gradient(#bcdfeb, #a1d4e5));
 }
 @mixin grp-gradient-module-h2-collapse-handler-hover {
-	@include background-image(linear-gradient(#a1d4e5, #bcdfeb));
+    @include background-image(linear-gradient(#a1d4e5, #bcdfeb));
 }
 
 @mixin grp-gradient-module-h3-collapse-handler {
-	@include background-image(linear-gradient(#e1f0f5, #cee9f2));
+    @include background-image(linear-gradient(#e1f0f5, #cee9f2));
 }
 @mixin grp-gradient-module-h3-collapse-handler-hover {
-	@include background-image(linear-gradient(#cee9f2, #e1f0f5));
+    @include background-image(linear-gradient(#cee9f2, #e1f0f5));
 }
 
 
 
-/*	TABLES
+/*  TABLES
 ------------------------------------------------------------------------------------------------------ */
 
 
@@ -144,7 +144,7 @@ $grp-table-border-color: #ccc !default;
 
 
 
-/*	FORMS
+/*  FORMS
 ------------------------------------------------------------------------------------------------------ */
 
 
@@ -163,10 +163,10 @@ $grp-form-field-border: 1px solid #ccc !default;
 $grp-form-field-border-focus: 1px solid #aaa !default;
 
 @mixin grp-form-field-box-shadow {
-	@include single-box-shadow(#eee 0 1px 3px inset);
+    @include single-box-shadow(#eee 0 1px 3px inset);
 }
 @mixin grp-form-field-box-shadow-focus {
-	@include box-shadow(#ccc 0 0 6px);
+    @include box-shadow(#ccc 0 0 6px);
 }
 
 
@@ -178,7 +178,7 @@ $grp-form-label-line-height: 13px !default;
 $grp-form-label-font-color: #444 !default;
 
 @mixin grp-form-label-required {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 
@@ -206,76 +206,76 @@ $grp-form-button-cancel-background-color-hover: #444 !default;
 $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 
 @mixin grp-form-button-style {
-	color: #fff;
-	border: 1px solid darken($grp-form-button-background-color, 5);
-	@include background-image(linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color));
-	&:hover, 
-	&:focus {
-		color: #fff;
-		border: 1px solid darken($grp-form-button-background-color-hover, 5);
-		@include background-image(linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover));
-		.grp-fixed-footer & {
-			color: #444;
-			border: 1px solid darken($grp-footer-form-button-background-color-hover, 15);
-			@include background-image(linear-gradient(lighten($grp-footer-form-button-background-color-hover, 15), $grp-footer-form-button-background-color-hover));
-		}
-	}
+    color: #fff;
+    border: 1px solid darken($grp-form-button-background-color, 5);
+    @include background-image(linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color));
+    &:hover, 
+    &:focus {
+        color: #fff;
+        border: 1px solid darken($grp-form-button-background-color-hover, 5);
+        @include background-image(linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover));
+        .grp-fixed-footer & {
+            color: #444;
+            border: 1px solid darken($grp-footer-form-button-background-color-hover, 15);
+            @include background-image(linear-gradient(lighten($grp-footer-form-button-background-color-hover, 15), $grp-footer-form-button-background-color-hover));
+        }
+    }
 }
 
 @mixin grp-form-button-delete-style {
-	color: #fff;
-	border: 1px solid darken($grp-form-button-delete-background-color, 5);
-	@include background-image(linear-gradient(lighten($grp-form-button-delete-background-color, 10), $grp-form-button-delete-background-color));
-	&:hover, 
-	&:focus {
-		color: #fff;
-		border: 1px solid darken($grp-form-button-delete-background-color-hover, 5);
-		@include background-image(linear-gradient(lighten($grp-form-button-delete-background-color-hover, 10), $grp-form-button-delete-background-color-hover));
-		.grp-fixed-footer & {
-			color: #444;
-			border: 1px solid darken($grp-footer-form-button-delete-background-color-hover, 15);
-			@include background-image(linear-gradient(lighten($grp-footer-form-button-delete-background-color-hover, 15), $grp-footer-form-button-delete-background-color-hover));
-		}
-	}
+    color: #fff;
+    border: 1px solid darken($grp-form-button-delete-background-color, 5);
+    @include background-image(linear-gradient(lighten($grp-form-button-delete-background-color, 10), $grp-form-button-delete-background-color));
+    &:hover, 
+    &:focus {
+        color: #fff;
+        border: 1px solid darken($grp-form-button-delete-background-color-hover, 5);
+        @include background-image(linear-gradient(lighten($grp-form-button-delete-background-color-hover, 10), $grp-form-button-delete-background-color-hover));
+        .grp-fixed-footer & {
+            color: #444;
+            border: 1px solid darken($grp-footer-form-button-delete-background-color-hover, 15);
+            @include background-image(linear-gradient(lighten($grp-footer-form-button-delete-background-color-hover, 15), $grp-footer-form-button-delete-background-color-hover));
+        }
+    }
 }
 
 @mixin grp-form-button-cancel-style {
-	color: #fff;
-	border: 1px solid darken($grp-form-button-cancel-background-color, 5);
-	@include background-image(linear-gradient(lighten($grp-form-button-cancel-background-color, 10), $grp-form-button-cancel-background-color));
-	&:hover, 
-	&:focus {
-		color: #fff;
-		border: 1px solid darken($grp-form-button-cancel-background-color-hover, 5);
-		@include background-image(linear-gradient(lighten($grp-form-button-cancel-background-color-hover, 10), $grp-form-button-cancel-background-color-hover));
-		.grp-fixed-footer & {
-			color: #444;
-			border: 1px solid darken($grp-footer-form-button-cancel-background-color-hover, 15);
-			@include background-image(linear-gradient(lighten($grp-footer-form-button-cancel-background-color-hover, 15), $grp-footer-form-button-cancel-background-color-hover));
-		}
-	}
+    color: #fff;
+    border: 1px solid darken($grp-form-button-cancel-background-color, 5);
+    @include background-image(linear-gradient(lighten($grp-form-button-cancel-background-color, 10), $grp-form-button-cancel-background-color));
+    &:hover, 
+    &:focus {
+        color: #fff;
+        border: 1px solid darken($grp-form-button-cancel-background-color-hover, 5);
+        @include background-image(linear-gradient(lighten($grp-form-button-cancel-background-color-hover, 10), $grp-form-button-cancel-background-color-hover));
+        .grp-fixed-footer & {
+            color: #444;
+            border: 1px solid darken($grp-footer-form-button-cancel-background-color-hover, 15);
+            @include background-image(linear-gradient(lighten($grp-footer-form-button-cancel-background-color-hover, 15), $grp-footer-form-button-cancel-background-color-hover));
+        }
+    }
 }
 
 @mixin grp-form-button-reset-style {
-	color: #fff;
-	border: 1px solid darken($grp-form-button-reset-background-color, 5);
-	@include background-image(linear-gradient(lighten($grp-form-button-reset-background-color, 10), $grp-form-button-reset-background-color));
-	&:hover, 
-	&:focus {
-		color: #fff;
-		border: 1px solid darken($grp-form-button-reset-background-color-hover, 5);
-		@include background-image(linear-gradient(lighten($grp-form-button-reset-background-color-hover, 10), $grp-form-button-reset-background-color-hover));
-		.grp-fixed-footer & {
-			color: #444;
-			border: 1px solid darken($grp-footer-form-button-reset-background-color-hover, 15);
-			@include background-image(linear-gradient(lighten($grp-footer-form-button-reset-background-color-hover, 15), $grp-footer-form-button-reset-background-color-hover));
-		}
-	}
+    color: #fff;
+    border: 1px solid darken($grp-form-button-reset-background-color, 5);
+    @include background-image(linear-gradient(lighten($grp-form-button-reset-background-color, 10), $grp-form-button-reset-background-color));
+    &:hover, 
+    &:focus {
+        color: #fff;
+        border: 1px solid darken($grp-form-button-reset-background-color-hover, 5);
+        @include background-image(linear-gradient(lighten($grp-form-button-reset-background-color-hover, 10), $grp-form-button-reset-background-color-hover));
+        .grp-fixed-footer & {
+            color: #444;
+            border: 1px solid darken($grp-footer-form-button-reset-background-color-hover, 15);
+            @include background-image(linear-gradient(lighten($grp-footer-form-button-reset-background-color-hover, 15), $grp-footer-form-button-reset-background-color-hover));
+        }
+    }
 }
 
 
 
-/*	BUTTONS
+/*  BUTTONS
 ------------------------------------------------------------------------------------------------------ */
 
 $grp-button-background-color: #e1f0f5 !default;
@@ -294,25 +294,25 @@ $grp-button-border-focus: 1px solid #888 !default;
 /*  Dark Gradient ............................................................ */
 
 @mixin grp-gradient-dark {
-	color: #fff;
-	@include background-image(linear-gradient(#333, #222));
+    color: #fff;
+    @include background-image(linear-gradient(#333, #222));
 }
 
 
 /*  Gradient Icon-Sprite Combo ............................................................ */
 
 @mixin grp-background-gradient-icon-combo($icon, $offset, $gradient-top, $gradient-bottom) {
-	@include background(sprite($icons-sprites, $icon, $offset) no-repeat, linear-gradient($gradient-top, $gradient-bottom));
+    @include background(sprite($icons-sprites, $icon, $offset) no-repeat, linear-gradient($gradient-top, $gradient-bottom));
 }
 
 
 /*  Predelete Gradients ............................................................ */
 
 @mixin grp-gradient-predelete {
-	@include background-image(linear-gradient(#fff2f2, #f2e6e6));
+    @include background-image(linear-gradient($grp-predelete-background-color, darken($grp-predelete-background-color, 3)));
 }
 @mixin grp-gradient-predelete-reverse {
-	@include background-image(linear-gradient(#f2e6e6, #fff2f2));
+    @include background-image(linear-gradient(darken($grp-predelete-background-color, 3), $grp-predelete-background-color));
 }
 
 

@@ -52,6 +52,9 @@ fieldset.grp-module {
 }
 input[type="text"], 
 input[type="password"], 
+input[type="url"], 
+input[type="email"], 
+input[type="number"], 
 input[type="submit"], 
 input[type="reset"], 
 textarea, 
@@ -76,7 +79,7 @@ select[disabled] {
     &:focus {
         @include box-shadow(none);
     }
-    // Same style as p.grp-readonly (no border, no background)
+    // Variant: same style as p.grp-readonly (no border, no background)
     // padding-left: 0 !important;
     // padding-right: 0 !important;
     // border: 0 !important;
@@ -87,22 +90,32 @@ select[disabled] {
     //     background: transparent !important;
     // }
 }
-p.grp-readonly {
+div.grp-readonly {
     position: relative;
     display: inline-block;
     margin: 0;
     padding: 4px 5px 3px !important;
+    min-width: 106px;
+    max-width: 746px;
+    min-height: 16px;
     font-size: 12px;
     line-height: 16px;
     font-weight: bold;
     color: #555555;
-    min-width: 118px;
-    max-width: 758px;
     border: 1px dotted #ccc;
     @include border-radius($grp-form-field-border-radius);
-    @include box-sizing(border-box);
-    & + p.grp-readonly {
+    // @include box-sizing(border-box);
+    * {
+        white-space: normal !important; // reset white-space:nowrap e.g. given in .grp-tabular
+    }
+    pre {
+        white-space: pre !important;
+    }
+    & + div.grp-readonly {
         margin-left: 20px;
+    }
+    &:empty {
+        margin-bottom: -5px !important;
     }
 }
 
@@ -121,6 +134,9 @@ p.grp-readonly {
     }
     input[type="text"], 
     input[type="password"], 
+    input[type="url"], 
+    input[type="email"], 
+    input[type="number"], 
     input[type="submit"], 
     input[type="reset"], 
     textarea, 
@@ -135,7 +151,7 @@ p.grp-readonly {
         }
     }
     ul.errorlist {
-        padding: 3px 0 0;
+        padding: 5px 0 0;
         color: $grp-font-color-error;
         font-size: 11px !important;
         line-height: 14px;
@@ -147,6 +163,7 @@ p.grp-readonly {
 
 select {
     padding: 4px 3px 4px 2px;
+    min-width: 118px;
     // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -319,8 +336,9 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         border-bottom: 0 !important;
     }
     .selector-filter {
+        display: block !important;
+        height: 27px;
         padding: 3px 5px 2px 2px;
-        min-height: 25px;
         font-weight: bold;
         color: #666;
         border-top: 1px solid #e4e4e4;
@@ -350,6 +368,10 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         width: 368px !important;
         height: 200px;
         @include border-radius(0);
+        
+    }
+    .selector-chosen select[multiple=multiple] {
+        height: 235px;
     }
     a.selector-add {
         background-image: url('../images/icons/selector-add-m2m-horizontal.png');
@@ -444,6 +466,7 @@ ul.errorlist + .selector {
     line-height: 13px;
     font-weight: bold;
     color: $grp-font-color-error;
+    white-space: normal;
 }
 @mixin errorlist-nonform {
     @include errorlist;
@@ -457,10 +480,13 @@ ul.errorlist + .selector {
 }
 @mixin errorlist-field {
     @include errorlist;
-    margin: 2px 0 0;
+    margin: 0;
     li {
-        padding: 3px 0 0;
+        padding: 2px 0 0;
         border-top: 0 !important;
+        &:first-child {
+            padding-top: 0;
+        }
     }
 }
 
@@ -473,20 +499,9 @@ p.errornote {
 }
 ul.errorlist {
     @include errorlist;
-}
-
-
-/*  Login Form ................................................... */
-
-.grp-login .errornote, 
-.errornote.grp-login-errors {
-    margin-bottom: 0 !important;
-    padding: 8px 10px 6px !important;
-    @include border-radius(0);
-}
-.errornote.grp-login-errors {
-    margin-bottom: 0 !important;
-    padding: 8px 12px;
+    + ul.errorlist {
+        padding-top: 2px;
+    }
 }
 
 
@@ -558,7 +573,7 @@ ul.errorlist {
 
 /*  Errors with tinyMCE ................................................... */
 
-.grp-error {
+.grp-errors {
     td.mceIframeContainer {
         border: 1px solid $grp-font-color-error !important;
         @include border-radius($grp-border-radius);
@@ -572,6 +587,7 @@ ul.errorlist {
 
 input[type=text], 
 input[type=password], 
+input[type="number"], 
 .vDateField, 
 .vTimeField, 
 .vIntegerField, 
@@ -581,6 +597,18 @@ input[type=password],
     width: 118px;
 }
 
+input.grp-has-related-lookup,
+// input.vManyToManyRawIdAdminField,
+// input.vForeignKeyRawIdAdminField, 
+// input.vRelatedGeneric, 
+input.vDateField.hasDatepicker, 
+input.vTimeField.hasTimepicker, 
+input.vFileBrowseField {
+    padding-right: 24px !important;
+}
+
+input[type="url"], 
+input[type="email"], 
 input.vTextField, 
 input.vURLField, 
 input.vFileBrowseField, 
@@ -604,6 +632,8 @@ textarea,
 /*  FORM FIELDS: LARGE DIMENSIONS
 ------------------------------------------------------------------------------------------------------ */
 
+.grp-row input[type="url"], 
+.grp-row input[type="email"], 
 .grp-row .vTextField, 
 .grp-row .vURLField, 
 .grp-row .vFileBrowseField, 
@@ -627,6 +657,8 @@ textarea,
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-changelist-results table {
+    input[type="url"], 
+    input[type="email"], 
     .vTextField, 
     .vURLField, 
     .vFileBrowseField, 
@@ -656,20 +688,28 @@ textarea,
 /*  FORM FIELDS IN CELLS
 ------------------------------------------------------------------------------------------------------ */
 
+.grp-cell input[type="url"], 
+.grp-cell input[type="email"],
+.grp-cell input[type="number"], 
 .grp-cell input[type=text], 
 .grp-cell input[type=password], 
 .grp-cell select, 
+.grp-cell input[readonly], 
+.grp-cell input[disabled], 
+.grp-cell textarea[readonly], 
+.grp-cell select[disabled], 
 .grp-cell .grp-autocomplete-wrapper-m2m, 
 .grp-cell .grp-autocomplete-wrapper-fk {
-    max-width: 280px;
+    max-width: 278px;
 }
-.grp-cell .grp-autocomplete-wrapper-m2m, 
-.grp-cell .grp-autocomplete-wrapper-fk {
-    width: 280px;
-}
+
 .grp-cell .grp-autocomplete-wrapper-m2m ul.grp-repr, 
 .grp-cell .grp-autocomplete-wrapper-m2m ul.grp-repr li {
-    max-width: 222px;
+    max-width: 220px;
+}
+
+.grp-cell div.grp-readonly {
+    max-width: 266px;
 }
 
 

@@ -1,17 +1,16 @@
 import os
-import codecs
 from setuptools import setup, find_packages
 
 def read(fname):
-    return codecs.open(os.path.join(os.path.dirname(__file__), fname)).read()
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
     name='django-grappelli',
-    version='2.4.3',
+    version='2.5.3',
     description='A jazzy skin for the Django Admin-Interface.',
     long_description = read('README.rst'),
     author='Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)',
-    author_email='werkstaetten@vonautomatisch.at',
+    author_email='office@vonautomatisch.at',
     url = 'http://django-grappelli.readthedocs.org',
     download_url='',
     packages=find_packages(),
@@ -24,9 +23,10 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
     ],
     zip_safe = False,
-    install_requires = [
-        'django>=1.4,<1.4.99',
-    ],
 )

@@ -25,6 +25,6 @@ class Command(BaseCommand):
             raise CommandError('file "%s" already exists' % dst)
         context['file'] = os.path.basename(dst).split('.')[0]
         open(dst, 'w').write(render_to_string(tpl, context))
-        print '"%s" written.' % os.path.join(dst)
+        print('"%s" written.' % os.path.join(dst))
 
 

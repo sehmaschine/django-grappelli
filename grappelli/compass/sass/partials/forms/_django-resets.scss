@@ -2,11 +2,14 @@
 
 /*  Datetime ........................................... */
 
-p.datetime br {
-	display: none;
-}
-p.datetime input.vTimeField {
-    margin-left: 6px;
+p.datetime {
+    white-space: nowrap !important;
+    br {
+        display: none;
+    }
+    input.vTimeField {
+        margin-left: 6px;
+    }
 }
 
 
@@ -17,4 +20,12 @@ a.add-another img, a.related-lookup img {
 }
 a.related-lookup img {
     display: none;
+}
+
+
+/*  Hide Images in Templates ........................................... */
+
+.deletelink {
+    padding-left: 12px;
+    background: url(../../admin/img/icon_deletelink.gif) 0 .25em no-repeat;
 }

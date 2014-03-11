@@ -1,3 +1,4 @@
+{% load cycle from future %}
 {% load i18n admin_static %}
 {% if result_hidden_fields %}
     <div class="hiddenfields"> {# DIV for HTML validation #}
@@ -15,9 +16,9 @@
                             {% if header.sortable %}
                                 {% if header.sort_priority > 0 %}
                                     <div class="grp-sortoptions">
-                                        <a class="grp-sortremove" href="{{ header.url_remove }}" title="{% trans "Remove from sorting" %}"></a>
-                                        {% if num_sorted_fields > 1 %}<span class="grp-sortpriority" title="{% blocktrans with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktrans %}">{{ header.sort_priority }}</span>{% endif %}
                                         <a href="{{ header.url_toggle }}" class="grp-toggle {% if header.ascending %}grp-ascending{% else %}grp-descending{% endif %}" title="{% trans "Toggle sorting" %}"></a>
+                                        {% if num_sorted_fields > 1 %}<span class="grp-sortpriority" title="{% blocktrans with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktrans %}">{{ header.sort_priority }}</span>{% endif %}
+                                        <a class="grp-sortremove" href="{{ header.url_remove }}" title="{% trans "Remove from sorting" %}"></a>
                                     </div>
                                 {% endif %}
                             {% endif %}

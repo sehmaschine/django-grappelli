@@ -1,0 +1,118 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load cycle from future %}
+{% load i18n admin_urls %}
+
+{% block title %}{% trans "Load data" %} {{ block.super }}{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  {{ media }}
+{% endblock %}
+
+{% block extrastyle %}
+  {{ import_file_form.media }}
+  {{ block.super }}
+{% endblock %}
+
+{% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
+
+{% block bodyclass %}change-form{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+    {% if not is_popup %}
+    <ul class="grp-horizontal-list">
+        <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+        <li>{% trans "Load data" %}</li>
+    </ul>
+    {% endif %}
+{% endblock %}
+
+{% block content_title %}
+    <h1>{% trans "Load data" %}</h1>
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <div class="grp-module">
+        
+        <form enctype="multipart/form-data" method="post" action="">
+            {% csrf_token %}
+            <div>
+            {% if import_file_form.errors %}
+                <p class="errornote">{% trans "Please correct the error below." %}</p>
+            {% endif %}
+            <fieldset class="module aligned">
+                {% if files_available %}
+                <h2>{% trans "Data from your computer" %}</h2>
+                {% endif %}
+                {% for field in import_file_form %}
+                <div class="form-row{% if field.errors %} errors{% endif %}">
+                    <div>
+                        {% if field.errors %}
+                        <ul class="errorlist">
+                        {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+                        </ul>
+                        {% endif %}
+                        <label class="required">{{ field.label }}:</label>
+                        {{ field }}
+                        {% if field.help_text %}<p class="grp-help">{{ field.help_text|safe }}</p>{% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </fieldset>
+            
+            <div class="submit-row">
+                <input class="default" type="submit" name="_load" value="{% trans "Load" %}">
+                {% if smuggler_fixture_dir %}
+                <input type="submit" name="_loadandsave"
+                       value="{% trans "Load fixture and save on disk" %}"
+                       title="Load fixture file and save it on {{ smuggler_fixture_dir }} for future loads.">
+                {% endif %}
+              </div>
+            </div>
+        </form>
+    </div>
+
+    {% if files_available %}
+    <div>
+        <form method="post" action="">
+          {% csrf_token %}
+            <div class="inline-group">
+                {% comment %}
+                  # TODO: implement this error message
+                  {% if none_selected %}
+                    <p class="errornote">{% trans "You need select at least one." %}</p>
+                  {% endif %}
+                {% endcomment %}
+                <div class="tabular inline-related">
+                  <fieldset class="module aligned">
+                    <h2>{% blocktrans %}Data from {{ smuggler_fixture_dir }} directory{% endblocktrans %}</h2>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th colspan="2">{% trans "File name" %}</th>
+                          <th>{% trans "Size" %}</th>
+                        </tr>
+                      </thead>
+                      {% for file in files_available %}
+                        <tr class="{% cycle row1,row2 %}">
+                          <td><input type="checkbox" name="file_{{ forloop.counter }}" id="id_file_{{ forloop.counter }}" value="{{ file.0 }}" /></td>
+                          <td>{{ file.0 }}</td>
+                          <td>{{ file.1 }}</td>
+                        </tr>
+                      {% endfor %}
+                    </table>
+                  </fieldset>
+                </div>
+            </div>
+            <div class="submit-row">
+                <input class="default" type="submit" name="_loadfromdisk"
+                         value="{% trans "Load" %}" />
+            </div>
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}

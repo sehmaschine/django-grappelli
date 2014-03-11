@@ -13,7 +13,7 @@ function findForm(node) {
 }
 
 window.SelectFilter = {
-    init: function(field_id, field_name, is_stacked, admin_media_prefix) {
+    init: function(field_id, field_name, is_stacked, admin_static_prefix) {
         if (field_id.match(/__prefix__/)){
             // Don't intialize on empty forms.
             return;
@@ -38,22 +38,23 @@ window.SelectFilter = {
         }
 
         // <div class="selector"> or <div class="selector stacked">
-        var selector_div = quickElement('div', from_box.parentNode);
+        // GRAPPELLI CUSTOM: fixed a bug with original django js
+        var selector_div = quickElement('div', from_box.parentNode, '');
         selector_div.className = is_stacked ? 'selector stacked' : 'selector';
 
         // <div class="selector-available">
         var selector_available = quickElement('div', selector_div, '');
         selector_available.className = 'selector-available';
         var title_available = quickElement('h2', selector_available, interpolate(gettext('Available %s') + ' ', [field_name]));
-        // GRAPPELLI CUSTOM: removed help-icon (trusted editors should know what to do)
-        // quickElement('img', title_available, '', 'src', admin_media_prefix + 'img/icon-unknown.gif', 'width', '10', 'height', '10', 'class', 'help help-tooltip', 'title', interpolate(gettext('This is the list of available %s. You may choose some by selecting them in the box below and then clicking the "Choose" arrow between the two boxes.'), [field_name]));
+        quickElement('img', title_available, '', 'src', admin_static_prefix + 'img/icon-unknown.gif', 'width', '10', 'height', '10', 'class', 'help help-tooltip', 'title', interpolate(gettext('This is the list of available %s. You may choose some by selecting them in the box below and then clicking the "Choose" arrow between the two boxes.'), [field_name]));
 
         var filter_p = quickElement('p', selector_available, '', 'id', field_id + '_filter');
         filter_p.className = 'selector-filter';
 
         var search_filter_label = quickElement('label', filter_p, '', 'for', field_id + "_input");
 
-        var search_selector_img = quickElement('img', search_filter_label, '', 'src', admin_media_prefix + 'img/selector-search.gif', 'class', 'help-tooltip', 'alt', '', 'title', interpolate(gettext("Type into this box to filter down the list of available %s."), [field_name]));
+        // GRAPPELLI CUSTOM: removed search-icon as it is provided via css
+        // var search_selector_img = quickElement('img', search_filter_label, '', 'src', admin_static_prefix + 'img/selector-search.gif', 'class', 'help-tooltip', 'alt', '', 'title', interpolate(gettext("Type into this box to filter down the list of available %s."), [field_name]));
 
         filter_p.appendChild(document.createTextNode(' '));
 
@@ -77,7 +78,7 @@ window.SelectFilter = {
         selector_chosen.className = 'selector-chosen';
         var title_chosen = quickElement('h2', selector_chosen, interpolate(gettext('Chosen %s') + ' ', [field_name]));
         // GRAPPELLI CUSTOM: removed help-icon (trusted editors should know what to do)
-        // quickElement('img', title_chosen, '', 'src', admin_media_prefix + 'img/icon-unknown.gif', 'width', '10', 'height', '10', 'class', 'help help-tooltip', 'title', interpolate(gettext('This is the list of chosen %s. You may remove some by selecting them in the box below and then clicking the "Remove" arrow between the two boxes.'), [field_name]));
+        // quickElement('img', title_chosen, '', 'src', admin_static_prefix + 'img/icon-unknown.gif', 'width', '10', 'height', '10', 'class', 'help help-tooltip', 'title', interpolate(gettext('This is the list of chosen %s. You may remove some by selecting them in the box below and then clicking the "Remove" arrow between the two boxes.'), [field_name]));
 
         var to_box = quickElement('select', selector_chosen, '', 'id', field_id + '_to', 'multiple', 'multiple', 'size', from_box.size, 'name', from_box.getAttribute('name'));
         to_box.className = 'filtered';
@@ -89,8 +90,8 @@ window.SelectFilter = {
         // Set up the JavaScript event handlers for the select box filter interface
         addEvent(filter_input, 'keyup', function(e) { SelectFilter.filter_key_up(e, field_id); });
         addEvent(filter_input, 'keydown', function(e) { SelectFilter.filter_key_down(e, field_id); });
-        addEvent(from_box, 'change', function(e) { SelectFilter.refresh_icons(field_id) });
-        addEvent(to_box, 'change', function(e) { SelectFilter.refresh_icons(field_id) });
+        addEvent(from_box, 'change', function(e) { SelectFilter.refresh_icons(field_id); });
+        addEvent(to_box, 'change', function(e) { SelectFilter.refresh_icons(field_id); });
         addEvent(from_box, 'dblclick', function() { SelectBox.move(field_id + '_from', field_id + '_to'); SelectFilter.refresh_icons(field_id); });
         addEvent(to_box, 'dblclick', function() { SelectBox.move(field_id + '_to', field_id + '_from'); SelectFilter.refresh_icons(field_id); });
         addEvent(findForm(from_box), 'submit', function() { SelectBox.select_all(field_id + '_to'); });
@@ -99,18 +100,19 @@ window.SelectFilter = {
         // Move selected from_box options to to_box
         SelectBox.move(field_id + '_from', field_id + '_to');
 
-        if (!is_stacked) {
-            // In horizontal mode, give the same height to the two boxes.
-            var j_from_box = $(from_box);
-            var j_to_box = $(to_box);
-            var resize_filters = function() { j_to_box.height($(filter_p).outerHeight() + j_from_box.outerHeight()); }
-            if (j_from_box.outerHeight() > 0) {
-                resize_filters(); // This fieldset is already open. Resize now.
-            } else {
-                // This fieldset is probably collapsed. Wait for its 'show' event.
-                j_to_box.closest('fieldset').one('show.fieldset', resize_filters);
-            }
-        }
+        // GRAPPELLI: We don't need this as we assigned a fixed height to the elements
+        // if (!is_stacked) {
+        //     // In horizontal mode, give the same height to the two boxes.
+        //     var j_from_box = $(from_box);
+        //     var j_to_box = $(to_box);
+        //     var resize_filters = function() { j_to_box.height($(filter_p).outerHeight() + j_from_box.outerHeight()); }
+        //     if (j_from_box.outerHeight() > 0) {
+        //         resize_filters(); // This fieldset is already open. Resize now.
+        //     } else {
+        //         // This fieldset is probably collapsed. Wait for its 'show' event.
+        //         j_to_box.closest('fieldset').one('show.fieldset', resize_filters);
+        //     }
+        // }
 
         // Initial icon refresh
         SelectFilter.refresh_icons(field_id);
@@ -156,10 +158,10 @@ window.SelectFilter = {
         }
         // up arrow -- wrap around
         if ((event.which && event.which == 38) || (event.keyCode && event.keyCode == 38)) {
-            from.selectedIndex = (from.selectedIndex == 0) ? from.length - 1 : from.selectedIndex - 1;
+            from.selectedIndex = (from.selectedIndex === 0) ? from.length - 1 : from.selectedIndex - 1;
         }
         return true;
     }
-}
+};
 
 })(grp.jQuery);

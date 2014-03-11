@@ -5,7 +5,7 @@ var PasteWordDialog = {
 		var ed = tinyMCEPopup.editor, el = document.getElementById('iframecontainer'), ifr, doc, css, cssHTML = '';
 
 		// Create iframe
-		el.innerHTML = '<iframe id="iframe" src="javascript:\'\';" frameBorder="0" style="border: 1px solid gray"></iframe>';
+		el.innerHTML = '<iframe id="iframe" src="javascript:\'\';" frameBorder="0"></iframe>';
 		ifr = document.getElementById('iframe');
 		doc = ifr.contentWindow.document;
 
@@ -42,8 +42,8 @@ var PasteWordDialog = {
 		el = document.getElementById('iframe');
 
 		if (el) {
-			el.style.width  = (vp.w - 20) + 'px';
-			el.style.height = (vp.h - 130) + 'px';
+			el.style.width  = (vp.w - 44) + 'px';
+			el.style.height = (vp.h - 190) + 'px';
 		}
 	}
 };

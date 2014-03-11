@@ -32,7 +32,7 @@
                 <div class="grp-module" id="app_{{ app.name|lower }}">
                     <h2><a href="{{ app.app_url }}" class="grp-section">{% trans app.name %}</a></h2>
                     {% for model in app.models %}
-                        <div class="grp-row">
+                        <div class="grp-row" id="model-{{ model.object_name|lower }}">
                             {% if model.admin_url %}
                                 <a href="{{ model.admin_url }}"><strong>{{ model.name }}</strong></a>
                             {% else %}
@@ -59,6 +59,18 @@
                 <p>{% trans "You don´t have permission to edit anything." %}</p>
             {% endfor %}
         </div>
+        {% block custom_views %}
+            {% if custom_list %}
+                <div class="grp-module" id="custom_views">
+                    <h2>{% trans 'Custom Views' %}</h2>
+                    <div class="grp-row">
+                        {% for path, name in custom_list %}
+                            <a href="{{ path }}"><strong>{{ name }}</strong></a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
         <div class="g-d-6 g-d-l">
             <div class="grp-module" id="grp-recent-actions-module">
                 <h2>{% trans 'Recent Actions' %}</h2>

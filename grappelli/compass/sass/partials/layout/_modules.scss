@@ -8,121 +8,121 @@
 /*  Group ................................................... */
 
 @mixin grp-group {
-	position: relative;
-	float: left;
-	clear: both;
-	margin: 0 -4px 5px;
-	padding: 2px;
-	width: 100%;
-	border: $grp-group-border;
-	@include grp-border-radius($grp-border-radius + 2px);
-	background: $grp-group-background-color; 
-	&.grp-closed {
-		border: $grp-group-border-closed;
-		&:hover {
-			border: $grp-group-border;
-		}
-	}
+    position: relative;
+    float: left;
+    clear: both;
+    margin: 0 -4px 5px;
+    padding: 2px;
+    width: 100%;
+    border: $grp-group-border;
+    @include grp-border-radius($grp-border-radius + 2px);
+    background: $grp-group-background-color; 
+    &.grp-closed {
+        border: $grp-group-border-closed;
+        &:hover {
+            border: $grp-group-border;
+        }
+    }
 }
 .grp-group {
-	@include grp-group;
+    @include grp-group;
 }
 
 
 /*  Headings ................................................... */
 
 @mixin grp-module-h2 {
-	@include grp-padding(5px $grp-padding-size 4px);
-	text-shadow: 0 1px 0 #f5f5f5;
-	border-bottom: 1px solid #ccc;
-	@include border-top-radius($grp-border-radius);
-	@include grp-gradient-module-h2;
+    @include grp-padding(5px $grp-padding-size 4px);
+    text-shadow: 0 1px 0 #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    @include border-top-radius($grp-border-radius);
+    @include grp-gradient-module-h2;
 }
 .grp-module h2 {
-	@include grp-module-h2;
+    @include grp-module-h2;
 }
 
 @mixin grp-module-h3 {
-	@include grp-padding($grp-padding-size-s $grp-padding-size);
-	@media screen and (-webkit-min-device-pixel-ratio:0) {
-	    @include grp-padding(5px $grp-padding-size 4px);
-	}
-	text-shadow: 0 1px 0 #f5f5f5;
-	border-top: 1px solid #f5f5f5;
-	border-bottom: 1px solid #ccc;
-	@include grp-gradient-module-h3;
+    @include grp-padding($grp-padding-size-s $grp-padding-size);
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        @include grp-padding(5px $grp-padding-size 4px);
+    }
+    text-shadow: 0 1px 0 #f5f5f5;
+    border-top: 1px solid #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    @include grp-gradient-module-h3;
 }
 .grp-module h3 {
-	@include grp-module-h3;
+    @include grp-module-h3;
 }
 
 @mixin grp-module-h4 {
-	@include grp-padding($grp-padding-size-s $grp-padding-size);
-	@media screen and (-webkit-min-device-pixel-ratio:0) {
-	    @include grp-padding(5px $grp-padding-size 4px);
-	}
-	text-shadow: 0 1px 0 #f5f5f5;
-	border-top: 1px solid #f5f5f5;
-	border-bottom: 1px solid #ccc;
-	@include grp-gradient-module-h4;
+    @include grp-padding($grp-padding-size-s $grp-padding-size);
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        @include grp-padding(5px $grp-padding-size 4px);
+    }
+    text-shadow: 0 1px 0 #f5f5f5;
+    border-top: 1px solid #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    @include grp-gradient-module-h4;
 }
 .grp-module h4 {
-	@include grp-module-h4;
+    @include grp-module-h4;
 }
 
 .grp-group {
-	> h2 {
-		@include grp-module-h2;
-		border: $grp-module-border;
-		@include border-radius($grp-border-radius);
-	}
-	&.grp-open > h2 {
-		margin-bottom: 2px;
-	}
-	&.grp-tabular.grp-open > h2 {
-		margin-bottom: 0;
-	}
-	.grp-module > h3 {
-		border-top: 0 !important;
-		@include border-top-radius($grp-border-radius);
-		&:only-child, 
-		&:last-child {
-			border-bottom: 0;
-		}
-	}
+    > h2 {
+        @include grp-module-h2;
+        border: $grp-module-border;
+        @include border-radius($grp-border-radius);
+    }
+    &.grp-open > h2 {
+        margin-bottom: 2px;
+    }
+    &.grp-tabular.grp-open > h2 {
+        margin-bottom: 0;
+    }
+    .grp-module > h3 {
+        border-top: 0 !important;
+        @include border-top-radius($grp-border-radius);
+        &:only-child, 
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
 }
 
 
 /*  Module ................................................... */
 
 @mixin grp-module {
-	position: relative;
-	float: left;
-	clear: both;
-	margin: 0 0 $grp-margin-size-s;
-	padding: 0;
-	width: 100%;
-	border: $grp-module-border;
-	background: $grp-module-background-color;
-	@include grp-border-radius($grp-border-radius);
-	@include box-sizing(border-box);
-	.grp-module {
-		margin: 0;
-		border: 0;
-		+ .grp-module {
-			border-top: 1px solid lighten($grp-module-border-color, 5);
-			@include border-top-radius(0);
-		}
-	}
+    position: relative;
+    float: left;
+    clear: both;
+    margin: 0 0 $grp-margin-size-s;
+    padding: 0;
+    width: 100%;
+    border: $grp-module-border;
+    background: $grp-module-background-color;
+    @include grp-border-radius($grp-border-radius);
+    @include box-sizing(border-box);
+    .grp-module {
+        margin: 0;
+        border: 0;
+        + .grp-module {
+            border-top: 1px solid lighten($grp-module-border-color, 5);
+            @include border-top-radius(0);
+        }
+    }
 }
 .grp-module {
-	@include grp-module;
+    @include grp-module;
 }
 .grp-change-form .grp-module:not(.grp-submit-row) {
-	min-width: 960px;
+    min-width: 960px;
 }
 .grp-empty-form {
-	display: none !important;
+    display: none !important;
 }
 
 
@@ -134,67 +134,71 @@
 /*  Collapse Handlers ................................................... */
 
 @mixin grp-module-h2-collapse-handler {
-	h2.grp-collapse-handler {
-		text-shadow: 0 1px 0 #c4e9f5;
-	}
-	&.grp-open > h2.grp-collapse-handler {
-		border-bottom: 1px solid #ccc;
-		@include border-top-radius($grp-border-radius - 1px);
-		@include grp-gradient-module-h2-collapse-handler-hover;
-	}
-	&.grp-closed > h2.grp-collapse-handler {
-		@include border-radius($grp-border-radius - 1px);
-		@include grp-gradient-module-h2-collapse-handler;
-		&:hover {
-			@include grp-gradient-module-h2-collapse-handler-hover;
-		}
-	}
-	&.grp-module.grp-closed > h2.grp-collapse-handler {
-		border-bottom: 0;
-	}
+    h2.grp-collapse-handler {
+        text-shadow: 0 1px 0 #c4e9f5;
+    }
+    &.grp-open > h2.grp-collapse-handler {
+        border-bottom: 1px solid #ccc;
+        @include border-top-radius($grp-border-radius - 1px);
+        @include grp-gradient-module-h2-collapse-handler-hover;
+    }
+    &.grp-closed > h2.grp-collapse-handler {
+        @include border-radius($grp-border-radius - 1px);
+        @include grp-gradient-module-h2-collapse-handler;
+        &:hover {
+            @include grp-gradient-module-h2-collapse-handler-hover;
+        }
+    }
+    &.grp-module.grp-closed > h2.grp-collapse-handler {
+        border-bottom: 0;
+    }
 }
 @mixin grp-module-h3-collapse-handler {
-	h3.grp-collapse-handler {
-		text-shadow: 0 1px 0 #fff;
-	}
-	&.grp-open > h3.grp-collapse-handler {
-		border-top: 1px solid lighten(#cee9f2, 5);
-		border-bottom: 1px solid #d9d9d9;
-		@include border-top-radius($grp-border-radius - 1px);
-		@include grp-gradient-module-h3-collapse-handler-hover;
-	}
-	&.grp-closed > h3.grp-collapse-handler {
-		border-bottom: 0;
-		@include border-radius($grp-border-radius - 1px);
-		@include grp-gradient-module-h3-collapse-handler;
-		&:hover {
-			@include grp-gradient-module-h3-collapse-handler-hover;
-		}
-	}
+    h3.grp-collapse-handler {
+        text-shadow: 0 1px 0 #fff;
+    }
+    &.grp-open > h3.grp-collapse-handler {
+        border-top: 1px solid lighten(#cee9f2, 5);
+        border-bottom: 1px solid #d9d9d9;
+        @include border-top-radius($grp-border-radius - 1px);
+        @include grp-gradient-module-h3-collapse-handler-hover;
+    }
+    &.grp-closed > h3.grp-collapse-handler {
+        border-bottom: 0;
+        @include border-radius($grp-border-radius - 1px);
+        @include grp-gradient-module-h3-collapse-handler;
+        &:hover {
+            @include grp-gradient-module-h3-collapse-handler-hover;
+        }
+    }
 }
 
 
 /*  Collapse ................................................... */
 
 @mixin grp-collapse {
-	&.grp-closed {
-		*, .grp-row:not(tr).grp-cells, .grp-table, .grp-table * {
-			display: none;
-		}
-		// Elements displayed even in collpase-closed
-		> .grp-collapse-handler, > .grp-collapse-handler *, 
-		.grp-tools, .grp-tools * {
-			display: block !important;
-		}
-	}
-	.grp-collapse-handler {
-		cursor: pointer;
-	}
-	@include grp-module-h2-collapse-handler;
-	@include grp-module-h3-collapse-handler;
+    &.grp-closed {
+        *, .grp-row:not(tr).grp-cells, .grp-table, .grp-table * {
+            display: none;
+        }
+        // Elements displayed even in collpase-closed
+        > .grp-collapse-handler, > .grp-collapse-handler *, 
+        .grp-tools, .grp-tools * {
+            display: block !important;
+        }
+        // Hide elements with "display:none" in collapse-closed
+        .grp-tools li *[style^="display: none"] {
+            display: none !important;
+        }
+    }
+    .grp-collapse-handler {
+        cursor: pointer;
+    }
+    @include grp-module-h2-collapse-handler;
+    @include grp-module-h3-collapse-handler;
 }
 .grp-collapse {
-	@include grp-collapse;
+    @include grp-collapse;
 }
 
 
@@ -203,62 +207,66 @@
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-row {
-	position: relative;
-	float: left;
-	clear: both;
-	@include grp-padding(5px $grp-padding-size);
-	width: 100%;
-	@include box-sizing(border-box);
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #ddd;
-	&:first-child, 
-	&.grp-first {
-		border-top: 0;
-		@include border-top-radius($grp-border-radius - 1px);
-	}
-	&:last-of-type, 
-	&.grp-last {
-		border-bottom: 0;
-		@include border-bottom-radius($grp-border-radius - 1px);
-	}
-	&.grp-cells {
-		display: table-row;
-		padding-top: 0;
-		padding-bottom: 0;
-		.grp-cell {
-			display: table-cell;
-			vertical-align: top;
-			position: relative;
-			padding: 8px 20px 8px 0;
-			height: 100%;
-			white-space: nowrap;
-			border-right: 1px solid #ddd;
-			overflow: visible;
-			& + .grp-cell {
-				padding-left: 20px;
-				border-left: 1px solid #fff;
-			}
-			&:last-of-type {
-				padding-right: 0;
-				border-right: 0 !important;
-			}
-			
-		}
-	}
+    position: relative;
+    float: left;
+    clear: both;
+    @include grp-padding(5px $grp-padding-size);
+    width: 100%;
+    @include box-sizing(border-box);
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
+    .grp-predelete & {
+        border-bottom-color: darken($grp-predelete-background-color, 4);
+        border-top-color: lighten($grp-predelete-background-color, 4);
+    }
+    &:first-child, 
+    &.grp-first {
+        border-top: 0;
+        @include border-top-radius($grp-border-radius - 1px);
+    }
+    &:last-of-type, 
+    &.grp-last {
+        border-bottom: 0;
+        @include border-bottom-radius($grp-border-radius - 1px);
+    }
+    &.grp-cells {
+        display: table-row;
+        padding-top: 0;
+        padding-bottom: 0;
+        .grp-cell {
+            display: table-cell;
+            vertical-align: top;
+            position: relative;
+            padding: 8px 20px 8px 0;
+            height: 100%;
+            white-space: nowrap;
+            border-right: 1px solid #ddd;
+            overflow: visible;
+            & + .grp-cell {
+                padding-left: 20px;
+                border-left: 1px solid #fff;
+            }
+            &:last-of-type {
+                padding-right: 0;
+                border-right: 0 !important;
+            }
+            
+        }
+    }
 }
 .grp-module {
-	.grp-row:not(tr) {
-		@include grp-row;
-	}
-	.grp-row + .grp-module > .grp-row:first-child, 
-	h2 + .grp-module > .grp-row:first-child, 
-	.grp-module + .grp-module > .grp-row:first-child {
-		border-top: 1px solid #fff;
-	}
+    .grp-row:not(tr) {
+        @include grp-row;
+    }
+    .grp-row + .grp-module > .grp-row:first-child, 
+    h2 + .grp-module > .grp-row:first-child, 
+    .grp-module + .grp-module > .grp-row:first-child {
+        border-top: 1px solid #fff;
+    }
 }
 fieldset.grp-module .grp-row {
-	@include grp-padding(8px $grp-padding-size);
-	overflow: hidden;
+    @include grp-padding(8px $grp-padding-size);
+    overflow: hidden;
 }
 
 
@@ -267,47 +275,47 @@ fieldset.grp-module .grp-row {
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-listing {
-	border-top: 1px solid #fff;
-	&:first-child {
-		border-top: 0;
-		@include border-top-radius($grp-border-radius - 1px);
-	}
-	
-	@include grp-actions-links();
-	li {
-		&.grp-add-link, 
-		&.grp-change-link, 
-		&.grp-delete-link {
-			padding-left: $grp-padding-size-l + 5;
-			a, 
-			> span:first-child {
-				display: block;
-				margin-left: - $grp-margin-size-m - 5;
-				padding-left: $grp-padding-size-m + 5;
-			}
-		}
-	}
+    border-top: 1px solid #fff;
+    &:first-child {
+        border-top: 0;
+        @include border-top-radius($grp-border-radius - 1px);
+    }
+    
+    @include grp-actions-links();
+    li {
+        &.grp-add-link, 
+        &.grp-change-link, 
+        &.grp-delete-link {
+            padding-left: $grp-padding-size-l + 5;
+            a, 
+            > span:first-child {
+                display: block;
+                margin-left: - $grp-margin-size-m - 5;
+                padding-left: $grp-padding-size-m + 5;
+            }
+        }
+    }
 }
 .grp-listing {
-	@include grp-listing;
+    @include grp-listing;
 }
 @mixin grp-listing-small {
-	@include grp-listing();
-	font-size: $grp-font-size-s;
-	a + span, 
-	span + span {
-		position: relative;
-		display: block;
-		line-height: 11px;
-		margin: -1px 0 3px;
-	}
-	p {
-		margin: 2px 0 4px;
-		line-height: 13px;
-	}
+    @include grp-listing();
+    font-size: $grp-font-size-s;
+    a + span, 
+    span + span {
+        position: relative;
+        display: block;
+        line-height: 11px;
+        margin: -1px 0 3px;
+    }
+    p {
+        margin: 2px 0 4px;
+        line-height: 13px;
+    }
 }
 .grp-listing-small {
-	@include grp-listing-small;
+    @include grp-listing-small;
 }
 
 
@@ -317,19 +325,19 @@ fieldset.grp-module .grp-row {
 
 .grp-stacked, 
 .grp-tabular {
-	.grp-module.grp-add-item {
-		margin-bottom: 0;
-		height: 28px;
-		font-weight: bold;
-		border-color: transparent;
-		background: transparent;
-		> a {
-			font-weight: bold;
-    		padding: 5px 10px;
-    		position: relative;
-    		top: 6px;
-		}
-	}
+    .grp-module.grp-add-item {
+        margin-bottom: 0;
+        height: 28px;
+        font-weight: bold;
+        border-color: transparent;
+        background: transparent;
+        > a {
+            font-weight: bold;
+            padding: 5px 10px;
+            position: relative;
+            top: 6px;
+        }
+    }
 }
 
 
@@ -338,23 +346,26 @@ fieldset.grp-module .grp-row {
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-group:not(.grp-tabular) {
-	padding-bottom: 0;
-	.grp-module { // H2 + Module
-		margin-bottom: 2px;
-		.grp-module { // H3 + Module
-			@include border-radius(0 0 2px 2px);
-			border-top: 1px solid #fff;
-		}
-	}
-	h2 {
-		margin-bottom: 2px;
-	}
-	&.grp-closed {
-		padding-bottom: 2px;
-		h2 {
-			margin-bottom: 0;
-		}
-	}
+    padding-bottom: 0;
+    .grp-module { // H2 + Module
+        margin-bottom: 2px;
+        .grp-module { // H3 + Module
+            @include border-radius(0 0 2px 2px);
+            border-top: 1px solid #fff;
+        }
+        &.grp-predelete .grp-module {
+            border-top-color: lighten($grp-predelete-background-color, 5);
+        }
+    }
+    h2 {
+        margin-bottom: 2px;
+    }
+    &.grp-closed {
+        padding-bottom: 2px;
+        h2 {
+            margin-bottom: 0;
+        }
+    }
 }
 
 
@@ -363,103 +374,111 @@ fieldset.grp-module .grp-row {
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-tabular {
-	.grp-table {
-		display: table;
-		margin: 0 0 -2px;
-		width: 100%;
-		border: 0 none;
-    	border-collapse: separate;
-    	border-spacing: 0 2px;
-    	@media screen and (-webkit-min-device-pixel-ratio:0) {
-		    margin-bottom: -1px;
-		    border-spacing: 0 1px !important;
-		}
-    	background: none;
-		.grp-tr {
-			display: table-row;
-		}
-		.grp-th, 
-		.grp-td {
-			display: table-cell;
-			float: none;
-		    height: 100%;
-		    margin-right: 0;
-		    overflow: hidden;
-		    padding: 1px 20px;
-		    vertical-align: top;
-		    white-space: nowrap;
-		    border-left: 1px solid #fff;
-    		border-right: 1px solid #e0e0e0;
-    		&:first-of-type {
-    			padding-left: 10px;
-    		}
-		}
-		.grp-thead {
-			display: table-header-group;
-			color: #aaa;
-			font-size: $grp-font-size-s;
-			font-weight: bold;
-			.grp-th, 
-			.grp-td {
-				background: none;
-    			border-top: 0;
-    			&:last-of-type {
-    				border-right: 0;
-	    		}
-			}
-		}
-		.grp-tbody {
-			display: table-row-group;
-			margin-top: 0;
-			.grp-th, 
-			.grp-td {
-				padding-bottom: 5px;
-    			padding-top: 5px;
-				border-bottom: 1px solid #d4d4d4;
-    			border-top: 1px solid #d4d4d4;
-				background: $grp-module-background-color;
-				&:first-of-type {
-					border-left: 1px solid #d4d4d4;
-				}
-				&:first-child {
-					@include border-left-radius($grp-border-radius - 1px)
-				}
-				&:last-of-type {
-					border-right: 1px solid #d4d4d4;
-					@include border-right-radius($grp-border-radius - 1px)
-				}
-				&.grp-tools-container {
-					padding-left: 0;
-    				width: 100%;
-    				@include border-right-radius($grp-border-radius - 1px)
-				}
-			}
-			&.grp-predelete {
-				.grp-th, 
-				.grp-td {
-					background: $grp-predelete-background-color;
-				}
-			}
-		}
-		.grp-tfoot {
-			display: table-footer-group;
-			color: #aaa;
-			.grp-td {
-				&:last-of-type {
-    				border-right: 0;
-	    		}
-			}
-		}
-		.grp-module {
-			float: none;
-			clear: none;
-			background: 0;
-			border: 0;
-		}
-	}
-	.grp-module.grp-transparent{
-		margin: 2px 0 0;
-	}
+    .grp-table {
+        display: table;
+        margin: 0 0 -2px;
+        width: 100%;
+        border: 0 none;
+        border-collapse: separate;
+        border-spacing: 0 2px;
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            margin-bottom: -1px;
+            border-spacing: 0 1px !important;
+        }
+        background: none;
+        .grp-tr {
+            display: table-row;
+        }
+        .grp-th, 
+        .grp-td {
+            display: table-cell;
+            float: none;
+            height: 100%;
+            margin-right: 0;
+            overflow: hidden;
+            padding: 1px 20px;
+            vertical-align: top;
+            white-space: nowrap;
+            border-left: 1px solid #fff;
+            border-right: 1px solid #e0e0e0;
+            &:first-of-type {
+                padding-left: 10px;
+            }
+        }
+        .grp-thead {
+            display: table-header-group;
+            color: #aaa;
+            font-size: $grp-font-size-s;
+            font-weight: bold;
+            .grp-th, 
+            .grp-td {
+                background: none;
+                border-top: 0;
+                &:last-of-type {
+                    border-right: 0;
+                }
+            }
+        }
+        .grp-tbody {
+            display: table-row-group;
+            margin-top: 0;
+            .grp-th, 
+            .grp-td {
+                padding-bottom: 5px;
+                padding-top: 5px;
+                border-bottom: 1px solid #d4d4d4;
+                border-top: 1px solid #d4d4d4;
+                background: $grp-module-background-color;
+                &:first-of-type {
+                    border-left: 1px solid #d4d4d4;
+                }
+                &:first-child {
+                    @include border-left-radius($grp-border-radius - 1px)
+                }
+                &:last-of-type {
+                    border-right: 1px solid #d4d4d4;
+                    @include border-right-radius($grp-border-radius - 1px)
+                }
+                &.grp-tools-container {
+                    padding-left: 0;
+                    width: 100%;
+                    @include border-right-radius($grp-border-radius - 1px)
+                }
+            }
+            &.grp-predelete {
+                .grp-th, 
+                .grp-td {
+                    border-right-color: darken($grp-predelete-background-color, 4);
+                    border-left-color: lighten($grp-predelete-background-color, 3);
+                    background: $grp-predelete-background-color;
+                    &:first-of-type {
+                        border-left: 1px solid #d4d4d4;
+                    }
+                    &:last-of-type {
+                        border-right: 1px solid #d4d4d4;
+                    }
+                }
+            }
+        }
+        .grp-tfoot {
+            display: table-footer-group;
+            color: #aaa;
+            .grp-td {
+                &:last-of-type {
+                    border-right: 0;
+                }
+            }
+        }
+        .grp-module {
+            float: none;
+            clear: none;
+            background: 0;
+            border: 0;
+        }
+    }
+    .grp-module.grp-transparent{
+        margin: 2px 0 0;
+    }
 }
 
 
@@ -468,18 +487,18 @@ fieldset.grp-module .grp-row {
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-list {
-	list-style-type: none;
+    list-style-type: none;
 }
 .grp-horizontal-list-container {
-	@include horizontal-list-container();
+    @include horizontal-list-container();
 }
 .grp-horizontal-list {
-	@include horizontal-list(5px, left);
+    @include horizontal-list(5px, left);
 }
 .grp-horizontal-list-right {
-	> li {
-		@include horizontal-list-item(5px, right);
-	}
+    > li {
+        @include horizontal-list-item(5px, right);
+    }
 }
 
 
@@ -488,16 +507,17 @@ fieldset.grp-module .grp-row {
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-predelete {
-	h2, h3, h4, 
-	&.grp-collapse > h2.grp-collapse-handler, &.grp-collapse > h3.grp-collapse-handler, &.grp-collapse > h4.grp-collapse-handler {
+    h2, h3, h4, 
+    &.grp-collapse > h2.grp-collapse-handler, &.grp-collapse > h3.grp-collapse-handler, &.grp-collapse > h4.grp-collapse-handler {
 
-	}
-	background: $grp-predelete-background-color;
+    }
+    background: $grp-predelete-background-color;
 }
 
 .grp-predelete h2, .grp-collapse.grp-predelete > h2.grp-collapse-handler, 
 .grp-predelete h3, .grp-collapse.grp-predelete > h3.grp-collapse-handler, 
 .grp-predelete h4, .grp-collapse.grp-predelete .grp-collapse > h4.grp-collapse-handler {
+    border-bottom-color: darken($grp-predelete-background-color, 6);
     @include grp-gradient-predelete();
 }
 .grp-collapse.grp-predelete > h2.grp-collapse-handler:hover, 
@@ -506,6 +526,7 @@ fieldset.grp-module .grp-row {
 .grp-collapse.grp-open.grp-predelete > h2.grp-collapse-handler, 
 .grp-collapse.grp-open.grp-predelete > h3.grp-collapse-handler, 
 .grp-predelete .grp-collapse.grp-open > h4.grp-collapse-handler {
+    border-bottom-color: darken($grp-predelete-background-color, 6);
     @include grp-gradient-predelete-reverse();
 }
 .grp-predelete, 

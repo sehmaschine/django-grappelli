@@ -29,10 +29,16 @@ function removeEvent(obj, evType, fn) {
     }
 }
 
+function cancelEventPropagation(e) {
+    if (!e) e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+}
+
 // quickElement(tagType, parentReference, textInChildNode, [, attribute, attributeValue ...]);
 function quickElement() {
     var obj = document.createElement(arguments[0]);
-    if (arguments[2] != '' && arguments[2] != null) {
+    if (arguments[2] !== '' && arguments[2] !== null) {
         var textNode = document.createTextNode(arguments[2]);
         obj.appendChild(textNode);
     }
@@ -42,6 +48,11 @@ function quickElement() {
     }
     arguments[1].appendChild(obj);
     return obj;
+}
+
+// "a" is reference to an object
+function removeChildren(a) {
+    while (a.hasChildNodes()) a.removeChild(a.lastChild);
 }
 
 // ----------------------------------------------------------------------------
@@ -111,45 +122,45 @@ function findPosY(obj) {
 
 Date.prototype.getTwelveHours = function() {
     hours = this.getHours();
-    if (hours == 0) {
+    if (hours === 0) {
         return 12;
     }
     else {
-        return hours <= 12 ? hours : hours-12
+        return hours <= 12 ? hours : hours-12;
     }
-}
+};
 
 Date.prototype.getTwoDigitMonth = function() {
     return (this.getMonth() < 9) ? '0' + (this.getMonth()+1) : (this.getMonth()+1);
-}
+};
 
 Date.prototype.getTwoDigitDate = function() {
     return (this.getDate() < 10) ? '0' + this.getDate() : this.getDate();
-}
+};
 
 Date.prototype.getTwoDigitTwelveHour = function() {
     return (this.getTwelveHours() < 10) ? '0' + this.getTwelveHours() : this.getTwelveHours();
-}
+};
 
 Date.prototype.getTwoDigitHour = function() {
     return (this.getHours() < 10) ? '0' + this.getHours() : this.getHours();
-}
+};
 
 Date.prototype.getTwoDigitMinute = function() {
     return (this.getMinutes() < 10) ? '0' + this.getMinutes() : this.getMinutes();
-}
+};
 
 Date.prototype.getTwoDigitSecond = function() {
     return (this.getSeconds() < 10) ? '0' + this.getSeconds() : this.getSeconds();
-}
+};
 
 Date.prototype.getHourMinute = function() {
     return this.getTwoDigitHour() + ':' + this.getTwoDigitMinute();
-}
+};
 
 Date.prototype.getHourMinuteSecond = function() {
     return this.getTwoDigitHour() + ':' + this.getTwoDigitMinute() + ':' + this.getTwoDigitSecond();
-}
+};
 
 Date.prototype.strftime = function(format) {
     var fields = {
@@ -180,7 +191,7 @@ Date.prototype.strftime = function(format) {
         ++i;
     }
     return result;
-}
+};
 
 // ----------------------------------------------------------------------------
 // String object extensions
@@ -191,7 +202,7 @@ String.prototype.pad_left = function(pad_length, pad_string) {
         new_string = pad_string + new_string;
     }
     return new_string;
-}
+};
 
 // ----------------------------------------------------------------------------
 // Get the computed style for and element

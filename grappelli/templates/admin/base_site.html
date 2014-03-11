@@ -4,7 +4,7 @@
 {% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
 
 {% block branding %}
-    <h1 id="site-name">{% trans 'Django administration' %}</h1>
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header }}</a></h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}

@@ -35,12 +35,13 @@ var django = {
         $('p.datetime').each(function() {
             var text = $(this).html();
             text = text.replace(/^\w*: /, "");
-            text = text.replace(/<br>.*: /, "<br>");
+            text = text.replace(/<br>[^<]*: /g, "<br>");
             $(this).html(text);
         });
         
         var options = {
             //appendText: '(mm/dd/yyyy)',
+            constrainInput: false,
             showOn: 'button',
             buttonImageOnly: false,
             buttonText: '',
@@ -63,8 +64,8 @@ var django = {
         
         // HACK: adds an event listener to the today button of datepicker
         // if clicked today gets selected and datepicker hides.
-        // use live() because couldn't find hook after datepicker generates it's complete dom.
-        $(".ui-datepicker-current").live('click', function() {
+        // use on() because couldn't find hook after datepicker generates it's complete dom.
+        $(".ui-datepicker-current").on('click', function() {
             $.datepicker._selectDate(grappelli.datepicker_instance);
             grappelli.datepicker_instance = null;
         });
@@ -74,7 +75,7 @@ var django = {
 
         // now-button for both date and time
         // $("<button class='ui-datetime-now' />").insertAfter("button.ui-timepicker-trigger");
-        // $(".ui-datetime-now").live('click', function() {
+        // $(".ui-datetime-now").on('click', function() {
         //     alert("Now for date and time: grappelli.js line 68 ff.");
         //     return false
         // });
@@ -116,6 +117,7 @@ var django = {
     
     grappelli.reinitDateTimeFields = function(form) {
         form.find(".vDateField").datepicker({
+            constrainInput: false,
             showOn: 'button',
             buttonImageOnly: false,
             buttonText: '',
@@ -145,7 +147,8 @@ var django = {
         var link = elem.next("a");
         if (link.length > 0) {
             var url = link.attr('href').split('/');
-            return url[url.length-1].replace('?', '');
+            pairs = url[url.length-1].replace('?', '').split("&");
+            return pairs.join(":");
         }
         return false;
     };

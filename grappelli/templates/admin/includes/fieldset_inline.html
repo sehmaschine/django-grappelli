@@ -19,15 +19,15 @@
                             <div class="c-1">{{ field.label_tag|prettylabel }}</div>
                             <div class="c-2">
                                 {% if field.is_readonly %}
-                                    <p class="grp-readonly">{{ field.contents }}</p>
+                                    <div class="grp-readonly">{{ field.contents|linebreaksbr }}</div>
                                 {% else %}
                                     {{ field.field }}
                                 {% endif %}
                         {% endif %}
                             {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
                             {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.field.errors }}{% endif %}
-                            {% if field.field.field.help_text %}
-                                <p class="grp-help">{{ field.field.field.help_text|safe }}</p>
+                            {% if field.field.help_text %}
+                                <p class="grp-help">{{ field.field.help_text|safe }}</p>
                             {% endif %}
                         </div>
                     </div>

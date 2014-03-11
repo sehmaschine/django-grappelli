@@ -41,18 +41,28 @@
             deleteButtonHandler(inline.find("a." + options.deleteCssClass), options);
         });
     };
+
+    getFormIndex = function(elem, options, regex) {
+        var formIndex = elem.find("[id^='id_" + options.prefix + "']").attr('id');
+        if (!formIndex) { return -1; }
+        return parseInt(regex.exec(formIndex)[1], 10);
+    }
     
     updateFormIndex = function(elem, options, replace_regex, replace_with) {
-        elem.find(':input,span,table,iframe,label,a,ul,p,img').each(function() {
+        elem.find(':input,span,table,iframe,label,a,ul,p,img,div').each(function() {
             var node = $(this),
                 node_id = node.attr('id'),
                 node_name = node.attr('name'),
                 node_for = node.attr('for'),
-                node_href = node.attr("href");
+                node_href = node.attr("href"),
+                node_class = node.attr("class"),
+                node_onclick = node.attr("onclick");
             if (node_id) { node.attr('id', node_id.replace(replace_regex, replace_with)); }
             if (node_name) { node.attr('name', node_name.replace(replace_regex, replace_with)); }
             if (node_for) { node.attr('for', node_for.replace(replace_regex, replace_with)); }
             if (node_href) { node.attr('href', node_href.replace(replace_regex, replace_with)); }
+            if (node_class) { node.attr('class', node_class.replace(replace_regex, replace_with)); }
+            if (node_onclick) { node.attr('onclick', node_onclick.replace(replace_regex, replace_with)); }
         });
     };
     
@@ -68,7 +78,7 @@
             }
             // add options.predeleteCssClass to forms with the delete checkbox checked
             form.find("li.grp-delete-handler-container input").each(function() {
-                if ($(this).attr("checked") && form.hasClass("has_original")) {
+                if ($(this).is(":checked") && form.hasClass("has_original")) {
                     form.toggleClass(options.predeleteCssClass);
                 }
             });
@@ -83,7 +93,7 @@
         var addButtons = elem.find("a." + options.addCssClass);
         // hide add button in case we've hit the max, except we want to add infinitely
         if ((maxForms.val() !== '') && (maxForms.val()-totalForms.val()) <= 0) {
-            hideAddBottons(elem, options);
+            hideAddButtons(elem, options);
         }
     };
     
@@ -100,17 +110,21 @@
             var index = parseInt(totalForms.val(), 10),
                 form = empty_template.clone(true);
             form.removeClass(options.emptyCssClass)
-                .attr("id", empty_template.attr('id').replace("-empty", index))
-                .insertBefore(empty_template)
-                .addClass(options.formCssClass);
+                .attr("id", empty_template.attr('id').replace("-empty", index));
             // update form index
             var re = /__prefix__/g;
             updateFormIndex(form, options, re, index);
+            // after "__prefix__" strings has been substituted with the number
+            // of the inline, we can add the form to DOM, not earlier.
+            // This way we can support handlers that track live element
+            // adding/removing, like those used in django-autocomplete-light
+            form.insertBefore(empty_template)
+                .addClass(options.formCssClass);
             // update total forms
             totalForms.val(index + 1);
             // hide add button in case we've hit the max, except we want to add infinitely
             if ((maxForms.val() !== 0) && (maxForms.val() !== "") && (maxForms.val() - totalForms.val()) <= 0) {
-                hideAddBottons(inline, options);
+                hideAddButtons(inline, options);
             }
             // callback
             options.onAfterAdded(form);
@@ -122,24 +136,26 @@
             var inline = elem.parents(".grp-group"),
                 form = $(this).parents("." + options.formCssClass).first(),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
-                maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS");
+                maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS"),
+                re = /-(\d+)-/,
+                removedFormIndex = getFormIndex(form, options, re);
             // callback
             options.onBeforeRemoved(form);
             // remove form
             form.remove();
             // update total forms
-            var index = parseInt(totalForms.val(), 10);
-            totalForms.val(index - 1);
+            totalForms.val(parseInt(totalForms.val(), 10) - 1);
             // show add button in case we've dropped below max
             if ((maxForms.val() !== 0) && (maxForms.val() - totalForms.val()) > 0) {
                 showAddButtons(inline, options);
             }
-            // update form index (for all forms)
-            var re = /-\d+-/g,
-                i = 0;
+            // update form index (only forms with a higher index than the removed form)
             inline.find("." + options.formCssClass).each(function() {
-                updateFormIndex($(this), options, re, "-" + i + "-");
-                i++;
+                var form = $(this),
+                    formIndex = getFormIndex(form, options, re);
+                if (formIndex > removedFormIndex) {
+                    updateFormIndex(form, options, re, "-" + (formIndex - 1) + "-");
+                }
             });
             // callback
             options.onAfterRemoved(inline);
@@ -155,10 +171,10 @@
             // toggle options.predeleteCssClass and toggle checkbox
             if (form.hasClass("has_original")) {
                 form.toggleClass(options.predeleteCssClass);
-                if (deleteInput.attr("checked")) {
+                if (deleteInput.prop("checked")) {
                     deleteInput.removeAttr("checked");
                 } else {
-                    deleteInput.attr("checked", 'checked');
+                    deleteInput.prop("checked", true);
                 }
             }
             // callback
@@ -166,7 +182,7 @@
         });
     };
     
-    hideAddBottons = function(elem, options) {
+    hideAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
         addButtons.hide().parents('.grp-add-item').hide();
     };

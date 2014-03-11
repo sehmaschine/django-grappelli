@@ -1,8 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load url from future %}
-{% load admin_static i18n admin_modify grp_tags %}
+{% load admin_static i18n admin_modify admin_urls grp_tags %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -80,6 +79,21 @@
                         $(this).parent(".grp-collapse").removeClass("grp-open").addClass("grp-closed");
                     });
                 });
+                // HACK: get rid of currently/change with URL–fields. F**K!!!
+                $('p.url').each(function() {
+                    $(this).find("a").remove();
+                    var text = $(this).html();
+                    text = text.replace(/^\w*: /, "");
+                    text = text.replace(/<br>.*: /, "");
+                    $(this).html(text);
+                });
+                // HACK: rearrange inlines
+                $('div.grp-group').each(function() {
+                    var placeholder = $("fieldset.placeholder."+$(this).attr("id"));
+                    if (placeholder.length) {
+                        $(placeholder).replaceWith($(this));
+                    }
+                });
             });
         })(grp.jQuery);
     </script>
@@ -89,7 +103,6 @@
 <!-- COLTYPE/BODYCLASS -->
 {% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} grp-change-form{% endblock %}
 {% block content-class %}{% endblock %}
-
 
 <!-- PAGE-TOOLS -->
 {% block page-tools %}
@@ -105,9 +118,9 @@
 {% block breadcrumbs %}
     {% if not is_popup %}
         <ul>
-            <li><a href="../../../">{% trans "Home" %}</a></li>
-            <li><a href="../../">{% trans app_label|capfirst|escape %}</a></li>
-            <li>{% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
+            <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+            <li><a href="{% url 'admin:app_list' app_label=opts.app_label %}">{% trans app_label|capfirst|escape %}</a></li>
+            <li>{% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
             <li>{% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
         </ul>
     {% endif %}
@@ -119,8 +132,9 @@
         {% if not is_popup %}
             <ul class="grp-object-tools">
                 {% block object-tools-items %}
-                    <li><a href="history/">{% trans "History" %}</a></li>
-                    {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="grp-state-focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
+                    {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+                    <li><a href="{% add_preserved_filters history_url %}">{% trans "History" %}</a></li>
+                    {% if has_absolute_url %}<li><a href="{% url 'admin:view_on_site' content_type_id original.pk %}" class="grp-state-focus" target="_blank">{% trans "View on site" %}</a></li>{% endif%}
                 {% endblock %}
             </ul>
         {% endif %}
@@ -129,7 +143,7 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %} 
         <div>
             <!-- Popup Hidden Field -->
             {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
@@ -138,7 +152,7 @@
 
             <!-- Errors -->
             {% if errors %}
-                <p class="errornote">{% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</p>
+                <p class="errornote">{% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}</p>
                 <ul class="errorlist">{% for error in adminform.form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
             {% endif %}
             
@@ -168,12 +182,8 @@
                     {{ block.super }}
                     <script type="text/javascript">
                         (function($){
-                            $(function(){
-                                try {
-                                    // focus on first form-field
-                                    $("#{{ adminform.first_field.auto_id }}, #{{ adminform.first_field.auto_id }}_0")
-                                    .eq(0).focus();
-                                } catch(e) {}
+                            $(document).ready(function() {
+                                $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
                             });
                         }(grp.jQuery));
                     </script>

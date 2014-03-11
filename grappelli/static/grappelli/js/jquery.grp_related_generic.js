@@ -11,12 +11,17 @@
             return this.each(function() {
                 var $this = $(this);
                 // add placeholder
-                if ($(options.content_type).val()) {
-                    $this.after(options.placeholder).after(lookup_link($this.attr("id"),$(options.content_type).val()));
+                var val = $(options.content_type).val() || $(options.content_type).find(':checked').val();
+                if (val) {
+                    $this.after(options.placeholder).after(lookup_link($this.attr('id'),val));
                 }
+                // add related class
+                $this.addClass('grp-has-related-lookup');
                 // lookup
-                lookup_id($this, options); // lookup when loading page
-                $this.bind("change focus keyup blur", function() { // id-handler
+                if (val) {
+                    lookup_id($this, options); // lookup when loading page
+                }
+                $this.bind("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
                 $(options.content_type).bind("change", function() { // content-type-handler
@@ -48,10 +53,11 @@
     var update_lookup = function(elem, options) {
         var obj = $(options.object_id);
         obj.val('');
-        obj.next().remove();
-        obj.next().remove();
-        if ($(elem).val()) {
-            obj.after(options.placeholder).after(lookup_link(obj.attr('id'),$(elem).val()));
+        obj.parent().find('a.related-lookup').remove();
+        obj.parent().find('.grp-placeholder-related-generic').remove();
+        var val = $(elem).val() || $(elem).find(':checked').val();
+        if (val) {
+            obj.after(options.placeholder).after(lookup_link(obj.attr('id'),val));
         }
     };
     
@@ -60,9 +66,10 @@
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
             app_label: grappelli.get_app_label(elem),
-            model_name: grappelli.get_model_name(elem)
+            model_name: grappelli.get_model_name(elem),
+            query_string: grappelli.get_query_string(elem)
         }, function(data) {
-            if (data[0].label == "") {
+            if (data[0].label === "") {
                 text.hide();
             } else {
                 text.show();
@@ -72,7 +79,7 @@
     };
     
     $.fn.grp_related_generic.defaults = {
-        placeholder: '<div class="grp-placeholder-related-generic"></div>',
+        placeholder: '<div class="grp-placeholder-related-generic" style="display:none"></div>',
         repr_max_length: 30,
         lookup_url: '',
         content_type: '',

@@ -1,0 +1,116 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load cycle from future %}
+{% load admin_list i18n grp_tags admin_urls %}
+
+<!-- STYLESHEETS -->
+{% block stylesheets %}
+    {{ block.super }}
+    {{ media.css }}
+{% endblock %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    {{ media.js }}
+    {% url 'admin:jsi18n' as jsi18nurl %}
+    <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"></script>
+    <script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                grappelli.initDateAndTimePicker();
+                // HACK: get rid of currently/change with URL–fields. F**K!!!
+                $('p.url').each(function() {
+                    $(this).find("a").remove();
+                    var text = $(this).html();
+                    text = text.replace(/^\w*: /, "");
+                    text = text.replace(/<br>.*: /, "");
+                    $(this).html(text);
+                });
+            });
+        })(grp.jQuery);
+    </script>
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS-- >
+{% block bodyclass %}grp-change-list{% endblock %}
+{% block content-class %}{% endblock %}
+
+<!-- BREADCRUMBS -- >
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <ul class="grp-horizontal-list">
+            <li><a href="../../">{% trans "Home" %}</a></li>
+            <li><a href="../">{% trans app_label|capfirst|escape %}</a></li>
+            <li>{{ opts.verbose_name_plural|capfirst }}</li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form id="grp-changelist-form" action="" method="post">{% csrf_token %}
+        <section id="grp-changelist" class="grp-editable">
+            <header style="display:none"><h1>Results</h1></header>
+                <div class="grp-module grp-changelist-results">
+                    <table id="result_list" cellspacing="0" class="grp-sortable">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <div class="grp-text">
+                                        <span>{% trans "Name" %}</span>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="grp-text">
+                                        <span>{% trans "Default" %}</span>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="grp-text">
+                                        <span>{% trans "Value" %}</span>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="grp-text">
+                                        <span>{% trans "Is modified" %}</span>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                    </tbody>
+                    {% for item in config %}
+                        <tr class="grp-row {% cycle 'grp-row-even' 'grp-row-odd' %}">
+                            <td>
+                                <div class="grp-text"><strong>{{ item.name }}</strong></div>
+                                <p class="grp-help">{{ item.help_text }}</p>
+                            </td>
+                            <td>
+                                <div class="grp-text"><span>{{ item.default }}</span></div>
+                            </td>
+                            <td>
+                                {{ item.form_field }}
+                                {% if item.form_field.errors %}
+                                    <ul class="errorlist">
+                                        {% for error in item.form_field.errors %}<li>{{ error }}</li>{% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <img src="{{ STATIC_URL }}admin/img/icon-{% if item.modified %}yes{% else %}no{% endif %}.gif" alt="{{ item.modified }}" />
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <footer id="submit" class="grp-module grp-submit-row grp-fixed-footer">
+                <header style="display:none"><h1>Submit Options</h1></header>
+                <ul>
+                    <li><input type="submit" name="_save" class="grp-button grp-default" name="_save" value="{% trans 'Save' %}"/></li>
+                </ul>
+            </footer>
+        </section>
+    </form>
+{% endblock %}
+

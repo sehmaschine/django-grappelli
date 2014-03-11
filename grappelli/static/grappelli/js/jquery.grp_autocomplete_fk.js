@@ -10,10 +10,13 @@
             options = $.extend({}, $.fn.grp_autocomplete_fk.defaults, options);
             return this.each(function() {
                 var $this = $(this);
-                // tabindex
-                $this.attr("tabindex", "-1");
+                // assign attributes
+                $this.attr({
+                    "tabindex": "-1",
+                    "readonly": "readonly"
+                }).addClass("grp-autocomplete-hidden-field");
                 // remove djangos object representation (if given)
-                if ($this.next().next() && $this.next().next().attr("class") != "errorlist") $this.next().next().remove();
+                if ($this.next().next() && $this.next().next().attr("class") != "errorlist" && $this.next().next().attr("class") != "grp-help") $this.next().next().remove();
                 // build autocomplete wrapper
                 $this.next().after(loader).after(remove_link($this.attr('id')));
                 $this.parent().wrapInner("<div class='grp-autocomplete-wrapper-fk'></div>");
@@ -28,7 +31,7 @@
                 // lookup
                 lookup_id($this, options); // lookup when loading page
                 lookup_autocomplete($this, options); // autocomplete-handler
-                $this.bind("change focus keyup blur", function() { // id-handler
+                $this.bind("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
                 // labels
@@ -81,7 +84,7 @@
                     $.ajax({
                         url: options.autocomplete_lookup_url,
                         dataType: 'json',
-                        data: "term=" + request.term + "&app_label=" + grappelli.get_app_label(elem) + "&model_name=" + grappelli.get_model_name(elem) + "&query_string=" + grappelli.get_query_string(elem),
+                        data: "term=" + encodeURIComponent(request.term) + "&app_label=" + grappelli.get_app_label(elem) + "&model_name=" + grappelli.get_model_name(elem) + "&query_string=" + grappelli.get_query_string(elem),
                         beforeSend: function (XMLHttpRequest) {
                             options.loader.show();
                         },
@@ -105,11 +108,18 @@
                     return false;
                 }
             })
-            .data("autocomplete")._renderItem = function(ul,item) {
-                return $("<li></li>")
-                    .data( "item.autocomplete", item )
-                    .append( "<a>" + item.label + " (" + item.value + ")")
-                    .appendTo(ul);
+            .data("ui-autocomplete")._renderItem = function(ul,item) {
+                if (!item.value) {
+                    return $("<li></li>")
+                        .data( "item.autocomplete", item )
+                        .append( "<span class='error'>" + item.label)
+                        .appendTo(ul);
+                } else {
+                    return $("<li></li>")
+                        .data( "item.autocomplete", item )
+                        .append( "<a>" + item.label)
+                        .appendTo(ul);
+                }
             };
     };
     

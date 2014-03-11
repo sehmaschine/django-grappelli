@@ -10,7 +10,7 @@
         {% endif %}
         <li class="grp-results">
             {% if cl.result_count != cl.full_result_count or cl.show_all %}
-                <a href="?{% if cl.is_popup %}pop=1{% endif %}" class="total">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
+                <a href="?{% if cl.is_popup %}_popup=1{% endif %}" class="total">{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</a>
             {% else %}
                 <span>{% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}</span>
             {% endif %}

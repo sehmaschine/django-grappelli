@@ -1,7 +1,6 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load url from future %}
 {% load i18n l10n admin_urls %}
 
 <!-- COLTYPE/BODYCLASS-- >
@@ -11,8 +10,8 @@
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
     <ul class="grp-horizontal-list">
-        <li><a href="../../">{% trans "Home" %}</a></li>
-        <li><a href="../">{% trans app_label|capfirst|escape %}</a></li>
+        <li><a href="{% url 'admin:index' %}">{% trans "Home" %}</a></li>
+        <li><a href="{% url 'admin:app_list' app_label=app_label %}">{% trans app_label|capfirst|escape %}</a></li>
         <li><a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst|escape }}</a></li>
         <li>{% trans 'Delete multiple objects' %}</li>
     </ul>

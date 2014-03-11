@@ -3,22 +3,24 @@
 # python imports
 from functools import wraps
 
-import re
-
 # try to use json (2.6+) but stay compatible with 2.5.*
 try:
     import json
 except ImportError:
     from django.utils import simplejson as json
 
+try:
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+except ImportError:
+    from django.contrib.auth.models import User
+
 # django imports
 from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
-from django.db import models
-from django.contrib import admin
-from django.conf import settings
+from django.utils.translation import get_language
 from django.template.loader import get_template
 from django.template.context import Context
 
@@ -30,17 +32,17 @@ register = template.Library()
 
 # GENERIC OBJECTS
 class do_get_generic_objects(template.Node):
-    
     def __init__(self):
         pass
-    
-    def render(self, context):
-        return_string = "{"
-        for c in ContentType.objects.all().order_by('id'):
-            return_string = "%s%s: {pk: %s, app: '%s', model: '%s'}," % (return_string, c.id, c.id, c.app_label, c.model)
-        return_string = "%s}" % return_string[:-1]
-        return return_string
 
+    def render(self, context):
+        objects = {}
+        for c in ContentType.objects.all().order_by('id'):
+            objects[c.id] = {'pk': c.id, 'app': c.app_label, 'model': c.model}
+        return json.dumps(objects)
+
+
+@register.tag
 def get_content_types(parser, token):
     """
     Returns a list of installed applications and models.
@@ -48,51 +50,50 @@ def get_content_types(parser, token):
     """
     tokens = token.contents.split()
     return do_get_generic_objects()
-register.tag('get_content_types', get_content_types)
 
 
 # ADMIN_TITLE
+@register.simple_tag
 def get_admin_title():
     """
     Returns the Title for the Admin-Interface.
     """
     return ADMIN_TITLE
-register.simple_tag(get_admin_title)
 
 
 # RETURNS CURRENT LANGUAGE
+@register.simple_tag
 def get_lang():
     return get_language()
-register.simple_tag(get_lang)
 
 
 # ADMIN_URL
+@register.simple_tag
 def get_admin_url():
     """
     Returns the URL for the Admin-Interface.
     """
     return ADMIN_URL
-register.simple_tag(get_admin_url)
 
 
+@register.simple_tag
 def get_date_format():
     return get_format('DATE_INPUT_FORMATS')[0]
-register.simple_tag(get_date_format)
 
 
+@register.simple_tag
 def get_time_format():
     return get_format('TIME_INPUT_FORMATS')[0]
-register.simple_tag(get_time_format)
 
 
+@register.simple_tag
 def get_datetime_format():
     return get_format('DATETIME_INPUT_FORMATS')[0]
-register.simple_tag(get_datetime_format)
 
 
+@register.simple_tag
 def grappelli_admin_title():
     return ADMIN_TITLE
-register.simple_tag(grappelli_admin_title)
 
 
 @register.filter
@@ -101,10 +102,15 @@ def classname(obj, arg=None):
     if arg:
         if arg.lower() == classname:
             return True
-        else:
-            return False
-    else:
-        return classname
+        return False
+    return classname
+
+
+@register.filter
+def classpath(obj):
+    module = obj.__module__
+    classname = obj.__class__.__name__
+    return "%s,%s" % (module, classname)
 
 
 # FORMSETSORT FOR SORTABLE INLINES
@@ -114,7 +120,6 @@ def formsetsort(formset, arg):
     """
     Takes a list of formset dicts, returns that list sorted by the sortable field.
     """
-    
     if arg:
         sorted_list = []
         for item in formset:
@@ -148,13 +153,16 @@ def safe_json_else_list_tag(f):
             return []
     return register.simple_tag(inner)
 
+
 @safe_json_else_list_tag
 def get_related_lookup_fields_fk(model_admin):
     return model_admin.related_lookup_fields.get("fk", [])
 
+
 @safe_json_else_list_tag
 def get_related_lookup_fields_m2m(model_admin):
     return model_admin.related_lookup_fields.get("m2m", [])
+
 
 @safe_json_else_list_tag
 def get_related_lookup_fields_generic(model_admin):
@@ -167,9 +175,11 @@ def get_related_lookup_fields_generic(model_admin):
 def get_autocomplete_lookup_fields_fk(model_admin):
     return model_admin.autocomplete_lookup_fields.get("fk", [])
 
+
 @safe_json_else_list_tag
 def get_autocomplete_lookup_fields_m2m(model_admin):
     return model_admin.autocomplete_lookup_fields.get("m2m", [])
+
 
 @safe_json_else_list_tag
 def get_autocomplete_lookup_fields_generic(model_admin):
@@ -197,7 +207,24 @@ def admin_list_filter(cl, spec):
         tpl = get_template(spec.template)
     return tpl.render(Context({
         'title': spec.title,
-        'choices' : list(spec.choices(cl)),
+        'choices': list(spec.choices(cl)),
         'spec': spec,
     }))
+
+
+@register.simple_tag(takes_context=True)
+def switch_user_dropdown(context):
+    if SWITCH_USER:
+        tpl = get_template("admin/includes_grappelli/switch_user_dropdown.html")
+        request = context["request"]
+        session_user = request.session.get("original_user", {"id": request.user.id, "username": request.user.username})
+        original_user = User.objects.get(pk=session_user["id"], is_staff=True)
+        if SWITCH_USER_ORIGINAL(original_user):
+            object_list = [user for user in User.objects.filter(is_staff=True).exclude(pk=original_user.pk) if SWITCH_USER_TARGET(original_user, user)]
+            return tpl.render(Context({
+                'request': request,
+                'object_list': object_list,
+            }))
+    return ""
+
 
