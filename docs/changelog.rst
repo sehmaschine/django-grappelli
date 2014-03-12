@@ -11,6 +11,7 @@ Changelog
 2.5.3 (not yet released)
 ------------------------
 
+* Improved the field lookup pattern with autocomplete js.
 * Removed sourcemap from jquery.min.js
 * Fixed floating properties of form in change-form.
 
