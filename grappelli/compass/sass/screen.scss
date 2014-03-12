@@ -323,6 +323,12 @@ header#grp-header {
     width: 100%;
     @include box-sizing(border-box);
 }
+body.grp-change-form #grp-content-container > form,
+body.grp-change-form #grp-content-container > form > div {
+    position: relative;
+    float: left;
+    clear: both;
+}
 
 
 

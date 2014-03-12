@@ -69,12 +69,12 @@
         var autocomplete_fields_generic = {% get_autocomplete_lookup_fields_generic inline_admin_formset.opts %};
         $.each(related_lookup_fields_fk, function() {
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items > div:not(.grp-empty-form)")
-            .find("input[name^='" + prefix + "'][name$='" + this + "']")
+            .find("input[name^='" + prefix + "'][name$='-" + this + "']")
             .grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
         });
         $.each(related_lookup_fields_m2m, function() {
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items > div:not(.grp-empty-form)")
-            .find("input[name^='" + prefix + "'][name$='" + this + "']")
+            .find("input[name^='" + prefix + "'][name$='-" + this + "']")
             .grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
         });
         $.each(related_lookup_fields_generic, function() {
@@ -93,7 +93,7 @@
         });
         $.each(autocomplete_fields_fk, function() {
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items > div:not(.grp-empty-form)")
-            .find("input[name^='" + prefix + "'][name$='" + this + "']")
+            .find("input[name^='" + prefix + "'][name$='-" + this + "']")
             .each(function() {
                 $(this).grp_autocomplete_fk({
                     lookup_url:"{% url 'grp_related_lookup' %}",
@@ -103,7 +103,7 @@
         });
         $.each(autocomplete_fields_m2m, function() {
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items > div:not(.grp-empty-form)")
-            .find("input[name^='" + prefix + "'][name$='" + this + "']")
+            .find("input[name^='" + prefix + "'][name$='-" + this + "']")
             .each(function() {
                 $(this).grp_autocomplete_m2m({
                     lookup_url:"{% url 'grp_m2m_lookup' %}",
@@ -138,11 +138,11 @@
                 grappelli.reinitDateTimeFields(form);
                 grappelli.updateSelectFilter(form);
                 $.each(related_lookup_fields_fk, function() {
-                    form.find("input[name^='" + prefix + "'][name$='" + this + "']")
+                    form.find("input[name^='" + prefix + "'][name$='-" + this + "']")
                     .grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
                 });
                 $.each(related_lookup_fields_m2m, function() {
-                    form.find("input[name^='" + prefix + "'][name$='" + this + "']")
+                    form.find("input[name^='" + prefix + "'][name$='-" + this + "']")
                     .grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
                 });
                 $.each(related_lookup_fields_generic, function() {
@@ -159,7 +159,7 @@
                     });
                 });
                 $.each(autocomplete_fields_fk, function() {
-                    form.find("input[name^='" + prefix + "'][name$='" + this + "']")
+                    form.find("input[name^='" + prefix + "'][name$='-" + this + "']")
                     .each(function() {
                         $(this).grp_autocomplete_fk({
                             lookup_url:"{% url 'grp_related_lookup' %}",
@@ -168,7 +168,7 @@
                     });
                 });
                 $.each(autocomplete_fields_m2m, function() {
-                    form.find("input[name^='" + prefix + "'][name$='" + this + "']")
+                    form.find("input[name^='" + prefix + "'][name$='-" + this + "']")
                     .each(function() {
                         $(this).grp_autocomplete_m2m({
                             lookup_url:"{% url 'grp_m2m_lookup' %}",

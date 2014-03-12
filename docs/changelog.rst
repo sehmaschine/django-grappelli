@@ -8,8 +8,15 @@
 Changelog
 =========
 
-2.5.2 (not yet released)
+2.5.3 (not yet released)
 ------------------------
+
+* Improved the field lookup pattern with autocomplete js.
+* Removed sourcemap from jquery.min.js
+* Fixed floating properties of form in change-form.
+
+2.5.2 (February 20th, 2014)
+---------------------------
 
 * Fixed: Exception chain with autocompletes.
 * Fixed: Reindexing with inline sortables.

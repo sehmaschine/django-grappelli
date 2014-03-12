@@ -40,12 +40,12 @@
                     var autocomplete_fields_generic = {% get_autocomplete_lookup_fields_generic cl.model_admin %};
                     $.each(related_lookup_fields_fk, function() {
                         $("div.grp-changelist-results")
-                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .find("input[name^='" + prefix + "'][name$='-" + this + "']")
                         .grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
                     });
                     $.each(related_lookup_fields_m2m, function() {
                         $("div.grp-changelist-results")
-                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .find("input[name^='" + prefix + "'][name$='-" + this + "']")
                         .grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
                     });
                     $.each(related_lookup_fields_generic, function() {
@@ -61,7 +61,7 @@
                     });
                     $.each(autocomplete_fields_fk, function() {
                         $("div.grp-changelist-results")
-                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .find("input[name^='" + prefix + "'][name$='-" + this + "']")
                         .each(function() {
                             $(this).grp_autocomplete_fk({
                                 lookup_url:"{% url 'grp_related_lookup' %}",
@@ -71,7 +71,7 @@
                     });
                     $.each(autocomplete_fields_m2m, function() {
                         $("div.grp-changelist-results")
-                        .find("input[name^='" + prefix + "'][name$='" + this + "']")
+                        .find("input[name^='" + prefix + "'][name$='-" + this + "']")
                         .each(function() {
                             $(this).grp_autocomplete_m2m({
                                 lookup_url:"{% url 'grp_m2m_lookup' %}",
