@@ -372,7 +372,7 @@ Using TinyMCE
 
 Using TinyMCE with inlines is a bit more tricky because of the hidden extra inline. You need to write a custom template and use the inline callbacks to
 
-* ``onInit``: remove TinyMCE instances from the the empty form.
+* ``onInit``: remove TinyMCE instances from the empty form.
 * ``onAfterAdded``: initialize TinyMCE instance(s) from the form.
 * ``onBeforeRemoved``: remove TinyMCE instance(s) from the form.
 
