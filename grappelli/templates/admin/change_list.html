@@ -52,7 +52,7 @@
                         var content_type = this[0],
                             object_id = this[1];
                         $("div.grp-changelist-results")
-                        .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                        .find("input[name^='" + prefix + "'][name$='-" + this[1] + "']")
                         .each(function() {
                             var ct_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + content_type,
                                 obj_id = "#id_" + prefix + "-" + $(this).attr("id").split("-")[1] + "-" + object_id;
@@ -83,7 +83,7 @@
                         var content_type = this[0],
                             object_id = this[1];
                         $("div.grp-changelist-results")
-                        .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                        .find("input[name^='" + prefix + "'][name$='-" + this[1] + "']")
                         .each(function() {
                             var i = $(this).attr("id").match(/-\d+-/);
                             if (i) {

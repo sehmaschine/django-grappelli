@@ -81,7 +81,7 @@
             var content_type = this[0],
                 object_id = this[1];
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items > div:not(.grp-empty-form)")
-            .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+            .find("input[name^='" + prefix + "'][name$='-" + this[1] + "']")
             .each(function() {
                 var i = $(this).attr("id").match(/-\d+-/);
                 if (i) {
@@ -115,7 +115,7 @@
             var content_type = this[0],
                 object_id = this[1];
             $("#{{ inline_admin_formset.formset.prefix }}-group > div.grp-items > div:not(.grp-empty-form)")
-            .find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+            .find("input[name^='" + prefix + "'][name$='-" + this[1] + "']")
             .each(function() {
                 var i = $(this).attr("id").match(/-\d+-/);
                 if (i) {
@@ -148,7 +148,7 @@
                 $.each(related_lookup_fields_generic, function() {
                     var content_type = this[0],
                         object_id = this[1];
-                    form.find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                    form.find("input[name^='" + prefix + "'][name$='-" + this[1] + "']")
                     .each(function() {
                         var i = $(this).attr("id").match(/-\d+-/);
                         if (i) {
@@ -179,7 +179,7 @@
                 $.each(autocomplete_fields_generic, function() {
                     var content_type = this[0],
                         object_id = this[1];
-                    form.find("input[name^='" + prefix + "'][name$='" + this[1] + "']")
+                    form.find("input[name^='" + prefix + "'][name$='-" + this[1] + "']")
                     .each(function() {
                         var i = $(this).attr("id").match(/-\d+-/);
                         if (i) {
