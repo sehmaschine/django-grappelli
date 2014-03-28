@@ -11,9 +11,11 @@ Changelog
 2.5.3 (not yet released)
 ------------------------
 
-* Improved the field lookup pattern with autocomplete js.
-* Removed sourcemap from jquery.min.js
-* Fixed floating properties of form in change-form.
+* New: Changing the sort order manually for inlines.
+* Fixed: Floating properties of form in change-form.
+* Improved: Lookup pattern with autocomplete js.
+* Improved: Handle DoesNotExist error with switch_user_dropdown.
+* Removed: Sourcemap from jquery.min.js
 
 2.5.2 (February 20th, 2014)
 ---------------------------

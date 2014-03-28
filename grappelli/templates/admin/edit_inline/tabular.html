@@ -266,8 +266,8 @@
         Enables changing the sort order manually on sort field change
         - Top entry is 0
         - Last entry is n-1. Or any number that equals or is greater than n.
-        - Sortables without a value (extra forms) gets respected. If they are at the end, they stay there.
-        - Non-Number entries are being ignored
+        - Sortables without a value (extra forms) are not respected. If they are at the end, they stay there.
+        - Non-Number and negative numbers are being ignored.
         - It does not cleans up the order field values on change (just like dragging does not do that).
         */
         $.fn.grp_reverse_list = [].reverse;
@@ -276,30 +276,19 @@
             .each(function(i, item) {
                 $(item).bind('change', function(event) {
                     var desired_index = $(event.target).val() * 1;
-                    if(!isNaN(desired_index)) {
+                    if(!isNaN(desired_index) && desired_index >= 0) {
                         var $row = $(event.target).parents('div.grp-tbody.grp-dynamic-form');
                         var $table = $row.parents('div.grp-module.grp-table.ui-sortable');
                         $row.detach();
-                        var $row_after = $table.children('div.grp-tbody.grp-dynamic-form').get(desired_index);
-                        if($row_after) {
-                            $row.insertBefore($row_after);
+                        var $row_desired = $table.children('div.grp-tbody.grp-dynamic-form').get(desired_index);
+                        if($row_desired) {
+                            $row.insertBefore($row_desired);
+                            $row.find('div.grp-td').effect('highlight', {color:"#ffffcc"}, 2000);
                         } else {
-                            $other_rows = $table.children('div.grp-tbody.grp-dynamic-form');
-                            if($other_rows) {
-                                var stop_loop = false;
-                                $other_rows.grp_reverse_list().each(function(i, other_row){
-                                    var fields = $(other_row).find("div.grp-td :input[type!=radio][type!=checkbox],input:checked,input[type=file]");
-                                    $(fields).each(function() {
-                                         var has_value = $(this).val() || ($(this).attr('type') == 'file' && $(this).siblings('a').length);
-                                         if(!stop_loop && has_value) {
-                                            $row.insertAfter($(other_row));
-                                            stop_loop = true;
-                                         }
-                                    });
-                                });
-                            } else {
-                                $table.append($row);
-                            }
+                            // FIXME: this appends the new row to the very end of the table.
+                            // instead, it should be added after the last row with values.
+                            $table.append($row);
+                            $row.find('div.grp-td').effect('highlight', {color:"#ffffcc"}, 2000);
                         }
                     }
                 });

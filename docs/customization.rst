@@ -101,6 +101,8 @@ Now, define the ``sortable_field_name`` with your ``InlineModelAdmin``:
 The inline rows are reordered based on the sortable field (with a templatetag ``formsetsort``). When submitting a form, the values of the sortable field are reindexed according to the position of each row.
 In case of errors (somewhere within the form), the position of inline rows is preserved. This also applies to rows prepared for deletion while empty rows are being moved to the end of the formset.
 
+Besides using the drag/drop-handler, you are also able to manually update the position values. This is especially with lots of inlines. Just change the number within the position field and the row is automatically moved to the new position. Each row is being reindexed with submitting the form.
+
 .. _customizationsortableexcludes:
 
 Sortable Excludes
