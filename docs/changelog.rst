@@ -13,6 +13,7 @@ Changelog
 
 * New: Changing the sort order manually for inlines.
 * Fixed: Floating properties of form in change-form.
+* Fixed: Keyboard navigation with autocompletes.
 * Improved: Lookup pattern with autocomplete js.
 * Improved: Handle DoesNotExist error with switch_user_dropdown.
 * Removed: Sourcemap from jquery.min.js
