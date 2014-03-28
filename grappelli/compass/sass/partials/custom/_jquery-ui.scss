@@ -460,7 +460,8 @@ button.ui-datepicker-close {
             background: #cee9f2;
             cursor: pointer;
             &:hover, 
-            &.ui-state-hover, 
+            &.ui-state-hover,
+            &.ui-state-focus, 
             &.ui-state-active {
                 color: #fff;
                 border: 1px solid #333;
