@@ -153,10 +153,10 @@ input[type=button].grp-button {
 
 /*  Basic assignments ......................................... */
 
-input[type=button], 
 button, 
 a.fb_show, 
 a.related-lookup, 
+body.tinyMCE input[type=button], 
 body.tinyMCE input[name="src"] + div a, 
 body.tinyMCE input[name="href"] + div a {
     @include grp-icon-button;
