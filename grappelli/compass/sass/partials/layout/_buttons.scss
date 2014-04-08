@@ -156,10 +156,27 @@ input[type=button].grp-button {
 button, 
 a.fb_show, 
 a.related-lookup, 
-body.tinyMCE input[type=button], 
 body.tinyMCE input[name="src"] + div a, 
 body.tinyMCE input[name="href"] + div a {
     @include grp-icon-button;
+}
+
+input[type=button] {
+    @include grp-icon-button;
+    margin: 0 0 0 -2px;
+    padding: 0 10px;
+    width: auto;
+    font-family: $grp-form-field-font-family;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: bold;
+    color: $grp-link-color;
+    &:hover {
+        color: $grp-link-color-hover;
+    }
+    input:focus + & {
+        border: $grp-form-field-border-focus;
+    }
 }
 
 
