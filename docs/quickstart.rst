@@ -1,6 +1,6 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 2.4.9
+.. |grappelliversion| replace:: 2.4.10
 
 .. _quickstart:
 
@@ -14,7 +14,7 @@ Installation
 
 Using ``pip``::
 
-    pip install django-grappelli==2.4.9
+    pip install django-grappelli==2.4.10
 
 Go to https://github.com/sehmaschine/django-grappelli if you need to download a package or clone the repo.
 
