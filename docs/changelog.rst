@@ -8,7 +8,10 @@
 Changelog
 =========
 
-2.5.3 (not yet released)
+2.5.4 (not yet released)
+------------------------
+
+2.5.3 (April 13th, 2014)
 ------------------------
 
 * New: Changing the sort order manually for inlines.
