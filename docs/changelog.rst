@@ -8,8 +8,14 @@
 Changelog
 =========
 
-2.4.10 (not yet released)
+2.4.11 (not yet released)
 -------------------------
+
+2.4.10 (April 13th 2014)
+------------------------
+
+* Fixed: change form extrahead js (focus first).
+* Fixed: floating properties of form in change-form.
 
 2.4.9 (February 20th, 2014)
 ---------------------------
