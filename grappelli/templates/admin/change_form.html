@@ -99,6 +99,19 @@
     {{ media }}
 {% endblock %}
 
+{% block extrahead %}
+    {{ block.super }}
+    {% if adminform and add %}
+    <script type="text/javascript">
+        (function($){
+            $(document).ready(function() {
+                $('form#{{ opts.module_name }}_form :input:visible:enabled:first').focus()
+            });
+        }(grp.jQuery));
+    </script>
+    {% endif %}
+{% endblock %}
+
 <!-- COLTYPE/BODYCLASS -->
 {% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} grp-change-form{% endblock %}
 {% block content-class %}{% endblock %}
@@ -175,19 +188,6 @@
             
             <!-- Submit-Row -->
             {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
-            
-            {% if adminform and add %}
-                {% block extrahead %}
-                    {{ block.super }}
-                    <script type="text/javascript">
-                        (function($){
-                            $(document).ready(function() {
-                                $('form#{{ opts.module_name }}_form :input:visible:enabled:first').focus()
-                            });
-                        }(grp.jQuery));
-                    </script>
-                {% endblock %}
-            {% endif %}
             
             <!-- JS for prepopulated fields -->
             {% prepopulated_fields_js %}
