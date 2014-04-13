@@ -1,6 +1,6 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 2.5.3
+.. |grappelliversion| replace:: 2.5.4
 
 .. _quickstart:
 
@@ -14,7 +14,7 @@ Installation
 
 .. code-block:: bash
 
-    $ pip install django-grappelli==2.5.3
+    $ pip install django-grappelli
 
 Go to https://github.com/sehmaschine/django-grappelli if you need to download a package or clone/fork the repository.
 
