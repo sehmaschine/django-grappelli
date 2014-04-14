@@ -2,6 +2,7 @@
 
 # PYTHON IMPORTS
 import operator
+import json
 from functools import reduce
 
 # DJANGO IMPORTS
@@ -14,12 +15,6 @@ from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.util import prepare_lookup_value
-
-# try to use json (2.6+) but stay compatible with 2.5.*
-try:
-    import json
-except ImportError:
-    from django.utils import simplejson as json
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
