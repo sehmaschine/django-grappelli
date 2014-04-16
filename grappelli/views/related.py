@@ -14,6 +14,7 @@ from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.util import prepare_lookup_value
+from django.contrib import admin
 
 # try to use json (2.6+) but stay compatible with 2.5.*
 try:
@@ -37,6 +38,10 @@ def import_from(module, name):
 def ajax_response(data):
     return HttpResponse(json.dumps(data), content_type='application/javascript')
 
+def get_model_admin(model):
+    if model in admin.site._registry:
+        return admin.site._registry[model]
+    return None
 
 class RelatedLookup(View):
     "Related Lookup"
@@ -65,6 +70,12 @@ class RelatedLookup(View):
 
     def get_queryset(self):
         qs = self.model._default_manager.get_queryset()
+        model_name = self.GET.get("model_name", None)
+        app_label = self.GET.get("app_label", None)
+        if model_name and app_label:
+            model = models.get_model(app_label, model_name)
+            model_admin = get_model_admin(model)
+            qs = model_admin.get_queryset(self.request)
         qs = self.get_filtered_queryset(qs)
         return qs
 
