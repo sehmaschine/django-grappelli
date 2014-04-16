@@ -153,13 +153,30 @@ input[type=button].grp-button {
 
 /*  Basic assignments ......................................... */
 
-input[type=button], 
 button, 
 a.fb_show, 
 a.related-lookup, 
 body.tinyMCE input[name="src"] + div a, 
 body.tinyMCE input[name="href"] + div a {
     @include grp-icon-button;
+}
+
+input[type=button] {
+    @include grp-icon-button;
+    margin: 0 0 0 -2px;
+    padding: 0 10px;
+    width: auto;
+    font-family: $grp-form-field-font-family;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: bold;
+    color: $grp-link-color;
+    &:hover {
+        color: $grp-link-color-hover;
+    }
+    input:focus + & {
+        border: $grp-form-field-border-focus;
+    }
 }
 
 
@@ -365,9 +382,9 @@ input:focus + .grp-search-button {
 /*  UNKNOWN, YES, NO: REPLACING DJANGOS IMAGES
 ------------------------------------------------------------------------------------------------------ */
 
-img[src$="admin/img/icon-unknown.gif"], 
-img[src$="admin/img/icon-no.gif"], 
-img[src$="admin/img/icon-yes.gif"] {
+img[src*="admin/img/icon-unknown"][src$=".gif"], 
+img[src*="admin/img/icon-no"][src$=".gif"], 
+img[src*="admin/img/icon-yes"][src$=".gif"] {
     position: relative;
     height: 0;
     width: 0;
@@ -376,13 +393,13 @@ img[src$="admin/img/icon-yes.gif"] {
     padding: 8px;
     font-size: 0;
 }
-img[src$="admin/img/icon-unknown.gif"] {
+img[src*="admin/img/icon-unknown"][src$=".gif"] {
     @include icons-sprite(status-unknown);
 }
-img[src$="admin/img/icon-no.gif"] {
+img[src*="admin/img/icon-no"][src$=".gif"] {
     @include icons-sprite(status-no);
 }
-img[src$="admin/img/icon-yes.gif"] {
+img[src*="admin/img/icon-yes"][src$=".gif"] {
     @include icons-sprite(status-yes);
 }
 

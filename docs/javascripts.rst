@@ -15,8 +15,8 @@ Grappelli only uses a subset of the original admin javascripts.
 * If we add functionality, we use our own jQuery-plugins (e.g. ``jquery.grp_collapsible.js``) or jQuery-widgets (e.g. ``jquery.grp_timepicker.js``)
 * If there are major modifications, we use our own files as well (e.g. ``jquery.grp_inlines.js``).
 
-Original JS
------------
+Original Javascripts
+--------------------
 
 in ``/static/admin/js/``
 
@@ -45,8 +45,8 @@ in ``/static/admin/js/``
     minor modifiations, marked with GRAPPELLI CUSTOM
 
 
-Grappelli JS
-------------
+Grappelli Javascripts
+---------------------
 
 in ``/static/admin/js/``
 

@@ -162,11 +162,13 @@ table {
         > input[type="url"], 
         > input[type="email"], 
         > input[type="number"], 
+        > input[type="button"], 
         > select,
         p input[type="text"],
         p input[type="url"],
         p input[type="email"],
-        p input[type="number"] {
+        p input[type="number"],
+        p > input[type="button"] {
             vertical-align: top;
             margin-top: -5px !important;
             margin-bottom: -5px !important;

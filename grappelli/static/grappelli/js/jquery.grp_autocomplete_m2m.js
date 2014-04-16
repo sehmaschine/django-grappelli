@@ -117,7 +117,7 @@
     var lookup_autocomplete = function(elem, options) {
         options.wrapper_search.find("input:first")
             .bind("keydown", function(event) { // don't navigate away from the field on tab when selecting an item
-                if (event.keyCode === $.ui.keyCode.TAB && $(this).data("autocomplete").menu.active) {
+                if (event.keyCode === $.ui.keyCode.TAB && $(this).data("uiAutocomplete").menu.active) {
                     event.preventDefault();
                 }
             })

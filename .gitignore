@@ -1,5 +1,6 @@
 *.pyc
 docs/_build/
+docs/_themes/
 .DS_Store
 dist/*
 django_grappelli.egg-info/*

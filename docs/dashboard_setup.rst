@@ -9,23 +9,18 @@ Dashboard Setup
 With the Django admin interface, the admin index page reflects the structure of your applications/models. With ``grappelli.dashboard`` you are able to change that structure and rearrange (or group) apps and models.
 
 .. note::
-    ``grappelli.dashboard`` is a simplified version of `Django Admin Tools <http://packages.python.org/django-admin-tools/>`_: Bookmarks, Menus and the custom App Index are **not available with Grappelli**.
+    ``grappelli.dashboard`` is a simplified version of `Django Admin Tools <http://django-admin-tools.readthedocs.org/>`_: Bookmarks, Menus and the custom App Index are **not available with Grappelli**.
 
-Add ``grappelli.dashboard`` to your installed apps
---------------------------------------------------
+Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` (before ``grappelli``). Check if the request context processor is being used:
 
-Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` (before ``grappelli``)::
+.. code-block:: python
+    :emphasize-lines: 2,9
 
     INSTALLED_APPS = (
         'grappelli.dashboard',
         'grappelli',
         'django.contrib.admin',
     )
-
-Add context processors
-----------------------
-
-You need to add the request context processor::
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         "django.contrib.auth.context_processors.auth",
@@ -34,35 +29,34 @@ You need to add the request context processor::
         'django.contrib.messages.context_processors.messages',
     )
 
-Create a custom dashboard
--------------------------
+Custom dashboard
+----------------
 
-To customize the index dashboard, you first need to add a custom dashboard::
+To customize the index dashboard, you first need to add a custom dashboard, located within your project directory. Depending on the location of manage.py, you might need to add the project directory to the management command (see last example below):
+
+.. code-block:: bash
     
-    python manage.py customdashboard
+    $ python manage.py customdashboard  # creates dashboard.py
+    $ python manage.py customdashboard somefile.py  # creates somefile.py
+    $ python manage.py customdashboard projdir/somefile.py  # creates somefile.py in projdir
 
-This will create a file named ``dashboard.py`` in your project directory.
-If you want another file name, type::
+The created file contains the class ``CustomIndexDashboard`` that corresponds to the admin index page dashboard. Now you need to add your custom dashboard. Open your ``settings.py`` file and define ``GRAPPELLI_INDEX_DASHBOARD``:
 
-    python manage.py customdashboard somefile.py
-
-The created file contains the class ``CustomIndexDashboard`` that corresponds to the admin index page dashboard.
-
-Now you need to add your custom dashboard.
-Open your ``settings.py`` file and add the following::
+.. code-block:: python
 
     GRAPPELLI_INDEX_DASHBOARD = 'yourproject.dashboard.CustomIndexDashboard'
-
-If you're using a custom admin site (not ``django.contrib.admin.site``), you need to define the dashboard like this::
-
-    GRAPPELLI_INDEX_DASHBOARD = {
+    GRAPPELLI_INDEX_DASHBOARD = {  # alternative method
         'yourproject.admin.admin_site': 'yourproject.my_dashboard.CustomIndexDashboard',
     }
 
-Create custom dashboards for multiple admin sites
--------------------------------------------------
+If you're using a custom admin site (not ``django.contrib.admin.site``), you need to define the dashboard with the alternative method.
 
-If you have several admin sites, you need to create a custom dashboard for each site::
+Custom dashboards for multiple sites
+------------------------------------
+
+If you have several admin sites, you need to create a custom dashboard for each site:
+
+.. code-block:: python
 
     from django.conf.urls.defaults import *
     from django.contrib import admin
@@ -75,12 +69,16 @@ If you have several admin sites, you need to create a custom dashboard for each 
         (r'^myadmin/', include(admin_site.urls)),
     )
 
-To configure your dashboards, you could do::
+To configure your dashboards, you could do:
 
-    python manage.py customdashboard dashboard.py
-    python manage.py customdashboard my_dashboard.py
+.. code-block:: bash
 
-Open your ``settings.py`` file and add the following::
+    $ python manage.py customdashboard dashboard.py
+    $ python manage.py customdashboard my_dashboard.py
+
+Open your ``settings.py`` file and define ``GRAPPELLI_INDEX_DASHBOARD``:
+
+.. code-block:: python
 
     GRAPPELLI_INDEX_DASHBOARD = {
         'django.contrib.admin.site': 'yourproject.dashboard.CustomIndexDashboard',
