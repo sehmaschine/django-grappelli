@@ -1,8 +1,5 @@
 # coding: utf-8
 
-# PYTHON IMPORTS
-import datetime
-
 # DJANGO IMPORTS
 from django.test import TestCase
 from django.test.utils import override_settings
@@ -15,7 +12,7 @@ from django.conf import settings
 from django.template import Context, Template
 from django.template.loader import get_template
 from django.http import HttpRequest
-from django.utils import translation
+from django.utils import translation, timezone
 
 try:
     import json
@@ -50,10 +47,10 @@ class RelatedTests(TestCase):
 
         # add entries
         self.entry_superuser = Entry.objects.create(title="Entry Superuser",
-            date = datetime.datetime.now(),
+            date = timezone.now(),
             user = self.superuser_1)
         self.entry_editor = Entry.objects.create(title="Entry Editor",
-            date = datetime.datetime.now(),
+            date = timezone.now(),
             user = self.editor_1)
 
         # set to en to check error messages
