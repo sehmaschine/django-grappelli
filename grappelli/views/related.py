@@ -72,10 +72,12 @@ class RelatedLookup(View):
         qs = self.model._default_manager.get_queryset()
         model_name = self.GET.get("model_name", None)
         app_label = self.GET.get("app_label", None)
-        if model_name and app_label:
+        if model_name is not None and app_label is not None:
             model = models.get_model(app_label, model_name)
-            model_admin = get_model_admin(model)
-            qs = model_admin.get_queryset(self.request)
+            if model is not None:
+                model_admin = get_model_admin(model)
+                if model_admin is not None:
+                    qs = model_admin.get_queryset(self.request)
         qs = self.get_filtered_queryset(qs)
         return qs
 
