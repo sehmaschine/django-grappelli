@@ -390,7 +390,7 @@ class Feed(DashboardModule):
 class IndicatorList(DashboardModule):
 
     """
-    A module that displays a list of something indicators.
+    Module that displays a list of something indicators.
     """
 
     title = _('Indicators')
@@ -403,9 +403,6 @@ class IndicatorList(DashboardModule):
             return
         new_children = []
         for item in self.children:
-            for child in item:
-                if 'description' in child and type(child['description']) not in [list, tuple]:
-                    child['description'] = [child['description']]
             new_children.append(item)
         self.children = new_children
         self._initialized = True

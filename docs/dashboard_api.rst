@@ -30,10 +30,10 @@ Here's an example of a custom dashboard:
     from django.core.urlresolvers import reverse
     from django.utils.translation import ugettext_lazy as _
     from grappelli.dashboard import modules, Dashboard
-    
+
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
-            
+
             # append an app list module for "Applications"
             self.children.append(modules.AppList(
                 title=_('Applications'),
@@ -41,7 +41,7 @@ Here's an example of a custom dashboard:
                 collapsible=True,
                 exclude=('django.contrib.*',),
             ))
-            
+
             # append an app list module for "Administration"
             self.children.append(modules.AppList(
                 title=_('Administration'),
@@ -49,7 +49,7 @@ Here's an example of a custom dashboard:
                 collapsible=True,
                 models=('django.contrib.*',),
             ))
-            
+
             # append a recent actions module
             self.children.append(modules.RecentActions(
                 title=_('Recent Actions'),
@@ -93,7 +93,7 @@ Dashboard modules have the following properties:
     Default: ``None``
 
 ``template``
-    The template used to render the module. 
+    The template used to render the module.
     Default: ``grappelli/dashboard/module.html``
 
 The Group class
@@ -104,7 +104,7 @@ Represents a group of modules:
 .. code-block:: python
 
     from grappelli.dashboard import modules, Dashboard
-    
+
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
             Dashboard.__init__(self, **kwargs)
@@ -152,11 +152,11 @@ Here's an example of building a link list module:
 .. code-block:: python
 
     from grappelli.dashboard import modules, Dashboard
-    
+
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
             Dashboard.__init__(self, **kwargs)
-            
+
             self.children.append(modules.LinkList(
                 layout='inline',
                 column=2,
@@ -197,11 +197,11 @@ Here's an example of building an app list module:
 .. code-block:: python
 
     from grappelli.dashboard import modules, Dashboard
-    
+
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
             Dashboard.__init__(self, **kwargs)
-            
+
             # will only list the django.contrib apps
             self.children.append(modules.AppList(
                 title='Administration',
@@ -216,7 +216,7 @@ Here's an example of building an app list module:
             ))
 
 .. note::
-    
+
     This module takes into account user permissions. For
     example, if a user has no rights to change or add a ``Group``, then
     the django.contrib.auth.Group model won't be displayed.
@@ -242,19 +242,19 @@ two extra arguments:
 Here's a small example of building a model list module:
 
 .. code-block:: python
-    
+
     from grappelli.dashboard import modules, Dashboard
-    
+
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
             Dashboard.__init__(self, **kwargs)
-            
+
             self.children.append(modules.ModelList(
                 title='Several Models',
                 column=1,
                 models=('django.contrib.*',)
             ))
-            
+
             self.children.append(modules.ModelList(
                 title='Single Model',
                 column=1,
@@ -294,11 +294,11 @@ Here's an example of building a recent actions module:
 .. code-block:: python
 
     from grappelli.dashboard import modules, Dashboard
-    
+
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
             Dashboard.__init__(self, **kwargs)
-            
+
             self.children.append(modules.RecentActions(
                 title='Django CMS recent actions',
                 column=3,
@@ -331,14 +331,100 @@ Here's an example of building a recent actions module:
 .. code-block:: python
 
     from grappelli.dashboard import modules, Dashboard
-    
+
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
             Dashboard.__init__(self, **kwargs)
-            
+
             self.children.append(modules.Feed(
                 title=_('Latest Django News'),
                 feed_url='http://www.djangoproject.com/rss/weblog/',
                 column=3,
                 limit=5,
             ))
+
+The IndicatorList class
+-----------------------
+
+.. image:: http://github.com/mr_africa/django-grappelli/docs/img/indicator_list.png
+
+Module that lists for the failing or successful information.
+As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
+properties, the :class:`~grappelli.dashboard.modules.IndicatorList`
+takes two extra keyword arguments:
+
+``success_message``
+    success message for all items (default is 'success').
+
+``fail_message``
+    fail message for all items (default is 'fail').
+
+
+Children can also be iterables (lists or tuples) and contain groups of indicators dicts with this keys:
+
+``title``
+    title of the group
+
+``indicators``
+    list or tuple of dicts with detailed indicators
+
+Every indicator must contains next items:
+
+``title``
+    title of the indicator
+
+``status``
+    status of indicator (True or False)
+
+``success_message``
+    override the default success message for this item.
+
+``fail_message``
+    override the default fail message for this item.
+
+``description``
+    additional information for current indicator
+
+
+Here's an example of building a indicator list module:
+
+.. code-block:: python
+
+    from grappelli.dashboard import modules, Dashboard
+
+    class MyDashboard(Dashboard):
+        def __init__(self, **kwargs):
+            Dashboard.__init__(self, **kwargs)
+
+            self.children.append(modules.IndicatorList(
+            _('Monitoring'),
+            collapsible=True,
+            column=3,
+            children=[
+                {'title': 'Activity',
+                 'indicators': [{
+                     'title': 'Last visit',
+                     'status': True,
+                     'success_message': '12 may 2014 18:26',
+                     },{
+                     'title': 'New comments',
+                     'status': False,
+                     'fail_message': 'No comments today',
+                     },]
+                 },
+                {'title': 'Periodic tasks',
+                 'indicators': [{
+                     'title': 'Export report',
+                     'status': True,
+                     'success_message': '12 may 2014 18:00 report exported successfully',
+                     'description': 'Next export: 12 may 2014 19:00'
+                     },{
+                     'title': 'Sending emails',
+                     'status': False,
+                     'description': 'Next sending: 12 may 2014 20:00'
+                     },]
+                 },
+            ],
+            success_message='Everything looks good',
+            fail_message='Something does wrong',
+        ))
