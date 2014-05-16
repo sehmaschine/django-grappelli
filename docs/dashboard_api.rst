@@ -386,7 +386,7 @@ Every indicator must contains next items:
     additional information for current indicator
 
 
-Here's an example of building a indicator list module:
+Here's an example of building a IndicatorList module:
 
 .. code-block:: python
 
