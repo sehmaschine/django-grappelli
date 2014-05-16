@@ -346,7 +346,7 @@ Here's an example of building a recent actions module:
 The IndicatorList class
 -----------------------
 
-.. image:: http://github.com/mr_africa/django-grappelli/docs/img/indicator_list.png
+.. image:: https://github.com/mr-africa/django-grappelli/blob/master/docs/img/indicator_list.png
 
 Module that lists for the failing or successful information.
 As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
