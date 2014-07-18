@@ -4,7 +4,7 @@
         {% if fieldset.name %}<h4 class="grp-collapse-handler">{{ fieldset.name }}</h4>{% endif %}
         {% if fieldset.description %}<div class="grp-row"><p class="grp-description">{{ fieldset.description|safe }}</p></div>{% endif %}
         {% for line in fieldset %}
-            <div class="grp-row grp-cells-{{ line.fields|length }}{% if not line.fields|length_is:"1" %} grp-cells{% else %}{% if line.errors %} grp-errors{% endif %}{% endif %}{% for field in line %} {{ field.field.name }}{% endfor %} ">
+            <div class="grp-row grp-cells-{{ line.fields|length }}{% if not line.fields|length_is:"1" %} grp-cells{% else %}{% if line.errors %} grp-errors{% endif %}{% endif %}{% for field in line %} {{ field.field.name }}{% if field.field.is_hidden and line.fields|length_is:"1" %} grp-row-hidden{% endif %}{% endfor %} ">
                 {% for field in line %}
                     {% if line.fields|length_is:"1" %}
                         <div class="l-2c-fluid l-d-4">
