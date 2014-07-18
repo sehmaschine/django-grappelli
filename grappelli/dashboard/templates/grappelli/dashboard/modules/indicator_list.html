@@ -1,0 +1,28 @@
+{% extends "grappelli/dashboard/module.html" %}
+{% load i18n %}
+
+{% block module_content %}
+    <ul class="grp-module grp-dashboard-module">
+        {% spaceless %}
+            {% for child in module.children %}
+                <div class="grp-module">
+                    <h2>{{ child.title }}:</h2>
+                    {% for indicator in child.indicators %}
+                        <div class="grp-row">{{ indicator.title }}:</div>
+                        <ul class="grp-messagelist" style="padding: 0">
+                            {% if indicator.status %}
+                                <li class="grp-success">
+                                    <div class="grp-font-color-quiet">{% if indicator.success_message %}{{ indicator.success_message }}{% else %}{{ success_message }}{% endif %}</div>
+                            {% else %}
+                                <li class="grp-error">
+                                    <div class="grp-font-color-quiet">{% if indicator.fail_message %}{{ indicator.fail_message }}{% else %}{{ fail_message }}{% endif %}</div>
+                            {% endif %}
+                            {% if indicator.description %}{{ indicator.description }}{% endif %}
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% endspaceless %}
+    </ul>
+{% endblock %}
