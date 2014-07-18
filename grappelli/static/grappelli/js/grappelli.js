@@ -65,7 +65,7 @@ var django = {
         // HACK: adds an event listener to the today button of datepicker
         // if clicked today gets selected and datepicker hides.
         // use on() because couldn't find hook after datepicker generates it's complete dom.
-        $(".ui-datepicker-current").on('click', function() {
+        $(document).on('click', '.ui-datepicker-current', function() {
             $.datepicker._selectDate(grappelli.datepicker_instance);
             grappelli.datepicker_instance = null;
         });
