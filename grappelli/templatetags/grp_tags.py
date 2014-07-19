@@ -229,5 +229,3 @@ def switch_user_dropdown(context):
                 'object_list': object_list,
             }))
     return ""
-
-

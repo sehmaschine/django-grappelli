@@ -18,9 +18,9 @@ AUTOCOMPLETE_SEARCH_FIELDS = getattr(settings, "GRAPPELLI_AUTOCOMPLETE_SEARCH_FI
 
 # SWITCH_USER: Set True in order to activate this functionality
 SWITCH_USER = getattr(settings, "GRAPPELLI_SWITCH_USER", False)
-# SWITCH_USER_ORIGINAL: Defines if a user is allowed to login as another user. 
+# SWITCH_USER_ORIGINAL: Defines if a user is allowed to login as another user.
 # Gets a user object and returns True/False.
 SWITCH_USER_ORIGINAL = getattr(settings, "GRAPPELLI_SWITCH_USER_ORIGINAL", lambda user: user.is_superuser)
 # SWITCH_USER_ORIGINAL: Defines if a user is a valid target.
 # Gets a user object and returns True/False.
-SWITCH_USER_TARGET =  getattr(settings, "GRAPPELLI_SWITCH_USER_TARGET", lambda original_user, user: user.is_staff and not user.is_superuser)
+SWITCH_USER_TARGET = getattr(settings, "GRAPPELLI_SWITCH_USER_TARGET", lambda original_user, user: user.is_staff and not user.is_superuser)

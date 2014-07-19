@@ -6,21 +6,11 @@ from django.test.utils import override_settings
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
-from django.utils.html import escape, escapejs
+from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
-from django.template import Context, Template
-from django.template.loader import get_template
-from django.http import HttpRequest
-
-try:
-    import json
-except ImportError:
-    from django.utils import simplejson as json
 
 # GRAPPELLI IMPORTS
-from grappelli.views.switch import switch_user
-from grappelli.tests.models import Category, Entry
+from grappelli.tests.models import Category
 from grappelli.templatetags.grp_tags import switch_user_dropdown
 
 
@@ -29,7 +19,7 @@ from grappelli.templatetags.grp_tags import switch_user_dropdown
 @override_settings(GRAPPELLI_SWITCH_USER_TARGET=lambda original_user, user: user.is_staff and not user.is_superuser)
 class SwitchTests(TestCase):
     urls = "grappelli.tests.urls"
-    
+
     def setUp(self):
         """
         Create superusers and editors
@@ -95,7 +85,7 @@ class SwitchTests(TestCase):
 
         self.client.login(username="User001", password="user001")
         response = self.client.get(reverse("admin:grappelli_category_changelist"), follow=True)
-        self.assertEqual(response.status_code, 200) # redirect to login, FIXME: better testing
+        self.assertEqual(response.status_code, 200)  # redirect to login, FIXME: better testing
 
     def test_switch_superuser001_superuser002(self):
         """
@@ -172,5 +162,3 @@ class SwitchTests(TestCase):
         self.assertEqual([m.message for m in list(response.context['messages'])], [_("Permission denied.")])
         self.assertEqual(self.client.session.get("original_user", None), None)
         self.assertEqual(self.client.session['_auth_user_id'], original_user.pk)
-
-
