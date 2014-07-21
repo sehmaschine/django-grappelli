@@ -4,7 +4,7 @@
     {% spaceless %}
     {% for child in module.children %}
         <div class="grp-module" id="module-{{child.title|lower}}">
-            <h{% if subindex %}4{% else %}3{% endif %}><a href="{{ child.url }}">{% trans child.title %}</a></h{% if subindex %}4{% else %}3{% endif %}>
+            <h{% if subindex %}4{% else %}3{% endif %}><a href="{{ child.url }}">{% trans child.name %}</a></h{% if subindex %}4{% else %}3{% endif %}>
             {% for model in child.models %}
                 <div class="grp-row">
                     {% if model.admin_url %}
