@@ -38,7 +38,7 @@ For now, custom Compass-based stylesheets gives us much more options. But we do 
 Do you guys cooperate with the Django–Devs?
 -------------------------------------------
 
-Occasionally, we discuss features and implementations.
+Occasionally, we have been discussing features and implementations in the past.
 
 How can I contribute?
 ---------------------

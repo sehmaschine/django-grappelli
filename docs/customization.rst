@@ -13,9 +13,6 @@ While |grappelli| is mainly about the look & feel of the admin interface, it als
 Available Settings
 ------------------
 
-.. versionadded:: 2.4
-    Added settings ``GRAPPELLI_SWITCH_USER``, ``GRAPPELLI_SWITCH_USER_ORIGINAL``, ``GRAPPELLI_SWITCH_USER_TARGET``, ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS``, ``GRAPPELLI_AUTOCOMPLETE_LIMIT``
-
 ``GRAPPELLI_ADMIN_TITLE``
     The Site Title of your admin interface. Change this instead of changing index.html
 
@@ -41,12 +38,7 @@ Available Settings
 Collapsibles
 ------------
 
-.. versionchanged:: 2.4
-    Added namespace ``grp-``.
-
-Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/1.6/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/1.6/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``.
-
-A ModelAdmin example:
+Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/1.6/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/1.6/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``:
 
 .. code-block:: python
 
@@ -65,11 +57,17 @@ A ModelAdmin example:
             }),
         )
 
+    class StackedItemInline(admin.StackedInline):
+        classes = ('grp-collapse grp-open',)
+
+    class TabularItemInline(admin.TabularInline):
+        classes = ('grp-collapse grp-open',)
+
 With `StackedInlines <https://docs.djangoproject.com/en/1.6/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of inline items (as opposed to the inline group):
 
 .. code-block:: python
 
-    class NavigationItemInline(admin.StackedInline):
+    class StackedItemInline(admin.StackedInline):
         classes = ('grp-collapse grp-open',)
         inline_classes = ('grp-collapse grp-open',)
 
@@ -101,16 +99,14 @@ Now, define the ``sortable_field_name`` with your ``InlineModelAdmin``:
 The inline rows are reordered based on the sortable field (with a templatetag ``formsetsort``). When submitting a form, the values of the sortable field are reindexed according to the position of each row.
 In case of errors (somewhere within the form), the position of inline rows is preserved. This also applies to rows prepared for deletion while empty rows are being moved to the end of the formset.
 
-Besides using the drag/drop-handler, you are also able to manually update the position values. This is especially with lots of inlines. Just change the number within the position field and the row is automatically moved to the new position. Each row is being reindexed with submitting the form.
+Besides using the drag/drop-handler, you are also able to manually update the position values. This is especially useful with lots of inlines. Just change the number within the position field and the row is automatically moved to the new position. Each row is being reindexed with submitting the form.
 
 .. _customizationsortableexcludes:
 
 Sortable Excludes
 -----------------
 
-.. versionadded:: 2.4
-
-You may want to define ``sortable_excludes`` (either list or tuple) in order to exclude certain fields from having an effect on the position field. This is especially useful if a field has a default value:
+You may want to define ``sortable_excludes`` (either list or tuple) in order to exclude certain fields from having an effect on the position field. This is usually needed when a field has a default value:
 
 .. code-block:: python
 
@@ -125,8 +121,6 @@ You may want to define ``sortable_excludes`` (either list or tuple) in order to 
 
 Rearrange Inlines
 -----------------
-
-.. versionadded:: 2.4
 
 Sometimes it might make sense to not show inlines at the bottom of the page/form, but somewhere in–between. In order to achieve this, you need to define a placeholder with your fields/fieldsets in admin.py:
 
@@ -232,11 +226,6 @@ Example in Python 3:
 
 Autocomplete Lookups
 --------------------
-
-.. versionadded:: 2.4
-    staticmethod ``autocomplete_term_adjust`` for better search optimization.
-.. versionchanged:: 2.4
-    staticmethod ``autocomplete_search_fields`` is optional if ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS`` is being used.
 
 Autocomplete lookups are an alternative to related lookups (for foreign keys, many–to-many relations and generic relations).
 
@@ -359,9 +348,6 @@ Example in Python 3:
 Using TinyMCE
 -------------
 
-.. versionchanged:: 2.4
-    The admin media URLs has been changed to use static URLs in compliance with Django 1.4
-
 |grappelli| already comes with TinyMCE and a minimal theme as well. In order to use TinyMCE, copy ``tinymce_setup.js`` to your static directory, adjust the setup (see `TinyMCE Configuration <http://www.tinymce.com/wiki.php/Configuration>`_) and add the necessary javascripts to your ModelAdmin definition (see `ModelAdmin Media definitions <https://docs.djangoproject.com/en/1.4/ref/contrib/admin/#modeladmin-media-definitions>`_):
 
 .. code-block:: python
@@ -391,8 +377,6 @@ If our version of TinyMCE does not fit your needs, add a different version to yo
 Changelist Templates
 --------------------
 
-.. versionadded:: 2.4
-
 Grappelli comes with 2 different change–list templates. The standard template shows filters with a drop–down, the alternative template shows filters on the right hand side of the results (similar to djangos admin interface). To use the alternative template, you need to add ``change_list_template`` to your ModelAdmin definition:
 
 .. code-block:: python
@@ -403,8 +387,6 @@ Grappelli comes with 2 different change–list templates. The standard template 
 
 Changelist Filters
 ------------------
-
-.. versionadded:: 2.4
 
 Grappelli comes with 2 different change–list filters. The standard filters are selects, the alternative filters are list of options (similar to djangos admin interface). To use the alternative filters, you need to add ``change_list_filter_template`` to your ModelAdmin definition:
 
@@ -418,8 +400,6 @@ Grappelli comes with 2 different change–list filters. The standard filters are
 
 Switch User
 -----------
-
-.. versionadded:: 2.4
 
 You sometimes might need to see the admin interface as a different user (e.g. in order to verify if permissions are set correctly or to follow an editors explanation). If you set ``GRAPPELLI_SWITCH_USER`` to ``True``, you'll get additional users with your user dropdown. Moreover, you can easily switch back to the original User.
 

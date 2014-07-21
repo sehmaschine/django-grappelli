@@ -8,6 +8,7 @@ Module where grappelli dashboard modules classes are defined.
 from django.utils.text import capfirst
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
+from django.apps import apps as django_apps
 
 # GRAPPELLI IMPORTS
 from grappelli.dashboard.utils import AppListElementMixin
@@ -230,6 +231,7 @@ class AppList(DashboardModule, AppListElementMixin):
             app_label = model._meta.app_label
             if app_label not in apps:
                 apps[app_label] = {
+                    'name': django_apps.get_app_config(app_label).verbose_name,
                     'title': capfirst(app_label.title()),
                     'url': self._get_admin_app_list_url(model, context),
                     'models': []

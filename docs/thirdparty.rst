@@ -19,8 +19,6 @@ No additional setup is needed when installing the `Django FileBrowser <https://g
 Django Reversion
 ----------------
 
-.. versionadded:: 2.4
-
 |grappelli| includes all necessary templates for `Django Reversion <https://github.com/etianen/django-reversion/>`_.
 
 .. note::
@@ -30,8 +28,6 @@ Django Reversion
 Django Smuggler
 ---------------
 
-.. versionadded:: 2.4
-
 |grappelli| includes all necessary templates for `Django Smuggler <https://github.com/semente/django-smuggler/>`_.
 
 .. note::
@@ -40,8 +36,6 @@ Django Smuggler
 
 Django Constance
 ----------------
-
-.. versionadded:: 2.4
 
 |grappelli| includes the necessary template for `Django Constance <https://github.com/comoga/django-constance/>`_.
 
