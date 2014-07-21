@@ -503,6 +503,9 @@ ul.errorlist {
         padding-top: 2px;
     }
 }
+p.preview + ul.errorlist {
+    margin-top: 5px !important;
+}
 
 
 /*  Errorlist in rows ................................................... */
