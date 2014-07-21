@@ -20,7 +20,7 @@ from django.template.loader import get_template
 from django.template.context import Context
 
 # grappelli imports
-from grappelli.settings import *
+from grappelli.settings import ADMIN_TITLE, ADMIN_URL, SWITCH_USER, SWITCH_USER_ORIGINAL, SWITCH_USER_TARGET
 
 register = template.Library()
 
@@ -43,7 +43,6 @@ def get_content_types(parser, token):
     Returns a list of installed applications and models.
     Needed for lookup of generic relationships.
     """
-    tokens = token.contents.split()
     return do_get_generic_objects()
 
 
@@ -224,5 +223,3 @@ def switch_user_dropdown(context):
                 'object_list': object_list,
             }))
     return ""
-
-

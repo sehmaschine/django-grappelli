@@ -1,15 +1,15 @@
 # coding: utf-8
 
 # DJANGO IMPORTS
-from django.conf.urls import patterns, include, url
-from django.views.generic.base import TemplateView
+from django.conf.urls import patterns, url
 
 # GRAPPELLI IMPORTS
 from .views.related import RelatedLookup, M2MLookup, AutocompleteLookup
 from .views.switch import switch_user
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
 
     # FOREIGNKEY & GENERIC LOOKUP
     url(r'^lookup/related/$', RelatedLookup.as_view(), name="grp_related_lookup"),

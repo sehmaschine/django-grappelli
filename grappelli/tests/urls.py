@@ -7,7 +7,8 @@ from django.conf.urls import patterns, include
 from grappelli.tests import admin
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     (r'^admin/', include(admin.site.urls)),
     (r'^grappelli/', include('grappelli.urls')),
 )

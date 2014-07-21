@@ -1,11 +1,12 @@
 # coding: utf-8
 
+
 class Registry(object):
     """
     Registry for application dashboards.
     """
     registry = {}
-    
+
     def register(cls, klass, app_name):
         from grappelli.dashboard.dashboards import Dashboard
         if not issubclass(klass, Dashboard):
@@ -33,28 +34,26 @@ def autodiscover(blacklist=[]):
     import imp
     from django.conf import settings
     from django.utils.importlib import import_module
-    
+
     blacklist.append('grappelli')
     blacklist.append('grappelli.dashboard')
-    
+
     for app in settings.INSTALLED_APPS:
         # skip blacklisted apps
         if app in blacklist:
             continue
-        
+
         # try to import the app
         try:
             app_path = import_module(app).__path__
         except AttributeError:
             continue
-        
+
         # try to find a app.dashboard module
         try:
             imp.find_module('dashboard', app_path)
         except ImportError:
             continue
-        
+
         # looks like we found it so import it !
         import_module('%s.dashboard' % app)
-
-

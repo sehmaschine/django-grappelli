@@ -6,15 +6,8 @@ import datetime
 # DJANGO IMPORTS
 from django.test import TestCase
 from django.test.utils import override_settings
-from django.contrib.auth.models import User, Permission
-from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.utils.html import escape, escapejs
-from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
-from django.template import Context, Template
-from django.template.loader import get_template
-from django.http import HttpRequest
 from django.utils import translation
 
 try:
@@ -23,7 +16,6 @@ except ImportError:
     from django.utils import simplejson as json
 
 # GRAPPELLI IMPORTS
-from grappelli.views.related import RelatedLookup, M2MLookup, AutocompleteLookup
 from grappelli.tests.models import Category, Entry
 
 
@@ -31,7 +23,7 @@ from grappelli.tests.models import Category, Entry
 @override_settings(GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS={})
 class RelatedTests(TestCase):
     urls = "grappelli.tests.urls"
-    
+
     def setUp(self):
         """
         Create users, categories and entries
@@ -50,11 +42,11 @@ class RelatedTests(TestCase):
 
         # add entries
         self.entry_superuser = Entry.objects.create(title="Entry Superuser",
-            date = datetime.datetime.utcnow(),
-            user = self.superuser_1)
+                                                    date=datetime.datetime.utcnow(),
+                                                    user=self.superuser_1)
         self.entry_editor = Entry.objects.create(title="Entry Editor",
-            date = datetime.datetime.utcnow(),
-            user = self.editor_1)
+                                                 date=datetime.datetime.utcnow(),
+                                                 user=self.editor_1)
 
         # set to en to check error messages
         translation.activate("en")
