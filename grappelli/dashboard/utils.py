@@ -6,12 +6,12 @@ Admin ui common utilities.
 
 # PYTHON IMPORTS
 from fnmatch import fnmatch
+from importlib import import_module
 
 # DJANGO IMPORTS
 from django.conf import settings
 from django.contrib import admin
 from django.core.urlresolvers import reverse
-from django.utils.importlib import import_module
 
 
 def _get_dashboard_cls(dashboard_cls, context):
