@@ -1,6 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
@@ -8,8 +9,8 @@ setup(
     name='django-grappelli',
     version='2.6.1',
     description='A jazzy skin for the Django Admin-Interface.',
-    long_description = read('README.rst'),
-    url = 'http://django-grappelli.readthedocs.org',
+    long_description=read('README.rst'),
+    url='http://django-grappelli.readthedocs.org',
     download_url='',
     author='Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)',
     author_email='office@vonautomatisch.at',
@@ -32,5 +33,5 @@ setup(
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
     ],
-    zip_safe = False,
+    zip_safe=False,
 )
