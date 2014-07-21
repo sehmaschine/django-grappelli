@@ -46,7 +46,7 @@
         var formIndex = elem.find("[id^='id_" + options.prefix + "']").attr('id');
         if (!formIndex) { return -1; }
         return parseInt(regex.exec(formIndex)[1], 10);
-    }
+    };
     
     updateFormIndex = function(elem, options, replace_regex, replace_with) {
         elem.find(':input,span,table,iframe,label,a,ul,p,img,div').each(function() {
