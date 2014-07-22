@@ -15,7 +15,7 @@ We are happy to see patches and improvements with |grappelli|. But please keep i
 Requirements
 ------------
 
-For working with Javascript and CSS, you need `Node <http://nodejs.org>`_, `Grunt <http://gruntjs.com>`_, `Sass <http://sass-lang.com>`_ and `Compass <http://compass-style.org>`_. In order to update the documentation, `Sphinx <http://sphinx-doc.org>`_ has to be installed. Finally, you should install `flake8 <https://flake8.readthedocs.org>`_ when working with python files.
+For working with Javascript and CSS, you need `Node <http://nodejs.org>`_, `Grunt <http://gruntjs.com>`_, `Sass <http://sass-lang.com>`_ and `Compass <http://compass-style.org>`_. In order to update the documentation, `Sphinx <http://sphinx-doc.org>`_ and the `Sphinx RTD Theme <https://github.com/snide/sphinx_rtd_theme>`_ have to be installed. Finally, you should install `flake8 <https://flake8.readthedocs.org>`_ when working with python files.
 
 It's out of the scope of this tutorial to go into details, but you should find lots of useful references on how to install these dependencies.
 
