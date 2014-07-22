@@ -38,6 +38,9 @@ When working with python files, please refer to the `Django Coding Guidelines <h
 
     grunt flake8
 
+.. note::
+	Please note that flake8 has to be installed in order for this task to work.
+
 .. _contributingjscss:
 
 Javascripts & Stylesheets
@@ -47,7 +50,7 @@ If you change any of the |grappelli| javascripts, you need to jshint the files a
 
 .. code-block:: python
 
-    grunt jshint:beforeconcat concat jshint:afterconcat uglify
+    grunt javascripts
 
 When working with CSS (which is .scss in our case), you have to compile with:
 

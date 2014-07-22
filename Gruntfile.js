@@ -75,6 +75,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-flake8');
 
+  // Javascripts
+  grunt.registerTask('javascripts', 'JSHint, Concat and Uglify.', function() {
+    grunt.task.run(['jshint:beforeconcat', 'concat', 'jshint:afterconcat', 'uglify']);
+  });
+
+  // Sphinx
+  grunt.registerTask('sphinx', 'Build doc files.', function() {
+    grunt.task.run(['exec:build_sphinx']);
+  });
+
   // Default
   grunt.registerTask('default', ['watch']);
 
