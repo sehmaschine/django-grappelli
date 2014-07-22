@@ -13,6 +13,8 @@ While |grappelli| is mainly about the look & feel of the admin interface, it als
 Available Settings
 ------------------
 
+.. versionadded:: 2.5.4
+    Added setting ``GRAPPELLI_CLEAN_INPUT_TYPES``.
 .. versionadded:: 2.4
     Added settings ``GRAPPELLI_SWITCH_USER``, ``GRAPPELLI_SWITCH_USER_ORIGINAL``, ``GRAPPELLI_SWITCH_USER_TARGET``, ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS``, ``GRAPPELLI_AUTOCOMPLETE_LIMIT``
 
@@ -35,6 +37,9 @@ Available Settings
 ``GRAPPELLI_SWITCH_USER_TARGET``
     A function which defines if a User is a valid switch target (returns either ``True`` or ``False``).
     Defaults to all staff users, excluding superusers.
+
+``GRAPPELLI_CLEAN_INPUT_TYPES``
+    Set to ``True`` in order to replace HTML5 input types (search, email, url, tel, number, range, date, month, week, time, datetime, datetime-local, color) due to browser inconsistencies.
 
 .. _customizationcollapsibles:
 
@@ -422,6 +427,18 @@ Switch User
 .. versionadded:: 2.4
 
 You sometimes might need to see the admin interface as a different user (e.g. in order to verify if permissions are set correctly or to follow an editors explanation). If you set ``GRAPPELLI_SWITCH_USER`` to ``True``, you'll get additional users with your user dropdown. Moreover, you can easily switch back to the original User.
+
+.. note::
+    This functionality might change with future releases.
+
+.. _cleaninputtypes:
+
+Clean input types
+-----------------
+
+.. versionadded:: 2.5.4
+
+With setting ``GRAPPELLI_CLEAN_INPUT_TYPES`` to ``True``, |grappelli| automatically replaces all HTML5 input types (search, email, url, tel, number, range, date month, week, time, datetime, datetime-local, color) with ``type="text"``. This is useful if you want to avoid browser inconsistencies with the admin interface. Moreover, you remove frontend form validation and thereby ensure a consistent user experience.
 
 .. note::
     This functionality might change with future releases.

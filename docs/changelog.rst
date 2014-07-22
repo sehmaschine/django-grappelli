@@ -11,6 +11,7 @@ Changelog
 2.5.4 (not yet released)
 ------------------------
 
+* New: Settings CLEAN_INPUT_TYPES.
 * New: Added section "Contributing" to the documentation.
 * New: Added package.json and Gruntfile.js for js/css/documentation updates. 
 * New: Added GrappelliSortableMixin.
