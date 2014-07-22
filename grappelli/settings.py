@@ -24,3 +24,10 @@ SWITCH_USER_ORIGINAL = getattr(settings, "GRAPPELLI_SWITCH_USER_ORIGINAL", lambd
 # SWITCH_USER_ORIGINAL: Defines if a user is a valid target.
 # Gets a user object and returns True/False.
 SWITCH_USER_TARGET = getattr(settings, "GRAPPELLI_SWITCH_USER_TARGET", lambda original_user, user: user.is_staff and not user.is_superuser)
+
+# CLEAN INPUT TYPES
+# Replaces input types: search, email, url, tel, number, range, date
+# month, week, time, datetime, datetime-local, color
+# due to browser inconsistencies.
+# see see https://code.djangoproject.com/ticket/23075
+CLEAN_INPUT_TYPES = getattr(settings, "GRAPPELLI_CLEAN_INPUT_TYPES", False)

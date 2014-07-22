@@ -13,7 +13,20 @@ var django = {
     "jQuery": grp.jQuery.noConflict(true)
 };
 
-// var jQuery = grp.jQuery.noConflict(true);
+var inputTypes = [
+    "[type='search']",
+    "[type='email']",
+    "[type='url']",
+    "[type='tel']",
+    "[type='number']",
+    "[type='range']",
+    "[type='date']",
+    "[type='month']",
+    "[type='week']",
+    "[type='time']",
+    "[type='datetime']",
+    "[type='datetime-local']",
+    "[type='color']"].join(",");
 
 (function($) {
     
@@ -26,6 +39,18 @@ var django = {
             });
             return format;
         }
+    };
+
+    // remove types: search, email, url, tel, number, range, date
+    // month, week, time, datetime, datetime-local, color
+    // because of browser inconsistencies
+    /*jshint multistr: true */
+    grappelli.cleanInputTypes = function() {
+        $("form").each(function(){
+            $(this).find(':input').filter(inputTypes).each(function(){
+                $(this).attr("type", "text");
+            });
+        });
     };
     
     // datepicker, timepicker init

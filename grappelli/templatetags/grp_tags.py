@@ -25,7 +25,7 @@ from django.template.loader import get_template
 from django.template.context import Context
 
 # grappelli imports
-from grappelli.settings import *
+from grappelli.settings import ADMIN_TITLE, ADMIN_URL, SWITCH_USER, SWITCH_USER_ORIGINAL, SWITCH_USER_TARGET, CLEAN_INPUT_TYPES
 
 register = template.Library()
 
@@ -94,6 +94,11 @@ def get_datetime_format():
 @register.simple_tag
 def grappelli_admin_title():
     return ADMIN_TITLE
+
+
+@register.simple_tag
+def grappelli_clean_input_types():
+    return CLEAN_INPUT_TYPES
 
 
 @register.filter
