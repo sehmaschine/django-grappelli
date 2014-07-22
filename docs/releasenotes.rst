@@ -15,5 +15,10 @@ This release does not introduce any new features.
 Update from Grappelli 2.5.x
 ---------------------------
 
-* Update Django to 1.7 and check https://docs.djangoproject.com/en/dev/releases/1.6/
+* Update Django to 1.7 and check https://docs.djangoproject.com/en/dev/releases/1.7/
 * Update Grappelli to 2.6.x
+
+Changes compared with Grappelli 2.5.x
+-------------------------------------
+
+* The setting ``GRAPPELLI_CLEAN_INPUT_TYPES`` is set to ``True`` by default.
