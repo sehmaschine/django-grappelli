@@ -45,7 +45,7 @@
     var lookup_link = function(id, val) {
         var lookuplink = $('<a class="related-lookup"></a>');
         lookuplink.attr('id', 'lookup_'+id);
-        lookuplink.attr('href', "../../../" + MODEL_URL_ARRAY[val].app + "/" + MODEL_URL_ARRAY[val].model + '/?t=id');
+        lookuplink.attr('href', "../../../" + MODEL_URL_ARRAY[val].app + "/" + MODEL_URL_ARRAY[val].model + '/?_to_field=id');
         lookuplink.attr('onClick', 'return showRelatedObjectLookupPopup(this);');
         return lookuplink;
     };
