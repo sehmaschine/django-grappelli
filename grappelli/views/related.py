@@ -56,7 +56,7 @@ class RelatedLookup(View):
         if query_string:
             for item in query_string.split(":"):
                 k, v = item.split("=")
-                if k != "t" and k != "_to_field":
+                if k != "_to_field":
                     filters[smart_text(k)] = prepare_lookup_value(smart_text(k), smart_text(v))
         return qs.filter(**filters)
 
