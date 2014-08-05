@@ -185,11 +185,15 @@
     hideAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
         addButtons.hide().parents('.grp-add-item').hide();
+        // last row with stacked/tabular
+        addButtons.closest('.grp-module.grp-transparent').hide();
     };
     
     showAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
         addButtons.show().parents('.grp-add-item').show();
+        // last row with stacked/tabular
+        addButtons.closest('.grp-module.grp-transparent').show();
     };
     
 })(grp.jQuery);
