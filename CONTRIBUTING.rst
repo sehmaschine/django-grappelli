@@ -1,7 +1,7 @@
 Contributing
 ============
 
-PLEASE USE THE GOOGLE–GROUP FOR ASKING QUESTIONS!
+PLEASE USE THE `GOOGLE–GROUP <https://groups.google.com/forum/#!forum/django-grappelli>`_ FOR ASKING QUESTIONS!
 
 We are happy if you add tickets and help us to improve Grappelli.
 In order to actually review/process tickets we need you to follow these guidelines.
