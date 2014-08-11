@@ -38,3 +38,5 @@ Here's an example of a ticket we can easily review::
     CUSTOMIZATIONS: NONE, ...
 
     Text of your ticket, as detailed as possible (code examples might help)
+
+To contribute code to Grappelli, see: http://django-grappelli.readthedocs.org/en/latest/contributing.html
