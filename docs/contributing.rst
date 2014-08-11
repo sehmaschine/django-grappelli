@@ -10,6 +10,8 @@ Contributing
 
 We are happy to see patches and improvements with |grappelli|. But please keep in mind that there are some guidelines you should follow.
 
+To file an issue with Grapelli, see `contributing <https://github.com/paulshannon/django-grappelli/blob/master/CONTRIBUTING.rst>`_ on github.
+
 .. _requirements:
 
 Requirements
