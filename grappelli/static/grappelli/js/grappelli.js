@@ -172,7 +172,7 @@ var inputTypes = [
         var link = elem.next("a");
         if (link.length > 0) {
             var url = link.attr('href').split('/');
-            pairs = url[url.length-1].replace('?', '').split("&");
+            pairs = url[url.length-1].replace('?', '').replace(/&?_to_field=[^&]*/,'').split("&");
             return pairs.join(":");
         }
         return false;
