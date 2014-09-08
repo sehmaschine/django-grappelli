@@ -7,15 +7,15 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField("Title", max_length=50)
-    
+
     class Meta:
         app_label = "grappelli"
         verbose_name = "Category"
         verbose_name_plural = "Categories"
-    
+
     def __unicode__(self):
         return self.name
-    
+
     @staticmethod
     def autocomplete_search_fields():
         return ("id__iexact", "name__icontains",)
@@ -32,13 +32,13 @@ class Entry(models.Model):
     user = models.ForeignKey(User, related_name="entries")
     createdate = models.DateField("Date (Create)", auto_now_add=True)
     updatedate = models.DateField("Date (Update)", auto_now=True)
-    
+
     class Meta:
         app_label = "grappelli"
         verbose_name = "Entry"
         verbose_name_plural = "Entries"
         ordering = ["-date", "title"]
-    
+
     def __unicode__(self):
         return self.title
 

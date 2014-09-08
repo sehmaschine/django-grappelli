@@ -1,9 +1,9 @@
 # coding: utf-8
 
 # DJANGO IMPORTS
-try: 
+try:
     from django.conf.urls import url, patterns
-except ImportError: 
+except ImportError:
     # for Django version less then 1.4
     from django.conf.urls.defaults import url, patterns
 
@@ -12,7 +12,8 @@ from .views.related import RelatedLookup, M2MLookup, AutocompleteLookup
 from .views.switch import switch_user
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
 
     # FOREIGNKEY & GENERIC LOOKUP
     url(r'^lookup/related/$', RelatedLookup.as_view(), name="grp_related_lookup"),

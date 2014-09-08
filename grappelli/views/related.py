@@ -31,9 +31,11 @@ def get_label(f):
         return f.related_label()
     return smart_text(f)
 
+
 def import_from(module, name):
     module = __import__(module, fromlist=[name])
     return getattr(module, name)
+
 
 def ajax_response(data):
     return HttpResponse(json.dumps(data), content_type='application/javascript')
@@ -177,11 +179,6 @@ class AutocompleteLookup(RelatedLookup):
                 return ajax_response(data)
 
         # overcomplicated label translation
-        label = ungettext(
-            '%(counter)s result',
-            '%(counter)s results',
-        0) % {
-            'counter': 0,
-        }
+        label = ungettext('%(counter)s result', '%(counter)s results', 0) % {'counter': 0}
         data = [{"value": None, "label": label}]
         return ajax_response(data)

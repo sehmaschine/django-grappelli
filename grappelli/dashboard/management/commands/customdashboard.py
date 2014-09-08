@@ -15,7 +15,7 @@ class Command(BaseCommand):
             'started with your custom dashboard.')
     args = '[file]'
     label = 'application name'
-    
+
     def handle(self, file=None, **options):
         context = {}
         context['project'] = os.path.basename(os.getcwd())
@@ -26,5 +26,3 @@ class Command(BaseCommand):
         context['file'] = os.path.basename(dst).split('.')[0]
         open(dst, 'w').write(render_to_string(tpl, context))
         print('"%s" written.' % os.path.join(dst))
-
-

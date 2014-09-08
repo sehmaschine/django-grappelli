@@ -51,6 +51,7 @@ Help
    :maxdepth: 2
    
    help
+   contributing
    changelog
 
 Code
@@ -80,6 +81,7 @@ Versions and Compatibility
 
 Current development branches:
 
+* |grappelli| 2.6.x (Development version for Django 1.7, see branch Dev/2.6.x)
 * |grappelli| 2.5.4 (Development version for Django 1.6, see branch Stable/2.5.x)
 * |grappelli| 2.4.11 (Development version for Django 1.4/1.5, see branch Stable/2.4.x)
 

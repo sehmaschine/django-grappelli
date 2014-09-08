@@ -94,6 +94,11 @@
                         $(placeholder).replaceWith($(this));
                     }
                 });
+                // HACK: remove input types
+                var clean_input_types = "{% grappelli_clean_input_types %}";
+                if (clean_input_types == "True") {
+                    grappelli.cleanInputTypes();
+                };
             });
         })(grp.jQuery);
     </script>
