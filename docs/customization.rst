@@ -107,6 +107,18 @@ In case of errors (somewhere within the form), the position of inline rows is pr
 
 Besides using the drag/drop-handler, you are also able to manually update the position values. This is especially useful with lots of inlines. Just change the number within the position field and the row is automatically moved to the new position. Each row is being reindexed with submitting the form.
 
+There is also ``GrappelliSortableHiddenMixin``, which is a helper Mixin in order to hide the PositionField:
+
+.. code-block:: python
+
+    from grappelli.forms import GrappelliSortableHiddenMixin
+
+    class MyInlineModelOptions(GrappelliSortableHiddenMixin, admin.TabularInline):
+        fields = (... , "position",)
+        # defining the sortable is only necessary if the sortable field name
+        # is not 'position'
+        sortable_field_name = "customposition"
+
 .. _customizationsortableexcludes:
 
 Sortable Excludes

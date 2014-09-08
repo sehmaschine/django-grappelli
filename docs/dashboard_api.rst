@@ -158,7 +158,7 @@ Here's an example of building a link list module:
             Dashboard.__init__(self, **kwargs)
             
             self.children.append(modules.LinkList(
-                layout='inline',
+                title='Links',
                 column=2,
                 children=(
                     {
