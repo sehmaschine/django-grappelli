@@ -1,7 +1,6 @@
 # coding: utf-8
 
 # DJANGO IMPORTS
-from django.db import models
 from django.contrib import admin
 
 # PROJECT IMPORTS
@@ -28,5 +27,3 @@ class EntryOptions(admin.ModelAdmin):
 
 site.register(Category, CategoryOptions)
 site.register(Entry, EntryOptions)
-
-

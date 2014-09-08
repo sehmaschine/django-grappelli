@@ -491,6 +491,10 @@ body.rtl .grappelliSkin .mceButton {
 .grappelliSkin span.mce_bullist { background-image: url('img/buttons/bullist.png'); }
 .grappelliSkin span.mce_numlist { background-image: url('img/buttons/numlist.png'); }
 .grappelliSkin span.mce_blockquote { background-image: url('img/buttons/blockquote.png'); }
+.grappelliSkin span.mce_justifycenter { background-image: url('img/buttons/justifycenter.png'); }
+.grappelliSkin span.mce_justifyfull { background-image: url('img/buttons/justifyfull.png'); }
+.grappelliSkin span.mce_justifyleft { background-image: url('img/buttons/justifyleft.png'); }
+.grappelliSkin span.mce_justifyright { background-image: url('img/buttons/justifyright.png'); }
 .grappelliSkin span.mce_link { background-image: url('img/buttons/link.png'); }
 .grappelliSkin span.mce_unlink { background-image: url('img/buttons/unlink.png'); }
 .grappelliSkin span.mce_image { background-image: url('img/buttons/image.png'); }

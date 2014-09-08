@@ -11,6 +11,18 @@ Changelog
 2.5.4 (not yet released)
 ------------------------
 
+* New: Settings CLEAN_INPUT_TYPES.
+* New: Added section "Contributing" to the documentation.
+* New: Added package.json and Gruntfile.js for js/css/documentation updates. 
+* New: Added GrappelliSortableMixin.
+* New: Added text alignment icons to tinymce theme.
+* Fixed: Today button handler with UI datepicker.
+* Fixed: add_url with app_index.html.
+* Fixed: Enclosed some labels properly with autocompletes (IE8 fix).
+* Improved: Add permissions with change_list_filter_sidebar.
+* Improved: Display of M2M autocompletes.
+* Improved: Flake8 checks.
+
 2.5.3 (April 13th, 2014)
 ------------------------
 

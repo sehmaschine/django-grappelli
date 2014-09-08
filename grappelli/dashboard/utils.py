@@ -37,7 +37,7 @@ def get_index_dashboard(context):
     """
     Returns the admin dashboard defined in settings (or the default one).
     """
-    
+
     return _get_dashboard_cls(getattr(
         settings,
         'GRAPPELLI_INDEX_DASHBOARD',
@@ -51,7 +51,7 @@ def get_admin_site(context=None, request=None):
         'GRAPPELLI_INDEX_DASHBOARD',
         'grappelli.dashboard.dashboards.DefaultIndexDashboard'
     )
-    
+
     if isinstance(dashboard_cls, dict):
         if context:
             request = context.get('request')
@@ -76,7 +76,7 @@ def get_avail_models(request):
     """ Returns (model, perm,) for all models user can possibly see """
     items = []
     admin_site = get_admin_site(request=request)
-    
+
     for model, model_admin in admin_site._registry.items():
         perms = model_admin.get_model_perms(request)
         if True not in perms.values():
@@ -93,13 +93,13 @@ def filter_models(request, models, exclude):
     items = get_avail_models(request)
     included = []
     full_name = lambda model: '%s.%s' % (model.__module__, model.__name__)
-    
+
     # I beleive that that implemented
     # O(len(patterns)*len(matched_patterns)*len(all_models))
     # algorythm is fine for model lists because they are small and admin
     # performance is not a bottleneck. If it is not the case then the code
     # should be optimized.
-    
+
     if len(models) == 0:
         included = items
     else:
@@ -109,9 +109,9 @@ def filter_models(request, models, exclude):
                 model, perms = item
                 if fnmatch(full_name(model), pattern) and item not in included:
                     pattern_items.append(item)
-            pattern_items.sort(key=lambda x:x[0]._meta.verbose_name_plural)
+            pattern_items.sort(key=lambda x: x[0]._meta.verbose_name_plural)
             included.extend(pattern_items)
-    
+
     result = included[:]
     for pattern in exclude:
         for item in included:
@@ -129,15 +129,14 @@ class AppListElementMixin(object):
     Mixin class used by both the AppListDashboardModule and the
     AppListMenuItem (to honor the DRY concept).
     """
-    
+
     def _visible_models(self, request):
-        
         included = self.models[:]
         excluded = self.exclude[:]
         if not self.models and not self.exclude:
             included = ["*"]
         return filter_models(request, included, excluded)
-    
+
     def _get_admin_app_list_url(self, model, context):
         """
         Returns the admin change url.
@@ -145,7 +144,7 @@ class AppListElementMixin(object):
         app_label = model._meta.app_label
         return reverse('%s:app_list' % get_admin_site_name(context),
                        args=(app_label,))
-    
+
     def _get_admin_change_url(self, model, context):
         """
         Returns the admin change url.
@@ -154,7 +153,7 @@ class AppListElementMixin(object):
         return reverse('%s:%s_%s_changelist' % (get_admin_site_name(context),
                                                 app_label,
                                                 model.__name__.lower()))
-    
+
     def _get_admin_add_url(self, model, context):
         """
         Returns the admin add url.
@@ -163,5 +162,3 @@ class AppListElementMixin(object):
         return reverse('%s:%s_%s_add' % (get_admin_site_name(context),
                                          app_label,
                                          model.__name__.lower()))
-
-

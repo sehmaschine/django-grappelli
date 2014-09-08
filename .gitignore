@@ -10,3 +10,4 @@ fabfile.py
 .sass-cache
 .project
 .pydevproject
+node_modules/*
