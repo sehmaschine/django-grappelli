@@ -37,7 +37,7 @@ Available Settings
     Defaults to all staff users, excluding superusers.
 
 ``GRAPPELLI_CLEAN_INPUT_TYPES``
-    Set to ``True`` in order to replace HTML5 input types (search, email, url, tel, number, range, date, month, week, time, datetime, datetime-local, color) due to browser inconsistencies.
+    Replaces HTML5 input types (search, email, url, tel, number, range, date, month, week, time, datetime, datetime-local, color) due to browser inconsistencies. Set to ``False`` in order to not replace the mentioned input types.
 
 .. _customizationcollapsibles:
 

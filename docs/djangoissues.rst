@@ -46,7 +46,7 @@ HTML5 input types
 
 There is unpredictable behaviour with certain input types (e.g. number) and Django should remove these types from our point of view (at least with the admin interface). Moreover, form validation should not be moved to the frontend of the admin interface.
 
-see https://code.djangoproject.com/ticket/23075
+see https://code.djangoproject.com/ticket/23075 (although this ticket is marked with "fixed", the behaviour is still inconsistent)
 
 The Admin Index Site
 --------------------
