@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.5.4 (not yet released)
+2.5.5 (not yet released)
 ------------------------
+
+2.5.4 (September 9th 2014)
+--------------------------
 
 * New: Settings CLEAN_INPUT_TYPES.
 * New: Added section "Contributing" to the documentation.
