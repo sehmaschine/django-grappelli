@@ -8,5 +8,10 @@
 Changelog
 =========
 
-2.6.1 (not yet released)
+2.6.2 (not yet released)
 ------------------------
+
+2.6.1 (September 10th 2014)
+---------------------------
+
+* First release of Grappelli which is compatible with Django 1.7

@@ -8,7 +8,7 @@
 Third Party Applications
 ========================
 
-A list of 3rd-party applications compatible with |grappelli|.
+A list of 3rd-party applications compatible with |grappelli|. Pleaes note that except of Django FileBrowser, these apps are not maintained by the team behind |grappelli|. Compatibility with these apps is therefore not guaranteed and heavily relies on patches and pull-requests by the community.
 
 
 Django FileBrowser
