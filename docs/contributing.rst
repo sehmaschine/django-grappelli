@@ -41,13 +41,12 @@ Start your virtual environment and install the python dependencies::
     pip install sphinx-rtd-theme
     pip install flake8
 
-
 .. _contributingbranches:
 
 Branches
 --------
 
-Always commit to the stable branch of a specific |grappelli| version and do not use the master branch.
+Please commit to the stable branch of a specific |grappelli| version and do not use the master branch.
 For example, in order to send pull-requests for |grappelli| 2.5, use the branch stable/2.5.x.
 
 .. _contributingpython:

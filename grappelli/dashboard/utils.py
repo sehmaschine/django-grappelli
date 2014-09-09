@@ -131,7 +131,6 @@ class AppListElementMixin(object):
     """
 
     def _visible_models(self, request):
-
         included = self.models[:]
         excluded = self.exclude[:]
         if not self.models and not self.exclude:

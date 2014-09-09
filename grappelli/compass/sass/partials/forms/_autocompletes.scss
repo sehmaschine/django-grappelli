@@ -59,6 +59,17 @@
     }
     li.grp-repr.grp-autocomplete-preremove a {
         color: $grp-font-color-error !important;
+        text-decoration: line-through;
+    }
+}
+.grp-autocomplete-wrapper-m2m {
+    li.grp-repr {
+        a:after {
+            content: ",";
+        }
+        &:nth-last-child(2) a:after {
+            content: "";
+        }
     }
 }
 .grp-autocomplete-wrapper-m2m {
