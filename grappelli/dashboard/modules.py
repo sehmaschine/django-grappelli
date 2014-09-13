@@ -331,7 +331,7 @@ class RecentActions(DashboardModule):
         if request.user is None:
             qs = LogEntry.objects.all()
         else:
-            qs = LogEntry.objects.filter(user__id__exact=request.user.id)
+            qs = LogEntry.objects.filter(user__pk__exact=request.user.pk)
 
         if self.include_list:
             qs = qs.filter(get_qset(self.include_list))
