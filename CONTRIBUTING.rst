@@ -1,7 +1,7 @@
 Contributing
 ============
 
-PLEASE USE THE GOOGLE–GROUP FOR ASKING QUESTIONS!
+PLEASE USE THE `GOOGLE–GROUP <https://groups.google.com/forum/#!forum/django-grappelli>`_ FOR ASKING QUESTIONS!
 
 We are happy if you add tickets and help us to improve Grappelli.
 In order to actually review/process tickets we need you to follow these guidelines.
@@ -38,3 +38,8 @@ Here's an example of a ticket we can easily review::
     CUSTOMIZATIONS: NONE, ...
 
     Text of your ticket, as detailed as possible (code examples might help)
+
+6. Code
+-------
+
+To contribute code to Grappelli, see: http://django-grappelli.readthedocs.org/en/latest/contributing.html
