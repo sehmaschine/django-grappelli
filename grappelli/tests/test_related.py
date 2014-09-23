@@ -39,10 +39,10 @@ class RelatedTests(TestCase):
 
         # add entries
         self.entry_superuser = Entry.objects.create(title="Entry Superuser",
-                                                    date=datetime.datetime.now(),
+                                                    date=datetime.datetime.utcnow(),
                                                     user=self.superuser_1)
         self.entry_editor = Entry.objects.create(title="Entry Editor",
-                                                 date=datetime.datetime.now(),
+                                                 date=datetime.datetime.utcnow(),
                                                  user=self.editor_1)
 
         # set to en to check error messages

@@ -8,6 +8,7 @@ Module where grappelli dashboard modules classes are defined.
 from django.utils.text import capfirst
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
+from django.apps import apps as django_apps
 
 # GRAPPELLI IMPORTS
 from grappelli.dashboard.utils import AppListElementMixin
@@ -111,6 +112,7 @@ class DashboardModule(object):
         """
         Return True if the module has no content and False otherwise.
         """
+
         return self.pre_content is None and self.post_content is None and len(self.children) == 0
 
     def render_css_classes(self):
@@ -227,6 +229,7 @@ class AppList(DashboardModule, AppListElementMixin):
             app_label = model._meta.app_label
             if app_label not in apps:
                 apps[app_label] = {
+                    'name': django_apps.get_app_config(app_label).verbose_name,
                     'title': capfirst(app_label.title()),
                     'url': self._get_admin_app_list_url(model, context),
                     'models': []
@@ -328,7 +331,7 @@ class RecentActions(DashboardModule):
         if request.user is None:
             qs = LogEntry.objects.all()
         else:
-            qs = LogEntry.objects.filter(user__id__exact=request.user.id)
+            qs = LogEntry.objects.filter(user__pk__exact=request.user.pk)
 
         if self.include_list:
             qs = qs.filter(get_qset(self.include_list))

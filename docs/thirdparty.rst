@@ -8,7 +8,7 @@
 Third Party Applications
 ========================
 
-A list of 3rd-party applications compatible with |grappelli|.
+A list of 3rd-party applications compatible with |grappelli|. Pleaes note that except of Django FileBrowser, these apps are not maintained by the team behind |grappelli|. Compatibility with these apps is therefore not guaranteed and heavily relies on patches and pull-requests by the community.
 
 
 Django FileBrowser
@@ -19,8 +19,6 @@ No additional setup is needed when installing the `Django FileBrowser <https://g
 Django Reversion
 ----------------
 
-.. versionadded:: 2.4
-
 |grappelli| includes all necessary templates for `Django Reversion <https://github.com/etianen/django-reversion/>`_.
 
 .. note::
@@ -30,8 +28,6 @@ Django Reversion
 Django Smuggler
 ---------------
 
-.. versionadded:: 2.4
-
 |grappelli| includes all necessary templates for `Django Smuggler <https://github.com/semente/django-smuggler/>`_.
 
 .. note::
@@ -40,8 +36,6 @@ Django Smuggler
 
 Django Constance
 ----------------
-
-.. versionadded:: 2.4
 
 |grappelli| includes the necessary template for `Django Constance <https://github.com/comoga/django-constance/>`_.
 

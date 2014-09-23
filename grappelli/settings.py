@@ -30,4 +30,4 @@ SWITCH_USER_TARGET = getattr(settings, "GRAPPELLI_SWITCH_USER_TARGET", lambda or
 # month, week, time, datetime, datetime-local, color
 # due to browser inconsistencies.
 # see see https://code.djangoproject.com/ticket/23075
-CLEAN_INPUT_TYPES = getattr(settings, "GRAPPELLI_CLEAN_INPUT_TYPES", False)
+CLEAN_INPUT_TYPES = getattr(settings, "GRAPPELLI_CLEAN_INPUT_TYPES", True)

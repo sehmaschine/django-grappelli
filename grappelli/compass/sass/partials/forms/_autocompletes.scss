@@ -72,6 +72,16 @@
         }
     }
 }
+.grp-autocomplete-wrapper-m2m {
+    li.grp-repr {
+        a:after {
+            content: ",";
+        }
+        &:nth-last-child(2) a:after {
+            content: "";
+        }
+    }
+}
 
 
 /*  Autocomplete Wrappers Specific Styles ......................................... */

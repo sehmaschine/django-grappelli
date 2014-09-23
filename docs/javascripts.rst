@@ -6,9 +6,6 @@
 Javascripts
 ===========
 
-.. versionchanged:: 2.4
-    The admin media URLs has been changed to use a static URLs in compliance with Django 1.4
-
 Grappelli only uses a subset of the original admin javascripts.
 
 * If there's only minor modifications, we use the original javascript (e.g. ``RelatedObjectLookups.js``).

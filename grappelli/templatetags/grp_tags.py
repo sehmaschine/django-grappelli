@@ -2,12 +2,7 @@
 
 # python imports
 from functools import wraps
-
-# try to use json (2.6+) but stay compatible with 2.5.*
-try:
-    import json
-except ImportError:
-    from django.utils import simplejson as json
+import json
 
 try:
     from django.contrib.auth import get_user_model
@@ -48,7 +43,6 @@ def get_content_types(parser, token):
     Returns a list of installed applications and models.
     Needed for lookup of generic relationships.
     """
-    tokens = token.contents.split()
     return do_get_generic_objects()
 
 

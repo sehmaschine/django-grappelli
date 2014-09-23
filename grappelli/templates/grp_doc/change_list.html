@@ -116,7 +116,7 @@
     {% templatetag openblock %} if not is_popup {% templatetag closeblock %}
         <ul>
             <li><a href="../../">{% templatetag openblock %} trans "Home" {% templatetag closeblock %}</a></li>
-            <li><a href="../">{% templatetag openblock %} trans app_label|capfirst|escape {% templatetag closeblock %}</a></li>
+            <li><a href="../">{% templatetag openblock %} opts.app_config.verbose_name {% templatetag closeblock %}</a></li>
             <li>{% endfilter %}&#123;&#123; opts.verbose_name_plural|capfirst &#125;&#125;{% filter force_escape %}</li>
         </ul>
     {% templatetag openblock %} endif {% templatetag closeblock %}
@@ -358,7 +358,7 @@
     {% templatetag openblock %} if not is_popup {% templatetag closeblock %}
         <ul>
             <li><a href="../../">{% templatetag openblock %} trans "Home" {% templatetag closeblock %}</a></li>
-            <li><a href="../">{% templatetag openblock %} trans app_label|capfirst|escape {% templatetag closeblock %}</a></li>
+            <li><a href="../">{% templatetag openblock %} opts.app_config.verbose_name {% templatetag closeblock %}</a></li>
             <li>{% endfilter %}&#123;&#123; opts.verbose_name_plural|capfirst &#125;&#125;{% filter force_escape %}</li>
         </ul>
     {% templatetag openblock %} endif {% templatetag closeblock %}
