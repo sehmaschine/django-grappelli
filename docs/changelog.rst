@@ -8,8 +8,13 @@
 Changelog
 =========
 
-2.4.11 (not yet released)
+2.4.12 (not yet released)
 -------------------------
+
+2.4.11 (October 17th 2014)
+--------------------------
+
+* Fixed: Tests with custom User model.
 
 2.4.10 (April 13th 2014)
 ------------------------
