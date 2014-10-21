@@ -173,6 +173,7 @@ select {
 select[multiple=multiple] {
     padding-right: 5px;
     height: 160px;
+    overflow: auto;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select[multiple=multiple] {
