@@ -3,6 +3,7 @@
 # DJANGO IMPORTS
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -29,7 +30,7 @@ class Entry(models.Model):
     category = models.ForeignKey(Category, related_name="entries", blank=True, null=True)
     date = models.DateTimeField("Date")
     body = models.TextField("Body", blank=True)
-    user = models.ForeignKey(User, related_name="entries")
+    user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', User), related_name="entries")
     createdate = models.DateField("Date (Create)", auto_now_add=True)
     updatedate = models.DateField("Date (Update)", auto_now=True)
 

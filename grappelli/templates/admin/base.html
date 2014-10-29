@@ -72,6 +72,7 @@
 
                 <!-- NAVIGATION -->
                 <div id="grp-navigation">
+                    {% block branding %}{% endblock %}
                     {% block admin_title %}<h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>{% endblock %}
                     {% if user.is_authenticated and user.is_staff %}
                         <ul id="grp-user-tools">

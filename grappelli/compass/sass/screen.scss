@@ -233,6 +233,13 @@ header#grp-header {
         @include grp-gradient-dark;
         @include clearfix;
         overflow: visible;
+        div#grp-branding {
+            position: relative;
+            float: left;
+            margin: 0 10px 0 -20px;
+            max-height: 36px;
+            overflow: hidden;
+        }
         h1#grp-admin-title {
             position: relative;
             float: left;
