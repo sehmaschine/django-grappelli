@@ -172,6 +172,7 @@
         });
 
         $("#{{ inline_admin_formset.formset.prefix }}-group").grp_inline({
+            {% block grp_inline_options %}
             prefix: "{{ inline_admin_formset.formset.prefix }}",
             onBeforeAdded: function(inline) {},
             onAfterAdded: function(form) {
@@ -235,6 +236,7 @@
                     });
                 });
             }
+            {% endblock %}
         });
 
         {% if inline_admin_formset.opts.sortable_field_name %}
