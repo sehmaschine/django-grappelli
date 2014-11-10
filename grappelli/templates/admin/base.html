@@ -71,38 +71,40 @@
             {% if not is_popup %}
 
                 <!-- NAVIGATION -->
-                <div id="grp-navigation">
-                    {% block branding %}{% endblock %}
-                    {% block admin_title %}<h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>{% endblock %}
-                    {% if user.is_authenticated and user.is_staff %}
-                        <ul id="grp-user-tools">
-                            <!-- Userlinks -->
-                            {% block userlinks %}
-                                <!-- Username -->
-                                <li class="grp-user-options-container grp-collapse grp-closed {% if request.session.original_user %}grp-switch-user-is-target{% endif %}">
-                                    <a href="javascript://" class="user-options-handler grp-collapse-handler {% if request.session.original_user %}grp-switch-user-is-target{% else %}grp-switch-user-is-original{% endif %}">{% firstof user.get_short_name user.get_username %}</a>
-                                    <ul class="grp-user-options">
-                                        <!-- Change Password -->
-                                        {% if user.has_usable_password %}
-                                            <li><a href="{% url 'admin:password_change' %}" class="grp-change-password">{% trans 'Change password' %}</a></li>
-                                        {% endif %}
-                                        <!-- Logout -->
-                                        <li><a href="{% url 'admin:logout' %}" class="grp-logout">{% trans 'Log out' %}</a></li>
-                                        <!-- Switch -->
-                                        {% switch_user_dropdown %}
-                                    </ul>
-                                </li>
-                                <!-- Documentation -->
-                                {% url 'django-admindocs-docroot' as docsroot %}
-                                {% if docsroot %}
-                                    <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
-                                {% endif %}
-                            {% endblock %}
-                        </ul>
-                    {% endif %}
-                    <!-- Nav-Global -->
-                    {% block nav-global %}{% endblock %}
-                </div>
+                {% block head-navigation %}
+                    <div id="grp-navigation">
+                        {% block branding %}{% endblock %}
+                        {% block admin_title %}<h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>{% endblock %}
+                        {% if user.is_authenticated and user.is_staff %}
+                            <ul id="grp-user-tools">
+                                <!-- Userlinks -->
+                                {% block userlinks %}
+                                    <!-- Username -->
+                                    <li class="grp-user-options-container grp-collapse grp-closed {% if request.session.original_user %}grp-switch-user-is-target{% endif %}">
+                                        <a href="javascript://" class="user-options-handler grp-collapse-handler {% if request.session.original_user %}grp-switch-user-is-target{% else %}grp-switch-user-is-original{% endif %}">{% firstof user.get_short_name user.get_username %}</a>
+                                        <ul class="grp-user-options">
+                                            <!-- Change Password -->
+                                            {% if user.has_usable_password %}
+                                                <li><a href="{% url 'admin:password_change' %}" class="grp-change-password">{% trans 'Change password' %}</a></li>
+                                            {% endif %}
+                                            <!-- Logout -->
+                                            <li><a href="{% url 'admin:logout' %}" class="grp-logout">{% trans 'Log out' %}</a></li>
+                                            <!-- Switch -->
+                                            {% switch_user_dropdown %}
+                                        </ul>
+                                    </li>
+                                    <!-- Documentation -->
+                                    {% url 'django-admindocs-docroot' as docsroot %}
+                                    {% if docsroot %}
+                                        <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
+                                    {% endif %}
+                                {% endblock %}
+                            </ul>
+                        {% endif %}
+                        <!-- Nav-Global -->
+                        {% block nav-global %}{% endblock %}
+                    </div>
+                {% endblock %}
                 
                 <!-- CONTEXT NAVIGATION -->
                 <div id="grp-context-navigation">
