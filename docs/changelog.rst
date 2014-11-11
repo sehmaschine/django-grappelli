@@ -11,6 +11,8 @@ Changelog
 2.4.12 (not yet released)
 -------------------------
 
+* Fixed: Scrollbars with M2M (with some browsers).
+
 2.4.11 (October 17th 2014)
 --------------------------
 
