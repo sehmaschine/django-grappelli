@@ -91,5 +91,5 @@ Current development branches:
 * |grappelli| 2.5.6 (Development version for Django 1.6, see branch Stable/2.5.x)
 * |grappelli| 2.4.12 (Development version for Django 1.4/1.5, see branch Stable/2.4.x)
 
-Older versions are availabe at GitHub, but are not supported anymore.
+Older versions are available at GitHub, but are not supported anymore.
 Support for 2.4.x and 2.5.x is limited to security issues and very important bugfixes.
