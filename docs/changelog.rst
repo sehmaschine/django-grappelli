@@ -11,6 +11,12 @@ Changelog
 2.5.6 (not yet released)
 ------------------------
 
+* New: Blocks header, navigation, user-tools and context-navigation with base.html.
+* Fixed: Urls with template changelist_filter_sidebar.
+* Fixed: Re-added block branding with base.html.
+* Fixed: Scrollbars with M2M (with some browsers).
+* Improved: Commented grp-docs urls.
+
 2.5.5 (October 17th 2014)
 -------------------------
 
