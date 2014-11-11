@@ -4,7 +4,8 @@
 {% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
 
 {% block branding %}
-    <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header }}</a></h1>
+    {# Use the div#grp-branding for branding elements, e.g. a logo #}
+    {# <div id="grp-branding"></div> #}
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
