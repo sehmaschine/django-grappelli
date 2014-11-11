@@ -11,6 +11,9 @@ Changelog
 2.6.3 (not yet released)
 ------------------------
 
+* New: Blocks header, navigation, user-tools and context-navigation with base.html.
+* Fixed: Scrollbars with M2M (with some browsers).
+
 2.6.2 (October 17th 2014)
 -------------------------
 
