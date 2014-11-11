@@ -39,15 +39,6 @@ Add URL-patterns. The grappelli URLs are needed for related–lookups and autoco
         (r'^admin/',  include(admin.site.urls)), # admin site
     )
 
-Make sure ``AppDirectoriesFinder`` is first with your ``STATICFILES_FINDERS``:
-
-.. code-block:: python
-
-    STATICFILES_FINDERS = (
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-    )
-
 Add the request context processor (needed for the Dashboard and the Switch User feature):
 
 .. code-block:: python
