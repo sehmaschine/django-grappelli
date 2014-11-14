@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.4.12 (not yet released)
+2.4.13 (not yet released)
 -------------------------
+
+2.4.12 (November 14th 2014)
+---------------------------
 
 * Fixed: Scrollbars with M2M (with some browsers).
 
