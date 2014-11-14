@@ -8,14 +8,19 @@
 Changelog
 =========
 
-2.5.6 (not yet released)
+2.5.7 (not yet released)
 ------------------------
 
+2.5.6 (November 14th 2014)
+--------------------------
+
+* New: Triggering change when input is changed in autocomplete.
 * New: Blocks header, navigation, user-tools and context-navigation with base.html.
 * Fixed: Urls with template changelist_filter_sidebar.
 * Fixed: Re-added block branding with base.html.
 * Fixed: Scrollbars with M2M (with some browsers).
 * Improved: Commented grp-docs urls.
+* Improved: Removed note about order of STATICFILES_FINDERS from the docs.
 
 2.5.5 (October 17th 2014)
 -------------------------

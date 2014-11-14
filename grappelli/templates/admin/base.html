@@ -24,6 +24,10 @@
         <script type="text/javascript">window.__admin_utc_offset__ = "{% filter escapejs %}{% now "Z" %}{% endfilter %}";</script>
         <script type="text/javascript" charset="utf-8">
             // GLOBALS
+            {% if LANGUAGE_CODE %}
+            var LANGUAGE_CODE = "{{ LANGUAGE_CODE }}";
+            console.log(LANGUAGE_CODE);
+            {% endif %}
             var grappelli = {},
                 ADMIN_URL = "{% url 'admin:index' %}",
                 MODEL_URL_ARRAY = {% if user.is_staff %}{% get_content_types %}{% else %}[]{% endif %},
@@ -170,5 +174,10 @@
         {% block footer %}{% endblock %}
 
     </div>
+    {% if LANGUAGE_CODE %}
+    {% with 'grappelli/jquery/i18n/ui.datepicker-'|add:LANGUAGE_CODE|add:'.js' as datepicker_url %}
+    <script src="{% static datepicker_url %}" type="text/javascript"></script>
+    {% endwith %}
+    {% endif %}
 </body>
 </html>

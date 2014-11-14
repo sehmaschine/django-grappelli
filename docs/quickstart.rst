@@ -14,7 +14,7 @@ Installation
 
 .. code-block:: bash
 
-    $ pip install django-grappelli
+    $ pip install django-grappelli==2.5.6
 
 Go to https://github.com/sehmaschine/django-grappelli if you need to download a package or clone/fork the repository.
 
