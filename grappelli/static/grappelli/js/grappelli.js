@@ -65,7 +65,10 @@ var inputTypes = [
         });
 
         var options = [];
-        $.extend(options, $.datepicker.regional[LANGUAGE_CODE]);
+
+        if (LANGUAGE_CODE!="en-us")
+            $.extend(options, $.datepicker.regional[LANGUAGE_CODE]);
+
         $.extend(options, {
             //appendText: '(mm/dd/yyyy)',
             constrainInput: false,
