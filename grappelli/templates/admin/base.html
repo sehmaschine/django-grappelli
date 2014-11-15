@@ -67,64 +67,73 @@
 <body class="{% if is_popup %}grp-popup {% endif %}{% block bodyclass %}{% endblock %}{% if LANGUAGE_BIDI %} rtl{% endif %}">
     <div id="grp-container">
 
-        <!-- HEADER -->
-        <header id="grp-header" class="{% block header-class %}{% endblock %}">
-            {% if not is_popup %}
+        {% block header %}
+            <!-- HEADER -->
+            <header id="grp-header" class="{% block header-class %}{% endblock %}">
+                {% if not is_popup %}
 
-                <!-- NAVIGATION -->
-                <div id="grp-navigation">
-                    {% block branding %}{% endblock %}
-                    {% block admin_title %}<h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>{% endblock %}
-                    {% if user.is_authenticated and user.is_staff %}
-                        <ul id="grp-user-tools">
-                            <!-- Userlinks -->
-                            {% block userlinks %}
-                                <!-- Username -->
-                                <li class="grp-user-options-container grp-collapse grp-closed {% if request.session.original_user %}grp-switch-user-is-target{% endif %}">
-                                    <a href="javascript://" class="user-options-handler grp-collapse-handler {% if request.session.original_user %}grp-switch-user-is-target{% else %}grp-switch-user-is-original{% endif %}">{% firstof user.get_short_name user.get_username %}</a>
-                                    <ul class="grp-user-options">
-                                        <!-- Change Password -->
-                                        {% if user.has_usable_password %}
-                                            <li><a href="{% url 'admin:password_change' %}" class="grp-change-password">{% trans 'Change password' %}</a></li>
-                                        {% endif %}
-                                        <!-- Logout -->
-                                        <li><a href="{% url 'admin:logout' %}" class="grp-logout">{% trans 'Log out' %}</a></li>
-                                        <!-- Switch -->
-                                        {% switch_user_dropdown %}
+                    {% block navigation %}
+                        <!-- NAVIGATION -->
+                        <div id="grp-navigation">
+                            {% block branding %}{% endblock %}
+                            {% block admin_title %}<h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>{% endblock %}
+                            {% block user-tools %}
+                                {% if user.is_authenticated and user.is_staff %}
+                                    <ul id="grp-user-tools">
+                                        <!-- Userlinks -->
+                                        {% block userlinks %}
+                                            <!-- Username -->
+                                            <li class="grp-user-options-container grp-collapse grp-closed {% if request.session.original_user %}grp-switch-user-is-target{% endif %}">
+                                                <a href="javascript://" class="user-options-handler grp-collapse-handler {% if request.session.original_user %}grp-switch-user-is-target{% else %}grp-switch-user-is-original{% endif %}">{% firstof user.get_short_name user.get_username %}</a>
+                                                <ul class="grp-user-options">
+                                                    <!-- Change Password -->
+                                                    {% if user.has_usable_password %}
+                                                        <li><a href="{% url 'admin:password_change' %}" class="grp-change-password">{% trans 'Change password' %}</a></li>
+                                                    {% endif %}
+                                                    <!-- Logout -->
+                                                    <li><a href="{% url 'admin:logout' %}" class="grp-logout">{% trans 'Log out' %}</a></li>
+                                                    <!-- Switch -->
+                                                    {% switch_user_dropdown %}
+                                                </ul>
+                                            </li>
+                                            <!-- Documentation -->
+                                            {% url 'django-admindocs-docroot' as docsroot %}
+                                            {% if docsroot %}
+                                                <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
+                                            {% endif %}
+                                        {% endblock %}
                                     </ul>
-                                </li>
-                                <!-- Documentation -->
-                                {% url 'django-admindocs-docroot' as docsroot %}
-                                {% if docsroot %}
-                                    <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
                                 {% endif %}
                             {% endblock %}
-                        </ul>
-                    {% endif %}
-                    <!-- Nav-Global -->
-                    {% block nav-global %}{% endblock %}
-                </div>
-                
-                <!-- CONTEXT NAVIGATION -->
-                <div id="grp-context-navigation">
-                    <nav id="grp-breadcrumbs" class="{% block breadcrumbs-class %}{% endblock %}">
-                        <header style="display:none"><h1>Breadcrumbs</h1></header>
-                        {% block breadcrumbs %}
-                            <ul>
-                                <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
-                                {% if title %}
-                                    <li> &rsaquo; {{ title }}</li>
-                                {% endif %}
-                            </ul>
-                        {% endblock %}
-                    </nav>
-                    <nav id="grp-page-tools">
-                        <header style="display:none"><h1>Page Tools</h1></header>
-                        {% block page-tools %}{% endblock %}
-                    </nav>
-                </div>
-            {% endif %}
-        </header>
+                            <!-- Nav-Global -->
+                            {% block nav-global %}{% endblock %}
+                        </div>
+                    {% endblock %}
+                    
+                    {% block context-navigation %}
+                        <!-- CONTEXT NAVIGATION -->
+                        <div id="grp-context-navigation">
+                            <nav id="grp-breadcrumbs" class="{% block breadcrumbs-class %}{% endblock %}">
+                                <header style="display:none"><h1>Breadcrumbs</h1></header>
+                                {% block breadcrumbs %}
+                                    <ul>
+                                        <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
+                                        {% if title %}
+                                            <li> &rsaquo; {{ title }}</li>
+                                        {% endif %}
+                                    </ul>
+                                {% endblock %}
+                            </nav>
+                            <nav id="grp-page-tools">
+                                <header style="display:none"><h1>Page Tools</h1></header>
+                                {% block page-tools %}{% endblock %}
+                            </nav>
+                        </div>
+                    {% endblock %}
+                    
+                {% endif %}
+            </header>
+        {% endblock %}
 
         <!-- CONTENT -->
         <article id="grp-content" class="{% block content-class %}{% endblock %}">
