@@ -1,8 +1,5 @@
 # coding: utf-8
 
-# PYTHON IMPORTS
-import datetime
-
 # DJANGO IMPORTS
 from django.test import TestCase
 from django.test.utils import override_settings
