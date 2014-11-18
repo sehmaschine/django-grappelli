@@ -104,6 +104,7 @@
                 select: function(event, ui) {
                     options.input_field.val(ui.item.label);
                     elem.val(ui.item.value);
+                    elem.trigger('change');
                     elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
                     return false;
                 }

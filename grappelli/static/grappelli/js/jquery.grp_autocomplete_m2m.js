@@ -70,6 +70,7 @@
         if (elem.val()) values = elem.val().split(",");
         values.push(value);
         elem.val(values.join(","));
+        elem.trigger('change');
         return values.join(",");
     };
     
@@ -78,6 +79,7 @@
         if (elem.val()) values = elem.val().split(",");
         values.splice(position,1);
         elem.val(values.join(","));
+        elem.trigger('change');
         return values.join(",");
     };
     

@@ -163,7 +163,7 @@ $grp-form-field-border: 1px solid #ccc !default;
 $grp-form-field-border-focus: 1px solid #aaa !default;
 
 @mixin grp-form-field-box-shadow {
-    @include single-box-shadow(#eee 0 1px 3px inset);
+    @include single-box-shadow(0, 1px, 3px, 0, #eee, inset);
 }
 @mixin grp-form-field-box-shadow-focus {
     @include box-shadow(#ccc 0 0 6px);
