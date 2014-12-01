@@ -15,6 +15,7 @@ from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.util import prepare_lookup_value
+from django.core.serializers.json import DjangoJSONEncoder
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
@@ -32,7 +33,7 @@ def import_from(module, name):
 
 
 def ajax_response(data):
-    return HttpResponse(json.dumps(data), content_type='application/javascript')
+    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type='application/javascript')
 
 
 class RelatedLookup(View):
