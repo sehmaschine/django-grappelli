@@ -46,7 +46,10 @@ class RelatedLookup(View):
         return 'object_id' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
 
     def get_model(self):
-        self.model = models.get_model(self.GET['app_label'], self.GET['model_name'])
+        try:
+            self.model = models.get_model(self.GET['app_label'], self.GET['model_name'])
+        except LookupError:
+            self.model = None
         return self.model
 
     def get_filtered_queryset(self, qs):
