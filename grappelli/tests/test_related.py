@@ -119,6 +119,9 @@ class RelatedTests(TestCase):
         self.assertEqual(response.content, json.dumps([{"value": "1", "label": "Entry Superuser"}]))
 
         # wrong app_label/model_name
+        response = self.client.get("%s?object_id=1&app_label=false&model_name=false" % (reverse("grp_related_lookup")))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, json.dumps([{"value": None, "label": ""}]))
         response = self.client.get("%s?object_id=&app_label=false&model_name=false" % (reverse("grp_related_lookup")))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, json.dumps([{"value": None, "label": ""}]))
