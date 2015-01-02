@@ -64,6 +64,22 @@
             if (node_class) { node.attr('class', node_class.replace(replace_regex, replace_with)); }
             if (node_onclick) { node.attr('onclick', node_onclick.replace(replace_regex, replace_with)); }
         });
+        // update prepopulate ids for function initPrepopulatedFields
+        elem.find('.prepopulated_field').each(function() {
+            var dependency_ids = $(this).data('dependency_ids') || [],
+                dependency_ids_updated = [];
+            $.each(dependency_ids, function(i, id) {
+                dependency_ids_updated.push(id.replace(replace_regex, replace_with));
+            });
+            $(this).data('dependency_ids', dependency_ids_updated);
+        });
+    };
+
+    var initPrepopulatedFields = function(elem, options) {
+        elem.find('.prepopulated_field').each(function() {
+            var dependency_ids = $(this).data('dependency_ids') || [];
+            $(this).prepopulate(dependency_ids, $(this).attr('maxlength'));
+        });
     };
     
     initInlineForms = function(elem, options) {
@@ -126,6 +142,8 @@
             if ((maxForms.val() !== 0) && (maxForms.val() !== "") && (maxForms.val() - totalForms.val()) <= 0) {
                 hideAddButtons(inline, options);
             }
+            // prepopulate fields
+            initPrepopulatedFields(form, options);
             // callback
             options.onAfterAdded(form);
         });
