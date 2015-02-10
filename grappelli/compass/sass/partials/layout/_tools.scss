@@ -30,7 +30,7 @@
             }
             &.grp-add-link {
                 padding-left: 28px;
-                @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #999, #888);
+                @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #666, #444);
                 &:hover {
                     @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #36b0d9, #309bbf);
                 }
