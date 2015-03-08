@@ -238,3 +238,65 @@ def switch_user_dropdown(context):
                 'object_list': object_list,
             }))
     return ""
+
+# The map below maps django LANGUAGE_CODE to the proper name of the
+# grappelli/static/grappelli/jquery/i18n/ui.datepicker-LANGUAGE_CODE.js
+# As the codes used in Django and in jquery.ui are different, this mapping
+# is required. For languages without representation in jquery locale files,
+# the value should be None. For languages with identical LANGUAGE_CODE
+# on both Django and jquery.ui sides, there should be no entry in the map.
+#
+# The en-us entry gets special treatment, because it is already included in
+# the jquery.ui.datepicker code, so there will be no javascript translation
+# file included for that language code.
+
+LANGUAGE_CODE_TO_JQUERY_MAP = {
+    'ast': 'en-us',
+    'bn': 'en-us',
+    'br': 'en-us',
+    
+    'cy': 'cy-GB',
+
+    'de-at': 'en-us',
+    'de-AT': 'en-us',
+
+    'en': 'en-US',
+    'en-au': 'en-AU',
+    'en-gb': 'en-GB',
+
+    'es-ar': 'es',
+    'es-mx': 'es',
+    'es-ni': 'es',
+    'es-ve': 'es',
+
+    'fy': 'en-us',
+    'ga': 'en-us',
+    'ia': 'en-us',
+    'io': 'en-us',
+    'kn': 'en-us',
+    'mn': 'en-us',
+    'mr': 'en-us',
+    'my': 'en-us',
+    'ne': 'en-us',
+    'os': 'en-us',
+    'pa': 'en-us',
+
+    'pt-br': 'pt-BR',
+
+    'sw': 'en-us',
+    'te': 'en-us',
+    'tt': 'en-us',
+    'udm': 'en-us',
+    'ur': 'en-us',
+
+    'zh-hans': 'zh-CN',
+    'zh-hant': 'zh-HK',
+}
+
+@register.simple_tag(takes_context=True)
+def grp_set_language_codes(context):
+    lang = get_language().lower().replace("_", "-")
+    context['GRP_JQUERY_LANGUAGE_CODE'] = \
+        LANGUAGE_CODE_TO_JQUERY_MAP.get(lang, lang)
+
+    return ""

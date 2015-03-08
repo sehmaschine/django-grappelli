@@ -171,8 +171,9 @@
         {% block footer %}{% endblock %}
 
     </div>
-    {% if LANGUAGE_CODE != "en-us" %}
-    {% with 'grappelli/jquery/i18n/ui.datepicker-'|add:LANGUAGE_CODE|add:'.js' as datepicker_url %}
+    {%  grp_set_language_codes %}
+    {% if GRP_JQUERY_LANGUAGE_CODE != "en-us" %}
+    {% with 'grappelli/jquery/i18n/ui.datepicker-'|add:GRP_JQUERY_LANGUAGE_CODE|add:'.js' as datepicker_url %}
     <script src="{% static datepicker_url %}" type="text/javascript"></script>
     {% endwith %}
     {% endif %}
