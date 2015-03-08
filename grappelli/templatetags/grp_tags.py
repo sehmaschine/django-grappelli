@@ -260,7 +260,8 @@ LANGUAGE_CODE_TO_JQUERY_MAP = {
     'de-at': 'en-us',
     'de-AT': 'en-us',
 
-    'en': 'en-US',
+    'en': 'en-us',
+    'en-us': 'en-us',
     'en-au': 'en-AU',
     'en-gb': 'en-GB',
 
