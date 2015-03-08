@@ -11,3 +11,4 @@ fabfile.py
 .project
 .pydevproject
 node_modules/*
+.idea

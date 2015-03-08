@@ -1,6 +1,6 @@
-{% load admin_static %}{% load firstof from future %}{% load i18n grp_tags %}
+{% load admin_static %}{% load firstof from future %}{% load i18n grp_tags %}{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<html lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
     <title>{% block title %}{% endblock %}</title>
     <meta charset="utf-8" />
@@ -29,7 +29,8 @@
                 MODEL_URL_ARRAY = {% if user.is_staff %}{% get_content_types %}{% else %}[]{% endif %},
                 DATE_FORMAT = "{% get_date_format %}",
                 TIME_FORMAT = "{% get_time_format %}",
-                DATETIME_FORMAT = "{% get_datetime_format %}";
+                DATETIME_FORMAT = "{% get_datetime_format %}",
+                LANGUAGE_CODE = "{{ LANGUAGE_CODE }}";
         </script>
         <!-- jQuery, jQuery-UI -->
         <script src="{% static "grappelli/jquery/jquery-1.9.1.min.js" %}" type="text/javascript"></script>
@@ -170,5 +171,11 @@
         {% block footer %}{% endblock %}
 
     </div>
+    {%  grp_set_language_codes %}
+    {% if GRP_JQUERY_LANGUAGE_CODE != "en-us" %}
+    {% with 'grappelli/jquery/i18n/ui.datepicker-'|add:GRP_JQUERY_LANGUAGE_CODE|add:'.js' as datepicker_url %}
+    <script src="{% static datepicker_url %}" type="text/javascript"></script>
+    {% endwith %}
+    {% endif %}
 </body>
 </html>

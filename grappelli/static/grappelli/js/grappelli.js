@@ -63,8 +63,13 @@ var inputTypes = [
             text = text.replace(/<br>[^<]*: /g, "<br>");
             $(this).html(text);
         });
-        
-        var options = {
+
+        var options = [];
+
+        if (LANGUAGE_CODE!="en-us")
+            $.extend(options, $.datepicker.regional[LANGUAGE_CODE]);
+
+        $.extend(options, {
             //appendText: '(mm/dd/yyyy)',
             constrainInput: false,
             showOn: 'button',
@@ -79,7 +84,8 @@ var inputTypes = [
             beforeShow: function(year, month, inst) {
                 grappelli.datepicker_instance = this;
             }
-        };
+        });
+
         var dateFields = $("input[class*='vDateField']:not([id*='__prefix__'])");
         dateFields.datepicker(options);
         
