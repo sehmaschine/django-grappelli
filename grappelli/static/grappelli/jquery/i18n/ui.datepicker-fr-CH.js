@@ -1,7 +1,5 @@
-/* French initialisation for the grp.jQuery UI date picker plugin. */
-/* Written by Keith Wood (kbwood{at}iinet.com.au),
-			  Stéphane Nahmani (sholby@sholby.net),
-			  Stéphane Raimbault <stephane.raimbault@gmail.com> */
+/* Swiss-French initialisation for the grp.jQuery UI date picker plugin. */
+/* Written Martin Voelkle (martin.voelkle@e-tc.ch). */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
 
@@ -14,26 +12,26 @@
 	}
 }(function( datepicker ) {
 
-datepicker.regional['fr'] = {
+datepicker.regional['fr-CH'] = {
 	closeText: 'Fermer',
-	prevText: 'Précédent',
-	nextText: 'Suivant',
-	currentText: 'Aujourd\'hui',
+	prevText: '&#x3C;Préc',
+	nextText: 'Suiv&#x3E;',
+	currentText: 'Courant',
 	monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
 		'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
-	monthNamesShort: ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',
+	monthNamesShort: ['janv.', 'févr.', 'mars', 'avril', 'mai', 'juin',
 		'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'],
 	dayNames: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
 	dayNamesShort: ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'],
-	dayNamesMin: ['D','L','M','M','J','V','S'],
-	weekHeader: 'Sem.',
-	dateFormat: 'dd/mm/yy',
+	dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+	weekHeader: 'Sm',
+	dateFormat: 'dd.mm.yy',
 	firstDay: 1,
 	isRTL: false,
 	showMonthAfterYear: false,
 	yearSuffix: ''};
-datepicker.setDefaults(datepicker.regional['fr']);
+datepicker.setDefaults(datepicker.regional['fr-CH']);
 
-return datepicker.regional['fr'];
+return datepicker.regional['fr-CH'];
 
 }));
