@@ -22,6 +22,7 @@ Changelog
 * Fixed: Breadcrumb links in the template change_password.html.
 * Fixed: Use get_username to retrieve username, support custom user models.
 * Fixed: Sorting with dashboard when verbose_name_plural is not given.
+* Fixed: Removed site dependencies for admin doc views.
 
 2.6.3 (November 14th 2014)
 --------------------------
