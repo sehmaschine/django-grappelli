@@ -226,7 +226,7 @@ def switch_user_dropdown(context):
     if SWITCH_USER:
         tpl = get_template("admin/includes_grappelli/switch_user_dropdown.html")
         request = context["request"]
-        session_user = request.session.get("original_user", {"id": request.user.id, "username": request.user.username})
+        session_user = request.session.get("original_user", {"id": request.user.id, "username": request.user.get_username()})
         try:
             original_user = User.objects.get(pk=session_user["id"], is_staff=True)
         except User.DoesNotExist:
