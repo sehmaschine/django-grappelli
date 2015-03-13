@@ -14,6 +14,7 @@ from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.util import prepare_lookup_value
+from django.core.serializers.json import DjangoJSONEncoder
 
 # try to use json (2.6+) but stay compatible with 2.5.*
 try:
@@ -37,7 +38,7 @@ def import_from(module, name):
 
 
 def ajax_response(data):
-    return HttpResponse(json.dumps(data), content_type='application/javascript')
+    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type='application/javascript')
 
 
 class RelatedLookup(View):
