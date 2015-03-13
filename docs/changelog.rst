@@ -8,8 +8,17 @@
 Changelog
 =========
 
-2.5.7 (not yet released)
+2.5.8 (not yet released)
 ------------------------
+
+2.5.7 (March 16th 2015)
+-----------------------
+
+* Fixed: Background with pulldown handler.
+* Fixed: Python to JSON Serialization with autocompletes with non-automatic id.
+* Fixed: Handled LookupError in RelatedLookup view with wrong app_label/model_name.
+* Fixed: Add link with changelist.
+* Fixed: Breadcrumb links in the template change_password.html.
 
 2.5.6 (November 14th 2014)
 --------------------------
