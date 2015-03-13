@@ -92,9 +92,10 @@ class RelatedLookup(View):
 
         if self.request_is_valid():
             self.get_model()
-            data = self.get_data()
-            if data:
-                return ajax_response(data)
+            if self.model is not None:
+                data = self.get_data()
+                if data:
+                    return ajax_response(data)
 
         data = [{"value": None, "label": ""}]
         return ajax_response(data)
