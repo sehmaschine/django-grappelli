@@ -128,7 +128,7 @@ form#grp-changelist-search-form {
         cursor: pointer;
         @include icons-sprite(pulldown-handler, $offset-x: 100%);
         @include grp-button-states(grey, blue);
-        -webkit-background-size: auto !important;
+        background-size: auto !important;
         color: $grp-link-color;
         &:hover {
             color: #444;

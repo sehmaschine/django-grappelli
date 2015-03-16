@@ -11,6 +11,19 @@ Changelog
 2.6.4 (not yet released)
 ------------------------
 
+* Fixed: Prepopulated fields with inlines.
+* Fixed: Hide row if only hidden fields are given.
+* Fixed: Background with pulldown handler.
+* Fixed: Python to JSON Serialization with autocompletes with non-automatic id.
+* Fixed: Handled LookupError in RelatedLookup view with wrong app_label/model_name.
+* Fixed: Add link with changelist.
+* Fixed: Error when constance needs a hidden field.
+* Fixed: ID generation in the dashboard template app_list.html.
+* Fixed: Breadcrumb links in the template change_password.html.
+* Fixed: Use get_username to retrieve username, support custom user models.
+* Fixed: Sorting with dashboard when verbose_name_plural is not given.
+* Fixed: Removed site dependencies for admin doc views.
+
 2.6.3 (November 14th 2014)
 --------------------------
 

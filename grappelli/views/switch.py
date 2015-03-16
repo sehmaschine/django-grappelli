@@ -28,7 +28,7 @@ def switch_user(request, object_id):
 
     # current/session user
     current_user = request.user
-    session_user = request.session.get("original_user", {"id": current_user.id, "username": current_user.username})
+    session_user = request.session.get("original_user", {"id": current_user.id, "username": current_user.get_username()})
 
     # check original_user
     try:
@@ -63,6 +63,6 @@ def switch_user(request, object_id):
     if hasattr(target_user, 'backend'):
         login(request, target_user)
         if original_user.id != target_user.id:
-            request.session["original_user"] = {"id": original_user.id, "username": original_user.username}
+            request.session["original_user"] = {"id": original_user.id, "username": original_user.get_username()}
 
     return redirect(request.GET.get("redirect"))

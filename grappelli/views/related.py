@@ -15,6 +15,7 @@ from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.util import prepare_lookup_value
+from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import admin
 
 # GRAPPELLI IMPORTS
@@ -33,7 +34,7 @@ def import_from(module, name):
 
 
 def ajax_response(data):
-    return HttpResponse(json.dumps(data), content_type='application/javascript')
+    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type='application/javascript')
 
 def get_model_admin(model):
     if model in admin.site._registry:
@@ -51,7 +52,10 @@ class RelatedLookup(View):
         return 'object_id' in self.GET and 'app_label' in self.GET and 'model_name' in self.GET
 
     def get_model(self):
-        self.model = models.get_model(self.GET['app_label'], self.GET['model_name'])
+        try:
+            self.model = models.get_model(self.GET['app_label'], self.GET['model_name'])
+        except LookupError:
+            self.model = None
         return self.model
 
     def get_filtered_queryset(self, qs):
@@ -96,9 +100,10 @@ class RelatedLookup(View):
 
         if self.request_is_valid():
             self.get_model()
-            data = self.get_data()
-            if data:
-                return ajax_response(data)
+            if self.model is not None:
+                data = self.get_data()
+                if data:
+                    return ajax_response(data)
 
         data = [{"value": None, "label": ""}]
         return ajax_response(data)
