@@ -109,7 +109,7 @@ def filter_models(request, models, exclude):
                 model, perms = item
                 if fnmatch(full_name(model), pattern) and item not in included:
                     pattern_items.append(item)
-            pattern_items.sort(key=lambda x: x[0]._meta.verbose_name_plural)
+            pattern_items.sort(key=lambda x: unicode(x[0]._meta.verbose_name_plural))
             included.extend(pattern_items)
 
     result = included[:]

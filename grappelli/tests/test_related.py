@@ -107,13 +107,21 @@ class RelatedTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, json.dumps([{"value": "2", "label": "Entry Editor"}]))
 
-        # cusotm queryset (Editor)
+        # custom queryset (Editor)
         # FIXME: this should fail, because the custom admin queryset
         # limits the entry to the logged in superuser
         self.client.login(username="Editor001", password="editor001")
         response = self.client.get("%s?object_id=1&app_label=%s&model_name=%s" % (reverse("grp_related_lookup"), "grappelli", "entry"))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, json.dumps([{"value": "1", "label": "Entry Superuser"}]))
+
+        # wrong app_label/model_name
+        response = self.client.get("%s?object_id=1&app_label=false&model_name=false" % (reverse("grp_related_lookup")))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, json.dumps([{"value": None, "label": ""}]))
+        response = self.client.get("%s?object_id=&app_label=false&model_name=false" % (reverse("grp_related_lookup")))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, json.dumps([{"value": None, "label": ""}]))
 
     def test_m2m_lookup(self):
         """
