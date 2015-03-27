@@ -11,7 +11,7 @@ Changelog
 2.5.8 (not yet released)
 ------------------------
 
-2.5.7 (March 16th 2015)
+2.5.7 (March 27th 2015)
 -----------------------
 
 * Fixed: Background with pulldown handler.
