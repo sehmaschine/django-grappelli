@@ -11,7 +11,7 @@ Changelog
 2.6.5 (not yet released)
 ------------------------
 
-2.6.4 (March 16th 2015)
+2.6.4 (March 27th 2015)
 -----------------------
 
 * Fixed: Prepopulated fields with inlines.
