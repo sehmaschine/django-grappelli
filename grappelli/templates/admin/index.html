@@ -58,19 +58,19 @@
             {% empty %}
                 <p>{% trans "You don´t have permission to edit anything." %}</p>
             {% endfor %}
-        </div>
-        {% block custom_views %}
-            {% if custom_list %}
-                <div class="grp-module" id="custom_views">
-                    <h2>{% trans 'Custom Views' %}</h2>
-                    <div class="grp-row">
-                        {% for path, name in custom_list %}
-                            <a href="{{ path }}"><strong>{{ name }}</strong></a>
-                        {% endfor %}
+            {% block custom_views %}
+                {% if custom_list %}
+                    <div class="grp-module" id="custom_views">
+                        <h2>{% trans 'Custom Views' %}</h2>
+                        <div class="grp-row">
+                            {% for path, name in custom_list %}
+                                <a href="{{ path }}"><strong>{{ name }}</strong></a>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-            {% endif %}
-        {% endblock %}
+                {% endif %}
+            {% endblock %}
+        </div>
         <div class="g-d-6 g-d-l">
             <div class="grp-module" id="grp-recent-actions-module">
                 <h2>{% trans 'Recent Actions' %}</h2>
