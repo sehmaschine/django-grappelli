@@ -27,19 +27,39 @@ function windowname_to_id(text) {
     return text;
 }
 
-function showRelatedObjectLookupPopup(triggeringLink) {
-    var name = triggeringLink.id.replace(/^lookup_/, '');
+/* new from 18 */
+function showAdminPopup(triggeringLink, name_regexp) {
+    var name = triggeringLink.id.replace(name_regexp, '');
     name = id_to_windowname(name);
-    var href;
-    if (triggeringLink.href.search(/\?/) >= 0) {
-        href = triggeringLink.href + '&_popup=1';
+    var href = triggeringLink.href;
+    if (href.indexOf('?') == -1) {
+        href += '?_popup=1';
     } else {
-        href = triggeringLink.href + '?_popup=1';
+        href  += '&_popup=1';
     }
-    // GRAPPELLI CUSTOM: changed width
-    var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
+    var win = window.open(href, name, 'height=500,width=800,resizable=yes,scrollbars=yes');
     win.focus();
     return false;
+}
+
+function showRelatedObjectLookupPopup(triggeringLink) {
+    /* grap */
+    // var name = triggeringLink.id.replace(/^lookup_/, '');
+    // name = id_to_windowname(name);
+    // var href;
+    // if (triggeringLink.href.search(/\?/) >= 0) {
+    //     href = triggeringLink.href + '&_popup=1';
+    // } else {
+    //     href = triggeringLink.href + '?_popup=1';
+    // }
+    // // GRAPPELLI CUSTOM: changed width
+    // var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
+    // win.focus();
+    // return false;
+    /* end grap */
+    /* 18 */
+    return showAdminPopup(triggeringLink, /^lookup_/);
+    /* end 18 */
 }
 
 function dismissRelatedLookupPopup(win, chosenId) {
@@ -63,7 +83,8 @@ function removeRelatedObject(triggeringLink) {
     elem.focus();
 }
 
-function showAddAnotherPopup(triggeringLink) {
+function showRelatedObjectPopup(triggeringLink) {
+    /* grap */
     var name = triggeringLink.id.replace(/^add_/, '');
     name = id_to_windowname(name);
     var href = triggeringLink.href;
@@ -76,9 +97,18 @@ function showAddAnotherPopup(triggeringLink) {
     var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
     win.focus();
     return false;
+    /* end grap */
+    /* 18 */
+    var name = triggeringLink.id.replace(/^(change|add|delete)_/, '');
+    name = id_to_windowname(name);
+    var href = triggeringLink.href;
+    var win = window.open(href, name, 'height=500,width=800,resizable=yes,scrollbars=yes');
+    win.focus();
+    return false;
+    /* end 18 */
 }
 
-function dismissAddAnotherPopup(win, newId, newRepr) {
+function dismissAddRelatedObjectPopup(win, newId, newRepr) {
     // newId and newRepr are expected to have previously been escaped by
     // django.utils.html.escape.
     newId = html_unescape(newId);
@@ -98,7 +128,12 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             } else {
                 elem.value = newId;
             }
+            /* grap */
             elem.focus();
+            /* end grap */
+            /* 18 */
+            django.jQuery(elem).trigger('change');
+            /* end 18 */
         }
     } else {
         var toId = name + "_to";
@@ -108,3 +143,35 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
     }
     win.close();
 }
+
+/* from 18 */
+function dismissChangeRelatedObjectPopup(win, objId, newRepr, newId) {
+    objId = html_unescape(objId);
+    newRepr = html_unescape(newRepr);
+    var id = windowname_to_id(win.name).replace(/^edit_/, '');
+    var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
+    var selects = django.jQuery(selectsSelector);
+    selects.find('option').each(function() {
+        if (this.value == objId) {
+            this.innerHTML = newRepr;
+            this.value = newId;
+        }
+    });
+    win.close();
+};
+
+function dismissDeleteRelatedObjectPopup(win, objId) {
+    objId = html_unescape(objId);
+    var id = windowname_to_id(win.name).replace(/^delete_/, '');
+    var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
+    var selects = django.jQuery(selectsSelector);
+    selects.find('option').each(function() {
+        if (this.value == objId) {
+            django.jQuery(this).remove();
+        }
+    }).trigger('change');
+    win.close();
+};
+
+showAddAnotherPopup = showRelatedObjectPopup;
+dismissAddAnotherPopup = dismissAddRelatedObjectPopup;
