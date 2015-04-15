@@ -8,13 +8,23 @@ from functools import reduce
 # DJANGO IMPORTS
 from django.http import HttpResponse
 from django.db import models
+try:
+    # Django 1.7 and upper
+    from django import apps
+    get_model = apps.get_model
+except ImportError:
+    from django.db.models import get_model
 from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
 from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
-from django.contrib.admin.util import prepare_lookup_value
+try:
+    # Django 1.7 and upper
+    from django.contrib.admin.utils import prepare_lookup_value
+except ImportError:
+    from django.contrib.admin.util import prepare_lookup_value
 from django.core.serializers.json import DjangoJSONEncoder
 
 # GRAPPELLI IMPORTS
@@ -48,7 +58,7 @@ class RelatedLookup(View):
 
     def get_model(self):
         try:
-            self.model = models.get_model(self.GET['app_label'], self.GET['model_name'])
+            self.model = get_model(self.GET['app_label'], self.GET['model_name'])
         except LookupError:
             self.model = None
         return self.model
