@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.db import models
 try:
     # Django 1.7 and upper
-    from django import apps
+    from django.apps import apps
     get_model = apps.get_model
 except ImportError:
     from django.db.models import get_model
