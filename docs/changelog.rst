@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.6.4 (not yet released)
+2.6.5 (not yet released)
 ------------------------
+
+2.6.4 (March 27th 2015)
+-----------------------
 
 * Fixed: Prepopulated fields with inlines.
 * Fixed: Hide row if only hidden fields are given.
