@@ -11,6 +11,11 @@ Changelog
 2.6.5 (not yet released)
 ------------------------
 
+* Fixed: Reversion object_history.html template.
+* Fixed: Added support for view_on_site.
+* Fixed: Position of custom views in index.html.
+* Fixed: White-space reassignment in cell layouts.
+
 2.6.4 (March 27th 2015)
 -----------------------
 
