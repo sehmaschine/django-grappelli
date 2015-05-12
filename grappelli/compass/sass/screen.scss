@@ -58,6 +58,9 @@ body {
     @extend .grp-line-height;
     background: #fff;
     overflow: visible;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .grp-column {
