@@ -36,6 +36,23 @@ def ajax_response(data):
     return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder), content_type='application/javascript')
 
 
+def get_autocomplete_search_fields(model):
+    """
+    Returns the fields to be used for autocomplete of the given model,
+    first using the autocomplete_search_fields() static method when defined on
+    the model.
+    If the staticmethod is not declared, looks for the fields value in the
+    GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS setting for the given app/model.
+    """
+    if hasattr(model, 'autocomplete_search_fields'):
+        return model.autocomplete_search_fields()
+
+    try:
+        return AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.model_name]
+    except KeyError:
+        return
+
+
 class RelatedLookup(View):
     "Related Lookup"
 
@@ -126,14 +143,7 @@ class AutocompleteLookup(RelatedLookup):
         except AttributeError:
             pass
 
-        try:
-            search_fields = model.autocomplete_search_fields()
-        except AttributeError:
-            try:
-                search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
-            except KeyError:
-                search_fields = ()
-
+        search_fields = get_autocomplete_search_fields(self.model)
         if search_fields:
             for word in term.split():
                 search = [models.Q(**{smart_text(item): smart_text(word)}) for item in search_fields]
