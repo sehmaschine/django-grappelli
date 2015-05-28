@@ -200,6 +200,13 @@
 .grp-collapse {
     @include grp-collapse;
 }
+.grp-collapse,
+.grp-collapse .grp-row,
+.grp-collapse-handler {
+    &::selection {
+        background: transparent;
+    }
+}
 
 
 
