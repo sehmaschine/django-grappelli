@@ -1,4 +1,4 @@
-{% load firstof from future %}{% spaceless %}
+{% spaceless %}
 {% if request.session.original_user %}
     <li><a href="{% url 'grp_switch_user' request.session.original_user.id %}?redirect={{ request.path }}" class="grp-switch-user-is-original">{{ request.session.original_user.username }}</a></li>
 {% endif %}
