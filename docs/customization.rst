@@ -13,9 +13,6 @@ While |grappelli| is mainly about the look & feel of the admin interface, it als
 Available Settings
 ------------------
 
-.. versionadded:: 2.5.4
-    Added setting ``GRAPPELLI_CLEAN_INPUT_TYPES``.
-
 ``GRAPPELLI_ADMIN_TITLE``
     The Site Title of your admin interface. Change this instead of changing index.html
 
@@ -44,7 +41,7 @@ Available Settings
 Collapsibles
 ------------
 
-Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/1.7/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/1.7/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``:
+Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <http://docs.djangoproject.com/en/1.8/ref/contrib/admin/#modeladmin-objects>`_ or an `InlineModelAdmin <http://docs.djangoproject.com/en/1.8/ref/contrib/admin/#inlinemodeladmin-objects>`_. Possible values are ``grp-collapse grp-open`` and ``grp-collapse grp-closed``:
 
 .. code-block:: python
 
@@ -69,7 +66,7 @@ Use the ``classes`` property in order to define collapsibles for a `ModelAdmin <
     class TabularItemInline(admin.TabularInline):
         classes = ('grp-collapse grp-open',)
 
-With `StackedInlines <https://docs.djangoproject.com/en/1.7/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of inline items (as opposed to the inline group):
+With `StackedInlines <https://docs.djangoproject.com/en/1.8/ref/contrib/admin/#django.contrib.admin.StackedInline>`_, an additional property ``inline_classes`` is available to define the default collapsible state of inline items (as opposed to the inline group):
 
 .. code-block:: python
 
@@ -428,8 +425,6 @@ You sometimes might need to see the admin interface as a different user (e.g. in
 
 Clean input types
 -----------------
-
-.. versionadded:: 2.5.4
 
 With setting ``GRAPPELLI_CLEAN_INPUT_TYPES`` to ``True``, |grappelli| automatically replaces all HTML5 input types (search, email, url, tel, number, range, date month, week, time, datetime, datetime-local, color) with ``type="text"``. This is useful if you want to avoid browser inconsistencies with the admin interface. Moreover, you remove frontend form validation and thereby ensure a consistent user experience.
 

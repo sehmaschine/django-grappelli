@@ -47,7 +47,7 @@ Branches
 --------
 
 Please commit to the stable branch of a specific |grappelli| version and do not use the master branch.
-For example, in order to send pull-requests for |grappelli| 2.5, use the branch stable/2.5.x.
+For example, in order to send pull-requests for |grappelli| 2.7, use the branch stable/2.7.x.
 
 .. _contributingpython:
 

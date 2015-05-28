@@ -5,20 +5,15 @@
 
 .. _releasenotes:
 
-Grappelli 2.6.x Release Notes
+Grappelli 2.7.x Release Notes
 =============================
 
-**Grappelli 2.6.x is compatible with Django 1.7**.
+**Grappelli 2.7.x is compatible with Django 1.8**.
 
 This release does not introduce any new features.
 
-Update from Grappelli 2.5.x
+Update from Grappelli 2.6.x
 ---------------------------
 
-* Update Django to 1.7 and check https://docs.djangoproject.com/en/dev/releases/1.7/
-* Update Grappelli to 2.6.x
-
-Changes compared with Grappelli 2.5.x
--------------------------------------
-
-* The setting ``GRAPPELLI_CLEAN_INPUT_TYPES`` is set to ``True`` by default.
+* Update Django to 1.8 and check https://docs.djangoproject.com/en/dev/releases/1.8/
+* Update Grappelli to 2.7.x

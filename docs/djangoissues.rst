@@ -34,13 +34,6 @@ First, the ``can_order`` attribute is not available with the admin interface. Se
 
 see http://code.djangoproject.com/ticket/14238
 
-Translating App Names
----------------------
-
-It's not possible to (easily) translate the names of apps within the admin interface which leads to a strange language mix (esp. on the index page).
-
-see http://code.djangoproject.com/ticket/3591 and http://code.djangoproject.com/ticket/14251
-
 HTML5 input types
 -----------------
 
@@ -82,13 +75,6 @@ Searching Generic Relations
 ---------------------------
 
 It's not possible to use a ``content_object`` within search_fields.
-
-Save Object and return to Changelist
-------------------------------------
-
-When you edit an object and save it, you are redirected to an unfiltered changelist. That's pretty annoying when you've filtered the changelist before editing the object.
-
-Solved with Django 1.6+
 
 Javascript loading
 ------------------
