@@ -5,11 +5,13 @@
  */
 
 (function($) {
+    var lastChecked;
+
     $.fn.actions = function(opts) {
         var options = $.extend({}, $.fn.actions.defaults, opts);
         var actionCheckboxes = $(this);
         var list_editable_changed = false;
-        checker = function(checked) {
+        var checker = function(checked) {
             if (checked) {
                 showQuestion();
                 $(actionCheckboxes).prop("checked", true)
@@ -19,7 +21,7 @@
                 $(actionCheckboxes).prop("checked", false)
                     .parent().parent().removeClass(options.selectedClass);
             }
-        };
+        },
         updateCounter = function() {
             var sel = $(actionCheckboxes).filter(":checked").length;
             $(options.counterContainer).html(interpolate(
@@ -28,6 +30,7 @@
                 cnt: _actions_icnt
             }, true));
             $(options.allToggle).prop("checked", function() {
+                var value;
                 if (sel == actionCheckboxes.length) {
                     value = true;
                     showQuestion();
@@ -37,12 +40,12 @@
                 }
                 return value;
             });
-        };
+        },
         showQuestion = function() {
             $(options.acrossClears).hide();
             $(options.acrossQuestions).show();
             $(options.allContainer).hide();
-        };
+        },
         showClear = function() {
             $(options.acrossClears).show();
             $(options.acrossQuestions).hide();
@@ -50,14 +53,14 @@
             $(options.allContainer).show();
             $(options.counterContainer).hide();
             $(options.counterContainer).parent('li').hide();
-        };
+        },
         reset = function() {
             $(options.acrossClears).hide();
             $(options.acrossQuestions).hide();
             $(options.allContainer).hide();
             $(options.counterContainer).show();
             $(options.counterContainer).parent('li').show();
-        };
+        },
         clearAcross = function() {
             reset();
             $(options.acrossInput).val(0);
@@ -77,12 +80,12 @@
             checker($(this).prop("checked"));
             updateCounter();
         });
-        $("div.grp-changelist-actions li.grp-question a").click(function(event) {
+        $(options.acrossQuestions + " a").click(function(event) {
             event.preventDefault();
             $(options.acrossInput).val(1);
             showClear();
         });
-        $("div.grp-changelist-actions li.grp-clear-selection a").click(function(event) {
+        $(options.acrossClears + " a").click(function(event) {
             event.preventDefault();
             $(options.allToggle).prop("checked", false);
             clearAcross();
@@ -111,7 +114,6 @@
             lastChecked = target;
             updateCounter();
         });
-        
         // GRAPPELLI CUSTOM: REMOVED ALL JS-CONFIRMS
         // TRUSTED EDITORS SHOULD KNOW WHAT TO DO
         
@@ -119,7 +121,6 @@
         $(options.actionSelect).attr("autocomplete", "off").change(function(evt){
             $(this).parents("form").submit();
         });
-        
     };
     /* Setup plugin defaults */
     $.fn.actions.defaults = {

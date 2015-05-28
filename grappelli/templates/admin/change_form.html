@@ -107,15 +107,23 @@
 
 {% block extrahead %}
     {{ block.super }}
-    {% if adminform and add %}
     <script type="text/javascript">
-        (function($){
+        (function($) {
             $(document).ready(function() {
+                $('.add-another').click(function(e) {
+                    e.preventDefault();
+                    showAddAnotherPopup(this);
+                });
+                $('.related-lookup').click(function(e) {
+                    e.preventDefault();
+                    showRelatedObjectLookupPopup(this);
+                });
+            {% if adminform and add %}
                 $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
+            {% endif %}
             });
-        }(grp.jQuery));
+        })(grp.jQuery);
     </script>
-    {% endif %}
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->

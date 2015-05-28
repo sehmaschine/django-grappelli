@@ -111,4 +111,4 @@ var SelectBox = {
             box.options[i].selected = 'selected';
         }
     }
-};
+}
