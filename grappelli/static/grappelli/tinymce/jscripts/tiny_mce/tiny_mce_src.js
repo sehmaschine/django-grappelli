@@ -16373,6 +16373,10 @@ tinymce.ForceBlocks = function(editor) {
 		},
 
 		resizeBy : function(dw, dh, win) {
+			if (dw < 0)
+            	dw = 0;
+        	if (dh < 0)
+            	dh = 0;
 			win.resizeBy(dw, dh);
 		},
 
