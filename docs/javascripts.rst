@@ -17,7 +17,7 @@ Original Javascripts
 
 in ``/static/admin/js/``
 
-``calendar.js``, ``collapse.js``, ``collapse.min.js``, ``dateparse.js``, ``inlines.js``, ``inlines.min.js``, ``jquery.init.js``, ``jquery.js``, ``jquery.min.js``, ``timeparse.js``, ``DateTimeShortcuts.js``
+``calendar.js``, ``collapse.js``, ``collapse.min.js``, ``inlines.js``, ``inlines.min.js``, ``jquery.init.js``, ``jquery.js``, ``jquery.min.js``, ``timeparse.js``, ``DateTimeShortcuts.js``
     not used (empty to prevent 404)
 
 ``actions.js``, ``actions.min.js``
@@ -27,6 +27,9 @@ in ``/static/admin/js/``
     original
 
 ``prepopulate``, ``prepopulate.min.js``
+    original
+
+``related-widget-wrapper.js``
     original
 
 ``SelectBox.js``

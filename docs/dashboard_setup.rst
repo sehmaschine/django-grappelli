@@ -11,12 +11,13 @@ With the Django admin interface, the admin index page reflects the structure of 
 .. note::
     ``grappelli.dashboard`` is a simplified version of `Django Admin Tools <http://django-admin-tools.readthedocs.org/>`_: Bookmarks, Menus and the custom App Index are **not available with Grappelli**.
 
-Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` (before ``grappelli``). Check if the request context processor is being used:
+Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` (before ``grappelli``, but after ``django.contrib.contenttypes``). Check if the request context processor is being used:
 
 .. code-block:: python
-    :emphasize-lines: 2,9
+    :emphasize-lines: 3,10
 
     INSTALLED_APPS = (
+        'django.contrib.contenttypes',
         'grappelli.dashboard',
         'grappelli',
         'django.contrib.admin',
