@@ -16,6 +16,7 @@ from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.utils import prepare_lookup_value
 from django.core.serializers.json import DjangoJSONEncoder
+from django.apps import apps
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
@@ -48,7 +49,7 @@ class RelatedLookup(View):
 
     def get_model(self):
         try:
-            self.model = models.get_model(self.GET['app_label'], self.GET['model_name'])
+            self.model = apps.get_model(self.GET['app_label'], self.GET['model_name'])
         except LookupError:
             self.model = None
         return self.model

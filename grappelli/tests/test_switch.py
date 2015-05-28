@@ -102,7 +102,7 @@ class SwitchTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual([m.message for m in list(response.context['messages'])], [_("Permission denied.")])
         self.assertEqual(self.client.session.get("original_user", None), None)
-        self.assertEqual(self.client.session['_auth_user_id'], original_user.pk)
+        self.assertEqual(int(self.client.session['_auth_user_id']), original_user.pk)
 
     def test_switch_superuser001_editor001(self):
         """
@@ -117,7 +117,7 @@ class SwitchTests(TestCase):
         response = self.client.get("%s?redirect=%s" % (reverse("grp_switch_user", args=[target_user.id]), reverse("admin:grappelli_category_changelist")), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.client.session.get("original_user", None), {"id": original_user.id, "username": original_user.username})
-        self.assertEqual(self.client.session['_auth_user_id'], target_user.pk)
+        self.assertEqual(int(self.client.session['_auth_user_id']), target_user.pk)
 
         # templatetag (Superuser001, Editor001, Editor002)
         # now we have an additional list element with the original user, Superuser001
@@ -129,7 +129,7 @@ class SwitchTests(TestCase):
         response = self.client.get("%s?redirect=%s" % (reverse("grp_switch_user", args=[original_user.id]), reverse("admin:grappelli_category_changelist")), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.client.session.get("original_user", None), None)
-        self.assertEqual(self.client.session['_auth_user_id'], original_user.pk)
+        self.assertEqual(int(self.client.session['_auth_user_id']), original_user.pk)
 
     def test_switch_superuser001_user001(self):
         """
@@ -145,7 +145,7 @@ class SwitchTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual([m.message for m in list(response.context['messages'])], [_('%(name)s object with primary key %(key)r does not exist.') % {'name': "User", 'key': escape(target_user.id)}])
         self.assertEqual(self.client.session.get("original_user", None), None)
-        self.assertEqual(self.client.session['_auth_user_id'], original_user.pk)
+        self.assertEqual(int(self.client.session['_auth_user_id']), original_user.pk)
 
     def test_switch_editor001_user001(self):
         """
@@ -161,4 +161,4 @@ class SwitchTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual([m.message for m in list(response.context['messages'])], [_("Permission denied.")])
         self.assertEqual(self.client.session.get("original_user", None), None)
-        self.assertEqual(self.client.session['_auth_user_id'], original_user.pk)
+        self.assertEqual(int(self.client.session['_auth_user_id']), original_user.pk)
