@@ -42,6 +42,7 @@
         {% else %}
             <div class="grp-group">
                 <h2>{% blocktrans %}Are you sure you want to delete the selected {{ objects_name }}? All of the following objects and their related items will be deleted:{% endblocktrans %}</h2>
+                {% include "admin/includes/object_delete_summary.html" %}
                 {% for deleteable_object in deletable_objects %}
                     <ul class="grp-nested-list">{{ deleteable_object|unordered_list }}</ul>
                 {% endfor %}
