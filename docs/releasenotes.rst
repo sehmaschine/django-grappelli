@@ -10,7 +10,10 @@ Grappelli 2.7.x Release Notes
 
 **Grappelli 2.7.x is compatible with Django 1.8**.
 
-This release does not introduce any new features.
+New
+---
+
+* jQuery has been updated to 2.1.4 (from 1.9.1).
 
 Update from Grappelli 2.6.x
 ---------------------------
