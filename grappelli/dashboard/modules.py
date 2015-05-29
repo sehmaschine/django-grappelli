@@ -91,7 +91,7 @@ class DashboardModule(object):
                 title = 'History'
 
                 def init_with_context(self, context):
-                    request = context['request']
+                    request = context.request if hasattr(context, 'request') else context.get('request')
                     # we use sessions to store the visited pages stack
                     history = request.session.get('history', [])
                     for item in history:
@@ -223,7 +223,8 @@ class AppList(DashboardModule, AppListElementMixin):
     def init_with_context(self, context):
         if self._initialized:
             return
-        items = self._visible_models(context['request'])
+        request = context.request if hasattr(context, 'request') else context.get('request')
+        items = self._visible_models(request)
         apps = {}
         for model, perms in items:
             app_label = model._meta.app_label
@@ -268,7 +269,8 @@ class ModelList(DashboardModule, AppListElementMixin):
     def init_with_context(self, context):
         if self._initialized:
             return
-        items = self._visible_models(context['request'])
+        request = context.request if hasattr(context, 'request') else context.get('request')
+        items = self._visible_models(request)
         if not items:
             return
         for model, perms in items:
@@ -305,8 +307,8 @@ class RecentActions(DashboardModule):
             return
         from django.db.models import Q
         from django.contrib.admin.models import LogEntry
-
-        request = context['request']
+        
+        request = context.request if hasattr(context, 'request') else context.get('request')
 
         def get_qset(list):
             qset = None
