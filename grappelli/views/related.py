@@ -130,7 +130,7 @@ class AutocompleteLookup(RelatedLookup):
             search_fields = model.autocomplete_search_fields()
         except AttributeError:
             try:
-                search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.module_name]
+                search_fields = AUTOCOMPLETE_SEARCH_FIELDS[model._meta.app_label][model._meta.model_name]
             except KeyError:
                 search_fields = ()
 
