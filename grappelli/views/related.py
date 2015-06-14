@@ -14,7 +14,7 @@ from django.views.generic import View
 from django.utils.translation import ungettext, ugettext as _
 from django.utils.encoding import smart_text
 from django.core.exceptions import PermissionDenied
-from django.contrib.admin.util import prepare_lookup_value
+from django.contrib.admin.utils import prepare_lookup_value
 from django.core.serializers.json import DjangoJSONEncoder
 
 # GRAPPELLI IMPORTS
