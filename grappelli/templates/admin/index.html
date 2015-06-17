@@ -63,11 +63,11 @@
             {% if custom_list %}
                 <div class="grp-module" id="custom_views">
                     <h2>{% trans 'Custom Views' %}</h2>
-                    <div class="grp-row">
-                        {% for path, name in custom_list %}
+                    {% for path, name in custom_list %}
+                        <div class="grp-row">
                             <a href="{{ path }}"><strong>{{ name }}</strong></a>
-                        {% endfor %}
-                    </div>
+                        </div>
+                    {% endfor %}
                 </div>
             {% endif %}
         {% endblock %}
