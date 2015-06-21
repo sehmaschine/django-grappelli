@@ -50,7 +50,8 @@ function dismissRelatedLookupPopup(win, chosenId) {
     } else {
         document.getElementById(name).value = chosenId;
     }
-    // GRAPPELLI CUSTOM: element focus
+    // GRAPPELLI CUSTOM: element focus and trigger change event.
+    window.grp.jQuery(elem).change();
     elem.focus();
     win.close();
 }
@@ -60,6 +61,7 @@ function removeRelatedObject(triggeringLink) {
     var id = triggeringLink.id.replace(/^remove_/, '');
     var elem = document.getElementById(id);
     elem.value = "";
+    window.grp.jQuery(elem).change();
     elem.focus();
 }
 
@@ -98,6 +100,7 @@ function dismissAddAnotherPopup(win, newId, newRepr) {
             } else {
                 elem.value = newId;
             }
+            window.grp.jQuery(elem).change();
             elem.focus();
         }
     } else {
