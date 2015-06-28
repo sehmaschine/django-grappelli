@@ -21,8 +21,8 @@
                             <th scope="grp-row"><a href="{{ action.url }}">{{ action.revision.date_created }}</a></th>
                             <td>
                                 {% if action.revision.user %}
-                                    {{action.revision.user.get_username}}
-                                    {% if action.revision.user.get_full_name %} ({{action.revision.user.get_full_name}}){% endif %}
+                                    {{ action.revision.user.get_username }}
+                                    {% if action.revision.user.get_full_name %} ({{ action.revision.user.get_full_name }}){% endif %}
                                 {% else %}
                                     &mdash;
                                 {% endif %}

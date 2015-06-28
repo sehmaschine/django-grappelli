@@ -119,9 +119,8 @@
             }
             .c-2 {
                 display: table-cell;
-                // white-space: normal;
                 * {
-                    white-space: normal; // needed for e.g. .grp-placeholder-related-m2m
+                    white-space: pre-wrap; // needed for e.g. .grp-placeholder-related-m2m
                 }
                 float: none;
                 padding-right: 0;
