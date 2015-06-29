@@ -221,6 +221,15 @@ fieldset.grp-module {
             margin: 0;
         }
     }
+    input + &,
+    select + &,
+    textarea + & {
+        top: -15px;
+        display: inline-block;
+        float: none;
+        padding-left: 0;
+        margin-right: 0;
+    }
 }
 
 
