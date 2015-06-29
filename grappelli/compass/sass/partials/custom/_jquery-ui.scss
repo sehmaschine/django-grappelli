@@ -49,6 +49,9 @@
 .ui-widget-header .ui-state-default {
     font-weight: bold;
 }
+.ui-widget-content .ui-state-default {
+    background: #CEE9F2;
+}
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
 .ui-widget-header .ui-state-hover,
@@ -262,6 +265,17 @@
                 &.ui-state-highlight {
                     border-color: #bababa;
                     background: #d6d6d6;
+                }
+            }
+            &.ui-datepicker-today {
+                a {
+                    border-color: #bababa;
+                    background: #d6d6d6;
+                }
+            }
+            &.ui-datepicker-current-day {
+                a {
+                    background: #fff;
                 }
             }
         }
