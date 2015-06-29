@@ -223,13 +223,20 @@ fieldset.grp-module {
     }
     input + &,
     select + &,
-    textarea + & {
+    textarea + &,
+    .radiolist + &,
+    .checkboxlist + & {
         position: absolute;
         top: 1px;
         display: inline-block;
         float: none;
         padding-left: 0;
         margin-right: 0;
+    }
+    .radiolist + &,
+    .checkboxlist + & {
+        top: 2px;
+        margin-left: 20px;
     }
 }
 
