@@ -224,7 +224,8 @@ fieldset.grp-module {
     input + &,
     select + &,
     textarea + & {
-        top: -15px;
+        position: absolute;
+        top: 1px;
         display: inline-block;
         float: none;
         padding-left: 0;
