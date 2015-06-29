@@ -34,6 +34,11 @@ p.grp-help {
 .grp-row p.grp-help {
     margin-bottom: -2px;
 }
+.grp-related-widget-wrapper + p.grp-help {
+    position: relative;
+    clear: left;
+    margin-top: 5px;
+}
 
 
 /*  Description ......................................... */

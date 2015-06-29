@@ -372,7 +372,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         
     }
     .selector-chosen select[multiple=multiple] {
-        height: 235px;
+        height: 235px !important;
     }
     a.selector-add {
         background-image: url('../images/icons/selector-add-m2m-horizontal.png');

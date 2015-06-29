@@ -206,3 +206,21 @@ fieldset.grp-module {
 
 
 
+
+/*  Related widget tools ................................................... */
+
+.grp-related-widget-tools {
+    position: relative;
+    float: left;
+    top: 2px;
+    padding-left: 760px;
+    margin-right: -10000px;
+    a {
+        &.add-another {
+            top: 0;
+            margin: 0;
+        }
+    }
+}
+
+
