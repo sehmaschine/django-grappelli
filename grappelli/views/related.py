@@ -149,7 +149,7 @@ class AutocompleteLookup(RelatedLookup):
         qs = super(AutocompleteLookup, self).get_queryset()
         qs = self.get_filtered_queryset(qs)
         qs = self.get_searched_queryset(qs)
-        return qs.distinct()
+        return qs.distinct(self.model._meta.pk.column)
 
     def get_data(self):
         return [{"value": f.pk, "label": get_label(f)} for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
