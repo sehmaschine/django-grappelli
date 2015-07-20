@@ -95,6 +95,10 @@
                                                     {% switch_user_dropdown %}
                                                 </ul>
                                             </li>
+                                            <!-- Site URL -->
+                                            {% if site_url %}
+                                                <li><a href="{{ site_url }}">{% trans 'View site' %}</a></li>
+                                            {% endif %}
                                             <!-- Documentation -->
                                             {% url 'django-admindocs-docroot' as docsroot %}
                                             {% if docsroot %}
@@ -108,7 +112,7 @@
                             {% block nav-global %}{% endblock %}
                         </div>
                     {% endblock %}
-                    
+
                     {% block context-navigation %}
                         <!-- CONTEXT NAVIGATION -->
                         <div id="grp-context-navigation">
@@ -129,20 +133,20 @@
                             </nav>
                         </div>
                     {% endblock %}
-                    
+
                 {% endif %}
             </header>
         {% endblock %}
 
         <!-- CONTENT -->
         <article id="grp-content" class="{% block content-class %}{% endblock %}">
-            
+
             <!-- MESSAGES -->
             {% block messages %}
                 {% if messages %}
                     <ul class="grp-messagelist">
                         <!-- NOTE: no message|capfirst by purpose, because it does not work in some languages -->
-                        {% for message in messages %} 
+                        {% for message in messages %}
                             <li{% if message.tags %} class="grp-{{ message.tags }}"{% endif %}>{{ message }}</li>
                         {% endfor %}
                     </ul>
@@ -165,7 +169,7 @@
             </div>
 
         </article>
-        
+
         <!-- FOOTER -->
         {% block footer %}{% endblock %}
 
