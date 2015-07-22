@@ -32,8 +32,8 @@ def autodiscover(blacklist=[]):
     provide their own app index dashboard.
     """
     import imp
+    from importlib import import_module
     from django.conf import settings
-    from django.utils.importlib import import_module
 
     blacklist.append('grappelli')
     blacklist.append('grappelli.dashboard')
