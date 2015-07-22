@@ -8,7 +8,10 @@
 Changelog
 =========
 
-2.7.1 (not yet released)
-------------------------
+2.7.2 (not yet relased)
+-----------------------
+
+2.7.1 (July 22nd, 2015)
+-----------------------
 
 * First release of Grappelli which is compatible with Django 1.8.

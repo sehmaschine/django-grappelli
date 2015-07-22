@@ -14,6 +14,7 @@ New
 ---
 
 * jQuery has been updated to 2.1.4 (from 1.9.1).
+* Breadcrumbs with preserved filters.
 
 Update from Grappelli 2.6.x
 ---------------------------
