@@ -148,7 +148,7 @@ var inputTypes = [
     grappelli.get_app_label = function(elem) {
         var link = elem.next("a");
         if (link.length > 0) {
-            var url = link.attr('href').split('/');
+            var url = link.attr('href').split('?')[0].split('/');
             return url[url.length-3];
         }
         return false;
@@ -156,7 +156,7 @@ var inputTypes = [
     grappelli.get_model_name = function(elem) {
         var link = elem.next("a");
         if (link.length > 0) {
-            var url = link.attr('href').split('/');
+            var url = link.attr('href').split('?')[0].split('/');
             return url[url.length-2];
         }
         return false;
