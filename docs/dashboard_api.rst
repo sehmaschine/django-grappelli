@@ -313,7 +313,7 @@ Class that represents a feed dashboard module.
 .. note::
 
     This class requires the
-    `Universal Feed Parser module <http://www.feedparser.org/>`_, so you'll need to install it.
+    `Universal Feed Parser module <https://pypi.python.org/pypi/feedparser>`_, so you'll need to install it.
 
 As well as the :class:`~grappelli.dashboard.modules.DashboardModule`
 properties, the :class:`~grappelli.dashboard.modules.Feed` takes two
