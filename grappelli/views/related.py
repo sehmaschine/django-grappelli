@@ -7,7 +7,7 @@ from functools import reduce
 
 # DJANGO IMPORTS
 from django.http import HttpResponse
-from django.db import models
+from django.db import models, connection
 from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
@@ -160,7 +160,11 @@ class AutocompleteLookup(RelatedLookup):
         qs = super(AutocompleteLookup, self).get_queryset()
         qs = self.get_filtered_queryset(qs)
         qs = self.get_searched_queryset(qs)
-        return qs.distinct()
+        if connection.vendor == 'postgresql':
+            distinct_columns = list(self.model._meta.ordering) + [self.model._meta.pk.column]
+            return qs.order_by(*distinct_columns).distinct(*distinct_columns)
+        else:
+            return qs.distinct()
 
     def get_data(self):
         return [{"value": f.pk, "label": get_label(f)} for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
