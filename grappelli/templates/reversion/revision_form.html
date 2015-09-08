@@ -16,14 +16,11 @@
 
 {% block object-tools %}{% endblock%}
 
-{% block content %}
-    {% with 1 as is_popup %}
-        {{ block.super }}
-    {% endwith %}
-{% endblock %}
-
 {% block form_top %}
     <div class="grp-rte">
         <p>{% blocktrans %}Press the save button below to revert to this version of the object.{% endblocktrans %}</p>
     </div>
 {% endblock %}
+
+{% block submit_buttons_top %}{% with is_popup=1 %}{{block.super}}{% endwith %}{% endblock %}
+{% block submit_buttons_bottom %}{% with is_popup=1 %}{{block.super}}{% endwith %}{% endblock %}
