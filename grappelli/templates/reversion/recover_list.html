@@ -1,11 +1,11 @@
 {% extends "admin/base_site.html" %}
-{% load i18n %}
+{% load i18n admin_urls %}
 
 {% block breadcrumbs %}
     <ul>
         <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
         <li><a href="{% url 'admin:app_list' app_label %}">{% trans app_label|capfirst|escape %}</a></li>
-        <li><a href="{{ changelist_url }}">{% trans opts.verbose_name_plural|capfirst %}</a></li>
+        <li><a href="{% url opts|admin_urlname:'changelist' %}">{% trans opts.verbose_name_plural|capfirst %}</a></li>
         <li>{% blocktrans with opts.verbose_name_plural|escape as name %}Recover deleted {{ name }}{% endblocktrans %}</li>
     </ul>
 {% endblock %}
