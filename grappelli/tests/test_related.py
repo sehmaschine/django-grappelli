@@ -112,7 +112,8 @@ class RelatedTests(TestCase):
 
         # custom queryset (Editor)
         # FIXME: this should fail, because the custom admin queryset
-        # limits the entry to the logged in superuser
+        # limits the entry to the logged in user (but we currently do not make use
+        # of custom admin querysets)
         self.client.login(username="Editor001", password="editor001")
         response = self.client.get("%s?object_id=1&app_label=%s&model_name=%s" % (reverse("grp_related_lookup"), "grappelli", "entry"))
         self.assertEqual(response.status_code, 200)

@@ -4,8 +4,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class Category(models.Model):
     name = models.CharField("Title", max_length=50)
 
@@ -14,7 +16,7 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @staticmethod
@@ -25,6 +27,7 @@ class Category(models.Model):
         return "%s (%s)" % (self.name, self.id)
 
 
+@python_2_unicode_compatible
 class Entry(models.Model):
     title = models.CharField("Title", max_length=200)
     category = models.ForeignKey(Category, related_name="entries", blank=True, null=True)
@@ -40,7 +43,7 @@ class Entry(models.Model):
         verbose_name_plural = "Entries"
         ordering = ["-date", "title"]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @staticmethod
