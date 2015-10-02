@@ -5,6 +5,7 @@ Module where grappelli dashboard classes are defined.
 """
 
 # DJANGO IMPORTS
+from django.utils import six
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django import forms
@@ -14,7 +15,7 @@ from grappelli.dashboard import modules
 from grappelli.dashboard.utils import get_admin_site_name
 
 
-class Dashboard(object):
+class Dashboard(six.with_metaclass(forms.MediaDefiningClass)):
     """
     Base class for dashboards.
     The Dashboard class is a simple python list that has three additional
@@ -85,13 +86,6 @@ class Dashboard(object):
                 ))
 
     """
-
-    # Using Django's Media meta class
-    __metaclass__ = forms.MediaDefiningClass
-
-    def _media(self):
-        return forms.Media()
-    media = property(_media)
 
     title = _('Dashboard')
     template = 'grappelli/dashboard/dashboard.html'
