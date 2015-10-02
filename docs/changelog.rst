@@ -14,6 +14,8 @@ Changelog
 * Fixed: generating of autocomplete urls if add link url contains a query.
 * Fixed: get language code.
 * Fixed: registration templates.
+* Fixed: Registration templates.
+* Fixed: Updated django-smuggler templates.
 * Improved: Updating breadcrumb links using admin URLs.
 * Improved: Changed django-reversion templates to work with django-reversion>=1.9.3.
 * Improved: Allow Autocomplete lookups in tables with PostgreSQL json fields.
