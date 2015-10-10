@@ -7,5 +7,7 @@ script:
 env:
   - TOXENV=py27-django18
   - TOXENV=py34-django18
-  - TOXENV=py35-django18
-  - TOXENV=coverage
+branches:
+  only:
+    - master
+    - stable/2.7.x
