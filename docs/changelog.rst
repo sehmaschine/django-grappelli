@@ -11,6 +11,8 @@ Changelog
 2.7.2 (not yet relased)
 -----------------------
 
+* New: Better test coverage with tox.
+* New: Added Travis CI.
 * Fixed: Gnerating of autocomplete urls if add link url contains a query.
 * Fixed: Get language code.
 * Fixed: Registration templates.
@@ -19,7 +21,6 @@ Changelog
 * Improved: Changed django-reversion templates to work with django-reversion>=1.9.3.
 * Improved: Allow Autocomplete lookups in tables with PostgreSQL json fields.
 * Improved: Docs about inline sortables (esp. sortable excludes).
-* Improved: Better test coverage.
 * Improved: Added {% block grp_inline_options %} to facilitate extension (stacked/tabular inlines).
 
 2.7.1 (July 22nd, 2015)
