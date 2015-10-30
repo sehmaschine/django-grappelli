@@ -16,12 +16,12 @@ Changelog
 
 * New: Better test coverage with tox.
 * New: Added Travis CI.
-* Fixed: Gnerating of autocomplete urls if add link url contains a query.
+* Fixed: Autocomplete urls if add link url contains a query.
 * Fixed: Get language code.
 * Fixed: Registration templates.
-* Fixed: Updated django-smuggler templates.
+* Fixed: django-smuggler templates.
 * Fixed: Incorrect handling of related fields when there are multiple inlines of the same content type.
-* Fixed: Extra line breaks in fieldset breaks display of computed fields.
+* Fixed: Extra linebreaks in fieldset breaks display of computed fields.
 * Improved: Updating breadcrumb links using admin URLs.
 * Improved: Changed django-reversion templates to work with django-reversion>=1.9.3.
 * Improved: Allow Autocomplete lookups in tables with PostgreSQL json fields.
