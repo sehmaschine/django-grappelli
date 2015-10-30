@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.7.2 (not yet relased)
------------------------
+2.7.3 (not yet released)
+------------------------
+
+2.7.2 (October 30th, 2015)
+--------------------------
 
 * New: Better test coverage with tox.
 * New: Added Travis CI.
@@ -17,6 +20,8 @@ Changelog
 * Fixed: Get language code.
 * Fixed: Registration templates.
 * Fixed: Updated django-smuggler templates.
+* Fixed: Incorrect handling of related fields when there are multiple inlines of the same content type.
+* Fixed: Extra line breaks in fieldset breaks display of computed fields.
 * Improved: Updating breadcrumb links using admin URLs.
 * Improved: Changed django-reversion templates to work with django-reversion>=1.9.3.
 * Improved: Allow Autocomplete lookups in tables with PostgreSQL json fields.
