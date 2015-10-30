@@ -54,9 +54,7 @@ def get_admin_site(context=None, request=None):
     )
 
     if isinstance(dashboard_cls, dict):
-        if context:
-            request = context.get('request')
-        curr_url = request.META['PATH_INFO']
+        curr_url = context.get('request').path
         for key in dashboard_cls:
             mod, inst = key.rsplit('.', 1)
             mod = import_module(mod)
