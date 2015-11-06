@@ -33,6 +33,7 @@ Here's an example of a custom dashboard:
 
     class MyDashboard(Dashboard):
         def __init__(self, **kwargs):
+            Dashboard.__init__(self, **kwargs)
 
             # append an app list module for "Applications"
             self.children.append(modules.AppList(
