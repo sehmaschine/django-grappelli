@@ -53,8 +53,10 @@ def get_admin_site(context=None, request=None):
         'grappelli.dashboard.dashboards.DefaultIndexDashboard'
     )
 
-    if isinstance(dashboard_cls, dict) and context is not None:
-        curr_url = context.get('request').path
+    if isinstance(dashboard_cls, dict):
+        if context:
+            request = context.get('request')
+        curr_url = request.path
         for key in dashboard_cls:
             mod, inst = key.rsplit('.', 1)
             mod = import_module(mod)
