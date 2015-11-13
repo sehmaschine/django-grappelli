@@ -1,9 +1,12 @@
+{% load admin_static %}
 <!DOCTYPE html>
 <html>
     <head><title></title></head>
     <body>
-        <script type="text/javascript">
-            opener.dismissAddAnotherPopup(window, "{{ pk_value }}", "{{ obj }}");
-        </script>
+      <script type="text/javascript"
+              id="grapelli-popup-response-constants"
+              data-pk-value="{{ pk_value }}"
+              data-obj="{{ obj}}"
+              src="{% static "grapelli/js/old_inlines/popup_response.js" %}"></script>
     </body>
 </html>

@@ -1,25 +1,7 @@
-{% load l10n %}
+{% load l10n grp_tags admin_statc %}
 
-<script type="text/javascript">
-(function($) {
-    var field;
-    {% for field in prepopulated_fields %}
-        field = {
-            id: '#{{ field.field.auto_id }}',
-            dependency_ids: [],
-            dependency_list: [],
-            maxLength: {{ field.field.field.max_length|default_if_none:"50"|unlocalize }}
-        };
-        {% for dependency in field.dependencies %}
-        field['dependency_ids'].push('#{{ dependency.auto_id }}');
-        field['dependency_list'].push('{{ dependency.name }}');
-        {% endfor %}
-        // mark prepopulated fields in the main form and stacked inlines
-        $(field.id).addClass('prepopulated_field');
-        $(field.id).data('dependency_ids', field['dependency_ids']);
-        $(field.id).data('dependency_list', field['dependency_list']);
-        // prepopulate
-        $(field.id).prepopulate(field['dependency_ids'], field.maxLength);
-    {% endfor %}
-})(grp.jQuery);
+<script type="text/javascript"
+        id="grapelli-prepopulated-fields-js-constants"
+        src="{% static "grapelli/js/old_inlines/prepopulated_field_js.js" %}"
+        data-prepopulated-fields="{% prepopulated_fields_json prepopulated_fields %}">
 </script>
