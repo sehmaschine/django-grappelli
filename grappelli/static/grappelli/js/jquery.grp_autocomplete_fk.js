@@ -79,6 +79,7 @@
             })
             .autocomplete({
                 minLength: 1,
+                autoFocus: true,
                 delay: 1000,
                 source: function(request, response) {
                     $.ajax({
