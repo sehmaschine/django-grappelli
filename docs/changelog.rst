@@ -11,7 +11,7 @@ Changelog
 2.7.4 (not yet released)
 ------------------------
 
-2.7.3 (January 10th, 2016)
+2.7.3 (January 11th, 2016)
 --------------------------
 
 * Fixed: Context with Dashboard.
