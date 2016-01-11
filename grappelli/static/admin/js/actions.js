@@ -1,47 +1,18 @@
+/*global _actions_icnt, gettext, interpolate, ngettext*/
 /**
  * GRAPPELLI ACTIONS.JS
  * minor modifications compared with the original js
- * 
+ *
  */
 
 (function($) {
+    'use strict';
     var lastChecked;
-
     $.fn.actions = function(opts) {
         var options = $.extend({}, $.fn.actions.defaults, opts);
         var actionCheckboxes = $(this);
         var list_editable_changed = false;
-        var checker = function(checked) {
-            if (checked) {
-                showQuestion();
-                $(actionCheckboxes).prop("checked", true)
-                    .parent().parent().addClass(options.selectedClass);
-            } else {
-                reset();
-                $(actionCheckboxes).prop("checked", false)
-                    .parent().parent().removeClass(options.selectedClass);
-            }
-        },
-        updateCounter = function() {
-            var sel = $(actionCheckboxes).filter(":checked").length;
-            $(options.counterContainer).html(interpolate(
-            ngettext('%(sel)s of %(cnt)s selected', '%(sel)s of %(cnt)s selected', sel), {
-                sel: sel,
-                cnt: _actions_icnt
-            }, true));
-            $(options.allToggle).prop("checked", function() {
-                var value;
-                if (sel == actionCheckboxes.length) {
-                    value = true;
-                    showQuestion();
-                } else {
-                    value = false;
-                    clearAcross();
-                }
-                return value;
-            });
-        },
-        showQuestion = function() {
+        var showQuestion = function() {
             $(options.acrossClears).hide();
             $(options.acrossQuestions).show();
             $(options.allContainer).hide();
@@ -52,19 +23,47 @@
             $(options.actionContainer).toggleClass(options.selectedClass);
             $(options.allContainer).show();
             $(options.counterContainer).hide();
-            $(options.counterContainer).parent('li').hide();
         },
         reset = function() {
             $(options.acrossClears).hide();
             $(options.acrossQuestions).hide();
             $(options.allContainer).hide();
             $(options.counterContainer).show();
-            $(options.counterContainer).parent('li').show();
         },
         clearAcross = function() {
             reset();
             $(options.acrossInput).val(0);
             $(options.actionContainer).removeClass(options.selectedClass);
+        },
+        checker = function(checked) {
+            if (checked) {
+                showQuestion();
+            } else {
+                reset();
+            }
+            $(actionCheckboxes).prop("checked", checked)
+                .parent().parent().toggleClass(options.selectedClass, checked);
+        },
+        updateCounter = function() {
+            var sel = $(actionCheckboxes).filter(":checked").length;
+            // _actions_icnt is defined in the generated HTML
+            // and contains the total amount of objects in the queryset
+            $(options.counterContainer).html(interpolate(
+            ngettext('%(sel)s of %(cnt)s selected', '%(sel)s of %(cnt)s selected', sel), {
+                sel: sel,
+                cnt: _actions_icnt
+            }, true));
+            $(options.allToggle).prop("checked", function() {
+                var value;
+                if (sel === actionCheckboxes.length) {
+                    value = true;
+                    showQuestion();
+                } else {
+                    value = false;
+                    clearAcross();
+                }
+                return value;
+            });
         };
         // Show counter by default
         $(options.counterContainer).show();
@@ -72,7 +71,7 @@
         $(this).filter(":checked").each(function(i) {
             $(this).parent().parent().toggleClass(options.selectedClass);
             updateCounter();
-            if ($(options.acrossInput).val() == 1) {
+            if ($(options.acrossInput).val() === 1) {
                 showClear();
             }
         });
@@ -80,12 +79,12 @@
             checker($(this).prop("checked"));
             updateCounter();
         });
-        $(options.acrossQuestions + " a").click(function(event) {
+        $("a", options.acrossQuestions).click(function(event) {
             event.preventDefault();
             $(options.acrossInput).val(1);
             showClear();
         });
-        $(options.acrossClears + " a").click(function(event) {
+        $("a", options.acrossClears).click(function(event) {
             event.preventDefault();
             $(options.allToggle).prop("checked", false);
             clearAcross();
@@ -96,12 +95,12 @@
         $(actionCheckboxes).click(function(event) {
             if (!event) { event = window.event; }
             var target = event.target ? event.target : event.srcElement;
-            if (lastChecked && $.data(lastChecked) != $.data(target) && event.shiftKey === true) {
+            if (lastChecked && $.data(lastChecked) !== $.data(target) && event.shiftKey === true) {
                 var inrange = false;
                 $(lastChecked).prop("checked", target.checked)
                     .parent().parent().toggleClass(options.selectedClass, target.checked);
                 $(actionCheckboxes).each(function() {
-                    if ($.data(this) == $.data(lastChecked) || $.data(this) == $.data(target)) {
+                    if ($.data(this) === $.data(lastChecked) || $.data(this) === $.data(target)) {
                         inrange = (inrange) ? false : true;
                     }
                     if (inrange) {
@@ -116,7 +115,7 @@
         });
         // GRAPPELLI CUSTOM: REMOVED ALL JS-CONFIRMS
         // TRUSTED EDITORS SHOULD KNOW WHAT TO DO
-        
+
         // GRAPPELLI CUSTOM: submit on select
         $(options.actionSelect).attr("autocomplete", "off").change(function(evt){
             $(this).parents("form").submit();
@@ -135,4 +134,3 @@
         actionSelect: "div.grp-changelist-actions select"
     };
 })(grp.jQuery);
-
