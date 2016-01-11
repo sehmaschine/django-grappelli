@@ -12,16 +12,11 @@
                     {% else %}
                         <strong>{{ model.title }}</strong>
                     {% endif %}
-                    {% if model.add_url or model.admin_url %}
+                    {% if model.add_url %}
                         <ul class="grp-actions">
                             {% if model.add_url %}
-                                <li class="grp-add-link">
-                                    <a href="{{ model.add_url }}">{% trans "Add" %}</a>
-                                </li>
-                            {% endif %}
-                            {% if model.admin_url %}
-                                <li class="grp-change-link">
-                                    <a href="{{ model.admin_url }}">{% trans "Change" %}</a>
+                                <li class="grp-icon grp-add-link">
+                                    <a href="{{ model.add_url }}" title="{% trans "Add" %}">&nbsp;</a>
                                 </li>
                             {% endif %}
                         </ul>

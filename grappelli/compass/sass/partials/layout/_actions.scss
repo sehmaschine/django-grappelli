@@ -6,10 +6,10 @@
 
 @mixin grp-actions-links {
     li {
-        &.grp-add-link, 
-        &.grp-change-link, 
+        &.grp-add-link,
+        &.grp-change-link,
         &.grp-delete-link {
-            a, 
+            a,
             > span:first-child {
                 padding-left: $grp-padding-size-l;
                 display: block;
@@ -22,12 +22,18 @@
         &.grp-change-link a {
             @include icons-small-sprite(change-link);
         }
-        &.grp-delete-link a, 
+        &.grp-delete-link a,
         &.grp-delete-link > span:first-child {
             @include icons-small-sprite(delete-link);
         }
+        &.grp-icon {
+            a,
+            > span:first-child {
+                padding: 0 6px 0 6px;
+            }
+        }
     }
-    
+
 }
 @mixin grp-actions {
     @include horizontal-list(5px, left);
