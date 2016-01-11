@@ -11,5 +11,4 @@ env:
   - TOXENV=py35-django18
 branches:
   only:
-    - master
-    - stable/2.7.x
+    - stable/2.8.x
