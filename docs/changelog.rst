@@ -18,6 +18,8 @@ Changelog
 * Improved: Added Python 3.5 to travis.
 * Improved: Strip descending order marks from distinct columns in autocomplete on PostgreSQL.
 * Improved: Added autofocus to autocompletes.
+* Improved: Added original Django id/classes (container, inline-group, inline-related, tabular, module, form-row, field-box).
+* Improved: Simplified dashboard design (removed redundant change link).
 
 2.7.2 (October 30th, 2015)
 --------------------------
