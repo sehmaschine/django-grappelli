@@ -233,8 +233,8 @@ def switch_user_dropdown(context):
             return ""
         if SWITCH_USER_ORIGINAL(original_user):
             object_list = [user for user in User.objects.filter(is_staff=True).exclude(pk=original_user.pk) if SWITCH_USER_TARGET(original_user, user)]
-            return tpl.render(Context({
+            return tpl.render({
                 'request': request,
-                'object_list': object_list,
-            }))
+                'object_list': object_list
+            })
     return ""
