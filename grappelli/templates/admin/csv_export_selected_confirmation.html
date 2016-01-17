@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n admin_static %}
+{% load i18n %}
 
 <!-- BREADCRUMBS -->
 {% block breadcrumbs %}
@@ -15,7 +15,16 @@
 
 <!-- CONTENT -->
 {% block content %}
-    <script type="text/javascript" src="{% static "grapelli/js/csv_export_selected_confirmation.js" %}></script>
+    <script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                $("input").attr("autocomplete", "off");
+                $('#select_all').click(function(){
+                    $("._fields").attr('checked', $(this).attr('checked'));
+                });
+            });
+        })(grp.jQuery);
+    </script>
     <div class="g-d-c csv-export-confirmation">
         <form action="" method="post">{% csrf_token %}
             <fieldset class="grp-module">

@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n grp_tags admin_static %}
+{% load i18n grp_tags %}
 
 <!-- BODYCLASS -->
 {% block bodyclass %}grp-login{% endblock %}
@@ -9,7 +9,11 @@
 <!-- EXTRAHEAD-->
 {% block extrahead %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static "grapelli/js/old_inlines/login.js" %}></script>
+    <script type="text/javascript">
+        (function($) {
+            $(window).load(function(){ $('#id_username').focus(); });
+        })(grp.jQuery);
+    </script>
 {% endblock %}
 
 <!-- CONTENT -->
