@@ -17,8 +17,8 @@ from grappelli.templatetags.grp_tags import switch_user_dropdown
 @override_settings(GRAPPELLI_SWITCH_USER=True)
 @override_settings(GRAPPELLI_SWITCH_USER_ORIGINAL=lambda user: user.is_superuser)
 @override_settings(GRAPPELLI_SWITCH_USER_TARGET=lambda original_user, user: user.is_staff and not user.is_superuser)
+@override_settings(ROOT_URLCONF="grappelli.tests.urls")
 class SwitchTests(TestCase):
-    urls = "grappelli.tests.urls"
 
     def setUp(self):
         """
