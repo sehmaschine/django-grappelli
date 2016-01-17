@@ -21,19 +21,20 @@
     {% block extrastyle %}{% endblock %}
     <!-- JAVASCRIPTS -->
     {% block javascripts %}
+        <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "grappelli/" %}{% endfilter %}";</script>
+        <script type="text/javascript">window.__admin_utc_offset__ = "{% filter escapejs %}{% now "Z" %}{% endfilter %}";</script>
+        <script type="text/javascript" charset="utf-8">
+            // GLOBALS
+            var grappelli = {},
+                ADMIN_URL = "{% url 'admin:index' %}",
+                MODEL_URL_ARRAY = {% if user.is_staff %}{% get_content_types %}{% else %}[]{% endif %},
+                DATE_FORMAT = "{% get_date_format %}",
+                TIME_FORMAT = "{% get_time_format %}",
+                DATETIME_FORMAT = "{% get_datetime_format %}";
+        </script>
         <!-- jQuery, jQuery-UI -->
         <script src="{% static "grappelli/jquery/jquery-2.1.4.min.js" %}" type="text/javascript"></script>
         <script src="{% static "grappelli/jquery/ui/jquery-ui.min.js" %}" type="text/javascript"></script>
-        <script type="text/javascript"
-                id="grapelli-global-constants"
-                src="{% static "grappelli/js/old_inlines/global_constants.js" %}"
-                data-admin-media-prefix="{% static "grapelli/" %}"
-                data-admin-utc-offset="{% now "Z" %}"
-                data-admin-url="{% url 'admin:index %}"
-                data-model-url-array="{% if user.is_staff %}{% get_content_types %}{% else %}[]{% endif %}"
-                data-date-format="{% get_date_format %}"
-                data-time-format="{% get_time_format %}"
-                data-datetime-format="{% get_datetime_format %}"></script>
         {% if debug %}
             <!-- Grappelli Main JS -->
             <script src="{% static "grappelli/js/grappelli.js" %}" type="text/javascript"></script>
@@ -52,7 +53,13 @@
             <!-- Grappelli Minified -->
             <script src="{% static "grappelli/js/grappelli.min.js" %}" type="text/javascript"></script>
         {% endif %}
-        <script type="text/javascript" src="{% static "grapelli/js/old_inlines/make_collapsible.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            (function($) {
+                $(document).ready(function() {
+                    $("#grp-navigation .grp-collapse").grp_collapsible();
+                });
+            })(grp.jQuery);
+        </script>
     {% endblock %}
     <!-- EXTRAHEAD -->
     {% block extrahead %}{% endblock %}

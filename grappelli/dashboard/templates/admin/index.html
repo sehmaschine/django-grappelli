@@ -1,12 +1,18 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load admin_static i18n grp_tags log grp_dashboard_tags %}
+{% load i18n grp_tags log grp_dashboard_tags %}
 
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'grapelli/old_inlines/make_collapsible.js' %}"></script>
+    <script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                $("article#grp-content .grp-collapse").grp_collapsible();
+            });
+        })(grp.jQuery);
+    </script>
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS-- >
