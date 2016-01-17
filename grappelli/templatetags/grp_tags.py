@@ -26,25 +26,16 @@ from grappelli.settings import ADMIN_TITLE, ADMIN_URL, SWITCH_USER, SWITCH_USER_
 register = template.Library()
 
 
-# GENERIC OBJECTS
-class do_get_generic_objects(template.Node):
-    def __init__(self):
-        pass
-
-    def render(self, context):
-        objects = {}
-        for c in ContentType.objects.all().order_by('id'):
-            objects[c.id] = {'pk': c.id, 'app': c.app_label, 'model': c.model}
-        return json.dumps(objects)
-
-
-@register.tag
-def get_content_types(parser, token):
+@register.simple_tag
+def get_content_types():
     """
-    Returns a list of installed applications and models.
+    Returns a json object of installed applications and models.
     Needed for lookup of generic relationships.
     """
-    return do_get_generic_objects()
+    objects = {}
+    for c in ContentType.objects.all().order_by('id'):
+        objects[c.id] = {'pk': c.id, 'app': c.app_label, 'model': c.model}
+    return json.dumps(objects)
 
 
 # ADMIN_TITLE
@@ -148,7 +139,7 @@ def formsetsort(formset, arg):
 
 # RELATED LOOKUPS
 
-def safe_json_else_list_tag(f):
+def json_else_list_tag(f):
     """
     Decorator. Registers function as a simple_tag.
     Try: Return value of the decorated function marked safe and json encoded.
@@ -157,46 +148,46 @@ def safe_json_else_list_tag(f):
     @wraps(f)
     def inner(model_admin):
         try:
-            return mark_safe(json.dumps(f(model_admin)))
+            return json.dumps(f(model_admin))
         except:
             return []
     return register.simple_tag(inner)
 
 
-@safe_json_else_list_tag
+@json_else_list_tag
 def get_related_lookup_fields_fk(model_admin):
     return model_admin.related_lookup_fields.get("fk", [])
 
 
-@safe_json_else_list_tag
+@json_else_list_tag
 def get_related_lookup_fields_m2m(model_admin):
     return model_admin.related_lookup_fields.get("m2m", [])
 
 
-@safe_json_else_list_tag
+@json_else_list_tag
 def get_related_lookup_fields_generic(model_admin):
     return model_admin.related_lookup_fields.get("generic", [])
 
 
 # AUTOCOMPLETES
 
-@safe_json_else_list_tag
+@json_else_list_tag
 def get_autocomplete_lookup_fields_fk(model_admin):
     return model_admin.autocomplete_lookup_fields.get("fk", [])
 
 
-@safe_json_else_list_tag
+@json_else_list_tag
 def get_autocomplete_lookup_fields_m2m(model_admin):
     return model_admin.autocomplete_lookup_fields.get("m2m", [])
 
 
-@safe_json_else_list_tag
+@json_else_list_tag
 def get_autocomplete_lookup_fields_generic(model_admin):
     return model_admin.autocomplete_lookup_fields.get("generic", [])
 
 
 # SORTABLE EXCLUDES
-@safe_json_else_list_tag
+@json_else_list_tag
 def get_sortable_excludes(model_admin):
     return model_admin.sortable_excludes
 
@@ -238,3 +229,17 @@ def switch_user_dropdown(context):
                 'object_list': object_list
             })
     return ""
+
+
+def prepopulated_fields_json(prepopulated_fields):
+    fields = []
+    for field in prepopulated_fields:
+        deps = field.dependencies
+        dependency_list = [dep.name for dep in deps]
+        fields.append({
+            'id': field.field.auto_id,
+            'dependencyIds': [dep.auto_id for dep in deps],
+            'dependencyList': [dep.name for dep in deps],
+            'maxLength': field.field.field.max_length,
+        })
+    return json.dumps(fields)

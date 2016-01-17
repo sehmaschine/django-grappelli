@@ -13,117 +13,35 @@
     {{ block.super }}
     {% url 'admin:jsi18n' as jsi18nurl %}
     <script type="text/javascript" src="{{ jsi18nurl|default:'../../../jsi18n/' }}"></script>
+    <script type="text/javascript"
+            src="{% static "grapelli/js/old_inlines/change_form/init.js" %}"
+            id="grapelli-change-form-constants"
+            data-related-lookup-fields-fk="{% get_related_lookup_fields_fk adminform.model_admin %}"
+            data-related-lookup-fields-m2m="{% get_related_lookup_fields_m2m adminform.model_admin %}"
+            data-related-lookup-fields-generic="{% get_autocomplete_lookup_fields_fk adminform.model_admin %}"
+            data-autocomplete-fields-fk="{% get_autocomplete_lookup_fields_fk adminform.model_admin %}"
+            data-autocomplete-fields-m2m="{% get_autocomplete_lookup_fields_m2m adminform.model_admin %}"
+            data-autocomplete-fields-generic="{% get_autocomplete_lookup_fields_generic adminform.model_admin %}"
+            data-url-grp-related-lookup="{% url 'grp_related_lookup' %}"
+            data-url-grp-m2m-lookup="{% url 'grp_m2m_lookup' %}"
+            data-url-grp-autocomplete-lookup="{% url 'grp_autocomplete_lookup' %}"
+            data-grappelli-clean-input-types="{% grappelli_clean_input_types %}"></static>
     <script type="text/javascript" charset="utf-8">
-        (function($) {
-            $(document).ready(function() {
-                grappelli.initDateAndTimePicker();
-                $("#grp-content-container .grp-group").grp_collapsible_group();
-                $("#grp-content-container .grp-collapse").grp_collapsible({
-                    on_init: function(elem, options) {
-                        // open collapse (and all collapse parents) in case of errors
-                        if (elem.find("ul.errorlist").length > 0) {
-                            elem.removeClass("grp-closed")
-                                .addClass("grp-open");
-                            elem.parents(".grp-collapse")
-                                .removeClass("grp-closed")
-                                .addClass("grp-open");
-                        }
-                    }
-                });
-                var related_lookup_fields_fk = {% get_related_lookup_fields_fk adminform.model_admin %};
-                var related_lookup_fields_m2m = {% get_related_lookup_fields_m2m adminform.model_admin %};
-                var related_lookup_fields_generic = {% get_related_lookup_fields_generic adminform.model_admin %};
-                var autocomplete_fields_fk = {% get_autocomplete_lookup_fields_fk adminform.model_admin %};
-                var autocomplete_fields_m2m = {% get_autocomplete_lookup_fields_m2m adminform.model_admin %};
-                var autocomplete_fields_generic = {% get_autocomplete_lookup_fields_generic adminform.model_admin %};
-                $.each(related_lookup_fields_fk, function() {
-                    $("#id_" + this).grp_related_fk({lookup_url:"{% url 'grp_related_lookup' %}"});
-                });
-                $.each(related_lookup_fields_m2m, function() {
-                    $("#id_" + this).grp_related_m2m({lookup_url:"{% url 'grp_m2m_lookup' %}"});
-                });
-                $.each(related_lookup_fields_generic, function() {
-                    var content_type = "#id_" + this[0],
-                        object_id = "#id_" + this[1];
-                    $(object_id).grp_related_generic({content_type:content_type, object_id:object_id, lookup_url:"{% url 'grp_related_lookup' %}"});
-                });
-                $.each(autocomplete_fields_fk, function() {
-                    $("#id_" + this).grp_autocomplete_fk({
-                        lookup_url:"{% url 'grp_related_lookup' %}",
-                        autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
-                    });
-                });
-                $.each(autocomplete_fields_m2m, function() {
-                    $("#id_" + this).grp_autocomplete_m2m({
-                        lookup_url:"{% url 'grp_m2m_lookup' %}",
-                        autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
-                    });
-                });
-                $.each(autocomplete_fields_generic, function() {
-                    var content_type = "#id_" + this[0],
-                        object_id = "#id_" + this[1];
-                    $(object_id).grp_autocomplete_generic({
-                        content_type:content_type,
-                        object_id:object_id,
-                        lookup_url:"{% url 'grp_related_lookup' %}",
-                        autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
-                    });
-                });
-                $("a#grp-open-all").bind("click", function(){
-                    $("#grp-content .grp-collapse-handler").each(function() {
-                        $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
-                    });
-                });
-                $("a#grp-close-all").bind("click", function(){
-                    $("#grp-content .grp-collapse-handler").each(function() {
-                        $(this).parent(".grp-collapse").removeClass("grp-open").addClass("grp-closed");
-                    });
-                });
-                // HACK: get rid of currently/change with URL–fields. F**K!!!
-                $('p.url').each(function() {
-                    $(this).find("a").remove();
-                    var text = $(this).html();
-                    text = text.replace(/^\w*: /, "");
-                    text = text.replace(/<br>.*: /, "");
-                    $(this).html(text);
-                });
-                // HACK: rearrange inlines
-                $('div.grp-group').each(function() {
-                    var placeholder = $("fieldset.placeholder."+$(this).attr("id"));
-                    if (placeholder.length) {
-                        $(placeholder).replaceWith($(this));
-                    }
-                });
-                // HACK: remove input types
-                var clean_input_types = "{% grappelli_clean_input_types %}";
-                if (clean_input_types == "True") {
-                    grappelli.cleanInputTypes();
-                };
-            });
-        })(grp.jQuery);
     </script>
     {{ media }}
 {% endblock %}
 
 {% block extrahead %}
     {{ block.super }}
-    <script type="text/javascript">
-        (function($) {
-            $(document).ready(function() {
-                $('.add-another').click(function(e) {
-                    e.preventDefault();
-                    showAddAnotherPopup(this);
-                });
-                $('.related-lookup').click(function(e) {
-                    e.preventDefault();
-                    showRelatedObjectLookupPopup(this);
-                });
-            {% if adminform and add %}
-                $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
-            {% endif %}
-            });
-        })(grp.jQuery);
-    </script>
+    <script type="text/javascript"
+            src="{% static "grapelli/js/old_inlines/change_form/actions.js" %}"
+            id="grapelli-change-form-actions-constants"
+            {% if adminform and add %}True{%endif%}
+                data-adminform="True"
+                data-model-name="{{ opts.model_name }}"
+            {% else %}
+                data-adminform="False"
+            {% endif %}></script>
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->
