@@ -1,7 +1,7 @@
 /**
  * GRAPPELLI ACTIONS.JS
  * minor modifications compared with the original js
- * 
+ *
  */
 
 (function($) {
@@ -114,13 +114,34 @@
             lastChecked = target;
             updateCounter();
         });
-        // GRAPPELLI CUSTOM: REMOVED ALL JS-CONFIRMS
-        // TRUSTED EDITORS SHOULD KNOW WHAT TO DO
-        
+        $('form#grp-changelist-form table#result_list tr').find('td:gt(0) :input').change(function() {
+			list_editable_changed = true;
+		});
+		$('form#grp-changelist-form button[name="index"]').click(function(event) {
+			if (list_editable_changed) {
+				return confirm(gettext("You have unsaved changes on individual editable fields. If you run an action, your unsaved changes will be lost."));
+			}
+		});
+		$('form#grp-changelist-form input[name="_save"]').click(function(event) {
+			var action_changed = false;
+			$('select option:selected', options.actionContainer).each(function() {
+				if ($(this).val()) {
+					action_changed = true;
+				}
+			});
+			if (action_changed) {
+				if (list_editable_changed) {
+					return confirm(gettext("You have selected an action, but you haven't saved your changes to individual fields yet. Please click OK to save. You'll need to re-run the action."));
+				} else {
+					return confirm(gettext("You have selected an action, and you haven't made any changes on individual fields. You're probably looking for the Go button rather than the Save button."));
+				}
+			}
+		});
+
         // GRAPPELLI CUSTOM: submit on select
-        $(options.actionSelect).attr("autocomplete", "off").change(function(evt){
-            $(this).parents("form").submit();
-        });
+        // $(options.actionSelect).attr("autocomplete", "off").change(function(evt){
+        //     $(this).parents("form").submit();
+        // });
     };
     /* Setup plugin defaults */
     $.fn.actions.defaults = {
@@ -135,4 +156,3 @@
         actionSelect: "div.grp-changelist-actions select"
     };
 })(grp.jQuery);
-
