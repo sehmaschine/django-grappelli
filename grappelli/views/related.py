@@ -8,6 +8,7 @@ from functools import reduce
 # DJANGO IMPORTS
 from django.http import HttpResponse
 from django.db import models, connection
+from django.db.models.constants import LOOKUP_SEP
 from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
@@ -181,12 +182,12 @@ class AutocompleteLookup(RelatedLookup):
         ordering = []
         for lookup in model._meta.ordering:
             opts = model._meta
-            for part in lookup.lstrip('-').split('__'):
+            for part in lookup.lstrip('-').split(LOOKUP_SEP):
                 field = opts.get_field(part)
                 if field.is_relation:
                     opts = field.rel.to._meta
             if previous_lookup_parts is not None:
-                lookup = previous_lookup_parts + '__' + lookup
+                lookup = previous_lookup_parts + LOOKUP_SEP + lookup
             if field.is_relation:
                 ordering.extend(self.get_final_ordering(opts.model, lookup))
             else:
