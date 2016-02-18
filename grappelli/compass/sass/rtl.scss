@@ -122,7 +122,7 @@ body.rtl {
                         @include grp-background-gradient-icon-combo(object-tools-add-link, 95%, #36b0d9, #309bbf);
                     }
                 }
-                &.grp-viewsite-link, 
+                &.grp-viewsite-link,
                 &[target="_blank"] {
                     padding-right: 28px;
                     padding-left: 15px;
@@ -165,11 +165,11 @@ body.rtl {
     }
 
     // BUTTONS
-    input[type="button"], 
-    button, 
-    a.fb_show, 
-    a.related-lookup, 
-    body.tinyMCE input[name="src"] + div a, 
+    input[type="button"],
+    button,
+    a.fb_show,
+    a.related-lookup,
+    body.tinyMCE input[name="src"] + div a,
     body.tinyMCE input[name="href"] + div a {
         margin-left: 0;
         margin-right: -25px;
@@ -201,8 +201,8 @@ body.rtl {
         margin-left: 0;
         margin-right: 5px;
     }
-    .grp-placeholder-related-fk, 
-    .grp-placeholder-related-m2m, 
+    .grp-placeholder-related-fk,
+    .grp-placeholder-related-m2m,
     .grp-placeholder-related-generic {
         margin-left: 0;
         margin-right: 123px;
@@ -223,7 +223,7 @@ body.rtl {
         margin-left: -10px;
         margin-right: 7px;
     }
-    .radiolist.inline + a.add-another, 
+    .radiolist.inline + a.add-another,
     .checkboxlist.inline + a.add-another {
         float: none;
         margin-left: -10px;
@@ -235,10 +235,10 @@ body.rtl {
         @include horizontal-list(5px, right);
         float: left;
         li {
-            &.grp-add-link, 
-            &.grp-change-link, 
+            &.grp-add-link,
+            &.grp-change-link,
             &.grp-delete-link {
-                a, 
+                a,
                 > span:first-child {
                     padding-right: $grp-padding-size-l;
                     padding-left: 0;
@@ -250,7 +250,7 @@ body.rtl {
             &.grp-change-link a {
                 @include icons-small-sprite(change-link, $offset-x: 100%);
             }
-            &.grp-delete-link a, 
+            &.grp-delete-link a,
             &.grp-delete-link > span:first-child {
                 @include icons-small-sprite(delete-link, $offset-x: 100%);
             }
@@ -261,12 +261,12 @@ body.rtl {
     .grp-listing,
     .grp-listing-small {
         li {
-            &.grp-add-link, 
-            &.grp-change-link, 
+            &.grp-add-link,
+            &.grp-change-link,
             &.grp-delete-link {
                 padding-right: $grp-padding-size-l + 5;
                 padding-left: 0;
-                a, 
+                a,
                 > span:first-child {
                     margin-right: - $grp-margin-size-m - 5;
                     margin-left: 0;
@@ -280,7 +280,7 @@ body.rtl {
             &.grp-change-link a {
                 @include icons-small-sprite(change-link, $offset-x: 100%);
             }
-            &.grp-delete-link a, 
+            &.grp-delete-link a,
             &.grp-delete-link > span:first-child {
                 @include icons-small-sprite(delete-link, $offset-x: 100%);
             }
@@ -311,7 +311,7 @@ body.rtl {
                         border-left: 0 !important;
                         border-right: 1px solid #ddd !important;
                     }
-                    
+
                 }
             }
         }
@@ -320,7 +320,7 @@ body.rtl {
     // TABULAR
     .grp-tabular {
         .grp-table {
-            .grp-th, 
+            .grp-th,
             .grp-td {
                 margin-right: 0;
                 border-left: 1px solid #fff;
@@ -334,7 +334,7 @@ body.rtl {
                 }
             }
             .grp-thead {
-                .grp-th, 
+                .grp-th,
                 .grp-td {
                     background: none;
                     border-top: 0;
@@ -344,7 +344,7 @@ body.rtl {
                 }
             }
             .grp-tbody {
-                .grp-th, 
+                .grp-th,
                 .grp-td {
                     border-bottom: 1px solid #d4d4d4;
                     border-top: 1px solid #d4d4d4;
@@ -405,7 +405,7 @@ body.rtl {
                         border-right: 0 !important;
                     }
                 }
-                &.grp-row-even td, &.grp-row-even th, 
+                &.grp-row-even td, &.grp-row-even th,
                 &.grp-row-odd td, &.grp-row-odd th {
                     border-left: 0;
                     border-right: 1px solid #e0e0e0;
@@ -432,7 +432,7 @@ body.rtl {
             }
         }
         td, th {
-            a.fb_show, 
+            a.fb_show,
             a.related-lookup {
                 margin: -5px -25px -11px 0;
             }
@@ -551,7 +551,7 @@ body.rtl {
     }
 
     // FORMS
-    .grp-row input[type="checkbox"] + label, 
+    .grp-row input[type="checkbox"] + label,
     .grp-row input[type="radio"] + label {
         margin: 0 5px 0 0;
     }
@@ -560,7 +560,7 @@ body.rtl {
         // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
     }
     @media screen and (-webkit-min-device-pixel-ratio:0) {
-        select, 
+        select,
         select:focus {
             padding: 4px 5px 4px 28px;
             -webkit-appearance: textfield;
@@ -572,7 +572,7 @@ body.rtl {
             background-image: none;
         }
     }
-    ul.radiolist.inline, 
+    ul.radiolist.inline,
     ul.checkboxlist.inline {
         float: right;
         padding-left: 20px;
@@ -583,7 +583,7 @@ body.rtl {
             padding-right: 0;
         }
     }
-    .grp-module.grp-tbody ul.radiolist.inline li, 
+    .grp-module.grp-tbody ul.radiolist.inline li,
     .grp-module.grp-tbody ul.checkboxlist.inline li {
         float: right;
         padding-left: 20px;
@@ -591,9 +591,9 @@ body.rtl {
     }
 
     // AUTOCOMPLETES
-    .grp-autocomplete-wrapper-m2m, 
+    .grp-autocomplete-wrapper-m2m,
     .grp-autocomplete-wrapper-fk {
-        a.grp-related-remove, 
+        a.grp-related-remove,
         div.grp-loader {
             display: inline-block;
             position: absolute;
@@ -631,7 +631,7 @@ body.rtl {
             @include border-bottom-left-radius(3px);
             @include border-bottom-right-radius(0);
         }
-        a.grp-related-remove, 
+        a.grp-related-remove,
         a.grp-related-remove + div.grp-loader {
             left: 23px !important;
             right: auto;
@@ -643,7 +643,7 @@ body.rtl {
             padding-right: 5px;
         }
     }
-    td .grp-autocomplete-wrapper-m2m a.related-lookup, 
+    td .grp-autocomplete-wrapper-m2m a.related-lookup,
     td .grp-autocomplete-wrapper-fk a.related-lookup {
         margin-top: 0 !important;
     }
@@ -651,7 +651,7 @@ body.rtl {
     // SELECTORS
     .selector {
         float: right;
-        .selector-available, 
+        .selector-available,
         .selector-chosen {
             float: right;
             h2 {
@@ -682,6 +682,21 @@ body.rtl {
                 }
             }
         }
+        a.selector-add {
+            background-image: url('../images/icons/selector-remove-m2m-horizontal.png');
+            &:hover {
+                background-image: url('../images/icons/selector-remove-m2m-horizontal_hover.png');
+            }
+        }
+        a.selector-remove {
+            background-image: url('../images/icons/selector-add-m2m-horizontal.png');
+            &:hover {
+                background-image: url('../images/icons/selector-add-m2m-horizontal_hover.png');
+            }
+        }
+    }
+    .grp-related-widget-wrapper + p.grp-help {
+        clear: right;
     }
 
     // TYPOGRAPHY
