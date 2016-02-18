@@ -113,7 +113,7 @@ GrappelliSortableHiddenMixin
 
 There is also ``GrappelliSortableHiddenMixin``, which is a Mixin in order to hide the PositionField.
 Please note that this Mixin works with a default ``sortable_field_name = "position"``.
-Therefore, you only need to explictely define the ``sortable_field_name`` if it's named differently.
+Therefore, you only need to explicitly define the ``sortable_field_name`` if it's named differently.
 
 .. code-block:: python
 
@@ -122,7 +122,7 @@ Therefore, you only need to explictely define the ``sortable_field_name`` if it'
     class MyInlineModelOptions(GrappelliSortableHiddenMixin, admin.TabularInline):
         fields = (... , "position",)
 
-    # explicitely defining the sortable is only necessary
+    # explicitly defining the sortable is only necessary
     # if the sortable field name is not 'position'
     class MyCustomInlineModelOptions(GrappelliSortableHiddenMixin, admin.TabularInline):
         fields = (... , "customposition",)
