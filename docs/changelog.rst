@@ -11,6 +11,8 @@ Changelog
 2.7.4 (not yet released)
 ------------------------
 
+* New: Submitting actions now works with an explicit button.
+
 2.7.3 (January 11th, 2016)
 --------------------------
 
