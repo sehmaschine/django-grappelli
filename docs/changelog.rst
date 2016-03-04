@@ -12,6 +12,7 @@ Changelog
 ------------------------
 
 * New: Submitting actions now works with an explicit button.
+* Fixed: Autocomplete when ordering contains a simple foreign key mention.
 
 2.7.3 (January 11th, 2016)
 --------------------------
