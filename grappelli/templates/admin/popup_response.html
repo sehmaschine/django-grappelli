@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+{% load i18n %}<!DOCTYPE html>
 <html>
-    <head><title></title></head>
+    <head><title>{% trans 'Popup closing...' %}</title></head>
     <body>
         <script type="text/javascript">
-            opener.dismissAddAnotherPopup(window, "{{ pk_value }}", "{{ obj }}");
+            {% if action == 'change' %}
+                opener.dismissChangeRelatedObjectPopup(window, "{{ value|escapejs }}", "{{ obj|escapejs }}", "{{ new_value|escapejs }}");
+            {% elif action == 'delete' %}
+                opener.dismissDeleteRelatedObjectPopup(window, "{{ value|escapejs }}");
+            {% else %}
+                opener.dismissAddRelatedObjectPopup(window, "{{ value|escapejs }}", "{{ obj|escapejs }}");
+            {% endif %}
         </script>
     </body>
 </html>
