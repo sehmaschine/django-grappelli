@@ -193,7 +193,10 @@
                 updateRelatedObjectLinks(this);
             }
         });
-        $('.related-widget-wrapper select').trigger('change');
+        // GRAPPELLI CUSTOM
+        /* triggering select means that update_lookup is triggered with
+        generic autocompleted (which would empty the field) */
+        // $('.related-widget-wrapper select').trigger('change');
     });
 
 })(grp.jQuery);
