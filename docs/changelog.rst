@@ -12,3 +12,5 @@ Changelog
 ------------------------
 
 * First release of Grappelli which is compatible with Django 1.9.
+* New: Submitting actions now works with an explicit button.
+* Fixed: Autocomplete when ordering contains a simple foreign key mention.

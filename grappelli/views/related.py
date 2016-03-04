@@ -8,6 +8,7 @@ from functools import reduce
 # DJANGO IMPORTS
 from django.http import HttpResponse
 from django.db import models, connection
+from django.db.models.constants import LOOKUP_SEP
 from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
@@ -156,16 +157,57 @@ class AutocompleteLookup(RelatedLookup):
             qs = model.objects.none()
         return qs
 
+    def get_final_ordering(self, model, previous_lookup_parts=None):
+        """
+        This recursive function returns the final lookups
+        for the default ordering of a model.
+
+        Considering the models below, `get_final_ordering(Book)` will return
+        `['-type__name', 'name']` instead of the simple `['-type', 'name']`
+        one would get using `Book._meta.ordering`.
+
+            class BookType(Model):
+                name = CharField(max_length=50)
+
+                class Meta:
+                    ordering = ['name']
+
+            class Book(Model):
+                name = CharField(max_length=50)
+                type = ForeignKey(BookType)
+
+                class Meta:
+                    ordering = ['-type', 'name']
+        """
+        ordering = []
+        for lookup in model._meta.ordering:
+            opts = model._meta
+            for part in lookup.lstrip('-').split(LOOKUP_SEP):
+                field = opts.get_field(part)
+                if field.is_relation:
+                    opts = field.rel.to._meta
+            if previous_lookup_parts is not None:
+                lookup = previous_lookup_parts + LOOKUP_SEP + lookup
+            if field.is_relation:
+                ordering.extend(self.get_final_ordering(opts.model, lookup))
+            else:
+                ordering.append(lookup)
+        return ordering
+
     def get_queryset(self):
         qs = super(AutocompleteLookup, self).get_queryset()
         qs = self.get_filtered_queryset(qs)
         qs = self.get_searched_queryset(qs)
+
         if connection.vendor == 'postgresql':
-            ordering = list(self.model._meta.ordering)
-            distinct_columns = [o.lstrip('-') for o in ordering] + [self.model._meta.pk.column]
+            ordering = self.get_final_ordering(self.model)
+            distinct_columns = [o.lstrip('-') for o in ordering]
+            pk_name = self.model._meta.pk.name
+            if pk_name not in distinct_columns:
+                distinct_columns.append(pk_name)
             return qs.order_by(*ordering).distinct(*distinct_columns)
-        else:
-            return qs.distinct()
+
+        return qs.distinct()
 
     def get_data(self):
         return [{"value": f.pk, "label": get_label(f)} for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
