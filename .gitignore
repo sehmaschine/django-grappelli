@@ -7,6 +7,7 @@ django_grappelli.egg-info/*
 grappelli/compass/.sass-cache/
 grappelli/static/tinymce_dev
 fabfile.py
+.cache
 .sass-cache
 .project
 .pydevproject
