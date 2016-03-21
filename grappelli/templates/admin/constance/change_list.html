@@ -106,7 +106,11 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <img src="{{ STATIC_URL }}admin/img/icon-{% if item.modified %}yes{% else %}no{% endif %}.gif" alt="{{ item.modified }}" />
+                                {% if item.modified %}
+                                    <img src="{% static 'admin/img/icon-yes.'|add:icon_type %}" alt="{{ item.modified }}" />
+                                {% else %}
+                                    <img src="{% static 'admin/img/icon-no.'|add:icon_type %}" alt="{{ item.modified }}" />
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
@@ -122,4 +126,3 @@
         </section>
     </form>
 {% endblock %}
-
