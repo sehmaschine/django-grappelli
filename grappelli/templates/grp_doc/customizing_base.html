@@ -60,7 +60,7 @@
     {% templatetag openblock %} block extrahead %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 </head>
 <body class="{% templatetag openblock %} if is_popup %}grp-popup {% templatetag openblock %} endif %}{% templatetag openblock %} block bodyclass %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
-    <div id="grp-container">
+    <div id="container" class="grp-container">
 
         <!-- HEADER -->
         <header id="grp-header" class="{% templatetag openblock %} block header-class %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
@@ -68,7 +68,7 @@
 
                 <!-- NAVIGATION -->
                 {% templatetag openblock %} include "admin/includes_grappelli/header.html" %}
-                
+
                 <!-- CONTEXT NAVIGATION -->
                 <div id="grp-context-navigation">
                     <nav id="grp-breadcrumbs" class="{% templatetag openblock %} block breadcrumbs-class %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
@@ -92,7 +92,7 @@
 
         <!-- CONTENT -->
         <article id="grp-content" class="{% templatetag openblock %} block content-class %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
-            
+
             <!-- MESSAGES -->
             {% templatetag openblock %} if messages %}
                 <ul class="grp-messagelist">
@@ -118,7 +118,7 @@
             </div>
 
         </article>
-        
+
         <!-- FOOTER -->
         {% templatetag openblock %} block footer %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
@@ -130,4 +130,3 @@
 	    </section>
     </div>
 {% endblock %}
-
