@@ -1,9 +1,4 @@
 Django Grappelli
-================
-**A jazzy skin for the Django admin interface**.
-
-Grappelli is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
-
 .. image:: https://api.travis-ci.org/sehmaschine/django-grappelli.svg
     :target: https://travis-ci.org/sehmaschine/django-grappelli
 
@@ -18,6 +13,11 @@ Grappelli is a grid-based alternative/extension to the `Django <http://www.djang
 
 .. image:: https://img.shields.io/pypi/l/django-grappelli.svg
     :target: https://pypi.python.org/pypi/django-grappelli
+
+================
+**A jazzy skin for the Django admin interface**.
+
+Grappelli is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
 
 
 Code
