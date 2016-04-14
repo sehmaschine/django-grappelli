@@ -42,11 +42,20 @@ Add URL-patterns. The grappelli URLs are needed for related–lookups and autoco
 Add the request context processor (needed for the Dashboard and the Switch User feature):
 
 .. code-block:: python
+    :emphasize-lines: 7
 
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        ...
-        "django.core.context_processors.request",
-    )
+    TEMPLATES = [
+        {
+            ...
+            'OPTIONS': {
+                'context_processors': [
+                    ...
+                    'django.template.context_processors.request',
+                    ...
+                ],
+            },
+        },
+    ]
 
 Collect the media files:
 

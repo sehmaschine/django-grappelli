@@ -11,6 +11,9 @@ Changelog
 2.8.2 (not yet released)
 ------------------------
 
+* Fixed: Constance templates.
+* Fixed: Docs with template context processor.
+
 2.8.1 (March 7th, 2016)
 -----------------------
 

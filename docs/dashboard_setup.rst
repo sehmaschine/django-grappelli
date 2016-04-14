@@ -14,7 +14,7 @@ With the Django admin interface, the admin index page reflects the structure of 
 Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` (before ``grappelli``, but after ``django.contrib.contenttypes``). Check if the request context processor is being used:
 
 .. code-block:: python
-    :emphasize-lines: 3,10
+    :emphasize-lines: 3,14
 
     INSTALLED_APPS = (
         'django.contrib.contenttypes',
@@ -23,12 +23,18 @@ Open ``settings.py`` and add ``grappelli.dashboard`` to your ``INSTALLED_APPS`` 
         'django.contrib.admin',
     )
 
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        "django.contrib.auth.context_processors.auth",
-        "django.core.context_processors.request",
-        "django.core.context_processors.i18n",
-        'django.contrib.messages.context_processors.messages',
-    )
+    TEMPLATES = [
+        {
+            ...
+            'OPTIONS': {
+                'context_processors': [
+                    ...
+                    'django.template.context_processors.request',
+                    ...
+                ],
+            },
+        },
+    ]
 
 Custom dashboard
 ----------------
@@ -36,7 +42,7 @@ Custom dashboard
 To customize the index dashboard, you first need to add a custom dashboard, located within your project directory. Depending on the location of manage.py, you might need to add the project directory to the management command (see last example below):
 
 .. code-block:: bash
-    
+
     $ python manage.py customdashboard  # creates dashboard.py
     $ python manage.py customdashboard somefile.py  # creates somefile.py
     $ python manage.py customdashboard projdir/somefile.py  # creates somefile.py in projdir
