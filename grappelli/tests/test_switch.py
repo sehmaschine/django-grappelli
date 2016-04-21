@@ -3,7 +3,12 @@
 # DJANGO IMPORTS
 from django.test import TestCase
 from django.test.utils import override_settings
-from django.contrib.auth.models import User, Permission
+try:
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+except ImportError:
+    from django.contrib.auth.models import User
+from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.utils.html import escape

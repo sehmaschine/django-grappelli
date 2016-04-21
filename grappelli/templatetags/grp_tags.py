@@ -228,11 +228,13 @@ def switch_user_dropdown(context):
         request = context["request"]
         session_user = request.session.get("original_user", {"id": request.user.id, "username": request.user.get_username()})
         try:
-            original_user = User.objects.get(pk=session_user["id"], is_staff=True)
+            original_user = User.objects.get(pk=session_user["id"])
+            if not original_user.is_staff:
+                raise User.DoesNotExist
         except User.DoesNotExist:
             return ""
         if SWITCH_USER_ORIGINAL(original_user):
-            object_list = [user for user in User.objects.filter(is_staff=True).exclude(pk=original_user.pk) if SWITCH_USER_TARGET(original_user, user)]
+            object_list = [user for user in User.objects.filter(is_active=True).exclude(pk=original_user.pk) if SWITCH_USER_TARGET(original_user, user)]
             return tpl.render({
                 'request': request,
                 'object_list': object_list

@@ -2,7 +2,11 @@
 
 # DJANGO IMPORTS
 from django.db import models
-from django.contrib.auth.models import User
+try:
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+except ImportError:
+    from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils.encoding import python_2_unicode_compatible
 
