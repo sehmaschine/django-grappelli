@@ -42,7 +42,7 @@ fieldset.grp-module {
     @include grp-form-field-box-shadow;
     overflow: hidden;
     vertical-align: middle;
-    &:focus, 
+    &:focus,
     &.grp-state-focus {
         border: $grp-form-field-border-focus;
         @include grp-form-field-box-shadow-focus;
@@ -50,14 +50,14 @@ fieldset.grp-module {
         outline: 0;
     }
 }
-input[type="text"], 
-input[type="password"], 
-input[type="url"], 
-input[type="email"], 
-input[type="number"], 
-input[type="submit"], 
-input[type="reset"], 
-textarea, 
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="email"],
+input[type="number"],
+input[type="submit"],
+input[type="reset"],
+textarea,
 select {
     @include grp-form-field;
     .grp-errors & {
@@ -68,9 +68,9 @@ select {
 
 /*  Readonly/Disabled ................................................... */
 
-input[readonly], 
-input[disabled], 
-textarea[readonly], 
+input[readonly],
+input[disabled],
+textarea[readonly],
 select[disabled] {
     // Appearing as a form field with dotted border and no background
     border: $grp-form-field-border !important;
@@ -126,26 +126,26 @@ div.grp-readonly {
     label {
         color: $grp-font-color-error !important;
     }
-    ul.radiolist.inline, 
+    ul.radiolist.inline,
     ul.checkboxlist.inline {
         label {
             color: $grp-form-label-font-color !important;
         }
     }
-    input[type="text"], 
-    input[type="password"], 
-    input[type="url"], 
-    input[type="email"], 
-    input[type="number"], 
-    input[type="submit"], 
-    input[type="reset"], 
-    textarea, 
+    input[type="text"],
+    input[type="password"],
+    input[type="url"],
+    input[type="email"],
+    input[type="number"],
+    input[type="submit"],
+    input[type="reset"],
+    textarea,
     select {
         border-color: $grp-font-color-error !important;
     }
     .selector {
-        input, 
-        select, 
+        input,
+        select,
         textarea {
             border: $grp-form-field-border !important;
         }
@@ -167,7 +167,7 @@ select {
     // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    select, 
+    select,
     select:focus {
         padding: 4px 28px 4px 5px;
         -webkit-appearance: textfield;
@@ -203,7 +203,7 @@ fieldset.monospace textarea {
 
 /*  Checkboxes, Radiobuttons ................................................... */
 
-.grp-row input[type=checkbox], 
+.grp-row input[type=checkbox],
 .grp-row input[type=radio] {
     position: relative;
     top: 1px;
@@ -270,12 +270,12 @@ input[type=text].grp-search-field {
         padding-right: 20px;
     }
 }
-ul.radiolist, 
+ul.radiolist,
 ul.checkboxlist {
     @include radio-checkbox-list;
 }
 
-.grp-row > ul.radiolist, 
+.grp-row > ul.radiolist,
 .grp-row > ul.checkboxlist {
     margin: 0;
 }
@@ -307,7 +307,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
     float: left;
     overflow: hidden;
     width: 758px;
-    .selector-available, 
+    .selector-available,
     .selector-chosen {
         float: left;
         width: 366px;
@@ -348,6 +348,9 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         line-height: 25px;
         text-indent: 25px;
         background: url('../images/icons/searchbox.png') 6px 50% no-repeat;
+        label {
+            display: none !important;
+        }
         input[type=text] {
             position: relative;
             margin: 0;
@@ -369,7 +372,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         width: 368px !important;
         height: 200px;
         @include border-radius(0);
-        
+
     }
     .selector-chosen select[multiple=multiple] {
         height: 235px !important;
@@ -395,7 +398,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         font-weight: bold;
     }
     &.stacked {
-        .selector-available, 
+        .selector-available,
         .selector-chosen {
             width: 756px;
         }
@@ -593,35 +596,35 @@ p.preview + ul.errorlist {
 /*  FORM FIELDS: BASIC DIMENSIONS
 ------------------------------------------------------------------------------------------------------ */
 
-input[type=text], 
-input[type=password], 
-input[type="number"], 
-.vDateField, 
-.vTimeField, 
-.vIntegerField, 
-.vPositiveSmallIntegerField, 
-.vManyToManyRawIdAdminField, 
+input[type=text],
+input[type=password],
+input[type="number"],
+.vDateField,
+.vTimeField,
+.vIntegerField,
+.vPositiveSmallIntegerField,
+.vManyToManyRawIdAdminField,
 .vForeignKeyRawIdAdminField {
     width: 118px;
 }
 
 input.grp-has-related-lookup,
 // input.vManyToManyRawIdAdminField,
-// input.vForeignKeyRawIdAdminField, 
-// input.vRelatedGeneric, 
-input.vDateField.hasDatepicker, 
-input.vTimeField.hasTimepicker, 
+// input.vForeignKeyRawIdAdminField,
+// input.vRelatedGeneric,
+input.vDateField.hasDatepicker,
+input.vTimeField.hasTimepicker,
 input.vFileBrowseField {
     padding-right: 24px !important;
 }
 
-input[type="url"], 
-input[type="email"], 
-input.vTextField, 
-input.vURLField, 
-input.vFileBrowseField, 
-textarea, 
-.vLargeTextField, 
+input[type="url"],
+input[type="email"],
+input.vTextField,
+input.vURLField,
+input.vFileBrowseField,
+textarea,
+.vLargeTextField,
 .vXMLLargeTextField {
     width: 278px;
 }
@@ -640,21 +643,21 @@ textarea,
 /*  FORM FIELDS: LARGE DIMENSIONS
 ------------------------------------------------------------------------------------------------------ */
 
-.grp-row input[type="url"], 
-.grp-row input[type="email"], 
-.grp-row .vTextField, 
-.grp-row .vURLField, 
-.grp-row .vFileBrowseField, 
-.grp-row textarea, 
-.grp-row .vLargeTextField, 
-.grp-row .vXMLLargeTextField, 
+.grp-row input[type="url"],
+.grp-row input[type="email"],
+.grp-row .vTextField,
+.grp-row .vURLField,
+.grp-row .vFileBrowseField,
+.grp-row textarea,
+.grp-row .vLargeTextField,
+.grp-row .vXMLLargeTextField,
 .grp-autocomplete-wrapper-m2m {
     width: 758px;
 }
 .grp-row select {
     max-width: 758px;
 }
-.grp-autocomplete-wrapper-m2m ul.grp-repr, 
+.grp-autocomplete-wrapper-m2m ul.grp-repr,
 .grp-autocomplete-wrapper-m2m ul.grp-repr li {
     max-width: 700px;
 }
@@ -665,28 +668,28 @@ textarea,
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-changelist-results table {
-    input[type="url"], 
-    input[type="email"], 
-    .vTextField, 
-    .vURLField, 
-    .vFileBrowseField, 
-    textarea, 
-    .vLargeTextField, 
-    .vXMLLargeTextField, 
+    input[type="url"],
+    input[type="email"],
+    .vTextField,
+    .vURLField,
+    .vFileBrowseField,
+    textarea,
+    .vLargeTextField,
+    .vXMLLargeTextField,
     select {
         max-width: 278px;
     }
 }
-.grp-module.grp-table select, 
-.grp-module.grp-table .grp-autocomplete-wrapper-m2m, 
+.grp-module.grp-table select,
+.grp-module.grp-table .grp-autocomplete-wrapper-m2m,
 .grp-module.grp-table .grp-autocomplete-wrapper-fk {
     max-width: 278px;
 }
-.grp-module.grp-table .grp-autocomplete-wrapper-m2m, 
+.grp-module.grp-table .grp-autocomplete-wrapper-m2m,
 .grp-module.grp-table .grp-autocomplete-wrapper-fk {
     width: 278px;
 }
-.grp-module.grp-table .grp-autocomplete-wrapper-m2m ul.grp-repr, 
+.grp-module.grp-table .grp-autocomplete-wrapper-m2m ul.grp-repr,
 .grp-module.grp-table .grp-autocomplete-wrapper-m2m ul.grp-repr li {
     max-width: 222px;
 }
@@ -696,22 +699,22 @@ textarea,
 /*  FORM FIELDS IN CELLS
 ------------------------------------------------------------------------------------------------------ */
 
-.grp-cell input[type="url"], 
+.grp-cell input[type="url"],
 .grp-cell input[type="email"],
-.grp-cell input[type="number"], 
-.grp-cell input[type=text], 
-.grp-cell input[type=password], 
-.grp-cell select, 
-.grp-cell input[readonly], 
-.grp-cell input[disabled], 
-.grp-cell textarea[readonly], 
-.grp-cell select[disabled], 
-.grp-cell .grp-autocomplete-wrapper-m2m, 
+.grp-cell input[type="number"],
+.grp-cell input[type=text],
+.grp-cell input[type=password],
+.grp-cell select,
+.grp-cell input[readonly],
+.grp-cell input[disabled],
+.grp-cell textarea[readonly],
+.grp-cell select[disabled],
+.grp-cell .grp-autocomplete-wrapper-m2m,
 .grp-cell .grp-autocomplete-wrapper-fk {
     max-width: 278px;
 }
 
-.grp-cell .grp-autocomplete-wrapper-m2m ul.grp-repr, 
+.grp-cell .grp-autocomplete-wrapper-m2m ul.grp-repr,
 .grp-cell .grp-autocomplete-wrapper-m2m ul.grp-repr li {
     max-width: 220px;
 }
@@ -719,5 +722,3 @@ textarea,
 .grp-cell div.grp-readonly {
     max-width: 266px;
 }
-
-
