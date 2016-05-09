@@ -32,7 +32,9 @@ def switch_user(request, object_id):
 
     # check original_user
     try:
-        original_user = User.objects.get(pk=session_user["id"], is_staff=True)
+        original_user = User.objects.get(pk=session_user["id"])
+        if not original_user.is_staff:
+            raise ObjectDoesNotExist
         if not SWITCH_USER_ORIGINAL(original_user):
             messages.add_message(request, messages.ERROR, _("Permission denied."))
             return redirect(request.GET.get("redirect"))
@@ -43,7 +45,9 @@ def switch_user(request, object_id):
 
     # check new user
     try:
-        target_user = User.objects.get(pk=object_id, is_staff=True)
+        target_user = User.objects.get(pk=object_id)
+        if not target_user.is_staff:
+            raise ObjectDoesNotExist
         if target_user != original_user and not SWITCH_USER_TARGET(original_user, target_user):
             messages.add_message(request, messages.ERROR, _("Permission denied."))
             return redirect(request.GET.get("redirect"))
