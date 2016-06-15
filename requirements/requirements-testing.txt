@@ -1,3 +1,4 @@
-py==1.4.27
-pytest-django==2.8.0
-pytest==2.7.1
+Django>=1.9,<1.10
+py==1.4.31
+pytest-django==2.9.1
+pytest==2.9.0

@@ -21,7 +21,6 @@ from grappelli.tests.models import Category, Entry
 
 @override_settings(GRAPPELLI_AUTOCOMPLETE_LIMIT=10)
 @override_settings(GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS={})
-@override_settings(ROOT_URLCONF="grappelli.tests.urls")
 class RelatedTests(TestCase):
 
     def setUp(self):
