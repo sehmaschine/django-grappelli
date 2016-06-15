@@ -68,9 +68,9 @@
         </div>
         <div class="g-d-6 g-d-l">
             <div class="grp-module" id="grp-recent-actions-module">
-                <h2>{% trans 'Recent actions' %}</h2>
+                <h2>{% trans 'Recent Actions' %}</h2>
                 <div class="grp-module">
-                    <h3>{% trans 'My actions' %}</h3>
+                    <h3>{% trans 'My Actions' %}</h3>
                     {% get_admin_log 10 as admin_log for_user user %}
                     {% if not admin_log %}
                         <div class="grp-row"><p>{% trans 'None available' %}</p></div>
