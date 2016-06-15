@@ -433,6 +433,13 @@ You sometimes might need to see the admin interface as a different user (e.g. in
 .. note::
     This functionality might change with future releases.
 
+.. warning::
+    If you are using a custom user model and want to turn this feature on, pay attention to the following topics:
+
+    * if ``is_superuser`` is neither a field nor a property of your user model, you will have to set both ``GRAPPELLI_SWITCH_USER_ORIGINAL`` and ``GRAPPELLI_SWITCH_USER_TARGET`` to functions; failing to do so will break the admin area. If you followed the instructions in the `Django docs <https://docs.djangoproject.com/en/1.9/topics/auth/customizing/#a-full-example>`_, ``is_superuser`` won't be a field nor a property of your user model. If you define ``is_superuser`` as a property of your model, the admin area will get back to work.
+    * if ``is_staff`` is not a field, and/or ``is_superuser`` is neither a field nor a property of your user model, the Grappelli tests will be broken (because e.g. of some ``user.is_staff = True`` instructions). This -again- is your case if you followed the `Django docs on customizing user model <https://docs.djangoproject.com/en/1.9/topics/auth/customizing/#a-full-example>`_, where ``is_staff`` is defined as a property (as opposite to a field).
+
+
 .. _cleaninputtypes:
 
 Clean input types
