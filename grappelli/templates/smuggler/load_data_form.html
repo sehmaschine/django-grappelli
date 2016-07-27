@@ -2,7 +2,7 @@
 
 <!-- LOADING -->
 {# load cycle from future # cannot do this yet because we support Django < 1.6 #}
-{% load url from future %} {# For Django < 1.5 #}
+{# load url from future # cannot do this because Django 1.9 crashes #}
 {% load i18n admin_urls %}
 
 {% block title %}{% trans "Load data" %} {{ block.super }}{% endblock %}
