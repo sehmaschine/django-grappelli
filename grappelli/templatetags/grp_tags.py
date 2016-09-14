@@ -1,7 +1,8 @@
 # coding: utf-8
 
 # python imports
-from functools import wraps
+from functools import wraps, partial
+import itertools
 import json
 
 try:
@@ -124,26 +125,23 @@ def classpath(obj):
 
 # FORMSETSORT FOR SORTABLE INLINES
 
+def get_formset_item_key(arg, item):
+    k = item.form[arg].data
+    return None if k == "-1" else k
+
 @register.filter
 def formsetsort(formset, arg):
     """
     Takes a list of formset dicts, returns that list sorted by the sortable field.
     """
     if arg:
-        sorted_list = []
-        for item in formset:
-            position = item.form[arg].data
-            if position and position != "-1":
-                sorted_list.append((int(position), item))
-        sorted_list.sort()
-        sorted_list = [item[1] for item in sorted_list]
-        for item in formset:
-            position = item.form[arg].data
-            if not position or position == "-1":
-                sorted_list.append(item)
-    else:
-        sorted_list = formset
-    return sorted_list
+        get_key = partial(get_formset_item_key, arg)
+        # Partition the ones with no key and the ones with keys
+        with_no_keys = [i for i in formset if get_key(i) is None]
+        with_keys = [i for i in formset if get_key(i) is not None]
+        # Put the ones with no keys after the sorted ones that have keys
+        formset = sorted(with_keys, key=get_key) + with_no_keys
+    return formset
 
 
 # RELATED LOOKUPS
