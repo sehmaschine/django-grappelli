@@ -80,6 +80,7 @@
                     });
                 });
                 // HACK: get rid of currently/change with URL–fields. F**K!!!
+                {% block js_remove_url %}
                 $('p.url').each(function() {
                     $(this).find("a").remove();
                     var text = $(this).html();
@@ -87,18 +88,23 @@
                     text = text.replace(/<br>.*: /, "");
                     $(this).html(text);
                 });
+                {% endblock %}
                 // HACK: rearrange inlines
+                {% block js_rearrange_inlines %}
                 $('div.grp-group').each(function() {
                     var placeholder = $("fieldset.placeholder."+$(this).attr("id"));
                     if (placeholder.length) {
                         $(placeholder).replaceWith($(this));
                     }
                 });
+                {% endblock %}
                 // HACK: remove input types
+                {% block js_clean_input_types %}
                 var clean_input_types = "{% grappelli_clean_input_types %}";
                 if (clean_input_types == "True") {
                     grappelli.cleanInputTypes();
                 };
+                {% endblock %}
             });
         })(grp.jQuery);
     </script>
