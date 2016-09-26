@@ -85,10 +85,6 @@ Dashboard modules have the following properties:
     Text or HTML content to display above the module content.
     Default: ``None``
 
-``content``
-    The module text or HTML content.
-    Default: ``None``
-
 ``post_content``
     Text or HTML content to display under the module content.
     Default: ``None``
