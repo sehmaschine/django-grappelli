@@ -8,7 +8,7 @@
 Grappelli 2.9.x Release Notes
 =============================
 
-**Grappelli 2.9.x is compatible with Django 1.9**.
+**Grappelli 2.9.x is compatible with Django 1.10**.
 
 Update from Grappelli 2.8.x
 ---------------------------
