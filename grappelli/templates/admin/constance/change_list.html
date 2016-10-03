@@ -48,7 +48,7 @@
 {% endblock %}
 
 {% block content %}
-    <form id="grp-changelist-form" action="" method="post">{% csrf_token %}
+    <form id="grp-changelist-form" action="" method="post" novalidate>{% csrf_token %}
         <section id="grp-changelist" class="grp-editable">
             {% for field in form.hidden_fields %}
                 {% if form.errors %}
