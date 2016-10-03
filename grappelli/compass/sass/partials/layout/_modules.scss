@@ -16,7 +16,7 @@
     width: 100%;
     border: $grp-group-border;
     @include grp-border-radius($grp-border-radius + 2px);
-    background: $grp-group-background-color; 
+    background: $grp-group-background-color;
     &.grp-closed {
         border: $grp-group-border-closed;
         &:hover {
@@ -85,7 +85,7 @@
     .grp-module > h3 {
         border-top: 0 !important;
         @include border-top-radius($grp-border-radius);
-        &:only-child, 
+        &:only-child,
         &:last-child {
             border-bottom: 0;
         }
@@ -182,7 +182,7 @@
             display: none;
         }
         // Elements displayed even in collpase-closed
-        > .grp-collapse-handler, > .grp-collapse-handler *, 
+        > .grp-collapse-handler, > .grp-collapse-handler *,
         .grp-tools, .grp-tools * {
             display: block !important;
         }
@@ -226,12 +226,12 @@
         border-bottom-color: darken($grp-predelete-background-color, 4);
         border-top-color: lighten($grp-predelete-background-color, 4);
     }
-    &:first-child, 
+    &:first-child,
     &.grp-first {
         border-top: 0;
         @include border-top-radius($grp-border-radius - 1px);
     }
-    &:last-of-type, 
+    &:last-of-type,
     &.grp-last {
         border-bottom: 0;
         @include border-bottom-radius($grp-border-radius - 1px);
@@ -269,7 +269,7 @@
                 padding-right: 0;
                 border-right: 0 !important;
             }
-            
+
         }
     }
 }
@@ -277,8 +277,8 @@
     .grp-row:not(tr) {
         @include grp-row;
     }
-    .grp-row + .grp-module > .grp-row:first-child, 
-    h2 + .grp-module > .grp-row:first-child, 
+    .grp-row + .grp-module > .grp-row:first-child,
+    h2 + .grp-module > .grp-row:first-child,
     .grp-module + .grp-module > .grp-row:first-child {
         border-top: 1px solid #fff;
     }
@@ -299,18 +299,21 @@ fieldset.grp-module .grp-row {
         border-top: 0;
         @include border-top-radius($grp-border-radius - 1px);
     }
-    
+
     @include grp-actions-links();
     li {
-        &.grp-add-link, 
-        &.grp-change-link, 
+        &.grp-add-link,
+        &.grp-change-link,
         &.grp-delete-link {
             padding-left: $grp-padding-size-l + 5;
-            a, 
+            a,
             > span:first-child {
                 display: block;
                 margin-left: - $grp-margin-size-m - 5;
                 padding-left: $grp-padding-size-m + 5;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -o-text-overflow: ellipsis;
             }
         }
     }
@@ -321,7 +324,7 @@ fieldset.grp-module .grp-row {
 @mixin grp-listing-small {
     @include grp-listing();
     font-size: $grp-font-size-s;
-    a + span, 
+    a + span,
     span + span {
         position: relative;
         display: block;
@@ -342,7 +345,7 @@ fieldset.grp-module .grp-row {
 /*  STACKED & TABULAR INLINE
 ------------------------------------------------------------------------------------------------------ */
 
-.grp-stacked, 
+.grp-stacked,
 .grp-tabular {
     .grp-module.grp-add-item {
         margin-bottom: 0;
@@ -408,7 +411,7 @@ fieldset.grp-module .grp-row {
         .grp-tr {
             display: table-row;
         }
-        .grp-th, 
+        .grp-th,
         .grp-td {
             display: table-cell;
             float: none;
@@ -429,7 +432,7 @@ fieldset.grp-module .grp-row {
             color: #aaa;
             font-size: $grp-font-size-s;
             font-weight: bold;
-            .grp-th, 
+            .grp-th,
             .grp-td {
                 background: none;
                 border-top: 0;
@@ -441,7 +444,7 @@ fieldset.grp-module .grp-row {
         .grp-tbody {
             display: table-row-group;
             margin-top: 0;
-            .grp-th, 
+            .grp-th,
             .grp-td {
                 padding-bottom: 5px;
                 padding-top: 5px;
@@ -465,7 +468,7 @@ fieldset.grp-module .grp-row {
                 }
             }
             &.grp-predelete {
-                .grp-th, 
+                .grp-th,
                 .grp-td {
                     border-right-color: darken($grp-predelete-background-color, 4);
                     border-left-color: lighten($grp-predelete-background-color, 3);
@@ -526,32 +529,31 @@ fieldset.grp-module .grp-row {
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-predelete {
-    h2, h3, h4, 
+    h2, h3, h4,
     &.grp-collapse > h2.grp-collapse-handler, &.grp-collapse > h3.grp-collapse-handler, &.grp-collapse > h4.grp-collapse-handler {
 
     }
     background: $grp-predelete-background-color;
 }
 
-.grp-predelete h2, .grp-collapse.grp-predelete > h2.grp-collapse-handler, 
-.grp-predelete h3, .grp-collapse.grp-predelete > h3.grp-collapse-handler, 
+.grp-predelete h2, .grp-collapse.grp-predelete > h2.grp-collapse-handler,
+.grp-predelete h3, .grp-collapse.grp-predelete > h3.grp-collapse-handler,
 .grp-predelete h4, .grp-collapse.grp-predelete .grp-collapse > h4.grp-collapse-handler {
     border-bottom-color: darken($grp-predelete-background-color, 6);
     @include grp-gradient-predelete();
 }
-.grp-collapse.grp-predelete > h2.grp-collapse-handler:hover, 
-.grp-collapse.grp-predelete > h3.grp-collapse-handler:hover, 
-.grp-predelete .grp-collapse > h4.grp-collapse-handler:hover, 
-.grp-collapse.grp-open.grp-predelete > h2.grp-collapse-handler, 
-.grp-collapse.grp-open.grp-predelete > h3.grp-collapse-handler, 
+.grp-collapse.grp-predelete > h2.grp-collapse-handler:hover,
+.grp-collapse.grp-predelete > h3.grp-collapse-handler:hover,
+.grp-predelete .grp-collapse > h4.grp-collapse-handler:hover,
+.grp-collapse.grp-open.grp-predelete > h2.grp-collapse-handler,
+.grp-collapse.grp-open.grp-predelete > h3.grp-collapse-handler,
 .grp-predelete .grp-collapse.grp-open > h4.grp-collapse-handler {
     border-bottom-color: darken($grp-predelete-background-color, 6);
     @include grp-gradient-predelete-reverse();
 }
-.grp-predelete, 
+.grp-predelete,
 .grp-predelete .grp-module,
-.grp-predelete .grp-th, 
+.grp-predelete .grp-th,
 .grp-predelete .grp-td {
     background: $grp-predelete-background-color;
 }
-
