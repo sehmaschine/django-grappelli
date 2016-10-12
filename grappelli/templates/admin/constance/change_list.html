@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load static admin_list i18n grp_tags admin_urls %}
+{% load admin_list i18n grp_tags admin_urls %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -61,62 +61,18 @@
                 {{ field }}
             {% endfor %}
             <header style="display:none"><h1>Results</h1></header>
-                <div class="grp-module grp-changelist-results">
-                    <table id="result_list" cellspacing="0" class="grp-sortable">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    <div class="grp-text">
-                                        <span>{% trans "Name" %}</span>
-                                    </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="grp-text">
-                                        <span>{% trans "Default" %}</span>
-                                    </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="grp-text">
-                                        <span>{% trans "Value" %}</span>
-                                    </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="grp-text">
-                                        <span>{% trans "Is modified" %}</span>
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                    </tbody>
-                    {% for item in config_values %}
-                        <tr class="grp-row {% cycle 'grp-row-even' 'grp-row-odd' %}">
-                            <td>
-                                <div class="grp-text"><strong>{{ item.name }}</strong></div>
-                                <p class="grp-help">{{ item.help_text }}</p>
-                            </td>
-                            <td>
-                                <div class="grp-text"><span>{{ item.default }}</span></div>
-                            </td>
-                            <td>
-                                {{ item.form_field }}
-                                {% if item.form_field.errors %}
-                                    <ul class="errorlist">
-                                        {% for error in item.form_field.errors %}<li>{{ error }}</li>{% endfor %}
-                                    </ul>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if item.modified %}
-                                    <img src="{% static 'admin/img/icon-yes.'|add:icon_type %}" alt="{{ item.modified }}" />
-                                {% else %}
-                                    <img src="{% static 'admin/img/icon-no.'|add:icon_type %}" alt="{{ item.modified }}" />
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+            {% if fieldsets %}
+                {% for fieldset in fieldsets %}
+                    <fieldset class="module">
+                        <h2>{{ fieldset.title }}</h2>
+                        {% with config_values=fieldset.config_values %}
+                            {% include "admin/constance/includes/results_list.html" %}
+                        {% endwith %}
+                    </fieldset>
+                {% endfor %}
+            {% else %}
+                {% include "admin/constance/includes/results_list.html" %}
+            {% endif %}
             <footer id="submit" class="grp-module grp-submit-row grp-fixed-footer">
                 <header style="display:none"><h1>Submit Options</h1></header>
                 <ul>
