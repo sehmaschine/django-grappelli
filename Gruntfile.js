@@ -11,6 +11,7 @@ module.exports = function(grunt) {
       options: {
         "expr": true,
         "scripturl": true,
+        reporterOutput: "",
       },
       beforeconcat: ['grappelli/static/grappelli/js/grappelli.js', 'grappelli/static/grappelli/js/jquery*.js'],
       afterconcat: ['grappelli/static/grappelli/js/grappelli.min.js']
