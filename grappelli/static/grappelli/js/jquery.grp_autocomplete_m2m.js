@@ -33,6 +33,10 @@
                 if ($this.parent().find("ul.errorlist")) {
                     $this.parent().find("ul.errorlist").detach().appendTo($this.parent().parent());
                 }
+                // move helptext outside the wrapper
+                if ($this.parent().find("p.grp-help")) {
+                    $this.parent().find("p.grp-help").detach().appendTo($this.parent().parent());
+                }
                 // lookup
                 lookup_id($this, options);  // lookup when loading page
                 lookup_autocomplete($this, options);  // autocomplete-handler

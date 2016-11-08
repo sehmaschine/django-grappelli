@@ -26,7 +26,7 @@
         })(grp.jQuery);
     </script>
     <div class="g-d-c csv-export-confirmation">
-        <form action="" method="post">{% csrf_token %}
+        <form action="" method="post" novalidate>{% csrf_token %}
             <fieldset class="grp-module">
                 <h2>{% blocktrans %}Export following fields:{% endblocktrans %}</h2>
                 <div class="grp-row">

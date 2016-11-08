@@ -48,7 +48,7 @@
                 {% include "admin/includes/object_delete_summary.html" %}
                 <ul class="grp-nested-list">{{ deleted_objects|unordered_list }}</ul>
             </div>
-            <form action="" method="post">{% csrf_token %}
+            <form action="" method="post" novalidate>{% csrf_token %}
                 <div class="grp-module grp-submit-row grp-fixed-footer">
                     <ul>
                         {% url opts|admin_urlname:'change' object.pk|admin_urlquote as object_url %}
