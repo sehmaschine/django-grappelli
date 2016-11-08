@@ -8,8 +8,16 @@
 Changelog
 =========
 
-2.8.3 (not yet released)
+2.8.4 (not yet released)
 ------------------------
+
+2.8.3 (November 8th 2016)
+-------------------------
+* Fixed: collectstatic (removed icon-deletelink.svg from screen.css).
+* Fixed: Recent actions box overflowing on long text.
+* Improved: M2M help text.
+* Improved: Removed browser-specific input validation with some fields.
+* Improved: django-constance templates.
 
 2.8.2 (September 28th 2016)
 ---------------------------
