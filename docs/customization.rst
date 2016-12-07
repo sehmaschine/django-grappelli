@@ -372,6 +372,9 @@ Example in Python 3:
 
 .. _customizationtinymce:
 
+.. warning::
+    When defining ``autocomplete_lookup_fields`` and ``related_lookup_fields``, you must use Python list objects instead of tuples.
+
 Using TinyMCE
 -------------
 
