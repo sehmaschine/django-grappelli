@@ -46,6 +46,15 @@
                 {{ inline_admin_form.fk_field.field }}
                 {% if inline_admin_form.has_auto_field or inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
             </div>
+            {% if forloop.last %}
+              <script type="text/javascript">
+                if (tinyMCE != undefined) {
+                  django.jQuery('textarea', '.grp-empty-form').each(function() {
+                    tinyMCE.execCommand('mceRemoveControl', false, django.jQuery(this).attr('id'));
+                  });
+                }
+              </script>
+            {% endif %}
         {% endfor %}
         {% endwith %}
         {{ inline_admin_formset.extra_forms }}
@@ -137,8 +146,44 @@
         $("#{{ inline_admin_formset.formset.prefix }}-group").grp_inline({
             {% block grp_inline_options %}
             prefix: "{{ inline_admin_formset.formset.prefix }}",
-            onAfterRemoved: function(inline) {},
-            onAfterAdded: function(form) {
+              onBeforeRemoved: function(f) {
+               if (tinyMCE != undefined) {
+                   // make sure tinyMCE instances in empty-form are inactive
+                   // find every tinyMCE instance...
+                   django.jQuery(tinyMCE.get()).each(function() { 
+                       // ...that is inside a grp-empty-form...
+                       django.jQuery(".grp-empty-form #" + django.jQuery(this).attr("id")).each(function() { 
+                           // ...and remove it, so it can be re-initialized in onAfterAdded()
+                           tinyMCE.execCommand("mceRemoveControl",false,django.jQuery(this).attr("id")) 
+                        }) 
+                    })
+               }
+              },
+              onAfterRemoved: function(form) {
+              },
+              onBeforeAdded: function(form) {
+                if (tinyMCE != undefined) {
+                  // make sure tinyMCE instances in empty-form are inactive
+                  django.jQuery('textarea', '.grp-empty-form').each(function() {
+                    tinyMCE.execCommand('mceRemoveControl', false, django.jQuery(this).attr('id'));
+                  }); 
+                }
+              },
+              onAfterAdded: function(form) {
+                console.log("onAfterAdded");
+                if (tinyMCE != undefined) {
+                  // re-initialise tinyMCE instances
+                  $('textarea', form).each(function(k,v) {
+                    var tid = $(this).attr('id');
+                    tinyMCE.execCommand('mceRemoveControl', false, tid);
+                    tinyMCE.execCommand('mceAddControl', false, tid);
+                  });
+                  // make sure tinyMCE instances in empty-form are inactive
+                  django.jQuery('textarea', '.empty-form').each(function() {
+                    tinyMCE.execCommand('mceRemoveControl', false, django.jQuery(this).attr('id'));
+                  });
+                }            
+                
                 grappelli.reinitDateTimeFields(form);
                 grappelli.updateSelectFilter(form);
                 $.each(related_lookup_fields_fk, function() {
