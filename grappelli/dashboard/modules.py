@@ -191,7 +191,7 @@ class LinkList(DashboardModule):
             return
         new_children = []
         for link in self.children:
-            if isinstance(link, (tuple, list,)):
+            if isinstance(link, (tuple, list)):
                 link_dict = {'title': link[0], 'url': link[1]}
                 if len(link) >= 3:
                     link_dict['external'] = link[2]
@@ -241,8 +241,7 @@ class AppList(DashboardModule, AppListElementMixin):
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
             apps[app_label]['models'].append(model_dict)
 
-        apps_sorted = list(apps.keys())
-        apps_sorted.sort()
+        apps_sorted = sorted(apps.keys())
         for app in apps_sorted:
             # sort model list alphabetically
             apps[app]['models'].sort(key=lambda i: i['title'])
