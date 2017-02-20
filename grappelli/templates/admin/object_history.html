@@ -33,7 +33,7 @@
                         <tr>
                             <th scope="grp-row">{{ action.action_time|date:_("DATETIME_FORMAT") }}</th>
                             <td>{{ action.user.username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>
-                            <td>{{ action.change_message }}</td>
+                            <td>{{ action.get_change_message }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
