@@ -525,7 +525,7 @@ body.grp-change-form #grp-content-container > form > div {
 
 @mixin grp-fixed-footer {
     position: fixed;
-    z-index: 900;
+    z-index: 1000;
     float: left;
     bottom: 0;
     left: 0;
