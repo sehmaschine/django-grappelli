@@ -16,7 +16,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 try:
     from django.contrib.auth import get_user_model
     User = get_user_model()
-except ImportError:
+except (ImportError, RuntimeError):
     from django.contrib.auth.models import User
 
 # GRAPPELLI IMPORTS
