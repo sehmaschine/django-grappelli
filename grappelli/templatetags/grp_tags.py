@@ -17,7 +17,6 @@ from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language
 from django.template.loader import get_template
-from django.template.context import Context
 from django.utils.translation import ugettext as _
 
 # grappelli imports
@@ -214,11 +213,11 @@ def admin_list_filter(cl, spec):
         tpl = get_template(cl.model_admin.change_list_filter_template)
     except:
         tpl = get_template(spec.template)
-    return tpl.render(Context({
+    return tpl.render({
         'title': spec.title,
         'choices': list(spec.choices(cl)),
         'spec': spec,
-    }))
+    })
 
 
 @register.simple_tag(takes_context=True)
