@@ -19,7 +19,7 @@
                             <div class="c-1">{{ field.label_tag|prettylabel }}</div>
                             <div class="c-2">
                                 {% if field.is_readonly %}
-                                    <div class="grp-readonly">{{ field.contents }}</div>
+                                    <div class="grp-readonly">{{ field.contents|linebreaksbr }}</div>
                                 {% else %}
                                     {{ field.field }}
                                 {% endif %}
