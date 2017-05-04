@@ -1,27 +1,32 @@
 {% load i18n grp_dashboard_tags %}
 
 {{ dashboard.media }}
-
+{% comment %}
+  Tested on Django1.8 and branch 2.7.4
+  dashboard.parentloop.counter returns counter of inner loop if inner loop exists
+  instead of correct number else works
+  use 23 as size instead of 24 as its rounded better for 4 columns
+  widthratio used for multiplication and division.
+{% endcomment %}
 <div class="g-d-c">
-    <div class="g-d-12 g-d-f" id="column_1">
-        {% for module in dashboard.children %}
-            {% if module.column == 1 %}
-                {% grp_render_dashboard_module module forloop.counter %}
-            {% endif %}
+  {% with ''|ljust:dashboard.columns as range %}
+    {% with '0' as outer_counter %}
+      {% for _ in range %}
+        {% with outer_counter|add:'1' as outer_counter %}
+          <div  {% if forloop.first %}            class="g-d-{% widthratio 23 dashboard.columns|add:'1' 2 %} g-d-f"   {% else %}
+          {% if range|length == outer_counter %}  class="g-d-{% widthratio 23 dashboard.columns|add:'1' 1 %} g-d-l"   {% else %}
+                                                  class="g-d-{% widthratio 23 dashboard.columns|add:'1' 1 %}"         {% endif %}
+                {% endif %}
+                  id="column_{{outer_counter}}">
+                  {% for module in dashboard.children %}
+                      {% if module.column == outer_counter %}
+                          {% grp_render_dashboard_module module forloop.counter %}
+                      {% endif %}
+                  {% endfor %}
+
+          </div>
+          {% endwith %}
         {% endfor %}
-    </div>
-    <div class="g-d-6" id="column_2">
-        {% for module in dashboard.children %}
-            {% if module.column == 2 %}
-                {% grp_render_dashboard_module module forloop.counter %}
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="g-d-6 g-d-l" id="column_3">
-        {% for module in dashboard.children %}
-            {% if module.column == 3 %}
-                {% grp_render_dashboard_module module forloop.counter %}
-            {% endif %}
-        {% endfor %}
-    </div>
+      {% endwith %}
+    {% endwith %}
 </div>
