@@ -10,38 +10,36 @@
     float: right;
     top: -40px;
     margin: 0 0 -40px;
-    li {
-        a {
-            display: block;
-            padding: 4px 15px;
-            font-weight: bold;
-            @include border-radius(30px);
-            color: #fff;
-            border: 1px solid #777;
-            opacity: .5;
-            @include background(linear-gradient(#999, #888));
-            &.grp-state-focus {
-                opacity: 1;
-            }
+    a {
+        display: block;
+        padding: 4px 15px;
+        font-weight: bold;
+        @include border-radius(30px);
+        color: #fff;
+        border: 1px solid #777;
+        opacity: .5;
+        @include background(linear-gradient(#999, #888));
+        &.grp-state-focus {
+            opacity: 1;
+        }
+        &:hover {
+            opacity: 1;
+            border: 1px solid #2987a6;
+            @include background(linear-gradient(#36b0d9, #309bbf));
+        }
+        &.grp-add-link {
+            padding-left: 28px;
+            @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #666, #444);
             &:hover {
-                opacity: 1 !important;
-                border: 1px solid #2987a6 !important;
-                @include background(linear-gradient(#36b0d9, #309bbf));
+                @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #36b0d9, #309bbf);
             }
-            &.grp-add-link {
-                padding-left: 28px;
-                @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #666, #444);
-                &:hover {
-                    @include grp-background-gradient-icon-combo(object-tools-add-link, 0, #36b0d9, #309bbf);
-                }
-            }
-            &.grp-viewsite-link,
-            &[target="_blank"] {
-                padding-left: 28px;
-                @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #999, #888);
-                &:hover {
-                    @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #36b0d9, #309bbf);
-                }
+        }
+        &.grp-viewsite-link,
+        &[target="_blank"] {
+            padding-left: 28px;
+            @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #999, #888);
+            &:hover {
+                @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #36b0d9, #309bbf);
             }
         }
     }
@@ -69,62 +67,62 @@
             float: none !important;
             display: inline-block;
         }
-        a,
-        span {
-            display: block;
-            width: 24px;
-            height: 24px;
-            &.grp-icon-text,
-            &.grp-text {
-                padding-left: 24px;
-                padding-right: 6px;
-                width: auto;
-                line-height: 24px;
-                color: $grp-link-color-hover;
-                &:hover {
-                    color: $grp-link-color;
-                }
-            }
-            &.grp-text {
-                padding-left: 8px;
+    }
+    a,
+    span {
+        display: block;
+        width: 24px;
+        height: 24px;
+        &.grp-icon-text,
+        &.grp-text {
+            padding-left: 24px;
+            padding-right: 6px;
+            width: auto;
+            line-height: 24px;
+            color: $grp-link-color-hover;
+            &:hover {
+                color: $grp-link-color;
             }
         }
-        a.grp-add-handler {
-            @include icons-sprite(tools-add-handler);
+        &.grp-text {
+            padding-left: 8px;
         }
-        a.grp-delete-handler {
-            @include icons-sprite(tools-delete-handler);
-            .grp-predelete & {
-                @include icons-sprite(tools-delete-handler-predelete);
-            }
+    }
+    a.grp-add-handler {
+        @include icons-sprite(tools-add-handler);
+    }
+    a.grp-delete-handler {
+        @include icons-sprite(tools-delete-handler);
+        .grp-predelete & {
+            @include icons-sprite(tools-delete-handler-predelete);
         }
-        a.grp-remove-handler {
-            @include icons-sprite(tools-remove-handler);
-        }
-        a.grp-drag-handler {
-            @include icons-sprite(tools-drag-handler);
-        }
-        a.grp-viewsite-link {
-            @include icons-sprite(tools-viewsite-link);
-        }
-        a.grp-open-handler {
-            @include icons-sprite(tools-open-handler);
-        }
-        a.grp-close-handler {
-            @include icons-sprite(tools-close-handler);
-        }
-        a.grp-arrow-down-handler {
-            @include icons-sprite(tools-arrow-down-handler);
-        }
-        a.grp-arrow-up-handler {
-            @include icons-sprite(tools-arrow-up-handler);
-        }
-        a.grp-trash-handler {
-            @include icons-sprite(tools-trash-handler);
-        }
-        a.grp-trash-list-toggle-handler {
-            @include icons-sprite(tools-trash-list-toggle-handler);
-        }
+    }
+    a.grp-remove-handler {
+        @include icons-sprite(tools-remove-handler);
+    }
+    a.grp-drag-handler {
+        @include icons-sprite(tools-drag-handler);
+    }
+    a.grp-viewsite-link {
+        @include icons-sprite(tools-viewsite-link);
+    }
+    a.grp-open-handler {
+        @include icons-sprite(tools-open-handler);
+    }
+    a.grp-close-handler {
+        @include icons-sprite(tools-close-handler);
+    }
+    a.grp-arrow-down-handler {
+        @include icons-sprite(tools-arrow-down-handler);
+    }
+    a.grp-arrow-up-handler {
+        @include icons-sprite(tools-arrow-up-handler);
+    }
+    a.grp-trash-handler {
+        @include icons-sprite(tools-trash-handler);
+    }
+    a.grp-trash-list-toggle-handler {
+        @include icons-sprite(tools-trash-list-toggle-handler);
     }
     input {
         position: absolute;

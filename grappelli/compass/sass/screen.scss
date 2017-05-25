@@ -78,8 +78,8 @@ body {
 }
 
 body.grp-login {
-    #grp-header, 
-    #grp-context-navigation, 
+    #grp-header,
+    #grp-context-navigation,
     #grp-content-title {
         display: none;
     }
@@ -97,9 +97,6 @@ body.grp-login {
             label {
                 color: #fff;
             }
-            // .errorlist {
-            //  color: lighten(#bf3030, 5);
-            // }
         }
         h1 {
             font-size: 18px;
@@ -199,9 +196,9 @@ body.grp-login {
                 }
             }
         }
-        
+
     }
-    .grp-module.grp-submit-row, 
+    .grp-module.grp-submit-row,
     .grp-module.grp-submit-row ul {
         padding: 0;
         border: 0;
@@ -226,96 +223,96 @@ header#grp-header {
     clear: both;
     width: 100%;
     @include box-sizing(border-box);
-    #grp-navigation {
-        position: relative;
-        float: left;
-        clear: both;
-        width: 100%;
-        padding: 0 20px;
-        @include box-sizing(border-box);
-        @include grp-gradient-dark;
-        @include clearfix;
-        overflow: visible;
-        div#grp-branding {
-            position: relative;
-            float: left;
-            margin: 0 10px 0 -20px;
-            max-height: 36px;
-            overflow: hidden;
+}
+
+#grp-navigation {
+    position: relative;
+    float: left;
+    clear: both;
+    width: 100%;
+    padding: 0 20px;
+    @include box-sizing(border-box);
+    @include grp-gradient-dark;
+    @include clearfix;
+    overflow: visible;
+    a {
+        color: lighten($grp-link-color, 10);
+        &:hover {
+            color: #fff;
         }
-        h1#grp-admin-title {
+    }
+    ul {
+        li.grp-collapse {
             position: relative;
-            float: left;
-            margin: 0;
-            padding: 10px 0;
-            font-size: 12px;
-            line-height: 16px;
-        }
-        a {
-            color: lighten($grp-link-color, 10);
-            &:hover {
-                color: #fff;
+            z-index: 1000;
+            > ul {
+                display: none;
             }
-        }
-        ul {
-            li.grp-collapse {
-                position: relative;
-                z-index: 1000;
+            &.grp-open {
                 > ul {
-                    display: none;
-                }
-                &.grp-open {
-                    > ul {
-                        position: absolute;
-                        z-index: 1010;
-                        display: block;
-                        margin: -1px 0 0 -1px;
-                        width: 202px;
-                        border-top: 1px solid darken(#222, 10);
-                        @include border-bottom-radius($grp-border-radius);
-                        background: #222;
-                        li {
-                            border-top: 1px solid lighten(#222, 10);
-                            border-bottom: 1px solid darken(#222, 10);
-                            &:last-child {
-                                border-bottom: 0;
-                            }
-                            a {
-                                display: block;
-                                @include grp-padding($grp-padding-size-s $grp-padding-size);
-                            }
-                        }
-                    }
-                }
-            }
-            &#grp-user-tools {
-                margin: 0 -10px 0 0;
-                border-left: 1px solid darken(#222, 10);
-                > li {
-                    @include horizontal-list-item(0, left);
-                    border-left: 1px solid lighten(#222, 7);
-                    border-right: 1px solid darken(#222, 10);
-                    &.grp-user-options-container {
-                        width: 200px;
+                    position: absolute;
+                    z-index: 1010;
+                    display: block;
+                    margin: -1px 0 0 -1px;
+                    width: 202px;
+                    border-top: 1px solid darken(#222, 10);
+                    @include border-bottom-radius($grp-border-radius);
+                    background: #222;
+                    li {
+                        border-top: 1px solid lighten(#222, 10);
+                        border-bottom: 1px solid darken(#222, 10);
                         &:last-child {
-                            margin-right: 11px;
+                            border-bottom: 0;
                         }
-                    }
-                    &:last-child {
-                        border-right: 0;
-                    }
-                    a {
-                        display: block;
-                        padding: 10px;
+                        // a {
+                        //     display: block;
+                        //     @include grp-padding($grp-padding-size $grp-padding-size);
+                        // }
                     }
                 }
             }
         }
     }
-    #grp-user-tools {
-        position: relative;
-        float: right;
-        font-weight: bold;
+}
+div#grp-branding {
+    position: relative;
+    float: left;
+    margin: 0 10px 0 -20px;
+    max-height: 36px;
+    overflow: hidden;
+}
+h1#grp-admin-title {
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+#grp-user-tools {
+    position: relative;
+    float: right;
+    font-weight: bold;
+    margin: 0 -10px 0 0;
+    border-left: 1px solid darken(#222, 10);
+    > li {
+        @include horizontal-list-item(0, left);
+        border-left: 1px solid lighten(#222, 7);
+        border-right: 1px solid darken(#222, 10);
+        &.grp-user-options-container {
+            width: 200px;
+            &:last-child {
+                margin-right: 11px;
+            }
+        }
+        &:last-child {
+            border-right: 0;
+        }
+        a {
+            display: block;
+            @include grp-padding($grp-padding-size $grp-padding-size);
+        }
     }
 }
 
@@ -395,22 +392,21 @@ body.grp-change-form #grp-content-container > form > div {
         li {
             position: relative;
             padding: 1px 0 0;
-            a {
-                display: block;
-                padding: 4px 5px 4px 0;
-                &.grp-tool {
-                    padding: 0;
-                    width: 18px;
-                    height: 24px;
-                }
-                
-                &#grp-open-all {
-                    @include icons-sprite(tools-open-handler);
-                }
-                &#grp-close-all {
-                    @include icons-sprite(tools-close-handler);
-                }
-            }
+        }
+    }
+    a {
+        display: block;
+        padding: 4px 5px 4px 0;
+        &.grp-tool {
+            padding: 0;
+            width: 18px;
+            height: 24px;
+        }
+        &#grp-open-all {
+            @include icons-sprite(tools-open-handler);
+        }
+        &#grp-close-all {
+            @include icons-sprite(tools-close-handler);
         }
     }
 }
@@ -479,30 +475,31 @@ body.grp-change-form #grp-content-container > form > div {
                 margin-left: 0;
                 margin-right: 10px;
             }
-            input[type=button] {
-                margin: 0;
-                width: auto;
-                display: block;
-            }
-            input.grp-button, 
-            a.grp-button, 
-            button.grp-button {
-                @include opacity(.75);
-                &.grp-default {
-                    @include opacity(1);
-                }
-                &:hover, 
-                &:focus {
-                    @include opacity(1);
-                }
-            }
-            button.grp-button {
-                width: auto;
-            }
-            .grp-button {
-                @include box-shadow(0 0 10px #bbb);
-            }
+
         }
+    }
+    input[type=button] {
+        margin: 0;
+        width: auto;
+        display: block;
+    }
+    input.grp-button,
+    a.grp-button,
+    button.grp-button {
+        @include opacity(.75);
+        &.grp-default {
+            @include opacity(1);
+        }
+        &:hover,
+        &:focus {
+            @include opacity(1);
+        }
+    }
+    button.grp-button {
+        width: auto;
+    }
+    .grp-button {
+        @include box-shadow(0 0 10px #bbb);
     }
 }
 .grp-submit-row {
@@ -515,10 +512,11 @@ body.grp-change-form #grp-content-container > form > div {
                 margin-bottom: 5px;
                 padding: 5px !important;
                 background: #444;
-                .grp-button {
-                    @include box-shadow(none);
-                }
+
             }
+        }
+        .grp-button {
+            @include box-shadow(none);
         }
     }
 }
@@ -584,11 +582,3 @@ body.grp-popup {
         }
     }
 }
-
-
-
-
-
-
-
-
