@@ -1,4 +1,4 @@
-{% load i18n grp_tags admin_urls %}
+{% load i18n grp_tags static admin_urls %}
 
 <!-- group -->
 <div class="inline-group grp-group grp-tabular{% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
@@ -15,7 +15,10 @@
             <div class="grp-tr">
                 {% for field in inline_admin_formset.fields %}
                     {% if not field.widget.is_hidden %}
-                        <div class="grp-th {{ field.label|lower|slugify }}{% if field.required %} required{% endif %}">{{ field.label|capfirst }}</div>
+                        <div class="grp-th {{ field.label|lower|slugify }}{% if field.required %} required{% endif %}">
+                            {{ field.label|capfirst }}
+                            {% if field.help_text %}&nbsp;<img src="{% static "admin/img/icon-unknown.svg" %}" class="help help-tooltip" width="10" height="10" alt="({{ field.help_text|striptags }})" title="{{ field.help_text|striptags }}" />{% endif %}
+                        </div>
                     {% endif %}
                 {% endfor %}
                 {% if inline_admin_formset.formset.can_delete %}<div class="grp-th">&nbsp;</div>{% endif %}
@@ -51,7 +54,7 @@
                                             {{ field.field }}
                                             {{ field.field.errors.as_ul }}
                                         {% endif %}
-                                        {% if field.field.help_text %}<p class="grp-help">{{ field.field.help_text }}</p>{% endif %}
+                                        {% comment %}{% if field.field.help_text %}<p class="grp-help">{{ field.field.help_text }}</p>{% endif %}{% endcomment %}
                                     </div>
                                 {% endif %}
                             {% endfor %}
