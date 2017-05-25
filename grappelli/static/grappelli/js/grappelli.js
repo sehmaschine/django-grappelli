@@ -59,7 +59,7 @@ var inputTypes = [
         // HACK: get rid of text after DateField (hardcoded in django.admin)
         $('p.datetime').each(function() {
             var text = $(this).html();
-            text = text.replace(/^\w*: /, "");
+            text = text.replace(/\w*: /, "");
             text = text.replace(/<br>[^<]*: /g, "<br>");
             $(this).html(text);
         });
