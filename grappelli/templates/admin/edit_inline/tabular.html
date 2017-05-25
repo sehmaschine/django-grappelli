@@ -65,8 +65,8 @@
                         <ul class="grp-tools">
                             {% comment %}
                             {% if inline_admin_form.original and inline_admin_form.model_admin.show_change_link and inline_admin_form.model_admin.has_registered_model %}<li><a href="{% url inline_admin_form.model_admin.opts|admin_urlname:'change' inline_admin_form.original.pk|admin_urlquote %}" class="grp-icon grp-change-link"></a></li>{% endif %}
-                            {% endcomment %}
                             {% if inline_admin_form.show_url %}<li><a href="{{ inline_admin_form.absolute_url }}" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
+                            {% endcomment %}
                             {% if inline_admin_formset.opts.sortable_field_name %}
                                 <li><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
                             {% endif %}
