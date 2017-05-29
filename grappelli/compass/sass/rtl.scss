@@ -699,6 +699,11 @@ body.rtl {
         clear: right;
     }
 
+    .grp-table img.grp-help-tooltip {
+        float: left;
+        margin: 2px 0 0 -2px;
+    }
+
     // TYPOGRAPHY
     caption, th, td {
         text-align: right;

@@ -17,7 +17,7 @@
                     {% if not field.widget.is_hidden %}
                         <div class="grp-th {{ field.label|lower|slugify }}{% if field.required %} required{% endif %}">
                             {{ field.label|capfirst }}
-                            {% if field.help_text %}&nbsp;<img src="{% static "admin/img/icon-unknown.svg" %}" class="help help-tooltip" width="10" height="10" alt="({{ field.help_text|striptags }})" title="{{ field.help_text|striptags }}" />{% endif %}
+                            {% if field.help_text %}&nbsp;<img src="{% static "admin/img/icon-unknown.svg" %}" class="grp-help-tooltip" width="12" height="12" alt="({{ field.help_text|striptags }})" title="{{ field.help_text|striptags }}" />{% endif %}
                         </div>
                     {% endif %}
                 {% endfor %}
