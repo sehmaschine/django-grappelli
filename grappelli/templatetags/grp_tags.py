@@ -134,7 +134,7 @@ def formsetsort(formset, arg):
             position = item.form[arg].data
             if position and position != "-1":
                 sorted_list.append((int(position), item))
-        sorted_list.sort()
+        sorted_list.sort(key=lambda i: i[0])
         sorted_list = [item[1] for item in sorted_list]
         for item in formset:
             position = item.form[arg].data
