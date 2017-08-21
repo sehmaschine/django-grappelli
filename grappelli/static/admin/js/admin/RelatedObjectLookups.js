@@ -104,6 +104,8 @@
     }
 
     function dismissChangeRelatedObjectPopup(win, objId, newRepr, newId) {
+        var name = windowname_to_id(win.name);
+        var elem = document.getElementById(name);
         var id = windowname_to_id(win.name).replace(/^edit_/, '');
         var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
         var selects = $(selectsSelector);
