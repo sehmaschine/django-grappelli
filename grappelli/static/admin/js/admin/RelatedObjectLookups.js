@@ -61,7 +61,8 @@
 
     function updateRelatedObjectLinks(triggeringLink) {
         var $this = $(triggeringLink);
-        var siblings = $this.nextAll('.change-related, .delete-related');
+        // GRAPPELLI CUSTOM: look for children in siblings (change-related and delete-related under ul/li.
+        var siblings = $this.nextAll().find('.change-related, .delete-related');
         if (!siblings.length) {
             return;
         }
@@ -181,10 +182,7 @@
                 updateRelatedObjectLinks(this);
             }
         });
-        // GRAPPELLI CUSTOM
-        /* triggering select means that update_lookup is triggered with
-        generic autocompleted (which would empty the field) */
-        // $('.related-widget-wrapper select').trigger('change');
+        $('.related-widget-wrapper select').trigger('change');
         $('.related-lookup').click(function(e) {
             e.preventDefault();
             var event = $.Event('django:lookup-related');
