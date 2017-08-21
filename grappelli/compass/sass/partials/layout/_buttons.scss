@@ -293,10 +293,10 @@ button.ui-datetime-now {
 
 
 
-/*  ADD ANOTHER
+/*  ADD ANOTHER / CHANGE / DELETE
 ------------------------------------------------------------------------------------------------------ */
 
-a.add-another {
+@mixin grp-inline-related-button-mixin {
     position: relative;
     display: inline-block;
     margin-left: 3px;
@@ -305,7 +305,21 @@ a.add-another {
     vertical-align: top;
     font-size: 11px;
     line-height: 16px;
+}
+
+a.add-another {
+    @include grp-inline-related-button-mixin;
     @include icons-sprite(add-another);
+}
+a.change-related {
+    @include grp-inline-related-button-mixin;
+    @include icons-sprite(tools-viewsite-link);
+    cursor: pointer;
+}
+a.delete-related {
+    @include grp-inline-related-button-mixin;
+    @include icons-sprite(related-remove);
+    cursor: pointer;
 }
 .grp-row {
     a.add-another {
