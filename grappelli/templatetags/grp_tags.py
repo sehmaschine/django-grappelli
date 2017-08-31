@@ -123,6 +123,7 @@ def classpath(obj):
 
 # FORMSETSORT FOR SORTABLE INLINES
 
+
 @register.filter
 def formsetsort(formset, arg):
     """
@@ -130,16 +131,19 @@ def formsetsort(formset, arg):
     """
     if arg:
         sorted_list = []
+        unsorted_list = []
         for item in formset:
-            position = item.form[arg].data
-            if position and position != "-1":
+            position = item.form[arg].value()
+
+            if isinstance(position, int) and item.original: # normal view
+                sorted_list.append((position, item))
+            elif position and hasattr(item.form, 'cleaned_data'): # error validation view
                 sorted_list.append((int(position), item))
-        sorted_list.sort()
-        sorted_list = [item[1] for item in sorted_list]
-        for item in formset:
-            position = item.form[arg].data
-            if not position or position == "-1":
-                sorted_list.append(item)
+            else:
+                unsorted_list.append(item)
+
+        sorted_list.sort(key=lambda i: i[0])
+        sorted_list = [item[1] for item in sorted_list] + unsorted_list
     else:
         sorted_list = formset
     return sorted_list
