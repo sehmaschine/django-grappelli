@@ -129,7 +129,6 @@ def formsetsort(formset, arg):
     """
     Takes a list of formset dicts, returns that list sorted by the sortable field.
     """
-
     if arg:
         sorted_list = []
         unsorted_list = []
@@ -138,7 +137,7 @@ def formsetsort(formset, arg):
 
             if isinstance(position, int) and item.original: # normal view
                 sorted_list.append((position, item))
-            elif position and item.form.cleaned_data:       # error validation view
+            elif position and hasattr(item.form, 'cleaned_data'): # error validation view
                 sorted_list.append((int(position), item))
             else:
                 unsorted_list.append(item)
