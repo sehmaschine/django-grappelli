@@ -171,11 +171,13 @@ class DefaultIndexDashboard(Dashboard):
                     'title': _('Django documentation'),
                     'url': 'http://docs.djangoproject.com/',
                     'external': True,
+                    'target': '_blank',
                 },
                 {
                     'title': _('Django "django-users" mailing list'),
                     'url': 'http://groups.google.com/group/django-users',
                     'external': True,
+                    'target': True,  # ~= open in new window: True
                 },
                 {
                     'title': _('Django irc channel'),

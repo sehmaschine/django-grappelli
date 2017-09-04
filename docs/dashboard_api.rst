@@ -142,7 +142,13 @@ following keys:
     A string describing the link, it will be the ``title`` attribute of
     the html ``a`` tag.
 
-Children can also be iterables (lists or tuples) of length 2, 3 or 4.
+``target``
+    A string or boolean value describing what is the link target. To open
+    link in a new window/tab you can pass ``True`` or ``'_blank'`` value to
+    this parameter. When you pass an string value, it is directly used in
+    the ``target`` attribute of the generated ``a`` tag in the template.
+
+Children can also be iterables (lists or tuples) of length 2, 3, 4, or 5.
 
 Here's an example of building a link list module:
 
@@ -163,6 +169,7 @@ Here's an example of building a link list module:
                         'url': 'http://www.python.org',
                         'external': True,
                         'description': 'Python programming language rocks!',
+                        'target': '_blank',
                     },
                     ['Django website', 'http://www.djangoproject.com', True],
                     ['Some internal link', '/some/internal/link/'],
