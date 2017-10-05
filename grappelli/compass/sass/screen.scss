@@ -427,7 +427,7 @@ body.grp-change-form #grp-content-container > form > div {
     @include grp-margin(0 0 $grp-margin-size-l);
     width: 100%;
     @include box-sizing(border-box);
-    li {
+    > li {
         font-weight: bold;
         @include grp-padding($grp-padding-size-s $grp-padding-size);
         border: 1px solid $grp-messagelist-border-color;
