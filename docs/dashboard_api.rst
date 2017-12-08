@@ -27,7 +27,7 @@ Here's an example of a custom dashboard:
 
 .. code-block:: python
 
-    from django.core.urlresolvers import reverse
+    from django.urls import reverse
     from django.utils.translation import ugettext_lazy as _
     from grappelli.dashboard import modules, Dashboard
 

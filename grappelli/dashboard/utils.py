@@ -12,7 +12,7 @@ from importlib import import_module
 # DJANGO IMPORTS
 from django.conf import settings
 from django.contrib import admin
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 def _get_dashboard_cls(dashboard_cls, context):
