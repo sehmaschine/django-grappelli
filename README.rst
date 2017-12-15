@@ -37,7 +37,7 @@ http://readthedocs.org/docs/django-grappelli/
 Releases
 --------
 
-**Grappelli is always developed against the latest stable Django release and is NOT tested with Djangos trunk.**
+**Grappelli is always developed against the latest stable Django release and is NOT tested with Django's master branch.**
 
 * Grappelli 2.10.1 (May 25th, 2017): Compatible with Django 1.11
 * Grappelli 2.9.1 (November 8th, 2016): Compatible with Django 1.10
