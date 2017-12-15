@@ -15,7 +15,7 @@ class CategoryOptions(admin.ModelAdmin):
 
 
 class EntryOptions(admin.ModelAdmin):
-    list_display = ("id", "title", "category", "user",)
+    list_display = ("id", "title", "category", "category_alt", "user",)
     list_display_links = ("title",)
 
     def get_queryset(self, request):

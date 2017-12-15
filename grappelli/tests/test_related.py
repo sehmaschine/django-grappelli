@@ -77,10 +77,25 @@ class RelatedTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertJSONEqual(response.content.decode('utf-8'), [{"value": "1", "label": "Category No 0 (1)"}])
 
+        # ok (to_field)
+        response = self.client.get("%s?object_id=1&to_field=id&app_label=%s&model_name=%s" % (reverse("grp_related_lookup"), "grappelli", "category"))
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content.decode('utf-8'), [{"value": "1", "label": "Category No 0 (1)"}])
+
+        # ok (to_field)
+        response = self.client.get("%s?object_id=Category+No+0&to_field=name&app_label=%s&model_name=%s" % (reverse("grp_related_lookup"), "grappelli", "category"))
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content.decode('utf-8'), [{"value": "Category No 0", "label": "Category No 0 (1)"}])
+
         # wrong object_id
         response = self.client.get("%s?object_id=10000&app_label=%s&model_name=%s" % (reverse("grp_related_lookup"), "grappelli", "category"))
         self.assertEqual(response.status_code, 200)
         self.assertJSONEqual(response.content.decode('utf-8'), [{"value": "10000", "label": "?"}])
+
+        # wrong object_id (to_field)
+        response = self.client.get("%s?object_id=xxx&to_field=name&app_label=%s&model_name=%s" % (reverse("grp_related_lookup"), "grappelli", "category"))
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content.decode('utf-8'), [{"value": "xxx", "label": "?"}])
 
         # filtered queryset (single filter) fails
         response = self.client.get("%s?object_id=1&app_label=%s&model_name=%s&query_string=id__gte=99" % (reverse("grp_related_lookup"), "grappelli", "category"))

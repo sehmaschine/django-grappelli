@@ -85,7 +85,7 @@
                     $.ajax({
                         url: options.autocomplete_lookup_url,
                         dataType: 'json',
-                        data: "term=" + encodeURIComponent(request.term) + "&app_label=" + grappelli.get_app_label(elem) + "&model_name=" + grappelli.get_model_name(elem) + "&query_string=" + grappelli.get_query_string(elem),
+                        data: "term=" + encodeURIComponent(request.term) + "&app_label=" + grappelli.get_app_label(elem) + "&model_name=" + grappelli.get_model_name(elem) + "&query_string=" + grappelli.get_query_string(elem) + "&to_field=" + grappelli.get_to_field(elem),
                         beforeSend: function (XMLHttpRequest) {
                             options.loader.show();
                         },
@@ -129,7 +129,9 @@
         $.getJSON(options.lookup_url, {
             object_id: elem.val(),
             app_label: grappelli.get_app_label(elem),
-            model_name: grappelli.get_model_name(elem)
+            model_name: grappelli.get_model_name(elem),
+            query_string: grappelli.get_query_string(elem),
+            to_field: grappelli.get_to_field(elem)
         }, function(data) {
             $.each(data, function(index) {
                 options.input_field.val(data[index].label);

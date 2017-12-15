@@ -9,7 +9,7 @@ from django.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class Category(models.Model):
-    name = models.CharField("Title", max_length=50)
+    name = models.CharField("Title", max_length=50, unique=True)
 
     class Meta:
         app_label = "grappelli"
@@ -31,6 +31,7 @@ class Category(models.Model):
 class Entry(models.Model):
     title = models.CharField("Title", max_length=200)
     category = models.ForeignKey(Category, related_name="entries", blank=True, null=True)
+    category_alt = models.ForeignKey(Category, related_name="entriesalt", to_field="name", blank=True, null=True)
     date = models.DateTimeField("Date")
     body = models.TextField("Body", blank=True)
     user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', User), related_name="entries")

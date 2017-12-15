@@ -170,5 +170,19 @@ var inputTypes = [
         }
         return false;
     };
+    grappelli.get_to_field = function(elem) {
+        var link = elem.next("a");
+        if (link.length > 0 && link.attr('href').indexOf("_to_field") !== -1) {
+            var url = link.attr('href').split('/');
+            var pairs = url[url.length-1].replace('?', '').split("&");
+            for (var i = 0; i < pairs.length; i++) {
+                v = pairs[i].split('=');
+                if (v[0] == "_to_field") {
+                    return v[1];
+                }
+            }
+        }
+        return false;
+    };
 
 })(grp.jQuery);
