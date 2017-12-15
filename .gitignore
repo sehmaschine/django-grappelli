@@ -2,6 +2,7 @@
 docs/_build/
 docs/_themes/
 .DS_Store
+.flake8
 dist/*
 django_grappelli.egg-info/*
 grappelli/compass/.sass-cache/
