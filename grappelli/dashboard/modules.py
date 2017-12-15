@@ -197,6 +197,12 @@ class LinkList(DashboardModule):
                     link_dict['external'] = link[2]
                 if len(link) >= 4:
                     link_dict['description'] = link[3]
+                if len(link) >= 5:
+                    target = link[4]
+                    if isinstance(target, bool):
+                        target = '_blank' if target else None
+                    if target:
+                        link_dict['target'] = str(target)
                 new_children.append(link_dict)
             else:
                 new_children.append(link)
