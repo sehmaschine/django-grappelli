@@ -11,6 +11,15 @@ Changelog
 2.10.2 (not yet released)
 -------------------------
 
+* Added: styles for tabular inline help texts.
+* Added: parameter `target` to dashboard link list.
+* Added: system check for `autocomplete_search_fields`.
+* Fixed: lookups with `to_field`.
+* Improved: label with related and autocomplete lookup.
+* Improved: testing environment (updated packages).
+* Improved: formset sort templatetag.
+* Improved: use model queryset when constructing search query.
+
 2.10.1 (May 25th 2017)
 ----------------------
 
