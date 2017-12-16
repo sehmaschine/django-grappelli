@@ -147,14 +147,14 @@
             })
             .data("ui-autocomplete")._renderItem = function(ul,item) {
                 if (!item.value) {
-                    return $("<li></li>")
+                    return $("<li class='ui-state-disabled'></li>")
                         .data( "item.autocomplete", item )
-                        .append( "<span class='error'>" + item.label + "</span>")
+                        .append($("<span class='error'></span>").text(item.label))
                         .appendTo(ul);
                 } else {
                     return $("<li></li>")
                         .data( "item.autocomplete", item )
-                        .append( "<a>" + item.label + "</a>")
+                        .append($("<a></a>").text(item.label))
                         .appendTo(ul);
                 }
             };
