@@ -14,6 +14,7 @@ Changelog
 * Added: styles for tabular inline help texts.
 * Added: parameter `target` to dashboard link list.
 * Added: system check for `autocomplete_search_fields`.
+* Added: changelink handler with inline rows.
 * Fixed: lookups with `to_field`.
 * Improved: label with related and autocomplete lookup.
 * Improved: testing environment (updated packages).
