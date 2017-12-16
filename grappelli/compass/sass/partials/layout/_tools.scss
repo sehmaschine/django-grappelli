@@ -42,6 +42,8 @@
                 @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 0, #36b0d9, #309bbf);
             }
         }
+        &.grp-edit-link {
+        }
     }
 }
 .grp-object-tools {
@@ -104,6 +106,9 @@
         @include icons-sprite(tools-drag-handler);
     }
     a.grp-viewsite-link {
+        @include icons-sprite(tools-viewsite-link);
+    }
+    a.grp-edit-link {
         @include icons-sprite(tools-viewsite-link);
     }
     a.grp-open-handler {
