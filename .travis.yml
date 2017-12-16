@@ -6,9 +6,9 @@ install:
 script:
   - tox
 env:
-  - TOXENV=py27-django
-  - TOXENV=py34-django
-  - TOXENV=py35-django
+  - TOXENV=py27
+  - TOXENV=py34
+  - TOXENV=py35
 branches:
   only:
     - stable/2.10.x
