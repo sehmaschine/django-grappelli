@@ -6,9 +6,8 @@ install:
 script:
   - tox
 env:
-  - TOXENV=py27
   - TOXENV=py34
   - TOXENV=py35
 branches:
   only:
-    - stable/2.10.x
+    - stable/2.11.x

@@ -1,6 +1,6 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 2.10.2
+.. |grappelliversion| replace:: 2.11.1
 
 .. _quickstart:
 
@@ -35,8 +35,8 @@ Add URL-patterns. The grappelli URLs are needed for related–lookups and autoco
 .. code-block:: python
 
     urlpatterns = [
-        url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
-        url(r'^admin/', include(admin.site.urls)), # admin site
+        path('grappelli/', include('grappelli.urls')), # grappelli URLS
+        path('admin/', admin.site.urls), # admin site
     ]
 
 Add the request context processor (needed for the Dashboard and the Switch User feature):
