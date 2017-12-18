@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.html import escape
 from django.utils.translation import ugettext_lazy as _
 
@@ -39,7 +39,7 @@ class SwitchTests(TestCase):
         # add permissions for editor001
         content_type = ContentType.objects.get_for_model(Category)
         permissions = Permission.objects.filter(content_type=content_type)
-        self.editor_1.user_permissions = permissions
+        self.editor_1.user_permissions.set(permissions)
 
         # add categories
         for i in range(100):

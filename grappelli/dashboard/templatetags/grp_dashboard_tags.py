@@ -10,7 +10,7 @@ To load the dashboard tags: ``{% load grp_dashboard_tags %}``.
 
 # DJANGO IMPORTS
 from django import template
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 # GRAPPELLI IMPORTS
 from grappelli.dashboard.utils import get_admin_site_name, get_index_dashboard

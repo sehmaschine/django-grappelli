@@ -7,7 +7,7 @@ To activate your index dashboard add the following to your settings.py::
 """
 
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from grappelli.dashboard import modules, Dashboard
 from grappelli.dashboard.utils import get_admin_site_name
@@ -17,10 +17,10 @@ class CustomIndexDashboard(Dashboard):
     """
     Custom index dashboard for www.
     """
-    
+
     def init_with_context(self, context):
         site_name = get_admin_site_name(context)
-        
+
         # append a group for "Administration" & "Applications"
         self.children.append(modules.Group(
             _('Group: Administration & Applications'),
@@ -41,7 +41,7 @@ class CustomIndexDashboard(Dashboard):
                 )
             ]
         ))
-        
+
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             _('AppList: Applications'),
@@ -50,7 +50,7 @@ class CustomIndexDashboard(Dashboard):
             css_classes=('collapse closed',),
             exclude=('django.contrib.*',),
         ))
-        
+
         # append an app list module for "Administration"
         self.children.append(modules.ModelList(
             _('ModelList: Administration'),
@@ -58,7 +58,7 @@ class CustomIndexDashboard(Dashboard):
             collapsible=False,
             models=('django.contrib.*',),
         ))
-        
+
         # append another link list module for "support".
         self.children.append(modules.LinkList(
             _('Media Management'),
@@ -71,7 +71,7 @@ class CustomIndexDashboard(Dashboard):
                 },
             ]
         ))
-        
+
         # append another link list module for "support".
         self.children.append(modules.LinkList(
             _('Support'),
@@ -94,7 +94,7 @@ class CustomIndexDashboard(Dashboard):
                 },
             ]
         ))
-        
+
         # append a feed module
         self.children.append(modules.Feed(
             _('Latest Django News'),
@@ -102,7 +102,7 @@ class CustomIndexDashboard(Dashboard):
             feed_url='http://www.djangoproject.com/rss/weblog/',
             limit=5
         ))
-        
+
         # append a recent actions module
         self.children.append(modules.RecentActions(
             _('Recent Actions'),
@@ -110,5 +110,3 @@ class CustomIndexDashboard(Dashboard):
             collapsible=False,
             column=3,
         ))
-
-
