@@ -113,7 +113,7 @@ input[type="submit"] {
     @include grp-button();
     @include grp-form-button-style;
 }
-a.grp-button, 
+a.grp-button,
 button.grp-button,
 input[type=button].grp-button {
     @include grp-button();
@@ -153,10 +153,10 @@ input[type=button].grp-button {
 
 /*  Basic assignments ......................................... */
 
-button, 
-a.fb_show, 
-a.related-lookup, 
-body.tinyMCE input[name="src"] + div a, 
+button,
+a.fb_show,
+a.related-lookup,
+body.tinyMCE input[name="src"] + div a,
 body.tinyMCE input[name="href"] + div a {
     @include grp-icon-button;
 }
@@ -213,11 +213,13 @@ input[type=button] {
 }
 @mixin grp-separator {
     &:after {
-        content: ", ";
+        content: ",";
+        display: inline-block;
+        padding-right: 4px;
     }
 }
-.grp-placeholder-related-fk, 
-.grp-placeholder-related-m2m, 
+.grp-placeholder-related-fk,
+.grp-placeholder-related-m2m,
 .grp-placeholder-related-generic {
     @include grp-placeholder;
     .grp-errors & {
@@ -232,9 +234,9 @@ input[type=button] {
 
 /*  Filebrowser, Related Lookup, M2M, FK, Related Remove ......................................... */
 
-a.fb_show, 
-a.related-lookup, 
-body.tinyMCE input[name="src"] + div a, 
+a.fb_show,
+a.related-lookup,
+body.tinyMCE input[name="src"] + div a,
 body.tinyMCE input[name="href"] + div a {
     display: inline-block;
     margin-bottom: -5px;
@@ -247,7 +249,7 @@ a.related-lookup + strong {
     margin-left: 5px;
 }
 
-a.related-lookup.m2m, 
+a.related-lookup.m2m,
 .grp-autocomplete-wrapper-m2m a.related-lookup {
     @include icons-sprite(related-lookup-m2m);
     @include grp-button-states(blue, grey);
@@ -311,7 +313,7 @@ a.add-another {
     a.add-another {
         top: -7px;
     }
-    ul.radiolist + a.add-another, 
+    ul.radiolist + a.add-another,
     ul.checkboxlist + a.add-another {
         top: 3px;
     }
@@ -329,13 +331,13 @@ p.grp-help + * + a.add-another {
         top: -6px;
     }
 }
-.radiolist.inline + a.add-another, 
+.radiolist.inline + a.add-another,
 .checkboxlist.inline + a.add-another {
     float: left;
     margin-left: -20px;
     margin-right: -10000px;
 }
-.grp-row.grp-cells ul.radiolist.inline + a.add-another, 
+.grp-row.grp-cells ul.radiolist.inline + a.add-another,
 .grp-row.grp-cells ul.checkboxlist.inline + a.add-another {
     float: none;
     margin-right: 0;
@@ -346,15 +348,15 @@ p.grp-help + * + a.add-another {
 /*  CONTEXT-DEPENDENT BUTTON STYLES (FOCUS, ERROR)
 ------------------------------------------------------------------------------------------------------ */
 
-input:focus + button, 
-.vDateField:focus + span a, 
-.vTimeField:focus + span a, 
-input:focus + a.fb_show, 
-input:focus + a.related-lookup, 
-input:focus + * + a.related-lookup, 
-input:focus + a.add-another, 
-.grp-state-focus a.related-lookup, 
-body.tinyMCE input[name="src"]:focus + div a, 
+input:focus + button,
+.vDateField:focus + span a,
+.vTimeField:focus + span a,
+input:focus + a.fb_show,
+input:focus + a.related-lookup,
+input:focus + * + a.related-lookup,
+input:focus + a.add-another,
+.grp-state-focus a.related-lookup,
+body.tinyMCE input[name="src"]:focus + div a,
 body.tinyMCE input[name="href"]:focus + div a {
     border: $grp-form-field-border-focus !important;
 }
@@ -363,15 +365,15 @@ input:focus + .grp-search-button {
 }
 
 .grp-errors {
-    input + button, 
-    .vDateField + span a, 
-    .vTimeField + span a, 
-    input + a.fb_show, 
-    input + a.related-lookup, 
-    input + * + a.related-lookup, 
-    input + a.add-another, 
-    .grp-state-focus a.related-lookup, 
-    a.grp-related-remove, 
+    input + button,
+    .vDateField + span a,
+    .vTimeField + span a,
+    input + a.fb_show,
+    input + a.related-lookup,
+    input + * + a.related-lookup,
+    input + a.add-another,
+    .grp-state-focus a.related-lookup,
+    a.grp-related-remove,
     .grp-state-focus a.related-remove {
         border-color: $grp-font-color-error !important;
     }
@@ -382,8 +384,8 @@ input:focus + .grp-search-button {
 /*  UNKNOWN, YES, NO: REPLACING DJANGOS IMAGES
 ------------------------------------------------------------------------------------------------------ */
 
-img[src*="admin/img/icon-unknown"][src$=".gif"], 
-img[src*="admin/img/icon-no"][src$=".gif"], 
+img[src*="admin/img/icon-unknown"][src$=".gif"],
+img[src*="admin/img/icon-no"][src$=".gif"],
 img[src*="admin/img/icon-yes"][src$=".gif"] {
     position: relative;
     height: 0;
@@ -402,5 +404,3 @@ img[src*="admin/img/icon-no"][src$=".gif"] {
 img[src*="admin/img/icon-yes"][src$=".gif"] {
     @include icons-sprite(status-yes);
 }
-
-
