@@ -101,7 +101,7 @@ body.rtl {
     }
 
     // OBJECT TOOLS
-    ul.grp-object-tools {
+    .grp-object-tools {
         float: left;
         li {
             float: right;
@@ -162,6 +162,14 @@ body.rtl {
     .grp-group > h2 + .grp-tools {
         right: 0;
         margin-left: 1px;
+    }
+
+    input.grp-has-related-lookup,
+    input.vDateField.hasDatepicker,
+    input.vTimeField.hasTimepicker,
+    input.vFileBrowseField {
+        padding-left: 24px !important;
+        padding-right: 5px !important;
     }
 
     // BUTTONS
@@ -695,6 +703,9 @@ body.rtl {
                 background-image: url('../images/icons/selector-add-m2m-horizontal_hover.png');
             }
         }
+    }
+    .grp-related-widget-wrapper {
+        float: right;
     }
     .grp-related-widget-wrapper + p.grp-help {
         clear: right;
