@@ -54,7 +54,7 @@
             } else {
                 text.show();
             }
-            text.html($('<span class="grp-placeholder-label"></span>').text(data[0].label));
+            text.html($('<span class="grp-placeholder-label"></span>').text(data[0].label + '\u200E'));
         });
     };
 
