@@ -298,14 +298,14 @@ li.grp-changelist-actions {
         overflow: auto;
         overflow-y: hidden;
         -ms-overflow-y: hidden;
-        table {
+        table.grp-table {
             border-right: 0 !important;
         }
     }
 }
 
 body.grp-change-list {
-    table {
+    table.grp-table {
         margin: -1px !important;
         tr.grp-selected {
             th, td {
