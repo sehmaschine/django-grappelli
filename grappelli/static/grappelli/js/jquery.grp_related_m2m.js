@@ -45,9 +45,9 @@
         }, function(data) {
             values = $.map(data, function (a, i) {
                 if (data.length === i + 1) {
-                    return $('<span class="grp-placeholder-label"></span>').text(a.label);
+                    return $('<span class="grp-placeholder-label"></span>').text(a.label + '\u200E');
                 } else {
-                    return $('<span class="grp-placeholder-label"></span>').text(a.label).append($('<span class="grp-separator"></span>'));
+                    return $('<span class="grp-placeholder-label"></span>').text(a.label + '\u200E').append($('<span class="grp-separator"></span>'));
                 }
             });
             if (values === "") {
