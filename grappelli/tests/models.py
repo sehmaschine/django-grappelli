@@ -30,11 +30,11 @@ class Category(models.Model):
 @python_2_unicode_compatible
 class Entry(models.Model):
     title = models.CharField("Title", max_length=200)
-    category = models.ForeignKey(Category, related_name="entries", blank=True, null=True)
-    category_alt = models.ForeignKey(Category, related_name="entriesalt", to_field="name", blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name="entries", blank=True, null=True)
+    category_alt = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name="entriesalt", to_field="name", blank=True, null=True)
     date = models.DateTimeField("Date")
     body = models.TextField("Body", blank=True)
-    user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', User), related_name="entries")
+    user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', User), on_delete=models.CASCADE, related_name="entries")
     createdate = models.DateField("Date (Create)", auto_now_add=True)
     updatedate = models.DateField("Date (Update)", auto_now=True)
 

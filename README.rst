@@ -3,9 +3,6 @@ Django Grappelli
 .. image:: https://api.travis-ci.org/sehmaschine/django-grappelli.svg
     :target: https://travis-ci.org/sehmaschine/django-grappelli
 
-.. image:: https://img.shields.io/pypi/dm/django-grappelli.svg
-    :target: https://pypi.python.org/pypi/django-grappelli
-
 .. image:: https://readthedocs.org/projects/django-grappelli/badge/?version=latest
     :target: http://django-grappelli.readthedocs.org/en/latest/?badge=latest
 
@@ -39,15 +36,15 @@ Releases
 
 **Grappelli is always developed against the latest stable Django release and is NOT tested with Django's master branch.**
 
+* Grappelli 2.11.1 (January 27th, 2018): Compatible with Django 2.0
 * Grappelli 2.10.2 (January 27th, 2018): Compatible with Django 1.11
 * Grappelli 2.9.1 (November 8th, 2016): Compatible with Django 1.10
-* Grappelli 2.8.3 (November 8th, 2016): Compatible with Django 1.9
 
 Current development branches:
 
+* Grappelli 2.11.2 (Development version for Django 2.0, see branch Stable/2.11.x)
 * Grappelli 2.10.3 (Development version for Django 1.11, see branch Stable/2.10.x)
 * Grappelli 2.9.2 (Development version for Django 1.10, see branch Stable/2.9.x)
-* Grappelli 2.8.4 (Development version for Django 1.9, see branch Stable/2.8.x)
 
 Older versions are available at GitHub, but are not supported anymore.
-Support for 2.9.x and 2.8.x is limited to security issues and very important bugfixes.
+Support for 2.10.x and 2.9.x is limited to security issues and very important bugfixes.
