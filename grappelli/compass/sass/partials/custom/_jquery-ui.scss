@@ -298,6 +298,7 @@
             border: 1px solid #c7c7c7;
             @include border-radius($grp-border-radius);
             background: transparent;
+            box-shadow: none;
             cursor: pointer;
             &.ui-datepicker-current {
                 float: right;

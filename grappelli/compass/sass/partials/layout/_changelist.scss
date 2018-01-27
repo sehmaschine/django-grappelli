@@ -11,7 +11,7 @@
             margin-right: 1px;
             border: 1px solid #fff;
             @include border-radius($grp-border-radius);
-            a, 
+            a,
             span {
                 display: inline-block;
                 padding: 4px 8px 4px;
@@ -79,13 +79,13 @@
         li {
             position: relative;
             float: left;
-            a, 
+            a,
             span {
                 padding: 2px 5px;
             }
             a.grp-date-hierarchy-back {
                 color: #59afcc;
-                padding-left: 10px;
+                padding-left: 15px;
                 @include icons-sprite(date-hierarchy-back);
                 &:hover {
                     color: #444;
@@ -277,8 +277,8 @@ li.grp-changelist-actions {
             background: #222 !important;
         }
     }
-    li.grp-all, 
-    li.grp-question, 
+    li.grp-all,
+    li.grp-question,
     li.grp-clear-selection {
         display: none;
     }

@@ -213,12 +213,14 @@ fieldset.grp-module {
 /*  Related widget tools ................................................... */
 
 .grp-related-widget-wrapper {
-  float: left;
-  display: flex;
+    position: relative;
+    float: left;
+    display: flex;
 }
 
 .grp-related-widget-tools {
-    position: relative;
+    position: absolute;
+    right: -30px;
     top: 2px;
     z-index: 1;
     a {
@@ -235,6 +237,7 @@ fieldset.grp-module {
         position: relative;
         display: inline-block;
         float: right;
+        right: 0;
         padding-left: 0;
         margin-right: 0
     }
