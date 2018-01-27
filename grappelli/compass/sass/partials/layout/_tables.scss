@@ -4,7 +4,7 @@
 /*  TABLE
 ------------------------------------------------------------------------------------------------------ */
 
-table {
+table.grp-table {
     margin: 0;
     padding: 0;
     border-spacing: none;
@@ -76,7 +76,7 @@ table {
                 font-size: $grp-font-size;
                 font-weight: bold;
             }
-            &.grp-row-even td, &.grp-row-even th, 
+            &.grp-row-even td, &.grp-row-even th,
             &.grp-alt td, &.grp-alt th {
                 border-left: 1px solid #e0e0e0;
                 background: #f4f4f4;
@@ -132,18 +132,18 @@ table {
                 top: 1px;
             }
         }
-        > input[type="checkbox"], 
+        > input[type="checkbox"],
         > input[type="radio"] {
             margin: 0;
         }
-        // > input[type="text"], 
-        // > input[type="password"], 
-        // > input[type="url"], 
-        // > input[type="email"], 
-        // > input[type="number"], 
-        > input[type="file"], 
-        > input[type="checkbox"], 
-        > input[type="radio"], 
+        // > input[type="text"],
+        // > input[type="password"],
+        // > input[type="url"],
+        // > input[type="email"],
+        // > input[type="number"],
+        > input[type="file"],
+        > input[type="checkbox"],
+        > input[type="radio"],
         > select,
         // p input[type="url"],
         // p input[type="email"],
@@ -157,12 +157,12 @@ table {
             //     margin-bottom: -6px !important;
             // }
         }
-        > input[type="text"], 
+        > input[type="text"],
         > input[type="password"],
-        > input[type="url"], 
-        > input[type="email"], 
-        > input[type="number"], 
-        > input[type="button"], 
+        > input[type="url"],
+        > input[type="email"],
+        > input[type="number"],
+        > input[type="button"],
         > select,
         p input[type="text"],
         p input[type="url"],
@@ -173,12 +173,12 @@ table {
             margin-top: -5px !important;
             margin-bottom: -5px !important;
         }
-        > textarea, 
+        > textarea,
         div.grp-readonly {
             position: relative;
             margin: -5px 0 -5px !important;
         }
-        ul.radiolist, 
+        ul.radiolist,
         ul.checkboxlist {
             margin: -3px 0 -5px;
             &.inline {
@@ -187,13 +187,13 @@ table {
                 max-width: 400px;
             }
         }
-        a.fb_show, 
-        a.related-lookup, 
+        a.fb_show,
+        a.related-lookup,
         .ui-datepicker-trigger,
         .ui-timepicker-trigger {
             margin: -5px 0 -11px -25px;
         }
-        .grp-autocomplete-wrapper-m2m, 
+        .grp-autocomplete-wrapper-m2m,
         .grp-autocomplete-wrapper-fk {
             margin: -5px 0 !important;
             a.related-lookup {
@@ -205,7 +205,7 @@ table {
             top: -13px;
             margin-bottom: -5px;
         }
-        ul.radiolist.inline + a.add-another, 
+        ul.radiolist.inline + a.add-another,
         ul.checkboxlist.inline + a.add-another {
             top: -5px;
         }
@@ -222,7 +222,7 @@ table {
 }
 
 
-table.grp-sortable {
+table.grp-table.grp-sortable {
     thead {
         th {
             margin: 0;
@@ -265,8 +265,8 @@ table.grp-sortable {
                         display: inline-block;
                         margin: 0;
                         padding: 0;
-                        &.grp-sortremove, 
-                        &.grp-ascending, 
+                        &.grp-sortremove,
+                        &.grp-ascending,
                         &.grp-descending {
                             width: 21px;
                             height: 24px;
@@ -326,10 +326,10 @@ table.grp-sortable {
 
 /*  Additional ................................................... */
 
-thead th.optional {
+table.grp-table thead th.optional {
     font-weight: normal !important;
 }
-tr.row-label td {
+table.grp-table tr.row-label td {
     margin-top: -1px;
     padding-top: 2px;
     padding-bottom: 0;
@@ -341,8 +341,8 @@ tr.row-label td {
 /*  TABLE FULL WIDTH
 ------------------------------------------------------------------------------------------------------ */
 
-table.xfull, 
-table.grp-full-width {
+table.grp-table.xfull,
+table.grp-table.grp-full-width {
     width: 100%;
 }
 
@@ -351,17 +351,17 @@ table.grp-full-width {
 /*  ORDERABLE TABLES
 ------------------------------------------------------------------------------------------------------ */
 
-table.orderable tbody tr td:hover {
+table.grp-table.orderable tbody tr td:hover {
     cursor: move;
 }
 
-table.orderable tbody tr td:first-child {
+table.grp-table.orderable tbody tr td:first-child {
     padding-left: 14px;
     background-image: url('../images/backgrounds/nav-grabber.gif');
     background-repeat: repeat-y;
 }
 
-table.orderable-initalized .order-cell, body>tr>td.order-cell {
+table.grp-table.orderable-initalized .order-cell, body>tr>td.order-cell {
     display: none;
 }
 
@@ -370,7 +370,7 @@ table.orderable-initalized .order-cell, body>tr>td.order-cell {
 /*  TABLE CHANGE HISTORY
 ------------------------------------------------------------------------------------------------------ */
 
-table#grp-change-history {
+table.grp-table#grp-change-history {
     width: 100%;
     tbody {
         th {
@@ -387,17 +387,13 @@ table#grp-change-history {
 /*  TABLE DOCUMENTATION
 ------------------------------------------------------------------------------------------------------ */
 
-table.grp-full {
+table.grp-table.grp-full {
     width: 100%;
     .grp-module > & {
         border: 0;
         @include border-radius(0);
     }
 }
-.model-index table th {
+.model-index table.grp-table th {
     padding: 7px 10px 8px;
 }
-
-
-
-

@@ -415,7 +415,7 @@ body.rtl {
     }
 
     // TABLES
-    table {
+    table.grp-table {
         thead {
             th {
                 border-right: 1px solid $grp-table-border-color;
@@ -474,7 +474,7 @@ body.rtl {
             }
         }
     }
-    table.grp-sortable {
+    table.grp-table.grp-sortable {
         thead {
             th {
                 &.sortable {

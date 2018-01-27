@@ -46,7 +46,7 @@
             {% for group in grouped_models %}
                 <div class="grp-module">
                     <h2 id="app-{{ group.grouper }}">{{ group.grouper|capfirst }}</h2>
-                    <table class="grp-full">
+                    <table class="grp-table grp-full">
                         {% for model in group.list %}
                             <tr>
                                 <th><a href="{{ model.app_label }}.{{ model.object_name.lower }}/">{{ model.object_name }}</a></th>
