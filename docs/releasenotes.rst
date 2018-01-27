@@ -6,7 +6,7 @@
 .. _releasenotes:
 
 Grappelli 2.10.x Release Notes
-=============================
+==============================
 
 **Grappelli 2.10.x is compatible with Django 1.11**.
 
