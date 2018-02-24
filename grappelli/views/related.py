@@ -209,7 +209,7 @@ class AutocompleteLookup(RelatedLookup):
             for part in lookup.lstrip('-').split(LOOKUP_SEP):
                 field = opts.get_field(part)
                 if field.is_relation:
-                    opts = field.rel.to._meta
+                    opts = field.related_model._meta
             if previous_lookup_parts is not None:
                 lookup = previous_lookup_parts + LOOKUP_SEP + lookup
             if field.is_relation:
