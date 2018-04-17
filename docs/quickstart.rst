@@ -38,7 +38,7 @@ Add URL-patterns. The grappelli URLs are needed for related–lookups and autoco
 
 .. code-block:: python
 
-    from django.conf.urls import include
+    from django.urls import include
     ...
     urlpatterns = [
         path('grappelli/', include('grappelli.urls')), # grappelli URLS
