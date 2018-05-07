@@ -9,6 +9,16 @@
     {{ media.css }}
 {% endblock %}
 
+<!-- EXTRASTYLES -->
+{% block extrastyle %}
+  {{ block.super }}
+  <style type="text/css">
+    h2 {
+        line-height: 36px;
+    }
+  </style>
+{% endblock %}
+
 <!-- JAVASCRIPTS -->
 {% block javascripts %}
     {{ block.super }}
