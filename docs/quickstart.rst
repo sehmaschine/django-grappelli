@@ -1,13 +1,17 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
 .. |grappelliversion| replace:: 2.11.1
+.. _applicableversionofdjango: http://www.djangoproject.com
+.. |applicableversionofdjango| replace:: Django 2.0
+.. _adminsite: http://docs.djangoproject.com/en/2.0/ref/contrib/admin 
+.. |adminsite| replace:: Admin Site
 
 .. _quickstart:
 
 Quick start guide
 =================
 
-For using |grappelli| |grappelliversion|, `Django 1.11 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/1.11/ref/contrib/admin/>`_ has to be activated.
+For using |grappelli| |grappelliversion|, |applicableversionofdjango|_ needs to be installed and an |adminsite|_ has to be activated.
 
 Installation
 ------------
@@ -34,6 +38,8 @@ Add URL-patterns. The grappelli URLs are needed for related–lookups and autoco
 
 .. code-block:: python
 
+    from django.urls import include
+    ...
     urlpatterns = [
         path('grappelli/', include('grappelli.urls')), # grappelli URLS
         path('admin/', admin.site.urls), # admin site
