@@ -604,7 +604,7 @@ body.rtl {
             background-position: 0 50%;
             background-repeat: no-repeat;
         }
-        select[multiple=multiple] {
+        select[multiple] {
             background-image: none;
         }
     }
@@ -705,7 +705,7 @@ body.rtl {
                 margin-right: 3px;
             }
         }
-        select[multiple=multiple] {
+        select[multiple] {
             margin: 0 -1px 0 0;
             padding-right: 3px;
             padding-left: 0;

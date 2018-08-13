@@ -176,13 +176,13 @@ select {
         background-repeat: no-repeat;
     }
 }
-select[multiple=multiple] {
+select[multiple] {
     padding-right: 5px;
     height: 160px;
     overflow: auto;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    select[multiple=multiple] {
+    select[multiple] {
         background-image: none;
     }
 }
@@ -365,7 +365,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
             top: -1px;
         }
     }
-    select[multiple=multiple] {
+    select[multiple] {
         margin: 0 0 0 -1px;
         padding-left: 3px;
         max-width: 368px !important;
@@ -374,7 +374,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         @include border-radius(0);
 
     }
-    .selector-chosen select[multiple=multiple] {
+    .selector-chosen select[multiple] {
         height: 235px !important;
     }
     a.selector-add {
@@ -409,7 +409,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         .selector-chosen .selector-filter:after {
             content: " " url('../images/icons/selector-add-m2m-vertical_hover.png');
         }
-        select[multiple=multiple] {
+        select[multiple] {
             width: 758px !important;
             max-width: 758px !important;
         }
