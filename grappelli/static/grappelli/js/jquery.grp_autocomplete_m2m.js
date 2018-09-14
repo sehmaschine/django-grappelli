@@ -105,7 +105,7 @@
 
     var repr_add = function(elem, label, options) {
         var repr = $('<li class="grp-repr"></li>');
-        var removelink = $('<a class="grp-m2m-remove" href="javascript://"></a>').text(label);
+        var removelink = $('<a class="grp-m2m-remove" href="javascript://"></a>').html(label);
         repr.append(removelink);
         repr.insertBefore(options.wrapper_search);
         removelink.bind("click", function(e) { // remove-handler
@@ -174,12 +174,12 @@
                 if (!item.value) {
                     return $("<li class='ui-state-disabled'></li>")
                         .data( "item.autocomplete", item )
-                        .append($("<span class='error'></span>").text(item.label))
+                        .append($("<span class='error'></span>").html(item.label))
                         .appendTo(ul);
                 } else {
                     return $("<li></li>")
                         .data( "item.autocomplete", item )
-                        .append($("<a></a>").text(item.label))
+                        .append($("<a></a>").html(item.label))
                         .appendTo(ul);
                 }
             };

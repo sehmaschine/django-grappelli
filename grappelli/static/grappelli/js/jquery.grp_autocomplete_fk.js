@@ -114,12 +114,12 @@
                 if (!item.value) {
                     return $("<li class='ui-state-disabled'></li>")
                         .data( "item.autocomplete", item )
-                        .append($("<span class='error'></span>").text(item.label))
+                        .append($("<span class='error'></span>").html(item.label))
                         .appendTo(ul);
                 } else {
                     return $("<li></li>")
                         .data( "item.autocomplete", item )
-                        .append($("<a></a>").text(item.label))
+                        .append($("<a></a>").html(item.label))
                         .appendTo(ul);
                 }
             };
