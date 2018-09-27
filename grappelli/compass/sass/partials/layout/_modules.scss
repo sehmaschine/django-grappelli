@@ -413,6 +413,7 @@ fieldset.grp-module .grp-row {
         }
         .grp-th,
         .grp-td {
+            position: relative;
             display: table-cell;
             float: none;
             height: 100%;
