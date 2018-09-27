@@ -245,6 +245,9 @@ li.grp-changelist-actions {
         float: left;
         margin: 1px 5px 0 0;
     }
+    button[type=submit] {
+        float: right;
+    }
     .grp-horizontal-list {
         @include horizontal-list(0, left);
         margin: -1px 0;
