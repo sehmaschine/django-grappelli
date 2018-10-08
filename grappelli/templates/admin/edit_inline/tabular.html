@@ -27,7 +27,7 @@
         {% with inline_admin_formset.opts.sortable_field_name|default:"" as sortable_field_name %}
         {% for inline_admin_form in inline_admin_formset|formsetsort:sortable_field_name %}
             <!-- element -->
-            <div class="form-row grp-module grp-tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} grp-empty-form{% endif %}"
+            <div class="form-row grp-module grp-tbody{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last and inline_admin_formset.has_add_permission %} grp-empty-form{% endif %}"
                 id="{{ inline_admin_formset.formset.prefix }}{% if not forloop.last %}{{ forloop.counter0 }}{% else %}-empty{% endif %}">
                 {% if inline_admin_form.form.non_field_errors %}
                     {{ inline_admin_form.form.non_field_errors }}
