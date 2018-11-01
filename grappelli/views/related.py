@@ -125,7 +125,7 @@ class RelatedLookup(View):
                     obj = self.get_queryset().get(pk=obj_id)
                 data.append({"value": "%s" % self.get_return_value(obj, obj_id), "label": get_label(obj), "safe": get_label_safe(obj)})
             except (self.model.DoesNotExist, ValueError):
-                data.append({"value": obj_id, "label": _("?")})
+                data.append({"value": obj_id, "label": _("?"), "safe": False})
         return data
 
     @never_cache
