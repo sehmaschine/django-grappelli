@@ -1,5 +1,5 @@
 language: python
-python: 3.5
+python: 3.6
 install:
   - pip install tox
   - pip install coverage
@@ -8,6 +8,7 @@ script:
 env:
   - TOXENV=py34
   - TOXENV=py35
+  - TOXENV=py36
 branches:
   only:
     - stable/2.12.x
