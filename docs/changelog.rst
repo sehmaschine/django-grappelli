@@ -8,8 +8,13 @@
 Changelog
 =========
 
-2.10.4 (not yet released)
+2.10.5 (not yet released)
 -------------------------
+
+2.10.4 (November 1st 2018)
+--------------------------
+
+* Fixed: JS build.
 
 2.10.3 (November 1st 2018)
 --------------------------
