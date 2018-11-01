@@ -8,8 +8,16 @@
 Changelog
 =========
 
-2.10.3 (not yet released)
+2.10.4 (not yet released)
 -------------------------
+
+2.10.3 (November 1st 2018)
+--------------------------
+
+* Fixed: Styles with Firefox.
+* Fixed: trans tag for save button in change list.
+* Fixed: typo in LICENSE.
+* Improved: Include LICENSE in built wheel.
 
 2.10.2 (January 27th 2018)
 --------------------------
