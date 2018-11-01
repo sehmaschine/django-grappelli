@@ -10,4 +10,4 @@ env:
   - TOXENV=py35
 branches:
   only:
-    - stable/2.11.x
+    - stable/2.12.x
