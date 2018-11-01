@@ -14,6 +14,7 @@ Changelog
 2.11.2 (November 1st 2018)
 --------------------------
 
+* New: Support Django autocomplete functionality.
 * New: Allow HTML with related labels (if marked as safe).
 * Improved: Incorporate `Reset to default` functionality from `constance`.
 * Fixed: Styles with Firefox.

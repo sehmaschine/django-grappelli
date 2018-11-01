@@ -13,6 +13,9 @@ var django = {
     jQuery: grp.jQuery
 };
 
+// general jQuery instance
+var jQuery = grp.jQuery;
+
 var inputTypes = [
     "[type='search']",
     "[type='email']",
