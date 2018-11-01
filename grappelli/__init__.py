@@ -1,2 +1,2 @@
-VERSION = '2.12.1'
+VERSION = '2.12.2'
 default_app_config = 'grappelli.apps.GrappelliConfig'
