@@ -14,6 +14,7 @@ Changelog
 2.10.3 (November 1st 2018)
 --------------------------
 
+* New: Allow HTML with related labels (if marked as safe).
 * Fixed: Styles with Firefox.
 * Fixed: trans tag for save button in change list.
 * Fixed: typo in LICENSE.

@@ -19,6 +19,7 @@ from django.contrib.admin.utils import prepare_lookup_value
 from django.core.serializers.json import DjangoJSONEncoder
 from django.apps import apps
 from django.contrib import admin
+from django.utils.safestring import SafeText
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
@@ -28,6 +29,13 @@ def get_label(f):
     if getattr(f, "related_label", None):
         return f.related_label()
     return smart_text(f)
+
+
+def get_label_safe(f):
+    if getattr(f, "related_label", None):
+        if isinstance(f.related_label(), SafeText):
+            return True
+    return False
 
 
 def import_from(module, name):
@@ -115,7 +123,7 @@ class RelatedLookup(View):
                     obj = self.get_queryset().get(**{to_field: obj_id})
                 else:
                     obj = self.get_queryset().get(pk=obj_id)
-                data.append({"value": "%s" % self.get_return_value(obj, obj_id), "label": get_label(obj)})
+                data.append({"value": "%s" % self.get_return_value(obj, obj_id), "label": get_label(obj), "safe": get_label_safe(obj)})
             except (self.model.DoesNotExist, ValueError):
                 data.append({"value": obj_id, "label": _("?")})
         return data
@@ -145,9 +153,9 @@ class M2MLookup(RelatedLookup):
         for obj_id in (i for i in obj_ids if i):
             try:
                 obj = self.get_queryset().get(pk=obj_id)
-                data.append({"value": obj_id, "label": get_label(obj)})
+                data.append({"value": obj_id, "label": get_label(obj), "safe": get_label_safe(obj)})
             except (self.model.DoesNotExist, ValueError):
-                data.append({"value": obj_id, "label": _("?")})
+                data.append({"value": obj_id, "label": _("?"), "safe": False})
         return data
 
 
