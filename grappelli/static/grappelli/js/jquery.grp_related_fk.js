@@ -54,7 +54,11 @@
             } else {
                 text.show();
             }
-            text.html($('<span class="grp-placeholder-label"></span>').text(data[0].label + '\u200E'));
+            if (data[0].safe) {
+                text.html($('<span class="grp-placeholder-label"></span>').html(data[0].label + '\u200E'));
+            } else {
+                text.html($('<span class="grp-placeholder-label"></span>').text(data[0].label + '\u200E'));
+            }
         });
     };
 

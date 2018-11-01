@@ -44,8 +44,12 @@
             query_string: grappelli.get_query_string(elem)
         }, function(data) {
             values = $.map(data, function (a, i) {
-                if (data.length === i + 1) {
+                if (data.length === i + 1 && !a.safe) {
                     return $('<span class="grp-placeholder-label"></span>').text(a.label + '\u200E');
+                } else if (data.length === i + 1 && a.safe) {
+                        return $('<span class="grp-placeholder-label"></span>').html(a.label + '\u200E');
+                } else if (a.safe) {
+                    return $('<span class="grp-placeholder-label"></span>').html(a.label + '\u200E').append($('<span class="grp-separator"></span>'));
                 } else {
                     return $('<span class="grp-placeholder-label"></span>').text(a.label + '\u200E').append($('<span class="grp-separator"></span>'));
                 }
