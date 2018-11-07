@@ -241,7 +241,7 @@ class AppList(DashboardModule, AppListElementMixin):
                 }
             model_dict = {}
             model_dict['title'] = capfirst(model._meta.verbose_name_plural)
-            if perms['change']:
+            if perms['change'] and perms['view']:
                 model_dict['admin_url'] = self._get_admin_change_url(model, context)
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
@@ -279,7 +279,7 @@ class ModelList(DashboardModule, AppListElementMixin):
         for model, perms in items:
             model_dict = {}
             model_dict['title'] = capfirst(model._meta.verbose_name_plural)
-            if perms['change']:
+            if perms['change'] or perms['view']:
                 model_dict['admin_url'] = self._get_admin_change_url(model, context)
             if perms['add']:
                 model_dict['add_url'] = self._get_admin_add_url(model, context)
