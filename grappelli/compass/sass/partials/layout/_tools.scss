@@ -235,7 +235,7 @@ fieldset.grp-module {
     .radiolist + &,
     .checkboxlist + & {
         position: relative;
-        display: inline-block;
+        display: inline-flex;
         float: right;
         right: 0;
         padding-left: 0;
