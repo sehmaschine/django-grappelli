@@ -168,7 +168,8 @@ table.grp-table {
         p input[type="url"],
         p input[type="email"],
         p input[type="number"],
-        p > input[type="button"] {
+        p > input[type="button"],
+        div.grp-related-widget-wrapper {
             vertical-align: top;
             margin-top: -5px !important;
             margin-bottom: -5px !important;
@@ -201,10 +202,18 @@ table.grp-table {
                 margin-top: 0;
             }
         }
-        a.add-another {
-            top: -13px;
-            margin-bottom: -5px;
-        }
+        // a.change-related {
+        //     top: -13px;
+        //     margin-bottom: -5px;
+        // }
+        // a.add-another {
+        //     top: -13px;
+        //     margin-bottom: -5px;
+        // }
+        // a.delete-related {
+        //     top: -13px;
+        //     margin-bottom: -5px;
+        // }
         ul.radiolist.inline + a.add-another,
         ul.checkboxlist.inline + a.add-another {
             top: -5px;
