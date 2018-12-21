@@ -110,7 +110,10 @@ class RelatedLookup(View):
     def get_return_value(self, obj, obj_id):
         to_field = self.GET.get('to_field', None)
         if to_field is not None:
-            return getattr(obj, to_field)
+            return_value = getattr(obj, to_field)
+            if not isinstance(return_value, str) and not isinstance(return_value, int):
+                return_value = obj.pk
+            return return_value
         return obj_id
 
     def get_data(self):
