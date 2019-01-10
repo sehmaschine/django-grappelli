@@ -298,30 +298,26 @@ button.ui-datetime-now {
 /*  ADD ANOTHER  / CHANGE / DELETE
 ------------------------------------------------------------------------------------------------------ */
 
-@mixin grp-inline-related-button-mixin {
-    position: relative;
-    display: inline-block;
-    margin-left: 3px;
-    vertical-align: top;
-    font-size: 11px;
-    line-height: 16px;
-    width: 18px;
-    height: 18px;
+a.grp-add-another {
+    @include icons-small-sprite(tools-related-add-handler);
+    &:not([href]) {
+        @include icons-small-sprite(tools-related-add-handler-disabled);
+        cursor: not-allowed;
+    }
 }
-a.add-another {
-     @include grp-inline-related-button-mixin;
-     @include icons-sprite(add-another);
-     cursor: pointer;
+a.grp-change-related {
+    @include icons-small-sprite(tools-related-edit-handler);
+    &:not([href]) {
+        @include icons-small-sprite(tools-related-edit-handler-disabled);
+        cursor: not-allowed;
+    }
 }
-a.change-related {
-     @include grp-inline-related-button-mixin;
-     @include icons-sprite(tools-viewsite-link);
-     cursor: pointer;
-}
-a.delete-related {
-     @include grp-inline-related-button-mixin;
-     @include icons-sprite(related-remove);
-     cursor: pointer;
+a.grp-delete-related {
+    @include icons-small-sprite(tools-related-remove-handler);
+    &:not([href]) {
+        @include icons-small-sprite(tools-related-remove-handler-disabled);
+        cursor: not-allowed;
+    }
 }
 
 .grp-row {

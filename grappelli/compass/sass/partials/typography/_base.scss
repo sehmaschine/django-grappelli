@@ -64,6 +64,7 @@ $grp-line-height-xs: 13px;
 a {
     text-decoration: none;
     color: $grp-link-color;
+    cursor: pointer;
     &:hover {
         color: $grp-link-color-hover;
     }
@@ -176,7 +177,7 @@ body.grp-doc {
         padding-top: 15px;
         border-top: 1px dashed #c30;
     }
-    
+
     .grp-doc-description {
         margin-bottom: 20px;
         h1 {
@@ -209,8 +210,8 @@ body.grp-doc {
             font-size: 11px;
         }
     }
-    .grp-doc-class, 
-    .grp-doc-id, 
+    .grp-doc-class,
+    .grp-doc-id,
     .grp-doc-dom,
     .grp-doc-file,
     .grp-doc-django {

@@ -8,24 +8,21 @@
                     <li>
                         <a class="grp-related-widget-wrapper-link grp-change-related related-widget-wrapper-link change-related" id="change_id_{{ name }}"
                             data-href-template="{{ change_related_template_url }}?{{ url_params }}"
-                            title="{% blocktrans %}Change selected {{ model }}{% endblocktrans %}">
-                        </a>
+                            title="{% blocktrans %}Change selected {{ model }}{% endblocktrans %}">&nbsp;</a>
                     </li>
                 {% endif %}
                 {% if can_add_related %}
                     <li>
                         <a class="grp-related-widget-wrapper-link grp-add-related grp-add-another related-widget-wrapper-link add-related add-another" id="add_id_{{ name }}"
                             href="{{ add_related_url }}?{{ url_params }}"
-                            title="{% blocktrans %}Add another {{ model }}{% endblocktrans %}">
-                        </a>
+                            title="{% blocktrans %}Add another {{ model }}{% endblocktrans %}">&nbsp;</a>
                     </li>
                 {% endif %}
                 {% if can_delete_related %}
                     <li>
                         <a class="grp-related-widget-wrapper-link grp-delete-related related-widget-wrapper-link delete-related" id="delete_id_{{ name }}"
                             data-href-template="{{ delete_related_template_url }}?{{ url_params }}"
-                            title="{% blocktrans %}Delete selected {{ model }}{% endblocktrans %}">
-                        </a>
+                            title="{% blocktrans %}Delete selected {{ model }}{% endblocktrans %}">&nbsp;</a>
                     </li>
                 {% endif %}
             </ul>
