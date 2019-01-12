@@ -27,7 +27,7 @@
             // GLOBALS
             var grappelli = {},
                 ADMIN_URL = "{% url 'admin:index' %}",
-                MODEL_URL_ARRAY = {% if user.is_staff %}{% get_content_types %}{% else %}[]{% endif %},
+                MODEL_URL_ARRAY = {% get_content_types %},
                 DATE_FORMAT = "{% get_date_format %}",
                 TIME_FORMAT = "{% get_time_format %}",
                 DATETIME_FORMAT = "{% get_datetime_format %}";
@@ -78,7 +78,7 @@
                             {% block branding %}{% endblock %}
                             {% block admin_title %}<h1 id="grp-admin-title">{% if grappelli_admin_title %}{{ grappelli_admin_title }}{% else %}{% get_admin_title %}{% endif %}</h1>{% endblock %}
                             {% block user-tools %}
-                                {% if user.is_authenticated and user.is_staff %}
+                                {% if user.is_authenticated %}
                                     <ul id="grp-user-tools">
                                         <!-- Userlinks -->
                                         {% block userlinks %}
