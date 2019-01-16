@@ -14,7 +14,7 @@ Available Settings
 ------------------
 
 ``GRAPPELLI_ADMIN_TITLE``
-    The Site Title of your admin interface. Change this instead of changing index.html
+    The Site Title of your admin interface. Change this instead of changing index.html.
 
 ``GRAPPELLI_AUTOCOMPLETE_LIMIT``
     Number of items to show with autocomplete drop–downs.
