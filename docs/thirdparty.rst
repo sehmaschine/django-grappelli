@@ -42,3 +42,12 @@ Django Constance
 .. note::
 
 	``grappelli`` needs to be before ``constance`` within ``INSTALLED_APPS``.
+
+Django Import-Export
+----------------
+
+|grappelli| includes the necessary template for `Django Import-Export <https://github.com/django-import-export/django-import-export/>`_.
+
+.. note::
+
+	``grappelli`` needs to be before ``import_export`` within ``INSTALLED_APPS``.
