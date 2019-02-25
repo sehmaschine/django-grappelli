@@ -78,7 +78,8 @@
                             {% block branding %}{% endblock %}
                             {% block admin_title %}
                                 <h1 id="grp-admin-title">
-                                    {% if site_header and site_header != "Django administration" %}
+                                    {% trans "Django administration" as vanilla_site_header %}
+                                    {% if site_header and site_header != vanilla_site_header %}
                                         {{ site_header|safe }}
                                     {% elif grappelli_admin_title %}
                                         {{ grappelli_admin_title }}
