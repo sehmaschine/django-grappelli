@@ -1,6 +1,6 @@
 {% load i18n admin_static %}
 <div class="grp-related-widget-wrapper related-widget-wrapper">
-    {{ rendered_widget }}
+    <div class="grp-related-widget">{{ rendered_widget }}</div>
     {% block links %}
         {% if can_change_related or can_add_related or can_delete_related %}
             <ul class="grp-tools grp-related-widget-tools">

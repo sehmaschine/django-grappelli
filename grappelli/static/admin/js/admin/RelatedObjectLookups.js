@@ -61,7 +61,7 @@
 
     function updateRelatedObjectLinks(triggeringLink) {
         var $this = $(triggeringLink);
-        var siblings = $this.nextAll().find('.change-related, .delete-related');
+        var siblings = $this.parent().nextAll().find('.change-related, .delete-related');
         if (!siblings.length) {
             return;
         }
@@ -184,7 +184,7 @@
         // GRAPPELLI CUSTOM
         /* triggering select means that update_lookup is triggered with
         generic autocompleted (which would empty the field) */
-        $('.grp-related-widget-tools').parent().children('select:first-child').trigger('change');
+        $('.grp-related-widget-tools').parent().children('.grp-related-widget').children('select:first-child').trigger('change');
         $('.related-lookup').click(function(e) {
             e.preventDefault();
             var event = $.Event('django:lookup-related');

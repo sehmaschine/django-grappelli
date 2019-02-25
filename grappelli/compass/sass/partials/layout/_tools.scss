@@ -219,8 +219,6 @@ fieldset.grp-module {
 }
 
 .grp-tools.grp-related-widget-tools {
-    position: absolute;
-    right: -30px;
     top: 2px;
     z-index: 1;
     li {
@@ -239,11 +237,9 @@ fieldset.grp-module {
             margin: 0;
         }
     }
-    input + &,
-    select + &,
-    textarea + &,
     .radiolist + &,
-    .checkboxlist + & {
+    .checkboxlist + &,
+    .grp-related-widget + & {
         position: relative;
         display: inline-block;
         float: right;
