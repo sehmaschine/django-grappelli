@@ -114,7 +114,7 @@
                 this.textContent = newRepr;
                 this.value = newId;
             }
-        });
+        }).trigger('change');
         // GRAPPELLI CUSTOM: element focus
         elem.focus();
         win.close();
