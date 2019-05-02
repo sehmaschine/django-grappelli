@@ -32,7 +32,7 @@
                     {% for action in action_list %}
                         <tr>
                             <th scope="grp-row">{{ action.action_time|date:_("DATETIME_FORMAT") }}</th>
-                            <td>{{ action.user.username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>
+                            <td>{{ action.user.get_username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>
                             <td>{{ action.get_change_message }}</td>
                         </tr>
                     {% endfor %}
