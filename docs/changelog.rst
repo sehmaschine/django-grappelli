@@ -8,8 +8,16 @@
 Changelog
 =========
 
-2.12.3 (not yet released)
+2.12.4 (not yet released)
 -------------------------
+
+2.12.3 (May 3rd 2019)
+---------------------
+
+* Improved: use get_username with object history.
+* Improved: trigger change event in dismissChangeRelatedObjectPopup.
+* Improved: honor cl.show_full_result_count with pagination.
+* Fixed: using a div.grp-related-widget to wrap all possible widgets.
 
 2.12.2 (January 16th 2019)
 --------------------------
