@@ -5,13 +5,13 @@
 
 .. _releasenotes:
 
-Grappelli 2.12.x Release Notes
+Grappelli 2.13.x Release Notes
 ==============================
 
-**Grappelli 2.12.x is compatible with Django 2.1**.
+**Grappelli 2.13.x is compatible with Django 2.2**.
 
-Update from Grappelli 2.11.x
+Update from Grappelli 2.12.x
 ----------------------------
 
-* Update Django to 2.1 and check https://docs.djangoproject.com/en/dev/releases/2.1/
-* Update Grappelli to 2.12.x
+* Update Django to 2.2 and check https://docs.djangoproject.com/en/dev/releases/2.2/
+* Update Grappelli to 2.13.x
