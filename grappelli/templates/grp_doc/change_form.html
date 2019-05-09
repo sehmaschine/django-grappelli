@@ -50,7 +50,7 @@
             <div class="g-d-24">
                 <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} extends "admin/base_site.html" {% templatetag closeblock %}
-{% templatetag openblock %} load i18n admin_static admin_modify grp_tags {% templatetag closeblock %}
+{% templatetag openblock %} load i18n static admin_modify grp_tags {% templatetag closeblock %}
 {% templatetag openblock %} block bodyclass {% templatetag closeblock %}grp-change-form{% templatetag openblock %} endblock {% templatetag closeblock %}
 {% endfilter %}</code></pre></div>
             </div>
@@ -78,12 +78,12 @@
                 Take a look at Grappellis change_form.html to find out what js you might need
 
                 // PAGE-TOOLS HANDLERS
-                $("a#grp-open-all").bind("click", function(){
+                $("a#grp-open-all").on("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
-                    });   
+                    });
                 });
-                $("a#grp-close-all").bind("click", function(){
+                $("a#grp-close-all").on("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-open").addClass("grp-closed");
                     });
@@ -168,7 +168,7 @@
 
         <!-- POPUP -->
         {% templatetag openblock %} if is_popup {% templatetag closeblock %}<input type="hidden" name="_popup" value="1" />{% templatetag openblock %} endif {% templatetag closeblock %}
-        
+
         <!-- ERRORS -->
         {% templatetag openblock %} if errors {% templatetag closeblock %}
             <p class="errornote">
@@ -189,7 +189,7 @@
             {% templatetag openblock %} endfor {% templatetag closeblock %}
         {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} block after_field_sets {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        
+
         <!-- INLINES -->
         {% templatetag openblock %} block inline_field_sets {% templatetag closeblock %}
             {% templatetag openblock %} for inline_admin_formset in inline_admin_formsets {% templatetag closeblock %}
@@ -198,7 +198,7 @@
             {% templatetag openblock %} endfor {% templatetag closeblock %}
         {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} block after_related_objects {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        
+
         <!-- SUBMIT ROW -->
         {% templatetag openblock %} block submit_buttons_bottom {% templatetag closeblock %}{% templatetag openblock %} submit_row {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
@@ -219,7 +219,7 @@
                 </script>
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} endif {% templatetag closeblock %}
-        
+
         <!-- JS FOR PREPOPULATED FIELDS -->
         {% templatetag openblock %} prepopulated_fields_js {% templatetag closeblock %}
     </form>
@@ -237,7 +237,7 @@
             <div class="g-d-24">
                 <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 {% templatetag openblock %} extends "admin/base_site.html" {% templatetag closeblock %}
-{% templatetag openblock %} load i18n admin_static admin_modify grp_tags {% templatetag closeblock %}
+{% templatetag openblock %} load i18n static admin_modify grp_tags {% templatetag closeblock %}
 
 {% templatetag openblock %} block extrastyle {% templatetag closeblock %}
     <link href="Path to your custom stylesheet" rel="stylesheet" type="text/css" />
@@ -253,12 +253,12 @@
                 Take a look at Grappellis change_form.html to find out what js you might need
 
                 // PAGE-TOOLS HANDLERS
-                $("a#grp-open-all").bind("click", function(){
+                $("a#grp-open-all").on("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
-                    });   
+                    });
                 });
-                $("a#grp-close-all").bind("click", function(){
+                $("a#grp-close-all").on("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-open").addClass("grp-closed");
                     });
@@ -323,7 +323,7 @@
 
         <!-- POPUP -->
         {% templatetag openblock %} if is_popup {% templatetag closeblock %}<input type="hidden" name="_popup" value="1" />{% templatetag openblock %} endif {% templatetag closeblock %}
-        
+
         <!-- ERRORS -->
         {% templatetag openblock %} if errors {% templatetag closeblock %}
             <p class="errornote">
@@ -344,7 +344,7 @@
             {% templatetag openblock %} endfor {% templatetag closeblock %}
         {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} block after_field_sets {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        
+
         <!-- INLINES -->
         {% templatetag openblock %} block inline_field_sets {% templatetag closeblock %}
             {% templatetag openblock %} for inline_admin_formset in inline_admin_formsets {% templatetag closeblock %}
@@ -353,7 +353,7 @@
             {% templatetag openblock %} endfor {% templatetag closeblock %}
         {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} block after_related_objects {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
-        
+
         <!-- SUBMIT ROW -->
         {% templatetag openblock %} block submit_buttons_bottom {% templatetag closeblock %}{% templatetag openblock %} submit_row {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
 
@@ -374,7 +374,7 @@
                 </script>
             {% templatetag openblock %} endblock {% templatetag closeblock %}
         {% templatetag openblock %} endif {% templatetag closeblock %}
-        
+
         <!-- JS FOR PREPOPULATED FIELDS -->
         {% templatetag openblock %} prepopulated_fields_js {% templatetag closeblock %}
     </form>
@@ -386,4 +386,3 @@
         </section>
     </div>
 {% endblock %}
-

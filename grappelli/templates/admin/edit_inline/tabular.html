@@ -283,7 +283,7 @@
         $("#{{ inline_admin_formset.formset.prefix }}-group")
             .find("div.grp-td.{{ inline_admin_formset.opts.sortable_field_name }} :input")
             .each(function(i, item) {
-                $(item).bind('change', function(event) {
+                $(item).on('change', function(event) {
                     var desired_index = $(event.target).val() * 1;
                     if(!isNaN(desired_index) && desired_index >= 0) {
                         var $row = $(event.target).parents('div.grp-tbody.grp-dynamic-form');
@@ -302,7 +302,7 @@
                     }
                 });
             });
-        $("#{{ opts.model_name }}_form").bind("submit", function(){
+        $("#{{ opts.model_name }}_form").on("submit", function(){
             var sortable_field_name = "{{ inline_admin_formset.opts.sortable_field_name }}",
                 sortable_excludes = {% get_sortable_excludes inline_admin_formset.opts %},
                 i = 0;

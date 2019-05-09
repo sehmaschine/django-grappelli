@@ -64,7 +64,7 @@
             </div>
             <div class="g-d-24">
                 <div class="grp-doc-code"><pre><code>{% filter force_escape %}
-{% templatetag openblock %} load i18n admin_static admin_modify grp_tags {% templatetag closeblock %}
+{% templatetag openblock %} load i18n static admin_modify grp_tags {% templatetag closeblock %}
 {% endfilter %}</code></pre></div>
             </div>
         </section>
@@ -141,7 +141,7 @@
             <div class="g-d-24">
                 <div class="grp-doc-description">
                     <h1>Page-Tools</h1>
-                    <p>The page-tools are a container for contextual interactions. Currently they are used with the change-form, defining options for expanding and collapsing all collapsible items. They've been introduced as a placeholder for any sort of contextual options which might be needed with future versions of Grappelli.</p> 
+                    <p>The page-tools are a container for contextual interactions. Currently they are used with the change-form, defining options for expanding and collapsing all collapsible items. They've been introduced as a placeholder for any sort of contextual options which might be needed with future versions of Grappelli.</p>
                     <p>Page-Tools are defined in a <a href="https://docs.djangoproject.com/en/1.5/ref/templates/builtins/#std:templatetag-block" target="_blank" class="grp-external">block</a> <span class="grp-doc-django">{% templatetag openblock %} block page-tools {% templatetag closeblock %}</span>. They are always written as a plain <span class="grp-doc-dom"><span>ul</span></span> with <span class="grp-doc-dom"><span>li</span></span> containing links for the interactions. Those might be plain text or icons. Using the latter requires to add <span class="grp-doc-class">.grp-tools</span> to the link. Make sure to use a custom icon fitting the size then.</p>
                 </div>
             </div>
@@ -160,7 +160,7 @@
             <div class="g-d-24">
                 <div class="grp-doc-description">
                     <h1>Messages</h1>
-                    <p>The messages are a container for the django messaging system, available with every page.</p> 
+                    <p>The messages are a container for the django messaging system, available with every page.</p>
                     <p>Messages are defined in a block <span class="grp-doc-django">{% templatetag openblock %} messages {% templatetag closeblock %}</span>. They are always written as a <span class="grp-doc-dom"><span>ul.grp-messagelist</span></span> with <span class="grp-doc-dom"><span>li</span></span> containing the actual message. We currently support three message-tags <span class="grp-doc-dom">.grp-success</span>, <span class="grp-doc-dom">.grp-warning</span> and <span class="grp-doc-dom">.grp-error</span>.</p>
                 </div>
             </div>
@@ -261,4 +261,3 @@
         </section>
     </div>
 {% endblock %}
-

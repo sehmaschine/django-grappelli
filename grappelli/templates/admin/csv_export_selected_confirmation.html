@@ -19,7 +19,7 @@
         (function($) {
             $(document).ready(function() {
                 $("input").attr("autocomplete", "off");
-                $('#select_all').click(function(){
+                $('#select_all').on("click", function(){
                     $("._fields").attr('checked', $(this).attr('checked'));
                 });
             });

@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load admin_static i18n admin_modify admin_urls grp_tags %}
+{% load static i18n admin_modify admin_urls grp_tags %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -69,12 +69,12 @@
                         autocomplete_lookup_url:"{% url 'grp_autocomplete_lookup' %}"
                     });
                 });
-                $("a#grp-open-all").bind("click", function(){
+                $("a#grp-open-all").on("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-closed").addClass("grp-open");
                     });
                 });
-                $("a#grp-close-all").bind("click", function(){
+                $("a#grp-close-all").on("click", function(){
                     $("#grp-content .grp-collapse-handler").each(function() {
                         $(this).parent(".grp-collapse").removeClass("grp-open").addClass("grp-closed");
                     });
@@ -116,11 +116,11 @@
     <script type="text/javascript">
         (function($) {
             $(document).ready(function() {
-                $('.add-another').click(function(e) {
+                $('.add-another').on("click", function(e) {
                     e.preventDefault();
                     showAddAnotherPopup(this);
                 });
-                $('.related-lookup').click(function(e) {
+                $('.related-lookup').on("click", function(e) {
                     e.preventDefault();
                     showRelatedObjectLookupPopup(this);
                 });

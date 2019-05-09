@@ -8,11 +8,11 @@
     <script type="text/javascript" charset="utf-8">
         (function($) {
             $(document).ready(function() {
-                $("a.grp-pulldown-handler").click(function() {
+                $("a.grp-pulldown-handler").on("click", function() {
                     var pulldownContainer = $(this).closest(".grp-pulldown-container");
                     $(pulldownContainer).toggleClass("grp-pulldown-state-open").children(".grp-pulldown-content").toggle();
                 });
-                $("a.grp-pulldown-handler").bind('mouseout', function() {
+                $("a.grp-pulldown-handler").on('mouseout', function() {
                     $(this).blur();
                 });
             });
@@ -79,11 +79,11 @@
                 <div class="grp-doc-code"><pre><code>{% filter force_escape %}
 (function($) {
     $(document).ready(function() {
-        $("a.grp-pulldown-handler").click(function() {
+        $("a.grp-pulldown-handler").on("click", function() {
             var pulldownContainer = $(this).closest(".grp-pulldown-container");
             $(pulldownContainer).toggleClass("grp-pulldown-state-open").children(".grp-pulldown-content").toggle();
         });
-        $("a.grp-pulldown-handler").bind('mouseout', function() {
+        $("a.grp-pulldown-handler").on('mouseout', function() {
             $(this).blur();
         });
         $(".grp-filter-choice").change(function(){
@@ -261,7 +261,6 @@
 </div>
 {% endfilter %}</code></pre></div>
     </section>
-    
+
     </div>
 {% endblock %}
-

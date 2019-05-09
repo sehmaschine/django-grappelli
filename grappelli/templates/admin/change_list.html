@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load i18n grp_tags admin_urls admin_static admin_list %}
+{% load i18n grp_tags admin_urls static admin_list %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -126,11 +126,11 @@
             $(document).ready(function() {
                 grappelli.initSearchbar();
                 grappelli.initFilter();
-                $('.add-another').click(function(e) {
+                $('.add-another').on("click", function(e) {
                     e.preventDefault();
                     showAddAnotherPopup(this);
                 });
-                $('.related-lookup').click(function(e) {
+                $('.related-lookup').on("click", function(e) {
                     e.preventDefault();
                     showRelatedObjectLookupPopup(this);
                 });
