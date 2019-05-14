@@ -26,7 +26,7 @@
             onAfterDeleted: function(form) {}       // Function called after a form has been deleted
         };
         options = $.extend(defaults, options);
-        
+
         return this.each(function() {
             var inline = $(this); // the current inline node
             var totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS");
@@ -47,7 +47,7 @@
         if (!formIndex) { return -1; }
         return parseInt(regex.exec(formIndex)[1], 10);
     };
-    
+
     updateFormIndex = function(elem, options, replace_regex, replace_with) {
         elem.find(':input,span,table,iframe,label,a,ul,p,img,div').each(function() {
             var node = $(this),
@@ -81,7 +81,7 @@
             $(this).prepopulate(dependency_ids, $(this).attr('maxlength'));
         });
     };
-    
+
     initInlineForms = function(elem, options) {
         elem.find("div.grp-module").each(function() {
             var form = $(this);
@@ -102,7 +102,7 @@
             options.onAfterInit(form);
         });
     };
-    
+
     initAddButtons = function(elem, options) {
         var totalForms = elem.find("#id_" + options.prefix + "-TOTAL_FORMS");
         var maxForms = elem.find("#id_" + options.prefix + "-MAX_NUM_FORMS");
@@ -112,9 +112,9 @@
             hideAddButtons(elem, options);
         }
     };
-    
+
     addButtonHandler = function(elem, options) {
-        elem.bind("click", function() {
+        elem.on("click", function() {
             var inline = elem.parents(".grp-group"),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
                 maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS"),
@@ -148,9 +148,9 @@
             options.onAfterAdded(form);
         });
     };
-    
+
     removeButtonHandler = function(elem, options) {
-        elem.bind("click", function() {
+        elem.on("click", function() {
             var inline = elem.parents(".grp-group"),
                 form = $(this).parents("." + options.formCssClass).first(),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
@@ -179,9 +179,9 @@
             options.onAfterRemoved(inline);
         });
     };
-    
+
     deleteButtonHandler = function(elem, options) {
-        elem.bind("click", function() {
+        elem.on("click", function() {
             var deleteInput = $(this).prev(),
                 form = $(this).parents("." + options.formCssClass).first();
             // callback
@@ -199,19 +199,19 @@
             options.onAfterDeleted(form);
         });
     };
-    
+
     hideAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
         addButtons.hide().parents('.grp-add-item').hide();
         // last row with stacked/tabular
         addButtons.closest('.grp-module.grp-transparent').hide();
     };
-    
+
     showAddButtons = function(elem, options) {
         var addButtons = elem.find("a." + options.addCssClass);
         addButtons.show().parents('.grp-add-item').show();
         // last row with stacked/tabular
         addButtons.closest('.grp-module.grp-transparent').show();
     };
-    
+
 })(grp.jQuery);

@@ -18,7 +18,7 @@
                 $this.addClass('grp-has-related-lookup');
                 // lookup
                 lookup_id($this, options); // lookup when loading page
-                $this.bind("change focus keyup", function() { // id-handler
+                $this.on("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
             });

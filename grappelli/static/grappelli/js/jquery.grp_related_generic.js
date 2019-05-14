@@ -21,10 +21,10 @@
                 if (val) {
                     lookup_id($this, options); // lookup when loading page
                 }
-                $this.bind("change focus keyup", function() { // id-handler
+                $this.on("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
-                $(options.content_type).bind("change", function() { // content-type-handler
+                $(options.content_type).on("change", function() { // content-type-handler
                     update_lookup($(this), options);
                 });
             });

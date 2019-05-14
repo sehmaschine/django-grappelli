@@ -105,14 +105,14 @@ var inputTypes = [
 
     // changelist: filter
     grappelli.initFilter = function() {
-        $("a.grp-pulldown-handler").click(function() {
+        $("a.grp-pulldown-handler").on("click", function() {
             var pulldownContainer = $(this).closest(".grp-pulldown-container");
             $(pulldownContainer).toggleClass("grp-pulldown-state-open").children(".grp-pulldown-content").toggle();
         });
-        $("a.grp-pulldown-handler").bind('mouseout', function() {
+        $("a.grp-pulldown-handler").on('mouseout', function() {
             $(this).blur();
         });
-        $(".grp-filter-choice").change(function(){
+        $(".grp-filter-choice").on("change", function(){
             location.href = $(this).val();
         });
     };
@@ -120,7 +120,7 @@ var inputTypes = [
     // changelist: searchbar
     grappelli.initSearchbar = function() {
         var searchbar = $("input.grp-search-field");
-        searchbar.focus();
+        searchbar.trigger("focus");
     };
 
     grappelli.updateSelectFilter = function(form) {

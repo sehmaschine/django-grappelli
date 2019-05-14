@@ -40,7 +40,7 @@
                 // lookup
                 lookup_id($this, options);  // lookup when loading page
                 lookup_autocomplete($this, options);  // autocomplete-handler
-                $this.bind("change focus keyup", function() { // id-handler
+                $this.on("change focus keyup", function() { // id-handler
                     lookup_id($this, options);
                 });
                 // labels
@@ -48,10 +48,10 @@
                     $(this).attr("for", $this.attr("id")+"-autocomplete");
                 });
                 // click on div > focus input
-                options.wrapper_autocomplete.bind("click", function(e) {
+                options.wrapper_autocomplete.on("click", function(e) {
                     // prevent focus when clicking on remove/select
                     if (!$(e.target).hasClass("related-lookup") && !$(e.target).hasClass("grp-related-remove")) {
-                        options.wrapper_search.find("input:first").focus();
+                        options.wrapper_search.find("input:first").trigger("focus");
                     }
                 });
             });
@@ -108,7 +108,7 @@
         var removelink = $('<a class="grp-m2m-remove" href="javascript://"></a>').text(label);
         repr.append(removelink);
         repr.insertBefore(options.wrapper_search);
-        removelink.bind("click", function(e) { // remove-handler
+        removelink.on("click", function(e) { // remove-handler
             var pos = $(this).parent().parent().children("li").index($(this).parent());
             value_remove(elem, pos, options);
             $(this).parent().remove();
@@ -122,15 +122,15 @@
 
     var lookup_autocomplete = function(elem, options) {
         options.wrapper_search.find("input:first")
-            .bind("keydown", function(event) { // don't navigate away from the field on tab when selecting an item
+            .on("keydown", function(event) { // don't navigate away from the field on tab when selecting an item
                 if (event.keyCode === $.ui.keyCode.TAB && $(this).data("uiAutocomplete").menu.active) {
                     event.preventDefault();
                 }
             })
-            .bind("focus", function() {
+            .on("focus", function() {
                 options.wrapper_autocomplete.addClass("grp-state-focus");
             })
-            .bind("blur", function() {
+            .on("blur", function() {
                 options.wrapper_autocomplete.removeClass("grp-state-focus");
             })
             .autocomplete({
@@ -166,7 +166,7 @@
                     repr_add(elem, ui.item.label, options);
                     value_add(elem, ui.item.value, options);
                     elem.val() ? $(options.remove_link).show() : $(options.remove_link).hide();
-                    $(this).val("").focus();
+                    $(this).val("").trigger("focus");
                     return false;
                 }
             })

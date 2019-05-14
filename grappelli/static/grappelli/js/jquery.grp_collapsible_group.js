@@ -31,7 +31,7 @@
     };
     var _register_open_handler = function(elem, options) {
         elem.find(options.open_handler_slctr).each(function() {
-            $(this).click(function() {
+            $(this).on("click", function() {
                 options.on_open(elem, options);
                 elem.find(options.collapsible_container_slctr)
                     .removeClass(options.closed_css)
@@ -43,7 +43,7 @@
     };
     var _register_close_handler = function(elem, options) {
         elem.find(options.close_handler_slctr).each(function() {
-            $(this).click(function() {
+            $(this).on("click", function() {
                 options.on_close(elem, options);
                 elem.find(options.collapsible_container_slctr)
                     .removeClass(options.open_css)

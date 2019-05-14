@@ -34,10 +34,10 @@
                     lookup_id($this, options);  // lookup when loading page
                 }
                 lookup_autocomplete($this, options);  // autocomplete-handler
-                $this.bind("change focus keyup", function() {  // id-handler
+                $this.on("change focus keyup", function() {  // id-handler
                     lookup_id($this, options);
                 });
-                $(options.content_type).bind("change", function() {  // content-type-handler
+                $(options.content_type).on("change", function() {  // content-type-handler
                     update_lookup($(this), options);
                 });
                 // labels
@@ -101,10 +101,10 @@
 
     var lookup_autocomplete = function(elem, options) {
         options.wrapper_autocomplete.find("input:first")
-            .bind("focus", function() {
+            .on("focus", function() {
                 options.wrapper_autocomplete.addClass("grp-state-focus");
             })
-            .bind("blur", function() {
+            .on("blur", function() {
                 options.wrapper_autocomplete.removeClass("grp-state-focus");
             })
             .autocomplete({
