@@ -404,13 +404,47 @@ If our version of TinyMCE does not fit your needs, add a different version to yo
 Changelist Templates
 --------------------
 
-Grappelli comes with 2 different change–list templates. The standard template shows filters with a drop–down, the alternative template shows filters on the right hand side of the results (similar to djangos admin interface). To use the alternative template, you need to add ``change_list_template`` to your ModelAdmin definition:
+Grappelli comes with different change–list templates. To use the alternative templates, you need to add ``change_list_template`` to your ModelAdmin definition.
+
+Filters as drop-down, automatically applied (default template)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The default template shows filters as a drop–down, selecting a single filter immediately applies the filter. This template supports use cases where single filters should be quickly applicable.
+
+.. code-block:: python
+
+    class MyModelOptions(admin.ModelAdmin):
+        change_list_template = "admin/change_list.html"
+
+Filters as drop-down, manually applied
+++++++++++++++++++++++++++++++++++++++
+
+This template shows filters as a drop-down, selected filters have to be applied manually by clicking an "Apply" button. This template supports use cases where multiple filters have to be selected and applied at the same time.
+
+.. code-block:: python
+
+    class MyModelOptions(admin.ModelAdmin):
+        change_list_template = "admin/change_list_filter_confirm.html"
+
+Filters in a sidebar, automatically applied
++++++++++++++++++++++++++++++++++++++++++++
+
+This template shows filters in a sidebar, selecting a single filter immediately applies the filter. This template supports use cases where single filters should be quickly applicable.
 
 .. code-block:: python
 
     class MyModelOptions(admin.ModelAdmin):
         change_list_template = "admin/change_list_filter_sidebar.html"
 
+Filters in a sidebar, manually applied
+++++++++++++++++++++++++++++++++++++++
+
+This template shows filters in a sidebar, selected filters have to be applied manually by clicking an "Apply" button. This template supports use cases where multiple filters have to be selected and applied at the same time.
+
+.. code-block:: python
+
+    class MyModelOptions(admin.ModelAdmin):
+        change_list_template = "admin/change_list_filter_confirm_sidebar.html"
 
 Changelist Filters
 ------------------
