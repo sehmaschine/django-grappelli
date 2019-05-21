@@ -104,7 +104,7 @@ var inputTypes = [
     };
 
     // changelist: filter
-    grappelli.initFilter = function() {
+    grappelli.initFilter = function(method) {
         $("a.grp-pulldown-handler").click(function() {
             var pulldownContainer = $(this).closest(".grp-pulldown-container");
             $(pulldownContainer).toggleClass("grp-pulldown-state-open").children(".grp-pulldown-content").toggle();
@@ -112,9 +112,42 @@ var inputTypes = [
         $("a.grp-pulldown-handler").bind('mouseout', function() {
             $(this).blur();
         });
-        $(".grp-filter-choice").change(function(){
-            location.href = $(this).val();
-        });
+        if (!method) {
+            $(".grp-filter-choice").change(function(){
+                location.href = $(this).val();
+            });
+        }
+        if (method === 'confirm') {
+            // Define query (containing all selected filters)
+            var query = [];
+            // Manage filter when it changes
+            $(".grp-filter-choice").change(function(){
+                // Get the filter label and value
+                var label = $(this).closest('.grp-row').find('label').text();
+                var value = $(this).val() !== '?' ? $(this).val().replace('?', '') : false;
+                // Determine if filter is part of query
+                var queryIndex = query.findIndex(el => el.label === label);
+                // Add filter to query if it's not already part of it
+                if (queryIndex === -1) {
+                    query.push({ label: label, value: value });
+                } else {
+                    // Update filter in query if it has a value
+                    if (value) {
+                        // Remove old filter and add new one
+                        query.splice(queryIndex, 1);
+                        query.push({ label: label, value: value });
+                    } else {
+                        // Remove filter from query if it has no value (has been reset by choosing "Any/All/...")
+                        query.splice(queryIndex, 1);
+                    }
+                }
+                // Construct query string
+                var queryString = query.map(el => el.value).join('&');
+                // Assiqn query string to "Apply" button
+                var applyFilter = $(this).closest('.grp-filter').find('#grp-filter-apply');
+                applyFilter.attr('href', '?' + queryString);
+            });
+        }
     };
 
     // changelist: searchbar

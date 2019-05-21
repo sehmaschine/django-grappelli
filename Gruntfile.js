@@ -12,6 +12,7 @@ module.exports = function(grunt) {
         "expr": true,
         "scripturl": true,
         reporterOutput: "",
+        esversion: 6,
       },
       beforeconcat: ['grappelli/static/grappelli/js/grappelli.js', 'grappelli/static/grappelli/js/jquery*.js'],
       afterconcat: ['grappelli/static/grappelli/js/grappelli.min.js']
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
   // Load
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-exec');
