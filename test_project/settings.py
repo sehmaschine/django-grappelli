@@ -9,8 +9,13 @@ SECRET_KEY = 'TOTALLYeeNOTeeSECRETeeeeeeeeeeeeeeeee472!bgs$0!i3k4'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3'
-    },
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'travisci',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
 
 ALLOWED_HOSTS = []
