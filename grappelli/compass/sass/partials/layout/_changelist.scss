@@ -211,7 +211,7 @@ form#grp-changelist-search-form {
             width: 100% !important;
             max-width: 100% !important;
         }
-        a {
+        a:not(.grp-button) {
             display: block;
             margin: -5px -10px;
             padding: 2px 10px;
@@ -222,10 +222,23 @@ form#grp-changelist-search-form {
             }
         }
         &.grp-selected {
-            a {
+            a:not(.grp-button) {
                 padding-left: 17px;
                 color: $grp-font-color;
                 @include icons-small-sprite(filter-choice-selected);
+            }
+        }
+        a.grp-button {
+            display: block;
+            text-align: center;
+            & + .grp-button {
+                margin-top: 5px;
+            }
+            &.grp-reset-link {
+                opacity: .5;
+                &:hover {
+                    opacity: 1;
+                }
             }
         }
     }

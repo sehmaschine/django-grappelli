@@ -241,7 +241,7 @@ fieldset.grp-module {
     .checkboxlist + &,
     .grp-related-widget + & {
         position: relative;
-        display: inline-block;
+        display: flex;
         float: right;
         right: 0;
         padding-left: 0;
