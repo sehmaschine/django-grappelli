@@ -9,13 +9,8 @@ SECRET_KEY = 'TOTALLYeeNOTeeSECRETeeeeeeeeeeeeeeeee472!bgs$0!i3k4'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'travisci',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+        'ENGINE': 'django.db.backends.sqlite3'
+    },
 }
 
 ALLOWED_HOSTS = []
@@ -39,6 +34,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 ]
+
+MIGRATION_MODULES = {
+    'grappelli': 'grappelli.tests.migrations'
+}
 
 ROOT_URLCONF = 'grappelli.tests.urls'
 LANGUAGE_CODE = 'en-us'
