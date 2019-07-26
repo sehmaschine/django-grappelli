@@ -127,6 +127,12 @@
                 form = empty_template.clone(true);
             form.removeClass(options.emptyCssClass)
                 .attr("id", empty_template.attr('id').replace("-empty", index));
+
+            // renew value
+            var uuid = grappelli.uuidv4();
+            form.find("#id_" + options.prefix + "-__prefix__-id").val(uuid);
+            form.find("#initial-"+ options.prefix + "-__prefix__-id_"+ options.prefix +"-__prefix__-id").val(uuid);
+
             // update form index
             var re = /__prefix__/g;
             updateFormIndex(form, options, re, index);
