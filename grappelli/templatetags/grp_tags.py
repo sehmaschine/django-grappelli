@@ -217,6 +217,7 @@ def admin_list_filter(cl, spec):
     return tpl.render({
         'title': spec.title,
         'choices': list(spec.choices(cl)),
+        'field_name': spec.field.name,
         'spec': spec,
     })
 

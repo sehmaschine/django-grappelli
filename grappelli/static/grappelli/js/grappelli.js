@@ -118,31 +118,55 @@ var inputTypes = [
             });
         }
         if (method === 'confirm') {
-            // Define query (containing all selected filters)
-            var query = [];
-            // Manage filter when it changes
-            $(".grp-filter-choice").change(function(){
-                // Get the filter label and value
-                var label = $(this).closest('.grp-row').find('label').text();
-                var value = $(this).val() !== '?' ? $(this).val().replace('?', '') : false;
-                // Determine if filter is part of query
-                var queryIndex = query.findIndex(el => el.label === label);
-                // Add filter to query if it's not already part of it
-                if (queryIndex === -1) {
-                    query.push({ label: label, value: value });
-                } else {
-                    // Update filter in query if it has a value
-                    if (value) {
-                        // Remove old filter and add new one
-                        query.splice(queryIndex, 1);
-                        query.push({ label: label, value: value });
+            // Construct windowQueryDict from current window.location.search
+            var windowQuery = window.location.search.replace('?', '').split('&');
+            var windowQueryDict = [];
+            if (windowQuery[0] !== undefined && windowQuery[0] !== '') {
+                windowQuery.map(param => {
+                    // Split query param to get the fieldName
+                    var fieldName = param.split('__')[0];
+                    // Check if fieldName already exists in searchStringDict and add it resp. its values
+                    var fieldNameIndex = windowQueryDict.findIndex(el => el.fieldName === fieldName);
+                    if (fieldNameIndex === -1) {
+                        windowQueryDict.push({
+                            fieldName: fieldName,
+                            values: [param]
+                        });
                     } else {
-                        // Remove filter from query if it has no value (has been reset by choosing "Any/All/...")
-                        query.splice(queryIndex, 1);
+                        windowQueryDict.find(obj => obj.fieldName === fieldName).values.push(param);
+                    }
+                });
+            }
+            // Manipulate windowQueryDict based on changes of filter choices
+            $(".grp-filter-choice").change(function(){
+                // Get the choice's fieldName and isolate its distinctive query params
+                var fieldName = $(this).data('field-name');
+                var value = $(this).val() !== '?' ? $(this).val().replace('?', '') : false;
+                var values = value && value.split('&');
+                var filterQueryParams = values && values.filter(el => el.includes(fieldName + '__'));
+
+                // Check if fieldName already exists in filterQueryDict and add it resp. its values
+                var filterWindowIndex = windowQueryDict.findIndex(el => el.fieldName === fieldName);
+                var isFilterPartOfWindow = filterWindowIndex < 0 ? false : true;
+                if (isFilterPartOfWindow) {
+                    if (filterQueryParams.length > 0) {
+                        // Update query params
+                        windowQueryDict.find(el => el.fieldName === fieldName).values = filterQueryParams;
+                    } else {
+                        // Remove filter
+                        windowQueryDict.splice(filterWindowIndex, 1);
+                    }
+                } else {
+                    if (filterQueryParams.length > 0) {
+                        // Add filter
+                        windowQueryDict.push({
+                            fieldName: fieldName,
+                            values: filterQueryParams,
+                        });
                     }
                 }
-                // Construct query string
-                var queryString = query.map(el => el.value).join('&');
+                // Construct queryString from windowQueryDict
+                var queryString = windowQueryDict.flatMap(el => el.values).join('&');
                 // Assiqn query string to "Apply" button
                 var applyFilter = $(this).closest('.grp-filter').find('#grp-filter-apply');
                 applyFilter.attr('href', '?' + queryString);
