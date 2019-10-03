@@ -325,10 +325,15 @@ h1#grp-admin-title {
     position: relative;
     float: left;
     clear: both;
-    top: 80px;
-    padding: 0 20px 120px;
+    padding: 80px 20px 120px;
     width: 100%;
     @include box-sizing(border-box);
+    @include clearfix;
+    &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
 }
 body.grp-change-form #grp-content-container > form,
 body.grp-change-form #grp-content-container > form > div {
@@ -467,6 +472,7 @@ body.grp-change-form #grp-content-container > form > div {
     > ul {
         margin-top: 10px;
         overflow: visible;
+        @include clearfix;
         > li {
             @include horizontal-list-item(0, right);
             margin-left: 10px;
