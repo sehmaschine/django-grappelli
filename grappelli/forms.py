@@ -11,7 +11,7 @@ class GrappelliSortableHiddenMixin(object):
     """
     sortable_field_name = "position"
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name == self.sortable_field_name:
             kwargs["widget"] = HiddenInput()
-        return super(GrappelliSortableHiddenMixin, self).formfield_for_dbfield(db_field, **kwargs)
+        return super(GrappelliSortableHiddenMixin, self).formfield_for_dbfield(db_field, request, **kwargs)
