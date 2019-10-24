@@ -1,19 +1,11 @@
 # coding: utf-8
 
-# PYTHON IMPORTS
-import datetime
-
 # DJANGO IMPORTS
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.utils import six, translation, timezone
-
-try:
-    import json
-except ImportError:
-    from django.utils import simplejson as json
+from django.utils import translation, timezone
 
 # GRAPPELLI IMPORTS
 from grappelli.tests.models import Category, Entry
