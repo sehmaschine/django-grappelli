@@ -1,15 +1,12 @@
 # coding: utf-8
 
 # PYTHON IMPORTS
-import operator
 import json
-from functools import reduce
 
 # DJANGO IMPORTS
 from django.http import HttpResponse
 from django.db import models, connection
 from django.db.models.constants import LOOKUP_SEP
-from django.db.models.query import QuerySet
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
 from django.utils.translation import ungettext, ugettext as _
@@ -18,7 +15,6 @@ from django.core.exceptions import PermissionDenied
 from django.contrib.admin.utils import prepare_lookup_value
 from django.core.serializers.json import DjangoJSONEncoder
 from django.apps import apps
-from django.contrib import admin
 from django.utils.safestring import SafeText
 
 # GRAPPELLI IMPORTS
