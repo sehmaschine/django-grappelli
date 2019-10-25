@@ -1,4 +1,4 @@
 Django>=2.2,<2.3
-py==1.7.0
-pytest-django==3.4.3
-pytest==3.9.3
+py==1.8.0
+pytest-django==3.6.0
+pytest==5.2.1
