@@ -8,13 +8,18 @@
 Changelog
 =========
 
-2.13.2 (not yet released)
+2.13.3 (not yet released)
 -------------------------
+
+2.13.2 (November 11th 2019)
+---------------------------
 
 * Fixed: added Django autocomplete JS files.
 * Fixed: added minified jQuery 3.3.1 file.
+* Fixed: added request to `formfield_for_dbfield`.
+* Fixed: use safe label with autocompletes.
+* Improved: added separate file for documentation URLs.
 * Improved: removed Python 2 support.
-* Improved: added request to formfield_for_dbfield.
 * Improved: CSS footer and submit-row fixes.
 * Improved: CSS field width with inline tabular.
 
