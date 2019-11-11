@@ -13,7 +13,7 @@ Some questions, some answers.
 Why should I use |grappelli|?
 -----------------------------
 
-If you are pleased with how the original admin interface looks, you shouldn't.
+If you are pleased with how the original admin interface looks, you probably shouldn't. Grappelli is mainly about a consistent, grid-based style.
 
 I need help!
 ------------
