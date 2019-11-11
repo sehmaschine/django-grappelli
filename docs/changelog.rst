@@ -8,8 +8,14 @@
 Changelog
 =========
 
-2.12.4 (not yet released)
+2.12.5 (not yet released)
 -------------------------
+
+2.12.4 (November 11th 2019)
+---------------------------
+
+* Fixed: added request to `formfield_for_dbfield`.
+* Fixed: removed Django depreciation warnings.
 
 2.12.3 (May 3rd 2019)
 ---------------------
