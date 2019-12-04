@@ -7,7 +7,7 @@ from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.utils.html import escape
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 # GRAPPELLI IMPORTS
 from grappelli.tests.models import Category

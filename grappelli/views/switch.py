@@ -10,7 +10,7 @@ from django.contrib.auth import load_backend, login
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
 from django.utils.html import escape
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
 
 try:

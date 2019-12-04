@@ -17,7 +17,7 @@ from django.utils.formats import get_format
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language
 from django.template.loader import get_template
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 # grappelli imports
 from grappelli.settings import ADMIN_TITLE, ADMIN_URL, SWITCH_USER, SWITCH_USER_ORIGINAL, SWITCH_USER_TARGET, CLEAN_INPUT_TYPES

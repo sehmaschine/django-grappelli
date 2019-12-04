@@ -9,8 +9,8 @@ from django.db import models, connection
 from django.db.models.constants import LOOKUP_SEP
 from django.views.decorators.cache import never_cache
 from django.views.generic import View
-from django.utils.translation import ungettext, ugettext as _
-from django.utils.encoding import smart_text
+from django.utils.translation import ngettext, gettext as _
+from django.utils.encoding import smart_str
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin.utils import prepare_lookup_value
 from django.core.serializers.json import DjangoJSONEncoder
@@ -24,7 +24,7 @@ from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
 def get_label(f):
     if getattr(f, "related_label", None):
         return f.related_label()
-    return smart_text(f)
+    return smart_str(f)
 
 
 def get_label_safe(f):
@@ -92,7 +92,7 @@ class RelatedLookup(View):
             for item in query_string.split(":"):
                 k, v = item.split("=")
                 if k != "_to_field":
-                    filters[smart_text(k)] = prepare_lookup_value(smart_text(k), smart_text(v))
+                    filters[smart_str(k)] = prepare_lookup_value(smart_str(k), smart_str(v))
         return qs.filter(**filters)
 
     def get_queryset(self):
@@ -180,7 +180,7 @@ class AutocompleteLookup(RelatedLookup):
                 term_query = models.Q()
                 for search_field in search_fields:
                     term_query |= models.Q(
-                        **{smart_text(search_field): smart_text(word)}
+                        **{smart_str(search_field): smart_str(word)}
                     )
                 search &= term_query
             qs = qs.filter(search)
@@ -255,6 +255,6 @@ class AutocompleteLookup(RelatedLookup):
                 return ajax_response(data)
 
         # overcomplicated label translation
-        label = ungettext('%(counter)s result', '%(counter)s results', 0) % {'counter': 0}
+        label = ngettext('%(counter)s result', '%(counter)s results', 0) % {'counter': 0}
         data = [{"value": None, "label": label}]
         return ajax_response(data)
