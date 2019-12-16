@@ -117,6 +117,20 @@
                     if (clean_input_types == "True") {
                         grappelli.cleanInputTypes();
                     };
+                    // check result list overflow
+                    checkOverflow = function(){
+                        var resultModuleWidth = $('.grp-changelist-results').width();
+                            resultTableWidth = $('.grp-changelist-results > table#result_list').width();
+                        if (resultTableWidth > (resultModuleWidth-2)) {
+                            $('body').addClass('grp-result-overflow-scroll');
+                        } else {
+                            $('body').removeClass('grp-result-overflow-scroll');
+                        }
+                    };
+                    checkOverflow();
+                    $(window).resize(function(){
+                        checkOverflow();
+                    });
                 });
             })(grp.jQuery);
         </script>
