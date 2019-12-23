@@ -124,7 +124,10 @@ var inputTypes = [
             if (windowQuery[0] !== undefined && windowQuery[0] !== '') {
                 windowQuery.map(param => {
                     // Split query param to get the fieldName
-                    var fieldName = param.split('__')[0];
+                    var fieldName = param.split('=')[0];
+                    if (fieldName.search('__') != -1) {
+                        var fieldName = param.split('__')[0];
+                    }
                     // Check if fieldName already exists in searchStringDict and add it resp. its values
                     var fieldNameIndex = windowQueryDict.findIndex(el => el.fieldName === fieldName);
                     if (fieldNameIndex === -1) {
@@ -143,8 +146,7 @@ var inputTypes = [
                 var fieldName = $(this).data('field-name');
                 var value = $(this).val() !== '?' ? $(this).val().replace('?', '') : false;
                 var values = value && value.split('&');
-                var filterQueryParams = values && values.filter(el => el.includes(fieldName + '__'));
-
+                var filterQueryParams = values && values.filter(el => el.includes(fieldName));
                 // Check if fieldName already exists in filterQueryDict and add it resp. its values
                 var filterWindowIndex = windowQueryDict.findIndex(el => el.fieldName === fieldName);
                 var isFilterPartOfWindow = filterWindowIndex < 0 ? false : true;
