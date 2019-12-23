@@ -599,7 +599,7 @@ body.rtl {
         select,
         select:focus {
             padding: 4px 5px 4px 28px;
-            -webkit-appearance: textfield;
+            -webkit-appearance: none;
             background-image: url('../images/icons/form-select.png');
             background-position: 0 50%;
             background-repeat: no-repeat;
