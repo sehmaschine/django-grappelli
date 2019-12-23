@@ -211,8 +211,11 @@ def prettylabel(value):
 @register.simple_tag
 def admin_list_filter(cl, spec):
     field_name = getattr(spec, "field", None)
+    parameter_name = getattr(spec, "parameter_name", None)
     if field_name is not None:
         field_name = spec.field.name
+    elif parameter_name is not None:
+        field_name = spec.parameter_name
     try:
         tpl = get_template(cl.model_admin.change_list_filter_template)
     except:  # noqa
