@@ -328,7 +328,6 @@ h1#grp-admin-title {
     padding: 80px 20px 120px;
     width: 100%;
     @include box-sizing(border-box);
-    @include clearfix;
     &:after {
         content: ' ';
         display: table;
