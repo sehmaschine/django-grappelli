@@ -8,8 +8,15 @@
 Changelog
 =========
 
-2.13.3 (not yet released)
+2.13.4 (not yet released)
 -------------------------
+
+2.13.3 (December 27th 2019)
+---------------------------
+
+* Fixed: Horizontal scrolling.
+* Fixed: Changelist with custom filters.
+* Fixed: Form select icons (Chrome).
 
 2.13.2 (November 11th 2019)
 ---------------------------
