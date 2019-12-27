@@ -42,6 +42,7 @@ Releases
 
 Current development branches:
 
+* Grappelli 2.14.1 (not yet released): Compatible with Django 3
 * Grappelli 2.13.4 (Development version for Django 2.2, see branch Stable/2.13.x)
 * Grappelli 2.12.5 (Development version for Django 2.1, see branch Stable/2.12.x)
 * Grappelli 2.10.5 (Development version for Django 1.11, see branch Stable/2.10.x)
