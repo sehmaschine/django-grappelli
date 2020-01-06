@@ -1,26 +1,21 @@
 # coding: utf-8
 
-# SWITCH USERS is heavily inspired by
-# https://github.com/stochastic-technologies/django-loginas
-
-# DJANGO IMPORTS
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import load_backend, login
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
 from django.utils.html import escape
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.translation import gettext_lazy as _
+
+from grappelli.settings import SWITCH_USER_ORIGINAL, SWITCH_USER_TARGET
 
 try:
     from django.contrib.auth import get_user_model
     User = get_user_model()
 except ImportError:
     from django.contrib.auth.models import User
-
-# GRAPPELLI IMPORTS
-from grappelli.settings import SWITCH_USER_ORIGINAL, SWITCH_USER_TARGET
 
 
 @staff_member_required

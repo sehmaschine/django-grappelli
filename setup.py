@@ -6,6 +6,7 @@ from setuptools import find_packages, setup
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+
 setup(
     name='django-grappelli',
     version='2.14.1',
@@ -18,6 +19,9 @@ setup(
     license='BSD',
     packages=find_packages(exclude=['test_project']),
     include_package_data=True,
+    install_requires=[
+        'six',
+    ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',

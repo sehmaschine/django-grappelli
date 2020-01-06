@@ -1,17 +1,15 @@
 # coding: utf-8
 
-# DJANGO IMPORTS
+from django.contrib.auth.models import Permission, User
+from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 from django.test.utils import override_settings
-from django.contrib.auth.models import User, Permission
-from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.utils.html import escape
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
-# GRAPPELLI IMPORTS
-from grappelli.tests.models import Category
 from grappelli.templatetags.grp_tags import switch_user_dropdown
+from grappelli.tests.models import Category
 
 
 @override_settings(GRAPPELLI_SWITCH_USER=True)

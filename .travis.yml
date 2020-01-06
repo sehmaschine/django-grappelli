@@ -10,4 +10,4 @@ env:
   - TOXENV=py36
 branches:
   only:
-    - stable/2.13.x
+    - stable/2.14.x

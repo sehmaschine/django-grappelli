@@ -11,4 +11,4 @@ Changelog
 2.14.1 (not yet released)
 -------------------------
 
-* First release of Grappelli which is compatible with Django 3.
+* First release of Grappelli which is compatible with Django 3.0.

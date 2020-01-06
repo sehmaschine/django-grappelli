@@ -1,0 +1,5 @@
+[*.py]
+known_django=django
+known_filebrowser=filebrowser
+known_grappelli=grappelli
+sections=FUTURE,STDLIB,DJANGO,FILEBROWSER,GRAPPELLI,THIRDPARTY,FIRSTPARTY,LOCALFOLDER
