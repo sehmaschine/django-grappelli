@@ -8,8 +8,13 @@
 Changelog
 =========
 
-2.13.4 (not yet released)
+2.13.5 (not yet released)
 -------------------------
+
+2.13.4 (February 10th 2020)
+---------------------------
+
+* Fixed: Select2 (Django Autocompletes) with Inlines.
 
 2.13.3 (December 27th 2019)
 ---------------------------
