@@ -128,6 +128,7 @@
 
     function dismissDeleteRelatedObjectPopup(win, objId) {
         var id = windowname_to_id(win.name).replace(/^delete_/, '');
+        var elem = document.getElementById(name);
         var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
         var selects = $(selectsSelector);
         selects.find('option').each(function() {

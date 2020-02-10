@@ -11,6 +11,8 @@ Changelog
 2.13.5 (not yet released)
 -------------------------
 
+* Fixed: elem focus with dismissDeleteRelatedObjectPopup.
+
 2.13.4 (February 10th 2020)
 ---------------------------
 
