@@ -7,7 +7,7 @@
 Quick start guide
 =================
 
-For using |grappelli| |grappelliversion|, `Django 2.2 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/2.2/ref/contrib/admin/>`_ has to be activated.
+For using |grappelli| |grappelliversion|, `Django 3.0 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/2.2/ref/contrib/admin/>`_ has to be activated.
 
 Installation
 ------------
