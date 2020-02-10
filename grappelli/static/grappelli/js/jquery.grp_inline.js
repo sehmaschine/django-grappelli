@@ -114,7 +114,7 @@
     };
 
     addButtonHandler = function(elem, options) {
-        elem.on("click", function() {
+        elem.on("click", function(e) {
             var inline = elem.parents(".grp-group"),
                 totalForms = inline.find("#id_" + options.prefix + "-TOTAL_FORMS"),
                 maxForms = inline.find("#id_" + options.prefix + "-MAX_NUM_FORMS"),
@@ -144,6 +144,8 @@
             }
             // prepopulate fields
             initPrepopulatedFields(form, options);
+            // select2: we need to use the django namespace here
+            django.jQuery(document).trigger('formset:added', [django.jQuery(form), options.prefix]);
             // callback
             options.onAfterAdded(form);
         });
