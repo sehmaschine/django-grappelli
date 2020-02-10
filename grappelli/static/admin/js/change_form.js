@@ -17,4 +17,4 @@
             $('form#' + modelName + '_form :input:visible:enabled:first').focus();
         }
     });
-})(django.jQuery);
+})(grp.jQuery);

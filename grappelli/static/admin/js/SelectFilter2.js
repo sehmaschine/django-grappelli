@@ -243,4 +243,4 @@ Requires jQuery, core.js, and SelectBox.js.
         });
     });
 
-})(django.jQuery);
+})(grp.jQuery);

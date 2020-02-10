@@ -106,6 +106,7 @@
 
     function dismissChangeRelatedObjectPopup(win, objId, newRepr, newId) {
         var id = windowname_to_id(win.name).replace(/^edit_/, '');
+        var elem = document.getElementById(name);
         var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
         var selects = $(selectsSelector);
         selects.find('option').each(function() {
@@ -200,4 +201,4 @@
         });
     });
 
-})(django.jQuery);
+})(grp.jQuery);

@@ -151,4 +151,4 @@
             $actionsEls.actions();
         }
     });
-})(django.jQuery);
+})(grp.jQuery);
