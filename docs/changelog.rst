@@ -11,6 +11,8 @@ Changelog
 2.14.2 (not yet released)
 -------------------------
 
+* Fixed: Django version (3.0) with docs and quickstart.
+
 2.14.1 (February 10th, 2020)
 ----------------------------
 
