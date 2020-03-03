@@ -11,10 +11,8 @@ from django.utils.translation import gettext_lazy as _
 from grappelli.dashboard import modules
 from grappelli.dashboard.utils import get_admin_site_name
 
-import six
 
-
-class Dashboard(six.with_metaclass(forms.MediaDefiningClass)):
+class Dashboard(forms.MediaDefiningClass):
     """
     Base class for dashboards.
     The Dashboard class is a simple python list that has three additional
