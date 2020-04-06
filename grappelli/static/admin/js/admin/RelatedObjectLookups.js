@@ -106,7 +106,7 @@
 
     function dismissChangeRelatedObjectPopup(win, objId, newRepr, newId) {
         var id = windowname_to_id(win.name).replace(/^edit_/, '');
-        var elem = document.getElementById(name);
+        var elem = document.getElementById(id);
         var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
         var selects = $(selectsSelector);
         selects.find('option').each(function() {
@@ -128,6 +128,7 @@
 
     function dismissDeleteRelatedObjectPopup(win, objId) {
         var id = windowname_to_id(win.name).replace(/^delete_/, '');
+        var elem = document.getElementById(id);
         var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
         var selects = $(selectsSelector);
         selects.find('option').each(function() {
