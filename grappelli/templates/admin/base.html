@@ -160,7 +160,7 @@
                     <ul class="grp-messagelist">
                         <!-- NOTE: no message|capfirst by purpose, because it does not work in some languages -->
                         {% for message in messages %}
-                            <li{% if message.tags %} class="grp-{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            <li{% if message.tags %} class="grp-{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
                         {% endfor %}
                     </ul>
                 {% endif %}
