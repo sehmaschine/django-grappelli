@@ -78,7 +78,7 @@ class Dashboard(metaclass=forms.MediaDefiningClass):
 
                 # append a recent actions module
                 self.children.append(modules.RecentActions(
-                    title=_('Recent Actions'),
+                    title=_('Recent actions'),
                     limit=5
                 ))
 
@@ -151,7 +151,7 @@ class DefaultIndexDashboard(Dashboard):
         ))
 
         # append a recent actions module
-        self.children.append(modules.RecentActions(_('Recent Actions'), 5))
+        self.children.append(modules.RecentActions(_('Recent actions'), 5))
 
         # append a feed module
         self.children.append(modules.Feed(

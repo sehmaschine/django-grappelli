@@ -53,7 +53,7 @@ Here's an example of a custom dashboard:
 
             # append a recent actions module
             self.children.append(modules.RecentActions(
-                title=_('Recent Actions'),
+                title=_('Recent actions'),
                 column=2,
                 collapsible=False,
                 limit=5,

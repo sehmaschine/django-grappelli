@@ -292,7 +292,7 @@ class RecentActions(DashboardModule):
     Module that lists the recent actions for the current user.
     """
 
-    title = _('Recent Actions')
+    title = _('Recent actions')
     template = 'grappelli/dashboard/modules/recent_actions.html'
     limit = 10
     include_list = None
