@@ -234,21 +234,24 @@
             .find("div.grp-row.{{ inline_admin_formset.opts.sortable_field_name }} :input")
             .each(function(i, item) {
                 $(item).on('change', function(event) {
-                    var desired_index = $(event.target).val() * 1;
-                    if(!isNaN(desired_index) && desired_index >= 0) {
-                        var $row = $(event.target).parents('div.grp-dynamic-form');
-                        var $table = $row.parents('div.grp-items.ui-sortable');
-                        $row.detach();
-                        var $row_desired = $table.children('div.grp-dynamic-form').get(desired_index);
-                        if($row_desired) {
-                            $row.insertBefore($row_desired);
-                            $row.find('h3,div.grp-row').effect('highlight', {color:"#ffffcc"}, 2000);
-                        } else {
-                            // FIXME: this appends the new row to the very end of the table.
-                            // instead, it should be added after the last row with values.
-                            $table.append($row);
-                            $row.find('h3,div.grp-row').effect('highlight', {color:"#ffffcc"}, 2000);
-                        }
+                    var name = $(item).attr("name").split("-").pop();
+                    if (name === "{{ inline_admin_formset.opts.sortable_field_name }}") {
+                      var desired_index = $(event.target).val() * 1;
+                      if(!isNaN(desired_index) && desired_index >= 0) {
+                          var $row = $(event.target).parents('div.grp-dynamic-form');
+                          var $table = $row.parents('div.grp-items.ui-sortable');
+                          $row.detach();
+                          var $row_desired = $table.children('div.grp-dynamic-form').get(desired_index);
+                          if($row_desired) {
+                              $row.insertBefore($row_desired);
+                              $row.find('h3,div.grp-row').effect('highlight', {color:"#ffffcc"}, 2000);
+                          } else {
+                              // FIXME: this appends the new row to the very end of the table.
+                              // instead, it should be added after the last row with values.
+                              $table.append($row);
+                              $row.find('h3,div.grp-row').effect('highlight', {color:"#ffffcc"}, 2000);
+                          }
+                      }
                     }
                 });
             });
