@@ -12,7 +12,7 @@ from grappelli.dashboard import modules
 from grappelli.dashboard.utils import get_admin_site_name
 
 
-class Dashboard(forms.MediaDefiningClass):
+class Dashboard(metaclass=forms.MediaDefiningClass):
     """
     Base class for dashboards.
     The Dashboard class is a simple python list that has three additional
