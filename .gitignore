@@ -13,3 +13,4 @@ fabfile.py
 .pydevproject
 node_modules/*
 .tox/*
+.idea
