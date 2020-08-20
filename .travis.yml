@@ -13,6 +13,3 @@ install:
   - pip install coverage
 script:
   - tox
-branches:
-  only:
-    - stable/2.14.x
