@@ -8,8 +8,14 @@
 Changelog
 =========
 
-2.14.3 (not yet released)
+2.14.4 (not yet released)
 -------------------------
+
+2.14.3 (Nov 24th, 2020)
+-----------------------
+
+* Fixed: Compatibility with Django 3.1.
+* Fixed: Docs about adding Grappelli documentation URLS.
 
 2.14.2 (May 14th, 2020)
 -----------------------
