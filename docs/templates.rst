@@ -8,4 +8,13 @@
 Templates
 =========
 
-|grappelli| includes a Documentation about the HTML/CSS framework. If you're using the default URL-pattern (see :ref:`quickstart`) you'll find the documentation at ``/grappelli/grp-doc/`` (by default, these URLs are commented out).
+|grappelli| includes a Documentation about the HTML/CSS framework. You need to add the URLs like this:
+
+.. code-block:: python
+    :emphasize-lines: 3
+
+    urlpatterns = [
+        path('grappelli/', include('grappelli.urls')), # grappelli URLS
+        path('grappelli-docs/', include('grappelli.urls_docs')), # grappelli docs URLS
+        path('admin/', admin.site.urls), # admin site
+    ]
