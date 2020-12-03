@@ -267,6 +267,9 @@ Add the staticmethod ``autocomplete_search_fields`` to all models you want to se
         def autocomplete_search_fields():
             return ("id__iexact", "name__icontains",)
 
+The available prefixes are those of Djangos field lookups, as described [here](https://docs.djangoproject.com/en/3.1/ref/models/querysets/#field-lookups).
+Do not add related fields here, like those returned by ForeignKey() or ManyToManyField(). I you want to autocomplete on those fields too, read the following section about `autocomplete_lookup_fields`.
+
 If the staticmethod is not given, ``GRAPPELLI_AUTOCOMPLETE_SEARCH_FIELDS`` will be used if the app/model is defined:
 
 .. code-block:: python
