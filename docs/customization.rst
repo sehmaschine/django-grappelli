@@ -204,6 +204,9 @@ With Grappelli, you're able to add the representation of an object beneath the i
             'm2m': ['related_m2m'],
         }
 
+Alternatively to `autocomplete_search_fields` in models.py, you could also use `search_fields = [...]` in admin.py
+
+
 With generic relations, related lookups are defined like this:
 
 .. code-block:: python
