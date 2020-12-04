@@ -176,9 +176,24 @@ With Grappelli, you're able to add the representation of an object beneath the i
 
 .. code-block:: python
 
+    class RelatedModel(models.Model):
+        some_field = models.CharField(max_length=512)
+        
+        @staticmethod
+        def autocomplete_search_fields():
+            return (
+                "some_field__icontains",
+            )
+
     class MyModel(models.Model):
         related_fk = models.ForeignKey(RelatedModel, verbose_name=u"Related Lookup (FK)")
         related_m2m = models.ManyToManyField(RelatedModel, verbose_name=u"Related Lookup (M2M)")
+        
+        @staticmethod
+        def autocomplete_search_fields():
+            return (
+                "related_fk__some_field__icontains",
+            )
 
     class MyModelOptions(admin.ModelAdmin):
         # define the raw_id_fields
