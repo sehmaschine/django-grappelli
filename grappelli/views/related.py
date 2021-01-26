@@ -225,7 +225,6 @@ class AutocompleteLookup(RelatedLookup):
 
     def get_queryset(self):
         qs = super(AutocompleteLookup, self).get_queryset()
-        qs = self.get_filtered_queryset(qs)
         qs = self.get_searched_queryset(qs)
 
         if connection.vendor == 'postgresql':
