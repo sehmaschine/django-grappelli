@@ -11,6 +11,7 @@ Changelog
 2.14.4 (not yet released)
 -------------------------
 
+* Fixed: Redirect with switch user.
 * Improved: Remove extra filtering in AutocompleteLookup.
 * Improved: Added import statement with URLs for quickstart docs.
 

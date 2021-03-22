@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import load_backend, login
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 from django.shortcuts import redirect
 from django.utils.html import escape
 from django.utils.translation import gettext_lazy as _
@@ -24,6 +25,11 @@ def switch_user(request, object_id):
     # current/session user
     current_user = request.user
     session_user = request.session.get("original_user", {"id": current_user.id, "username": current_user.get_username()})
+
+    # check redirect
+    redirect_url = request.GET.get("redirect", None)
+    if redirect_url is None or not redirect_url.startswith("/"):
+        raise Http404()
 
     # check original_user
     try:
