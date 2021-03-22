@@ -12,6 +12,7 @@ Changelog
 -------------------------
 
 * Improved: Remove extra filtering in AutocompleteLookup.
+* Improved: Added import statement with URLs for quickstart docs.
 
 2.14.3 (Nov 24th, 2020)
 -----------------------
