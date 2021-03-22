@@ -11,6 +11,8 @@ Changelog
 2.14.4 (not yet released)
 -------------------------
 
+* Improved: Remove extra filtering in AutocompleteLookup.
+
 2.14.3 (Nov 24th, 2020)
 -----------------------
 
