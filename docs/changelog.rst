@@ -8,8 +8,10 @@
 Changelog
 =========
 
-2.14.5 (not yet released)
+2.15.1 (not yet released)
 -------------------------
+
+* First release of Grappelli which is compatible with Django 3.2.
 
 2.14.4 (April 15th 2021)
 ------------------------
