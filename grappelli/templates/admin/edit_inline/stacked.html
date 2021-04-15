@@ -3,63 +3,65 @@
 <!-- group -->
 <div class="inline-group grp-group grp-stacked {% if inline_admin_formset.opts.classes %} {{ inline_admin_formset.opts.classes|join:" " }}{% endif %}"
     id="{{ inline_admin_formset.formset.prefix }}-group">
-    <h2 class="grp-collapse-handler">{% if inline_admin_formset.opts.title %}{{ inline_admin_formset.opts.title }}{% else %}{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}{% endif %}</h2>
-    <ul class="grp-tools">
-        <li><a href="javascript://" class="grp-icon grp-open-handler" title="{% trans 'Open All Items' %}"></a></li>
-        <li><a href="javascript://" class="grp-icon grp-close-handler" title="{% trans 'Close All Items' %}"></a></li>
-        <li><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"> </a></li>
-    </ul>
-    {{ inline_admin_formset.formset.management_form }}
-    {{ inline_admin_formset.formset.non_form_errors }}
-    <!-- container -->
-    <div class="grp-items">
-        {% with inline_admin_formset.opts.sortable_field_name|default:"" as sortable_field_name %}
-        {% for inline_admin_form in inline_admin_formset|formsetsort:sortable_field_name %}
-            <!-- element -->
-            <div class="inline-related grp-module {{ inline_admin_formset.opts.inline_classes|join:" "|default:"grp-collapse grp-closed" }}{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last and inline_admin_formset.has_add_permission %} grp-empty-form{% endif %}"
-                id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last and inline_admin_formset.has_add_permission %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
-                <h3 class="grp-collapse-handler">{{ inline_admin_formset.opts.verbose_name }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
-                <ul class="grp-tools">
-                    {% if inline_admin_form.original %}
-                        {% if inline_admin_form.model_admin.show_change_link and inline_admin_form.model_admin.has_registered_model %}
-                            <li><a href="{% url inline_admin_form.model_admin.opts|admin_urlname:'change' inline_admin_form.original.pk|admin_urlquote %}" class="grp-icon grp-edit-link" title="{% trans 'Change' %}"></a></li>
+    {% block stacked_content %}
+        <h2 class="grp-collapse-handler">{% if inline_admin_formset.opts.title %}{{ inline_admin_formset.opts.title }}{% else %}{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}{% endif %}</h2>
+        <ul class="grp-tools">
+            <li><a href="javascript://" class="grp-icon grp-open-handler" title="{% trans 'Open All Items' %}"></a></li>
+            <li><a href="javascript://" class="grp-icon grp-close-handler" title="{% trans 'Close All Items' %}"></a></li>
+            <li><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"> </a></li>
+        </ul>
+        {{ inline_admin_formset.formset.management_form }}
+        {{ inline_admin_formset.formset.non_form_errors }}
+        <!-- container -->
+        <div class="grp-items">
+            {% with inline_admin_formset.opts.sortable_field_name|default:"" as sortable_field_name %}
+            {% for inline_admin_form in inline_admin_formset|formsetsort:sortable_field_name %}
+                <!-- element -->
+                <div class="inline-related grp-module {{ inline_admin_formset.opts.inline_classes|join:" "|default:"grp-collapse grp-closed" }}{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last and inline_admin_formset.has_add_permission %} grp-empty-form{% endif %}"
+                    id="{{ inline_admin_formset.formset.prefix }}{% if forloop.last and inline_admin_formset.has_add_permission %}-empty{% else %}{{ forloop.counter0 }}{% endif %}">
+                    <h3 class="grp-collapse-handler">{{ inline_admin_formset.opts.verbose_name }}&nbsp;&nbsp;{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% endif %}</h3>
+                    <ul class="grp-tools">
+                        {% if inline_admin_form.original %}
+                            {% if inline_admin_form.model_admin.show_change_link and inline_admin_form.model_admin.has_registered_model %}
+                                <li><a href="{% url inline_admin_form.model_admin.opts|admin_urlname:'change' inline_admin_form.original.pk|admin_urlquote %}" class="grp-icon grp-edit-link" title="{% trans 'Change' %}"></a></li>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                    {% if inline_admin_form.show_url %}<li><a href="{{ inline_admin_form.absolute_url }}" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
-                    {% if inline_admin_formset.opts.sortable_field_name %}
-                        <li><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
-                    {% endif %}
-                    {% if inline_admin_form.original %}
-                        {% if inline_admin_formset.formset.can_delete %}
-                            <li class="grp-delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon grp-delete-handler" title="{% trans 'Delete Item' %}"></a></li>
+                        {% if inline_admin_form.show_url %}<li><a href="{{ inline_admin_form.absolute_url }}" class="grp-icon grp-viewsite-link" title="{% trans 'View on Site' %}" target="_blank"></a></li>{% endif %}
+                        {% if inline_admin_formset.opts.sortable_field_name %}
+                            <li><a href="javascript://" class="grp-icon grp-drag-handler" title="{% trans 'Move Item' %}"></a></li>
+                        {% endif %}
+                        {% if inline_admin_form.original %}
+                            {% if inline_admin_formset.formset.can_delete %}
+                                <li class="grp-delete-handler-container">{{ inline_admin_form.deletion_field.field }}<a href="javascript://" class="grp-icon grp-delete-handler" title="{% trans 'Delete Item' %}"></a></li>
+                            {% else %}
+                                <li><span class="grp-icon">&nbsp;</span></li>
+                            {% endif %}
                         {% else %}
-                            <li><span class="grp-icon">&nbsp;</span></li>
+                            <li><a href="javascript://" class="grp-icon grp-remove-handler" title="{% trans 'Delete Item' %}"></a></li>
                         {% endif %}
-                    {% else %}
-                        <li><a href="javascript://" class="grp-icon grp-remove-handler" title="{% trans 'Delete Item' %}"></a></li>
+                    </ul>
+                    {% if inline_admin_form.form.non_field_errors %}
+                        {{ inline_admin_form.form.non_field_errors }}
                     {% endif %}
-                </ul>
-                {% if inline_admin_form.form.non_field_errors %}
-                    {{ inline_admin_form.form.non_field_errors }}
-                {% endif %}
-                {% for fieldset in inline_admin_form %}
-                    {% include "admin/includes/fieldset_inline.html" %}
-                {% endfor %}
-                {{ inline_admin_form.fk_field.field }}
-                {% if inline_admin_form.has_auto_field or inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
-            </div>
-        {% endfor %}
-        {% endwith %}
-        {{ inline_admin_formset.extra_forms }}
-    </div>
-    <div class="grp-module grp-transparent">
-        <div class="grp-row">
-            <a href="javascript://" class="grp-add-handler"><strong>{% blocktrans with inline_admin_formset.opts.verbose_name as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</strong></a>
-            <ul class="grp-tools">
-                <li><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"> </a></li>
-            </ul>
+                    {% for fieldset in inline_admin_form %}
+                        {% include "admin/includes/fieldset_inline.html" %}
+                    {% endfor %}
+                    {{ inline_admin_form.fk_field.field }}
+                    {% if inline_admin_form.has_auto_field or inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+                </div>
+            {% endfor %}
+            {% endwith %}
+            {{ inline_admin_formset.extra_forms }}
         </div>
-    </div>
+        <div class="grp-module grp-transparent">
+            <div class="grp-row">
+                <a href="javascript://" class="grp-add-handler"><strong>{% blocktrans with inline_admin_formset.opts.verbose_name as verbose_name %}Add another {{ verbose_name }}{% endblocktrans %}</strong></a>
+                <ul class="grp-tools">
+                    <li><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"> </a></li>
+                </ul>
+            </div>
+        </div>
+    {% endblock %}
 </div>
 
 <script type="text/javascript">

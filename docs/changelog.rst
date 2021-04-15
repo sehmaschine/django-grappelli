@@ -14,6 +14,7 @@ Changelog
 * Fixed: Redirect with switch user.
 * Improved: Remove extra filtering in AutocompleteLookup.
 * Improved: Added import statement with URLs for quickstart docs.
+* Improved: Added additional blocks with inlines to allow override.
 
 2.14.3 (Nov 24th, 2020)
 -----------------------
