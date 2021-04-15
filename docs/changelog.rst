@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.14.4 (not yet released)
+2.14.5 (not yet released)
 -------------------------
+
+2.14.4 (April 15th 2021)
+------------------------
 
 * Fixed: Redirect with switch user.
 * Improved: Remove extra filtering in AutocompleteLookup.
