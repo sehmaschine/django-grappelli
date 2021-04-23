@@ -58,7 +58,7 @@ input[type="number"],
 input[type="submit"],
 input[type="reset"],
 textarea,
-select {
+select:not([multiple]) {
     @include grp-form-field;
     .grp-errors & {
         border-color: $grp-font-color-error;
