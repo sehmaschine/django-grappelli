@@ -27,7 +27,7 @@ Open ``settings.py`` and add ``grappelli`` to your ``INSTALLED_APPS`` (before ``
 
     INSTALLED_APPS = (
         'grappelli',
-        'django.contrib.admin',
+        'django.contrib.admin', # This is automatically done with django
     )
 
 Add URL-patterns. The grappelli URLs are needed for related–lookups and autocompletes. Your admin interface is available with the URL you defined for ``admin.site``:
@@ -38,7 +38,7 @@ Add URL-patterns. The grappelli URLs are needed for related–lookups and autoco
 
     urlpatterns = [
         path('grappelli/', include('grappelli.urls')), # grappelli URLS
-        path('admin/', admin.site.urls), # admin site
+        path('admin/', admin.site.urls), # admin site (This automatically done with django)
     ]
 
 Add the request context processor (needed for the Dashboard and the Switch User feature):
