@@ -216,6 +216,25 @@ fieldset.grp-module {
     position: relative;
     float: left;
     display: flex;
+    span.select2 {
+        @include grp-form-field;
+        &:focus,
+        &.grp-state-focus {
+            background-color: $grp-form-field-background-color-interactive;
+        }
+        .grp-errors & {
+            border-color: $grp-font-color-error;
+        }
+        // Cleanup heights set by Django
+        min-height: 25px;
+        span.select2-selection__rendered {
+            padding-left: 4px;
+            line-height: 21px;
+        }
+        span.select2-selection__arrow {
+            height: 21px;
+        }
+    }
 }
 
 .grp-tools.grp-related-widget-tools {
