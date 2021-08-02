@@ -27,7 +27,7 @@
                                     &mdash;
                                 {% endif %}
                             </td>
-                            <td>{{action.revision.comment|linebreaksbr|default:""}}</td>
+                            <td>{{action.revision.get_comment|linebreaksbr|default:""}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
