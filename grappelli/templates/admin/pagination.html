@@ -34,11 +34,11 @@
         {% endif %}
         {% if pagination_required %}
             {% for i in page_range %}
-                {% ifequal i "." %}
+                {% if not i|floatformat %}
                     <li class="grp-separator"><span>...</span></li>
                 {% else %}
                     <li>{% paginator_number cl i %}</li>
-                {% endifequal %}
+                {% endif %}
             {% endfor %}
         {% endif %}
         {% if show_all_url %}<li class="grp-showall"><a href="{{ show_all_url }}">{% trans 'Show all' %}</a></li>{% endif %}
