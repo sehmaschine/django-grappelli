@@ -8,9 +8,15 @@
 Changelog
 =========
 
-2.15.2 (not yet released)
+2.15.3 (not yet released)
 -------------------------
 
+2.15.2 (October 7th 2021)
+-------------------------
+
+* Fixed ellipsis with pagination.
+* Fixed redirect with switch.
+* Fixed constance template.
 * Fixed Django Autocompletes.
 
 2.15.1 (April 22nd 2021)
