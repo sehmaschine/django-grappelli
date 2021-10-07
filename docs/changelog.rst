@@ -8,8 +8,13 @@
 Changelog
 =========
 
-2.15.3 (not yet released)
+2.15.4 (not yet released)
 -------------------------
+
+2.15.3 (October 7th 2021)
+-------------------------
+
+* Added missing files from previous release.
 
 2.15.2 (October 7th 2021)
 -------------------------
