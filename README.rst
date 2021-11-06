@@ -1,7 +1,7 @@
 Django Grappelli
 ================
-.. image:: https://api.travis-ci.org/sehmaschine/django-grappelli.svg
-    :target: https://travis-ci.org/sehmaschine/django-grappelli
+.. image:: https://github.com/sehmaschine/django-grappelli/actions/workflows/tests.yml/badge.svg?branch=master
+    :target: https://github.com/sehmaschine/django-grappelli/actions/workflows/tests.yml?query=branch%3Amaster
 
 .. image:: https://readthedocs.org/projects/django-grappelli/badge/?version=latest
     :target: http://django-grappelli.readthedocs.org/en/latest/?badge=latest
