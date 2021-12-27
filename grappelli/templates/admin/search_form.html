@@ -5,7 +5,7 @@
         <input type="text" name="{{ search_var }}" id="grp-changelist-search" class="grp-search-field" value="{{ cl.query }}" />
         <button type="submit" value="" class="grp-search-button"></button>
         {% for pair in cl.params.items %}
-            {% ifnotequal pair.0 search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endifnotequal %}
+            {% if pair.0 != search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endif %}
         {% endfor %}
     </form>
 {% endif %}
