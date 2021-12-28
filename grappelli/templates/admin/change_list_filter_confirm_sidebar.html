@@ -17,15 +17,6 @@
         {% url 'admin:jsi18n' as jsi18nurl %}
         <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/'}}"></script>
     {% endif %}
-    {% if action_form %}
-        <script type="text/javascript" charset="utf-8">
-            (function($) {
-                $(document).ready(function() {
-                    $("tr input.action-select").actions();
-                });
-            })(grp.jQuery);
-        </script>
-    {% endif %}
     {% if cl.formset %}
         <script type="text/javascript" charset="utf-8">
             (function($) {
