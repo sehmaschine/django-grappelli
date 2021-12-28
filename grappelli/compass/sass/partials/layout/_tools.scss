@@ -216,25 +216,6 @@ fieldset.grp-module {
     position: relative;
     float: left;
     display: flex;
-    span.select2 {
-        @include grp-form-field;
-        &:focus,
-        &.grp-state-focus {
-            background-color: $grp-form-field-background-color-interactive;
-        }
-        .grp-errors & {
-            border-color: $grp-font-color-error;
-        }
-        // Cleanup heights set by Django
-        min-height: 25px;
-        span.select2-selection__rendered {
-            padding-left: 4px;
-            line-height: 21px;
-        }
-        span.select2-selection__arrow {
-            height: 21px;
-        }
-    }
 }
 
 .grp-tools.grp-related-widget-tools {
@@ -272,4 +253,29 @@ fieldset.grp-module {
         top: 2px;
         margin-left: 20px;
     }
+}
+
+
+/*  Select2 ................................................... */
+
+.select2-container--admin-autocomplete .select2-selection--single {
+    border-radius: 3px !important;
+    box-shadow: inset 0 1px 3px 0 #eee !important;
+}
+.select2-container--admin-autocomplete .select2-selection--single .select2-selection__rendered {
+    font-weight: bold !important;
+}
+.select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__rendered li {
+    font-weight: bold !important;
+}
+.select2-container--admin-autocomplete .select2-results__option[aria-selected="true"] {
+    background-color: #eee !important;
+}
+.select2-container--admin-autocomplete .select2-results__option--highlighted[aria-selected] {
+    background-color: #CEE9F2 !important;
+    color: #333 !important;
+}
+.select2-container--admin-autocomplete .select2-search--dropdown .select2-search__field {
+    box-shadow: inset 0 1px 3px 0 #eee !important;
+    outline: none !important;
 }
