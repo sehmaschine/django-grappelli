@@ -254,28 +254,3 @@ fieldset.grp-module {
         margin-left: 20px;
     }
 }
-
-
-/*  Select2 ................................................... */
-
-.select2-container--admin-autocomplete .select2-selection--single {
-    border-radius: 3px !important;
-    box-shadow: inset 0 1px 3px 0 #eee !important;
-}
-.select2-container--admin-autocomplete .select2-selection--single .select2-selection__rendered {
-    font-weight: bold !important;
-}
-.select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__rendered li {
-    font-weight: bold !important;
-}
-.select2-container--admin-autocomplete .select2-results__option[aria-selected="true"] {
-    background-color: #eee !important;
-}
-.select2-container--admin-autocomplete .select2-results__option--highlighted[aria-selected] {
-    background-color: #CEE9F2 !important;
-    color: #333 !important;
-}
-.select2-container--admin-autocomplete .select2-search--dropdown .select2-search__field {
-    box-shadow: inset 0 1px 3px 0 #eee !important;
-    outline: none !important;
-}
