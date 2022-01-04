@@ -166,6 +166,9 @@ body.rtl {
                 padding-left: 0;
             }
         }
+        a.grp-edit-link {
+            transform: rotate(180deg);
+        }
     }
     .grp-tools-container .grp-tools {
         right: 0;
@@ -247,6 +250,11 @@ body.rtl {
         float: left;
         margin-left: -10px;
         margin-right: 7px;
+    }
+    .grp-td .grp-related-widget-tools a.add-another {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
     }
     .radiolist.inline + a.add-another,
     .checkboxlist.inline + a.add-another {
@@ -738,6 +746,9 @@ body.rtl {
         position: absolute;
         right: auto;
         left: -30px;
+        a.grp-change-related {
+            transform: rotate(180deg);
+        }
     }
     .grp-related-widget-wrapper + p.grp-help {
         clear: right;
