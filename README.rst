@@ -43,6 +43,7 @@ Releases
 
 Current development branches:
 
+* Grappelli 3.0.1 (Development version for Django 4.0, see branch Stable/3.0.x)
 * Grappelli 2.15.5 (Development version for Django 3.2, see branch Stable/2.15.x)
 * Grappelli 2.14.5 (Development version for Django 3.1, see branch Stable/2.14.x)
 * Grappelli 2.13.5 (Development version for Django 2.2, see branch Stable/2.13.x)

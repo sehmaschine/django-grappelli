@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 2.15.5
+.. |grappelliversion| replace:: 3.0.1
 
 .. _index:
 
@@ -16,7 +16,7 @@ Documentation
 This documentation covers version |version| of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
 
 .. note::
-    |grappelli| |version| requires Django 3.2. More on :ref:`versions`.
+    |grappelli| |version| requires Django 4.0. More on :ref:`versions`.
 
 Installation & Setup
 --------------------
@@ -83,6 +83,7 @@ Versions and Compatibility
 
 Current development branches:
 
+* Grappelli 3.0.1 (Development version for Django 4.0, see branch Stable/3.0.x)
 * Grappelli 2.15.5 (Development version for Django 3.2, see branch Stable/2.15.x)
 * Grappelli 2.14.5 (Development version for Django 3.1, see branch Stable/2.14.x)
 * Grappelli 2.13.5 (Development version for Django 2.2, see branch Stable/2.13.x)

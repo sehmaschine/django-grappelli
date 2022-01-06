@@ -1,13 +1,13 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 2.15.5
+.. |grappelliversion| replace:: 3.0.1
 
 .. _quickstart:
 
 Quick start guide
 =================
 
-For using |grappelli| |grappelliversion|, `Django 3.2 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/3.2/ref/contrib/admin/>`_ has to be activated.
+For using |grappelli| |grappelliversion|, `Django 4.0 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/4.0/ref/contrib/admin/>`_ has to be activated.
 
 Installation
 ------------
