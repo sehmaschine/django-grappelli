@@ -8,13 +8,16 @@
 Changelog
 =========
 
-2.15.4 (not yet released)
----------------------------
+2.15.5 (not yet released)
+-------------------------
+
+2.15.4 (January 6th 2022)
+-------------------------
 
 * Migrate CI to GitHub actions.
 * Removed obsolete ifnotequal tag with search template.
 * Removed duplicate Django Javascripts from Grappelli.
-* Improved Django autocompletes.
+* Improved and styled Django autocompletes.
 
 2.15.3 (October 7th 2021)
 -------------------------
