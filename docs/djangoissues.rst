@@ -66,6 +66,8 @@ Autocompletes
 
 As an alternative to ``Related Lookups`` it should also be possible to implement ``Autocompletes``. |grappelli| includes ``Autocompletes``, but it should be possible without hacking the admin-interface.
 
+Update: Autocompletes are available with Django since version 2.0.
+
 Help text and Many-to-Many Fields
 ---------------------------------
 

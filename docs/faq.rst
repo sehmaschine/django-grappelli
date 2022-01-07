@@ -23,7 +23,7 @@ see :ref:`Troubleshooting <troubleshooting>`.
 Which Browser do I need with Grappelli?
 ---------------------------------------
 
-We are testing with Firefox, Chrome and Safari. IE9 and Opera should work fine as well.
+We are testing with Firefox, Chrome and Safari. IE and Opera should work fine as well.
 
 Can I use another editor than TinyMCE?
 --------------------------------------
