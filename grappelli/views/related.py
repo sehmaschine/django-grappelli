@@ -9,6 +9,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection, models
 from django.db.models.constants import LOOKUP_SEP
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
 from django.utils.safestring import SafeText
 from django.utils.translation import gettext as _
@@ -125,7 +126,7 @@ class RelatedLookup(View):
                 data.append({"value": obj_id, "label": _("?"), "safe": False})
         return data
 
-    @never_cache
+    @method_decorator(never_cache)
     def get(self, request, *args, **kwargs):
         self.check_user_permission()
         self.GET = self.request.GET
@@ -240,7 +241,7 @@ class AutocompleteLookup(RelatedLookup):
     def get_data(self):
         return [{"value": self.get_return_value(f, f.pk), "label": get_label(f)} for f in self.get_queryset()[:AUTOCOMPLETE_LIMIT]]
 
-    @never_cache
+    @method_decorator(never_cache)
     def get(self, request, *args, **kwargs):
         self.check_user_permission()
         self.GET = self.request.GET
