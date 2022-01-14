@@ -11,6 +11,8 @@ Changelog
 2.15.5 (not yet released)
 -------------------------
 
+* Fixed changelist actions.
+
 2.15.4 (January 6th 2022)
 -------------------------
 
