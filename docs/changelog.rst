@@ -11,6 +11,8 @@ Changelog
 3.0.2 (not yet released)
 ------------------------
 
+* Fixed changelist actions.
+
 3.0.1 (January 12th 2022)
 -------------------------
 

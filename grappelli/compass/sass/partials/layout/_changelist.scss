@@ -293,9 +293,7 @@ li.grp-changelist-actions {
             background: #222 !important;
         }
     }
-    li.grp-all,
-    li.grp-question,
-    li.grp-clear-selection {
+    li.hidden {
         display: none;
     }
 }
