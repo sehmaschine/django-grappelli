@@ -7,9 +7,9 @@
         <ul class="grp-horizontal-list grp-float-left">
             <li class="grp-action-counter"><span class="grp-button grp-button-state-inactive grp-action-counter">{{ selection_note }}</span></li>
             {% if cl.result_count != cl.result_list|length %}
-                <li class="grp-all"><span class="all grp-button grp-button-state-inactive">{{ selection_note_all }}</span></li>
-                <li class="grp-question"><a href="javascript://" class="grp-button" title="{% trans "Click here to select the objects across all pages" %}">{% blocktrans with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktrans %}</a></li>
-                <li class="grp-clear-selection"><a href="javascript://" class="grp-button grp-clear">{% trans "Clear selection" %}</a></li>
+                <li class="grp-all hidden"><span class="all grp-button grp-button-state-inactive">{{ selection_note_all }}</span></li>
+                <li class="grp-question hidden"><a href="javascript://" class="grp-button" title="{% trans "Click here to select the objects across all pages" %}">{% blocktrans with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktrans %}</a></li>
+                <li class="grp-clear-selection hidden"><a href="javascript://" class="grp-button grp-clear">{% trans "Clear selection" %}</a></li>
             {% endif %}
         </ul>
     {% endif %}
