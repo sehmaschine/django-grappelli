@@ -293,6 +293,9 @@ li.grp-changelist-actions {
             background: #222 !important;
         }
     }
+    li.hidden {
+        display: none;
+    }
 }
 .grp-submit-row.grp-fixed-footer > ul > li.grp-changelist-actions {
     padding: 5px 0 !important;
