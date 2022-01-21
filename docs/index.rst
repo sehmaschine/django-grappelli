@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 3.0.1
+.. |grappelliversion| replace:: 3.0.2
 
 .. _index:
 
@@ -76,12 +76,12 @@ Versions and Compatibility
 
 **Grappelli is always developed against the latest stable Django release and is NOT tested with Django's master branch.**
 
-* Grappelli 3.0.1 (January 12th, 2022): Compatible with Django 4.0
-* Grappelli 2.15.4 (January 6th, 2022): Compatible with Django 3.2 (LTS)
+* Grappelli 3.0.2 (January 21st, 2022): Compatible with Django 4.0
+* Grappelli 2.15.5 (January 21st, 2022): Compatible with Django 3.2 (LTS)
 
 Current development branches:
 
-* Grappelli 3.0.2 (Development version for Django 4.0, see branch Stable/3.0.x)
-* Grappelli 2.15.5 (Development version for Django 3.2, see branch Stable/2.15.x)
+* Grappelli 3.0.3 (Development version for Django 4.0, see branch Stable/3.0.x)
+* Grappelli 2.15.6 (Development version for Django 3.2, see branch Stable/2.15.x)
 
 Older versions are available at GitHub, but are not supported anymore.
