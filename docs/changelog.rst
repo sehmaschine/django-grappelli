@@ -8,8 +8,11 @@
 Changelog
 =========
 
-2.15.5 (not yet released)
+2.15.6 (not yet released)
 -------------------------
+
+2.15.5 (January 21st 2022)
+--------------------------
 
 * Fixed changelist actions.
 
