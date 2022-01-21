@@ -1,6 +1,6 @@
 {
   "name": "Grappelli",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "A jazzy skin for the Django admin interface",
   "author": "Patrick Kranzlmueller, Axel Swoboda",
   "license": "New BSD",
