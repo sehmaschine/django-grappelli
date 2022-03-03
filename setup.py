@@ -13,6 +13,9 @@ setup(
     description='A jazzy skin for the Django Admin-Interface.',
     long_description=read('README.rst'),
     url='http://django-grappelli.readthedocs.org',
+    project_urls={
+        'Source': 'https://github.com/sehmaschine/django-grappelli',
+    },
     download_url='',
     author='Patrick Kranzlmueller, Axel Swoboda (vonautomatisch)',
     author_email='office@vonautomatisch.at',
