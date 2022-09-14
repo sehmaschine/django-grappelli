@@ -147,7 +147,7 @@
 					});
 				}
 
-				// Add contect menu if it's loaded
+				// Add context menu if it's loaded
 				if (ed && ed.plugins.contextmenu) {
 					ed.plugins.contextmenu.onContextMenu.add(function(plugin, menu, element) {
 						if (element.nodeName === 'IMG' && element.className.indexOf('mceItemMedia') !== -1)
