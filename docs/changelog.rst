@@ -8,8 +8,14 @@
 Changelog
 =========
 
-3.0.4 (not yet released)
+3.0.5 (not yet released)
 ------------------------
+
+3.0.4 (November 22nd 2022)
+--------------------------
+
+* Fixed race condition issue with Grunt.
+* Fixed readonly ID field.
 
 3.0.3 (February 18th 2022)
 --------------------------
