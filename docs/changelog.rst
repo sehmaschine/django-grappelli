@@ -8,8 +8,13 @@
 Changelog
 =========
 
-2.15.6 (not yet released)
+2.15.7 (not yet released)
 -------------------------
+
+2.15.6 (November 22nd 2022)
+---------------------------
+
+* Fixed race condition issue with Grunt.
 
 2.15.5 (January 21st 2022)
 --------------------------
