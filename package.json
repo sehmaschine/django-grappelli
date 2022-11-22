@@ -9,7 +9,7 @@
     "url": "git://github.com/sehmaschine/django-grappelli.git"
   },
   "devDependencies": {
-    "grunt": "^1.0.3",
+    "grunt": "^1.5.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-compass": "^1.1.1",
     "grunt-contrib-concat": "^1.0.1",
