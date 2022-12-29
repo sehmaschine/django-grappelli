@@ -212,7 +212,11 @@ def admin_list_filter(cl, spec):
     field_name = getattr(spec, "field", None)
     parameter_name = getattr(spec, "parameter_name", None)
     if field_name is not None:
-        field_name = spec.field.name
+        target_field = getattr(field_name, "target_field", None)
+        if target_field is not None:
+            field_name = '%s__%s' % (spec.field_path, spec.field.target_field.name)
+        else:
+            field_name = spec.field.name
     elif parameter_name is not None:
         field_name = spec.parameter_name
     try:
