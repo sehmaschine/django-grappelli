@@ -126,7 +126,8 @@ var inputTypes = [
                     // Split query param to get the fieldName
                     var fieldName = param.split('=')[0];
                     if (fieldName.search('__') != -1) {
-                        fieldName = param.split('__')[0];
+                        var lastIndex = fieldName.lastIndexOf('__');
+                        fieldName = fieldName.slice(0, lastIndex);
                     }
                     // Check if fieldName already exists in searchStringDict and add it resp. its values
                     var fieldNameIndex = windowQueryDict.findIndex(el => el.fieldName === fieldName);
