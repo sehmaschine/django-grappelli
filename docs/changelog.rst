@@ -8,8 +8,16 @@
 Changelog
 =========
 
-3.0.5 (not yet released)
+3.0.6 (not yet released)
 ------------------------
+
+3.0.5 (March 20th 2023)
+-----------------------
+
+* Removed package.json from jquery-ui.
+* Fixed change_list_filter_confirm peoduces wrong url parameters.
+* Fixed change_list_filter_confirm is using admin_list.admin_list_filter instead of grp_tags.admin_list_filter.
+* Added default for dummy template with dahboard (because of django-compressor offline compression).
 
 3.0.4 (November 22nd 2022)
 --------------------------
