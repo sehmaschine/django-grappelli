@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 3.0.5
+.. |grappelliversion| replace:: 3.0.6
 
 .. _index:
 
