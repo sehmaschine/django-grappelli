@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import json
+from urllib.parse import unquote
 
 from django.apps import apps
 from django.contrib.admin.utils import prepare_lookup_value
@@ -91,7 +92,7 @@ class RelatedLookup(View):
             for item in query_string.split(":"):
                 k, v = item.split("=")
                 if k != "_to_field":
-                    filters[smart_str(k)] = prepare_lookup_value(smart_str(k), smart_str(v))
+                    filters[smart_str(k)] = prepare_lookup_value(smart_str(k), unquote(smart_str(v)))
         return qs.filter(**filters)
 
     def get_queryset(self):

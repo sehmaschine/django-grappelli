@@ -1,10 +1,12 @@
 # coding: utf-8
 
+from django.contrib.admin.widgets import url_params_from_lookup_dict
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils import timezone, translation
+from django.utils.http import urlencode
 
 from grappelli.tests.models import Category, Entry
 
@@ -37,7 +39,6 @@ class RelatedTests(TestCase):
         self.entry_editor = Entry.objects.create(title="Entry Editor",
                                                  date=timezone.now(),
                                                  user=self.editor_1)
-
         # set to en to check error messages
         translation.activate("en")
 
@@ -94,6 +95,30 @@ class RelatedTests(TestCase):
 
         # filtered queryset (single filter) works
         response = self.client.get("%s?object_id=100&app_label=%s&model_name=%s&query_string=id__gte=99" % (reverse("grp_related_lookup"), "grappelli", "category"))
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content.decode('utf-8'), [{"value": "100", "label": "Category No 99 (100)", "safe": False}])
+
+        # filtered queryset (IN statement) fails
+        query_params = {
+            "object_id": 1,
+            "app_label": "grappelli",
+            "model_name": "category",
+            "query_string": urlencode(url_params_from_lookup_dict({"id__in": [99, 100]}))
+        }
+        query_string = urlencode(query_params)
+        response = self.client.get("%s?%s" % (reverse("grp_related_lookup"), query_string))
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content.decode('utf-8'), [{"value": "1", "label": "?", "safe": False}])
+
+        # filtered queryset (IN statement) works
+        query_params = {
+            "object_id": 100,
+            "app_label": "grappelli",
+            "model_name": "category",
+            "query_string": urlencode(url_params_from_lookup_dict({"id__in": [99, 100]}))
+        }
+        query_string = urlencode(query_params)
+        response = self.client.get("%s?%s" % (reverse("grp_related_lookup"), query_string))
         self.assertEqual(response.status_code, 200)
         self.assertJSONEqual(response.content.decode('utf-8'), [{"value": "100", "label": "Category No 99 (100)", "safe": False}])
 
