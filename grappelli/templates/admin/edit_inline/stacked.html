@@ -8,7 +8,9 @@
         <ul class="grp-tools">
             <li><a href="javascript://" class="grp-icon grp-open-handler" title="{% trans 'Open All Items' %}"></a></li>
             <li><a href="javascript://" class="grp-icon grp-close-handler" title="{% trans 'Close All Items' %}"></a></li>
+            {% if inline_admin_formset.has_add_permission %}
             <li><a href="javascript://" class="grp-icon grp-add-handler" title="{% trans 'Add Item' %}"> </a></li>
+            {% endif %}
         </ul>
         {{ inline_admin_formset.formset.management_form }}
         {{ inline_admin_formset.formset.non_form_errors }}
