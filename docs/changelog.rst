@@ -8,8 +8,13 @@
 Changelog
 =========
 
-3.0.6 (not yet released)
+3.0.7 (not yet released)
 ------------------------
+
+3.0.6 (May 3rd 2023)
+--------------------
+
+* Fixed incorrect label of option returned by RelatedLookup view.
 
 3.0.5 (March 20th 2023)
 -----------------------
