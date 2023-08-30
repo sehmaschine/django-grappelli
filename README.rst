@@ -1,3 +1,5 @@
+IGNORE THIS
+
 Django Grappelli
 ================
 .. image:: https://github.com/sehmaschine/django-grappelli/actions/workflows/tests.yml/badge.svg?branch=master
