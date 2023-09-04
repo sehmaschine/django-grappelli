@@ -1,0 +1,17 @@
+/* -- Import Basic Documentstructure CSS ---------- */
+
+@import url('content_documentstructure.css');
+
+/* -- Language Specific Settings ---------- */
+
+body#tinymce h1:before          { content: "Заголовок 1"; }
+body#tinymce h2:before          { content: "Заголовок 2"; }
+body#tinymce h3:before          { content: "Заголовок 3"; }
+body#tinymce h4:before          { content: "Заголовок 4"; }
+body#tinymce ol:before          { content: "Нумерований Список"; }
+body#tinymce ul:before          { content: "Маркований Список"; }
+body#tinymce p:before           { content: "Параграф"; }
+body#tinymce code:before        { content: "Код"; }
+body#tinymce pre:before         { content: "Предформатування"; }
+body#tinymce blockquote:before  { content: "Цитата"; }
+body#tinymce div:before         { content: "Блок"; }
