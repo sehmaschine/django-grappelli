@@ -1,6 +1,3 @@
-
-
-
 /*  IMPORT COMPASS
 ------------------------------------------------------------------------------------------------------ */
 
@@ -25,16 +22,16 @@
 body.rtl {
 
     #grp-user-tools>li {
-    list-style-image: none;
-    list-style-type: none;
-    margin-left: 0;
-    white-space: nowrap;
-    float: left;
-    padding-left: 0;
-    padding-right: 0;
-    border-left: 1px solid #343434;
-    border-right: 1px solid #090909;
-}
+        list-style-image: none;
+        list-style-type: none;
+        margin-left: 0;
+        white-space: nowrap;
+        float: left;
+        padding-left: 0;
+        padding-right: 0;
+        border-left: 1px solid #343434;
+        border-right: 1px solid #090909;
+    }
 
     // HEADER
     header#grp-header {
@@ -42,56 +39,69 @@ body.rtl {
             h1#grp-admin-title {
                 float: right;
             }
+
             ul#grp-user-tools {
                 float: left;
                 margin: 0 0 0 -10px;
                 border-right: 1px solid #343434;
                 border-left: 0 !important;
-                > li {
+
+                >li {
                     float: right;
+
                     &:last-child {
                         border-right: 1px solid #090909;
                         border-left: 0;
                     }
+
                     &.grp-user-options-container:last-child {
                         margin-right: 0;
                         margin-left: 11px;
                     }
                 }
             }
-            ul li.grp-collapse.grp-open > ul {
+
+            ul li.grp-collapse.grp-open>ul {
                 position: absolute;
                 z-index: 1010;
                 display: block;
                 margin: -1px -1px 0 0;
                 width: 202px;
+
                 li {
                     border-right: 0 !important
                 }
             }
         }
     }
+
     #grp-page-tools {
         float: left;
         right: 0;
         margin-left: -10px;
+
         li {
             float: right;
+
             &:first-child {
                 padding-right: 5px;
                 padding-left: 0;
             }
+
             &:last-child {
                 padding-left: 5px;
                 padding-right: 0;
             }
         }
     }
+
     #grp-breadcrumbs {
         float: right;
-        > ul {
+
+        >ul {
             @include horizontal-list(5px, right);
             @include grp-padding($grp-padding-size-s 20px);
+
             a {
                 padding-right: 0;
                 padding-left: 15px;
@@ -102,16 +112,18 @@ body.rtl {
 
 
     // SUBMIT-ROW
-    .grp-submit-row > ul > li {
+    .grp-submit-row>ul>li {
         float: left;
         margin-left: 0;
         margin-right: 10px;
+
         &.grp-float-left {
             float: right !important;
             margin-left: 10px;
             margin-right: 0;
         }
     }
+
     &.grp-login .grp-module.grp-submit-row ul li {
         float: left;
     }
@@ -119,30 +131,37 @@ body.rtl {
     // OBJECT TOOLS
     .grp-object-tools {
         float: left;
+
         li {
             float: right;
             padding-right: 5px;
             padding-left: 5px;
+
             &:first-child {
                 padding-right: 0;
             }
+
             &:last-child {
                 padding-left: 0;
             }
+
             a {
                 &.grp-add-link {
                     padding-right: 28px;
                     padding-left: 15px;
                     @include grp-background-gradient-icon-combo(object-tools-add-link, 95%, #999, #888);
+
                     &:hover {
                         @include grp-background-gradient-icon-combo(object-tools-add-link, 95%, #36b0d9, #309bbf);
                     }
                 }
+
                 &.grp-viewsite-link,
                 &[target="_blank"] {
                     padding-right: 28px;
                     padding-left: 15px;
                     @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 95%, #999, #888);
+
                     &:hover {
                         @include grp-background-gradient-icon-combo(object-tools-viewsite-link, 95%, #36b0d9, #309bbf);
                     }
@@ -155,30 +174,37 @@ body.rtl {
     .grp-tools {
         float: left;
         padding-left: 5px;
+
         li {
             float: right;
             padding-right: 1px;
             padding-left: 1px;
+
             &:first-child {
                 padding-right: 0;
             }
+
             &:last-child {
                 padding-left: 0;
             }
         }
+
         a.grp-edit-link {
             transform: rotate(180deg);
         }
     }
+
     .grp-tools-container .grp-tools {
         right: 0;
         // margin-left: -20px;
     }
-    .grp-module .grp-row > .grp-tools {
+
+    .grp-module .grp-row>.grp-tools {
         right: 0;
         margin-left: -9px;
     }
-    .grp-group > h2 + .grp-tools {
+
+    .grp-group>h2+.grp-tools {
         right: 0;
         margin-left: 1px;
     }
@@ -196,8 +222,8 @@ body.rtl {
     button,
     a.fb_show,
     a.related-lookup,
-    body.tinyMCE input[name="src"] + div a,
-    body.tinyMCE input[name="href"] + div a {
+    body.tinyMCE input[name="src"]+div a,
+    body.tinyMCE input[name="href"]+div a {
         margin-left: 0;
         margin-right: -25px;
         @include border-right-radius(0);
@@ -209,6 +235,7 @@ body.rtl {
         white-space: nowrap;
         position: relative;
         display: inline-block;
+
         input.vTimeField {
             margin-left: 0;
             margin-right: 6px;
@@ -217,22 +244,24 @@ body.rtl {
 
     // READONLY
     div.grp-readonly {
-        & + div.grp-readonly {
+        &+div.grp-readonly {
             margin-left: 0;
             margin-right: 20px;
         }
     }
 
     // RELATED LOOKUP
-    a.related-lookup + strong {
+    a.related-lookup+strong {
         margin-left: 0;
         margin-right: 5px;
     }
+
     .grp-placeholder-related-fk,
     .grp-placeholder-related-m2m,
     .grp-placeholder-related-generic {
         margin-left: 0;
         margin-right: 130px;
+
         .grp-separator {
             &:after {
                 padding-left: 4px;
@@ -246,18 +275,21 @@ body.rtl {
         margin-left: 0;
         margin-right: 7px;
     }
+
     .grp-td a.add-another {
         float: left;
         margin-left: -10px;
         margin-right: 7px;
     }
+
     .grp-td .grp-related-widget-tools a.add-another {
         float: none;
         margin-left: auto;
         margin-right: auto;
     }
-    .radiolist.inline + a.add-another,
-    .checkboxlist.inline + a.add-another {
+
+    .radiolist.inline+a.add-another,
+    .checkboxlist.inline+a.add-another {
         float: none;
         margin-left: -10px;
         margin-right: 0;
@@ -267,36 +299,45 @@ body.rtl {
     .grp-actions {
         @include horizontal-list(5px, right);
         float: left;
+
         li {
+
             &.grp-add-link,
             &.grp-change-link,
             &.grp-delete-link {
+
                 a,
-                > span:first-child {
+                >span:first-child {
                     padding-right: $grp-padding-size-l;
                     padding-left: 0;
                 }
             }
+
             &.grp-add-link a {
                 @include icons-small-sprite(add-link, $offset-x: 100%);
             }
+
             &.grp-change-link a {
                 @include icons-small-sprite(change-link, $offset-x: 100%);
             }
+
             &.grp-delete-link a,
-            &.grp-delete-link > span:first-child {
+            &.grp-delete-link>span:first-child {
                 @include icons-small-sprite(delete-link, $offset-x: 100%);
             }
+
             &.grp-icon {
+
                 a,
-                > span:first-child {
+                >span:first-child {
                     padding: 0 6px 0 6px;
                 }
             }
         }
     }
+
     .grp-changelist-actions {
-        > button {
+        >button {
             margin-right: 0;
         }
     }
@@ -305,27 +346,32 @@ body.rtl {
     .grp-listing,
     .grp-listing-small {
         li {
+
             &.grp-add-link,
             &.grp-change-link,
             &.grp-delete-link {
                 padding-right: $grp-padding-size-l + 5;
                 padding-left: 0;
+
                 a,
-                > span:first-child {
+                >span:first-child {
                     margin-right: - $grp-margin-size-m - 5;
                     margin-left: 0;
                     padding-right: $grp-padding-size-m + 5;
                     padding-left: 0;
                 }
             }
+
             &.grp-add-link a {
                 @include icons-small-sprite(add-link, $offset-x: 100%);
             }
+
             &.grp-change-link a {
                 @include icons-small-sprite(change-link, $offset-x: 100%);
             }
+
             &.grp-delete-link a,
-            &.grp-delete-link > span:first-child {
+            &.grp-delete-link>span:first-child {
                 @include icons-small-sprite(delete-link, $offset-x: 100%);
             }
         }
@@ -335,6 +381,7 @@ body.rtl {
     .grp-module {
         .grp-row:not(tr) {
             float: right;
+
             &.grp-cells {
                 .grp-cell {
                     display: table-cell;
@@ -343,12 +390,14 @@ body.rtl {
                     padding: 8px 0 8px 20px;
                     border-left: 1px solid #fff;
                     border-right: 0;
-                    & + .grp-cell {
+
+                    &+.grp-cell {
                         padding-left: 20px;
                         padding-right: 0;
                         border-right: 1px solid #ddd;
                         border-left: 0;
                     }
+
                     &:last-of-type {
                         padding-left: 0;
                         padding-right: 20px;
@@ -364,20 +413,25 @@ body.rtl {
     // TABULAR
     .grp-tabular {
         .grp-table {
+
             .grp-th,
             .grp-td {
                 margin-right: 0;
                 border-left: 1px solid #fff;
                 border-right: 1px solid #e0e0e0;
+
                 &:first-of-type {
                     padding-left: 20px;
                     padding-right: 10px;
                 }
+
                 &:last-child {
                     padding-left: 10px;
                 }
             }
+
             .grp-thead {
+
                 .grp-th,
                 .grp-td {
                     background: none;
@@ -387,24 +441,30 @@ body.rtl {
                     // }
                 }
             }
+
             .grp-tbody {
+
                 .grp-th,
                 .grp-td {
                     border-bottom: 1px solid #d4d4d4;
                     border-top: 1px solid #d4d4d4;
+
                     &:last-of-type {
                         border-left: 1px solid #d4d4d4;
                     }
+
                     &:last-child {
                         @include border-left-radius(0);
                         @include border-right-radius($grp-border-radius - 1px);
                     }
+
                     &:first-of-type {
                         border-left: 1px solid #fff;
                         border-right: 1px solid #d4d4d4;
                         @include border-left-radius(0);
                         @include border-right-radius($grp-border-radius - 1px);
                     }
+
                     &.grp-tools-container {
                         padding-left: 0;
                         @include border-right-radius(0);
@@ -412,6 +472,7 @@ body.rtl {
                     }
                 }
             }
+
             .grp-tfoot {
                 .grp-td {
                     &:last-of-type {
@@ -428,38 +489,52 @@ body.rtl {
             th {
                 border-right: 1px solid $grp-table-border-color;
                 border-left: 0;
+
                 &:first-child {
                     border-right: 0;
                 }
+
                 &:first-of-type {
                     @include border-top-right-radius($grp-border-radius - 1px);
                     @include border-top-left-radius(0);
                 }
+
                 &:last-of-type {
                     @include border-top-left-radius($grp-border-radius - 1px);
                     @include border-top-right-radius(0);
                 }
             }
         }
+
         tbody {
             tr {
-                td, th {
+
+                td,
+                th {
                     border-right: 1px solid #e4e4e4;
+
                     &:first-child {
                         border-right: 0 !important;
                     }
                 }
-                &.grp-row-even td, &.grp-row-even th,
-                &.grp-row-odd td, &.grp-row-odd th {
+
+                &.grp-row-even td,
+                &.grp-row-even th,
+                &.grp-row-odd td,
+                &.grp-row-odd th {
                     border-left: 0;
                     border-right: 1px solid #e0e0e0;
                 }
+
                 &:last-child {
-                    td, th {
+
+                    td,
+                    th {
                         &:first-child {
                             @include border-bottom-right-radius($grp-border-radius - 1px);
                             @include border-bottom-left-radius(0);
                         }
+
                         &:last-child {
                             @include border-bottom-left-radius($grp-border-radius - 1px);
                             @include border-bottom-right-radius(0);
@@ -468,6 +543,7 @@ body.rtl {
                 }
             }
         }
+
         tfoot {
             td {
                 &:first-child {
@@ -475,13 +551,17 @@ body.rtl {
                 }
             }
         }
-        td, th {
+
+        td,
+        th {
+
             a.fb_show,
             a.related-lookup {
                 margin: -5px -25px -11px 0;
             }
         }
     }
+
     table.grp-table.grp-sortable {
         thead {
             th {
@@ -489,17 +569,21 @@ body.rtl {
                     .grp-text {
                         // float: right;
                     }
+
                     .grp-sortoptions {
                         float: left;
                         clear: left;
                         margin: 0 0 0 5px;
+
                         a {
                             float: left;
                         }
+
                         span.grp-sortpriority {
                             float: left;
                         }
                     }
+
                     &.sorted {
                         .grp-text a {
                             padding-right: 10px;
@@ -514,14 +598,17 @@ body.rtl {
     // PAGINATION
     .grp-pagination ul {
         float: right;
+
         li {
             float: right;
             margin-left: 1px;
             margin-right: 0;
+
             &.grp-results {
                 margin-left: 4px;
                 margin-right: 0;
             }
+
             &:last-child {
                 clear: left;
             }
@@ -531,8 +618,10 @@ body.rtl {
     // DATE HIERARCHY
     .grp-date-hierarchy ul {
         float: right;
+
         li {
             float: right;
+
             a.grp-date-hierarchy-back {
                 padding-right: 15px;
                 padding-left: 5px;
@@ -554,6 +643,7 @@ body.rtl {
         .grp-pulldown-handler {
             @include icons-sprite(pulldown-handler);
         }
+
         &.grp-pulldown-state-open {
             .grp-pulldown-handler {
                 @include icons-sprite(pulldown-handler_selected);
@@ -561,6 +651,7 @@ body.rtl {
             }
         }
     }
+
     .grp-filter {
         .grp-row {
             &.grp-selected {
@@ -572,6 +663,7 @@ body.rtl {
                 }
             }
         }
+
         @include legacy-pie-clearfix;
     }
 
@@ -581,13 +673,16 @@ body.rtl {
             float: right;
             margin: 1px 0 0 5px;
         }
+
         li {
             margin-left: 4px;
             margin-right: 0;
             float: right !important;
+
             &:first-child {
                 padding-right: 0;
             }
+
             &:last-child {
                 padding-left: 0;
             }
@@ -595,15 +690,18 @@ body.rtl {
     }
 
     // FORMS
-    .grp-row input[type="checkbox"] + label,
-    .grp-row input[type="radio"] + label {
+    .grp-row input[type="checkbox"]+label,
+    .grp-row input[type="radio"]+label {
         margin: 0 5px 0 0;
     }
+
     select {
         padding: 4px 2px 4px 3px;
         // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
     }
+
     @media screen and (-webkit-min-device-pixel-ratio:0) {
+
         select,
         select:focus {
             padding: 4px 5px 4px 28px;
@@ -612,22 +710,26 @@ body.rtl {
             background-position: 0 50%;
             background-repeat: no-repeat;
         }
+
         select[multiple] {
             background-image: none;
         }
     }
-    ul.radiolist.inline,
+
+    .radiolist.inline,
     ul.checkboxlist.inline {
         float: right;
         padding-left: 20px;
         padding-right: 0;
+
         li {
             float: right;
             padding-left: 20px;
             padding-right: 0;
         }
     }
-    .grp-module.grp-tbody ul.radiolist.inline li,
+
+    .grp-module.grp-tbody .radiolist.inline li,
     .grp-module.grp-tbody ul.checkboxlist.inline li {
         float: right;
         padding-left: 20px;
@@ -637,6 +739,7 @@ body.rtl {
     // AUTOCOMPLETES
     .grp-autocomplete-wrapper-m2m,
     .grp-autocomplete-wrapper-fk {
+
         a.grp-related-remove,
         div.grp-loader {
             display: inline-block;
@@ -644,23 +747,29 @@ body.rtl {
             left: 24px !important;
             right: auto;
         }
+
         div.grp-loader {
             background: #fdfdfd url('../images/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
         }
+
         a.related-lookup {
             left: 0;
             right: auto;
         }
     }
+
     .grp-autocomplete-wrapper-m2m {
         ul.grp-repr {
             float: right;
             padding-left: 55px;
             padding-right: 5px;
+
             li {
                 float: right;
+
                 &.grp-repr {
                     margin: 3px 1px 0 5px;
+
                     a.grp-m2m-remove {
                         padding-right: 5px;
                         padding-left: 0;
@@ -668,25 +777,30 @@ body.rtl {
                 }
             }
         }
+
         a.related-lookup {
             left: -1px !important;
         }
-        a.grp-related-remove + a.grp-related-lookup {
+
+        a.grp-related-remove+a.grp-related-lookup {
             @include border-bottom-left-radius(3px);
             @include border-bottom-right-radius(0);
         }
+
         a.grp-related-remove,
-        a.grp-related-remove + div.grp-loader {
+        a.grp-related-remove+div.grp-loader {
             left: 23px !important;
             right: auto;
         }
     }
+
     .grp-autocomplete-wrapper-fk {
         input.ui-autocomplete-input {
             padding-left: 55px;
             padding-right: 5px;
         }
     }
+
     td .grp-autocomplete-wrapper-m2m a.related-lookup,
     td .grp-autocomplete-wrapper-fk a.related-lookup {
         margin-top: 0 !important;
@@ -695,62 +809,78 @@ body.rtl {
     // SELECTORS
     .selector {
         float: right;
+
         .selector-available,
         .selector-chosen {
             float: right;
+
             h2 {
                 padding: 7px 7px 6px 5px;
             }
         }
+
         ul.selector-chooser {
             float: right;
         }
+
         .selector-filter {
             padding: 3px 2px 2px 5px;
             background-position: 10px 50%;
+
             input[type="text"] {
                 float: right;
                 margin-right: 3px;
             }
         }
+
         select[multiple] {
             margin: 0 -1px 0 0;
             padding-right: 3px;
             padding-left: 0;
         }
+
         &.stacked {
             ul.selector-chooser {
                 margin: 4px 356px 0 0;
+
                 li {
                     float: right;
                 }
             }
         }
+
         a.selector-add {
             background-image: url('../images/icons/selector-remove-m2m-horizontal.png');
+
             &:hover {
                 background-image: url('../images/icons/selector-remove-m2m-horizontal_hover.png');
             }
         }
+
         a.selector-remove {
             background-image: url('../images/icons/selector-add-m2m-horizontal.png');
+
             &:hover {
                 background-image: url('../images/icons/selector-add-m2m-horizontal_hover.png');
             }
         }
     }
+
     .grp-related-widget-wrapper {
         float: right;
     }
+
     .grp-related-widget-tools {
         position: absolute;
         right: auto;
         left: -30px;
+
         a.grp-change-related {
             transform: rotate(180deg);
         }
     }
-    .grp-related-widget-wrapper + p.grp-help {
+
+    .grp-related-widget-wrapper+p.grp-help {
         clear: right;
     }
 
@@ -767,39 +897,50 @@ body.rtl {
             th {
                 text-align: center;
             }
-            th, td {
+
+            th,
+            td {
                 border: 0;
             }
         }
     }
 
     // TYPOGRAPHY
-    caption, th, td {
+    caption,
+    th,
+    td {
         text-align: right;
     }
+
     a {
         &.grp-back-link {
             @include icons-sprite(back-link-rtl, $offset-x: 100%);
+
             &:hover {
                 @include icons-sprite(back-link-rtl_hover, $offset-x: 100%);
             }
+
             &.grp-icon-text {
                 padding-left: 0;
                 padding-right: 24px;
             }
         }
+
         &.grp-link-external {
             padding-left: 0;
             padding-right: 18px;
             @include icons-small-sprite(link-external-rtl, $offset-x: 100%);
+
             &:hover {
                 @include icons-small-sprite(link-external-rtl_hover, $offset-x: 100%);
             }
         }
+
         &.grp-link-internal {
             padding-left: 0;
             padding-right: 18px;
             @include icons-small-sprite(link-internal-rtl, $offset-x: 100%);
+
             &:hover {
                 @include icons-small-sprite(link-internal-rtl_hover, $offset-x: 100%);
             }
@@ -809,6 +950,7 @@ body.rtl {
     .grp-float-left {
         float: right !important;
     }
+
     .grp-float-right {
         float: left !important;
     }

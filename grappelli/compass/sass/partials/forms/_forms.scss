@@ -1,6 +1,3 @@
-
-
-
 /*  LABELS
 ------------------------------------------------------------------------------------------------------ */
 
@@ -10,10 +7,12 @@
     font-size: $grp-form-label-font-size;
     line-height: $grp-form-label-line-height;
     color: $grp-form-label-font-color;
+
     &.required {
         @include grp-form-label-required;
     }
 }
+
 fieldset.grp-module {
     .grp-row label {
         margin: 6px 0 6px;
@@ -42,6 +41,7 @@ fieldset.grp-module {
     @include grp-form-field-box-shadow;
     overflow: hidden;
     vertical-align: middle;
+
     &:focus,
     &.grp-state-focus {
         border: $grp-form-field-border-focus;
@@ -50,6 +50,7 @@ fieldset.grp-module {
         outline: 0;
     }
 }
+
 input[type="text"],
 input[type="password"],
 input[type="url"],
@@ -60,6 +61,7 @@ input[type="reset"],
 textarea,
 select {
     @include grp-form-field;
+
     .grp-errors & {
         border-color: $grp-font-color-error;
     }
@@ -76,9 +78,11 @@ select[disabled] {
     border: $grp-form-field-border !important;
     border-style: dotted !important;
     background: transparent !important;
+
     &:focus {
         @include box-shadow(none);
     }
+
     // Variant: same style as p.grp-readonly (no border, no background)
     // padding-left: 0 !important;
     // padding-right: 0 !important;
@@ -90,6 +94,7 @@ select[disabled] {
     //     background: transparent !important;
     // }
 }
+
 div.grp-readonly {
     position: relative;
     display: inline-block;
@@ -104,16 +109,20 @@ div.grp-readonly {
     color: #555555;
     border: 1px dotted #ccc;
     @include border-radius($grp-form-field-border-radius);
+
     // @include box-sizing(border-box);
     * {
         white-space: normal !important; // reset white-space:nowrap e.g. given in .grp-tabular
     }
+
     pre {
         white-space: pre !important;
     }
-    & + div.grp-readonly {
+
+    &+div.grp-readonly {
         margin-left: 20px;
     }
+
     &:empty {
         margin-bottom: -5px !important;
     }
@@ -126,12 +135,14 @@ div.grp-readonly {
     label {
         color: $grp-font-color-error !important;
     }
-    ul.radiolist.inline,
+
+    .radiolist.inline,
     ul.checkboxlist.inline {
         label {
             color: $grp-form-label-font-color !important;
         }
     }
+
     input[type="text"],
     input[type="password"],
     input[type="url"],
@@ -143,13 +154,16 @@ div.grp-readonly {
     select {
         border-color: $grp-font-color-error !important;
     }
+
     .selector {
+
         input,
         select,
         textarea {
             border: $grp-form-field-border !important;
         }
     }
+
     ul.errorlist {
         padding: 5px 0 0;
         color: $grp-font-color-error;
@@ -166,7 +180,9 @@ select {
     min-width: 118px;
     // -moz-appearance: none; // not implemented in -moz yet, see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
 }
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
     select,
     select:focus {
         padding: 4px 28px 4px 5px;
@@ -176,11 +192,13 @@ select {
         background-repeat: no-repeat;
     }
 }
+
 select[multiple] {
     padding-right: 5px;
     height: 160px;
     overflow: auto;
 }
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select[multiple] {
         background-image: none;
@@ -196,8 +214,9 @@ textarea {
     height: 60px;
     overflow: auto;
 }
+
 fieldset.monospace textarea {
-    font-family: "Bitstream Vera Sans Mono",Monaco,"Courier New",Courier,monospace;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
 }
 
 
@@ -207,7 +226,8 @@ fieldset.monospace textarea {
 .grp-row input[type=radio] {
     position: relative;
     top: 1px;
-    & + label {
+
+    &+label {
         position: relative;
         margin: 0 0 0 5px;
     }
@@ -239,6 +259,7 @@ input[type=text].grp-search-field {
     font-size: 11px;
     line-height: 15px;
     font-weight: normal;
+
     label {
         float: none;
         display: inline-block;
@@ -246,14 +267,15 @@ input[type=text].grp-search-field {
         padding: 0 !important;
         width: auto !important;
         white-space: nowrap;
-        input {
 
-        }
+        input {}
     }
-    li + li {
+
+    li+li {
         margin-top: 2px;
     }
 }
+
 @mixin radio-checkbox-list-inline {
     @include radio-checkbox-list;
     max-width: 760px;
@@ -262,6 +284,7 @@ input[type=text].grp-search-field {
     margin-top: 5px;
     margin-bottom: 3px;
     padding-right: 20px;
+
     li {
         float: left;
         display: inline;
@@ -270,30 +293,37 @@ input[type=text].grp-search-field {
         padding-right: 20px;
     }
 }
+
 ul.radiolist,
 ul.checkboxlist {
     @include radio-checkbox-list;
 }
 
-.grp-row > ul.radiolist,
-.grp-row > ul.checkboxlist {
+.grp-row>ul.radiolist,
+.grp-row>ul.checkboxlist {
     margin: 0;
 }
 
-ul.radiolist.inline, ul.checkboxlist.inline {
+.radiolist.inline,
+ul.checkboxlist.inline {
     @include radio-checkbox-list-inline;
 }
 
-.grp-module.grp-tbody ul.radiolist.inline, .grp-module.grp-tbody ul.checkboxlist.inline {
+.grp-module.grp-tbody .radiolist.inline,
+.grp-module.grp-tbody ul.checkboxlist.inline {
     white-space: normal;
-    li {
+
+    li,
+    div {
         position: relative;
         float: left;
         display: inline;
     }
 }
 
-.grp-row.grp-cells ul.radiolist.inline li, .grp-row.grp-cells ul.checkboxlist.inline li {
+.grp-row.grp-cells .radiolist.inline div,
+.grp-row.grp-cells .radiolist.inline li,
+.grp-row.grp-cells ul.checkboxlist.inline li {
     float: none;
 }
 
@@ -307,6 +337,7 @@ ul.radiolist.inline, ul.checkboxlist.inline {
     float: left;
     overflow: hidden;
     width: 758px;
+
     .selector-available,
     .selector-chosen {
         float: left;
@@ -314,28 +345,34 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         border: 1px solid #ccc;
         @include border-radius($grp-border-radius);
         background: #ddd;
+
         &.stacked {
             width: 756px;
         }
+
         h2 {
             padding: 7px 5px 6px 7px;
             font-size: 12px;
             line-height: 13px;
             font-weight: bold;
+
             img {
                 display: none;
             }
         }
     }
+
     ul.selector-chooser {
         float: left;
         margin: 110px 2px 0;
         padding: 0;
         width: 18px;
     }
+
     .selector-chosen h2 {
         border-bottom: 0 !important;
     }
+
     .selector-filter {
         display: block !important;
         height: 27px;
@@ -348,23 +385,28 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         line-height: 25px;
         text-indent: 25px;
         background: url('../images/icons/searchbox.png') 6px 50% no-repeat;
+
         label {
             display: none !important;
         }
+
         input[type=text] {
             position: relative;
             margin: 0;
             width: 326px !important;
             max-width: 326px !important;
         }
+
         img {
             display: none;
         }
-        h2 + select {
+
+        h2+select {
             position: relative;
             top: -1px;
         }
     }
+
     select[multiple] {
         margin: 0 0 0 -1px;
         padding-left: 3px;
@@ -374,22 +416,29 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         @include border-radius(0);
 
     }
+
     .selector-chosen select[multiple] {
         height: 235px !important;
     }
+
     a.selector-add {
         background-image: url('../images/icons/selector-add-m2m-horizontal.png');
+
         &:hover {
             background-image: url('../images/icons/selector-add-m2m-horizontal_hover.png');
         }
     }
+
     a.selector-remove {
         background-image: url('../images/icons/selector-remove-m2m-horizontal.png');
+
         &:hover {
             background-image: url('../images/icons/selector-remove-m2m-horizontal_hover.png');
         }
     }
-    a.selector-chooseall, a.selector-clearall {
+
+    a.selector-chooseall,
+    a.selector-clearall {
         display: block;
         margin: 0;
         padding: 2px 7px;
@@ -397,43 +446,56 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         line-height: 13px;
         font-weight: bold;
     }
+
     &.stacked {
+
         .selector-available,
         .selector-chosen {
             width: 756px;
         }
+
         .selector-filter input[type=text] {
             width: 716px !important;
             max-width: 716px !important;
         }
+
         .selector-chosen .selector-filter:after {
             content: " " url('../images/icons/selector-add-m2m-vertical_hover.png');
         }
+
         select[multiple] {
             width: 758px !important;
             max-width: 758px !important;
         }
+
         ul.selector-chooser {
             margin: 4px 0 0 356px;
             width: 36px;
+
             li {
                 float: left;
             }
         }
+
         a.selector-add {
             background-image: url('../images/icons/selector-add-m2m-vertical.png');
+
             &:hover {
                 background-image: url('../images/icons/selector-add-m2m-vertical_hover.png');
             }
         }
+
         a.selector-remove {
             background-image: url('../images/icons/selector-remove-m2m-vertical.png');
+
             &:hover {
                 background-image: url('../images/icons/selector-remove-m2m-vertical_hover.png');
             }
         }
     }
-    a.selector-add, a.selector-remove {
+
+    a.selector-add,
+    a.selector-remove {
         display: block;
         width: 18px;
         height: 18px;
@@ -442,7 +504,8 @@ ul.radiolist.inline, ul.checkboxlist.inline {
         background-repeat: no-repeat;
     }
 }
-ul.errorlist + .selector {
+
+ul.errorlist+.selector {
     margin-top: 8px !important;
 }
 
@@ -464,6 +527,7 @@ ul.errorlist + .selector {
     @include border-radius($grp-border-radius);
     background: $grp-font-color-error;
 }
+
 @mixin errorlist {
     @include legacy-pie-clearfix;
     font-size: 11px;
@@ -472,22 +536,28 @@ ul.errorlist + .selector {
     color: $grp-font-color-error;
     white-space: normal;
 }
+
 @mixin errorlist-nonform {
     @include errorlist;
     margin: 5px 0 0;
+
     li {
         padding: 5px 10px;
-        & + li {
+
+        &+li {
             border-top: 1px solid $grp-font-color-error;
         }
     }
 }
+
 @mixin errorlist-field {
     @include errorlist;
     margin: 0;
+
     li {
         padding: 2px 0 0;
         border-top: 0 !important;
+
         &:first-child {
             padding-top: 0;
         }
@@ -496,22 +566,27 @@ ul.errorlist + .selector {
 
 p.errornote {
     @include errornote;
-    & + ul.errorlist {
+
+    &+ul.errorlist {
         @include errorlist-nonform;
         margin: -5px 0 0;
     }
 }
+
 ul.errorlist {
     @include errorlist;
-    + ul.errorlist {
+
+    +ul.errorlist {
         padding-top: 2px;
     }
 
 }
-p.preview + ul.errorlist {
+
+p.preview+ul.errorlist {
     margin-top: 5px !important;
 }
-p.preview + ul.errorlist {
+
+p.preview+ul.errorlist {
     margin-top: 5px !important;
 }
 
@@ -530,16 +605,20 @@ p.preview + ul.errorlist {
 .grp-tabular {
     p.errornote {
         margin: 2px 0 0;
-        & + ul.errorlist {
+
+        &+ul.errorlist {
             margin: 0;
         }
     }
+
     ul.errorlist {
         @include errorlist-nonform;
     }
-    .grp-tbody ul.errorlist  {
+
+    .grp-tbody ul.errorlist {
         margin: 0;
     }
+
     .grp-td ul.errorlist {
         clear: both;
         @include errorlist-field;
@@ -552,21 +631,25 @@ p.preview + ul.errorlist {
 .grp-stacked {
     p.errornote {
         margin: 0;
-        & + ul.errorlist {
+
+        &+ul.errorlist {
             margin: 0;
         }
     }
+
     ul.errorlist {
         @include errorlist-nonform;
         margin: 3px 0;
     }
-    h3 + * + ul.errorlist {
+
+    h3+*+ul.errorlist {
         @include errorlist-field;
         margin: 0 !important;
         padding: 5px 10px 8px;
         border-top: 1px solid #fff;
         border-bottom: 1px solid #ddd;
     }
+
     .grp-row ul.errorlist {
         @include errorlist-field;
     }
@@ -576,7 +659,7 @@ p.preview + ul.errorlist {
 /*  Errorlist after add-another (e.g. with radiolist-inline) ................................................... */
 
 .grp-errors {
-    a.add-another + ul.errorlist {
+    a.add-another+ul.errorlist {
         clear: both;
     }
 }
@@ -654,9 +737,11 @@ textarea,
 .grp-autocomplete-wrapper-m2m {
     width: 758px;
 }
+
 .grp-row select {
     max-width: 758px;
 }
+
 .grp-autocomplete-wrapper-m2m ul.grp-repr,
 .grp-autocomplete-wrapper-m2m ul.grp-repr li {
     max-width: 700px;
@@ -668,6 +753,7 @@ textarea,
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-changelist-results table.grp-table {
+
     input[type="url"],
     input[type="email"],
     .vTextField,
@@ -680,15 +766,18 @@ textarea,
         max-width: 278px;
     }
 }
+
 .grp-module.grp-table select,
 .grp-module.grp-table .grp-autocomplete-wrapper-m2m,
 .grp-module.grp-table .grp-autocomplete-wrapper-fk {
     max-width: 278px;
 }
+
 .grp-module.grp-table .grp-autocomplete-wrapper-m2m,
 .grp-module.grp-table .grp-autocomplete-wrapper-fk {
     width: 278px;
 }
+
 .grp-module.grp-table .grp-autocomplete-wrapper-m2m ul.grp-repr,
 .grp-module.grp-table .grp-autocomplete-wrapper-m2m ul.grp-repr li {
     max-width: 222px;
