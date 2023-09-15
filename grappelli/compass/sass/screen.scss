@@ -302,7 +302,7 @@ h1#grp-admin-title {
         border-left: 1px solid lighten(#222, 7);
         border-right: 1px solid darken(#222, 10);
         &.grp-user-options-container {
-            width: 200px;
+            width: auto;
             &:last-child {
                 margin-right: 11px;
             }
