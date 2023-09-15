@@ -16,12 +16,16 @@
 @import "partials/library/margins-paddings";
 @import "partials/library/sprites";
 
+@import "partials/typography/base";
+
 
 
 /*  RTL STYLES
 ------------------------------------------------------------------------------------------------------ */
 
 body.rtl {
+    font-size: $grp-font-size;
+    line-height: $grp-line-height;
 
     #grp-user-tools>li {
         list-style-image: none;
@@ -38,12 +42,11 @@ body.rtl {
     // HEADER
     header#grp-header {
         #grp-navigation {
-            h1#grp-admin-title {
-                float: right;
+            #grp-admin-title {
+                padding: 10px 0 10px 10px;
             }
 
             ul#grp-user-tools {
-                float: left;
                 margin: 0 0 0 -10px;
                 border-right: 1px solid #343434;
                 border-left: 0 !important;
@@ -152,13 +155,11 @@ body.rtl {
                     padding-right: 28px;
                     padding-left: 15px;
                     @include grp-background-gradient-icon-combo($object-tools-add-link, #999, #888,
-                        $offset-x: 95%,
-                        $offset-y: 95%);
+                        $offset-x: 95%);
 
                     &:hover {
                         @include grp-background-gradient-icon-combo($object-tools-add-link, #36b0d9, #309bbf,
-                            $offset-x: 95%,
-                            $offset-y: 95%);
+                            $offset-x: 95%);
                     }
                 }
 
@@ -167,13 +168,11 @@ body.rtl {
                     padding-right: 28px;
                     padding-left: 15px;
                     @include grp-background-gradient-icon-combo($object-tools-viewsite-link, #999, #888,
-                        $offset-x: 95%,
-                        $offset-y: 95%);
+                        $offset-x: 95%);
 
                     &:hover {
                         @include grp-background-gradient-icon-combo($object-tools-viewsite-link, #36b0d9, #309bbf,
-                            $offset-x: 95%,
-                            $offset-y: 95%);
+                            $offset-x: 95%);
                     }
                 }
             }
@@ -327,28 +326,28 @@ body.rtl {
 
             &.grp-add-link a {
                 @include grp-icon-sprite($add-link-small,
-                    $offset-x: 100%);
+                    $offset-x: 50%);
 
                 &:hover {
                     @include grp-icon-sprite($add-link-small-hover,
-                        $offset-x: 100%);
+                        $offset-x: 50%);
                 }
             }
 
             &.grp-change-link a {
                 @include grp-icon-sprite($change-link-small,
-                    $offset-x: 100%);
+                    $offset-x: 50%);
 
                 &:hover {
                     @include grp-icon-sprite($change-link-small-hover,
-                        $offset-x: 100%);
+                        $offset-x: 50%);
                 }
             }
 
             &.grp-delete-link a,
             &.grp-delete-link>span:first-child {
                 @include grp-icon-sprite($delete-link-small,
-                    $offset-x: 100%);
+                    $offset-x: 50%);
             }
 
             &.grp-icon {
@@ -389,21 +388,21 @@ body.rtl {
 
             &.grp-add-link a {
                 @include grp-icon-sprite($add-link-small,
-                    $offset-x: 100%);
+                    $offset-x: 104%);
 
                 &:hover {
                     @include grp-icon-sprite($add-link-small-hover,
-                        $offset-x: 100%);
+                        $offset-x: 104%);
                 }
             }
 
             &.grp-change-link a {
                 @include grp-icon-sprite($change-link-small,
-                    $offset-x: 100%);
+                    $offset-x: 104%);
 
                 &:hover {
                     @include grp-icon-sprite($change-link-small-hover,
-                        $offset-x: 100%);
+                        $offset-x: 104%);
                 }
             }
 
@@ -978,11 +977,11 @@ body.rtl {
             padding-left: 0;
             padding-right: 18px;
             @include grp-icon-sprite($link-external-rtl-small,
-                $offset-x: 100%);
+                $offset-x: 107%);
 
             &:hover {
                 @include grp-icon-sprite($link-external-rtl-small-hover,
-                    $offset-x: 100%);
+                    $offset-x: 107%);
             }
         }
 
@@ -990,11 +989,11 @@ body.rtl {
             padding-left: 0;
             padding-right: 18px;
             @include grp-icon-sprite($link-internal-rtl-small,
-                $offset-x: 100%);
+                $offset-x: 115%);
 
             &:hover {
                 @include grp-icon-sprite($link-internal-rtl-small-hover,
-                    $offset-x: 100%);
+                    $offset-x: 115%);
             }
         }
     }
