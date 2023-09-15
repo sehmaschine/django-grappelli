@@ -52,6 +52,7 @@ body {
   @extend .grp-font-color;
   @extend .grp-font-family;
   @extend .grp-font-size;
+  font-size: $grp-font-size;
   @extend .grp-line-height;
   background: #fff;
   overflow: visible;
@@ -244,7 +245,6 @@ body.grp-login {
 ------------------------------------------------------------------------------------------------------ */
 
 header#grp-header {
-  // display: none;
   position: fixed;
   z-index: 1000;
   float: left;
@@ -255,8 +255,10 @@ header#grp-header {
 
 #grp-navigation {
   position: relative;
-  float: left;
-  clear: both;
+  display: flex;
+  flex: 1 auto;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
@@ -284,6 +286,7 @@ header#grp-header {
       &.grp-open {
         >ul {
           position: absolute;
+          right: 0;
           z-index: 1010;
           display: block;
           margin: -1px 0 0 -1px;
@@ -300,11 +303,6 @@ header#grp-header {
             &:last-child {
               border-bottom: 0;
             }
-
-            // a {
-            //     display: block;
-            //     @include grp-padding($grp-padding-size $grp-padding-size);
-            // }
           }
         }
       }
@@ -314,24 +312,29 @@ header#grp-header {
 
 div#grp-branding {
   position: relative;
-  float: left;
   margin: 0 10px 0 -20px;
   max-height: 36px;
   overflow: hidden;
+  flex: 0 0 1;
 }
 
 h1#grp-admin-title {
   position: relative;
-  float: left;
+  flex: 1 1 auto;
   margin: 0;
-  padding: 10px 0;
+  padding: 10px 10px 10px 0;
   font-size: 12px;
   line-height: 16px;
+  @include ellipsis;
 }
 
 #grp-user-tools {
   position: relative;
-  float: right;
+  display: flex;
+  flex: 0 1 auto;
+  flex-flow: row nowrap;
+  justify-content: space-end;
+  align-items: stretch;
   font-weight: bold;
   margin: 0 -10px 0 0;
   border-left: 1px solid darken(#222, 10);
@@ -342,7 +345,9 @@ h1#grp-admin-title {
     border-right: 1px solid darken(#222, 10);
 
     &.grp-user-options-container {
-      width: 200px;
+      width: auto;
+      min-width: 200px;
+      max-width: 600px;
 
       &:last-child {
         margin-right: 11px;
@@ -356,6 +361,7 @@ h1#grp-admin-title {
     a {
       display: block;
       @include grp-padding($grp-padding-size $grp-padding-size);
+      @include ellipsis;
     }
   }
 }
