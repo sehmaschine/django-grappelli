@@ -1,0 +1,76 @@
+@function grp-string-to-list($string, $separator) {
+
+    // empty array/list
+    $split-arr: ();
+    // first index of separator in string
+    $index : str-index($string, $separator);
+
+    // loop through string
+    @while $index !=null {
+        // get the substring from the first character to the separator
+        $item: str-slice($string, 1, $index - 1);
+        // push item to array
+        $split-arr: append($split-arr, $item);
+        // remove item and separator from string
+        $string: str-slice($string, $index + 1);
+        // find new index of separator
+        $index : str-index($string, $separator);
+    }
+
+    // add the remaining string to list (the last item)
+    $split-arr: append($split-arr, $string);
+
+    @return $split-arr;
+}
+
+@function grp-get-sprite($sprite,
+    $offset-x: false,
+    $offset-y: false) {
+    $sprite-image: nth($sprite, 9);
+
+    // offset-x
+    $sprite-offset-x: nth($sprite, 3);
+
+    @if $offset-x {
+        $sprite-offset-x: $offset-x
+    }
+
+    // offset-y
+    $sprite-offset-y: nth($sprite, 4);
+
+    @if $offset-y {
+        $sprite-offset-y: $offset-y
+    }
+
+    @return url(#{$sprite-image}) $sprite-offset-x $sprite-offset-y;
+}
+
+@mixin icon-position($sprite,
+    $offset-x, $offset-y) {
+    // Determine position resp. $offset-x and $offset-y
+
+    // offset-x
+    $sprite-offset-x: nth($sprite, 3);
+
+    @if $offset-x {
+        $sprite-offset-x: $offset-x
+    }
+
+    // offset-y
+    $sprite-offset-y: nth($sprite, 4);
+
+    @if $offset-y {
+        $sprite-offset-y: $offset-y
+    }
+
+    background-position: $sprite-offset-x $sprite-offset-y;
+}
+
+@mixin grp-icon-sprite($sprite, $offset-x: false,
+    $offset-y: false) {
+    @include sprite-image($sprite);
+    @include icon-position($sprite,
+        $offset-x,
+        $offset-y);
+    background-repeat: no-repeat;
+}

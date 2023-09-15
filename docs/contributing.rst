@@ -17,23 +17,21 @@ To file an issue with Grapelli, see `contributing <https://github.com/sehmaschin
 Requirements
 ------------
 
-For working with Javascript and CSS, you need `Node <http://nodejs.org>`_, `Ruby <https://www.ruby-lang.org>`_, `Grunt <http://gruntjs.com>`_, `Sass <http://sass-lang.com>`_ and `Compass <http://compass-style.org>`_. In order to update the documentation, `Sphinx <http://sphinx-doc.org>`_ and the `Sphinx RTD Theme <https://github.com/snide/sphinx_rtd_theme>`_ have to be installed. Finally, you should install `flake8 <https://flake8.readthedocs.org>`_ when working with python files.
+For working with Javascript and CSS, you need `Node <http://nodejs.org>`_, `Grunt <http://gruntjs.com>`_ and `Sass <http://sass-lang.com>`_. In order to update the documentation, `Sphinx <http://sphinx-doc.org>`_ and the `Sphinx RTD Theme <https://github.com/snide/sphinx_rtd_theme>`_ have to be installed. Finally, you should install `flake8 <https://flake8.readthedocs.org>`_ when working with python files.
 
 It's out of the scope of this tutorial to go into details, but you should find lots of useful references on how to install these dependencies.
 
-Node is needed for Grunt, Ruby for Sass/Compass::
+Node is needed for Grunt and Sass::
 
 	brew install node
-	brew install ruby
 
-Now you are able to install Grunt and Compass (Sass is automatically installed with Compass)::
+Now you are able to install Grunt::
 
     npm install -g grunt-cli
-    gem install compass
 
-Change to the root of your grappelli installation, where ``package.json`` and ``Gruntfile.js`` are located and install the Grunt dependencies::
+Change to the root of your grappelli installation, where ``package.json`` and ``Gruntfile.js`` are located and install the dependencies (some Grunt dependencies are outdated and can't be updated, that's why you need "--force")::
 
-    npm install
+    npm install --force
 
 Start your virtual environment and install the python dependencies::
 
@@ -74,11 +72,17 @@ If you change any of the |grappelli| javascripts, you need to jshint the files a
 
     grunt javascripts
 
-When working with CSS (which is .scss in our case), you have to compile with:
+When working with CSS (which is .scss in our case), you have to watch and compile with:
 
 .. code-block:: python
 
-    grunt compass
+    npm run sass
+
+or
+
+.. code-block:: python
+
+    grunt exec:sass
 
 .. _contributingdocs:
 

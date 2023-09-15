@@ -1,0 +1,62 @@
+/*  ACTIONS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-actions-links {
+    li {
+
+        &.grp-add-link,
+        &.grp-change-link,
+        &.grp-delete-link {
+
+            a,
+            >span:first-child {
+                padding-left: $grp-padding-size-l;
+                display: block;
+                font-weight: bold;
+            }
+        }
+
+        &.grp-add-link a {
+            @include grp-icon-sprite($add-link-small);
+
+            &:hover {
+                @include grp-icon-sprite($add-link-small-hover);
+            }
+        }
+
+        &.grp-change-link a {
+            @include grp-icon-sprite($change-link-small);
+
+            &:hover {
+                @include grp-icon-sprite($change-link-small-hover);
+            }
+        }
+
+        &.grp-delete-link a,
+        &.grp-delete-link>span:first-child {
+            @include grp-icon-sprite($delete-link-small);
+        }
+
+        &.grp-icon {
+
+            a,
+            >span:first-child {
+                padding: 0 6px 0 6px;
+            }
+        }
+    }
+
+}
+
+@mixin grp-actions {
+    @include horizontal-list(5px, left);
+    float: right;
+    @extend .grp-font-size-s;
+    @extend .grp-line-height;
+    font-weight: bold;
+    @include grp-actions-links;
+}
+
+.grp-actions {
+    @include grp-actions;
+}

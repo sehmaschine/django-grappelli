@@ -1,0 +1,483 @@
+/*  BUTTON STATES
+------------------------------------------------------------------------------------------------------ */
+
+.button-state-blue {
+    color: #fff;
+    border: $grp-button-border;
+    background-color: #e1f0f5;
+}
+
+.button-state-grey {
+    color: $grp-font-color;
+    border: $grp-button-border-hover;
+    background-color: #eee;
+}
+
+.button-state-dark-grey {
+    color: $grp-font-color;
+    border: $grp-button-border-hover;
+    border-color: #ccc;
+    background-color: #dbdbdb;
+}
+
+.button-state-white {
+    border: $grp-button-border;
+    background-color: #fdfdfd;
+}
+
+.button-state-red {
+    color: #fff;
+    border: $grp-button-border;
+    background-color: #bf3030;
+}
+
+.button-state-transparent {
+    border: 1px solid transparent;
+    background-color: transparent;
+    background-image: none;
+}
+
+@mixin grp-button-states($state, $state-hover) {
+    @if $state ==blue {
+        @extend .button-state-blue;
+    }
+
+    @if $state ==grey {
+        @extend .button-state-grey;
+    }
+
+    @if $state ==darkgrey {
+        @extend .button-state-dark-grey;
+    }
+
+    @if $state ==white {
+        @extend .button-state-white;
+    }
+
+    @if $state ==red {
+        @extend .button-state-red;
+    }
+
+    @if $state ==transparent {
+        @extend .button-state-transparent;
+    }
+
+    &:hover {
+        @if $state-hover ==blue {
+            @extend .button-state-blue;
+        }
+
+        @if $state-hover ==grey {
+            @extend .button-state-grey;
+        }
+
+        @if $state-hover ==darkgrey {
+            @extend .button-state-dark-grey;
+        }
+
+        @if $state-hover ==white {
+            @extend .button-state-white;
+        }
+
+        @if $state-hover ==red {
+            @extend .button-state-red;
+        }
+
+        @if $state-hover ==transparent {
+            @extend .button-state-transparent;
+        }
+    }
+}
+
+
+
+/*  BUTTONS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-button {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    @include grp-padding($grp-padding-size-s);
+    height: 28px;
+    @extend .grp-font-family;
+    @extend .grp-font-size;
+    @extend .grp-line-height;
+    font-weight: bold;
+    border-radius: $grp-form-button-border-radius !important;
+
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        @include grp-padding($grp-padding-size-s $grp-padding-size);
+    }
+
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.grp-button {
+    @include grp-button();
+}
+
+
+
+/*  SUBMIT BUTTON & BUTTONS IN SUBMIT-ROW
+------------------------------------------------------------------------------------------------------ */
+
+input[type="submit"] {
+    @include grp-button();
+    @include grp-form-button-style;
+}
+
+a.grp-button,
+button.grp-button,
+input[type=button].grp-button {
+    @include grp-button();
+    @include grp-form-button-style;
+    @include grp-padding($grp-padding-size-s $grp-padding-size);
+
+    &.grp-delete-link {
+        @include grp-form-button-delete-style;
+    }
+
+    &.grp-cancel-link {
+        @include grp-form-button-cancel-style;
+    }
+
+    &.grp-reset-link {
+        @include grp-form-button-reset-style;
+    }
+}
+
+
+
+/*  BUTTONS WITH/AS ICONS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin grp-icon-button {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 0 -25px;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    border-top-right-radius: $grp-form-field-border-radius;
+    border-bottom-right-radius: $grp-form-field-border-radius;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+    vertical-align: top;
+    @include grp-button-states(blue, grey);
+}
+
+
+/*  Basic assignments ......................................... */
+
+button,
+a.fb_show,
+a.related-lookup,
+body.tinyMCE input[name="src"]+div a,
+body.tinyMCE input[name="href"]+div a {
+    @include grp-icon-button;
+}
+
+input[type=button] {
+    @include grp-icon-button;
+    margin: 0 0 0 -2px;
+    padding: 0 10px;
+    width: auto;
+    font-family: $grp-form-field-font-family;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: bold;
+    color: $grp-link-color;
+
+    &:hover {
+        color: $grp-link-color-hover;
+    }
+
+    input:focus+& {
+        border: $grp-form-field-border-focus;
+    }
+}
+
+
+/*  Related Lookup Placeholders ......................................... */
+
+@mixin grp-placeholder {
+    position: relative;
+    display: block;
+    top: -24px;
+    margin: 0 0 -20px 130px;
+    padding: 0;
+    // min-height: 20px;
+    font-weight: bold;
+
+    table & {
+        top: -20px;
+        margin-bottom: -25px;
+    }
+
+    .grp-placeholder-label:first-child {
+        display: inline-block;
+        margin-top: 4px;
+
+        * {
+            margin-top: -4px;
+        }
+
+        table & {
+            margin-top: 5px;
+
+            * {
+                margin-top: -5px;
+            }
+        }
+    }
+
+    img {
+        vertical-align: top;
+    }
+}
+
+@mixin grp-separator {
+    &:after {
+        content: ",";
+        display: inline-block;
+        padding-right: 4px;
+    }
+}
+
+.grp-placeholder-related-fk,
+.grp-placeholder-related-m2m,
+.grp-placeholder-related-generic {
+    @include grp-placeholder;
+
+    .grp-errors & {
+        display: none;
+    }
+
+    .grp-separator {
+        @include grp-separator;
+    }
+}
+
+
+
+/*  Filebrowser, Related Lookup, M2M, FK, Related Remove ......................................... */
+
+a.fb_show,
+a.related-lookup,
+body.tinyMCE input[name="src"]+div a,
+body.tinyMCE input[name="href"]+div a {
+    display: inline-block;
+    margin-bottom: -5px;
+    @include grp-icon-sprite($related-lookup);
+    @include grp-button-states(blue, grey);
+}
+
+a.related-lookup+strong {
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+}
+
+a.related-lookup.m2m,
+.grp-autocomplete-wrapper-m2m a.related-lookup {
+    @include grp-icon-sprite($related-lookup-m2m);
+    @include grp-button-states(blue, grey);
+}
+
+.grp-autocomplete-wrapper-fk a.related-lookup {
+    @include grp-icon-sprite($related-lookup);
+    @include grp-button-states(blue, grey);
+}
+
+a.grp-related-remove {
+    @include grp-icon-sprite($related-remove);
+    @include grp-button-states(white, white);
+}
+
+
+/*  Datepicker, Timepicker ......................................... */
+
+button.ui-datepicker-trigger {
+    @include grp-icon-sprite($datepicker);
+    @include grp-button-states(blue, grey);
+}
+
+button.ui-timepicker-trigger {
+    @include grp-icon-sprite($timepicker);
+    @include grp-button-states(blue, grey);
+
+    &+button.ui-datetime-now {
+        margin-left: 6px !important;
+        border-radius: $grp-form-field-border-radius;
+    }
+}
+
+button.ui-datetime-now {
+    @include grp-icon-sprite($datetime-now);
+    @include grp-button-states(blue, grey);
+}
+
+
+/*  Search ......................................... */
+
+.grp-search-button {
+    @include grp-icon-sprite($related-lookup);
+    border-color: transparent !important;
+    background-color: transparent !important;
+}
+
+
+
+/*  ADD ANOTHER  / CHANGE / DELETE
+------------------------------------------------------------------------------------------------------ */
+
+a.grp-add-another {
+    @include grp-icon-sprite($tools-related-add-handler-small);
+
+    &:hover {
+        @include grp-icon-sprite($tools-related-add-handler-small-hover);
+    }
+
+    &:not([href]) {
+        @include grp-icon-sprite($tools-related-add-handler-small-disabled);
+        cursor: not-allowed;
+    }
+}
+
+a.grp-change-related {
+    @include grp-icon-sprite($tools-related-edit-handler-small);
+
+    &:hover {
+        @include grp-icon-sprite($tools-related-edit-handler-small-hover);
+    }
+
+    &:not([href]) {
+        @include grp-icon-sprite($tools-related-edit-handler-small-disabled);
+        cursor: not-allowed;
+    }
+}
+
+a.grp-delete-related {
+    @include grp-icon-sprite($tools-related-remove-handler-small);
+
+    &:hover {
+        @include grp-icon-sprite($tools-related-remove-handler-small-hover);
+    }
+
+    &:not([href]) {
+        @include grp-icon-sprite($tools-related-remove-handler-small-disabled);
+        cursor: not-allowed;
+    }
+}
+
+.grp-row {
+    a.add-another {
+        top: -7px;
+    }
+
+    .radiolist+a.add-another,
+    ul.checkboxlist+a.add-another {
+        top: 3px;
+    }
+}
+
+p.grp-help+*+a.add-another {
+    float: right;
+    top: -20px;
+    margin-bottom: -20px;
+}
+
+.grp-td {
+    a.add-another {
+        float: none;
+    }
+
+    select+a.add-another {
+        top: -6px;
+    }
+}
+
+.radiolist.inline+a.add-another,
+.checkboxlist.inline+a.add-another {
+    float: left;
+    margin-left: -20px;
+    margin-right: -10000px;
+}
+
+.grp-row.grp-cells .radiolist.inline+a.add-another,
+.grp-row.grp-cells ul.checkboxlist.inline+a.add-another {
+    float: none;
+    margin-right: 0;
+}
+
+
+
+/*  CONTEXT-DEPENDENT BUTTON STYLES (FOCUS, ERROR)
+------------------------------------------------------------------------------------------------------ */
+
+input:focus+button,
+.vDateField:focus+span a,
+.vTimeField:focus+span a,
+input:focus+a.fb_show,
+input:focus+a.related-lookup,
+input:focus+*+a.related-lookup,
+input:focus+a.add-another,
+.grp-state-focus a.related-lookup,
+body.tinyMCE input[name="src"]:focus+div a,
+body.tinyMCE input[name="href"]:focus+div a {
+    border: $grp-form-field-border-focus !important;
+}
+
+input:focus+.grp-search-button {
+    border-color: transparent !important;
+}
+
+.grp-errors {
+
+    input+button,
+    .vDateField+span a,
+    .vTimeField+span a,
+    input+a.fb_show,
+    input+a.related-lookup,
+    input+*+a.related-lookup,
+    input+a.add-another,
+    .grp-state-focus a.related-lookup,
+    a.grp-related-remove,
+    .grp-state-focus a.related-remove {
+        border-color: $grp-font-color-error !important;
+    }
+}
+
+
+
+/*  UNKNOWN, YES, NO: REPLACING DJANGOS IMAGES
+------------------------------------------------------------------------------------------------------ */
+
+img[src*="admin/img/icon-unknown"][src$=".gif"],
+img[src*="admin/img/icon-no"][src$=".gif"],
+img[src*="admin/img/icon-yes"][src$=".gif"] {
+    position: relative;
+    height: 0;
+    width: 0;
+    top: 0;
+    margin: -2px 0;
+    padding: 8px;
+    font-size: 0;
+}
+
+img[src*="admin/img/icon-unknown"][src$=".gif"] {
+    @include grp-icon-sprite($status-unknown);
+}
+
+img[src*="admin/img/icon-no"][src$=".gif"] {
+    @include grp-icon-sprite($status-no);
+}
+
+img[src*="admin/img/icon-yes"][src$=".gif"] {
+    @include grp-icon-sprite($status-yes);
+}
