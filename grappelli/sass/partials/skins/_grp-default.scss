@@ -321,8 +321,8 @@ $grp-button-border-focus: 1px solid #888 !default;
     $offset-x: false,
     $offset-y: false) {
     background: grp-get-sprite($sprite,
-            $offset-x: false,
-            $offset-y: false) no-repeat,
+            $offset-x,
+            $offset-y) no-repeat,
         linear-gradient($gradient-top, $gradient-bottom)
 }
 
