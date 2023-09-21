@@ -146,6 +146,12 @@
             initPrepopulatedFields(form, options);
             // select2: we need to use the django namespace here
             django.jQuery(document).trigger('formset:added', [django.jQuery(form), options.prefix]);
+            form.get(0).dispatchEvent(new CustomEvent("formset:added", {
+                bubbles: true,
+                detail: {
+                    formsetName: options.prefix
+                }
+            }));
             // callback
             options.onAfterAdded(form);
         });

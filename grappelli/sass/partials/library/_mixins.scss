@@ -1,0 +1,102 @@
+/*  CLEARFIXES
+------------------------------------------------------------------------------------------------------ */
+
+@mixin clearfix() {
+    .clearfix {
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+}
+
+@mixin legacy-pie-clearfix {
+    &:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        clear: both;
+        overflow: hidden;
+        visibility: hidden;
+    }
+}
+
+@mixin pie-clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+/*  RESETS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin reset-box-model {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/*  LIST CONTAINERS
+------------------------------------------------------------------------------------------------------ */
+
+@function grp-opposite-position($direction) {
+    @if $direction ==left {
+        @return right;
+    }
+
+    @if $direction ==right {
+        @return left;
+    }
+}
+
+@mixin horizontal-list-container {
+    @include reset-box-model;
+    @include clearfix;
+    overflow: hidden;
+}
+
+@mixin horizontal-list-item($padding: 4px, $direction: left) {
+    list-style-type: none;
+    white-space: nowrap;
+    float: $direction;
+
+    @if $padding {
+        padding: {
+            left: $padding;
+            right: $padding;
+        }
+
+        &:first-child,
+        &.first {
+            padding-#{$direction}: 0;
+        }
+
+        &:last-child {
+            padding-#{grp-opposite-position($direction)}: 0;
+        }
+
+        &.last {
+            padding-#{grp-opposite-position($direction)}: 0;
+        }
+    }
+}
+
+@mixin horizontal-list($padding: 4px, $direction: left) {
+    @include horizontal-list-container;
+
+    li {
+        @include horizontal-list-item($padding, $direction);
+    }
+}
+
+/*  LIST CONTAINERS
+------------------------------------------------------------------------------------------------------ */
+
+@mixin ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

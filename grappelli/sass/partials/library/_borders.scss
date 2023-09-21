@@ -1,0 +1,42 @@
+/*  BORDER-RADIUS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-border-radius: 3px;
+
+@mixin grp-border-radius($grp-border-radius) {
+    border-radius: $grp-border-radius;
+}
+
+.grp-border-radius {
+    border-radius: $grp-border-radius;
+}
+
+$grp-border-radius-s: 2px;
+
+@mixin grp-border-radius-s($grp-border-radius-s) {
+    border-radius: $grp-border-radius-s;
+}
+
+.grp-border-radius-s {
+    border-radius: $grp-border-radius-s;
+}
+
+$grp-form-field-border-radius: 3px;
+
+@mixin grp-form-field-border-radius($grp-form-field-border-radius) {
+    border-radius: $grp-form-field-border-radius;
+}
+
+.grp-form-field-border-radius {
+    border-radius: $grp-form-field-border-radius;
+}
+
+$grp-form-button-border-radius: 5px;
+
+@mixin grp-form-button-border-radius($grp-form-button-border-radius) {
+    border-radius: $grp-form-button-border-radius;
+}
+
+.grp-form-button-border-radius {
+    border-radius: $grp-form-button-border-radius;
+}

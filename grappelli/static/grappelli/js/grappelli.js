@@ -67,6 +67,13 @@ var inputTypes = [
             $(this).html(text);
         });
 
+        $('span.datetimeshortcuts').each(function() {
+            var text = $(this).html();
+            text = text.replace(/\w*: /, "");
+            text = text.replace(/<br>[^<]*: /g, "<br>");
+            $(this).html(text);
+        });
+
         var options = {
             //appendText: '(mm/dd/yyyy)',
             constrainInput: false,

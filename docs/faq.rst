@@ -23,22 +23,12 @@ see :ref:`Troubleshooting <troubleshooting>`.
 Which Browser do I need with Grappelli?
 ---------------------------------------
 
-We are testing with Firefox, Chrome and Safari. IE and Opera should work fine as well.
+We are testing with Firefox, Chrome and Safari. Brave, Edge, Opera, Vivaldi and other modern browsers should work fine as well.
 
 Can I use another editor than TinyMCE?
 --------------------------------------
 
 Of course (better use markdown anyway).
-
-Why don't you use Twitter Bootstrap?
-------------------------------------
-
-For now, custom Compass-based stylesheets gives us much more options. But we do understand the need to easily customize the admin interface and we're discussing this issue on a regular basis.
-
-Do you guys cooperate with the Django–Devs?
--------------------------------------------
-
-Occasionally, we have been discussing features and implementations in the past.
 
 How can I contribute?
 ---------------------
