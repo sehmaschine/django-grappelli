@@ -8,8 +8,16 @@
 Changelog
 =========
 
-3.0.8 (not yet released)
+3.0.9 (not yet released)
 ------------------------
+
+3.0.8 (September 21st 2023)
+---------------------------
+
+* Fixed collectstatic with ManifestStaticFilesStorage.
+* Fixed removing text with DateTime Shortcuts.
+* Fixed autocomplete inlines with new rows.
+* Improved CSS (removed compass).
 
 3.0.7 (August 15th 2023)
 ------------------------
