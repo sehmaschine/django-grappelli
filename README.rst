@@ -29,7 +29,7 @@ http://www.grappelliproject.com
 Documentation
 -------------
 
-http://readthedocs.org/docs/django-grappelli/
+https://django-grappelli.readthedocs.io/en/latest/
 
 Releases
 --------
