@@ -103,7 +103,13 @@
                                                         <li><a href="{% url 'admin:password_change' %}" class="grp-change-password">{% trans 'Change password' %}</a></li>
                                                     {% endif %}
                                                     <!-- Logout -->
-                                                    <li><a href="{% url 'admin:logout' %}" class="grp-logout">{% trans 'Log out' %}</a></li>
+                                                    <li>
+                                                        <form id="logout-form" method="post"
+                                                            action="{% url 'admin:logout' %}">
+                                                            {% csrf_token %}
+                                                            <button type="submit">{% translate 'Log out' %}</button>
+                                                        </form>
+                                                    </li>
                                                     <!-- Switch -->
                                                     {% switch_user_dropdown %}
                                                 </ul>

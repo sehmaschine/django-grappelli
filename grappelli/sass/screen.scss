@@ -358,10 +358,27 @@ h1#grp-admin-title {
       border-right: 0;
     }
 
-    a {
+    a,
+    button {
       display: block;
       @include grp-padding($grp-padding-size $grp-padding-size);
       @include ellipsis;
+    }
+
+    form button {
+      margin: 0 0 2px 0 !important;
+      width: auto;
+      height: auto;
+      color: lighten($grp-link-color, 10);
+      @extend .grp-font-size;
+      font-weight: bold;
+      outline: 0;
+      border: 0;
+      background: transparent;
+
+      &:hover {
+        color: #fff;
+      }
     }
   }
 }
