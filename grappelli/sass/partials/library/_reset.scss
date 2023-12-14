@@ -164,6 +164,14 @@ table {
     border-spacing: 0;
 }
 
+caption,
+th,
+td {
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
 /* change border colour to suit your needs */
 hr {
     display: block;
