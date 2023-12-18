@@ -10,12 +10,10 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - python: "3.8"
-            env: py38-django40
-          - python: "3.9"
-            env: py39-django40
           - python: "3.10"
-            env: py310-django40
+            env: py10-django50
+          - python: "3.11"
+            env: py311-django50
 
     name: "Python ${{ matrix.versions.python }} - ${{ matrix.versions.env }}"
     runs-on: ubuntu-latest
