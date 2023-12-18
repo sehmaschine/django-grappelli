@@ -8,6 +8,11 @@
 Changelog
 =========
 
+4.0.1 (not yet released)
+------------------------
+
+* Compatibility with Django 5.x
+
 3.0.9 (not yet released)
 ------------------------
 
