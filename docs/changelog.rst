@@ -11,6 +11,10 @@ Changelog
 3.0.9 (not yet released)
 ------------------------
 
+* Removed `length_is` template filter in favour of `length`.
+* Fixed breadcrumbs block.
+* Fixed logout link (POST instead of GET).
+
 3.0.8 (September 21st 2023)
 ---------------------------
 
