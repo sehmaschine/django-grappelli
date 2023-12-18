@@ -11,7 +11,7 @@ jobs:
       matrix:
         versions:
           - python: "3.10"
-            env: py10-django50
+            env: py310-django50
           - python: "3.11"
             env: py311-django50
 
