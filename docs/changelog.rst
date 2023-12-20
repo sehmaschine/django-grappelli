@@ -8,8 +8,14 @@
 Changelog
 =========
 
-2.15.7 (not yet released)
+2.15.8 (not yet released)
 -------------------------
+
+2.15.7 (December 20th 2023)
+---------------------------
+
+* Updated jQueryUI to 1.13.2.
+* Added readthedocs yaml file.
 
 2.15.6 (November 22nd 2022)
 ---------------------------
