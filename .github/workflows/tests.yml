@@ -22,7 +22,7 @@ jobs:
             env: py39-django32
 
     name: "Python ${{ matrix.versions.python }} - ${{ matrix.versions.env }}"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
