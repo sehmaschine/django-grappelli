@@ -117,7 +117,8 @@ body.rtl {
 
 
     // SUBMIT-ROW
-    .grp-submit-row>ul>li {
+    .grp-submit-row>ul>li,
+    .grp-submit-row>div>div {
         float: left;
         margin-left: 0;
         margin-right: 10px;
@@ -129,7 +130,8 @@ body.rtl {
         }
     }
 
-    &.grp-login .grp-module.grp-submit-row ul li {
+    &.grp-login .grp-module.grp-submit-row ul li,
+    &.grp-login .grp-module.grp-submit-row>div>div {
         float: left;
     }
 
