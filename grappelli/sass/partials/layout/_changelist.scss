@@ -347,7 +347,8 @@ li.grp-changelist-actions {
     }
 }
 
-.grp-submit-row.grp-fixed-footer>ul>li.grp-changelist-actions {
+.grp-submit-row.grp-fixed-footer>ul>li.grp-changelist-actions,
+.grp-submit-row.grp-fixed-footer>ul>div.grp-changelist-actions {
     padding: 5px 0 !important;
 }
 
