@@ -170,7 +170,7 @@ table.grp-table {
 
         >input[type="checkbox"],
         >input[type="radio"] {
-            margin: 0;
+            margin: -5px 0 !important;
         }
 
         // > input[type="text"],
@@ -179,8 +179,6 @@ table.grp-table {
         // > input[type="email"],
         // > input[type="number"],
         >input[type="file"],
-        >input[type="checkbox"],
-        >input[type="radio"],
         >select,
         // p input[type="url"],
         // p input[type="email"],
@@ -291,6 +289,8 @@ table.grp-table.grp-sortable {
                 white-space: nowrap;
 
                 input[type="checkbox"] {
+                    position: relative;
+                    top: -1px;
                     margin: -6px 0 !important;
                 }
             }
