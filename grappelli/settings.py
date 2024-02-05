@@ -24,7 +24,7 @@ SWITCH_USER_ORIGINAL = getattr(settings, "GRAPPELLI_SWITCH_USER_ORIGINAL", lambd
 # SWITCH_USER_ORIGINAL: Defines if a user is a valid target.
 # Gets a user object and returns True/False.
 SWITCH_USER_TARGET = getattr(settings, "GRAPPELLI_SWITCH_USER_TARGET", lambda original_user, user: user.is_staff and not user.is_superuser)
-SWITCH_USER_REGEX = getattr(settings, "GRAPPELLI_SWITCH_USER_REGEX", "\d+")
+SWITCH_USER_REGEX = getattr(settings, "GRAPPELLI_SWITCH_USER_REGEX", r"\d+")
 
 # CLEAN INPUT TYPES
 # Replaces input types: search, email, url, tel, number, range, date
