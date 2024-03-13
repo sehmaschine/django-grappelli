@@ -52,8 +52,8 @@
                 <div class="grp-module grp-submit-row grp-fixed-footer">
                     <ul>
                         {% url opts|admin_urlname:'change' object.pk|admin_urlquote as object_url %}
-                        <li class="grp-float-left"><a href="{% add_preserved_filters object_url %}" class="grp-button grp-cancel-link">{% trans "Cancel" %}</a></li>
-                        <li><input type="submit" value="{% trans "Yes, I'm sure" %}" class="grp-button grp-default" /></li>
+                        <li class="grp-float-left"><a href="{% add_preserved_filters object_url %}" class="grp-button grp-cancel-link">{% trans "No, take me back" %}</a></li>
+                        <li><input type="submit" value="{% trans "Yes, I’m sure" %}" class="grp-button grp-default" /></li>
                     </ul>
                     <input type="hidden" name="post" value="yes" />
                     {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1" />{% endif %}
