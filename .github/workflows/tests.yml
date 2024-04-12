@@ -16,6 +16,8 @@ jobs:
             env: py39-django40
           - python: "3.10"
             env: py310-django40
+          - python: "3.11"
+            env: py311-django50
 
     name: "Python ${{ matrix.versions.python }} - ${{ matrix.versions.env }}"
     runs-on: ubuntu-latest
