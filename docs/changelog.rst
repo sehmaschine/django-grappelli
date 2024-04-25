@@ -8,12 +8,21 @@
 Changelog
 =========
 
-3.0.9 (not yet released)
-------------------------
+3.0.10 (not yet released)
+-------------------------
 
+3.0.9 (April 25th 2024)
+-----------------------
+
+* Adjusted checkbox (and related radio) styles.
+* Added block submit-row to allow extending the submit line.
 * Removed `length_is` template filter in favour of `length`.
-* Fixed breadcrumbs block.
-* Fixed logout link (POST instead of GET).
+* Fixed: breadcrumbs block.
+* Fixed: logout link (POST instead of GET).
+* Fixed: First non-checkbox column in changelist aligned center.
+* Fixed: Delete a warning with Python 3.12.
+* Fixed: Translation string of Cancel button with Form.
+* Fixed: Trigger change event in dismissRelatedLookupPopup.
 
 3.0.8 (September 21st 2023)
 ---------------------------
