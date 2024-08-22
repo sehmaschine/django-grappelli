@@ -188,9 +188,6 @@
         top: 4px;
         width: 20px;
         height: 30px;
-        background-color: transparent;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
         cursor: pointer;
 
         span {
@@ -200,12 +197,16 @@
 
     .ui-datepicker-prev {
         left: 2px;
-        @include grp-icon-sprite($ui-datepicker-prev);
+        @include grp-background-gradient-icon-combo($ui-datepicker-prev, transparent, transparent,
+            false,
+            false);
     }
 
     .ui-datepicker-next {
         right: 4px;
-        @include grp-icon-sprite($ui-datepicker-next);
+        @include grp-background-gradient-icon-combo($ui-datepicker-next, transparent, transparent,
+            false,
+            false);
     }
 
     .ui-datepicker-prev-hover {
@@ -219,7 +220,7 @@
     }
 
     .ui-datepicker-title {
-        margin: 3px 27px 2px;
+        margin: 2px 27px;
         line-height: 1.8em;
         text-align: center;
 
