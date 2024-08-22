@@ -11,6 +11,8 @@ Changelog
 4.0.2 (not yet released)
 ------------------------
 
+* Updated dashboard template to support dynamic dashboard columns (see https://github.com/sehmaschine/django-grappelli/pull/808)
+
 4.0.1 (April 25th 2024)
 -----------------------
 
