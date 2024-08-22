@@ -3,25 +3,30 @@
 {{ dashboard.media }}
 
 <div class="g-d-c">
-    <div class="g-d-12 g-d-f" id="column_1">
-        {% for module in dashboard.children %}
-            {% if module.column == 1 %}
-                {% grp_render_dashboard_module module forloop.counter %}
+    {% with ''|ljust:dashboard.columns as range %}
+    {% with '0' as outer_counter %}
+    {% for _ in range %}
+        {% with outer_counter|add:'1' as outer_counter %}
+        <div
+            {% if forloop.first %}
+                class="g-d-{% widthratio 23 dashboard.columns|add:'1' 2 %} g-d-f"
+            {% else %}
+                {% if range|length == outer_counter %}
+                    class="g-d-{% widthratio 23 dashboard.columns|add:'1' 1 %} g-d-l"
+                {% else %}
+                    class="g-d-{% widthratio 23 dashboard.columns|add:'1' 1 %}"
+                {% endif %}
             {% endif %}
-        {% endfor %}
-    </div>
-    <div class="g-d-6" id="column_2">
-        {% for module in dashboard.children %}
-            {% if module.column == 2 %}
-                {% grp_render_dashboard_module module forloop.counter %}
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="g-d-6 g-d-l" id="column_3">
-        {% for module in dashboard.children %}
-            {% if module.column == 3 %}
-                {% grp_render_dashboard_module module forloop.counter %}
-            {% endif %}
-        {% endfor %}
-    </div>
+            id="column_{{outer_counter}}"
+        >
+            {% for module in dashboard.children %}
+                {% if module.column == outer_counter %}
+                    {% grp_render_dashboard_module module forloop.counter %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endwith %}
+    {% endfor %}
+    {% endwith %}
+    {% endwith %}
 </div>
