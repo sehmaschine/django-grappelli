@@ -244,9 +244,7 @@
 .grp-collapse,
 .grp-collapse .grp-row,
 .grp-collapse-handler {
-    &::selection {
-        background: transparent;
-    }
+    user-select: none;
 }
 
 
