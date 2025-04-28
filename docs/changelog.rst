@@ -8,8 +8,18 @@
 Changelog
 =========
 
-3.0.10 (not yet released)
+3.0.11 (not yet released)
 -------------------------
+
+3.0.10 (April 28th 2025)
+------------------------
+
+* Improved: Minor layout correction for ui-datepicker-titles.
+* Fixed: ChangeList filter template (#1066)
+* Fixed: Dynamic grappelli dashboard size based on `columns` from Dashboard class (#808, #853)
+* Fixed: Integration of ui-datepicker prev/next icons (#1057).
+* Fixed: Selections with TextField and Collapsibles (#1063, #1064).
+* Fixed: Submit row in change/add view partially hides datepicker (#1062).
 
 3.0.9 (April 25th 2024)
 -----------------------
