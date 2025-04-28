@@ -8,10 +8,19 @@
 Changelog
 =========
 
-4.0.2 (not yet released)
+4.0.3 (not yet released)
 ------------------------
 
-* Updated dashboard template to support dynamic dashboard columns (see https://github.com/sehmaschine/django-grappelli/pull/808)
+4.0.2 (April 28th 2025)
+-----------------------
+
+* Improved: Minor layout correction for ui-datepicker-titles.
+* Fixed: ChangeList filter template (#1066)
+* Fixed: Dynamic grappelli dashboard size based on `columns` from Dashboard class (#808, #853)
+* Fixed: Integration of ui-datepicker prev/next icons (#1057).
+* Fixed: Selections with TextField and Collapsibles (#1063, #1064).
+* Fixed: Submit row in change/add view partially hides datepicker (#1062).
+* Fixed translation string (#1055).
 
 4.0.1 (April 25th 2024)
 -----------------------
