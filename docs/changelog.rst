@@ -12,6 +12,7 @@ Changelog
 ------------------------
 
 * Fixed: Button styles for choose, remove and reset permissions (#1069)
+* Fixed: Removed "font-weight: bold" style for "a" selector (#1070, #1071)
 
 4.0.2 (April 28th 2025)
 -----------------------
