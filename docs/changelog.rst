@@ -11,6 +11,8 @@ Changelog
 4.0.3 (not yet released)
 ------------------------
 
+* Fixed: Button styles for choose, remove and reset permissions (#1069)
+
 4.0.2 (April 28th 2025)
 -----------------------
 

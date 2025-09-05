@@ -355,16 +355,24 @@ ul.checkboxlist.inline {
             width: 756px;
         }
 
-        h2 {
-            padding: 7px 5px 6px 7px;
-            font-size: 12px;
-            line-height: 13px;
-            font-weight: bold;
+        .selector-available-title,
+        .selector-chosen-title {
+            label {
+                padding: 5px 5px 0 7px;
+                font-size: 12px;
+                line-height: 13px;
+                font-weight: bold;
 
-            img {
-                display: none;
+                img {
+                    display: none;
+                }
+            }
+
+            .helptext {
+                padding: 0 5px 7px 7px;
             }
         }
+
     }
 
     ul.selector-chooser {
@@ -427,7 +435,19 @@ ul.checkboxlist.inline {
         height: 235px !important;
     }
 
-    a.selector-add {
+    button.selector-add,
+    button.selector-remove {
+        width: 18px;
+        height: 25px;
+        margin: 0;
+        color: transparent;
+        border: 0;
+        background-color: transparent;
+        background-position: 50%;
+        background-repeat: no-repeat;
+    }
+
+    button.selector-add {
         background-image: url('../images/icons/selector-add-m2m-horizontal.png');
 
         &:hover {
@@ -435,7 +455,7 @@ ul.checkboxlist.inline {
         }
     }
 
-    a.selector-remove {
+    button.selector-remove {
         background-image: url('../images/icons/selector-remove-m2m-horizontal.png');
 
         &:hover {
@@ -447,14 +467,23 @@ ul.checkboxlist.inline {
         padding: 2px 7px;
     }
 
-    a.selector-chooseall,
-    a.selector-clearall {
+    button.selector-chooseall,
+    button.selector-clearall {
         display: block;
         margin: 0;
-        padding: 2px 7px;
+        padding: 5px 7px;
+        width: auto;
+        height: auto;
         font-size: 11px;
         line-height: 13px;
         font-weight: bold;
+        border: 0;
+        background: transparent;
+        color: $grp-link-color;
+
+        &:hover {
+            color: $grp-link-color-hover;
+        }
     }
 
     &.stacked {
@@ -487,7 +516,7 @@ ul.checkboxlist.inline {
             }
         }
 
-        a.selector-add {
+        button.selector-add {
             background-image: url('../images/icons/selector-add-m2m-vertical.png');
 
             &:hover {
@@ -495,7 +524,7 @@ ul.checkboxlist.inline {
             }
         }
 
-        a.selector-remove {
+        button.selector-remove {
             background-image: url('../images/icons/selector-remove-m2m-vertical.png');
 
             &:hover {
