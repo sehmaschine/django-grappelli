@@ -36,12 +36,12 @@ Releases
 
 **Grappelli is always developed against the latest stable Django release and is NOT tested with Django's master branch.**
 
-* Grappelli 4.0.2 (April 28th, 2025): Compatible with Django 5.x
+* Grappelli 4.0.3 (November 27th, 2025): Compatible with Django 5.x
 * Grappelli 3.0.10 (April 28th, 2025): Compatible with Django 4.2 (LTS)
 
 Current development branches:
 
-* Grappelli 4.0.3 (Development version for Django 5.0, see branch Stable/4.0.x)
+* Grappelli 4.0.4 (Development version for Django 5.0, see branch Stable/4.0.x)
 * Grappelli 3.0.11 (Development version for Django 4.0, see branch Stable/3.0.x)
 
 Older versions are available at GitHub, but are not supported anymore.
