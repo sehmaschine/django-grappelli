@@ -1,13 +1,13 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 4.0.4
+.. |grappelliversion| replace:: 5.0.0
 
 .. _quickstart:
 
 Quick start guide
 =================
 
-For using |grappelli| |grappelliversion|, `Django 5.0 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/5.0/ref/contrib/admin/>`_ has to be activated.
+For using |grappelli| |grappelliversion|, `Django 6.0 <http://www.djangoproject.com>`_ needs to be installed and an `Admin Site <http://docs.djangoproject.com/en/6.0/ref/contrib/admin/>`_ has to be activated.
 
 Installation
 ------------

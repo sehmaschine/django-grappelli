@@ -1,6 +1,6 @@
 {
   "name": "django-grappelli",
-  "version": "4.0.4",
+  "version": "5.0.0",
   "description": "A jazzy skin for the Django admin interface",
   "author": "Patrick Kranzlmueller, Axel Swoboda",
   "license": "New BSD",

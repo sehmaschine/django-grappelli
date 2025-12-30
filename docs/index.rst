@@ -1,10 +1,6 @@
-.. Django Grappelli documentation master file, created by
-   sphinx-quickstart on Sun Dec  5 19:11:46 2010.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 4.0.4
+.. |grappelliversion| replace:: 5.0.0
 
 .. _index:
 
@@ -16,7 +12,7 @@ Documentation
 This documentation covers version |version| of |grappelli|. |grappelli| is a grid-based alternative/extension to the `Django <http://www.djangoproject.com>`_ administration interface.
 
 .. note::
-    |grappelli| |version| requires Django 5.0. More on :ref:`versions`.
+    |grappelli| |version| requires Django 6.0. More on :ref:`versions`.
 
 Installation & Setup
 --------------------
@@ -81,6 +77,7 @@ Versions and Compatibility
 
 Current development branches:
 
+* Grappelli 5.0.0 (Development version for Django 6.0, see branch Stable/5.0.x)
 * Grappelli 4.0.4 (Development version for Django 5.0, see branch Stable/4.0.x)
 * Grappelli 3.0.11 (Development version for Django 4.0, see branch Stable/3.0.x)
 

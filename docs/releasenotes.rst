@@ -5,13 +5,13 @@
 
 .. _releasenotes:
 
-Grappelli 4.0.x Release Notes
+Grappelli 5.0.x Release Notes
 =============================
 
-**Grappelli 4.0.x is compatible with Django 5.0**.
+**Grappelli 5.0.x is compatible with Django 6.0**.
 
-Update from Grappelli 3.x
+Update from Grappelli 4.x
 -------------------------
 
-* Update Django to 5.x and check the Django release notes
-* Update Grappelli to 4.x
+* Update Django to 6.x and check the Django release notes
+* Update Grappelli to 5.x
