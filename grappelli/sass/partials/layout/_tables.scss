@@ -273,6 +273,28 @@ table.grp-table {
         // p.preview + ul.errorlist {
         //     margin-top: 8px !important;
         // }
+
+        // Related widgets, similar to https: //github.com/sehmaschine/django-grappelli/issues/1072
+        div:has(> input + a) {
+            position: relative;
+            top: -1px;
+            display: inline-block;
+            margin: -10px 0;
+
+            >input {
+                +a {
+                    margin: 0 0 0 -25px !important;
+
+                    +strong {
+                        top: 1px !important;
+                    }
+                }
+            }
+
+            >div:has(> input + a) {
+                margin-left: 5px;
+            }
+        }
     }
 }
 
