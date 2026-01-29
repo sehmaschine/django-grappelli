@@ -348,3 +348,11 @@ fieldset.grp-module {
         margin-left: 20px;
     }
 }
+
+// Catch grp-related-widget-wrapper containing multiple inputs, see https: //github.com/sehmaschine/django-grappelli/issues/1072
+.grp-related-widget-wrapper {
+    .grp-related-widget>div:has(> input + a) {
+        display: inline-block;
+        margin-left: 5px;
+    }
+}
