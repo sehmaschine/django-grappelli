@@ -65,6 +65,7 @@ Dark theme
 * ``grappelli_theme_js`` — default loads ``grappelli-theme.js``.
 * ``grappelli_theme_early`` — inline script that applies ``grp-theme-dark`` before paint.
 * ``grappelli_theme_toggle`` — includes ``admin/grappelli_theme_toggle.html`` in the header (staff only). Empty block hides it.
+* ``grappelli_standalone_theme_toggle`` — empty in ``base.html``; ``admin/login.html`` adds the same toggle in a fixed bar (login hides the header, so the header control does not run there).
 
 .. _customizationcollapsibles:
 

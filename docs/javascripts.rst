@@ -8,4 +8,4 @@ Javascripts
 
 Grappelli overwrites some javascripts (see `static/admin/js/`). All modifications are marked with `GRAPPELLI CUSTOM`.
 
-The admin layout also loads ``grappelli/js/grappelli-theme.js`` for the optional dark theme (see :ref:`customizationdarktheme`).
+The admin layout also loads ``grappelli/js/grappelli-theme.js`` for the optional dark theme (see :ref:`customizationdarktheme`); it wires every ``.grp-theme-toggle`` (header and login bar).

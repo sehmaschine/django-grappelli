@@ -12,6 +12,7 @@ Changelog
 ------------------------
 
 * Added: Optional dark color theme for the admin (``screen-dark.css``, ``grappelli-theme.js``, header toggle; ``localStorage`` key ``grappelli_theme``). Template blocks: ``grappelli_dark_stylesheets``, ``grappelli_theme_js``, ``grappelli_theme_early``, ``grappelli_theme_toggle``.
+* Added: Theme toggle on the login page (block ``grappelli_standalone_theme_toggle``, filled in ``admin/login.html``).
 
 4.0.3 (November 27th 2025)
 --------------------------

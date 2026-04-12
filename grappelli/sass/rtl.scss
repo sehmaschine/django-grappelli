@@ -135,6 +135,11 @@ body.rtl {
         float: left;
     }
 
+    &.grp-login .grp-login-theme-bar {
+        right: auto;
+        left: 0;
+    }
+
     // OBJECT TOOLS
     .grp-object-tools {
         float: left;

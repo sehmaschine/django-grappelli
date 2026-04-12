@@ -78,6 +78,17 @@ body {
 
 body.grp-login {
 
+  /* Theme toggle: main header is hidden on login — fixed strip reuses #grp-user-tools + theme icon rules */
+  .grp-login-theme-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+    display: block;
+    overflow: visible;
+    @include grp-gradient-dark;
+  }
+
   #grp-header,
   #grp-context-navigation,
   #grp-content-title {
