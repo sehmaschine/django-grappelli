@@ -1,0 +1,20 @@
+{% load i18n %}
+<li>
+    <button type="button" class="grp-theme-toggle"
+        data-aria-auto="{% trans 'Toggle theme (current theme: auto)' %}"
+        data-aria-light="{% trans 'Toggle theme (current theme: light)' %}"
+        data-aria-dark="{% trans 'Toggle theme (current theme: dark)' %}"
+        title="{% trans 'Toggle color theme (auto / light / dark)' %}">
+        {# Same sprite pattern as Django admin (base.html + color_theme_toggle.html): <symbol> + <use href="#…"> #}
+        <svg class="grp-theme-icon-when-auto" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <use xlink:href="#icon-auto" href="#icon-auto"/>
+        </svg>
+        <svg class="grp-theme-icon-when-dark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <use xlink:href="#icon-moon" href="#icon-moon"/>
+        </svg>
+        <svg class="grp-theme-icon-when-light" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <use xlink:href="#icon-sun" href="#icon-sun"/>
+        </svg>
+        <span class="grp-theme-toggle-label">{% trans 'Theme' %}</span>
+    </button>
+</li>

@@ -36,6 +36,36 @@ Available Settings
 ``GRAPPELLI_CLEAN_INPUT_TYPES``
     Replaces HTML5 input types (search, email, url, tel, number, range, date, month, week, time, datetime, datetime-local, color) due to browser inconsistencies. Set to ``False`` in order to not replace the mentioned input types.
 
+.. _customizationdarktheme:
+
+Dark theme
+----------
+
+|grappelli| can use a dark color scheme similar in spirit to Django admin’s theme switcher, implemented with SCSS and a ``body`` class instead of CSS custom properties.
+
+**Behavior**
+
+* The user’s choice is stored in ``localStorage`` under the key ``grappelli_theme`` (values: ``auto``, ``light``, ``dark``). In ``auto`` mode, the OS preference ``prefers-color-scheme: dark`` is used.
+* When dark mode is active, the class ``grp-theme-dark`` is added to ``<body>`` (and ``data-grappelli-theme`` is set on ``<html>``).
+* A small inline script at the top of ``<body>`` reduces flash of the wrong theme before ``grappelli-theme.js`` runs.
+
+**Assets**
+
+* Styles: ``grappelli/stylesheets/screen-dark.css`` (built from ``grappelli/sass/screen-dark.scss``).
+* Tokens and overrides: ``grappelli/sass/partials/skins/_grp-tokens-dark.scss``, ``_grp-dark-overrides.scss``.
+* Script: ``grappelli/js/grappelli-theme.js`` (global API: ``window.grappelliTheme``).
+
+**Build**
+
+* ``npm run sass`` compiles ``screen.scss``, ``rtl.scss``, and ``screen-dark.scss``.
+
+**Template blocks** (in ``grappelli/templates/admin/base.html``; override from ``admin/base_site.html`` or per-page templates)
+
+* ``grappelli_dark_stylesheets`` — default loads ``screen-dark.css``. Override with an empty block to disable dark styles.
+* ``grappelli_theme_js`` — default loads ``grappelli-theme.js``.
+* ``grappelli_theme_early`` — inline script that applies ``grp-theme-dark`` before paint.
+* ``grappelli_theme_toggle`` — includes ``admin/grappelli_theme_toggle.html`` in the header (staff only). Empty block hides it.
+
 .. _customizationcollapsibles:
 
 Collapsibles

@@ -9,7 +9,7 @@
     "url": "git://github.com/sehmaschine/django-grappelli.git"
   },
   "scripts": {
-    "sass": "sass --watch ./grappelli/sass/screen.scss:./grappelli/static/grappelli/stylesheets/screen.css ./grappelli/sass/rtl.scss:./grappelli/static/grappelli/stylesheets/rtl.css --style=compressed --no-source-map"
+    "sass": "sass --watch ./grappelli/sass/screen.scss:./grappelli/static/grappelli/stylesheets/screen.css ./grappelli/sass/rtl.scss:./grappelli/static/grappelli/stylesheets/rtl.css ./grappelli/sass/screen-dark.scss:./grappelli/static/grappelli/stylesheets/screen-dark.css --style=compressed --no-source-map"
   },
   "devDependencies": {
     "grunt": "^1.5.3",

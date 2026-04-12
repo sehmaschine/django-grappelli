@@ -1,0 +1,86 @@
+/*  Dark theme SCSS tokens (import only from `screen-dark.scss`; do not import `grp-default` here)
+------------------------------------------------------------------------------------------------------ */
+
+$grp-font-color: #c8c8c8;
+$grp-font-color-quiet: #8a8a8a;
+$grp-font-color-error: #e57373;
+
+$grp-link-color: #5cb3cc;
+$grp-link-color-hover: #8fd4e8;
+$grp-link-color-quiet: #7a9aa8;
+$grp-link-color-quiet-hover: #a8c4d4;
+
+/* Slightly cooler / lighter than #grp-navigation gradient end (~#222) so breadcrumbs read as a separate strip */
+$grp-context-navigation-background-color: #2c3136;
+$grp-context-navigation-border-color: #1a1a1a;
+
+$grp-messagelist-background-color: #1e3a45;
+$grp-messagelist-border-color: #2a4a55;
+$grp-messagelist-success-background-color: #243524;
+$grp-messagelist-success-border-color: #355035;
+$grp-messagelist-warning-background-color: #3d3520;
+$grp-messagelist-warning-border-color: #5a4a20;
+$grp-messagelist-error-background-color: #3d2020;
+$grp-messagelist-error-border-color: #5a3030;
+
+$grp-group-border-color: #444;
+$grp-group-background-color: #1e1e1e;
+$grp-group-border-closed: 2px solid #383838;
+
+$grp-module-border-color: #444;
+$grp-module-background-color: #2a2a2a;
+
+$grp-row-border-top-color: #3a3a3a;
+$grp-row-border-bottom-color: #1a1a1a;
+
+$grp-predelete-background-color: #3d2525;
+
+$grp-table-background-color: #2a2a2a;
+$grp-table-border-color: #444;
+
+$grp-form-field-font-color: #ccc;
+$grp-form-field-background-color: #252525;
+$grp-form-field-background-color-focus: #2f2f2f;
+$grp-form-field-background-color-interactive: #2a3a40;
+$grp-form-field-border: 1px solid #555;
+$grp-form-field-border-focus: 1px solid #777;
+
+$grp-form-label-font-color: #bbb;
+
+$grp-form-button-font-color: #eee;
+$grp-form-button-font-color-hover: #fff;
+$grp-form-button-background-color: #2a7a94;
+$grp-form-button-background-color-hover: #3a8aaa;
+$grp-footer-form-button-background-color-hover: #555;
+
+$grp-form-button-delete-background-color: #a52a2a;
+$grp-form-button-delete-background-color-hover: #666;
+$grp-footer-form-button-delete-background-color-hover: #555;
+$grp-form-button-reset-background-color-hover: #666;
+$grp-footer-form-button-reset-background-color-hover: #555;
+$grp-form-button-cancel-background-color-hover: #666;
+$grp-footer-form-button-cancel-background-color-hover: #555;
+
+/* Body / chrome (used in dark overrides) */
+$grp-dark-body-background: #1a1a1a;
+$grp-dark-content-background: transparent;
+
+/* Formsets: group title (h2) vs inline item headers (h3) vs tabular thead */
+$grp-formset-group-h2-border: #707070;
+$grp-formset-group-h2-bg-top: #575757;
+$grp-formset-group-h2-bg-bottom: #4a4a4a;
+
+$grp-formset-item-h3-border: #4d7a8c;
+$grp-formset-item-h3-bg-top: #2f4450;
+$grp-formset-item-h3-bg-bottom: #283a44;
+$grp-formset-item-h3-bg-top-open: #365a68;
+$grp-formset-item-h3-bg-bottom-open: #2f4450;
+$grp-formset-item-surface: #222222;
+
+$grp-formset-thead-bg-top: #454545;
+$grp-formset-thead-bg-bottom: #383838;
+$grp-formset-thead-border: #5a5a5a;
+
+$grp-formset-nested-fieldset-h4-border: #566e78;
+$grp-formset-nested-fieldset-h4-bg-top: #384850;
+$grp-formset-nested-fieldset-h4-bg-bottom: #2f383e;

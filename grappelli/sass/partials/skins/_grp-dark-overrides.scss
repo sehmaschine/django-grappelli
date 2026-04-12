@@ -1,0 +1,1288 @@
+/*  Dark theme: rules scoped to `body.grp-theme-dark`
+    Import `_grp-tokens-dark` before this file (no full `grp-default` — avoids global .grp-* leakage).
+------------------------------------------------------------------------------------------------------ */
+
+@import "../library/spritesheet";
+@import "../library/sprites";
+
+body.grp-theme-dark {
+    /* Django admin autocomplete / select2 use var(--body-bg), var(--darkened-bg), var(--border-color) — not set if base.css :root vars are absent */
+    --body-bg: #{$grp-form-field-background-color};
+    --body-fg: #{$grp-font-color};
+    --body-quiet-color: #{$grp-font-color-quiet};
+    --border-color: #{$grp-table-border-color};
+    --darkened-bg: #2a3d45;
+
+    background: $grp-dark-body-background;
+    color: $grp-font-color;
+    scrollbar-color: #5a5a5a #2a2a2a;
+
+    /* Typography utilities (_grp-default.scss sets light #444/#888 — must match dark tokens) */
+    .grp-font-color {
+        color: $grp-font-color;
+    }
+
+    .grp-font-color-quiet {
+        color: $grp-font-color-quiet;
+    }
+
+    .grp-font-color-error {
+        color: $grp-font-color-error;
+    }
+
+    a {
+        color: $grp-link-color;
+
+        &:hover,
+        &:focus {
+            color: $grp-link-color-hover;
+        }
+    }
+
+    a.grp-link-external {
+        color: $grp-link-color-quiet;
+
+        &:hover,
+        &:focus {
+            color: $grp-link-color-quiet-hover;
+        }
+    }
+
+    /* Header / navigation (already dark bar; tune text) */
+    #grp-navigation {
+        color: #fff;
+        background-image: linear-gradient(#333, #222);
+
+        a {
+            color: lighten($grp-link-color, 12);
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+
+    h1#grp-admin-title {
+        color: #ddd;
+    }
+
+    #grp-user-tools {
+        border-left-color: #111;
+
+        > li {
+            border-left-color: #444;
+            border-right-color: #111;
+
+            a,
+            button {
+                color: lighten($grp-link-color, 12);
+
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    /* Theme toggle in header toolbar (icons follow html[data-grappelli-theme] in screen.css) */
+    #grp-user-tools .grp-theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        margin: 0;
+        padding: 10px;
+        width: 100%;
+        height: auto;
+        font: inherit;
+        font-weight: bold;
+        line-height: 16px;
+        color: lighten($grp-link-color, 12);
+        cursor: pointer;
+        border: 0;
+        background: transparent;
+        box-sizing: border-box;
+        text-align: start;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+            outline: none;
+        }
+    }
+
+    /* Breadcrumbs & context nav — separate from header bar (nav uses #333→#222 gradient) */
+    #grp-context-navigation {
+        border-top: 1px solid #0a0a0a;
+        border-bottom-color: $grp-context-navigation-border-color;
+        background: $grp-context-navigation-background-color;
+    }
+
+    #grp-breadcrumbs > ul {
+        text-shadow: none;
+
+        a {
+            color: $grp-link-color;
+            /* Default chevron reads on dark strip; $breadcrumbs-hover is dark (for light bar) */
+            @include grp-icon-sprite($breadcrumbs, $offset-x: 100%);
+
+            &:hover {
+                @include grp-icon-sprite($breadcrumbs, $offset-x: 100%);
+            }
+        }
+    }
+
+    &.rtl #grp-breadcrumbs > ul a {
+        @include grp-icon-sprite($breadcrumbs-rtl);
+
+        &:hover {
+            @include grp-icon-sprite($breadcrumbs-rtl);
+        }
+    }
+
+    /* Content */
+    #grp-content {
+        background: $grp-dark-content-background;
+    }
+
+    #grp-content-title h1 {
+        text-shadow: none;
+    }
+
+    /* Object tools (_tools.scss: light grey pills; add-link / viewsite keep sprites + dark gradients) */
+    .grp-object-tools a {
+        border-color: #666;
+        opacity: 1;
+        color: #eee !important;
+        background-image: linear-gradient(#5a5a5a, #444) !important;
+
+        &:hover {
+            border-color: darken($grp-link-color, 12);
+            background-image: linear-gradient(lighten($grp-form-button-background-color, 8), $grp-form-button-background-color) !important;
+        }
+
+        &.grp-add-link {
+            background: grp-get-sprite($object-tools-add-link, false, false) no-repeat,
+                linear-gradient(#5a5a5a, #444) !important;
+
+            &:hover {
+                background: grp-get-sprite($object-tools-add-link, false, false) no-repeat,
+                    linear-gradient(lighten($grp-form-button-background-color, 8), $grp-form-button-background-color) !important;
+            }
+        }
+
+        &.grp-viewsite-link,
+        &[target="_blank"] {
+            background: grp-get-sprite($object-tools-viewsite-link, false, false) no-repeat,
+                linear-gradient(#5a5a5a, #444) !important;
+
+            &:hover {
+                background: grp-get-sprite($object-tools-viewsite-link, false, false) no-repeat,
+                    linear-gradient(lighten($grp-form-button-background-color, 8), $grp-form-button-background-color) !important;
+            }
+        }
+    }
+
+    /* Groups & modules */
+    .grp-group {
+        border-color: $grp-group-border-color;
+        background: $grp-group-background-color;
+
+        &.grp-closed {
+            border: $grp-group-border-closed;
+
+            &:hover {
+                border: 2px solid $grp-group-border-color;
+            }
+        }
+
+        > h2 {
+            border-color: #686868;
+            color: #f0f0f0;
+            background-image: linear-gradient(#515151, #464646);
+            text-shadow: none;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+        }
+    }
+
+    .grp-group.grp-stacked > h2.grp-collapse-handler,
+    .grp-group.grp-tabular > h2.grp-collapse-handler {
+        border-color: $grp-formset-group-h2-border;
+        color: #f5f5f5;
+        background-image: linear-gradient($grp-formset-group-h2-bg-top, $grp-formset-group-h2-bg-bottom);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .grp-module {
+        border-color: $grp-module-border-color;
+        background: $grp-module-background-color;
+
+        h2 {
+            border-color: #555;
+            color: #e8e8e8;
+            background-image: linear-gradient(#404040, #333);
+            text-shadow: none;
+        }
+
+        h3 {
+            border-color: #555;
+            color: #ddd;
+            background-image: linear-gradient(#383838, #2e2e2e);
+            text-shadow: none;
+        }
+
+        h4 {
+            border-color: #4a4a4a;
+            color: #ccc;
+            background-image: linear-gradient(#353535, #2a2a2a);
+            text-shadow: none;
+        }
+
+        /* _modules.scss: nested .grp-module + .grp-module uses lighten(#ccc,5) — reads as a bright seam on dark */
+        .grp-module + .grp-module {
+            border-top-color: $grp-row-border-top-color !important;
+        }
+
+        /* _modules.scss: these rows force border-top #fff over &:first-child { border-top: 0 } — full shorthand override for dark */
+        .grp-row + .grp-module > .grp-row:first-child,
+        h2 + .grp-module > .grp-row:first-child,
+        .grp-module + .grp-module > .grp-row:first-child {
+            border-top: 1px solid $grp-row-border-top-color !important;
+        }
+
+        /* _modules.scss: row hidden uses light $grp-module-background-color in screen.css */
+        .grp-row.grp-row-hidden {
+            border-top-color: $grp-module-background-color !important;
+        }
+    }
+
+    /*
+     * Dashboard index (grappelli/dashboard/module.html + modules/app_list.html):
+     * outer `.grp-module` + `h2.module_title`, then per-app `.grp-module` with bare `h3 > a` (no `module_title`).
+     * `_modules.scss` only zeroes `h3` top border inside `.grp-group`; here we mirror that for nested dashboard modules
+     * and tone down borders so titles do not stack a light seam on dark chrome.
+     */
+    .grp-module > h2.module_title,
+    .grp-module > h2.module_title.grp-collapse-handler {
+        margin-bottom: 0;
+        border-bottom: 1px solid #3a3a3a;
+    }
+
+    .grp-module > .grp-module {
+        > h3,
+        > h4 {
+            border-top: 0 !important;
+            border-left: 0 !important;
+            border-right: 0 !important;
+            border-bottom: 1px solid #444;
+            border-radius: 0 !important;
+            margin: 0;
+        }
+
+        > h3:first-child,
+        > h4:first-child {
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+        }
+
+        > h3 a,
+        > h4 a {
+            color: $grp-link-color;
+        }
+
+        > h3 a:hover,
+        > h4 a:hover,
+        > h3 a:focus,
+        > h4 a:focus {
+            color: $grp-link-color-hover;
+        }
+    }
+
+
+    /* Stacked inline: H3 block nested under outer module (_modules.scss: border-top #fff) */
+    .grp-group:not(.grp-tabular) .grp-module .grp-module {
+        border-top-color: $grp-row-border-top-color;
+    }
+
+    .grp-group:not(.grp-tabular) .grp-module.grp-predelete .grp-module {
+        border-top-color: lighten($grp-predelete-background-color, 5);
+    }
+
+    /* Tabular inlines (_modules.scss: #fff / #e0e0e0 / #d4d4d4 cell borders, light module bg) */
+    .grp-tabular .grp-table {
+        .grp-th,
+        .grp-td {
+            border-left-color: #3a3a3a;
+            border-right-color: #3a3a3a;
+        }
+
+        .grp-thead {
+            color: #e2e2e2;
+
+            .grp-th,
+            .grp-td {
+                border-bottom: 1px solid $grp-formset-thead-border;
+                background-image: linear-gradient($grp-formset-thead-bg-top, $grp-formset-thead-bg-bottom);
+            }
+        }
+
+        .grp-tbody {
+            .grp-th,
+            .grp-td {
+                border-top-color: #444;
+                border-bottom-color: #444;
+                background-color: $grp-module-background-color;
+
+                &:first-of-type {
+                    border-left-color: #444;
+                }
+
+                &:last-of-type {
+                    border-right-color: #444;
+                }
+            }
+
+            &.grp-predelete {
+                .grp-th,
+                .grp-td {
+                    border-right-color: darken($grp-predelete-background-color, 4);
+                    border-left-color: lighten($grp-predelete-background-color, 3);
+                    background-color: $grp-predelete-background-color;
+
+                    &:first-of-type {
+                        border-left-color: #444;
+                    }
+
+                    &:last-of-type {
+                        border-right-color: #444;
+                    }
+                }
+            }
+        }
+
+        .grp-tfoot {
+            color: $grp-font-color-quiet;
+        }
+    }
+
+    /* Collapse headers: screen.css uses cyan gradients on handlers — override with module-matched dark chrome */
+    .grp-collapse {
+        &.grp-open > h2.grp-collapse-handler {
+            border-bottom-color: #555;
+            color: #e8e8e8;
+            background-image: linear-gradient(#4a4a4a, #3d3d3d);
+        }
+
+        &.grp-closed > h2.grp-collapse-handler {
+            border-color: #555;
+            color: #e8e8e8;
+            background-image: linear-gradient(#404040, #333);
+
+            &:hover {
+                background-image: linear-gradient(#4a4a4a, #3d3d3d);
+            }
+        }
+
+        &.grp-open > h3.grp-collapse-handler {
+            border-top-color: #555;
+            border-bottom-color: #555;
+            color: #ddd;
+            background-image: linear-gradient(#3d3d3d, #383838);
+        }
+
+        &.grp-closed > h3.grp-collapse-handler {
+            border-color: #555;
+            color: #ddd;
+            background-image: linear-gradient(#383838, #2e2e2e);
+
+            &:hover {
+                background-image: linear-gradient(#424242, #363636);
+            }
+        }
+    }
+
+    /* Stacked formsets: group h2 vs item h3 — higher specificity than generic .grp-collapse h3 */
+    .grp-stacked .grp-items > .grp-module:not(.grp-predelete) {
+        border-color: #5c5c5c;
+        background-color: $grp-formset-item-surface;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .grp-stacked .grp-items > .grp-module:not(.grp-predelete) > h3.grp-collapse-handler {
+        border-color: $grp-formset-item-h3-border;
+        color: #e8f4f8;
+        background-image: linear-gradient($grp-formset-item-h3-bg-top, $grp-formset-item-h3-bg-bottom);
+        box-shadow: inset 0 1px 0 rgba(92, 179, 204, 0.22);
+    }
+
+    .grp-stacked .grp-items > .grp-module:not(.grp-predelete).grp-collapse.grp-open > h3.grp-collapse-handler {
+        border-top-color: lighten($grp-formset-item-h3-border, 8);
+        border-bottom-color: lighten($grp-formset-item-h3-border, 5);
+        color: #f2fafc;
+        background-image: linear-gradient($grp-formset-item-h3-bg-top-open, $grp-formset-item-h3-bg-bottom-open);
+    }
+
+    .grp-stacked .grp-items > .grp-module:not(.grp-predelete).grp-collapse.grp-closed > h3.grp-collapse-handler {
+        border-color: $grp-formset-item-h3-border;
+        color: #dcecf2;
+        background-image: linear-gradient($grp-formset-item-h3-bg-top, $grp-formset-item-h3-bg-bottom);
+
+        &:hover {
+            background-image: linear-gradient(
+                lighten($grp-formset-item-h3-bg-top, 4),
+                lighten($grp-formset-item-h3-bg-bottom, 4)
+            );
+        }
+    }
+
+    /* Fieldset nested inside a stacked inline (fieldset.grp-module + h4) */
+    .grp-stacked .grp-items > .grp-module .grp-module {
+        border-color: #4d5a60;
+
+        h4.grp-collapse-handler {
+            border-color: $grp-formset-nested-fieldset-h4-border;
+            color: #dbe8ec;
+            background-image: linear-gradient($grp-formset-nested-fieldset-h4-bg-top, $grp-formset-nested-fieldset-h4-bg-bottom);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+    }
+
+    .grp-collapse h2.grp-collapse-handler,
+    .grp-collapse h3.grp-collapse-handler,
+    .grp-collapse h4.grp-collapse-handler {
+        text-shadow: none;
+    }
+
+    /* Predelete: base theme compiles light $grp-predelete — re-tint with dark token */
+    .grp-predelete,
+    .grp-predelete .grp-module,
+    .grp-predelete .grp-th,
+    .grp-predelete .grp-td {
+        background: $grp-predelete-background-color;
+    }
+
+    .grp-predelete h2,
+    .grp-collapse.grp-predelete > h2.grp-collapse-handler,
+    .grp-predelete h3,
+    .grp-collapse.grp-predelete > h3.grp-collapse-handler,
+    .grp-predelete h4,
+    .grp-predelete .grp-collapse > h4.grp-collapse-handler {
+        border-bottom-color: darken($grp-predelete-background-color, 6);
+        background-image: linear-gradient($grp-predelete-background-color, darken($grp-predelete-background-color, 3));
+    }
+
+    .grp-collapse.grp-predelete > h2.grp-collapse-handler:hover,
+    .grp-collapse.grp-predelete > h3.grp-collapse-handler:hover,
+    .grp-predelete .grp-collapse > h4.grp-collapse-handler:hover,
+    .grp-collapse.grp-open.grp-predelete > h2.grp-collapse-handler,
+    .grp-collapse.grp-open.grp-predelete > h3.grp-collapse-handler,
+    .grp-predelete .grp-collapse.grp-open > h4.grp-collapse-handler {
+        border-bottom-color: darken($grp-predelete-background-color, 6);
+        background-image: linear-gradient(darken($grp-predelete-background-color, 3), $grp-predelete-background-color);
+    }
+
+    /* Filter pulldown: grey control + sprite icon (same layering as _changelist.scss) */
+    a.grp-button.grp-pulldown-handler {
+        color: $grp-link-color;
+        border: 1px solid #555;
+        background: grp-get-sprite($pulldown-handler, 100%, false) no-repeat,
+            linear-gradient(#4a4a4a, #3a3a3a);
+
+        &:hover,
+        &:focus {
+            color: $grp-link-color-hover;
+            border-color: #666;
+            background: grp-get-sprite($pulldown-handler, 100%, false) no-repeat,
+                linear-gradient(#545454, #454545);
+        }
+    }
+
+    .grp-pulldown.grp-pulldown-state-open .grp-pulldown-handler,
+    .grp-pulldown-container.grp-pulldown-state-open .grp-pulldown-handler {
+        color: #e8e8e8;
+        text-shadow: none;
+        border-color: #5a6d75;
+        /* _changelist.scss: border-bottom #ccc on open — drops a bright seam above .grp-pulldown-content */
+        border-bottom: 0 !important;
+        /* $pulldown-handler-selected is a dark chevron for light open bar — keep light icon on dark UI */
+        background: grp-get-sprite($pulldown-handler, 100%, false) no-repeat,
+            linear-gradient(#3d4f56, #354248);
+
+        &:hover,
+        &:focus {
+            color: #f2f2f2;
+            background: grp-get-sprite($pulldown-handler, 100%, false) no-repeat,
+                linear-gradient(#435a63, #3a4f56);
+        }
+    }
+
+    /* _changelist.scss uses white border for light theme filter containers */
+    .grp-filter .grp-pulldown-container {
+        border-color: #3f3f3f;
+    }
+
+    /* Filter dropdown panel in dark theme: remove light seam/shadow from light styles */
+    .grp-pulldown-container .grp-pulldown-content {
+        text-shadow: none;
+        border: 1px solid #3f3f3f !important;
+        border-top: 0 !important;
+        box-shadow: none;
+        background-image: linear-gradient(#3b3b3b, #2f2f2f);
+    }
+
+    .grp-module .grp-row {
+        border-top-color: $grp-row-border-top-color;
+        border-bottom-color: $grp-row-border-bottom-color;
+    }
+
+    /* Multi-column form rows (_modules.scss: #ddd / #fff vertical dividers between .grp-cell) */
+    .grp-module .grp-row:not(tr).grp-cells .grp-cell {
+        border-right-color: #3a3a3a;
+
+        & + .grp-cell {
+            border-left-color: #3a3a3a;
+        }
+    }
+
+    .grp-collapse.grp-closed .grp-row:not(:first-child) {
+        border-top-color: $grp-row-border-top-color;
+    }
+
+    /* Changelist search bar (_changelist.scss: 1px solid #fff) */
+    form#grp-changelist-search-form {
+        border-color: $grp-table-border-color;
+    }
+
+    /* Tables + changelist results (base: stripe PNG, #eee thead gradient, zebra #fff/#f4f4f4, selected #ffd) */
+    .grp-changelist-results {
+        background-color: $grp-table-background-color !important;
+        background-image: none !important;
+    }
+
+    table.grp-table,
+    .grp-table table {
+        border-color: $grp-table-border-color;
+        background: $grp-table-background-color;
+    }
+
+    table.grp-table thead th {
+        color: $grp-font-color-quiet;
+        border-color: $grp-table-border-color;
+        background-color: darken($grp-table-background-color, 4);
+        background-image: none;
+
+        a {
+            color: $grp-link-color;
+
+            &:hover {
+                color: $grp-link-color-hover;
+            }
+        }
+    }
+
+    /* Sortable changelist headers (_tables.scss uses light #e0e0e0/#eee gradients) */
+    table.grp-table.grp-sortable thead th.sortable {
+        &:hover {
+            background-color: lighten($grp-table-background-color, 8);
+            background-image: linear-gradient(
+                lighten($grp-table-background-color, 6),
+                lighten($grp-table-background-color, 10)
+            );
+        }
+
+        &.sorted {
+            a {
+                color: $grp-font-color;
+            }
+
+            &.ascending {
+                background-color: lighten($grp-table-background-color, 8);
+                background-image: linear-gradient(
+                    lighten($grp-table-background-color, 6),
+                    lighten($grp-table-background-color, 10)
+                );
+
+                &:hover {
+                    background-color: lighten($grp-table-background-color, 8);
+                    background-image: linear-gradient(
+                        lighten($grp-table-background-color, 10),
+                        lighten($grp-table-background-color, 6)
+                    );
+                }
+            }
+
+            &.descending {
+                background-color: lighten($grp-table-background-color, 8);
+                background-image: linear-gradient(
+                    lighten($grp-table-background-color, 10),
+                    lighten($grp-table-background-color, 6)
+                );
+
+                &:hover {
+                    background-color: lighten($grp-table-background-color, 8);
+                    background-image: linear-gradient(
+                        lighten($grp-table-background-color, 6),
+                        lighten($grp-table-background-color, 10)
+                    );
+                }
+            }
+        }
+    }
+
+    table.grp-table tfoot td {
+        color: $grp-font-color-quiet;
+        border-top-color: #444;
+    }
+
+    table.grp-table tbody tr th,
+    table.grp-table tbody tr td {
+        color: $grp-font-color;
+        border-bottom-color: #3a3a3a;
+        border-left-color: #3a3a3a;
+    }
+
+    table.grp-table tbody tr.grp-row-even th,
+    table.grp-table tbody tr.grp-row-even td,
+    table.grp-table tbody tr.grp-alt th,
+    table.grp-table tbody tr.grp-alt td {
+        background: lighten($grp-table-background-color, 2);
+        border-left-color: #3a3a3a;
+    }
+
+    table.grp-table tbody tr.grp-row-odd th,
+    table.grp-table tbody tr.grp-row-odd td {
+        background: $grp-table-background-color;
+    }
+
+    table.grp-table tbody tr.grp-selected th,
+    table.grp-table tbody tr.grp-selected td {
+        background: mix(#887722, $grp-table-background-color, 28%);
+    }
+
+    table.grp-table tbody tr.grp-row-label td {
+        color: $grp-font-color-quiet;
+    }
+
+    table.grp-table tbody tr:hover th,
+    table.grp-table tbody tr:hover td {
+        background: lighten($grp-table-background-color, 6);
+    }
+
+    table.grp-table tbody tr.grp-selected:hover th,
+    table.grp-table tbody tr.grp-selected:hover td {
+        background: mix(#997733, $grp-table-background-color, 32%);
+    }
+
+    /* Forms — no inset/halo shadow (base theme uses #eee inset + #ccc glow; breaks flat dark UI) */
+    #grp-content input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="reset"]),
+    #grp-content textarea,
+    #grp-content select {
+        color: $grp-form-field-font-color;
+        border-color: #555;
+        background: $grp-form-field-background-color;
+        box-shadow: none;
+
+        &:focus,
+        &.grp-state-focus {
+            border-color: #777;
+            background: $grp-form-field-background-color-focus;
+            outline: 0;
+        }
+    }
+
+    /* M2M / horizontal filter widget (_forms.scss `.selector`, `.selector-filter` — light #ddd / #e4e4e4 / searchbox.png) */
+    .selector {
+        .selector-available,
+        .selector-chosen {
+            border-color: #555;
+            background: #2a2a2a;
+
+            .selector-available-title label,
+            .selector-chosen-title label {
+                color: #ddd;
+            }
+
+            .helptext {
+                color: $grp-font-color-quiet;
+            }
+        }
+
+        .selector-filter {
+            color: $grp-font-color-quiet;
+            border-top-color: #444;
+            border-bottom-color: #444;
+            /* Keep same icon asset/position as _forms.scss (spritesheet $selector-filter misaligned here) */
+            background-color: #333;
+            background-image: url('../images/icons/searchbox.png');
+            background-repeat: no-repeat;
+            background-position: 6px 50%;
+
+            input[type="text"] {
+                color: $grp-form-field-font-color;
+                border-color: #555;
+                background: $grp-form-field-background-color;
+                box-shadow: none;
+            }
+        }
+
+        select[multiple] {
+            color: $grp-form-field-font-color;
+            border-color: #555;
+            background: $grp-form-field-background-color;
+        }
+
+        .list-footer-display {
+            color: $grp-font-color-quiet;
+        }
+
+        button.selector-chooseall,
+        button.selector-clearall {
+            color: $grp-link-color;
+
+            &:hover {
+                color: $grp-link-color-hover;
+            }
+        }
+
+        &.stacked .selector-chosen .selector-filter::after {
+            filter: brightness(0.85);
+        }
+    }
+
+    /* Match light theme: no fill, only border — same #1a1a1a as inputs made readonly vs editable indistinguishable */
+    div.grp-readonly {
+        color: $grp-form-field-font-color;
+        border: 1px dotted $grp-table-border-color;
+        background: transparent;
+    }
+
+    label,
+    .grp-label,
+    .required label,
+    label.required {
+        color: $grp-form-label-font-color;
+    }
+
+    fieldset.grp-module .grp-row label {
+        color: $grp-form-label-font-color;
+    }
+
+    /* Dashboard / admin index: .grp-listing / .grp-listing-small (_modules.scss: border-top #fff) */
+    .grp-listing,
+    .grp-listing-small {
+        border-top-color: $grp-row-border-top-color;
+
+        li {
+            a {
+                color: $grp-link-color;
+
+                &:hover {
+                    color: $grp-link-color-hover;
+                }
+            }
+
+            .grp-font-color-quiet {
+                color: $grp-font-color-quiet;
+            }
+        }
+    }
+
+    .grp-help,
+    .grp-description,
+    p.help {
+        color: $grp-font-color-quiet;
+    }
+
+    ul.errorlist li {
+        color: #ffb4b4;
+    }
+
+    /* Same primary chrome as submit (_buttons.scss: a/button.grp-button use grp-form-button-style) */
+    a.grp-button:not(.grp-delete-link):not(.grp-cancel-link):not(.grp-reset-link):not(.grp-pulldown-handler),
+    button.grp-button:not([type="submit"]),
+    input[type="button"].grp-button,
+    input[type="reset"].grp-button {
+        color: #fff;
+        border: 1px solid darken($grp-form-button-background-color, 5);
+        background-image: linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color);
+
+        &:hover,
+        &:focus {
+            color: #fff;
+            border: 1px solid darken($grp-form-button-background-color-hover, 5);
+            background-image: linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover);
+        }
+    }
+
+    input[type="submit"].grp-button,
+    button[type="submit"].grp-button,
+    .grp-default input[type="submit"],
+    .grp-default button[type="submit"] {
+        color: #fff;
+        border: 1px solid darken($grp-form-button-background-color, 5);
+        background-image: linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color);
+
+        &:hover,
+        &:focus {
+            color: #fff;
+            border: 1px solid darken($grp-form-button-background-color-hover, 5);
+            background-image: linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover);
+        }
+    }
+
+    .grp-deletelink,
+    input[type="submit"].grp-delete-link,
+    .grp-submit-row .grp-delete-link {
+        color: #fff;
+        border: 1px solid darken($grp-form-button-delete-background-color, 5);
+        background-image: linear-gradient(lighten($grp-form-button-delete-background-color, 10), $grp-form-button-delete-background-color);
+
+        &:hover,
+        &:focus {
+            color: #fff;
+            border: 1px solid darken($grp-form-button-delete-background-color-hover, 5);
+            background-image: linear-gradient(lighten($grp-form-button-delete-background-color-hover, 10), $grp-form-button-delete-background-color-hover);
+        }
+    }
+
+    /* Date/time triggers, FK lookup — base uses light blue/grey .button-state-* (sprite bg image kept) */
+    button.ui-datepicker-trigger,
+    button.ui-timepicker-trigger,
+    button.ui-datetime-now,
+    a.fb_show,
+    a.related-lookup {
+        border-color: #555 !important;
+        background-color: #404040 !important;
+        color: #e8e8e8 !important;
+
+        &:hover {
+            border-color: #707070 !important;
+            background-color: #4a4a4a !important;
+        }
+    }
+
+    /* Was .button-state-white — bright box next to autocompletes */
+    a.grp-related-remove {
+        border-color: #555 !important;
+        background-color: #404040 !important;
+
+        &:hover {
+            border-color: #707070 !important;
+            background-color: #4a4a4a !important;
+        }
+    }
+
+    .grp-autocomplete-wrapper-fk div.grp-loader {
+        border-color: #555 !important;
+        background-color: #2a2a2a !important;
+    }
+
+    /* Context focus borders (screen.scss uses $grp-form-field-border-focus / #aaa) */
+    .grp-autocomplete-wrapper-fk input:focus + a.related-lookup,
+    .grp-autocomplete-wrapper-fk.grp-state-focus a.related-lookup,
+    .grp-autocomplete-wrapper-fk.grp-state-focus a.grp-related-remove,
+    .grp-autocomplete-wrapper-m2m.grp-state-focus a.related-lookup,
+    .grp-autocomplete-wrapper-m2m.grp-state-focus a.grp-related-remove,
+    input:focus + a.related-lookup,
+    input:focus + * + a.related-lookup,
+    input:focus + a.fb_show,
+    input:focus + a.add-another,
+    input:focus + button,
+    .vDateField:focus + span a,
+    .vDateField:focus + span button,
+    .vTimeField:focus + span a,
+    .vTimeField:focus + span button,
+    .grp-state-focus a.related-lookup {
+        border-color: $grp-link-color !important;
+    }
+
+    /* Changelist search: keep button border invisible when field has focus (_buttons.scss) */
+    input.grp-search-field:focus + button.grp-search-button {
+        border-color: transparent !important;
+    }
+
+    /* Replace default light focus outline on icon links/buttons in content */
+    #grp-content a:focus-visible,
+    #grp-content button:focus-visible {
+        outline: 2px solid $grp-link-color;
+    }
+
+    /* Messages */
+    .grp-messagelist > li {
+        color: $grp-font-color;
+        border-color: $grp-messagelist-border-color;
+        background: $grp-messagelist-background-color;
+
+        &.grp-success {
+            border-color: $grp-messagelist-success-border-color;
+            background: $grp-messagelist-success-background-color;
+        }
+
+        &.grp-warning {
+            border-color: $grp-messagelist-warning-border-color;
+            background: $grp-messagelist-warning-background-color;
+        }
+
+        &.grp-error {
+            border-color: $grp-messagelist-error-border-color;
+            background: $grp-messagelist-error-background-color;
+        }
+    }
+
+    /* Submit row / fixed footer */
+    .grp-submit-row.grp-fixed-footer > ul > li,
+    .grp-submit-row.grp-fixed-footer > div > div {
+        background: #333;
+    }
+
+    .grp-fixed-footer {
+        color: #fff;
+        background-image: linear-gradient(#333, #222);
+    }
+
+    /* Login */
+    &.grp-login {
+        background: $grp-dark-body-background;
+
+        .grp-module-login {
+            background: #2a2a2a !important;
+
+            > .grp-row {
+                border-top-color: #444 !important;
+                border-bottom-color: #111 !important;
+
+                label {
+                    color: #ddd;
+                }
+            }
+
+            h1 {
+                border-color: #111;
+                background-image: linear-gradient(#3a3a3a, #2a2a2a);
+
+                span {
+                    color: #e0e0e0;
+
+                    &.grp-admin-title a {
+                        color: #e0e0e0;
+
+                        &:hover {
+                            color: $grp-link-color-hover;
+                        }
+                    }
+
+                    &.grp-current-page {
+                        border-left-color: darken($grp-form-button-background-color, 4);
+                        border-right-color: darken($grp-form-button-background-color, 4);
+                        color: #fff;
+                    }
+                }
+            }
+
+            /* Submit row: light theme uses pale box-shadow on .grp-button — washes out on dark bg */
+            .grp-submit-row .grp-button {
+                opacity: 1;
+                box-shadow: none;
+                color: #fff;
+            }
+
+            .grp-module {
+                border-color: $grp-module-border-color;
+                border-top-color: #555;
+
+                .grp-row.grp-connected {
+                    border-top-color: #444;
+                    background: #333;
+                }
+            }
+        }
+    }
+
+    /* jQuery UI widgets (Grappelli admin) */
+    .ui-widget-content {
+        color: $grp-font-color;
+        border-color: #555;
+        background: #2a2a2a;
+    }
+
+    .ui-widget-header {
+        color: #eee;
+        border-color: #555;
+        background: #383838;
+    }
+
+    .ui-state-default,
+    .ui-widget-content .ui-state-default {
+        color: $grp-font-color;
+        border-color: #555;
+        background: #333;
+    }
+
+    .ui-state-hover,
+    .ui-state-focus {
+        color: #fff;
+        border-color: #666;
+        background: #444;
+    }
+
+    .ui-state-active {
+        color: #fff;
+        border-color: $grp-link-color;
+        background: darken($grp-link-color, 15);
+    }
+
+    /* Timepicker grid (#ui-timepicker li.row — overrides _jquery-ui !important borders) */
+    #ui-timepicker {
+        border-color: #555 !important;
+        background: #2a2a2a !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55) !important;
+
+        ul li.row.ui-state-default {
+            color: $grp-font-color !important;
+            border: 1px solid #555 !important;
+            background: #3a3a3a !important;
+
+            &:hover {
+                color: #fff !important;
+                border-color: #707070 !important;
+                background: #4a4a4a !important;
+            }
+        }
+
+        ul li.row.ui-state-active {
+            color: #f0f0f0 !important;
+            border: 1px solid #666 !important;
+            background: #505050 !important;
+        }
+    }
+
+    /* Changelist pagination (light gradients in default theme) */
+    .grp-pagination ul li {
+        border-color: #3a3a3a;
+
+        a {
+            color: $grp-link-color;
+            border-color: #555;
+
+            &:hover {
+                color: $grp-link-color-hover;
+                border-color: #6a6a6a;
+                background-image: linear-gradient(#404040, #333);
+            }
+        }
+
+        span {
+            color: #e8e8e8;
+            border-color: #666;
+            background-image: linear-gradient(#454545, #383838);
+        }
+
+        &.grp-separator span {
+            border-color: transparent;
+            background: transparent;
+        }
+    }
+
+    /* Select2: Grappelli admin-autocomplete + generic default */
+    .select2-container--admin-autocomplete {
+        .select2-selection--single,
+        .select2-selection--multiple {
+            border-color: #555;
+            background: $grp-form-field-background-color;
+            box-shadow: none !important;
+        }
+
+        &.select2-container--focus .select2-selection,
+        &.select2-container--open .select2-selection {
+            border-color: #777;
+            box-shadow: none !important;
+        }
+
+        .select2-selection--single .select2-selection__rendered {
+            color: $grp-form-field-font-color;
+        }
+
+        .select2-selection--single .select2-selection__placeholder,
+        .select2-selection--multiple .select2-selection__placeholder {
+            color: $grp-font-color-quiet;
+        }
+
+        &.select2-container--disabled .select2-selection--single,
+        &.select2-container--disabled .select2-selection--multiple {
+            background-color: #2a2a2a;
+        }
+
+        .select2-selection--multiple .select2-selection__choice {
+            color: #ddd;
+            background-color: #2a3d45;
+            border-color: #555;
+        }
+
+        .select2-search--inline .select2-search__field {
+            color: $grp-form-field-font-color;
+        }
+
+        &.select2-container--open .select2-dropdown {
+            border-color: #555;
+            background-color: #333;
+            box-shadow: none !important;
+        }
+
+        .select2-search--dropdown {
+            background-color: #333;
+        }
+
+        .select2-search--dropdown .select2-search__field {
+            color: $grp-form-field-font-color;
+            border-color: #555;
+            background: $grp-form-field-background-color;
+            box-shadow: none !important;
+
+            &:focus,
+            &.grp-state-focus {
+                color: $grp-form-field-font-color;
+                border-color: #777;
+                background: $grp-form-field-background-color-focus;
+                box-shadow: none !important;
+                outline: 0;
+            }
+        }
+
+        .select2-results {
+            background-color: #333;
+        }
+
+        .select2-results > .select2-results__options {
+            background-color: #333;
+        }
+
+        .select2-results .select2-results__option {
+            color: $grp-font-color;
+            border-color: #555;
+            background-color: #3a4a52;
+        }
+
+        .select2-results__option[aria-disabled="true"] {
+            color: $grp-font-color-quiet;
+            border-color: #444;
+            background-color: #2a2a2a;
+        }
+
+        .select2-results__option[aria-selected="true"] {
+            color: #fff;
+            border-color: #555;
+            background-color: #454545;
+        }
+
+        .select2-results__option--highlighted[aria-selected] {
+            color: #fff;
+            border-color: darken($grp-link-color, 8);
+            background-color: $grp-link-color;
+        }
+
+        .select2-results__option.loading-results,
+        .select2-results__option.select2-results__message {
+            border-color: transparent;
+            background: transparent;
+            color: $grp-font-color-quiet;
+        }
+    }
+
+    /* Select2 dropdown: override screen.css body[class*="grp"] .select2-container--open .select2-dropdown { background #eee } */
+    .select2-container--open .select2-dropdown {
+        border-color: #555;
+        background-color: #333;
+        box-shadow: none !important;
+    }
+
+    .select2-container--open .select2-dropdown.select2-dropdown--above,
+    .select2-container--open .select2-dropdown.select2-dropdown--below {
+        background-color: #333;
+        box-shadow: none !important;
+    }
+
+    .select2-dropdown {
+        border-color: #555;
+        background-color: #333;
+        box-shadow: none !important;
+    }
+
+    .select2-dropdown .select2-search--dropdown {
+        background-color: #333;
+    }
+
+    .select2-dropdown .select2-search__field {
+        color: $grp-form-field-font-color;
+        border-color: #555;
+        background: $grp-form-field-background-color;
+        box-shadow: none !important;
+
+        &:focus,
+        &.grp-state-focus {
+            color: $grp-form-field-font-color;
+            border-color: #777;
+            background: $grp-form-field-background-color-focus;
+            box-shadow: none !important;
+            outline: 0;
+        }
+    }
+
+    .select2-dropdown .select2-results__option {
+        color: $grp-font-color;
+        border-color: #555;
+        background-color: #3a4a52;
+    }
+
+    .select2-dropdown .select2-results__option[aria-selected="true"] {
+        color: #fff;
+        border-color: #555;
+        background-color: #454545;
+    }
+
+    .select2-dropdown .select2-results__option--highlighted[aria-selected] {
+        color: #fff;
+        border-color: darken($grp-link-color, 8);
+        background-color: $grp-link-color;
+    }
+
+    .select2-container--default .select2-selection--single,
+    .select2-container--default .select2-selection--multiple {
+        border-color: #555;
+        background: $grp-form-field-background-color;
+    }
+
+    .select2-container--default .select2-selection__rendered {
+        color: $grp-form-field-font-color;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        color: #ddd;
+        background-color: #2a3d45;
+        border-color: #555;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        color: $grp-font-color-quiet;
+
+        &:hover {
+            color: #ccc;
+        }
+    }
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        color: #fff;
+        background: $grp-link-color;
+    }
+}
+
+/* RTL: keep toolbar separators consistent with rtl.css under dark theme */
+body.rtl.grp-theme-dark {
+    #grp-user-tools > li {
+        border-left-color: #090909;
+        border-right-color: #343434;
+    }
+
+    ul#grp-user-tools {
+        border-right-color: #343434;
+    }
+}
