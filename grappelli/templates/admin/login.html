@@ -6,6 +6,15 @@
 <!-- BODYCLASS -->
 {% block bodyclass %}grp-login{% endblock %}
 
+<!-- THEME TOGGLE (header hidden on login; same #grp-user-tools styles as admin bar) -->
+{% block grappelli_standalone_theme_toggle %}
+    <div class="grp-login-theme-bar" role="navigation" aria-label="{% trans 'Theme' %}">
+        <ul id="grp-user-tools">
+            {% include "admin/grappelli_theme_toggle.html" %}
+        </ul>
+    </div>
+{% endblock %}
+
 <!-- EXTRAHEAD-->
 {% block extrahead %}
     {{ block.super }}

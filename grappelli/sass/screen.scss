@@ -78,6 +78,17 @@ body {
 
 body.grp-login {
 
+  /* Theme toggle: main header is hidden on login — fixed strip reuses #grp-user-tools + theme icon rules */
+  .grp-login-theme-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+    display: block;
+    overflow: visible;
+    @include grp-gradient-dark;
+  }
+
   #grp-header,
   #grp-context-navigation,
   #grp-content-title {
@@ -380,7 +391,65 @@ h1#grp-admin-title {
         color: #fff;
       }
     }
+
+    .grp-theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 6px;
+      margin: 0;
+      padding: 10px;
+      width: 100%;
+      height: auto;
+      font: inherit;
+      font-weight: bold;
+      line-height: 16px;
+      color: lighten($grp-link-color, 10);
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      box-sizing: border-box;
+      text-align: start;
+
+      svg {
+        display: none;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+        color: inherit; /* sprite paths use fill=currentColor — same as button / nav links */
+      }
+
+      &:hover,
+      &:focus {
+        color: #fff;
+        outline: none;
+      }
+
+      .grp-theme-toggle-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    }
   }
+}
+
+html[data-grappelli-theme="auto"] #grp-user-tools .grp-theme-toggle svg.grp-theme-icon-when-auto,
+html[data-grappelli-theme="dark"] #grp-user-tools .grp-theme-toggle svg.grp-theme-icon-when-dark,
+html[data-grappelli-theme="light"] #grp-user-tools .grp-theme-toggle svg.grp-theme-icon-when-light {
+  display: block;
+}
+
+/* Theme icon sprite (Django-style <symbol> defs; hidden like admin .base-svgs) */
+.grp-base-svgs {
+  display: none;
 }
 
 
