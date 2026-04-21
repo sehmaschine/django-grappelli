@@ -1,12 +1,13 @@
-
-
 /*  Datetime ........................................... */
 
 p.datetime {
     white-space: nowrap !important;
+
+    label,
     br {
-        display: none;
+        display: none !important;
     }
+
     input.vTimeField {
         margin-left: 6px;
     }
@@ -15,9 +16,11 @@ p.datetime {
 
 /*  Hide Images in Templates ........................................... */
 
-a.add-another img, a.related-lookup img {
+a.add-another img,
+a.related-lookup img {
     opacity: 0;
 }
+
 a.related-lookup img {
     display: none;
 }
