@@ -14,7 +14,9 @@
 }
 
 fieldset.grp-module {
-    .grp-row label {
+
+    .grp-row label,
+    .grp-row legend {
         margin: 6px 0 6px;
         @include grp-label;
     }
@@ -132,7 +134,9 @@ div.grp-readonly {
 /*  Form Field Errors ................................................... */
 
 .grp-errors {
-    label {
+
+    label,
+    legend {
         color: $grp-font-color-error !important;
     }
 
