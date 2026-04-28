@@ -2,6 +2,8 @@ include AUTHORS
 include README.rst
 include LICENSE
 recursive-include docs *
+prune docs/_build
 recursive-include grappelli/static *
 recursive-include grappelli/templates *
 recursive-include grappelli/dashboard/templates *
+global-exclude .DS_Store

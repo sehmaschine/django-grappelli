@@ -12,6 +12,7 @@ setup(
     version="4.0.4",
     description="A jazzy skin for the Django Admin-Interface.",
     long_description=read("README.rst"),
+    long_description_content_type="text/x-rst",
     url="http://django-grappelli.readthedocs.org",
     project_urls={
         "Source": "https://github.com/sehmaschine/django-grappelli",
@@ -31,9 +32,9 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
     zip_safe=False,
 )

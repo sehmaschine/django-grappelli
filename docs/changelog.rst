@@ -8,8 +8,15 @@
 Changelog
 =========
 
-4.0.4 (not yet released)
+4.0.5 (not yet released)
 ------------------------
+
+4.0.4 (April 28th, 2026)
+------------------------
+
+* Improved: raised margins within radiolists
+* Improved: layout for multiple inputs in related widget
+* Improved: layout for related widget display in change list
 
 4.0.3 (November 27th 2025)
 --------------------------
