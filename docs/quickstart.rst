@@ -1,6 +1,6 @@
 .. |grappelli| replace:: Grappelli
 .. |filebrowser| replace:: FileBrowser
-.. |grappelliversion| replace:: 5.0.0
+.. |grappelliversion| replace:: 5.0.1
 
 .. _quickstart:
 
