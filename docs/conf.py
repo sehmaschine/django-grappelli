@@ -45,7 +45,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Django Grappelli"
-copyright = "2023, Patrick Kranzlmueller"
+copyright = "2026, Patrick Kranzlmueller"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
