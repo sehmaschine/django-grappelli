@@ -4,6 +4,7 @@
 Module where grappelli dashboard modules classes are defined.
 """
 
+from typing import Any
 from django.apps import apps as django_apps
 from django.utils.text import capfirst
 from django.utils.translation import gettext_lazy as _
@@ -59,7 +60,7 @@ class DashboardModule(object):
     css_classes = None
     pre_content = None
     post_content = None
-    children = None
+    children = []
 
     def __init__(self, title=None, **kwargs):
         if title is not None:
