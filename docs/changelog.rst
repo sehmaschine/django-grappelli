@@ -8,6 +8,14 @@
 Changelog
 =========
 
+5.0.1 (not yet released)
+------------------------
+
+5.0.0 (April 29th, 2026)
+------------------------
+
+* Compatibility with Django 6.x
+
 4.0.5 (not yet released)
 ------------------------
 
