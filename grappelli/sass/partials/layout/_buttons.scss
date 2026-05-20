@@ -131,6 +131,7 @@ input[type="submit"] {
 }
 
 a.grp-button,
+a[role="button"],
 button.grp-button,
 input[type=button].grp-button {
     @include grp-button();
@@ -150,7 +151,9 @@ input[type=button].grp-button {
     }
 }
 
-
+p>a[role="button"]:only-child {
+    margin: 5px 0 0;
+}
 
 /*  BUTTONS WITH/AS ICONS
 ------------------------------------------------------------------------------------------------------ */
