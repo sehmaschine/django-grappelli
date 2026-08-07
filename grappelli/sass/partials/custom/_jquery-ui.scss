@@ -26,6 +26,20 @@
         @include grp-form-field;
     }
 
+    /*  jQuery UI puts ui-widget-content on the widget ROOT - #ui-datepicker-div
+        and .ui-autocomplete both carry the class themselves - so the descendant
+        rule below never reaches them, and the vendored
+        .ui-widget.ui-widget-content (0,2,0) outranks the plain `border` above
+        (0,1,0), drawing its own #c5c5c5 hairline around both overlays. Naming
+        the root as a compound selector ties that specificity, and grappelli's
+        sheet loads after the vendored one. #ui-timepicker never had the
+        problem - an id already outranks it - so this also brings the datepicker
+        and autocomplete frames back into line with the timepicker's. */
+    &.ui-widget-content {
+        border: 1px solid $grp-ui-widget-border-color;
+        color: $grp-ui-widget-font-color;
+    }
+
     .ui-widget-content {
         background: $grp-module-background-color;
         color: $grp-ui-widget-font-color;
