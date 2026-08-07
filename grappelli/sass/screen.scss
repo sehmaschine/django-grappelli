@@ -61,7 +61,7 @@ body {
   @extend .grp-font-size;
   font-size: $grp-font-size;
   @extend .grp-line-height;
-  background: #fff;
+  background: $grp-body-background-color;
   overflow: visible;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -98,38 +98,38 @@ body.grp-login {
   .grp-module-login {
     border: 0 !important;
     border-radius: $grp-border-radius + 3;
-    background: #222 !important;
+    background: $grp-dark-background-color !important;
 
     >.grp-row {
       @include grp-padding($grp-padding-size);
-      border-top: 1px solid #333 !important;
-      border-bottom: 1px solid #000 !important;
+      border-top: 1px solid $grp-dark-row-border-top-color !important;
+      border-bottom: 1px solid $grp-dark-row-border-bottom-color !important;
 
       label {
-        color: #fff;
+        color: $grp-font-color-inverted;
       }
     }
 
     h1 {
       font-size: 18px;
       @include grp-padding(35px 0 0);
-      border: 1px solid #111;
+      border: 1px solid $grp-dark-chip-border-color;
       border-bottom: 0;
       border-top-left-radius: $grp-border-radius + 1;
       border-top-right-radius: $grp-border-radius + 1;
-      background-image: linear-gradient(#333, #222);
+      background-image: linear-gradient($grp-dark-gradient-from, $grp-dark-background-color);
 
       span {
         display: block;
         margin: 0;
-        color: #eee;
+        color: $grp-dark-font-color-quiet;
 
         &.grp-admin-title {
           padding: 5px 10px 7px;
           font-weight: bold;
 
           a {
-            color: #eee;
+            color: $grp-dark-font-color-quiet;
 
             &:hover {
               color: $grp-link-color-bright;
@@ -142,9 +142,9 @@ body.grp-login {
           padding: 5px 11px 4px;
           border-top: 0;
           border-bottom: 0;
-          border-left: 1px solid darken(#309bbf, 4);
-          border-right: 1px solid darken(#309bbf, 4);
-          color: #fff;
+          border-left: 1px solid $grp-login-current-page-border-color;
+          border-right: 1px solid $grp-login-current-page-border-color;
+          color: $grp-font-color-inverted;
           font-size: $grp-font-size-l;
           font-weight: bold;
           background-image: linear-gradient($grp-form-button-gradient-from, $grp-form-button-background-color);
@@ -153,13 +153,13 @@ body.grp-login {
 
       +.grp-row {
         border: 0;
-        border-top: 1px solid #333;
+        border-top: 1px solid $grp-dark-row-border-top-color;
       }
     }
 
     .grp-module {
       border: $grp-module-border;
-      border-top: 1px solid #f6f6f6;
+      border-top: 1px solid $grp-login-module-border-top-color;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
 
@@ -173,8 +173,8 @@ body.grp-login {
         &.grp-connected {
           margin-top: -5px;
           padding-top: 0;
-          border-top: 1px solid #eee;
-          background: #eee;
+          border-top: 1px solid $grp-module-background-color;
+          background: $grp-module-background-color;
         }
 
         &.grp-error-row {
@@ -277,7 +277,7 @@ header#grp-header {
     color: $grp-link-color-bright;
 
     &:hover {
-      color: #fff;
+      color: $grp-font-color-inverted;
     }
   }
 
@@ -298,14 +298,14 @@ header#grp-header {
           display: block;
           margin: -1px 0 0 -1px;
           width: 202px;
-          border-top: 1px solid darken(#222, 10);
+          border-top: 1px solid $grp-dark-border-shade-color;
           border-bottom-left-radius: $grp-border-radius;
           border-bottom-right-radius: $grp-border-radius;
-          background: #222;
+          background: $grp-dark-background-color;
 
           li {
-            border-top: 1px solid lighten(#222, 10);
-            border-bottom: 1px solid darken(#222, 10);
+            border-top: 1px solid $grp-nav-dropdown-item-border-top-color;
+            border-bottom: 1px solid $grp-dark-border-shade-color;
 
             &:last-child {
               border-bottom: 0;
@@ -344,12 +344,12 @@ h1#grp-admin-title {
   align-items: stretch;
   font-weight: bold;
   margin: 0 -10px 0 0;
-  border-left: 1px solid darken(#222, 10);
+  border-left: 1px solid $grp-dark-border-shade-color;
 
   >li {
     @include horizontal-list-item(0, left);
-    border-left: 1px solid lighten(#222, 7);
-    border-right: 1px solid darken(#222, 10);
+    border-left: 1px solid $grp-dark-border-highlight-color;
+    border-right: 1px solid $grp-dark-border-shade-color;
 
     &.grp-user-options-container {
       width: auto;
@@ -384,7 +384,7 @@ h1#grp-admin-title {
       background: transparent;
 
       &:hover {
-        color: #fff;
+        color: $grp-font-color-inverted;
       }
     }
   }
@@ -443,7 +443,7 @@ body.grp-change-form #grp-content-container>form>div {
   >ul {
     @include horizontal-list(5px, left);
     @include grp-padding($grp-padding-size-s 20px);
-    text-shadow: 0 1px 0 #f5f5f5;
+    text-shadow: 0 1px 0 $grp-text-shadow-color;
 
     a {
       display: block;
@@ -611,7 +611,7 @@ body.grp-change-form #grp-content-container>form>div {
   }
 
   .grp-button {
-    box-shadow: 0 0 10px #bbb;
+    box-shadow: 0 0 10px $grp-submit-row-shadow-color;
   }
 }
 
@@ -629,7 +629,7 @@ body.grp-change-form #grp-content-container>form>div {
       >div {
         margin-bottom: 5px;
         padding: 5px !important;
-        background: #444;
+        background: $grp-fixed-footer-item-background-color;
 
       }
     }

@@ -73,6 +73,13 @@ $grp-font-color-error: #bf3030 !default;
     color: var(--grp-font-color-error);
 }
 
+/*  Hoisted out of screen.scss (Task 5); reused by _changelist.scss,
+    _tools.scss, _buttons.scss, _forms.scss, _jquery-ui.scss and
+    _select2-admin.scss (Tasks 6-8). Text sitting on a dark or saturated
+    chip - the opposite direction from every other font colour when the
+    theme switches. */
+$grp-font-color-inverted: #fff !default;
+
 
 /*  Link Colors ............................................................ */
 
@@ -84,6 +91,16 @@ $grp-link-color-bright: lighten($grp-link-color, 10) !default;
 
 $grp-link-color-quiet: #62bbd9 !default;
 $grp-link-color-quiet-hover: #444 !default;
+
+
+
+
+/*  PAGE
+------------------------------------------------------------------------------------------------------ */
+
+/*  Hoisted out of screen.scss (body). The page canvas - the single biggest
+    divergence between the light and dark themes. */
+$grp-body-background-color: #fff !default;
 
 
 
@@ -111,6 +128,34 @@ $grp-messagelist-warning-border-color: darken($grp-messagelist-warning-backgroun
 
 $grp-messagelist-error-background-color: lighten(#bf3030, 35) !default;
 $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-color, 5) !default;
+
+
+
+
+/*  DARK CHROME
+------------------------------------------------------------------------------------------------------ */
+
+/*  The login panel and the header/actions dark chrome share one surface
+    colour. Hoisted out of screen.scss; reused by _changelist.scss (Task 6). */
+$grp-dark-background-color: #222 !default;
+
+/*  Derived. Hoisted out of screen.scss (login h1 gradient top stop). */
+$grp-dark-gradient-from: #333 !default;
+
+/*  Derived from the dark surface above. Hoisted out of screen.scss
+    (#grp-navigation dropdown, #grp-user-tools). rtl.scss spells these out
+    as literals (#090909, #343434) and reuses these same tokens (Task 9). */
+$grp-dark-border-shade-color: darken($grp-dark-background-color, 10) !default;      // #090909
+$grp-dark-border-highlight-color: lighten($grp-dark-background-color, 7) !default;  // #343434
+$grp-nav-dropdown-item-border-top-color: lighten($grp-dark-background-color, 10) !default; // #3c3c3c
+
+$grp-dark-row-border-top-color: #333 !default;
+$grp-dark-row-border-bottom-color: #000 !default;
+$grp-dark-chip-border-color: #111 !default;
+$grp-dark-font-color-quiet: #eee !default;
+
+/*  The light module nested inside the dark login panel. */
+$grp-login-module-border-top-color: #f6f6f6 !default;
 
 
 
@@ -219,6 +264,9 @@ $grp-form-button-background-color: #309bbf !default;
 $grp-form-button-background-color-hover: #444 !default;
 $grp-footer-form-button-background-color-hover: #eee !default;
 
+/*  Derived. Hoisted out of screen.scss (login header current-page pill). */
+$grp-login-current-page-border-color: darken($grp-form-button-background-color, 4) !default;
+
 $grp-form-button-delete-background-color: #bf3030 !default;
 $grp-form-button-delete-background-color-hover: #444 !default;
 $grp-footer-form-button-delete-background-color-hover: #eee !default;
@@ -288,6 +336,29 @@ $grp-button-border-focus-color: #888 !default;
 
 
 
+/*  MISC
+------------------------------------------------------------------------------------------------------ */
+
+/*  Shadows and stray surfaces that do not belong to one component. Hoisted
+    out of screen.scss. */
+$grp-text-shadow-color: #f5f5f5 !default;
+$grp-submit-row-shadow-color: #bbb !default;
+$grp-fixed-footer-item-background-color: #444 !default;
+
+/*  Documentation (RTE) typography. Hoisted out of _base.scss. */
+$grp-doc-color: #d94800 !default;
+$grp-doc-rule-color: #c30 !default;
+$grp-doc-code-border-color: #d9d9c3 !default;
+$grp-doc-code-background-color: #f2f2e6 !default;
+
+/*  Vendored html5doctor.com reset (_reset.scss ins/mark). The source comment
+    says "change colours to suit your needs" - on a near-black page the
+    default bright yellow needs to soften. */
+$grp-mark-background-color: #ff9 !default;
+$grp-mark-font-color: #000 !default;
+
+
+
 /*  MARGINS & PADDINGS
 ------------------------------------------------------------------------------------------------------ */
 
@@ -332,6 +403,9 @@ $grp-light-tokens: (
     "--grp-help-font-color": $grp-help-font-color,
     "--grp-changelist-disabled-font-color": $grp-changelist-disabled-font-color,
     "--grp-font-color-error": $grp-font-color-error,
+    "--grp-font-color-inverted": $grp-font-color-inverted,
+
+    "--grp-body-background-color": $grp-body-background-color,
 
     "--grp-link-color": $grp-link-color,
     "--grp-link-color-hover": $grp-link-color-hover,
@@ -350,6 +424,17 @@ $grp-light-tokens: (
     "--grp-messagelist-warning-border-color": $grp-messagelist-warning-border-color,
     "--grp-messagelist-error-background-color": $grp-messagelist-error-background-color,
     "--grp-messagelist-error-border-color": $grp-messagelist-error-border-color,
+
+    "--grp-dark-background-color": $grp-dark-background-color,
+    "--grp-dark-gradient-from": $grp-dark-gradient-from,
+    "--grp-dark-border-shade-color": $grp-dark-border-shade-color,
+    "--grp-dark-border-highlight-color": $grp-dark-border-highlight-color,
+    "--grp-nav-dropdown-item-border-top-color": $grp-nav-dropdown-item-border-top-color,
+    "--grp-dark-row-border-top-color": $grp-dark-row-border-top-color,
+    "--grp-dark-row-border-bottom-color": $grp-dark-row-border-bottom-color,
+    "--grp-dark-chip-border-color": $grp-dark-chip-border-color,
+    "--grp-dark-font-color-quiet": $grp-dark-font-color-quiet,
+    "--grp-login-module-border-top-color": $grp-login-module-border-top-color,
 
     "--grp-group-border-color": $grp-group-border-color,
     "--grp-group-background-color": $grp-group-background-color,
@@ -393,6 +478,7 @@ $grp-light-tokens: (
     "--grp-form-button-background-color": $grp-form-button-background-color,
     "--grp-form-button-background-color-hover": $grp-form-button-background-color-hover,
     "--grp-footer-form-button-background-color-hover": $grp-footer-form-button-background-color-hover,
+    "--grp-login-current-page-border-color": $grp-login-current-page-border-color,
 
     "--grp-form-button-delete-background-color": $grp-form-button-delete-background-color,
     "--grp-form-button-delete-background-color-hover": $grp-form-button-delete-background-color-hover,
@@ -438,7 +524,19 @@ $grp-light-tokens: (
     "--grp-button-background-color-hover": $grp-button-background-color-hover,
     "--grp-button-border-color": $grp-button-border-color,
     "--grp-button-border-hover-color": $grp-button-border-hover-color,
-    "--grp-button-border-focus-color": $grp-button-border-focus-color
+    "--grp-button-border-focus-color": $grp-button-border-focus-color,
+
+    "--grp-text-shadow-color": $grp-text-shadow-color,
+    "--grp-submit-row-shadow-color": $grp-submit-row-shadow-color,
+    "--grp-fixed-footer-item-background-color": $grp-fixed-footer-item-background-color,
+
+    "--grp-doc-color": $grp-doc-color,
+    "--grp-doc-rule-color": $grp-doc-rule-color,
+    "--grp-doc-code-border-color": $grp-doc-code-border-color,
+    "--grp-doc-code-background-color": $grp-doc-code-background-color,
+
+    "--grp-mark-background-color": $grp-mark-background-color,
+    "--grp-mark-font-color": $grp-mark-font-color
 );
 
 @mixin grp-emit-light-tokens {
@@ -471,6 +569,9 @@ $grp-font-color-quiet: var(--grp-font-color-quiet);
 $grp-help-font-color: var(--grp-help-font-color);
 $grp-changelist-disabled-font-color: var(--grp-changelist-disabled-font-color);
 $grp-font-color-error: var(--grp-font-color-error);
+$grp-font-color-inverted: var(--grp-font-color-inverted);
+
+$grp-body-background-color: var(--grp-body-background-color);
 
 $grp-link-color: var(--grp-link-color);
 $grp-link-color-hover: var(--grp-link-color-hover);
@@ -489,6 +590,17 @@ $grp-messagelist-warning-background-color: var(--grp-messagelist-warning-backgro
 $grp-messagelist-warning-border-color: var(--grp-messagelist-warning-border-color);
 $grp-messagelist-error-background-color: var(--grp-messagelist-error-background-color);
 $grp-messagelist-error-border-color: var(--grp-messagelist-error-border-color);
+
+$grp-dark-background-color: var(--grp-dark-background-color);
+$grp-dark-gradient-from: var(--grp-dark-gradient-from);
+$grp-dark-border-shade-color: var(--grp-dark-border-shade-color);
+$grp-dark-border-highlight-color: var(--grp-dark-border-highlight-color);
+$grp-nav-dropdown-item-border-top-color: var(--grp-nav-dropdown-item-border-top-color);
+$grp-dark-row-border-top-color: var(--grp-dark-row-border-top-color);
+$grp-dark-row-border-bottom-color: var(--grp-dark-row-border-bottom-color);
+$grp-dark-chip-border-color: var(--grp-dark-chip-border-color);
+$grp-dark-font-color-quiet: var(--grp-dark-font-color-quiet);
+$grp-login-module-border-top-color: var(--grp-login-module-border-top-color);
 
 $grp-group-border-color: var(--grp-group-border-color);
 $grp-group-background-color: var(--grp-group-background-color);
@@ -532,6 +644,7 @@ $grp-form-button-font-color-hover: var(--grp-form-button-font-color-hover);
 $grp-form-button-background-color: var(--grp-form-button-background-color);
 $grp-form-button-background-color-hover: var(--grp-form-button-background-color-hover);
 $grp-footer-form-button-background-color-hover: var(--grp-footer-form-button-background-color-hover);
+$grp-login-current-page-border-color: var(--grp-login-current-page-border-color);
 
 $grp-form-button-delete-background-color: var(--grp-form-button-delete-background-color);
 $grp-form-button-delete-background-color-hover: var(--grp-form-button-delete-background-color-hover);
@@ -578,6 +691,18 @@ $grp-button-background-color-hover: var(--grp-button-background-color-hover);
 $grp-button-border-color: var(--grp-button-border-color);
 $grp-button-border-hover-color: var(--grp-button-border-hover-color);
 $grp-button-border-focus-color: var(--grp-button-border-focus-color);
+
+$grp-text-shadow-color: var(--grp-text-shadow-color);
+$grp-submit-row-shadow-color: var(--grp-submit-row-shadow-color);
+$grp-fixed-footer-item-background-color: var(--grp-fixed-footer-item-background-color);
+
+$grp-doc-color: var(--grp-doc-color);
+$grp-doc-rule-color: var(--grp-doc-rule-color);
+$grp-doc-code-border-color: var(--grp-doc-code-border-color);
+$grp-doc-code-background-color: var(--grp-doc-code-background-color);
+
+$grp-mark-background-color: var(--grp-mark-background-color);
+$grp-mark-font-color: var(--grp-mark-font-color);
 
 
 /* === REGION C END === */
