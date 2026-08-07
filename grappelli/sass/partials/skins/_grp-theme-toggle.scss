@@ -23,7 +23,14 @@
     vertical-align: middle;
 }
 
-#grp-user-tools .theme-toggle svg {
+/*  NOT scoped to #grp-user-tools, and that is load-bearing rather than a
+    style choice: the three rules below that reveal one icon are Django's
+    own, (0,3,2), and an id here would make this rule (1,1,1) and win, so
+    every icon would stay hidden and the button would paint nothing at all.
+    Django's admin/css/base.css writes the same rule unscoped for the same
+    reason; the button rule above keeps its id because it only positions the
+    control inside the header. */
+.theme-toggle svg {
     display: none;
     width: 1.2rem;
     height: 1.2rem;
@@ -32,7 +39,7 @@
     color: $grp-dark-background-color;
 }
 
-#grp-user-tools .theme-toggle:hover svg {
+.theme-toggle:hover svg {
     fill: $grp-font-color-inverted;
 }
 
@@ -44,6 +51,15 @@ html[data-theme="auto"] .theme-toggle svg.theme-icon-when-auto,
 html[data-theme="dark"] .theme-toggle svg.theme-icon-when-dark,
 html[data-theme="light"] .theme-toggle svg.theme-icon-when-light {
     display: block;
+}
+
+/*  The <symbol> definitions the three icons above reference. Django's
+    base.html emits them as an inline <svg class="base-svgs"> and hides it in
+    admin/css/base.css; grappelli does not load that sheet, so without this
+    rule the block lays out as a 300x150 inline box at the bottom of every
+    admin page. Definitions only - nothing inside it is ever painted here. */
+svg.base-svgs {
+    display: none;
 }
 
 /*  Screen-reader-only utility. Same technique Django's admin/css/base.css
