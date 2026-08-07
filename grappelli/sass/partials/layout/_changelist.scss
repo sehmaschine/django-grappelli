@@ -335,7 +335,7 @@ li.grp-changelist-actions {
         }
 
         span {
-            color: lighten($grp-font-color-quiet, 20) !important;
+            color: $grp-changelist-disabled-font-color !important;
             cursor: default !important;
             border: 1px solid #111 !important;
             background: #222 !important;

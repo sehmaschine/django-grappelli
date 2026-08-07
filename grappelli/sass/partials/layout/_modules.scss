@@ -125,7 +125,7 @@
         border: 0;
 
         +.grp-module {
-            border-top: 1px solid lighten($grp-module-border-color, 5);
+            border-top: 1px solid $grp-module-border-top-color;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
@@ -263,8 +263,8 @@
     border-bottom: 1px solid #ddd;
 
     .grp-predelete & {
-        border-bottom-color: darken($grp-predelete-background-color, 4);
-        border-top-color: lighten($grp-predelete-background-color, 4);
+        border-bottom-color: $grp-predelete-border-bottom-color;
+        border-top-color: $grp-predelete-border-top-color;
     }
 
     &:first-child,
@@ -445,7 +445,7 @@ fieldset.grp-module .grp-row {
         }
 
         &.grp-predelete .grp-module {
-            border-top-color: lighten($grp-predelete-background-color, 5);
+            border-top-color: $grp-predelete-module-border-top-color;
         }
     }
 
@@ -562,8 +562,8 @@ fieldset.grp-module .grp-row {
 
                 .grp-th,
                 .grp-td {
-                    border-right-color: darken($grp-predelete-background-color, 4);
-                    border-left-color: lighten($grp-predelete-background-color, 3);
+                    border-right-color: $grp-predelete-border-inline-end-color;
+                    border-left-color: $grp-predelete-border-inline-start-color;
                     background: $grp-predelete-background-color;
 
                     &:first-of-type {
@@ -647,7 +647,7 @@ fieldset.grp-module .grp-row {
 .grp-collapse.grp-predelete>h3.grp-collapse-handler,
 .grp-predelete h4,
 .grp-collapse.grp-predelete .grp-collapse>h4.grp-collapse-handler {
-    border-bottom-color: darken($grp-predelete-background-color, 6);
+    border-bottom-color: $grp-predelete-border-strong-color;
     @include grp-gradient-predelete();
 }
 
@@ -657,7 +657,7 @@ fieldset.grp-module .grp-row {
 .grp-collapse.grp-open.grp-predelete>h2.grp-collapse-handler,
 .grp-collapse.grp-open.grp-predelete>h3.grp-collapse-handler,
 .grp-predelete .grp-collapse.grp-open>h4.grp-collapse-handler {
-    border-bottom-color: darken($grp-predelete-background-color, 6);
+    border-bottom-color: $grp-predelete-border-strong-color;
     @include grp-gradient-predelete-reverse();
 }
 

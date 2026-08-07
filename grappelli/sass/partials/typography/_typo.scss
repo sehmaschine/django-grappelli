@@ -7,7 +7,7 @@
 p.grp-help {
     max-width: 758px;
     padding: 5px 0 0;
-    color: lighten($grp-font-color-quiet, 7);
+    color: $grp-help-font-color;
     font-size: 11px !important;
     line-height: 13px;
     white-space: normal !important;

@@ -1,3 +1,17 @@
+/*  ────────────────────────────────────────────────────────────────────────────
+    REGION A: literal defaults and ALL colour maths
+    ────────────────────────────────────────────────────────────────────────────
+    Every $grp-* colour below still holds a real colour here, so this is the
+    only place an SCSS colour function (lighten/darken/rgba/mix/…) may run.
+    From Region C onwards the same variables hold `var(--grp-*)`, which Sass
+    cannot do colour maths on — `lighten(var(--grp-x), 5)` is a hard error.
+
+    A mixin body counts as "after Region C" no matter where it is written,
+    because it is evaluated at @include time. That is why every derived colour
+    a mixin used to compute inline now lives here as a named variable.
+    ──────────────────────────────────────────────────────────────────────────── */
+
+
 /*  TYPOGRAPHY
 ------------------------------------------------------------------------------------------------------ */
 
@@ -17,22 +31,40 @@ $grp-font-family: Arial, sans-serif;
 
 /*  Font Colors ............................................................ */
 
+/*  The utility classes below emit CSS *where they sit*, so they stay in
+    Region A and reference the custom property directly instead of moving to
+    Region D. Relocating them would move rules in the compiled output and
+    break byte-equivalence with the pre-refactor CSS, whereas custom-property
+    resolution is not source-order dependent — so an in-place var() reference
+    is both correct and output-stable. Please do not "fix" this by moving
+    them down. */
+
 $grp-font-color: #444 !default;
 
 .grp-font-color {
-    color: $grp-font-color;
+    color: var(--grp-font-color);
 }
 
 $grp-font-color-quiet: #888 !default;
 
 .grp-font-color-quiet {
-    color: $grp-font-color-quiet;
+    color: var(--grp-font-color-quiet);
 }
+
+/*  Derived from the quiet font colour. Hoisted out of
+    partials/typography/_typo.scss (p.grp-help) and
+    partials/layout/_changelist.scss (disabled filter entry). */
+$grp-help-font-color: lighten($grp-font-color-quiet, 7) !default;
+/*  == lighten($grp-font-color-quiet, 20). Spelled out as a literal because
+    Sass writes a computed colour into a custom property in its long form
+    (#bbbbbb) but into an ordinary declaration in its short form (#bbb), and
+    the compiled CSS must not change. */
+$grp-changelist-disabled-font-color: #bbb !default;
 
 $grp-font-color-error: #bf3030 !default;
 
 .grp-font-color-error {
-    color: $grp-font-color-error;
+    color: var(--grp-font-color-error);
 }
 
 
@@ -40,6 +72,9 @@ $grp-font-color-error: #bf3030 !default;
 
 $grp-link-color: #309bbf !default;
 $grp-link-color-hover: #444 !default;
+
+/*  Derived. Hoisted out of screen.scss (three call sites). */
+$grp-link-color-bright: lighten($grp-link-color, 10) !default;
 
 $grp-link-color-quiet: #62bbd9 !default;
 $grp-link-color-quiet-hover: #444 !default;
@@ -82,15 +117,17 @@ $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-co
 
 $grp-group-border-color: #ccc;
 $grp-group-background-color: #fff !default;
-$grp-group-border: 2px solid $grp-group-border-color !default;
-$grp-group-border-closed: 2px solid #ddd !default;
+$grp-group-border-closed-color: #ddd !default;
 
 
 /*  Modules ............................................................ */
 
 $grp-module-border-color: #ccc;
 $grp-module-background-color: #eee !default;
-$grp-module-border: 1px solid $grp-module-border-color !default;
+
+/*  Derived. Hoisted out of partials/layout/_modules.scss — the divider
+    between two stacked modules inside one group. */
+$grp-module-border-top-color: lighten($grp-module-border-color, 5) !default;
 
 
 /*  Rows ............................................................ */
@@ -99,9 +136,415 @@ $grp-row-border-top-color: #fff !default;
 $grp-row-border-bottom-color: #ddd !default;
 
 
+/*  Error Rows ............................................................ */
+
+/*  Derived from the error font colour. Hoisted out of screen.scss
+    (.grp-error-row). */
+$grp-error-row-border-color: darken($grp-font-color-error, 4) !default;
+$grp-error-row-border-bottom-color: darken($grp-font-color-error, 5) !default;
+$grp-error-row-border-top-color: lighten($grp-font-color-error, 5) !default;
+
+
 /*  Predelete ............................................................ */
 
 $grp-predelete-background-color: #f7e4e4 !default;
+
+/*  Derived. The gradient mixins in Region D shade the predelete surface. */
+$grp-predelete-background-color-shade: darken($grp-predelete-background-color, 3) !default;
+
+/*  Derived. Hoisted out of partials/layout/_modules.scss — the edges of a
+    predelete row, cell and nested module. */
+$grp-predelete-border-top-color: lighten($grp-predelete-background-color, 4) !default;
+$grp-predelete-border-bottom-color: darken($grp-predelete-background-color, 4) !default;
+$grp-predelete-border-inline-start-color: lighten($grp-predelete-background-color, 3) !default;
+$grp-predelete-border-inline-end-color: darken($grp-predelete-background-color, 4) !default;
+$grp-predelete-border-strong-color: darken($grp-predelete-background-color, 6) !default;
+$grp-predelete-module-border-top-color: lighten($grp-predelete-background-color, 5) !default;
+
+
+
+
+/*  TABLES
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  Table ............................................................ */
+
+$grp-table-background-color: #eee !default;
+$grp-table-border-color: #ccc !default;
+
+
+
+/*  FORMS
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  Form Fields ............................................................ */
+
+$grp-form-field-font-family: Arial, sans-serif !default;
+$grp-form-field-font-size: 12px !default;
+$grp-form-field-line-height: 14px !default;
+$grp-form-field-font-color: #555 !default;
+
+$grp-form-field-background-color: #fdfdfd !default;
+$grp-form-field-background-color-focus: #fff !default;
+$grp-form-field-background-color-interactive: #e1f0f5 !default;
+
+$grp-form-field-border-color: #ccc !default;
+$grp-form-field-border-focus-color: #aaa !default;
+
+
+/*  Labels ............................................................ */
+
+$grp-form-label-font-family: Arial, sans-serif !default;
+$grp-form-label-font-size: 11px !default;
+$grp-form-label-line-height: 13px !default;
+$grp-form-label-font-color: #444 !default;
+
+
+/*  Buttons ............................................................ */
+
+$grp-form-button-font-family: Arial, sans-serif !default;
+$grp-form-button-font-size: 12px !default;
+$grp-form-button-font-color: #444 !default;
+$grp-form-button-font-color-hover: #444 !default;
+
+$grp-form-button-background-color: #309bbf !default;
+$grp-form-button-background-color-hover: #444 !default;
+$grp-footer-form-button-background-color-hover: #eee !default;
+
+$grp-form-button-delete-background-color: #bf3030 !default;
+$grp-form-button-delete-background-color-hover: #444 !default;
+$grp-footer-form-button-delete-background-color-hover: #eee !default;
+
+$grp-form-button-reset-background-color: #888 !default;
+$grp-form-button-reset-background-color-hover: #444 !default;
+$grp-footer-form-button-reset-background-color-hover: #eee !default;
+
+$grp-form-button-cancel-background-color: #888 !default;
+$grp-form-button-cancel-background-color-hover: #444 !default;
+$grp-footer-form-button-cancel-background-color-hover: #eee !default;
+
+/*  Derived button shades, hoisted out of the four button mixins in Region D.
+    Each variant keeps its own resting shades, because each variant has its
+    own resting colour. */
+$grp-form-button-border-color: darken($grp-form-button-background-color, 5) !default;
+$grp-form-button-gradient-from: lighten($grp-form-button-background-color, 10) !default;
+
+$grp-form-button-delete-border-color: darken($grp-form-button-delete-background-color, 5) !default;
+$grp-form-button-delete-gradient-from: lighten($grp-form-button-delete-background-color, 10) !default;
+
+$grp-form-button-reset-border-color: darken($grp-form-button-reset-background-color, 5) !default;
+$grp-form-button-reset-gradient-from: lighten($grp-form-button-reset-background-color, 10) !default;
+
+$grp-form-button-cancel-border-color: darken($grp-form-button-cancel-background-color, 5) !default;
+$grp-form-button-cancel-gradient-from: lighten($grp-form-button-cancel-background-color, 10) !default;
+
+/*  Every variant hovers to the same colour, so the hovered shades are one
+    role — "a hovered form button" — not four identical copies of it. */
+$grp-form-button-border-color-hover: darken($grp-form-button-background-color-hover, 5) !default;
+$grp-form-button-gradient-from-hover: lighten($grp-form-button-background-color-hover, 10) !default;
+
+$grp-footer-form-button-border-color-hover: darken($grp-footer-form-button-background-color-hover, 15) !default;
+$grp-footer-form-button-gradient-from-hover: lighten($grp-footer-form-button-background-color-hover, 15) !default;
+
+
+
+/*  BUTTONS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-button-background-color: #e1f0f5 !default;
+$grp-button-background-color-hover: #eee !default;
+
+$grp-button-border-color: #ccc !default;
+$grp-button-border-hover-color: #ccc !default;
+$grp-button-border-focus-color: #888 !default;
+
+
+
+/*  MARGINS & PADDINGS
+------------------------------------------------------------------------------------------------------ */
+
+$grp-margin-size-xl: 30px !default;
+$grp-margin-size-l: 20px !default;
+$grp-margin-size-m: 15px !default;
+$grp-margin-size: 10px !default;
+$grp-margin-size-s: 5px !default;
+$grp-margin-size-xs: 2px !default;
+
+$grp-padding-size-xl: 30px !default;
+$grp-padding-size-l: 20px !default;
+$grp-padding-size-m: 15px !default;
+$grp-padding-size: 10px !default;
+$grp-padding-size-s: 5px !default;
+$grp-padding-size-xs: 2px !default;
+
+
+/* === REGION A END === */
+
+
+
+
+/*  ────────────────────────────────────────────────────────────────────────────
+    REGION B: token emission
+    ────────────────────────────────────────────────────────────────────────────
+    The map is built HERE, while the $grp-* variables above still hold real
+    colours (including any a project overrode through `!default`), and before
+    Region C re-points them at var(). Capturing the values first is what makes
+    the emission safe: a mixin body that read $grp-font-color directly would
+    be evaluated at @include time and emit the self-referential
+    `--grp-font-color: var(--grp-font-color)`.
+
+    Emission is a mixin rather than a bare `:root { … }` block because
+    rtl.scss imports this file too, and a bare block would re-declare every
+    light token in rtl.css. Only screen.scss includes it.
+    ──────────────────────────────────────────────────────────────────────────── */
+
+$grp-light-tokens: (
+    "--grp-font-color": $grp-font-color,
+    "--grp-font-color-quiet": $grp-font-color-quiet,
+    "--grp-help-font-color": $grp-help-font-color,
+    "--grp-changelist-disabled-font-color": $grp-changelist-disabled-font-color,
+    "--grp-font-color-error": $grp-font-color-error,
+
+    "--grp-link-color": $grp-link-color,
+    "--grp-link-color-hover": $grp-link-color-hover,
+    "--grp-link-color-bright": $grp-link-color-bright,
+    "--grp-link-color-quiet": $grp-link-color-quiet,
+    "--grp-link-color-quiet-hover": $grp-link-color-quiet-hover,
+
+    "--grp-context-navigation-background-color": $grp-context-navigation-background-color,
+    "--grp-context-navigation-border-color": $grp-context-navigation-border-color,
+
+    "--grp-messagelist-background-color": $grp-messagelist-background-color,
+    "--grp-messagelist-border-color": $grp-messagelist-border-color,
+    "--grp-messagelist-success-background-color": $grp-messagelist-success-background-color,
+    "--grp-messagelist-success-border-color": $grp-messagelist-success-border-color,
+    "--grp-messagelist-warning-background-color": $grp-messagelist-warning-background-color,
+    "--grp-messagelist-warning-border-color": $grp-messagelist-warning-border-color,
+    "--grp-messagelist-error-background-color": $grp-messagelist-error-background-color,
+    "--grp-messagelist-error-border-color": $grp-messagelist-error-border-color,
+
+    "--grp-group-border-color": $grp-group-border-color,
+    "--grp-group-background-color": $grp-group-background-color,
+    "--grp-group-border-closed-color": $grp-group-border-closed-color,
+
+    "--grp-module-border-color": $grp-module-border-color,
+    "--grp-module-background-color": $grp-module-background-color,
+    "--grp-module-border-top-color": $grp-module-border-top-color,
+
+    "--grp-row-border-top-color": $grp-row-border-top-color,
+    "--grp-row-border-bottom-color": $grp-row-border-bottom-color,
+
+    "--grp-error-row-border-color": $grp-error-row-border-color,
+    "--grp-error-row-border-bottom-color": $grp-error-row-border-bottom-color,
+    "--grp-error-row-border-top-color": $grp-error-row-border-top-color,
+
+    "--grp-predelete-background-color": $grp-predelete-background-color,
+    "--grp-predelete-background-color-shade": $grp-predelete-background-color-shade,
+    "--grp-predelete-border-top-color": $grp-predelete-border-top-color,
+    "--grp-predelete-border-bottom-color": $grp-predelete-border-bottom-color,
+    "--grp-predelete-border-inline-start-color": $grp-predelete-border-inline-start-color,
+    "--grp-predelete-border-inline-end-color": $grp-predelete-border-inline-end-color,
+    "--grp-predelete-border-strong-color": $grp-predelete-border-strong-color,
+    "--grp-predelete-module-border-top-color": $grp-predelete-module-border-top-color,
+
+    "--grp-table-background-color": $grp-table-background-color,
+    "--grp-table-border-color": $grp-table-border-color,
+
+    "--grp-form-field-font-color": $grp-form-field-font-color,
+    "--grp-form-field-background-color": $grp-form-field-background-color,
+    "--grp-form-field-background-color-focus": $grp-form-field-background-color-focus,
+    "--grp-form-field-background-color-interactive": $grp-form-field-background-color-interactive,
+    "--grp-form-field-border-color": $grp-form-field-border-color,
+    "--grp-form-field-border-focus-color": $grp-form-field-border-focus-color,
+
+    "--grp-form-label-font-color": $grp-form-label-font-color,
+
+    "--grp-form-button-font-color": $grp-form-button-font-color,
+    "--grp-form-button-font-color-hover": $grp-form-button-font-color-hover,
+
+    "--grp-form-button-background-color": $grp-form-button-background-color,
+    "--grp-form-button-background-color-hover": $grp-form-button-background-color-hover,
+    "--grp-footer-form-button-background-color-hover": $grp-footer-form-button-background-color-hover,
+
+    "--grp-form-button-delete-background-color": $grp-form-button-delete-background-color,
+    "--grp-form-button-delete-background-color-hover": $grp-form-button-delete-background-color-hover,
+    "--grp-footer-form-button-delete-background-color-hover": $grp-footer-form-button-delete-background-color-hover,
+
+    "--grp-form-button-reset-background-color": $grp-form-button-reset-background-color,
+    "--grp-form-button-reset-background-color-hover": $grp-form-button-reset-background-color-hover,
+    "--grp-footer-form-button-reset-background-color-hover": $grp-footer-form-button-reset-background-color-hover,
+
+    "--grp-form-button-cancel-background-color": $grp-form-button-cancel-background-color,
+    "--grp-form-button-cancel-background-color-hover": $grp-form-button-cancel-background-color-hover,
+    "--grp-footer-form-button-cancel-background-color-hover": $grp-footer-form-button-cancel-background-color-hover,
+
+    "--grp-form-button-border-color": $grp-form-button-border-color,
+    "--grp-form-button-gradient-from": $grp-form-button-gradient-from,
+    "--grp-form-button-delete-border-color": $grp-form-button-delete-border-color,
+    "--grp-form-button-delete-gradient-from": $grp-form-button-delete-gradient-from,
+    "--grp-form-button-reset-border-color": $grp-form-button-reset-border-color,
+    "--grp-form-button-reset-gradient-from": $grp-form-button-reset-gradient-from,
+    "--grp-form-button-cancel-border-color": $grp-form-button-cancel-border-color,
+    "--grp-form-button-cancel-gradient-from": $grp-form-button-cancel-gradient-from,
+    "--grp-form-button-border-color-hover": $grp-form-button-border-color-hover,
+    "--grp-form-button-gradient-from-hover": $grp-form-button-gradient-from-hover,
+    "--grp-footer-form-button-border-color-hover": $grp-footer-form-button-border-color-hover,
+    "--grp-footer-form-button-gradient-from-hover": $grp-footer-form-button-gradient-from-hover,
+
+    "--grp-button-background-color": $grp-button-background-color,
+    "--grp-button-background-color-hover": $grp-button-background-color-hover,
+    "--grp-button-border-color": $grp-button-border-color,
+    "--grp-button-border-hover-color": $grp-button-border-hover-color,
+    "--grp-button-border-focus-color": $grp-button-border-focus-color
+);
+
+@mixin grp-emit-light-tokens {
+    @each $name, $value in $grp-light-tokens {
+        #{$name}: #{$value};
+    }
+}
+
+
+
+
+/*  ────────────────────────────────────────────────────────────────────────────
+    REGION C: re-point every colour variable at its token
+    ────────────────────────────────────────────────────────────────────────────
+    From here on a $grp-* colour is a CSS custom-property reference, not a
+    colour. Everything downstream — this file's own mixins and every partial
+    screen.scss and rtl.scss import — therefore emits var(--grp-*) and follows
+    whatever a theme declares for that token at runtime.
+
+    No `!default` here: this reassignment is unconditional. Project overrides
+    still work, because they are applied to the Region A defaults and Region B
+    has already baked them into the token values.
+    ──────────────────────────────────────────────────────────────────────────── */
+
+$grp-font-color: var(--grp-font-color);
+$grp-font-color-quiet: var(--grp-font-color-quiet);
+$grp-help-font-color: var(--grp-help-font-color);
+$grp-changelist-disabled-font-color: var(--grp-changelist-disabled-font-color);
+$grp-font-color-error: var(--grp-font-color-error);
+
+$grp-link-color: var(--grp-link-color);
+$grp-link-color-hover: var(--grp-link-color-hover);
+$grp-link-color-bright: var(--grp-link-color-bright);
+$grp-link-color-quiet: var(--grp-link-color-quiet);
+$grp-link-color-quiet-hover: var(--grp-link-color-quiet-hover);
+
+$grp-context-navigation-background-color: var(--grp-context-navigation-background-color);
+$grp-context-navigation-border-color: var(--grp-context-navigation-border-color);
+
+$grp-messagelist-background-color: var(--grp-messagelist-background-color);
+$grp-messagelist-border-color: var(--grp-messagelist-border-color);
+$grp-messagelist-success-background-color: var(--grp-messagelist-success-background-color);
+$grp-messagelist-success-border-color: var(--grp-messagelist-success-border-color);
+$grp-messagelist-warning-background-color: var(--grp-messagelist-warning-background-color);
+$grp-messagelist-warning-border-color: var(--grp-messagelist-warning-border-color);
+$grp-messagelist-error-background-color: var(--grp-messagelist-error-background-color);
+$grp-messagelist-error-border-color: var(--grp-messagelist-error-border-color);
+
+$grp-group-border-color: var(--grp-group-border-color);
+$grp-group-background-color: var(--grp-group-background-color);
+$grp-group-border-closed-color: var(--grp-group-border-closed-color);
+
+$grp-module-border-color: var(--grp-module-border-color);
+$grp-module-background-color: var(--grp-module-background-color);
+$grp-module-border-top-color: var(--grp-module-border-top-color);
+
+$grp-row-border-top-color: var(--grp-row-border-top-color);
+$grp-row-border-bottom-color: var(--grp-row-border-bottom-color);
+
+$grp-error-row-border-color: var(--grp-error-row-border-color);
+$grp-error-row-border-bottom-color: var(--grp-error-row-border-bottom-color);
+$grp-error-row-border-top-color: var(--grp-error-row-border-top-color);
+
+$grp-predelete-background-color: var(--grp-predelete-background-color);
+$grp-predelete-background-color-shade: var(--grp-predelete-background-color-shade);
+$grp-predelete-border-top-color: var(--grp-predelete-border-top-color);
+$grp-predelete-border-bottom-color: var(--grp-predelete-border-bottom-color);
+$grp-predelete-border-inline-start-color: var(--grp-predelete-border-inline-start-color);
+$grp-predelete-border-inline-end-color: var(--grp-predelete-border-inline-end-color);
+$grp-predelete-border-strong-color: var(--grp-predelete-border-strong-color);
+$grp-predelete-module-border-top-color: var(--grp-predelete-module-border-top-color);
+
+$grp-table-background-color: var(--grp-table-background-color);
+$grp-table-border-color: var(--grp-table-border-color);
+
+$grp-form-field-font-color: var(--grp-form-field-font-color);
+$grp-form-field-background-color: var(--grp-form-field-background-color);
+$grp-form-field-background-color-focus: var(--grp-form-field-background-color-focus);
+$grp-form-field-background-color-interactive: var(--grp-form-field-background-color-interactive);
+$grp-form-field-border-color: var(--grp-form-field-border-color);
+$grp-form-field-border-focus-color: var(--grp-form-field-border-focus-color);
+
+$grp-form-label-font-color: var(--grp-form-label-font-color);
+
+$grp-form-button-font-color: var(--grp-form-button-font-color);
+$grp-form-button-font-color-hover: var(--grp-form-button-font-color-hover);
+
+$grp-form-button-background-color: var(--grp-form-button-background-color);
+$grp-form-button-background-color-hover: var(--grp-form-button-background-color-hover);
+$grp-footer-form-button-background-color-hover: var(--grp-footer-form-button-background-color-hover);
+
+$grp-form-button-delete-background-color: var(--grp-form-button-delete-background-color);
+$grp-form-button-delete-background-color-hover: var(--grp-form-button-delete-background-color-hover);
+$grp-footer-form-button-delete-background-color-hover: var(--grp-footer-form-button-delete-background-color-hover);
+
+$grp-form-button-reset-background-color: var(--grp-form-button-reset-background-color);
+$grp-form-button-reset-background-color-hover: var(--grp-form-button-reset-background-color-hover);
+$grp-footer-form-button-reset-background-color-hover: var(--grp-footer-form-button-reset-background-color-hover);
+
+$grp-form-button-cancel-background-color: var(--grp-form-button-cancel-background-color);
+$grp-form-button-cancel-background-color-hover: var(--grp-form-button-cancel-background-color-hover);
+$grp-footer-form-button-cancel-background-color-hover: var(--grp-footer-form-button-cancel-background-color-hover);
+
+$grp-form-button-border-color: var(--grp-form-button-border-color);
+$grp-form-button-gradient-from: var(--grp-form-button-gradient-from);
+$grp-form-button-delete-border-color: var(--grp-form-button-delete-border-color);
+$grp-form-button-delete-gradient-from: var(--grp-form-button-delete-gradient-from);
+$grp-form-button-reset-border-color: var(--grp-form-button-reset-border-color);
+$grp-form-button-reset-gradient-from: var(--grp-form-button-reset-gradient-from);
+$grp-form-button-cancel-border-color: var(--grp-form-button-cancel-border-color);
+$grp-form-button-cancel-gradient-from: var(--grp-form-button-cancel-gradient-from);
+$grp-form-button-border-color-hover: var(--grp-form-button-border-color-hover);
+$grp-form-button-gradient-from-hover: var(--grp-form-button-gradient-from-hover);
+$grp-footer-form-button-border-color-hover: var(--grp-footer-form-button-border-color-hover);
+$grp-footer-form-button-gradient-from-hover: var(--grp-footer-form-button-gradient-from-hover);
+
+$grp-button-background-color: var(--grp-button-background-color);
+$grp-button-background-color-hover: var(--grp-button-background-color-hover);
+$grp-button-border-color: var(--grp-button-border-color);
+$grp-button-border-hover-color: var(--grp-button-border-hover-color);
+$grp-button-border-focus-color: var(--grp-button-border-focus-color);
+
+
+
+
+/*  ────────────────────────────────────────────────────────────────────────────
+    REGION D: rule emission and mixins
+    ────────────────────────────────────────────────────────────────────────────
+    Everything below consumes the tokens. The compound border shorthands keep
+    their names and their literal widths — only the colour is a token, because
+    tokenising the width would make layout metrics theme-switchable.
+    ──────────────────────────────────────────────────────────────────────────── */
+
+
+/*  Compound Borders ............................................................ */
+
+$grp-group-border: 2px solid $grp-group-border-color !default;
+$grp-group-border-closed: 2px solid $grp-group-border-closed-color !default;
+
+$grp-module-border: 1px solid $grp-module-border-color !default;
+
+$grp-form-field-border: 1px solid $grp-form-field-border-color !default;
+$grp-form-field-border-focus: 1px solid $grp-form-field-border-focus-color !default;
+
+$grp-button-border: 1px solid $grp-button-border-color !default;
+$grp-button-border-hover: 1px solid $grp-button-border-hover-color !default;
+$grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
 
 
 /*  H2, H3 ............................................................ */
@@ -139,35 +582,7 @@ $grp-predelete-background-color: #f7e4e4 !default;
 }
 
 
-
-/*  TABLES
------------------------------------------------------------------------------------------------------- */
-
-
-/*  Table ............................................................ */
-
-$grp-table-background-color: #eee !default;
-$grp-table-border-color: #ccc !default;
-
-
-
-/*  FORMS
------------------------------------------------------------------------------------------------------- */
-
-
 /*  Form Fields ............................................................ */
-
-$grp-form-field-font-family: Arial, sans-serif !default;
-$grp-form-field-font-size: 12px !default;
-$grp-form-field-line-height: 14px !default;
-$grp-form-field-font-color: #555 !default;
-
-$grp-form-field-background-color: #fdfdfd !default;
-$grp-form-field-background-color-focus: #fff !default;
-$grp-form-field-background-color-interactive: #e1f0f5 !default;
-
-$grp-form-field-border: 1px solid #ccc !default;
-$grp-form-field-border-focus: 1px solid #aaa !default;
 
 @mixin grp-form-field-box-shadow {
     box-shadow: 0 1px 3px 0 #eee inset;
@@ -180,11 +595,6 @@ $grp-form-field-border-focus: 1px solid #aaa !default;
 
 /*  Labels ............................................................ */
 
-$grp-form-label-font-family: Arial, sans-serif !default;
-$grp-form-label-font-size: 11px !default;
-$grp-form-label-line-height: 13px !default;
-$grp-form-label-font-color: #444 !default;
-
 @mixin grp-form-label-required {
     font-weight: bold;
 }
@@ -192,115 +602,81 @@ $grp-form-label-font-color: #444 !default;
 
 /*  Buttons ............................................................ */
 
-$grp-form-button-font-family: Arial, sans-serif !default;
-$grp-form-button-font-size: 12px !default;
-$grp-form-button-font-color: #444 !default;
-$grp-form-button-font-color-hover: #444 !default;
-
-$grp-form-button-background-color: #309bbf !default;
-$grp-form-button-background-color-hover: #444 !default;
-$grp-footer-form-button-background-color-hover: #eee !default;
-
-$grp-form-button-delete-background-color: #bf3030 !default;
-$grp-form-button-delete-background-color-hover: #444 !default;
-$grp-footer-form-button-delete-background-color-hover: #eee !default;
-
-$grp-form-button-reset-background-color: #888 !default;
-$grp-form-button-reset-background-color-hover: #444 !default;
-$grp-footer-form-button-reset-background-color-hover: #eee !default;
-
-$grp-form-button-cancel-background-color: #888 !default;
-$grp-form-button-cancel-background-color-hover: #444 !default;
-$grp-footer-form-button-cancel-background-color-hover: #eee !default;
-
 @mixin grp-form-button-style {
     color: #fff;
-    border: 1px solid darken($grp-form-button-background-color, 5);
-    background-image: linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color);
+    border: 1px solid $grp-form-button-border-color;
+    background-image: linear-gradient($grp-form-button-gradient-from, $grp-form-button-background-color);
 
     &:hover,
     &:focus {
         color: #fff;
-        border: 1px solid darken($grp-form-button-background-color-hover, 5);
-        background-image: linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover);
+        border: 1px solid $grp-form-button-border-color-hover;
+        background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-background-color-hover);
 
         .grp-fixed-footer & {
             color: #444;
-            border: 1px solid darken($grp-footer-form-button-background-color-hover, 15);
-            background-image: linear-gradient(lighten($grp-footer-form-button-background-color-hover, 15), $grp-footer-form-button-background-color-hover);
+            border: 1px solid $grp-footer-form-button-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-background-color-hover);
         }
     }
 }
 
 @mixin grp-form-button-delete-style {
     color: #fff;
-    border: 1px solid darken($grp-form-button-delete-background-color, 5);
-    background-image: linear-gradient(lighten($grp-form-button-delete-background-color, 10), $grp-form-button-delete-background-color);
+    border: 1px solid $grp-form-button-delete-border-color;
+    background-image: linear-gradient($grp-form-button-delete-gradient-from, $grp-form-button-delete-background-color);
 
     &:hover,
     &:focus {
         color: #fff;
-        border: 1px solid darken($grp-form-button-delete-background-color-hover, 5);
-        background-image: linear-gradient(lighten($grp-form-button-delete-background-color-hover, 10), $grp-form-button-delete-background-color-hover);
+        border: 1px solid $grp-form-button-border-color-hover;
+        background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-delete-background-color-hover);
 
         .grp-fixed-footer & {
             color: #444;
-            border: 1px solid darken($grp-footer-form-button-delete-background-color-hover, 15);
-            background-image: linear-gradient(lighten($grp-footer-form-button-delete-background-color-hover, 15), $grp-footer-form-button-delete-background-color-hover);
+            border: 1px solid $grp-footer-form-button-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-delete-background-color-hover);
         }
     }
 }
 
 @mixin grp-form-button-cancel-style {
     color: #fff;
-    border: 1px solid darken($grp-form-button-cancel-background-color, 5);
-    background-image: linear-gradient(lighten($grp-form-button-cancel-background-color, 10), $grp-form-button-cancel-background-color);
+    border: 1px solid $grp-form-button-cancel-border-color;
+    background-image: linear-gradient($grp-form-button-cancel-gradient-from, $grp-form-button-cancel-background-color);
 
     &:hover,
     &:focus {
         color: #fff;
-        border: 1px solid darken($grp-form-button-cancel-background-color-hover, 5);
-        background-image: linear-gradient(lighten($grp-form-button-cancel-background-color-hover, 10), $grp-form-button-cancel-background-color-hover);
+        border: 1px solid $grp-form-button-border-color-hover;
+        background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-cancel-background-color-hover);
 
         .grp-fixed-footer & {
             color: #444;
-            border: 1px solid darken($grp-footer-form-button-cancel-background-color-hover, 15);
-            background-image: linear-gradient(lighten($grp-footer-form-button-cancel-background-color-hover, 15), $grp-footer-form-button-cancel-background-color-hover);
+            border: 1px solid $grp-footer-form-button-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-cancel-background-color-hover);
         }
     }
 }
 
 @mixin grp-form-button-reset-style {
     color: #fff;
-    border: 1px solid darken($grp-form-button-reset-background-color, 5);
-    background-image: linear-gradient(lighten($grp-form-button-reset-background-color, 10), $grp-form-button-reset-background-color);
+    border: 1px solid $grp-form-button-reset-border-color;
+    background-image: linear-gradient($grp-form-button-reset-gradient-from, $grp-form-button-reset-background-color);
 
     &:hover,
     &:focus {
         color: #fff;
-        border: 1px solid darken($grp-form-button-reset-background-color-hover, 5);
-        background-image: linear-gradient(lighten($grp-form-button-reset-background-color-hover, 10), $grp-form-button-reset-background-color-hover);
+        border: 1px solid $grp-form-button-border-color-hover;
+        background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-reset-background-color-hover);
 
         .grp-fixed-footer & {
             color: #444;
-            border: 1px solid darken($grp-footer-form-button-reset-background-color-hover, 15);
-            background-image: linear-gradient(lighten($grp-footer-form-button-reset-background-color-hover, 15), $grp-footer-form-button-reset-background-color-hover);
+            border: 1px solid $grp-footer-form-button-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-reset-background-color-hover);
         }
     }
 }
-
-
-
-/*  BUTTONS
------------------------------------------------------------------------------------------------------- */
-
-$grp-button-background-color: #e1f0f5 !default;
-$grp-button-background-color-hover: #eee !default;
-
-$grp-button-border: 1px solid #ccc !default;
-$grp-button-border-hover: 1px solid #ccc !default;
-$grp-button-border-focus: 1px solid #888 !default;
-
 
 
 /*  GRADIENTS
@@ -330,29 +706,9 @@ $grp-button-border-focus: 1px solid #888 !default;
 /*  Predelete Gradients ............................................................ */
 
 @mixin grp-gradient-predelete {
-    background-image: linear-gradient($grp-predelete-background-color, darken($grp-predelete-background-color, 3));
+    background-image: linear-gradient($grp-predelete-background-color, $grp-predelete-background-color-shade);
 }
 
 @mixin grp-gradient-predelete-reverse {
-    background-image: linear-gradient(darken($grp-predelete-background-color, 3), $grp-predelete-background-color);
+    background-image: linear-gradient($grp-predelete-background-color-shade, $grp-predelete-background-color);
 }
-
-
-
-
-/*  MARGINS & PADDINGS
------------------------------------------------------------------------------------------------------- */
-
-$grp-margin-size-xl: 30px !default;
-$grp-margin-size-l: 20px !default;
-$grp-margin-size-m: 15px !default;
-$grp-margin-size: 10px !default;
-$grp-margin-size-s: 5px !default;
-$grp-margin-size-xs: 2px !default;
-
-$grp-padding-size-xl: 30px !default;
-$grp-padding-size-l: 20px !default;
-$grp-padding-size-m: 15px !default;
-$grp-padding-size: 10px !default;
-$grp-padding-size-s: 5px !default;
-$grp-padding-size-xs: 2px !default;

@@ -10,6 +10,13 @@
 
 @import "partials/skins/grp-default";
 
+/*  Light-theme design tokens. Emitted here and only here: rtl.scss imports
+    the same skin but must not re-declare them (rtl.css always loads after
+    screen.css). */
+:root {
+  @include grp-emit-light-tokens;
+}
+
 @import "partials/library/spritesheet";
 @import "partials/library/mixins";
 @import "partials/library/borders";
@@ -125,7 +132,7 @@ body.grp-login {
             color: #eee;
 
             &:hover {
-              color: lighten($grp-link-color, 10);
+              color: $grp-link-color-bright;
             }
           }
         }
@@ -140,7 +147,7 @@ body.grp-login {
           color: #fff;
           font-size: $grp-font-size-l;
           font-weight: bold;
-          background-image: linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color);
+          background-image: linear-gradient($grp-form-button-gradient-from, $grp-form-button-background-color);
         }
       }
 
@@ -173,10 +180,10 @@ body.grp-login {
         &.grp-error-row {
           margin: 0 -1px;
           padding: 0;
-          border-left: 1px solid darken($grp-font-color-error, 4);
-          border-right: 1px solid darken($grp-font-color-error, 4);
-          border-bottom: 1px solid darken($grp-font-color-error, 5);
-          border-top: 1px solid lighten($grp-font-color-error, 5);
+          border-left: 1px solid $grp-error-row-border-color;
+          border-right: 1px solid $grp-error-row-border-color;
+          border-bottom: 1px solid $grp-error-row-border-bottom-color;
+          border-top: 1px solid $grp-error-row-border-top-color;
           box-sizing: content-box;
 
           &:first-child {
@@ -267,7 +274,7 @@ header#grp-header {
   overflow: visible;
 
   a {
-    color: lighten($grp-link-color, 10);
+    color: $grp-link-color-bright;
 
     &:hover {
       color: #fff;
@@ -369,7 +376,7 @@ h1#grp-admin-title {
       margin: 0 0 2px 0 !important;
       width: auto;
       height: auto;
-      color: lighten($grp-link-color, 10);
+      color: $grp-link-color-bright;
       @extend .grp-font-size;
       font-weight: bold;
       outline: 0;
