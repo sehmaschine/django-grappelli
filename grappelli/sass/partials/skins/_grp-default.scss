@@ -676,6 +676,17 @@ $grp-spritesheet: url(#{$spritesheet-image}) !default;
 $grp-bg-changelist-results: url('../images/backgrounds/changelist-results.png') !default;
 $grp-bg-sortable-placeholder: url('../images/backgrounds/ui-sortable-placeholder.png') !default;
 
+/*  form-select.png sits under images/icons/ but is not reached through the
+    sprite sheet. `appearance: none` strips the control the browser draws for
+    a <select>, and this raster is painted at the field's trailing edge in
+    its place: an opaque plate the colour of the field, with a chevron
+    knocked out of it. Being a plate rather than a transparent glyph, its
+    dark variant has to be recoloured against the dark FIELD - otherwise
+    every select on the page wears a bright square. Same build step as the
+    two rasters above, different per-pixel transform; the asset table in
+    Gruntfile.js spells out why. */
+$grp-bg-form-select: url('../images/icons/form-select.png') !default;
+
 
 
 /*  MARGINS & PADDINGS
@@ -948,7 +959,8 @@ $grp-light-tokens: (
     "--grp-spritesheet": $grp-spritesheet,
 
     "--grp-bg-changelist-results": $grp-bg-changelist-results,
-    "--grp-bg-sortable-placeholder": $grp-bg-sortable-placeholder
+    "--grp-bg-sortable-placeholder": $grp-bg-sortable-placeholder,
+    "--grp-bg-form-select": $grp-bg-form-select
 );
 
 /*  THE DJANGO CUSTOM-PROPERTY BRIDGE
@@ -1265,6 +1277,7 @@ $grp-spritesheet: var(--grp-spritesheet);
 
 $grp-bg-changelist-results: var(--grp-bg-changelist-results);
 $grp-bg-sortable-placeholder: var(--grp-bg-sortable-placeholder);
+$grp-bg-form-select: var(--grp-bg-form-select);
 
 
 /* === REGION C END === */

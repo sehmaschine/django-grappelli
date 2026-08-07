@@ -580,9 +580,17 @@ $grp-dark-doc-45:   #e63c00 !default;
 
     /*  BACKGROUND RASTERS ............................................................ */
 
-    /*  Both fixed, checked-in siblings produced by the same build step. */
+    /*  All three are fixed, checked-in siblings produced by the same build
+        step. form-select-dark.png is the <select> chevron plate, and it is
+        the one asset where leaving the light original in place is not merely
+        suboptimal but plainly broken: that original is an OPAQUE WHITE plate,
+        invisible against the white field it is painted on and a bright square
+        against a dark one. Its variant reproduces the light asset's own
+        per-pixel contrast against the dark field, which sinks the plate back
+        into the field and keeps the chevron at the ratio it always had. */
     --grp-bg-changelist-results: url('../images/backgrounds/changelist-results-dark.png');
     --grp-bg-sortable-placeholder: url('../images/backgrounds/ui-sortable-placeholder-dark.png');
+    --grp-bg-form-select: url('../images/icons/form-select-dark.png');
 }
 
 

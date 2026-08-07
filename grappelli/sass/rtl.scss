@@ -761,7 +761,7 @@ body.rtl {
         select:focus {
             padding: 4px 5px 4px 28px;
             appearance: none;
-            background-image: url('../images/icons/form-select.png');
+            background-image: $grp-bg-form-select;
             background-position: 0 50%;
             background-repeat: no-repeat;
         }

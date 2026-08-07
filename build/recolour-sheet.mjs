@@ -325,6 +325,102 @@ export function recolourTextureFile(srcPath, destPath, opts = {}) {
   return stats;
 }
 
+// ---- the plate transform (a THIRD entry point, a third criterion) -----
+//
+// form-select.png is neither an icon sheet nor a texture. It is a 15x15
+// opaque WHITE PLATE with a grey chevron knocked out of it, painted at the
+// right-hand edge of every <select> once `appearance: none` removes the
+// control the browser would have drawn. In the light theme the plate is the
+// same white as the field it sits on, so all a user ever sees is the
+// chevron; the plate exists only to give the glyph an opaque backing.
+//
+// Both other transforms get this asset wrong, for opposite reasons:
+//
+//   The ICON transform's step 0 passes any near-white pixel through
+//   untouched, because in an icon sheet white means "glyph drawn white on
+//   purpose". Here white means "background", so the plate survives at full
+//   white and lands at 16:1 on the dark field - a bright plate on every
+//   select, which is the whole defect.
+//
+//   A bare lightness flip fixes the plate (white -> black) but throws away
+//   the relationship: the plate goes to 1.30:1 where the light original is
+//   1.02:1, and the antialiased ramp between plate and chevron inverts,
+//   putting a halo where the light asset has none.
+//
+// So the plate transform states the relationship directly: for each source
+// pixel, MEASURE its contrast against the backdrop it is painted on in the
+// light theme, then find the colour that reproduces that exact contrast
+// against the backdrop it will be painted on in the dark theme. Hue and
+// saturation are held; only lightness moves. A pixel that was invisible on
+// the light field is invisible on the dark field, and a chevron that read at
+// 4.28:1 still reads at 4.28:1.
+//
+// Alpha is honoured on both sides - the measurement composites over the
+// light backdrop and the fit composites over the dark one - so antialiased
+// edge pixels keep their weight instead of acquiring a fringe.
+//
+// There is no contrast floor here on purpose. A floor would lift the plate
+// off the field, which is precisely what this transform exists to prevent;
+// the chevron's own legibility is carried over from the light asset, which
+// already clears 4:1.
+
+// One opaque-or-blended pixel: measure against `lightBg`, reproduce against
+// `darkBg`.
+export function recolourPlatePixel(r, g, b, a, opts = {}) {
+  if (a === 0) return { r, g, b, a };
+  const lightBg = opts.lightBg || { r: 0xff, g: 0xff, b: 0xff };
+  const darkBg = opts.darkBg || DEFAULT_BG;
+  const target = contrastRatio(compositeOver({ r, g, b }, a, lightBg), lightBg);
+  const fitted = fitCompositedContrast({ r, g, b }, a, darkBg, target);
+  return { r: fitted.r, g: fitted.g, b: fitted.b, a };
+}
+
+// Mutates png.data in place. Memoises per unique (r,g,b,a) quadruple - alpha
+// is part of the key, as in the texture path, because both the measurement
+// and the fit depend on it.
+export function recolourPlatePngBuffer(png, opts = {}) {
+  const { data } = png;
+  const lightBg = opts.lightBg || { r: 0xff, g: 0xff, b: 0xff };
+  const darkBg = opts.darkBg || DEFAULT_BG;
+  const cache = new Map();
+
+  for (let i = 0; i < data.length; i += 4) {
+    const a = data[i + 3];
+    if (a === 0) continue;
+
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const key = `${r},${g},${b},${a}`;
+
+    let out = cache.get(key);
+    if (!out) {
+      const target = contrastRatio(compositeOver({ r, g, b }, a, lightBg), lightBg);
+      const fitted = fitCompositedContrast({ r, g, b }, a, darkBg, target);
+      out = {
+        ...fitted,
+        target,
+        ratio: contrastRatio(compositeOver(fitted, a, darkBg), darkBg),
+      };
+      cache.set(key, out);
+    }
+
+    data[i] = out.r;
+    data[i + 1] = out.g;
+    data[i + 2] = out.b;
+    // alpha (data[i + 3]) is left untouched
+  }
+
+  return { uniqueColours: cache.size, fitted: [...cache.values()] };
+}
+
+export function recolourPlateFile(srcPath, destPath, opts = {}) {
+  const png = PNG.sync.read(fs.readFileSync(srcPath));
+  const stats = recolourPlatePngBuffer(png, opts);
+  fs.writeFileSync(destPath, PNG.sync.write(png));
+  return stats;
+}
+
 // ---- PNG buffer / file helpers ----------------------------------------
 
 // Mutates png.data in place. Memoises per unique (r,g,b) triple: spritesheet
@@ -390,6 +486,7 @@ export function recolourFile(srcPath, destPath, opts = {}) {
 // ---- CLI entry point ----------------------------------------------------
 // Usage: node build/recolour-sheet.mjs <src.png> <dest.png>
 //        node build/recolour-sheet.mjs --texture[=<bg>[,<target>]] <src> <dest>
+//        node build/recolour-sheet.mjs --plate[=<lightBg>[,<darkBg>]] <src> <dest>
 
 const isMain =
   process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
@@ -397,16 +494,33 @@ const isMain =
 if (isMain) {
   const args = process.argv.slice(2);
   const textureArg = args.find((a) => a.startsWith("--texture"));
+  const plateArg = args.find((a) => a.startsWith("--plate"));
   const [src, dest] = args.filter((a) => !a.startsWith("--"));
 
   if (!src || !dest) {
     console.error(
-      "usage: node build/recolour-sheet.mjs [--texture[=<bg>[,<target>]]] <src.png> <dest.png>"
+      "usage: node build/recolour-sheet.mjs " +
+        "[--texture[=<bg>[,<target>]] | --plate[=<lightBg>[,<darkBg>]]] <src.png> <dest.png>"
     );
     process.exit(2);
   }
 
-  if (textureArg) {
+  if (plateArg) {
+    const [lightHex, darkHex] = (plateArg.split("=")[1] || "").split(",");
+    const lightBg = lightHex ? hexToRgb(lightHex) : { r: 0xff, g: 0xff, b: 0xff };
+    const darkBg = darkHex ? hexToRgb(darkHex) : DEFAULT_BG;
+    const stats = recolourPlateFile(src, dest, { lightBg, darkBg });
+    console.log(
+      `wrote ${dest} (plate mode, ${rgbToHex(lightBg)} -> ${rgbToHex(darkBg)}): ` +
+        `${stats.uniqueColours} unique colour+alpha combination(s)`
+    );
+    for (const f of stats.fitted) {
+      console.log(
+        `  -> ${rgbToHex(f)} reads ${f.ratio.toFixed(2)}:1 on ${rgbToHex(darkBg)} ` +
+          `(light original: ${f.target.toFixed(2)}:1 on ${rgbToHex(lightBg)})`
+      );
+    }
+  } else if (textureArg) {
     const [bgHex, targetStr] = (textureArg.split("=")[1] || "").split(",");
     const bg = bgHex ? hexToRgb(bgHex) : DEFAULT_BG;
     const target = targetStr ? Number(targetStr) : TEXTURE_TARGET_RATIO;

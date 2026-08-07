@@ -37,7 +37,14 @@ module.exports = function (grunt) {
     sprite: {
       all: {
         algorithm: "top-down",
-        src: "grappelli/static/grappelli/images/icons/*.png",
+        // The "-dark" siblings in this directory are recoloured variants
+        // produced by sprite-dark BELOW, from the sheet this target builds.
+        // Sweeping them back in would fold last run's output into next run's
+        // input and grow the sheet on every build.
+        src: [
+          "grappelli/static/grappelli/images/icons/*.png",
+          "!grappelli/static/grappelli/images/icons/*-dark.png",
+        ],
         dest: `grappelli/static/grappelli/images/spritesheet-${unixTimestamp}.png`,
         destCss: "grappelli/sass/partials/library/_spritesheet.scss",
         imgPath: `../images/spritesheet-${unixTimestamp}.png`,
@@ -115,11 +122,12 @@ module.exports = function (grunt) {
     grunt.task.run(["exec:build_sphinx"]);
   });
 
-  // Non-icon background rasters that also need a dark variant. Fixed,
-  // checked-in filenames (no build-time timestamp, unlike the spritesheet
-  // above) - the SCSS tokens (--grp-bg-changelist-results,
-  // --grp-bg-sortable-placeholder) always name the "-dark" suffix directly,
-  // so nothing here needs rewriting on regeneration.
+  // Raster images outside the sprite sheet that also need a dark variant.
+  // Fixed, checked-in filenames (no build-time timestamp, unlike the
+  // spritesheet above) - the SCSS tokens (--grp-bg-changelist-results,
+  // --grp-bg-sortable-placeholder, --grp-bg-form-select) always name the
+  // "-dark" suffix directly, so nothing here needs rewriting on
+  // regeneration.
   //
   // They do NOT share a transform:
   //
@@ -138,28 +146,51 @@ module.exports = function (grunt) {
   //   surface, against 1.25:1 for the light original over #fff, which made
   //   it the loudest thing on the change form mid-drag. It is a texture too.
   //
-  // `surface` names the dark ramp stop the tile is actually composited over;
-  // `target` is the light original's OWN composited ratio over its own light
-  // backdrop - a measured parity figure, not a WCAG floor.
-  const darkBackgroundAssets = [
-    { name: "changelist-results", mode: "texture", surface: "surface", target: 1.092 },
-    { name: "ui-sortable-placeholder", mode: "texture", surface: "sunken", target: 1.248 },
+  //   form-select.png is a white PLATE with a chevron knocked out of it,
+  //   drawn at the edge of every <select> once `appearance: none` removes
+  //   the browser's own control. The icon transform leaves the plate at full
+  //   white (its step 0 reads white as a deliberate light-on-dark glyph), so
+  //   the plate lands at 16:1 on the dark field and every select wears a
+  //   bright square. It needs the PLATE transform, which reproduces each
+  //   pixel's LIGHT-theme contrast against the dark field: the plate goes
+  //   back to being invisible and the chevron keeps the ratio it always had.
+  //
+  // For a texture, `surface` names the dark ramp stop the tile is composited
+  // over and `target` is the light original's OWN composited ratio over its
+  // own light backdrop - a measured parity figure, not a WCAG floor.
+  //
+  // For a plate, `lightSurface` names the Sass variable holding the light
+  // backdrop and `surface` the dark ramp stop replacing it; the per-pixel
+  // targets are measured from the source image, so there is no ratio to
+  // state here.
+  const darkImageAssets = [
+    { dir: "backgrounds", name: "changelist-results", mode: "texture", surface: "surface", target: 1.092 },
+    { dir: "backgrounds", name: "ui-sortable-placeholder", mode: "texture", surface: "sunken", target: 1.248 },
+    { dir: "icons", name: "form-select", mode: "plate", lightSurface: "grp-form-field-background-color", surface: "sunken" },
   ];
-  const backgroundsDir = "grappelli/static/grappelli/images/backgrounds/";
+  const imagesDir = "grappelli/static/grappelli/images/";
 
-  // Read the backdrop out of the dark token partial rather than repeating a
-  // hex here: if a ramp stop ever moves, a hand-copied constant would
-  // silently stop matching and the texture would drift back into visibility.
+  // Read the backdrops out of the SCSS rather than repeating hexes here: if a
+  // ramp stop or a light default ever moves, a hand-copied constant would
+  // silently stop matching and the recoloured asset would drift back into
+  // visibility with nothing to catch it.
   const darkTokensScss = "grappelli/sass/partials/skins/_grp-tokens-dark.scss";
-  function darkRampStop(stop) {
-    const src = grunt.file.read(darkTokensScss);
-    const m = new RegExp(`\\$grp-dark-ramp-${stop}:\\s*(#[0-9a-fA-F]{3,6})\\b`).exec(src);
+  const lightTokensScss = "grappelli/sass/partials/skins/_grp-default.scss";
+
+  function scssColour(file, variable) {
+    const src = grunt.file.read(file);
+    const m = new RegExp(`\\$${variable}:\\s*(#[0-9a-fA-F]{3,6})\\b`).exec(src);
     if (!m) {
-      throw new Error(
-        `sprite-dark: could not read $grp-dark-ramp-${stop} from ${darkTokensScss}`
-      );
+      throw new Error(`sprite-dark: could not read $${variable} from ${file}`);
     }
-    return m[1];
+    // Expand #abc so the recolour module always receives six digits.
+    return m[1].length === 4
+      ? `#${m[1][1]}${m[1][1]}${m[1][2]}${m[1][2]}${m[1][3]}${m[1][3]}`
+      : m[1];
+  }
+
+  function darkRampStop(stop) {
+    return scssColour(darkTokensScss, `grp-dark-ramp-${stop}`);
   }
 
   // Dark spritesheet (and dark background rasters): recolours the sheet
@@ -180,7 +211,7 @@ module.exports = function (grunt) {
       const darkScss = "grappelli/sass/partials/library/_spritesheet-dark.scss";
 
       import("./build/recolour-sheet.mjs")
-        .then(({ recolourFile, recolourTextureFile, hexToRgb }) => {
+        .then(({ recolourFile, recolourTextureFile, recolourPlateFile, hexToRgb }) => {
           const stats = recolourFile(lightSheet, darkSheet);
           grunt.file.write(
             darkScss,
@@ -192,9 +223,16 @@ module.exports = function (grunt) {
               `${stats.preservedColours} preserved as already light-on-dark) and ${darkScss}`
           );
 
-          for (const { name, mode, surface, target } of darkBackgroundAssets) {
-            const light = `${backgroundsDir}${name}.png`;
-            const dark = `${backgroundsDir}${name}-dark.png`;
+          for (const {
+            dir,
+            name,
+            mode,
+            surface,
+            lightSurface,
+            target,
+          } of darkImageAssets) {
+            const light = `${imagesDir}${dir}/${name}.png`;
+            const dark = `${imagesDir}${dir}/${name}-dark.png`;
 
             if (mode === "texture") {
               const t = recolourTextureFile(light, dark, {
@@ -207,6 +245,20 @@ module.exports = function (grunt) {
                   `${t.uniqueColours} colour+alpha combination(s), composited ` +
                   t.fitted.map((f) => `${f.ratio.toFixed(3)}:1`).join(", ") +
                   `)`
+              );
+            } else if (mode === "plate") {
+              const p = recolourPlateFile(light, dark, {
+                lightBg: hexToRgb(scssColour(lightTokensScss, lightSurface)),
+                darkBg: hexToRgb(darkRampStop(surface)),
+              });
+              const worst = p.fitted.reduce(
+                (acc, f) => Math.max(acc, Math.abs(f.ratio - f.target)),
+                0
+              );
+              grunt.log.writeln(
+                `sprite-dark: wrote ${dark} (plate mode, $${lightSurface} -> ` +
+                  `$grp-dark-ramp-${surface}, ${p.uniqueColours} colour+alpha ` +
+                  `combination(s), worst light-parity error ${worst.toFixed(3)}:1)`
               );
             } else {
               const bgStats = recolourFile(light, dark);
