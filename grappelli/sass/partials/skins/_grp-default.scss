@@ -92,6 +92,10 @@ $grp-link-color-bright: lighten($grp-link-color, 10) !default;
 $grp-link-color-quiet: #62bbd9 !default;
 $grp-link-color-quiet-hover: #444 !default;
 
+/*  Distinct from both $grp-link-color-quiet (#62bbd9) and $grp-link-color-bright
+    (#4fb2d3). Hoisted out of _tables.scss and _changelist.scss (Task 6). */
+$grp-link-color-subtle: #59afcc !default;
+
 
 
 
@@ -130,6 +134,23 @@ $grp-messagelist-error-background-color: lighten(#bf3030, 35) !default;
 $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-color, 5) !default;
 
 
+/*  Pagination ............................................................ */
+
+/*  Hoisted out of _changelist.scss (Task 6). */
+$grp-pagination-border-color: #d9d9d9 !default;
+$grp-pagination-border-color-active: #bdbdbd !default;
+$grp-pagination-background-color: #eee !default;
+$grp-pagination-background-color-shade: #e0e0e0 !default;
+
+
+/*  Changelist ............................................................ */
+
+/*  The white halo drawn around a control sitting on the grey module surface
+    (pagination list, search form, filter pulldown). Hoisted out of
+    _changelist.scss (Task 6). */
+$grp-control-outline-color: #fff !default;
+
+
 
 
 /*  DARK CHROME
@@ -156,6 +177,24 @@ $grp-dark-font-color-quiet: #eee !default;
 
 /*  The light module nested inside the dark login panel. */
 $grp-login-module-border-top-color: #f6f6f6 !default;
+
+/*  Hoisted out of _changelist.scss (Task 6). The changelist actions bar
+    renders its chips on this dark surface; these are the hover states of
+    $grp-dark-chip-border-color and $grp-dark-background-color, distinct
+    tokens because a hover state can move independently of its resting
+    counterpart. */
+$grp-dark-chip-border-color-hover: #222 !default;
+$grp-dark-background-color-hover: #555 !default;
+
+/*  A dark item border, distinct from $grp-dark-chip-border-color (#111) even
+    though it also renders on dark chrome - the changelist actions bar list
+    item, not a chip. Hoisted out of _changelist.scss (Task 6). */
+$grp-dark-item-border-color: #333 !default;
+
+/*  A link colour rendered on the #222 dark chrome chip, not the light module
+    surface - same literal as $grp-link-color-subtle but a different role.
+    Hoisted out of _changelist.scss (Task 6). */
+$grp-dark-link-color: #59afcc !default;
 
 
 
@@ -223,6 +262,39 @@ $grp-predelete-module-border-top-color: lighten($grp-predelete-background-color,
 
 $grp-table-background-color: #eee !default;
 $grp-table-border-color: #ccc !default;
+
+/*  Shade partner of $grp-table-background-color, the second stop of the
+    header gradient (base + shade, direction-neutral: the gradient reverses
+    for sorted/hover headers). Hoisted out of _tables.scss (Task 6). */
+$grp-table-background-color-shade: #e0e0e0 !default;
+
+/*  Cell divider, distinct from the gradient shade even though it shares the
+    same value today. Hoisted out of _tables.scss (Task 6). */
+$grp-table-cell-border-color: #e0e0e0 !default;
+
+/*  Lighter than the horizontal divider above; mirrored at rtl.scss:564.
+    Hoisted out of _tables.scss (Task 6). */
+$grp-table-cell-border-inline-start-color: #e4e4e4 !default;
+
+
+/*  Rows ............................................................ */
+
+/*  The zebra stripe. Hoisted out of _tables.scss (Task 6). */
+$grp-table-row-background-color-alt: #f4f4f4 !default;
+
+/*  The unstriped data row - a surface, distinct from the page canvas and
+    from text-on-dark despite sharing the #fff value today. Hoisted out of
+    _tables.scss (Task 6). */
+$grp-table-row-background-color: #fff !default;
+
+/*  Shared by _tables.scss and _changelist.scss (Task 6). */
+$grp-table-row-selected-background-color: #ffd !default;
+
+$grp-table-row-label-font-color: #666 !default;
+
+/*  A single section rule, deliberately not the tabular-inline cell grid
+    that shares this value. Hoisted out of _tables.scss (Task 6). */
+$grp-table-tfoot-border-top-color: #d4d4d4 !default;
 
 
 
@@ -345,6 +417,14 @@ $grp-text-shadow-color: #f5f5f5 !default;
 $grp-submit-row-shadow-color: #bbb !default;
 $grp-fixed-footer-item-background-color: #444 !default;
 
+/*  Drop shadow under a floating overlay. Hoisted out of _changelist.scss;
+    shared with _jquery-ui.scss (Task 8). */
+$grp-overlay-shadow-color: #333 !default;
+
+/*  Letterpress highlight on the open pulldown handler, not a surface or a
+    border. Hoisted out of _changelist.scss (Task 6). */
+$grp-pulldown-handler-text-shadow-color: #fff !default;
+
 /*  Documentation (RTE) typography. Hoisted out of _base.scss. */
 $grp-doc-color: #d94800 !default;
 $grp-doc-rule-color: #c30 !default;
@@ -412,6 +492,7 @@ $grp-light-tokens: (
     "--grp-link-color-bright": $grp-link-color-bright,
     "--grp-link-color-quiet": $grp-link-color-quiet,
     "--grp-link-color-quiet-hover": $grp-link-color-quiet-hover,
+    "--grp-link-color-subtle": $grp-link-color-subtle,
 
     "--grp-context-navigation-background-color": $grp-context-navigation-background-color,
     "--grp-context-navigation-border-color": $grp-context-navigation-border-color,
@@ -425,6 +506,13 @@ $grp-light-tokens: (
     "--grp-messagelist-error-background-color": $grp-messagelist-error-background-color,
     "--grp-messagelist-error-border-color": $grp-messagelist-error-border-color,
 
+    "--grp-pagination-border-color": $grp-pagination-border-color,
+    "--grp-pagination-border-color-active": $grp-pagination-border-color-active,
+    "--grp-pagination-background-color": $grp-pagination-background-color,
+    "--grp-pagination-background-color-shade": $grp-pagination-background-color-shade,
+
+    "--grp-control-outline-color": $grp-control-outline-color,
+
     "--grp-dark-background-color": $grp-dark-background-color,
     "--grp-dark-gradient-from": $grp-dark-gradient-from,
     "--grp-dark-border-shade-color": $grp-dark-border-shade-color,
@@ -435,6 +523,10 @@ $grp-light-tokens: (
     "--grp-dark-chip-border-color": $grp-dark-chip-border-color,
     "--grp-dark-font-color-quiet": $grp-dark-font-color-quiet,
     "--grp-login-module-border-top-color": $grp-login-module-border-top-color,
+    "--grp-dark-chip-border-color-hover": $grp-dark-chip-border-color-hover,
+    "--grp-dark-background-color-hover": $grp-dark-background-color-hover,
+    "--grp-dark-item-border-color": $grp-dark-item-border-color,
+    "--grp-dark-link-color": $grp-dark-link-color,
 
     "--grp-group-border-color": $grp-group-border-color,
     "--grp-group-background-color": $grp-group-background-color,
@@ -462,6 +554,14 @@ $grp-light-tokens: (
 
     "--grp-table-background-color": $grp-table-background-color,
     "--grp-table-border-color": $grp-table-border-color,
+    "--grp-table-background-color-shade": $grp-table-background-color-shade,
+    "--grp-table-cell-border-color": $grp-table-cell-border-color,
+    "--grp-table-cell-border-inline-start-color": $grp-table-cell-border-inline-start-color,
+    "--grp-table-row-background-color-alt": $grp-table-row-background-color-alt,
+    "--grp-table-row-background-color": $grp-table-row-background-color,
+    "--grp-table-row-selected-background-color": $grp-table-row-selected-background-color,
+    "--grp-table-row-label-font-color": $grp-table-row-label-font-color,
+    "--grp-table-tfoot-border-top-color": $grp-table-tfoot-border-top-color,
 
     "--grp-form-field-font-color": $grp-form-field-font-color,
     "--grp-form-field-background-color": $grp-form-field-background-color,
@@ -529,6 +629,8 @@ $grp-light-tokens: (
     "--grp-text-shadow-color": $grp-text-shadow-color,
     "--grp-submit-row-shadow-color": $grp-submit-row-shadow-color,
     "--grp-fixed-footer-item-background-color": $grp-fixed-footer-item-background-color,
+    "--grp-overlay-shadow-color": $grp-overlay-shadow-color,
+    "--grp-pulldown-handler-text-shadow-color": $grp-pulldown-handler-text-shadow-color,
 
     "--grp-doc-color": $grp-doc-color,
     "--grp-doc-rule-color": $grp-doc-rule-color,
@@ -578,6 +680,7 @@ $grp-link-color-hover: var(--grp-link-color-hover);
 $grp-link-color-bright: var(--grp-link-color-bright);
 $grp-link-color-quiet: var(--grp-link-color-quiet);
 $grp-link-color-quiet-hover: var(--grp-link-color-quiet-hover);
+$grp-link-color-subtle: var(--grp-link-color-subtle);
 
 $grp-context-navigation-background-color: var(--grp-context-navigation-background-color);
 $grp-context-navigation-border-color: var(--grp-context-navigation-border-color);
@@ -591,6 +694,13 @@ $grp-messagelist-warning-border-color: var(--grp-messagelist-warning-border-colo
 $grp-messagelist-error-background-color: var(--grp-messagelist-error-background-color);
 $grp-messagelist-error-border-color: var(--grp-messagelist-error-border-color);
 
+$grp-pagination-border-color: var(--grp-pagination-border-color);
+$grp-pagination-border-color-active: var(--grp-pagination-border-color-active);
+$grp-pagination-background-color: var(--grp-pagination-background-color);
+$grp-pagination-background-color-shade: var(--grp-pagination-background-color-shade);
+
+$grp-control-outline-color: var(--grp-control-outline-color);
+
 $grp-dark-background-color: var(--grp-dark-background-color);
 $grp-dark-gradient-from: var(--grp-dark-gradient-from);
 $grp-dark-border-shade-color: var(--grp-dark-border-shade-color);
@@ -601,6 +711,10 @@ $grp-dark-row-border-bottom-color: var(--grp-dark-row-border-bottom-color);
 $grp-dark-chip-border-color: var(--grp-dark-chip-border-color);
 $grp-dark-font-color-quiet: var(--grp-dark-font-color-quiet);
 $grp-login-module-border-top-color: var(--grp-login-module-border-top-color);
+$grp-dark-chip-border-color-hover: var(--grp-dark-chip-border-color-hover);
+$grp-dark-background-color-hover: var(--grp-dark-background-color-hover);
+$grp-dark-item-border-color: var(--grp-dark-item-border-color);
+$grp-dark-link-color: var(--grp-dark-link-color);
 
 $grp-group-border-color: var(--grp-group-border-color);
 $grp-group-background-color: var(--grp-group-background-color);
@@ -628,6 +742,14 @@ $grp-predelete-module-border-top-color: var(--grp-predelete-module-border-top-co
 
 $grp-table-background-color: var(--grp-table-background-color);
 $grp-table-border-color: var(--grp-table-border-color);
+$grp-table-background-color-shade: var(--grp-table-background-color-shade);
+$grp-table-cell-border-color: var(--grp-table-cell-border-color);
+$grp-table-cell-border-inline-start-color: var(--grp-table-cell-border-inline-start-color);
+$grp-table-row-background-color-alt: var(--grp-table-row-background-color-alt);
+$grp-table-row-background-color: var(--grp-table-row-background-color);
+$grp-table-row-selected-background-color: var(--grp-table-row-selected-background-color);
+$grp-table-row-label-font-color: var(--grp-table-row-label-font-color);
+$grp-table-tfoot-border-top-color: var(--grp-table-tfoot-border-top-color);
 
 $grp-form-field-font-color: var(--grp-form-field-font-color);
 $grp-form-field-background-color: var(--grp-form-field-background-color);
@@ -695,6 +817,8 @@ $grp-button-border-focus-color: var(--grp-button-border-focus-color);
 $grp-text-shadow-color: var(--grp-text-shadow-color);
 $grp-submit-row-shadow-color: var(--grp-submit-row-shadow-color);
 $grp-fixed-footer-item-background-color: var(--grp-fixed-footer-item-background-color);
+$grp-overlay-shadow-color: var(--grp-overlay-shadow-color);
+$grp-pulldown-handler-text-shadow-color: var(--grp-pulldown-handler-text-shadow-color);
 
 $grp-doc-color: var(--grp-doc-color);
 $grp-doc-rule-color: var(--grp-doc-rule-color);

@@ -7,7 +7,7 @@
 
         li {
             margin-right: 1px;
-            border: 1px solid #fff;
+            border: 1px solid $grp-control-outline-color;
 
             border-radius: $grp-border-radius;
 
@@ -25,20 +25,20 @@
             }
 
             a {
-                color: #59afcc;
-                border-color: #d9d9d9;
+                color: $grp-link-color-subtle;
+                border-color: $grp-pagination-border-color;
 
                 &:hover {
-                    color: #444;
-                    border-color: #bdbdbd;
-                    background-image: linear-gradient(#eee, #e0e0e0);
+                    color: $grp-font-color;
+                    border-color: $grp-pagination-border-color-active;
+                    background-image: linear-gradient($grp-pagination-background-color, $grp-pagination-background-color-shade);
                 }
             }
 
             span {
-                color: #444;
-                border-color: #bdbdbd;
-                background-image: linear-gradient(#eee, #e0e0e0);
+                color: $grp-font-color;
+                border-color: $grp-pagination-border-color-active;
+                background-image: linear-gradient($grp-pagination-background-color, $grp-pagination-background-color-shade);
             }
 
             &.grp-results {
@@ -96,12 +96,12 @@
             }
 
             a.grp-date-hierarchy-back {
-                color: #59afcc;
+                color: $grp-link-color-subtle;
                 padding-left: 15px;
                 @include grp-icon-sprite($date-hierarchy-back);
 
                 &:hover {
-                    color: #444;
+                    color: $grp-font-color;
                 }
             }
         }
@@ -119,7 +119,7 @@
 
 form#grp-changelist-search-form {
     margin: 1px 0 0;
-    border: 1px solid #fff;
+    border: 1px solid $grp-control-outline-color;
     border-radius: 20px;
 }
 
@@ -148,7 +148,7 @@ form#grp-changelist-search-form {
         color: $grp-link-color;
 
         &:hover {
-            color: #444;
+            color: $grp-font-color;
             @include grp-icon-sprite($pulldown-handler-hover, $offset-x: 100%);
         }
     }
@@ -157,19 +157,19 @@ form#grp-changelist-search-form {
         z-index: 910;
         float: left;
         clear: both;
-        box-shadow: 0 10px 50px #333;
+        box-shadow: 0 10px 50px $grp-overlay-shadow-color;
 
         .grp-pulldown-handler {
-            color: #444;
-            text-shadow: 0 1px 0 #fff;
+            color: $grp-font-color;
+            text-shadow: 0 1px 0 $grp-pulldown-handler-text-shadow-color;
             border-bottom-left-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
-            border-bottom: 1px solid #ccc !important;
+            border-bottom: 1px solid $grp-button-border-color !important;
             @include grp-icon-sprite($pulldown-handler-selected, $offset-x: 100%);
             @include grp-button-states(blue, blue);
 
             &:hover {
-                color: #444;
+                color: $grp-font-color;
                 @include grp-icon-sprite($pulldown-handler-selected, $offset-x: 100%);
             }
         }
@@ -186,7 +186,7 @@ form#grp-changelist-search-form {
         border-bottom-left-radius: $grp-border-radius;
         border-bottom-right-radius: $grp-border-radius;
         @include grp-button-states(grey, grey);
-        border-top: 1px solid #fff !important;
+        border-top: 1px solid $grp-control-outline-color !important;
         box-sizing: border-box;
         color: $grp-font-color;
 
@@ -221,7 +221,7 @@ form#grp-changelist-search-form {
     }
 
     .grp-pulldown-container {
-        border: 1px solid #fff;
+        border: 1px solid $grp-control-outline-color;
     }
 
     .grp-module:first-child {
@@ -248,11 +248,11 @@ form#grp-changelist-search-form {
             display: block;
             margin: -5px -10px;
             padding: 2px 10px;
-            color: #59afcc;
+            color: $grp-link-color-subtle;
             font-size: $grp-font-size-s;
 
             &:hover {
-                color: #444;
+                color: $grp-font-color;
             }
         }
 
@@ -310,7 +310,7 @@ li.grp-changelist-actions {
 
         li {
             margin-right: 4px;
-            border: 1px solid #333;
+            border: 1px solid $grp-dark-item-border-color;
             border-radius: $grp-border-radius + 1;
         }
 
@@ -322,23 +322,23 @@ li.grp-changelist-actions {
 
         a {
             opacity: 1 !important;
-            color: #59afcc;
+            color: $grp-dark-link-color;
             font-weight: bold;
-            border: 1px solid #111;
-            background: #222;
+            border: 1px solid $grp-dark-chip-border-color;
+            background: $grp-dark-background-color;
 
             &:hover {
-                color: #fff;
-                border: 1px solid #222;
-                background: #555;
+                color: $grp-font-color-inverted;
+                border: 1px solid $grp-dark-chip-border-color-hover;
+                background: $grp-dark-background-color-hover;
             }
         }
 
         span {
             color: $grp-changelist-disabled-font-color !important;
             cursor: default !important;
-            border: 1px solid #111 !important;
-            background: #222 !important;
+            border: 1px solid $grp-dark-chip-border-color !important;
+            background: $grp-dark-background-color !important;
         }
     }
 
@@ -379,7 +379,7 @@ body.grp-change-list {
 
             th,
             td {
-                background: #ffd;
+                background: $grp-table-row-selected-background-color;
             }
         }
     }
