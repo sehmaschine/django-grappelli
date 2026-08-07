@@ -33,8 +33,8 @@
 
 @mixin grp-module-h2 {
     @include grp-padding(5px $grp-padding-size 4px);
-    text-shadow: 0 1px 0 #f5f5f5;
-    border-bottom: 1px solid #ccc;
+    text-shadow: 0 1px 0 $grp-text-shadow-color;
+    border-bottom: 1px solid $grp-module-border-color;
     border-top-left-radius: $grp-border-radius;
     border-top-right-radius: $grp-border-radius;
     @include grp-gradient-module-h2;
@@ -51,9 +51,9 @@
         @include grp-padding(5px $grp-padding-size 4px);
     }
 
-    text-shadow: 0 1px 0 #f5f5f5;
-    border-top: 1px solid #f5f5f5;
-    border-bottom: 1px solid #ccc;
+    text-shadow: 0 1px 0 $grp-text-shadow-color;
+    border-top: 1px solid $grp-module-heading-border-top-color;
+    border-bottom: 1px solid $grp-module-border-color;
     @include grp-gradient-module-h3;
 }
 
@@ -68,9 +68,9 @@
         @include grp-padding(5px $grp-padding-size 4px);
     }
 
-    text-shadow: 0 1px 0 #f5f5f5;
-    border-top: 1px solid #f5f5f5;
-    border-bottom: 1px solid #ccc;
+    text-shadow: 0 1px 0 $grp-text-shadow-color;
+    border-top: 1px solid $grp-module-heading-border-top-color;
+    border-bottom: 1px solid $grp-module-border-color;
     @include grp-gradient-module-h4;
 }
 
@@ -154,11 +154,11 @@
 
 @mixin grp-module-h2-collapse-handler {
     h2.grp-collapse-handler {
-        text-shadow: 0 1px 0 #c4e9f5;
+        text-shadow: 0 1px 0 $grp-module-h2-collapse-handler-text-shadow-color;
     }
 
     &.grp-open>h2.grp-collapse-handler {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $grp-module-border-color;
         border-top-left-radius: $grp-border-radius - 1px;
         border-top-right-radius: $grp-border-radius - 1px;
         @include grp-gradient-module-h2-collapse-handler-hover;
@@ -180,12 +180,12 @@
 
 @mixin grp-module-h3-collapse-handler {
     h3.grp-collapse-handler {
-        text-shadow: 0 1px 0 #fff;
+        text-shadow: 0 1px 0 $grp-module-h3-collapse-handler-text-shadow-color;
     }
 
     &.grp-open>h3.grp-collapse-handler {
-        border-top: 1px solid lighten(#cee9f2, 5);
-        border-bottom: 1px solid #d9d9d9;
+        border-top: 1px solid $grp-module-h3-collapse-handler-border-top-color;
+        border-bottom: 1px solid $grp-module-h3-collapse-handler-border-bottom-color;
         border-top-left-radius: $grp-border-radius - 1px;
         border-top-right-radius: $grp-border-radius - 1px;
         @include grp-gradient-module-h3-collapse-handler-hover;
@@ -259,8 +259,8 @@
     @include grp-padding(5px $grp-padding-size);
     width: 100%;
     box-sizing: border-box;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #ddd;
+    border-top: 1px solid $grp-row-border-top-color;
+    border-bottom: 1px solid $grp-row-border-bottom-color;
 
     .grp-predelete & {
         border-bottom-color: $grp-predelete-border-bottom-color;
@@ -307,12 +307,12 @@
             padding: 8px 20px 8px 0;
             height: 100%;
             white-space: nowrap;
-            border-right: 1px solid #ddd;
+            border-right: 1px solid $grp-row-border-bottom-color;
             overflow: visible;
 
             &+.grp-cell {
                 padding-left: 20px;
-                border-left: 1px solid #fff;
+                border-left: 1px solid $grp-row-border-top-color;
             }
 
             &:last-of-type {
@@ -332,7 +332,7 @@
     .grp-row+.grp-module>.grp-row:first-child,
     h2+.grp-module>.grp-row:first-child,
     .grp-module+.grp-module>.grp-row:first-child {
-        border-top: 1px solid #fff;
+        border-top: 1px solid $grp-row-border-top-color;
     }
 }
 
@@ -347,7 +347,7 @@ fieldset.grp-module .grp-row {
 ------------------------------------------------------------------------------------------------------ */
 
 @mixin grp-listing {
-    border-top: 1px solid #fff;
+    border-top: 1px solid $grp-row-border-top-color;
 
     &:first-child {
         border-top: 0;
@@ -441,7 +441,7 @@ fieldset.grp-module .grp-row {
         .grp-module {
             // H3 + Module
             border-radius: 0 0 2px 2px;
-            border-top: 1px solid #fff;
+            border-top: 1px solid $grp-row-border-top-color;
         }
 
         &.grp-predelete .grp-module {
@@ -498,8 +498,8 @@ fieldset.grp-module .grp-row {
             padding: 1px 20px;
             vertical-align: top;
             white-space: nowrap;
-            border-left: 1px solid #fff;
-            border-right: 1px solid #e0e0e0;
+            border-left: 1px solid $grp-row-border-top-color;
+            border-right: 1px solid $grp-tabular-cell-border-inline-end-color;
 
             &:first-of-type {
                 padding-left: 10px;
@@ -508,7 +508,7 @@ fieldset.grp-module .grp-row {
 
         .grp-thead {
             display: table-header-group;
-            color: #aaa;
+            color: $grp-tabular-head-font-color;
             font-size: $grp-font-size-s;
             font-weight: bold;
 
@@ -531,12 +531,12 @@ fieldset.grp-module .grp-row {
             .grp-td {
                 padding-bottom: 5px;
                 padding-top: 5px;
-                border-bottom: 1px solid #d4d4d4;
-                border-top: 1px solid #d4d4d4;
+                border-bottom: 1px solid $grp-tabular-cell-border-color;
+                border-top: 1px solid $grp-tabular-cell-border-color;
                 background: $grp-module-background-color;
 
                 &:first-of-type {
-                    border-left: 1px solid #d4d4d4;
+                    border-left: 1px solid $grp-tabular-cell-border-color;
                 }
 
                 &:first-child {
@@ -545,7 +545,7 @@ fieldset.grp-module .grp-row {
                 }
 
                 &:last-of-type {
-                    border-right: 1px solid #d4d4d4;
+                    border-right: 1px solid $grp-tabular-cell-border-color;
                     border-top-right-radius: $grp-border-radius - 1px;
                     border-bottom-right-radius: $grp-border-radius - 1px;
                 }
@@ -567,11 +567,11 @@ fieldset.grp-module .grp-row {
                     background: $grp-predelete-background-color;
 
                     &:first-of-type {
-                        border-left: 1px solid #d4d4d4;
+                        border-left: 1px solid $grp-tabular-cell-border-color;
                     }
 
                     &:last-of-type {
-                        border-right: 1px solid #d4d4d4;
+                        border-right: 1px solid $grp-tabular-cell-border-color;
                     }
                 }
             }
@@ -579,7 +579,7 @@ fieldset.grp-module .grp-row {
 
         .grp-tfoot {
             display: table-footer-group;
-            color: #aaa;
+            color: $grp-tabular-head-font-color;
 
             .grp-td {
                 &:last-of-type {

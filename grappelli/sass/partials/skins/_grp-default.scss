@@ -151,6 +151,23 @@ $grp-pagination-background-color-shade: #e0e0e0 !default;
 $grp-control-outline-color: #fff !default;
 
 
+/*  Object Tools ............................................................ */
+
+/*  Hoisted out of _tools.scss (Task 7). */
+$grp-object-tools-border-color: #777 !default;
+$grp-object-tools-gradient-from: #999 !default;
+$grp-object-tools-background-color: #888 !default;
+$grp-object-tools-border-color-hover: #2987a6 !default;
+$grp-object-tools-background-color-hover: #36b0d9 !default;
+
+/*  MIXIN ARGUMENT to grp-background-gradient-icon-combo($object-tools-add-link,
+    ...) in _tools.scss. The add-link variant of the tools gradient, distinct
+    from the grey resting/hover pair above even though it shares the #444
+    value with $grp-font-color. Hoisted out of _tools.scss (Task 7). */
+$grp-object-tools-add-gradient-from: #666 !default;
+$grp-object-tools-add-background-color: #444 !default;
+
+
 
 
 /*  DARK CHROME
@@ -219,6 +236,38 @@ $grp-module-background-color: #eee !default;
     between two stacked modules inside one group. */
 $grp-module-border-top-color: lighten($grp-module-border-color, 5) !default;
 
+/*  Hoisted out of _modules.scss (Task 7). */
+$grp-module-heading-border-top-color: #f5f5f5 !default;
+
+/*  Letterpress on the BLUE h2 collapse chip - distinct from
+    $grp-text-shadow-color because it sits on a saturated background, not
+    the neutral module surface. Hoisted out of _modules.scss (Task 7). */
+$grp-module-h2-collapse-handler-text-shadow-color: #c4e9f5 !default;
+
+/*  Letterpress on the lighter blue h3 collapse chip. Hoisted out of
+    _modules.scss (Task 7). */
+$grp-module-h3-collapse-handler-text-shadow-color: #fff !default;
+
+/*  Derived. == lighten(#cee9f2, 5). The last lighten()/darken() call left
+    operating on a raw literal in _modules.scss - hoisted here (Task 7). */
+$grp-module-h3-collapse-handler-border-top-color: lighten(#cee9f2, 5) !default; // #e2f2f7
+$grp-module-h3-collapse-handler-border-bottom-color: #d9d9d9 !default;
+
+
+/*  Tabular Inline ............................................................ */
+
+/*  Shade partner of $grp-row-border-top-color in the div-based tabular-inline
+    cell grid; distinct from $grp-table-cell-border-color (the real <table>
+    grid) even though it shares the value today. Hoisted out of
+    _modules.scss (Task 7). */
+$grp-tabular-cell-border-inline-end-color: #e0e0e0 !default;
+
+$grp-tabular-head-font-color: #aaa !default;
+
+/*  The tabular-inline body cell grid, all four edges. Hoisted out of
+    _modules.scss (Task 7). */
+$grp-tabular-cell-border-color: #d4d4d4 !default;
+
 
 /*  Rows ............................................................ */
 
@@ -250,6 +299,13 @@ $grp-predelete-border-inline-start-color: lighten($grp-predelete-background-colo
 $grp-predelete-border-inline-end-color: darken($grp-predelete-background-color, 4) !default;
 $grp-predelete-border-strong-color: darken($grp-predelete-background-color, 6) !default;
 $grp-predelete-module-border-top-color: lighten($grp-predelete-background-color, 5) !default;
+
+
+/*  Delete Confirmation ............................................................ */
+
+/*  A 4px nesting rail, not the 1px row bevel that shares its value.
+    Hoisted out of _delete-confirmation.scss (Task 7). */
+$grp-delete-confirmation-nesting-border-color: #ddd !default;
 
 
 
@@ -395,6 +451,14 @@ $grp-footer-form-button-cancel-border-color-hover: darken($grp-footer-form-butto
 $grp-footer-form-button-cancel-gradient-from-hover: lighten($grp-footer-form-button-cancel-background-color-hover, 15) !default;
 
 
+/*  Selectors ............................................................ */
+
+/*  Hoisted out of _forms.scss (Task 7). */
+$grp-selector-background-color: #ddd !default;
+$grp-selector-filter-font-color: #666 !default;
+$grp-selector-filter-border-color: #e4e4e4 !default;
+
+
 
 /*  BUTTONS
 ------------------------------------------------------------------------------------------------------ */
@@ -405,6 +469,15 @@ $grp-button-background-color-hover: #eee !default;
 $grp-button-border-color: #ccc !default;
 $grp-button-border-hover-color: #ccc !default;
 $grp-button-border-focus-color: #888 !default;
+
+/*  Button state variants used by grp-button-states(). Hoisted out of
+    _buttons.scss (Task 7). $grp-button-background-color-hover already
+    holds #eee but names a hover state; grp-button-states(grey, ...) uses
+    grey as the RESTING state, so the roles differ and cannot share a
+    token. */
+$grp-button-state-grey-background-color: #eee !default;
+$grp-button-state-dark-grey-background-color: #dbdbdb !default;
+$grp-button-state-white-background-color: #fdfdfd !default;
 
 
 
@@ -513,6 +586,14 @@ $grp-light-tokens: (
 
     "--grp-control-outline-color": $grp-control-outline-color,
 
+    "--grp-object-tools-border-color": $grp-object-tools-border-color,
+    "--grp-object-tools-gradient-from": $grp-object-tools-gradient-from,
+    "--grp-object-tools-background-color": $grp-object-tools-background-color,
+    "--grp-object-tools-border-color-hover": $grp-object-tools-border-color-hover,
+    "--grp-object-tools-background-color-hover": $grp-object-tools-background-color-hover,
+    "--grp-object-tools-add-gradient-from": $grp-object-tools-add-gradient-from,
+    "--grp-object-tools-add-background-color": $grp-object-tools-add-background-color,
+
     "--grp-dark-background-color": $grp-dark-background-color,
     "--grp-dark-gradient-from": $grp-dark-gradient-from,
     "--grp-dark-border-shade-color": $grp-dark-border-shade-color,
@@ -535,6 +616,14 @@ $grp-light-tokens: (
     "--grp-module-border-color": $grp-module-border-color,
     "--grp-module-background-color": $grp-module-background-color,
     "--grp-module-border-top-color": $grp-module-border-top-color,
+    "--grp-module-heading-border-top-color": $grp-module-heading-border-top-color,
+    "--grp-module-h2-collapse-handler-text-shadow-color": $grp-module-h2-collapse-handler-text-shadow-color,
+    "--grp-module-h3-collapse-handler-text-shadow-color": $grp-module-h3-collapse-handler-text-shadow-color,
+    "--grp-module-h3-collapse-handler-border-top-color": $grp-module-h3-collapse-handler-border-top-color,
+    "--grp-module-h3-collapse-handler-border-bottom-color": $grp-module-h3-collapse-handler-border-bottom-color,
+    "--grp-tabular-cell-border-inline-end-color": $grp-tabular-cell-border-inline-end-color,
+    "--grp-tabular-head-font-color": $grp-tabular-head-font-color,
+    "--grp-tabular-cell-border-color": $grp-tabular-cell-border-color,
 
     "--grp-row-border-top-color": $grp-row-border-top-color,
     "--grp-row-border-bottom-color": $grp-row-border-bottom-color,
@@ -551,6 +640,8 @@ $grp-light-tokens: (
     "--grp-predelete-border-inline-end-color": $grp-predelete-border-inline-end-color,
     "--grp-predelete-border-strong-color": $grp-predelete-border-strong-color,
     "--grp-predelete-module-border-top-color": $grp-predelete-module-border-top-color,
+
+    "--grp-delete-confirmation-nesting-border-color": $grp-delete-confirmation-nesting-border-color,
 
     "--grp-table-background-color": $grp-table-background-color,
     "--grp-table-border-color": $grp-table-border-color,
@@ -620,11 +711,19 @@ $grp-light-tokens: (
     "--grp-footer-form-button-cancel-border-color-hover": $grp-footer-form-button-cancel-border-color-hover,
     "--grp-footer-form-button-cancel-gradient-from-hover": $grp-footer-form-button-cancel-gradient-from-hover,
 
+    "--grp-selector-background-color": $grp-selector-background-color,
+    "--grp-selector-filter-font-color": $grp-selector-filter-font-color,
+    "--grp-selector-filter-border-color": $grp-selector-filter-border-color,
+
     "--grp-button-background-color": $grp-button-background-color,
     "--grp-button-background-color-hover": $grp-button-background-color-hover,
     "--grp-button-border-color": $grp-button-border-color,
     "--grp-button-border-hover-color": $grp-button-border-hover-color,
     "--grp-button-border-focus-color": $grp-button-border-focus-color,
+
+    "--grp-button-state-grey-background-color": $grp-button-state-grey-background-color,
+    "--grp-button-state-dark-grey-background-color": $grp-button-state-dark-grey-background-color,
+    "--grp-button-state-white-background-color": $grp-button-state-white-background-color,
 
     "--grp-text-shadow-color": $grp-text-shadow-color,
     "--grp-submit-row-shadow-color": $grp-submit-row-shadow-color,
@@ -701,6 +800,14 @@ $grp-pagination-background-color-shade: var(--grp-pagination-background-color-sh
 
 $grp-control-outline-color: var(--grp-control-outline-color);
 
+$grp-object-tools-border-color: var(--grp-object-tools-border-color);
+$grp-object-tools-gradient-from: var(--grp-object-tools-gradient-from);
+$grp-object-tools-background-color: var(--grp-object-tools-background-color);
+$grp-object-tools-border-color-hover: var(--grp-object-tools-border-color-hover);
+$grp-object-tools-background-color-hover: var(--grp-object-tools-background-color-hover);
+$grp-object-tools-add-gradient-from: var(--grp-object-tools-add-gradient-from);
+$grp-object-tools-add-background-color: var(--grp-object-tools-add-background-color);
+
 $grp-dark-background-color: var(--grp-dark-background-color);
 $grp-dark-gradient-from: var(--grp-dark-gradient-from);
 $grp-dark-border-shade-color: var(--grp-dark-border-shade-color);
@@ -723,6 +830,14 @@ $grp-group-border-closed-color: var(--grp-group-border-closed-color);
 $grp-module-border-color: var(--grp-module-border-color);
 $grp-module-background-color: var(--grp-module-background-color);
 $grp-module-border-top-color: var(--grp-module-border-top-color);
+$grp-module-heading-border-top-color: var(--grp-module-heading-border-top-color);
+$grp-module-h2-collapse-handler-text-shadow-color: var(--grp-module-h2-collapse-handler-text-shadow-color);
+$grp-module-h3-collapse-handler-text-shadow-color: var(--grp-module-h3-collapse-handler-text-shadow-color);
+$grp-module-h3-collapse-handler-border-top-color: var(--grp-module-h3-collapse-handler-border-top-color);
+$grp-module-h3-collapse-handler-border-bottom-color: var(--grp-module-h3-collapse-handler-border-bottom-color);
+$grp-tabular-cell-border-inline-end-color: var(--grp-tabular-cell-border-inline-end-color);
+$grp-tabular-head-font-color: var(--grp-tabular-head-font-color);
+$grp-tabular-cell-border-color: var(--grp-tabular-cell-border-color);
 
 $grp-row-border-top-color: var(--grp-row-border-top-color);
 $grp-row-border-bottom-color: var(--grp-row-border-bottom-color);
@@ -739,6 +854,8 @@ $grp-predelete-border-inline-start-color: var(--grp-predelete-border-inline-star
 $grp-predelete-border-inline-end-color: var(--grp-predelete-border-inline-end-color);
 $grp-predelete-border-strong-color: var(--grp-predelete-border-strong-color);
 $grp-predelete-module-border-top-color: var(--grp-predelete-module-border-top-color);
+
+$grp-delete-confirmation-nesting-border-color: var(--grp-delete-confirmation-nesting-border-color);
 
 $grp-table-background-color: var(--grp-table-background-color);
 $grp-table-border-color: var(--grp-table-border-color);
@@ -808,11 +925,19 @@ $grp-form-button-cancel-gradient-from-hover: var(--grp-form-button-cancel-gradie
 $grp-footer-form-button-cancel-border-color-hover: var(--grp-footer-form-button-cancel-border-color-hover);
 $grp-footer-form-button-cancel-gradient-from-hover: var(--grp-footer-form-button-cancel-gradient-from-hover);
 
+$grp-selector-background-color: var(--grp-selector-background-color);
+$grp-selector-filter-font-color: var(--grp-selector-filter-font-color);
+$grp-selector-filter-border-color: var(--grp-selector-filter-border-color);
+
 $grp-button-background-color: var(--grp-button-background-color);
 $grp-button-background-color-hover: var(--grp-button-background-color-hover);
 $grp-button-border-color: var(--grp-button-border-color);
 $grp-button-border-hover-color: var(--grp-button-border-hover-color);
 $grp-button-border-focus-color: var(--grp-button-border-focus-color);
+
+$grp-button-state-grey-background-color: var(--grp-button-state-grey-background-color);
+$grp-button-state-dark-grey-background-color: var(--grp-button-state-dark-grey-background-color);
+$grp-button-state-white-background-color: var(--grp-button-state-white-background-color);
 
 $grp-text-shadow-color: var(--grp-text-shadow-color);
 $grp-submit-row-shadow-color: var(--grp-submit-row-shadow-color);

@@ -51,7 +51,7 @@
     }
 
     div.grp-loader {
-        background: #fdfdfd url('../images/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
+        background: $grp-form-field-background-color url('../images/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
     }
 
     &.grp-autocomplete-preremove {
@@ -126,7 +126,7 @@
                 line-height: 18px;
 
                 a.grp-m2m-remove {
-                    color: #555;
+                    color: $grp-form-field-font-color;
                     padding-left: 5px;
                 }
             }
