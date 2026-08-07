@@ -81,7 +81,7 @@ module.exports = function (grunt) {
       },
       sprite: {
         files: ["grappelli/static/grappelli/images/icons/*.png"],
-        tasks: ["sprite:all", "sprite-dark"],
+        tasks: ["sprites"],
       },
       sphinx: {
         files: ["docs/*.rst", "docs/*.py"],
@@ -226,11 +226,14 @@ module.exports = function (grunt) {
     }
   );
 
-  // sprite: overrides grunt-spritesmith's own bare multi-task alias so that
-  // `grunt sprite` regenerates both the light sheet (sprite:all, unchanged)
-  // and the dark sheet (sprite-dark) in one step. `grunt sprite:all` still
-  // runs only the spritesmith target directly, e.g. from the watch task.
-  grunt.registerTask("sprite", ["sprite:all", "sprite-dark"]);
+  // sprites: regenerates both the light sheet (sprite:all, grunt-spritesmith's
+  // own task) and the dark sheet (sprite-dark) in one step.
+  //
+  // Do NOT name this alias "sprite". That is grunt-spritesmith's own multi-task
+  // name, and an alias registered under the same name replaces it. Alias tasks
+  // discard the `:target` argument, so `sprite:all` would then resolve back to
+  // this alias and recurse until grunt is killed.
+  grunt.registerTask("sprites", ["sprite:all", "sprite-dark"]);
 
   // Default
   grunt.registerTask("default", ["watch"]);
