@@ -22,6 +22,18 @@
   @include grp-emit-light-tokens;
 }
 
+/*  Dark-theme design tokens. Values only - the partial declares nothing but
+    html[data-theme="dark"] and the prefers-color-scheme variant of
+    html[data-theme="auto"], both filled from one shared mixin so they cannot
+    drift apart. Imported HERE and only here: rtl.scss must never pull it in,
+    for the same reason it must never emit the light block.
+
+    spritesheet-dark must load first, exactly as spritesheet does above: the
+    dark token block interpolates $spritesheet-dark-image, and Sass resolves
+    that at import time, not at first use. */
+@import "partials/library/spritesheet-dark";
+@import "partials/skins/grp-tokens-dark";
+
 @import "partials/library/mixins";
 @import "partials/library/borders";
 @import "partials/library/margins-paddings";

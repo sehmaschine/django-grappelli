@@ -120,8 +120,48 @@ module.exports = function (grunt) {
   // above) - the SCSS tokens (--grp-bg-changelist-results,
   // --grp-bg-sortable-placeholder) always name the "-dark" suffix directly,
   // so nothing here needs rewriting on regeneration.
-  const darkBackgroundAssets = ["changelist-results", "ui-sortable-placeholder"];
+  //
+  // They do NOT share a transform:
+  //
+  //   changelist-results.png is a single white colour at 60% alpha tiled
+  //   across every changelist row, and its whole job is to be barely
+  //   perceptible. Run through the ICON transform it composites to ~2.1:1
+  //   against the dark module surface - about twice the light theme's
+  //   1.09:1 against #eee - and reads as obvious banding on the admin's
+  //   most-viewed page. It therefore uses the TEXTURE transform, which
+  //   targets light-theme parity of the COMPOSITED pixel instead of the
+  //   icon floor.
+  //
+  //   ui-sortable-placeholder.png marks an active drag target. It is meant
+  //   to be seen, its light and dark versions read alike, and it keeps the
+  //   icon transform.
+  const darkBackgroundAssets = [
+    { name: "changelist-results", mode: "texture" },
+    { name: "ui-sortable-placeholder", mode: "icon" },
+  ];
   const backgroundsDir = "grappelli/static/grappelli/images/backgrounds/";
+
+  // The backdrop a texture is composited over is the dark module surface,
+  // i.e. --grp-module-background-color in dark mode. Read it out of the dark
+  // token partial rather than repeating the hex here: if that ramp stop ever
+  // moves, a hand-copied constant would silently stop matching and the
+  // texture would drift back towards being visible.
+  const darkTokensScss = "grappelli/sass/partials/skins/_grp-tokens-dark.scss";
+  function darkModuleBackground() {
+    const src = grunt.file.read(darkTokensScss);
+    const m = /\$grp-dark-ramp-surface:\s*(#[0-9a-fA-F]{3,6})\b/.exec(src);
+    if (!m) {
+      throw new Error(
+        `sprite-dark: could not read $grp-dark-ramp-surface from ${darkTokensScss}`
+      );
+    }
+    return m[1];
+  }
+
+  // The light theme's own composited ratio for changelist-results.png over
+  // #eee, measured: 1.092:1. Parity with that, not a WCAG floor, is what a
+  // decorative texture is aiming for.
+  const textureTargetRatio = 1.092;
 
   // Dark spritesheet (and dark background rasters): recolours the sheet
   // sprite:all just produced into a contrast-corrected dark variant sharing
@@ -129,7 +169,8 @@ module.exports = function (grunt) {
   // Never hand-write that filename in SCSS - it must always come from this
   // constant, or it goes stale on the next regeneration and 404s every icon
   // in dark mode. The background rasters ride along in the same task since
-  // they share the same transform and the same dynamic import.
+  // they share the same dynamic import (though not, per above, the same
+  // transform).
   grunt.registerTask(
     "sprite-dark",
     "Generate contrast-corrected dark variants of the spritesheet and background rasters.",
@@ -140,7 +181,7 @@ module.exports = function (grunt) {
       const darkScss = "grappelli/sass/partials/library/_spritesheet-dark.scss";
 
       import("./build/recolour-sheet.mjs")
-        .then(({ recolourFile }) => {
+        .then(({ recolourFile, recolourTextureFile, hexToRgb }) => {
           const stats = recolourFile(lightSheet, darkSheet);
           grunt.file.write(
             darkScss,
@@ -151,14 +192,30 @@ module.exports = function (grunt) {
               `${stats.liftedColours} lifted past the flip) and ${darkScss}`
           );
 
-          for (const name of darkBackgroundAssets) {
+          const textureBg = hexToRgb(darkModuleBackground());
+
+          for (const { name, mode } of darkBackgroundAssets) {
             const light = `${backgroundsDir}${name}.png`;
             const dark = `${backgroundsDir}${name}-dark.png`;
-            const bgStats = recolourFile(light, dark);
-            grunt.log.writeln(
-              `sprite-dark: wrote ${dark} (${bgStats.uniqueColours} unique colour(s), ` +
-                `${bgStats.liftedColours} lifted past the flip)`
-            );
+
+            if (mode === "texture") {
+              const t = recolourTextureFile(light, dark, {
+                bg: textureBg,
+                target: textureTargetRatio,
+              });
+              grunt.log.writeln(
+                `sprite-dark: wrote ${dark} (texture mode, ` +
+                  `${t.uniqueColours} colour+alpha combination(s), composited ` +
+                  t.fitted.map((f) => `${f.ratio.toFixed(3)}:1`).join(", ") +
+                  `)`
+              );
+            } else {
+              const bgStats = recolourFile(light, dark);
+              grunt.log.writeln(
+                `sprite-dark: wrote ${dark} (${bgStats.uniqueColours} unique colour(s), ` +
+                  `${bgStats.liftedColours} lifted past the flip)`
+              );
+            }
           }
 
           done();

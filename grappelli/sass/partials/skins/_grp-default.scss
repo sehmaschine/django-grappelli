@@ -942,8 +942,65 @@ $grp-light-tokens: (
     "--grp-bg-sortable-placeholder": $grp-bg-sortable-placeholder
 );
 
+/*  THE DJANGO CUSTOM-PROPERTY BRIDGE
+    --------------------------------------------------------------------------
+    Django's admin/css/autocomplete.css - loaded by every autocomplete and
+    select2 widget - reads NINE custom properties. They are normally declared
+    by Django's own admin/css/base.css, which Grappelli does not load, so all
+    nine are undefined here and every rule that uses one falls back to the
+    browser default. PR #1079 mapped five of them, and only inside its dark
+    block, which left the select2 chips, the highlighted option and the error
+    outline unstyled in LIGHT mode too.
+
+    Each is aliased to the Grappelli token that plays the same role, rather
+    than to a colour. That is what makes "in both themes" structural instead
+    of duplicated: html[data-theme="dark"] re-points the --grp-* token, the
+    alias follows, and there is no second copy of these nine lines to keep in
+    sync. Custom-property resolution is not source-order dependent, so
+    declaring the aliases alongside the light values is safe.
+
+    The role each one plays in autocomplete.css, since the names alone do not
+    say (line numbers are Django 5.2's):
+
+      --body-bg            :38,124,263,286  the select2 field and dropdown
+                                            surface
+      --body-fg            :46,194,264,...  text inside those
+      --body-quiet-color   :61,152,184,...  the placeholder, the chip's
+                                            remove cross, a disabled result,
+                                            and (:225) a 1px rule
+      --border-color       :39,125,172,265  the field / chip / dropdown
+                                            outline - mapped to the FORM
+                                            FIELD border rather than the
+                                            module border (identical value in
+                                            light, but every consumer here is
+                                            a form widget)
+      --darkened-bg        :105,171,231,257 the multi-select chip, a disabled
+                                            control, the search band
+      --error-fg           :380             the outline of a field in error
+      --primary            :369             the highlighted result's fill
+      --primary-fg         :370             its label
+      --selected-bg        :300             the already-selected result's
+                                            fill, with --body-fg on top
+    -------------------------------------------------------------------------- */
+
+$grp-django-bridge: (
+    "--body-bg": var(--grp-body-background-color),
+    "--body-fg": var(--grp-font-color),
+    "--body-quiet-color": var(--grp-font-color-quiet),
+    "--border-color": var(--grp-form-field-border-color),
+    "--darkened-bg": var(--grp-module-background-color),
+    "--error-fg": var(--grp-font-color-error),
+    "--primary": var(--grp-form-button-background-color),
+    "--primary-fg": var(--grp-font-color-inverted),
+    "--selected-bg": var(--grp-ui-widget-item-active-background-color)
+);
+
 @mixin grp-emit-light-tokens {
     @each $name, $value in $grp-light-tokens {
+        #{$name}: #{$value};
+    }
+
+    @each $name, $value in $grp-django-bridge {
         #{$name}: #{$value};
     }
 }

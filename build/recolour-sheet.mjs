@@ -180,6 +180,116 @@ export function recolourPixel(r, g, b, a, opts = {}) {
   return { r: step2.r, g: step2.g, b: step2.b, a };
 }
 
+// ---- the texture transform (a SECOND, separate entry point) -----------
+//
+// The two-step transform above is the ICON transform, and its step 2 is
+// wrong for a semi-transparent texture. An icon pixel is opaque and is read
+// as a glyph, so 3:1 against the surface behind it is the right criterion.
+// A background texture is neither: changelist-results.png is a single white
+// colour at 60% alpha, tiled across every changelist row, and its whole job
+// is to be *barely* perceptible. Judged as an icon it gets lifted to a mid
+// grey that composites to ~2.1:1 against a dark module - roughly twice as
+// visible as the light original, which reads 1.09:1 against #eee, and it
+// shows up as obvious banding on the most-viewed page in the admin.
+//
+// So textures get their own criterion: LIGHT-THEME PARITY of the COMPOSITED
+// pixel. Flip lightness as before, then move lightness (hue and saturation
+// still fixed) until the pixel, alpha-composited over the real dark backdrop
+// it will be tiled on, lands at the target contrast ratio against that same
+// backdrop. The icon path is left exactly as it was - weakening its floor to
+// serve this case would have made every icon worse.
+
+// The light theme's own composited ratio for changelist-results.png over
+// #eee, measured: 1.087:1. That number, not a WCAG floor, is the target.
+export const TEXTURE_TARGET_RATIO = 1.09;
+
+// Alpha-composite an 8-bit RGBA pixel over an opaque background.
+export function compositeOver(rgb, a8, bg) {
+  const t = a8 / 255;
+  return {
+    r: Math.round(t * rgb.r + (1 - t) * bg.r),
+    g: Math.round(t * rgb.g + (1 - t) * bg.g),
+    b: Math.round(t * rgb.b + (1 - t) * bg.b),
+  };
+}
+
+// Walk lightness across its whole range and keep the candidate whose
+// COMPOSITED contrast against `bg` is closest to `target`. A full sweep
+// rather than a directed search because the composited ratio is not monotone
+// in lightness once it crosses the background's own luminance (it falls to
+// 1:1 and rises again on the other side), and the nearer of the two
+// solutions is not always the one a directional walk would find first.
+export function fitCompositedContrast(rgb, a8, bg, target = TEXTURE_TARGET_RATIO) {
+  const { h, s } = rgbToHsl(rgb.r, rgb.g, rgb.b);
+  const STEP = 1 / 1000;
+  let best = rgb;
+  let bestErr = Infinity;
+
+  for (let l = 0; l <= 1 + 1e-9; l += STEP) {
+    const candidate = hslToRgb(h, s, Math.min(1, l));
+    const err = Math.abs(contrastRatio(compositeOver(candidate, a8, bg), bg) - target);
+    if (err < bestErr) {
+      bestErr = err;
+      best = candidate;
+    }
+  }
+  return best;
+}
+
+// Full texture pixel transform: flip, then fit the composited ratio.
+export function recolourTexturePixel(r, g, b, a, opts = {}) {
+  if (a === 0) return { r, g, b, a };
+  const bg = opts.bg || DEFAULT_BG;
+  const target = opts.target ?? TEXTURE_TARGET_RATIO;
+  const fitted = fitCompositedContrast(flipLightness({ r, g, b }), a, bg, target);
+  return { r: fitted.r, g: fitted.g, b: fitted.b, a };
+}
+
+// Mutates png.data in place. Memoises per unique (r,g,b,a) quadruple - alpha
+// is part of the key here, unlike the icon path, because the composite (and
+// therefore the fitted colour) depends on it.
+export function recolourTexturePngBuffer(png, opts = {}) {
+  const { data } = png;
+  const bg = opts.bg || DEFAULT_BG;
+  const target = opts.target ?? TEXTURE_TARGET_RATIO;
+  const cache = new Map();
+
+  for (let i = 0; i < data.length; i += 4) {
+    const a = data[i + 3];
+    if (a === 0) continue;
+
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const key = `${r},${g},${b},${a}`;
+
+    let out = cache.get(key);
+    if (!out) {
+      const fitted = fitCompositedContrast(flipLightness({ r, g, b }), a, bg, target);
+      out = {
+        ...fitted,
+        ratio: contrastRatio(compositeOver(fitted, a, bg), bg),
+        composite: compositeOver(fitted, a, bg),
+      };
+      cache.set(key, out);
+    }
+
+    data[i] = out.r;
+    data[i + 1] = out.g;
+    data[i + 2] = out.b;
+    // alpha (data[i + 3]) is left untouched
+  }
+
+  return { uniqueColours: cache.size, fitted: [...cache.values()] };
+}
+
+export function recolourTextureFile(srcPath, destPath, opts = {}) {
+  const png = PNG.sync.read(fs.readFileSync(srcPath));
+  const stats = recolourTexturePngBuffer(png, opts);
+  fs.writeFileSync(destPath, PNG.sync.write(png));
+  return stats;
+}
+
 // ---- PNG buffer / file helpers ----------------------------------------
 
 // Mutates png.data in place. Memoises per unique (r,g,b) triple: spritesheet
@@ -230,19 +340,43 @@ export function recolourFile(srcPath, destPath, opts = {}) {
 
 // ---- CLI entry point ----------------------------------------------------
 // Usage: node build/recolour-sheet.mjs <src.png> <dest.png>
+//        node build/recolour-sheet.mjs --texture[=<bg>[,<target>]] <src> <dest>
 
 const isMain =
   process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
 
 if (isMain) {
-  const [, , src, dest] = process.argv;
+  const args = process.argv.slice(2);
+  const textureArg = args.find((a) => a.startsWith("--texture"));
+  const [src, dest] = args.filter((a) => !a.startsWith("--"));
+
   if (!src || !dest) {
-    console.error("usage: node build/recolour-sheet.mjs <src.png> <dest.png>");
+    console.error(
+      "usage: node build/recolour-sheet.mjs [--texture[=<bg>[,<target>]]] <src.png> <dest.png>"
+    );
     process.exit(2);
   }
-  const stats = recolourFile(src, dest);
-  console.log(
-    `wrote ${dest}: ${stats.uniqueColours} unique colour(s), ` +
-      `${stats.liftedColours} lifted by step 2 past the flip`
-  );
+
+  if (textureArg) {
+    const [bgHex, targetStr] = (textureArg.split("=")[1] || "").split(",");
+    const bg = bgHex ? hexToRgb(bgHex) : DEFAULT_BG;
+    const target = targetStr ? Number(targetStr) : TEXTURE_TARGET_RATIO;
+    const stats = recolourTextureFile(src, dest, { bg, target });
+    console.log(
+      `wrote ${dest} (texture mode, over ${rgbToHex(bg)} at ${target}:1): ` +
+        `${stats.uniqueColours} unique colour+alpha combination(s)`
+    );
+    for (const f of stats.fitted) {
+      console.log(
+        `  -> ${rgbToHex(f)} composites to ${rgbToHex(f.composite)} ` +
+          `= ${f.ratio.toFixed(3)}:1 against ${rgbToHex(bg)}`
+      );
+    }
+  } else {
+    const stats = recolourFile(src, dest);
+    console.log(
+      `wrote ${dest}: ${stats.uniqueColours} unique colour(s), ` +
+        `${stats.liftedColours} lifted by step 2 past the flip`
+    );
+  }
 }
