@@ -34,6 +34,11 @@
 @import "partials/library/spritesheet-dark";
 @import "partials/skins/grp-tokens-dark";
 
+/*  Styles for Django's admin/color_theme_toggle.html, included from
+    base.html inside #grp-user-tools. Grappelli writes no toggle markup or
+    JavaScript of its own - see docs/superpowers/specs, "The switch". */
+@import "partials/skins/grp-theme-toggle";
+
 @import "partials/library/mixins";
 @import "partials/library/borders";
 @import "partials/library/margins-paddings";
