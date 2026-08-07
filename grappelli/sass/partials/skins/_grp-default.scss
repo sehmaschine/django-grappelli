@@ -58,7 +58,13 @@ $grp-help-font-color: lighten($grp-font-color-quiet, 7) !default;
 /*  == lighten($grp-font-color-quiet, 20). Spelled out as a literal because
     Sass writes a computed colour into a custom property in its long form
     (#bbbbbb) but into an ordinary declaration in its short form (#bbb), and
-    the compiled CSS must not change. */
+    the compiled CSS must not change.
+
+    CONSEQUENCE: unlike every other derived colour in this file, this one no
+    longer follows a project override of $grp-font-color-quiet — it is frozen
+    at the shade the default quiet colour produces. Restore the derivation
+    (lighten($grp-font-color-quiet, 20)) once byte-equivalence with the
+    pre-dark-theme CSS is no longer being enforced. */
 $grp-changelist-disabled-font-color: #bbb !default;
 
 $grp-font-color-error: #bf3030 !default;
@@ -226,27 +232,47 @@ $grp-form-button-cancel-background-color-hover: #444 !default;
 $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 
 /*  Derived button shades, hoisted out of the four button mixins in Region D.
-    Each variant keeps its own resting shades, because each variant has its
-    own resting colour. */
+    Every variant derives its own shades from its own base colour, including
+    the hovered ones. Several of those shades hold the same value today —
+    every variant happens to hover to the same grey — but a shared value is
+    not a shared role: a theme may move one variant's hover without moving the
+    others, and a project that overrides, say,
+    $grp-form-button-delete-background-color-hover must still get a border and
+    a gradient that match it. Do not collapse these by value.
+
+    Every $grp-footer-form-button-*-gradient-from-hover below evaluates to
+    white, because lighten(#eee, 15) clamps. Sass writes that into a custom
+    property by name — the token text is literally `white`, not `#fff` — and
+    that is correct: the only use sites are inside linear-gradient(), where
+    compressed output also writes `white`. Do not "normalise" these to #fff;
+    the byte-equivalence gate will reject it. */
 $grp-form-button-border-color: darken($grp-form-button-background-color, 5) !default;
 $grp-form-button-gradient-from: lighten($grp-form-button-background-color, 10) !default;
+$grp-form-button-border-color-hover: darken($grp-form-button-background-color-hover, 5) !default;
+$grp-form-button-gradient-from-hover: lighten($grp-form-button-background-color-hover, 10) !default;
+$grp-footer-form-button-border-color-hover: darken($grp-footer-form-button-background-color-hover, 15) !default;
+$grp-footer-form-button-gradient-from-hover: lighten($grp-footer-form-button-background-color-hover, 15) !default;
 
 $grp-form-button-delete-border-color: darken($grp-form-button-delete-background-color, 5) !default;
 $grp-form-button-delete-gradient-from: lighten($grp-form-button-delete-background-color, 10) !default;
+$grp-form-button-delete-border-color-hover: darken($grp-form-button-delete-background-color-hover, 5) !default;
+$grp-form-button-delete-gradient-from-hover: lighten($grp-form-button-delete-background-color-hover, 10) !default;
+$grp-footer-form-button-delete-border-color-hover: darken($grp-footer-form-button-delete-background-color-hover, 15) !default;
+$grp-footer-form-button-delete-gradient-from-hover: lighten($grp-footer-form-button-delete-background-color-hover, 15) !default;
 
 $grp-form-button-reset-border-color: darken($grp-form-button-reset-background-color, 5) !default;
 $grp-form-button-reset-gradient-from: lighten($grp-form-button-reset-background-color, 10) !default;
+$grp-form-button-reset-border-color-hover: darken($grp-form-button-reset-background-color-hover, 5) !default;
+$grp-form-button-reset-gradient-from-hover: lighten($grp-form-button-reset-background-color-hover, 10) !default;
+$grp-footer-form-button-reset-border-color-hover: darken($grp-footer-form-button-reset-background-color-hover, 15) !default;
+$grp-footer-form-button-reset-gradient-from-hover: lighten($grp-footer-form-button-reset-background-color-hover, 15) !default;
 
 $grp-form-button-cancel-border-color: darken($grp-form-button-cancel-background-color, 5) !default;
 $grp-form-button-cancel-gradient-from: lighten($grp-form-button-cancel-background-color, 10) !default;
-
-/*  Every variant hovers to the same colour, so the hovered shades are one
-    role — "a hovered form button" — not four identical copies of it. */
-$grp-form-button-border-color-hover: darken($grp-form-button-background-color-hover, 5) !default;
-$grp-form-button-gradient-from-hover: lighten($grp-form-button-background-color-hover, 10) !default;
-
-$grp-footer-form-button-border-color-hover: darken($grp-footer-form-button-background-color-hover, 15) !default;
-$grp-footer-form-button-gradient-from-hover: lighten($grp-footer-form-button-background-color-hover, 15) !default;
+$grp-form-button-cancel-border-color-hover: darken($grp-form-button-cancel-background-color-hover, 5) !default;
+$grp-form-button-cancel-gradient-from-hover: lighten($grp-form-button-cancel-background-color-hover, 10) !default;
+$grp-footer-form-button-cancel-border-color-hover: darken($grp-footer-form-button-cancel-background-color-hover, 15) !default;
+$grp-footer-form-button-cancel-gradient-from-hover: lighten($grp-footer-form-button-cancel-background-color-hover, 15) !default;
 
 
 
@@ -382,16 +408,31 @@ $grp-light-tokens: (
 
     "--grp-form-button-border-color": $grp-form-button-border-color,
     "--grp-form-button-gradient-from": $grp-form-button-gradient-from,
-    "--grp-form-button-delete-border-color": $grp-form-button-delete-border-color,
-    "--grp-form-button-delete-gradient-from": $grp-form-button-delete-gradient-from,
-    "--grp-form-button-reset-border-color": $grp-form-button-reset-border-color,
-    "--grp-form-button-reset-gradient-from": $grp-form-button-reset-gradient-from,
-    "--grp-form-button-cancel-border-color": $grp-form-button-cancel-border-color,
-    "--grp-form-button-cancel-gradient-from": $grp-form-button-cancel-gradient-from,
     "--grp-form-button-border-color-hover": $grp-form-button-border-color-hover,
     "--grp-form-button-gradient-from-hover": $grp-form-button-gradient-from-hover,
     "--grp-footer-form-button-border-color-hover": $grp-footer-form-button-border-color-hover,
     "--grp-footer-form-button-gradient-from-hover": $grp-footer-form-button-gradient-from-hover,
+
+    "--grp-form-button-delete-border-color": $grp-form-button-delete-border-color,
+    "--grp-form-button-delete-gradient-from": $grp-form-button-delete-gradient-from,
+    "--grp-form-button-delete-border-color-hover": $grp-form-button-delete-border-color-hover,
+    "--grp-form-button-delete-gradient-from-hover": $grp-form-button-delete-gradient-from-hover,
+    "--grp-footer-form-button-delete-border-color-hover": $grp-footer-form-button-delete-border-color-hover,
+    "--grp-footer-form-button-delete-gradient-from-hover": $grp-footer-form-button-delete-gradient-from-hover,
+
+    "--grp-form-button-reset-border-color": $grp-form-button-reset-border-color,
+    "--grp-form-button-reset-gradient-from": $grp-form-button-reset-gradient-from,
+    "--grp-form-button-reset-border-color-hover": $grp-form-button-reset-border-color-hover,
+    "--grp-form-button-reset-gradient-from-hover": $grp-form-button-reset-gradient-from-hover,
+    "--grp-footer-form-button-reset-border-color-hover": $grp-footer-form-button-reset-border-color-hover,
+    "--grp-footer-form-button-reset-gradient-from-hover": $grp-footer-form-button-reset-gradient-from-hover,
+
+    "--grp-form-button-cancel-border-color": $grp-form-button-cancel-border-color,
+    "--grp-form-button-cancel-gradient-from": $grp-form-button-cancel-gradient-from,
+    "--grp-form-button-cancel-border-color-hover": $grp-form-button-cancel-border-color-hover,
+    "--grp-form-button-cancel-gradient-from-hover": $grp-form-button-cancel-gradient-from-hover,
+    "--grp-footer-form-button-cancel-border-color-hover": $grp-footer-form-button-cancel-border-color-hover,
+    "--grp-footer-form-button-cancel-gradient-from-hover": $grp-footer-form-button-cancel-gradient-from-hover,
 
     "--grp-button-background-color": $grp-button-background-color,
     "--grp-button-background-color-hover": $grp-button-background-color-hover,
@@ -405,6 +446,9 @@ $grp-light-tokens: (
         #{$name}: #{$value};
     }
 }
+
+
+/* === REGION B END === */
 
 
 
@@ -503,22 +547,40 @@ $grp-footer-form-button-cancel-background-color-hover: var(--grp-footer-form-but
 
 $grp-form-button-border-color: var(--grp-form-button-border-color);
 $grp-form-button-gradient-from: var(--grp-form-button-gradient-from);
-$grp-form-button-delete-border-color: var(--grp-form-button-delete-border-color);
-$grp-form-button-delete-gradient-from: var(--grp-form-button-delete-gradient-from);
-$grp-form-button-reset-border-color: var(--grp-form-button-reset-border-color);
-$grp-form-button-reset-gradient-from: var(--grp-form-button-reset-gradient-from);
-$grp-form-button-cancel-border-color: var(--grp-form-button-cancel-border-color);
-$grp-form-button-cancel-gradient-from: var(--grp-form-button-cancel-gradient-from);
 $grp-form-button-border-color-hover: var(--grp-form-button-border-color-hover);
 $grp-form-button-gradient-from-hover: var(--grp-form-button-gradient-from-hover);
 $grp-footer-form-button-border-color-hover: var(--grp-footer-form-button-border-color-hover);
 $grp-footer-form-button-gradient-from-hover: var(--grp-footer-form-button-gradient-from-hover);
+
+$grp-form-button-delete-border-color: var(--grp-form-button-delete-border-color);
+$grp-form-button-delete-gradient-from: var(--grp-form-button-delete-gradient-from);
+$grp-form-button-delete-border-color-hover: var(--grp-form-button-delete-border-color-hover);
+$grp-form-button-delete-gradient-from-hover: var(--grp-form-button-delete-gradient-from-hover);
+$grp-footer-form-button-delete-border-color-hover: var(--grp-footer-form-button-delete-border-color-hover);
+$grp-footer-form-button-delete-gradient-from-hover: var(--grp-footer-form-button-delete-gradient-from-hover);
+
+$grp-form-button-reset-border-color: var(--grp-form-button-reset-border-color);
+$grp-form-button-reset-gradient-from: var(--grp-form-button-reset-gradient-from);
+$grp-form-button-reset-border-color-hover: var(--grp-form-button-reset-border-color-hover);
+$grp-form-button-reset-gradient-from-hover: var(--grp-form-button-reset-gradient-from-hover);
+$grp-footer-form-button-reset-border-color-hover: var(--grp-footer-form-button-reset-border-color-hover);
+$grp-footer-form-button-reset-gradient-from-hover: var(--grp-footer-form-button-reset-gradient-from-hover);
+
+$grp-form-button-cancel-border-color: var(--grp-form-button-cancel-border-color);
+$grp-form-button-cancel-gradient-from: var(--grp-form-button-cancel-gradient-from);
+$grp-form-button-cancel-border-color-hover: var(--grp-form-button-cancel-border-color-hover);
+$grp-form-button-cancel-gradient-from-hover: var(--grp-form-button-cancel-gradient-from-hover);
+$grp-footer-form-button-cancel-border-color-hover: var(--grp-footer-form-button-cancel-border-color-hover);
+$grp-footer-form-button-cancel-gradient-from-hover: var(--grp-footer-form-button-cancel-gradient-from-hover);
 
 $grp-button-background-color: var(--grp-button-background-color);
 $grp-button-background-color-hover: var(--grp-button-background-color-hover);
 $grp-button-border-color: var(--grp-button-border-color);
 $grp-button-border-hover-color: var(--grp-button-border-hover-color);
 $grp-button-border-focus-color: var(--grp-button-border-focus-color);
+
+
+/* === REGION C END === */
 
 
 
@@ -629,13 +691,13 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
     &:hover,
     &:focus {
         color: #fff;
-        border: 1px solid $grp-form-button-border-color-hover;
-        background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-delete-background-color-hover);
+        border: 1px solid $grp-form-button-delete-border-color-hover;
+        background-image: linear-gradient($grp-form-button-delete-gradient-from-hover, $grp-form-button-delete-background-color-hover);
 
         .grp-fixed-footer & {
             color: #444;
-            border: 1px solid $grp-footer-form-button-border-color-hover;
-            background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-delete-background-color-hover);
+            border: 1px solid $grp-footer-form-button-delete-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-delete-gradient-from-hover, $grp-footer-form-button-delete-background-color-hover);
         }
     }
 }
@@ -648,13 +710,13 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
     &:hover,
     &:focus {
         color: #fff;
-        border: 1px solid $grp-form-button-border-color-hover;
-        background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-cancel-background-color-hover);
+        border: 1px solid $grp-form-button-cancel-border-color-hover;
+        background-image: linear-gradient($grp-form-button-cancel-gradient-from-hover, $grp-form-button-cancel-background-color-hover);
 
         .grp-fixed-footer & {
             color: #444;
-            border: 1px solid $grp-footer-form-button-border-color-hover;
-            background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-cancel-background-color-hover);
+            border: 1px solid $grp-footer-form-button-cancel-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-cancel-gradient-from-hover, $grp-footer-form-button-cancel-background-color-hover);
         }
     }
 }
@@ -667,13 +729,13 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
     &:hover,
     &:focus {
         color: #fff;
-        border: 1px solid $grp-form-button-border-color-hover;
-        background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-reset-background-color-hover);
+        border: 1px solid $grp-form-button-reset-border-color-hover;
+        background-image: linear-gradient($grp-form-button-reset-gradient-from-hover, $grp-form-button-reset-background-color-hover);
 
         .grp-fixed-footer & {
             color: #444;
-            border: 1px solid $grp-footer-form-button-border-color-hover;
-            background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-reset-background-color-hover);
+            border: 1px solid $grp-footer-form-button-reset-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-reset-gradient-from-hover, $grp-footer-form-button-reset-background-color-hover);
         }
     }
 }
