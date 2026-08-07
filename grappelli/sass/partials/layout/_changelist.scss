@@ -358,7 +358,7 @@ li.grp-changelist-actions {
 ------------------------------------------------------------------------------------------------------ */
 
 .grp-changelist-results {
-    background: $grp-module-background-color url('../images/backgrounds/changelist-results.png') repeat scroll !important;
+    background: $grp-module-background-color $grp-bg-changelist-results repeat scroll !important;
 
     .grp-result-overflow-scroll & {
         overflow: auto;

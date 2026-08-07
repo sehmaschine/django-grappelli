@@ -115,14 +115,24 @@ module.exports = function (grunt) {
     grunt.task.run(["exec:build_sphinx"]);
   });
 
-  // Dark spritesheet: recolours the sheet sprite:all just produced into a
-  // contrast-corrected dark variant sharing the same unixTimestamp, and
-  // (re)writes the SCSS partial that names it. Never hand-write that
-  // filename in SCSS - it must always come from this constant, or it goes
-  // stale on the next regeneration and 404s every icon in dark mode.
+  // Non-icon background rasters that also need a dark variant. Fixed,
+  // checked-in filenames (no build-time timestamp, unlike the spritesheet
+  // above) - the SCSS tokens (--grp-bg-changelist-results,
+  // --grp-bg-sortable-placeholder) always name the "-dark" suffix directly,
+  // so nothing here needs rewriting on regeneration.
+  const darkBackgroundAssets = ["changelist-results", "ui-sortable-placeholder"];
+  const backgroundsDir = "grappelli/static/grappelli/images/backgrounds/";
+
+  // Dark spritesheet (and dark background rasters): recolours the sheet
+  // sprite:all just produced into a contrast-corrected dark variant sharing
+  // the same unixTimestamp, and (re)writes the SCSS partial that names it.
+  // Never hand-write that filename in SCSS - it must always come from this
+  // constant, or it goes stale on the next regeneration and 404s every icon
+  // in dark mode. The background rasters ride along in the same task since
+  // they share the same transform and the same dynamic import.
   grunt.registerTask(
     "sprite-dark",
-    "Generate a contrast-corrected dark variant of the spritesheet.",
+    "Generate contrast-corrected dark variants of the spritesheet and background rasters.",
     function () {
       const done = this.async();
       const lightSheet = `grappelli/static/grappelli/images/spritesheet-${unixTimestamp}.png`;
@@ -140,6 +150,17 @@ module.exports = function (grunt) {
             `sprite-dark: wrote ${darkSheet} (${stats.uniqueColours} unique colour(s), ` +
               `${stats.liftedColours} lifted past the flip) and ${darkScss}`
           );
+
+          for (const name of darkBackgroundAssets) {
+            const light = `${backgroundsDir}${name}.png`;
+            const dark = `${backgroundsDir}${name}-dark.png`;
+            const bgStats = recolourFile(light, dark);
+            grunt.log.writeln(
+              `sprite-dark: wrote ${dark} (${bgStats.uniqueColours} unique colour(s), ` +
+                `${bgStats.liftedColours} lifted past the flip)`
+            );
+          }
+
           done();
         })
         .catch(function (err) {

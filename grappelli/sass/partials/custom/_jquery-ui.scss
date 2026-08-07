@@ -98,7 +98,7 @@
 
     .grp-module.ui-sortable-placeholder {
         border: $grp-module-border !important;
-        background: transparent url('../images/backgrounds/ui-sortable-placeholder.png') 0 0 repeat scroll !important;
+        background: transparent $grp-bg-sortable-placeholder 0 0 repeat scroll !important;
     }
 }
 

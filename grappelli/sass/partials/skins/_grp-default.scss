@@ -646,6 +646,30 @@ $grp-spritesheet: url(#{$spritesheet-image}) !default;
 
 
 
+/*  BACKGROUND RASTERS
+------------------------------------------------------------------------------------------------------ */
+
+/*  Non-icon background raster images, tokenised like the spritesheet above
+    so a dark theme can point them at a recoloured sibling. Unlike the
+    spritesheet these are two fixed, checked-in PNGs (no build-time
+    timestamp): build/recolour-sheet.mjs (the same per-pixel transform used
+    for the icon sheet) produces the `-dark` sibling, wired into the
+    "sprite-dark" Grunt task. The dark URL itself is assigned in
+    _grp-tokens-dark.scss (Task 13) - the value here is only ever the light
+    (existing) URL.
+
+    Two other background rasters at these same call sites are deliberately
+    NOT tokenised here: nav-grabber.gif and loading-small.gif are animated
+    GIFs, and a per-pixel PNG transform does not apply to an animation.
+    nav-grabber.gif (a subtle texture) is left for Task 15's rendered
+    contrast sweep to judge; loading-small.gif is a neutral spinner sitting
+    on $grp-form-field-background-color, which is already tokenised and
+    darkens on its own. */
+$grp-bg-changelist-results: url('../images/backgrounds/changelist-results.png') !default;
+$grp-bg-sortable-placeholder: url('../images/backgrounds/ui-sortable-placeholder.png') !default;
+
+
+
 /*  MARGINS & PADDINGS
 ------------------------------------------------------------------------------------------------------ */
 
@@ -912,7 +936,10 @@ $grp-light-tokens: (
     "--grp-mark-background-color": $grp-mark-background-color,
     "--grp-mark-font-color": $grp-mark-font-color,
 
-    "--grp-spritesheet": $grp-spritesheet
+    "--grp-spritesheet": $grp-spritesheet,
+
+    "--grp-bg-changelist-results": $grp-bg-changelist-results,
+    "--grp-bg-sortable-placeholder": $grp-bg-sortable-placeholder
 );
 
 @mixin grp-emit-light-tokens {
@@ -1168,6 +1195,9 @@ $grp-mark-background-color: var(--grp-mark-background-color);
 $grp-mark-font-color: var(--grp-mark-font-color);
 
 $grp-spritesheet: var(--grp-spritesheet);
+
+$grp-bg-changelist-results: var(--grp-bg-changelist-results);
+$grp-bg-sortable-placeholder: var(--grp-bg-sortable-placeholder);
 
 
 /* === REGION C END === */
