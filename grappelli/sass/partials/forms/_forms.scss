@@ -568,7 +568,7 @@ ul.errorlist+.selector {
     color: $grp-font-color-inverted;
     font-weight: bold;
     border-radius: $grp-border-radius;
-    background: $grp-font-color-error;
+    background: $grp-errornote-background-color;
 }
 
 @mixin errorlist {

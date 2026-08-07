@@ -313,6 +313,14 @@ $grp-error-row-border-color: darken($grp-font-color-error, 4) !default;
 $grp-error-row-border-bottom-color: darken($grp-font-color-error, 5) !default;
 $grp-error-row-border-top-color: lighten($grp-font-color-error, 5) !default;
 
+/*  The errornote FILL, as distinct from error TEXT. Identical to
+    $grp-font-color-error in the light theme, and therefore a no-op for the
+    light stylesheet - but it is a separate role: this one carries
+    $grp-font-color-inverted on top of it, so it has to stay dark enough to
+    hold white text, while the error foreground has to get lighter as the
+    surface behind it gets darker. One token cannot move both ways at once. */
+$grp-errornote-background-color: $grp-font-color-error !default;
+
 
 /*  Predelete ............................................................ */
 
@@ -799,6 +807,7 @@ $grp-light-tokens: (
     "--grp-error-row-border-color": $grp-error-row-border-color,
     "--grp-error-row-border-bottom-color": $grp-error-row-border-bottom-color,
     "--grp-error-row-border-top-color": $grp-error-row-border-top-color,
+    "--grp-errornote-background-color": $grp-errornote-background-color,
 
     "--grp-predelete-background-color": $grp-predelete-background-color,
     "--grp-predelete-background-color-shade": $grp-predelete-background-color-shade,
@@ -1114,6 +1123,7 @@ $grp-row-border-bottom-color: var(--grp-row-border-bottom-color);
 $grp-error-row-border-color: var(--grp-error-row-border-color);
 $grp-error-row-border-bottom-color: var(--grp-error-row-border-bottom-color);
 $grp-error-row-border-top-color: var(--grp-error-row-border-top-color);
+$grp-errornote-background-color: var(--grp-errornote-background-color);
 
 $grp-predelete-background-color: var(--grp-predelete-background-color);
 $grp-predelete-background-color-shade: var(--grp-predelete-background-color-shade);

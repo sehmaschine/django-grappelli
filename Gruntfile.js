@@ -132,36 +132,35 @@ module.exports = function (grunt) {
   //   targets light-theme parity of the COMPOSITED pixel instead of the
   //   icon floor.
   //
-  //   ui-sortable-placeholder.png marks an active drag target. It is meant
-  //   to be seen, its light and dark versions read alike, and it keeps the
-  //   icon transform.
+  //   ui-sortable-placeholder.png is the same shape of asset - one grey at
+  //   60% alpha, tiled over an active drag target - and the icon transform
+  //   did the same thing to it: 2.23:1 composited over the dark inline
+  //   surface, against 1.25:1 for the light original over #fff, which made
+  //   it the loudest thing on the change form mid-drag. It is a texture too.
+  //
+  // `surface` names the dark ramp stop the tile is actually composited over;
+  // `target` is the light original's OWN composited ratio over its own light
+  // backdrop - a measured parity figure, not a WCAG floor.
   const darkBackgroundAssets = [
-    { name: "changelist-results", mode: "texture" },
-    { name: "ui-sortable-placeholder", mode: "icon" },
+    { name: "changelist-results", mode: "texture", surface: "surface", target: 1.092 },
+    { name: "ui-sortable-placeholder", mode: "texture", surface: "sunken", target: 1.248 },
   ];
   const backgroundsDir = "grappelli/static/grappelli/images/backgrounds/";
 
-  // The backdrop a texture is composited over is the dark module surface,
-  // i.e. --grp-module-background-color in dark mode. Read it out of the dark
-  // token partial rather than repeating the hex here: if that ramp stop ever
-  // moves, a hand-copied constant would silently stop matching and the
-  // texture would drift back towards being visible.
+  // Read the backdrop out of the dark token partial rather than repeating a
+  // hex here: if a ramp stop ever moves, a hand-copied constant would
+  // silently stop matching and the texture would drift back into visibility.
   const darkTokensScss = "grappelli/sass/partials/skins/_grp-tokens-dark.scss";
-  function darkModuleBackground() {
+  function darkRampStop(stop) {
     const src = grunt.file.read(darkTokensScss);
-    const m = /\$grp-dark-ramp-surface:\s*(#[0-9a-fA-F]{3,6})\b/.exec(src);
+    const m = new RegExp(`\\$grp-dark-ramp-${stop}:\\s*(#[0-9a-fA-F]{3,6})\\b`).exec(src);
     if (!m) {
       throw new Error(
-        `sprite-dark: could not read $grp-dark-ramp-surface from ${darkTokensScss}`
+        `sprite-dark: could not read $grp-dark-ramp-${stop} from ${darkTokensScss}`
       );
     }
     return m[1];
   }
-
-  // The light theme's own composited ratio for changelist-results.png over
-  // #eee, measured: 1.092:1. Parity with that, not a WCAG floor, is what a
-  // decorative texture is aiming for.
-  const textureTargetRatio = 1.092;
 
   // Dark spritesheet (and dark background rasters): recolours the sheet
   // sprite:all just produced into a contrast-corrected dark variant sharing
@@ -189,22 +188,22 @@ module.exports = function (grunt) {
           );
           grunt.log.writeln(
             `sprite-dark: wrote ${darkSheet} (${stats.uniqueColours} unique colour(s), ` +
-              `${stats.liftedColours} lifted past the flip) and ${darkScss}`
+              `${stats.liftedColours} lifted past the flip, ` +
+              `${stats.preservedColours} preserved as already light-on-dark) and ${darkScss}`
           );
 
-          const textureBg = hexToRgb(darkModuleBackground());
-
-          for (const { name, mode } of darkBackgroundAssets) {
+          for (const { name, mode, surface, target } of darkBackgroundAssets) {
             const light = `${backgroundsDir}${name}.png`;
             const dark = `${backgroundsDir}${name}-dark.png`;
 
             if (mode === "texture") {
               const t = recolourTextureFile(light, dark, {
-                bg: textureBg,
-                target: textureTargetRatio,
+                bg: hexToRgb(darkRampStop(surface)),
+                target,
               });
               grunt.log.writeln(
-                `sprite-dark: wrote ${dark} (texture mode, ` +
+                `sprite-dark: wrote ${dark} (texture mode over ` +
+                  `$grp-dark-ramp-${surface} at ${target}:1, ` +
                   `${t.uniqueColours} colour+alpha combination(s), composited ` +
                   t.fitted.map((f) => `${f.ratio.toFixed(3)}:1`).join(", ") +
                   `)`

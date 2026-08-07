@@ -154,6 +154,30 @@ $grp-dark-yellow-12: #3d3d00 !default;
 $grp-dark-yellow-14: #474700 !default;
 $grp-dark-yellow-20: #666600 !default;
 
+/*  TINTS HELD AT LIGHT-THEME CHROMA
+    ------------------------------------------------------------------------
+    The ramps above hold hue AND saturation, which is right for a brand FILL
+    - a button, a chip that carries inverted text - because the saturation is
+    what makes it read as the brand. It is wrong for a decorative TINT. A
+    pale wash on white and a deep wash on near-black can share an HSL
+    saturation and still not share a visual weight: mirroring the lightness
+    of #bcdfeb into #1d5d72 keeps S=59.8 but takes CIELAB chroma from 13.2 to
+    21.7, and six of those stacked down one change form read as a far busier
+    page than the light theme they are meant to mirror. That is rule 3
+    (decorative means light-theme parity) losing to rule 2 (a hue keeps its
+    saturation) in a place where rule 3 should win.
+
+    So the collapse-handler chips and the sortable drag helper keep their
+    mirrored CIELAB lightness and their hue, and take their light
+    counterpart's CIELAB CHROMA - which is the quantity the eye was
+    objecting to. Luminance moves by under 1% in every case, so every
+    contrast pairing that referenced these stops still holds. Each stop
+    records the light colour it is matched to. */
+$grp-dark-tint-h2-from: #3c5a67 !default;  /* light #bcdfeb, C* 13.2, was 21.7 */
+$grp-dark-tint-h3-from: #343f44 !default;  /* light #e1f0f5, C*  5.6, was 17.0 */
+$grp-dark-tint-h3-to:   #1a3139 !default;  /* light #cee9f2, C* 10.1, was 13.5 */
+$grp-dark-tint-drag:    #48461c !default;  /* light #ffc,    C* 25.8, was 38.5 */
+
 /*  Documentation (RTE) orange - #d94800 / #c30's own hue and saturation. */
 $grp-dark-doc-51:   #ff5906 !default;
 $grp-dark-doc-45:   #e63c00 !default;
@@ -305,19 +329,21 @@ $grp-dark-doc-45:   #e63c00 !default;
     --grp-module-h4-gradient-from: #{$grp-dark-ramp-raised};
     --grp-module-h4-gradient-to: #{$grp-dark-ramp-surface};
 
-    /*  The collapse-handler chips are brand tints, so rule 2 applies: same
-        hue and saturation, mirrored lightness. h3 is the subtler of the two
-        chips in light and stays the subtler one here. The letterpress
-        shadows flip with the text they sit under - a light shadow under
-        dark text becomes a dark shadow under light text. */
+    /*  The collapse-handler chips are decorative brand TINTS, so they take
+        the mirrored lightness and the light theme's own chroma - see "TINTS
+        HELD AT LIGHT-THEME CHROMA" above for why they are not simply teal
+        ramp stops. h3 is the subtler of the two chips in light and stays the
+        subtler one here. The letterpress shadows flip with the text they sit
+        under - a light shadow under dark text becomes a dark shadow under
+        light text - and the hairlines stay on the ramp. */
     --grp-module-h2-collapse-handler-text-shadow-color: #12313c;
     --grp-module-h3-collapse-handler-text-shadow-color: #{$grp-dark-teal-15};
     --grp-module-h3-collapse-handler-border-top-color: #{$grp-dark-teal-22};
     --grp-module-h3-collapse-handler-border-bottom-color: #{$grp-dark-ramp-row};
-    --grp-module-h2-collapse-handler-gradient-from: #{$grp-dark-teal-28};
+    --grp-module-h2-collapse-handler-gradient-from: #{$grp-dark-tint-h2-from};
     --grp-module-h2-collapse-handler-gradient-to: #{$grp-dark-teal-22};
-    --grp-module-h3-collapse-handler-gradient-from: #{$grp-dark-teal-20};
-    --grp-module-h3-collapse-handler-gradient-to: #{$grp-dark-teal-15};
+    --grp-module-h3-collapse-handler-gradient-from: #{$grp-dark-tint-h3-from};
+    --grp-module-h3-collapse-handler-gradient-to: #{$grp-dark-tint-h3-to};
 
     /*  Tabular inline: the cell grid is darker than its surface in light and
         lighter than it here; the inline-end rule stays the quieter of the
@@ -336,6 +362,13 @@ $grp-dark-doc-45:   #e63c00 !default;
     --grp-error-row-border-color: #{$grp-dark-red-58};
     --grp-error-row-border-bottom-color: #{$grp-dark-red-54};
     --grp-error-row-border-top-color: #{$grp-dark-red-63};
+
+    /*  The errornote is a FILL carrying --grp-font-color-inverted, so rule 2's
+        "held or slightly lowered" applies, not the lift the error FOREGROUND
+        gets. Mirroring the light theme's single #bf3030 into both roles put
+        white text on #e07373 at 3.06:1; this stop is the same one the delete
+        button uses, where #fff measures 4.52:1. */
+    --grp-errornote-background-color: #{$grp-dark-red-54};
 
     /*  Predelete: a soft red row tint, mirrored. Its edges keep their bevel
         directions; only "strong" flips, because a stronger edge is a darker
@@ -477,7 +510,11 @@ $grp-dark-doc-45:   #e63c00 !default;
     --grp-ui-widget-item-active-border-color: #{$grp-dark-ramp-outline};
     /*  A hovered item: darker than the widget in light, lighter here. */
     --grp-item-background-color-hover: #3f3f3f;
-    --grp-sortable-helper-background-color: #{$grp-dark-yellow-14};
+    /*  The mid-drag row. A decorative tint, so it is held at the light
+        theme's chroma too - #ffc mirrored straight onto the yellow ramp gave
+        #474700, a fully saturated olive that read as damage rather than as a
+        highlight. Same lightness, same hue, #ffc's own chroma. */
+    --grp-sortable-helper-background-color: #{$grp-dark-tint-drag};
 
     --grp-datepicker-header-border-color: #{$grp-dark-ramp-border-2};
     --grp-datepicker-select-border-color: #{$grp-dark-ramp-border-2};
