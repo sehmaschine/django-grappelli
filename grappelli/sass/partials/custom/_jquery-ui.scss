@@ -6,7 +6,7 @@
 }
 
 .ui-widget-content {
-    border: 1px solid #ccc;
+    border: 1px solid $grp-module-border-color;
     border-bottom-left-radius: $grp-border-radius;
     border-bottom-right-radius: $grp-border-radius;
 }
@@ -14,10 +14,10 @@
 @mixin grp-ui-widget {
     @extend .grp-font-family;
     font-size: 12px;
-    border: 1px solid #888;
+    border: 1px solid $grp-ui-widget-border-color;
     border-radius: $grp-border-radius;
-    background: #eee;
-    box-shadow: 0 10px 50px #333;
+    background: $grp-module-background-color;
+    box-shadow: 0 10px 50px $grp-overlay-shadow-color;
 
     input,
     select,
@@ -27,8 +27,8 @@
     }
 
     .ui-widget-content {
-        background: #eee;
-        color: #222222;
+        background: $grp-module-background-color;
+        color: $grp-ui-widget-font-color;
 
         a {
             color: $grp-font-color;
@@ -38,8 +38,8 @@
     .ui-widget-header {
         padding: 2px 0;
         height: 25px;
-        background: #cccccc;
-        color: #222222;
+        background: $grp-ui-widget-header-background-color;
+        color: $grp-ui-widget-font-color;
         font-weight: bold;
 
         a {
@@ -55,7 +55,7 @@
 }
 
 .ui-widget-content .ui-state-default {
-    background: #CEE9F2;
+    background: $grp-ui-widget-item-background-color;
 }
 
 .ui-state-hover,
@@ -127,7 +127,7 @@
 
         .grp-th,
         .grp-td {
-            background: #ffffcc !important;
+            background: $grp-sortable-helper-background-color !important;
         }
     }
 }
@@ -141,7 +141,7 @@
 .grp-group.grp-stacked .grp-collapse.grp-open.predelete.ui-sortable-helper>h3.grp-collapse-handler,
 .grp-group.grp-stacked .grp-collapse.grp-predelete.ui-sortable-helper h4.grp-collapse-handler,
 .grp-group.grp-stacked .grp-collapse.grp-open.grp-predelete.ui-sortable-helper h4.grp-collapse-handler {
-    background: #ffffcc !important;
+    background: $grp-sortable-helper-background-color !important;
 }
 
 
@@ -179,7 +179,7 @@
     .ui-datepicker-header {
         position: relative;
         padding: .2em 0;
-        border: 1px solid #bdbdbd;
+        border: 1px solid $grp-datepicker-header-border-color;
     }
 
     .ui-datepicker-prev,
@@ -230,7 +230,7 @@
             margin: -3px 0 -1px !important;
             padding: 4px 3px 4px 2px;
             min-width: 30px;
-            border: 1px solid #bbb;
+            border: 1px solid $grp-datepicker-select-border-color;
 
             &.ui-datepicker-month-year {
                 width: 100%;
@@ -292,35 +292,35 @@
 
                 &.ui-state-default {
                     color: $grp-font-color;
-                    border-color: #ccc;
+                    border-color: $grp-button-border-color;
                 }
 
                 &.ui-state-hover {
-                    color: #fff !important;
+                    color: $grp-font-color-inverted !important;
                     border-color: transparent !important;
-                    background: #444 !important;
+                    background: $grp-item-background-color-hover !important;
                 }
 
                 &.ui-state-active {
-                    background: #fff;
+                    background: $grp-datepicker-day-active-background-color;
                 }
 
                 &.ui-state-highlight {
-                    border-color: #bababa;
-                    background: #d6d6d6;
+                    border-color: $grp-ui-widget-item-active-border-color;
+                    background: $grp-ui-widget-item-active-background-color;
                 }
             }
 
             &.ui-datepicker-today {
                 a {
-                    border-color: #bababa;
-                    background: #d6d6d6;
+                    border-color: $grp-ui-widget-item-active-border-color;
+                    background: $grp-ui-widget-item-active-background-color;
                 }
             }
 
             &.ui-datepicker-current-day {
                 a {
-                    background: #fff;
+                    background: $grp-datepicker-day-active-background-color;
                 }
             }
         }
@@ -341,9 +341,9 @@
             margin: 3px 0;
             padding: 4px 5px 5px;
             height: 25px;
-            color: #aaa;
+            color: $grp-datepicker-button-font-color;
             font-size: 11px;
-            border: 1px solid #c7c7c7;
+            border: 1px solid $grp-ui-widget-item-border-color;
             border-radius: $grp-border-radius;
             background: transparent;
             box-shadow: none;
@@ -352,14 +352,14 @@
             &.ui-datepicker-current {
                 float: right;
                 opacity: 1 !important;
-                color: #444;
+                color: $grp-font-color;
                 font-weight: bold;
-                background: #cee9f2;
+                background: $grp-ui-widget-item-background-color;
 
                 &.ui-state-hover {
-                    color: #fff !important;
-                    border-color: #444 !important;
-                    background: #444 !important;
+                    color: $grp-font-color-inverted !important;
+                    border-color: $grp-datepicker-current-border-color-hover !important;
+                    background: $grp-item-background-color-hover !important;
                 }
             }
         }
@@ -436,7 +436,7 @@
 
 .ui-datepicker-append {
     margin-left: 6px;
-    color: #999;
+    color: $grp-datepicker-append-font-color;
     font-size: 10px;
 }
 
@@ -446,8 +446,8 @@
 }
 
 .ui-datepicker td.ui-state-disabled span {
-    background: #ccc;
-    color: #555 !important;
+    background: $grp-datepicker-day-disabled-background-color;
+    color: $grp-datepicker-day-disabled-font-color !important;
     font-weight: bold;
     font-size: 11px;
     border-radius: $grp-border-radius;
@@ -493,20 +493,20 @@ button.ui-datepicker-close {
 
             &.ui-state-default {
                 color: $grp-font-color;
-                border: 1px solid #c7c7c7 !important;
-                background: #e1f0f5;
+                border: 1px solid $grp-ui-widget-item-border-color !important;
+                background: $grp-button-background-color;
 
                 &:hover {
-                    color: #fff;
-                    border: 1px solid #666 !important;
-                    background: #444;
+                    color: $grp-font-color-inverted;
+                    border: 1px solid $grp-timepicker-item-border-color-hover !important;
+                    background: $grp-item-background-color-hover;
                 }
             }
 
             &.ui-state-active {
-                color: #444;
-                border: 1px solid #bababa !important;
-                background: #d6d6d6;
+                color: $grp-font-color;
+                border: 1px solid $grp-ui-widget-item-active-border-color !important;
+                background: $grp-ui-widget-item-active-background-color;
             }
         }
     }
@@ -528,7 +528,7 @@ button.ui-datepicker-close {
         span {
             display: block;
             padding: 1px 4px;
-            color: #888;
+            color: $grp-font-color-quiet;
             font-weight: bold;
         }
 
@@ -554,20 +554,20 @@ button.ui-datepicker-close {
             display: block;
             margin: 0 !important;
             padding: 3px 4px;
-            color: #444;
+            color: $grp-font-color;
             font-weight: bold !important;
-            border: 1px solid #c7c7c7;
+            border: 1px solid $grp-ui-widget-item-border-color;
             border-radius: $grp-form-field-border-radius - 1px;
-            background: #cee9f2;
+            background: $grp-ui-widget-item-background-color;
             cursor: pointer;
 
             &:hover,
             &.ui-state-hover,
             &.ui-state-focus,
             &.ui-state-active {
-                color: #fff;
-                border: 1px solid #333;
-                background: #444;
+                color: $grp-font-color-inverted;
+                border: 1px solid $grp-menu-item-border-color-hover;
+                background: $grp-item-background-color-hover;
             }
         }
 

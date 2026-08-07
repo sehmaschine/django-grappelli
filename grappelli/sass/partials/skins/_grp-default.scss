@@ -481,6 +481,92 @@ $grp-button-state-white-background-color: #fdfdfd !default;
 
 
 
+
+/*  WIDGETS (jQuery UI / select2)
+------------------------------------------------------------------------------------------------------ */
+
+/*  Hoisted out of _jquery-ui.scss (Task 8). The floating widget's outer
+    frame, deliberately stronger than $grp-module-border-color. */
+$grp-ui-widget-border-color: #888 !default;
+
+/*  TEXT, not a surface - the only #222 role in the codebase that is a
+    foreground colour. It must go LIGHT in dark mode while every other #222
+    (a surface) goes darker, so it cannot share $grp-dark-background-color.
+    Spelled as the 3-digit shorthand (the source spells it #222222): Sass
+    only canonicalises a hex literal to its shortest form in an ordinary
+    declaration, not when interpolated into a :root custom property, so the
+    Region A spelling must already match what the compressed baseline
+    expects or the byte-equivalence gate fails. */
+$grp-ui-widget-font-color: #222 !default;
+
+/*  Shorthand for the same reason - source spells it #cccccc. */
+$grp-ui-widget-header-background-color: #ccc !default;
+
+/*  A resting jQuery UI item surface (datepicker "today" chip, autocomplete
+    menu item, timepicker default cell). */
+$grp-ui-widget-item-background-color: #cee9f2 !default;
+
+/*  A resting jQuery UI item outline, paired with the surface above. */
+$grp-ui-widget-item-border-color: #c7c7c7 !default;
+
+/*  An active/highlighted jQuery UI item surface and outline. */
+$grp-ui-widget-item-active-background-color: #d6d6d6 !default;
+$grp-ui-widget-item-active-border-color: #bababa !default;
+
+/*  The dark surface a jQuery UI item takes on hover, shared by the
+    datepicker, timepicker and autocomplete menu. */
+$grp-item-background-color-hover: #444 !default;
+
+/*  The drag ghost while sorting stacked or tabular inlines. Shorthand for
+    the same reason as above - source spells it #ffffcc. */
+$grp-sortable-helper-background-color: #ffc !default;
+
+/*  Datepicker. */
+$grp-datepicker-header-border-color: #bdbdbd !default;
+$grp-datepicker-select-border-color: #bbb !default;
+$grp-datepicker-day-active-background-color: #fff !default;
+$grp-datepicker-button-font-color: #aaa !default;
+
+/*  The hovered "today" button outline. Same value as the hover surface but
+    a distinct role - the three hover borders in this file are #444, #666
+    and #333, so they cannot share one token. */
+$grp-datepicker-current-border-color-hover: #444 !default;
+
+$grp-datepicker-append-font-color: #999 !default;
+$grp-datepicker-day-disabled-background-color: #ccc !default;
+
+/*  NOT $grp-form-field-font-color: it must stay legible against
+    $grp-datepicker-day-disabled-background-color, and mapping it to the
+    field text colour would flip it light-on-light in dark mode. */
+$grp-datepicker-day-disabled-font-color: #555 !default;
+
+/*  Timepicker and autocomplete menu. */
+$grp-timepicker-item-border-color-hover: #666 !default;
+$grp-menu-item-border-color-hover: #333 !default;
+
+/*  select2. */
+$grp-form-field-box-shadow-focus-color: #ccc !default;
+$grp-form-field-placeholder-font-color: #9a9a9a !default;
+$grp-disabled-background-color: #eee !default;
+$grp-disabled-font-color: #9a9a9a !default;
+
+/*  NOT $grp-form-field-border-focus-color, which is #aaa. */
+$grp-select2-focus-border-color: #9a9a9a !default;
+
+$grp-select2-result-selected-background-color: #333 !default;
+
+/*  Derived. == darken(#333, 10). Hoisted out of _select2-admin.scss
+    (Task 8) - one of the last two literal-based colour functions in the
+    codebase. */
+$grp-select2-result-selected-border-color: darken($grp-select2-result-selected-background-color, 10) !default; // #1a1a1a
+
+/*  Derived. == darken(#309bbf, 10). Hoisted out of _select2-admin.scss
+    (Task 8) - the other of the last two literal-based colour functions. */
+$grp-select2-result-highlighted-border-color: darken($grp-form-button-background-color, 10) !default; // #267a96
+
+
+
+
 /*  MISC
 ------------------------------------------------------------------------------------------------------ */
 
@@ -725,6 +811,34 @@ $grp-light-tokens: (
     "--grp-button-state-dark-grey-background-color": $grp-button-state-dark-grey-background-color,
     "--grp-button-state-white-background-color": $grp-button-state-white-background-color,
 
+    "--grp-ui-widget-border-color": $grp-ui-widget-border-color,
+    "--grp-ui-widget-font-color": $grp-ui-widget-font-color,
+    "--grp-ui-widget-header-background-color": $grp-ui-widget-header-background-color,
+    "--grp-ui-widget-item-background-color": $grp-ui-widget-item-background-color,
+    "--grp-ui-widget-item-border-color": $grp-ui-widget-item-border-color,
+    "--grp-ui-widget-item-active-background-color": $grp-ui-widget-item-active-background-color,
+    "--grp-ui-widget-item-active-border-color": $grp-ui-widget-item-active-border-color,
+    "--grp-item-background-color-hover": $grp-item-background-color-hover,
+    "--grp-sortable-helper-background-color": $grp-sortable-helper-background-color,
+    "--grp-datepicker-header-border-color": $grp-datepicker-header-border-color,
+    "--grp-datepicker-select-border-color": $grp-datepicker-select-border-color,
+    "--grp-datepicker-day-active-background-color": $grp-datepicker-day-active-background-color,
+    "--grp-datepicker-button-font-color": $grp-datepicker-button-font-color,
+    "--grp-datepicker-current-border-color-hover": $grp-datepicker-current-border-color-hover,
+    "--grp-datepicker-append-font-color": $grp-datepicker-append-font-color,
+    "--grp-datepicker-day-disabled-background-color": $grp-datepicker-day-disabled-background-color,
+    "--grp-datepicker-day-disabled-font-color": $grp-datepicker-day-disabled-font-color,
+    "--grp-timepicker-item-border-color-hover": $grp-timepicker-item-border-color-hover,
+    "--grp-menu-item-border-color-hover": $grp-menu-item-border-color-hover,
+    "--grp-form-field-box-shadow-focus-color": $grp-form-field-box-shadow-focus-color,
+    "--grp-form-field-placeholder-font-color": $grp-form-field-placeholder-font-color,
+    "--grp-disabled-background-color": $grp-disabled-background-color,
+    "--grp-disabled-font-color": $grp-disabled-font-color,
+    "--grp-select2-focus-border-color": $grp-select2-focus-border-color,
+    "--grp-select2-result-selected-background-color": $grp-select2-result-selected-background-color,
+    "--grp-select2-result-selected-border-color": $grp-select2-result-selected-border-color,
+    "--grp-select2-result-highlighted-border-color": $grp-select2-result-highlighted-border-color,
+
     "--grp-text-shadow-color": $grp-text-shadow-color,
     "--grp-submit-row-shadow-color": $grp-submit-row-shadow-color,
     "--grp-fixed-footer-item-background-color": $grp-fixed-footer-item-background-color,
@@ -938,6 +1052,34 @@ $grp-button-border-focus-color: var(--grp-button-border-focus-color);
 $grp-button-state-grey-background-color: var(--grp-button-state-grey-background-color);
 $grp-button-state-dark-grey-background-color: var(--grp-button-state-dark-grey-background-color);
 $grp-button-state-white-background-color: var(--grp-button-state-white-background-color);
+
+$grp-ui-widget-border-color: var(--grp-ui-widget-border-color);
+$grp-ui-widget-font-color: var(--grp-ui-widget-font-color);
+$grp-ui-widget-header-background-color: var(--grp-ui-widget-header-background-color);
+$grp-ui-widget-item-background-color: var(--grp-ui-widget-item-background-color);
+$grp-ui-widget-item-border-color: var(--grp-ui-widget-item-border-color);
+$grp-ui-widget-item-active-background-color: var(--grp-ui-widget-item-active-background-color);
+$grp-ui-widget-item-active-border-color: var(--grp-ui-widget-item-active-border-color);
+$grp-item-background-color-hover: var(--grp-item-background-color-hover);
+$grp-sortable-helper-background-color: var(--grp-sortable-helper-background-color);
+$grp-datepicker-header-border-color: var(--grp-datepicker-header-border-color);
+$grp-datepicker-select-border-color: var(--grp-datepicker-select-border-color);
+$grp-datepicker-day-active-background-color: var(--grp-datepicker-day-active-background-color);
+$grp-datepicker-button-font-color: var(--grp-datepicker-button-font-color);
+$grp-datepicker-current-border-color-hover: var(--grp-datepicker-current-border-color-hover);
+$grp-datepicker-append-font-color: var(--grp-datepicker-append-font-color);
+$grp-datepicker-day-disabled-background-color: var(--grp-datepicker-day-disabled-background-color);
+$grp-datepicker-day-disabled-font-color: var(--grp-datepicker-day-disabled-font-color);
+$grp-timepicker-item-border-color-hover: var(--grp-timepicker-item-border-color-hover);
+$grp-menu-item-border-color-hover: var(--grp-menu-item-border-color-hover);
+$grp-form-field-box-shadow-focus-color: var(--grp-form-field-box-shadow-focus-color);
+$grp-form-field-placeholder-font-color: var(--grp-form-field-placeholder-font-color);
+$grp-disabled-background-color: var(--grp-disabled-background-color);
+$grp-disabled-font-color: var(--grp-disabled-font-color);
+$grp-select2-focus-border-color: var(--grp-select2-focus-border-color);
+$grp-select2-result-selected-background-color: var(--grp-select2-result-selected-background-color);
+$grp-select2-result-selected-border-color: var(--grp-select2-result-selected-border-color);
+$grp-select2-result-highlighted-border-color: var(--grp-select2-result-highlighted-border-color);
 
 $grp-text-shadow-color: var(--grp-text-shadow-color);
 $grp-submit-row-shadow-color: var(--grp-submit-row-shadow-color);
