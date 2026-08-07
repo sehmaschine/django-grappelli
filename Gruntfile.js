@@ -42,7 +42,7 @@ module.exports = function (grunt) {
         destCss: "grappelli/sass/partials/library/_spritesheet.scss",
         imgPath: `../images/spritesheet-${unixTimestamp}.png`,
         padding: 200,
-        cssTemplate: "tools/theme/spritesmith-template.handlebars",
+        cssTemplate: "build/spritesmith-template.handlebars",
       },
     },
     exec: {
