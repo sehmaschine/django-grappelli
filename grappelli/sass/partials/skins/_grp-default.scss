@@ -239,6 +239,26 @@ $grp-module-border-top-color: lighten($grp-module-border-color, 5) !default;
 /*  Hoisted out of _modules.scss (Task 7). */
 $grp-module-heading-border-top-color: #f5f5f5 !default;
 
+/*  Module Header Gradients ............................................................ */
+
+/*  The h2 and h3 module header background is the same two-stop grey
+    gradient today, but kept as separate tokens per header level - a shared
+    value is not a shared role, matching the convention used throughout
+    this file. Hoisted out of Region D (Task 9b). */
+$grp-module-h2-gradient-from: #e5e5e5 !default;
+$grp-module-h2-gradient-to: #dbdbdb !default;
+$grp-module-h3-gradient-from: #e5e5e5 !default;
+$grp-module-h3-gradient-to: #dbdbdb !default;
+
+/*  Derived. grp-gradient-module-h4 used to call lighten() on the raw
+    #e5e5e5/#dbdbdb literals directly in its mixin body; a literal is not a
+    $grp-* variable, so the colour-function invariant tolerated it, but
+    tokenising the h2 pair without also hoisting this call would have made
+    it illegal (Region D runs after Region C). Hoisted out of Region D
+    (Task 9b). */
+$grp-module-h4-gradient-from: lighten($grp-module-h2-gradient-from, 2) !default; // #eaeaea
+$grp-module-h4-gradient-to: lighten($grp-module-h2-gradient-to, 2) !default; // #e0e0e0
+
 /*  Letterpress on the BLUE h2 collapse chip - distinct from
     $grp-text-shadow-color because it sits on a saturated background, not
     the neutral module surface. Hoisted out of _modules.scss (Task 7). */
@@ -252,6 +272,16 @@ $grp-module-h3-collapse-handler-text-shadow-color: #fff !default;
     operating on a raw literal in _modules.scss - hoisted here (Task 7). */
 $grp-module-h3-collapse-handler-border-top-color: lighten(#cee9f2, 5) !default; // #e2f2f7
 $grp-module-h3-collapse-handler-border-bottom-color: #d9d9d9 !default;
+
+/*  Collapse Handler Gradients ............................................................ */
+
+/*  Each collapse-handler mixin pair (resting, hover) reuses the same two
+    stops in reversed order, so one pair of tokens per header level covers
+    both mixins. Hoisted out of Region D (Task 9b). */
+$grp-module-h2-collapse-handler-gradient-from: #bcdfeb !default;
+$grp-module-h2-collapse-handler-gradient-to: #a1d4e5 !default;
+$grp-module-h3-collapse-handler-gradient-from: #e1f0f5 !default;
+$grp-module-h3-collapse-handler-gradient-to: #cee9f2 !default;
 
 
 /*  Tabular Inline ............................................................ */
@@ -576,6 +606,10 @@ $grp-text-shadow-color: #f5f5f5 !default;
 $grp-submit-row-shadow-color: #bbb !default;
 $grp-fixed-footer-item-background-color: #444 !default;
 
+/*  The inset highlight under a form field - not the module surface it
+    shares this value with today. Hoisted out of Region D (Task 9b). */
+$grp-form-field-box-shadow-color: #eee !default;
+
 /*  Drop shadow under a floating overlay. Hoisted out of _changelist.scss;
     shared with _jquery-ui.scss (Task 8). */
 $grp-overlay-shadow-color: #333 !default;
@@ -703,10 +737,20 @@ $grp-light-tokens: (
     "--grp-module-background-color": $grp-module-background-color,
     "--grp-module-border-top-color": $grp-module-border-top-color,
     "--grp-module-heading-border-top-color": $grp-module-heading-border-top-color,
+    "--grp-module-h2-gradient-from": $grp-module-h2-gradient-from,
+    "--grp-module-h2-gradient-to": $grp-module-h2-gradient-to,
+    "--grp-module-h3-gradient-from": $grp-module-h3-gradient-from,
+    "--grp-module-h3-gradient-to": $grp-module-h3-gradient-to,
+    "--grp-module-h4-gradient-from": $grp-module-h4-gradient-from,
+    "--grp-module-h4-gradient-to": $grp-module-h4-gradient-to,
     "--grp-module-h2-collapse-handler-text-shadow-color": $grp-module-h2-collapse-handler-text-shadow-color,
     "--grp-module-h3-collapse-handler-text-shadow-color": $grp-module-h3-collapse-handler-text-shadow-color,
     "--grp-module-h3-collapse-handler-border-top-color": $grp-module-h3-collapse-handler-border-top-color,
     "--grp-module-h3-collapse-handler-border-bottom-color": $grp-module-h3-collapse-handler-border-bottom-color,
+    "--grp-module-h2-collapse-handler-gradient-from": $grp-module-h2-collapse-handler-gradient-from,
+    "--grp-module-h2-collapse-handler-gradient-to": $grp-module-h2-collapse-handler-gradient-to,
+    "--grp-module-h3-collapse-handler-gradient-from": $grp-module-h3-collapse-handler-gradient-from,
+    "--grp-module-h3-collapse-handler-gradient-to": $grp-module-h3-collapse-handler-gradient-to,
     "--grp-tabular-cell-border-inline-end-color": $grp-tabular-cell-border-inline-end-color,
     "--grp-tabular-head-font-color": $grp-tabular-head-font-color,
     "--grp-tabular-cell-border-color": $grp-tabular-cell-border-color,
@@ -842,6 +886,7 @@ $grp-light-tokens: (
     "--grp-text-shadow-color": $grp-text-shadow-color,
     "--grp-submit-row-shadow-color": $grp-submit-row-shadow-color,
     "--grp-fixed-footer-item-background-color": $grp-fixed-footer-item-background-color,
+    "--grp-form-field-box-shadow-color": $grp-form-field-box-shadow-color,
     "--grp-overlay-shadow-color": $grp-overlay-shadow-color,
     "--grp-pulldown-handler-text-shadow-color": $grp-pulldown-handler-text-shadow-color,
 
@@ -945,10 +990,20 @@ $grp-module-border-color: var(--grp-module-border-color);
 $grp-module-background-color: var(--grp-module-background-color);
 $grp-module-border-top-color: var(--grp-module-border-top-color);
 $grp-module-heading-border-top-color: var(--grp-module-heading-border-top-color);
+$grp-module-h2-gradient-from: var(--grp-module-h2-gradient-from);
+$grp-module-h2-gradient-to: var(--grp-module-h2-gradient-to);
+$grp-module-h3-gradient-from: var(--grp-module-h3-gradient-from);
+$grp-module-h3-gradient-to: var(--grp-module-h3-gradient-to);
+$grp-module-h4-gradient-from: var(--grp-module-h4-gradient-from);
+$grp-module-h4-gradient-to: var(--grp-module-h4-gradient-to);
 $grp-module-h2-collapse-handler-text-shadow-color: var(--grp-module-h2-collapse-handler-text-shadow-color);
 $grp-module-h3-collapse-handler-text-shadow-color: var(--grp-module-h3-collapse-handler-text-shadow-color);
 $grp-module-h3-collapse-handler-border-top-color: var(--grp-module-h3-collapse-handler-border-top-color);
 $grp-module-h3-collapse-handler-border-bottom-color: var(--grp-module-h3-collapse-handler-border-bottom-color);
+$grp-module-h2-collapse-handler-gradient-from: var(--grp-module-h2-collapse-handler-gradient-from);
+$grp-module-h2-collapse-handler-gradient-to: var(--grp-module-h2-collapse-handler-gradient-to);
+$grp-module-h3-collapse-handler-gradient-from: var(--grp-module-h3-collapse-handler-gradient-from);
+$grp-module-h3-collapse-handler-gradient-to: var(--grp-module-h3-collapse-handler-gradient-to);
 $grp-tabular-cell-border-inline-end-color: var(--grp-tabular-cell-border-inline-end-color);
 $grp-tabular-head-font-color: var(--grp-tabular-head-font-color);
 $grp-tabular-cell-border-color: var(--grp-tabular-cell-border-color);
@@ -1084,6 +1139,7 @@ $grp-select2-result-highlighted-border-color: var(--grp-select2-result-highlight
 $grp-text-shadow-color: var(--grp-text-shadow-color);
 $grp-submit-row-shadow-color: var(--grp-submit-row-shadow-color);
 $grp-fixed-footer-item-background-color: var(--grp-fixed-footer-item-background-color);
+$grp-form-field-box-shadow-color: var(--grp-form-field-box-shadow-color);
 $grp-overlay-shadow-color: var(--grp-overlay-shadow-color);
 $grp-pulldown-handler-text-shadow-color: var(--grp-pulldown-handler-text-shadow-color);
 
@@ -1128,46 +1184,45 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
 /*  H2, H3 ............................................................ */
 
 @mixin grp-gradient-module-h2 {
-    background-image: linear-gradient(#e5e5e5, #dbdbdb);
+    background-image: linear-gradient($grp-module-h2-gradient-from, $grp-module-h2-gradient-to);
 }
 
 @mixin grp-gradient-module-h3 {
-    background-image: linear-gradient(#e5e5e5, #dbdbdb);
+    background-image: linear-gradient($grp-module-h3-gradient-from, $grp-module-h3-gradient-to);
 }
 
 @mixin grp-gradient-module-h4 {
-    background-image: linear-gradient(lighten(#e5e5e5, 2),
-            lighten(#dbdbdb, 2));
+    background-image: linear-gradient($grp-module-h4-gradient-from, $grp-module-h4-gradient-to);
 }
 
 
 /*  Collapse Handlers ............................................................ */
 
 @mixin grp-gradient-module-h2-collapse-handler {
-    background-image: linear-gradient(#bcdfeb, #a1d4e5);
+    background-image: linear-gradient($grp-module-h2-collapse-handler-gradient-from, $grp-module-h2-collapse-handler-gradient-to);
 }
 
 @mixin grp-gradient-module-h2-collapse-handler-hover {
-    background-image: linear-gradient(#a1d4e5, #bcdfeb);
+    background-image: linear-gradient($grp-module-h2-collapse-handler-gradient-to, $grp-module-h2-collapse-handler-gradient-from);
 }
 
 @mixin grp-gradient-module-h3-collapse-handler {
-    background-image: linear-gradient(#e1f0f5, #cee9f2);
+    background-image: linear-gradient($grp-module-h3-collapse-handler-gradient-from, $grp-module-h3-collapse-handler-gradient-to);
 }
 
 @mixin grp-gradient-module-h3-collapse-handler-hover {
-    background-image: linear-gradient(#cee9f2, #e1f0f5);
+    background-image: linear-gradient($grp-module-h3-collapse-handler-gradient-to, $grp-module-h3-collapse-handler-gradient-from);
 }
 
 
 /*  Form Fields ............................................................ */
 
 @mixin grp-form-field-box-shadow {
-    box-shadow: 0 1px 3px 0 #eee inset;
+    box-shadow: 0 1px 3px 0 $grp-form-field-box-shadow-color inset;
 }
 
 @mixin grp-form-field-box-shadow-focus {
-    box-shadow: 0 0 6px #ccc;
+    box-shadow: 0 0 6px $grp-form-field-box-shadow-focus-color;
 }
 
 
@@ -1181,18 +1236,18 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
 /*  Buttons ............................................................ */
 
 @mixin grp-form-button-style {
-    color: #fff;
+    color: $grp-font-color-inverted;
     border: 1px solid $grp-form-button-border-color;
     background-image: linear-gradient($grp-form-button-gradient-from, $grp-form-button-background-color);
 
     &:hover,
     &:focus {
-        color: #fff;
+        color: $grp-font-color-inverted;
         border: 1px solid $grp-form-button-border-color-hover;
         background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-background-color-hover);
 
         .grp-fixed-footer & {
-            color: #444;
+            color: $grp-form-button-font-color-hover;
             border: 1px solid $grp-footer-form-button-border-color-hover;
             background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-background-color-hover);
         }
@@ -1200,18 +1255,18 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
 }
 
 @mixin grp-form-button-delete-style {
-    color: #fff;
+    color: $grp-font-color-inverted;
     border: 1px solid $grp-form-button-delete-border-color;
     background-image: linear-gradient($grp-form-button-delete-gradient-from, $grp-form-button-delete-background-color);
 
     &:hover,
     &:focus {
-        color: #fff;
+        color: $grp-font-color-inverted;
         border: 1px solid $grp-form-button-delete-border-color-hover;
         background-image: linear-gradient($grp-form-button-delete-gradient-from-hover, $grp-form-button-delete-background-color-hover);
 
         .grp-fixed-footer & {
-            color: #444;
+            color: $grp-form-button-font-color-hover;
             border: 1px solid $grp-footer-form-button-delete-border-color-hover;
             background-image: linear-gradient($grp-footer-form-button-delete-gradient-from-hover, $grp-footer-form-button-delete-background-color-hover);
         }
@@ -1219,18 +1274,18 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
 }
 
 @mixin grp-form-button-cancel-style {
-    color: #fff;
+    color: $grp-font-color-inverted;
     border: 1px solid $grp-form-button-cancel-border-color;
     background-image: linear-gradient($grp-form-button-cancel-gradient-from, $grp-form-button-cancel-background-color);
 
     &:hover,
     &:focus {
-        color: #fff;
+        color: $grp-font-color-inverted;
         border: 1px solid $grp-form-button-cancel-border-color-hover;
         background-image: linear-gradient($grp-form-button-cancel-gradient-from-hover, $grp-form-button-cancel-background-color-hover);
 
         .grp-fixed-footer & {
-            color: #444;
+            color: $grp-form-button-font-color-hover;
             border: 1px solid $grp-footer-form-button-cancel-border-color-hover;
             background-image: linear-gradient($grp-footer-form-button-cancel-gradient-from-hover, $grp-footer-form-button-cancel-background-color-hover);
         }
@@ -1238,18 +1293,18 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
 }
 
 @mixin grp-form-button-reset-style {
-    color: #fff;
+    color: $grp-font-color-inverted;
     border: 1px solid $grp-form-button-reset-border-color;
     background-image: linear-gradient($grp-form-button-reset-gradient-from, $grp-form-button-reset-background-color);
 
     &:hover,
     &:focus {
-        color: #fff;
+        color: $grp-font-color-inverted;
         border: 1px solid $grp-form-button-reset-border-color-hover;
         background-image: linear-gradient($grp-form-button-reset-gradient-from-hover, $grp-form-button-reset-background-color-hover);
 
         .grp-fixed-footer & {
-            color: #444;
+            color: $grp-form-button-font-color-hover;
             border: 1px solid $grp-footer-form-button-reset-border-color-hover;
             background-image: linear-gradient($grp-footer-form-button-reset-gradient-from-hover, $grp-footer-form-button-reset-background-color-hover);
         }
@@ -1264,8 +1319,8 @@ $grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
 /*  Dark Gradient ............................................................ */
 
 @mixin grp-gradient-dark {
-    color: #fff;
-    background-image: linear-gradient(#333, #222);
+    color: $grp-font-color-inverted;
+    background-image: linear-gradient($grp-dark-gradient-from, $grp-dark-background-color);
 }
 
 
