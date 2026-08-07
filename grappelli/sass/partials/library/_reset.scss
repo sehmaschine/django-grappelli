@@ -90,8 +90,18 @@ video {
     background: transparent;
 }
 
+/*  The page canvas. The reset above deliberately clears every background,
+    body's included - but rtl.scss imports this file too, and rtl.css loads
+    AFTER screen.css at equal specificity, so that clear would otherwise wipe
+    screen.scss's own `body { background: ... }` and leave the page painted by
+    the user agent's canvas - always white - instead of by the theme. Naming
+    the token here makes both sheets agree on one value rather than fight over
+    it, and it is the same value screen.scss sets, so nothing moves in the
+    light theme. See the note further down (ins/mark) for why this is written
+    as plain var() rather than as a Sass variable. */
 body {
     line-height: 1;
+    background: var(--grp-body-background-color);
 }
 
 article,
