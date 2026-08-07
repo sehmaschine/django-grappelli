@@ -595,12 +595,25 @@ $grp-dark-doc-45:   #e63c00 !default;
     no rule at all - it is what :root already declares.
     -------------------------------------------------------------------------------------------------- */
 
+/*  `color-scheme` tells the BROWSER, not the page, which palette to use for
+    UI it draws itself and CSS cannot reach: <select> popups, scrollbars,
+    <input type=date>/<input type=number> pickers and spinners. Django's own
+    admin/css/dark_mode.css sets `color-scheme: dark` in the same two places
+    - here and inside the media query below - and nowhere else, matching the
+    same "dark applies unconditionally, auto only when the OS agrees" split
+    as grp-dark-tokens above. It is a keyword, not a colour, so it is written
+    directly rather than through a $grp- or --grp- token, and it is placed in
+    these dark-only selectors ON PURPOSE: a `:root { color-scheme: light dark }`
+    would add a declaration to the LIGHT output too and break css-equiv.mjs's
+    byte-for-byte claim. */
 html[data-theme="dark"] {
     @include grp-dark-tokens;
+    color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
     html[data-theme="auto"] {
         @include grp-dark-tokens;
+        color-scheme: dark;
     }
 }
