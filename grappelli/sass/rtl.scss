@@ -8,12 +8,16 @@
 /*  GRAPPELLI IMPORTS
 ------------------------------------------------------------------------------------------------------ */
 
+/*  spritesheet must load before grp-default: Region B of grp-default
+    references $spritesheet-image (defined there) to build --grp-spritesheet,
+    and Sass evaluates that reference at import time, not at first use. */
+@import "partials/library/spritesheet";
+
 /* grp-default is imported for its variables only - the token :root block is
    emitted by screen.scss via grp-emit-light-tokens, never here. rtl.css loads
    after screen.css and would otherwise re-declare every light token. */
 @import "partials/skins/grp-default";
 
-@import "partials/library/spritesheet";
 @import "partials/library/mixins";
 @import "partials/library/borders";
 @import "partials/library/margins-paddings";

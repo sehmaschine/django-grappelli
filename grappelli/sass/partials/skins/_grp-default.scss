@@ -632,6 +632,20 @@ $grp-mark-font-color: #000 !default;
 
 
 
+/*  SPRITESHEET
+------------------------------------------------------------------------------------------------------ */
+
+/*  Not a colour - the icon spritesheet's background-image URL, tokenised so
+    a dark theme can repoint every icon at a recoloured sheet in one place
+    (grp-get-sprite() in _sprites.scss and the generated sprite-image mixin
+    in _spritesheet.scss both consume var(--grp-spritesheet) directly, never
+    this variable). $spritesheet-image comes from _spritesheet.scss, so
+    screen.scss and rtl.scss import that partial before this one - importing
+    it after would leave $spritesheet-image undefined here. */
+$grp-spritesheet: url(#{$spritesheet-image}) !default;
+
+
+
 /*  MARGINS & PADDINGS
 ------------------------------------------------------------------------------------------------------ */
 
@@ -896,7 +910,9 @@ $grp-light-tokens: (
     "--grp-doc-code-background-color": $grp-doc-code-background-color,
 
     "--grp-mark-background-color": $grp-mark-background-color,
-    "--grp-mark-font-color": $grp-mark-font-color
+    "--grp-mark-font-color": $grp-mark-font-color,
+
+    "--grp-spritesheet": $grp-spritesheet
 );
 
 @mixin grp-emit-light-tokens {
@@ -1150,6 +1166,8 @@ $grp-doc-code-background-color: var(--grp-doc-code-background-color);
 
 $grp-mark-background-color: var(--grp-mark-background-color);
 $grp-mark-font-color: var(--grp-mark-font-color);
+
+$grp-spritesheet: var(--grp-spritesheet);
 
 
 /* === REGION C END === */
