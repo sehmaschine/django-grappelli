@@ -2,16 +2,17 @@
     THEME TOGGLE
     --------------------------------------------------------------------------------------------------
     Styles for Django's own `admin/color_theme_toggle.html`, included from
-    `base.html` inside #grp-user-tools (see docs/superpowers/specs, "The
-    switch"). Grappelli writes no JavaScript and no toggle markup of its own -
-    `admin/js/theme.js` and the toggle template are Django's, loaded verbatim.
+    `base.html` inside #grp-user-tools. Grappelli writes no JavaScript and no
+    toggle markup of its own - `admin/js/theme.js` and the toggle template
+    are Django's, loaded verbatim.
 
     Grappelli does not load Django's admin/css/base.css, so the display rules
     that pick exactly one of the three icons for the active theme, and the
     .visually-hidden utility the three accessible labels rely on, would
     otherwise be missing entirely - without them all three icons show at
     once (no rule hides the other two) or none do. Every colour below reuses
-    an existing $grp-* token; see tools/theme/check-invariant.mjs.
+    an existing $grp-* token rather than introducing a literal, so the toggle
+    follows both themes without a second set of values to keep in step.
     -------------------------------------------------------------------------------------------------- */
 
 /*  Every other item in #grp-user-tools is a text link that fills its <li> by
@@ -59,10 +60,9 @@
     fill: $grp-font-color-inverted;
 }
 
-/*  Exactly one icon per theme. See tools/theme/README.md, "Worked example",
-    for why css-equiv.mjs leaves this mixed-selector rule in the byte
-    comparison rather than stripping it: the auto and light branches are
-    light-affecting, only the dark branch is not. */
+/*  Exactly one icon per theme. All three branches are listed in one selector
+    group, matching Django's own sheet - note that only the dark branch is
+    dark-only; the auto and light branches affect the light theme too. */
 html[data-theme="auto"] .theme-toggle svg.theme-icon-when-auto,
 html[data-theme="dark"] .theme-toggle svg.theme-icon-when-dark,
 html[data-theme="light"] .theme-toggle svg.theme-icon-when-light {

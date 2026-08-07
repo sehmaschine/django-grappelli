@@ -282,13 +282,13 @@ body[class*="grp"] {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             /* Same colour as $grp-overlay-shadow-color (#333), written in
-               decimal with a fixed alpha - the hex scanner never counted
-               this one. Left as a literal on purpose: passing a token
-               through rgba() forces Sass to fall back to its plain-CSS
-               function serialiser, which reformats the call
-               (comma spacing, ".3" -> "0.3") and breaks the
-               byte-equivalence gate. Revisit under Task 16 if this needs
-               to themed for real. */
+               decimal with a fixed alpha. Left as a literal on purpose:
+               passing a token through rgba() forces Sass to fall back to
+               its plain-CSS function serialiser, which reformats the call
+               (comma spacing, ".3" -> "0.3") and so rewrites the compiled
+               light CSS for no visual gain. If this shadow ever needs to
+               differ per theme, give it a dark-scoped override rather than
+               a token. */
             box-shadow: 0 0px 50px rgba(51, 51, 51, .3);
         }
 

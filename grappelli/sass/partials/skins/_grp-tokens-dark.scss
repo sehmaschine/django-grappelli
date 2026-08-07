@@ -12,7 +12,7 @@
     only thing that makes it impossible for the explicitly-chosen theme and
     the OS-following theme to drift apart.
 
-    HOW THE VALUES WERE CHOSEN (design doc, section 3), three rules in order:
+    HOW THE VALUES WERE CHOSEN - three rules, applied in this order:
 
     1.  NEUTRALS come from the one ramp defined below, indexed by the ROLE the
         light value played, not by the light value itself. Two light tokens
@@ -57,8 +57,7 @@
     3.  CONTRAST FLOOR. 4.5:1 for text and 3:1 for genuine non-text UI
         boundaries (form-field and button outlines, focus rings, the floating
         widget frame, icons), measured with the WCAG 2.x relative-luminance
-        formula and asserted by tools/theme/check-contrast.mjs, whose pairing
-        table records which surface each foreground is actually painted on.
+        formula against the surface each foreground is actually painted on.
         Purely decorative neutrals - hairline dividers, gradient stops,
         bevels, letterpress shadows - are held at light-theme PARITY instead:
         the goal there is that they stay as unobtrusive as they are today,
@@ -68,9 +67,10 @@
     ONE CONSTRAINT THAT IS NOT NEGOTIABLE: the icon spritesheet.
     build/recolour-sheet.mjs lifts every icon pixel to 3:1 against #333, so
     #333 is the LIGHTEST surface an icon may be painted on. Every surface
-    below that carries a sprite is at or below that ceiling; the handful of
-    tinted chips that are not are listed in the task-13 report for the
-    rendered sweep (Gate 3) to confirm empirically.
+    that carries a sprite is at or below that ceiling. The two exceptions are
+    the dark chrome stops further down, and they are only safe because
+    nothing painted on them carries a sprite - see the note there before
+    moving any surface value up the ramp.
     -------------------------------------------------------------------------------------------------- */
 
 
@@ -224,10 +224,11 @@ $grp-dark-doc-45:   #e63c00 !default;
 
     /*  CONTEXT NAVIGATION ............................................................ */
 
-    /*  Upstream defect 1 - no separation between the nav bar and the
-        breadcrumbs bar. In light the breadcrumb band (#eee) sits between the
-        white page and the #222 header; mirrored, it sits between the #1b1b1b
-        page and the #333 header, with its rule one step lighter again. */
+    /*  The breadcrumb band's whole job is to separate the nav bar from the
+        page; without a value of its own it collapses into one or the other.
+        In light it sits between the white page and the #222 header;
+        mirrored, it sits between the near-black page and the chrome band,
+        with its rule one step lighter again. */
     --grp-context-navigation-background-color: #{$grp-dark-ramp-row};
     --grp-context-navigation-border-color: #{$grp-dark-ramp-hairline};
 
@@ -304,8 +305,8 @@ $grp-dark-doc-45:   #e63c00 !default;
         the changelist actions bar are text and chips throughout. Verified by
         walking the computed background-image of every element inside these
         bands. If a sprite is ever introduced here, either it or the dark
-        spritesheet's 3:1 reference background has to move; no gate catches
-        that, because check-contrast.mjs reads tokens, not PNG pixels. */
+        spritesheet's 3:1 reference background has to move - and nothing will
+        warn you, because the icons are pixels in a PNG, not token values. */
     --grp-dark-background-color: #{$grp-dark-ramp-hairline};
     --grp-dark-gradient-from: #{$grp-dark-ramp-border};
 
@@ -353,7 +354,7 @@ $grp-dark-doc-45:   #e63c00 !default;
     --grp-module-border-top-color: #{$grp-dark-ramp-border-2};
     --grp-module-heading-border-top-color: #3a3a3a;
 
-    /*  Upstream defect 2 - h2/h3 module titles. In light the header gradient
+    /*  h2/h3 module titles. In light the header gradient
         is DARKER than the #eee module it caps; mirrored, it is lighter, and
         it stops exactly at the icon ceiling because the collapse handler is
         a sprite. h4 is subtler than h2 in both themes: light lightens it
@@ -605,9 +606,9 @@ $grp-dark-doc-45:   #e63c00 !default;
     /*  SPRITESHEET ............................................................ */
 
     /*  Repoints every one of the 112 icons at the recoloured sheet
-        (build/recolour-sheet.mjs, wired into `grunt sprite`). Without this
+        (build/recolour-sheet.mjs, wired into `grunt sprites`). Without this
         line dark mode renders the LIGHT sheet - dark glyphs on a dark
-        surface, which is upstream defect 6. The filename is interpolated
+        surface. The filename is interpolated
         from $spritesheet-dark-image, which the sprite task rewrites from the
         same timestamp it stamps into the light sheet, so a regeneration can
         never leave this pointing at a 404. */
@@ -648,8 +649,8 @@ $grp-dark-doc-45:   #e63c00 !default;
     as grp-dark-tokens above. It is a keyword, not a colour, so it is written
     directly rather than through a $grp- or --grp- token, and it is placed in
     these dark-only selectors ON PURPOSE: a `:root { color-scheme: light dark }`
-    would add a declaration to the LIGHT output too and break css-equiv.mjs's
-    byte-for-byte claim. */
+    would change what a light-theme user's browser paints, and this theme is
+    meant to leave the light rendering exactly as it was. */
 html[data-theme="dark"] {
     @include grp-dark-tokens;
     color-scheme: dark;

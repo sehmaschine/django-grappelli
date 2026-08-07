@@ -73,7 +73,7 @@ $grp-font-color-error: #bf3030 !default;
     color: var(--grp-font-color-error);
 }
 
-/*  Hoisted out of screen.scss (Task 5); reused by _changelist.scss,
+/*  Hoisted out of screen.scss; reused by _changelist.scss,
     _tools.scss, _buttons.scss, _forms.scss, _jquery-ui.scss and
     _select2-admin.scss (Tasks 6-8). Text sitting on a dark or saturated
     chip - the opposite direction from every other font colour when the
@@ -93,7 +93,7 @@ $grp-link-color-quiet: #62bbd9 !default;
 $grp-link-color-quiet-hover: #444 !default;
 
 /*  Distinct from both $grp-link-color-quiet (#62bbd9) and $grp-link-color-bright
-    (#4fb2d3). Hoisted out of _tables.scss and _changelist.scss (Task 6). */
+    (#4fb2d3). Hoisted out of _tables.scss and _changelist.scss. */
 $grp-link-color-subtle: #59afcc !default;
 
 
@@ -136,7 +136,7 @@ $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-co
 
 /*  Pagination ............................................................ */
 
-/*  Hoisted out of _changelist.scss (Task 6). */
+/*  Hoisted out of _changelist.scss. */
 $grp-pagination-border-color: #d9d9d9 !default;
 $grp-pagination-border-color-active: #bdbdbd !default;
 $grp-pagination-background-color: #eee !default;
@@ -147,13 +147,13 @@ $grp-pagination-background-color-shade: #e0e0e0 !default;
 
 /*  The white halo drawn around a control sitting on the grey module surface
     (pagination list, search form, filter pulldown). Hoisted out of
-    _changelist.scss (Task 6). */
+    _changelist.scss. */
 $grp-control-outline-color: #fff !default;
 
 
 /*  Object Tools ............................................................ */
 
-/*  Hoisted out of _tools.scss (Task 7). */
+/*  Hoisted out of _tools.scss. */
 $grp-object-tools-border-color: #777 !default;
 $grp-object-tools-gradient-from: #999 !default;
 $grp-object-tools-background-color: #888 !default;
@@ -163,7 +163,7 @@ $grp-object-tools-background-color-hover: #36b0d9 !default;
 /*  MIXIN ARGUMENT to grp-background-gradient-icon-combo($object-tools-add-link,
     ...) in _tools.scss. The add-link variant of the tools gradient, distinct
     from the grey resting/hover pair above even though it shares the #444
-    value with $grp-font-color. Hoisted out of _tools.scss (Task 7). */
+    value with $grp-font-color. Hoisted out of _tools.scss. */
 $grp-object-tools-add-gradient-from: #666 !default;
 $grp-object-tools-add-background-color: #444 !default;
 
@@ -174,7 +174,7 @@ $grp-object-tools-add-background-color: #444 !default;
 ------------------------------------------------------------------------------------------------------ */
 
 /*  The login panel and the header/actions dark chrome share one surface
-    colour. Hoisted out of screen.scss; reused by _changelist.scss (Task 6). */
+    colour. Hoisted out of screen.scss; reused by _changelist.scss. */
 $grp-dark-background-color: #222 !default;
 
 /*  Derived. Hoisted out of screen.scss (login h1 gradient top stop). */
@@ -182,7 +182,7 @@ $grp-dark-gradient-from: #333 !default;
 
 /*  Derived from the dark surface above. Hoisted out of screen.scss
     (#grp-navigation dropdown, #grp-user-tools). rtl.scss spells these out
-    as literals (#090909, #343434) and reuses these same tokens (Task 9). */
+    as literals (#090909, #343434) and reuses these same tokens. */
 $grp-dark-border-shade-color: darken($grp-dark-background-color, 10) !default;      // #090909
 $grp-dark-border-highlight-color: lighten($grp-dark-background-color, 7) !default;  // #343434
 $grp-nav-dropdown-item-border-top-color: lighten($grp-dark-background-color, 10) !default; // #3c3c3c
@@ -195,7 +195,7 @@ $grp-dark-font-color-quiet: #eee !default;
 /*  The light module nested inside the dark login panel. */
 $grp-login-module-border-top-color: #f6f6f6 !default;
 
-/*  Hoisted out of _changelist.scss (Task 6). The changelist actions bar
+/*  Hoisted out of _changelist.scss. The changelist actions bar
     renders its chips on this dark surface; these are the hover states of
     $grp-dark-chip-border-color and $grp-dark-background-color, distinct
     tokens because a hover state can move independently of its resting
@@ -205,12 +205,12 @@ $grp-dark-background-color-hover: #555 !default;
 
 /*  A dark item border, distinct from $grp-dark-chip-border-color (#111) even
     though it also renders on dark chrome - the changelist actions bar list
-    item, not a chip. Hoisted out of _changelist.scss (Task 6). */
+    item, not a chip. Hoisted out of _changelist.scss. */
 $grp-dark-item-border-color: #333 !default;
 
 /*  A link colour rendered on the #222 dark chrome chip, not the light module
     surface - same literal as $grp-link-color-subtle but a different role.
-    Hoisted out of _changelist.scss (Task 6). */
+    Hoisted out of _changelist.scss. */
 $grp-dark-link-color: #59afcc !default;
 
 
@@ -236,7 +236,7 @@ $grp-module-background-color: #eee !default;
     between two stacked modules inside one group. */
 $grp-module-border-top-color: lighten($grp-module-border-color, 5) !default;
 
-/*  Hoisted out of _modules.scss (Task 7). */
+/*  Hoisted out of _modules.scss. */
 $grp-module-heading-border-top-color: #f5f5f5 !default;
 
 /*  Module Header Gradients ............................................................ */
@@ -244,7 +244,7 @@ $grp-module-heading-border-top-color: #f5f5f5 !default;
 /*  The h2 and h3 module header background is the same two-stop grey
     gradient today, but kept as separate tokens per header level - a shared
     value is not a shared role, matching the convention used throughout
-    this file. Hoisted out of Region D (Task 9b). */
+    this file. Hoisted out of Region D. */
 $grp-module-h2-gradient-from: #e5e5e5 !default;
 $grp-module-h2-gradient-to: #dbdbdb !default;
 $grp-module-h3-gradient-from: #e5e5e5 !default;
@@ -254,22 +254,21 @@ $grp-module-h3-gradient-to: #dbdbdb !default;
     #e5e5e5/#dbdbdb literals directly in its mixin body; a literal is not a
     $grp-* variable, so the colour-function invariant tolerated it, but
     tokenising the h2 pair without also hoisting this call would have made
-    it illegal (Region D runs after Region C). Hoisted out of Region D
-    (Task 9b). */
+    it illegal (Region D runs after Region C). Hoisted out of Region D. */
 $grp-module-h4-gradient-from: lighten($grp-module-h2-gradient-from, 2) !default; // #eaeaea
 $grp-module-h4-gradient-to: lighten($grp-module-h2-gradient-to, 2) !default; // #e0e0e0
 
 /*  Letterpress on the BLUE h2 collapse chip - distinct from
     $grp-text-shadow-color because it sits on a saturated background, not
-    the neutral module surface. Hoisted out of _modules.scss (Task 7). */
+    the neutral module surface. Hoisted out of _modules.scss. */
 $grp-module-h2-collapse-handler-text-shadow-color: #c4e9f5 !default;
 
 /*  Letterpress on the lighter blue h3 collapse chip. Hoisted out of
-    _modules.scss (Task 7). */
+    _modules.scss. */
 $grp-module-h3-collapse-handler-text-shadow-color: #fff !default;
 
 /*  Derived. == lighten(#cee9f2, 5). The last lighten()/darken() call left
-    operating on a raw literal in _modules.scss - hoisted here (Task 7). */
+    operating on a raw literal in _modules.scss - hoisted here. */
 $grp-module-h3-collapse-handler-border-top-color: lighten(#cee9f2, 5) !default; // #e2f2f7
 $grp-module-h3-collapse-handler-border-bottom-color: #d9d9d9 !default;
 
@@ -277,7 +276,7 @@ $grp-module-h3-collapse-handler-border-bottom-color: #d9d9d9 !default;
 
 /*  Each collapse-handler mixin pair (resting, hover) reuses the same two
     stops in reversed order, so one pair of tokens per header level covers
-    both mixins. Hoisted out of Region D (Task 9b). */
+    both mixins. Hoisted out of Region D. */
 $grp-module-h2-collapse-handler-gradient-from: #bcdfeb !default;
 $grp-module-h2-collapse-handler-gradient-to: #a1d4e5 !default;
 $grp-module-h3-collapse-handler-gradient-from: #e1f0f5 !default;
@@ -289,13 +288,13 @@ $grp-module-h3-collapse-handler-gradient-to: #cee9f2 !default;
 /*  Shade partner of $grp-row-border-top-color in the div-based tabular-inline
     cell grid; distinct from $grp-table-cell-border-color (the real <table>
     grid) even though it shares the value today. Hoisted out of
-    _modules.scss (Task 7). */
+    _modules.scss. */
 $grp-tabular-cell-border-inline-end-color: #e0e0e0 !default;
 
 $grp-tabular-head-font-color: #aaa !default;
 
 /*  The tabular-inline body cell grid, all four edges. Hoisted out of
-    _modules.scss (Task 7). */
+    _modules.scss. */
 $grp-tabular-cell-border-color: #d4d4d4 !default;
 
 
@@ -342,7 +341,7 @@ $grp-predelete-module-border-top-color: lighten($grp-predelete-background-color,
 /*  Delete Confirmation ............................................................ */
 
 /*  A 4px nesting rail, not the 1px row bevel that shares its value.
-    Hoisted out of _delete-confirmation.scss (Task 7). */
+    Hoisted out of _delete-confirmation.scss. */
 $grp-delete-confirmation-nesting-border-color: #ddd !default;
 
 
@@ -359,35 +358,35 @@ $grp-table-border-color: #ccc !default;
 
 /*  Shade partner of $grp-table-background-color, the second stop of the
     header gradient (base + shade, direction-neutral: the gradient reverses
-    for sorted/hover headers). Hoisted out of _tables.scss (Task 6). */
+    for sorted/hover headers). Hoisted out of _tables.scss. */
 $grp-table-background-color-shade: #e0e0e0 !default;
 
 /*  Cell divider, distinct from the gradient shade even though it shares the
-    same value today. Hoisted out of _tables.scss (Task 6). */
+    same value today. Hoisted out of _tables.scss. */
 $grp-table-cell-border-color: #e0e0e0 !default;
 
 /*  Lighter than the horizontal divider above; mirrored at rtl.scss:564.
-    Hoisted out of _tables.scss (Task 6). */
+    Hoisted out of _tables.scss. */
 $grp-table-cell-border-inline-start-color: #e4e4e4 !default;
 
 
 /*  Rows ............................................................ */
 
-/*  The zebra stripe. Hoisted out of _tables.scss (Task 6). */
+/*  The zebra stripe. Hoisted out of _tables.scss. */
 $grp-table-row-background-color-alt: #f4f4f4 !default;
 
 /*  The unstriped data row - a surface, distinct from the page canvas and
     from text-on-dark despite sharing the #fff value today. Hoisted out of
-    _tables.scss (Task 6). */
+    _tables.scss. */
 $grp-table-row-background-color: #fff !default;
 
-/*  Shared by _tables.scss and _changelist.scss (Task 6). */
+/*  Shared by _tables.scss and _changelist.scss. */
 $grp-table-row-selected-background-color: #ffd !default;
 
 $grp-table-row-label-font-color: #666 !default;
 
 /*  A single section rule, deliberately not the tabular-inline cell grid
-    that shares this value. Hoisted out of _tables.scss (Task 6). */
+    that shares this value. Hoisted out of _tables.scss. */
 $grp-table-tfoot-border-top-color: #d4d4d4 !default;
 
 
@@ -491,7 +490,7 @@ $grp-footer-form-button-cancel-gradient-from-hover: lighten($grp-footer-form-but
 
 /*  Selectors ............................................................ */
 
-/*  Hoisted out of _forms.scss (Task 7). */
+/*  Hoisted out of _forms.scss. */
 $grp-selector-background-color: #ddd !default;
 $grp-selector-filter-font-color: #666 !default;
 $grp-selector-filter-border-color: #e4e4e4 !default;
@@ -509,7 +508,7 @@ $grp-button-border-hover-color: #ccc !default;
 $grp-button-border-focus-color: #888 !default;
 
 /*  Button state variants used by grp-button-states(). Hoisted out of
-    _buttons.scss (Task 7). $grp-button-background-color-hover already
+    _buttons.scss. $grp-button-background-color-hover already
     holds #eee but names a hover state; grp-button-states(grey, ...) uses
     grey as the RESTING state, so the roles differ and cannot share a
     token. */
@@ -523,7 +522,7 @@ $grp-button-state-white-background-color: #fdfdfd !default;
 /*  WIDGETS (jQuery UI / select2)
 ------------------------------------------------------------------------------------------------------ */
 
-/*  Hoisted out of _jquery-ui.scss (Task 8). The floating widget's outer
+/*  Hoisted out of _jquery-ui.scss. The floating widget's outer
     frame, deliberately stronger than $grp-module-border-color. */
 $grp-ui-widget-border-color: #888 !default;
 
@@ -593,13 +592,12 @@ $grp-select2-focus-border-color: #9a9a9a !default;
 
 $grp-select2-result-selected-background-color: #333 !default;
 
-/*  Derived. == darken(#333, 10). Hoisted out of _select2-admin.scss
-    (Task 8) - one of the last two literal-based colour functions in the
-    codebase. */
+/*  Derived. == darken(#333, 10). Hoisted out of _select2-admin.scss, where
+    it was called on a raw literal. */
 $grp-select2-result-selected-border-color: darken($grp-select2-result-selected-background-color, 10) !default; // #1a1a1a
 
-/*  Derived. == darken(#309bbf, 10). Hoisted out of _select2-admin.scss
-    (Task 8) - the other of the last two literal-based colour functions. */
+/*  Derived. == darken(#309bbf, 10). Hoisted out of _select2-admin.scss, for
+    the same reason. */
 $grp-select2-result-highlighted-border-color: darken($grp-form-button-background-color, 10) !default; // #267a96
 
 
@@ -615,15 +613,15 @@ $grp-submit-row-shadow-color: #bbb !default;
 $grp-fixed-footer-item-background-color: #444 !default;
 
 /*  The inset highlight under a form field - not the module surface it
-    shares this value with today. Hoisted out of Region D (Task 9b). */
+    shares this value with today. Hoisted out of Region D. */
 $grp-form-field-box-shadow-color: #eee !default;
 
 /*  Drop shadow under a floating overlay. Hoisted out of _changelist.scss;
-    shared with _jquery-ui.scss (Task 8). */
+    shared with _jquery-ui.scss. */
 $grp-overlay-shadow-color: #333 !default;
 
 /*  Letterpress highlight on the open pulldown handler, not a surface or a
-    border. Hoisted out of _changelist.scss (Task 6). */
+    border. Hoisted out of _changelist.scss. */
 $grp-pulldown-handler-text-shadow-color: #fff !default;
 
 /*  Documentation (RTE) typography. Hoisted out of _base.scss. */
@@ -659,20 +657,18 @@ $grp-spritesheet: url(#{$spritesheet-image}) !default;
 
 /*  Non-icon background raster images, tokenised like the spritesheet above
     so a dark theme can point them at a recoloured sibling. Unlike the
-    spritesheet these are two fixed, checked-in PNGs (no build-time
-    timestamp): build/recolour-sheet.mjs (the same per-pixel transform used
-    for the icon sheet) produces the `-dark` sibling, wired into the
-    "sprite-dark" Grunt task. The dark URL itself is assigned in
-    _grp-tokens-dark.scss (Task 13) - the value here is only ever the light
-    (existing) URL.
+    spritesheet these are fixed, checked-in PNGs with no build-time
+    timestamp: the "sprite-dark" Grunt task produces each `-dark` sibling
+    through build/recolour-sheet.mjs. The dark URLs are assigned in
+    _grp-tokens-dark.scss - the values here are only ever the light ones.
 
     Two other background rasters at these same call sites are deliberately
-    NOT tokenised here: nav-grabber.gif and loading-small.gif are animated
-    GIFs, and a per-pixel PNG transform does not apply to an animation.
-    nav-grabber.gif (a subtle texture) is left for Task 15's rendered
-    contrast sweep to judge; loading-small.gif is a neutral spinner sitting
-    on $grp-form-field-background-color, which is already tokenised and
-    darkens on its own. */
+    NOT tokenised: nav-grabber.gif and loading-small.gif are animated GIFs,
+    and a per-pixel PNG transform does not apply to an animation. Neither
+    needs one - loading-small.gif is a neutral spinner sitting on
+    $grp-form-field-background-color, which is tokenised and darkens on its
+    own, and nav-grabber.gif is only reachable through a selector no
+    template, view or script in grappelli ever emits. */
 $grp-bg-changelist-results: url('../images/backgrounds/changelist-results.png') !default;
 $grp-bg-sortable-placeholder: url('../images/backgrounds/ui-sortable-placeholder.png') !default;
 

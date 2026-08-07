@@ -36,7 +36,8 @@
 
 /*  Styles for Django's admin/color_theme_toggle.html, included from
     base.html inside #grp-user-tools. Grappelli writes no toggle markup or
-    JavaScript of its own - see docs/superpowers/specs, "The switch". */
+    JavaScript of its own - the template and admin/js/theme.js are Django's,
+    loaded verbatim. */
 @import "partials/skins/grp-theme-toggle";
 
 @import "partials/library/mixins";
