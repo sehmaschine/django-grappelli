@@ -2,7 +2,12 @@
 //
 // Generates a contrast-corrected dark variant of a spritesheet PNG.
 //
-// The transform is two steps, applied per non-transparent pixel:
+// The transform is three steps, applied per non-transparent pixel:
+//
+//   step 0: leave a near-white pixel alone. It is already a light-on-dark
+//           glyph - grappelli draws a handful of icons white because they
+//           sit on a chip that is dark in both themes - and flipping it
+//           would send it through black to a mid grey. See PRESERVE_LIGHTNESS.
 //
 //   step 1: flip HSL lightness, preserving hue and saturation (L -> 1 - L).
 //           This turns a dark icon glyph into a light one while keeping its
@@ -169,15 +174,45 @@ export function ensureContrastFloor(rgb, bg = DEFAULT_BG, floor = CONTRAST_FLOOR
   return candidate;
 }
 
-// Full pixel transform: step 1 then step 2. Alpha is passed through
-// unchanged; fully transparent pixels are left completely untouched.
+// ---- step 0: a near-white pixel is ALREADY a light-on-dark glyph -------
+//
+// Steps 1 and 2 assume the light theme drew a DARK glyph on a light surface.
+// A few of grappelli's icons are the other way round: object-tools-add-link
+// and object-tools-viewsite-link are solid #ffffff, because the object-tools
+// chip they sit on is dark in BOTH themes. Flipping white gives black, and
+// step 2 can then only drag black back up to the grey that just grazes the
+// floor - so a 12.63:1 glyph leaves the transform at 3.03:1 on a module
+// header and at 1.12:1 on the hovered teal chip. The round trip is pure loss.
+//
+// A pixel that close to white needs no transform: it is already light on dark,
+// and every surface a sprite is painted on in the dark theme is dark. So it is
+// passed through untouched. The threshold is deliberately high - it is meant
+// to catch "this glyph was drawn white on purpose", not "this glyph is
+// lightish" - and at 0.9 it selects exactly the two all-white object-tools
+// icons plus the specular highlights of status-yes, status-no and
+// tools-delete-handler-predelete, which are highlights in either theme.
+export const PRESERVE_LIGHTNESS = 0.9;
+
+export function isLightOnDarkGlyph({ r, g, b }) {
+  return rgbToHsl(r, g, b).l >= PRESERVE_LIGHTNESS;
+}
+
+// The whole icon transform for one opaque colour: step 0, then 1, then 2.
+export function recolourIconColour(rgb, bg = DEFAULT_BG, floor = CONTRAST_FLOOR) {
+  if (isLightOnDarkGlyph(rgb)) return { r: rgb.r, g: rgb.g, b: rgb.b };
+  return ensureContrastFloor(flipLightness(rgb), bg, floor);
+}
+
+// Full pixel transform: step 0, then step 1, then step 2. Alpha is passed
+// through unchanged; fully transparent pixels are left completely untouched.
 export function recolourPixel(r, g, b, a, opts = {}) {
   if (a === 0) return { r, g, b, a };
-  const bg = opts.bg || DEFAULT_BG;
-  const floor = opts.floor ?? CONTRAST_FLOOR;
-  const step1 = flipLightness({ r, g, b });
-  const step2 = ensureContrastFloor(step1, bg, floor);
-  return { r: step2.r, g: step2.g, b: step2.b, a };
+  const out = recolourIconColour(
+    { r, g, b },
+    opts.bg || DEFAULT_BG,
+    opts.floor ?? CONTRAST_FLOOR
+  );
+  return { r: out.r, g: out.g, b: out.b, a };
 }
 
 // ---- the texture transform (a SECOND, separate entry point) -----------
@@ -299,6 +334,7 @@ export function recolourPngBuffer(png, opts = {}) {
   const { data } = png;
   const cache = new Map();
   let liftedCount = 0;
+  let preservedCount = 0;
 
   for (let i = 0; i < data.length; i += 4) {
     const a = data[i + 3];
@@ -311,10 +347,18 @@ export function recolourPngBuffer(png, opts = {}) {
 
     let out = cache.get(key);
     if (!out) {
-      const step1 = flipLightness({ r, g, b });
-      const step2 = ensureContrastFloor(step1, opts.bg || DEFAULT_BG, opts.floor ?? CONTRAST_FLOOR);
-      const lifted = step2.r !== step1.r || step2.g !== step1.g || step2.b !== step1.b;
-      out = { r: step2.r, g: step2.g, b: step2.b, lifted };
+      if (isLightOnDarkGlyph({ r, g, b })) {
+        out = { r, g, b, lifted: false, preserved: true };
+      } else {
+        const step1 = flipLightness({ r, g, b });
+        const step2 = ensureContrastFloor(
+          step1,
+          opts.bg || DEFAULT_BG,
+          opts.floor ?? CONTRAST_FLOOR
+        );
+        const lifted = step2.r !== step1.r || step2.g !== step1.g || step2.b !== step1.b;
+        out = { r: step2.r, g: step2.g, b: step2.b, lifted, preserved: false };
+      }
       cache.set(key, out);
     }
 
@@ -326,9 +370,14 @@ export function recolourPngBuffer(png, opts = {}) {
 
   for (const v of cache.values()) {
     if (v.lifted) liftedCount += 1;
+    if (v.preserved) preservedCount += 1;
   }
 
-  return { uniqueColours: cache.size, liftedColours: liftedCount };
+  return {
+    uniqueColours: cache.size,
+    liftedColours: liftedCount,
+    preservedColours: preservedCount,
+  };
 }
 
 export function recolourFile(srcPath, destPath, opts = {}) {
@@ -376,7 +425,8 @@ if (isMain) {
     const stats = recolourFile(src, dest);
     console.log(
       `wrote ${dest}: ${stats.uniqueColours} unique colour(s), ` +
-        `${stats.liftedColours} lifted by step 2 past the flip`
+        `${stats.liftedColours} lifted by step 2 past the flip, ` +
+        `${stats.preservedColours} preserved by step 0 as already light-on-dark`
     );
   }
 }
