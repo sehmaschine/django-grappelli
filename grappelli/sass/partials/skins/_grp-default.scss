@@ -1,15 +1,15 @@
-/*  ────────────────────────────────────────────────────────────────────────────
+/*  --------------------------------------------------------------------------------------------------
     REGION A: literal defaults and ALL colour maths
-    ────────────────────────────────────────────────────────────────────────────
+    --------------------------------------------------------------------------------------------------
     Every $grp-* colour below still holds a real colour here, so this is the
-    only place an SCSS colour function (lighten/darken/rgba/mix/…) may run.
+    only place an SCSS colour function (lighten/darken/rgba/mix/...) may run.
     From Region C onwards the same variables hold `var(--grp-*)`, which Sass
-    cannot do colour maths on — `lighten(var(--grp-x), 5)` is a hard error.
+    cannot do colour maths on - `lighten(var(--grp-x), 5)` is a hard error.
 
     A mixin body counts as "after Region C" no matter where it is written,
     because it is evaluated at @include time. That is why every derived colour
     a mixin used to compute inline now lives here as a named variable.
-    ──────────────────────────────────────────────────────────────────────────── */
+    -------------------------------------------------------------------------------------------------- */
 
 
 /*  TYPOGRAPHY
@@ -35,7 +35,7 @@ $grp-font-family: Arial, sans-serif;
     Region A and reference the custom property directly instead of moving to
     Region D. Relocating them would move rules in the compiled output and
     break byte-equivalence with the pre-refactor CSS, whereas custom-property
-    resolution is not source-order dependent — so an in-place var() reference
+    resolution is not source-order dependent - so an in-place var() reference
     is both correct and output-stable. Please do not "fix" this by moving
     them down. */
 
@@ -61,7 +61,7 @@ $grp-help-font-color: lighten($grp-font-color-quiet, 7) !default;
     the compiled CSS must not change.
 
     CONSEQUENCE: unlike every other derived colour in this file, this one no
-    longer follows a project override of $grp-font-color-quiet — it is frozen
+    longer follows a project override of $grp-font-color-quiet - it is frozen
     at the shade the default quiet colour produces. Restore the derivation
     (lighten($grp-font-color-quiet, 20)) once byte-equivalence with the
     pre-dark-theme CSS is no longer being enforced. */
@@ -131,7 +131,7 @@ $grp-group-border-closed-color: #ddd !default;
 $grp-module-border-color: #ccc;
 $grp-module-background-color: #eee !default;
 
-/*  Derived. Hoisted out of partials/layout/_modules.scss — the divider
+/*  Derived. Hoisted out of partials/layout/_modules.scss - the divider
     between two stacked modules inside one group. */
 $grp-module-border-top-color: lighten($grp-module-border-color, 5) !default;
 
@@ -158,7 +158,7 @@ $grp-predelete-background-color: #f7e4e4 !default;
 /*  Derived. The gradient mixins in Region D shade the predelete surface. */
 $grp-predelete-background-color-shade: darken($grp-predelete-background-color, 3) !default;
 
-/*  Derived. Hoisted out of partials/layout/_modules.scss — the edges of a
+/*  Derived. Hoisted out of partials/layout/_modules.scss - the edges of a
     predelete row, cell and nested module. */
 $grp-predelete-border-top-color: lighten($grp-predelete-background-color, 4) !default;
 $grp-predelete-border-bottom-color: darken($grp-predelete-background-color, 4) !default;
@@ -233,8 +233,8 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 
 /*  Derived button shades, hoisted out of the four button mixins in Region D.
     Every variant derives its own shades from its own base colour, including
-    the hovered ones. Several of those shades hold the same value today —
-    every variant happens to hover to the same grey — but a shared value is
+    the hovered ones. Several of those shades hold the same value today -
+    every variant happens to hover to the same grey - but a shared value is
     not a shared role: a theme may move one variant's hover without moving the
     others, and a project that overrides, say,
     $grp-form-button-delete-background-color-hover must still get a border and
@@ -242,7 +242,7 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 
     Every $grp-footer-form-button-*-gradient-from-hover below evaluates to
     white, because lighten(#eee, 15) clamps. Sass writes that into a custom
-    property by name — the token text is literally `white`, not `#fff` — and
+    property by name - the token text is literally `white`, not `#fff` - and
     that is correct: the only use sites are inside linear-gradient(), where
     compressed output also writes `white`. Do not "normalise" these to #fff;
     the byte-equivalence gate will reject it. */
@@ -311,9 +311,9 @@ $grp-padding-size-xs: 2px !default;
 
 
 
-/*  ────────────────────────────────────────────────────────────────────────────
+/*  --------------------------------------------------------------------------------------------------
     REGION B: token emission
-    ────────────────────────────────────────────────────────────────────────────
+    --------------------------------------------------------------------------------------------------
     The map is built HERE, while the $grp-* variables above still hold real
     colours (including any a project overrode through `!default`), and before
     Region C re-points them at var(). Capturing the values first is what makes
@@ -321,10 +321,10 @@ $grp-padding-size-xs: 2px !default;
     be evaluated at @include time and emit the self-referential
     `--grp-font-color: var(--grp-font-color)`.
 
-    Emission is a mixin rather than a bare `:root { … }` block because
+    Emission is a mixin rather than a bare `:root { ... }` block because
     rtl.scss imports this file too, and a bare block would re-declare every
     light token in rtl.css. Only screen.scss includes it.
-    ──────────────────────────────────────────────────────────────────────────── */
+    -------------------------------------------------------------------------------------------------- */
 
 $grp-light-tokens: (
     "--grp-font-color": $grp-font-color,
@@ -453,18 +453,18 @@ $grp-light-tokens: (
 
 
 
-/*  ────────────────────────────────────────────────────────────────────────────
+/*  --------------------------------------------------------------------------------------------------
     REGION C: re-point every colour variable at its token
-    ────────────────────────────────────────────────────────────────────────────
+    --------------------------------------------------------------------------------------------------
     From here on a $grp-* colour is a CSS custom-property reference, not a
-    colour. Everything downstream — this file's own mixins and every partial
-    screen.scss and rtl.scss import — therefore emits var(--grp-*) and follows
+    colour. Everything downstream - this file's own mixins and every partial
+    screen.scss and rtl.scss import - therefore emits var(--grp-*) and follows
     whatever a theme declares for that token at runtime.
 
     No `!default` here: this reassignment is unconditional. Project overrides
     still work, because they are applied to the Region A defaults and Region B
     has already baked them into the token values.
-    ──────────────────────────────────────────────────────────────────────────── */
+    -------------------------------------------------------------------------------------------------- */
 
 $grp-font-color: var(--grp-font-color);
 $grp-font-color-quiet: var(--grp-font-color-quiet);
@@ -585,13 +585,13 @@ $grp-button-border-focus-color: var(--grp-button-border-focus-color);
 
 
 
-/*  ────────────────────────────────────────────────────────────────────────────
+/*  --------------------------------------------------------------------------------------------------
     REGION D: rule emission and mixins
-    ────────────────────────────────────────────────────────────────────────────
+    --------------------------------------------------------------------------------------------------
     Everything below consumes the tokens. The compound border shorthands keep
-    their names and their literal widths — only the colour is a token, because
+    their names and their literal widths - only the colour is a token, because
     tokenising the width would make layout metrics theme-switchable.
-    ──────────────────────────────────────────────────────────────────────────── */
+    -------------------------------------------------------------------------------------------------- */
 
 
 /*  Compound Borders ............................................................ */
