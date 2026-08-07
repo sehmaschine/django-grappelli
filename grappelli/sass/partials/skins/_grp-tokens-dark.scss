@@ -279,24 +279,60 @@ $grp-dark-doc-45:   #e63c00 !default;
 
     /*  DARK CHROME ............................................................ */
 
-    /*  In light this chrome is a dark bar on a white page. On dark it stays
+    /*  In light this chrome is a dark bar on a white page - the highest-
+        contrast element there is, and what makes the header and the fixed
+        submit row read as INTERFACE rather than as content. On dark it stays
         chrome, but "distinct from the page" now means LIGHTER than the page
-        (rule 1a) - hence the header band sitting at the icon ceiling with
-        the canvas well below it. Its internal bevels keep their direction
-        (rule 1b): shade below, highlight above. */
-    --grp-dark-background-color: #2c2c2c;
-    --grp-dark-gradient-from: #{$grp-dark-ramp-chrome};
-    --grp-dark-border-shade-color: #171717;
-    --grp-dark-border-highlight-color: #464646;
-    --grp-nav-dropdown-item-border-top-color: #4d4d4d;
-    --grp-dark-row-border-top-color: #3f3f3f;
-    --grp-dark-row-border-bottom-color: #{$grp-dark-ramp-recess};
-    --grp-dark-chip-border-color: #3f3f3f;
+        (rule 1a), so the band has to climb the ramp rather than descend it:
+        drop shadows do not read on a dark page, and lightness is the only
+        elevation cue left.
+
+        The band therefore sits ABOVE the content surfaces it separates - the
+        row band it meets under the header and the group surfaces the submit
+        row floats over - instead of landing on the step next to them. Sitting
+        adjacent was the earlier mistake: at #2c2c2c against a #2b2b2b panel
+        the submit row measured 1.01:1 and had no edges at all, with Save and
+        Delete apparently loose over the inline table.
+
+        Its internal bevels keep their direction (rule 1b): shade below,
+        highlight above.
+
+        NOTE ON THE ICON CEILING: these two stops are the only surfaces in the
+        theme allowed above $grp-dark-ramp-chrome, and they get away with it
+        only because NOTHING PAINTED ON THEM CARRIES A SPRITE - the header's
+        own icons live in the breadcrumb band below, and the submit row and
+        the changelist actions bar are text and chips throughout. Verified by
+        walking the computed background-image of every element inside these
+        bands. If a sprite is ever introduced here, either it or the dark
+        spritesheet's 3:1 reference background has to move; no gate catches
+        that, because check-contrast.mjs reads tokens, not PNG pixels. */
+    --grp-dark-background-color: #{$grp-dark-ramp-hairline};
+    --grp-dark-gradient-from: #{$grp-dark-ramp-border};
+
+    /*  Everything below is drawn ON that band - its bevels, the borders that
+        cut its chips out of it, and its hover states. They are not free to
+        stay where they were: the band rose by exactly 0x10 per channel, and a
+        chip border that read at 1.15:1 against the old surface reads at
+        1.02:1 against the new one, which is how the changelist actions bar
+        lost its chip outlines the first time this was tried. So they all move
+        with it, by that same 0x10, which holds every relationship the light
+        theme defines rather than re-deriving any of them.
+
+        The two below-band bevels move too, for the same reason in the other
+        direction: left where they were, a shade that reads 1.33:1 under the
+        old band reads 1.66:1 under the new one, against 1.21:1 in light.
+        Parity is the rule for decorative neutrals, and parity means moving. */
+    --grp-dark-border-shade-color: #272727;
+    --grp-dark-border-highlight-color: #565656;
+    --grp-nav-dropdown-item-border-top-color: #5d5d5d;
+    --grp-dark-row-border-top-color: #4f4f4f;
+    --grp-dark-row-border-bottom-color: #242424;
+    --grp-dark-chip-border-color: #4f4f4f;
     --grp-dark-font-color-quiet: #{$grp-dark-ramp-fg};
-    --grp-login-module-border-top-color: #3f3f3f;
-    --grp-dark-chip-border-color-hover: #4d4d4d;
-    --grp-dark-background-color-hover: #{$grp-dark-ramp-border};
-    --grp-dark-item-border-color: #3f3f3f;
+    --grp-login-module-border-top-color: #4f4f4f;
+    --grp-dark-chip-border-color-hover: #5d5d5d;
+    --grp-dark-background-color-hover: #555555;
+    --grp-dark-item-border-color: #4f4f4f;
     /*  Brighter than --grp-link-color, because in dark mode the chrome it
         sits on is the LIGHTER surface, not the darker one - the opposite
         of the light theme, where the chrome is the darkest thing on the
