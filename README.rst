@@ -31,17 +31,37 @@ Documentation
 
 https://django-grappelli.readthedocs.io/en/latest/
 
-Releases
---------
+Compatibility
+-------------
+
+Every combination below is exercised on CI for each push and pull request
+(see ``.github/workflows/tests.yml``):
+
++---------+-------------+-------------+-------------+
+| Django  | Python 3.12 | Python 3.13 | Python 3.14 |
++=========+=============+=============+=============+
+| 6.1     | ✅          | ✅          | ✅          |
++---------+-------------+-------------+-------------+
+| 6.0     | ✅          | ✅          | ✅          |
++---------+-------------+-------------+-------------+
+| 5.2 LTS | ✅          | ✅          | ✅          |
++---------+-------------+-------------+-------------+
 
 **Grappelli is always developed against the latest stable Django release and is NOT tested with Django's master branch.**
 
-* Grappelli 5.0.0 (April 29th, 2026): Compatible with Django 6.x
-* Grappelli 4.0.4 (April 28th, 2026): Compatible with Django 5.x
+Releases
+--------
 
-Current development branches:
-
-* Grappelli 5.0.1 (Development version for Django 6.0, see branch Stable/5.0.x)
-* Grappelli 4.0.5 (Development version for Django 5.0, see branch Stable/4.0.x)
++-----------+--------+------------------+------------------+
+| Grappelli | Django | Released         | Branch           |
++===========+========+==================+==================+
+| 5.0.1     | 6.x    | in development   | ``stable/5.0.x`` |
++-----------+--------+------------------+------------------+
+| 5.0.0     | 6.x    | April 29th, 2026 | ``master``       |
++-----------+--------+------------------+------------------+
+| 4.0.5     | 5.x    | in development   | ``stable/4.0.x`` |
++-----------+--------+------------------+------------------+
+| 4.0.4     | 5.x    | April 28th, 2026 |                  |
++-----------+--------+------------------+------------------+
 
 Older versions are available at GitHub, but are not supported anymore.

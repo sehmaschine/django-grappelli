@@ -9,19 +9,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        versions:
-          - python: "3.12"
-            env: py312-django60
+        python: ["3.12", "3.13", "3.14"]
+        django:
+          - { key: "52", name: "5.2 LTS" }
+          - { key: "60", name: "6.0" }
+          - { key: "61", name: "6.1" }
 
-    name: "Python ${{ matrix.versions.python }} - ${{ matrix.versions.env }}"
+    name: "Python ${{ matrix.python }} / Django ${{ matrix.django.name }}"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v6
         with:
-          python-version: ${{ matrix.versions.python }}
+          python-version: ${{ matrix.python }}
       - name: Install Dependencies
         run: pip install tox coverage
       - name: Run Tests
-        run: tox -e ${{ matrix.versions.env }}
+        run: tox -e "py${PYTHON_VERSION//.}-django${{ matrix.django.key }}"
+        env:
+          PYTHON_VERSION: ${{ matrix.python }}
