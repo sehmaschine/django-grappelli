@@ -1,0 +1,664 @@
+/*  --------------------------------------------------------------------------------------------------
+    DARK THEME TOKEN VALUES
+    --------------------------------------------------------------------------------------------------
+    This file contains VALUES ONLY. It declares no rule of its own beyond the
+    two selector blocks at the bottom, and it must never be imported by
+    rtl.scss - rtl.css loads after screen.css and a second copy of these
+    declarations would only be a drift hazard. Every rule that consumes a
+    token already lives in the light sheet; switching the theme re-points the
+    token, never the rule.
+
+    `dark` and `auto` share ONE mixin. That is not a convenience - it is the
+    only thing that makes it impossible for the explicitly-chosen theme and
+    the OS-following theme to drift apart.
+
+    HOW THE VALUES WERE CHOSEN - three rules, applied in this order:
+
+    1.  NEUTRALS come from the one ramp defined below, indexed by the ROLE the
+        light value played, not by the light value itself. Two light tokens
+        that happen to share `#ccc` do not have to share a dark value, and
+        two that differ in light may converge in dark.
+
+        Three relation types, and only the first one flips:
+
+        (a) ELEVATION / EMPHASIS relations FLIP. In the light theme a panel,
+            a border or a divider is DARKER than the surface it sits on;
+            "more" means "darker". On a dark theme "more" means "lighter", so
+            the module surface becomes lighter than the page, a border becomes
+            lighter than its surface, and the zebra stripe becomes lighter
+            than the row it alternates with.
+
+        (b) BEVELS KEEP THEIR DIRECTION. `border-top: #fff` over
+            `border-bottom: #ddd` is light-from-above, and light still comes
+            from above on a dark page: the top edge stays the lighter of the
+            pair, both edges just move onto the dark ramp.
+
+        (c) QUIETNESS relations FLIP, for the same reason as (a): a quieter
+            foreground is one that sits CLOSER to its background, which means
+            lighter on white and darker on near-black.
+
+    2.  SEMANTIC AND BRAND HUES keep their hue and their saturation exactly -
+        every teal below is HSL hue 195.1 / saturation 59.8, i.e. #309bbf's
+        own, and only its lightness moves. Which way the lightness moves
+        depends on the role:
+
+        - as a FOREGROUND (link text, an icon, an outline) the hue is RAISED
+          until it clears its floor against the dark surface behind it;
+        - as a FILLED SURFACE carrying inverted text it is held or slightly
+          LOWERED, because --grp-font-color-inverted is a single token that
+          also paints text on the dark header chrome and therefore cannot
+          flip to a dark value. Django's own admin does exactly this
+          (--primary goes #79aec8 -> #264b5d between its light and dark
+          themes), and the result is a measured improvement: white on the
+          light theme's teal button is 3.20:1, white on the dark theme's is
+          5.58:1 against the fill and 4.68:1 against its lightest gradient
+          stop.
+
+    3.  CONTRAST FLOOR. 4.5:1 for text and 3:1 for genuine non-text UI
+        boundaries (form-field and button outlines, focus rings, the floating
+        widget frame, icons), measured with the WCAG 2.x relative-luminance
+        formula against the surface each foreground is actually painted on.
+        Purely decorative neutrals - hairline dividers, gradient stops,
+        bevels, letterpress shadows - are held at light-theme PARITY instead:
+        the goal there is that they stay as unobtrusive as they are today,
+        not that they become loud enough to pass a floor that does not apply
+        to them.
+
+    ONE CONSTRAINT THAT IS NOT NEGOTIABLE: the icon spritesheet.
+    build/recolour-sheet.mjs lifts every icon pixel to 3:1 against #333, so
+    #333 is the LIGHTEST surface an icon may be painted on. Every surface
+    that carries a sprite is at or below that ceiling. The two exceptions are
+    the dark chrome stops further down, and they are only safe because
+    nothing painted on them carries a sprite - see the note there before
+    moving any surface value up the ramp.
+    -------------------------------------------------------------------------------------------------- */
+
+
+/*  THE DARK NEUTRAL RAMP
+------------------------------------------------------------------------------------------------------ */
+
+/*  One ramp, nineteen stops, from the backmost surface to the loudest
+    foreground. The comment on each stop names the light-theme role it
+    mirrors - that mapping, not the light hex, is what an assignment below
+    is indexed by. */
+
+$grp-dark-ramp-shadow:      #0f0f0f !default;   /* below the canvas: drop shadows                    */
+$grp-dark-ramp-recess:      #141414 !default;   /* below the canvas: inset shadows, letterpress      */
+$grp-dark-ramp-canvas:      #1b1b1b !default;   /* light #fff    - the page itself                   */
+$grp-dark-ramp-sunken:      #212121 !default;   /* light #fdfdfd - a well sunk into a panel (field)  */
+$grp-dark-ramp-row:         #262626 !default;   /* light #f4f4f4 - a content row                     */
+$grp-dark-ramp-surface:     #2b2b2b !default;   /* light #eee    - a panel / module surface          */
+$grp-dark-ramp-raised:      #2f2f2f !default;   /* light #e0e0e0 - one step up from a surface        */
+$grp-dark-ramp-chrome:      #333333 !default;   /* light #dbdbdb - a raised chrome band. ICON CEILING */
+$grp-dark-ramp-hairline:    #3c3c3c !default;   /* light #d9d9d9 - a divider drawn on a surface      */
+$grp-dark-ramp-border:      #454545 !default;   /* light #ccc    - a decorative border               */
+$grp-dark-ramp-border-2:    #4f4f4f !default;   /* light #bbb    - a stronger decorative border      */
+$grp-dark-ramp-outline:     #5c5c5c !default;   /* light #aaa                                        */
+$grp-dark-ramp-muted:       #6a6a6a !default;   /* light #999    - a muted fill                      */
+$grp-dark-ramp-fill:        #767676 !default;   /* light #888    - the lightest fill that still
+                                                   holds #fff at 4.5:1, and the 3:1 non-text floor
+                                                   against every surface up to the chrome band       */
+$grp-dark-ramp-nontext:     #949494 !default;   /* light #777    - non-text foreground, >= 3:1       */
+$grp-dark-ramp-quiet:       #9a9a9a !default;   /* light #9a9a9a - the quietest passing body text    */
+$grp-dark-ramp-quiet-2:     #a8a8a8 !default;   /* light #888/#666 - secondary text                  */
+$grp-dark-ramp-fg:          #d8d8d8 !default;   /* light #444    - primary text                      */
+$grp-dark-ramp-fg-strong:   #eaeaea !default;   /* light #333/#222 in FOREGROUND roles               */
+
+
+/*  BRAND AND SEMANTIC HUES
+------------------------------------------------------------------------------------------------------ */
+
+/*  Teal - hue 195.1, saturation 59.8 throughout, i.e. #309bbf's own; the
+    suffix is the HSL lightness. #309bbf itself is L47. */
+$grp-dark-teal-15:  #0f323d !default;
+$grp-dark-teal-20:  #144252 !default;
+$grp-dark-teal-22:  #17495a !default;
+$grp-dark-teal-25:  #1a5366 !default;
+$grp-dark-teal-28:  #1d5d72 !default;
+$grp-dark-teal-34:  #23708b !default;   /* filled brand surface, bottom gradient stop */
+$grp-dark-teal-39:  #277d9a !default;   /* filled brand surface, top stop: #fff = 4.68:1 here */
+$grp-dark-teal-43:  #2c8eaf !default;   /* the fill's own outline (flipped: lighter, not darker) */
+$grp-dark-teal-52:  #3ba9ce !default;   /* quiet brand foreground */
+$grp-dark-teal-57:  #50b2d3 !default;   /* brand foreground (links) */
+$grp-dark-teal-67:  #79c4dd !default;   /* bright brand foreground */
+
+/*  Red - hue 0, saturation 59.8, i.e. #bf3030's own. */
+$grp-dark-red-20:   #521414 !default;
+$grp-dark-red-25:   #661a1a !default;
+$grp-dark-red-50:   #c33a3a !default;   /* filled delete surface, bottom stop */
+$grp-dark-red-54:   #d04646 !default;   /* filled delete surface, top stop: #fff = 4.52:1 here */
+$grp-dark-red-58:   #d45454 !default;
+$grp-dark-red-63:   #d96868 !default;
+$grp-dark-red-66:   #e07373 !default;   /* error foreground */
+
+/*  Predelete red - hue 0 but saturation 54.3, i.e. #f7e4e4's own, which is
+    deliberately softer than the #bf3030 family. */
+$grp-dark-predelete-14: #371010 !default;
+$grp-dark-predelete-16: #3d1212 !default;
+$grp-dark-predelete-18: #451414 !default;
+$grp-dark-predelete-19: #4b1616 !default;
+$grp-dark-predelete-21: #531818 !default;
+$grp-dark-predelete-23: #5c1c1c !default;
+
+/*  Success green (#77bf30) and warning amber (#e5b217), hue and saturation
+    held, used only as message-list tints. */
+$grp-dark-green-20: #335214 !default;
+$grp-dark-green-28: #47721d !default;
+$grp-dark-amber-20: #5d4809 !default;
+$grp-dark-amber-28: #82650d !default;
+
+/*  Yellow highlights - hue 60, saturation 100, i.e. #ffd / #ffc / #ff9's
+    own. The reset partial's own comment asks for the bright yellow to
+    soften on a near-black page; mirroring the lightness is what does that. */
+$grp-dark-yellow-12: #3d3d00 !default;
+$grp-dark-yellow-14: #474700 !default;
+$grp-dark-yellow-20: #666600 !default;
+
+/*  TINTS HELD AT LIGHT-THEME CHROMA
+    ------------------------------------------------------------------------
+    The ramps above hold hue AND saturation, which is right for a brand FILL
+    - a button, a chip that carries inverted text - because the saturation is
+    what makes it read as the brand. It is wrong for a decorative TINT. A
+    pale wash on white and a deep wash on near-black can share an HSL
+    saturation and still not share a visual weight: mirroring the lightness
+    of #bcdfeb into #1d5d72 keeps S=59.8 but takes CIELAB chroma from 13.2 to
+    21.7, and six of those stacked down one change form read as a far busier
+    page than the light theme they are meant to mirror. That is rule 3
+    (decorative means light-theme parity) losing to rule 2 (a hue keeps its
+    saturation) in a place where rule 3 should win.
+
+    So the collapse-handler chips and the sortable drag helper keep their
+    mirrored CIELAB lightness and their hue, and take their light
+    counterpart's CIELAB CHROMA - which is the quantity the eye was
+    objecting to. Luminance moves by under 1% in every case, so every
+    contrast pairing that referenced these stops still holds. Each stop
+    records the light colour it is matched to. */
+$grp-dark-tint-h2-from: #3c5a67 !default;  /* light #bcdfeb, C* 13.2, was 21.7 */
+$grp-dark-tint-h3-from: #343f44 !default;  /* light #e1f0f5, C*  5.6, was 17.0 */
+$grp-dark-tint-h3-to:   #1a3139 !default;  /* light #cee9f2, C* 10.1, was 13.5 */
+$grp-dark-tint-drag:    #48461c !default;  /* light #ffc,    C* 25.8, was 38.5 */
+
+/*  Documentation (RTE) orange - #d94800 / #c30's own hue and saturation. */
+$grp-dark-doc-51:   #ff5906 !default;
+$grp-dark-doc-45:   #e63c00 !default;
+
+
+/*  --------------------------------------------------------------------------------------------------
+    THE TOKENS
+    -------------------------------------------------------------------------------------------------- */
+
+@mixin grp-dark-tokens {
+
+    /*  TYPOGRAPHY ............................................................ */
+
+    --grp-font-color: #{$grp-dark-ramp-fg};
+    --grp-font-color-quiet: #{$grp-dark-ramp-quiet-2};
+    /*  Quieter than the token above, mirroring light (#9a9a9a is quieter
+        than #888 against white) - rule 1c: quieter means darker here. */
+    --grp-help-font-color: #{$grp-dark-ramp-quiet};
+    /*  Disabled text. WCAG 1.4.3 exempts inactive components, so this one is
+        allowed to sit below the floor, exactly as it does in light. */
+    --grp-changelist-disabled-font-color: #8a8a8a;
+    --grp-font-color-error: #{$grp-dark-red-66};
+    /*  DELIBERATELY the light value. This token paints text on saturated
+        chips AND on the dark header chrome; the chrome stays dark, so this
+        cannot flip. Rule 2 is what keeps the chips dark enough for it. */
+    --grp-font-color-inverted: #fff;
+
+
+    /*  PAGE ............................................................ */
+
+    --grp-body-background-color: #{$grp-dark-ramp-canvas};
+
+
+    /*  LINKS ............................................................ */
+
+    --grp-link-color: #{$grp-dark-teal-57};
+    /*  Light hovers a teal link to dark grey; dark hovers it to light grey. */
+    --grp-link-color-hover: #{$grp-dark-ramp-fg-strong};
+    --grp-link-color-bright: #{$grp-dark-teal-67};
+    --grp-link-color-quiet: #{$grp-dark-teal-52};
+    --grp-link-color-quiet-hover: #{$grp-dark-ramp-fg-strong};
+    --grp-link-color-subtle: #{$grp-dark-teal-52};
+
+
+    /*  CONTEXT NAVIGATION ............................................................ */
+
+    /*  The breadcrumb band's whole job is to separate the nav bar from the
+        page; without a value of its own it collapses into one or the other.
+        In light it sits between the white page and the #222 header;
+        mirrored, it sits between the near-black page and the chrome band,
+        with its rule one step lighter again. */
+    --grp-context-navigation-background-color: #{$grp-dark-ramp-row};
+    --grp-context-navigation-border-color: #{$grp-dark-ramp-hairline};
+
+
+    /*  MESSAGE LIST ............................................................ */
+
+    /*  Light tints the hue up towards white; dark tints it down towards
+        black. The border stays one step away from its fill, flipped to the
+        lighter side (rule 1a). */
+    --grp-messagelist-background-color: #{$grp-dark-teal-20};
+    --grp-messagelist-border-color: #{$grp-dark-teal-28};
+    --grp-messagelist-success-background-color: #{$grp-dark-green-20};
+    --grp-messagelist-success-border-color: #{$grp-dark-green-28};
+    --grp-messagelist-warning-background-color: #{$grp-dark-amber-20};
+    --grp-messagelist-warning-border-color: #{$grp-dark-amber-28};
+    --grp-messagelist-error-background-color: #{$grp-dark-red-20};
+    --grp-messagelist-error-border-color: #{$grp-dark-red-25};
+
+
+    /*  PAGINATION ............................................................ */
+
+    --grp-pagination-border-color: #{$grp-dark-ramp-hairline};
+    --grp-pagination-border-color-active: #{$grp-dark-ramp-outline};
+    --grp-pagination-background-color: #{$grp-dark-ramp-raised};
+    --grp-pagination-background-color-shade: #{$grp-dark-ramp-surface};
+
+
+    /*  CHANGELIST ............................................................ */
+
+    /*  The halo around a control on the module surface. White in light, so
+        it reads as a gap; on dark it has to go the other way (rule 1a) or it
+        would be a bright ring. */
+    --grp-control-outline-color: #{$grp-dark-ramp-sunken};
+
+
+    /*  OBJECT TOOLS ............................................................ */
+
+    /*  These chips carry sprites, so the top gradient stop is held at the
+        #333 icon ceiling. In light the add-link chip is DARKER than the
+        plain one (more emphasis = darker); mirrored, it is lighter. */
+    --grp-object-tools-border-color: #{$grp-dark-ramp-fill};
+    --grp-object-tools-gradient-from: #{$grp-dark-ramp-chrome};
+    --grp-object-tools-background-color: #{$grp-dark-ramp-surface};
+    --grp-object-tools-border-color-hover: #{$grp-dark-teal-43};
+    --grp-object-tools-background-color-hover: #{$grp-dark-teal-39};
+    --grp-object-tools-add-gradient-from: #3d3d3d;
+    --grp-object-tools-add-background-color: #{$grp-dark-ramp-chrome};
+
+
+    /*  DARK CHROME ............................................................ */
+
+    /*  In light this chrome is a dark bar on a white page - the highest-
+        contrast element there is, and what makes the header and the fixed
+        submit row read as INTERFACE rather than as content. On dark it stays
+        chrome, but "distinct from the page" now means LIGHTER than the page
+        (rule 1a), so the band has to climb the ramp rather than descend it:
+        drop shadows do not read on a dark page, and lightness is the only
+        elevation cue left.
+
+        The band therefore sits ABOVE the content surfaces it separates - the
+        row band it meets under the header and the group surfaces the submit
+        row floats over - instead of landing on the step next to them. Sitting
+        adjacent was the earlier mistake: at #2c2c2c against a #2b2b2b panel
+        the submit row measured 1.01:1 and had no edges at all, with Save and
+        Delete apparently loose over the inline table.
+
+        Its internal bevels keep their direction (rule 1b): shade below,
+        highlight above.
+
+        NOTE ON THE ICON CEILING: these two stops are the only surfaces in the
+        theme allowed above $grp-dark-ramp-chrome, and they get away with it
+        only because NOTHING PAINTED ON THEM CARRIES A SPRITE - the header's
+        own icons live in the breadcrumb band below, and the submit row and
+        the changelist actions bar are text and chips throughout. Verified by
+        walking the computed background-image of every element inside these
+        bands. If a sprite is ever introduced here, either it or the dark
+        spritesheet's 3:1 reference background has to move - and nothing will
+        warn you, because the icons are pixels in a PNG, not token values. */
+    --grp-dark-background-color: #{$grp-dark-ramp-hairline};
+    --grp-dark-gradient-from: #{$grp-dark-ramp-border};
+
+    /*  Everything below is drawn ON that band - its bevels, the borders that
+        cut its chips out of it, and its hover states. They are not free to
+        stay where they were: the band rose by exactly 0x10 per channel, and a
+        chip border that read at 1.15:1 against the old surface reads at
+        1.02:1 against the new one, which is how the changelist actions bar
+        lost its chip outlines the first time this was tried. So they all move
+        with it, by that same 0x10, which holds every relationship the light
+        theme defines rather than re-deriving any of them.
+
+        The two below-band bevels move too, for the same reason in the other
+        direction: left where they were, a shade that reads 1.33:1 under the
+        old band reads 1.66:1 under the new one, against 1.21:1 in light.
+        Parity is the rule for decorative neutrals, and parity means moving. */
+    --grp-dark-border-shade-color: #272727;
+    --grp-dark-border-highlight-color: #565656;
+    --grp-nav-dropdown-item-border-top-color: #5d5d5d;
+    --grp-dark-row-border-top-color: #4f4f4f;
+    --grp-dark-row-border-bottom-color: #242424;
+    --grp-dark-chip-border-color: #4f4f4f;
+    --grp-dark-font-color-quiet: #{$grp-dark-ramp-fg};
+    --grp-login-module-border-top-color: #4f4f4f;
+    --grp-dark-chip-border-color-hover: #5d5d5d;
+    --grp-dark-background-color-hover: #555555;
+    --grp-dark-item-border-color: #4f4f4f;
+    /*  Brighter than --grp-link-color, because in dark mode the chrome it
+        sits on is the LIGHTER surface, not the darker one - the opposite
+        of the light theme, where the chrome is the darkest thing on the
+        page and a subtle teal suffices. */
+    --grp-dark-link-color: #{$grp-dark-teal-67};
+
+
+    /*  GROUPS, MODULES, ROWS ............................................................ */
+
+    --grp-group-border-color: #{$grp-dark-ramp-border};
+    --grp-group-background-color: #{$grp-dark-ramp-sunken};
+    --grp-group-border-closed-color: #{$grp-dark-ramp-hairline};
+
+    --grp-module-border-color: #{$grp-dark-ramp-border};
+    --grp-module-background-color: #{$grp-dark-ramp-surface};
+    /*  Bevel (rule 1b): light spells this lighten($module-border, 5), the
+        top edge of a stacked module, so it stays the lighter of the pair. */
+    --grp-module-border-top-color: #{$grp-dark-ramp-border-2};
+    --grp-module-heading-border-top-color: #3a3a3a;
+
+    /*  h2/h3 module titles. In light the header gradient
+        is DARKER than the #eee module it caps; mirrored, it is lighter, and
+        it stops exactly at the icon ceiling because the collapse handler is
+        a sprite. h4 is subtler than h2 in both themes: light lightens it
+        towards the module surface, dark darkens it towards the same. */
+    --grp-module-h2-gradient-from: #{$grp-dark-ramp-chrome};
+    --grp-module-h2-gradient-to: #2e2e2e;
+    --grp-module-h3-gradient-from: #{$grp-dark-ramp-chrome};
+    --grp-module-h3-gradient-to: #2e2e2e;
+    --grp-module-h4-gradient-from: #{$grp-dark-ramp-raised};
+    --grp-module-h4-gradient-to: #{$grp-dark-ramp-surface};
+
+    /*  The collapse-handler chips are decorative brand TINTS, so they take
+        the mirrored lightness and the light theme's own chroma - see "TINTS
+        HELD AT LIGHT-THEME CHROMA" above for why they are not simply teal
+        ramp stops. h3 is the subtler of the two chips in light and stays the
+        subtler one here. The letterpress shadows flip with the text they sit
+        under - a light shadow under dark text becomes a dark shadow under
+        light text - and the hairlines stay on the ramp. */
+    --grp-module-h2-collapse-handler-text-shadow-color: #12313c;
+    --grp-module-h3-collapse-handler-text-shadow-color: #{$grp-dark-teal-15};
+    --grp-module-h3-collapse-handler-border-top-color: #{$grp-dark-teal-22};
+    --grp-module-h3-collapse-handler-border-bottom-color: #{$grp-dark-ramp-row};
+    --grp-module-h2-collapse-handler-gradient-from: #{$grp-dark-tint-h2-from};
+    --grp-module-h2-collapse-handler-gradient-to: #{$grp-dark-teal-22};
+    --grp-module-h3-collapse-handler-gradient-from: #{$grp-dark-tint-h3-from};
+    --grp-module-h3-collapse-handler-gradient-to: #{$grp-dark-tint-h3-to};
+
+    /*  Tabular inline: the cell grid is darker than its surface in light and
+        lighter than it here; the inline-end rule stays the quieter of the
+        two, which on dark means the darker one (rule 1c). */
+    --grp-tabular-cell-border-inline-end-color: #363636;
+    --grp-tabular-head-font-color: #{$grp-dark-ramp-quiet};
+    --grp-tabular-cell-border-color: #{$grp-dark-ramp-hairline};
+
+    /*  Row bevel (rule 1b): top edge lighter than the surface, bottom edge
+        darker, in both themes. */
+    --grp-row-border-top-color: #{$grp-dark-ramp-hairline};
+    --grp-row-border-bottom-color: #{$grp-dark-ramp-sunken};
+
+    /*  An error row's rule is a signal, not decoration, so it takes the 3:1
+        non-text floor against the row it outlines. */
+    --grp-error-row-border-color: #{$grp-dark-red-58};
+    --grp-error-row-border-bottom-color: #{$grp-dark-red-54};
+    --grp-error-row-border-top-color: #{$grp-dark-red-63};
+
+    /*  The errornote is a FILL carrying --grp-font-color-inverted, so rule 2's
+        "held or slightly lowered" applies, not the lift the error FOREGROUND
+        gets. Mirroring the light theme's single #bf3030 into both roles put
+        white text on #e07373 at 3.06:1; this stop is the same one the delete
+        button uses, where #fff measures 4.52:1. */
+    --grp-errornote-background-color: #{$grp-dark-red-54};
+
+    /*  Predelete: a soft red row tint, mirrored. Its edges keep their bevel
+        directions; only "strong" flips, because a stronger edge is a darker
+        one in light and a lighter one here. */
+    --grp-predelete-background-color: #{$grp-dark-predelete-18};
+    --grp-predelete-background-color-shade: #{$grp-dark-predelete-16};
+    --grp-predelete-border-top-color: #{$grp-dark-predelete-19};
+    --grp-predelete-border-bottom-color: #{$grp-dark-predelete-14};
+    --grp-predelete-border-inline-start-color: #{$grp-dark-predelete-19};
+    --grp-predelete-border-inline-end-color: #{$grp-dark-predelete-14};
+    --grp-predelete-border-strong-color: #{$grp-dark-predelete-23};
+    --grp-predelete-module-border-top-color: #{$grp-dark-predelete-21};
+
+    --grp-delete-confirmation-nesting-border-color: #{$grp-dark-ramp-hairline};
+
+
+    /*  TABLES ............................................................ */
+
+    /*  The header band is chrome and carries the sort-order sprites, so it
+        sits at the ceiling; the data rows sit below it. In light the row
+        (#fff) is lighter than the header (#eee) and the zebra stripe
+        (#f4f4f4) is darker than the row - both relations flip (rule 1a). */
+    --grp-table-background-color: #{$grp-dark-ramp-chrome};
+    --grp-table-border-color: #{$grp-dark-ramp-border};
+    --grp-table-background-color-shade: #2e2e2e;
+    --grp-table-cell-border-color: #363636;
+    --grp-table-cell-border-inline-start-color: #{$grp-dark-ramp-chrome};
+    --grp-table-row-background-color-alt: #{$grp-dark-ramp-surface};
+    --grp-table-row-background-color: #{$grp-dark-ramp-row};
+    --grp-table-row-selected-background-color: #{$grp-dark-yellow-12};
+    --grp-table-row-label-font-color: #{$grp-dark-ramp-quiet-2};
+    --grp-table-tfoot-border-top-color: #{$grp-dark-ramp-hairline};
+
+
+    /*  FORMS ............................................................ */
+
+    --grp-form-field-font-color: #cfcfcf;
+    --grp-form-field-background-color: #{$grp-dark-ramp-sunken};
+    /*  Focus makes the field cleaner, which in light means brighter and here
+        means deeper. */
+    --grp-form-field-background-color-focus: #{$grp-dark-ramp-canvas};
+    --grp-form-field-background-color-interactive: #{$grp-dark-teal-20};
+    /*  A form field's outline is a UI component boundary, so it takes the
+        3:1 non-text floor against the surface around it rather than
+        light-theme parity - light's #ccc-on-#eee hairline is 1.16:1 and is a
+        recorded, unfixed light-theme failure. */
+    --grp-form-field-border-color: #{$grp-dark-ramp-fill};
+    --grp-form-field-border-focus-color: #{$grp-dark-ramp-nontext};
+
+    --grp-form-label-font-color: #{$grp-dark-ramp-fg};
+
+    --grp-form-button-font-color: #{$grp-dark-ramp-fg};
+    --grp-form-button-font-color-hover: #{$grp-dark-ramp-fg};
+
+    /*  Filled brand chips - rule 2's "held or slightly lowered" branch. The
+        TOP gradient stop is the constraint, because it is the lightest thing
+        --grp-font-color-inverted is painted on. */
+    --grp-form-button-background-color: #{$grp-dark-teal-34};
+    /*  Light hovers every button variant to the same dark grey; dark hovers
+        them to the same mid grey, which is as light as the chip may get. */
+    --grp-form-button-background-color-hover: #666;
+    --grp-footer-form-button-background-color-hover: #{$grp-dark-ramp-hairline};
+    --grp-login-current-page-border-color: #{$grp-dark-teal-43};
+
+    --grp-form-button-delete-background-color: #{$grp-dark-red-50};
+    --grp-form-button-delete-background-color-hover: #666;
+    --grp-footer-form-button-delete-background-color-hover: #{$grp-dark-ramp-hairline};
+
+    --grp-form-button-reset-background-color: #{$grp-dark-ramp-muted};
+    --grp-form-button-reset-background-color-hover: #666;
+    --grp-footer-form-button-reset-background-color-hover: #{$grp-dark-ramp-hairline};
+
+    --grp-form-button-cancel-background-color: #{$grp-dark-ramp-muted};
+    --grp-form-button-cancel-background-color-hover: #666;
+    --grp-footer-form-button-cancel-background-color-hover: #{$grp-dark-ramp-hairline};
+
+    /*  Every button outline flips to the lighter side of its own fill
+        (rule 1a) so the chip still has an edge against the near-black page. */
+    --grp-form-button-border-color: #{$grp-dark-teal-43};
+    --grp-form-button-gradient-from: #{$grp-dark-teal-39};
+    --grp-form-button-border-color-hover: #8a8a8a;
+    --grp-form-button-gradient-from-hover: #{$grp-dark-ramp-fill};
+    --grp-footer-form-button-border-color-hover: #565656;
+    --grp-footer-form-button-gradient-from-hover: #{$grp-dark-ramp-border};
+
+    --grp-form-button-delete-border-color: #{$grp-dark-red-63};
+    --grp-form-button-delete-gradient-from: #{$grp-dark-red-54};
+    --grp-form-button-delete-border-color-hover: #8a8a8a;
+    --grp-form-button-delete-gradient-from-hover: #{$grp-dark-ramp-fill};
+    --grp-footer-form-button-delete-border-color-hover: #565656;
+    --grp-footer-form-button-delete-gradient-from-hover: #{$grp-dark-ramp-border};
+
+    --grp-form-button-reset-border-color: #8a8a8a;
+    --grp-form-button-reset-gradient-from: #{$grp-dark-ramp-fill};
+    --grp-form-button-reset-border-color-hover: #8a8a8a;
+    --grp-form-button-reset-gradient-from-hover: #{$grp-dark-ramp-fill};
+    --grp-footer-form-button-reset-border-color-hover: #565656;
+    --grp-footer-form-button-reset-gradient-from-hover: #{$grp-dark-ramp-border};
+
+    --grp-form-button-cancel-border-color: #8a8a8a;
+    --grp-form-button-cancel-gradient-from: #{$grp-dark-ramp-fill};
+    --grp-form-button-cancel-border-color-hover: #8a8a8a;
+    --grp-form-button-cancel-gradient-from-hover: #{$grp-dark-ramp-fill};
+    --grp-footer-form-button-cancel-border-color-hover: #565656;
+    --grp-footer-form-button-cancel-gradient-from-hover: #{$grp-dark-ramp-border};
+
+    --grp-selector-background-color: #{$grp-dark-ramp-chrome};
+    --grp-selector-filter-font-color: #{$grp-dark-ramp-quiet-2};
+    --grp-selector-filter-border-color: #{$grp-dark-ramp-hairline};
+
+
+    /*  BUTTONS ............................................................ */
+
+    /*  .button-state-blue paints --grp-font-color-inverted on this fill, so
+        it is bound by the same ceiling as the brand chips above. */
+    --grp-button-background-color: #{$grp-dark-teal-25};
+    --grp-button-background-color-hover: #3a3a3a;
+    --grp-button-border-color: #{$grp-dark-ramp-fill};
+    --grp-button-border-hover-color: #{$grp-dark-ramp-fill};
+    --grp-button-border-focus-color: #{$grp-dark-ramp-nontext};
+
+    --grp-button-state-grey-background-color: #3a3a3a;
+    --grp-button-state-dark-grey-background-color: #{$grp-dark-ramp-border};
+    --grp-button-state-white-background-color: #{$grp-dark-ramp-sunken};
+
+
+    /*  WIDGETS (jQuery UI / select2) ............................................................ */
+
+    /*  A floating widget's frame is a component boundary against whatever it
+        floats over, so it takes 3:1 rather than parity. */
+    --grp-ui-widget-border-color: #{$grp-dark-ramp-fill};
+    /*  The one #222 in the light file that is a FOREGROUND, and therefore
+        the one that goes light while every other #222 goes darker. */
+    --grp-ui-widget-font-color: #{$grp-dark-ramp-fg-strong};
+    --grp-ui-widget-header-background-color: #3a3a3a;
+    --grp-ui-widget-item-background-color: #{$grp-dark-teal-25};
+    --grp-ui-widget-item-border-color: #{$grp-dark-ramp-border-2};
+    --grp-ui-widget-item-active-background-color: #{$grp-dark-ramp-hairline};
+    --grp-ui-widget-item-active-border-color: #{$grp-dark-ramp-outline};
+    /*  A hovered item: darker than the widget in light, lighter here. */
+    --grp-item-background-color-hover: #3f3f3f;
+    /*  The mid-drag row. A decorative tint, so it is held at the light
+        theme's chroma too - #ffc mirrored straight onto the yellow ramp gave
+        #474700, a fully saturated olive that read as damage rather than as a
+        highlight. Same lightness, same hue, #ffc's own chroma. */
+    --grp-sortable-helper-background-color: #{$grp-dark-tint-drag};
+
+    --grp-datepicker-header-border-color: #{$grp-dark-ramp-border-2};
+    --grp-datepicker-select-border-color: #{$grp-dark-ramp-border-2};
+    --grp-datepicker-day-active-background-color: #{$grp-dark-ramp-sunken};
+    --grp-datepicker-button-font-color: #{$grp-dark-ramp-quiet-2};
+    /*  Light spells this the same colour as the hover fill, i.e. no visible
+        outline at all; mirrored rather than "improved", so the widget looks
+        the same in both themes. */
+    --grp-datepicker-current-border-color-hover: #3f3f3f;
+    --grp-datepicker-append-font-color: #{$grp-dark-ramp-quiet};
+    --grp-datepicker-day-disabled-background-color: #3a3a3a;
+    /*  Disabled text: exempt from the floor in both themes, but it still has
+        to stay legible against the disabled fill above it. */
+    --grp-datepicker-day-disabled-font-color: #{$grp-dark-ramp-quiet-2};
+    --grp-timepicker-item-border-color-hover: #{$grp-dark-ramp-muted};
+    --grp-menu-item-border-color-hover: #{$grp-dark-ramp-muted};
+
+    --grp-form-field-box-shadow-focus-color: #{$grp-dark-ramp-border-2};
+    --grp-form-field-placeholder-font-color: #{$grp-dark-ramp-quiet};
+    --grp-disabled-background-color: #{$grp-dark-ramp-row};
+    --grp-disabled-font-color: #8a8a8a;
+    --grp-select2-focus-border-color: #{$grp-dark-ramp-nontext};
+    /*  A selected select2 result is a DARK chip carrying inverted text in
+        light; on dark it becomes a raised chip, still capped by the same
+        inverted-text ceiling. */
+    --grp-select2-result-selected-background-color: #{$grp-dark-ramp-border-2};
+    --grp-select2-result-selected-border-color: #{$grp-dark-ramp-muted};
+    --grp-select2-result-highlighted-border-color: #{$grp-dark-teal-43};
+
+
+    /*  MISC ............................................................ */
+
+    /*  Shadows and letterpress highlights all flip: a white letterpress
+        under dark text becomes a near-black one under light text, and a
+        grey drop shadow on white becomes a black one on near-black. */
+    --grp-text-shadow-color: #161616;
+    --grp-submit-row-shadow-color: #{$grp-dark-ramp-shadow};
+    --grp-fixed-footer-item-background-color: #{$grp-dark-ramp-chrome};
+    --grp-form-field-box-shadow-color: #{$grp-dark-ramp-recess};
+    --grp-overlay-shadow-color: #000;
+    --grp-pulldown-handler-text-shadow-color: #111;
+
+    --grp-doc-color: #{$grp-dark-doc-51};
+    --grp-doc-rule-color: #{$grp-dark-doc-45};
+    --grp-doc-code-border-color: #545435;
+    --grp-doc-code-background-color: #2c2c17;
+
+    --grp-mark-background-color: #{$grp-dark-yellow-20};
+    --grp-mark-font-color: #f2f2e0;
+
+
+    /*  SPRITESHEET ............................................................ */
+
+    /*  Repoints every one of the 112 icons at the recoloured sheet
+        (build/recolour-sheet.mjs, wired into `grunt sprites`). Without this
+        line dark mode renders the LIGHT sheet - dark glyphs on a dark
+        surface. The filename is interpolated
+        from $spritesheet-dark-image, which the sprite task rewrites from the
+        same timestamp it stamps into the light sheet, so a regeneration can
+        never leave this pointing at a 404. */
+    --grp-spritesheet: url(#{$spritesheet-dark-image});
+
+
+    /*  BACKGROUND RASTERS ............................................................ */
+
+    /*  All three are fixed, checked-in siblings produced by the same build
+        step. form-select-dark.png is the <select> chevron plate, and it is
+        the one asset where leaving the light original in place is not merely
+        suboptimal but plainly broken: that original is an OPAQUE WHITE plate,
+        invisible against the white field it is painted on and a bright square
+        against a dark one. Its variant reproduces the light asset's own
+        per-pixel contrast against the dark field, which sinks the plate back
+        into the field and keeps the chevron at the ratio it always had. */
+    --grp-bg-changelist-results: url('../images/backgrounds/changelist-results-dark.png');
+    --grp-bg-sortable-placeholder: url('../images/backgrounds/ui-sortable-placeholder-dark.png');
+    --grp-bg-form-select: url('../images/icons/form-select-dark.png');
+}
+
+
+/*  --------------------------------------------------------------------------------------------------
+    THE TWO SELECTORS
+    --------------------------------------------------------------------------------------------------
+    Django's admin/js/theme.js writes `dark`, `light` or `auto` into
+    html[data-theme]. `dark` applies unconditionally; `auto` applies only
+    when the OS says so. `light` is the absence of both, and therefore needs
+    no rule at all - it is what :root already declares.
+    -------------------------------------------------------------------------------------------------- */
+
+/*  `color-scheme` tells the BROWSER, not the page, which palette to use for
+    UI it draws itself and CSS cannot reach: <select> popups, scrollbars,
+    <input type=date>/<input type=number> pickers and spinners. Django's own
+    admin/css/dark_mode.css sets `color-scheme: dark` in the same two places
+    - here and inside the media query below - and nowhere else, matching the
+    same "dark applies unconditionally, auto only when the OS agrees" split
+    as grp-dark-tokens above. It is a keyword, not a colour, so it is written
+    directly rather than through a $grp- or --grp- token, and it is placed in
+    these dark-only selectors ON PURPOSE: a `:root { color-scheme: light dark }`
+    would change what a light-theme user's browser paints, and this theme is
+    meant to leave the light rendering exactly as it was. */
+html[data-theme="dark"] {
+    @include grp-dark-tokens;
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] {
+        @include grp-dark-tokens;
+        color-scheme: dark;
+    }
+}

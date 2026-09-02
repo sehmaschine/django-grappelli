@@ -23,6 +23,7 @@
     "grunt-exec": "^3.0.0",
     "grunt-flake8": "^0.1.3",
     "grunt-spritesmith": "^6.10.0",
+    "pngjs": "^3.4.0",
     "sass": "^1.66.1"
   }
 }

@@ -1,0 +1,130 @@
+{
+  // Default options
+  'functions': true,
+  'variableNameTransforms': ['dasherize']
+}
+
+{{!--
+  Copied from node_modules/spritesheet-templates/lib/templates/scss.template.handlebars
+  (grunt-spritesmith's default SCSS template). The only change is in the
+  "sprite-functions" block below: the sprite-image mixin now emits
+  `background-image: var(--grp-spritesheet);` instead of
+  `background-image: url(#{$sprite-image});`, so a dark theme can repoint the
+  --grp-spritesheet custom property at a recoloured sheet. $spritesheet-image
+  itself is left untouched in the "spritesheet" block above, still the raw
+  path - it is what --grp-spritesheet is built from in _grp-default.scss.
+--}}
+
+{{#block "sprites-comment"}}
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+{{/block}}
+{{#block "sprites"}}
+{{#each sprites}}
+${{strings.name_name}}: '{{name}}';
+${{strings.name_x}}: {{px.x}};
+${{strings.name_y}}: {{px.y}};
+${{strings.name_offset_x}}: {{px.offset_x}};
+${{strings.name_offset_y}}: {{px.offset_y}};
+${{strings.name_width}}: {{px.width}};
+${{strings.name_height}}: {{px.height}};
+${{strings.name_total_width}}: {{px.total_width}};
+${{strings.name_total_height}}: {{px.total_height}};
+${{strings.name_image}}: '{{{escaped_image}}}';
+${{strings.name}}: ({{px.x}}, {{px.y}}, {{px.offset_x}}, {{px.offset_y}}, {{px.width}}, {{px.height}}, {{px.total_width}}, {{px.total_height}}, '{{{escaped_image}}}', '{{name}}', );
+{{/each}}
+{{/block}}
+{{#block "spritesheet"}}
+${{spritesheet_info.strings.name_width}}: {{spritesheet.px.width}};
+${{spritesheet_info.strings.name_height}}: {{spritesheet.px.height}};
+${{spritesheet_info.strings.name_image}}: '{{{spritesheet.escaped_image}}}';
+${{spritesheet_info.strings.name_sprites}}: ({{#each sprites}}${{strings.name}}, {{/each}});
+${{spritesheet_info.strings.name}}: ({{spritesheet.px.width}}, {{spritesheet.px.height}}, '{{{spritesheet.escaped_image}}}', ${{spritesheet_info.strings.name_sprites}}, );
+{{/block}}
+
+{{#block "sprite-functions-comment"}}
+{{#if options.functions}}
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+{{/if}}
+{{/block}}
+{{#block "sprite-functions"}}
+{{#if options.functions}}
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  background-image: var(--grp-spritesheet);
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+{{/if}}
+{{/block}}
+
+{{#block "spritesheet-functions-comment"}}
+{{#if options.functions}}
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+{{/if}}
+{{/block}}
+{{#block "spritesheet-functions"}}
+{{#if options.functions}}
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
+{{/if}}
+{{/block}}

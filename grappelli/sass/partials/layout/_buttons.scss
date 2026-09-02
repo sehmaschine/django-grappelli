@@ -2,33 +2,33 @@
 ------------------------------------------------------------------------------------------------------ */
 
 .button-state-blue {
-    color: #fff;
+    color: $grp-font-color-inverted;
     border: $grp-button-border;
-    background-color: #e1f0f5;
+    background-color: $grp-button-background-color;
 }
 
 .button-state-grey {
     color: $grp-font-color;
     border: $grp-button-border-hover;
-    background-color: #eee;
+    background-color: $grp-button-state-grey-background-color;
 }
 
 .button-state-dark-grey {
     color: $grp-font-color;
     border: $grp-button-border-hover;
-    border-color: #ccc;
-    background-color: #dbdbdb;
+    border-color: $grp-button-border-hover-color;
+    background-color: $grp-button-state-dark-grey-background-color;
 }
 
 .button-state-white {
     border: $grp-button-border;
-    background-color: #fdfdfd;
+    background-color: $grp-button-state-white-background-color;
 }
 
 .button-state-red {
-    color: #fff;
+    color: $grp-font-color-inverted;
     border: $grp-button-border;
-    background-color: #bf3030;
+    background-color: $grp-form-button-delete-background-color;
 }
 
 .button-state-transparent {

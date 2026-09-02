@@ -19,7 +19,7 @@ body.grp-delete-confirmation {
                 >li {
                     margin: 5px 0 5px -4px;
                     padding-left: 10px;
-                    border-left: 4px solid #ddd;
+                    border-left: 4px solid $grp-delete-confirmation-nesting-border-color;
                 }
             }
 
@@ -43,7 +43,7 @@ body.grp-delete-confirmation {
 
             >ul {
                 margin-top: 8px;
-                border-top: 1px solid #ddd;
+                border-top: 1px solid $grp-row-border-bottom-color;
 
                 >li {
                     margin-top: 0 !important;
@@ -51,8 +51,8 @@ body.grp-delete-confirmation {
                     padding-bottom: 8px;
                     font-size: 13px;
                     font-weight: bold;
-                    border-top: 1px solid #fff;
-                    border-bottom: 1px solid #ddd;
+                    border-top: 1px solid $grp-row-border-top-color;
+                    border-bottom: 1px solid $grp-row-border-bottom-color;
 
                     &:last-child {
                         padding-bottom: 0;

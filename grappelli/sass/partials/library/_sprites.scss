@@ -42,7 +42,7 @@
         $sprite-offset-y: $offset-y
     }
 
-    @return url(#{$sprite-image}) $sprite-offset-x $sprite-offset-y;
+    @return var(--grp-spritesheet) $sprite-offset-x $sprite-offset-y;
 }
 
 @mixin icon-position($sprite,

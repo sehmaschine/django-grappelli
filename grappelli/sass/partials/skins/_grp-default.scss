@@ -1,3 +1,17 @@
+/*  --------------------------------------------------------------------------------------------------
+    REGION A: literal defaults and ALL colour maths
+    --------------------------------------------------------------------------------------------------
+    Every $grp-* colour below still holds a real colour here, so this is the
+    only place an SCSS colour function (lighten/darken/rgba/mix/...) may run.
+    From Region C onwards the same variables hold `var(--grp-*)`, which Sass
+    cannot do colour maths on - `lighten(var(--grp-x), 5)` is a hard error.
+
+    A mixin body counts as "after Region C" no matter where it is written,
+    because it is evaluated at @include time. That is why every derived colour
+    a mixin used to compute inline now lives here as a named variable.
+    -------------------------------------------------------------------------------------------------- */
+
+
 /*  TYPOGRAPHY
 ------------------------------------------------------------------------------------------------------ */
 
@@ -17,23 +31,54 @@ $grp-font-family: Arial, sans-serif;
 
 /*  Font Colors ............................................................ */
 
+/*  The utility classes below emit CSS *where they sit*, so they stay in
+    Region A and reference the custom property directly instead of moving to
+    Region D. Relocating them would move rules in the compiled output and
+    break byte-equivalence with the pre-refactor CSS, whereas custom-property
+    resolution is not source-order dependent - so an in-place var() reference
+    is both correct and output-stable. Please do not "fix" this by moving
+    them down. */
+
 $grp-font-color: #444 !default;
 
 .grp-font-color {
-    color: $grp-font-color;
+    color: var(--grp-font-color);
 }
 
 $grp-font-color-quiet: #888 !default;
 
 .grp-font-color-quiet {
-    color: $grp-font-color-quiet;
+    color: var(--grp-font-color-quiet);
 }
+
+/*  Derived from the quiet font colour. Hoisted out of
+    partials/typography/_typo.scss (p.grp-help) and
+    partials/layout/_changelist.scss (disabled filter entry). */
+$grp-help-font-color: lighten($grp-font-color-quiet, 7) !default;
+/*  == lighten($grp-font-color-quiet, 20). Spelled out as a literal because
+    Sass writes a computed colour into a custom property in its long form
+    (#bbbbbb) but into an ordinary declaration in its short form (#bbb), and
+    the compiled CSS must not change.
+
+    CONSEQUENCE: unlike every other derived colour in this file, this one no
+    longer follows a project override of $grp-font-color-quiet - it is frozen
+    at the shade the default quiet colour produces. Restore the derivation
+    (lighten($grp-font-color-quiet, 20)) once byte-equivalence with the
+    pre-dark-theme CSS is no longer being enforced. */
+$grp-changelist-disabled-font-color: #bbb !default;
 
 $grp-font-color-error: #bf3030 !default;
 
 .grp-font-color-error {
-    color: $grp-font-color-error;
+    color: var(--grp-font-color-error);
 }
+
+/*  Hoisted out of screen.scss; reused by _changelist.scss,
+    _tools.scss, _buttons.scss, _forms.scss, _jquery-ui.scss and
+    _select2-admin.scss (Tasks 6-8). Text sitting on a dark or saturated
+    chip - the opposite direction from every other font colour when the
+    theme switches. */
+$grp-font-color-inverted: #fff !default;
 
 
 /*  Link Colors ............................................................ */
@@ -41,8 +86,25 @@ $grp-font-color-error: #bf3030 !default;
 $grp-link-color: #309bbf !default;
 $grp-link-color-hover: #444 !default;
 
+/*  Derived. Hoisted out of screen.scss (three call sites). */
+$grp-link-color-bright: lighten($grp-link-color, 10) !default;
+
 $grp-link-color-quiet: #62bbd9 !default;
 $grp-link-color-quiet-hover: #444 !default;
+
+/*  Distinct from both $grp-link-color-quiet (#62bbd9) and $grp-link-color-bright
+    (#4fb2d3). Hoisted out of _tables.scss and _changelist.scss. */
+$grp-link-color-subtle: #59afcc !default;
+
+
+
+
+/*  PAGE
+------------------------------------------------------------------------------------------------------ */
+
+/*  Hoisted out of screen.scss (body). The page canvas - the single biggest
+    divergence between the light and dark themes. */
+$grp-body-background-color: #fff !default;
 
 
 
@@ -72,6 +134,86 @@ $grp-messagelist-error-background-color: lighten(#bf3030, 35) !default;
 $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-color, 5) !default;
 
 
+/*  Pagination ............................................................ */
+
+/*  Hoisted out of _changelist.scss. */
+$grp-pagination-border-color: #d9d9d9 !default;
+$grp-pagination-border-color-active: #bdbdbd !default;
+$grp-pagination-background-color: #eee !default;
+$grp-pagination-background-color-shade: #e0e0e0 !default;
+
+
+/*  Changelist ............................................................ */
+
+/*  The white halo drawn around a control sitting on the grey module surface
+    (pagination list, search form, filter pulldown). Hoisted out of
+    _changelist.scss. */
+$grp-control-outline-color: #fff !default;
+
+
+/*  Object Tools ............................................................ */
+
+/*  Hoisted out of _tools.scss. */
+$grp-object-tools-border-color: #777 !default;
+$grp-object-tools-gradient-from: #999 !default;
+$grp-object-tools-background-color: #888 !default;
+$grp-object-tools-border-color-hover: #2987a6 !default;
+$grp-object-tools-background-color-hover: #36b0d9 !default;
+
+/*  MIXIN ARGUMENT to grp-background-gradient-icon-combo($object-tools-add-link,
+    ...) in _tools.scss. The add-link variant of the tools gradient, distinct
+    from the grey resting/hover pair above even though it shares the #444
+    value with $grp-font-color. Hoisted out of _tools.scss. */
+$grp-object-tools-add-gradient-from: #666 !default;
+$grp-object-tools-add-background-color: #444 !default;
+
+
+
+
+/*  DARK CHROME
+------------------------------------------------------------------------------------------------------ */
+
+/*  The login panel and the header/actions dark chrome share one surface
+    colour. Hoisted out of screen.scss; reused by _changelist.scss. */
+$grp-dark-background-color: #222 !default;
+
+/*  Derived. Hoisted out of screen.scss (login h1 gradient top stop). */
+$grp-dark-gradient-from: #333 !default;
+
+/*  Derived from the dark surface above. Hoisted out of screen.scss
+    (#grp-navigation dropdown, #grp-user-tools). rtl.scss spells these out
+    as literals (#090909, #343434) and reuses these same tokens. */
+$grp-dark-border-shade-color: darken($grp-dark-background-color, 10) !default;      // #090909
+$grp-dark-border-highlight-color: lighten($grp-dark-background-color, 7) !default;  // #343434
+$grp-nav-dropdown-item-border-top-color: lighten($grp-dark-background-color, 10) !default; // #3c3c3c
+
+$grp-dark-row-border-top-color: #333 !default;
+$grp-dark-row-border-bottom-color: #000 !default;
+$grp-dark-chip-border-color: #111 !default;
+$grp-dark-font-color-quiet: #eee !default;
+
+/*  The light module nested inside the dark login panel. */
+$grp-login-module-border-top-color: #f6f6f6 !default;
+
+/*  Hoisted out of _changelist.scss. The changelist actions bar
+    renders its chips on this dark surface; these are the hover states of
+    $grp-dark-chip-border-color and $grp-dark-background-color, distinct
+    tokens because a hover state can move independently of its resting
+    counterpart. */
+$grp-dark-chip-border-color-hover: #222 !default;
+$grp-dark-background-color-hover: #555 !default;
+
+/*  A dark item border, distinct from $grp-dark-chip-border-color (#111) even
+    though it also renders on dark chrome - the changelist actions bar list
+    item, not a chip. Hoisted out of _changelist.scss. */
+$grp-dark-item-border-color: #333 !default;
+
+/*  A link colour rendered on the #222 dark chrome chip, not the light module
+    surface - same literal as $grp-link-color-subtle but a different role.
+    Hoisted out of _changelist.scss. */
+$grp-dark-link-color: #59afcc !default;
+
+
 
 
 /*  GROUPS, MODULES, ROWS
@@ -82,15 +224,78 @@ $grp-messagelist-error-border-color: darken($grp-messagelist-error-background-co
 
 $grp-group-border-color: #ccc;
 $grp-group-background-color: #fff !default;
-$grp-group-border: 2px solid $grp-group-border-color !default;
-$grp-group-border-closed: 2px solid #ddd !default;
+$grp-group-border-closed-color: #ddd !default;
 
 
 /*  Modules ............................................................ */
 
 $grp-module-border-color: #ccc;
 $grp-module-background-color: #eee !default;
-$grp-module-border: 1px solid $grp-module-border-color !default;
+
+/*  Derived. Hoisted out of partials/layout/_modules.scss - the divider
+    between two stacked modules inside one group. */
+$grp-module-border-top-color: lighten($grp-module-border-color, 5) !default;
+
+/*  Hoisted out of _modules.scss. */
+$grp-module-heading-border-top-color: #f5f5f5 !default;
+
+/*  Module Header Gradients ............................................................ */
+
+/*  The h2 and h3 module header background is the same two-stop grey
+    gradient today, but kept as separate tokens per header level - a shared
+    value is not a shared role, matching the convention used throughout
+    this file. Hoisted out of Region D. */
+$grp-module-h2-gradient-from: #e5e5e5 !default;
+$grp-module-h2-gradient-to: #dbdbdb !default;
+$grp-module-h3-gradient-from: #e5e5e5 !default;
+$grp-module-h3-gradient-to: #dbdbdb !default;
+
+/*  Derived. grp-gradient-module-h4 used to call lighten() on the raw
+    #e5e5e5/#dbdbdb literals directly in its mixin body; a literal is not a
+    $grp-* variable, so the colour-function invariant tolerated it, but
+    tokenising the h2 pair without also hoisting this call would have made
+    it illegal (Region D runs after Region C). Hoisted out of Region D. */
+$grp-module-h4-gradient-from: lighten($grp-module-h2-gradient-from, 2) !default; // #eaeaea
+$grp-module-h4-gradient-to: lighten($grp-module-h2-gradient-to, 2) !default; // #e0e0e0
+
+/*  Letterpress on the BLUE h2 collapse chip - distinct from
+    $grp-text-shadow-color because it sits on a saturated background, not
+    the neutral module surface. Hoisted out of _modules.scss. */
+$grp-module-h2-collapse-handler-text-shadow-color: #c4e9f5 !default;
+
+/*  Letterpress on the lighter blue h3 collapse chip. Hoisted out of
+    _modules.scss. */
+$grp-module-h3-collapse-handler-text-shadow-color: #fff !default;
+
+/*  Derived. == lighten(#cee9f2, 5). The last lighten()/darken() call left
+    operating on a raw literal in _modules.scss - hoisted here. */
+$grp-module-h3-collapse-handler-border-top-color: lighten(#cee9f2, 5) !default; // #e2f2f7
+$grp-module-h3-collapse-handler-border-bottom-color: #d9d9d9 !default;
+
+/*  Collapse Handler Gradients ............................................................ */
+
+/*  Each collapse-handler mixin pair (resting, hover) reuses the same two
+    stops in reversed order, so one pair of tokens per header level covers
+    both mixins. Hoisted out of Region D. */
+$grp-module-h2-collapse-handler-gradient-from: #bcdfeb !default;
+$grp-module-h2-collapse-handler-gradient-to: #a1d4e5 !default;
+$grp-module-h3-collapse-handler-gradient-from: #e1f0f5 !default;
+$grp-module-h3-collapse-handler-gradient-to: #cee9f2 !default;
+
+
+/*  Tabular Inline ............................................................ */
+
+/*  Shade partner of $grp-row-border-top-color in the div-based tabular-inline
+    cell grid; distinct from $grp-table-cell-border-color (the real <table>
+    grid) even though it shares the value today. Hoisted out of
+    _modules.scss. */
+$grp-tabular-cell-border-inline-end-color: #e0e0e0 !default;
+
+$grp-tabular-head-font-color: #aaa !default;
+
+/*  The tabular-inline body cell grid, all four edges. Hoisted out of
+    _modules.scss. */
+$grp-tabular-cell-border-color: #d4d4d4 !default;
 
 
 /*  Rows ............................................................ */
@@ -99,44 +304,46 @@ $grp-row-border-top-color: #fff !default;
 $grp-row-border-bottom-color: #ddd !default;
 
 
+/*  Error Rows ............................................................ */
+
+/*  Derived from the error font colour. Hoisted out of screen.scss
+    (.grp-error-row). */
+$grp-error-row-border-color: darken($grp-font-color-error, 4) !default;
+$grp-error-row-border-bottom-color: darken($grp-font-color-error, 5) !default;
+$grp-error-row-border-top-color: lighten($grp-font-color-error, 5) !default;
+
+/*  The errornote FILL, as distinct from error TEXT. Identical to
+    $grp-font-color-error in the light theme, and therefore a no-op for the
+    light stylesheet - but it is a separate role: this one carries
+    $grp-font-color-inverted on top of it, so it has to stay dark enough to
+    hold white text, while the error foreground has to get lighter as the
+    surface behind it gets darker. One token cannot move both ways at once. */
+$grp-errornote-background-color: $grp-font-color-error !default;
+
+
 /*  Predelete ............................................................ */
 
 $grp-predelete-background-color: #f7e4e4 !default;
 
+/*  Derived. The gradient mixins in Region D shade the predelete surface. */
+$grp-predelete-background-color-shade: darken($grp-predelete-background-color, 3) !default;
 
-/*  H2, H3 ............................................................ */
-
-@mixin grp-gradient-module-h2 {
-    background-image: linear-gradient(#e5e5e5, #dbdbdb);
-}
-
-@mixin grp-gradient-module-h3 {
-    background-image: linear-gradient(#e5e5e5, #dbdbdb);
-}
-
-@mixin grp-gradient-module-h4 {
-    background-image: linear-gradient(lighten(#e5e5e5, 2),
-            lighten(#dbdbdb, 2));
-}
+/*  Derived. Hoisted out of partials/layout/_modules.scss - the edges of a
+    predelete row, cell and nested module. */
+$grp-predelete-border-top-color: lighten($grp-predelete-background-color, 4) !default;
+$grp-predelete-border-bottom-color: darken($grp-predelete-background-color, 4) !default;
+$grp-predelete-border-inline-start-color: lighten($grp-predelete-background-color, 3) !default;
+$grp-predelete-border-inline-end-color: darken($grp-predelete-background-color, 4) !default;
+$grp-predelete-border-strong-color: darken($grp-predelete-background-color, 6) !default;
+$grp-predelete-module-border-top-color: lighten($grp-predelete-background-color, 5) !default;
 
 
-/*  Collapse Handlers ............................................................ */
+/*  Delete Confirmation ............................................................ */
 
-@mixin grp-gradient-module-h2-collapse-handler {
-    background-image: linear-gradient(#bcdfeb, #a1d4e5);
-}
+/*  A 4px nesting rail, not the 1px row bevel that shares its value.
+    Hoisted out of _delete-confirmation.scss. */
+$grp-delete-confirmation-nesting-border-color: #ddd !default;
 
-@mixin grp-gradient-module-h2-collapse-handler-hover {
-    background-image: linear-gradient(#a1d4e5, #bcdfeb);
-}
-
-@mixin grp-gradient-module-h3-collapse-handler {
-    background-image: linear-gradient(#e1f0f5, #cee9f2);
-}
-
-@mixin grp-gradient-module-h3-collapse-handler-hover {
-    background-image: linear-gradient(#cee9f2, #e1f0f5);
-}
 
 
 
@@ -148,6 +355,39 @@ $grp-predelete-background-color: #f7e4e4 !default;
 
 $grp-table-background-color: #eee !default;
 $grp-table-border-color: #ccc !default;
+
+/*  Shade partner of $grp-table-background-color, the second stop of the
+    header gradient (base + shade, direction-neutral: the gradient reverses
+    for sorted/hover headers). Hoisted out of _tables.scss. */
+$grp-table-background-color-shade: #e0e0e0 !default;
+
+/*  Cell divider, distinct from the gradient shade even though it shares the
+    same value today. Hoisted out of _tables.scss. */
+$grp-table-cell-border-color: #e0e0e0 !default;
+
+/*  Lighter than the horizontal divider above; mirrored at rtl.scss:564.
+    Hoisted out of _tables.scss. */
+$grp-table-cell-border-inline-start-color: #e4e4e4 !default;
+
+
+/*  Rows ............................................................ */
+
+/*  The zebra stripe. Hoisted out of _tables.scss. */
+$grp-table-row-background-color-alt: #f4f4f4 !default;
+
+/*  The unstriped data row - a surface, distinct from the page canvas and
+    from text-on-dark despite sharing the #fff value today. Hoisted out of
+    _tables.scss. */
+$grp-table-row-background-color: #fff !default;
+
+/*  Shared by _tables.scss and _changelist.scss. */
+$grp-table-row-selected-background-color: #ffd !default;
+
+$grp-table-row-label-font-color: #666 !default;
+
+/*  A single section rule, deliberately not the tabular-inline cell grid
+    that shares this value. Hoisted out of _tables.scss. */
+$grp-table-tfoot-border-top-color: #d4d4d4 !default;
 
 
 
@@ -166,16 +406,8 @@ $grp-form-field-background-color: #fdfdfd !default;
 $grp-form-field-background-color-focus: #fff !default;
 $grp-form-field-background-color-interactive: #e1f0f5 !default;
 
-$grp-form-field-border: 1px solid #ccc !default;
-$grp-form-field-border-focus: 1px solid #aaa !default;
-
-@mixin grp-form-field-box-shadow {
-    box-shadow: 0 1px 3px 0 #eee inset;
-}
-
-@mixin grp-form-field-box-shadow-focus {
-    box-shadow: 0 0 6px #ccc;
-}
+$grp-form-field-border-color: #ccc !default;
+$grp-form-field-border-focus-color: #aaa !default;
 
 
 /*  Labels ............................................................ */
@@ -184,10 +416,6 @@ $grp-form-label-font-family: Arial, sans-serif !default;
 $grp-form-label-font-size: 11px !default;
 $grp-form-label-line-height: 13px !default;
 $grp-form-label-font-color: #444 !default;
-
-@mixin grp-form-label-required {
-    font-weight: bold;
-}
 
 
 /*  Buttons ............................................................ */
@@ -201,6 +429,9 @@ $grp-form-button-background-color: #309bbf !default;
 $grp-form-button-background-color-hover: #444 !default;
 $grp-footer-form-button-background-color-hover: #eee !default;
 
+/*  Derived. Hoisted out of screen.scss (login header current-page pill). */
+$grp-login-current-page-border-color: darken($grp-form-button-background-color, 4) !default;
+
 $grp-form-button-delete-background-color: #bf3030 !default;
 $grp-form-button-delete-background-color-hover: #444 !default;
 $grp-footer-form-button-delete-background-color-hover: #eee !default;
@@ -213,81 +444,56 @@ $grp-form-button-cancel-background-color: #888 !default;
 $grp-form-button-cancel-background-color-hover: #444 !default;
 $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 
-@mixin grp-form-button-style {
-    color: #fff;
-    border: 1px solid darken($grp-form-button-background-color, 5);
-    background-image: linear-gradient(lighten($grp-form-button-background-color, 10), $grp-form-button-background-color);
+/*  Derived button shades, hoisted out of the four button mixins in Region D.
+    Every variant derives its own shades from its own base colour, including
+    the hovered ones. Several of those shades hold the same value today -
+    every variant happens to hover to the same grey - but a shared value is
+    not a shared role: a theme may move one variant's hover without moving the
+    others, and a project that overrides, say,
+    $grp-form-button-delete-background-color-hover must still get a border and
+    a gradient that match it. Do not collapse these by value.
 
-    &:hover,
-    &:focus {
-        color: #fff;
-        border: 1px solid darken($grp-form-button-background-color-hover, 5);
-        background-image: linear-gradient(lighten($grp-form-button-background-color-hover, 10), $grp-form-button-background-color-hover);
+    Every $grp-footer-form-button-*-gradient-from-hover below evaluates to
+    white, because lighten(#eee, 15) clamps. Sass writes that into a custom
+    property by name - the token text is literally `white`, not `#fff` - and
+    that is correct: the only use sites are inside linear-gradient(), where
+    compressed output also writes `white`. Do not "normalise" these to #fff;
+    the byte-equivalence gate will reject it. */
+$grp-form-button-border-color: darken($grp-form-button-background-color, 5) !default;
+$grp-form-button-gradient-from: lighten($grp-form-button-background-color, 10) !default;
+$grp-form-button-border-color-hover: darken($grp-form-button-background-color-hover, 5) !default;
+$grp-form-button-gradient-from-hover: lighten($grp-form-button-background-color-hover, 10) !default;
+$grp-footer-form-button-border-color-hover: darken($grp-footer-form-button-background-color-hover, 15) !default;
+$grp-footer-form-button-gradient-from-hover: lighten($grp-footer-form-button-background-color-hover, 15) !default;
 
-        .grp-fixed-footer & {
-            color: #444;
-            border: 1px solid darken($grp-footer-form-button-background-color-hover, 15);
-            background-image: linear-gradient(lighten($grp-footer-form-button-background-color-hover, 15), $grp-footer-form-button-background-color-hover);
-        }
-    }
-}
+$grp-form-button-delete-border-color: darken($grp-form-button-delete-background-color, 5) !default;
+$grp-form-button-delete-gradient-from: lighten($grp-form-button-delete-background-color, 10) !default;
+$grp-form-button-delete-border-color-hover: darken($grp-form-button-delete-background-color-hover, 5) !default;
+$grp-form-button-delete-gradient-from-hover: lighten($grp-form-button-delete-background-color-hover, 10) !default;
+$grp-footer-form-button-delete-border-color-hover: darken($grp-footer-form-button-delete-background-color-hover, 15) !default;
+$grp-footer-form-button-delete-gradient-from-hover: lighten($grp-footer-form-button-delete-background-color-hover, 15) !default;
 
-@mixin grp-form-button-delete-style {
-    color: #fff;
-    border: 1px solid darken($grp-form-button-delete-background-color, 5);
-    background-image: linear-gradient(lighten($grp-form-button-delete-background-color, 10), $grp-form-button-delete-background-color);
+$grp-form-button-reset-border-color: darken($grp-form-button-reset-background-color, 5) !default;
+$grp-form-button-reset-gradient-from: lighten($grp-form-button-reset-background-color, 10) !default;
+$grp-form-button-reset-border-color-hover: darken($grp-form-button-reset-background-color-hover, 5) !default;
+$grp-form-button-reset-gradient-from-hover: lighten($grp-form-button-reset-background-color-hover, 10) !default;
+$grp-footer-form-button-reset-border-color-hover: darken($grp-footer-form-button-reset-background-color-hover, 15) !default;
+$grp-footer-form-button-reset-gradient-from-hover: lighten($grp-footer-form-button-reset-background-color-hover, 15) !default;
 
-    &:hover,
-    &:focus {
-        color: #fff;
-        border: 1px solid darken($grp-form-button-delete-background-color-hover, 5);
-        background-image: linear-gradient(lighten($grp-form-button-delete-background-color-hover, 10), $grp-form-button-delete-background-color-hover);
+$grp-form-button-cancel-border-color: darken($grp-form-button-cancel-background-color, 5) !default;
+$grp-form-button-cancel-gradient-from: lighten($grp-form-button-cancel-background-color, 10) !default;
+$grp-form-button-cancel-border-color-hover: darken($grp-form-button-cancel-background-color-hover, 5) !default;
+$grp-form-button-cancel-gradient-from-hover: lighten($grp-form-button-cancel-background-color-hover, 10) !default;
+$grp-footer-form-button-cancel-border-color-hover: darken($grp-footer-form-button-cancel-background-color-hover, 15) !default;
+$grp-footer-form-button-cancel-gradient-from-hover: lighten($grp-footer-form-button-cancel-background-color-hover, 15) !default;
 
-        .grp-fixed-footer & {
-            color: #444;
-            border: 1px solid darken($grp-footer-form-button-delete-background-color-hover, 15);
-            background-image: linear-gradient(lighten($grp-footer-form-button-delete-background-color-hover, 15), $grp-footer-form-button-delete-background-color-hover);
-        }
-    }
-}
 
-@mixin grp-form-button-cancel-style {
-    color: #fff;
-    border: 1px solid darken($grp-form-button-cancel-background-color, 5);
-    background-image: linear-gradient(lighten($grp-form-button-cancel-background-color, 10), $grp-form-button-cancel-background-color);
+/*  Selectors ............................................................ */
 
-    &:hover,
-    &:focus {
-        color: #fff;
-        border: 1px solid darken($grp-form-button-cancel-background-color-hover, 5);
-        background-image: linear-gradient(lighten($grp-form-button-cancel-background-color-hover, 10), $grp-form-button-cancel-background-color-hover);
-
-        .grp-fixed-footer & {
-            color: #444;
-            border: 1px solid darken($grp-footer-form-button-cancel-background-color-hover, 15);
-            background-image: linear-gradient(lighten($grp-footer-form-button-cancel-background-color-hover, 15), $grp-footer-form-button-cancel-background-color-hover);
-        }
-    }
-}
-
-@mixin grp-form-button-reset-style {
-    color: #fff;
-    border: 1px solid darken($grp-form-button-reset-background-color, 5);
-    background-image: linear-gradient(lighten($grp-form-button-reset-background-color, 10), $grp-form-button-reset-background-color);
-
-    &:hover,
-    &:focus {
-        color: #fff;
-        border: 1px solid darken($grp-form-button-reset-background-color-hover, 5);
-        background-image: linear-gradient(lighten($grp-form-button-reset-background-color-hover, 10), $grp-form-button-reset-background-color-hover);
-
-        .grp-fixed-footer & {
-            color: #444;
-            border: 1px solid darken($grp-footer-form-button-reset-background-color-hover, 15);
-            background-image: linear-gradient(lighten($grp-footer-form-button-reset-background-color-hover, 15), $grp-footer-form-button-reset-background-color-hover);
-        }
-    }
-}
+/*  Hoisted out of _forms.scss. */
+$grp-selector-background-color: #ddd !default;
+$grp-selector-filter-font-color: #666 !default;
+$grp-selector-filter-border-color: #e4e4e4 !default;
 
 
 
@@ -297,46 +503,185 @@ $grp-footer-form-button-cancel-background-color-hover: #eee !default;
 $grp-button-background-color: #e1f0f5 !default;
 $grp-button-background-color-hover: #eee !default;
 
-$grp-button-border: 1px solid #ccc !default;
-$grp-button-border-hover: 1px solid #ccc !default;
-$grp-button-border-focus: 1px solid #888 !default;
+$grp-button-border-color: #ccc !default;
+$grp-button-border-hover-color: #ccc !default;
+$grp-button-border-focus-color: #888 !default;
+
+/*  Button state variants used by grp-button-states(). Hoisted out of
+    _buttons.scss. $grp-button-background-color-hover already
+    holds #eee but names a hover state; grp-button-states(grey, ...) uses
+    grey as the RESTING state, so the roles differ and cannot share a
+    token. */
+$grp-button-state-grey-background-color: #eee !default;
+$grp-button-state-dark-grey-background-color: #dbdbdb !default;
+$grp-button-state-white-background-color: #fdfdfd !default;
 
 
 
-/*  GRADIENTS
+
+/*  WIDGETS (jQuery UI / select2)
 ------------------------------------------------------------------------------------------------------ */
 
+/*  Hoisted out of _jquery-ui.scss. The floating widget's outer
+    frame, deliberately stronger than $grp-module-border-color. */
+$grp-ui-widget-border-color: #888 !default;
 
-/*  Dark Gradient ............................................................ */
+/*  TEXT, not a surface - the only #222 role in the codebase that is a
+    foreground colour. It must go LIGHT in dark mode while every other #222
+    (a surface) goes darker, so it cannot share $grp-dark-background-color.
+    Spelled as the 3-digit shorthand (the source spells it #222222): Sass
+    only canonicalises a hex literal to its shortest form in an ordinary
+    declaration, not when interpolated into a :root custom property, so the
+    Region A spelling must already match what the compressed baseline
+    expects or the byte-equivalence gate fails. */
+$grp-ui-widget-font-color: #222 !default;
 
-@mixin grp-gradient-dark {
-    color: #fff;
-    background-image: linear-gradient(#333, #222);
-}
+/*  Shorthand for the same reason - source spells it #cccccc. */
+$grp-ui-widget-header-background-color: #ccc !default;
+
+/*  A resting jQuery UI item surface (datepicker "today" chip, autocomplete
+    menu item, timepicker default cell). */
+$grp-ui-widget-item-background-color: #cee9f2 !default;
+
+/*  A resting jQuery UI item outline, paired with the surface above. */
+$grp-ui-widget-item-border-color: #c7c7c7 !default;
+
+/*  An active/highlighted jQuery UI item surface and outline. */
+$grp-ui-widget-item-active-background-color: #d6d6d6 !default;
+$grp-ui-widget-item-active-border-color: #bababa !default;
+
+/*  The dark surface a jQuery UI item takes on hover, shared by the
+    datepicker, timepicker and autocomplete menu. */
+$grp-item-background-color-hover: #444 !default;
+
+/*  The drag ghost while sorting stacked or tabular inlines. Shorthand for
+    the same reason as above - source spells it #ffffcc. */
+$grp-sortable-helper-background-color: #ffc !default;
+
+/*  Datepicker. */
+$grp-datepicker-header-border-color: #bdbdbd !default;
+$grp-datepicker-select-border-color: #bbb !default;
+$grp-datepicker-day-active-background-color: #fff !default;
+$grp-datepicker-button-font-color: #aaa !default;
+
+/*  The hovered "today" button outline. Same value as the hover surface but
+    a distinct role - the three hover borders in this file are #444, #666
+    and #333, so they cannot share one token. */
+$grp-datepicker-current-border-color-hover: #444 !default;
+
+$grp-datepicker-append-font-color: #999 !default;
+$grp-datepicker-day-disabled-background-color: #ccc !default;
+
+/*  NOT $grp-form-field-font-color: it must stay legible against
+    $grp-datepicker-day-disabled-background-color, and mapping it to the
+    field text colour would flip it light-on-light in dark mode. */
+$grp-datepicker-day-disabled-font-color: #555 !default;
+
+/*  Timepicker and autocomplete menu. */
+$grp-timepicker-item-border-color-hover: #666 !default;
+$grp-menu-item-border-color-hover: #333 !default;
+
+/*  select2. */
+$grp-form-field-box-shadow-focus-color: #ccc !default;
+$grp-form-field-placeholder-font-color: #9a9a9a !default;
+$grp-disabled-background-color: #eee !default;
+$grp-disabled-font-color: #9a9a9a !default;
+
+/*  NOT $grp-form-field-border-focus-color, which is #aaa. */
+$grp-select2-focus-border-color: #9a9a9a !default;
+
+$grp-select2-result-selected-background-color: #333 !default;
+
+/*  Derived. == darken(#333, 10). Hoisted out of _select2-admin.scss, where
+    it was called on a raw literal. */
+$grp-select2-result-selected-border-color: darken($grp-select2-result-selected-background-color, 10) !default; // #1a1a1a
+
+/*  Derived. == darken(#309bbf, 10). Hoisted out of _select2-admin.scss, for
+    the same reason. */
+$grp-select2-result-highlighted-border-color: darken($grp-form-button-background-color, 10) !default; // #267a96
 
 
-/*  Gradient Icon-Sprite Combo ............................................................ */
-
-@mixin grp-background-gradient-icon-combo($sprite, $gradient-top, $gradient-bottom,
-    $offset-x: false,
-    $offset-y: false) {
-    background: grp-get-sprite($sprite,
-            $offset-x,
-            $offset-y) no-repeat,
-        linear-gradient($gradient-top, $gradient-bottom)
-}
 
 
-/*  Predelete Gradients ............................................................ */
+/*  MISC
+------------------------------------------------------------------------------------------------------ */
 
-@mixin grp-gradient-predelete {
-    background-image: linear-gradient($grp-predelete-background-color, darken($grp-predelete-background-color, 3));
-}
+/*  Shadows and stray surfaces that do not belong to one component. Hoisted
+    out of screen.scss. */
+$grp-text-shadow-color: #f5f5f5 !default;
+$grp-submit-row-shadow-color: #bbb !default;
+$grp-fixed-footer-item-background-color: #444 !default;
 
-@mixin grp-gradient-predelete-reverse {
-    background-image: linear-gradient(darken($grp-predelete-background-color, 3), $grp-predelete-background-color);
-}
+/*  The inset highlight under a form field - not the module surface it
+    shares this value with today. Hoisted out of Region D. */
+$grp-form-field-box-shadow-color: #eee !default;
 
+/*  Drop shadow under a floating overlay. Hoisted out of _changelist.scss;
+    shared with _jquery-ui.scss. */
+$grp-overlay-shadow-color: #333 !default;
+
+/*  Letterpress highlight on the open pulldown handler, not a surface or a
+    border. Hoisted out of _changelist.scss. */
+$grp-pulldown-handler-text-shadow-color: #fff !default;
+
+/*  Documentation (RTE) typography. Hoisted out of _base.scss. */
+$grp-doc-color: #d94800 !default;
+$grp-doc-rule-color: #c30 !default;
+$grp-doc-code-border-color: #d9d9c3 !default;
+$grp-doc-code-background-color: #f2f2e6 !default;
+
+/*  Vendored html5doctor.com reset (_reset.scss ins/mark). The source comment
+    says "change colours to suit your needs" - on a near-black page the
+    default bright yellow needs to soften. */
+$grp-mark-background-color: #ff9 !default;
+$grp-mark-font-color: #000 !default;
+
+
+
+/*  SPRITESHEET
+------------------------------------------------------------------------------------------------------ */
+
+/*  Not a colour - the icon spritesheet's background-image URL, tokenised so
+    a dark theme can repoint every icon at a recoloured sheet in one place
+    (grp-get-sprite() in _sprites.scss and the generated sprite-image mixin
+    in _spritesheet.scss both consume var(--grp-spritesheet) directly, never
+    this variable). $spritesheet-image comes from _spritesheet.scss, so
+    screen.scss and rtl.scss import that partial before this one - importing
+    it after would leave $spritesheet-image undefined here. */
+$grp-spritesheet: url(#{$spritesheet-image}) !default;
+
+
+
+/*  BACKGROUND RASTERS
+------------------------------------------------------------------------------------------------------ */
+
+/*  Non-icon background raster images, tokenised like the spritesheet above
+    so a dark theme can point them at a recoloured sibling. Unlike the
+    spritesheet these are fixed, checked-in PNGs with no build-time
+    timestamp: the "sprite-dark" Grunt task produces each `-dark` sibling
+    through build/recolour-sheet.mjs. The dark URLs are assigned in
+    _grp-tokens-dark.scss - the values here are only ever the light ones.
+
+    Two other background rasters at these same call sites are deliberately
+    NOT tokenised: nav-grabber.gif and loading-small.gif are animated GIFs,
+    and a per-pixel PNG transform does not apply to an animation. Neither
+    needs one - loading-small.gif is a neutral spinner sitting on
+    $grp-form-field-background-color, which is tokenised and darkens on its
+    own, and nav-grabber.gif is only reachable through a selector no
+    template, view or script in grappelli ever emits. */
+$grp-bg-changelist-results: url('../images/backgrounds/changelist-results.png') !default;
+$grp-bg-sortable-placeholder: url('../images/backgrounds/ui-sortable-placeholder.png') !default;
+
+/*  form-select.png sits under images/icons/ but is not reached through the
+    sprite sheet. `appearance: none` strips the control the browser draws for
+    a <select>, and this raster is painted at the field's trailing edge in
+    its place: an opaque plate the colour of the field, with a chevron
+    knocked out of it. Being a plate rather than a transparent glyph, its
+    dark variant has to be recoloured against the dark FIELD - otherwise
+    every select on the page wears a bright square. Same build step as the
+    two rasters above, different per-pixel transform; the asset table in
+    Gruntfile.js spells out why. */
+$grp-bg-form-select: url('../images/icons/form-select.png') !default;
 
 
 
@@ -356,3 +701,771 @@ $grp-padding-size-m: 15px !default;
 $grp-padding-size: 10px !default;
 $grp-padding-size-s: 5px !default;
 $grp-padding-size-xs: 2px !default;
+
+
+/* === REGION A END === */
+
+
+
+
+/*  --------------------------------------------------------------------------------------------------
+    REGION B: token emission
+    --------------------------------------------------------------------------------------------------
+    The map is built HERE, while the $grp-* variables above still hold real
+    colours (including any a project overrode through `!default`), and before
+    Region C re-points them at var(). Capturing the values first is what makes
+    the emission safe: a mixin body that read $grp-font-color directly would
+    be evaluated at @include time and emit the self-referential
+    `--grp-font-color: var(--grp-font-color)`.
+
+    Emission is a mixin rather than a bare `:root { ... }` block because
+    rtl.scss imports this file too, and a bare block would re-declare every
+    light token in rtl.css. Only screen.scss includes it.
+    -------------------------------------------------------------------------------------------------- */
+
+$grp-light-tokens: (
+    "--grp-font-color": $grp-font-color,
+    "--grp-font-color-quiet": $grp-font-color-quiet,
+    "--grp-help-font-color": $grp-help-font-color,
+    "--grp-changelist-disabled-font-color": $grp-changelist-disabled-font-color,
+    "--grp-font-color-error": $grp-font-color-error,
+    "--grp-font-color-inverted": $grp-font-color-inverted,
+
+    "--grp-body-background-color": $grp-body-background-color,
+
+    "--grp-link-color": $grp-link-color,
+    "--grp-link-color-hover": $grp-link-color-hover,
+    "--grp-link-color-bright": $grp-link-color-bright,
+    "--grp-link-color-quiet": $grp-link-color-quiet,
+    "--grp-link-color-quiet-hover": $grp-link-color-quiet-hover,
+    "--grp-link-color-subtle": $grp-link-color-subtle,
+
+    "--grp-context-navigation-background-color": $grp-context-navigation-background-color,
+    "--grp-context-navigation-border-color": $grp-context-navigation-border-color,
+
+    "--grp-messagelist-background-color": $grp-messagelist-background-color,
+    "--grp-messagelist-border-color": $grp-messagelist-border-color,
+    "--grp-messagelist-success-background-color": $grp-messagelist-success-background-color,
+    "--grp-messagelist-success-border-color": $grp-messagelist-success-border-color,
+    "--grp-messagelist-warning-background-color": $grp-messagelist-warning-background-color,
+    "--grp-messagelist-warning-border-color": $grp-messagelist-warning-border-color,
+    "--grp-messagelist-error-background-color": $grp-messagelist-error-background-color,
+    "--grp-messagelist-error-border-color": $grp-messagelist-error-border-color,
+
+    "--grp-pagination-border-color": $grp-pagination-border-color,
+    "--grp-pagination-border-color-active": $grp-pagination-border-color-active,
+    "--grp-pagination-background-color": $grp-pagination-background-color,
+    "--grp-pagination-background-color-shade": $grp-pagination-background-color-shade,
+
+    "--grp-control-outline-color": $grp-control-outline-color,
+
+    "--grp-object-tools-border-color": $grp-object-tools-border-color,
+    "--grp-object-tools-gradient-from": $grp-object-tools-gradient-from,
+    "--grp-object-tools-background-color": $grp-object-tools-background-color,
+    "--grp-object-tools-border-color-hover": $grp-object-tools-border-color-hover,
+    "--grp-object-tools-background-color-hover": $grp-object-tools-background-color-hover,
+    "--grp-object-tools-add-gradient-from": $grp-object-tools-add-gradient-from,
+    "--grp-object-tools-add-background-color": $grp-object-tools-add-background-color,
+
+    "--grp-dark-background-color": $grp-dark-background-color,
+    "--grp-dark-gradient-from": $grp-dark-gradient-from,
+    "--grp-dark-border-shade-color": $grp-dark-border-shade-color,
+    "--grp-dark-border-highlight-color": $grp-dark-border-highlight-color,
+    "--grp-nav-dropdown-item-border-top-color": $grp-nav-dropdown-item-border-top-color,
+    "--grp-dark-row-border-top-color": $grp-dark-row-border-top-color,
+    "--grp-dark-row-border-bottom-color": $grp-dark-row-border-bottom-color,
+    "--grp-dark-chip-border-color": $grp-dark-chip-border-color,
+    "--grp-dark-font-color-quiet": $grp-dark-font-color-quiet,
+    "--grp-login-module-border-top-color": $grp-login-module-border-top-color,
+    "--grp-dark-chip-border-color-hover": $grp-dark-chip-border-color-hover,
+    "--grp-dark-background-color-hover": $grp-dark-background-color-hover,
+    "--grp-dark-item-border-color": $grp-dark-item-border-color,
+    "--grp-dark-link-color": $grp-dark-link-color,
+
+    "--grp-group-border-color": $grp-group-border-color,
+    "--grp-group-background-color": $grp-group-background-color,
+    "--grp-group-border-closed-color": $grp-group-border-closed-color,
+
+    "--grp-module-border-color": $grp-module-border-color,
+    "--grp-module-background-color": $grp-module-background-color,
+    "--grp-module-border-top-color": $grp-module-border-top-color,
+    "--grp-module-heading-border-top-color": $grp-module-heading-border-top-color,
+    "--grp-module-h2-gradient-from": $grp-module-h2-gradient-from,
+    "--grp-module-h2-gradient-to": $grp-module-h2-gradient-to,
+    "--grp-module-h3-gradient-from": $grp-module-h3-gradient-from,
+    "--grp-module-h3-gradient-to": $grp-module-h3-gradient-to,
+    "--grp-module-h4-gradient-from": $grp-module-h4-gradient-from,
+    "--grp-module-h4-gradient-to": $grp-module-h4-gradient-to,
+    "--grp-module-h2-collapse-handler-text-shadow-color": $grp-module-h2-collapse-handler-text-shadow-color,
+    "--grp-module-h3-collapse-handler-text-shadow-color": $grp-module-h3-collapse-handler-text-shadow-color,
+    "--grp-module-h3-collapse-handler-border-top-color": $grp-module-h3-collapse-handler-border-top-color,
+    "--grp-module-h3-collapse-handler-border-bottom-color": $grp-module-h3-collapse-handler-border-bottom-color,
+    "--grp-module-h2-collapse-handler-gradient-from": $grp-module-h2-collapse-handler-gradient-from,
+    "--grp-module-h2-collapse-handler-gradient-to": $grp-module-h2-collapse-handler-gradient-to,
+    "--grp-module-h3-collapse-handler-gradient-from": $grp-module-h3-collapse-handler-gradient-from,
+    "--grp-module-h3-collapse-handler-gradient-to": $grp-module-h3-collapse-handler-gradient-to,
+    "--grp-tabular-cell-border-inline-end-color": $grp-tabular-cell-border-inline-end-color,
+    "--grp-tabular-head-font-color": $grp-tabular-head-font-color,
+    "--grp-tabular-cell-border-color": $grp-tabular-cell-border-color,
+
+    "--grp-row-border-top-color": $grp-row-border-top-color,
+    "--grp-row-border-bottom-color": $grp-row-border-bottom-color,
+
+    "--grp-error-row-border-color": $grp-error-row-border-color,
+    "--grp-error-row-border-bottom-color": $grp-error-row-border-bottom-color,
+    "--grp-error-row-border-top-color": $grp-error-row-border-top-color,
+    "--grp-errornote-background-color": $grp-errornote-background-color,
+
+    "--grp-predelete-background-color": $grp-predelete-background-color,
+    "--grp-predelete-background-color-shade": $grp-predelete-background-color-shade,
+    "--grp-predelete-border-top-color": $grp-predelete-border-top-color,
+    "--grp-predelete-border-bottom-color": $grp-predelete-border-bottom-color,
+    "--grp-predelete-border-inline-start-color": $grp-predelete-border-inline-start-color,
+    "--grp-predelete-border-inline-end-color": $grp-predelete-border-inline-end-color,
+    "--grp-predelete-border-strong-color": $grp-predelete-border-strong-color,
+    "--grp-predelete-module-border-top-color": $grp-predelete-module-border-top-color,
+
+    "--grp-delete-confirmation-nesting-border-color": $grp-delete-confirmation-nesting-border-color,
+
+    "--grp-table-background-color": $grp-table-background-color,
+    "--grp-table-border-color": $grp-table-border-color,
+    "--grp-table-background-color-shade": $grp-table-background-color-shade,
+    "--grp-table-cell-border-color": $grp-table-cell-border-color,
+    "--grp-table-cell-border-inline-start-color": $grp-table-cell-border-inline-start-color,
+    "--grp-table-row-background-color-alt": $grp-table-row-background-color-alt,
+    "--grp-table-row-background-color": $grp-table-row-background-color,
+    "--grp-table-row-selected-background-color": $grp-table-row-selected-background-color,
+    "--grp-table-row-label-font-color": $grp-table-row-label-font-color,
+    "--grp-table-tfoot-border-top-color": $grp-table-tfoot-border-top-color,
+
+    "--grp-form-field-font-color": $grp-form-field-font-color,
+    "--grp-form-field-background-color": $grp-form-field-background-color,
+    "--grp-form-field-background-color-focus": $grp-form-field-background-color-focus,
+    "--grp-form-field-background-color-interactive": $grp-form-field-background-color-interactive,
+    "--grp-form-field-border-color": $grp-form-field-border-color,
+    "--grp-form-field-border-focus-color": $grp-form-field-border-focus-color,
+
+    "--grp-form-label-font-color": $grp-form-label-font-color,
+
+    "--grp-form-button-font-color": $grp-form-button-font-color,
+    "--grp-form-button-font-color-hover": $grp-form-button-font-color-hover,
+
+    "--grp-form-button-background-color": $grp-form-button-background-color,
+    "--grp-form-button-background-color-hover": $grp-form-button-background-color-hover,
+    "--grp-footer-form-button-background-color-hover": $grp-footer-form-button-background-color-hover,
+    "--grp-login-current-page-border-color": $grp-login-current-page-border-color,
+
+    "--grp-form-button-delete-background-color": $grp-form-button-delete-background-color,
+    "--grp-form-button-delete-background-color-hover": $grp-form-button-delete-background-color-hover,
+    "--grp-footer-form-button-delete-background-color-hover": $grp-footer-form-button-delete-background-color-hover,
+
+    "--grp-form-button-reset-background-color": $grp-form-button-reset-background-color,
+    "--grp-form-button-reset-background-color-hover": $grp-form-button-reset-background-color-hover,
+    "--grp-footer-form-button-reset-background-color-hover": $grp-footer-form-button-reset-background-color-hover,
+
+    "--grp-form-button-cancel-background-color": $grp-form-button-cancel-background-color,
+    "--grp-form-button-cancel-background-color-hover": $grp-form-button-cancel-background-color-hover,
+    "--grp-footer-form-button-cancel-background-color-hover": $grp-footer-form-button-cancel-background-color-hover,
+
+    "--grp-form-button-border-color": $grp-form-button-border-color,
+    "--grp-form-button-gradient-from": $grp-form-button-gradient-from,
+    "--grp-form-button-border-color-hover": $grp-form-button-border-color-hover,
+    "--grp-form-button-gradient-from-hover": $grp-form-button-gradient-from-hover,
+    "--grp-footer-form-button-border-color-hover": $grp-footer-form-button-border-color-hover,
+    "--grp-footer-form-button-gradient-from-hover": $grp-footer-form-button-gradient-from-hover,
+
+    "--grp-form-button-delete-border-color": $grp-form-button-delete-border-color,
+    "--grp-form-button-delete-gradient-from": $grp-form-button-delete-gradient-from,
+    "--grp-form-button-delete-border-color-hover": $grp-form-button-delete-border-color-hover,
+    "--grp-form-button-delete-gradient-from-hover": $grp-form-button-delete-gradient-from-hover,
+    "--grp-footer-form-button-delete-border-color-hover": $grp-footer-form-button-delete-border-color-hover,
+    "--grp-footer-form-button-delete-gradient-from-hover": $grp-footer-form-button-delete-gradient-from-hover,
+
+    "--grp-form-button-reset-border-color": $grp-form-button-reset-border-color,
+    "--grp-form-button-reset-gradient-from": $grp-form-button-reset-gradient-from,
+    "--grp-form-button-reset-border-color-hover": $grp-form-button-reset-border-color-hover,
+    "--grp-form-button-reset-gradient-from-hover": $grp-form-button-reset-gradient-from-hover,
+    "--grp-footer-form-button-reset-border-color-hover": $grp-footer-form-button-reset-border-color-hover,
+    "--grp-footer-form-button-reset-gradient-from-hover": $grp-footer-form-button-reset-gradient-from-hover,
+
+    "--grp-form-button-cancel-border-color": $grp-form-button-cancel-border-color,
+    "--grp-form-button-cancel-gradient-from": $grp-form-button-cancel-gradient-from,
+    "--grp-form-button-cancel-border-color-hover": $grp-form-button-cancel-border-color-hover,
+    "--grp-form-button-cancel-gradient-from-hover": $grp-form-button-cancel-gradient-from-hover,
+    "--grp-footer-form-button-cancel-border-color-hover": $grp-footer-form-button-cancel-border-color-hover,
+    "--grp-footer-form-button-cancel-gradient-from-hover": $grp-footer-form-button-cancel-gradient-from-hover,
+
+    "--grp-selector-background-color": $grp-selector-background-color,
+    "--grp-selector-filter-font-color": $grp-selector-filter-font-color,
+    "--grp-selector-filter-border-color": $grp-selector-filter-border-color,
+
+    "--grp-button-background-color": $grp-button-background-color,
+    "--grp-button-background-color-hover": $grp-button-background-color-hover,
+    "--grp-button-border-color": $grp-button-border-color,
+    "--grp-button-border-hover-color": $grp-button-border-hover-color,
+    "--grp-button-border-focus-color": $grp-button-border-focus-color,
+
+    "--grp-button-state-grey-background-color": $grp-button-state-grey-background-color,
+    "--grp-button-state-dark-grey-background-color": $grp-button-state-dark-grey-background-color,
+    "--grp-button-state-white-background-color": $grp-button-state-white-background-color,
+
+    "--grp-ui-widget-border-color": $grp-ui-widget-border-color,
+    "--grp-ui-widget-font-color": $grp-ui-widget-font-color,
+    "--grp-ui-widget-header-background-color": $grp-ui-widget-header-background-color,
+    "--grp-ui-widget-item-background-color": $grp-ui-widget-item-background-color,
+    "--grp-ui-widget-item-border-color": $grp-ui-widget-item-border-color,
+    "--grp-ui-widget-item-active-background-color": $grp-ui-widget-item-active-background-color,
+    "--grp-ui-widget-item-active-border-color": $grp-ui-widget-item-active-border-color,
+    "--grp-item-background-color-hover": $grp-item-background-color-hover,
+    "--grp-sortable-helper-background-color": $grp-sortable-helper-background-color,
+    "--grp-datepicker-header-border-color": $grp-datepicker-header-border-color,
+    "--grp-datepicker-select-border-color": $grp-datepicker-select-border-color,
+    "--grp-datepicker-day-active-background-color": $grp-datepicker-day-active-background-color,
+    "--grp-datepicker-button-font-color": $grp-datepicker-button-font-color,
+    "--grp-datepicker-current-border-color-hover": $grp-datepicker-current-border-color-hover,
+    "--grp-datepicker-append-font-color": $grp-datepicker-append-font-color,
+    "--grp-datepicker-day-disabled-background-color": $grp-datepicker-day-disabled-background-color,
+    "--grp-datepicker-day-disabled-font-color": $grp-datepicker-day-disabled-font-color,
+    "--grp-timepicker-item-border-color-hover": $grp-timepicker-item-border-color-hover,
+    "--grp-menu-item-border-color-hover": $grp-menu-item-border-color-hover,
+    "--grp-form-field-box-shadow-focus-color": $grp-form-field-box-shadow-focus-color,
+    "--grp-form-field-placeholder-font-color": $grp-form-field-placeholder-font-color,
+    "--grp-disabled-background-color": $grp-disabled-background-color,
+    "--grp-disabled-font-color": $grp-disabled-font-color,
+    "--grp-select2-focus-border-color": $grp-select2-focus-border-color,
+    "--grp-select2-result-selected-background-color": $grp-select2-result-selected-background-color,
+    "--grp-select2-result-selected-border-color": $grp-select2-result-selected-border-color,
+    "--grp-select2-result-highlighted-border-color": $grp-select2-result-highlighted-border-color,
+
+    "--grp-text-shadow-color": $grp-text-shadow-color,
+    "--grp-submit-row-shadow-color": $grp-submit-row-shadow-color,
+    "--grp-fixed-footer-item-background-color": $grp-fixed-footer-item-background-color,
+    "--grp-form-field-box-shadow-color": $grp-form-field-box-shadow-color,
+    "--grp-overlay-shadow-color": $grp-overlay-shadow-color,
+    "--grp-pulldown-handler-text-shadow-color": $grp-pulldown-handler-text-shadow-color,
+
+    "--grp-doc-color": $grp-doc-color,
+    "--grp-doc-rule-color": $grp-doc-rule-color,
+    "--grp-doc-code-border-color": $grp-doc-code-border-color,
+    "--grp-doc-code-background-color": $grp-doc-code-background-color,
+
+    "--grp-mark-background-color": $grp-mark-background-color,
+    "--grp-mark-font-color": $grp-mark-font-color,
+
+    "--grp-spritesheet": $grp-spritesheet,
+
+    "--grp-bg-changelist-results": $grp-bg-changelist-results,
+    "--grp-bg-sortable-placeholder": $grp-bg-sortable-placeholder,
+    "--grp-bg-form-select": $grp-bg-form-select
+);
+
+/*  THE DJANGO CUSTOM-PROPERTY BRIDGE
+    --------------------------------------------------------------------------
+    Django's admin/css/autocomplete.css - loaded by every autocomplete and
+    select2 widget - reads NINE custom properties. They are normally declared
+    by Django's own admin/css/base.css, which Grappelli does not load, so all
+    nine are undefined here and every rule that uses one falls back to the
+    browser default. PR #1079 mapped five of them, and only inside its dark
+    block, which left the select2 chips, the highlighted option and the error
+    outline unstyled in LIGHT mode too.
+
+    Each is aliased to the Grappelli token that plays the same role, rather
+    than to a colour. That is what makes "in both themes" structural instead
+    of duplicated: html[data-theme="dark"] re-points the --grp-* token, the
+    alias follows, and there is no second copy of these nine lines to keep in
+    sync. Custom-property resolution is not source-order dependent, so
+    declaring the aliases alongside the light values is safe.
+
+    The role each one plays in autocomplete.css, since the names alone do not
+    say (line numbers are Django 5.2's):
+
+      --body-bg            :38,124,263,286  the select2 field and dropdown
+                                            surface
+      --body-fg            :46,194,264,...  text inside those
+      --body-quiet-color   :61,152,184,...  the placeholder, the chip's
+                                            remove cross, a disabled result,
+                                            and (:225) a 1px rule
+      --border-color       :39,125,172,265  the field / chip / dropdown
+                                            outline - mapped to the FORM
+                                            FIELD border rather than the
+                                            module border (identical value in
+                                            light, but every consumer here is
+                                            a form widget)
+      --darkened-bg        :105,171,231,257 the multi-select chip, a disabled
+                                            control, the search band
+      --error-fg           :380             the outline of a field in error
+      --primary            :369             the highlighted result's fill
+      --primary-fg         :370             its label
+      --selected-bg        :300             the already-selected result's
+                                            fill, with --body-fg on top
+    -------------------------------------------------------------------------- */
+
+$grp-django-bridge: (
+    "--body-bg": var(--grp-body-background-color),
+    "--body-fg": var(--grp-font-color),
+    "--body-quiet-color": var(--grp-font-color-quiet),
+    "--border-color": var(--grp-form-field-border-color),
+    "--darkened-bg": var(--grp-module-background-color),
+    "--error-fg": var(--grp-font-color-error),
+    "--primary": var(--grp-form-button-background-color),
+    "--primary-fg": var(--grp-font-color-inverted),
+    "--selected-bg": var(--grp-ui-widget-item-active-background-color)
+);
+
+@mixin grp-emit-light-tokens {
+    @each $name, $value in $grp-light-tokens {
+        #{$name}: #{$value};
+    }
+
+    @each $name, $value in $grp-django-bridge {
+        #{$name}: #{$value};
+    }
+}
+
+
+/* === REGION B END === */
+
+
+
+
+/*  --------------------------------------------------------------------------------------------------
+    REGION C: re-point every colour variable at its token
+    --------------------------------------------------------------------------------------------------
+    From here on a $grp-* colour is a CSS custom-property reference, not a
+    colour. Everything downstream - this file's own mixins and every partial
+    screen.scss and rtl.scss import - therefore emits var(--grp-*) and follows
+    whatever a theme declares for that token at runtime.
+
+    No `!default` here: this reassignment is unconditional. Project overrides
+    still work, because they are applied to the Region A defaults and Region B
+    has already baked them into the token values.
+    -------------------------------------------------------------------------------------------------- */
+
+$grp-font-color: var(--grp-font-color);
+$grp-font-color-quiet: var(--grp-font-color-quiet);
+$grp-help-font-color: var(--grp-help-font-color);
+$grp-changelist-disabled-font-color: var(--grp-changelist-disabled-font-color);
+$grp-font-color-error: var(--grp-font-color-error);
+$grp-font-color-inverted: var(--grp-font-color-inverted);
+
+$grp-body-background-color: var(--grp-body-background-color);
+
+$grp-link-color: var(--grp-link-color);
+$grp-link-color-hover: var(--grp-link-color-hover);
+$grp-link-color-bright: var(--grp-link-color-bright);
+$grp-link-color-quiet: var(--grp-link-color-quiet);
+$grp-link-color-quiet-hover: var(--grp-link-color-quiet-hover);
+$grp-link-color-subtle: var(--grp-link-color-subtle);
+
+$grp-context-navigation-background-color: var(--grp-context-navigation-background-color);
+$grp-context-navigation-border-color: var(--grp-context-navigation-border-color);
+
+$grp-messagelist-background-color: var(--grp-messagelist-background-color);
+$grp-messagelist-border-color: var(--grp-messagelist-border-color);
+$grp-messagelist-success-background-color: var(--grp-messagelist-success-background-color);
+$grp-messagelist-success-border-color: var(--grp-messagelist-success-border-color);
+$grp-messagelist-warning-background-color: var(--grp-messagelist-warning-background-color);
+$grp-messagelist-warning-border-color: var(--grp-messagelist-warning-border-color);
+$grp-messagelist-error-background-color: var(--grp-messagelist-error-background-color);
+$grp-messagelist-error-border-color: var(--grp-messagelist-error-border-color);
+
+$grp-pagination-border-color: var(--grp-pagination-border-color);
+$grp-pagination-border-color-active: var(--grp-pagination-border-color-active);
+$grp-pagination-background-color: var(--grp-pagination-background-color);
+$grp-pagination-background-color-shade: var(--grp-pagination-background-color-shade);
+
+$grp-control-outline-color: var(--grp-control-outline-color);
+
+$grp-object-tools-border-color: var(--grp-object-tools-border-color);
+$grp-object-tools-gradient-from: var(--grp-object-tools-gradient-from);
+$grp-object-tools-background-color: var(--grp-object-tools-background-color);
+$grp-object-tools-border-color-hover: var(--grp-object-tools-border-color-hover);
+$grp-object-tools-background-color-hover: var(--grp-object-tools-background-color-hover);
+$grp-object-tools-add-gradient-from: var(--grp-object-tools-add-gradient-from);
+$grp-object-tools-add-background-color: var(--grp-object-tools-add-background-color);
+
+$grp-dark-background-color: var(--grp-dark-background-color);
+$grp-dark-gradient-from: var(--grp-dark-gradient-from);
+$grp-dark-border-shade-color: var(--grp-dark-border-shade-color);
+$grp-dark-border-highlight-color: var(--grp-dark-border-highlight-color);
+$grp-nav-dropdown-item-border-top-color: var(--grp-nav-dropdown-item-border-top-color);
+$grp-dark-row-border-top-color: var(--grp-dark-row-border-top-color);
+$grp-dark-row-border-bottom-color: var(--grp-dark-row-border-bottom-color);
+$grp-dark-chip-border-color: var(--grp-dark-chip-border-color);
+$grp-dark-font-color-quiet: var(--grp-dark-font-color-quiet);
+$grp-login-module-border-top-color: var(--grp-login-module-border-top-color);
+$grp-dark-chip-border-color-hover: var(--grp-dark-chip-border-color-hover);
+$grp-dark-background-color-hover: var(--grp-dark-background-color-hover);
+$grp-dark-item-border-color: var(--grp-dark-item-border-color);
+$grp-dark-link-color: var(--grp-dark-link-color);
+
+$grp-group-border-color: var(--grp-group-border-color);
+$grp-group-background-color: var(--grp-group-background-color);
+$grp-group-border-closed-color: var(--grp-group-border-closed-color);
+
+$grp-module-border-color: var(--grp-module-border-color);
+$grp-module-background-color: var(--grp-module-background-color);
+$grp-module-border-top-color: var(--grp-module-border-top-color);
+$grp-module-heading-border-top-color: var(--grp-module-heading-border-top-color);
+$grp-module-h2-gradient-from: var(--grp-module-h2-gradient-from);
+$grp-module-h2-gradient-to: var(--grp-module-h2-gradient-to);
+$grp-module-h3-gradient-from: var(--grp-module-h3-gradient-from);
+$grp-module-h3-gradient-to: var(--grp-module-h3-gradient-to);
+$grp-module-h4-gradient-from: var(--grp-module-h4-gradient-from);
+$grp-module-h4-gradient-to: var(--grp-module-h4-gradient-to);
+$grp-module-h2-collapse-handler-text-shadow-color: var(--grp-module-h2-collapse-handler-text-shadow-color);
+$grp-module-h3-collapse-handler-text-shadow-color: var(--grp-module-h3-collapse-handler-text-shadow-color);
+$grp-module-h3-collapse-handler-border-top-color: var(--grp-module-h3-collapse-handler-border-top-color);
+$grp-module-h3-collapse-handler-border-bottom-color: var(--grp-module-h3-collapse-handler-border-bottom-color);
+$grp-module-h2-collapse-handler-gradient-from: var(--grp-module-h2-collapse-handler-gradient-from);
+$grp-module-h2-collapse-handler-gradient-to: var(--grp-module-h2-collapse-handler-gradient-to);
+$grp-module-h3-collapse-handler-gradient-from: var(--grp-module-h3-collapse-handler-gradient-from);
+$grp-module-h3-collapse-handler-gradient-to: var(--grp-module-h3-collapse-handler-gradient-to);
+$grp-tabular-cell-border-inline-end-color: var(--grp-tabular-cell-border-inline-end-color);
+$grp-tabular-head-font-color: var(--grp-tabular-head-font-color);
+$grp-tabular-cell-border-color: var(--grp-tabular-cell-border-color);
+
+$grp-row-border-top-color: var(--grp-row-border-top-color);
+$grp-row-border-bottom-color: var(--grp-row-border-bottom-color);
+
+$grp-error-row-border-color: var(--grp-error-row-border-color);
+$grp-error-row-border-bottom-color: var(--grp-error-row-border-bottom-color);
+$grp-error-row-border-top-color: var(--grp-error-row-border-top-color);
+$grp-errornote-background-color: var(--grp-errornote-background-color);
+
+$grp-predelete-background-color: var(--grp-predelete-background-color);
+$grp-predelete-background-color-shade: var(--grp-predelete-background-color-shade);
+$grp-predelete-border-top-color: var(--grp-predelete-border-top-color);
+$grp-predelete-border-bottom-color: var(--grp-predelete-border-bottom-color);
+$grp-predelete-border-inline-start-color: var(--grp-predelete-border-inline-start-color);
+$grp-predelete-border-inline-end-color: var(--grp-predelete-border-inline-end-color);
+$grp-predelete-border-strong-color: var(--grp-predelete-border-strong-color);
+$grp-predelete-module-border-top-color: var(--grp-predelete-module-border-top-color);
+
+$grp-delete-confirmation-nesting-border-color: var(--grp-delete-confirmation-nesting-border-color);
+
+$grp-table-background-color: var(--grp-table-background-color);
+$grp-table-border-color: var(--grp-table-border-color);
+$grp-table-background-color-shade: var(--grp-table-background-color-shade);
+$grp-table-cell-border-color: var(--grp-table-cell-border-color);
+$grp-table-cell-border-inline-start-color: var(--grp-table-cell-border-inline-start-color);
+$grp-table-row-background-color-alt: var(--grp-table-row-background-color-alt);
+$grp-table-row-background-color: var(--grp-table-row-background-color);
+$grp-table-row-selected-background-color: var(--grp-table-row-selected-background-color);
+$grp-table-row-label-font-color: var(--grp-table-row-label-font-color);
+$grp-table-tfoot-border-top-color: var(--grp-table-tfoot-border-top-color);
+
+$grp-form-field-font-color: var(--grp-form-field-font-color);
+$grp-form-field-background-color: var(--grp-form-field-background-color);
+$grp-form-field-background-color-focus: var(--grp-form-field-background-color-focus);
+$grp-form-field-background-color-interactive: var(--grp-form-field-background-color-interactive);
+$grp-form-field-border-color: var(--grp-form-field-border-color);
+$grp-form-field-border-focus-color: var(--grp-form-field-border-focus-color);
+
+$grp-form-label-font-color: var(--grp-form-label-font-color);
+
+$grp-form-button-font-color: var(--grp-form-button-font-color);
+$grp-form-button-font-color-hover: var(--grp-form-button-font-color-hover);
+
+$grp-form-button-background-color: var(--grp-form-button-background-color);
+$grp-form-button-background-color-hover: var(--grp-form-button-background-color-hover);
+$grp-footer-form-button-background-color-hover: var(--grp-footer-form-button-background-color-hover);
+$grp-login-current-page-border-color: var(--grp-login-current-page-border-color);
+
+$grp-form-button-delete-background-color: var(--grp-form-button-delete-background-color);
+$grp-form-button-delete-background-color-hover: var(--grp-form-button-delete-background-color-hover);
+$grp-footer-form-button-delete-background-color-hover: var(--grp-footer-form-button-delete-background-color-hover);
+
+$grp-form-button-reset-background-color: var(--grp-form-button-reset-background-color);
+$grp-form-button-reset-background-color-hover: var(--grp-form-button-reset-background-color-hover);
+$grp-footer-form-button-reset-background-color-hover: var(--grp-footer-form-button-reset-background-color-hover);
+
+$grp-form-button-cancel-background-color: var(--grp-form-button-cancel-background-color);
+$grp-form-button-cancel-background-color-hover: var(--grp-form-button-cancel-background-color-hover);
+$grp-footer-form-button-cancel-background-color-hover: var(--grp-footer-form-button-cancel-background-color-hover);
+
+$grp-form-button-border-color: var(--grp-form-button-border-color);
+$grp-form-button-gradient-from: var(--grp-form-button-gradient-from);
+$grp-form-button-border-color-hover: var(--grp-form-button-border-color-hover);
+$grp-form-button-gradient-from-hover: var(--grp-form-button-gradient-from-hover);
+$grp-footer-form-button-border-color-hover: var(--grp-footer-form-button-border-color-hover);
+$grp-footer-form-button-gradient-from-hover: var(--grp-footer-form-button-gradient-from-hover);
+
+$grp-form-button-delete-border-color: var(--grp-form-button-delete-border-color);
+$grp-form-button-delete-gradient-from: var(--grp-form-button-delete-gradient-from);
+$grp-form-button-delete-border-color-hover: var(--grp-form-button-delete-border-color-hover);
+$grp-form-button-delete-gradient-from-hover: var(--grp-form-button-delete-gradient-from-hover);
+$grp-footer-form-button-delete-border-color-hover: var(--grp-footer-form-button-delete-border-color-hover);
+$grp-footer-form-button-delete-gradient-from-hover: var(--grp-footer-form-button-delete-gradient-from-hover);
+
+$grp-form-button-reset-border-color: var(--grp-form-button-reset-border-color);
+$grp-form-button-reset-gradient-from: var(--grp-form-button-reset-gradient-from);
+$grp-form-button-reset-border-color-hover: var(--grp-form-button-reset-border-color-hover);
+$grp-form-button-reset-gradient-from-hover: var(--grp-form-button-reset-gradient-from-hover);
+$grp-footer-form-button-reset-border-color-hover: var(--grp-footer-form-button-reset-border-color-hover);
+$grp-footer-form-button-reset-gradient-from-hover: var(--grp-footer-form-button-reset-gradient-from-hover);
+
+$grp-form-button-cancel-border-color: var(--grp-form-button-cancel-border-color);
+$grp-form-button-cancel-gradient-from: var(--grp-form-button-cancel-gradient-from);
+$grp-form-button-cancel-border-color-hover: var(--grp-form-button-cancel-border-color-hover);
+$grp-form-button-cancel-gradient-from-hover: var(--grp-form-button-cancel-gradient-from-hover);
+$grp-footer-form-button-cancel-border-color-hover: var(--grp-footer-form-button-cancel-border-color-hover);
+$grp-footer-form-button-cancel-gradient-from-hover: var(--grp-footer-form-button-cancel-gradient-from-hover);
+
+$grp-selector-background-color: var(--grp-selector-background-color);
+$grp-selector-filter-font-color: var(--grp-selector-filter-font-color);
+$grp-selector-filter-border-color: var(--grp-selector-filter-border-color);
+
+$grp-button-background-color: var(--grp-button-background-color);
+$grp-button-background-color-hover: var(--grp-button-background-color-hover);
+$grp-button-border-color: var(--grp-button-border-color);
+$grp-button-border-hover-color: var(--grp-button-border-hover-color);
+$grp-button-border-focus-color: var(--grp-button-border-focus-color);
+
+$grp-button-state-grey-background-color: var(--grp-button-state-grey-background-color);
+$grp-button-state-dark-grey-background-color: var(--grp-button-state-dark-grey-background-color);
+$grp-button-state-white-background-color: var(--grp-button-state-white-background-color);
+
+$grp-ui-widget-border-color: var(--grp-ui-widget-border-color);
+$grp-ui-widget-font-color: var(--grp-ui-widget-font-color);
+$grp-ui-widget-header-background-color: var(--grp-ui-widget-header-background-color);
+$grp-ui-widget-item-background-color: var(--grp-ui-widget-item-background-color);
+$grp-ui-widget-item-border-color: var(--grp-ui-widget-item-border-color);
+$grp-ui-widget-item-active-background-color: var(--grp-ui-widget-item-active-background-color);
+$grp-ui-widget-item-active-border-color: var(--grp-ui-widget-item-active-border-color);
+$grp-item-background-color-hover: var(--grp-item-background-color-hover);
+$grp-sortable-helper-background-color: var(--grp-sortable-helper-background-color);
+$grp-datepicker-header-border-color: var(--grp-datepicker-header-border-color);
+$grp-datepicker-select-border-color: var(--grp-datepicker-select-border-color);
+$grp-datepicker-day-active-background-color: var(--grp-datepicker-day-active-background-color);
+$grp-datepicker-button-font-color: var(--grp-datepicker-button-font-color);
+$grp-datepicker-current-border-color-hover: var(--grp-datepicker-current-border-color-hover);
+$grp-datepicker-append-font-color: var(--grp-datepicker-append-font-color);
+$grp-datepicker-day-disabled-background-color: var(--grp-datepicker-day-disabled-background-color);
+$grp-datepicker-day-disabled-font-color: var(--grp-datepicker-day-disabled-font-color);
+$grp-timepicker-item-border-color-hover: var(--grp-timepicker-item-border-color-hover);
+$grp-menu-item-border-color-hover: var(--grp-menu-item-border-color-hover);
+$grp-form-field-box-shadow-focus-color: var(--grp-form-field-box-shadow-focus-color);
+$grp-form-field-placeholder-font-color: var(--grp-form-field-placeholder-font-color);
+$grp-disabled-background-color: var(--grp-disabled-background-color);
+$grp-disabled-font-color: var(--grp-disabled-font-color);
+$grp-select2-focus-border-color: var(--grp-select2-focus-border-color);
+$grp-select2-result-selected-background-color: var(--grp-select2-result-selected-background-color);
+$grp-select2-result-selected-border-color: var(--grp-select2-result-selected-border-color);
+$grp-select2-result-highlighted-border-color: var(--grp-select2-result-highlighted-border-color);
+
+$grp-text-shadow-color: var(--grp-text-shadow-color);
+$grp-submit-row-shadow-color: var(--grp-submit-row-shadow-color);
+$grp-fixed-footer-item-background-color: var(--grp-fixed-footer-item-background-color);
+$grp-form-field-box-shadow-color: var(--grp-form-field-box-shadow-color);
+$grp-overlay-shadow-color: var(--grp-overlay-shadow-color);
+$grp-pulldown-handler-text-shadow-color: var(--grp-pulldown-handler-text-shadow-color);
+
+$grp-doc-color: var(--grp-doc-color);
+$grp-doc-rule-color: var(--grp-doc-rule-color);
+$grp-doc-code-border-color: var(--grp-doc-code-border-color);
+$grp-doc-code-background-color: var(--grp-doc-code-background-color);
+
+$grp-mark-background-color: var(--grp-mark-background-color);
+$grp-mark-font-color: var(--grp-mark-font-color);
+
+$grp-spritesheet: var(--grp-spritesheet);
+
+$grp-bg-changelist-results: var(--grp-bg-changelist-results);
+$grp-bg-sortable-placeholder: var(--grp-bg-sortable-placeholder);
+$grp-bg-form-select: var(--grp-bg-form-select);
+
+
+/* === REGION C END === */
+
+
+
+
+/*  --------------------------------------------------------------------------------------------------
+    REGION D: rule emission and mixins
+    --------------------------------------------------------------------------------------------------
+    Everything below consumes the tokens. The compound border shorthands keep
+    their names and their literal widths - only the colour is a token, because
+    tokenising the width would make layout metrics theme-switchable.
+    -------------------------------------------------------------------------------------------------- */
+
+
+/*  Compound Borders ............................................................ */
+
+$grp-group-border: 2px solid $grp-group-border-color !default;
+$grp-group-border-closed: 2px solid $grp-group-border-closed-color !default;
+
+$grp-module-border: 1px solid $grp-module-border-color !default;
+
+$grp-form-field-border: 1px solid $grp-form-field-border-color !default;
+$grp-form-field-border-focus: 1px solid $grp-form-field-border-focus-color !default;
+
+$grp-button-border: 1px solid $grp-button-border-color !default;
+$grp-button-border-hover: 1px solid $grp-button-border-hover-color !default;
+$grp-button-border-focus: 1px solid $grp-button-border-focus-color !default;
+
+
+/*  H2, H3 ............................................................ */
+
+@mixin grp-gradient-module-h2 {
+    background-image: linear-gradient($grp-module-h2-gradient-from, $grp-module-h2-gradient-to);
+}
+
+@mixin grp-gradient-module-h3 {
+    background-image: linear-gradient($grp-module-h3-gradient-from, $grp-module-h3-gradient-to);
+}
+
+@mixin grp-gradient-module-h4 {
+    background-image: linear-gradient($grp-module-h4-gradient-from, $grp-module-h4-gradient-to);
+}
+
+
+/*  Collapse Handlers ............................................................ */
+
+@mixin grp-gradient-module-h2-collapse-handler {
+    background-image: linear-gradient($grp-module-h2-collapse-handler-gradient-from, $grp-module-h2-collapse-handler-gradient-to);
+}
+
+@mixin grp-gradient-module-h2-collapse-handler-hover {
+    background-image: linear-gradient($grp-module-h2-collapse-handler-gradient-to, $grp-module-h2-collapse-handler-gradient-from);
+}
+
+@mixin grp-gradient-module-h3-collapse-handler {
+    background-image: linear-gradient($grp-module-h3-collapse-handler-gradient-from, $grp-module-h3-collapse-handler-gradient-to);
+}
+
+@mixin grp-gradient-module-h3-collapse-handler-hover {
+    background-image: linear-gradient($grp-module-h3-collapse-handler-gradient-to, $grp-module-h3-collapse-handler-gradient-from);
+}
+
+
+/*  Form Fields ............................................................ */
+
+@mixin grp-form-field-box-shadow {
+    box-shadow: 0 1px 3px 0 $grp-form-field-box-shadow-color inset;
+}
+
+@mixin grp-form-field-box-shadow-focus {
+    box-shadow: 0 0 6px $grp-form-field-box-shadow-focus-color;
+}
+
+
+/*  Labels ............................................................ */
+
+@mixin grp-form-label-required {
+    font-weight: bold;
+}
+
+
+/*  Buttons ............................................................ */
+
+@mixin grp-form-button-style {
+    color: $grp-font-color-inverted;
+    border: 1px solid $grp-form-button-border-color;
+    background-image: linear-gradient($grp-form-button-gradient-from, $grp-form-button-background-color);
+
+    &:hover,
+    &:focus {
+        color: $grp-font-color-inverted;
+        border: 1px solid $grp-form-button-border-color-hover;
+        background-image: linear-gradient($grp-form-button-gradient-from-hover, $grp-form-button-background-color-hover);
+
+        .grp-fixed-footer & {
+            color: $grp-form-button-font-color-hover;
+            border: 1px solid $grp-footer-form-button-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-gradient-from-hover, $grp-footer-form-button-background-color-hover);
+        }
+    }
+}
+
+@mixin grp-form-button-delete-style {
+    color: $grp-font-color-inverted;
+    border: 1px solid $grp-form-button-delete-border-color;
+    background-image: linear-gradient($grp-form-button-delete-gradient-from, $grp-form-button-delete-background-color);
+
+    &:hover,
+    &:focus {
+        color: $grp-font-color-inverted;
+        border: 1px solid $grp-form-button-delete-border-color-hover;
+        background-image: linear-gradient($grp-form-button-delete-gradient-from-hover, $grp-form-button-delete-background-color-hover);
+
+        .grp-fixed-footer & {
+            color: $grp-form-button-font-color-hover;
+            border: 1px solid $grp-footer-form-button-delete-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-delete-gradient-from-hover, $grp-footer-form-button-delete-background-color-hover);
+        }
+    }
+}
+
+@mixin grp-form-button-cancel-style {
+    color: $grp-font-color-inverted;
+    border: 1px solid $grp-form-button-cancel-border-color;
+    background-image: linear-gradient($grp-form-button-cancel-gradient-from, $grp-form-button-cancel-background-color);
+
+    &:hover,
+    &:focus {
+        color: $grp-font-color-inverted;
+        border: 1px solid $grp-form-button-cancel-border-color-hover;
+        background-image: linear-gradient($grp-form-button-cancel-gradient-from-hover, $grp-form-button-cancel-background-color-hover);
+
+        .grp-fixed-footer & {
+            color: $grp-form-button-font-color-hover;
+            border: 1px solid $grp-footer-form-button-cancel-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-cancel-gradient-from-hover, $grp-footer-form-button-cancel-background-color-hover);
+        }
+    }
+}
+
+@mixin grp-form-button-reset-style {
+    color: $grp-font-color-inverted;
+    border: 1px solid $grp-form-button-reset-border-color;
+    background-image: linear-gradient($grp-form-button-reset-gradient-from, $grp-form-button-reset-background-color);
+
+    &:hover,
+    &:focus {
+        color: $grp-font-color-inverted;
+        border: 1px solid $grp-form-button-reset-border-color-hover;
+        background-image: linear-gradient($grp-form-button-reset-gradient-from-hover, $grp-form-button-reset-background-color-hover);
+
+        .grp-fixed-footer & {
+            color: $grp-form-button-font-color-hover;
+            border: 1px solid $grp-footer-form-button-reset-border-color-hover;
+            background-image: linear-gradient($grp-footer-form-button-reset-gradient-from-hover, $grp-footer-form-button-reset-background-color-hover);
+        }
+    }
+}
+
+
+/*  GRADIENTS
+------------------------------------------------------------------------------------------------------ */
+
+
+/*  Dark Gradient ............................................................ */
+
+@mixin grp-gradient-dark {
+    color: $grp-font-color-inverted;
+    background-image: linear-gradient($grp-dark-gradient-from, $grp-dark-background-color);
+}
+
+
+/*  Gradient Icon-Sprite Combo ............................................................ */
+
+@mixin grp-background-gradient-icon-combo($sprite, $gradient-top, $gradient-bottom,
+    $offset-x: false,
+    $offset-y: false) {
+    background: grp-get-sprite($sprite,
+            $offset-x,
+            $offset-y) no-repeat,
+        linear-gradient($gradient-top, $gradient-bottom)
+}
+
+
+/*  Predelete Gradients ............................................................ */
+
+@mixin grp-gradient-predelete {
+    background-image: linear-gradient($grp-predelete-background-color, $grp-predelete-background-color-shade);
+}
+
+@mixin grp-gradient-predelete-reverse {
+    background-image: linear-gradient($grp-predelete-background-color-shade, $grp-predelete-background-color);
+}
