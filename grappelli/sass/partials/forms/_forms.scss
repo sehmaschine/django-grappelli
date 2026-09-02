@@ -14,7 +14,9 @@
 }
 
 fieldset.grp-module {
-    .grp-row label {
+
+    .grp-row label,
+    .grp-row legend {
         margin: 6px 0 6px;
         @include grp-label;
     }
@@ -106,8 +108,8 @@ div.grp-readonly {
     font-size: 12px;
     line-height: 16px;
     font-weight: bold;
-    color: #555555;
-    border: 1px dotted #ccc;
+    color: $grp-form-field-font-color;
+    border: 1px dotted $grp-form-field-border-color;
     border-radius: $grp-form-field-border-radius;
 
     // box-sizing: border-box;
@@ -132,7 +134,9 @@ div.grp-readonly {
 /*  Form Field Errors ................................................... */
 
 .grp-errors {
-    label {
+
+    label,
+    legend {
         color: $grp-font-color-error !important;
     }
 
@@ -187,7 +191,7 @@ select {
     select:focus {
         padding: 4px 28px 4px 5px;
         -webkit-appearance: none;
-        background-image: url('../images/icons/form-select.png');
+        background-image: $grp-bg-form-select;
         background-position: 100% 50%;
         background-repeat: no-repeat;
     }
@@ -347,9 +351,9 @@ ul.checkboxlist.inline {
     .selector-chosen {
         float: left;
         width: 366px;
-        border: 1px solid #ccc;
+        border: 1px solid $grp-module-border-color;
         border-radius: $grp-border-radius;
-        background: #ddd;
+        background: $grp-selector-background-color;
 
         &.stacked {
             width: 756px;
@@ -391,9 +395,9 @@ ul.checkboxlist.inline {
         height: 27px;
         padding: 3px 5px 2px 2px;
         font-weight: bold;
-        color: #666;
-        border-top: 1px solid #e4e4e4;
-        border-bottom: 1px solid #e4e4e4;
+        color: $grp-selector-filter-font-color;
+        border-top: 1px solid $grp-selector-filter-border-color;
+        border-bottom: 1px solid $grp-selector-filter-border-color;
         border-top-left-radius: $grp-border-radius;
         border-top-right-radius: $grp-border-radius;
         line-height: 25px;
@@ -561,10 +565,10 @@ ul.errorlist+.selector {
     @include grp-padding($grp-padding-size-s $grp-padding-size);
     width: 100%;
     box-sizing: border-box;
-    color: #fff;
+    color: $grp-font-color-inverted;
     font-weight: bold;
     border-radius: $grp-border-radius;
-    background: $grp-font-color-error;
+    background: $grp-errornote-background-color;
 }
 
 @mixin errorlist {
@@ -685,8 +689,8 @@ p.preview+ul.errorlist {
         @include errorlist-field;
         margin: 0 !important;
         padding: 5px 10px 8px;
-        border-top: 1px solid #fff;
-        border-bottom: 1px solid #ddd;
+        border-top: 1px solid $grp-row-border-top-color;
+        border-bottom: 1px solid $grp-row-border-bottom-color;
     }
 
     .grp-row ul.errorlist {

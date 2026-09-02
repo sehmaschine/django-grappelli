@@ -90,8 +90,18 @@ video {
     background: transparent;
 }
 
+/*  The page canvas. The reset above deliberately clears every background,
+    body's included - but rtl.scss imports this file too, and rtl.css loads
+    AFTER screen.css at equal specificity, so that clear would otherwise wipe
+    screen.scss's own `body { background: ... }` and leave the page painted by
+    the user agent's canvas - always white - instead of by the theme. Naming
+    the token here makes both sheets agree on one value rather than fight over
+    it, and it is the same value screen.scss sets, so nothing moves in the
+    light theme. See the note further down (ins/mark) for why this is written
+    as plain var() rather than as a Sass variable. */
 body {
     line-height: 1;
+    background: var(--grp-body-background-color);
 }
 
 article,
@@ -135,16 +145,23 @@ a {
 }
 
 /* change colours to suit your needs */
+/*  This file is imported before partials/skins/grp-default, so the
+    $grp-mark-* and $grp-module-border-color Sass variables do not exist yet
+    at this point in the source - referencing them would be an undefined-
+    variable compile error. var(--grp-*) is plain CSS text, resolved by the
+    browser at runtime regardless of source order, so it is used directly
+    here instead - the same trick _grp-default.scss's own utility classes
+    use for the analogous Region A ordering problem. */
 ins {
-    background-color: #ff9;
-    color: #000;
+    background-color: var(--grp-mark-background-color);
+    color: var(--grp-mark-font-color);
     text-decoration: none;
 }
 
 /* change colours to suit your needs */
 mark {
-    background-color: #ff9;
-    color: #000;
+    background-color: var(--grp-mark-background-color);
+    color: var(--grp-mark-font-color);
     font-style: italic;
     font-weight: bold;
 }
@@ -177,7 +194,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid var(--grp-module-border-color);
     margin: 1em 0;
     padding: 0;
 }

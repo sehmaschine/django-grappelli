@@ -1,0 +1,96 @@
+/*  --------------------------------------------------------------------------------------------------
+    THEME TOGGLE
+    --------------------------------------------------------------------------------------------------
+    Styles for Django's own `admin/color_theme_toggle.html`, included from
+    `base.html` inside #grp-user-tools. Grappelli writes no JavaScript and no
+    toggle markup of its own - `admin/js/theme.js` and the toggle template
+    are Django's, loaded verbatim.
+
+    Grappelli does not load Django's admin/css/base.css, so the display rules
+    that pick exactly one of the three icons for the active theme, and the
+    .visually-hidden utility the three accessible labels rely on, would
+    otherwise be missing entirely - without them all three icons show at
+    once (no rule hides the other two) or none do. Every colour below reuses
+    an existing $grp-* token rather than introducing a literal, so the toggle
+    follows both themes without a second set of values to keep in step.
+    -------------------------------------------------------------------------------------------------- */
+
+/*  Every other item in #grp-user-tools is a text link that fills its <li> by
+    way of padding and a line box, so its glyphs land on the band's optical
+    centre. The toggle has no text - it is a bare <svg> - so left as a block
+    it collapses to the icon's own height and parks it at the top left of the
+    <li>, sitting about 5px above the labels beside it and 5px left of centre.
+
+    Centring it as a flex container rather than with padding is deliberate:
+    the three icons do not share a bounding box, so any padding figure would
+    only be correct for one of them, and the <li> is already stretched to the
+    band's full height by #grp-user-tools' own align-items, which is the
+    height the icon should be centred in. */
+#grp-user-tools .theme-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-width: 26px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+/*  NOT scoped to #grp-user-tools, and that is load-bearing rather than a
+    style choice: the three rules below that reveal one icon are Django's
+    own, (0,3,2), and an id here would make this rule (1,1,1) and win, so
+    every icon would stay hidden and the button would paint nothing at all.
+    Django's admin/css/base.css writes the same rule unscoped for the same
+    reason; the button rule above keeps its id because it only positions the
+    control inside the header. */
+.theme-toggle svg {
+    display: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    vertical-align: middle;
+    fill: $grp-link-color-bright;
+    color: $grp-dark-background-color;
+}
+
+.theme-toggle:hover svg {
+    fill: $grp-font-color-inverted;
+}
+
+/*  Exactly one icon per theme. All three branches are listed in one selector
+    group, matching Django's own sheet - note that only the dark branch is
+    dark-only; the auto and light branches affect the light theme too. */
+html[data-theme="auto"] .theme-toggle svg.theme-icon-when-auto,
+html[data-theme="dark"] .theme-toggle svg.theme-icon-when-dark,
+html[data-theme="light"] .theme-toggle svg.theme-icon-when-light {
+    display: block;
+}
+
+/*  The <symbol> definitions the three icons above reference. Django's
+    base.html emits them as an inline <svg class="base-svgs"> and hides it in
+    admin/css/base.css; grappelli does not load that sheet, so without this
+    rule the block lays out as a 300x150 inline box at the bottom of every
+    admin page. Definitions only - nothing inside it is ever painted here. */
+svg.base-svgs {
+    display: none;
+}
+
+/*  Screen-reader-only utility. Same technique Django's admin/css/base.css
+    uses: visually hidden, still present for assistive tech. Grappelli has no
+    other consumer of this class name, so it is scoped globally like Django's
+    own, not to #grp-user-tools. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    color: $grp-font-color;
+    background-color: $grp-body-background-color;
+}

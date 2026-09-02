@@ -8,9 +8,16 @@
 /*  GRAPPELLI IMPORTS
 ------------------------------------------------------------------------------------------------------ */
 
+/*  spritesheet must load before grp-default: Region B of grp-default
+    references $spritesheet-image (defined there) to build --grp-spritesheet,
+    and Sass evaluates that reference at import time, not at first use. */
+@import "partials/library/spritesheet";
+
+/* grp-default is imported for its variables only - the token :root block is
+   emitted by screen.scss via grp-emit-light-tokens, never here. rtl.css loads
+   after screen.css and would otherwise re-declare every light token. */
 @import "partials/skins/grp-default";
 
-@import "partials/library/spritesheet";
 @import "partials/library/mixins";
 @import "partials/library/borders";
 @import "partials/library/margins-paddings";
@@ -35,8 +42,8 @@ body.rtl {
         float: left;
         padding-left: 0;
         padding-right: 0;
-        border-left: 1px solid #343434;
-        border-right: 1px solid #090909;
+        border-left: 1px solid $grp-dark-border-highlight-color;
+        border-right: 1px solid $grp-dark-border-shade-color;
     }
 
     // HEADER
@@ -48,14 +55,14 @@ body.rtl {
 
             ul#grp-user-tools {
                 margin: 0 0 0 -10px;
-                border-right: 1px solid #343434;
+                border-right: 1px solid $grp-dark-border-highlight-color;
                 border-left: 0 !important;
 
                 >li {
                     float: right;
 
                     &:last-child {
-                        border-right: 1px solid #090909;
+                        border-right: 1px solid $grp-dark-border-shade-color;
                         border-left: 0;
                     }
 
@@ -156,11 +163,11 @@ body.rtl {
                 &.grp-add-link {
                     padding-right: 28px;
                     padding-left: 15px;
-                    @include grp-background-gradient-icon-combo($object-tools-add-link, #999, #888,
+                    @include grp-background-gradient-icon-combo($object-tools-add-link, $grp-object-tools-gradient-from, $grp-object-tools-background-color,
                         $offset-x: 95%);
 
                     &:hover {
-                        @include grp-background-gradient-icon-combo($object-tools-add-link, #36b0d9, #309bbf,
+                        @include grp-background-gradient-icon-combo($object-tools-add-link, $grp-object-tools-background-color-hover, $grp-form-button-background-color,
                             $offset-x: 95%);
                     }
                 }
@@ -169,11 +176,11 @@ body.rtl {
                 &[target="_blank"] {
                     padding-right: 28px;
                     padding-left: 15px;
-                    @include grp-background-gradient-icon-combo($object-tools-viewsite-link, #999, #888,
+                    @include grp-background-gradient-icon-combo($object-tools-viewsite-link, $grp-object-tools-gradient-from, $grp-object-tools-background-color,
                         $offset-x: 95%);
 
                     &:hover {
-                        @include grp-background-gradient-icon-combo($object-tools-viewsite-link, #36b0d9, #309bbf,
+                        @include grp-background-gradient-icon-combo($object-tools-viewsite-link, $grp-object-tools-background-color-hover, $grp-form-button-background-color,
                             $offset-x: 95%);
                     }
                 }
@@ -427,13 +434,13 @@ body.rtl {
                     vertical-align: top;
                     position: relative;
                     padding: 8px 0 8px 20px;
-                    border-left: 1px solid #fff;
+                    border-left: 1px solid $grp-row-border-top-color;
                     border-right: 0;
 
                     &+.grp-cell {
                         padding-left: 20px;
                         padding-right: 0;
-                        border-right: 1px solid #ddd;
+                        border-right: 1px solid $grp-row-border-bottom-color;
                         border-left: 0;
                     }
 
@@ -441,7 +448,7 @@ body.rtl {
                         padding-left: 0;
                         padding-right: 20px;
                         border-left: 0 !important;
-                        border-right: 1px solid #ddd !important;
+                        border-right: 1px solid $grp-row-border-bottom-color !important;
                     }
 
                 }
@@ -456,8 +463,8 @@ body.rtl {
             .grp-th,
             .grp-td {
                 margin-right: 0;
-                border-left: 1px solid #fff;
-                border-right: 1px solid #e0e0e0;
+                border-left: 1px solid $grp-row-border-top-color;
+                border-right: 1px solid $grp-tabular-cell-border-inline-end-color;
 
                 &:first-of-type {
                     padding-left: 20px;
@@ -485,11 +492,11 @@ body.rtl {
 
                 .grp-th,
                 .grp-td {
-                    border-bottom: 1px solid #d4d4d4;
-                    border-top: 1px solid #d4d4d4;
+                    border-bottom: 1px solid $grp-tabular-cell-border-color;
+                    border-top: 1px solid $grp-tabular-cell-border-color;
 
                     &:last-of-type {
-                        border-left: 1px solid #d4d4d4;
+                        border-left: 1px solid $grp-tabular-cell-border-color;
                     }
 
                     &:last-child {
@@ -500,8 +507,8 @@ body.rtl {
                     }
 
                     &:first-of-type {
-                        border-left: 1px solid #fff;
-                        border-right: 1px solid #d4d4d4;
+                        border-left: 1px solid $grp-row-border-top-color;
+                        border-right: 1px solid $grp-tabular-cell-border-color;
                         border-top-right-radius: $grp-border-radius - 1px;
                         border-bottom-right-radius: $grp-border-radius - 1px;
                         border-top-left-radius: 0;
@@ -558,7 +565,7 @@ body.rtl {
 
                 td,
                 th {
-                    border-right: 1px solid #e4e4e4;
+                    border-right: 1px solid $grp-table-cell-border-inline-start-color;
 
                     &:first-child {
                         border-right: 0 !important;
@@ -570,7 +577,7 @@ body.rtl {
                 &.grp-row-odd td,
                 &.grp-row-odd th {
                     border-left: 0;
-                    border-right: 1px solid #e0e0e0;
+                    border-right: 1px solid $grp-table-cell-border-color;
                 }
 
                 &:last-child {
@@ -694,7 +701,7 @@ body.rtl {
         &.grp-pulldown-state-open {
             .grp-pulldown-handler {
                 @include grp-icon-sprite($pulldown-handler-selected);
-                background-color: #e1f0f5;
+                background-color: $grp-button-background-color;
             }
         }
     }
@@ -754,7 +761,7 @@ body.rtl {
         select:focus {
             padding: 4px 5px 4px 28px;
             appearance: none;
-            background-image: url('../images/icons/form-select.png');
+            background-image: $grp-bg-form-select;
             background-position: 0 50%;
             background-repeat: no-repeat;
         }
@@ -798,7 +805,7 @@ body.rtl {
         }
 
         div.grp-loader {
-            background: #fdfdfd url('../images/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
+            background: $grp-form-field-background-color url('../images/backgrounds/loading-small.gif') 50% 50% no-repeat scroll;
         }
 
         a.related-lookup {

@@ -483,3 +483,53 @@ With setting ``GRAPPELLI_CLEAN_INPUT_TYPES`` to ``True``, |grappelli| automatica
 
 .. note::
     This functionality might change with future releases.
+
+.. _customizationdarktheme:
+
+Dark Theme
+----------
+
+|grappelli| follows Django's admin dark-mode switch (the ``auto``/``light``/``dark`` toggle in the header, backed by ``admin/js/theme.js``). No setting turns this on or off: |grappelli| always loads Django's toggle and theme script, and its own stylesheets already respond to ``html[data-theme="dark"]``, and, for ``auto``, to ``prefers-color-scheme: dark``.
+
+The Token Layer
+++++++++++++++++
+
+|grappelli|'s skin colours are declared as CSS custom properties (``--grp-*``), not as fixed values baked into each rule. This is what makes one set of rules work in both themes: switching the theme only re-points the custom properties, and every rule that reads one follows automatically, with no duplicated CSS.
+
+The tokens are defined in two sass partials. ``grappelli/sass/partials/skins/_grp-default.scss`` declares the light values and is organised into four regions, always in this order:
+
+* **Region A - literal defaults and all colour maths.** Every ``$grp-*`` Sass variable still holds a real colour here, and this is the only region where a Sass colour function (``lighten()``, ``darken()``, ``mix()``, ``rgba()``, ...) may run on it. This is also where you override one of |grappelli|'s base colours from your own project - see below.
+* **Region B - token emission.** A Sass map captures every ``$grp-*`` variable's current value under its ``--grp-*`` name, and a mixin emits the map as a ``:root`` block. The capture has to happen before Region C re-points the variables, and emission has to be a mixin rather than a bare block, because ``rtl.scss`` imports this same partial and must not re-declare the light tokens a second time (``rtl.css`` always loads after ``screen.css``).
+* **Region C - re-point every colour variable at its token.** From here on, each ``$grp-*`` Sass variable holds ``var(--grp-*)`` instead of a colour value.
+* **Region D - rules and mixins.** Everything below Region C: the CSS rules and Sass mixins that consume the ``$grp-*`` variables - now ``var()`` references - to paint the admin, unchanged from before the token layer existed.
+
+The dark values live in a second partial, ``_grp-tokens-dark.scss``, imported only by ``screen.scss`` and only after the light tokens are emitted. It re-declares the subset of tokens that need a different value, once inside ``html[data-theme="dark"]`` and once (for ``auto``) inside ``@media (prefers-color-scheme: dark)``, both from the same shared mixin so the two cannot drift apart.
+
+One Real API Narrowing
++++++++++++++++++++++++
+
+Because Region C re-points every ``$grp-*`` Sass variable at ``var(--grp-*)``, a downstream project that imports |grappelli|'s sass and then calls a Sass colour function on one of its variables will break. For example, ``darken($grp-link-color, 10)`` in your own sass, written *after* ``@import``-ing |grappelli|'s skin, now fails to compile - the exported value is a ``var()`` reference, and Sass colour functions cannot operate on one.
+
+**This is the one user-visible regression in this change, and it is deliberate: the whole dark theme depends on ``$grp-*`` resolving to a custom property from Region C onward.**
+
+It only affects code that reads a ``$grp-*`` variable *after* |grappelli|'s own sass has already been imported, and only when that code calls a colour function on it. Using the variable directly in a declaration still works exactly as before, since that has always resolved to plain CSS at rule-emission time.
+
+Overriding a ``$grp-*`` variable *before* importing |grappelli|'s sass - the normal, documented way to customize a skin - is completely unaffected. Your ``!default`` override is what Region A captures, so it flows through the token layer exactly as it flowed into the rules before this change.
+
+If your project was doing colour math on a |grappelli| variable after the import, do the math on your own copy of the source colour instead, before |grappelli|'s ``@import``, and override the ``$grp-*`` variable with the result.
+
+Overriding Dark Values
+++++++++++++++++++++++
+
+Because the dark theme lives entirely in the token layer, changing it does not require touching sass at all. Redeclare the custom property inside ``html[data-theme="dark"]`` in your own stylesheet, loaded after |grappelli|'s:
+
+.. code-block:: css
+
+    html[data-theme="dark"] {
+        --grp-link-color: #6ec6e8;
+    }
+
+To also follow the operating system's ``prefers-color-scheme`` when the user has left the toggle on ``auto``, repeat the declaration inside ``html[data-theme="auto"]`` nested in ``@media (prefers-color-scheme: dark) { ... }``, the same structure ``_grp-tokens-dark.scss`` itself uses.
+
+.. note::
+    Fixing |grappelli|'s dark theme also fixed a small, pre-existing light-theme bug: the datepicker and autocomplete overlay frame now renders the ``#888`` |grappelli| has always declared for it, instead of jQuery UI's own ``#c5c5c5``, which is what ``#ui-timepicker`` has always rendered. See the changelog for details.

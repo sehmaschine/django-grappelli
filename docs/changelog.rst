@@ -8,11 +8,28 @@
 Changelog
 =========
 
-5.0.0 (not yet released)
+5.0.1 (not yet released)
 ------------------------
 
-4.0.4 (not yet released)
+* Added: dark theme, following Django's admin dark-mode toggle (auto/light/dark). No configuration is required (#1018).
+* Changed: |grappelli|'s skin colours are now CSS custom properties (``--grp-*``) instead of Sass-only variables, so a dark value can be overridden in plain CSS. Overriding a ``$grp-*`` Sass variable before importing |grappelli|'s sass still works exactly as before; calling a Sass colour function (e.g. ``darken()``) on a ``$grp-*`` variable *after* the import no longer works, because it now resolves to a CSS custom property. See :ref:`Customization <customizationdarktheme>` for the override pattern that replaces it.
+* Fixed: Django's inlined theme-toggle icon definitions (the three ``<symbol>`` elements ``admin/color_theme_toggle.html`` references) were laying out as an empty 300x150 box; hiding them (``svg.base-svgs { display: none }``) makes every page 130-154px shorter than it would otherwise be. Net-neutral against the previous release, since the icons themselves are new in this one.
+* Fixed: the jQuery UI datepicker and autocomplete overlay frame now renders the ``#888`` |grappelli| has always declared for it, instead of jQuery UI's own ``#c5c5c5``, which was winning because the declaration used a descendant selector that never reached the widget root. This matches ``#ui-timepicker``, which has always rendered ``#888``. This is a small but real change to light-theme rendering: the datepicker overlay differs by roughly 1000 pixels against the previous release.
+
+5.0.0 (April 29th, 2026)
 ------------------------
+
+* Compatibility with Django 6.x
+
+4.0.5 (not yet released)
+------------------------
+
+4.0.4 (April 28th, 2026)
+------------------------
+
+* Improved: raised margins within radiolists
+* Improved: layout for multiple inputs in related widget
+* Improved: layout for related widget display in change list
 
 4.0.3 (November 27th 2025)
 --------------------------

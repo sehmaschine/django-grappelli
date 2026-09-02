@@ -22,7 +22,7 @@ body[class*="grp"] {
     .select2-container--admin-autocomplete.select2-container--open .select2-selection {
         border: $grp-form-field-border-focus;
         outline: 0;
-        box-shadow: 0 0 6px #ccc !important;
+        box-shadow: 0 0 6px $grp-form-field-box-shadow-focus-color !important;
         min-height: 25px;
     }
 
@@ -56,7 +56,7 @@ body[class*="grp"] {
         font-size: 12px;
         line-height: 14px;
         font-weight: bold;
-        color: #555;
+        color: $grp-form-field-font-color;
     }
 
     .select2-container--admin-autocomplete[dir="rtl"] .select2-selection--single .select2-selection__rendered {
@@ -84,7 +84,7 @@ body[class*="grp"] {
     }
 
     .select2-container--admin-autocomplete .select2-selection--single .select2-selection__placeholder {
-        color: #9a9a9a;
+        color: $grp-form-field-placeholder-font-color;
     }
 
     .select2-container--admin-autocomplete .select2-selection--single .select2-selection__arrow {
@@ -110,7 +110,7 @@ body[class*="grp"] {
     }
 
     .select2-container--admin-autocomplete.select2-container--disabled .select2-selection--single {
-        background-color: #eee;
+        background-color: $grp-disabled-background-color;
         cursor: default;
     }
 
@@ -146,7 +146,7 @@ body[class*="grp"] {
     }
 
     .select2-container--admin-autocomplete .select2-selection--multiple .select2-selection__placeholder {
-        color: #9a9a9a;
+        color: $grp-form-field-placeholder-font-color;
         margin-top: 5px;
         float: left;
     }
@@ -206,9 +206,9 @@ body[class*="grp"] {
         font-size: 12px;
         line-height: 12px;
         font-weight: bold;
-        color: #555;
-        background-color: #e1f0f5;
-        border: 1px solid #ccc;
+        color: $grp-form-field-font-color;
+        background-color: $grp-button-background-color;
+        border: 1px solid $grp-button-border-color;
         border-radius: 3px;
     }
 
@@ -245,12 +245,12 @@ body[class*="grp"] {
     }
 
     .select2-container--admin-autocomplete.select2-container--focus .select2-selection--multiple {
-        border: solid #9a9a9a 1px;
+        border: solid $grp-select2-focus-border-color 1px;
         outline: 0;
     }
 
     .select2-container--admin-autocomplete.select2-container--disabled .select2-selection--multiple {
-        background-color: #eee;
+        background-color: $grp-disabled-background-color;
         cursor: default;
     }
 
@@ -275,12 +275,20 @@ body[class*="grp"] {
         border-radius: 3px;
         border: $grp-form-field-border-focus;
         background-color: #fff;
-        background-color: #eee;
+        background-color: $grp-module-background-color;
 
         &.select2-dropdown--above {
             border-bottom: 0;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
+            /* Same colour as $grp-overlay-shadow-color (#333), written in
+               decimal with a fixed alpha. Left as a literal on purpose:
+               passing a token through rgba() forces Sass to fall back to
+               its plain-CSS function serialiser, which reformats the call
+               (comma spacing, ".3" -> "0.3") and so rewrites the compiled
+               light CSS for no visual gain. If this shadow ever needs to
+               differ per theme, give it a dark-scoped override rather than
+               a token. */
             box-shadow: 0 0px 50px rgba(51, 51, 51, .3);
         }
 
@@ -288,13 +296,14 @@ body[class*="grp"] {
             border-top: 0;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
+            /* See the comment on .select2-dropdown--above above. */
             box-shadow: 0 20px 50px rgba(51, 51, 51, .3);
         }
     }
 
     .select2-container--admin-autocomplete .select2-search--dropdown {
         padding: 8px 4px 4px;
-        background-color: #eee;
+        background-color: $grp-module-background-color;
     }
 
     .select2-container--admin-autocomplete .select2-search--dropdown .select2-search__field {
@@ -330,23 +339,23 @@ body[class*="grp"] {
     .select2-container--admin-autocomplete .select2-results {
         padding: 4px;
         background-color: #fff;
-        background-color: #eee;
+        background-color: $grp-module-background-color;
     }
 
     .select2-container--admin-autocomplete .select2-results>.select2-results__options {
         max-height: 200px;
         overflow-y: auto;
         background-color: #fff;
-        background-color: #eee;
+        background-color: $grp-module-background-color;
     }
 
     .select2-container--admin-autocomplete .select2-results .select2-results__option {
         padding: 4px 5px;
         font-weight: bold;
-        color: #555;
+        color: $grp-form-field-font-color;
         border-radius: 3px;
-        border: 1px solid #ccc;
-        background-color: #e1f0f5;
+        border: 1px solid $grp-button-border-color;
+        background-color: $grp-button-background-color;
         transition: color 0.125s ease-in-out, border 0.125s ease-in-out, background 0.125s ease-in-out;
 
         &+.select2-results__option {
@@ -389,15 +398,15 @@ body[class*="grp"] {
     }
 
     .select2-container--admin-autocomplete .select2-results__option[aria-disabled=true] {
-        color: #9a9a9a;
-        border-color: #ccc;
-        background-color: #eee;
+        color: $grp-disabled-font-color;
+        border-color: $grp-button-border-color;
+        background-color: $grp-disabled-background-color;
     }
 
     .select2-container--admin-autocomplete .select2-results__option[aria-selected=true] {
-        color: #fff;
-        border-color: darken(#333, 10);
-        background-color: #333;
+        color: $grp-font-color-inverted;
+        border-color: $grp-select2-result-selected-border-color;
+        background-color: $grp-select2-result-selected-background-color;
     }
 
     .select2-container--admin-autocomplete .select2-results__option .select2-results__option {
@@ -434,9 +443,9 @@ body[class*="grp"] {
     }
 
     .select2-container--admin-autocomplete .select2-results__option--highlighted[aria-selected] {
-        color: #fff;
-        border-color: darken(#309bbf, 10);
-        background-color: #309bbf;
+        color: $grp-font-color-inverted;
+        border-color: $grp-select2-result-highlighted-border-color;
+        background-color: $grp-form-button-background-color;
     }
 
     .select2-container--admin-autocomplete .select2-results__group {

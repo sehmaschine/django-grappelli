@@ -1,6 +1,6 @@
 {
   "name": "django-grappelli",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A jazzy skin for the Django admin interface",
   "author": "Patrick Kranzlmueller, Axel Swoboda",
   "license": "New BSD",
@@ -23,6 +23,7 @@
     "grunt-exec": "^3.0.0",
     "grunt-flake8": "^0.1.3",
     "grunt-spritesmith": "^6.10.0",
+    "pngjs": "^3.4.0",
     "sass": "^1.66.1"
   }
 }

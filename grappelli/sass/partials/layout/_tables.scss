@@ -31,7 +31,7 @@ table.grp-table {
             white-space: nowrap;
             border-left: 1px solid $grp-table-border-color;
             border-bottom: 1px solid $grp-table-border-color;
-            background-image: linear-gradient(#eee, #e0e0e0);
+            background-image: linear-gradient($grp-table-background-color, $grp-table-background-color-shade);
 
             &:first-child {
                 border-left: 0;
@@ -50,10 +50,10 @@ table.grp-table {
                 margin: -6px -10px;
                 padding: 6px 10px;
                 height: 100%;
-                color: #59afcc;
+                color: $grp-link-color-subtle;
 
                 &:hover {
-                    color: #444;
+                    color: $grp-font-color;
                 }
             }
         }
@@ -75,8 +75,8 @@ table.grp-table {
 
             td,
             th {
-                border-bottom: 1px solid #e0e0e0;
-                border-left: 1px solid #e4e4e4;
+                border-bottom: 1px solid $grp-table-cell-border-color;
+                border-left: 1px solid $grp-table-cell-border-inline-start-color;
                 vertical-align: top;
 
                 &:first-child {
@@ -93,22 +93,22 @@ table.grp-table {
             &.grp-row-even th,
             &.grp-alt td,
             &.grp-alt th {
-                border-left: 1px solid #e0e0e0;
-                background: #f4f4f4;
+                border-left: 1px solid $grp-table-cell-border-color;
+                background: $grp-table-row-background-color-alt;
             }
 
             &.grp-row-odd td,
             &.grp-row-odd th {
-                background: #fff;
+                background: $grp-table-row-background-color;
             }
 
             &.grp-selected {
-                background: #ffd;
+                background: $grp-table-row-selected-background-color;
             }
 
             &.grp-row-label td {
                 border-bottom: 0;
-                color: #666;
+                color: $grp-table-row-label-font-color;
             }
 
             &:last-child {
@@ -151,7 +151,7 @@ table.grp-table {
     tfoot {
         td {
             border-bottom: 0;
-            border-top: 1px solid #d4d4d4;
+            border-top: 1px solid $grp-table-tfoot-border-top-color;
 
             &:first-child {
                 border-left: 0;
@@ -388,23 +388,23 @@ table.grp-table.grp-sortable {
                 }
 
                 &:hover {
-                    background-image: linear-gradient(#e0e0e0, #eee);
+                    background-image: linear-gradient($grp-table-background-color-shade, $grp-table-background-color);
                 }
 
                 &.sorted {
                     &.ascending {
-                        background-image: linear-gradient(#e0e0e0, #eee);
+                        background-image: linear-gradient($grp-table-background-color-shade, $grp-table-background-color);
 
                         &:hover {
-                            background-image: linear-gradient(#eee, #e0e0e0);
+                            background-image: linear-gradient($grp-table-background-color, $grp-table-background-color-shade);
                         }
                     }
 
                     &.descending {
-                        background-image: linear-gradient(#eee, #e0e0e0);
+                        background-image: linear-gradient($grp-table-background-color, $grp-table-background-color-shade);
 
                         &:hover {
-                            background-image: linear-gradient(#e0e0e0, #eee);
+                            background-image: linear-gradient($grp-table-background-color-shade, $grp-table-background-color);
                         }
                     }
 

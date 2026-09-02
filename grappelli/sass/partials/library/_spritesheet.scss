@@ -1286,8 +1286,7 @@ $spritesheet: (24px, 24453px, '../images/spritesheet-1694777276.png', $spriteshe
 }
 
 @mixin sprite-image($sprite) {
-  $sprite-image: nth($sprite, 9);
-  background-image: url(#{$sprite-image});
+  background-image: var(--grp-spritesheet);
 }
 
 @mixin sprite($sprite) {
