@@ -35,7 +35,10 @@
                 }
             }
 
-            span {
+            // Current page. Django < 6 rendered it as <span class="this-page">;
+            // Django 6 renders <a href="" aria-current="page"> instead.
+            span,
+            a[aria-current="page"] {
                 color: $grp-font-color;
                 border-color: $grp-pagination-border-color-active;
                 background-image: linear-gradient($grp-pagination-background-color, $grp-pagination-background-color-shade);

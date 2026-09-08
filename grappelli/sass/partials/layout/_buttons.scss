@@ -130,8 +130,12 @@ input[type="submit"] {
     @include grp-form-button-style;
 }
 
+// Django tags many plain navigational links with role="button" (paginator
+// numbers, sortable column headers, history pagination). Only style the ones
+// that also carry Django's .button class as actual buttons - e.g. the
+// read_only_password_hash widget's "change password" link (#1073, #1080).
 a.grp-button,
-a[role="button"],
+a[role="button"].button,
 button.grp-button,
 input[type=button].grp-button {
     @include grp-button();
@@ -151,7 +155,7 @@ input[type=button].grp-button {
     }
 }
 
-p>a[role="button"]:only-child {
+p>a[role="button"].button:only-child {
     margin: 5px 0 0;
 }
 

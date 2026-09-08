@@ -59,7 +59,8 @@
         const sel = Array.from(actionCheckboxes).filter(function(el) {
             return el.checked;
         }).length;
-        const counter = document.querySelector(options.counterContainer);
+        // GRAPPELLI CUSTOM: counterContainer is the <li>, the count text lives in counterText
+        const counter = document.querySelector(options.counterText);
         // data-actions-icnt is defined in the generated HTML
         // and contains the total amount of objects in the queryset
         // GRAPPELLI CUSTOM: counterSpan is a different class
@@ -83,7 +84,8 @@
     const defaults = {
         actionContainer: "div.grp-changelist-actions",
         counterSpan: "span.action-counter",
-        counterContainer: "li.grp-action-counter span.grp-action-counter",
+        counterContainer: "div.grp-changelist-actions li.grp-action-counter",
+        counterText: "div.grp-changelist-actions li.grp-action-counter span.grp-action-counter",
         allContainer: "div.grp-changelist-actions li.grp-all",
         acrossInput: "div.grp-changelist-actions input.select-across",
         acrossQuestions: "div.grp-changelist-actions li.grp-question",
