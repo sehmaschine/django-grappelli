@@ -16,6 +16,7 @@ Changelog
 * Fixed: Django's inlined theme-toggle icon definitions (the three ``<symbol>`` elements ``admin/color_theme_toggle.html`` references) were laying out as an empty 300x150 box; hiding them (``svg.base-svgs { display: none }``) makes every page 130-154px shorter than it would otherwise be. Net-neutral against the previous release, since the icons themselves are new in this one.
 * Fixed: the jQuery UI datepicker and autocomplete overlay frame now renders the ``#888`` |grappelli| has always declared for it, instead of jQuery UI's own ``#c5c5c5``, which was winning because the declaration used a descendant selector that never reached the widget root. This matches ``#ui-timepicker``, which has always rendered ``#888``. This is a small but real change to light-theme rendering: the datepicker overlay differs by roughly 1000 pixels against the previous release.
 * Fixed: ``.grp-collapse-handler`` is now bound with a single delegated click handler instead of one direct handler per element at init time, so collapsibles injected into the page after load (e.g. inline rows fetched by AJAX) toggle without re-running ``grp_collapsible()`` on the new markup (#1060).
+* Fixed: on a paginated changelist, choosing "Select all N across pages" now hides the per-page "X of Y selected" counter, leaving only "All N selected". The counter's ``hidden`` class was toggled on the inner ``<span>``, which no CSS rule matched; it is now toggled on the ``li.grp-action-counter`` like every other action-bar chip (#1080).
 
 5.0.0 (April 29th, 2026)
 ------------------------
