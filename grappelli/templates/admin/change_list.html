@@ -188,6 +188,13 @@
                                                 <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
                                                 <div class="grp-pulldown-content" style="display: none;">
                                                     {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                                                    {% if cl.has_active_filters %}
+                                                        <div class="grp-module">
+                                                            <div class="grp-row">
+                                                                <a href="{{ cl.clear_all_filters_qs }}" class="grp-clear-filters">&#10006; {% trans 'Clear all filters' %}</a>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
