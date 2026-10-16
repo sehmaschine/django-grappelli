@@ -8,8 +8,11 @@
 Changelog
 =========
 
-5.0.1 (not yet released)
+5.0.2 (not yet released)
 ------------------------
+
+5.0.1 (October 16th, 2026)
+--------------------------
 
 * Added: dark theme, following Django's admin dark-mode toggle (auto/light/dark). No configuration is required (#1018).
 * Changed: |grappelli|'s skin colours are now CSS custom properties (``--grp-*``) instead of Sass-only variables, so a dark value can be overridden in plain CSS. Overriding a ``$grp-*`` Sass variable before importing |grappelli|'s sass still works exactly as before; calling a Sass colour function (e.g. ``darken()``) on a ``$grp-*`` variable *after* the import no longer works, because it now resolves to a CSS custom property. See :ref:`Customization <customizationdarktheme>` for the override pattern that replaces it.
