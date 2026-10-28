@@ -9,9 +9,15 @@
             </span></li>
         {% endif %}
         {% if cl.show_full_result_count %}
-            <li class="grp-results"><span class="total">
-                {% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}
-            </span></li>
+            {% if cl.result_count != cl.full_result_count %}
+                <li class="grp-results"><a href="?{% if cl.is_popup %}_popup=1{% endif %}{% if cl.to_field %}{% if cl.is_popup %}&{% endif %}_to_field={{ cl.to_field|urlencode }}{% endif %}{% if cl.add_facets %}{% if cl.is_popup or cl.to_field %}&{% endif %}_facets{% endif %}" class="total">
+                    {% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}
+                </a></li>
+            {% else %}
+                <li class="grp-results"><span class="total">
+                    {% blocktrans with cl.full_result_count as full_result_count %}{{ full_result_count }} total{% endblocktrans %}
+                </span></li>
+            {% endif %}
         {% endif %}
         {% if pagination_required %}
             {% for i in page_range %}

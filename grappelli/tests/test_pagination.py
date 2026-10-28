@@ -91,16 +91,50 @@ class PaginationTests(TestCase):
                 self.assertIn("all=", show_all[0])
                 self.assertIn("category__id__exact=%s" % self.category_1.pk, show_all[0])
 
-    def test_pagination_has_no_reset_link(self) -> None:
+    def test_total_links_to_unfiltered_changelist(self) -> None:
         """
-        The pagination does not link to the unfiltered changelist, because such
-        a link drops the filters (and _popup/_to_field with them), see #1072
+        With filters being applied, the total number links to the unfiltered
+        changelist (like with Django), see #1090
         """
-        for show_full_result_count in (True, False):
-            with self.subTest(show_full_result_count=show_full_result_count):
-                self.options.show_full_result_count = show_full_result_count
-                links = self.get_pagination_links(self.get_filtered_changelist())
-                self.assertEqual([href for href, text in links if href == "?"], [], links)
+        self.options.show_full_result_count = True
+        links = self.get_pagination_links(self.get_filtered_changelist())
+        self.assertEqual([href for href, text in links if text == "25 total"], ["?"], links)
+
+    def test_total_link_keeps_popup(self) -> None:
+        """
+        Within a related lookup popup, the total link keeps _popup and _to_field,
+        but drops the filters
+        """
+        self.options.show_full_result_count = True
+        response = self.client.get(CHANGELIST_URL, {"category__id__exact": self.category_1.pk, "_popup": 1, "_to_field": "id"})
+        self.assertEqual(response.status_code, 200)
+        links = self.get_pagination_links(response.content.decode())
+        total = [href for href, text in links if text == "25 total"]
+        self.assertEqual(total, ["?_popup=1&_to_field=id"], links)
+
+    def test_total_is_plain_text_when_unfiltered(self) -> None:
+        """
+        Without filters, the total number is plain text, also when showing all
+        rows (like with Django)
+        """
+        self.options.show_full_result_count = True
+        for params in ({}, {"all": ""}):
+            with self.subTest(params=params):
+                response = self.client.get(CHANGELIST_URL, params)
+                self.assertEqual(response.status_code, 200)
+                pagination = self.get_pagination(response.content.decode())
+                self.assertIn('<span class="total"> 25 total </span>', pagination)
+                self.assertNotIn("25 total", [text for href, text in self.get_pagination_links(response.content.decode())])
+
+    def test_no_reset_link_without_full_result_count(self) -> None:
+        """
+        Without show_full_result_count, the pagination does not link to the
+        unfiltered changelist, because that link would be labelled "Show all"
+        as well, see #1087
+        """
+        self.options.show_full_result_count = False
+        links = self.get_pagination_links(self.get_filtered_changelist())
+        self.assertEqual([href for href, text in links if href == "?"], [], links)
 
     def test_result_count(self) -> None:
         """

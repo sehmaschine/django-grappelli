@@ -11,6 +11,8 @@ Changelog
 5.0.2 (not yet released)
 ------------------------
 
+* Fixed: on a filtered or searched changelist, "N total" in the paginator is a link to the unfiltered changelist again, like with Django's admin. It clears search and filters in one click, but keeps ``_popup``/``_to_field`` (and ``_facets``) in a related-lookup popup. With ``show_full_result_count = False`` there is still no such link, so the paginator keeps a single "Show all" link (#1090, #1087).
+
 5.0.1 (October 16th, 2026)
 --------------------------
 
